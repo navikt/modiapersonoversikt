@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import StandardTekstSok from './StandardTekstSok';
 import SvgIkon from './StandardTekstIkon';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import useHotkey from '../../../../../utils/hooks/use-hotkey';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -53,10 +54,11 @@ const Ikon = styled(SvgIkon)`
 
 function StandardTekstModal(props: Props) {
     const [isOpen, setOpen] = React.useState(false);
+    useHotkey({ char: 'c', altKey: true }, () => setOpen(true), [setOpen]);
 
     return (
         <>
-            <Button onClick={() => setOpen(true)}>
+            <Button htmlType="button" onClick={() => setOpen(true)}>
                 <Ikon />
                 <span className="sr-only">Standardtekster</span>
             </Button>

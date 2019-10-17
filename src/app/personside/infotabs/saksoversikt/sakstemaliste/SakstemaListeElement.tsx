@@ -19,6 +19,7 @@ const SVGStyling = styled.span`
     svg {
         height: ${theme.margin.px30};
         width: ${theme.margin.px30};
+        opacity: 0.5;
     }
 `;
 
@@ -106,4 +107,4 @@ function SakstemaListeElement(props: Props) {
     );
 }
 
-export default SakstemaListeElement;
+export default React.memo(SakstemaListeElement);

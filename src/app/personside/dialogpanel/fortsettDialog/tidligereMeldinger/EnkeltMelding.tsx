@@ -1,12 +1,12 @@
 import { Melding, Meldingstype } from '../../../../../models/meldinger/meldinger';
 import { Ingress, Undertekst, UndertekstBold } from 'nav-frontend-typografi';
-import { capitalizeName } from '../../../../../utils/stringFormatting';
 import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
-import { meldingstypeTekst, temagruppeTekst } from '../../../infotabs/meldinger/utils/meldingstekster';
+import { meldingstypeTekst } from '../../../infotabs/meldinger/utils/meldingstekster';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
-import Tekstomrade from 'nav-frontend-tekstomrade';
 import * as React from 'react';
 import styled, { css } from 'styled-components';
+import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
+import { temagruppeTekst } from '../../../../../models/Temagrupper';
 
 function Meldingsforfatter(props: { melding: Melding }) {
     if (
@@ -15,12 +15,7 @@ function Meldingsforfatter(props: { melding: Melding }) {
     ) {
         return null;
     }
-    const forfatter = props.melding.skrevetAv;
-    return (
-        <Undertekst>
-            Skrevet av {capitalizeName(forfatter.fornavn)} {capitalizeName(forfatter.etternavn)} ({forfatter.ident})
-        </Undertekst>
-    );
+    return <Undertekst>Skrevet av {props.melding.skrevetAvTekst}</Undertekst>;
 }
 
 const EnkeltMeldingStyle = styled.div`
@@ -35,12 +30,13 @@ const InlineStyle = styled.div`
 
 const StyledTekstomrade = styled(Tekstomrade)`
     padding: 1rem;
+    overflow-wrap: break-word;
 `;
 
-const StyledEkspanderbartpanelBase = styled(EkspanderbartpanelBase)<{ erEnkeltsaende: boolean }>`
+const StyledEkspanderbartpanelBase = styled(EkspanderbartpanelBase)<{ erEnkeltstaende: boolean }>`
     &.ekspanderbartPanel {
         ${props =>
-            !props.erEnkeltsaende
+            !props.erEnkeltstaende
                 ? css`
                       border-radius: 0;
                   `
@@ -67,7 +63,7 @@ function EnkeltMelding(props: Props) {
         </EnkeltMeldingStyle>
     );
     return (
-        <StyledEkspanderbartpanelBase heading={header} erEnkeltsaende={props.erEnkeltstaende} apen={props.defaultApen}>
+        <StyledEkspanderbartpanelBase heading={header} erEnkeltstaende={props.erEnkeltstaende} apen={props.defaultApen}>
             <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
         </StyledEkspanderbartpanelBase>
     );

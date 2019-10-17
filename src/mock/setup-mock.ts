@@ -5,7 +5,7 @@ import { getPerson } from './person/personMock';
 import { getTilfeldigeOppgaver } from './oppgave-mock';
 import FetchMock, { HandlerArgument, Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { getMockKontaktinformasjon } from './person/krrKontaktinformasjon/kontaktinformasjon-mock';
-import { mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
+import { mockGeneratorMedEnhetId, mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
 import { mockBaseUrls } from './baseUrls-mock';
@@ -26,13 +26,14 @@ import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getMockVarsler } from './varsler/varsel-mock';
-import { getMockTraader } from './meldinger/meldinger-mock';
-import { getMockGsakTema } from './meldinger/oppgave-mock';
+import { getMockSlaaSammen, getMockTraader } from './meldinger/meldinger-mock';
+import { getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
 import standardTekster from './standardtekster.js';
+import { henvendelseResponseMock } from './meldinger/henvendelseMock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -175,7 +176,7 @@ function setupVarselMock(mock: FetchMock) {
 
 function setupMeldingerMock(mock: FetchMock) {
     mock.get(
-        apiBaseUri + '/meldinger/:fodselsnummer/traader',
+        apiBaseUri + '/dialog/:fodselsnummer/meldinger',
         withDelayedResponse(
             randomDelay(),
             fødselsNummerErGyldigStatus,
@@ -184,10 +185,35 @@ function setupMeldingerMock(mock: FetchMock) {
     );
 }
 
+function setupSlaasammenMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fodselsnummer/slaasammen',
+        withDelayedResponse(
+            randomDelay(),
+            STATUS_OK,
+            mockGeneratorMedFødselsnummer(fodselsnummer => getMockSlaaSammen(fodselsnummer))
+        )
+    );
+}
+
 function setupGsakTemaMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/dialogoppgave/tema',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getMockGsakTema())
+    );
+}
+
+function setupOppgaveEnhetMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/enheter/dialog/oppgave/alle',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockEnheter())
+    );
+}
+
+function setupAnsattePaaEnhetMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/enheter/:enhetId/ansatte',
+        withDelayedResponse(randomDelay(), STATUS_OK, mockGeneratorMedEnhetId(enhetId => getMockAnsatte(enhetId)))
     );
 }
 
@@ -222,6 +248,20 @@ function setupOppgaveMock(mock: FetchMock) {
     );
 }
 
+function setupOpprettHenvendelseMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fnr/fortsett/opprett',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => henvendelseResponseMock)
+    );
+}
+
+function setupFerdigstillHenvendelseMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fnr/fortsett/ferdigstill',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
+}
+
 function setupTildelteOppgaverMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/oppgaver/tildelt',
@@ -231,7 +271,7 @@ function setupTildelteOppgaverMock(mock: FetchMock) {
 
 function setupLeggTilbakeOppgaveMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/oppgaver/leggTilbake',
+        apiBaseUri + '/oppgaver/legg-tilbake',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getTilfeldigeOppgaver())
     );
 }
@@ -378,7 +418,7 @@ function setupJournalforingMock(mock: FetchMock) {
     console.log('apibase', apiBaseUri);
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/sammensatte',
-        withDelayedResponse(2000, STATUS_OK, () => gsakSaker)
+        withDelayedResponse(randomDelay(), STATUS_OK, () => gsakSaker)
     );
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/pensjon',
@@ -454,6 +494,8 @@ export function setupMock() {
     setupForeldrepengerMock(mock);
     setupPleiepengerMock(mock);
     setupOppgaveMock(mock);
+    setupOpprettHenvendelseMock(mock);
+    setupFerdigstillHenvendelseMock(mock);
     setupTildelteOppgaverMock(mock);
     setupLeggTilbakeOppgaveMock(mock);
     setupVergemalMock(mock);
@@ -474,6 +516,8 @@ export function setupMock() {
     setupOppfølgingMock(mock);
     setupMeldingerMock(mock);
     setupGsakTemaMock(mock);
+    setupOppgaveEnhetMock(mock);
+    setupAnsattePaaEnhetMock(mock);
     setupYtelserOgKontrakter(mock);
     setupVarselMock(mock);
     opprettOppgaveMock(mock);
@@ -488,4 +532,5 @@ export function setupMock() {
     merkSlettMock(mock);
     setupJournalforingMock(mock);
     setupStandardteksterMock(mock);
+    setupSlaasammenMock(mock);
 }

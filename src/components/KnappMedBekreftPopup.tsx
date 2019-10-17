@@ -4,10 +4,11 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import KnappBase, { KnappBaseProps } from 'nav-frontend-knapper';
 import styled from 'styled-components';
 
-interface Props extends Partial<Pick<KnappBaseProps, 'type'>> {
+interface Props extends Partial<Pick<KnappBaseProps, 'type' | 'htmlType'>> {
     onBekreft: () => void;
     children: string;
     popUpTekst?: string;
+    bekreftKnappTekst?: string;
     className?: string;
 }
 
@@ -59,7 +60,7 @@ class KnappMedBekreftPopup extends React.Component<Props, State> {
             <>
                 <KnappBase
                     type={this.props.type || 'standard'}
-                    htmlType="button"
+                    htmlType={this.props.htmlType || 'button'}
                     onClick={this.visModal}
                     className={this.props.className}
                 >
@@ -69,7 +70,7 @@ class KnappMedBekreftPopup extends React.Component<Props, State> {
                     <ModalStyling>
                         <Normaltekst>{this.props.popUpTekst || 'Er du sikker?'}</Normaltekst>
                         <KnappBase type="standard" htmlType="button" onClick={this.handleBekreft} autoFocus={true}>
-                            Bekreft
+                            {this.props.bekreftKnappTekst ? this.props.bekreftKnappTekst : 'Bekreft'}
                         </KnappBase>
                     </ModalStyling>
                 </ModalWrapper>

@@ -3,21 +3,25 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import styled from 'styled-components';
-import { meldingstypeTekst, temagruppeTekst } from '../utils/meldingstekster';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import { erMonolog, sisteSendteMelding } from '../utils/meldingerUtils';
+import { erDelvisBesvart, erMonolog, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
 import Meldingsikon from '../utils/Meldingsikon';
-import { EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
+import { EtikettFokus, EtikettInfo, EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState, useOnMount } from '../../../../../utils/customHooks';
 import { UnmountClosed } from 'react-collapse';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { meldingerTest } from '../../dyplenkeTest/utils';
+import { ReactNode } from 'react';
+import { delAvStringMedDots } from '../../../../../utils/string-utils';
 
 interface Props {
     traad: Traad;
     erValgt: boolean;
+    taFokusOnMount?: boolean;
+    onClick?: (event: React.MouseEvent) => void;
+    tillegskomponent?: ReactNode;
 }
 
 const UUcustomOrder = styled.div`
@@ -33,14 +37,14 @@ const UUcustomOrder = styled.div`
 
 const PanelStyle = styled.div`
     display: flex;
-    > *:first-child {
+    > *:not(:last-child) {
         padding-right: ${theme.margin.layout};
     }
 `;
 
-const ListElement = styled.li`
+const ListElementStyle = styled.li`
     &:focus {
-        ${theme.focus}
+        ${theme.focusOverlay}
     }
 `;
 
@@ -56,30 +60,33 @@ const EtikettStyling = styled.div`
 `;
 
 function TraadListeElement(props: Props) {
-    const traadDialogpanel = useAppState(state => state.oppgaver.dialogpanelTraad);
-    const nyesteMelding = sisteSendteMelding(props.traad);
-    const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
-    const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
+    const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
+    const sisteMelding = nyesteMelding(props.traad);
+    const datoTekst = formatterDatoTid(sisteMelding.opprettetDato);
+    const tittel = meldingstittel(sisteMelding);
     const ref = React.createRef<HTMLLIElement>();
     const dyplenker = useInfotabsDyplenker();
 
     useOnMount(() => {
-        if (props.erValgt) {
+        if (props.taFokusOnMount) {
             ref.current && ref.current.focus();
         }
     });
 
     return (
-        <ListElement tabIndex={-1} ref={ref} className={meldingerTest.melding}>
+        <ListElementStyle tabIndex={-1} ref={ref} className={meldingerTest.melding}>
             <VisMerKnapp
                 valgt={props.erValgt}
-                linkTo={dyplenker.meldinger.link(props.traad)}
+                onClick={props.onClick}
+                // Ønsker ulik oppførsel i ulike panel, så derfor har vi en optional onclick for å overstyre linkTo
+                linkTo={!props.onClick ? dyplenker.meldinger.link(props.traad) : undefined}
                 ariaDescription={'Vis meldinger for ' + tittel}
             >
                 <PanelStyle>
+                    {props.tillegskomponent}
                     <Meldingsikon
-                        type={nyesteMelding.meldingstype}
-                        erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
+                        type={sisteMelding.meldingstype}
+                        erFerdigstiltUtenSvar={sisteMelding.erFerdigstiltUtenSvar}
                         erMonolog={erMonolog(props.traad)}
                         antallMeldinger={props.traad.meldinger.length}
                     />
@@ -88,16 +95,18 @@ function TraadListeElement(props: Props) {
                             <Element className="order-second">{tittel}</Element>
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                         </UUcustomOrder>
+                        <Normaltekst>{delAvStringMedDots(sisteMelding.fritekst, 35)}</Normaltekst>
                         <EtikettStyling>
-                            <UnmountClosed isOpened={traadDialogpanel === props.traad}>
+                            <UnmountClosed isOpened={underArbeid}>
                                 <EtikettFokus>Under arbeid</EtikettFokus>
                             </UnmountClosed>
+                            {erDelvisBesvart(props.traad) && <EtikettInfo>Delvis besvart</EtikettInfo>}
                             <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                         </EtikettStyling>
                     </div>
                 </PanelStyle>
             </VisMerKnapp>
-        </ListElement>
+        </ListElementStyle>
     );
 }
 
@@ -111,4 +120,4 @@ function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
     return null;
 }
 
-export default TraadListeElement;
+export default React.memo(TraadListeElement);

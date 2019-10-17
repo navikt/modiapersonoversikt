@@ -19,10 +19,8 @@ import { sakerTest } from '../../dyplenkeTest/utils';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListe from '../sakstemaliste/SakstemaListe';
 import { useEffect } from 'react';
-import { SakerDyplenkeRouteComponentProps } from '../../dyplenker';
-import { withRouter } from 'react-router';
 
-interface Props extends SakerDyplenkeRouteComponentProps {
+interface Props {
     valgtSakstema?: Sakstema;
     avsenderFilter: DokumentAvsenderFilter;
     erStandaloneVindu: boolean;
@@ -38,7 +36,6 @@ interface DokumentGruppeProps {
 
 const SaksdokumenterStyling = styled.section`
     position: relative;
-    flex-grow: 1;
 `;
 
 const InfoOgFilterPanel = styled.section`
@@ -261,4 +258,4 @@ function SaksDokumenter(props: Props) {
     );
 }
 
-export default withRouter(SaksDokumenter);
+export default SaksDokumenter;

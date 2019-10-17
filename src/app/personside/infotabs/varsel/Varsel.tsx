@@ -16,10 +16,11 @@ const Style = styled.li`
 `;
 
 const HeaderStyle = styled.div`
+    position: relative;
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 20% 55% 1fr auto;
-    grid-template-columns: 20% minmax(35%, 55%) 1fr auto;
+    -ms-grid-columns: 6rem 55% 1fr auto;
+    grid-template-columns: 6rem minmax(35%, 55%) 1fr auto;
     > *:nth-child(1) {
         -ms-grid-column: 1;
     }
@@ -82,7 +83,12 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
                 </Normaltekst>
                 {kommunikasjonskanaler}
 
-                <VisMerChevron onClick={toggleOpen} open={open} title={(open ? 'Skul' : 'Vis') + ' meldinger'} />
+                <VisMerChevron
+                    focusOnRelativeParent={true}
+                    onClick={toggleOpen}
+                    open={open}
+                    title={(open ? 'Skul' : 'Vis') + ' meldinger'}
+                />
             </HeaderStyle>
             <UnmountClosed isOpened={open}>
                 <VarselMeldinger sortertMeldingsliste={sortertMeldingsliste} />
@@ -91,4 +97,4 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
     );
 }
 
-export default Varsel;
+export default React.memo(Varsel);

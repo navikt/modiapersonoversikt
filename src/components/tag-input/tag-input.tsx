@@ -1,11 +1,11 @@
-import React, { ChangeEvent, RefObject } from 'react';
+import React, { ChangeEvent } from 'react';
 import { NavFrontendInputProps } from 'nav-frontend-skjema';
 import 'nav-frontend-skjema-style';
 import { guid } from 'nav-frontend-js-utils';
 import classNames from 'classnames';
 import { Knapp } from 'nav-frontend-knapper';
 import { Omit } from '../../utils/types';
-// import './tag-input.less';
+import './tag-input.less';
 
 const cls = (className?: string) => classNames('tag-input', 'skjemaelement', className);
 const inputClass = (width: string, focusWithin: boolean, className?: string, harFeil?: boolean) =>
@@ -33,10 +33,13 @@ export function parseTekst(query: string): { tags: string[]; text: string } {
     return { tags, text };
 }
 
+// For å samle å kunne bruke RefObject<T> og MutableRefObject<T> om hverandre
+type RefHack<T> = { current: T | undefined | null };
 type Props = Omit<NavFrontendInputProps, 'value' | 'name' | 'inputRef'> & {
     value: string;
     name: string;
     onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
+    inputRef: RefHack<HTMLInputElement>;
 };
 interface State {
     focusWithin: boolean;
@@ -50,7 +53,7 @@ function buildString(tags: string[], value: string) {
 // TODO Erstattes med nav-frontend-skjema (tag-input) på sikt
 class TagInput extends React.Component<Props, State> {
     private readonly inputId = this.props.id || this.props.name || guid();
-    private readonly ref: RefObject<HTMLInputElement>;
+    private readonly ref: RefHack<HTMLInputElement>;
 
     constructor(props: Props) {
         super(props);
@@ -58,7 +61,8 @@ class TagInput extends React.Component<Props, State> {
         this.state = {
             focusWithin: false
         };
-        this.ref = React.createRef();
+
+        this.ref = props.inputRef || React.createRef();
         this.onChangeProxy = this.onChangeProxy.bind(this);
         this.onKeyDownProxy = this.onKeyDownProxy.bind(this);
         this.onFocusProxy = this.onFocusProxy.bind(this);
@@ -134,11 +138,18 @@ class TagInput extends React.Component<Props, State> {
     }
 
     render() {
-        const { label, bredde = 'fullbredde', feil, name, className, inputClassName, ...other } = this.props;
+        const { label, bredde = 'fullbredde', feil, name, className, inputClassName, inputRef, ...other } = this.props;
         const { tags, text } = parseTekst(this.props.value);
         const tagElements = tags.map((tag, i) => {
             return (
-                <Knapp key={i} mini className="tag-input__tag" onClick={() => this.remove(i)} title="Remove tag">
+                <Knapp
+                    key={i}
+                    mini
+                    className="tag-input__tag"
+                    htmlType="button"
+                    onClick={() => this.remove(i)}
+                    title="Remove tag"
+                >
                     <span>{tag}</span>
                     <span className="tag-input__tag-remove" aria-hidden={true} />
                 </Knapp>
@@ -163,7 +174,9 @@ class TagInput extends React.Component<Props, State> {
                         id={this.inputId}
                         name={name}
                         value={text}
-                        ref={this.ref}
+                        ref={instance => {
+                            this.ref.current = instance;
+                        }}
                     />
                 </div>
                 <div role="alert" aria-live="assertive">

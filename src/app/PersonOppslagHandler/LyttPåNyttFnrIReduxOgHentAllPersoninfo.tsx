@@ -16,7 +16,7 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     const kontaktinformasjonFetch = restResources.kontaktinformasjon.actions.fetch;
     const vergemalFetch = restResources.vergemal.actions.fetch;
     const egenAnsattFetch = restResources.egenAnsatt.actions.fetch;
-    const tildDelteOppgaverFetch = restResources.tildDelteOppgaver.actions.fetch;
+    const tildDelteOppgaverFetch = restResources.tildelteOppgaver.actions.fetch;
 
     useEffect(() => {
         cache.clear();
@@ -36,7 +36,8 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
         kontaktinformasjonFetch,
         vergemalFetch,
         egenAnsattFetch,
-        tildDelteOppgaverFetch
+        tildDelteOppgaverFetch,
+        tråderFetch
     ]);
     useFetchFeatureTogglesOnNewFnr();
 

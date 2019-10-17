@@ -19,6 +19,7 @@ exports[`viser fortsett dialog 1`] = `
 
 .c7 {
   padding: 1rem;
+  overflow-wrap: break-word;
 }
 
 .c4 {
@@ -46,7 +47,7 @@ exports[`viser fortsett dialog 1`] = `
 }
 
 .c2 > * {
-  border: solid 0.0625rem #b7b1a9;
+  border: solid 0.0625rem #78706a;
 }
 
 .c3 {
@@ -147,11 +148,12 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c12 textarea {
+.c12 textarea,
+.c12 .textareamirror {
   padding-left: 2.25rem;
 }
 
-.c17 label {
+.c16 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -160,10 +162,6 @@ exports[`viser fortsett dialog 1`] = `
   clip: rect(1px 1px 1px 1px);
   -webkit-clip: rect(1px,1px,1px,1px);
   clip: rect(1px,1px,1px,1px);
-}
-
-.c16 .ekspanderbartPanel__hode {
-  padding: 0.6rem;
 }
 
 .c15 {
@@ -189,11 +187,11 @@ exports[`viser fortsett dialog 1`] = `
   padding: 1rem .8rem;
 }
 
-.c18 {
+.c17 {
   margin-top: 1rem;
 }
 
-.c19 {
+.c18 {
   width: 100%;
 }
 
@@ -241,7 +239,7 @@ exports[`viser fortsett dialog 1`] = `
         >
           <div
             className="ekspanderbartPanel c4 ekspanderbartPanel--lukket"
-            erEnkeltsaende={false}
+            erEnkeltstaende={false}
           >
             <button
               aria-expanded={false}
@@ -265,12 +263,7 @@ exports[`viser fortsett dialog 1`] = `
                     className="typo-undertekst"
                   >
                     Skrevet av 
-                    Sander
-                     
-                    Hansen
-                     (
-                    nzxo4q
-                    )
+                    Sander Hansen (nzxo4q)
                   </p>
                   <div
                     className="c6"
@@ -296,21 +289,15 @@ exports[`viser fortsett dialog 1`] = `
               className="ekspanderbartPanel__innhold"
             >
               <div
-                className="c7"
+                className="tekstomrade c7"
               >
-                <p
-                  className="typo-normal"
-                >
-                  <span>
-                    Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
-                  </span>
-                </p>
+                Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
               </div>
             </article>
           </div>
           <div
             className="ekspanderbartPanel c4 ekspanderbartPanel--lukket"
-            erEnkeltsaende={false}
+            erEnkeltstaende={false}
           >
             <button
               aria-expanded={false}
@@ -354,21 +341,15 @@ exports[`viser fortsett dialog 1`] = `
               className="ekspanderbartPanel__innhold"
             >
               <div
-                className="c7"
+                className="tekstomrade c7"
               >
-                <p
-                  className="typo-normal"
-                >
-                  <span>
-                    Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
-                  </span>
-                </p>
+                Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
               </div>
             </article>
           </div>
           <div
             className="ekspanderbartPanel c4 ekspanderbartPanel--lukket"
-            erEnkeltsaende={false}
+            erEnkeltstaende={false}
           >
             <button
               aria-expanded={false}
@@ -412,15 +393,9 @@ exports[`viser fortsett dialog 1`] = `
               className="ekspanderbartPanel__innhold"
             >
               <div
-                className="c7"
+                className="tekstomrade c7"
               >
-                <p
-                  className="typo-normal"
-                >
-                  <span>
-                    Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
-                  </span>
-                </p>
+                Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
               </div>
             </article>
           </div>
@@ -428,7 +403,7 @@ exports[`viser fortsett dialog 1`] = `
       </div>
       <div
         className="ekspanderbartPanel c8 ekspanderbartPanel--apen"
-        erEnkeltsaende={true}
+        erEnkeltstaende={true}
       >
         <button
           aria-controls="Helt tilfeldig ID"
@@ -453,12 +428,7 @@ exports[`viser fortsett dialog 1`] = `
                 className="typo-undertekst"
               >
                 Skrevet av 
-                Kristoffer
-                 
-                Fredriksen
-                 (
-                xy70r8
-                )
+                Kristoffer Fredriksen (xy70r8)
               </p>
               <div
                 className="c6"
@@ -484,15 +454,9 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="c7"
+            className="tekstomrade c7"
           >
-            <p
-              className="typo-normal"
-            >
-              <span>
-                Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-              </span>
-            </p>
+            Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
           </div>
         </article>
       </div>
@@ -504,7 +468,7 @@ exports[`viser fortsett dialog 1`] = `
         className="knapp c10 knapp--hoved"
         disabled={false}
         onClick={[Function]}
-        type="submit"
+        type="button"
       >
         <svg
           className="c11"
@@ -617,43 +581,7 @@ exports[`viser fortsett dialog 1`] = `
           className="skjemaelement__label"
           htmlFor="Helt tilfeldig ID"
         >
-          Spørsmål
-        </label>
-      </div>
-      <div
-        className="skjemaelement skjemaelement--horisontal"
-      >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="dialogtype"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Svar telefon
-        </label>
-      </div>
-      <div
-        className="skjemaelement skjemaelement--horisontal"
-      >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="dialogtype"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Svar oppmøte
+          Delvis svar
         </label>
       </div>
     </div>
@@ -768,82 +696,12 @@ exports[`viser fortsett dialog 1`] = `
             role="alert"
           />
         </div>
-        <div
-          className=""
-        >
-          <div
-            className="ekspanderbartPanel c16 ekspanderbartPanel--lukket ekspanderbartPanel--border"
-          >
-            <button
-              aria-expanded={false}
-              className="ekspanderbartPanel__hode"
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              type="button"
-            >
-              <div
-                className="ekspanderbartPanel__flex-wrapper"
-              >
-                <span
-                  className="typo-normal ekspanderbartPanel__heading"
-                >
-                  Velg sak
-                </span>
-                <span
-                  className="ekspanderbartPanel__indikator"
-                />
-              </div>
-            </button>
-            <article
-              aria-label="Velg sak"
-              className="ekspanderbartPanel__innhold"
-            >
-              <svg
-                aria-label="Laster innhold"
-                className="spinner spinner--xl"
-                focusable="false"
-                height={32}
-                kind="spinner"
-                preserveAspectRatio="xMidYMid"
-                viewBox="0 0 50 50"
-                width={32}
-              >
-                <title>
-                  Venter...
-                </title>
-                <circle
-                  cx="25"
-                  cy="25"
-                  fill="none"
-                  r="20"
-                  stroke="#bdbab7"
-                  strokeWidth="5"
-                  xmlns="http://www.w3.org/2000/svg"
-                />
-                <circle
-                  cx="25"
-                  cy="25"
-                  fill="none"
-                  r="20"
-                  stroke="#7f756c"
-                  strokeDasharray="50 155"
-                  strokeLinecap="round"
-                  strokeWidth="5"
-                />
-              </svg>
-            </article>
-          </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
       </div>
       <div
         className=""
       >
         <div
-          className="skjemaelement c17"
+          className="skjemaelement c16"
         >
           <label
             className="skjemaelement__label"
@@ -868,11 +726,6 @@ exports[`viser fortsett dialog 1`] = `
                 Velg temagruppe
               </option>
               <option
-                value="ARBD"
-              >
-                Arbeid
-              </option>
-              <option
                 value="FMLI"
               >
                 Familie
@@ -880,7 +733,17 @@ exports[`viser fortsett dialog 1`] = `
               <option
                 value="HJLPM"
               >
-                Hjelpemiddel
+                Hjelpemidler
+              </option>
+              <option
+                value="BIL"
+              >
+                Hjelpemidler bil
+              </option>
+              <option
+                value="ORT_HJE"
+              >
+                Ortopediske hjelpemidler
               </option>
               <option
                 value="PENS"
@@ -888,9 +751,19 @@ exports[`viser fortsett dialog 1`] = `
                 Pensjon
               </option>
               <option
-                value="OVRG"
+                value="PLEIEPENGERSY"
               >
-                Øvrig
+                Pleiepenger sykt barn
+              </option>
+              <option
+                value="UFRT"
+              >
+                Uføretrygd
+              </option>
+              <option
+                value="UTLAND"
+              >
+                Utland
               </option>
             </select>
           </div>
@@ -906,17 +779,17 @@ exports[`viser fortsett dialog 1`] = `
       </div>
     </div>
     <button
-      className="knapp c18 knapp--hoved"
+      className="knapp c17 knapp--hoved"
       disabled={false}
       type="submit"
     >
       Del med Aremark
     </button>
     <button
-      className="knapp c19 knapp--flat"
+      className="knapp c18 knapp--flat"
       disabled={false}
       onClick={[Function]}
-      type="button"
+      type="reset"
     >
       Avbryt
     </button>

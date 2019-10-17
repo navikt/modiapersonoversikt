@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser meldingercontainer med alt innhold 1`] = `
-.c12 {
+.c14 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -22,7 +22,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   animation: fYGRJE 0.3s ease-out;
 }
 
-.c12 > * {
+.c14 > * {
   -webkit-flex: 0 1 25rem;
   -ms-flex: 0 1 25rem;
   flex: 0 1 25rem;
@@ -36,7 +36,8 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   justify-content: center;
 }
 
-.c5 {
+.c7 {
+  position: relative;
   padding: .8rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -49,22 +50,22 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c5:hover {
+.c7:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c5:hover > button:last-child {
+.c7:hover > button:last-child {
   padding-left: 0.5rem;
 }
 
-.c5 > *:first-child {
+.c7 > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c11 {
+.c13 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -76,23 +77,34 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c11:focus {
+.c13:focus {
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
+  box-shadow: none;
 }
 
-.c7 {
+.c13:focus::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.c9 {
   position: relative;
 }
 
-.c7 svg {
+.c9 svg {
   height: 1.875rem;
   width: 1.875rem;
   -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
   clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
 }
 
-.c8 {
+.c10 {
   position: absolute;
   top: -0.1875rem;
   right: 0.5625rem;
@@ -100,7 +112,13 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   padding: 0 0.1rem;
 }
 
-.c9 {
+.c1 {
+  overflow: auto;
+  max-height: 100%;
+  padding: .8rem;
+}
+
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -110,35 +128,47 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c9 .order-first {
+.c11 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c9 .order-second {
+.c11 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c6 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c6 > *:first-child {
+.c8 > *:not(:last-child) {
   padding-right: .8rem;
 }
 
-.c4:focus {
+.c6:focus {
+  position: relative;
   outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
+  box-shadow: none;
 }
 
-.c10 {
+.c6:focus::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -153,193 +183,237 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-top: 0.2rem;
 }
 
-.c10 > *:not(:last-child) {
+.c12 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
 
 .c2 {
-  padding: .8rem;
-}
-
-.c1 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
-.c1 ol {
+.c2 ol {
   list-style: none;
 }
 
-.c3 > *:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
+.c4 {
+  padding: 0 .8rem .8rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c5 > * {
+  border-top: solid 0.0625rem #78706a;
+}
+
+.c3 {
+  padding: .8rem .8rem 0;
+}
+
+.c3 .skjemaelement {
+  margin-bottom: 0.2rem;
 }
 
 .c0 {
   position: relative;
 }
 
-.c0 > * {
-  margin-bottom: .8rem;
-}
-
-.c0 > *:first-child {
-  -webkit-flex: 30% 1 1;
-  -ms-flex: 30% 1 1;
-  flex: 30% 1 1;
-}
-
-.c0 > *:last-child {
-  -webkit-flex: 70% 1 1;
-  -ms-flex: 70% 1 1;
-  flex: 70% 1 1;
+@media (min-width:62.5rem) {
+  .c0 {
+    max-height: 100%;
+    max-width: 100%;
+  }
 }
 
 @media (min-width:62.5rem) {
   .c0 {
+    height: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
-    align-items: flex-start;
-    max-height: 100%;
+  }
+
+  .c0 > *:first-child {
+    -webkit-flex: 35% 1 1;
+    -ms-flex: 35% 1 1;
+    flex: 35% 1 1;
   }
 
   .c0 > *:last-child {
-    margin-left: .8rem;
-  }
-
-  .c0 > * {
-    overflow-y: auto;
-    max-height: 100%;
+    -webkit-flex: 65% 1 1;
+    -ms-flex: 65% 1 1;
+    flex: 65% 1 1;
   }
 }
 
 <article
   className="c0"
 >
-  <nav
+  <div
     className="c1"
   >
-    <div
+    <nav
       className="c2"
     >
       <div
-        className="skjemaelement move-input-label"
+        className="c3"
       >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Søk etter melding
-        </label>
-        <input
-          className="skjemaelement__input input--fullbredde"
-          id="Helt tilfeldig ID"
-          type="text"
-        />
         <div
-          aria-live="assertive"
-          role="alert"
-        />
+          className="skjemaelement move-input-label"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Søk etter melding
+          </label>
+          <input
+            className="skjemaelement__input input--fullbredde"
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
       </div>
-    </div>
-    <ol
-      className="c3"
-    >
-      <li
-        className="test-meldinger-melding c4"
-        tabIndex={-1}
+      <div
+        className="c4"
       >
-        <div
-          className="c5"
-          onClick={[Function]}
+        <p
+          aria-live="polite"
+          className="typo-normal"
         >
-          <div>
-            <div
-              className="c6"
-            >
-              <span
-                className="c7"
+          Totalt 1 melding
+        </p>
+      </div>
+      <ol
+        className="c5"
+      >
+        <li
+          className="test-meldinger-melding c6"
+          tabIndex={-1}
+        >
+          <div
+            className="c7"
+            onClick={[Function]}
+          >
+            <div>
+              <div
+                className="c8"
               >
-                <svg
-                  height={24}
-                  viewBox="0 0 24 24"
-                  width={24}
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g
-                    fill="none"
-                    stroke="#000"
-                    strokeLinejoin="round"
-                    strokeMiterlimit="10"
-                  >
-                    <path
-                      d="M7.919 23.5h7.581v-4.5c0-.5-3-2-5.5-3v-2s1-.35 1-2.5c.695 0 1-2 .032-2 0-.212.766-1.308.468-2.5-.5-2-5.5-2-6 0-2.105-.431-.5 2.212-.5 2.5-1 0-.696 2 0 2 0 2.15 1 2.5 1 2.5v2c-2.5 1-5.5 2.5-5.5 3v4.5h7.419z"
-                    />
-                    <path
-                      d="M18 23.5h5.5v-4.5c0-.5-2.5-1.2-4.5-2v-1.5s1-.28 1-2c.557 0 .774-2 0-2 0-.169.811-1.067.5-2-.5-1.5-4.5-1.5-5 0-1.685-.345-.5 1.77-.5 2-.8 0-.557 2 0 2 0 1.72 1 2 1 2v1"
-                      strokeLinecap="round"
-                    />
-                  </g>
-                </svg>
-                <p
-                  className="typo-undertekst-bold c8"
-                >
-                  4
-                </p>
-              </span>
-              <div>
-                <div
+                <span
                   className="c9"
                 >
-                  <p
-                    className="typo-element order-second"
+                  <svg
+                    height={24}
+                    viewBox="0 0 24 24"
+                    width={24}
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    Samtalereferat oppmøte - Arbeid
-                  </p>
-                  <p
-                    className="typo-normal order-first"
-                  >
-                    30.07.2019 00:00
-                  </p>
-                </div>
-                <div
-                  className="c10"
-                >
-                  <div
-                    className="etikett etikett--fokus"
-                  >
-                    <span
-                      className="typo-normal"
+                    <g
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
                     >
-                      Under arbeid
-                    </span>
+                      <path
+                        d="M7.44 14.564c-.489-.066-.971-.17-1.44-.314l-5 2 2-3.5c-1.573-1.259-2.5-3.125-2.5-5.064 0-3.83 3.806-6.936 8.5-6.936s8.5 3.106 8.5 6.936"
+                      />
+                      <path
+                        d="M9.5 16.25c0 4.289 5 7.5 9.5 5.5l4 1.5-1.5-3c1.296-1.037 2-2.402 2-4 0-3.154-3.134-6-7-6s-7 2.846-7 6z"
+                      />
+                    </g>
+                  </svg>
+                  <p
+                    className="typo-undertekst-bold c10"
+                  >
+                    4
+                  </p>
+                </span>
+                <div>
+                  <div
+                    className="c11"
+                  >
+                    <p
+                      className="typo-element order-second"
+                    >
+                      Delsvar - Arbeid
+                    </p>
+                    <p
+                      className="typo-normal order-first"
+                    >
+                      13.08.2019 00:00
+                    </p>
+                  </div>
+                  <p
+                    className="typo-normal"
+                  >
+                    Dolores omnis ea voluptatem corrupt...
+                  </p>
+                  <div
+                    className="c12"
+                  >
+                    <div
+                      className="etikett etikett--fokus"
+                    >
+                      <span
+                        className="typo-normal"
+                      >
+                        Under arbeid
+                      </span>
+                    </div>
+                    <div
+                      className="etikett etikett--info"
+                    >
+                      <span
+                        className="typo-normal"
+                      >
+                        Delvis besvart
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <button
+              aria-label="Vis meldinger for Delsvar - Arbeid"
+              aria-selected={false}
+              className="c13"
+            >
+              <i
+                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              />
+            </button>
           </div>
-          <button
-            aria-label="Vis meldinger for Samtalereferat oppmøte - Arbeid"
-            aria-selected={false}
-            className="c11"
-          >
-            <i
-              className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
-            />
-          </button>
-        </div>
-      </li>
-    </ol>
-  </nav>
-  <div>
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <div
+    className="c1"
+  >
     <div
-      className="c12"
+      className="c14"
     />
   </div>
 </article>

@@ -16,6 +16,8 @@ import StandAloneKomponenter from '../components/standalone/StandAloneKomponente
 import HentGlobaleVerdier from './globaleVerdier/FetchSessionInfoOgLeggIRedux';
 import { useOnMount } from '../utils/customHooks';
 import PersonsokContainer from './personsok/Personsok';
+import { detect } from 'detect-browser';
+import { useState } from 'react';
 
 if (mockEnabled) {
     setupMock();
@@ -25,9 +27,13 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
 function Personoveriskt() {
     const appRef = React.createRef<HTMLDivElement>();
+    const [isMac, setIsMac] = useState<undefined | boolean>(undefined);
 
     useOnMount(() => {
         ModalWrapper.setAppElement(appRef.current);
+        const browser = detect();
+        const os = browser && browser.os;
+        setIsMac(os ? os.toLowerCase().includes('mac') : undefined);
     });
 
     return (
@@ -36,7 +42,7 @@ function Personoveriskt() {
                 <PersonOppslagHandler />
                 <HentGlobaleVerdier />
                 <PersonsokContainer />
-                <AppStyle ref={appRef}>
+                <AppStyle ref={appRef} className={isMac ? 'is-mac' : ''}>
                     <Decorator />
                     <ContentStyle>
                         <Routing />

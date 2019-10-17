@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
 import { Select } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { velgTemagruppe } from '../../../redux/temagruppe';
+import { velgTemagruppeForPlukk } from '../../../redux/session/session';
 import { AppState } from '../../../redux/reducers';
 import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
 import { isFailedPosting, isPosting } from '../../../rest/utils/postResource';
@@ -14,6 +14,7 @@ import theme from '../../../styles/personOversiktTheme';
 import TildelteOppgaver from './TildelteOppgaver';
 import { paths } from '../../routes/routing';
 import { INFOTABS } from '../infotabs/InfoTabEnum';
+import { Temagruppe, temagruppeTekst, TemaPlukkbare } from '../../../models/Temagrupper';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
@@ -26,31 +27,21 @@ const HentOppgaveLayout = styled.article`
 const KnappLayout = styled.div`
     display: inline-flex;
     flex-wrap: wrap;
-    align-items: flex-end;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 0.4em;
     > * {
         margin-right: 0.4em;
         flex-grow: 1;
     }
     > *:first-child {
-        margin-bottom: 0;
+        margin-bottom: 0.6em;
         white-space: nowrap;
     }
     > *:last-child {
-        margin-top: 0.4em;
+        margin-bottom: 0.4em;
     }
 `;
-
-const PLUKKBARE_TEMAGRUPPER = [
-    { kode: 'ARBD', beskrivelse: 'Arbeid' },
-    { kode: 'FMLI', beskrivelse: 'Familie' },
-    { kode: 'HJLPM', beskrivelse: 'Hjelpemidler' },
-    { kode: 'BIL', beskrivelse: 'Hjelpemidler bil' },
-    { kode: 'ORT_HJE', beskrivelse: 'Ortopediske hjelpemidler' },
-    { kode: 'PENS', beskrivelse: 'Pensjon' },
-    { kode: 'PLEIEPENGERSY', beskrivelse: 'Pleiepenger sykt barn' },
-    { kode: 'UFRT', beskrivelse: 'Uføretrygd' },
-    { kode: 'UTLAND', beskrivelse: 'Utland' }
-];
 
 type Props = RouteComponentProps<{}>;
 
@@ -58,9 +49,9 @@ function HentOppgaveKnapp(props: Props) {
     const [tomKø, setTomKø] = useState(false);
     const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
     const dispatch = useDispatch();
-    const oppgaveResource = useSelector((state: AppState) => state.restResources.oppgaver);
-    const velgTemaGruppe = (temagruppe: string) => dispatch(velgTemagruppe(temagruppe));
-    const valgtTemaGruppe = useSelector((state: AppState) => state.temagruppe.valgtTemagruppe);
+    const oppgaveResource = useSelector((state: AppState) => state.restResources.plukkNyeOppgaver);
+    const velgTemaGruppe = (temagruppe: Temagruppe) => dispatch(velgTemagruppeForPlukk(temagruppe));
+    const valgtTemaGruppe = useSelector((state: AppState) => state.session.temagruppeForPlukk);
 
     const onPlukkOppgaver = () => {
         if (!valgtTemaGruppe) {
@@ -72,12 +63,12 @@ function HentOppgaveKnapp(props: Props) {
         settJobberMedSpørsmålOgSvar();
         dispatch(
             oppgaveResource.actions.post({}, response => {
-                const oppgave = response[0];
-                const fødselsnummer = oppgave.fødselsnummer;
-                if (!fødselsnummer) {
+                if (response.length === 0) {
                     setTomKø(true);
                     return;
                 }
+                const oppgave = response[0];
+                const fødselsnummer = oppgave.fødselsnummer;
                 props.history.push(
                     `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.henvendelseid}`
                 );
@@ -86,16 +77,16 @@ function HentOppgaveKnapp(props: Props) {
     };
 
     const onTemagruppeChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        velgTemaGruppe(event.target.value);
+        velgTemaGruppe(event.target.value as Temagruppe);
         setTemaGruppeFeilmelding(false);
     };
 
     const tomtTilbakemelding = tomKø ? (
         <AlertStripeInfo>Det er ingen nye oppgaver på valgt temagruppe</AlertStripeInfo>
     ) : null;
-    const temagruppeOptions = PLUKKBARE_TEMAGRUPPER.map(temagruppe => (
-        <option value={temagruppe.kode} key={temagruppe.kode}>
-            {temagruppe.beskrivelse}
+    const temagruppeOptions = TemaPlukkbare.map(temagruppe => (
+        <option value={temagruppe} key={temagruppe}>
+            {temagruppeTekst(temagruppe)}
         </option>
     ));
     return (

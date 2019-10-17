@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
-import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
+import { pxToRem } from '../../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import TraadListe from './traadliste/TraadListe';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { hasData } from '../../../../rest/utils/restResource';
 import { huskForrigeValgtTraad } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
@@ -14,33 +14,44 @@ import { MeldingerDyplenkeRouteComponentProps, useInfotabsDyplenker, useValgtTra
 import { withRouter } from 'react-router';
 import TraadVisning from './traadvisning/TraadVisning';
 import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
+import { useSokEtterMeldinger } from './utils/meldingerUtils';
 
+interface TraadVisningWrapperProps {
+    valgtTraad?: Traad;
+    sokeord: string;
+    traaderEtterSok: Traad[];
+}
 const meldingerMediaTreshold = pxToRem(1000);
 
 const MeldingerArticleStyle = styled.article`
+    ${scrollBarContainerStyle(meldingerMediaTreshold)};
     @media (min-width: ${meldingerMediaTreshold}) {
+        height: 0; /* IE11 */
+        flex-grow: 1; /* IE11 */
         display: flex;
-        align-items: flex-start;
+        > *:first-child {
+            flex: 35% 1 1;
+        }
         > *:last-child {
-            margin-left: ${theme.margin.layout};
+            flex: 65% 1 1;
         }
-        > * {
-            overflow-y: auto;
-            max-height: 100%;
-        }
-        max-height: 100%;
-    }
-    > * {
-        margin-bottom: ${theme.margin.layout};
     }
     position: relative;
-    > *:first-child {
-        flex: 30% 1 1;
-    }
-    > *:last-child {
-        flex: 70% 1 1;
-    }
 `;
+
+function TraadVisningWrapper(props: TraadVisningWrapperProps) {
+    if (props.traaderEtterSok.length === 0) {
+        return <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>;
+    }
+    return (
+        <>
+            <Verktoylinje valgtTraad={props.valgtTraad} />
+            <TraadVisning sokeord={props.sokeord} valgtTraad={props.valgtTraad} />
+        </>
+    );
+}
 
 function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
     const dispatch = useDispatch();
@@ -48,9 +59,23 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const dyplenker = useInfotabsDyplenker();
     const traadIUrl = useValgtTraadIUrl(props);
+    const [sokeord, setSokeord] = useState('');
+    const traaderEtterSok = useSokEtterMeldinger(hasData(traaderResource) ? traaderResource.data : [], sokeord);
+
+    useEffect(
+        function visForsteTreffITraadvisning() {
+            if (traadIUrl && traaderEtterSok.length > 0 && !traaderEtterSok.includes(traadIUrl)) {
+                props.history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
+            }
+        },
+        [traadIUrl, traaderEtterSok, props.history, dyplenker.meldinger]
+    );
 
     useEffect(() => {
         if (!traadIUrl && hasData(traaderResource)) {
+            if (traaderResource.data.length === 0) {
+                return;
+            }
             props.history.push(dyplenker.meldinger.link(forrigeValgteTraad || traaderResource.data[0]));
         } else if (traadIUrl !== forrigeValgteTraad && !!traadIUrl) {
             dispatch(huskForrigeValgtTraad(traadIUrl));
@@ -62,15 +87,30 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
             getResource={restResources => restResources.tråderOgMeldinger}
             returnOnPending={<CenteredLazySpinner />}
         >
-            {data => (
-                <MeldingerArticleStyle>
-                    <TraadListe traader={data} valgtTraad={traadIUrl} />
-                    <div>
-                        <Verktoylinje valgtTraad={traadIUrl} />
-                        <TraadVisning valgtTraad={traadIUrl} />
-                    </div>
-                </MeldingerArticleStyle>
-            )}
+            {data => {
+                if (data.length === 0) {
+                    return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
+                }
+                return (
+                    <MeldingerArticleStyle>
+                        <ScrollBar>
+                            <TraadListe
+                                sokeord={sokeord}
+                                setSokeord={setSokeord}
+                                traader={data}
+                                valgtTraad={traadIUrl}
+                            />
+                        </ScrollBar>
+                        <ScrollBar>
+                            <TraadVisningWrapper
+                                traaderEtterSok={traaderEtterSok}
+                                sokeord={sokeord}
+                                valgtTraad={traadIUrl}
+                            />
+                        </ScrollBar>
+                    </MeldingerArticleStyle>
+                );
+            }}
         </RestResourceConsumer>
     );
 }

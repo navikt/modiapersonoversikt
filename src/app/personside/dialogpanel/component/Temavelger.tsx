@@ -1,24 +1,16 @@
 import * as React from 'react';
-import { Temagruppe } from '../../../../models/meldinger/meldinger';
-import { Kodeverk } from '../../../../models/kodeverk';
-import { Select, SkjemaGruppe } from 'nav-frontend-skjema';
 import { ChangeEvent, useEffect } from 'react';
+import { Temagruppe, temagruppeTekst } from '../../../../models/Temagrupper';
+import { Select, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 
 interface Props {
-    setTema: (tema?: Kodeverk) => void;
-    tema?: Kodeverk;
+    setTema: (tema?: Temagruppe) => void;
+    valgtTema?: Temagruppe;
     visFeilmelding?: boolean;
+    temavalg: Temagruppe[];
 }
-
-export const temaValg: Kodeverk[] = [
-    { beskrivelse: 'Arbeid', kodeRef: Temagruppe.Arbeid },
-    { beskrivelse: 'Familie', kodeRef: Temagruppe.Familie },
-    { beskrivelse: 'Hjelpemiddel', kodeRef: Temagruppe.Hjelpemiddel },
-    { beskrivelse: 'Pensjon', kodeRef: Temagruppe.Pensjon },
-    { beskrivelse: 'Øvrig', kodeRef: Temagruppe.Øvrig }
-];
 
 const StyledSelect = styled(Select)`
     label {
@@ -36,7 +28,7 @@ function Temavelger(props: Props) {
     }, [selectRef, props.visFeilmelding]);
 
     const velgTemaHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-        const tema = temaValg.find(tema => tema.kodeRef === event.target.value);
+        const tema = props.temavalg.find(tema => tema === event.target.value);
         props.setTema(tema);
     };
     return (
@@ -46,14 +38,14 @@ function Temavelger(props: Props) {
                 selectRef={ref => (selectRef = ref)}
                 label="Tema"
                 onChange={velgTemaHandler}
-                value={props.tema ? props.tema.kodeRef : ''}
+                value={props.valgtTema ? props.valgtTema : ''}
             >
                 <option value="" disabled>
                     Velg temagruppe
                 </option>
-                {temaValg.map(valg => (
-                    <option key={valg.kodeRef} value={valg.kodeRef}>
-                        {valg.beskrivelse}
+                {props.temavalg.map(temagruppe => (
+                    <option key={temagruppe} value={temagruppe}>
+                        {temagruppeTekst(temagruppe)}
                     </option>
                 ))}
             </StyledSelect>

@@ -8,7 +8,7 @@ export class LeggTilbakeValidator {
         return state.tekst.length < 2000 && state.tekst.length > 0;
     }
     public static tema(state: LeggTilbakeState) {
-        return state.tema !== undefined;
+        return state.temagruppe !== undefined;
     }
     public static erGyldigInnhabilRequest(state: LeggTilbakeState) {
         return state.årsak === LeggTilbakeÅrsak.Innhabil;

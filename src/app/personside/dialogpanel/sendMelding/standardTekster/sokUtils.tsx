@@ -112,3 +112,11 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
         return autofullforMap[key] || '[fant ingen verdi]';
     });
 }
+
+export function erGyldigValg(tekst: StandardTekster.Tekst | undefined, locale: string): tekst is StandardTekster.Tekst {
+    if (!tekst) {
+        return false;
+    }
+    const locales = Object.keys(tekst.innhold);
+    return locales.includes(locale);
+}

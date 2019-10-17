@@ -17,6 +17,8 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { ytelserTest } from '../dyplenkeTest/utils';
 import { formaterDato } from '../../../../utils/stringFormatting';
+import { ReactNode, useEffect } from 'react';
+import { usePrevious } from '../../../../utils/customHooks';
 
 const YtelserStyle = styled.div`
     > *:not(:first-child) {
@@ -24,8 +26,12 @@ const YtelserStyle = styled.div`
     }
 `;
 
-function YtelserOversikt() {
-    const { ytelser, pending } = useBrukersYtelser({
+interface Props {
+    setHeaderContent: (content: ReactNode) => void;
+}
+
+function YtelserOversikt(props: Props) {
+    const { ytelser, pending, feilmeldinger } = useBrukersYtelser({
         renderPleiepenger: pleiepenger => (
             <PleiepengerKomponent pleiepenger={pleiepenger} key={getUnikPleiepengerKey(pleiepenger)} />
         ),
@@ -37,10 +43,25 @@ function YtelserOversikt() {
         )
     });
 
+    const ytelserListe = ytelser.slice(0, 2);
+
+    const prevAntallYtelser = usePrevious(ytelser.length);
+    useEffect(() => {
+        const antallYtelser = ytelser.length;
+        if (prevAntallYtelser !== antallYtelser) {
+            props.setHeaderContent(
+                <Normaltekst>
+                    {ytelserListe.length} / {antallYtelser}
+                </Normaltekst>
+            );
+        }
+    }, [ytelser, ytelserListe, props, prevAntallYtelser]);
+
     return (
         <YtelserStyle>
-            {ytelser}
-            {!pending && ytelser.length === 0 && (
+            {ytelserListe}
+            {feilmeldinger}
+            {!pending && feilmeldinger.length === 0 && ytelser.length === 0 && (
                 <AlertStripeInfo>
                     Det finnes ikke foreldrepenger, sykepenger eller pleiepenger for brukeren
                 </AlertStripeInfo>

@@ -21,3 +21,7 @@ function lagPromise(statusCode: number, data: object | object[] | undefined): Pr
 export function mockGeneratorMedFødselsnummer(fn: (fødselsnummer: string) => object | object[] | undefined) {
     return (args: HandlerArgument) => fn(args.pathParams.fodselsnummer);
 }
+
+export function mockGeneratorMedEnhetId(fn: (enhetId: string) => object | object[] | undefined) {
+    return (args: HandlerArgument) => fn(args.pathParams.enhetId);
+}

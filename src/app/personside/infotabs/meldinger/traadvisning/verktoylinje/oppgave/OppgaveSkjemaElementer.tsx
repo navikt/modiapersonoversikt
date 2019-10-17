@@ -2,6 +2,8 @@ import React, { ChangeEvent } from 'react';
 import { Select } from 'nav-frontend-skjema';
 import { RadioPanelGruppe, Textarea } from 'nav-frontend-skjema';
 import {
+    Ansatt,
+    Enhet,
     GsakTema,
     GsakTemaOppgavetype,
     GsakTemaUnderkategori,
@@ -11,6 +13,12 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import styled from 'styled-components';
+import AutoComplete from './AutoComplete';
+import { AsyncResult, hasData, isPending, isLoading } from '@nutgaard/use-async';
+import useFetch from '@nutgaard/use-fetch';
+import { apiBaseUri } from '../../../../../../../api/config';
+
+const credentials: RequestInit = { credentials: 'include' };
 
 const KnappStyle = styled.div`
     display: flex;
@@ -30,7 +38,16 @@ const SkjemaStyle = styled.div`
 `;
 
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
+    const enhetliste: AsyncResult<Array<Enhet>> = useFetch<Array<Enhet>>(
+        `${apiBaseUri}/enheter/dialog/oppgave/alle`,
+        credentials
+    );
+    const ansattliste: AsyncResult<Array<Ansatt>> = useFetch<Array<Ansatt>>(
+        `${apiBaseUri}/enheter/${props.form.state.valgtEnhet ? props.form.state.valgtEnhet.enhetId : '_'}/ansatte`,
+        credentials
+    );
     const valgtTema = props.form.state.valgtTema;
+
     return (
         <SkjemaStyle>
             <Select
@@ -51,6 +68,34 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
             >
                 <OppgavetypeOptions valgtGsakTema={valgtTema} />
             </Select>
+            <AutoComplete<Enhet>
+                setValue={enhet => {
+                    props.form.actions.settValgtEnhet(enhet);
+                }}
+                inputValue={undefined}
+                itemToString={enhet => `${enhet.enhetId} ${enhet.enhetNavn}`}
+                label={'Velg enhet'}
+                suggestions={hasData(enhetliste) ? enhetliste.data : []}
+                filter={(enhet, value) =>
+                    enhet.enhetId.includes(value) || enhet.enhetNavn.toLowerCase().includes(value.toLowerCase())
+                }
+                spinner={isPending(enhetliste)}
+            />
+            <AutoComplete<Ansatt>
+                setValue={ansatt => {
+                    props.form.actions.settValgtAnsatt(ansatt);
+                }}
+                inputValue={undefined}
+                itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
+                label={'Velg ansatt'}
+                suggestions={hasData(ansattliste) ? ansattliste.data : []}
+                filter={(ansatt, value) =>
+                    ansatt.fornavn.toLowerCase().includes(value.toLowerCase()) ||
+                    ansatt.etternavn.toLowerCase().includes(value.toLowerCase()) ||
+                    ansatt.ident.toLowerCase().includes(value.toLowerCase())
+                }
+                spinner={isLoading(ansattliste)}
+            />
             <RadioPanelGruppe
                 radios={[
                     { label: 'Høy', value: OppgavePrioritet.HOY },

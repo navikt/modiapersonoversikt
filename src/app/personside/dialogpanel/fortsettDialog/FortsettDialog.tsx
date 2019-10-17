@@ -13,7 +13,7 @@ import { capitalizeName } from '../../../../utils/stringFormatting';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Temavelger from '../component/Temavelger';
-import { FormStyle } from '../fellesStyling';
+import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import BrukerKanSvare from './BrukerKanSvare';
@@ -21,6 +21,9 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { FortsettDialogValidator } from './validatorer';
 import { FortsettDialogState } from './FortsettDialogContainer';
+import { erDelvisBesvart, erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
+import { isFailedPosting } from '../../../../rest/utils/postResource';
+import { temagruppeTekst, TemaPlukkbare } from '../../../../models/Temagrupper';
 
 const StyledArticle = styled.article`
     padding: 1rem ${theme.margin.layout};
@@ -45,11 +48,21 @@ interface Props {
     updateState: (change: Partial<FortsettDialogState>) => void;
     traad: Traad;
     oppgave?: Oppgave;
+    senderMelding: boolean;
 }
+function Feilmelding() {
+    const sendSvarResource = useRestResource(resources => resources.sendSvar);
+    const sendDelsvarResource = useRestResource(resources => resources.sendDelsvar);
 
+    if (isFailedPosting(sendDelsvarResource) || isFailedPosting(sendSvarResource)) {
+        return <DialogpanelFeilmelding />;
+    }
+    return null;
+}
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;
     const personinformasjon = useRestResource(resources => resources.personinformasjon);
+    const temagrupperITraad = props.traad.meldinger.map(it => it.temagruppe);
 
     const navn = isLoadedPerson(personinformasjon)
         ? capitalizeName(personinformasjon.data.navn.fornavn || '')
@@ -63,7 +76,6 @@ function FortsettDialog(props: Props) {
         Meldingstype.SVAR_SKRIFTLIG
     ].includes(state.dialogType);
     const brukerKanSvareValg = state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
-
     return (
         <StyledArticle>
             <Undertittel>Fortsett dialog</Undertittel>
@@ -84,32 +96,45 @@ function FortsettDialog(props: Props) {
                     formState={state}
                     updateDialogType={dialogType => updateState({ dialogType: dialogType })}
                     erTilknyttetOppgave={erTilknyttetOppgave}
+                    erDelvisBesvart={erDelvisBesvart(props.traad)}
                 />
                 <Margin>
                     <UnmountClosed isOpened={brukerKanIkkeSvareInfo}>
                         <AlertStripeInfo>Bruker kan ikke svare</AlertStripeInfo>
                     </UnmountClosed>
                     <UnmountClosed isOpened={brukerKanSvareValg}>
-                        <BrukerKanSvare formState={state} updateFormState={updateState} />
+                        <BrukerKanSvare
+                            formState={state}
+                            updateFormState={updateState}
+                            visVelgSak={!erEldsteMeldingJournalfort(props.traad)}
+                        />
                     </UnmountClosed>
                     <UnmountClosed isOpened={erDelsvar} hasNestedCollapse={true}>
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                         <Temavelger
-                            setTema={tema => updateState({ tema: tema })}
-                            tema={state.tema}
+                            setTema={tema => updateState({ temagruppe: tema })}
+                            valgtTema={state.temagruppe}
                             visFeilmelding={!FortsettDialogValidator.tema(state) && state.visFeilmeldinger}
+                            temavalg={TemaPlukkbare.filter(it => !temagrupperITraad.includes(it))}
                         />
                     </UnmountClosed>
                 </Margin>
-                <SubmitKnapp htmlType="submit">
+                <Feilmelding />
+                <SubmitKnapp htmlType="submit" spinner={props.senderMelding}>
                     {erDelsvar
                         ? `Skriv delsvar og legg tilbake på ${
-                              state.tema ? state.tema.beskrivelse.toLowerCase() : 'tema'
+                              state.temagruppe ? temagruppeTekst(state.temagruppe).toLowerCase() : 'tema'
                           }`
                         : `Del med ${navn}`}
                 </SubmitKnapp>
                 {!erTilknyttetOppgave && (
-                    <StyledKnappMedBekreftPopup type="flat" onBekreft={handleAvbryt}>
+                    <StyledKnappMedBekreftPopup
+                        htmlType="reset"
+                        type="flat"
+                        onBekreft={handleAvbryt}
+                        bekreftKnappTekst={'Ja, avbryt'}
+                        popUpTekst="Er du sikker på at du vil avbryte? Du mister da meldinger du har påbegynt."
+                    >
                         Avbryt
                     </StyledKnappMedBekreftPopup>
                 )}

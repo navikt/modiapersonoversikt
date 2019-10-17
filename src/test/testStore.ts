@@ -26,6 +26,7 @@ import { pleiepengerTestData } from '../app/personside/infotabs/ytelser/pleiepen
 import { statiskForeldrepengeMock } from '../mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
+import { henvendelseResponseMock } from '../mock/meldinger/henvendelseMock';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -55,10 +56,16 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
     testStore.dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
     testStore.dispatch(restResources.oppgaveGsakTema.actions.setData(getMockGsakTema()));
-    testStore.dispatch(restResources.featureToggles.actions.setData({ [FeatureToggles.SaksoversiktNyttVindu]: true }));
+    testStore.dispatch(
+        restResources.featureToggles.actions.setData({
+            [FeatureToggles.SaksoversiktNyttVindu]: true,
+            [FeatureToggles.Hurtigreferat]: true
+        })
+    );
     testStore.dispatch(restResources.tråderOgMeldinger.actions.setData([statiskTraadMock]));
     testStore.dispatch(restResources.pleiepenger.actions.setData({ pleiepenger: [pleiepengerTestData] }));
     testStore.dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));
     testStore.dispatch(restResources.sykepenger.actions.setData({ sykepenger: [statiskSykepengerMock] }));
+    testStore.dispatch(restResources.opprettHenvendelse.actions.setResponse(henvendelseResponseMock));
     return testStore;
 }

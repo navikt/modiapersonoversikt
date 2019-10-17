@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
-import { Kodeverk } from '../../../../models/kodeverk';
 import { UnmountClosed } from 'react-collapse';
 import KnappBase from 'nav-frontend-knapper';
 import styled from 'styled-components';
@@ -18,8 +17,10 @@ import VelgDialogType from './VelgDialogType';
 import { useRestResource } from '../../../../utils/customHooks';
 import { Undertittel } from 'nav-frontend-typografi';
 import Oppgaveliste from './Oppgaveliste';
-import { FormStyle } from '../fellesStyling';
+import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import theme from '../../../../styles/personOversiktTheme';
+import { isFailedPosting } from '../../../../rest/utils/postResource';
+import { Temagruppe, TemaSamtalereferat } from '../../../../models/Temagrupper';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -31,10 +32,10 @@ export type SendNyMeldingDialogType =
     | Meldingstype.SAMTALEREFERAT_OPPMOTE
     | Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
 
-export interface FormState {
+export interface SendNyMeldingState {
     tekst: string;
     dialogType: SendNyMeldingDialogType;
-    tema?: Kodeverk;
+    tema?: Temagruppe;
     sak?: JournalforingsSak;
     oppgaveListe: OppgavelisteValg;
     visFeilmeldinger: boolean;
@@ -65,10 +66,20 @@ export const tekstMaksLengde = 5000;
 interface Props {
     handleSubmit: (event: FormEvent) => void;
     handleAvbryt: () => void;
-    state: FormState;
-    updateState: (change: Partial<FormState>) => void;
+    state: SendNyMeldingState;
+    updateState: (change: Partial<SendNyMeldingState>) => void;
+    formErEndret: boolean;
+    senderMelding: boolean;
 }
 
+function Feilmelding() {
+    const postReferatResource = useRestResource(resources => resources.sendReferat);
+    const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
+    if (isFailedPosting(postReferatResource) || isFailedPosting(postSpørsmålResource)) {
+        return <DialogpanelFeilmelding />;
+    }
+    return null;
+}
 function SendNyMelding(props: Props) {
     const updateState = props.updateState;
     const state = props.state;
@@ -80,7 +91,6 @@ function SendNyMelding(props: Props) {
 
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
-
     return (
         <StyledArticle>
             <Undertittel>Send ny melding</Undertittel>
@@ -91,8 +101,9 @@ function SendNyMelding(props: Props) {
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                         <Temavelger
                             setTema={tema => updateState({ tema: tema })}
-                            tema={state.tema}
+                            valgtTema={state.tema}
                             visFeilmelding={!NyMeldingValidator.tema(state) && state.visFeilmeldinger}
+                            temavalg={TemaSamtalereferat}
                         />
                         <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
                     </UnmountClosed>
@@ -120,17 +131,22 @@ function SendNyMelding(props: Props) {
                             : undefined
                     }
                 />
+                <Feilmelding />
                 <KnappWrapper>
-                    <KnappBase type="hoved" htmlType="submit">
+                    <KnappBase type="hoved" spinner={props.senderMelding} htmlType="submit">
                         Del med {navn}
                     </KnappBase>
-                    <KnappMedBekreftPopup
-                        type="flat"
-                        onBekreft={props.handleAvbryt}
-                        popUpTekst="Du vil miste meldingen du har påbegynnt"
-                    >
-                        Avbryt
-                    </KnappMedBekreftPopup>
+                    {props.formErEndret && (
+                        <KnappMedBekreftPopup
+                            htmlType="reset"
+                            type="flat"
+                            onBekreft={props.handleAvbryt}
+                            bekreftKnappTekst={'Ja, avbryt'}
+                            popUpTekst="Er du sikker på at du vil avbryte? Du mister da meldinger du har påbegynt."
+                        >
+                            Avbryt
+                        </KnappMedBekreftPopup>
+                    )}
                 </KnappWrapper>
             </FormStyle>
         </StyledArticle>

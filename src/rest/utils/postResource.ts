@@ -2,6 +2,7 @@ import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { Action } from 'redux';
 import { post } from '../../api/api';
 import { AppState } from '../../redux/reducers';
+import { loggError, loggEvent } from '../../utils/frontendLogger';
 
 export interface PostResourceActionTypes {
     POSTING: string;
@@ -21,7 +22,8 @@ export interface PostResource<Request, Response = any> {
     status: PostStatus;
     actions: {
         reset: (dispatch: AsyncDispatch) => void;
-        setError: (e: Error) => (dispatch: AsyncDispatch) => void;
+        setError: (e: Error) => Action;
+        setResponse: (response: Response) => Action;
         post: (
             payload: Request,
             callback?: (response: Response) => void
@@ -46,7 +48,8 @@ export interface FinishedPostResource<Request, Response> extends PostResource<Re
 
 export interface FailedPostResource<Request, Response> extends PostResource<Request, Response> {
     status: PostStatus.FAIL;
-    error: Error;
+    error: string;
+    payload: Request;
 }
 
 export function isNotStartedPosting<Request, Response>(
@@ -95,7 +98,7 @@ export interface FinishedPostAction<Request, Response> {
 
 export interface FailAction<Request, Response> {
     type: PostResourceActionTypes;
-    error: Error;
+    error: string;
 }
 
 export type PostUriCreator<Request> = (state: AppState, request: Request) => string;
@@ -110,7 +113,8 @@ function createPostResourceReducerAndActions<Request extends object, Response = 
         status: PostStatus.NOT_STARTED,
         actions: {
             reset: dispatch => dispatch({ type: actionNames.INITIALIZE }),
-            setError: (error: Error) => dispatch => dispatch({ type: actionNames.FAILED, error: error }),
+            setError: (error: Error) => ({ type: actionNames.FAILED, error: error }),
+            setResponse: response => ({ type: actionNames.FINISHED, response: response }),
             post: (request: Request, callback?: (response: Response) => void) => (
                 dispatch: AsyncDispatch,
                 getState: () => AppState
@@ -121,7 +125,7 @@ function createPostResourceReducerAndActions<Request extends object, Response = 
                         dispatch({ type: actionNames.FINISHED, response: response });
                         callback && callback((response as unknown) as Response);
                     })
-                    .catch((error: Error) => dispatch({ type: actionNames.FAILED, error: error }));
+                    .catch((error: string) => dispatch({ type: actionNames.FAILED, error: error }));
             }
         }
     };
@@ -143,10 +147,15 @@ function createPostResourceReducerAndActions<Request extends object, Response = 
                     response: (action as FinishedPostAction<Request, Response>).response
                 } as FinishedPostResource<Request, Response>;
             case actionNames.FAILED:
+                const failedAction = action as FailAction<Request, Response>;
+                loggEvent('Post-Failed', resourceNavn);
+                loggError(new Error('Post-Failed in ' + resourceNavn), failedAction.error, {
+                    request: (state as FailedPostResource<Request, Response>).payload
+                });
                 return {
                     ...state,
                     status: PostStatus.FAIL,
-                    error: (action as FailAction<Request, Response>).error
+                    error: failedAction.error
                 } as FailedPostResource<Request, Response>;
             default:
                 return state;

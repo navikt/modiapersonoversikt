@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import Tekstomrade, {
@@ -7,25 +7,21 @@ import Tekstomrade, {
     ParagraphRule
 } from '../../../../../components/tekstomrade/tekstomrade';
 import { parseTekst } from '../../../../../components/tag-input/tag-input';
-import useFieldState, { FieldState } from '../../../../../utils/hooks/use-field-state';
+import { FieldState } from '../../../../../utils/hooks/use-field-state';
 import * as StandardTekster from './domain';
 import LocaleVelger from './LocaleVelger';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import useAlwaysInViewport from '../../../../../utils/hooks/use-always-in-viewport';
 import { Rule } from '../../../../../components/tekstomrade/parser/domain';
-import { autofullfor, byggAutofullforMap } from './sokUtils';
-import { captitalize } from '../../../../../utils/stringFormatting';
-import MultiRestResourceConsumer from '../../../../../rest/consumer/MultiRestResourceConsumer';
-import { PersonRespons } from '../../../../../models/person/person';
-import { InnloggetSaksbehandler } from '../../../../../models/innloggetSaksbehandler';
-import { NavKontorResponse } from '../../../../../models/navkontor';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { erGyldigValg } from './sokUtils';
 
 interface Props {
     tekster: Array<StandardTekster.Tekst>;
     sokefelt: FieldState;
-    appendTekst(tekst: string): void;
+    valgt: FieldState;
+    valgtLocale: FieldState;
+    valgtTekst?: StandardTekster.Tekst;
 }
 
 const Container = styled.div`
@@ -37,9 +33,7 @@ const Container = styled.div`
     }
     em {
         font-style: normal;
-        background-color: #eed28c;
-        border-radius: ${pxToRem(10)};
-        padding: 0 5px;
+        ${theme.highlight}
     }
 `;
 const Liste = styled.div`
@@ -96,9 +90,16 @@ const LocaleVelgerContainer = styled.div`
     }
 `;
 
-const Tag = styled(Knapp)`
+const Tag = styled(({ highlight, ...rest }) => <Knapp {...rest} />)`
     padding: 0.25rem 0.5rem;
     margin-right: 0.25rem;
+
+    em {
+        margin: 0 -0.3125rem;
+    }
+    &:hover {
+        color: ${props => (props.highlight ? theme.color.lenke : '#ffffff')};
+    }
 `;
 
 function TekstValg({
@@ -125,57 +126,31 @@ function TekstValg({
     );
 }
 
-function useDefaultValgtTekst(tekster: Array<StandardTekster.Tekst>, valgt: FieldState) {
-    useEffect(() => {
-        if (valgt.input.value === '' && tekster.length > 0) {
-            valgt.setValue(tekster[0].id);
-        } else {
-            const harValgtTekst = tekster.map(tekst => tekst.id).includes(valgt.input.value);
-            if (!harValgtTekst && tekster.length > 0) {
-                valgt.setValue(tekster[0].id);
-            }
-        }
-    }, [valgt, tekster]);
-}
-
-function useDefaultValgtLocale(valgtTekst: StandardTekster.Tekst | undefined, valgtLocale: FieldState) {
-    useEffect(() => {
-        if (valgtTekst) {
-            const locales = Object.keys(valgtTekst.innhold);
-            if (!locales.includes(valgtLocale.input.value)) {
-                valgtLocale.setValue(locales[0]);
-            }
-        }
-    }, [valgtTekst, valgtLocale.input.value]);
-}
-
 function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; sokefelt: FieldState }) {
     if (!valgtTekst) {
         return null;
     }
 
+    const { tags } = parseTekst(sokefelt.input.value);
     const tagElements = valgtTekst.tags
         .filter(tag => tag.length > 0)
         .filter((tag, index, list) => list.indexOf(tag) === index)
-        .map(tag => (
-            <Tag
-                mini
-                key={tag}
-                className="tag blokk-xxxs"
-                onClick={() => sokefelt.setValue(`#${tag} ${sokefelt.input.value}`)}
-            >
-                {tag}
-            </Tag>
-        ));
+        .map(tag => {
+            const highlight = tags.includes(tag);
+            return (
+                <Tag
+                    mini
+                    htmlType="button"
+                    key={tag}
+                    className="tag blokk-xxxs"
+                    onClick={() => sokefelt.setValue(`#${tag} ${sokefelt.input.value}`)}
+                    highlight={highlight}
+                >
+                    {highlight ? <em>{tag}</em> : tag}
+                </Tag>
+            );
+        });
     return <div className="tags">{tagElements}</div>;
-}
-
-function kanVises(tekst: StandardTekster.Tekst | undefined, locale: string): tekst is StandardTekster.Tekst {
-    if (!tekst) {
-        return false;
-    }
-    const locales = Object.keys(tekst.innhold);
-    return locales.includes(locale);
 }
 
 interface PreviewProps {
@@ -186,7 +161,7 @@ interface PreviewProps {
 }
 
 function Preview({ tekst, locale, sokefelt, highlightRule }: PreviewProps) {
-    if (!kanVises(tekst, locale)) {
+    if (!erGyldigValg(tekst, locale)) {
         return <PreviewWrapper />;
     }
     return (
@@ -200,72 +175,32 @@ function Preview({ tekst, locale, sokefelt, highlightRule }: PreviewProps) {
     );
 }
 
-export type AutofullforData = {
-    person: PersonRespons;
-    saksbehandler: InnloggetSaksbehandler;
-    kontor: NavKontorResponse;
-};
-function velgTekst(
-    settTekst: (tekst: string) => void,
-    tekst: StandardTekster.Tekst | undefined,
-    locale: string,
-    data: AutofullforData
-) {
-    return () => {
-        if (kanVises(tekst, locale)) {
-            const localeTekst = tekst.innhold[locale];
-            const nokler = byggAutofullforMap(data.person, data.kontor, data.saksbehandler, locale);
-            const ferdigTekst = captitalize(autofullfor(localeTekst, nokler));
-
-            settTekst(ferdigTekst);
-        }
-    };
-}
-
 function StandardTekstVisning(props: Props) {
-    const valgt = useFieldState((props.tekster[0] && props.tekster[0].id) || '');
-    const valgtLocale = useFieldState((props.tekster[0] && Object.keys(props.tekster[0].innhold)[0]) || '');
-    const valgtTekst = props.tekster.find(tekst => tekst.id === valgt.input.value);
-    const { tags, text } = parseTekst(props.sokefelt.input.value);
+    const { valgt, valgtLocale, valgtTekst, sokefelt, tekster } = props;
+
+    const { tags, text } = parseTekst(sokefelt.input.value);
     const highlightRule = createDynamicHighligtingRule(tags.concat(text.split(' ')));
-    const tekster = props.tekster.map(tekst => (
+    const tekstElementer = tekster.map(tekst => (
         <TekstValg key={tekst.id} tekst={tekst} valgt={valgt} highlightRule={highlightRule} />
     ));
 
-    useDefaultValgtTekst(props.tekster, valgt);
-    useDefaultValgtLocale(valgtTekst, valgtLocale);
     useAlwaysInViewport('.standardtekster__liste input:checked', [valgtTekst, props.tekster]);
 
     return (
         <Container>
-            <Liste className="standardtekster__liste">{tekster}</Liste>
+            <Liste className="standardtekster__liste">{tekstElementer}</Liste>
             <PreviewContainer>
                 <Preview
                     tekst={valgtTekst}
                     locale={valgtLocale.input.value}
-                    sokefelt={props.sokefelt}
+                    sokefelt={sokefelt}
                     highlightRule={highlightRule}
                 />
                 <VelgTekst>
                     <LocaleVelgerContainer>
                         <LocaleVelger tekst={valgtTekst} valgt={valgtLocale} />
                     </LocaleVelgerContainer>
-                    <MultiRestResourceConsumer<AutofullforData>
-                        returnOnError={<AlertStripeAdvarsel>Feil ved lasting av autofyll-tekster.</AlertStripeAdvarsel>}
-                        getResource={restResources => ({
-                            person: restResources.personinformasjon,
-                            saksbehandler: restResources.innloggetSaksbehandler,
-                            kontor: restResources.brukersNavKontor
-                        })}
-                    >
-                        {(data: AutofullforData) => (
-                            <VelgKnapp
-                                onClick={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, data)}
-                            >
-                                Velg
-                            </VelgKnapp>
-                        )}
-                    </MultiRestResourceConsumer>
+                    <VelgKnapp>Velg</VelgKnapp>
                 </VelgTekst>
             </PreviewContainer>
         </Container>

@@ -22,6 +22,7 @@ const TabKnapperNav = styled.nav`
     }
     border-top: ${theme.border.skille};
     border-bottom: ${theme.border.skille};
+    background-color: ${theme.color.navLysGra};
 `;
 
 const KnappWrapper = styled.div`
@@ -50,7 +51,8 @@ const TabKnapp = styled.button<TabKnappProps>`
     transition: border 0.3s;
     font-weight: bold;
     &:focus {
-        ${theme.focus}
+        ${theme.focus};
+        border-radius: ${theme.borderRadius.layout};
     }
     &:hover {
         border-bottom: 4px solid ${theme.color.lenkeHover};

@@ -150,7 +150,7 @@ Array [
 
 .c0 {
   background-color: white;
-  border-bottom: solid 0.0625rem #c6c2bf;
+  border-bottom: solid 0.0625rem #b7b1a9;
   padding: 1rem .8rem;
 }
 
@@ -236,7 +236,7 @@ Array [
                     <option
                       value="HJLPM"
                     >
-                      Hjelpemiddel
+                      Hjelpemidler
                     </option>
                     <option
                       value="PENS"
@@ -246,7 +246,7 @@ Array [
                     <option
                       value="OVRG"
                     >
-                      Øvrig
+                      Øvrige henvendelser
                     </option>
                   </select>
                 </div>
@@ -1192,11 +1192,40 @@ Array [
   clip: rect(1px,1px,1px,1px);
 }
 
-.c5 .ekspanderbartPanel__hode {
-  padding: 0.6rem;
+.c5 {
+  background-color: white;
+  border-radius: .25rem;
+  border: 1px solid #78706a;
+  position: relative;
 }
 
-.c8 {
+.c6 {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0.5rem;
+  border-radius: .25rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c6:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c9 {
   position: absolute;
   height: 2rem;
   width: 2rem;
@@ -1210,31 +1239,31 @@ Array [
   transform: none;
 }
 
-.c8:after {
+.c9:after {
   background: none;
 }
 
-.c8:hover {
+.c9:hover {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
 }
 
-.c9 {
+.c10 {
   position: relative;
   top: 2px;
   width: 18px;
 }
 
-.c7 {
+.c8 {
   position: relative;
 }
 
-.c7 textarea {
+.c8 textarea {
   min-height: 9rem;
 }
 
-.c7 label {
+.c8 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -1245,7 +1274,8 @@ Array [
   clip: rect(1px,1px,1px,1px);
 }
 
-.c10 textarea {
+.c11 textarea,
+.c11 .textareamirror {
   padding-left: 2.25rem;
 }
 
@@ -1294,11 +1324,11 @@ Array [
   margin-right: 1rem;
 }
 
-.c6 {
+.c7 {
   margin-top: 1rem;
 }
 
-.c6 label {
+.c7 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -1313,7 +1343,7 @@ Array [
   padding: 1rem .8rem;
 }
 
-.c11 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1323,7 +1353,7 @@ Array [
   flex-direction: column;
 }
 
-.c11 > * {
+.c12 > * {
   margin-bottom: 0.7rem;
 }
 
@@ -1445,7 +1475,7 @@ Array [
                 <option
                   value="HJLPM"
                 >
-                  Hjelpemiddel
+                  Hjelpemidler
                 </option>
                 <option
                   value="PENS"
@@ -1455,7 +1485,7 @@ Array [
                 <option
                   value="OVRG"
                 >
-                  Øvrig
+                  Øvrige henvendelser
                 </option>
               </select>
             </div>
@@ -1507,66 +1537,23 @@ Array [
           className=""
         >
           <div
-            className="ekspanderbartPanel c5 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+            className="c5"
           >
             <button
               aria-expanded={false}
-              className="ekspanderbartPanel__hode"
+              className="c6"
               onClick={[Function]}
-              onKeyDown={[Function]}
               type="button"
             >
-              <div
-                className="ekspanderbartPanel__flex-wrapper"
+              <p
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal ekspanderbartPanel__heading"
-                >
-                  Velg sak
-                </span>
-                <span
-                  className="ekspanderbartPanel__indikator"
-                />
-              </div>
+                Velg sak
+              </p>
+              <i
+                className="nav-frontend-chevron chevronboks chevron--ned"
+              />
             </button>
-            <article
-              aria-label="Velg sak"
-              className="ekspanderbartPanel__innhold"
-            >
-              <svg
-                aria-label="Laster innhold"
-                className="spinner spinner--xl"
-                focusable="false"
-                height={32}
-                kind="spinner"
-                preserveAspectRatio="xMidYMid"
-                viewBox="0 0 50 50"
-                width={32}
-              >
-                <title>
-                  Venter...
-                </title>
-                <circle
-                  cx="25"
-                  cy="25"
-                  fill="none"
-                  r="20"
-                  stroke="#bdbab7"
-                  strokeWidth="5"
-                  xmlns="http://www.w3.org/2000/svg"
-                />
-                <circle
-                  cx="25"
-                  cy="25"
-                  fill="none"
-                  r="20"
-                  stroke="#7f756c"
-                  strokeDasharray="50 155"
-                  strokeLinecap="round"
-                  strokeWidth="5"
-                />
-              </svg>
-            </article>
           </div>
           <div
             aria-live="assertive"
@@ -1574,7 +1561,7 @@ Array [
           />
         </div>
         <div
-          className="skjemaelement c6"
+          className="skjemaelement c7"
         >
           <label
             className="skjemaelement__label"
@@ -1646,16 +1633,16 @@ Array [
         </div>
       </div>
       <div
-        className="c7"
+        className="c8"
       >
         <button
-          className="knapp c8 knapp--hoved"
+          className="knapp c9 knapp--hoved"
           disabled={false}
           onClick={[Function]}
-          type="submit"
+          type="button"
         >
           <svg
-            className="c9"
+            className="c10"
             height="24px"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24"
@@ -1676,7 +1663,7 @@ Array [
           </span>
         </button>
         <div
-          className="c10"
+          className="c11"
         >
           <div
             className="skjemaelement textarea__container"
@@ -1730,7 +1717,7 @@ Array [
         />
       </div>
       <div
-        className="c11"
+        className="c12"
       >
         <button
           className="knapp knapp--hoved"
@@ -1739,14 +1726,6 @@ Array [
         >
           Del med 
           Aremark
-        </button>
-        <button
-          className="knapp knapp--flat"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          Avbryt
         </button>
       </div>
     </form>

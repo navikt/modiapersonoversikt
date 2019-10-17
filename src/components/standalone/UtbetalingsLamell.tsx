@@ -10,6 +10,7 @@ import UtbetalingerContainer from '../../app/personside/infotabs/utbetalinger/Ut
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 import styled from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
+import { MemoryRouter } from 'react-router';
 
 interface Props {
     fødselsnummer: string;
@@ -33,10 +34,12 @@ class UtbetalingsLamell extends React.Component<Props> {
         return (
             <ErrorBoundary boundaryName="Utbetalinger">
                 <Provider store={store}>
-                    <Styles>
-                        <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
-                        <UtbetalingerContainer />
-                    </Styles>
+                    <MemoryRouter>
+                        <Styles>
+                            <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                            <UtbetalingerContainer />
+                        </Styles>
+                    </MemoryRouter>
                 </Provider>
             </ErrorBoundary>
         );

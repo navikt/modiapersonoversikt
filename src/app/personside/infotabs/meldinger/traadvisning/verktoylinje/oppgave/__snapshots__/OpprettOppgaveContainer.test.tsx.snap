@@ -2,7 +2,7 @@
 
 exports[`Viser oppgavecontainer med alt innhold 1`] = `
 Array [
-  .c2 {
+  .c5 {
   position: relative;
   border: none;
   padding: 0;
@@ -20,7 +20,7 @@ Array [
   color: #0067c5;
 }
 
-.c2:after {
+.c5:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -28,21 +28,40 @@ Array [
   width: 100%;
 }
 
-.c2:focus {
+.c5:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c2:hover {
+.c5:hover {
   opacity: 0.8;
 }
 
-.c2:hover:after {
+.c5:hover:after {
   content: '';
   border-color: #0067c5;
 }
 
 .c1 {
+  position: relative;
+}
+
+.c3 {
+  position: absolute !important;
+  bottom: 0.4rem;
+  right: 0.4rem;
+}
+
+.c2 {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.c2 .skjemaelement {
+  margin-bottom: 0;
+}
+
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -53,7 +72,7 @@ Array [
   justify-content: space-between;
 }
 
-.c1 button {
+.c4 button {
   margin: 0;
 }
 
@@ -176,6 +195,158 @@ Array [
           aria-live="assertive"
           role="alert"
         />
+      </div>
+      <div
+        aria-expanded={false}
+        aria-haspopup="listbox"
+        aria-labelledby="downshift-0-label"
+        aria-owns={null}
+        className="c1"
+        role="combobox"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="downshift-0-input"
+            >
+              Velg enhet
+            </label>
+            <input
+              aria-activedescendant={null}
+              aria-autocomplete="list"
+              aria-controls={null}
+              aria-label="Laster data"
+              aria-labelledby="downshift-0-label"
+              autoComplete="off"
+              className="skjemaelement__input input--fullbredde"
+              id="downshift-0-input"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value=""
+            />
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+          <svg
+            aria-label="Laster innhold"
+            className="spinner c3 spinner--s"
+            focusable="false"
+            height={32}
+            kind="spinner"
+            preserveAspectRatio="xMidYMid"
+            viewBox="0 0 50 50"
+            width={32}
+          >
+            <title>
+              Venter...
+            </title>
+            <circle
+              cx="25"
+              cy="25"
+              fill="none"
+              r="20"
+              stroke="#bdbab7"
+              strokeWidth="5"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+            <circle
+              cx="25"
+              cy="25"
+              fill="none"
+              r="20"
+              stroke="#7f756c"
+              strokeDasharray="50 155"
+              strokeLinecap="round"
+              strokeWidth="5"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        aria-expanded={false}
+        aria-haspopup="listbox"
+        aria-labelledby="downshift-1-label"
+        aria-owns={null}
+        className="c1"
+        role="combobox"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="downshift-1-input"
+            >
+              Velg ansatt
+            </label>
+            <input
+              aria-activedescendant={null}
+              aria-autocomplete="list"
+              aria-controls={null}
+              aria-label="Laster data"
+              aria-labelledby="downshift-1-label"
+              autoComplete="off"
+              className="skjemaelement__input input--fullbredde"
+              id="downshift-1-input"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value=""
+            />
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+          <svg
+            aria-label="Laster innhold"
+            className="spinner c3 spinner--s"
+            focusable="false"
+            height={32}
+            kind="spinner"
+            preserveAspectRatio="xMidYMid"
+            viewBox="0 0 50 50"
+            width={32}
+          >
+            <title>
+              Venter...
+            </title>
+            <circle
+              cx="25"
+              cy="25"
+              fill="none"
+              r="20"
+              stroke="#bdbab7"
+              strokeWidth="5"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+            <circle
+              cx="25"
+              cy="25"
+              fill="none"
+              r="20"
+              stroke="#7f756c"
+              strokeDasharray="50 155"
+              strokeLinecap="round"
+              strokeWidth="5"
+            />
+          </svg>
+        </div>
       </div>
       <div
         className="inputPanelGruppe"
@@ -309,7 +480,7 @@ Array [
         />
       </div>
       <div
-        className="c1"
+        className="c4"
       >
         <button
           className="knapp knapp--hoved"
@@ -319,7 +490,7 @@ Array [
           Send
         </button>
         <button
-          className="c2"
+          className="c5"
           onClick={[Function]}
           type="button"
         >

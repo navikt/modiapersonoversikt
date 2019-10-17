@@ -1,11 +1,22 @@
-import { Melding, Meldingstype, Saksbehandler, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
+import { Melding, Meldingstype, Saksbehandler, Traad } from '../../../../../models/meldinger/meldinger';
+import { meldingstypeTekst } from './meldingstekster';
+import { datoStigende, datoSynkende } from '../../../../../utils/dateUtils';
+import { useMemo } from 'react';
+import useDebounce from '../../../../../utils/hooks/use-debounce';
+import {
+    Temagruppe,
+    temagruppeTekst,
+    TemaKommunaleTjenester,
+    TemaPlukkbare,
+    TemaSamtalereferat
+} from '../../../../../models/Temagrupper';
 
-export function sisteSendteMelding(traad: Traad) {
-    return traad.meldinger[0];
+export function nyesteMelding(traad: Traad) {
+    return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
 }
 
 export function eldsteMelding(traad: Traad) {
-    return traad.meldinger[traad.meldinger.length - 1];
+    return [...traad.meldinger].sort(datoStigende(melding => melding.opprettetDato))[0];
 }
 
 export function erMonolog(traad: Traad) {
@@ -15,48 +26,24 @@ export function erMonolog(traad: Traad) {
     return bareSaksbehandler !== bareBruker;
 }
 
+export function meldingstittel(melding: Melding) {
+    return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe)}`;
+}
+
 export function erSamtalereferat(temagruppe: Temagruppe) {
-    return [
-        Temagruppe.Arbeid,
-        Temagruppe.Familie,
-        Temagruppe.Hjelpemiddel,
-        Temagruppe.Pensjon,
-        Temagruppe.Øvrig,
-        Temagruppe.ØkonomiskSosial,
-        Temagruppe.AndreSosiale
-    ].includes(temagruppe);
+    return TemaSamtalereferat.includes(temagruppe);
 }
 
 export function kanLeggesTilbake(temagruppe: Temagruppe) {
-    return [
-        Temagruppe.Arbeid,
-        Temagruppe.Familie,
-        Temagruppe.Hjelpemiddel,
-        Temagruppe.Bil,
-        Temagruppe.OrtopediskHjelpemiddel,
-        Temagruppe.PleiepengerBarnsSykdom,
-        Temagruppe.Uføretrygd,
-        Temagruppe.Utland,
-        Temagruppe.ØkonomiskSosial,
-        Temagruppe.AndreSosiale
-    ].includes(temagruppe);
+    return TemaPlukkbare.includes(temagruppe);
 }
 
 export function erPlukkbar(temagruppe: Temagruppe) {
-    return [
-        Temagruppe.Arbeid,
-        Temagruppe.Familie,
-        Temagruppe.Hjelpemiddel,
-        Temagruppe.Bil,
-        Temagruppe.OrtopediskHjelpemiddel,
-        Temagruppe.PleiepengerBarnsSykdom,
-        Temagruppe.Uføretrygd,
-        Temagruppe.Utland
-    ].includes(temagruppe);
+    return TemaPlukkbare.includes(temagruppe);
 }
 
 export function erKommunaleTjenester(temagruppe: Temagruppe) {
-    return [Temagruppe.ØkonomiskSosial, Temagruppe.AndreSosiale].includes(temagruppe);
+    return TemaKommunaleTjenester.includes(temagruppe);
 }
 
 export function erMeldingFraBruker(meldingstype: Meldingstype) {
@@ -88,9 +75,23 @@ export function erMeldingSpørsmål(meldingstype: Meldingstype) {
 export function erKontorsperret(traad: Traad): boolean {
     return !!eldsteMelding(traad).kontorsperretEnhet;
 }
+export function kanTraadJournalfores(traad: Traad): boolean {
+    const nyesteMeldingITraad = nyesteMelding(traad);
+    return (
+        !erMeldingVarsel(nyesteMeldingITraad.meldingstype) &&
+        !erKontorsperret(traad) &&
+        !erFeilsendt(traad) &&
+        !erJournalfort(nyesteMeldingITraad) &&
+        erBehandlet(traad)
+    );
+}
 
 export function erEldsteMeldingJournalfort(traad: Traad): boolean {
-    return !!eldsteMelding(traad).journalfortDato;
+    return erJournalfort(eldsteMelding(traad));
+}
+
+export function erJournalfort(melding: Melding) {
+    return !!melding.journalfortDato;
 }
 
 export function erFeilsendt(traad: Traad): boolean {
@@ -108,10 +109,17 @@ export function erBehandlet(traad: Traad): boolean {
     return minstEnMeldingErFraNav || erFerdigstiltUtenSvar;
 }
 
-export function harDelsvar(traad: Traad): boolean {
-    return traad.meldinger.some(melding => melding.meldingstype === Meldingstype.DELVIS_SVAR_SKRIFTLIG);
+export function erDelsvar(melding: Melding): boolean {
+    return melding.meldingstype === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
 }
 
+export function harDelsvar(traad: Traad): boolean {
+    return traad.meldinger.some(erDelsvar);
+}
+
+export function erDelvisBesvart(traad: Traad): boolean {
+    return erDelsvar(nyesteMelding(traad));
+}
 export function harTilgangTilSletting() {
     // TODO Fiks når vi har satt opp vault/fasit
     return true;
@@ -123,4 +131,22 @@ export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
     }
     const identTekst = saksbehandler.ident ? `(${saksbehandler.ident})` : '';
     return `${saksbehandler.fornavn} ${saksbehandler.etternavn} ${identTekst}`;
+}
+
+export function useSokEtterMeldinger(traader: Traad[], query: string) {
+    const debouncedQuery = useDebounce(query, 200);
+    return useMemo(() => {
+        const words = debouncedQuery.split(' ');
+        return traader
+            .filter(traad => {
+                return traad.meldinger.some(melding => {
+                    const fritekst = melding.fritekst;
+                    const tittel = meldingstittel(melding);
+                    const saksbehandler = melding.skrevetAvTekst;
+                    const sokbarTekst = (fritekst + tittel + saksbehandler).toLowerCase();
+                    return words.every(word => sokbarTekst.includes(word.toLowerCase()));
+                });
+            })
+            .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato));
+    }, [debouncedQuery, traader]);
 }

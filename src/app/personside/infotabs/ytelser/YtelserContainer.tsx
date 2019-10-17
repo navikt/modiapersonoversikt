@@ -18,10 +18,11 @@ const Styling = styled.section`
         margin-bottom: 0.5rem;
     }
     ${theme.resetEkspanderbartPanelStyling};
+    padding: ${theme.margin.layout};
 `;
 
 function YtelserContainer() {
-    const { ytelser, pending } = useBrukersYtelser({
+    const { ytelser, pending, feilmeldinger } = useBrukersYtelser({
         renderPleiepenger: pleiepenger => (
             <PleiepengerEkspanderbartpanel pleiepenger={pleiepenger} key={getUnikPleiepengerKey(pleiepenger)} />
         ),
@@ -40,7 +41,10 @@ function YtelserContainer() {
         <Styling>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />}
             {ytelser}
-            {!pending && ytelser.length === 0 && <AlertStripeInfo>Ingen ytelser funnet for bruker</AlertStripeInfo>}
+            {feilmeldinger}
+            {!pending && feilmeldinger.length === 0 && ytelser.length === 0 && (
+                <AlertStripeInfo>Ingen ytelser funnet for bruker</AlertStripeInfo>
+            )}
             {pending && <CenteredLazySpinner />}
         </Styling>
     );

@@ -1,6 +1,6 @@
 import restEndepunkterReducers, { RestEndepunkter } from './restReducers/restReducers';
 import UIReducer, { UIState } from './uiReducers/UIReducer';
-import temagruppeReducer, { TemagruppeState } from './temagruppe';
+import sessionReducer, { SessionState } from './session/session';
 import { utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
 import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
@@ -21,7 +21,7 @@ import { combineResettableReducers } from './reducer-utils';
 export interface AppState {
     restResources: RestEndepunkter;
     ui: UIState;
-    temagruppe: TemagruppeState;
+    session: SessionState;
     utbetalinger: UtbetalingerState;
     saksoversikt: SaksoversikState;
     meldinger: MeldingerState;
@@ -36,7 +36,7 @@ export default combineResettableReducers<AppState>(
     {
         restResources: restEndepunkterReducers,
         ui: UIReducer,
-        temagruppe: temagruppeReducer,
+        session: sessionReducer,
         utbetalinger: utbetalingerReducer,
         saksoversikt: saksoversiktReducer,
         meldinger: meldingerReducer,
@@ -46,5 +46,5 @@ export default combineResettableReducers<AppState>(
         oppfolging: oppfolgingReducer,
         gjeldendeBruker: gjeldendeBrukerReducer
     },
-    ['gjeldendeBruker', 'temagruppe', 'restResources']
+    ['gjeldendeBruker', 'session', 'restResources']
 );

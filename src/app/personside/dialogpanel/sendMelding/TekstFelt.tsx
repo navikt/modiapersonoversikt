@@ -14,7 +14,8 @@ const StyledSkjemagruppe = styled(SkjemaGruppe)`
     }
 `;
 const TextareaWrapper = styled.div`
-    textarea {
+    textarea,
+    .textareamirror {
         padding-left: 2.25rem;
     }
 `;

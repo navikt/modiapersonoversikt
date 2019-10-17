@@ -17,12 +17,12 @@ import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon
 import { getTemaFraCookie, setTemaCookie } from './temautils';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import { capitalizeAfterPunctuation, capitalizeName } from '../../../../utils/stringFormatting';
-import Temavelger, { temaValg } from '../component/Temavelger';
-import { Kodeverk } from '../../../../models/kodeverk';
+import Temavelger from '../component/Temavelger';
 import { useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
-import { KommunikasjonsKanal } from '../../../../models/meldinger/meldinger';
+import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { getSaksbehandlerEnhet } from '../../../../utils/loggInfo/saksbehandlersEnhetInfo';
+import { Temagruppe, temagruppeTekst, TemaSamtalereferat } from '../../../../models/Temagrupper';
 
 const Style = styled.article`
     ${theme.resetEkspanderbartPanelStyling};
@@ -40,8 +40,8 @@ const Padding = styled.div`
 
 function HurtigreferatContainer() {
     const [open, setOpen] = useState(false);
-    const initialTema = temaValg.find(tema => tema.kodeRef === getTemaFraCookie());
-    const [tema, setTema] = useState<Kodeverk | undefined>(initialTema);
+    const initialTema = TemaSamtalereferat.find(tema => tema === getTemaFraCookie());
+    const [tema, setTema] = useState<Temagruppe | undefined>(initialTema);
     const [visTemaFeilmelding, setVisTemaFeilmelding] = useState(false);
 
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
@@ -58,9 +58,7 @@ function HurtigreferatContainer() {
     }
 
     if (isFailedPosting(sendResource)) {
-        return (
-            <AlertStripeFeil>Det skjedde en feil ved sending av melding: {sendResource.error.message}</AlertStripeFeil>
-        );
+        return <AlertStripeFeil>Det skjedde en feil ved sending av melding: {sendResource.error}</AlertStripeFeil>;
     }
 
     const handleSendMelding = (hurtigreferat: Hurtigreferat) => {
@@ -71,7 +69,7 @@ function HurtigreferatContainer() {
         if (isNotStartedPosting(sendResource)) {
             const enhet = getSaksbehandlerEnhet();
             loggEvent('sendReferat', 'hurtigreferat', {
-                tema: tema.beskrivelse,
+                tema: temagruppeTekst(tema),
                 tittel: hurtigreferat.tittel,
                 enhet: enhet
             });
@@ -79,8 +77,8 @@ function HurtigreferatContainer() {
                 sendResource.actions.post(
                     {
                         fritekst: hurtigreferat.fritekst,
-                        kanal: KommunikasjonsKanal.Telefon,
-                        temagruppe: tema.kodeRef
+                        meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON,
+                        temagruppe: tema
                     },
                     () => dispatch(reloadMeldinger)
                 )
@@ -88,10 +86,10 @@ function HurtigreferatContainer() {
         }
     };
 
-    const setTemaHandler = (tema?: Kodeverk) => {
+    const setTemaHandler = (tema?: Temagruppe) => {
         setTema(tema);
         setVisTemaFeilmelding(false);
-        tema && setTemaCookie(tema.kodeRef);
+        tema && setTemaCookie(tema);
     };
 
     const navn = capitalizeName(getNavn(person.data.navn));
@@ -120,7 +118,12 @@ function HurtigreferatContainer() {
                 border={true}
             >
                 <Padding>
-                    <Temavelger setTema={setTemaHandler} tema={tema} visFeilmelding={visTemaFeilmelding} />
+                    <Temavelger
+                        setTema={setTemaHandler}
+                        valgtTema={tema}
+                        visFeilmelding={visTemaFeilmelding}
+                        temavalg={TemaSamtalereferat}
+                    />
                 </Padding>
                 <ul>
                     {teksterMedBrukersNavn.map(hurtigreferat => (

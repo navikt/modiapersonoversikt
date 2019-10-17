@@ -9,12 +9,12 @@ import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
-import { Traad } from '../../../../../models/meldinger/meldinger';
+import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
-
+import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
 interface Props {
     valgtTraad?: Traad;
+    sokeord: string;
 }
 
 const VisningStyle = styled.section`
@@ -30,11 +30,12 @@ const KnappWrapper = styled.div`
     flex-direction: column;
     align-items: flex-end;
 `;
+const KanBesvaresMeldingstyper = [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG];
 
-function AlleMeldinger({ traad }: { traad: Traad }) {
+function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
     const meldingskomponenter = traad.meldinger
         .sort(datoSynkende(melding => melding.opprettetDato))
-        .map(melding => <EnkeltMelding melding={melding} key={melding.id} />);
+        .map(melding => <EnkeltMelding sokeord={sokeord} melding={melding} key={melding.id} />);
 
     return <div>{meldingskomponenter}</div>;
 }
@@ -66,15 +67,23 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         dispatch(toggleDialogpanel(true));
     };
 
-    return (
-        <KnappWrapper>
-            {dialogpanelTraad === valgtTraad ? (
+    if (dialogpanelTraad === valgtTraad) {
+        return (
+            <KnappWrapper>
                 <AlertStripeInfo>Under arbeid</AlertStripeInfo>
-            ) : (
+            </KnappWrapper>
+        );
+    }
+
+    if (KanBesvaresMeldingstyper.includes(melding.meldingstype)) {
+        return (
+            <KnappWrapper>
                 <Flatknapp onClick={handleNyMelding}>Ny melding</Flatknapp>
-            )}
-        </KnappWrapper>
-    );
+            </KnappWrapper>
+        );
+    } else {
+        return null;
+    }
 }
 
 function TraadVisning(props: Props) {
@@ -85,7 +94,7 @@ function TraadVisning(props: Props) {
     return (
         <VisningStyle aria-label={'Meldinger for valgt tråd'} key={props.valgtTraad.traadId}>
             <Topplinje valgtTraad={props.valgtTraad} />
-            <AlleMeldinger traad={props.valgtTraad} />
+            <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>
     );
 }

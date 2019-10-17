@@ -1,18 +1,17 @@
 import * as React from 'react';
+import { FormEvent, useState } from 'react';
 import HurtigReferatContainer from '../Hurtigreferat/HurtigreferatContainer';
-import SendNyMelding, { FormState, OppgavelisteValg } from './SendNyMelding';
+import SendNyMelding, { SendNyMeldingState, OppgavelisteValg } from './SendNyMelding';
 import styled from 'styled-components';
 import { theme } from '../../../../styles/personOversiktTheme';
-import { FormEvent } from 'react';
 import { NyMeldingValidator } from './validatorer';
-import { KommunikasjonsKanal, Meldingstype } from '../../../../models/meldinger/meldinger';
-import { useState } from 'react';
+import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { useRestResource } from '../../../../utils/customHooks';
-import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
+import { isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
 import { useDispatch } from 'react-redux';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { ReferatSendtKvittering, SporsmalSendtKvittering } from './SendNyMeldingKvittering';
-import { DialogpanelFeilmelding } from '../fellesStyling';
+import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 const HurtigreferatWrapper = styled.div`
     background-color: white;
@@ -20,7 +19,7 @@ const HurtigreferatWrapper = styled.div`
     padding: 1rem ${theme.margin.layout};
 `;
 
-const initialState: FormState = {
+const initialState: SendNyMeldingState = {
     tekst: '',
     dialogType: Meldingstype.SAMTALEREFERAT_TELEFON,
     tema: undefined,
@@ -30,8 +29,9 @@ const initialState: FormState = {
 };
 
 function SendNyMeldingContainer() {
-    const [state, setState] = useState<FormState>(initialState);
-    const updateState = (change: Partial<FormState>) => setState({ ...state, visFeilmeldinger: false, ...change });
+    const [state, setState] = useState<SendNyMeldingState>(initialState);
+    const updateState = (change: Partial<SendNyMeldingState>) =>
+        setState(currentState => ({ ...currentState, visFeilmeldinger: false, ...change }));
     const postReferatResource = useRestResource(resources => resources.sendReferat);
     const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
@@ -39,7 +39,7 @@ function SendNyMeldingContainer() {
     const dispatch = useDispatch();
 
     const handleAvbryt = () => {
-        updateState(initialState);
+        setState(initialState);
     };
 
     const handleSubmit = (event: FormEvent) => {
@@ -51,14 +51,17 @@ function SendNyMeldingContainer() {
             updateState(initialState);
             dispatch(reloadMeldinger);
         };
-        if (NyMeldingValidator.erGyldigReferat(state) && state.tema) {
-            const erOppmøte = state.dialogType === Meldingstype.SAMTALEREFERAT_OPPMOTE;
+        if (
+            NyMeldingValidator.erGyldigReferat(state) &&
+            state.tema &&
+            state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE
+        ) {
             dispatch(
                 postReferatResource.actions.post(
                     {
                         fritekst: state.tekst,
-                        kanal: erOppmøte ? KommunikasjonsKanal.Oppmøte : KommunikasjonsKanal.Telefon,
-                        temagruppe: state.tema.kodeRef
+                        meldingstype: state.dialogType,
+                        temagruppe: state.tema
                     },
                     callback
                 )
@@ -79,10 +82,6 @@ function SendNyMeldingContainer() {
         }
     };
 
-    if (senderMelding) {
-        return <CenteredLazySpinner type="XL" delay={100} />;
-    }
-
     if (isFinishedPosting(postReferatResource)) {
         return <ReferatSendtKvittering resource={postReferatResource} />;
     }
@@ -91,24 +90,20 @@ function SendNyMeldingContainer() {
         return <SporsmalSendtKvittering resource={postSpørsmålResource} />;
     }
 
-    if (isFailedPosting(postReferatResource)) {
-        return <DialogpanelFeilmelding resource={postReferatResource} />;
-    }
-
-    if (isFailedPosting(postSpørsmålResource)) {
-        return <DialogpanelFeilmelding resource={postSpørsmålResource} />;
-    }
-
     return (
         <>
-            <HurtigreferatWrapper>
-                <HurtigReferatContainer />
-            </HurtigreferatWrapper>
+            <IfFeatureToggleOn toggleID={FeatureToggles.Hurtigreferat}>
+                <HurtigreferatWrapper>
+                    <HurtigReferatContainer />
+                </HurtigreferatWrapper>
+            </IfFeatureToggleOn>
             <SendNyMelding
                 updateState={updateState}
                 state={state}
                 handleSubmit={handleSubmit}
                 handleAvbryt={handleAvbryt}
+                formErEndret={state !== initialState}
+                senderMelding={senderMelding}
             />
         </>
     );
