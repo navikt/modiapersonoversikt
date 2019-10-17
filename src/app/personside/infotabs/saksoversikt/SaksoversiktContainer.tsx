@@ -13,7 +13,7 @@ import { useAppState, useOnMount } from '../../../../utils/customHooks';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import SakstemaListe from './sakstemaliste/SakstemaListe';
 import { withRouter } from 'react-router';
-import { useSyncSaksoversiktMedUrl } from './useSyncSaksoversiktMedUrl';
+import { useValgtSakstema } from './useValgtSakstema';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
 export const saksoversiktMediaTreshold = '65rem';
@@ -44,7 +44,7 @@ function SaksoversiktContainer() {
     const dispatch = useDispatch();
     const skjulDokumentOgVisSaksoversikt = () => dispatch(settVisDokument(false));
     const visDokument = useAppState(state => state.saksoversikt.visDokument);
-    const valgtSakstema = useSyncSaksoversiktMedUrl();
+    const valgtSakstema = useValgtSakstema();
 
     useOnMount(() => {
         skjulDokumentOgVisSaksoversikt();

@@ -4,7 +4,6 @@ import { useAgregerteSaker } from './utils/saksoversiktUtils';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { huskValgtSakstema } from '../../../../redux/saksoversikt/actions';
-import { useHistory } from 'react-router';
 import { hasData } from '../../../../rest/utils/restResource';
 
 function useValgtSakstemaIUrl() {
@@ -17,21 +16,17 @@ function useValgtSakstemaIUrl() {
     return [agregerteSaker, ...sakstemaResource.data.resultat].find(dyplenker.saker.erValgt);
 }
 
-export function useSyncSaksoversiktMedUrl() {
+export function useValgtSakstema() {
     const saksTemaIUrl = useValgtSakstemaIUrl();
     const forrigeValgteSaksTema = useAppState(state => state.saksoversikt.forrigeValgteSakstema);
     const agregerteSakstema = useAgregerteSaker();
-    const dyplenker = useInfotabsDyplenker();
     const dispatch = useDispatch();
-    const history = useHistory();
 
     useEffect(() => {
-        if (!agregerteSakstema) {
-            return;
-        }
-        if (saksTemaIUrl && saksTemaIUrl !== forrigeValgteSaksTema) {
+        if (saksTemaIUrl) {
             dispatch(huskValgtSakstema(saksTemaIUrl));
         }
-    }, [forrigeValgteSaksTema, agregerteSakstema, saksTemaIUrl, history, dispatch, dyplenker.saker]);
+    }, [saksTemaIUrl, dispatch]);
+
     return saksTemaIUrl || forrigeValgteSaksTema || agregerteSakstema;
 }

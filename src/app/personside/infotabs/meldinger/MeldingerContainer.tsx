@@ -47,6 +47,10 @@ function TraadVisningWrapper(props: TraadVisningWrapperProps) {
     if (props.traaderEtterSok.length === 0) {
         return <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>;
     }
+    if (!props.valgtTraad) {
+        return <AlertStripeInfo>Ingen melding valgt</AlertStripeInfo>;
+    }
+
     return (
         <>
             <Verktoylinje valgtTraad={props.valgtTraad} />
@@ -73,11 +77,11 @@ function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[
     const history = useHistory();
 
     useEffect(() => {
-        if (traaderFørSøk.length === traaderEtterSok.length) {
+        const valgtTaadErISøkeresultat = valgtTraad && traaderEtterSok.includes(valgtTraad);
+        if (traaderFørSøk.length === traaderEtterSok.length || valgtTaadErISøkeresultat) {
             return;
         }
-        const valgtTaadMatcherSøk = valgtTraad && traaderEtterSok.includes(valgtTraad);
-        if (traaderEtterSok.length > 0 && !valgtTaadMatcherSøk) {
+        if (traaderEtterSok.length > 0) {
             history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
         }
     }, [valgtTraad, traaderFørSøk, traaderEtterSok, history, dyplenker.meldinger]);

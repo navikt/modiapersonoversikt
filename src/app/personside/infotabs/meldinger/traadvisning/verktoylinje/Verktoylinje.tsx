@@ -8,14 +8,13 @@ import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
 import { useEffect } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
-import LazySpinner from '../../../../../../components/LazySpinner';
 import { LenkeKnapp } from '../../../../../../components/common-styled-components';
 import { apiBaseUri } from '../../../../../../api/config';
 import { useFødselsnummer } from '../../../../../../utils/customHooks';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 interface Props {
-    valgtTraad?: Traad;
+    valgtTraad: Traad;
 }
 
 const PanelStyle = styled.div`
@@ -100,10 +99,6 @@ function Funksjoner(props: { valgtTraad: Traad }) {
 }
 
 function Verktoylinje(props: Props) {
-    if (!props.valgtTraad) {
-        return <LazySpinner />;
-    }
-
     return (
         <PanelStyle>
             <Funksjoner valgtTraad={props.valgtTraad} />
