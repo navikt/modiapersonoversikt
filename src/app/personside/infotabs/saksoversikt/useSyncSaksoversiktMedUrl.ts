@@ -29,9 +29,7 @@ export function useSyncSaksoversiktMedUrl() {
         if (!agregerteSakstema) {
             return;
         }
-        if (!saksTemaIUrl) {
-            history.push(dyplenker.saker.link(forrigeValgteSaksTema || agregerteSakstema));
-        } else if (saksTemaIUrl !== forrigeValgteSaksTema) {
+        if (saksTemaIUrl && saksTemaIUrl !== forrigeValgteSaksTema) {
             dispatch(huskValgtSakstema(saksTemaIUrl));
         }
     }, [forrigeValgteSaksTema, agregerteSakstema, saksTemaIUrl, history, dispatch, dyplenker.saker]);

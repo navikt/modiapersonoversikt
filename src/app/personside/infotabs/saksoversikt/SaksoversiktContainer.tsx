@@ -44,12 +44,11 @@ function SaksoversiktContainer() {
     const dispatch = useDispatch();
     const skjulDokumentOgVisSaksoversikt = () => dispatch(settVisDokument(false));
     const visDokument = useAppState(state => state.saksoversikt.visDokument);
+    const valgtSakstema = useSyncSaksoversiktMedUrl();
 
     useOnMount(() => {
         skjulDokumentOgVisSaksoversikt();
     });
-
-    const valgtSakstema = useSyncSaksoversiktMedUrl();
 
     if (visDokument) {
         return <DokumentOgVedlegg />;
