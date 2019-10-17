@@ -53,12 +53,6 @@ const KnappStyle = styled.div`
     }
 `;
 
-const InfoStyling = styled.div`
-    > * {
-        margin-top: 1rem;
-    }
-`;
-
 function skjemavalidering(props: OppgaveSkjemaProps): string | undefined {
     const tommeKomponenter = [];
 
@@ -166,10 +160,10 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     if (props.valgtTraad && !erBehandlet(props.valgtTraad)) {
         return (
-            <InfoStyling>
+            <AlertStyling>
                 <AlertStripeInfo>Kan ikke opprette oppgave på denne tråden</AlertStripeInfo>
                 <Hovedknapp onClick={props.lukkPanel}>Lukk</Hovedknapp>
-            </InfoStyling>
+            </AlertStyling>
         );
     }
 
