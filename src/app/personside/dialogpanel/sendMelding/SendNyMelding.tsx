@@ -69,11 +69,11 @@ interface Props {
     state: SendNyMeldingState;
     updateState: (change: Partial<SendNyMeldingState>) => void;
     formErEndret: boolean;
-    status: SendNyMeldingPanelState;
+    sendNyMeldingPanelState: SendNyMeldingPanelState;
 }
 
-function Feilmelding(props: { status: SendNyMeldingStatus }) {
-    if (props.status === SendNyMeldingStatus.ERROR) {
+function Feilmelding(props: { sendNyMeldingPanelState: SendNyMeldingStatus }) {
+    if (props.sendNyMeldingPanelState === SendNyMeldingStatus.ERROR) {
         return <DialogpanelFeilmelding />;
     }
     return null;
@@ -129,11 +129,11 @@ function SendNyMelding(props: Props) {
                             : undefined
                     }
                 />
-                <Feilmelding status={props.status.type} />
+                <Feilmelding sendNyMeldingPanelState={props.sendNyMeldingPanelState.type} />
                 <KnappWrapper>
                     <KnappBase
                         type="hoved"
-                        spinner={props.status.type === SendNyMeldingStatus.POSTING}
+                        spinner={props.sendNyMeldingPanelState.type === SendNyMeldingStatus.POSTING}
                         htmlType="submit"
                     >
                         Del med {navn}

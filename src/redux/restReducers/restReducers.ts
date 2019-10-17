@@ -48,12 +48,9 @@ import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
 import {
     SendReferatRequest,
-    SendSpørsmålRequest,
-    ForsettDialogRequest,
     Traad,
     OpprettHenvendelseRequest,
     OpprettHenvendelseResponse,
-    SendDelsvarRequest,
     SlaaSammenRequest,
     SlaaSammenResponse
 } from '../../models/meldinger/meldinger';
@@ -67,13 +64,10 @@ import { EndreKontonummerRequest } from './brukerprofil/endreKontonummerRequest'
 import { EndreTilrettelagtKommunikasjonrequest } from './brukerprofil/endreTilrettelagtKommunikasjonrequest';
 import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinformasjonRequest';
 import { EndreAdresseRequest } from './brukerprofil/adresse-api';
-import sendSpørsmål from './sendSpørsmål';
 import leggTilbakeOppgave from './leggTilbakeOppgave';
-import sendSvar from './sendSvar';
 import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
 import opprettHenvendelse from './meldinger/opprettHenvendelse';
-import sendDelsvar from './sendDelsvar';
 import slaaSammen from './meldinger/slaaSammen';
 
 export interface RestEndepunkter {
@@ -110,10 +104,7 @@ export interface RestEndepunkter {
     oppgaveGsakTema: RestResource<GsakTema[]>;
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
     sendReferat: PostResource<SendReferatRequest>;
-    sendSpørsmål: PostResource<SendSpørsmålRequest>;
     opprettHenvendelse: PostResource<OpprettHenvendelseRequest, OpprettHenvendelseResponse>;
-    sendSvar: PostResource<ForsettDialogRequest>;
-    sendDelsvar: PostResource<SendDelsvarRequest>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
     slaaSammen: PostResource<SlaaSammenRequest, SlaaSammenResponse>;
 }
@@ -152,9 +143,6 @@ export default combineResettableReducers<RestEndepunkter>(
         tråderOgMeldinger: meldingerReducer,
         oppgaveGsakTema: oppgaveGsakTemaReducer,
         sendReferat: sendReferat,
-        sendSpørsmål: sendSpørsmål,
-        sendSvar: sendSvar,
-        sendDelsvar: sendDelsvar,
         opprettHenvendelse: opprettHenvendelse,
         opprettOppgave: opprettOppgave,
         personsok: personsok,

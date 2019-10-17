@@ -120,7 +120,7 @@ function SendNyMeldingContainer() {
                 handleSubmit={handleSubmit}
                 handleAvbryt={handleAvbryt}
                 formErEndret={state !== initialState}
-                status={sendNyMeldingStatus}
+                sendNyMeldingPanelState={sendNyMeldingStatus}
             />
         </>
     );

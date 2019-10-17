@@ -121,7 +121,7 @@ function FortsettDialogContainer(props: Props) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
             const request: ForsettDialogRequest = {
                 ...commonPayload,
-                erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt // Hva skal denne være?
+                erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt // TODO: Hva skal denne være?
             };
             const kvitteringsData = {
                 fritekst: request.fritekst,
