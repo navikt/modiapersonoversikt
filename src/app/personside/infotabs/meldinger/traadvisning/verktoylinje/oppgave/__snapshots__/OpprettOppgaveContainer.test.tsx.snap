@@ -1,8 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser oppgavecontainer med alt innhold 1`] = `
-Array [
-  .c5 {
+.c1 {
+  position: relative;
+}
+
+.c3 {
+  position: absolute !important;
+  bottom: 0.4rem;
+  right: 0.4rem;
+}
+
+.c2 {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.c2 .skjemaelement {
+  margin-bottom: 0;
+}
+
+.c5 {
   position: relative;
   border: none;
   padding: 0;
@@ -42,23 +60,23 @@ Array [
   border-color: #0067c5;
 }
 
-.c1 {
-  position: relative;
+.c6 {
+  padding-top: .8rem;
+  color: #d0021b;
 }
 
-.c3 {
-  position: absolute !important;
-  bottom: 0.4rem;
-  right: 0.4rem;
+.c0 .inputPanelGruppe__inner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.c2 {
-  position: relative;
-  margin-bottom: 1rem;
-}
-
-.c2 .skjemaelement {
-  margin-bottom: 0;
+.c0 .inputPanelGruppe__inner > * {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 .c4 {
@@ -76,437 +94,417 @@ Array [
   margin: 0;
 }
 
-.c0 .inputPanelGruppe__inner {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c0 .inputPanelGruppe__inner > * {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-<form
+<div
+  className="c0"
+>
+  <form
     onSubmit={[Function]}
   >
     <div
-      className="c0"
+      className="skjemaelement"
+    >
+      <label
+        className="skjemaelement__label"
+        htmlFor="Helt tilfeldig ID"
+      >
+        Tema
+      </label>
+      <div
+        className="selectContainer input--fullbredde"
+      >
+        <select
+          className="skjemaelement__input"
+          disabled={false}
+          id="Helt tilfeldig ID"
+          onChange={[Function]}
+        >
+          <option
+            value=""
+          >
+            Velg tema
+          </option>
+          <option
+            value="AGR"
+          >
+            Ajourhold - Grunnopplysninger
+          </option>
+          <option
+            value="AAP"
+          >
+            Arbeidsavklaringspenger
+          </option>
+        </select>
+      </div>
+      <div
+        aria-live="assertive"
+        role="alert"
+      />
+    </div>
+    <div
+      className="skjemaelement"
+    >
+      <label
+        className="skjemaelement__label"
+        htmlFor="Helt tilfeldig ID"
+      >
+        Gjelder
+      </label>
+      <div
+        className="selectContainer input--fullbredde"
+      >
+        <select
+          className="skjemaelement__input"
+          disabled={false}
+          id="Helt tilfeldig ID"
+          onChange={[Function]}
+        >
+          <option
+            value=""
+          >
+            Ingen tema valgt
+          </option>
+        </select>
+      </div>
+      <div
+        aria-live="assertive"
+        role="alert"
+      />
+    </div>
+    <div
+      className="skjemaelement"
+    >
+      <label
+        className="skjemaelement__label"
+        htmlFor="Helt tilfeldig ID"
+      >
+        Type oppgave
+      </label>
+      <div
+        className="selectContainer input--fullbredde"
+      >
+        <select
+          className="skjemaelement__input"
+          disabled={false}
+          id="Helt tilfeldig ID"
+          onChange={[Function]}
+        >
+          <option
+            value=""
+          >
+            Ingen tema valgt
+          </option>
+        </select>
+      </div>
+      <div
+        aria-live="assertive"
+        role="alert"
+      />
+    </div>
+    <div
+      aria-expanded={false}
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-0-label"
+      aria-owns={null}
+      className="c1"
+      role="combobox"
     >
       <div
-        className="skjemaelement"
+        className="c2"
       >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Tema
-        </label>
         <div
-          className="selectContainer input--fullbredde"
+          className="skjemaelement"
         >
-          <select
-            className="skjemaelement__input"
-            disabled={false}
-            id="Helt tilfeldig ID"
+          <label
+            className="skjemaelement__label"
+            htmlFor="downshift-0-input"
+          >
+            Velg enhet
+          </label>
+          <input
+            aria-activedescendant={null}
+            aria-autocomplete="list"
+            aria-controls={null}
+            aria-label="Laster data"
+            aria-labelledby="downshift-0-label"
+            autoComplete="off"
+            className="skjemaelement__input input--fullbredde"
+            id="downshift-0-input"
+            onBlur={[Function]}
             onChange={[Function]}
-          >
-            <option
-              value=""
-            >
-              Velg tema
-            </option>
-            <option
-              value="AGR"
-            >
-              Ajourhold - Grunnopplysninger
-            </option>
-            <option
-              value="AAP"
-            >
-              Arbeidsavklaringspenger
-            </option>
-          </select>
-        </div>
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-      <div
-        className="skjemaelement"
-      >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Gjelder
-        </label>
-        <div
-          className="selectContainer input--fullbredde"
-        >
-          <select
-            className="skjemaelement__input"
-            disabled={false}
-            id="Helt tilfeldig ID"
-            onChange={[Function]}
-          >
-            <option
-              value=""
-            >
-              Ingen tema valgt
-            </option>
-          </select>
-        </div>
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-      <div
-        className="skjemaelement"
-      >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Type oppgave
-        </label>
-        <div
-          className="selectContainer input--fullbredde"
-        >
-          <select
-            className="skjemaelement__input"
-            disabled={false}
-            id="Helt tilfeldig ID"
-            onChange={[Function]}
-          >
-            <option
-              value=""
-            >
-              Ingen tema valgt
-            </option>
-          </select>
-        </div>
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-      <div
-        aria-expanded={false}
-        aria-haspopup="listbox"
-        aria-labelledby="downshift-0-label"
-        aria-owns={null}
-        className="c1"
-        role="combobox"
-      >
-        <div
-          className="c2"
-        >
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="downshift-0-input"
-            >
-              Velg enhet
-            </label>
-            <input
-              aria-activedescendant={null}
-              aria-autocomplete="list"
-              aria-controls={null}
-              aria-label="Laster data"
-              aria-labelledby="downshift-0-label"
-              autoComplete="off"
-              className="skjemaelement__input input--fullbredde"
-              id="downshift-0-input"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              onKeyDown={[Function]}
-              type="text"
-              value=""
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
-          </div>
-          <svg
-            aria-label="Laster innhold"
-            className="spinner c3 spinner--s"
-            focusable="false"
-            height={32}
-            kind="spinner"
-            preserveAspectRatio="xMidYMid"
-            viewBox="0 0 50 50"
-            width={32}
-          >
-            <title>
-              Venter...
-            </title>
-            <circle
-              cx="25"
-              cy="25"
-              fill="none"
-              r="20"
-              stroke="#bdbab7"
-              strokeWidth="5"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <circle
-              cx="25"
-              cy="25"
-              fill="none"
-              r="20"
-              stroke="#7f756c"
-              strokeDasharray="50 155"
-              strokeLinecap="round"
-              strokeWidth="5"
-            />
-          </svg>
-        </div>
-      </div>
-      <div
-        aria-expanded={false}
-        aria-haspopup="listbox"
-        aria-labelledby="downshift-1-label"
-        aria-owns={null}
-        className="c1"
-        role="combobox"
-      >
-        <div
-          className="c2"
-        >
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="downshift-1-input"
-            >
-              Velg ansatt
-            </label>
-            <input
-              aria-activedescendant={null}
-              aria-autocomplete="list"
-              aria-controls={null}
-              aria-label="Laster data"
-              aria-labelledby="downshift-1-label"
-              autoComplete="off"
-              className="skjemaelement__input input--fullbredde"
-              id="downshift-1-input"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              onKeyDown={[Function]}
-              type="text"
-              value=""
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
-          </div>
-          <svg
-            aria-label="Laster innhold"
-            className="spinner c3 spinner--s"
-            focusable="false"
-            height={32}
-            kind="spinner"
-            preserveAspectRatio="xMidYMid"
-            viewBox="0 0 50 50"
-            width={32}
-          >
-            <title>
-              Venter...
-            </title>
-            <circle
-              cx="25"
-              cy="25"
-              fill="none"
-              r="20"
-              stroke="#bdbab7"
-              strokeWidth="5"
-              xmlns="http://www.w3.org/2000/svg"
-            />
-            <circle
-              cx="25"
-              cy="25"
-              fill="none"
-              r="20"
-              stroke="#7f756c"
-              strokeDasharray="50 155"
-              strokeLinecap="round"
-              strokeWidth="5"
-            />
-          </svg>
-        </div>
-      </div>
-      <div
-        className="inputPanelGruppe"
-      >
-        <fieldset
-          className="skjema__fieldset"
-        >
-          <legend
-            className="skjema__legend"
-          >
-            Prioritet
-          </legend>
-          <div
-            className="inputPanelGruppe__inner"
-          >
-            <label
-              className="inputPanel radioPanel"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                checked={false}
-                className="inputPanel__field"
-                id="Helt tilfeldig ID"
-                name="Prioritet"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="HOY"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Høy
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel inputPanel--checked"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={true}
-                checked={true}
-                className="inputPanel__field"
-                id="Helt tilfeldig ID"
-                name="Prioritet"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="NORM"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Normal
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                checked={false}
-                className="inputPanel__field"
-                id="Helt tilfeldig ID"
-                name="Prioritet"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="LAV"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Lav
-              </span>
-            </label>
-          </div>
-        </fieldset>
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-      <div
-        className="skjemaelement textarea__container"
-      >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Beskrivelse
-        </label>
-        <div
-          className="textarea--medMeta__wrapper"
-        >
-          <textarea
-            className="skjemaelement__input textarea--medMeta"
-            id="Helt tilfeldig ID"
-            onChange={[Function]}
-            style={
-              Object {
-                "height": "30px",
-              }
-            }
+            onFocus={[Function]}
+            onKeyDown={[Function]}
             type="text"
             value=""
           />
-          <p
-            className="textarea--medMeta__teller"
-          >
-            <span
-              aria-live="polite"
-              className="teller-tekst"
-            >
-              Du har 2000 tegn igjen
-            </span>
-          </p>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
         </div>
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
-        <div
-          aria-hidden="true"
-          className="textareamirror"
-        />
-      </div>
-      <div
-        className="c4"
-      >
-        <button
-          className="knapp knapp--hoved"
-          disabled={false}
-          type="submit"
+        <svg
+          aria-label="Laster innhold"
+          className="spinner c3 spinner--s"
+          focusable="false"
+          height={32}
+          kind="spinner"
+          preserveAspectRatio="xMidYMid"
+          viewBox="0 0 50 50"
+          width={32}
         >
-          Send
-        </button>
-        <button
-          className="c5"
-          onClick={[Function]}
-          type="button"
-        >
-          Avbryt
-        </button>
+          <title>
+            Venter...
+          </title>
+          <circle
+            cx="25"
+            cy="25"
+            fill="none"
+            r="20"
+            stroke="#bdbab7"
+            strokeWidth="5"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+          <circle
+            cx="25"
+            cy="25"
+            fill="none"
+            r="20"
+            stroke="#7f756c"
+            strokeDasharray="50 155"
+            strokeLinecap="round"
+            strokeWidth="5"
+          />
+        </svg>
       </div>
     </div>
-  </form>,
-  .c0 {
-  padding-top: .8rem;
-  color: #d0021b;
-}
-
-<div
+    <div
+      aria-expanded={false}
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-1-label"
+      aria-owns={null}
+      className="c1"
+      role="combobox"
+    >
+      <div
+        className="c2"
+      >
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="downshift-1-input"
+          >
+            Velg ansatt
+          </label>
+          <input
+            aria-activedescendant={null}
+            aria-autocomplete="list"
+            aria-controls={null}
+            aria-label="Laster data"
+            aria-labelledby="downshift-1-label"
+            autoComplete="off"
+            className="skjemaelement__input input--fullbredde"
+            id="downshift-1-input"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            type="text"
+            value=""
+          />
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+        <svg
+          aria-label="Laster innhold"
+          className="spinner c3 spinner--s"
+          focusable="false"
+          height={32}
+          kind="spinner"
+          preserveAspectRatio="xMidYMid"
+          viewBox="0 0 50 50"
+          width={32}
+        >
+          <title>
+            Venter...
+          </title>
+          <circle
+            cx="25"
+            cy="25"
+            fill="none"
+            r="20"
+            stroke="#bdbab7"
+            strokeWidth="5"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+          <circle
+            cx="25"
+            cy="25"
+            fill="none"
+            r="20"
+            stroke="#7f756c"
+            strokeDasharray="50 155"
+            strokeLinecap="round"
+            strokeWidth="5"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="inputPanelGruppe"
+    >
+      <fieldset
+        className="skjema__fieldset"
+      >
+        <legend
+          className="skjema__legend"
+        >
+          Prioritet
+        </legend>
+        <div
+          className="inputPanelGruppe__inner"
+        >
+          <label
+            className="inputPanel radioPanel"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              id="Helt tilfeldig ID"
+              name="Prioritet"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="HOY"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Høy
+            </span>
+          </label>
+          <label
+            className="inputPanel radioPanel inputPanel--checked"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={true}
+              checked={true}
+              className="inputPanel__field"
+              id="Helt tilfeldig ID"
+              name="Prioritet"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="NORM"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Normal
+            </span>
+          </label>
+          <label
+            className="inputPanel radioPanel"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={false}
+              checked={false}
+              className="inputPanel__field"
+              id="Helt tilfeldig ID"
+              name="Prioritet"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="LAV"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Lav
+            </span>
+          </label>
+        </div>
+      </fieldset>
+      <div
+        aria-live="assertive"
+        role="alert"
+      />
+    </div>
+    <div
+      className="skjemaelement textarea__container"
+    >
+      <label
+        className="skjemaelement__label"
+        htmlFor="Helt tilfeldig ID"
+      >
+        Beskrivelse
+      </label>
+      <div
+        className="textarea--medMeta__wrapper"
+      >
+        <textarea
+          className="skjemaelement__input textarea--medMeta"
+          id="Helt tilfeldig ID"
+          onChange={[Function]}
+          style={
+            Object {
+              "height": "30px",
+            }
+          }
+          type="text"
+          value=""
+        />
+        <p
+          className="textarea--medMeta__teller"
+        >
+          <span
+            aria-live="polite"
+            className="teller-tekst"
+          >
+            Du har 2000 tegn igjen
+          </span>
+        </p>
+      </div>
+      <div
+        aria-live="assertive"
+        role="alert"
+      />
+      <div
+        aria-hidden="true"
+        className="textareamirror"
+      />
+    </div>
+    <div
+      className="c4"
+    >
+      <button
+        className="knapp knapp--hoved"
+        disabled={false}
+        type="submit"
+      >
+        Send
+      </button>
+      <button
+        className="c5"
+        onClick={[Function]}
+        type="button"
+      >
+        Avbryt
+      </button>
+    </div>
+  </form>
+  <div
     aria-live="polite"
-    className="c0"
-  />,
-]
+    className="c6"
+  />
+</div>
 `;

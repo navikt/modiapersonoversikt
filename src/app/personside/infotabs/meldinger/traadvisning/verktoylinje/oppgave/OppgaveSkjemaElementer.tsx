@@ -9,33 +9,13 @@ import {
     GsakTemaUnderkategori,
     OppgavePrioritet
 } from '../../../../../../../models/meldinger/oppgave';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
-import styled from 'styled-components';
 import AutoComplete from './AutoComplete';
 import { AsyncResult, hasData, isPending, isLoading } from '@nutgaard/use-async';
 import useFetch from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
 
 const credentials: RequestInit = { credentials: 'include' };
-
-const KnappStyle = styled.div`
-    display: flex;
-    justify-content: space-between;
-    button {
-        margin: 0;
-    }
-`;
-
-const SkjemaStyle = styled.div`
-    .inputPanelGruppe__inner {
-        display: flex;
-        > * {
-            flex-grow: 1;
-        }
-    }
-`;
 
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
     const enhetliste: AsyncResult<Array<Enhet>> = useFetch<Array<Enhet>>(
@@ -49,7 +29,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
     const valgtTema = props.form.state.valgtTema;
 
     return (
-        <SkjemaStyle>
+        <>
             <Select
                 label={'Tema'}
                 onChange={event => props.form.actions.oppdaterStateVedValgtTema(hentValgtTema(props.gsakTema, event))}
@@ -116,13 +96,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                     )
                 }
             />
-            <KnappStyle>
-                <Hovedknapp htmlType="submit">Send</Hovedknapp>
-                <LenkeKnapp type="button" onClick={props.lukkPanel}>
-                    Avbryt
-                </LenkeKnapp>
-            </KnappStyle>
-        </SkjemaStyle>
+        </>
     );
 }
 
