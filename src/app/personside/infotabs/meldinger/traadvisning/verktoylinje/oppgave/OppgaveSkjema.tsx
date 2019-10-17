@@ -18,10 +18,19 @@ import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import VisPostResultat, { Resultat } from '../utils/VisPostResultat';
+import { erBehandlet } from '../../../utils/meldingerUtils';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { Hovedknapp } from 'nav-frontend-knapper';
 
 const ValideringsfeilStyle = styled.div`
     padding-top: ${theme.margin.layout};
     color: #d0021b;
+`;
+
+const InfoStyling = styled.div`
+    > * {
+        margin-top: 1rem;
+    }
 `;
 
 function skjemavalidering(props: OppgaveSkjemaProps): string | undefined {
@@ -119,6 +128,15 @@ function OppgaveSkjema(props: OppgaveProps) {
             }
         }
     };
+
+    if (props.valgtTraad && !erBehandlet(props.valgtTraad)) {
+        return (
+            <InfoStyling>
+                <AlertStripeInfo>Kan ikke opprette oppgave på denne tråden</AlertStripeInfo>
+                <Hovedknapp onClick={props.lukkPanel}>Lukk</Hovedknapp>
+            </InfoStyling>
+        );
+    }
 
     return (
         <>
