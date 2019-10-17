@@ -7,27 +7,23 @@ import {
 } from '../../../../../models/ytelse/sykepenger';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import Sykepenger from './Sykepenger';
-import { erValgtIDyplenke, YtelserDyplenkeRouteComponentProps } from '../../dyplenker';
-import { withRouter } from 'react-router';
+import { useInfotabsDyplenker } from '../../dyplenker';
 
-interface Props extends YtelserDyplenkeRouteComponentProps {
+interface Props {
     sykepenger: ISykepenger;
 }
 
-function SykepengerEkspanderbartpanel({ sykepenger, ...rest }: Props) {
+function SykepengerEkspanderbartpanel({ sykepenger }: Props) {
+    const dyplenker = useInfotabsDyplenker();
     const tittelTillegsInfo = ['ID-dato: ' + formaterDato(getSykepengerIdDato(sykepenger))];
 
-    const valtIDyplenke = erValgtIDyplenke.ytelser(getUnikSykepengerKey(sykepenger), rest);
+    const erValgtIUrl = dyplenker.ytelser.erValgt(getUnikSykepengerKey(sykepenger));
 
     return (
-        <EkspanderbartYtelserPanel
-            defaultApen={valtIDyplenke}
-            tittel="Sykepenger"
-            tittelTillegsInfo={tittelTillegsInfo}
-        >
+        <EkspanderbartYtelserPanel defaultApen={erValgtIUrl} tittel="Sykepenger" tittelTillegsInfo={tittelTillegsInfo}>
             <Sykepenger sykepenger={sykepenger} />
         </EkspanderbartYtelserPanel>
     );
 }
 
-export default withRouter(SykepengerEkspanderbartpanel);
+export default SykepengerEkspanderbartpanel;

@@ -3,6 +3,7 @@ import { KommendeUtbetaling } from './ytelse-utbetalinger';
 import { Arbeidsforhold } from './arbeidsforhold';
 import moment from 'moment';
 import { backendDatoformat } from '../../mock/utils/mock-utils';
+import { UnikYtelseKey } from '../../app/personside/infotabs/dyplenker';
 
 export interface ForeldrepengerResponse {
     foreldrepenger: Foreldrepengerettighet[] | null;
@@ -72,6 +73,6 @@ export function getForeldepengerIdDato(foreldrepenger: Foreldrepengerettighet) {
     return foreldrepenger.rettighetFom ? foreldrepenger.rettighetFom : moment().format(backendDatoformat);
 }
 
-export function getUnikForeldrepengerKey(foreldrepenger: Foreldrepengerettighet) {
+export function getUnikForeldrepengerKey(foreldrepenger: Foreldrepengerettighet): UnikYtelseKey {
     return 'foreldrepenger' + getForeldepengerIdDato(foreldrepenger);
 }

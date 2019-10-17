@@ -14,19 +14,18 @@ import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { AnyAction, Dispatch } from 'redux';
 import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/actions';
 import { datoVerbose } from '../../../../../utils/dateUtils';
-import moment from 'moment';
-import { RouteComponentProps, withRouter } from 'react-router';
 import { utbetalingerTest } from '../../dyplenkeTest/utils';
 
 interface OwnProps {
     utbetaling: Utbetaling;
+    erValgtIUrl: boolean;
 }
 
 interface DispatchProps {
     ekspanderYtelse: (ytelse: Ytelse) => void;
 }
 
-type Props = DispatchProps & OwnProps & RouteComponentProps<{ posteringsdato: string }>;
+type Props = DispatchProps & OwnProps;
 
 const SammensattUtbetalingStyle = styled.li`
     padding: ${theme.margin.px20};
@@ -68,9 +67,7 @@ class SammensattUtbetaling extends React.PureComponent<Props> {
     }
 
     componentDidMount() {
-        const posteringsdatoFraUrl = (this.props.match.params.posteringsdato as unknown) as number;
-        const erValgtIUrl = moment(this.props.utbetaling.posteringsdato).isSame(moment.unix(posteringsdatoFraUrl));
-        if (erValgtIUrl) {
+        if (this.props.erValgtIUrl) {
             this.utbetalingRef.current && this.utbetalingRef.current.focus();
         }
     }
@@ -134,13 +131,11 @@ class SammensattUtbetaling extends React.PureComponent<Props> {
     }
 }
 
-export default withRouter(
-    connect(
-        null,
-        (dispatch: Dispatch<AnyAction>): DispatchProps => {
-            return {
-                ekspanderYtelse: ytelse => dispatch(setEkspanderYtelse(ytelse, true))
-            };
-        }
-    )(SammensattUtbetaling)
-);
+export default connect(
+    null,
+    (dispatch: Dispatch<AnyAction>): DispatchProps => {
+        return {
+            ekspanderYtelse: ytelse => dispatch(setEkspanderYtelse(ytelse, true))
+        };
+    }
+)(SammensattUtbetaling);

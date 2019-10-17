@@ -10,13 +10,14 @@ import { hasData } from '../../../../rest/utils/restResource';
 import { huskForrigeValgtTraad } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
 import { useAppState, useRestResource } from '../../../../utils/customHooks';
-import { MeldingerDyplenkeRouteComponentProps, useInfotabsDyplenker, useValgtTraadIUrl } from '../dyplenker';
-import { withRouter } from 'react-router';
+import { useInfotabsDyplenker } from '../dyplenker';
+import { useHistory, withRouter } from 'react-router';
 import TraadVisning from './traadvisning/TraadVisning';
 import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { useSokEtterMeldinger } from './utils/meldingerUtils';
+import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 
 interface TraadVisningWrapperProps {
     valgtTraad?: Traad;
@@ -54,9 +55,9 @@ function TraadVisningWrapper(props: TraadVisningWrapperProps) {
     );
 }
 
-function useHuskValgtTraad(props: MeldingerDyplenkeRouteComponentProps) {
+function useHuskValgtTraad() {
     const dispatch = useDispatch();
-    const valgtTraad = useValgtTraadIUrl(props);
+    const valgtTraad = useValgtTraadIUrl();
     const forrigeValgteTraad = useAppState(state => state.meldinger.forrigeValgteTraad);
 
     useEffect(() => {
@@ -66,13 +67,10 @@ function useHuskValgtTraad(props: MeldingerDyplenkeRouteComponentProps) {
     return forrigeValgteTraad;
 }
 
-function useSyncSøkMedVisning(
-    props: MeldingerDyplenkeRouteComponentProps,
-    traaderFørSøk: Traad[],
-    traaderEtterSok: Traad[]
-) {
+function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[]) {
     const dyplenker = useInfotabsDyplenker();
-    const valgtTraad = useValgtTraadIUrl(props);
+    const valgtTraad = useValgtTraadIUrl();
+    const history = useHistory();
 
     useEffect(() => {
         if (traaderFørSøk.length === traaderEtterSok.length) {
@@ -80,19 +78,19 @@ function useSyncSøkMedVisning(
         }
         const valgtTaadMatcherSøk = valgtTraad && traaderEtterSok.includes(valgtTraad);
         if (traaderEtterSok.length > 0 && !valgtTaadMatcherSøk) {
-            props.history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
+            history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
         }
-    }, [valgtTraad, traaderFørSøk, traaderEtterSok, props.history, dyplenker.meldinger]);
+    }, [valgtTraad, traaderFørSøk, traaderEtterSok, history, dyplenker.meldinger]);
 }
 
-function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
+function MeldingerContainer() {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
-    const valgtTraad = useValgtTraadIUrl(props);
+    const valgtTraad = useValgtTraadIUrl();
     const [sokeord, setSokeord] = useState('');
     const traaderFørSøk = hasData(traaderResource) ? traaderResource.data : [];
     const traaderEtterSok = useSokEtterMeldinger(traaderFørSøk, sokeord);
-    useSyncSøkMedVisning(props, traaderFørSøk, traaderEtterSok);
-    const forrigeValgteTraad = useHuskValgtTraad(props);
+    useSyncSøkMedVisning(traaderFørSøk, traaderEtterSok);
+    const forrigeValgteTraad = useHuskValgtTraad();
 
     const traadSomSkalVises = valgtTraad || forrigeValgteTraad || traaderEtterSok[0] || undefined;
 
