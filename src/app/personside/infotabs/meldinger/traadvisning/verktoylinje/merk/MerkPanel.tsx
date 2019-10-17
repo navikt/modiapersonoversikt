@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import styled from 'styled-components';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
@@ -23,7 +22,7 @@ import { Melding, Meldingstype, Traad } from '../../../../../../../models/meldin
 import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { UnmountClosed } from 'react-collapse';
 import OpprettOppgaveContainer from '../oppgave/OpprettOppgaveContainer';
-import { RadioPanelGruppe, Checkbox } from 'nav-frontend-skjema';
+import { Checkbox, RadioPanelGruppe } from 'nav-frontend-skjema';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import {
@@ -33,6 +32,8 @@ import {
     MerkRequestMedTraadId
 } from '../../../../../../../models/meldinger/merk';
 import VisPostResultat, { Resultat } from '../utils/VisPostResultat';
+import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { loggError } from '../../../../../../../utils/frontendLogger';
 
 interface Props {
     lukkPanel: () => void;
@@ -50,6 +51,12 @@ enum MerkOperasjon {
 const KnappStyle = styled.div`
     display: flex;
     justify-content: space-between;
+`;
+
+const AlertStyling = styled.div`
+    > * {
+        margin-top: 1rem;
+    }
 `;
 
 const MERK_AVSLUTT_URL = `${apiBaseUri}/dialogmerking/avslutt`;
@@ -122,17 +129,19 @@ function MerkPanel(props: Props) {
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [opprettOppgave, settOpprettOppgave] = useState(true);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
+    const [submitting, setSubmitting] = useState(false);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const valgtTraad = props.valgtTraad;
 
     const melding = eldsteMelding(valgtTraad);
 
     const disableStandardvalg = !visStandardvalg(valgtTraad);
-    const disableBidrag = !erKommunaleTjenester(melding.temagruppe) || disableStandardvalg;
+    const disableBidrag = !(!erKommunaleTjenester(melding.temagruppe) && visStandardvalg(valgtTraad));
     const disableFerdigstillUtenSvar = !visFerdigstillUtenSvar(melding.meldingstype, valgtTraad);
     const disableSlett = !skalViseSletting(melding);
 
     const submitHandler = (event: FormEvent) => {
+        setSubmitting(true);
         event.preventDefault();
         switch (valgtOperasjon) {
             case MerkOperasjon.AVSLUTT:
@@ -160,8 +169,30 @@ function MerkPanel(props: Props) {
 
     function merkPost(url: string, object: any) {
         post(url, object)
-            .then(() => settResultat(Resultat.VELLYKKET))
-            .catch(() => settResultat(Resultat.FEIL));
+            .then(() => {
+                settResultat(Resultat.VELLYKKET);
+                setSubmitting(false);
+            })
+            .catch((error: Error) => {
+                settResultat(Resultat.FEIL);
+                setSubmitting(false);
+                loggError(error, 'Klarte ikke merke trååd', object);
+            });
+    }
+
+    if (resultat) {
+        const alert =
+            resultat === Resultat.VELLYKKET ? (
+                <AlertStripeSuksess>Tråd merket</AlertStripeSuksess>
+            ) : (
+                <AlertStripeFeil>Klarte ikke å merke tråd</AlertStripeFeil>
+            );
+        return (
+            <AlertStyling>
+                {alert}
+                <Hovedknapp onClick={props.lukkPanel}>Lukk</Hovedknapp>
+            </AlertStyling>
+        );
     }
 
     return (
@@ -196,7 +227,9 @@ function MerkPanel(props: Props) {
             </UnmountClosed>
             {valgtOperasjon === MerkOperasjon.KONTORSPERRET && opprettOppgave ? null : ( // Bruk knapp i oppgavepanel
                 <KnappStyle>
-                    <Hovedknapp htmlType="submit">Merk</Hovedknapp>
+                    <Hovedknapp htmlType="submit" spinner={submitting} autoDisableVedSpinner>
+                        Merk
+                    </Hovedknapp>
                     <LenkeKnapp type="button" onClick={props.lukkPanel}>
                         Lukk
                     </LenkeKnapp>
