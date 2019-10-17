@@ -47,7 +47,7 @@ interface Props {
     updateState: (change: Partial<FortsettDialogState>) => void;
     traad: Traad;
     oppgave?: Oppgave;
-    status: FortsettDialogPanelState;
+    fortsettDialogPanelState: FortsettDialogPanelState;
 }
 function Feilmelding(props: { status: DialogPanelStatus }) {
     if (props.status === DialogPanelStatus.ERROR) {
@@ -115,8 +115,11 @@ function FortsettDialog(props: Props) {
                         />
                     </UnmountClosed>
                 </Margin>
-                <Feilmelding status={props.status.type} />
-                <SubmitKnapp htmlType="submit" spinner={props.status.type === DialogPanelStatus.POSTING}>
+                <Feilmelding status={props.fortsettDialogPanelState.type} />
+                <SubmitKnapp
+                    htmlType="submit"
+                    spinner={props.fortsettDialogPanelState.type === DialogPanelStatus.POSTING}
+                >
                     {erDelsvar
                         ? `Skriv delsvar og legg tilbake på ${
                               state.temagruppe ? temagruppeTekst(state.temagruppe).toLowerCase() : 'tema'
