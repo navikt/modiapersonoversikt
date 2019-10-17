@@ -334,26 +334,30 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="c6"
             >
               <div
-                className="skjemaelement skjemaelement--horisontal c7"
+                className="c7"
               >
-                <input
-                  aria-label="Velg tråd"
-                  checked={false}
-                  className="skjemaelement__input checkboks"
-                  id="Helt tilfeldig ID"
-                  onChange={[Function]}
-                  type="checkbox"
-                />
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="Helt tilfeldig ID"
-                >
-                  
-                </label>
                 <div
-                  aria-live="assertive"
-                  role="alert"
-                />
+                  className="skjemaelement skjemaelement--horisontal"
+                >
+                  <input
+                    aria-label="Velg tråd"
+                    checked={false}
+                    className="skjemaelement__input checkboks"
+                    id="Helt tilfeldig ID"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    
+                  </label>
+                  <div
+                    aria-live="assertive"
+                    role="alert"
+                  />
+                </div>
               </div>
               <span
                 className="c8"
@@ -454,26 +458,30 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="c6"
             >
               <div
-                className="skjemaelement skjemaelement--horisontal c7"
+                className="c7"
               >
-                <input
-                  aria-label="Velg tråd"
-                  checked={false}
-                  className="skjemaelement__input checkboks"
-                  id="Helt tilfeldig ID"
-                  onChange={[Function]}
-                  type="checkbox"
-                />
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="Helt tilfeldig ID"
-                >
-                  
-                </label>
                 <div
-                  aria-live="assertive"
-                  role="alert"
-                />
+                  className="skjemaelement skjemaelement--horisontal"
+                >
+                  <input
+                    aria-label="Velg tråd"
+                    checked={false}
+                    className="skjemaelement__input checkboks"
+                    id="Helt tilfeldig ID"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    
+                  </label>
+                  <div
+                    aria-live="assertive"
+                    role="alert"
+                  />
+                </div>
               </div>
               <span
                 className="c8"

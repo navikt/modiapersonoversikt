@@ -9,50 +9,52 @@ interface Props {
     formState: FortsettDialogState;
     updateDialogType: (dialogType: FortsettDialogType) => void;
     erTilknyttetOppgave: boolean;
+    erDelvisBesvart: boolean;
 }
 
 function VelgDialogType(props: Props) {
-    const delvisSvarRadio = (
-        <Radio
-            label="Delvis svar"
-            onChange={() => props.updateDialogType(Meldingstype.DELVIS_SVAR_SKRIFTLIG)}
-            checked={props.formState.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG}
-            name="dialogtype"
-        />
-    );
+    function lagRadio(label: string, type: FortsettDialogType) {
+        return (
+            <Radio
+                label={label}
+                name="dialogtype"
+                onChange={() => props.updateDialogType(type)}
+                checked={props.formState.dialogType === type}
+            />
+        );
+    }
 
-    const svarOppmoteTelefonRadios = (
-        <>
-            <Radio
-                label="Svar telefon"
-                onChange={() => props.updateDialogType(Meldingstype.SVAR_TELEFON)}
-                checked={props.formState.dialogType === Meldingstype.SVAR_TELEFON}
-                name="dialogtype"
-            />
-            <Radio
-                label="Svar oppmøte"
-                onChange={() => props.updateDialogType(Meldingstype.SVAR_OPPMOTE)}
-                checked={props.formState.dialogType === Meldingstype.SVAR_OPPMOTE}
-                name="dialogtype"
-            />
-        </>
-    );
+    const svar = lagRadio('Svar', Meldingstype.SVAR_SKRIFTLIG);
+    const spørsmål = lagRadio('Spørsmål', Meldingstype.SPORSMAL_MODIA_UTGAAENDE);
+    const delvisSvar = lagRadio('Delvis svar', Meldingstype.DELVIS_SVAR_SKRIFTLIG);
+    const svarTelefon = lagRadio('Svar telefon', Meldingstype.SVAR_TELEFON);
+    const svarOppmote = lagRadio('Svar oppmøte', Meldingstype.SVAR_OPPMOTE);
+
+    if (props.erDelvisBesvart) {
+        return (
+            <VelgDialogtypeStyle>
+                {svar}
+                {delvisSvar}
+            </VelgDialogtypeStyle>
+        );
+    }
+
+    if (props.erTilknyttetOppgave) {
+        return (
+            <VelgDialogtypeStyle>
+                {svar}
+                {spørsmål}
+                {delvisSvar}
+            </VelgDialogtypeStyle>
+        );
+    }
 
     return (
         <VelgDialogtypeStyle>
-            <Radio
-                label="Svar"
-                onChange={() => props.updateDialogType(Meldingstype.SVAR_SKRIFTLIG)}
-                checked={props.formState.dialogType === Meldingstype.SVAR_SKRIFTLIG}
-                name="dialogtype"
-            />
-            <Radio
-                label="Spørsmål"
-                onChange={() => props.updateDialogType(Meldingstype.SPORSMAL_MODIA_UTGAAENDE)}
-                checked={props.formState.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE}
-                name="dialogtype"
-            />
-            {props.erTilknyttetOppgave ? delvisSvarRadio : svarOppmoteTelefonRadios}
+            {svar}
+            {spørsmål}
+            {svarTelefon}
+            {svarOppmote}
         </VelgDialogtypeStyle>
     );
 }

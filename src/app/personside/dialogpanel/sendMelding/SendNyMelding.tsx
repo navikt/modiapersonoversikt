@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
-import { Kodeverk } from '../../../../models/kodeverk';
 import { UnmountClosed } from 'react-collapse';
 import KnappBase from 'nav-frontend-knapper';
 import styled from 'styled-components';
@@ -21,6 +20,7 @@ import Oppgaveliste from './Oppgaveliste';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import theme from '../../../../styles/personOversiktTheme';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
+import { Temagruppe, TemaSamtalereferat } from '../../../../models/Temagrupper';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -32,10 +32,10 @@ export type SendNyMeldingDialogType =
     | Meldingstype.SAMTALEREFERAT_OPPMOTE
     | Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
 
-export interface FormState {
+export interface SendNyMeldingState {
     tekst: string;
     dialogType: SendNyMeldingDialogType;
-    tema?: Kodeverk;
+    tema?: Temagruppe;
     sak?: JournalforingsSak;
     oppgaveListe: OppgavelisteValg;
     visFeilmeldinger: boolean;
@@ -66,8 +66,8 @@ export const tekstMaksLengde = 5000;
 interface Props {
     handleSubmit: (event: FormEvent) => void;
     handleAvbryt: () => void;
-    state: FormState;
-    updateState: (change: Partial<FormState>) => void;
+    state: SendNyMeldingState;
+    updateState: (change: Partial<SendNyMeldingState>) => void;
     formErEndret: boolean;
     status: SendNyMeldingPanelState;
 }
@@ -99,8 +99,9 @@ function SendNyMelding(props: Props) {
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                         <Temavelger
                             setTema={tema => updateState({ tema: tema })}
-                            tema={state.tema}
+                            valgtTema={state.tema}
                             visFeilmelding={!NyMeldingValidator.tema(state) && state.visFeilmeldinger}
+                            temavalg={TemaSamtalereferat}
                         />
                         <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
                     </UnmountClosed>

@@ -3,6 +3,8 @@ import RestResourceConsumer from '../../../../../../../rest/consumer/RestResourc
 import { GsakTema } from '../../../../../../../models/meldinger/oppgave';
 import OppgaveSkjemaContainer from './OppgaveSkjemaContainer';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import ErrorBoundary from '../../../../../../../components/ErrorBoundary';
 
 interface Props {
     lukkPanel: () => void;
@@ -12,16 +14,21 @@ interface Props {
 
 function OpprettOppgaveContainer(props: Props) {
     return (
-        <RestResourceConsumer<GsakTema[]> getResource={restResources => restResources.oppgaveGsakTema}>
-            {data => (
-                <OppgaveSkjemaContainer
-                    gsakTema={data}
-                    lukkPanel={props.lukkPanel}
-                    kontorsperreFunksjon={props.kontorsperreFunksjon}
-                    valgtTraad={props.valgtTraad}
-                />
-            )}
-        </RestResourceConsumer>
+        <ErrorBoundary boundaryName={'OpprettOppgaveContainer'}>
+            <RestResourceConsumer<GsakTema[]>
+                getResource={restResources => restResources.oppgaveGsakTema}
+                returnOnPending={<NavFrontendSpinner aria-label={'Laster tema'} type={'S'} />}
+            >
+                {data => (
+                    <OppgaveSkjemaContainer
+                        gsakTema={data}
+                        lukkPanel={props.lukkPanel}
+                        kontorsperreFunksjon={props.kontorsperreFunksjon}
+                        valgtTraad={props.valgtTraad}
+                    />
+                )}
+            </RestResourceConsumer>
+        </ErrorBoundary>
     );
 }
 

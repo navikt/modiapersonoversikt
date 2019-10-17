@@ -151,6 +151,7 @@ exports[`viser dialogpanel 1`] = `
   background-color: white;
   border-radius: .25rem;
   border: 1px solid #78706a;
+  position: relative;
 }
 
 .c16 {
@@ -179,11 +180,7 @@ exports[`viser dialogpanel 1`] = `
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c17 {
-  padding: 0.5rem;
-}
-
-.c20 {
+.c19 {
   position: absolute;
   height: 2rem;
   width: 2rem;
@@ -197,31 +194,31 @@ exports[`viser dialogpanel 1`] = `
   transform: none;
 }
 
-.c20:after {
+.c19:after {
   background: none;
 }
 
-.c20:hover {
+.c19:hover {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
 }
 
-.c21 {
+.c20 {
   position: relative;
   top: 2px;
   width: 18px;
 }
 
-.c19 {
+.c18 {
   position: relative;
 }
 
-.c19 textarea {
+.c18 textarea {
   min-height: 9rem;
 }
 
-.c19 label {
+.c18 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -232,8 +229,8 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c22 textarea,
-.c22 .textareamirror {
+.c21 textarea,
+.c21 .textareamirror {
   padding-left: 2.25rem;
 }
 
@@ -282,11 +279,11 @@ exports[`viser dialogpanel 1`] = `
   margin-right: 1rem;
 }
 
-.c18 {
+.c17 {
   margin-top: 1rem;
 }
 
-.c18 label {
+.c17 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -301,7 +298,7 @@ exports[`viser dialogpanel 1`] = `
   padding: 1rem .8rem;
 }
 
-.c23 {
+.c22 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -311,7 +308,7 @@ exports[`viser dialogpanel 1`] = `
   flex-direction: column;
 }
 
-.c23 > * {
+.c22 > * {
   margin-bottom: 0.7rem;
 }
 
@@ -424,7 +421,7 @@ exports[`viser dialogpanel 1`] = `
                     <option
                       value="HJLPM"
                     >
-                      Hjelpemiddel
+                      Hjelpemidler
                     </option>
                     <option
                       value="PENS"
@@ -434,7 +431,7 @@ exports[`viser dialogpanel 1`] = `
                     <option
                       value="OVRG"
                     >
-                      Øvrig
+                      Øvrige henvendelser
                     </option>
                   </select>
                 </div>
@@ -1483,7 +1480,7 @@ exports[`viser dialogpanel 1`] = `
                 <option
                   value="HJLPM"
                 >
-                  Hjelpemiddel
+                  Hjelpemidler
                 </option>
                 <option
                   value="PENS"
@@ -1493,7 +1490,7 @@ exports[`viser dialogpanel 1`] = `
                 <option
                   value="OVRG"
                 >
-                  Øvrig
+                  Øvrige henvendelser
                 </option>
               </select>
             </div>
@@ -1562,43 +1559,6 @@ exports[`viser dialogpanel 1`] = `
                 className="nav-frontend-chevron chevronboks chevron--ned"
               />
             </button>
-            <div
-              className="c17"
-            >
-              <svg
-                aria-label="Laster innhold"
-                className="spinner spinner--xl"
-                focusable="false"
-                height={32}
-                kind="spinner"
-                preserveAspectRatio="xMidYMid"
-                viewBox="0 0 50 50"
-                width={32}
-              >
-                <title>
-                  Venter...
-                </title>
-                <circle
-                  cx="25"
-                  cy="25"
-                  fill="none"
-                  r="20"
-                  stroke="#bdbab7"
-                  strokeWidth="5"
-                  xmlns="http://www.w3.org/2000/svg"
-                />
-                <circle
-                  cx="25"
-                  cy="25"
-                  fill="none"
-                  r="20"
-                  stroke="#7f756c"
-                  strokeDasharray="50 155"
-                  strokeLinecap="round"
-                  strokeWidth="5"
-                />
-              </svg>
-            </div>
           </div>
           <div
             aria-live="assertive"
@@ -1606,7 +1566,7 @@ exports[`viser dialogpanel 1`] = `
           />
         </div>
         <div
-          className="skjemaelement c18"
+          className="skjemaelement c17"
         >
           <label
             className="skjemaelement__label"
@@ -1678,16 +1638,16 @@ exports[`viser dialogpanel 1`] = `
         </div>
       </div>
       <div
-        className="c19"
+        className="c18"
       >
         <button
-          className="knapp c20 knapp--hoved"
+          className="knapp c19 knapp--hoved"
           disabled={false}
           onClick={[Function]}
           type="button"
         >
           <svg
-            className="c21"
+            className="c20"
             height="24px"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24"
@@ -1708,7 +1668,7 @@ exports[`viser dialogpanel 1`] = `
           </span>
         </button>
         <div
-          className="c22"
+          className="c21"
         >
           <div
             className="skjemaelement textarea__container"
@@ -1762,7 +1722,7 @@ exports[`viser dialogpanel 1`] = `
         />
       </div>
       <div
-        className="c23"
+        className="c22"
       >
         <button
           className="knapp knapp--hoved"

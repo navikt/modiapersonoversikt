@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
 import HurtigReferatContainer from '../Hurtigreferat/HurtigreferatContainer';
-import SendNyMelding, { FormState, OppgavelisteValg } from './SendNyMelding';
+import SendNyMelding, { SendNyMeldingState, OppgavelisteValg } from './SendNyMelding';
 import styled from 'styled-components';
 import { theme } from '../../../../styles/personOversiktTheme';
 import { NyMeldingValidator } from './validatorer';
@@ -21,7 +21,7 @@ const HurtigreferatWrapper = styled.div`
     padding: 1rem ${theme.margin.layout};
 `;
 
-const initialState: FormState = {
+const initialState: SendNyMeldingState = {
     tekst: '',
     dialogType: Meldingstype.SAMTALEREFERAT_TELEFON,
     tema: undefined,
@@ -31,8 +31,8 @@ const initialState: FormState = {
 };
 
 function SendNyMeldingContainer() {
-    const [state, setState] = useState<FormState>(initialState);
-    const updateState = (change: Partial<FormState>) =>
+    const [state, setState] = useState<SendNyMeldingState>(initialState);
+    const updateState = (change: Partial<SendNyMeldingState>) =>
         setState(currentState => ({ ...currentState, visFeilmeldinger: false, ...change }));
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
     const dispatch = useDispatch();
@@ -55,6 +55,7 @@ function SendNyMeldingContainer() {
 
     const handleAvbryt = () => {
         setState(initialState);
+        setSendNyMeldingStatus({ type: SendNyMeldingStatus.UNDER_ARBEID });
     };
 
     const handleSubmit = (event: FormEvent) => {
@@ -75,7 +76,7 @@ function SendNyMeldingContainer() {
             const request: SendReferatRequest = {
                 fritekst: state.tekst,
                 meldingstype: state.dialogType,
-                temagruppe: state.tema.kodeRef
+                temagruppe: state.tema
             };
             post(`${apiBaseUri}/dialog/${fnr}/sendreferat`, request)
                 .then(() => {

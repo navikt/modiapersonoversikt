@@ -263,12 +263,7 @@ exports[`viser fortsett dialog 1`] = `
                     className="typo-undertekst"
                   >
                     Skrevet av 
-                    Sander
-                     
-                    Hansen
-                     (
-                    nzxo4q
-                    )
+                    Sander Hansen (nzxo4q)
                   </p>
                   <div
                     className="c6"
@@ -433,12 +428,7 @@ exports[`viser fortsett dialog 1`] = `
                 className="typo-undertekst"
               >
                 Skrevet av 
-                Kristoffer
-                 
-                Fredriksen
-                 (
-                xy70r8
-                )
+                Kristoffer Fredriksen (xy70r8)
               </p>
               <div
                 className="c6"
@@ -591,43 +581,7 @@ exports[`viser fortsett dialog 1`] = `
           className="skjemaelement__label"
           htmlFor="Helt tilfeldig ID"
         >
-          Spørsmål
-        </label>
-      </div>
-      <div
-        className="skjemaelement skjemaelement--horisontal"
-      >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="dialogtype"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Svar telefon
-        </label>
-      </div>
-      <div
-        className="skjemaelement skjemaelement--horisontal"
-      >
-        <input
-          checked={false}
-          className="skjemaelement__input radioknapp"
-          id="Helt tilfeldig ID"
-          name="dialogtype"
-          onChange={[Function]}
-          type="radio"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Svar oppmøte
+          Delvis svar
         </label>
       </div>
     </div>
@@ -772,11 +726,6 @@ exports[`viser fortsett dialog 1`] = `
                 Velg temagruppe
               </option>
               <option
-                value="ARBD"
-              >
-                Arbeid
-              </option>
-              <option
                 value="FMLI"
               >
                 Familie
@@ -784,7 +733,17 @@ exports[`viser fortsett dialog 1`] = `
               <option
                 value="HJLPM"
               >
-                Hjelpemiddel
+                Hjelpemidler
+              </option>
+              <option
+                value="BIL"
+              >
+                Hjelpemidler bil
+              </option>
+              <option
+                value="ORT_HJE"
+              >
+                Ortopediske hjelpemidler
               </option>
               <option
                 value="PENS"
@@ -792,9 +751,19 @@ exports[`viser fortsett dialog 1`] = `
                 Pensjon
               </option>
               <option
-                value="OVRG"
+                value="PLEIEPENGERSY"
               >
-                Øvrig
+                Pleiepenger sykt barn
+              </option>
+              <option
+                value="UFRT"
+              >
+                Uføretrygd
+              </option>
+              <option
+                value="UTLAND"
+              >
+                Utland
               </option>
             </select>
           </div>
@@ -820,7 +789,7 @@ exports[`viser fortsett dialog 1`] = `
       className="knapp c18 knapp--flat"
       disabled={false}
       onClick={[Function]}
-      type="button"
+      type="reset"
     >
       Avbryt
     </button>

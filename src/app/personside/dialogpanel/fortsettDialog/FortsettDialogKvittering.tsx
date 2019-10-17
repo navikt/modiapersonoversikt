@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Meldingstype, Temagruppe } from '../../../../models/meldinger/meldinger';
+import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { DialogpanelKvittering, DialogpanelKvitteringStyling } from '../fellesStyling';
 import { useDispatch } from 'react-redux';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { erLeggTilbakeOppgaveFeilTemaRequest, LeggTilbakeOppgaveRequest } from '../../../../models/oppgave';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { temagruppeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
 import KnappBase from 'nav-frontend-knapper';
 import { KvitteringsData } from './FortsettDialogTypes';
+import { Temagruppe, temagruppeTekst } from '../../../../models/Temagrupper';
 
 export function SvarSendtKvittering(props: { kvitteringsData: KvitteringsData }) {
     const dispatch = useDispatch();

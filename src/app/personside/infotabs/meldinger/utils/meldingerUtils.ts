@@ -1,8 +1,15 @@
-import { Melding, Meldingstype, Saksbehandler, Temagruppe, Traad } from '../../../../../models/meldinger/meldinger';
-import { meldingstypeTekst, temagruppeTekst } from './meldingstekster';
+import { Melding, Meldingstype, Saksbehandler, Traad } from '../../../../../models/meldinger/meldinger';
+import { meldingstypeTekst } from './meldingstekster';
 import { datoStigende, datoSynkende } from '../../../../../utils/dateUtils';
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
+import {
+    Temagruppe,
+    temagruppeTekst,
+    TemaKommunaleTjenester,
+    TemaPlukkbare,
+    TemaSamtalereferat
+} from '../../../../../models/Temagrupper';
 
 export function nyesteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
@@ -24,47 +31,19 @@ export function meldingstittel(melding: Melding) {
 }
 
 export function erSamtalereferat(temagruppe: Temagruppe) {
-    return [
-        Temagruppe.Arbeid,
-        Temagruppe.Familie,
-        Temagruppe.Hjelpemiddel,
-        Temagruppe.Pensjon,
-        Temagruppe.Øvrig,
-        Temagruppe.ØkonomiskSosial,
-        Temagruppe.AndreSosiale
-    ].includes(temagruppe);
+    return TemaSamtalereferat.includes(temagruppe);
 }
 
 export function kanLeggesTilbake(temagruppe: Temagruppe) {
-    return [
-        Temagruppe.Arbeid,
-        Temagruppe.Familie,
-        Temagruppe.Hjelpemiddel,
-        Temagruppe.Bil,
-        Temagruppe.OrtopediskHjelpemiddel,
-        Temagruppe.PleiepengerBarnsSykdom,
-        Temagruppe.Uføretrygd,
-        Temagruppe.Utland,
-        Temagruppe.ØkonomiskSosial,
-        Temagruppe.AndreSosiale
-    ].includes(temagruppe);
+    return TemaPlukkbare.includes(temagruppe);
 }
 
 export function erPlukkbar(temagruppe: Temagruppe) {
-    return [
-        Temagruppe.Arbeid,
-        Temagruppe.Familie,
-        Temagruppe.Hjelpemiddel,
-        Temagruppe.Bil,
-        Temagruppe.OrtopediskHjelpemiddel,
-        Temagruppe.PleiepengerBarnsSykdom,
-        Temagruppe.Uføretrygd,
-        Temagruppe.Utland
-    ].includes(temagruppe);
+    return TemaPlukkbare.includes(temagruppe);
 }
 
 export function erKommunaleTjenester(temagruppe: Temagruppe) {
-    return [Temagruppe.ØkonomiskSosial, Temagruppe.AndreSosiale].includes(temagruppe);
+    return TemaKommunaleTjenester.includes(temagruppe);
 }
 
 export function erMeldingFraBruker(meldingstype: Meldingstype) {
@@ -163,7 +142,7 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
                 return traad.meldinger.some(melding => {
                     const fritekst = melding.fritekst;
                     const tittel = meldingstittel(melding);
-                    const saksbehandler = saksbehandlerTekst(melding.skrevetAv);
+                    const saksbehandler = melding.skrevetAvTekst;
                     const sokbarTekst = (fritekst + tittel + saksbehandler).toLowerCase();
                     return words.every(word => sokbarTekst.includes(word.toLowerCase()));
                 });

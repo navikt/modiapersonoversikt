@@ -20,7 +20,7 @@ interface Props {
     traad: Traad;
     erValgt: boolean;
     taFokusOnMount?: boolean;
-    onClick?: () => void;
+    onClick?: (event: React.MouseEvent) => void;
     tillegskomponent?: ReactNode;
 }
 

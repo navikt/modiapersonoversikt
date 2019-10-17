@@ -1,9 +1,9 @@
 import { LeggTilbakeOppgaveRequest, Oppgave } from '../../../../models/oppgave';
-import { Meldingstype, Temagruppe } from '../../../../models/meldinger/meldinger';
-import { Kodeverk } from '../../../../models/kodeverk';
+import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import { FortsettDialogType } from './FortsettDialogContainer';
+import { Temagruppe } from '../../../../models/Temagrupper';
 
 export enum DialogPanelStatus {
     UNDER_ARBEID,
@@ -43,7 +43,7 @@ export type FortsettDialogPanelState = UnderArbeid | SvarSendtSuccess | LeggTilb
 export interface FortsettDialogState {
     tekst: string;
     dialogType: FortsettDialogType;
-    tema?: Kodeverk;
+    temagruppe?: Temagruppe;
     oppgave?: Oppgave;
     oppgaveListe: OppgavelisteValg;
     sak?: JournalforingsSak;

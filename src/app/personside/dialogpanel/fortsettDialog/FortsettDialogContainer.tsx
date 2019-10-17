@@ -2,13 +2,7 @@ import * as React from 'react';
 import { FormEvent, useState } from 'react';
 import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
-import {
-    ForsettDialogRequest,
-    Meldingstype,
-    SendDelsvarRequest,
-    Temagruppe,
-    Traad
-} from '../../../../models/meldinger/meldinger';
+import { ForsettDialogRequest, Meldingstype, SendDelsvarRequest, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { useFødselsnummer, useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
@@ -23,6 +17,7 @@ import {
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { loggError } from '../../../../utils/frontendLogger';
+import { Temagruppe } from '../../../../models/Temagrupper';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import {
@@ -31,6 +26,7 @@ import {
     FortsettDialogState,
     KvitteringsData
 } from './FortsettDialogTypes';
+import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -38,6 +34,16 @@ export type FortsettDialogType =
     | Meldingstype.SVAR_OPPMOTE
     | Meldingstype.SVAR_TELEFON
     | Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
+
+export interface FortsettDialogState {
+    tekst: string;
+    dialogType: FortsettDialogType;
+    temagruppe?: Temagruppe;
+    oppgave?: Oppgave;
+    oppgaveListe: OppgavelisteValg;
+    sak?: JournalforingsSak;
+    visFeilmeldinger: boolean;
+}
 
 interface Props {
     traad: Traad;
@@ -155,13 +161,13 @@ function FortsettDialogContainer(props: Props) {
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
-        } else if (FortsettDialogValidator.erGyldigDelsvar(state) && props.tilknyttetOppgave && state.tema) {
+        } else if (FortsettDialogValidator.erGyldigDelsvar(state) && props.tilknyttetOppgave && state.temagruppe) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
             const request: SendDelsvarRequest = {
                 fritekst: state.tekst,
                 traadId: props.traad.traadId,
                 oppgaveId: props.tilknyttetOppgave.oppgaveid,
-                temagruppe: state.tema.kodeRef,
+                temagruppe: state.temagruppe,
                 behandlingsId: opprettHenvendelse.behandlingsId
             };
             post(`${apiBaseUri}/dialog/${fnr}/delvis-svar`, request)
