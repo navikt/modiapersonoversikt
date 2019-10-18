@@ -179,7 +179,14 @@ function MerkPanel(props: Props) {
     };
 
     if (valgtOperasjon === MerkOperasjon.KONTORSPERRET) {
-        return <Kontorsperr valgtTraad={props.valgtTraad} tilbake={tilbake} lukkPanel={props.lukkPanel} />;
+        return (
+            <Kontorsperr
+                valgtTraad={props.valgtTraad}
+                tilbake={tilbake}
+                lukkPanel={props.lukkPanel}
+                merkPost={merkPost}
+            />
+        );
     } else {
         return (
             <form onSubmit={submitHandler}>

@@ -141,15 +141,12 @@ function OppgaveSkjema(props: OppgaveProps) {
         const harSkjemaValideringsfeil = skjemavalidering(formState);
         settValideringsfeil(harSkjemaValideringsfeil);
         if (!harSkjemaValideringsfeil) {
-            if (props.kontorsperreFunksjon) {
-                props.kontorsperreFunksjon();
-            }
-
             const request = lagOppgaveRequest(props, formState, valgtBrukersFnr, props.valgtTraad);
             post(`${apiBaseUri}/dialogoppgave/opprett`, request)
                 .then(() => {
                     settResultat(Resultat.VELLYKKET);
                     setSubmitting(false);
+                    props.onSuccessCallback && props.onSuccessCallback();
                 })
                 .catch((error: Error) => {
                     settResultat(Resultat.FEIL);
@@ -183,7 +180,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         );
     }
 
-    const knappetekst = props.kontorsperreFunksjon ? 'Merk som kontorsperret' : 'Opprett oppgave';
+    const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
 
     return (
         <SkjemaStyle>
