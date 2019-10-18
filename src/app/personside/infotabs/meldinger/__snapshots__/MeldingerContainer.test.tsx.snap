@@ -328,19 +328,9 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-bottom: 0;
 }
 
-.c27 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c27 button {
-  margin: 0;
+.c28 {
+  padding-top: .8rem;
+  color: #d0021b;
 }
 
 .c23 .inputPanelGruppe__inner {
@@ -357,9 +347,19 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   flex-grow: 1;
 }
 
-.c28 {
-  padding-top: .8rem;
-  color: #d0021b;
+.c27 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c27 button {
+  margin: 0;
 }
 
 .c29 {
@@ -770,11 +770,11 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
           </button>
         </div>
       </section>
-      <form
-        onSubmit={[Function]}
+      <div
+        className="c23"
       >
-        <div
-          className="c23"
+        <form
+          onSubmit={[Function]}
         >
           <div
             className="skjemaelement"
@@ -1177,12 +1177,12 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
               Avbryt
             </button>
           </div>
-        </div>
-      </form>
-      <div
-        aria-live="polite"
-        className="c28"
-      />
+        </form>
+        <div
+          aria-live="polite"
+          className="c28"
+        />
+      </div>
       <form
         onSubmit={[Function]}
       >
@@ -1343,11 +1343,11 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
             role="alert"
           />
         </div>
-        <form
-          onSubmit={[Function]}
+        <div
+          className="c23"
         >
-          <div
-            className="c23"
+          <form
+            onSubmit={[Function]}
           >
             <div
               className="skjemaelement"
@@ -1750,12 +1750,12 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                 Avbryt
               </button>
             </div>
-          </div>
-        </form>
-        <div
-          aria-live="polite"
-          className="c28"
-        />
+          </form>
+          <div
+            aria-live="polite"
+            className="c28"
+          />
+        </div>
         <div
           className="c29"
         >
