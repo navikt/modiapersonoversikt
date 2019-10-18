@@ -19,9 +19,11 @@ import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import VisPostResultat, { Resultat } from '../utils/VisPostResultat';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { Hovedknapp } from 'nav-frontend-knapper';
 import { loggError } from '../../../../../../../utils/frontendLogger';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
+import { erBehandlet } from '../../../utils/meldingerUtils';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { Hovedknapp } from 'nav-frontend-knapper';
 
 const ValideringsfeilStyle = styled.div`
     padding-top: ${theme.margin.layout};
@@ -155,6 +157,15 @@ function OppgaveSkjema(props: OppgaveProps) {
             }
         }
     };
+
+    if (props.valgtTraad && !erBehandlet(props.valgtTraad)) {
+        return (
+            <AlertStyling>
+                <AlertStripeInfo>Kan ikke opprette oppgave på denne tråden</AlertStripeInfo>
+                <Hovedknapp onClick={props.lukkPanel}>Lukk</Hovedknapp>
+            </AlertStyling>
+        );
+    }
 
     if (resultat) {
         const alert =
