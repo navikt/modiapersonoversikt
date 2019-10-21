@@ -30,7 +30,7 @@ import oppgaveGsakTemaReducer from './meldinger/gsakTema';
 import opprettOppgave from './meldinger/opprettOppgave';
 import personsok from './personsok';
 import { PersonRespons } from '../../models/person/person';
-import { LeggTilbakeOppgaveRequest, Oppgave } from '../../models/oppgave';
+import { Oppgave } from '../../models/oppgave';
 import { NavKontorResponse } from '../../models/navkontor';
 import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
 import { Egenansatt } from '../../models/egenansatt';
@@ -64,7 +64,6 @@ import { EndreKontonummerRequest } from './brukerprofil/endreKontonummerRequest'
 import { EndreTilrettelagtKommunikasjonrequest } from './brukerprofil/endreTilrettelagtKommunikasjonrequest';
 import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinformasjonRequest';
 import { EndreAdresseRequest } from './brukerprofil/adresse-api';
-import leggTilbakeOppgave from './leggTilbakeOppgave';
 import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
 import opprettHenvendelse from './meldinger/opprettHenvendelse';
@@ -76,7 +75,6 @@ export interface RestEndepunkter {
     brukersNavKontor: RestResource<NavKontorResponse>;
     plukkNyeOppgaver: PostResource<{}, Oppgave[]>;
     tildelteOppgaver: RestResource<Oppgave[]>;
-    leggTilbakeOppgave: PostResource<LeggTilbakeOppgaveRequest>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
     vergemal: RestResource<Vergemal>;
@@ -116,7 +114,6 @@ export default combineResettableReducers<RestEndepunkter>(
         brukersNavKontor: navkontorReducer,
         plukkNyeOppgaver: oppgaverReducer,
         tildelteOppgaver: tildelteOppgaver,
-        leggTilbakeOppgave: leggTilbakeOppgave,
         kontaktinformasjon: kontaktinformasjonReducer,
         egenAnsatt: egenAnsattReducer,
         vergemal: vergemalReducer,

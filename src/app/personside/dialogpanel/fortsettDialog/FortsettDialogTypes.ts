@@ -17,7 +17,7 @@ export enum DialogPanelStatus {
 export type KvitteringsData = {
     fritekst: string;
     meldingstype: Meldingstype;
-    temagruppe?: Temagruppe | string;
+    temagruppe?: Temagruppe;
 };
 
 interface DialogStatusInterface {

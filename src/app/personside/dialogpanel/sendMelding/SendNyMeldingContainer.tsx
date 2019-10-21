@@ -67,6 +67,7 @@ function SendNyMeldingContainer() {
             updateState(initialState);
             dispatch(reloadMeldinger);
         };
+
         if (
             NyMeldingValidator.erGyldigReferat(state) &&
             state.tema &&
