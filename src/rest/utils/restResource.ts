@@ -1,8 +1,16 @@
-import { dispatchReset, fetchDataAndDispatchToRedux, FetchError, FetchSuccess, STATUS } from './utils';
+import {
+    dispatchReset,
+    fetchDataAndDispatchToRedux,
+    FetchError,
+    Fetching,
+    FetchSuccess,
+    SetData,
+    STATUS
+} from './utils';
 import { Action } from 'redux';
 import { AppState } from '../../redux/reducers';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
-import { loggError, loggEvent } from '../../utils/frontendLogger';
+import { loggError, loggEvent, loggInfo } from '../../utils/frontendLogger';
 
 export interface ActionTypes {
     STARTING: string;
@@ -11,12 +19,14 @@ export interface ActionTypes {
     NOTFOUND: string;
     FAILED: string;
     INITIALIZE: string;
+    SET_DATA: string;
 }
 
 type ThunkFetcher<T> = (dispatch: AsyncDispatch, getState: () => AppState) => Promise<T>;
 
 export interface RestResource<T> {
     status: STATUS;
+    fetchUrl: string;
     actions: {
         fetch: ThunkFetcher<T>;
         reload: ThunkFetcher<T>;
@@ -53,6 +63,15 @@ export interface Failed<T> extends RestResource<T> {
     status: STATUS.FAILED;
     error: string;
 }
+
+export type RestResourceStates<T> =
+    | Success<T>
+    | NotFound<T>
+    | Reloading<T>
+    | NotStarted<T>
+    | Loading<T>
+    | Failed<T>
+    | RestResource<T>;
 
 export type HasData<T> = Success<T> | Reloading<T>;
 
@@ -98,7 +117,8 @@ function getActionTypes(resourceNavn: string): ActionTypes {
         FINISHED: navnUppercase + 'FINISHED',
         NOTFOUND: navnUppercase + 'NOT_FOUND',
         FAILED: navnUppercase + 'FAILED',
-        INITIALIZE: navnUppercase + 'INITIALIZE'
+        INITIALIZE: navnUppercase + 'INITIALIZE',
+        SET_DATA: navnUppercase + 'SET_DATA'
     };
 }
 
@@ -112,11 +132,12 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
         fetchDataAndDispatchToRedux(customUriCreator, actionNames);
     const reloadWithCustomUriCreator = (customUriCreator: FetchUriCreator) =>
         fetchDataAndDispatchToRedux(customUriCreator, actionNames, true);
-    const setData = (data: T) => ({ type: actionNames.FINISHED, data: data });
+    const setData = (data: T) => ({ type: actionNames.SET_DATA, data: data });
     const reset = dispatchReset(actionNames);
 
-    const initialState: RestResource<T> = {
+    const initialState: NotStarted<T> = {
         status: STATUS.NOT_STARTED,
+        fetchUrl: 'fetch not started',
         actions: {
             fetch,
             reload,
@@ -127,12 +148,13 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
         }
     };
 
-    return (state: RestResource<T> = initialState, action: Action): RestResource<T> => {
+    return (state: RestResourceStates<T> = initialState, action: Action): RestResourceStates<T> => {
         switch (action.type) {
             case actionNames.STARTING:
                 loggEvent('Fetch', resourceNavn);
                 return {
                     ...state,
+                    fetchUrl: (action as Fetching).fetchUrl,
                     status: STATUS.LOADING
                 };
             case actionNames.RELOADING:
@@ -140,20 +162,32 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
                 if (state.status === STATUS.SUCCESS || state.status === STATUS.RELOADING) {
                     return {
                         ...state,
+                        fetchUrl: (action as Fetching).fetchUrl,
                         status: STATUS.RELOADING
                     };
                 } else {
                     return {
                         ...state,
+                        fetchUrl: (action as Fetching).fetchUrl,
                         status: STATUS.LOADING
                     };
                 }
             case actionNames.FINISHED:
+                if ((action as FetchSuccess<T>).fetchUrl !== state.fetchUrl) {
+                    loggInfo(
+                        `In ${resourceNavn}: Got data from unexpected source, expected data from: '${
+                            state.fetchUrl
+                        }' but got: '${
+                            (action as FetchSuccess<T>).fetchUrl
+                        }'. This could be because the user navigated to a new user before the fetch finished. Ignoring data.`
+                    );
+                    return state;
+                }
                 return {
                     ...state,
                     status: STATUS.SUCCESS,
                     data: (action as FetchSuccess<T>).data
-                } as HasData<T>;
+                };
             case actionNames.NOTFOUND:
                 return {
                     ...state,
@@ -169,6 +203,13 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
                 } as Failed<T>;
             case actionNames.INITIALIZE:
                 return initialState;
+            case actionNames.SET_DATA:
+                return {
+                    ...state,
+                    fetchUrl: 'data was set manually',
+                    status: STATUS.SUCCESS,
+                    data: (action as SetData<T>).data
+                };
             default:
                 return state;
         }
