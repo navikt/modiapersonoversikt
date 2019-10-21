@@ -12,6 +12,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
+import { formaterDato } from '../../../../../utils/stringFormatting';
 interface Props {
     valgtTraad?: Traad;
     sokeord: string;
@@ -49,7 +50,8 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     if (melding.erFerdigstiltUtenSvar) {
         return (
             <AlertStripeInfo>
-                Ferdigstilt uten svar av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}
+                Ferdigstilt uten svar av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
+                {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
             </AlertStripeInfo>
         );
     }
@@ -57,7 +59,8 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     if (melding.markertSomFeilsendtAv) {
         return (
             <AlertStripeInfo>
-                Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}
+                Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}{' '}
+                {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
             </AlertStripeInfo>
         );
     }
