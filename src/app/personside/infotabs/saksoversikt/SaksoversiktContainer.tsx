@@ -15,6 +15,7 @@ import SakstemaListe from './sakstemaliste/SakstemaListe';
 import { withRouter } from 'react-router';
 import { useValgtSakstema } from './useValgtSakstema';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
+import ErrorBoundary from '../../../../components/ErrorBoundary';
 
 export const saksoversiktMediaTreshold = '65rem';
 
@@ -54,24 +55,26 @@ function SaksoversiktContainer() {
         return <DokumentOgVedlegg />;
     } else {
         return (
-            <SaksoversiktArticle aria-label="Brukerens saker">
-                {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />}
-                <RestResourceConsumer<SakstemaResponse>
-                    getResource={restResources => restResources.sakstema}
-                    returnOnPending={BigCenteredLazySpinner}
-                >
-                    {sakstema => (
-                        <>
-                            <ScrollBar>
-                                <SakstemaListe valgtSakstema={valgtSakstema} />
-                            </ScrollBar>
-                            <ScrollBar>
-                                <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
-                            </ScrollBar>
-                        </>
-                    )}
-                </RestResourceConsumer>
-            </SaksoversiktArticle>
+            <ErrorBoundary boundaryName="Saksoversikt">
+                <SaksoversiktArticle aria-label="Brukerens saker">
+                    {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />}
+                    <RestResourceConsumer<SakstemaResponse>
+                        getResource={restResources => restResources.sakstema}
+                        returnOnPending={BigCenteredLazySpinner}
+                    >
+                        {sakstema => (
+                            <>
+                                <ScrollBar>
+                                    <SakstemaListe valgtSakstema={valgtSakstema} />
+                                </ScrollBar>
+                                <ScrollBar>
+                                    <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
+                                </ScrollBar>
+                            </>
+                        )}
+                    </RestResourceConsumer>
+                </SaksoversiktArticle>
+            </ErrorBoundary>
         );
     }
 }
