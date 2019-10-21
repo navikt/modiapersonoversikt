@@ -114,7 +114,7 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
-    const traaderSelector = useRestResource(resources => resources.tråderOgMeldinger);
+    const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [submitting, setSubmitting] = useState(false);
@@ -154,7 +154,7 @@ function MerkPanel(props: Props) {
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
-                dispatch(traaderSelector.actions.reload);
+                dispatch(tråderResource.actions.reload);
             })
             .catch((error: Error) => {
                 settResultat(Resultat.FEIL);

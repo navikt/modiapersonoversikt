@@ -45,7 +45,7 @@ const SuksessStyling = styled.div`
 
 export function JournalforSak(props: Props) {
     const dispatch = useDispatch();
-    const traaderSelector = useRestResource(resources => resources.tråderOgMeldinger);
+    const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const { sak, tilbake, traad, lukkPanel } = props;
     const { traadId } = traad;
     const kategori = sakKategori(sak);
@@ -60,7 +60,7 @@ export function JournalforSak(props: Props) {
             () => {
                 setSubmitting(false);
                 setJournalforingSuksess(true);
-                dispatch(traaderSelector.actions.reload);
+                dispatch(tråderResource.actions.reload);
             },
             error => {
                 setSubmitting(false);
