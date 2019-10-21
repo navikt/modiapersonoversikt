@@ -8,7 +8,7 @@ import ErrorBoundary from '../../../../../../../components/ErrorBoundary';
 
 interface Props {
     lukkPanel: () => void;
-    kontorsperreFunksjon?: () => void;
+    onSuccessCallback?: () => void;
     valgtTraad?: Traad;
 }
 
@@ -23,7 +23,7 @@ function OpprettOppgaveContainer(props: Props) {
                     <OppgaveSkjemaContainer
                         gsakTema={data}
                         lukkPanel={props.lukkPanel}
-                        kontorsperreFunksjon={props.kontorsperreFunksjon}
+                        onSuccessCallback={props.onSuccessCallback}
                         valgtTraad={props.valgtTraad}
                     />
                 )}
