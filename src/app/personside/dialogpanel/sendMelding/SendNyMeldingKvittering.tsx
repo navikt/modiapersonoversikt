@@ -1,29 +1,25 @@
 import * as React from 'react';
-import { Meldingstype, SendReferatRequest, SendSpørsmålRequest } from '../../../../models/meldinger/meldinger';
+import { Meldingstype, SendReferatRequest } from '../../../../models/meldinger/meldinger';
 import { DialogpanelKvittering } from '../fellesStyling';
-import { FinishedPostResource } from '../../../../rest/utils/postResource';
-import { useDispatch } from 'react-redux';
 
-export function ReferatSendtKvittering(props: { resource: FinishedPostResource<SendReferatRequest, {}> }) {
-    const dispatch = useDispatch();
+export function ReferatSendtKvittering(props: { request: SendReferatRequest; lukk: () => void }) {
     return (
         <DialogpanelKvittering
             tittel="Referatet ble loggført"
-            fritekst={props.resource.payload.fritekst}
-            meldingstype={props.resource.payload.meldingstype}
-            lukk={() => dispatch(props.resource.actions.reset)}
+            fritekst={props.request.fritekst}
+            meldingstype={props.request.meldingstype}
+            lukk={props.lukk}
         />
     );
 }
 
-export function SporsmalSendtKvittering(props: { resource: FinishedPostResource<SendSpørsmålRequest, {}> }) {
-    const dispatch = useDispatch();
+export function SporsmalSendtKvittering(props: { fritekst: string; lukk: () => void }) {
     return (
         <DialogpanelKvittering
             tittel="Spørsmål ble sendt"
-            fritekst={props.resource.payload.fritekst}
+            fritekst={props.fritekst}
             meldingstype={Meldingstype.SPORSMAL_MODIA_UTGAAENDE}
-            lukk={() => dispatch(props.resource.actions.reset)}
+            lukk={props.lukk}
         />
     );
 }
