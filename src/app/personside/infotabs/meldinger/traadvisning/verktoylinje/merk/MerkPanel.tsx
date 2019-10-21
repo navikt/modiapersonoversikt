@@ -3,7 +3,7 @@ import { FormEvent, useState } from 'react';
 import styled from 'styled-components';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import {
     eldsteMelding,
@@ -32,6 +32,7 @@ import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { loggError } from '../../../../../../../utils/frontendLogger';
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
+import { useRestResource } from '../../../../../../../utils/customHooks';
 
 interface Props {
     lukkPanel: () => void;
@@ -112,6 +113,8 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 }
 
 function MerkPanel(props: Props) {
+    const dispatch = useDispatch();
+    const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [submitting, setSubmitting] = useState(false);
@@ -151,6 +154,7 @@ function MerkPanel(props: Props) {
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
+                dispatch(tråderResource.actions.reload);
             })
             .catch((error: Error) => {
                 settResultat(Resultat.FEIL);
