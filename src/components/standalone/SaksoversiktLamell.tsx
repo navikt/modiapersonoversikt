@@ -13,6 +13,7 @@ import FetchFeatureToggles from '../../app/PersonOppslagHandler/FetchFeatureTogg
 import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 import { MemoryRouter, Route } from 'react-router';
 import { useInfotabsDyplenker } from '../../app/personside/infotabs/dyplenker';
+import ErrorBoundary from '../ErrorBoundary';
 
 interface Props {
     fødselsnummer: string;
@@ -45,14 +46,16 @@ function Routing() {
 
 function SaksoversiktLamell(props: Props) {
     return (
-        <Provider store={store}>
-            <Styles>
-                <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
-                <LyttPåNyttFnrIReduxOgHentPersoninfo />
-                <FetchFeatureToggles />
-                <Routing />
-            </Styles>
-        </Provider>
+        <ErrorBoundary boundaryName="SaksoversiktLamell">
+            <Provider store={store}>
+                <Styles>
+                    <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
+                    <LyttPåNyttFnrIReduxOgHentPersoninfo />
+                    <FetchFeatureToggles />
+                    <Routing />
+                </Styles>
+            </Provider>
+        </ErrorBoundary>
     );
 }
 
