@@ -4,7 +4,6 @@ import reducers from '../../redux/reducers';
 import thunkMiddleware from 'redux-thunk';
 import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
-import ErrorBoundary from '../ErrorBoundary';
 import { Provider } from 'react-redux';
 import SaksoversiktContainer from '../../app/personside/infotabs/saksoversikt/SaksoversiktContainer';
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
@@ -46,16 +45,14 @@ function Routing() {
 
 function SaksoversiktLamell(props: Props) {
     return (
-        <ErrorBoundary boundaryName="Saksoversikt">
-            <Provider store={store}>
-                <Styles>
-                    <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
-                    <LyttPåNyttFnrIReduxOgHentPersoninfo />
-                    <FetchFeatureToggles />
-                    <Routing />
-                </Styles>
-            </Provider>
-        </ErrorBoundary>
+        <Provider store={store}>
+            <Styles>
+                <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
+                <LyttPåNyttFnrIReduxOgHentPersoninfo />
+                <FetchFeatureToggles />
+                <Routing />
+            </Styles>
+        </Provider>
     );
 }
 
