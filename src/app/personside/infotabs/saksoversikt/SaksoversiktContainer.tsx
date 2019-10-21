@@ -12,9 +12,13 @@ import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer
 import { useAppState, useOnMount } from '../../../../utils/customHooks';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import SakstemaListe from './sakstemaliste/SakstemaListe';
-import { withRouter } from 'react-router';
-import { useValgtSakstema } from './useValgtSakstema';
+import { useHistory, withRouter } from 'react-router';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
+import { useAgregerteSaker } from './utils/saksoversiktUtils';
+import { useInfotabsDyplenker } from '../dyplenker';
+import { useHuskValgtSakstema, useValgtSakstemaIUrl } from './useValgtSakstema';
+import { useEffect } from 'react';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 export const saksoversiktMediaTreshold = '65rem';
 
@@ -40,11 +44,27 @@ const SaksoversiktArticle = styled.article`
     position: relative;
 `;
 
+function useVelgSakHvisIngenSakErValgt() {
+    const valgtSakstema = useValgtSakstemaIUrl();
+    const agregerteSakstema = useAgregerteSaker();
+    const history = useHistory();
+    const dyplenker = useInfotabsDyplenker();
+    const forrigeValgtSakstema = useHuskValgtSakstema();
+
+    useEffect(() => {
+        if (!valgtSakstema) {
+            const redirectTo = forrigeValgtSakstema || agregerteSakstema;
+            redirectTo && history.replace(dyplenker.saker.link(redirectTo));
+        }
+    });
+}
+
 function SaksoversiktContainer() {
     const dispatch = useDispatch();
     const skjulDokumentOgVisSaksoversikt = () => dispatch(settVisDokument(false));
     const visDokument = useAppState(state => state.saksoversikt.visDokument);
-    const valgtSakstema = useValgtSakstema();
+    const valgtSakstema = useValgtSakstemaIUrl();
+    useVelgSakHvisIngenSakErValgt();
 
     useOnMount(() => {
         skjulDokumentOgVisSaksoversikt();
@@ -60,16 +80,21 @@ function SaksoversiktContainer() {
                     getResource={restResources => restResources.sakstema}
                     returnOnPending={BigCenteredLazySpinner}
                 >
-                    {sakstema => (
-                        <>
-                            <ScrollBar>
-                                <SakstemaListe valgtSakstema={valgtSakstema} />
-                            </ScrollBar>
-                            <ScrollBar>
-                                <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
-                            </ScrollBar>
-                        </>
-                    )}
+                    {sakstema => {
+                        if (sakstema.resultat.length === 0) {
+                            return <AlertStripeInfo>Brukeren har ingen saker</AlertStripeInfo>;
+                        }
+                        return (
+                            <>
+                                <ScrollBar>
+                                    <SakstemaListe valgtSakstema={valgtSakstema} />
+                                </ScrollBar>
+                                <ScrollBar>
+                                    <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
+                                </ScrollBar>
+                            </>
+                        );
+                    }}
                 </RestResourceConsumer>
             </SaksoversiktArticle>
         );

@@ -16,7 +16,7 @@ import { datoSynkende } from '../../../../../utils/dateUtils';
 import DropDownMenu from '../../../../../components/DropDownMenu';
 import DokumentListeElement from './DokumentListeElement';
 import { sakerTest } from '../../dyplenkeTest/utils';
-import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListe from '../sakstemaliste/SakstemaListe';
 import { useEffect } from 'react';
 
@@ -202,7 +202,7 @@ function SaksDokumenter(props: Props) {
     );
 
     if (!props.valgtSakstema) {
-        return <AlertStripeAdvarsel>Kunne ikke finne valgt sakstema</AlertStripeAdvarsel>;
+        return <AlertStripeInfo>Ingen sakstema valgt</AlertStripeInfo>;
     }
 
     const filterCheckboxer = (

@@ -87,6 +87,19 @@ function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[
     }, [valgtTraad, traaderFørSøk, traaderEtterSok, history, dyplenker.meldinger]);
 }
 
+function useVelgTraadHvisIngenTraadErValgt(traaderEtterSok: Traad[]) {
+    const valgtTraad = useValgtTraadIUrl();
+    const forrigeValgteTraad = useHuskValgtTraad();
+    const history = useHistory();
+    const dyplenker = useInfotabsDyplenker();
+    useEffect(() => {
+        if (!valgtTraad) {
+            const redirectTo = forrigeValgteTraad || traaderEtterSok[0];
+            redirectTo && history.replace(dyplenker.meldinger.link(redirectTo));
+        }
+    });
+}
+
 function MeldingerContainer() {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const valgtTraad = useValgtTraadIUrl();
@@ -94,9 +107,7 @@ function MeldingerContainer() {
     const traaderFørSøk = hasData(traaderResource) ? traaderResource.data : [];
     const traaderEtterSok = useSokEtterMeldinger(traaderFørSøk, sokeord);
     useSyncSøkMedVisning(traaderFørSøk, traaderEtterSok);
-    const forrigeValgteTraad = useHuskValgtTraad();
-
-    const traadSomSkalVises = valgtTraad || forrigeValgteTraad || traaderEtterSok[0] || undefined;
+    useVelgTraadHvisIngenTraadErValgt(traaderEtterSok);
 
     return (
         <RestResourceConsumer<Traad[]>
@@ -114,14 +125,14 @@ function MeldingerContainer() {
                                 sokeord={sokeord}
                                 setSokeord={setSokeord}
                                 traader={data}
-                                valgtTraad={traadSomSkalVises}
+                                valgtTraad={valgtTraad}
                             />
                         </ScrollBar>
                         <ScrollBar>
                             <TraadVisningWrapper
                                 traaderEtterSok={traaderEtterSok}
                                 sokeord={sokeord}
-                                valgtTraad={traadSomSkalVises}
+                                valgtTraad={valgtTraad}
                             />
                         </ScrollBar>
                     </MeldingerArticleStyle>

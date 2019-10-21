@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { huskValgtSakstema } from '../../../../redux/saksoversikt/actions';
 import { hasData } from '../../../../rest/utils/restResource';
 
-function useValgtSakstemaIUrl() {
+export function useValgtSakstemaIUrl() {
     const dyplenker = useInfotabsDyplenker();
     const sakstemaResource = useRestResource(resources => resources.sakstema);
     const agregerteSaker = useAgregerteSaker();
@@ -16,11 +16,10 @@ function useValgtSakstemaIUrl() {
     return [agregerteSaker, ...sakstemaResource.data.resultat].find(dyplenker.saker.erValgt);
 }
 
-export function useValgtSakstema() {
+export function useHuskValgtSakstema() {
     const saksTemaIUrl = useValgtSakstemaIUrl();
-    const forrigeValgteSaksTema = useAppState(state => state.saksoversikt.forrigeValgteSakstema);
-    const agregerteSakstema = useAgregerteSaker();
     const dispatch = useDispatch();
+    const forrigeValgteSaksTema = useAppState(state => state.saksoversikt.forrigeValgteSakstema);
 
     useEffect(() => {
         if (saksTemaIUrl) {
@@ -28,5 +27,5 @@ export function useValgtSakstema() {
         }
     }, [saksTemaIUrl, dispatch]);
 
-    return saksTemaIUrl || forrigeValgteSaksTema || agregerteSakstema;
+    return forrigeValgteSaksTema;
 }
