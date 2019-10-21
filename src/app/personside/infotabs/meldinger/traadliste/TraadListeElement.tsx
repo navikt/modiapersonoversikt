@@ -60,6 +60,12 @@ const EtikettStyling = styled.div`
     margin-top: 0.2rem;
 `;
 
+const ContentStyle = styled.div`
+    /* IE11-fix*/
+    flex-grow: 1;
+    width: 0px;
+`;
+
 function TraadListeElement(props: Props) {
     const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
     const sisteMelding = nyesteMelding(props.traad);
@@ -91,7 +97,7 @@ function TraadListeElement(props: Props) {
                         erMonolog={erMonolog(props.traad)}
                         antallMeldinger={props.traad.meldinger.length}
                     />
-                    <div>
+                    <ContentStyle>
                         <UUcustomOrder>
                             <Element className="order-second">{tittel}</Element>
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
@@ -105,7 +111,7 @@ function TraadListeElement(props: Props) {
                             <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                             <SlettetEtikett melding={sisteMelding} />
                         </EtikettStyling>
-                    </div>
+                    </ContentStyle>
                 </PanelStyle>
             </VisMerKnapp>
         </ListElementStyle>
