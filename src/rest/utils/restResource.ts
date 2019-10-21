@@ -137,7 +137,7 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
 
     const initialState: NotStarted<T> = {
         status: STATUS.NOT_STARTED,
-        fetchUrl: '',
+        fetchUrl: 'fetch not started',
         actions: {
             fetch,
             reload,
@@ -206,6 +206,7 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
             case actionNames.SET_DATA:
                 return {
                     ...state,
+                    fetchUrl: 'data was set manually',
                     status: STATUS.SUCCESS,
                     data: (action as SetData<T>).data
                 };
