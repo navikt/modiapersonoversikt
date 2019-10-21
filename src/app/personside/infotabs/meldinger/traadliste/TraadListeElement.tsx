@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { Traad } from '../../../../../models/meldinger/meldinger';
+import { Melding, Traad } from '../../../../../models/meldinger/meldinger';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import styled from 'styled-components';
 import { theme } from '../../../../../styles/personOversiktTheme';
@@ -103,7 +103,7 @@ function TraadListeElement(props: Props) {
                             </UnmountClosed>
                             {erDelvisBesvart(props.traad) && <EtikettInfo>Delvis besvart</EtikettInfo>}
                             <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
-                            <SlettetEtikett temagruppe={sisteMelding.temagruppe} />
+                            <SlettetEtikett melding={sisteMelding} />
                         </EtikettStyling>
                     </div>
                 </PanelStyle>
@@ -122,8 +122,8 @@ function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
     return null;
 }
 
-function SlettetEtikett({ temagruppe }: { temagruppe: Temagruppe }) {
-    if (temagruppe === Temagruppe.Null) {
+function SlettetEtikett({ melding }: { melding: Melding }) {
+    if (melding.temagruppe === Temagruppe.Null) {
         return <EtikettAdvarsel>Slettet</EtikettAdvarsel>;
     }
 
