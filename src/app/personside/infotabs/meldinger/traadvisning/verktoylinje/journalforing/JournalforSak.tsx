@@ -10,8 +10,9 @@ import { apiBaseUri } from '../../../../../../../api/config';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { post } from '../../../../../../../api/api';
 import { loggError } from '../../../../../../../utils/frontendLogger';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
+import { AppState } from '../../../../../../../redux/reducers';
 
 export interface Props {
     sak: JournalforingsSak;
@@ -43,6 +44,8 @@ const SuksessStyling = styled.div`
 `;
 
 export function JournalforSak(props: Props) {
+    const dispatch = useDispatch();
+    const traaderSelector = useSelector((state: AppState) => state.restResources.tråderOgMeldinger);
     const { sak, tilbake, traad, lukkPanel } = props;
     const { traadId } = traad;
     const kategori = sakKategori(sak);
@@ -57,6 +60,7 @@ export function JournalforSak(props: Props) {
             () => {
                 setSubmitting(false);
                 setJournalforingSuksess(true);
+                dispatch(traaderSelector.actions.reload);
             },
             error => {
                 setSubmitting(false);

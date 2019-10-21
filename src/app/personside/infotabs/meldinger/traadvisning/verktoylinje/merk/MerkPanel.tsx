@@ -3,7 +3,7 @@ import { FormEvent, useState } from 'react';
 import styled from 'styled-components';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import {
     eldsteMelding,
@@ -112,6 +112,8 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 }
 
 function MerkPanel(props: Props) {
+    const dispatch = useDispatch();
+    const traaderSelector = useSelector((state: AppState) => state.restResources.tråderOgMeldinger);
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [submitting, setSubmitting] = useState(false);
@@ -151,6 +153,7 @@ function MerkPanel(props: Props) {
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
+                dispatch(traaderSelector.actions.reload);
             })
             .catch((error: Error) => {
                 settResultat(Resultat.FEIL);
