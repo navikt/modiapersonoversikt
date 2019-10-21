@@ -12,18 +12,11 @@ import { useDispatch } from 'react-redux';
 import { useAppState, useRestResource } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useHistory, withRouter } from 'react-router';
-import TraadVisning from './traadvisning/TraadVisning';
-import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
-
-interface TraadVisningWrapperProps {
-    valgtTraad?: Traad;
-    sokeord: string;
-    traaderEtterSok: Traad[];
-}
+import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 
 const meldingerMediaTreshold = pxToRem(1000);
 
@@ -42,22 +35,6 @@ const MeldingerArticleStyle = styled.article`
     }
     position: relative;
 `;
-
-function TraadVisningWrapper(props: TraadVisningWrapperProps) {
-    if (props.traaderEtterSok.length === 0) {
-        return <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>;
-    }
-    if (!props.valgtTraad) {
-        return <AlertStripeInfo>Ingen melding valgt</AlertStripeInfo>;
-    }
-
-    return (
-        <>
-            <Verktoylinje valgtTraad={props.valgtTraad} />
-            <TraadVisning sokeord={props.sokeord} valgtTraad={props.valgtTraad} />
-        </>
-    );
-}
 
 function useHuskValgtTraad() {
     const dispatch = useDispatch();
@@ -129,11 +106,11 @@ function MeldingerContainer() {
                             />
                         </ScrollBar>
                         <ScrollBar>
-                            <TraadVisningWrapper
-                                traaderEtterSok={traaderEtterSok}
-                                sokeord={sokeord}
-                                valgtTraad={valgtTraad}
-                            />
+                            {traaderEtterSok.length === 0 ? (
+                                <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>
+                            ) : (
+                                <TraadVisningWrapper sokeord={sokeord} valgtTraad={valgtTraad} />
+                            )}
                         </ScrollBar>
                     </MeldingerArticleStyle>
                 );
