@@ -3,6 +3,7 @@ import { STATUS } from './utils';
 
 export const mockRestResourceState: RestResource<any> = {
     status: STATUS.NOT_STARTED,
+    fetchUrl: '',
     actions: {
         fetch: jest.fn(),
         reload: jest.fn(),
