@@ -11,9 +11,8 @@ import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
-import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
 interface Props {
-    valgtTraad?: Traad;
+    valgtTraad: Traad;
     sokeord: string;
 }
 
@@ -87,10 +86,6 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 }
 
 function TraadVisning(props: Props) {
-    if (!props.valgtTraad) {
-        return <CenteredLazySpinner />;
-    }
-
     return (
         <VisningStyle aria-label={'Meldinger for valgt tråd'} key={props.valgtTraad.traadId}>
             <Topplinje valgtTraad={props.valgtTraad} />

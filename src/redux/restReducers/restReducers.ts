@@ -30,7 +30,7 @@ import oppgaveGsakTemaReducer from './meldinger/gsakTema';
 import opprettOppgave from './meldinger/opprettOppgave';
 import personsok from './personsok';
 import { PersonRespons } from '../../models/person/person';
-import { LeggTilbakeOppgaveRequest, Oppgave } from '../../models/oppgave';
+import { Oppgave } from '../../models/oppgave';
 import { NavKontorResponse } from '../../models/navkontor';
 import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
 import { Egenansatt } from '../../models/egenansatt';
@@ -48,12 +48,9 @@ import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
 import {
     SendReferatRequest,
-    SendSpørsmålRequest,
-    ForsettDialogRequest,
     Traad,
     OpprettHenvendelseRequest,
     OpprettHenvendelseResponse,
-    SendDelsvarRequest,
     SlaaSammenRequest,
     SlaaSammenResponse
 } from '../../models/meldinger/meldinger';
@@ -67,13 +64,9 @@ import { EndreKontonummerRequest } from './brukerprofil/endreKontonummerRequest'
 import { EndreTilrettelagtKommunikasjonrequest } from './brukerprofil/endreTilrettelagtKommunikasjonrequest';
 import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinformasjonRequest';
 import { EndreAdresseRequest } from './brukerprofil/adresse-api';
-import sendSpørsmål from './sendSpørsmål';
-import leggTilbakeOppgave from './leggTilbakeOppgave';
-import sendSvar from './sendSvar';
 import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
 import opprettHenvendelse from './meldinger/opprettHenvendelse';
-import sendDelsvar from './sendDelsvar';
 import slaaSammen from './meldinger/slaaSammen';
 
 export interface RestEndepunkter {
@@ -82,7 +75,6 @@ export interface RestEndepunkter {
     brukersNavKontor: RestResource<NavKontorResponse>;
     plukkNyeOppgaver: PostResource<{}, Oppgave[]>;
     tildelteOppgaver: RestResource<Oppgave[]>;
-    leggTilbakeOppgave: PostResource<LeggTilbakeOppgaveRequest>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
     vergemal: RestResource<Vergemal>;
@@ -110,10 +102,7 @@ export interface RestEndepunkter {
     oppgaveGsakTema: RestResource<GsakTema[]>;
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
     sendReferat: PostResource<SendReferatRequest>;
-    sendSpørsmål: PostResource<SendSpørsmålRequest>;
     opprettHenvendelse: PostResource<OpprettHenvendelseRequest, OpprettHenvendelseResponse>;
-    sendSvar: PostResource<ForsettDialogRequest>;
-    sendDelsvar: PostResource<SendDelsvarRequest>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
     slaaSammen: PostResource<SlaaSammenRequest, SlaaSammenResponse>;
 }
@@ -125,7 +114,6 @@ export default combineResettableReducers<RestEndepunkter>(
         brukersNavKontor: navkontorReducer,
         plukkNyeOppgaver: oppgaverReducer,
         tildelteOppgaver: tildelteOppgaver,
-        leggTilbakeOppgave: leggTilbakeOppgave,
         kontaktinformasjon: kontaktinformasjonReducer,
         egenAnsatt: egenAnsattReducer,
         vergemal: vergemalReducer,
@@ -152,9 +140,6 @@ export default combineResettableReducers<RestEndepunkter>(
         tråderOgMeldinger: meldingerReducer,
         oppgaveGsakTema: oppgaveGsakTemaReducer,
         sendReferat: sendReferat,
-        sendSpørsmål: sendSpørsmål,
-        sendSvar: sendSvar,
-        sendDelsvar: sendDelsvar,
         opprettHenvendelse: opprettHenvendelse,
         opprettOppgave: opprettOppgave,
         personsok: personsok,

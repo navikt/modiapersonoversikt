@@ -13,7 +13,7 @@ const sammensattUtbetaling: Utbetaling = {
 test('Viser utbetalingsdetaljer riktig med liste med ytelser og trekk', () => {
     const visittkortheader = renderer.create(
         <TestProvider>
-            <SammensattUtbetaling utbetaling={sammensattUtbetaling} />
+            <SammensattUtbetaling utbetaling={sammensattUtbetaling} erValgtIUrl={false} />
         </TestProvider>
     );
 
