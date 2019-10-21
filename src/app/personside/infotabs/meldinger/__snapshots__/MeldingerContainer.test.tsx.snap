@@ -1,41 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser meldingercontainer med alt innhold 1`] = `
-.c14 {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-animation: fYGRJE 0.3s ease-out;
-  animation: fYGRJE 0.3s ease-out;
-}
-
-.c14 > * {
-  -webkit-flex: 0 1 25rem;
-  -ms-flex: 0 1 25rem;
-  flex: 0 1 25rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
 .c7 {
   position: relative;
   padding: .8rem;
@@ -48,6 +13,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
+  background-color: #cce1f3;
 }
 
 .c7:hover {
@@ -110,6 +76,71 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   right: 0.5625rem;
   border-radius: 50%;
   padding: 0 0.1rem;
+}
+
+.c32 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c18 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c18:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c18:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c18:hover {
+  opacity: 0.8;
+}
+
+.c18:hover:after {
+  content: '';
+  border-color: #0067c5;
+}
+
+.c19 {
+  margin-right: 0.5rem;
+}
+
+.c21 {
+  position: relative;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.c22 > * {
+  margin-top: 1rem;
 }
 
 .c1 {
@@ -188,6 +219,47 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-right: 0.2rem;
 }
 
+.c35 {
+  margin-right: 0.3rem;
+}
+
+.c34 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c33 {
+  font-weight: 600;
+}
+
+.c31 {
+  text-align: left;
+}
+
+.c31 em {
+  font-style: normal;
+  background-color: #eed28c;
+  border-radius: 0.625rem;
+  padding: 0 0.3125rem;
+}
+
+.c31 > *:not(:last-child) {
+  border-bottom: solid 0.0625rem #b7b1a9;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.c37 {
+  color: #0067c5;
+}
+
+.c36 .ekspanderbartPanel__hode,
+.c36 .ekspanderbartPanel__innhold {
+  padding: 0.3rem 0;
+}
+
 .c2 {
   border-radius: 0.25rem;
   background-color: white;
@@ -223,6 +295,166 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 
 .c3 .skjemaelement {
   margin-bottom: 0.2rem;
+}
+
+.c30 {
+  padding: .8rem;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c30 > *:last-child {
+  margin-top: .8rem;
+}
+
+.c24 {
+  position: relative;
+}
+
+.c26 {
+  position: absolute !important;
+  bottom: 0.4rem;
+  right: 0.4rem;
+}
+
+.c25 {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.c25 .skjemaelement {
+  margin-bottom: 0;
+}
+
+.c28 {
+  padding-top: .8rem;
+  color: #d0021b;
+}
+
+.c23 .inputPanelGruppe__inner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c23 .inputPanelGruppe__inner > * {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c27 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c27 button {
+  margin: 0;
+}
+
+.c29 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c14 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+  padding: .8rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 0.24rem;
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c16 > *:not(:last-child) {
+  margin-right: 1.5rem;
+}
+
+.c17 {
+  color: #3e3832;
+}
+
+.c20 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: #3e3832;
+}
+
+.c20:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c20:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c20:hover {
+  opacity: 0.8;
+}
+
+.c20:hover:after {
+  content: '';
+  border-color: #0067c5;
 }
 
 .c0 {
@@ -397,7 +629,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
             </div>
             <button
               aria-label="Vis meldinger for Delsvar - Arbeid"
-              aria-selected={false}
+              aria-selected={true}
               className="c13"
             >
               <i
@@ -414,7 +646,1552 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   >
     <div
       className="c14"
-    />
+    >
+      <div
+        className="c15"
+      >
+        <div
+          className="c16"
+        >
+          <button
+            aria-expanded={false}
+            className="c17 c18"
+            onClick={[Function]}
+          >
+            <span
+              className="c19"
+            >
+              <span
+                className="typo-normal"
+              >
+                Journalfør
+              </span>
+            </span>
+            <i
+              className="nav-frontend-chevron chevronboks chevron--ned"
+            />
+          </button>
+          <button
+            aria-expanded={false}
+            className="c17 c18"
+            onClick={[Function]}
+          >
+            <span
+              className="c19"
+            >
+              <span
+                className="typo-normal"
+              >
+                Lag oppgave
+              </span>
+            </span>
+            <i
+              className="nav-frontend-chevron chevronboks chevron--ned"
+            />
+          </button>
+          <button
+            aria-expanded={false}
+            className="c17 c18"
+            onClick={[Function]}
+          >
+            <span
+              className="c19"
+            >
+              <span
+                className="typo-normal"
+              >
+                Merk
+              </span>
+            </span>
+            <i
+              className="nav-frontend-chevron chevronboks chevron--ned"
+            />
+          </button>
+        </div>
+        <a
+          className="c20"
+          download={true}
+          href="/dialog/10108000398/sg838exr/print"
+        >
+          <p
+            className="typo-normal"
+          >
+            Skriv ut
+          </p>
+        </a>
+      </div>
+      <section
+        className="c21"
+      >
+        <div
+          className="c22"
+        >
+          <div
+            className="alertstripe alertstripe--info"
+          >
+            <span
+              aria-label="info"
+              className="alertstripe__ikon"
+            >
+              <svg
+                focusable="false"
+                height="1.5em"
+                kind="info-sirkel-fyll"
+                viewBox="0 0 24 24"
+                width="1.5em"
+              >
+                <g
+                  fill="none"
+                >
+                  <path
+                    d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                    fill="#669DB4"
+                  />
+                  <path
+                    d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+                    fill="#FFF"
+                  />
+                </g>
+              </svg>
+            </span>
+            <div
+              className="typo-normal alertstripe__tekst"
+            >
+              Tråden er allerede journalført
+            </div>
+          </div>
+          <button
+            className="knapp knapp--hoved"
+            disabled={false}
+            onClick={[Function]}
+            type="submit"
+          >
+            Lukk
+          </button>
+        </div>
+      </section>
+      <div
+        className="c23"
+      >
+        <form
+          onSubmit={[Function]}
+        >
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Tema
+            </label>
+            <div
+              className="selectContainer input--fullbredde"
+            >
+              <select
+                className="skjemaelement__input"
+                disabled={false}
+                id="Helt tilfeldig ID"
+                onChange={[Function]}
+              >
+                <option
+                  value=""
+                >
+                  Velg tema
+                </option>
+                <option
+                  value="AGR"
+                >
+                  Ajourhold - Grunnopplysninger
+                </option>
+                <option
+                  value="AAP"
+                >
+                  Arbeidsavklaringspenger
+                </option>
+              </select>
+            </div>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Gjelder
+            </label>
+            <div
+              className="selectContainer input--fullbredde"
+            >
+              <select
+                className="skjemaelement__input"
+                disabled={false}
+                id="Helt tilfeldig ID"
+                onChange={[Function]}
+              >
+                <option
+                  value=""
+                >
+                  Ingen tema valgt
+                </option>
+              </select>
+            </div>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Type oppgave
+            </label>
+            <div
+              className="selectContainer input--fullbredde"
+            >
+              <select
+                className="skjemaelement__input"
+                disabled={false}
+                id="Helt tilfeldig ID"
+                onChange={[Function]}
+              >
+                <option
+                  value=""
+                >
+                  Ingen tema valgt
+                </option>
+              </select>
+            </div>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+          <div
+            aria-expanded={false}
+            aria-haspopup="listbox"
+            aria-labelledby="downshift-0-label"
+            aria-owns={null}
+            className="c24"
+            role="combobox"
+          >
+            <div
+              className="c25"
+            >
+              <div
+                className="skjemaelement"
+              >
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="downshift-0-input"
+                >
+                  Velg enhet
+                </label>
+                <input
+                  aria-activedescendant={null}
+                  aria-autocomplete="list"
+                  aria-controls={null}
+                  aria-label="Laster data"
+                  aria-labelledby="downshift-0-label"
+                  autoComplete="off"
+                  className="skjemaelement__input input--fullbredde"
+                  id="downshift-0-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="text"
+                  value=""
+                />
+                <div
+                  aria-live="assertive"
+                  role="alert"
+                />
+              </div>
+              <svg
+                aria-label="Laster innhold"
+                className="spinner c26 spinner--s"
+                focusable="false"
+                height={32}
+                kind="spinner"
+                preserveAspectRatio="xMidYMid"
+                viewBox="0 0 50 50"
+                width={32}
+              >
+                <title>
+                  Venter...
+                </title>
+                <circle
+                  cx="25"
+                  cy="25"
+                  fill="none"
+                  r="20"
+                  stroke="#bdbab7"
+                  strokeWidth="5"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <circle
+                  cx="25"
+                  cy="25"
+                  fill="none"
+                  r="20"
+                  stroke="#7f756c"
+                  strokeDasharray="50 155"
+                  strokeLinecap="round"
+                  strokeWidth="5"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            aria-expanded={false}
+            aria-haspopup="listbox"
+            aria-labelledby="downshift-1-label"
+            aria-owns={null}
+            className="c24"
+            role="combobox"
+          >
+            <div
+              className="c25"
+            >
+              <div
+                className="skjemaelement"
+              >
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="downshift-1-input"
+                >
+                  Velg ansatt
+                </label>
+                <input
+                  aria-activedescendant={null}
+                  aria-autocomplete="list"
+                  aria-controls={null}
+                  aria-label="Laster data"
+                  aria-labelledby="downshift-1-label"
+                  autoComplete="off"
+                  className="skjemaelement__input input--fullbredde"
+                  id="downshift-1-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  type="text"
+                  value=""
+                />
+                <div
+                  aria-live="assertive"
+                  role="alert"
+                />
+              </div>
+              <svg
+                aria-label="Laster innhold"
+                className="spinner c26 spinner--s"
+                focusable="false"
+                height={32}
+                kind="spinner"
+                preserveAspectRatio="xMidYMid"
+                viewBox="0 0 50 50"
+                width={32}
+              >
+                <title>
+                  Venter...
+                </title>
+                <circle
+                  cx="25"
+                  cy="25"
+                  fill="none"
+                  r="20"
+                  stroke="#bdbab7"
+                  strokeWidth="5"
+                  xmlns="http://www.w3.org/2000/svg"
+                />
+                <circle
+                  cx="25"
+                  cy="25"
+                  fill="none"
+                  r="20"
+                  stroke="#7f756c"
+                  strokeDasharray="50 155"
+                  strokeLinecap="round"
+                  strokeWidth="5"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            className="inputPanelGruppe"
+          >
+            <fieldset
+              className="skjema__fieldset"
+            >
+              <legend
+                className="skjema__legend"
+              >
+                Prioritet
+              </legend>
+              <div
+                className="inputPanelGruppe__inner"
+              >
+                <label
+                  className="inputPanel radioPanel"
+                  htmlFor="Helt tilfeldig ID"
+                >
+                  <input
+                    aria-checked={false}
+                    checked={false}
+                    className="inputPanel__field"
+                    id="Helt tilfeldig ID"
+                    name="Prioritet"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value="HOY"
+                  />
+                  <span
+                    className="inputPanel__label"
+                  >
+                    Høy
+                  </span>
+                </label>
+                <label
+                  className="inputPanel radioPanel inputPanel--checked"
+                  htmlFor="Helt tilfeldig ID"
+                >
+                  <input
+                    aria-checked={true}
+                    checked={true}
+                    className="inputPanel__field"
+                    id="Helt tilfeldig ID"
+                    name="Prioritet"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value="NORM"
+                  />
+                  <span
+                    className="inputPanel__label"
+                  >
+                    Normal
+                  </span>
+                </label>
+                <label
+                  className="inputPanel radioPanel"
+                  htmlFor="Helt tilfeldig ID"
+                >
+                  <input
+                    aria-checked={false}
+                    checked={false}
+                    className="inputPanel__field"
+                    id="Helt tilfeldig ID"
+                    name="Prioritet"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    type="radio"
+                    value="LAV"
+                  />
+                  <span
+                    className="inputPanel__label"
+                  >
+                    Lav
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+          <div
+            className="skjemaelement textarea__container"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Beskrivelse
+            </label>
+            <div
+              className="textarea--medMeta__wrapper"
+            >
+              <textarea
+                className="skjemaelement__input textarea--medMeta"
+                id="Helt tilfeldig ID"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "height": "30px",
+                  }
+                }
+                type="text"
+                value=""
+              />
+              <p
+                className="textarea--medMeta__teller"
+              >
+                <span
+                  aria-live="polite"
+                  className="teller-tekst"
+                >
+                  Du har 2000 tegn igjen
+                </span>
+              </p>
+            </div>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+            <div
+              aria-hidden="true"
+              className="textareamirror"
+            />
+          </div>
+          <div
+            className="c27"
+          >
+            <button
+              className="knapp knapp--hoved"
+              disabled={false}
+              type="submit"
+            >
+              Send
+            </button>
+            <button
+              className="c18"
+              onClick={[Function]}
+              type="button"
+            >
+              Avbryt
+            </button>
+          </div>
+        </form>
+        <div
+          aria-live="polite"
+          className="c28"
+        />
+      </div>
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="inputPanelGruppe"
+        >
+          <fieldset
+            className="skjema__fieldset"
+          >
+            <legend
+              className="skjema__legend"
+            >
+              
+            </legend>
+            <div
+              className="inputPanelGruppe__inner"
+            >
+              <label
+                className="inputPanel radioPanel inputPanel--disabled"
+                htmlFor="Helt tilfeldig ID"
+              >
+                <input
+                  aria-checked={false}
+                  checked={false}
+                  className="inputPanel__field"
+                  disabled={true}
+                  id="Helt tilfeldig ID"
+                  name="merk"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  type="radio"
+                  value="FEILSENDT"
+                />
+                <span
+                  className="inputPanel__label"
+                >
+                  Merk som feilsendt
+                </span>
+              </label>
+              <label
+                className="inputPanel radioPanel inputPanel--disabled"
+                htmlFor="Helt tilfeldig ID"
+              >
+                <input
+                  aria-checked={false}
+                  checked={false}
+                  className="inputPanel__field"
+                  disabled={true}
+                  id="Helt tilfeldig ID"
+                  name="merk"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  type="radio"
+                  value="BISYS"
+                />
+                <span
+                  className="inputPanel__label"
+                >
+                  Kopiert inn i Bisys
+                </span>
+              </label>
+              <label
+                className="inputPanel radioPanel inputPanel--disabled"
+                htmlFor="Helt tilfeldig ID"
+              >
+                <input
+                  aria-checked={false}
+                  checked={false}
+                  className="inputPanel__field"
+                  disabled={true}
+                  id="Helt tilfeldig ID"
+                  name="merk"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  type="radio"
+                  value="KONTORSPERRET"
+                />
+                <span
+                  className="inputPanel__label"
+                >
+                  Kontorsperret
+                </span>
+              </label>
+              <label
+                className="inputPanel radioPanel inputPanel--disabled"
+                htmlFor="Helt tilfeldig ID"
+              >
+                <input
+                  aria-checked={false}
+                  checked={false}
+                  className="inputPanel__field"
+                  disabled={true}
+                  id="Helt tilfeldig ID"
+                  name="merk"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  type="radio"
+                  value="AVSLUTT"
+                />
+                <span
+                  className="inputPanel__label"
+                >
+                  Avslutt uten å svare bruker
+                </span>
+              </label>
+              <label
+                className="inputPanel radioPanel"
+                htmlFor="Helt tilfeldig ID"
+              >
+                <input
+                  aria-checked={false}
+                  checked={false}
+                  className="inputPanel__field"
+                  disabled={false}
+                  id="Helt tilfeldig ID"
+                  name="merk"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  type="radio"
+                  value="SLETT"
+                />
+                <span
+                  className="inputPanel__label"
+                >
+                  Merk for sletting
+                </span>
+              </label>
+            </div>
+          </fieldset>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+        <div
+          className="skjemaelement skjemaelement--horisontal"
+        >
+          <input
+            checked={true}
+            className="skjemaelement__input checkboks"
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Opprett oppgave
+          </label>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+        </div>
+        <div
+          className="c23"
+        >
+          <form
+            onSubmit={[Function]}
+          >
+            <div
+              className="skjemaelement"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Tema
+              </label>
+              <div
+                className="selectContainer input--fullbredde"
+              >
+                <select
+                  className="skjemaelement__input"
+                  disabled={false}
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                >
+                  <option
+                    value=""
+                  >
+                    Velg tema
+                  </option>
+                  <option
+                    value="AGR"
+                  >
+                    Ajourhold - Grunnopplysninger
+                  </option>
+                  <option
+                    value="AAP"
+                  >
+                    Arbeidsavklaringspenger
+                  </option>
+                </select>
+              </div>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+            <div
+              className="skjemaelement"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Gjelder
+              </label>
+              <div
+                className="selectContainer input--fullbredde"
+              >
+                <select
+                  className="skjemaelement__input"
+                  disabled={false}
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                >
+                  <option
+                    value=""
+                  >
+                    Ingen tema valgt
+                  </option>
+                </select>
+              </div>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+            <div
+              className="skjemaelement"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Type oppgave
+              </label>
+              <div
+                className="selectContainer input--fullbredde"
+              >
+                <select
+                  className="skjemaelement__input"
+                  disabled={false}
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                >
+                  <option
+                    value=""
+                  >
+                    Ingen tema valgt
+                  </option>
+                </select>
+              </div>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+            <div
+              aria-expanded={false}
+              aria-haspopup="listbox"
+              aria-labelledby="downshift-2-label"
+              aria-owns={null}
+              className="c24"
+              role="combobox"
+            >
+              <div
+                className="c25"
+              >
+                <div
+                  className="skjemaelement"
+                >
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="downshift-2-input"
+                  >
+                    Velg enhet
+                  </label>
+                  <input
+                    aria-activedescendant={null}
+                    aria-autocomplete="list"
+                    aria-controls={null}
+                    aria-label="Laster data"
+                    aria-labelledby="downshift-2-label"
+                    autoComplete="off"
+                    className="skjemaelement__input input--fullbredde"
+                    id="downshift-2-input"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="text"
+                    value=""
+                  />
+                  <div
+                    aria-live="assertive"
+                    role="alert"
+                  />
+                </div>
+                <svg
+                  aria-label="Laster innhold"
+                  className="spinner c26 spinner--s"
+                  focusable="false"
+                  height={32}
+                  kind="spinner"
+                  preserveAspectRatio="xMidYMid"
+                  viewBox="0 0 50 50"
+                  width={32}
+                >
+                  <title>
+                    Venter...
+                  </title>
+                  <circle
+                    cx="25"
+                    cy="25"
+                    fill="none"
+                    r="20"
+                    stroke="#bdbab7"
+                    strokeWidth="5"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                  <circle
+                    cx="25"
+                    cy="25"
+                    fill="none"
+                    r="20"
+                    stroke="#7f756c"
+                    strokeDasharray="50 155"
+                    strokeLinecap="round"
+                    strokeWidth="5"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              aria-expanded={false}
+              aria-haspopup="listbox"
+              aria-labelledby="downshift-3-label"
+              aria-owns={null}
+              className="c24"
+              role="combobox"
+            >
+              <div
+                className="c25"
+              >
+                <div
+                  className="skjemaelement"
+                >
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="downshift-3-input"
+                  >
+                    Velg ansatt
+                  </label>
+                  <input
+                    aria-activedescendant={null}
+                    aria-autocomplete="list"
+                    aria-controls={null}
+                    aria-label="Laster data"
+                    aria-labelledby="downshift-3-label"
+                    autoComplete="off"
+                    className="skjemaelement__input input--fullbredde"
+                    id="downshift-3-input"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    type="text"
+                    value=""
+                  />
+                  <div
+                    aria-live="assertive"
+                    role="alert"
+                  />
+                </div>
+                <svg
+                  aria-label="Laster innhold"
+                  className="spinner c26 spinner--s"
+                  focusable="false"
+                  height={32}
+                  kind="spinner"
+                  preserveAspectRatio="xMidYMid"
+                  viewBox="0 0 50 50"
+                  width={32}
+                >
+                  <title>
+                    Venter...
+                  </title>
+                  <circle
+                    cx="25"
+                    cy="25"
+                    fill="none"
+                    r="20"
+                    stroke="#bdbab7"
+                    strokeWidth="5"
+                    xmlns="http://www.w3.org/2000/svg"
+                  />
+                  <circle
+                    cx="25"
+                    cy="25"
+                    fill="none"
+                    r="20"
+                    stroke="#7f756c"
+                    strokeDasharray="50 155"
+                    strokeLinecap="round"
+                    strokeWidth="5"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div
+              className="inputPanelGruppe"
+            >
+              <fieldset
+                className="skjema__fieldset"
+              >
+                <legend
+                  className="skjema__legend"
+                >
+                  Prioritet
+                </legend>
+                <div
+                  className="inputPanelGruppe__inner"
+                >
+                  <label
+                    className="inputPanel radioPanel"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    <input
+                      aria-checked={false}
+                      checked={false}
+                      className="inputPanel__field"
+                      id="Helt tilfeldig ID"
+                      name="Prioritet"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      type="radio"
+                      value="HOY"
+                    />
+                    <span
+                      className="inputPanel__label"
+                    >
+                      Høy
+                    </span>
+                  </label>
+                  <label
+                    className="inputPanel radioPanel inputPanel--checked"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    <input
+                      aria-checked={true}
+                      checked={true}
+                      className="inputPanel__field"
+                      id="Helt tilfeldig ID"
+                      name="Prioritet"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      type="radio"
+                      value="NORM"
+                    />
+                    <span
+                      className="inputPanel__label"
+                    >
+                      Normal
+                    </span>
+                  </label>
+                  <label
+                    className="inputPanel radioPanel"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    <input
+                      aria-checked={false}
+                      checked={false}
+                      className="inputPanel__field"
+                      id="Helt tilfeldig ID"
+                      name="Prioritet"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      type="radio"
+                      value="LAV"
+                    />
+                    <span
+                      className="inputPanel__label"
+                    >
+                      Lav
+                    </span>
+                  </label>
+                </div>
+              </fieldset>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+            <div
+              className="skjemaelement textarea__container"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Beskrivelse
+              </label>
+              <div
+                className="textarea--medMeta__wrapper"
+              >
+                <textarea
+                  className="skjemaelement__input textarea--medMeta"
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "height": "30px",
+                    }
+                  }
+                  type="text"
+                  value=""
+                />
+                <p
+                  className="textarea--medMeta__teller"
+                >
+                  <span
+                    aria-live="polite"
+                    className="teller-tekst"
+                  >
+                    Du har 2000 tegn igjen
+                  </span>
+                </p>
+              </div>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+              <div
+                aria-hidden="true"
+                className="textareamirror"
+              />
+            </div>
+            <div
+              className="c27"
+            >
+              <button
+                className="knapp knapp--hoved"
+                disabled={false}
+                type="submit"
+              >
+                Send
+              </button>
+              <button
+                className="c18"
+                onClick={[Function]}
+                type="button"
+              >
+                Avbryt
+              </button>
+            </div>
+          </form>
+          <div
+            aria-live="polite"
+            className="c28"
+          />
+        </div>
+        <div
+          className="c29"
+        >
+          <button
+            className="knapp knapp--hoved"
+            disabled={false}
+            type="submit"
+          >
+            Merk
+          </button>
+          <button
+            className="c18"
+            onClick={[Function]}
+            type="button"
+          >
+            Lukk
+          </button>
+        </div>
+      </form>
+    </div>
+    <section
+      aria-label="Meldinger for valgt tråd"
+      className="c30"
+    >
+      <div
+        className="alertstripe alertstripe--info"
+      >
+        <span
+          aria-label="info"
+          className="alertstripe__ikon"
+        >
+          <svg
+            focusable="false"
+            height="1.5em"
+            kind="info-sirkel-fyll"
+            viewBox="0 0 24 24"
+            width="1.5em"
+          >
+            <g
+              fill="none"
+            >
+              <path
+                d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                fill="#669DB4"
+              />
+              <path
+                d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+                fill="#FFF"
+              />
+            </g>
+          </svg>
+        </span>
+        <div
+          className="typo-normal alertstripe__tekst"
+        >
+          Ferdigstilt uten svar av 
+          Ukjent saksbehandler
+        </div>
+      </div>
+      <div>
+        <div
+          className="snakkeboble_ikoner"
+        >
+          <div
+            className="snakkeboble snakkeboble--hoyre"
+          >
+            <i
+              className="nav-ikon"
+            />
+            <div
+              className="snakkeboble__snakkeboble-pil-container"
+            >
+              <i
+                className="snakkeboble__snakkebole-pil"
+              />
+            </div>
+            <div
+              className="panel snakkeboble-panel"
+            >
+              <div
+                className="snakkeboble-panel__tekst"
+              >
+                <div
+                  className="c31"
+                >
+                  <div
+                    className=""
+                  >
+                    <div
+                      className="c32"
+                    >
+                      <div
+                        className="tekstomrade c33"
+                      >
+                        Delsvar - Arbeid
+                      </div>
+                      <div
+                        className="etikett etikett--info"
+                      >
+                        <span
+                          className="typo-normal"
+                        >
+                          Delsvar
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      className="tekstomrade"
+                    >
+                      13.08.2019 00:00
+                    </div>
+                    <div
+                      className="c34"
+                    >
+                      <span
+                        className="c35"
+                      >
+                        Skrevet av:
+                      </span>
+                      <div
+                        className="tekstomrade"
+                      >
+                        Kristoffer Fredriksen (xy70r8)
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="tekstomrade"
+                  >
+                    Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                  </div>
+                  <div
+                    className="ekspanderbartPanel c36 ekspanderbartPanel--lukket"
+                  >
+                    <button
+                      aria-expanded={false}
+                      className="ekspanderbartPanel__hode"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      type="button"
+                    >
+                      <div
+                        className="ekspanderbartPanel__flex-wrapper"
+                      >
+                        <p
+                          className="typo-etikett-liten c37"
+                        >
+                          Meldingen er journalført
+                        </p>
+                        <span
+                          className="ekspanderbartPanel__indikator"
+                        />
+                      </div>
+                    </button>
+                    <article
+                      className="ekspanderbartPanel__innhold"
+                    >
+                      Journalført av Jenny Berg (p0jh0d) 30.07.2019 på tema undefined med saksid undefined
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="snakkeboble_ikoner"
+        >
+          <div
+            className="snakkeboble snakkeboble--venstre"
+          >
+            <i
+              className="bruker-ikon"
+            />
+            <div
+              className="snakkeboble__snakkeboble-pil-container"
+            >
+              <i
+                className="snakkeboble__snakkebole-pil"
+              />
+            </div>
+            <div
+              className="panel snakkeboble-panel"
+            >
+              <div
+                className="snakkeboble-panel__tekst"
+              >
+                <div
+                  className="c31"
+                >
+                  <div
+                    className=""
+                  >
+                    <div
+                      className="c32"
+                    >
+                      <div
+                        className="tekstomrade c33"
+                      >
+                        Spørsmål fra bruker - Arbeid
+                      </div>
+                    </div>
+                    <div
+                      className="tekstomrade"
+                    >
+                      10.08.2019 00:00
+                    </div>
+                  </div>
+                  <div
+                    className="tekstomrade"
+                  >
+                    Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+                  </div>
+                  <div
+                    className="ekspanderbartPanel c36 ekspanderbartPanel--lukket"
+                  >
+                    <button
+                      aria-expanded={false}
+                      className="ekspanderbartPanel__hode"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      type="button"
+                    >
+                      <div
+                        className="ekspanderbartPanel__flex-wrapper"
+                      >
+                        <p
+                          className="typo-etikett-liten c37"
+                        >
+                          Meldingen er journalført
+                        </p>
+                        <span
+                          className="ekspanderbartPanel__indikator"
+                        />
+                      </div>
+                    </button>
+                    <article
+                      className="ekspanderbartPanel__innhold"
+                    >
+                      Journalført av Emil Nguyen (ly4pps) 21.07.2019 på tema undefined med saksid undefined
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="snakkeboble_ikoner"
+        >
+          <div
+            className="snakkeboble snakkeboble--venstre"
+          >
+            <i
+              className="bruker-ikon"
+            />
+            <div
+              className="snakkeboble__snakkeboble-pil-container"
+            >
+              <i
+                className="snakkeboble__snakkebole-pil"
+              />
+            </div>
+            <div
+              className="panel snakkeboble-panel"
+            >
+              <div
+                className="snakkeboble-panel__tekst"
+              >
+                <div
+                  className="c31"
+                >
+                  <div
+                    className=""
+                  >
+                    <div
+                      className="c32"
+                    >
+                      <div
+                        className="tekstomrade c33"
+                      >
+                        Spørsmål fra bruker - Arbeid
+                      </div>
+                    </div>
+                    <div
+                      className="tekstomrade"
+                    >
+                      06.08.2019 00:00
+                    </div>
+                  </div>
+                  <div
+                    className="tekstomrade"
+                  >
+                    Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+                  </div>
+                  <div
+                    className="ekspanderbartPanel c36 ekspanderbartPanel--lukket"
+                  >
+                    <button
+                      aria-expanded={false}
+                      className="ekspanderbartPanel__hode"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      type="button"
+                    >
+                      <div
+                        className="ekspanderbartPanel__flex-wrapper"
+                      >
+                        <p
+                          className="typo-etikett-liten c37"
+                        >
+                          Meldingen er journalført
+                        </p>
+                        <span
+                          className="ekspanderbartPanel__indikator"
+                        />
+                      </div>
+                    </button>
+                    <article
+                      className="ekspanderbartPanel__innhold"
+                    >
+                      Journalført av Victoria Andresen (3t55yt) 12.08.2019 på tema undefined med saksid undefined
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="snakkeboble_ikoner"
+        >
+          <div
+            className="snakkeboble snakkeboble--hoyre"
+          >
+            <i
+              className="nav-ikon"
+            />
+            <div
+              className="snakkeboble__snakkeboble-pil-container"
+            >
+              <i
+                className="snakkeboble__snakkebole-pil"
+              />
+            </div>
+            <div
+              className="panel snakkeboble-panel"
+            >
+              <div
+                className="snakkeboble-panel__tekst"
+              >
+                <div
+                  className="c31"
+                >
+                  <div
+                    className=""
+                  >
+                    <div
+                      className="c32"
+                    >
+                      <div
+                        className="tekstomrade c33"
+                      >
+                        Samtalereferat oppmøte - Arbeid
+                      </div>
+                      <div
+                        className="etikett etikett--suksess"
+                      >
+                        <span
+                          className="typo-normal"
+                        >
+                          Lest
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      className="tekstomrade"
+                    >
+                      30.07.2019 00:00
+                    </div>
+                    <div
+                      className="c34"
+                    >
+                      <span
+                        className="c35"
+                      >
+                        Skrevet av:
+                      </span>
+                      <div
+                        className="tekstomrade"
+                      >
+                        Sander Hansen (nzxo4q)
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="tekstomrade"
+                  >
+                    Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+                  </div>
+                  <div
+                    className="ekspanderbartPanel c36 ekspanderbartPanel--lukket"
+                  >
+                    <button
+                      aria-expanded={false}
+                      className="ekspanderbartPanel__hode"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      type="button"
+                    >
+                      <div
+                        className="ekspanderbartPanel__flex-wrapper"
+                      >
+                        <p
+                          className="typo-etikett-liten c37"
+                        >
+                          Meldingen er journalført
+                        </p>
+                        <span
+                          className="ekspanderbartPanel__indikator"
+                        />
+                      </div>
+                    </button>
+                    <article
+                      className="ekspanderbartPanel__innhold"
+                    >
+                      Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på tema undefined med saksid undefined
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </article>
 `;

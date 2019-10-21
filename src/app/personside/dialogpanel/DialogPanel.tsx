@@ -16,8 +16,8 @@ const DialogPanelWrapper = styled.article`
 function DialogPanel(props: RouteComponentProps) {
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
     const tildelteOppgaver = useTildelteOppgaver();
-
     const slåOppOppgave = useVisTraadTilknyttetPlukketOppgave(props, dialogpanelTraad);
+
     if (slåOppOppgave.pending) {
         return slåOppOppgave.placeholder;
     }

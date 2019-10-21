@@ -12,9 +12,8 @@ import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer
 import { useAppState, useOnMount } from '../../../../utils/customHooks';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import SakstemaListe from './sakstemaliste/SakstemaListe';
-import { SakerDyplenkeRouteComponentProps } from '../dyplenker';
 import { withRouter } from 'react-router';
-import { useSyncSaksoversiktMedUrl } from './useInitializeSaksoversikt';
+import { useValgtSakstema } from './useValgtSakstema';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
 export const saksoversiktMediaTreshold = '65rem';
@@ -41,16 +40,15 @@ const SaksoversiktArticle = styled.article`
     position: relative;
 `;
 
-function SaksoversiktContainer(props: SakerDyplenkeRouteComponentProps) {
+function SaksoversiktContainer() {
     const dispatch = useDispatch();
     const skjulDokumentOgVisSaksoversikt = () => dispatch(settVisDokument(false));
     const visDokument = useAppState(state => state.saksoversikt.visDokument);
+    const valgtSakstema = useValgtSakstema();
 
     useOnMount(() => {
         skjulDokumentOgVisSaksoversikt();
     });
-
-    const valgtSakstema = useSyncSaksoversiktMedUrl(props);
 
     if (visDokument) {
         return <DokumentOgVedlegg />;

@@ -18,6 +18,7 @@ import { useOnMount } from '../utils/customHooks';
 import PersonsokContainer from './personsok/Personsok';
 import { detect } from 'detect-browser';
 import { useState } from 'react';
+import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
 
 if (mockEnabled) {
     setupMock();
@@ -34,6 +35,7 @@ function Personoveriskt() {
         const browser = detect();
         const os = browser && browser.os;
         setIsMac(os ? os.toLowerCase().includes('mac') : undefined);
+        settJobberIkkeMedSpørsmålOgSvar();
     });
 
     return (
