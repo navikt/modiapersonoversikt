@@ -1,6 +1,7 @@
 import { getSistePeriodeForPleiepengerettighet } from '../../app/personside/infotabs/ytelser/pleiepenger/pleiepengerUtils';
 import moment from 'moment';
 import { backendDatoformat } from '../../mock/utils/mock-utils';
+import { UnikYtelseKey } from '../../app/personside/infotabs/dyplenker';
 
 export interface PleiepengerResponse {
     pleiepenger: Pleiepengerettighet[] | null;
@@ -57,6 +58,6 @@ export function getPleiepengerIdDato(pleiepengerettighet: Pleiepengerettighet) {
         : moment().format(backendDatoformat);
 }
 
-export function getUnikPleiepengerKey(pleiepengerettighet: Pleiepengerettighet) {
+export function getUnikPleiepengerKey(pleiepengerettighet: Pleiepengerettighet): UnikYtelseKey {
     return 'pleiepenger' + getPleiepengerIdDato(pleiepengerettighet);
 }

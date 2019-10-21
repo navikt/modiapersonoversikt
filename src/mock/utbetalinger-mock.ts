@@ -45,7 +45,7 @@ function getUtbetalinger(fødselsnummer: string) {
 }
 
 function randomDato(seededFaker: Faker.FakerStatic) {
-    return moment(seededFaker.date.past(5))
+    return moment(seededFaker.date.past(2))
         .startOf('day')
         .format(backendDatoformat);
 }
