@@ -60,6 +60,7 @@ const EtikettStyling = styled.div`
 `;
 
 const ContentStyle = styled.div`
+    /* IE11-fix*/
     flex-grow: 1;
     width: 0px;
 `;
