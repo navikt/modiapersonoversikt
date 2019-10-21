@@ -27,6 +27,9 @@ export function erMonolog(traad: Traad) {
 }
 
 export function meldingstittel(melding: Melding) {
+    if (melding.temagruppe === Temagruppe.Null) {
+        return meldingstypeTekst(melding.meldingstype);
+    }
     return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe)}`;
 }
 
