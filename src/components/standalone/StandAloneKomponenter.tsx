@@ -10,7 +10,6 @@ import UtbetalingsLamell from './UtbetalingsLamell';
 import { RouteComponentProps } from 'react-router';
 import PleiepengerLamell from './Pleiepenger/PleiepengerLamell';
 import ForeldrepengerLamell from './Foreldrepenger/ForeldrepengerLamell';
-import HentOppgaveKnappStandalone from './HentOppgaveKnapp';
 import SaksoversiktMicroFrontend from '../../app/personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
 import theme from '../../styles/personOversiktTheme';
 import { moss } from '../../mock/person/moss';
@@ -41,7 +40,6 @@ enum Komponenter {
     Brukerprofil,
     Utbetalinger,
     Pleiepenger,
-    HentOppgaveKnapp,
     Foreldrepenger,
     Sykepenger,
     Varsler,
@@ -98,8 +96,6 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             );
         case Komponenter.Foreldrepenger:
             return <ForeldrepengerLamell fødselsnummer={props.fnr} />;
-        case Komponenter.HentOppgaveKnapp:
-            return <HentOppgaveKnappStandalone />;
         case Komponenter.Visittkort:
             return <VisittkortStandAlone fødselsnummer={props.fnr} />;
         case Komponenter.Oppfølging:
