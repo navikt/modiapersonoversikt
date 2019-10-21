@@ -8,24 +8,15 @@ import FortsettDialogContainer from './fortsettDialog/FortsettDialogContainer';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { RouteComponentProps, withRouter } from 'react-router';
 import useVisTraadTilknyttetPlukketOppgave from './fortsettDialog/useVisTraadTilknyttetPlukketOppgave';
-import { useEffect, useState } from 'react';
 
 const DialogPanelWrapper = styled.article`
     flex-grow: 1;
 `;
 
-enum DialogPanelStatus {
-    SendNyMelding,
-    FortsettDialog
-}
 function DialogPanel(props: RouteComponentProps) {
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
     const tildelteOppgaver = useTildelteOppgaver();
-    const [dialogPanelStatus, setDialogPanelStatus] = useState<DialogPanelStatus>(DialogPanelStatus.SendNyMelding);
     const slåOppOppgave = useVisTraadTilknyttetPlukketOppgave(props, dialogpanelTraad);
-    useEffect(() => {
-        setDialogPanelStatus(dialogpanelTraad ? DialogPanelStatus.FortsettDialog : DialogPanelStatus.SendNyMelding);
-    }, [dialogpanelTraad, setDialogPanelStatus]);
 
     if (slåOppOppgave.pending) {
         return slåOppOppgave.placeholder;
@@ -39,7 +30,7 @@ function DialogPanel(props: RouteComponentProps) {
         <ErrorBoundary boundaryName="Dialogpanel">
             <DialogPanelWrapper role="region" aria-label="Dialogpanel">
                 <Undertittel className="sr-only">Dialogpanel</Undertittel>
-                {dialogpanelTraad && dialogPanelStatus === DialogPanelStatus.FortsettDialog ? (
+                {dialogpanelTraad ? (
                     <FortsettDialogContainer
                         traad={dialogpanelTraad}
                         tilknyttetOppgave={tilknyttetOppgave}
