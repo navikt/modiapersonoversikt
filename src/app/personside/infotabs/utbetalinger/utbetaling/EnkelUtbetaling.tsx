@@ -18,13 +18,12 @@ import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
 import { datoVerbose } from '../../../../../utils/dateUtils';
-import { withRouter } from 'react-router';
-import { erValgtIDyplenke, UtbetalingDyplenkeRouteComponentProps } from '../../dyplenker';
 import { utbetalingerTest } from '../../dyplenkeTest/utils';
 
 interface OwnProps {
     utbetaling: UtbetalingInterface;
     ytelse: Ytelse;
+    valgt: boolean;
 }
 
 interface DispatchProps {
@@ -37,7 +36,7 @@ interface StateProps {
     visDetaljer: boolean;
 }
 
-type Props = DispatchProps & OwnProps & StateProps & UtbetalingDyplenkeRouteComponentProps;
+type Props = DispatchProps & OwnProps & StateProps;
 
 const UtbetalingStyle = styled.li`
     cursor: pointer;
@@ -76,7 +75,7 @@ class EnkelUtbetaling extends React.PureComponent<Props> {
     }
 
     componentDidMount() {
-        if (erValgtIDyplenke.utbetaling(this.props.utbetaling, this.props)) {
+        if (this.props.valgt) {
             this.utbetalingRef.current && this.utbetalingRef.current.focus();
         }
     }
@@ -182,9 +181,7 @@ function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
     };
 }
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(EnkelUtbetaling)
-);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(EnkelUtbetaling);

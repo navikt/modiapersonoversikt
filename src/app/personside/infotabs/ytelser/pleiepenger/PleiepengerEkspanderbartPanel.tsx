@@ -7,14 +7,14 @@ import {
     Pleiepengerettighet
 } from '../../../../../models/ytelse/pleiepenger';
 import { formaterDato } from '../../../../../utils/stringFormatting';
-import { erValgtIDyplenke, YtelserDyplenkeRouteComponentProps } from '../../dyplenker';
-import { withRouter } from 'react-router';
+import { useInfotabsDyplenker } from '../../dyplenker';
 
-interface Props extends YtelserDyplenkeRouteComponentProps {
+interface Props {
     pleiepenger: Pleiepengerettighet | null;
 }
 
-function PleiepengerEkspanderbartpanel({ pleiepenger, ...rest }: Props) {
+function PleiepengerEkspanderbartpanel({ pleiepenger }: Props) {
+    const dyplenker = useInfotabsDyplenker();
     if (pleiepenger === null) {
         return null;
     }
@@ -24,11 +24,11 @@ function PleiepengerEkspanderbartpanel({ pleiepenger, ...rest }: Props) {
         'Barnets f.nr: ' + pleiepenger.barnet
     ];
 
-    const valtIDyplenke = erValgtIDyplenke.ytelser(getUnikPleiepengerKey(pleiepenger), rest);
+    const erValgtIUrl = dyplenker.ytelser.erValgt(getUnikPleiepengerKey(pleiepenger));
 
     return (
         <EkspanderbartYtelserPanel
-            defaultApen={valtIDyplenke}
+            defaultApen={erValgtIUrl}
             tittel="Pleiepenger sykt barn"
             tittelTillegsInfo={tittelTillegsInfo}
         >
@@ -37,4 +37,4 @@ function PleiepengerEkspanderbartpanel({ pleiepenger, ...rest }: Props) {
     );
 }
 
-export default withRouter(PleiepengerEkspanderbartpanel);
+export default PleiepengerEkspanderbartpanel;

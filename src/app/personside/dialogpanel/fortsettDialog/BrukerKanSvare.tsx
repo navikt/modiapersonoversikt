@@ -4,7 +4,7 @@ import DialogpanelVelgSak from '../sendMelding/DialogpanelVelgSak';
 import styled from 'styled-components';
 import { FortsettDialogValidator } from './validatorer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { FortsettDialogState } from './FortsettDialogContainer';
+import { FortsettDialogState } from './FortsettDialogTypes';
 
 interface Props {
     formState: FortsettDialogState;

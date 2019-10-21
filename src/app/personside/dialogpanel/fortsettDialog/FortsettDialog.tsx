@@ -20,9 +20,8 @@ import BrukerKanSvare from './BrukerKanSvare';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { FortsettDialogValidator } from './validatorer';
-import { FortsettDialogState } from './FortsettDialogContainer';
+import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';
 import { erDelvisBesvart, erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { isFailedPosting } from '../../../../rest/utils/postResource';
 import { temagruppeTekst, TemaPlukkbare } from '../../../../models/Temagrupper';
 
 const StyledArticle = styled.article`
@@ -48,13 +47,10 @@ interface Props {
     updateState: (change: Partial<FortsettDialogState>) => void;
     traad: Traad;
     oppgave?: Oppgave;
-    senderMelding: boolean;
+    fortsettDialogPanelState: FortsettDialogPanelState;
 }
-function Feilmelding() {
-    const sendSvarResource = useRestResource(resources => resources.sendSvar);
-    const sendDelsvarResource = useRestResource(resources => resources.sendDelsvar);
-
-    if (isFailedPosting(sendDelsvarResource) || isFailedPosting(sendSvarResource)) {
+function Feilmelding(props: { status: DialogPanelStatus }) {
+    if (props.status === DialogPanelStatus.ERROR) {
         return <DialogpanelFeilmelding />;
     }
     return null;
@@ -119,8 +115,11 @@ function FortsettDialog(props: Props) {
                         />
                     </UnmountClosed>
                 </Margin>
-                <Feilmelding />
-                <SubmitKnapp htmlType="submit" spinner={props.senderMelding}>
+                <Feilmelding status={props.fortsettDialogPanelState.type} />
+                <SubmitKnapp
+                    htmlType="submit"
+                    spinner={props.fortsettDialogPanelState.type === DialogPanelStatus.POSTING}
+                >
                     {erDelsvar
                         ? `Skriv delsvar og legg tilbake på ${
                               state.temagruppe ? temagruppeTekst(state.temagruppe).toLowerCase() : 'tema'

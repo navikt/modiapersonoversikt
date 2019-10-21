@@ -19,7 +19,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import Oppgaveliste from './Oppgaveliste';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import theme from '../../../../styles/personOversiktTheme';
-import { isFailedPosting } from '../../../../rest/utils/postResource';
+import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import { Temagruppe, TemaSamtalereferat } from '../../../../models/Temagrupper';
 
 export enum OppgavelisteValg {
@@ -69,13 +69,11 @@ interface Props {
     state: SendNyMeldingState;
     updateState: (change: Partial<SendNyMeldingState>) => void;
     formErEndret: boolean;
-    senderMelding: boolean;
+    sendNyMeldingPanelState: SendNyMeldingPanelState;
 }
 
-function Feilmelding() {
-    const postReferatResource = useRestResource(resources => resources.sendReferat);
-    const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
-    if (isFailedPosting(postReferatResource) || isFailedPosting(postSpørsmålResource)) {
+function Feilmelding(props: { sendNyMeldingPanelState: SendNyMeldingStatus }) {
+    if (props.sendNyMeldingPanelState === SendNyMeldingStatus.ERROR) {
         return <DialogpanelFeilmelding />;
     }
     return null;
@@ -131,9 +129,13 @@ function SendNyMelding(props: Props) {
                             : undefined
                     }
                 />
-                <Feilmelding />
+                <Feilmelding sendNyMeldingPanelState={props.sendNyMeldingPanelState.type} />
                 <KnappWrapper>
-                    <KnappBase type="hoved" spinner={props.senderMelding} htmlType="submit">
+                    <KnappBase
+                        type="hoved"
+                        spinner={props.sendNyMeldingPanelState.type === SendNyMeldingStatus.POSTING}
+                        htmlType="submit"
+                    >
                         Del med {navn}
                     </KnappBase>
                     {props.formErEndret && (

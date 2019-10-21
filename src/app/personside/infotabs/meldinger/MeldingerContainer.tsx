@@ -10,19 +10,21 @@ import { hasData } from '../../../../rest/utils/restResource';
 import { huskForrigeValgtTraad } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
 import { useAppState, useRestResource } from '../../../../utils/customHooks';
-import { MeldingerDyplenkeRouteComponentProps, useInfotabsDyplenker, useValgtTraadIUrl } from '../dyplenker';
-import { withRouter } from 'react-router';
+import { useInfotabsDyplenker } from '../dyplenker';
+import { useHistory, withRouter } from 'react-router';
 import TraadVisning from './traadvisning/TraadVisning';
 import Verktoylinje from './traadvisning/verktoylinje/Verktoylinje';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { useSokEtterMeldinger } from './utils/meldingerUtils';
+import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 
 interface TraadVisningWrapperProps {
     valgtTraad?: Traad;
     sokeord: string;
     traaderEtterSok: Traad[];
 }
+
 const meldingerMediaTreshold = pxToRem(1000);
 
 const MeldingerArticleStyle = styled.article`
@@ -45,6 +47,10 @@ function TraadVisningWrapper(props: TraadVisningWrapperProps) {
     if (props.traaderEtterSok.length === 0) {
         return <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>;
     }
+    if (!props.valgtTraad) {
+        return <AlertStripeInfo>Ingen melding valgt</AlertStripeInfo>;
+    }
+
     return (
         <>
             <Verktoylinje valgtTraad={props.valgtTraad} />
@@ -53,34 +59,44 @@ function TraadVisningWrapper(props: TraadVisningWrapperProps) {
     );
 }
 
-function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
+function useHuskValgtTraad() {
     const dispatch = useDispatch();
+    const valgtTraad = useValgtTraadIUrl();
     const forrigeValgteTraad = useAppState(state => state.meldinger.forrigeValgteTraad);
-    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
-    const dyplenker = useInfotabsDyplenker();
-    const traadIUrl = useValgtTraadIUrl(props);
-    const [sokeord, setSokeord] = useState('');
-    const traaderEtterSok = useSokEtterMeldinger(hasData(traaderResource) ? traaderResource.data : [], sokeord);
-
-    useEffect(
-        function visForsteTreffITraadvisning() {
-            if (traadIUrl && traaderEtterSok.length > 0 && !traaderEtterSok.includes(traadIUrl)) {
-                props.history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
-            }
-        },
-        [traadIUrl, traaderEtterSok, props.history, dyplenker.meldinger]
-    );
 
     useEffect(() => {
-        if (!traadIUrl && hasData(traaderResource)) {
-            if (traaderResource.data.length === 0) {
-                return;
-            }
-            props.history.push(dyplenker.meldinger.link(forrigeValgteTraad || traaderResource.data[0]));
-        } else if (traadIUrl !== forrigeValgteTraad && !!traadIUrl) {
-            dispatch(huskForrigeValgtTraad(traadIUrl));
+        valgtTraad && dispatch(huskForrigeValgtTraad(valgtTraad));
+    }, [dispatch, valgtTraad]);
+
+    return forrigeValgteTraad;
+}
+
+function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[]) {
+    const dyplenker = useInfotabsDyplenker();
+    const valgtTraad = useValgtTraadIUrl();
+    const history = useHistory();
+
+    useEffect(() => {
+        const valgtTaadErISøkeresultat = valgtTraad && traaderEtterSok.includes(valgtTraad);
+        if (traaderFørSøk.length === traaderEtterSok.length || valgtTaadErISøkeresultat) {
+            return;
         }
-    }, [forrigeValgteTraad, traadIUrl, traaderResource, dispatch, props.history, dyplenker.meldinger]);
+        if (traaderEtterSok.length > 0) {
+            history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
+        }
+    }, [valgtTraad, traaderFørSøk, traaderEtterSok, history, dyplenker.meldinger]);
+}
+
+function MeldingerContainer() {
+    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const valgtTraad = useValgtTraadIUrl();
+    const [sokeord, setSokeord] = useState('');
+    const traaderFørSøk = hasData(traaderResource) ? traaderResource.data : [];
+    const traaderEtterSok = useSokEtterMeldinger(traaderFørSøk, sokeord);
+    useSyncSøkMedVisning(traaderFørSøk, traaderEtterSok);
+    const forrigeValgteTraad = useHuskValgtTraad();
+
+    const traadSomSkalVises = valgtTraad || forrigeValgteTraad || traaderEtterSok[0] || undefined;
 
     return (
         <RestResourceConsumer<Traad[]>
@@ -98,14 +114,14 @@ function MeldingerContainer(props: MeldingerDyplenkeRouteComponentProps) {
                                 sokeord={sokeord}
                                 setSokeord={setSokeord}
                                 traader={data}
-                                valgtTraad={traadIUrl}
+                                valgtTraad={traadSomSkalVises}
                             />
                         </ScrollBar>
                         <ScrollBar>
                             <TraadVisningWrapper
                                 traaderEtterSok={traaderEtterSok}
                                 sokeord={sokeord}
-                                valgtTraad={traadIUrl}
+                                valgtTraad={traadSomSkalVises}
                             />
                         </ScrollBar>
                     </MeldingerArticleStyle>
