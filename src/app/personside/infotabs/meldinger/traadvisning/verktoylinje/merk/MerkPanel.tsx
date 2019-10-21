@@ -32,6 +32,7 @@ import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { loggError } from '../../../../../../../utils/frontendLogger';
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
+import { useRestResource } from '../../../../../../../utils/customHooks';
 
 interface Props {
     lukkPanel: () => void;
@@ -113,7 +114,7 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
-    const traaderSelector = useSelector((state: AppState) => state.restResources.tråderOgMeldinger);
+    const traaderSelector = useRestResource(resources => resources.tråderOgMeldinger);
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [submitting, setSubmitting] = useState(false);

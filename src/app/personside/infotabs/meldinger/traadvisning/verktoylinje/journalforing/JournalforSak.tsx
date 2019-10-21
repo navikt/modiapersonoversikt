@@ -12,7 +12,7 @@ import { post } from '../../../../../../../api/api';
 import { loggError } from '../../../../../../../utils/frontendLogger';
 import { useDispatch, useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
-import { AppState } from '../../../../../../../redux/reducers';
+import { useRestResource } from '../../../../../../../utils/customHooks';
 
 export interface Props {
     sak: JournalforingsSak;
@@ -45,7 +45,7 @@ const SuksessStyling = styled.div`
 
 export function JournalforSak(props: Props) {
     const dispatch = useDispatch();
-    const traaderSelector = useSelector((state: AppState) => state.restResources.tråderOgMeldinger);
+    const traaderSelector = useRestResource(resources => resources.tråderOgMeldinger);
     const { sak, tilbake, traad, lukkPanel } = props;
     const { traadId } = traad;
     const kategori = sakKategori(sak);
