@@ -4,7 +4,6 @@ import reducers from '../../redux/reducers';
 import thunkMiddleware from 'redux-thunk';
 import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
-import ErrorBoundary from '../ErrorBoundary';
 import { Provider } from 'react-redux';
 import SaksoversiktContainer from '../../app/personside/infotabs/saksoversikt/SaksoversiktContainer';
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
@@ -14,6 +13,7 @@ import FetchFeatureToggles from '../../app/PersonOppslagHandler/FetchFeatureTogg
 import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 import { MemoryRouter, Route } from 'react-router';
 import { useInfotabsDyplenker } from '../../app/personside/infotabs/dyplenker';
+import ErrorBoundary from '../ErrorBoundary';
 
 interface Props {
     fødselsnummer: string;
@@ -46,7 +46,7 @@ function Routing() {
 
 function SaksoversiktLamell(props: Props) {
     return (
-        <ErrorBoundary boundaryName="Saksoversikt">
+        <ErrorBoundary boundaryName="SaksoversiktLamell">
             <Provider store={store}>
                 <Styles>
                     <SetFnrIRedux fødselsnummer={props.fødselsnummer} />

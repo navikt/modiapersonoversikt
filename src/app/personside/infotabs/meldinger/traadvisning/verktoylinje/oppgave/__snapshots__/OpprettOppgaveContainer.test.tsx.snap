@@ -481,7 +481,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         disabled={false}
         type="submit"
       >
-        Send
+        Opprett oppgave
       </button>
       <button
         className="c5"

@@ -36,7 +36,12 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
 }
 
 export function getMockTraad(): Traad {
-    const temagruppe = navfaker.random.arrayElement([Temagruppe.Arbeid, Temagruppe.Pensjon, Temagruppe.Uføretrygd]);
+    const temagruppe = navfaker.random.arrayElement([
+        Temagruppe.Arbeid,
+        Temagruppe.Pensjon,
+        Temagruppe.Uføretrygd,
+        Temagruppe.Null
+    ]);
     const meldinger = Array(navfaker.random.integer(5, 1))
         .fill(null)
         .map(() => getMelding(temagruppe));

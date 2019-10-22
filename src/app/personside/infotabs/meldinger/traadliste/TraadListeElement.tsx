@@ -1,20 +1,21 @@
 import * as React from 'react';
+import { ReactNode } from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { Traad } from '../../../../../models/meldinger/meldinger';
+import { Melding, Traad } from '../../../../../models/meldinger/meldinger';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import styled from 'styled-components';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { erDelvisBesvart, erMonolog, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
 import Meldingsikon from '../utils/Meldingsikon';
-import { EtikettFokus, EtikettInfo, EtikettSuksess } from 'nav-frontend-etiketter';
+import { EtikettAdvarsel, EtikettFokus, EtikettInfo, EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState, useOnMount } from '../../../../../utils/customHooks';
 import { UnmountClosed } from 'react-collapse';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { meldingerTest } from '../../dyplenkeTest/utils';
-import { ReactNode } from 'react';
 import { delAvStringMedDots } from '../../../../../utils/string-utils';
+import { Temagruppe } from '../../../../../models/Temagrupper';
 
 interface Props {
     traad: Traad;
@@ -59,6 +60,12 @@ const EtikettStyling = styled.div`
     margin-top: 0.2rem;
 `;
 
+const ContentStyle = styled.div`
+    /* IE11-fix*/
+    flex-grow: 1;
+    width: 0px;
+`;
+
 function TraadListeElement(props: Props) {
     const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
     const sisteMelding = nyesteMelding(props.traad);
@@ -90,7 +97,7 @@ function TraadListeElement(props: Props) {
                         erMonolog={erMonolog(props.traad)}
                         antallMeldinger={props.traad.meldinger.length}
                     />
-                    <div>
+                    <ContentStyle>
                         <UUcustomOrder>
                             <Element className="order-second">{tittel}</Element>
                             <Normaltekst className="order-first">{datoTekst}</Normaltekst>
@@ -102,8 +109,9 @@ function TraadListeElement(props: Props) {
                             </UnmountClosed>
                             {erDelvisBesvart(props.traad) && <EtikettInfo>Delvis besvart</EtikettInfo>}
                             <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
+                            <SlettetEtikett melding={sisteMelding} />
                         </EtikettStyling>
-                    </div>
+                    </ContentStyle>
                 </PanelStyle>
             </VisMerKnapp>
         </ListElementStyle>
@@ -115,6 +123,14 @@ function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
 
     if (tildelteOppgaver.paaBruker.map(oppgave => oppgave.henvendelseid).includes(traadId)) {
         return <EtikettSuksess>Tildelt meg</EtikettSuksess>;
+    }
+
+    return null;
+}
+
+function SlettetEtikett({ melding }: { melding: Melding }) {
+    if (melding.temagruppe === Temagruppe.Null) {
+        return <EtikettAdvarsel>Slettet</EtikettAdvarsel>;
     }
 
     return null;
