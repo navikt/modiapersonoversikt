@@ -47,7 +47,6 @@ import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
 import {
-    SendReferatRequest,
     Traad,
     OpprettHenvendelseRequest,
     OpprettHenvendelseResponse,
@@ -55,7 +54,6 @@ import {
     SlaaSammenResponse
 } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
-import sendReferat from './sendReferat';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
@@ -101,7 +99,6 @@ export interface RestEndepunkter {
     tråderOgMeldinger: RestResource<Traad[]>;
     oppgaveGsakTema: RestResource<GsakTema[]>;
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
-    sendReferat: PostResource<SendReferatRequest>;
     opprettHenvendelse: PostResource<OpprettHenvendelseRequest, OpprettHenvendelseResponse>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
     slaaSammen: PostResource<SlaaSammenRequest, SlaaSammenResponse>;
@@ -139,7 +136,6 @@ export default combineResettableReducers<RestEndepunkter>(
         brukersVarsler: varselReducer,
         tråderOgMeldinger: meldingerReducer,
         oppgaveGsakTema: oppgaveGsakTemaReducer,
-        sendReferat: sendReferat,
         opprettHenvendelse: opprettHenvendelse,
         opprettOppgave: opprettOppgave,
         personsok: personsok,

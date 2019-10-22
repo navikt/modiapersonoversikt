@@ -4,7 +4,7 @@ import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
 import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
-import Preview from './Hurtigreferat/Preview';
+import Preview from './Preview';
 import { Meldingstype } from '../../../models/meldinger/meldinger';
 import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
 import { useDispatch } from 'react-redux';
