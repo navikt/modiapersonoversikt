@@ -3,7 +3,8 @@ import Select from 'nav-frontend-skjema/lib/select';
 import { OppgavelisteValg } from './SendNyMelding';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { getSaksbehandlerEnhet } from '../../../../utils/loggInfo/saksbehandlersEnhetInfo';
+import { useRestResource } from '../../../../utils/customHooks';
+import { hasData } from '../../../../rest/utils/restResource';
 
 interface Props {
     oppgaveliste: OppgavelisteValg;
@@ -18,7 +19,8 @@ const StyledSelect = styled(Select)`
 `;
 
 function Oppgaveliste(props: Props) {
-    const enhet = getSaksbehandlerEnhet();
+    const saksbehandlerInfo = useRestResource(resources => resources.innloggetSaksbehandler);
+    const enhet = hasData(saksbehandlerInfo) ? saksbehandlerInfo.data.enhetNavn : 'enheten';
     return (
         <StyledSelect
             label="Oppgaveliste"
