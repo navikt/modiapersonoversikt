@@ -42,7 +42,9 @@ const SuksessStyling = styled.div`
         margin-top: 1rem;
     }
 `;
-
+const ErrorStyling = styled.div`
+    width: 60%;
+`;
 export function JournalforSak(props: Props) {
     const dispatch = useDispatch();
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
@@ -64,7 +66,7 @@ export function JournalforSak(props: Props) {
             },
             error => {
                 setSubmitting(false);
-                setError('Kunne ikke gjennomføre journalføring.');
+                setError('Kunne ikke gjennomføre journalføring');
                 loggError(error, `Kunne ikke gjennomføre journalføring.`, { traadId, saksId: sak.saksId });
             }
         );
@@ -90,7 +92,7 @@ export function JournalforSak(props: Props) {
                 rows={[[sak.saksId, sak.opprettetDatoFormatert, sak.fagsystemNavn]]}
                 className="blokk-m"
             />
-            {error && <AlertStripeFeil className="blokk-xs">{error}</AlertStripeFeil>}
+            <ErrorStyling>{error && <AlertStripeFeil className="blokk-xs">{error}</AlertStripeFeil>}</ErrorStyling>
             <Hovedknapp className="blokk-xs" onClick={journalfor} spinner={submitting} autoDisableVedSpinner>
                 Journalfør
             </Hovedknapp>
