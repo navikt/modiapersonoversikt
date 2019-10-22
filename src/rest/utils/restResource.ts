@@ -10,7 +10,7 @@ import {
 import { Action } from 'redux';
 import { AppState } from '../../redux/reducers';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
-import { loggError, loggEvent, loggInfo } from '../../utils/frontendLogger';
+import { loggEvent, loggInfo } from '../../utils/frontendLogger';
 
 export interface ActionTypes {
     STARTING: string;
@@ -195,7 +195,7 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
                 };
             case actionNames.FAILED:
                 loggEvent('Fetch-Failed', resourceNavn);
-                loggError(new Error('Fetch-Failed in ' + resourceNavn), (action as FetchError).error);
+                /* Logging av feilen blir håndtert i handterFeil() i ./utils.ts, der har vi bedre tilgang på relevant informasjon */
                 return {
                     ...state,
                     status: STATUS.FAILED,
