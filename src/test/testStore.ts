@@ -58,8 +58,7 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.oppgaveGsakTema.actions.setData(getMockGsakTema()));
     testStore.dispatch(
         restResources.featureToggles.actions.setData({
-            [FeatureToggles.SaksoversiktNyttVindu]: true,
-            [FeatureToggles.Hurtigreferat]: true
+            [FeatureToggles.SaksoversiktNyttVindu]: true
         })
     );
     testStore.dispatch(restResources.tråderOgMeldinger.actions.setData([statiskTraadMock]));

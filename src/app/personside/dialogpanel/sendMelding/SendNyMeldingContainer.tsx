@@ -1,25 +1,14 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
-import HurtigReferatContainer from '../Hurtigreferat/HurtigreferatContainer';
 import SendNyMelding, { SendNyMeldingState, OppgavelisteValg } from './SendNyMelding';
-import styled from 'styled-components';
-import { theme } from '../../../../styles/personOversiktTheme';
 import { NyMeldingValidator } from './validatorer';
 import { Meldingstype, SendReferatRequest, SendSpørsmålRequest } from '../../../../models/meldinger/meldinger';
 import { useFødselsnummer, useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { ReferatSendtKvittering, SporsmalSendtKvittering } from './SendNyMeldingKvittering';
-import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
-
-const HurtigreferatWrapper = styled.div`
-    background-color: white;
-    border-bottom: ${theme.border.skilleSvak};
-    padding: 1rem ${theme.margin.layout};
-`;
 
 const initialState: SendNyMeldingState = {
     tekst: '',
@@ -110,11 +99,6 @@ function SendNyMeldingContainer() {
 
     return (
         <>
-            <IfFeatureToggleOn toggleID={FeatureToggles.Hurtigreferat}>
-                <HurtigreferatWrapper>
-                    <HurtigReferatContainer />
-                </HurtigreferatWrapper>
-            </IfFeatureToggleOn>
             <SendNyMelding
                 updateState={updateState}
                 state={state}
