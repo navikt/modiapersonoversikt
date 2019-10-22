@@ -11,6 +11,7 @@ const PreviewStyle = styled.article`
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: ${theme.borderRadius.layout};
+    overflow-wrap: break-word;
     > * {
         margin-bottom: 0.5rem;
     }
