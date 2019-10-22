@@ -13,12 +13,12 @@
     border-radius: 44px;
     background: none;
     border: none;
-    font-size: 1.2em;
+    font-size: 1em;
     padding: 0;
     margin-right: 1.5em;
 
     span {
-        color: black;
+        color: @navMorkGra;
         width: 40px;
         height: 40px;
         border-radius: 40px;
@@ -29,9 +29,11 @@
         padding-top: 9px;
     }
     &:hover span {
-        background-color: blue;
+        background-color: @navBlaDarken40;
         outline: none;
+        color: white;
     }
+
     &:focus {
         outline: none;
         box-shadow: 0 0 0 3px @fokusFarge;
