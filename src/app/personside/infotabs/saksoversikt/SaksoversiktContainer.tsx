@@ -14,6 +14,7 @@ import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import SakstemaListe from './sakstemaliste/SakstemaListe';
 import { useHistory, withRouter } from 'react-router';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
+import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { useAgregerteSaker } from './utils/saksoversiktUtils';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useHuskValgtSakstema, useValgtSakstemaIUrl } from './useValgtSakstema';
@@ -74,29 +75,31 @@ function SaksoversiktContainer() {
         return <DokumentOgVedlegg />;
     } else {
         return (
-            <SaksoversiktArticle aria-label="Brukerens saker">
-                {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />}
-                <RestResourceConsumer<SakstemaResponse>
-                    getResource={restResources => restResources.sakstema}
-                    returnOnPending={BigCenteredLazySpinner}
-                >
-                    {sakstema => {
-                        if (sakstema.resultat.length === 0) {
-                            return <AlertStripeInfo>Brukeren har ingen saker</AlertStripeInfo>;
-                        }
-                        return (
-                            <>
-                                <ScrollBar>
-                                    <SakstemaListe valgtSakstema={valgtSakstema} />
-                                </ScrollBar>
-                                <ScrollBar>
-                                    <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
-                                </ScrollBar>
-                            </>
-                        );
-                    }}
-                </RestResourceConsumer>
-            </SaksoversiktArticle>
+            <ErrorBoundary boundaryName="Saksoversikt">
+                <SaksoversiktArticle aria-label="Brukerens saker">
+                    {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />}
+                    <RestResourceConsumer<SakstemaResponse>
+                        getResource={restResources => restResources.sakstema}
+                        returnOnPending={BigCenteredLazySpinner}
+                    >
+                        {sakstema => {
+                            if (sakstema.resultat.length === 0) {
+                                return <AlertStripeInfo>Brukeren har ingen saker</AlertStripeInfo>;
+                            }
+                            return (
+                                <>
+                                    <ScrollBar>
+                                        <SakstemaListe valgtSakstema={valgtSakstema} />
+                                    </ScrollBar>
+                                    <ScrollBar>
+                                        <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
+                                    </ScrollBar>
+                                </>
+                            );
+                        }}
+                    </RestResourceConsumer>
+                </SaksoversiktArticle>
+            </ErrorBoundary>
         );
     }
 }

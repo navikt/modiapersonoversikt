@@ -17,7 +17,7 @@ import { AppState } from '../../../../../../../redux/reducers';
 import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
-import VisPostResultat, { Resultat } from '../utils/VisPostResultat';
+import { Resultat } from '../utils/VisPostResultat';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { loggError } from '../../../../../../../utils/frontendLogger';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
@@ -146,15 +146,13 @@ function OppgaveSkjema(props: OppgaveProps) {
                 .then(() => {
                     settResultat(Resultat.VELLYKKET);
                     setSubmitting(false);
+                    props.onSuccessCallback && props.onSuccessCallback();
                 })
                 .catch((error: Error) => {
                     settResultat(Resultat.FEIL);
                     setSubmitting(false);
                     loggError(error, 'Klarte ikke opprette oppgave');
                 });
-            if (props.kontorsperreFunksjon) {
-                props.kontorsperreFunksjon();
-            }
         }
     };
 
@@ -182,20 +180,21 @@ function OppgaveSkjema(props: OppgaveProps) {
         );
     }
 
+    const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
+
     return (
         <SkjemaStyle>
             <form onSubmit={submitHandler}>
                 <OppgaveSkjemaElementer {...props} form={formState} />
                 <KnappStyle>
                     <Hovedknapp htmlType="submit" spinner={submitting} autoDisableVedSpinner>
-                        Send
+                        {knappetekst}
                     </Hovedknapp>
                     <LenkeKnapp type="button" onClick={props.lukkPanel}>
                         Avbryt
                     </LenkeKnapp>
                 </KnappStyle>
             </form>
-            <VisPostResultat resultat={resultat} />
             <ValideringsfeilStyle aria-live={'polite'}>{valideringsfeil}</ValideringsfeilStyle>
         </SkjemaStyle>
     );

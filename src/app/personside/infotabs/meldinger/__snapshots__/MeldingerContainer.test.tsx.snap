@@ -30,7 +30,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   flex-grow: 1;
 }
 
-.c13 {
+.c14 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -42,12 +42,12 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c13:focus {
+.c14:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c13:focus::after {
+.c14:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -83,7 +83,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   padding: .8rem;
 }
 
-.c11 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -93,13 +93,13 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c11 .order-first {
+.c12 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c11 .order-second {
+.c12 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
@@ -133,7 +133,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c12 {
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -148,9 +148,17 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-top: 0.2rem;
 }
 
-.c12 > *:not(:last-child) {
+.c13 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
+}
+
+.c11 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  width: 0px;
 }
 
 .c2 {
@@ -315,9 +323,11 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     4
                   </p>
                 </span>
-                <div>
+                <div
+                  className="c11"
+                >
                   <div
-                    className="c11"
+                    className="c12"
                   >
                     <p
                       className="typo-element order-second"
@@ -336,7 +346,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     Dolores omnis ea voluptatem corrupt...
                   </p>
                   <div
-                    className="c12"
+                    className="c13"
                   >
                     <div
                       className="etikett etikett--fokus"
@@ -363,7 +373,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
             <button
               aria-label="Vis meldinger for Delsvar - Arbeid"
               aria-selected={false}
-              className="c13"
+              className="c14"
             >
               <i
                 className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
