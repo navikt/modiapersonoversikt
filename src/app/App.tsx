@@ -19,13 +19,14 @@ import PersonsokContainer from './personsok/Personsok';
 import { detect } from 'detect-browser';
 import { useState } from 'react';
 import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
+import { isTest } from '../utils/environment';
 
 if (mockEnabled) {
     setupMock();
 }
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
-ModalWrapper.setAppElement('#root');
+!isTest() && ModalWrapper.setAppElement('#root');
 
 function Personoveriskt() {
     const [isMac, setIsMac] = useState<undefined | boolean>(undefined);
