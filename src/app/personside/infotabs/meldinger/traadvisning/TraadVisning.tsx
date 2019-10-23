@@ -24,6 +24,9 @@ const VisningStyle = styled.section`
         margin-top: ${theme.margin.layout};
     }
 `;
+const StyledAlertStripeInfo = styled(AlertStripeInfo)`
+    width: 25%;
+`;
 
 const KnappWrapper = styled.div`
     display: flex;
@@ -72,7 +75,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     if (dialogpanelTraad === valgtTraad) {
         return (
             <KnappWrapper>
-                <AlertStripeInfo>Under arbeid</AlertStripeInfo>
+                <StyledAlertStripeInfo>Under arbeid</StyledAlertStripeInfo>
             </KnappWrapper>
         );
     }
