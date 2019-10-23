@@ -580,7 +580,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   <td
                     role="cell"
                   >
-                    illo repellendus ad iste neque maxime
+                    nostrum sunt quia mollitia impedit sint
                   </td>
                   <td
                     role="cell"
@@ -618,7 +618,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   <td
                     role="cell"
                   >
-                    nostrum sunt quia mollitia impedit sint
+                    illo repellendus ad iste neque maxime
                   </td>
                   <td
                     role="cell"
@@ -846,79 +846,79 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                         <td
                           role="cell"
                         >
+                          Avsluttet
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          Ikke spesif. aktivitetsfase
+                        </td>
+                      </tr>
+                      <tr
+                        role="row"
+                      >
+                        <td
+                          role="cell"
+                        >
+                          <div
+                            className="c15"
+                          >
+                            <h4
+                              className="second"
+                            >
+                              Ordinære dagpenger
+                            </h4>
+                            <div
+                              className="c16"
+                            >
+                              <p
+                                className="typo-etikett-liten first"
+                              >
+                                01.01.1970 - 01.01.1970
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          Avsluttet
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          Ikke spesif. aktivitetsfase
+                        </td>
+                      </tr>
+                      <tr
+                        role="row"
+                      >
+                        <td
+                          role="cell"
+                        >
+                          <div
+                            className="c15"
+                          >
+                            <h4
+                              className="second"
+                            >
+                              Ordinære dagpenger
+                            </h4>
+                            <div
+                              className="c16"
+                            >
+                              <p
+                                className="typo-etikett-liten first"
+                              >
+                                01.01.1970 - 01.01.1970
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td
+                          role="cell"
+                        >
                           Iverksatt
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          Ikke spesif. aktivitetsfase
-                        </td>
-                      </tr>
-                      <tr
-                        role="row"
-                      >
-                        <td
-                          role="cell"
-                        >
-                          <div
-                            className="c15"
-                          >
-                            <h4
-                              className="second"
-                            >
-                              Ordinære dagpenger
-                            </h4>
-                            <div
-                              className="c16"
-                            >
-                              <p
-                                className="typo-etikett-liten first"
-                              >
-                                01.01.1970 - 01.01.1970
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          Avsluttet
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          Ikke spesif. aktivitetsfase
-                        </td>
-                      </tr>
-                      <tr
-                        role="row"
-                      >
-                        <td
-                          role="cell"
-                        >
-                          <div
-                            className="c15"
-                          >
-                            <h4
-                              className="second"
-                            >
-                              Ordinære dagpenger
-                            </h4>
-                            <div
-                              className="c16"
-                            >
-                              <p
-                                className="typo-etikett-liten first"
-                              >
-                                01.01.1970 - 01.01.1970
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          Avsluttet
                         </td>
                         <td
                           role="cell"

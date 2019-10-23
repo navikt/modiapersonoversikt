@@ -197,6 +197,11 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           <li
             className="typo-normal"
           >
+            SMS
+          </li>
+          <li
+            className="typo-normal"
+          >
             EPOST
           </li>
         </ul>
@@ -216,6 +221,44 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
         aria-label="Meldinger"
         className="c8"
       >
+        <li
+          aria-label="SMS"
+          className="c9"
+        >
+          <div>
+            <p
+              className="typo-normal"
+            >
+              <span
+                className="c5"
+              >
+                SMS
+              </span>
+            </p>
+            <p
+              className="typo-normal"
+            >
+              01. jan. 1970
+            </p>
+          </div>
+          <div>
+            <p
+              className="typo-normal"
+            >
+              Meldingsinnhold
+            </p>
+            <p
+              className="typo-normal"
+            >
+              <span
+                className="c5"
+              >
+                Tlf: 
+                mottakerinfo
+              </span>
+            </p>
+          </div>
+        </li>
         <li
           aria-label="EPOST"
           className="c9"
@@ -298,11 +341,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           >
             EPOST
           </li>
-          <li
-            className="typo-normal"
-          >
-            SMS
-          </li>
         </ul>
         <button
           aria-expanded={false}
@@ -364,44 +402,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 className="c5"
               >
                 Epost: 
-                mottakerinfo
-              </span>
-            </p>
-          </div>
-        </li>
-        <li
-          aria-label="SMS"
-          className="c9"
-        >
-          <div>
-            <p
-              className="typo-normal"
-            >
-              <span
-                className="c5"
-              >
-                SMS
-              </span>
-            </p>
-            <p
-              className="typo-normal"
-            >
-              01. jan. 1970
-            </p>
-          </div>
-          <div>
-            <p
-              className="typo-normal"
-            >
-              Meldingsinnhold
-            </p>
-            <p
-              className="typo-normal"
-            >
-              <span
-                className="c5"
-              >
-                Tlf: 
                 mottakerinfo
               </span>
             </p>

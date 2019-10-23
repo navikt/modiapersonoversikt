@@ -35,45 +35,45 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
-.c15 > *:first-child {
+.c9 > *:first-child {
   background-color: #cce1f3;
   padding: 0.5rem 1.25rem;
 }
 
-.c15 ol {
+.c9 ol {
   padding: 0;
   margin: 0;
 }
 
-.c8 {
+.c13 {
   overflow: auto;
   box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
   border-radius: .25rem;
   background-color: white;
 }
 
-.c8 [role='table'] {
+.c13 [role='table'] {
   text-align: left;
   width: 100%;
 }
 
-.c8 [role='table'] thead,
-.c8 [role='table'] .thead[role='rowgroup'] {
+.c13 [role='table'] thead,
+.c13 [role='table'] .thead[role='rowgroup'] {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
   font-weight: bold;
 }
 
-.c8 [role='table'] [role='cell'],
-.c8 [role='table'] [role='columnheader'] {
+.c13 [role='table'] [role='cell'],
+.c13 [role='table'] [role='columnheader'] {
   padding: 0.7rem;
   vertical-align: middle;
 }
 
-.c8 [role='table'] [role='columnheader'] {
+.c13 [role='table'] [role='columnheader'] {
   padding-bottom: 0.7rem;
 }
 
-.c8 [role='table'] [role='row']:nth-child(even) {
+.c13 [role='table'] [role='row']:nth-child(even) {
   background-color: rgba(0,0,0,0.1);
 }
 
@@ -89,14 +89,14 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   margin-bottom: 1rem;
 }
 
-.c6 {
+.c5 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c7 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -106,31 +106,31 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   flex-wrap: wrap;
 }
 
-.c7 dt {
+.c6 dt {
   color: #645f5a;
 }
 
-.c7 dd {
+.c6 dd {
   font-weight: bold;
   margin-top: 0.3rem;
 }
 
-.c7 > div {
+.c6 > div {
   margin: 0.9375rem 0;
   padding-right: 1rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
 
-.c10 span:not(:last-child):after {
+.c8 span:not(:last-child):after {
   content: '.';
 }
 
-.c14 li:not(:first-child) {
+.c15 li:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c13 {
+.c14 {
   padding: .8rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -141,7 +141,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   flex-wrap: wrap;
 }
 
-.c13 > * {
+.c14 > * {
   -webkit-flex-basis: 40%;
   -ms-flex-preferred-size: 40%;
   flex-basis: 40%;
@@ -151,14 +151,14 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   flex-grow: 1;
 }
 
-.c20 {
+.c11 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c9 li:not(:first-child) {
+.c7 li:not(:first-child) {
   border-top: solid 0.0625rem #b7b1a9;
 }
 
@@ -174,7 +174,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   margin-bottom: 1rem;
 }
 
-.c11 {
+.c20 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
@@ -182,74 +182,12 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   white-space: nowrap;
 }
 
-.c11 > *:not(:last-child) {
+.c20 > *:not(:last-child) {
   margin-bottom: 1rem;
-}
-
-.c3 {
-  padding: .8rem;
-}
-
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c4 > * {
-  -webkit-flex-basis: 40%;
-  -ms-flex-preferred-size: 40%;
-  flex-basis: 40%;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c5 > * {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c19 {
-  padding: .8rem;
 }
 
 .c17 {
   padding: .8rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c17 > * {
-  -webkit-flex-basis: 40%;
-  -ms-flex-preferred-size: 40%;
-  flex-basis: 40%;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
 }
 
 .c18 {
@@ -257,12 +195,74 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c18 > * {
+  -webkit-flex-basis: 40%;
+  -ms-flex-preferred-size: 40%;
+  flex-basis: 40%;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
 }
 
-.c18 > * {
+.c19 > * {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c10 {
+  padding: .8rem;
+}
+
+.c3 {
+  padding: .8rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c3 > * {
+  -webkit-flex-basis: 40%;
+  -ms-flex-preferred-size: 40%;
+  flex-basis: 40%;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c4 > * {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -310,6 +310,1190 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
             <h2
               className="typo-undertittel"
             >
+              Foreldrepenger
+            </h2>
+            <p
+              className="typo-normal"
+            >
+              ID-dato: 01.01.1970
+            </p>
+            <p
+              className="typo-normal"
+            >
+              Fødselspenger
+            </p>
+          </div>
+          <span
+            className="ekspanderbartPanel__indikator"
+          />
+        </div>
+      </button>
+      <article
+        aria-label="Foreldrepenger"
+        className="ekspanderbartPanel__innhold"
+      >
+        <article>
+          <div
+            className="c3"
+          >
+            <div
+              className="c4"
+            >
+              <div
+                className="c5"
+              >
+                <h3
+                  className="typo-undertittel"
+                >
+                  Om foreldrepengeretten
+                </h3>
+                <dl
+                  className="c6"
+                >
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Foreldrepengetype
+                    </dt>
+                    <dd
+                      className="typo-normal"
+                    >
+                      Fødselspenger
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Dekningsgrad
+                    </dt>
+                    <dd
+                      className="typo-normal"
+                    >
+                      34%
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Rettighet fra dato
+                    </dt>
+                    <dd
+                      className="typo-normal"
+                    >
+                      01.01.1970
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Graderingsdager
+                    </dt>
+                    <dd
+                      className="typo-normal"
+                    >
+                      55
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Restdager
+                    </dt>
+                    <dd
+                      className="typo-normal"
+                    >
+                      41
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Maksdato
+                    </dt>
+                    <dd
+                      className="typo-normal"
+                    >
+                      —
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Arbeidskategori
+                    </dt>
+                    <dd
+                      className="typo-normal"
+                    >
+                      Arbeidstaker
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Fedrekvote til og med
+                    </dt>
+                    <dd
+                      className="typo-normal"
+                    >
+                      01.01.1970
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+              <div
+                className="c5"
+              >
+                <h3
+                  className="typo-undertittel"
+                >
+                  Om barnet
+                </h3>
+                <dl
+                  className="c6"
+                >
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Termindato
+                    </dt>
+                    <dd
+                      className="typo-normal"
+                    >
+                      01.01.1970
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Fødselsdato
+                    </dt>
+                    <dd
+                      className="typo-normal"
+                    >
+                      01.01.1970
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Annen forelder
+                    </dt>
+                    <dd
+                      className="typo-normal"
+                    >
+                      03063850003
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Antall barn
+                    </dt>
+                    <dd
+                      className="typo-normal"
+                    >
+                      5
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+            <div
+              className="c5"
+            >
+              <h3
+                className="typo-undertittel"
+              >
+                Arbeidssituasjon
+              </h3>
+              <ol
+                aria-label="Arbeidsgivere"
+                className="c7"
+              >
+                <li>
+                  <dl
+                    className="c6"
+                  >
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Arbeidsgiver
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        Bakke - Solheim
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Kontonummer
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        <span
+                          className="c8"
+                        >
+                          <span>
+                            3517
+                          </span>
+                          <span>
+                            91
+                          </span>
+                          <span>
+                            78779
+                          </span>
+                        </span>
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Inntekstsperiode
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        Månedlig
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Inntekt for perioden
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        40,062.00 NOK
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Refusjonstype
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        Ikke refusjon
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Refusjon til dato
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        01.01.1970
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Sykepenger fra og med
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        01.01.1970
+                      </dd>
+                    </div>
+                  </dl>
+                </li>
+              </ol>
+              <button
+                className="knapp knapp--hoved"
+                disabled={false}
+                onClick={[Function]}
+                type="submit"
+              >
+                Vis alle arbeidsforhold
+              </button>
+            </div>
+          </div>
+          <ol>
+            <li
+              className="c9"
+            >
+              <h3
+                className="typo-undertittel"
+              >
+                Periode 1 - 01.01.1970
+              </h3>
+              <article
+                className="c10"
+              >
+                <div
+                  className="c11"
+                >
+                  <h2
+                    className="typo-undertittel"
+                  >
+                    Om foreldrepengeperioden
+                  </h2>
+                  <dl
+                    className="c6"
+                  >
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Arbeidsprosent mor
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        58%
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Mors situasjon
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        nobis sit quo et quis
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Disponibel gradering
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        9%
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Forskyvelsesperiode
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        01.01.1970 - 01.01.1970
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Andre forskyvelsesperiode
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        01.01.1970 - 01.01.1970
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Midlertidig stans
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        2019-02-10
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Stansårsak
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        Avsluttet
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Avslått
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        Avslått
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Mødrekvote
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        —
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Rett til Mødrekvote
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        Ingen rett til mødrekvote
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Aleneomsorg Mor
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        —
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Fedrekvote
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        —
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Rett til Fedrekvote
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        Rett til fedrekvote
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Aleneomsorg Far
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        —
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+                <section
+                  className="c12"
+                >
+                  <h4
+                    className="typo-undertittel"
+                  >
+                    Utbetalinger
+                  </h4>
+                  <div
+                    className="typo-normal c13"
+                  >
+                    <table
+                      role="table"
+                    >
+                      <thead
+                        role="rowgroup"
+                      >
+                        <tr
+                          role="row"
+                        >
+                          <th
+                            role="columnheader"
+                          >
+                            Reg.dato
+                          </th>
+                          <th
+                            role="columnheader"
+                          >
+                            Type
+                          </th>
+                          <th
+                            role="columnheader"
+                          >
+                            Periode
+                          </th>
+                          <th
+                            role="columnheader"
+                          >
+                            Utb.grad
+                          </th>
+                          <th
+                            role="columnheader"
+                          >
+                            Dagsats
+                          </th>
+                          <th
+                            role="columnheader"
+                          >
+                            Bruttobeløp
+                          </th>
+                          <th
+                            role="columnheader"
+                          >
+                            Arb.giver
+                          </th>
+                          <th
+                            role="columnheader"
+                          >
+                            Org.nummer
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        role="rowgroup"
+                      >
+                        <tr
+                          role="row"
+                        >
+                          <td
+                            role="cell"
+                          >
+                            01.01.1970
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            KONTOØVERFØRING
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            01.01.1970 - 01.01.1970
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            79%
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            705.00 NOK
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            466.00 NOK
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            Vedvik - Lunde
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            1234567890
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div
+                    className="alertstripe alertstripe--info"
+                  >
+                    <span
+                      aria-label="info"
+                      className="alertstripe__ikon"
+                    >
+                      <svg
+                        focusable="false"
+                        height="1.5em"
+                        kind="info-sirkel-fyll"
+                        viewBox="0 0 24 24"
+                        width="1.5em"
+                      >
+                        <g
+                          fill="none"
+                        >
+                          <path
+                            d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                            fill="#669DB4"
+                          />
+                          <path
+                            d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+                            fill="#FFF"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                    <div
+                      className="typo-normal alertstripe__tekst"
+                    >
+                      For detaljer om utførte utbetalinger, se Utbetalingsoversikten.
+                    </div>
+                  </div>
+                </section>
+              </article>
+            </li>
+          </ol>
+        </article>
+      </article>
+    </div>
+  </div>
+  <div
+    className="c1"
+  >
+    <div
+      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
+    >
+      <button
+        aria-expanded={false}
+        className="ekspanderbartPanel__hode"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        type="button"
+      >
+        <div
+          className="ekspanderbartPanel__flex-wrapper"
+        >
+          <div
+            className="c2"
+          >
+            <h2
+              className="typo-undertittel"
+            >
+              Pleiepenger sykt barn
+            </h2>
+            <p
+              className="typo-normal"
+            >
+              ID-dato: 01.01.1970
+            </p>
+            <p
+              className="typo-normal"
+            >
+              Barnets f.nr: 08031815240
+            </p>
+          </div>
+          <span
+            className="ekspanderbartPanel__indikator"
+          />
+        </div>
+      </button>
+      <article
+        aria-label="Pleiepenger sykt barn"
+        className="ekspanderbartPanel__innhold"
+      >
+        <article>
+          <div
+            className="c14"
+          >
+            <div
+              className="c5"
+            >
+              <h3
+                className="typo-undertittel"
+              >
+                Om pleiepengeretten
+              </h3>
+              <dl
+                className="c6"
+              >
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Fra og med
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    01.01.1970
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Til og med
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    01.01.1970
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Pleiepengegrad
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    58%
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Barnet (jente)
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    08031815240
+                  </dd>
+                </div>
+                <div>
+                  <dt
+                    className="typo-normal"
+                  >
+                    Annen forelder
+                  </dt>
+                  <dd
+                    className="typo-normal"
+                  >
+                    26087625779
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            <div
+              className="c5"
+            >
+              <h3
+                className="typo-undertittel"
+              >
+                Arbeidssituasjon
+              </h3>
+              <ol
+                aria-label="Arbeidsgivere"
+                className="c15"
+              >
+                <li>
+                  <dl
+                    className="c6"
+                  >
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Arbeidsgiver
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        Ryan og Sønner
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Arbeidskategori
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        Arbeidstaker
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Inntekstsperiode
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        Månedssats
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Kontonummer
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        <span
+                          className="c8"
+                        >
+                          <span>
+                            5493
+                          </span>
+                          <span>
+                            85
+                          </span>
+                          <span>
+                            21445
+                          </span>
+                        </span>
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Refusjonstype
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        Ikke refusjon
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Inntekt for perioden
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        45,029.00 NOK
+                      </dd>
+                    </div>
+                    <div>
+                      <dt
+                        className="typo-normal"
+                      >
+                        Refusjon til dato
+                      </dt>
+                      <dd
+                        className="typo-normal"
+                      >
+                        01.01.1970
+                      </dd>
+                    </div>
+                  </dl>
+                </li>
+              </ol>
+              <button
+                className="knapp knapp--hoved"
+                disabled={false}
+                onClick={[Function]}
+                type="submit"
+              >
+                Vis alle arbeidsforhold
+              </button>
+            </div>
+          </div>
+          <ol>
+            <li
+              className="c9"
+            >
+              <h3
+                className="typo-undertittel"
+              >
+                Periode 2 - 01.01.1970
+              </h3>
+              <div
+                className="c16"
+              >
+                <h2
+                  className="typo-undertittel"
+                >
+                  Anviste utbetalinger
+                </h2>
+                <div
+                  className="typo-normal c13"
+                >
+                  <table
+                    role="table"
+                  >
+                    <thead
+                      role="rowgroup"
+                    >
+                      <tr
+                        role="row"
+                      >
+                        <th
+                          role="columnheader"
+                        >
+                          Fra og med
+                        </th>
+                        <th
+                          role="columnheader"
+                        >
+                          Til og med
+                        </th>
+                        <th
+                          role="columnheader"
+                        >
+                          Bruttobeløp
+                        </th>
+                        <th
+                          role="columnheader"
+                        >
+                          Anvist utbetaling
+                        </th>
+                        <th
+                          role="columnheader"
+                        >
+                          Dagsats
+                        </th>
+                        <th
+                          role="columnheader"
+                        >
+                          Pleiepengegrad
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      role="rowgroup"
+                    >
+                      <tr
+                        role="row"
+                      >
+                        <td
+                          role="cell"
+                        >
+                          01.01.1970
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          01.01.1970
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          69.00 NOK
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          01.01.1970
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          12.00 NOK
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          92%
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </li>
+            <li
+              className="c9"
+            >
+              <h3
+                className="typo-undertittel"
+              >
+                Periode 1 - 01.01.1970
+              </h3>
+              <div
+                className="c16"
+              >
+                <h2
+                  className="typo-undertittel"
+                >
+                  Anviste utbetalinger
+                </h2>
+                <div
+                  className="typo-normal c13"
+                >
+                  <table
+                    role="table"
+                  >
+                    <thead
+                      role="rowgroup"
+                    >
+                      <tr
+                        role="row"
+                      >
+                        <th
+                          role="columnheader"
+                        >
+                          Fra og med
+                        </th>
+                        <th
+                          role="columnheader"
+                        >
+                          Til og med
+                        </th>
+                        <th
+                          role="columnheader"
+                        >
+                          Bruttobeløp
+                        </th>
+                        <th
+                          role="columnheader"
+                        >
+                          Anvist utbetaling
+                        </th>
+                        <th
+                          role="columnheader"
+                        >
+                          Dagsats
+                        </th>
+                        <th
+                          role="columnheader"
+                        >
+                          Pleiepengegrad
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      role="rowgroup"
+                    >
+                      <tr
+                        role="row"
+                      >
+                        <td
+                          role="cell"
+                        >
+                          01.01.1970
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          01.01.1970
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          596.00 NOK
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          01.01.1970
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          27.00 NOK
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          58%
+                        </td>
+                      </tr>
+                      <tr
+                        role="row"
+                      >
+                        <td
+                          role="cell"
+                        >
+                          01.01.1970
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          01.01.1970
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          120.00 NOK
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          01.01.1970
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          5.00 NOK
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          66%
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </article>
+      </article>
+    </div>
+  </div>
+  <div
+    className="c1"
+  >
+    <div
+      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
+    >
+      <button
+        aria-expanded={false}
+        className="ekspanderbartPanel__hode"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        type="button"
+      >
+        <div
+          className="ekspanderbartPanel__flex-wrapper"
+        >
+          <div
+            className="c2"
+          >
+            <h2
+              className="typo-undertittel"
+            >
               Sykepenger
             </h2>
             <p
@@ -328,16 +1512,16 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
         className="ekspanderbartPanel__innhold"
       >
         <article
-          className="c3"
+          className="c17"
         >
           <div
-            className="c4"
+            className="c18"
           >
             <div
-              className="c5"
+              className="c19"
             >
               <div
-                className="c6"
+                className="c5"
               >
                 <h3
                   className="typo-undertittel"
@@ -345,7 +1529,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                   Sykepengetilfellet
                 </h3>
                 <dl
-                  className="c7"
+                  className="c6"
                 >
                   <div>
                     <dt
@@ -470,7 +1654,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                 </dl>
               </div>
               <div
-                className="c6"
+                className="c5"
               >
                 <h3
                   className="typo-undertittel"
@@ -478,7 +1662,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                   Sykmelding
                 </h3>
                 <dl
-                  className="c7"
+                  className="c6"
                 >
                   <div>
                     <dt
@@ -518,7 +1702,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                   </div>
                 </dl>
                 <div
-                  className="typo-normal c8"
+                  className="typo-normal c13"
                 >
                   <table
                     role="table"
@@ -564,7 +1748,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               </div>
             </div>
             <div
-              className="c6"
+              className="c5"
             >
               <h3
                 className="typo-undertittel"
@@ -572,7 +1756,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                 Arbeidssituasjon
               </h3>
               <dl
-                className="c7"
+                className="c6"
               >
                 <div>
                   <dt
@@ -601,11 +1785,11 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               </dl>
               <ol
                 aria-label="Arbeidsgivere"
-                className="c9"
+                className="c7"
               >
                 <li>
                   <dl
-                    className="c7"
+                    className="c6"
                   >
                     <div>
                       <dt
@@ -629,7 +1813,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         className="typo-normal"
                       >
                         <span
-                          className="c10"
+                          className="c8"
                         >
                           <span>
                             8786
@@ -717,7 +1901,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
             </div>
           </div>
           <section
-            className="c11"
+            className="c20"
           >
             <h4
               className="typo-undertittel"
@@ -725,7 +1909,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               Utbetalinger på vent
             </h4>
             <div
-              className="typo-normal c8"
+              className="typo-normal c13"
             >
               <table
                 role="table"
@@ -807,7 +1991,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               Utbetalinger
             </h4>
             <div
-              className="typo-normal c8"
+              className="typo-normal c13"
             >
               <table
                 role="table"
@@ -989,1190 +2173,6 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               </div>
             </div>
           </section>
-        </article>
-      </article>
-    </div>
-  </div>
-  <div
-    className="c1"
-  >
-    <div
-      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
-    >
-      <button
-        aria-expanded={false}
-        className="ekspanderbartPanel__hode"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        type="button"
-      >
-        <div
-          className="ekspanderbartPanel__flex-wrapper"
-        >
-          <div
-            className="c2"
-          >
-            <h2
-              className="typo-undertittel"
-            >
-              Pleiepenger sykt barn
-            </h2>
-            <p
-              className="typo-normal"
-            >
-              ID-dato: 01.01.1970
-            </p>
-            <p
-              className="typo-normal"
-            >
-              Barnets f.nr: 08031815240
-            </p>
-          </div>
-          <span
-            className="ekspanderbartPanel__indikator"
-          />
-        </div>
-      </button>
-      <article
-        aria-label="Pleiepenger sykt barn"
-        className="ekspanderbartPanel__innhold"
-      >
-        <article>
-          <div
-            className="c13"
-          >
-            <div
-              className="c6"
-            >
-              <h3
-                className="typo-undertittel"
-              >
-                Om pleiepengeretten
-              </h3>
-              <dl
-                className="c7"
-              >
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Fra og med
-                  </dt>
-                  <dd
-                    className="typo-normal"
-                  >
-                    01.01.1970
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Til og med
-                  </dt>
-                  <dd
-                    className="typo-normal"
-                  >
-                    01.01.1970
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Pleiepengegrad
-                  </dt>
-                  <dd
-                    className="typo-normal"
-                  >
-                    58%
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Barnet (jente)
-                  </dt>
-                  <dd
-                    className="typo-normal"
-                  >
-                    08031815240
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Annen forelder
-                  </dt>
-                  <dd
-                    className="typo-normal"
-                  >
-                    26087625779
-                  </dd>
-                </div>
-              </dl>
-            </div>
-            <div
-              className="c6"
-            >
-              <h3
-                className="typo-undertittel"
-              >
-                Arbeidssituasjon
-              </h3>
-              <ol
-                aria-label="Arbeidsgivere"
-                className="c14"
-              >
-                <li>
-                  <dl
-                    className="c7"
-                  >
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Arbeidsgiver
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        Ryan og Sønner
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Arbeidskategori
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        Arbeidstaker
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Inntekstsperiode
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        Månedssats
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Kontonummer
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        <span
-                          className="c10"
-                        >
-                          <span>
-                            5493
-                          </span>
-                          <span>
-                            85
-                          </span>
-                          <span>
-                            21445
-                          </span>
-                        </span>
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Refusjonstype
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        Ikke refusjon
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Inntekt for perioden
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        45,029.00 NOK
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Refusjon til dato
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        01.01.1970
-                      </dd>
-                    </div>
-                  </dl>
-                </li>
-              </ol>
-              <button
-                className="knapp knapp--hoved"
-                disabled={false}
-                onClick={[Function]}
-                type="submit"
-              >
-                Vis alle arbeidsforhold
-              </button>
-            </div>
-          </div>
-          <ol>
-            <li
-              className="c15"
-            >
-              <h3
-                className="typo-undertittel"
-              >
-                Periode 2 - 01.01.1970
-              </h3>
-              <div
-                className="c16"
-              >
-                <h2
-                  className="typo-undertittel"
-                >
-                  Anviste utbetalinger
-                </h2>
-                <div
-                  className="typo-normal c8"
-                >
-                  <table
-                    role="table"
-                  >
-                    <thead
-                      role="rowgroup"
-                    >
-                      <tr
-                        role="row"
-                      >
-                        <th
-                          role="columnheader"
-                        >
-                          Fra og med
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Til og med
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Bruttobeløp
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Anvist utbetaling
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Dagsats
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Pleiepengegrad
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody
-                      role="rowgroup"
-                    >
-                      <tr
-                        role="row"
-                      >
-                        <td
-                          role="cell"
-                        >
-                          01.01.1970
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          01.01.1970
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          69.00 NOK
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          01.01.1970
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          12.00 NOK
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          92%
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </li>
-            <li
-              className="c15"
-            >
-              <h3
-                className="typo-undertittel"
-              >
-                Periode 1 - 01.01.1970
-              </h3>
-              <div
-                className="c16"
-              >
-                <h2
-                  className="typo-undertittel"
-                >
-                  Anviste utbetalinger
-                </h2>
-                <div
-                  className="typo-normal c8"
-                >
-                  <table
-                    role="table"
-                  >
-                    <thead
-                      role="rowgroup"
-                    >
-                      <tr
-                        role="row"
-                      >
-                        <th
-                          role="columnheader"
-                        >
-                          Fra og med
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Til og med
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Bruttobeløp
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Anvist utbetaling
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Dagsats
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Pleiepengegrad
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody
-                      role="rowgroup"
-                    >
-                      <tr
-                        role="row"
-                      >
-                        <td
-                          role="cell"
-                        >
-                          01.01.1970
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          01.01.1970
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          596.00 NOK
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          01.01.1970
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          27.00 NOK
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          58%
-                        </td>
-                      </tr>
-                      <tr
-                        role="row"
-                      >
-                        <td
-                          role="cell"
-                        >
-                          01.01.1970
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          01.01.1970
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          120.00 NOK
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          01.01.1970
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          5.00 NOK
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          66%
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </li>
-          </ol>
-        </article>
-      </article>
-    </div>
-  </div>
-  <div
-    className="c1"
-  >
-    <div
-      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
-    >
-      <button
-        aria-expanded={false}
-        className="ekspanderbartPanel__hode"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        type="button"
-      >
-        <div
-          className="ekspanderbartPanel__flex-wrapper"
-        >
-          <div
-            className="c2"
-          >
-            <h2
-              className="typo-undertittel"
-            >
-              Foreldrepenger
-            </h2>
-            <p
-              className="typo-normal"
-            >
-              ID-dato: 01.01.1970
-            </p>
-            <p
-              className="typo-normal"
-            >
-              Fødselspenger
-            </p>
-          </div>
-          <span
-            className="ekspanderbartPanel__indikator"
-          />
-        </div>
-      </button>
-      <article
-        aria-label="Foreldrepenger"
-        className="ekspanderbartPanel__innhold"
-      >
-        <article>
-          <div
-            className="c17"
-          >
-            <div
-              className="c18"
-            >
-              <div
-                className="c6"
-              >
-                <h3
-                  className="typo-undertittel"
-                >
-                  Om foreldrepengeretten
-                </h3>
-                <dl
-                  className="c7"
-                >
-                  <div>
-                    <dt
-                      className="typo-normal"
-                    >
-                      Foreldrepengetype
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      Fødselspenger
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-normal"
-                    >
-                      Dekningsgrad
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      34%
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-normal"
-                    >
-                      Rettighet fra dato
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      01.01.1970
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-normal"
-                    >
-                      Graderingsdager
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      55
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-normal"
-                    >
-                      Restdager
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      41
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-normal"
-                    >
-                      Maksdato
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      —
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-normal"
-                    >
-                      Arbeidskategori
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      Arbeidstaker
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-normal"
-                    >
-                      Fedrekvote til og med
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      01.01.1970
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-              <div
-                className="c6"
-              >
-                <h3
-                  className="typo-undertittel"
-                >
-                  Om barnet
-                </h3>
-                <dl
-                  className="c7"
-                >
-                  <div>
-                    <dt
-                      className="typo-normal"
-                    >
-                      Termindato
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      01.01.1970
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-normal"
-                    >
-                      Fødselsdato
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      01.01.1970
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-normal"
-                    >
-                      Annen forelder
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      03063850003
-                    </dd>
-                  </div>
-                  <div>
-                    <dt
-                      className="typo-normal"
-                    >
-                      Antall barn
-                    </dt>
-                    <dd
-                      className="typo-normal"
-                    >
-                      5
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
-            <div
-              className="c6"
-            >
-              <h3
-                className="typo-undertittel"
-              >
-                Arbeidssituasjon
-              </h3>
-              <ol
-                aria-label="Arbeidsgivere"
-                className="c9"
-              >
-                <li>
-                  <dl
-                    className="c7"
-                  >
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Arbeidsgiver
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        Bakke - Solheim
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Kontonummer
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        <span
-                          className="c10"
-                        >
-                          <span>
-                            3517
-                          </span>
-                          <span>
-                            91
-                          </span>
-                          <span>
-                            78779
-                          </span>
-                        </span>
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Inntekstsperiode
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        Månedlig
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Inntekt for perioden
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        40,062.00 NOK
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Refusjonstype
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        Ikke refusjon
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Refusjon til dato
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        01.01.1970
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Sykepenger fra og med
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        01.01.1970
-                      </dd>
-                    </div>
-                  </dl>
-                </li>
-              </ol>
-              <button
-                className="knapp knapp--hoved"
-                disabled={false}
-                onClick={[Function]}
-                type="submit"
-              >
-                Vis alle arbeidsforhold
-              </button>
-            </div>
-          </div>
-          <ol>
-            <li
-              className="c15"
-            >
-              <h3
-                className="typo-undertittel"
-              >
-                Periode 1 - 01.01.1970
-              </h3>
-              <article
-                className="c19"
-              >
-                <div
-                  className="c20"
-                >
-                  <h2
-                    className="typo-undertittel"
-                  >
-                    Om foreldrepengeperioden
-                  </h2>
-                  <dl
-                    className="c7"
-                  >
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Arbeidsprosent mor
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        58%
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Mors situasjon
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        nobis sit quo et quis
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Disponibel gradering
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        9%
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Forskyvelsesperiode
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        01.01.1970 - 01.01.1970
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Andre forskyvelsesperiode
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        01.01.1970 - 01.01.1970
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Midlertidig stans
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        2019-02-10
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Stansårsak
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        Avsluttet
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Avslått
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        Avslått
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Mødrekvote
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        —
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Rett til Mødrekvote
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        Ingen rett til mødrekvote
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Aleneomsorg Mor
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        —
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Fedrekvote
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        —
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Rett til Fedrekvote
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        Rett til fedrekvote
-                      </dd>
-                    </div>
-                    <div>
-                      <dt
-                        className="typo-normal"
-                      >
-                        Aleneomsorg Far
-                      </dt>
-                      <dd
-                        className="typo-normal"
-                      >
-                        —
-                      </dd>
-                    </div>
-                  </dl>
-                </div>
-                <section
-                  className="c12"
-                >
-                  <h4
-                    className="typo-undertittel"
-                  >
-                    Utbetalinger
-                  </h4>
-                  <div
-                    className="typo-normal c8"
-                  >
-                    <table
-                      role="table"
-                    >
-                      <thead
-                        role="rowgroup"
-                      >
-                        <tr
-                          role="row"
-                        >
-                          <th
-                            role="columnheader"
-                          >
-                            Reg.dato
-                          </th>
-                          <th
-                            role="columnheader"
-                          >
-                            Type
-                          </th>
-                          <th
-                            role="columnheader"
-                          >
-                            Periode
-                          </th>
-                          <th
-                            role="columnheader"
-                          >
-                            Utb.grad
-                          </th>
-                          <th
-                            role="columnheader"
-                          >
-                            Dagsats
-                          </th>
-                          <th
-                            role="columnheader"
-                          >
-                            Bruttobeløp
-                          </th>
-                          <th
-                            role="columnheader"
-                          >
-                            Arb.giver
-                          </th>
-                          <th
-                            role="columnheader"
-                          >
-                            Org.nummer
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody
-                        role="rowgroup"
-                      >
-                        <tr
-                          role="row"
-                        >
-                          <td
-                            role="cell"
-                          >
-                            01.01.1970
-                          </td>
-                          <td
-                            role="cell"
-                          >
-                            KONTOØVERFØRING
-                          </td>
-                          <td
-                            role="cell"
-                          >
-                            01.01.1970 - 01.01.1970
-                          </td>
-                          <td
-                            role="cell"
-                          >
-                            79%
-                          </td>
-                          <td
-                            role="cell"
-                          >
-                            705.00 NOK
-                          </td>
-                          <td
-                            role="cell"
-                          >
-                            466.00 NOK
-                          </td>
-                          <td
-                            role="cell"
-                          >
-                            Vedvik - Lunde
-                          </td>
-                          <td
-                            role="cell"
-                          >
-                            1234567890
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div
-                    className="alertstripe alertstripe--info"
-                  >
-                    <span
-                      aria-label="info"
-                      className="alertstripe__ikon"
-                    >
-                      <svg
-                        focusable="false"
-                        height="1.5em"
-                        kind="info-sirkel-fyll"
-                        viewBox="0 0 24 24"
-                        width="1.5em"
-                      >
-                        <g
-                          fill="none"
-                        >
-                          <path
-                            d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                            fill="#669DB4"
-                          />
-                          <path
-                            d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-                            fill="#FFF"
-                          />
-                        </g>
-                      </svg>
-                    </span>
-                    <div
-                      className="typo-normal alertstripe__tekst"
-                    >
-                      For detaljer om utførte utbetalinger, se Utbetalingsoversikten.
-                    </div>
-                  </div>
-                </section>
-              </article>
-            </li>
-          </ol>
         </article>
       </article>
     </div>
