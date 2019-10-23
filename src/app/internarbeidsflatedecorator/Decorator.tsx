@@ -50,7 +50,7 @@ function lagConfig(
         contextholder: true,
         markup: {
             etterSokefelt:
-                '<button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk" data-apne="Åpne avansert søk" data-lukke="Lukk avansert søk"> <span> AS <span class="personsok-pil"></span> </span> </button>'
+                '<button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk" data-apne="Åpne avansert søk" data-lukke="Lukk avansert søk"> <span> A <span class="personsok-pil"></span> </span> </button>'
         }
     };
 }
