@@ -32,7 +32,14 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
         traadArray[2].traadId = MOCKED_TRAADID_3;
     }
 
-    return traadArray;
+    return traadArray.map(traad => {
+        const meldinger = traad.meldinger;
+        meldinger[0].id = traad.traadId;
+        return {
+            ...traad,
+            meldinger
+        };
+    });
 }
 
 export function getMockTraad(): Traad {
