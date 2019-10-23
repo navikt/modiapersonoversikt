@@ -2,6 +2,7 @@ import moment from 'moment';
 import 'moment/locale/nb';
 import navfaker from 'nav-faker';
 import { backendDatoformat } from '../mock/utils/mock-utils';
+import { loggError } from './frontendLogger';
 
 const DATO_FORMAT = 'DD.MM.YYYY';
 const DATO_FORMAT_MANEDSNAVN = 'DD. MMM YYYY';
@@ -111,7 +112,10 @@ export function getNewestDate<T extends string | Date>(date1: T, date2: T): T {
 export function ascendingDateComparator(a: Date | string, b: Date | string) {
     const dateA = moment(a).toDate();
     const dateB = moment(b).toDate();
-    if (+a === +b) {
+    if (!moment(a).isValid() || !moment(b).isValid()) {
+        loggError(Error('Invalid date in date comparator'));
+    }
+    if (+dateA === +dateB) {
         return 0;
     }
     return dateA > dateB ? 1 : -1;
