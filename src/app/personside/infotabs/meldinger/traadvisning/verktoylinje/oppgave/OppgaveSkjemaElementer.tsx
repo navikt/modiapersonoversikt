@@ -88,6 +88,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 onChange={(_, value) => props.form.actions.settValgtPrioritet(OppgavePrioritet[value])}
             />
             <Textarea
+                maxLength={0}
                 value={props.form.state.beskrivelse}
                 label={'Beskrivelse'}
                 onChange={e =>
