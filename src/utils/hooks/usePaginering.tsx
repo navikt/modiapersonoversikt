@@ -14,7 +14,7 @@ const getRange = (index: number, pageSize: number, list: any[]) => {
     };
 };
 
-function usePaginering<T>(list: T[], pageSize: number): PagineringsData<T> {
+function usePaginering<T>(list: T[], pageSize: number, itemLabel: string): PagineringsData<T> {
     const [currentPage, setCurrentPage] = useState(0);
 
     const numberOfPages = Math.ceil(list.length / pageSize);
@@ -31,7 +31,7 @@ function usePaginering<T>(list: T[], pageSize: number): PagineringsData<T> {
             const selected = index === currentPage;
             return (
                 <option key={index} value={index}>
-                    {selected ? 'Viser' : 'Vis'} {optionRange.fra + 1} til {optionRange.til + 1}
+                    {selected ? 'Viser' : 'Vis'} {itemLabel} {optionRange.fra + 1} til {optionRange.til + 1}
                 </option>
             );
         });
@@ -44,7 +44,7 @@ function usePaginering<T>(list: T[], pageSize: number): PagineringsData<T> {
                 {options}
             </Select>
         );
-    }, [list, pageSize, currentPage, numberOfPages]);
+    }, [list, pageSize, currentPage, numberOfPages, itemLabel]);
 
     const currentRange = useMemo(() => getRange(currentPage, pageSize, list), [list, pageSize, currentPage]);
 

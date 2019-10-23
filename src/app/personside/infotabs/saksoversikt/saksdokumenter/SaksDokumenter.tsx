@@ -19,9 +19,10 @@ import { sakerTest } from '../../dyplenkeTest/utils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListe from '../sakstemaliste/SakstemaListe';
 import { useEffect } from 'react';
+import usePaginering from '../../../../../utils/hooks/usePaginering';
 
 interface Props {
-    valgtSakstema?: Sakstema;
+    valgtSakstema: Sakstema;
     avsenderFilter: DokumentAvsenderFilter;
     erStandaloneVindu: boolean;
     oppdaterAvsenderfilter: (filter: Partial<DokumentAvsenderFilter>) => void;
@@ -162,10 +163,7 @@ function DokumentListe(props: DokumentListeProps) {
         );
     }
 
-    const dokumenterGruppert: GroupedArray<DokumentMetadata> = groupArray(
-        props.filtrerteDokumenter.sort(datoSynkende(dokumentmetadata => saksdatoSomDate(dokumentmetadata.dato))),
-        årForDokument
-    );
+    const dokumenterGruppert: GroupedArray<DokumentMetadata> = groupArray(props.filtrerteDokumenter, årForDokument);
 
     const årsgrupper = dokumenterGruppert.map((gruppe: ArrayGroup<DokumentMetadata>) => (
         <Dokumentgruppe
@@ -188,8 +186,21 @@ function DokumentListe(props: DokumentListeProps) {
     );
 }
 
+const PaginatorStyling = styled.div`
+    label {
+        ${theme.visuallyHidden};
+    }
+    .skjemaelement {
+        margin: 1rem 0 0;
+    }
+`;
+
 function SaksDokumenter(props: Props) {
     const tittelRef = React.createRef<HTMLDivElement>();
+    const filtrerteDokumenter = props.valgtSakstema.dokumentMetadata
+        .filter(metadata => hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter))
+        .sort(datoSynkende(dokumentmetadata => saksdatoSomDate(dokumentmetadata.dato)));
+    const paginering = usePaginering(filtrerteDokumenter, 50, 'journalpost');
 
     useEffect(
         function scrollToTopVedNyttSakstema() {
@@ -200,10 +211,6 @@ function SaksDokumenter(props: Props) {
         },
         [props.valgtSakstema, tittelRef]
     );
-
-    if (!props.valgtSakstema) {
-        return <AlertStripeInfo>Ingen sakstema valgt</AlertStripeInfo>;
-    }
 
     const filterCheckboxer = (
         <Form aria-label="Filter">
@@ -233,9 +240,6 @@ function SaksDokumenter(props: Props) {
     ) : (
         tittel
     );
-    const filtrerteDokumenter = props.valgtSakstema.dokumentMetadata.filter(metadata =>
-        hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter)
-    );
 
     return (
         <SaksdokumenterStyling aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
@@ -252,8 +256,9 @@ function SaksDokumenter(props: Props) {
                     <ToggleViktigAaViteKnapp valgtSakstema={props.valgtSakstema} />
                 </div>
             </InfoOgFilterPanel>
+            <PaginatorStyling>{paginering.pageSelect}</PaginatorStyling>
             <ViktigÅVite valgtSakstema={props.valgtSakstema} />
-            <DokumentListe sakstema={props.valgtSakstema} filtrerteDokumenter={filtrerteDokumenter} />
+            <DokumentListe sakstema={props.valgtSakstema} filtrerteDokumenter={paginering.currentPage} />
         </SaksdokumenterStyling>
     );
 }

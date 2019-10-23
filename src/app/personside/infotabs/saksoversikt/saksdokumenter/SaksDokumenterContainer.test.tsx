@@ -14,7 +14,7 @@ test('Viser saksdokumenter med alt innhold', () => {
 
     const container = renderer.create(
         <TestProvider customStore={store}>
-            <SaksDokumenterContainer valgtSakstema={aggregerteSakstema} />
+            {aggregerteSakstema && <SaksDokumenterContainer valgtSakstema={aggregerteSakstema} />}
         </TestProvider>
     );
 
