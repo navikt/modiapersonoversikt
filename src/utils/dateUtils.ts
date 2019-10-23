@@ -108,18 +108,19 @@ export function getNewestDate<T extends string | Date>(date1: T, date2: T): T {
     return new Date(date1) > new Date(date2) ? date1 : date2;
 }
 
-export function ascendingDateComparator(a: Date, b: Date) {
+export function ascendingDateComparator(a: Date | string, b: Date | string) {
+    const dateA = moment(a).toDate();
+    const dateB = moment(b).toDate();
     if (+a === +b) {
-        //converterer til int for å sjekke equality
         return 0;
     }
-    return a > b ? 1 : -1;
+    return dateA > dateB ? 1 : -1;
 }
 
 export function datoStigende<T>(getDate: (element: T) => Date | string) {
-    return (a: T, b: T): number => ascendingDateComparator(new Date(getDate(a)), new Date(getDate(b)));
+    return (a: T, b: T): number => ascendingDateComparator(getDate(a), getDate(b));
 }
 
 export function datoSynkende<T>(getDate: (element: T) => Date | string) {
-    return (a: T, b: T): number => -ascendingDateComparator(new Date(getDate(a)), new Date(getDate(b)));
+    return (a: T, b: T): number => -ascendingDateComparator(getDate(a), getDate(b));
 }
