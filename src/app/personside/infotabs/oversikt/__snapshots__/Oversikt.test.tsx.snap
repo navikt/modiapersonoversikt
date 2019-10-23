@@ -627,6 +627,105 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 >
                   EPOST
                 </li>
+              </ul>
+              <button
+                aria-expanded={false}
+                aria-label="Vis meldinger"
+                className="c15"
+                onClick={[Function]}
+                title="Vis meldinger"
+              >
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--ned"
+                />
+              </button>
+            </div>
+            <ol
+              aria-label="Meldinger"
+              className="c16"
+            >
+              <li
+                aria-label="EPOST"
+                className="c17"
+              >
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    <span
+                      className="c9"
+                    >
+                      EPOST
+                    </span>
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    01. jan. 1970
+                  </p>
+                </div>
+                <div>
+                  <div>
+                    <p
+                      className="typo-normal"
+                    >
+                      <span
+                        className="c9"
+                      >
+                        Epostemne
+                      </span>
+                    </p>
+                    <p
+                      className="typo-normal"
+                    >
+                      Meldingsinnhold
+                    </p>
+                  </div>
+                  <p
+                    className="typo-normal"
+                  >
+                    <span
+                      className="c9"
+                    >
+                      Epost: 
+                      mottakerinfo
+                    </span>
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </li>
+          <li
+            aria-label="Påminnelse om å sende meldekort"
+            className="c12"
+          >
+            <div
+              className="c13"
+              onClick={[Function]}
+            >
+              <p
+                className="typo-normal"
+              >
+                01.01.1970
+              </p>
+              <p
+                className="typo-normal"
+              >
+                <span
+                  className="c9"
+                >
+                  Påminnelse om å sende meldekort
+                </span>
+              </p>
+              <ul
+                aria-label="Kommunikasjonskanaler"
+                className="c14"
+              >
+                <li
+                  className="typo-normal"
+                >
+                  EPOST
+                </li>
                 <li
                   className="typo-normal"
                 >
@@ -731,105 +830,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c9"
                     >
                       Tlf: 
-                      mottakerinfo
-                    </span>
-                  </p>
-                </div>
-              </li>
-            </ol>
-          </li>
-          <li
-            aria-label="Påminnelse om å sende meldekort"
-            className="c12"
-          >
-            <div
-              className="c13"
-              onClick={[Function]}
-            >
-              <p
-                className="typo-normal"
-              >
-                01.01.1970
-              </p>
-              <p
-                className="typo-normal"
-              >
-                <span
-                  className="c9"
-                >
-                  Påminnelse om å sende meldekort
-                </span>
-              </p>
-              <ul
-                aria-label="Kommunikasjonskanaler"
-                className="c14"
-              >
-                <li
-                  className="typo-normal"
-                >
-                  EPOST
-                </li>
-              </ul>
-              <button
-                aria-expanded={false}
-                aria-label="Vis meldinger"
-                className="c15"
-                onClick={[Function]}
-                title="Vis meldinger"
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--ned"
-                />
-              </button>
-            </div>
-            <ol
-              aria-label="Meldinger"
-              className="c16"
-            >
-              <li
-                aria-label="EPOST"
-                className="c17"
-              >
-                <div>
-                  <p
-                    className="typo-normal"
-                  >
-                    <span
-                      className="c9"
-                    >
-                      EPOST
-                    </span>
-                  </p>
-                  <p
-                    className="typo-normal"
-                  >
-                    01. jan. 1970
-                  </p>
-                </div>
-                <div>
-                  <div>
-                    <p
-                      className="typo-normal"
-                    >
-                      <span
-                        className="c9"
-                      >
-                        Epostemne
-                      </span>
-                    </p>
-                    <p
-                      className="typo-normal"
-                    >
-                      Meldingsinnhold
-                    </p>
-                  </div>
-                  <p
-                    className="typo-normal"
-                  >
-                    <span
-                      className="c9"
-                    >
-                      Epost: 
                       mottakerinfo
                     </span>
                   </p>

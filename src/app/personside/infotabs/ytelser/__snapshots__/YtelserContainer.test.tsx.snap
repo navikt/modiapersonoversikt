@@ -1085,7 +1085,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                   <dd
                     className="typo-normal"
                   >
-                    66%
+                    58%
                   </dd>
                 </div>
                 <div>
@@ -1319,7 +1319,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         <td
                           role="cell"
                         >
-                          120.00 NOK
+                          69.00 NOK
                         </td>
                         <td
                           role="cell"
@@ -1329,46 +1329,12 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         <td
                           role="cell"
                         >
-                          5.00 NOK
+                          12.00 NOK
                         </td>
                         <td
                           role="cell"
                         >
-                          66%
-                        </td>
-                      </tr>
-                      <tr
-                        role="row"
-                      >
-                        <td
-                          role="cell"
-                        >
-                          01.01.1970
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          01.01.1970
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          596.00 NOK
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          01.01.1970
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          27.00 NOK
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          58%
+                          92%
                         </td>
                       </tr>
                     </tbody>
@@ -1455,7 +1421,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         <td
                           role="cell"
                         >
-                          69.00 NOK
+                          596.00 NOK
                         </td>
                         <td
                           role="cell"
@@ -1465,12 +1431,46 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         <td
                           role="cell"
                         >
-                          12.00 NOK
+                          27.00 NOK
                         </td>
                         <td
                           role="cell"
                         >
-                          92%
+                          58%
+                        </td>
+                      </tr>
+                      <tr
+                        role="row"
+                      >
+                        <td
+                          role="cell"
+                        >
+                          01.01.1970
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          01.01.1970
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          120.00 NOK
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          01.01.1970
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          5.00 NOK
+                        </td>
+                        <td
+                          role="cell"
+                        >
+                          66%
                         </td>
                       </tr>
                     </tbody>

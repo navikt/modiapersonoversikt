@@ -110,7 +110,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
         <dd
           className="typo-normal"
         >
-          66%
+          92%
         </dd>
       </div>
       <div>
@@ -164,7 +164,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
             <dd
               className="typo-normal"
             >
-              Ryan og Sønner
+              Andreassen ASA
             </dd>
           </div>
           <div>
@@ -204,13 +204,13 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
                 className="c4"
               >
                 <span>
-                  5493
+                  4113
                 </span>
                 <span>
-                  85
+                  16
                 </span>
                 <span>
-                  21445
+                  07047
                 </span>
               </span>
             </dd>
@@ -236,7 +236,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
             <dd
               className="typo-normal"
             >
-              45,029.00 NOK
+              10,856.00 NOK
             </dd>
           </div>
           <div>
@@ -400,7 +400,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
             <td
               role="cell"
             >
-              120.00 NOK
+              69.00 NOK
             </td>
             <td
               role="cell"
@@ -410,46 +410,12 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
             <td
               role="cell"
             >
-              5.00 NOK
+              12.00 NOK
             </td>
             <td
               role="cell"
             >
-              66%
-            </td>
-          </tr>
-          <tr
-            role="row"
-          >
-            <td
-              role="cell"
-            >
-              01.01.1970
-            </td>
-            <td
-              role="cell"
-            >
-              01.01.1970
-            </td>
-            <td
-              role="cell"
-            >
-              596.00 NOK
-            </td>
-            <td
-              role="cell"
-            >
-              01.01.1970
-            </td>
-            <td
-              role="cell"
-            >
-              27.00 NOK
-            </td>
-            <td
-              role="cell"
-            >
-              58%
+              92%
             </td>
           </tr>
         </tbody>

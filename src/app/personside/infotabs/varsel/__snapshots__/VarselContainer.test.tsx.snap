@@ -199,6 +199,105 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           >
             EPOST
           </li>
+        </ul>
+        <button
+          aria-expanded={false}
+          aria-label="Vis meldinger"
+          className="c7"
+          onClick={[Function]}
+          title="Vis meldinger"
+        >
+          <i
+            className="nav-frontend-chevron chevronboks chevron--ned"
+          />
+        </button>
+      </div>
+      <ol
+        aria-label="Meldinger"
+        className="c8"
+      >
+        <li
+          aria-label="EPOST"
+          className="c9"
+        >
+          <div>
+            <p
+              className="typo-normal"
+            >
+              <span
+                className="c5"
+              >
+                EPOST
+              </span>
+            </p>
+            <p
+              className="typo-normal"
+            >
+              01. jan. 1970
+            </p>
+          </div>
+          <div>
+            <div>
+              <p
+                className="typo-normal"
+              >
+                <span
+                  className="c5"
+                >
+                  Epostemne
+                </span>
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Meldingsinnhold
+              </p>
+            </div>
+            <p
+              className="typo-normal"
+            >
+              <span
+                className="c5"
+              >
+                Epost: 
+                mottakerinfo
+              </span>
+            </p>
+          </div>
+        </li>
+      </ol>
+    </li>
+    <li
+      aria-label="Påminnelse om å sende meldekort"
+      className="c3"
+    >
+      <div
+        className="c4"
+        onClick={[Function]}
+      >
+        <p
+          className="typo-normal"
+        >
+          01.01.1970
+        </p>
+        <p
+          className="typo-normal"
+        >
+          <span
+            className="c5"
+          >
+            Påminnelse om å sende meldekort
+          </span>
+        </p>
+        <ul
+          aria-label="Kommunikasjonskanaler"
+          className="c6"
+        >
+          <li
+            className="typo-normal"
+          >
+            EPOST
+          </li>
           <li
             className="typo-normal"
           >
@@ -303,105 +402,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 className="c5"
               >
                 Tlf: 
-                mottakerinfo
-              </span>
-            </p>
-          </div>
-        </li>
-      </ol>
-    </li>
-    <li
-      aria-label="Påminnelse om å sende meldekort"
-      className="c3"
-    >
-      <div
-        className="c4"
-        onClick={[Function]}
-      >
-        <p
-          className="typo-normal"
-        >
-          01.01.1970
-        </p>
-        <p
-          className="typo-normal"
-        >
-          <span
-            className="c5"
-          >
-            Påminnelse om å sende meldekort
-          </span>
-        </p>
-        <ul
-          aria-label="Kommunikasjonskanaler"
-          className="c6"
-        >
-          <li
-            className="typo-normal"
-          >
-            EPOST
-          </li>
-        </ul>
-        <button
-          aria-expanded={false}
-          aria-label="Vis meldinger"
-          className="c7"
-          onClick={[Function]}
-          title="Vis meldinger"
-        >
-          <i
-            className="nav-frontend-chevron chevronboks chevron--ned"
-          />
-        </button>
-      </div>
-      <ol
-        aria-label="Meldinger"
-        className="c8"
-      >
-        <li
-          aria-label="EPOST"
-          className="c9"
-        >
-          <div>
-            <p
-              className="typo-normal"
-            >
-              <span
-                className="c5"
-              >
-                EPOST
-              </span>
-            </p>
-            <p
-              className="typo-normal"
-            >
-              01. jan. 1970
-            </p>
-          </div>
-          <div>
-            <div>
-              <p
-                className="typo-normal"
-              >
-                <span
-                  className="c5"
-                >
-                  Epostemne
-                </span>
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Meldingsinnhold
-              </p>
-            </div>
-            <p
-              className="typo-normal"
-            >
-              <span
-                className="c5"
-              >
-                Epost: 
                 mottakerinfo
               </span>
             </p>
