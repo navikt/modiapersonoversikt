@@ -103,7 +103,10 @@ const UUcustomOrder = styled.div`
         order: 1;
     }
 `;
-
+const ContentStyle = styled.div`
+    /* IE11-fix*/
+    flex-grow: 1;
+`;
 function tekstBasertPåRetning(brukernavn: string, dokument: DokumentMetadata) {
     switch (dokument.retning) {
         case Kommunikasjonsretning.Inn:
@@ -188,7 +191,7 @@ class DokumentListeElement extends React.PureComponent<Props> {
             );
 
         const dokumentVedlegg = dokumentMetadata.vedlegg && dokumentMetadata.vedlegg.length > 0 && (
-            <div>
+            <ContentStyle>
                 <Normaltekst>Dokumentet har {dokumentMetadata.vedlegg.length} vedlegg:</Normaltekst>
                 <ul>
                     {dokumentMetadata.vedlegg.map(vedlegg => (
@@ -198,7 +201,7 @@ class DokumentListeElement extends React.PureComponent<Props> {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </ContentStyle>
         );
 
         const tilgangTilHoveddokument = this.dokumentKanVises(dokumentMetadata.hoveddokument, dokumentMetadata);
