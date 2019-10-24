@@ -42,9 +42,6 @@ const SuksessStyling = styled.div`
         margin-top: 1rem;
     }
 `;
-const ErrorStyling = styled.div`
-    width: 60%;
-`;
 export function JournalforSak(props: Props) {
     const dispatch = useDispatch();
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
@@ -92,7 +89,7 @@ export function JournalforSak(props: Props) {
                 rows={[[sak.saksId, sak.opprettetDatoFormatert, sak.fagsystemNavn]]}
                 className="blokk-m"
             />
-            <ErrorStyling>{error && <AlertStripeFeil className="blokk-xs">{error}</AlertStripeFeil>}</ErrorStyling>
+            {error && <AlertStripeFeil className="blokk-xs">{error}</AlertStripeFeil>}
             <Hovedknapp className="blokk-xs" onClick={journalfor} spinner={submitting} autoDisableVedSpinner>
                 Journalfør
             </Hovedknapp>
