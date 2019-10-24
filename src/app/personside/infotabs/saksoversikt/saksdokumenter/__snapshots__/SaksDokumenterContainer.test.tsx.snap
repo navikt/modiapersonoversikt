@@ -70,7 +70,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   display: flex;
 }
 
-.c15 {
+.c16 {
   padding: 1.25rem 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -79,11 +79,11 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c15:hover {
+.c16:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c15:active {
+.c16:active {
   background-color: rgba(0,0,0,0.1);
 }
 
@@ -108,7 +108,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   opacity: 0.5;
 }
 
-.c16 {
+.c17 {
   white-space: nowrap;
 }
 
@@ -132,6 +132,13 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
+}
+
+.c15 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 .c0 {
@@ -229,7 +236,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   margin-bottom: 0;
 }
 
-.c17 {
+.c18 {
   margin-top: 2rem;
 }
 
@@ -511,7 +518,9 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               </div>
             </div>
             
-            <div>
+            <div
+              className="c15"
+            >
               <p
                 className="typo-normal"
               >
@@ -566,7 +575,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </div>
         </li>
         <li
-          className="c15"
+          className="c16"
           onClick={[Function]}
         >
           <div
@@ -618,7 +627,9 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               </div>
             </div>
             
-            <div>
+            <div
+              className="c15"
+            >
               <p
                 className="typo-normal"
               >
@@ -684,7 +695,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
           </div>
           <span
-            className="c16"
+            className="c17"
           >
             <a
               className="lenke"
@@ -775,7 +786,9 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               </div>
             </div>
             
-            <div>
+            <div
+              className="c15"
+            >
               <p
                 className="typo-normal"
               >
@@ -836,7 +849,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </div>
         </li>
         <li
-          className="c15"
+          className="c16"
           onClick={[Function]}
         >
           <div
@@ -901,7 +914,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
           </div>
           <span
-            className="c16"
+            className="c17"
           >
             <a
               className="lenke"
@@ -917,7 +930,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </span>
         </li>
         <li
-          className="c15"
+          className="c16"
           onClick={[Function]}
         >
           <div
@@ -969,7 +982,9 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               </div>
             </div>
             
-            <div>
+            <div
+              className="c15"
+            >
               <p
                 className="typo-normal"
               >
@@ -1003,7 +1018,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
           </div>
           <span
-            className="c16"
+            className="c17"
           >
             <a
               className="lenke"
@@ -1074,7 +1089,9 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               </div>
             </div>
             
-            <div>
+            <div
+              className="c15"
+            >
               <p
                 className="typo-normal"
               >
@@ -1207,7 +1224,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
       </h3>
       <ol>
         <li
-          className="c15"
+          className="c16"
           onClick={[Function]}
         >
           <div
@@ -1272,7 +1289,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
           </div>
           <span
-            className="c16"
+            className="c17"
           >
             <a
               className="lenke"
@@ -1288,7 +1305,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </span>
         </li>
         <li
-          className="c15"
+          className="c16"
           onClick={[Function]}
         >
           <div
@@ -1353,7 +1370,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
           </div>
           <span
-            className="c16"
+            className="c17"
           >
             <a
               className="lenke"
@@ -1369,7 +1386,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </span>
         </li>
         <li
-          className="c15"
+          className="c16"
           onClick={[Function]}
         >
           <div
@@ -1434,7 +1451,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
           </div>
           <span
-            className="c16"
+            className="c17"
           >
             <a
               className="lenke"
@@ -1519,7 +1536,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </div>
         </li>
         <li
-          className="c15"
+          className="c16"
           onClick={[Function]}
         >
           <div
@@ -1584,7 +1601,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
           </div>
           <span
-            className="c16"
+            className="c17"
           >
             <a
               className="lenke"
@@ -1600,7 +1617,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </span>
         </li>
         <li
-          className="c15"
+          className="c16"
           onClick={[Function]}
         >
           <div
@@ -1665,7 +1682,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
           </div>
           <span
-            className="c16"
+            className="c17"
           >
             <a
               className="lenke"
@@ -1684,7 +1701,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
     </li>
   </ol>
   <div
-    className="c17"
+    className="c18"
   />
   <div
     className="alertstripe alertstripe--info"
