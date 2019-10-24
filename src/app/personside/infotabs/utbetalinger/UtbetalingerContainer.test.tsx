@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../test/Testprovider';
 import UtbetalingerContainer from './UtbetalingerContainer';
 import { getTestStore } from '../../../../test/testStore';
-import { statiskMockUtbetaling } from '../../../../mock/statiskMockUtbetaling';
+import { statiskMockUtbetaling } from '../../../../mock/utbetalinger/statiskMockUtbetaling';
 
 test('Viser utbetalingercontainer med alt innhold', () => {
     const testStore = getTestStore();

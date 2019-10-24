@@ -13,8 +13,16 @@ import { backendDatoformat, fyllRandomListe, vektetSjanse } from '../utils/mock-
 import { getKommendeUtbetaling } from './ytelse-utbetalinger-mock';
 import { KommendeUtbetaling } from '../../models/ytelse/ytelse-utbetalinger';
 import { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
+import { aremark } from '../person/aremark';
+import { statiskForeldrepengeMock } from './statiskForeldrepengeMock';
 
 export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerResponse {
+    if (fødselsnummer === aremark.fødselsnummer) {
+        return {
+            foreldrepenger: [statiskForeldrepengeMock]
+        };
+    }
+
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'foreldrepenger');
 

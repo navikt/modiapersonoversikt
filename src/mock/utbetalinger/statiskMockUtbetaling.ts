@@ -1,4 +1,4 @@
-import { Utbetaling, Ytelse } from '../models/utbetalinger';
+import { Utbetaling, Ytelse } from '../../models/utbetalinger';
 
 export const statiskMockYtelse: Ytelse = {
     type: 'Sykepenger',

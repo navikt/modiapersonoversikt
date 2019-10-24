@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import SammensattUtbetaling from './SammensattUtbetaling';
 import { Utbetaling } from '../../../../../models/utbetalinger';
-import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/statiskMockUtbetaling';
+import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
 import TestProvider from '../../../../../test/Testprovider';
 
 const sammensattUtbetaling: Utbetaling = {
