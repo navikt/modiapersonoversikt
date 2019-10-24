@@ -126,3 +126,7 @@ export function validerPersonsokSkjema(form: PersonSokFormState) {
 export function getValidPersonSokState() {
     return new FormValidator<PersonSokFormState>([]).valider(tomtSkjema);
 }
+
+export function personsokSkjemaHarNokInformasjonTilÅGjøreSøk(skjema: PersonSokFormState) {
+    return !erTomStreng(skjema.fornavn + skjema.etternavn + skjema.gatenavn + skjema.kontonummer);
+}

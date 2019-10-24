@@ -5,7 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import PersonsokSkjemaElementer from './PersonsokSkjemaElementer';
 import { ValideringsResultat } from '../../utils/forms/FormValidator';
-import { getValidPersonSokState, validerPersonsokSkjema } from './personsokValidator';
+import {
+    getValidPersonSokState,
+    personsokSkjemaHarNokInformasjonTilÅGjøreSøk,
+    validerPersonsokSkjema
+} from './personsokValidator';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 export type PersonSokFormState = {
     fornavn: string;
@@ -94,6 +99,7 @@ function PersonsokSkjema() {
     const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<PersonSokFormState>>(
         getValidPersonSokState()
     );
+    const [minimumsKriterierOppfylt, setMinimumsKriterierOppfylt] = useState<boolean>(true);
 
     const formState: PersonsokSkjemaProps = {
         state: {
@@ -131,6 +137,11 @@ function PersonsokSkjema() {
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
+        if (!personsokSkjemaHarNokInformasjonTilÅGjøreSøk(formState.state)) {
+            setMinimumsKriterierOppfylt(false);
+            return;
+        }
+        setMinimumsKriterierOppfylt(true);
         const valideringsResultat = validerPersonsokSkjema(formState.state);
         if (valideringsResultat.formErGyldig) {
             settValideringsresultat(getValidPersonSokState());
@@ -158,11 +169,14 @@ function PersonsokSkjema() {
     };
 
     return (
-        <>
-            <form onSubmit={submitHandler} onReset={resetHandler}>
-                <PersonsokSkjemaElementer form={formState} />
-            </form>
-        </>
+        <form onSubmit={submitHandler} onReset={resetHandler}>
+            <PersonsokSkjemaElementer form={formState} />
+            {!minimumsKriterierOppfylt && (
+                <AlertStripeInfo>
+                    <span role="alert">Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk</span>
+                </AlertStripeInfo>
+            )}
+        </form>
     );
 }
 
