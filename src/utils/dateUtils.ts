@@ -28,13 +28,6 @@ export function formatterDatoTidNaa() {
     return moment().format(DATO_TID_FORMAT);
 }
 
-export function formatterDatoForBackendPost(dato?: Date): string | undefined {
-    if (!dato) {
-        return undefined;
-    }
-    return moment().format(backendDatoformat);
-}
-
 const månedTilNavnMapping = (månednr: number) => {
     switch (månednr) {
         case 0:
@@ -83,8 +76,7 @@ export function datoVerbose(dato?: string | Date) {
 }
 
 export function isValidDate(date: string | Date) {
-    const timestamp = date instanceof Date ? date.getTime() : Date.parse(date);
-    return !isNaN(timestamp);
+    return !moment(date).isValid();
 }
 
 export function erImorgenEllerSenere(date: Date) {
@@ -101,11 +93,11 @@ export function getAlderFromFødselsnummer(fødselsnummer: string) {
 }
 
 export function getOldestDate<T extends string | Date>(date1: T, date2: T): T {
-    return new Date(date1) < new Date(date2) ? date1 : date2;
+    return moment(date1).isBefore(date2) ? date1 : date2;
 }
 
 export function getNewestDate<T extends string | Date>(date1: T, date2: T): T {
-    return new Date(date1) > new Date(date2) ? date1 : date2;
+    return moment(date1).isAfter(date2) ? date1 : date2;
 }
 
 export function ascendingDateComparator(a: Date | string, b: Date | string) {
