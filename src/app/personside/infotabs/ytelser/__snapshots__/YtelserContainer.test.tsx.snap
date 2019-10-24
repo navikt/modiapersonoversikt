@@ -315,7 +315,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
             <p
               className="typo-normal"
             >
-              ID-dato: 01.01.1970
+              ID-dato: 06.02.2019
             </p>
           </div>
           <span
@@ -356,7 +356,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <dd
                       className="typo-normal"
                     >
-                      01.01.1970
+                      06.02.2019
                     </dd>
                   </div>
                   <div>
@@ -380,7 +380,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <dd
                       className="typo-normal"
                     >
-                      01.01.1970
+                      16.01.2019
                     </dd>
                   </div>
                   <div>
@@ -416,7 +416,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <dd
                       className="typo-normal"
                     >
-                      01.01.1970 - 01.01.1970
+                      19.01.2014 - 05.09.2014
                     </dd>
                   </div>
                   <div>
@@ -428,7 +428,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <dd
                       className="typo-normal"
                     >
-                      01.01.1970 - 01.01.1970
+                      19.01.2014 - 14.01.2014
                     </dd>
                   </div>
                   <div>
@@ -489,7 +489,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <dd
                       className="typo-normal"
                     >
-                      01.01.1970 - 01.01.1970
+                      09.02.2014 - 11.05.2014
                     </dd>
                   </div>
                   <div>
@@ -501,7 +501,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <dd
                       className="typo-normal"
                     >
-                      01.01.1970
+                      01.04.2018
                     </dd>
                   </div>
                   <div>
@@ -550,7 +550,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         <td
                           role="cell"
                         >
-                          01.01.1970 - 01.01.1970
+                          28.07.2014 - 03.01.2014
                         </td>
                         <td
                           role="cell"
@@ -688,7 +688,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       <dd
                         className="typo-normal"
                       >
-                        01.01.1970
+                        12.03.2018
                       </dd>
                     </div>
                     <div>
@@ -700,7 +700,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       <dd
                         className="typo-normal"
                       >
-                        01.01.1970
+                        18.02.2018
                       </dd>
                     </div>
                   </dl>
@@ -767,7 +767,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      01.01.1970 - 01.01.1970
+                      13.10.2017 - 10.10.2018
                     </td>
                     <td
                       role="cell"
@@ -786,7 +786,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      01.01.1970 - 01.01.1970
+                      13.10.2017 - 10.10.2018
                     </td>
                     <td
                       role="cell"
@@ -869,7 +869,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      01.01.1970
+                      25.06.2018
                     </td>
                     <td
                       role="cell"
@@ -879,7 +879,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      01.01.1970 - 01.01.1970
+                      14.01.2018 - 15.07.2017
                     </td>
                     <td
                       role="cell"
@@ -913,7 +913,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      01.01.1970
+                      25.06.2018
                     </td>
                     <td
                       role="cell"
@@ -923,7 +923,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      01.01.1970 - 01.01.1970
+                      14.01.2018 - 15.07.2017
                     </td>
                     <td
                       role="cell"
@@ -1020,7 +1020,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
             <p
               className="typo-normal"
             >
-              ID-dato: 01.01.1970
+              ID-dato: 14.11.2018
             </p>
             <p
               className="typo-normal"
@@ -1061,7 +1061,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                   <dd
                     className="typo-normal"
                   >
-                    01.01.1970
+                    29.09.2017
                   </dd>
                 </div>
                 <div>
@@ -1073,7 +1073,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                   <dd
                     className="typo-normal"
                   >
-                    01.01.1970
+                    24.10.2017
                   </dd>
                 </div>
                 <div>
@@ -1223,7 +1223,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       <dd
                         className="typo-normal"
                       >
-                        01.01.1970
+                        11.10.2018
                       </dd>
                     </div>
                   </dl>
@@ -1246,7 +1246,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               <h3
                 className="typo-undertittel"
               >
-                Periode 2 - 01.01.1970
+                Periode 2 - 14.11.2018
               </h3>
               <div
                 className="c16"
@@ -1309,12 +1309,12 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         <td
                           role="cell"
                         >
-                          01.01.1970
+                          29.09.2017
                         </td>
                         <td
                           role="cell"
                         >
-                          01.01.1970
+                          24.10.2017
                         </td>
                         <td
                           role="cell"
@@ -1324,7 +1324,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         <td
                           role="cell"
                         >
-                          01.01.1970
+                          28.05.2017
                         </td>
                         <td
                           role="cell"
@@ -1343,12 +1343,12 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         <td
                           role="cell"
                         >
-                          01.01.1970
+                          18.07.2017
                         </td>
                         <td
                           role="cell"
                         >
-                          01.01.1970
+                          26.07.2017
                         </td>
                         <td
                           role="cell"
@@ -1358,7 +1358,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         <td
                           role="cell"
                         >
-                          01.01.1970
+                          21.06.2017
                         </td>
                         <td
                           role="cell"
@@ -1382,7 +1382,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               <h3
                 className="typo-undertittel"
               >
-                Periode 1 - 01.01.1970
+                Periode 1 - 16.10.2018
               </h3>
               <div
                 className="c16"
@@ -1445,12 +1445,12 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         <td
                           role="cell"
                         >
-                          01.01.1970
+                          01.12.2018
                         </td>
                         <td
                           role="cell"
                         >
-                          01.01.1970
+                          09.12.2018
                         </td>
                         <td
                           role="cell"
@@ -1460,7 +1460,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         <td
                           role="cell"
                         >
-                          01.01.1970
+                          29.06.2018
                         </td>
                         <td
                           role="cell"
@@ -1510,7 +1510,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
             <p
               className="typo-normal"
             >
-              ID-dato: 01.01.1970
+              ID-dato: 21.11.2017
             </p>
             <p
               className="typo-normal"
@@ -1578,7 +1578,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <dd
                       className="typo-normal"
                     >
-                      01.01.1970
+                      29.04.2017
                     </dd>
                   </div>
                   <div>
@@ -1638,7 +1638,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <dd
                       className="typo-normal"
                     >
-                      01.01.1970
+                      10.02.2019
                     </dd>
                   </div>
                 </dl>
@@ -1663,7 +1663,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <dd
                       className="typo-normal"
                     >
-                      01.01.1970
+                      11.02.2019
                     </dd>
                   </div>
                   <div>
@@ -1675,7 +1675,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     <dd
                       className="typo-normal"
                     >
-                      01.01.1970
+                      11.02.2019
                     </dd>
                   </div>
                   <div>
@@ -1802,7 +1802,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       <dd
                         className="typo-normal"
                       >
-                        01.01.1970
+                        11.02.2019
                       </dd>
                     </div>
                     <div>
@@ -1814,7 +1814,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       <dd
                         className="typo-normal"
                       >
-                        01.01.1970
+                        10.02.2019
                       </dd>
                     </div>
                   </dl>
@@ -1837,7 +1837,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               <h3
                 className="typo-undertittel"
               >
-                Periode 1 - 01.01.1970
+                Periode 1 - 29.04.2017
               </h3>
               <article
                 className="c19"
@@ -1898,7 +1898,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       <dd
                         className="typo-normal"
                       >
-                        01.01.1970 - 01.01.1970
+                        08.10.2014 - 22.08.2014
                       </dd>
                     </div>
                     <div>
@@ -1910,7 +1910,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       <dd
                         className="typo-normal"
                       >
-                        01.01.1970 - 01.01.1970
+                        09.12.2014 - 26.08.2014
                       </dd>
                     </div>
                     <div>
@@ -2094,7 +2094,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                           <td
                             role="cell"
                           >
-                            01.01.1970
+                            25.06.2018
                           </td>
                           <td
                             role="cell"
@@ -2104,7 +2104,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                           <td
                             role="cell"
                           >
-                            01.01.1970 - 01.01.1970
+                            14.01.2018 - 15.07.2017
                           </td>
                           <td
                             role="cell"
