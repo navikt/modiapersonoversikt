@@ -275,7 +275,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                 onKeyDown={[Function]}
                 pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
                 type="text"
-                value="01.01.1970"
+                value="01.11.1969"
               />
               <button
                 aria-expanded={false}
@@ -340,7 +340,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                 onKeyDown={[Function]}
                 pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
                 type="text"
-                value="01.01.1970"
+                value="01.02.1970"
               />
               <button
                 aria-expanded={false}
@@ -375,6 +375,15 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                 </svg>
               </button>
             </div>
+          </div>
+        </div>
+        <div
+          role="alert"
+        >
+          <div
+            className="skjemaelement__feilmelding"
+          >
+            Du må velge gyldige datoer
           </div>
         </div>
         <button
@@ -494,7 +503,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
             <dd
               className="typo-normal"
             >
-              01.01.1970
+              24.04.2019
             </dd>
           </div>
         </dl>
@@ -575,7 +584,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   <td
                     role="cell"
                   >
-                    01.01.1970
+                    10.04.2019
                   </td>
                   <td
                     role="cell"
@@ -594,7 +603,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   <td
                     role="cell"
                   >
-                    01.01.1970
+                    12.02.2019
                   </td>
                   <td
                     role="cell"
@@ -613,7 +622,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   <td
                     role="cell"
                   >
-                    01.01.1970
+                    27.01.2019
                   </td>
                   <td
                     role="cell"
@@ -704,7 +713,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   <dd
                     className="typo-normal"
                   >
-                    01.01.1970
+                    28.04.2019
                   </dd>
                 </div>
                 <div>
@@ -716,7 +725,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   <dd
                     className="typo-normal"
                   >
-                    01.01.1970
+                    14.04.2019
                   </dd>
                 </div>
                 <div>
@@ -728,7 +737,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   <dd
                     className="typo-normal"
                   >
-                    01.01.1970
+                    01.05.2019
                   </dd>
                 </div>
                 <div>
@@ -838,7 +847,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               <p
                                 className="typo-etikett-liten first"
                               >
-                                01.01.1970 - 01.01.1970
+                                27.04.2019 - 01.05.2019
                               </p>
                             </div>
                           </div>
@@ -874,7 +883,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               <p
                                 className="typo-etikett-liten first"
                               >
-                                01.01.1970 - 01.01.1970
+                                10.04.2019 - 19.04.2019
                               </p>
                             </div>
                           </div>
@@ -910,7 +919,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                               <p
                                 className="typo-etikett-liten first"
                               >
-                                01.01.1970 - 01.01.1970
+                                04.04.2019 - 24.04.2019
                               </p>
                             </div>
                           </div>

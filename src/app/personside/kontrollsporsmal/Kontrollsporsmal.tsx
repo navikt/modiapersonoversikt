@@ -26,7 +26,8 @@ interface DispatchProps {
 type Props = DispatchProps & StateProps;
 
 const KontrollSporsmalStyling = styled.section`
-    ${theme.hvittPanel};
+    background-color: white;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
     padding: ${theme.margin.px20};
     margin-bottom: 0.5rem;
     display: -ms-grid;

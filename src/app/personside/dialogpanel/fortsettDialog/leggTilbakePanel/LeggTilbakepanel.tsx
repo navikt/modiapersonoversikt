@@ -179,6 +179,7 @@ function LeggTilbakepanel(props: Props) {
                             }
                         >
                             <Textarea
+                                maxLength={0}
                                 label="Årsak"
                                 value={state.tekst}
                                 onChange={e =>
