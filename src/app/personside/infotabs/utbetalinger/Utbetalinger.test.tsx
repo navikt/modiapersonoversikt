@@ -1,5 +1,5 @@
 import { Utbetaling } from '../../../../models/utbetalinger';
-import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../mock/statiskMockUtbetaling';
+import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../mock/utbetalinger/statiskMockUtbetaling';
 import { getFiltrerteUtbetalinger } from './Utbetalinger';
 import { PeriodeValg, UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
 

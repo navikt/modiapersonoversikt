@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import { statiskMockUtbetaling } from '../../../../../mock/statiskMockUtbetaling';
+import { statiskMockUtbetaling } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalinger';
 

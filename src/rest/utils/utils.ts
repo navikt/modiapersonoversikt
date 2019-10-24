@@ -64,10 +64,10 @@ function handterFeil(dispatch: Dispatch<Action>, actionNames: ActionTypes, fetch
             error: 'Kunne ikke hente data'
         });
         if (error instanceof Response) {
-            loggError(new Error(`${error.status} ${error.statusText}. Kunne ikke fetche data på: ${fetchUri}`));
+            loggError(new Error(`Kunne ikke fetche data på ${fetchUri}. Status ${error.status}: ${error.statusText}`));
             return;
         }
-        loggError(error);
+        loggError(error, `Kune ikke fetche data på ${fetchUri}. ${error.message}`);
     };
 }
 

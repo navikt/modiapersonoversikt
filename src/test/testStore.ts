@@ -21,12 +21,12 @@ import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from '../mock/innloggetSaksbehandler-mock';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
-import { getMockUtbetalinger } from '../mock/utbetalinger-mock';
 import { pleiepengerTestData } from '../app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
 import { statiskForeldrepengeMock } from '../mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
 import { henvendelseResponseMock } from '../mock/meldinger/henvendelseMock';
+import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUtbetalingRespons';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -48,9 +48,7 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.postnummer.actions.setData(mockPostnummere()));
     testStore.dispatch(restResources.land.actions.setData(mockLandKodeverk()));
     testStore.dispatch(restResources.valuta.actions.setData(mockValutaKodeverk()));
-    testStore.dispatch(
-        restResources.utbetalinger.actions.setData(getMockUtbetalinger(aremarkFnr, '1905-01-01', '1986-12-28'))
-    );
+    testStore.dispatch(restResources.utbetalinger.actions.setData(statiskMockUtbetalingRespons));
     testStore.dispatch(restResources.sakstema.actions.setData(getStaticMockSaksoversikt()));
     testStore.dispatch(restResources.brukersVarsler.actions.setData(statiskVarselMock));
     testStore.dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
