@@ -22,8 +22,25 @@ export const navFarger = {
     navGra80: '#59514b',
     navMorkGra: '#3e3832',
     fokusFarge: '#254b6d',
-    orangeFokus: '#ffbd66'
+    orangeFokus: '#ffbd66',
+    pinkErrorBg: '#f3e3e3',
+    redError: '#ba3a26'
 };
+
+const focusOnRelativeParent = css`
+    outline: none;
+    box-shadow: none;
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '';
+        box-shadow: inset 0 0 0 ${pxToRem(3)} ${navFarger.fokusFarge};
+        height: 100%;
+        width: 100%;
+        pointer-events: none;
+    }
+`;
 
 export const theme = {
     color: {
@@ -31,8 +48,7 @@ export const theme = {
         lenkeSelected: '#005b82',
         lenkeHover: navFarger.navGra20,
         lenke: '#0067c5',
-        dialogpanelBakgrunn: '#f1f2f2',
-        bakgrunn: navFarger.navLysGra,
+        bakgrunn: navFarger.navGra20,
         kategori: '#cce1f3',
         ytelser: '#d6897d',
         gråSkrift: '#645f5a',
@@ -70,9 +86,9 @@ export const theme = {
         knapp: '.35rem;'
     },
     border: {
-        skilleDashed: `dotted ${pxToRem(1.5)} ${navFarger.navGra40};`,
-        skille: `solid ${pxToRem(1)} ${navFarger.navGra40}`,
-        skilleSvak: `solid ${pxToRem(1)} ${navFarger.navGra20};`
+        skilleDashed: `dotted ${pxToRem(1.5)} ${navFarger.navGra60};`,
+        skille: `solid ${pxToRem(1)} ${navFarger.navGra60}`,
+        skilleSvak: `solid ${pxToRem(1)} ${navFarger.navGra40};`
     },
     animation: {
         fadeIn: css`
@@ -89,17 +105,9 @@ export const theme = {
     `,
     focusOverlay: css`
         position: relative;
-        outline: none;
-        &::after {
-            position: absolute;
-            top: 0;
-            content: '';
-            box-shadow: 0 0 0 ${pxToRem(3)} ${navFarger.fokusFarge};
-            height: 100%;
-            width: 100%;
-            pointer-events: none;
-        }
+        ${focusOnRelativeParent};
     `,
+    focusOnRelativeParent: focusOnRelativeParent,
     hover: hover,
     visuallyHidden: css`
         position: absolute !important;

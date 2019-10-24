@@ -15,14 +15,21 @@ export enum STATUS {
     FAILED = 'FAILED'
 }
 
-export interface FetchSuccess<T> {
-    type: string;
+export interface FetchSuccess<T> extends Action {
+    data: T;
+    fetchUrl: string;
+}
+
+export interface SetData<T> extends Action {
     data: T;
 }
 
-export interface FetchError {
-    type: STATUS.FAILED;
+export interface FetchError extends Action {
     error: string;
+}
+
+export interface Fetching extends Action {
+    fetchUrl: string;
 }
 
 function parseResponse(response: Response) {
@@ -35,11 +42,12 @@ function parseResponse(response: Response) {
     }
 }
 
-function dispatchDataTilRedux<T>(dispatch: Dispatch<Action>, action: string) {
+function dispatchDataTilRedux<T>(dispatch: Dispatch<Action>, action: string, fetchUrl: string) {
     return (data: T) => {
         dispatch({
             type: action,
-            data: data
+            data: data,
+            fetchUrl: fetchUrl
         });
         return Promise.resolve(data);
     };
@@ -56,10 +64,10 @@ function handterFeil(dispatch: Dispatch<Action>, actionNames: ActionTypes, fetch
             error: 'Kunne ikke hente data'
         });
         if (error instanceof Response) {
-            loggError(new Error(`${error.status} ${error.statusText}. Kunne ikke fetche data på: ${fetchUri}`));
+            loggError(new Error(`Kunne ikke fetche data på ${fetchUri}. Status ${error.status}: ${error.statusText}`));
             return;
         }
-        loggError(error);
+        loggError(error, `Kune ikke fetche data på ${fetchUri}. ${error.message}`);
     };
 }
 
@@ -69,11 +77,11 @@ export function fetchDataAndDispatchToRedux<T>(
     reload?: boolean
 ) {
     return (dispatch: AsyncDispatch, getState: () => AppState) => {
-        dispatch({ type: reload ? actionNames.RELOADING : actionNames.STARTING });
         const uri = fetchUriCreator(getState());
+        dispatch({ type: reload ? actionNames.RELOADING : actionNames.STARTING, fetchUrl: uri });
         return fetch(uri, { credentials: 'include' })
             .then(parseResponse)
-            .then(dispatchDataTilRedux(dispatch, actionNames.FINISHED))
+            .then(dispatchDataTilRedux(dispatch, actionNames.FINISHED, uri))
             .catch(handterFeil(dispatch, actionNames, uri));
     };
 }

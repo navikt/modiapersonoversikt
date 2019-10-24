@@ -4,11 +4,12 @@ import DialogpanelVelgSak from '../sendMelding/DialogpanelVelgSak';
 import styled from 'styled-components';
 import { FortsettDialogValidator } from './validatorer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { FortsettDialogState } from './FortsettDialogContainer';
+import { FortsettDialogState } from './FortsettDialogTypes';
 
 interface Props {
     formState: FortsettDialogState;
     updateFormState: (change: Partial<FortsettDialogState>) => void;
+    visVelgSak: boolean;
 }
 
 const Style = styled.div`
@@ -25,11 +26,13 @@ function BrukerKanSvare(props: Props) {
                 oppgaveliste={props.formState.oppgaveListe}
                 setOppgaveliste={oppgaveliste => props.updateFormState({ oppgaveListe: oppgaveliste })}
             />
-            <DialogpanelVelgSak
-                setValgtSak={sak => props.updateFormState({ sak: sak })}
-                valgtSak={props.formState.sak}
-                visFeilmelding={!FortsettDialogValidator.sak(props.formState) && props.formState.visFeilmeldinger}
-            />
+            {props.visVelgSak && (
+                <DialogpanelVelgSak
+                    setValgtSak={sak => props.updateFormState({ sak: sak })}
+                    valgtSak={props.formState.sak}
+                    visFeilmelding={!FortsettDialogValidator.sak(props.formState) && props.formState.visFeilmeldinger}
+                />
+            )}
         </Style>
     );
 }

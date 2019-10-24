@@ -1,25 +1,16 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
-import HurtigReferatContainer from '../Hurtigreferat/HurtigreferatContainer';
-import SendNyMelding, { FormState, OppgavelisteValg } from './SendNyMelding';
-import styled from 'styled-components';
-import { theme } from '../../../../styles/personOversiktTheme';
+import SendNyMelding, { SendNyMeldingState, OppgavelisteValg } from './SendNyMelding';
 import { NyMeldingValidator } from './validatorer';
-import { Meldingstype } from '../../../../models/meldinger/meldinger';
-import { useRestResource } from '../../../../utils/customHooks';
-import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../rest/utils/postResource';
+import { Meldingstype, SendReferatRequest, SendSpørsmålRequest } from '../../../../models/meldinger/meldinger';
+import { useFødselsnummer, useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { ReferatSendtKvittering, SporsmalSendtKvittering } from './SendNyMeldingKvittering';
-import { DialogpanelFeilmelding } from '../fellesStyling';
+import { apiBaseUri } from '../../../../api/config';
+import { post } from '../../../../api/api';
+import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 
-const HurtigreferatWrapper = styled.div`
-    background-color: white;
-    border-bottom: ${theme.border.skilleSvak};
-    padding: 1rem ${theme.margin.layout};
-`;
-
-const initialState: FormState = {
+const initialState: SendNyMeldingState = {
     tekst: '',
     dialogType: Meldingstype.SAMTALEREFERAT_TELEFON,
     tema: undefined,
@@ -29,88 +20,92 @@ const initialState: FormState = {
 };
 
 function SendNyMeldingContainer() {
-    const [state, setState] = useState<FormState>(initialState);
-    const updateState = (change: Partial<FormState>) => setState({ ...state, visFeilmeldinger: false, ...change });
-    const postReferatResource = useRestResource(resources => resources.sendReferat);
-    const postSpørsmålResource = useRestResource(resources => resources.sendSpørsmål);
+    const [state, setState] = useState<SendNyMeldingState>(initialState);
+    const updateState = (change: Partial<SendNyMeldingState>) =>
+        setState(currentState => ({ ...currentState, visFeilmeldinger: false, ...change }));
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
-    const senderMelding = isPosting(postReferatResource) || isPosting(postSpørsmålResource);
     const dispatch = useDispatch();
+    const fnr = useFødselsnummer();
+    const [sendNyMeldingStatus, setSendNyMeldingStatus] = useState<SendNyMeldingPanelState>({
+        type: SendNyMeldingStatus.UNDER_ARBEID
+    });
+    const lukkSendtKvittering = () => {
+        setSendNyMeldingStatus({ type: SendNyMeldingStatus.UNDER_ARBEID });
+        setState(initialState);
+    };
+
+    if (sendNyMeldingStatus.type === SendNyMeldingStatus.REFERAT_SENDT) {
+        return <ReferatSendtKvittering request={sendNyMeldingStatus.request} lukk={lukkSendtKvittering} />;
+    }
+
+    if (sendNyMeldingStatus.type === SendNyMeldingStatus.SPORSMAL_SENDT) {
+        return <SporsmalSendtKvittering fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
+    }
 
     const handleAvbryt = () => {
-        updateState(initialState);
+        setState(initialState);
+        setSendNyMeldingStatus({ type: SendNyMeldingStatus.UNDER_ARBEID });
     };
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        if (senderMelding) {
+        if (sendNyMeldingStatus.type === SendNyMeldingStatus.POSTING) {
             return;
         }
         const callback = () => {
             updateState(initialState);
             dispatch(reloadMeldinger);
         };
+
         if (
             NyMeldingValidator.erGyldigReferat(state) &&
             state.tema &&
             state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE
         ) {
-            dispatch(
-                postReferatResource.actions.post(
-                    {
-                        fritekst: state.tekst,
-                        meldingstype: state.dialogType,
-                        temagruppe: state.tema.kodeRef
-                    },
-                    callback
-                )
-            );
+            setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
+            const request: SendReferatRequest = {
+                fritekst: state.tekst,
+                meldingstype: state.dialogType,
+                temagruppe: state.tema
+            };
+            post(`${apiBaseUri}/dialog/${fnr}/sendreferat`, request)
+                .then(() => {
+                    callback();
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: request });
+                })
+                .catch(() => {
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
+                });
         } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
-            dispatch(
-                postSpørsmålResource.actions.post(
-                    {
-                        fritekst: state.tekst,
-                        saksID: state.sak.saksId,
-                        erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
-                    },
-                    callback
-                )
-            );
+            setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
+            const request: SendSpørsmålRequest = {
+                fritekst: state.tekst,
+                saksID: state.sak.saksId,
+                erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
+            };
+
+            post(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, request)
+                .then(() => {
+                    callback();
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: request.fritekst });
+                })
+                .catch(() => {
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
+                });
         } else {
             updateState({ visFeilmeldinger: true });
         }
     };
 
-    if (senderMelding) {
-        return <CenteredLazySpinner type="XL" delay={100} />;
-    }
-
-    if (isFinishedPosting(postReferatResource)) {
-        return <ReferatSendtKvittering resource={postReferatResource} />;
-    }
-
-    if (isFinishedPosting(postSpørsmålResource)) {
-        return <SporsmalSendtKvittering resource={postSpørsmålResource} />;
-    }
-
-    if (isFailedPosting(postReferatResource)) {
-        return <DialogpanelFeilmelding resource={postReferatResource} />;
-    }
-
-    if (isFailedPosting(postSpørsmålResource)) {
-        return <DialogpanelFeilmelding resource={postSpørsmålResource} />;
-    }
-
     return (
         <>
-            <HurtigreferatWrapper>
-                <HurtigReferatContainer />
-            </HurtigreferatWrapper>
             <SendNyMelding
                 updateState={updateState}
                 state={state}
                 handleSubmit={handleSubmit}
                 handleAvbryt={handleAvbryt}
+                formErEndret={state !== initialState}
+                sendNyMeldingPanelState={sendNyMeldingStatus}
             />
         </>
     );

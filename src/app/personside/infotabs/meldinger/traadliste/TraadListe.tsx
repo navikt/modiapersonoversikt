@@ -1,16 +1,17 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { datoSynkende } from '../../../../../utils/dateUtils';
-import TraadListeElement from './TraadListeElement';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import { meldingstittel, saksbehandlerTekst, sisteSendteMelding } from '../utils/meldingerUtils';
+import { useSokEtterMeldinger } from '../utils/meldingerUtils';
 import { Input } from 'nav-frontend-skjema';
-import useDebounce from '../../../../../utils/hooks/use-debounce';
-import { useMemo } from 'react';
-import { Element } from 'nav-frontend-typografi';
-import EkspanderKnapp from '../../../../../components/EkspanderKnapp';
+import { Normaltekst } from 'nav-frontend-typografi';
+import TraadListeElement from './TraadListeElement';
+import { LenkeKnapp } from '../../../../../components/common-styled-components';
+import { useOnMount } from '../../../../../utils/customHooks';
+import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
+import usePaginering from '../../../../../utils/hooks/usePaginering';
 
 interface Props {
     traader: Traad[];
@@ -34,48 +35,68 @@ const SokVerktøyStyle = styled.div`
 `;
 
 const TraadListeStyle = styled.ol`
-    > *:not(:first-child) {
+    > * {
         border-top: ${theme.border.skille};
     }
 `;
+
 const InputStyle = styled.div`
     padding: ${theme.margin.layout} ${theme.margin.layout} 0;
+    .skjemaelement {
+        margin-bottom: 0.2rem;
+    }
 `;
 
-export function sokEtterMeldinger(traader: Traad[], query: string): Traad[] {
-    const words = query.split(' ');
-    return traader.filter(traad => {
-        return traad.meldinger.some(melding => {
-            const fritekst = melding.fritekst;
-            const tittel = meldingstittel(melding);
-            const saksbehandler = saksbehandlerTekst(melding.skrevetAv);
-
-            const sokbarTekst = (fritekst + tittel + saksbehandler).toLowerCase();
-            return words.every(word => sokbarTekst.includes(word.toLowerCase()));
-        });
-    });
-}
+const PagineringStyling = styled.div`
+    padding: 0 ${theme.margin.layout};
+    label {
+        ${theme.visuallyHidden};
+    }
+`;
 
 function TraadListe(props: Props) {
-    const debouncedSokeord = useDebounce(props.sokeord, 200);
-    const traadKomponenter = useMemo(
-        () =>
-            sokEtterMeldinger(props.traader, debouncedSokeord)
-                .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
-                .map(traad => (
-                    <TraadListeElement traad={traad} key={traad.traadId} erValgt={traad === props.valgtTraad} />
-                )),
-        [debouncedSokeord, props.traader]
-    );
+    const [erForsteRender, setErForsteRender] = useState(true);
+    const inputRef = React.useRef<HTMLInputElement>();
+    const traaderEtterSok = useSokEtterMeldinger(props.traader, props.sokeord);
+    const paginering = usePaginering(traaderEtterSok, 50);
+
+    useOnMount(() => {
+        setErForsteRender(false);
+    });
 
     if (props.traader.length === 0) {
         return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
     }
 
+    const visAlleMeldingerKnapp = props.sokeord !== '' && (
+        <LenkeKnapp
+            onClick={() => {
+                props.setSokeord('');
+                if (inputRef.current) {
+                    inputRef.current.focus();
+                }
+            }}
+        >
+            Vis alle meldinger
+        </LenkeKnapp>
+    );
+
+    const meldingTekst = props.traader.length === 1 ? 'melding' : 'meldinger';
+    const soketreffTekst =
+        props.sokeord.length > 0
+            ? `Søket traff ${traaderEtterSok.length} av ${props.traader.length} ${meldingTekst}`
+            : `Totalt ${props.traader.length} ${meldingTekst}`;
+
     return (
         <PanelStyle>
+            <SlaaSammenOppgaverKnapp traader={props.traader} />
             <InputStyle>
                 <Input
+                    inputRef={
+                        ((ref: HTMLInputElement) => {
+                            inputRef.current = ref;
+                        }) as any
+                    }
                     value={props.sokeord}
                     onChange={event => props.setSokeord(event.target.value)}
                     label={'Søk etter melding'}
@@ -83,16 +104,20 @@ function TraadListe(props: Props) {
                 />
             </InputStyle>
             <SokVerktøyStyle>
-                {traadKomponenter.length !== props.traader.length ? (
-                    <Element>
-                        Søket traff {traadKomponenter.length} av {props.traader.length} tråder
-                    </Element>
-                ) : (
-                    <Element>Totalt {props.traader.length} tråder</Element>
-                )}
-                <EkspanderKnapp onClick={() => props.setSokeord('')} tittel={'Nullstill søk'} />
+                <Normaltekst aria-live="polite">{soketreffTekst}</Normaltekst>
+                {visAlleMeldingerKnapp}
             </SokVerktøyStyle>
-            <TraadListeStyle>{traadKomponenter}</TraadListeStyle>
+            {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
+            <TraadListeStyle>
+                {paginering.currentPage.map(traad => (
+                    <TraadListeElement
+                        taFokusOnMount={erForsteRender && traad === props.valgtTraad}
+                        traad={traad}
+                        key={traad.traadId}
+                        erValgt={traad === props.valgtTraad}
+                    />
+                ))}
+            </TraadListeStyle>
         </PanelStyle>
     );
 }

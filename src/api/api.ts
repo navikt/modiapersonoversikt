@@ -1,11 +1,15 @@
 import { postConfig } from './config';
+import { loggError } from '../utils/frontendLogger';
 
 export function post(uri: string, body: object) {
     return fetch(uri, postConfig(body)).then(response => {
         if (response.ok && !response.redirected) {
             return parseResponse(response);
         } else {
-            return response.text().then(text => Promise.reject(text));
+            return response.text().then(text => {
+                loggError(Error('Feil ved posting på ' + uri), text, { request: body });
+                return Promise.reject(text);
+            });
         }
     });
 }

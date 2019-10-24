@@ -11,10 +11,9 @@ import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
-import { CenteredLazySpinner } from '../../../../../components/LazySpinner';
-
+import { formaterDato } from '../../../../../utils/stringFormatting';
 interface Props {
-    valgtTraad?: Traad;
+    valgtTraad: Traad;
     sokeord: string;
 }
 
@@ -31,6 +30,7 @@ const KnappWrapper = styled.div`
     flex-direction: column;
     align-items: flex-end;
 `;
+const KanBesvaresMeldingstyper = [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG];
 
 function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
     const meldingskomponenter = traad.meldinger
@@ -45,12 +45,12 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
 
     const melding = eldsteMelding(valgtTraad);
-    const KAN_BESVARES_MELDINGS_TYPER = [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG];
 
     if (melding.erFerdigstiltUtenSvar) {
         return (
             <AlertStripeInfo>
-                Ferdigstilt uten svar av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}
+                Ferdigstilt uten svar av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
+                {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
             </AlertStripeInfo>
         );
     }
@@ -58,7 +58,8 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     if (melding.markertSomFeilsendtAv) {
         return (
             <AlertStripeInfo>
-                Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}
+                Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}{' '}
+                {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
             </AlertStripeInfo>
         );
     }
@@ -76,22 +77,18 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         );
     }
 
-    if (KAN_BESVARES_MELDINGS_TYPER.includes(melding.meldingstype)) {
+    if (KanBesvaresMeldingstyper.includes(melding.meldingstype)) {
         return (
             <KnappWrapper>
                 <Flatknapp onClick={handleNyMelding}>Ny melding</Flatknapp>
             </KnappWrapper>
         );
     } else {
-        return <KnappWrapper></KnappWrapper>;
+        return null;
     }
 }
 
 function TraadVisning(props: Props) {
-    if (!props.valgtTraad) {
-        return <CenteredLazySpinner />;
-    }
-
     return (
         <VisningStyle aria-label={'Meldinger for valgt tråd'} key={props.valgtTraad.traadId}>
             <Topplinje valgtTraad={props.valgtTraad} />

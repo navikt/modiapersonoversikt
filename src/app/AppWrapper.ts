@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme } from '../styles/personOversiktTheme';
+import { pxToRem, theme } from '../styles/personOversiktTheme';
 
 const AppWrapper = styled.div`
     height: 100vh;
@@ -14,6 +14,21 @@ const AppWrapper = styled.div`
     }
     .knapp {
         text-transform: none;
+    }
+    .skjema__feilomrade--harFeil {
+        box-shadow: 0 0 0 ${pxToRem(8)} ${theme.color.pinkErrorBg}, 0 0 0 ${pxToRem(9)} ${theme.color.redError}55;
+    }
+    &.is-mac {
+        *::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: ${pxToRem(7)};
+            height: ${pxToRem(7)};
+            background-color: #0004;
+        }
+        *::-webkit-scrollbar-thumb {
+            border-radius: ${pxToRem(4)};
+            background-color: #0005;
+        }
     }
 `;
 

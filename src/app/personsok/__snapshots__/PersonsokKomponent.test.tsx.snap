@@ -41,6 +41,25 @@ exports[`viser personsøk-komponent 1`] = `
   border-color: #0067c5;
 }
 
+.c3 {
+  margin-right: 0.5em;
+  margin-bottom: 1em;
+  line-height: 1.375rem;
+}
+
+.c3 .nav-datovelger__kalenderPortal {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  -webkit-transform: translateX(-85%);
+  -ms-transform: translateX(-85%);
+  transform: translateX(-85%);
+}
+
+.c4 {
+  margin-bottom: 0.5em;
+}
+
 .c0 {
   padding: .8rem;
 }
@@ -79,22 +98,6 @@ exports[`viser personsøk-komponent 1`] = `
   padding-right: 0.5em;
 }
 
-.c3 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  padding-right: 0.5em;
-  margin-bottom: 1em;
-  font-family: 'Source Sans Pro',Arial,sans-serif;
-  font-size: 1rem;
-  line-height: 1.375rem;
-  font-weight: 400;
-}
-
-.c4 {
-  margin-bottom: 0.5em;
-}
-
 <form
   onReset={[Function]}
   onSubmit={[Function]}
@@ -102,7 +105,7 @@ exports[`viser personsøk-komponent 1`] = `
   <article
     className="c0"
   >
-    <div
+    <section
       className="c1"
     >
       <section
@@ -304,15 +307,16 @@ exports[`viser personsøk-komponent 1`] = `
           <div
             className="c3"
           >
-            <div
-              className="c4"
+            <label
+              className="skjemaelement__label c4"
+              htmlFor="personsok-datovelger-fra"
             >
-              <label
-                htmlFor="personsok-datovelger-fra"
+              <p
+                className="typo-normal"
               >
-                Fødselsdato fra:
-              </label>
-            </div>
+                Fødselsdato fra
+              </p>
+            </label>
             <div
               onBlur={[Function]}
               onKeyDown={[Function]}
@@ -377,15 +381,16 @@ exports[`viser personsøk-komponent 1`] = `
           <div
             className="c3"
           >
-            <div
-              className="c4"
+            <label
+              className="skjemaelement__label c4"
+              htmlFor="personsok-datovelger-til"
             >
-              <label
-                htmlFor="personsok-datovelger-til"
+              <p
+                className="typo-normal"
               >
-                Fødselsdato til:
-              </label>
-            </div>
+                Fødselsdato til
+              </p>
+            </label>
             <div
               onBlur={[Function]}
               onKeyDown={[Function]}
@@ -535,7 +540,7 @@ exports[`viser personsøk-komponent 1`] = `
           />
         </div>
       </section>
-    </div>
+    </section>
     <a
       className="lenke"
       href="?fornavn=&etternavn=&foedselsdato=&kjoenn="

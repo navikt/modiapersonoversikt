@@ -84,6 +84,7 @@ const IkonWrapper = styled.div`
     svg {
         height: ${theme.margin.px30};
         width: ${theme.margin.px30};
+        opacity: 0.5;
     }
     padding-right: 1rem;
 `;
@@ -146,7 +147,7 @@ function valgtTekst(visTekst: boolean) {
     return visTekst ? ' (Dokumentet vises til høyre)' : '';
 }
 
-class DokumentListeElement extends React.Component<Props> {
+class DokumentListeElement extends React.PureComponent<Props> {
     private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
     private hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
     private dokumentRef = React.createRef<HTMLLIElement>();

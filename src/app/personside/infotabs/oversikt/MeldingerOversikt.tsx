@@ -3,19 +3,20 @@ import { Traad } from '../../../../models/meldinger/meldinger';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { erMonolog, sisteSendteMelding } from '../meldinger/utils/meldingerUtils';
-import { meldingstypeTekst, temagruppeTekst } from '../meldinger/utils/meldingstekster';
+import { erMonolog, nyesteMelding } from '../meldinger/utils/meldingerUtils';
+import { meldingstypeTekst } from '../meldinger/utils/meldingstekster';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import Meldingsikon from '../meldinger/utils/Meldingsikon';
 import { datoSynkende, formatterDatoTid } from '../../../../utils/dateUtils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { delAvStringMedDots } from '../../../../utils/string-utils';
-import { withRouter } from 'react-router';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import Tekstomrade from '../../../../components/tekstomrade/tekstomrade';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { meldingerTest } from '../dyplenkeTest/utils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { ReactNode } from 'react';
+import { useOnMount } from '../../../../utils/customHooks';
+import { temagruppeTekst } from '../../../../models/Temagrupper';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -31,35 +32,45 @@ const PanelStyle = styled.div`
 `;
 
 interface Props {
-    traad: Traad;
+    setHeaderContent: (content: ReactNode) => void;
 }
 
-function MeldingerOversikt() {
+function MeldingerOversikt(props: Props) {
     return (
         <RestResourceConsumer<Traad[]>
             getResource={restResources => restResources.tråderOgMeldinger}
             returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
         >
-            {data => {
-                const traadKomponenter = data
-                    .sort(datoSynkende(traad => sisteSendteMelding(traad).opprettetDato))
-                    .slice(0, 4)
-                    .map(traad => <Traadelement traad={traad} key={traad.traadId} />);
-
-                if (traadKomponenter.length === 0) {
-                    return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
-                }
-
-                return <ListStyle aria-label="Oversikt brukers meldinger">{traadKomponenter}</ListStyle>;
-            }}
+            {data => <TraadListe traader={data} {...props} />}
         </RestResourceConsumer>
     );
 }
 
-export function Traadelement(props: Props) {
-    const nyesteMelding = sisteSendteMelding(props.traad);
-    const datoTekst = formatterDatoTid(nyesteMelding.opprettetDato);
-    const tittel = `${meldingstypeTekst(nyesteMelding.meldingstype)} - ${temagruppeTekst(nyesteMelding.temagruppe)}`;
+function TraadListe(props: { traader: Traad[] } & Props) {
+    const traadKomponenter = props.traader
+        .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato))
+        .slice(0, 2)
+        .map(traad => <Traadelement traad={traad} key={traad.traadId} />);
+
+    useOnMount(() => {
+        props.setHeaderContent(
+            <Normaltekst>
+                {traadKomponenter.length} / {props.traader.length}
+            </Normaltekst>
+        );
+    });
+
+    if (traadKomponenter.length === 0) {
+        return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
+    }
+
+    return <ListStyle aria-label="Oversikt brukers meldinger">{traadKomponenter}</ListStyle>;
+}
+
+function Traadelement(props: { traad: Traad }) {
+    const sisteMelding = nyesteMelding(props.traad);
+    const datoTekst = formatterDatoTid(sisteMelding.opprettetDato);
+    const tittel = `${meldingstypeTekst(sisteMelding.meldingstype)} - ${temagruppeTekst(sisteMelding.temagruppe)}`;
     const dyplenker = useInfotabsDyplenker();
 
     return (
@@ -72,15 +83,15 @@ export function Traadelement(props: Props) {
             >
                 <PanelStyle>
                     <Meldingsikon
-                        type={nyesteMelding.meldingstype}
-                        erFerdigstiltUtenSvar={nyesteMelding.erFerdigstiltUtenSvar}
+                        type={sisteMelding.meldingstype}
+                        erFerdigstiltUtenSvar={sisteMelding.erFerdigstiltUtenSvar}
                         erMonolog={erMonolog(props.traad)}
                         antallMeldinger={props.traad.meldinger.length}
                     />
                     <div>
                         <Normaltekst>{datoTekst}</Normaltekst>
                         <Element>{tittel}</Element>
-                        <Tekstomrade>{delAvStringMedDots(nyesteMelding.fritekst, 70)}</Tekstomrade>
+                        <Normaltekst>{delAvStringMedDots(sisteMelding.fritekst, 70)}</Normaltekst>
                     </div>
                 </PanelStyle>
             </VisMerKnapp>
@@ -88,4 +99,4 @@ export function Traadelement(props: Props) {
     );
 }
 
-export default withRouter(MeldingerOversikt);
+export default MeldingerOversikt;

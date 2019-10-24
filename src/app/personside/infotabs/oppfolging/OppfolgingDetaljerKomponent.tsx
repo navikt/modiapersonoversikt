@@ -29,7 +29,9 @@ interface Props {
 function VisOppfolgingDetaljer(props: Props) {
     const detaljer = props.detaljertOppfølging;
     const arbeidsrettetOppfølging = detaljer.oppfølging.erUnderOppfølging ? 'Ja' : 'Nei';
-    const oppfølgingsenhet = `${detaljer.oppfølging.enhet.id} ${detaljer.oppfølging.enhet.navn}`;
+    const oppfølgingsenhet = detaljer.oppfølging.enhet
+        ? `${detaljer.oppfølging.enhet.id} ${detaljer.oppfølging.enhet.navn}`
+        : 'Ikke angitt';
     const meldeplikt = detaljer.meldeplikt ? 'Ja' : detaljer.meldeplikt === false ? 'Nei' : 'Meldeplikt Ukjent';
 
     const descriptionListProps = {

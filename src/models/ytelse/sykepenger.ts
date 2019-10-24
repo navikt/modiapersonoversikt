@@ -1,6 +1,7 @@
 import { Periode } from '../periode';
 import { KommendeUtbetaling, UtbetalingPåVent } from './ytelse-utbetalinger';
 import { Arbeidsforhold } from './arbeidsforhold';
+import { UnikYtelseKey } from '../../app/personside/infotabs/dyplenker';
 
 export interface SykepengerResponse {
     sykepenger: Sykepenger[] | null;
@@ -58,6 +59,6 @@ export function getSykepengerIdDato(sykepenger: Sykepenger) {
     return sykepenger.sykmeldtFom;
 }
 
-export function getUnikSykepengerKey(sykepenger: Sykepenger) {
+export function getUnikSykepengerKey(sykepenger: Sykepenger): UnikYtelseKey {
     return 'sykepenger' + getSykepengerIdDato(sykepenger);
 }

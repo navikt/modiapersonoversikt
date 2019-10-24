@@ -16,13 +16,11 @@ import { datoSynkende } from '../../../../../utils/dateUtils';
 import DropDownMenu from '../../../../../components/DropDownMenu';
 import DokumentListeElement from './DokumentListeElement';
 import { sakerTest } from '../../dyplenkeTest/utils';
-import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListe from '../sakstemaliste/SakstemaListe';
 import { useEffect } from 'react';
-import { SakerDyplenkeRouteComponentProps } from '../../dyplenker';
-import { withRouter } from 'react-router';
 
-interface Props extends SakerDyplenkeRouteComponentProps {
+interface Props {
     valgtSakstema?: Sakstema;
     avsenderFilter: DokumentAvsenderFilter;
     erStandaloneVindu: boolean;
@@ -38,7 +36,6 @@ interface DokumentGruppeProps {
 
 const SaksdokumenterStyling = styled.section`
     position: relative;
-    flex-grow: 1;
 `;
 
 const InfoOgFilterPanel = styled.section`
@@ -205,7 +202,7 @@ function SaksDokumenter(props: Props) {
     );
 
     if (!props.valgtSakstema) {
-        return <AlertStripeAdvarsel>Kunne ikke finne valgt sakstema</AlertStripeAdvarsel>;
+        return <AlertStripeInfo>Ingen sakstema valgt</AlertStripeInfo>;
     }
 
     const filterCheckboxer = (
@@ -261,4 +258,4 @@ function SaksDokumenter(props: Props) {
     );
 }
 
-export default withRouter(SaksDokumenter);
+export default SaksDokumenter;

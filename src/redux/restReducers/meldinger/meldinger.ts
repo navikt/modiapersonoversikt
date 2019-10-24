@@ -5,7 +5,7 @@ import { Traad } from '../../../models/meldinger/meldinger';
 
 export function getMeldingerFetchUri(state: AppState): string {
     const fnr = state.gjeldendeBruker.fødselsnummer;
-    return `${apiBaseUri}/meldinger/${fnr}/traader`;
+    return `${apiBaseUri}/dialog/${fnr}/meldinger`;
 }
 
 export default createRestResourceReducerAndActions<Traad[]>('meldinger', getMeldingerFetchUri);

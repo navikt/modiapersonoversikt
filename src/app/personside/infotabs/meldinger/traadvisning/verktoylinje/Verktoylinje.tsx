@@ -8,10 +8,13 @@ import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
 import { useEffect } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
-import LazySpinner from '../../../../../../components/LazySpinner';
+import { LenkeKnapp } from '../../../../../../components/common-styled-components';
+import { apiBaseUri } from '../../../../../../api/config';
+import { useFødselsnummer } from '../../../../../../utils/customHooks';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 interface Props {
-    valgtTraad?: Traad;
+    valgtTraad: Traad;
 }
 
 const PanelStyle = styled.div`
@@ -37,6 +40,10 @@ const OppgaveknapperStyle = styled.div`
 const SvartLenkeKnapp = styled(EkspanderKnapp)`
     color: #3e3832;
 `;
+const PrintKnapp = styled(LenkeKnapp.withComponent('a'))`
+    text-decoration: none;
+    color: #3e3832;
+`;
 
 enum FunksjonVindu {
     JOURNALFORING,
@@ -45,6 +52,7 @@ enum FunksjonVindu {
 }
 
 function Funksjoner(props: { valgtTraad: Traad }) {
+    const fnr = useFødselsnummer();
     const [aktivtVindu, settAktivtVindu] = React.useState<FunksjonVindu | null>(null);
     useEffect(() => {
         settAktivtVindu(null);
@@ -73,13 +81,15 @@ function Funksjoner(props: { valgtTraad: Traad }) {
                     />
                     <SvartLenkeKnapp onClick={setResetVindu(FunksjonVindu.MERK)} open={visMerk} tittel="Merk" />
                 </OppgaveknapperStyle>
-                <SvartLenkeKnapp onClick={() => {}} tittel="Skriv ut" />
+                <PrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
+                    <Normaltekst>Skriv ut</Normaltekst>
+                </PrintKnapp>
             </KnapperPanelStyle>
             <UnmountClosed isOpened={visJournalforing}>
                 <JournalforingPanel traad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visOppgave}>
-                <OpprettOppgaveContainer lukkPanel={() => settAktivtVindu(null)} />
+                <OpprettOppgaveContainer valgtTraad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
             </UnmountClosed>
             <UnmountClosed isOpened={visMerk}>
                 <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
@@ -89,10 +99,6 @@ function Funksjoner(props: { valgtTraad: Traad }) {
 }
 
 function Verktoylinje(props: Props) {
-    if (!props.valgtTraad) {
-        return <LazySpinner />;
-    }
-
     return (
         <PanelStyle>
             <Funksjoner valgtTraad={props.valgtTraad} />

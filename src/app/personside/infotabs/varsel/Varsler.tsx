@@ -5,16 +5,21 @@ import styled from 'styled-components';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import Varsel from './Varsel';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
+import theme from '../../../../styles/personOversiktTheme';
 
 interface Props {
     varsler: VarselModell[];
 }
 
+const Style = styled.article`
+    padding: ${theme.margin.layout};
+`;
+
 const HeaderStyle = styled.div`
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 20% 55% 1fr;
-    grid-template-columns: 20% 55% 1fr;
+    -ms-grid-columns: 6rem 55% 1fr;
+    grid-template-columns: 6rem minmax(35%, 55%) 1fr;
     > *:nth-child(1) {
         -ms-grid-column: 1;
     }
@@ -39,7 +44,7 @@ const ListStyle = styled.ol`
 function Varsler(props: Props) {
     const sortertPåDato = props.varsler.sort(datoSynkende(varsel => varsel.mottattTidspunkt));
     return (
-        <article>
+        <Style>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Varsler" />}
             <HeaderStyle>
                 <p>Dato</p>
@@ -51,7 +56,7 @@ function Varsler(props: Props) {
                     <Varsel key={index} varsel={varsel} />
                 ))}
             </ListStyle>
-        </article>
+        </Style>
     );
 }
 

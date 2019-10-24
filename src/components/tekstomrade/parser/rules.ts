@@ -21,7 +21,7 @@ export const ParagraphRule: Rule = {
 
 export const HighlightRule: Rule = {
     name: 'Highlight',
-    regex: /\*([^\*]+?)\*(?!\*)/,
+    regex: /\*([^*]+?)\*(?!\*)/,
     parse(match: RegexMatch): ASTNode {
         return {
             name: this.name,

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
-import theme from '../../../../styles/personOversiktTheme';
-import EtikettGrå from '../../../../components/EtikettGrå';
-import { formatterDatoTid } from '../../../../utils/dateUtils';
-import Tekstomrade from '../../../../components/tekstomrade/tekstomrade';
+import theme from '../../../styles/personOversiktTheme';
+import EtikettGrå from '../../../components/EtikettGrå';
+import { formatterDatoTid } from '../../../utils/dateUtils';
+import Tekstomrade from 'nav-frontend-tekstomrade';
 
 const PreviewStyle = styled.article`
     padding: 1rem;
@@ -14,6 +14,7 @@ const PreviewStyle = styled.article`
     > * {
         margin-bottom: 0.5rem;
     }
+    overflow-wrap: break-word;
 `;
 
 interface Props {

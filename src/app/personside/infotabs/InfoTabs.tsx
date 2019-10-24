@@ -18,12 +18,10 @@ import { useFødselsnummer } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
-import theme from '../../../styles/personOversiktTheme';
 
 type Props = RouteComponentProps<{}>;
 
 const OpenTab = styled.div`
-    padding: ${theme.margin.layout};
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -63,20 +61,22 @@ function InfoTabs(props: Props) {
         <ErrorBoundary boundaryName="InfoTabs">
             <HandleInfotabsHotkeys />
             <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
-            <OpenTab>
-                <h2 ref={ref} tabIndex={-1} className="sr-only">
-                    {openTab}
-                </h2>
-                <Switch location={props.location}>
-                    <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
-                    <Route path={paths.oppfolging} component={OppfolgingContainer} />
-                    <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
-                    <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
-                    <Route path={dyplenker.ytelser.route} component={YtelserContainer} />
-                    <Route path={paths.varsler} component={VarslerContainer} />
-                    <Route path={''} component={Oversikt} />
-                </Switch>
-            </OpenTab>
+            <ErrorBoundary boundaryName={'OpenTab'}>
+                <OpenTab>
+                    <h2 ref={ref} tabIndex={-1} className="sr-only">
+                        {openTab}
+                    </h2>
+                    <Switch location={props.location}>
+                        <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
+                        <Route path={paths.oppfolging} component={OppfolgingContainer} />
+                        <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
+                        <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
+                        <Route path={dyplenker.ytelser.route} component={YtelserContainer} />
+                        <Route path={paths.varsler} component={VarslerContainer} />
+                        <Route path={''} component={Oversikt} />
+                    </Switch>
+                </OpenTab>
+            </ErrorBoundary>
         </ErrorBoundary>
     );
 }

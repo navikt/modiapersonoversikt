@@ -10,7 +10,6 @@ import UtbetalingsLamell from './UtbetalingsLamell';
 import { RouteComponentProps } from 'react-router';
 import PleiepengerLamell from './Pleiepenger/PleiepengerLamell';
 import ForeldrepengerLamell from './Foreldrepenger/ForeldrepengerLamell';
-import HentOppgaveKnappStandalone from './HentOppgaveKnapp';
 import SaksoversiktMicroFrontend from '../../app/personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
 import theme from '../../styles/personOversiktTheme';
 import { moss } from '../../mock/person/moss';
@@ -25,7 +24,6 @@ import { paths } from '../../app/routes/routing';
 import { mapEnumToTabProps } from '../../utils/mapEnumToTabProps';
 import SykepengerLamell from './Sykepenger/SykepengerLamell';
 import VarslerLamell from './VarslerLamell';
-import HurtigreferatStandalone from './Hurtigreferat/HurtigreferatStandalone';
 import TestProvider from '../../test/Testprovider';
 import DialogPanel from '../../app/personside/dialogpanel/DialogPanel';
 import JournalforingPanel from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
@@ -41,11 +39,9 @@ enum Komponenter {
     Brukerprofil,
     Utbetalinger,
     Pleiepenger,
-    HentOppgaveKnapp,
     Foreldrepenger,
     Sykepenger,
     Varsler,
-    Hurtigreferat,
     Dialogpanel,
     Personsok,
     JournalforingPanel,
@@ -98,8 +94,6 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             );
         case Komponenter.Foreldrepenger:
             return <ForeldrepengerLamell fødselsnummer={props.fnr} />;
-        case Komponenter.HentOppgaveKnapp:
-            return <HentOppgaveKnappStandalone />;
         case Komponenter.Visittkort:
             return <VisittkortStandAlone fødselsnummer={props.fnr} />;
         case Komponenter.Oppfølging:
@@ -108,10 +102,6 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return <SykepengerLamell fødselsnummer={aremark.fødselsnummer} sykmeldtFraOgMed="2019-02-06" />;
         case Komponenter.Varsler:
             return <VarslerLamell fødselsnummer={props.fnr} />;
-        case Komponenter.Hurtigreferat:
-            return (
-                <HurtigreferatStandalone meldingBleSendtCallback={() => alert('Ble sendt')} fødselsnummer={props.fnr} />
-            );
         case Komponenter.Dialogpanel:
             return (
                 <TestProvider>

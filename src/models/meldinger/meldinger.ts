@@ -1,3 +1,5 @@
+import { Temagruppe } from '../Temagrupper';
+
 export interface Traad {
     traadId: string;
     meldinger: Melding[];
@@ -8,7 +10,7 @@ export interface Melding {
     oppgaveId?: string;
     meldingstype: Meldingstype;
     temagruppe: Temagruppe;
-    skrevetAv: Saksbehandler;
+    skrevetAvTekst: string;
     journalfortAv?: Saksbehandler;
     journalfortDato?: string;
     journalfortTema?: string;
@@ -44,22 +46,6 @@ export enum TypeKontakt {
     DialogBesvart = 'dialog besvart'
 }
 
-export enum Temagruppe {
-    Uføretrygd = 'UFRT',
-    Familie = 'FMLI',
-    Hjelpemiddel = 'HJLPM',
-    Bil = 'BIL',
-    OrtopediskHjelpemiddel = 'ORT_HJE',
-    Øvrig = 'OVRG',
-    PleiepengerBarnsSykdom = 'PLEIEPENGERSY',
-    Utland = 'UTLAND',
-    Pensjon = 'PENS',
-    Arbeid = 'ARBD',
-    AndreSosiale = 'ANSOS',
-    ØkonomiskSosial = 'OKSOS',
-    Null = ''
-}
-
 export enum Meldingstype {
     DOKUMENT_VARSEL = 'DOKUMENT_VARSEL',
     OPPGAVE_VARSEL = 'OPPGAVE_VARSEL',
@@ -83,7 +69,7 @@ export enum LestStatus {
 
 export interface SendReferatRequest {
     fritekst: string;
-    temagruppe: string;
+    temagruppe: Temagruppe;
     meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON | Meldingstype.SAMTALEREFERAT_OPPMOTE;
 }
 
@@ -103,6 +89,14 @@ export interface ForsettDialogRequest {
     oppgaveId?: string;
 }
 
+export interface SendDelsvarRequest {
+    traadId: string;
+    behandlingsId: string;
+    fritekst: string;
+    temagruppe: Temagruppe;
+    oppgaveId: string;
+}
+
 export interface OpprettHenvendelseRequest {
     traadId: string;
 }
@@ -110,4 +104,19 @@ export interface OpprettHenvendelseRequest {
 export interface OpprettHenvendelseResponse {
     behandlingsId: string;
     oppgaveId?: string;
+}
+
+export interface SlaaSammenRequest {
+    traader: SlaaSammenTraad[];
+    temagruppe: Temagruppe;
+}
+
+export interface SlaaSammenTraad {
+    oppgaveId: string;
+    traadId: string;
+}
+
+export interface SlaaSammenResponse {
+    nyTraadId: string;
+    traader: Traad[];
 }
