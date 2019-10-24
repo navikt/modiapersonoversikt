@@ -78,6 +78,7 @@ const InnholdWrapper = styled.div`
     > *:not(:last-child) {
         margin-bottom: 0.5rem;
     }
+    width: 0; /* IE-fix*/
 `;
 
 const IkonWrapper = styled.div`
@@ -93,6 +94,10 @@ const NyttVinduLenkeStyle = styled.span`
     white-space: nowrap;
 `;
 
+const VenstrestiltLenkeKnapp = styled(LenkeKnapp)`
+    text-align: left;
+`;
+
 const UUcustomOrder = styled.div`
     display: flex;
     flex-direction: column;
@@ -103,10 +108,7 @@ const UUcustomOrder = styled.div`
         order: 1;
     }
 `;
-const ContentStyle = styled.div`
-    /* IE11-fix*/
-    flex-grow: 1;
-`;
+
 function tekstBasertPåRetning(brukernavn: string, dokument: DokumentMetadata) {
     switch (dokument.retning) {
         case Kommunikasjonsretning.Inn:
@@ -191,7 +193,7 @@ class DokumentListeElement extends React.PureComponent<Props> {
             );
 
         const dokumentVedlegg = dokumentMetadata.vedlegg && dokumentMetadata.vedlegg.length > 0 && (
-            <ContentStyle>
+            <>
                 <Normaltekst>Dokumentet har {dokumentMetadata.vedlegg.length} vedlegg:</Normaltekst>
                 <ul>
                     {dokumentMetadata.vedlegg.map(vedlegg => (
@@ -201,7 +203,7 @@ class DokumentListeElement extends React.PureComponent<Props> {
                         </li>
                     ))}
                 </ul>
-            </ContentStyle>
+            </>
         );
 
         const tilgangTilHoveddokument = this.dokumentKanVises(dokumentMetadata.hoveddokument, dokumentMetadata);
@@ -229,14 +231,14 @@ class DokumentListeElement extends React.PureComponent<Props> {
                 <InnholdWrapper>
                     <UUcustomOrder>
                         <div ref={this.hoveddokumentLinkRef} className="order-second">
-                            <LenkeKnapp
+                            <VenstrestiltLenkeKnapp
                                 aria-disabled={!tilgangTilHoveddokument}
                                 onClick={() =>
                                     this.visDokumentHvisTilgang(dokumentMetadata.hoveddokument, dokumentMetadata)
                                 }
                             >
                                 <Element>{this.dokumentTekst(dokumentMetadata.hoveddokument)}</Element>
-                            </LenkeKnapp>
+                            </VenstrestiltLenkeKnapp>
                         </div>
                         <div className="order-first">
                             <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokumentMetadata)}</Normaltekst>
@@ -268,12 +270,12 @@ class DokumentListeElement extends React.PureComponent<Props> {
     private vedleggItem(vedlegg: Enkeltdokument, dokumentMetadata: DokumentMetadata) {
         if (!vedlegg.logiskDokument) {
             return (
-                <LenkeKnapp
+                <VenstrestiltLenkeKnapp
                     aria-disabled={!vedlegg.kanVises}
                     onClick={() => this.visDokumentHvisTilgang(vedlegg, dokumentMetadata)}
                 >
                     <Element>{this.dokumentTekst(vedlegg)}</Element>
-                </LenkeKnapp>
+                </VenstrestiltLenkeKnapp>
             );
         } else {
             return <Element>{vedlegg.tittel}</Element>;
