@@ -4,7 +4,7 @@ import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { Bold } from '../../../components/common-styled-components';
 import { Spørsmål } from '../../../redux/kontrollSporsmal/types';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
-import UtropstegnPlain from '../../../svg/UtropstegnPlain';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
     spørsmål: Spørsmål;
@@ -41,15 +41,8 @@ const Luft = styled.div`
     margin-bottom: 1rem;
 `;
 
-const Feilmelding = styled.div`
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    svg {
-        height: ${theme.margin.px30};
-        width: auto;
-        margin-right: ${theme.margin.px10};
-    }
+const IngenKontrollspørsmålStyling = styled(AlertStripeAdvarsel)`
+    margin-right: 1rem;
 `;
 
 class SpørsmålOgSvar extends React.PureComponent<Props> {
@@ -84,10 +77,9 @@ function lagSvar(spørsmål: Spørsmål) {
 
 export function FeilTekst() {
     return (
-        <Feilmelding>
-            <UtropstegnPlain />
-            <Normaltekst>Det finnes ingen opplysninger som kan brukes til å stille kontrollspørsmål</Normaltekst>
-        </Feilmelding>
+        <IngenKontrollspørsmålStyling>
+            Vi fant ingen opplysninger som kan brukes til å stille kontrollspørsmål
+        </IngenKontrollspørsmålStyling>
     );
 }
 

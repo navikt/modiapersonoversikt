@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser personsøk-komponent 1`] = `
-.c7 {
+.c6 {
   position: relative;
   border: none;
   padding: 0;
@@ -19,7 +19,7 @@ exports[`viser personsøk-komponent 1`] = `
   color: #0067c5;
 }
 
-.c7:after {
+.c6:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -27,27 +27,27 @@ exports[`viser personsøk-komponent 1`] = `
   width: 100%;
 }
 
-.c7:focus {
+.c6:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c7:hover {
+.c6:hover {
   opacity: 0.8;
 }
 
-.c7:hover:after {
+.c6:hover:after {
   content: '';
   border-color: #0067c5;
 }
 
-.c4 {
+.c3 {
   margin-right: 0.5em;
   margin-bottom: 1em;
   line-height: 1.375rem;
 }
 
-.c4 .nav-datovelger__kalenderPortal {
+.c3 .nav-datovelger__kalenderPortal {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -56,7 +56,7 @@ exports[`viser personsøk-komponent 1`] = `
   transform: translateX(-85%);
 }
 
-.c5 {
+.c4 {
   margin-bottom: 0.5em;
 }
 
@@ -64,22 +64,18 @@ exports[`viser personsøk-komponent 1`] = `
   padding: .8rem;
 }
 
-.c2 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c2 > *:first-child {
+.c1 > *:first-child {
   padding-right: 3em;
 }
 
-.c1 {
-  padding-bottom: 3rem;
-}
-
-.c6 {
+.c5 {
   padding-top: .8rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -91,14 +87,14 @@ exports[`viser personsøk-komponent 1`] = `
   justify-content: space-between;
 }
 
-.c3 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c3 .skjemaelement {
+.c2 .skjemaelement {
   padding-right: 0.5em;
 }
 
@@ -109,13 +105,8 @@ exports[`viser personsøk-komponent 1`] = `
   <article
     className="c0"
   >
-    <h1
-      className="typo-innholdstittel c1"
-    >
-      Avansert Søk
-    </h1>
     <section
-      className="c2"
+      className="c1"
     >
       <section
         aria-label="Søkekriterier"
@@ -126,7 +117,7 @@ exports[`viser personsøk-komponent 1`] = `
           Søkekriterier
         </h2>
         <div
-          className="c3"
+          className="c2"
         >
           <div
             className="skjemaelement"
@@ -172,7 +163,7 @@ exports[`viser personsøk-komponent 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="c2"
         >
           <div
             className="skjemaelement"
@@ -311,13 +302,13 @@ exports[`viser personsøk-komponent 1`] = `
           />
         </div>
         <div
-          className="c3"
+          className="c2"
         >
           <div
-            className="c4"
+            className="c3"
           >
             <label
-              className="skjemaelement__label c5"
+              className="skjemaelement__label c4"
               htmlFor="personsok-datovelger-fra"
             >
               <p
@@ -388,10 +379,10 @@ exports[`viser personsøk-komponent 1`] = `
             </div>
           </div>
           <div
-            className="c4"
+            className="c3"
           >
             <label
-              className="skjemaelement__label c5"
+              className="skjemaelement__label c4"
               htmlFor="personsok-datovelger-til"
             >
               <p
@@ -463,7 +454,7 @@ exports[`viser personsøk-komponent 1`] = `
           </div>
         </div>
         <div
-          className="c3"
+          className="c2"
         >
           <div
             className="skjemaelement"
@@ -563,7 +554,7 @@ exports[`viser personsøk-komponent 1`] = `
       </p>
     </a>
     <div
-      className="c6"
+      className="c5"
     >
       <button
         className="knapp knapp--hoved"
@@ -573,7 +564,7 @@ exports[`viser personsøk-komponent 1`] = `
         Søk
       </button>
       <button
-        className="c7"
+        className="c6"
         type="reset"
       >
         Nullstill
