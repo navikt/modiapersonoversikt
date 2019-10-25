@@ -10,7 +10,6 @@ import { temagruppeTekst } from '../../../../../models/Temagrupper';
 import { erMeldingFraBruker } from '../../../infotabs/meldinger/utils/meldingerUtils';
 
 function Meldingsforfatter(props: { melding: Melding }) {
-    console.log(props.melding.erDokumentMelding);
     if (props.melding.erDokumentMelding || erMeldingFraBruker(props.melding.meldingstype)) {
         return null;
     }
@@ -34,7 +33,9 @@ const StyledTekstomrade = styled(Tekstomrade)`
     padding-top: 0;
 `;
 
-const StyledEkspanderbartpanelBase = styled(EkspanderbartpanelBase)<{ erEnkeltstaende: boolean }>`
+const StyledEkspanderbartpanelBase = styled(({ erEnkeltstaende, ...rest }) => <EkspanderbartpanelBase {...rest} />)<{
+    erEnkeltstaende: boolean;
+}>`
     &.ekspanderbartPanel {
         ${props =>
             !props.erEnkeltstaende
