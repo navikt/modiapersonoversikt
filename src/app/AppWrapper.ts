@@ -16,7 +16,7 @@ const AppWrapper = styled.div`
         text-transform: none;
     }
     .skjema__feilomrade--harFeil {
-        box-shadow: 0 0 0 ${pxToRem(8)} ${theme.color.pinkErrorBg}, 0 0 0 ${pxToRem(9)} ${theme.color.redError}55;
+        box-shadow: 0 0 0 ${pxToRem(8)} ${theme.color.pinkErrorBg}, 0 0 0 ${pxToRem(9)} ${theme.color.redError};
     }
     &.is-mac {
         *::-webkit-scrollbar {
