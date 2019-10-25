@@ -15,11 +15,16 @@ exports[`viser fortsett dialog 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
 }
 
 .c5 {
   padding: 1rem;
   overflow-wrap: break-word;
+  padding-top: 0;
 }
 
 .c2 {
@@ -86,7 +91,6 @@ exports[`viser fortsett dialog 1`] = `
     >
       <div
         className="ekspanderbartPanel c2 ekspanderbartPanel--lukket"
-        erEnkeltstaende={false}
       >
         <button
           aria-expanded={false}
@@ -144,7 +148,6 @@ exports[`viser fortsett dialog 1`] = `
       </div>
       <div
         className="ekspanderbartPanel c2 ekspanderbartPanel--lukket"
-        erEnkeltstaende={false}
       >
         <button
           aria-expanded={false}
@@ -196,7 +199,6 @@ exports[`viser fortsett dialog 1`] = `
       </div>
       <div
         className="ekspanderbartPanel c2 ekspanderbartPanel--lukket"
-        erEnkeltstaende={false}
       >
         <button
           aria-expanded={false}
@@ -250,7 +252,6 @@ exports[`viser fortsett dialog 1`] = `
   </div>
   <div
     className="ekspanderbartPanel c6 ekspanderbartPanel--apen"
-    erEnkeltstaende={true}
   >
     <button
       aria-controls="Helt tilfeldig ID"
