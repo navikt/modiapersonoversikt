@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { Select } from 'nav-frontend-skjema';
-import { RadioPanelGruppe, Textarea } from 'nav-frontend-skjema';
+import { Textarea } from 'nav-frontend-skjema';
 import {
     Ansatt,
     Enhet,
@@ -76,17 +76,13 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 }
                 spinner={isLoading(ansattliste)}
             />
-            <RadioPanelGruppe
-                radios={[
-                    { label: 'Høy', value: OppgavePrioritet.HOY },
-                    { label: 'Normal', value: OppgavePrioritet.NORM },
-                    { label: 'Lav', value: OppgavePrioritet.LAV }
-                ]}
-                name={'Prioritet'}
-                checked={props.form.state.valgtPrioritet}
-                legend={'Prioritet'}
-                onChange={(_, value) => props.form.actions.settValgtPrioritet(OppgavePrioritet[value])}
-            />
+            <Select
+                defaultValue={OppgavePrioritet.NORM}
+                label={'Velg prioritert'}
+                onChange={value => props.form.actions.settValgtPrioritet(OppgavePrioritet[value.target.value])}
+            >
+                <PrioritetOptions />
+            </Select>
             <Textarea
                 maxLength={0}
                 value={props.form.state.beskrivelse}
@@ -174,4 +170,17 @@ function OppgavetypeOptions(props: { valgtGsakTema?: GsakTema }) {
           ];
 
     return <>{options}</>;
+}
+
+function PrioritetOptions() {
+    return (
+        <>
+            <option disabled={true} value={''} key={''}>
+                Velg prioritet
+            </option>
+            <option value={OppgavePrioritet.HOY}>Høy</option>
+            <option value={OppgavePrioritet.NORM}>Normal</option>
+            <option value={OppgavePrioritet.LAV}>Lav</option>
+        </>
+    );
 }
