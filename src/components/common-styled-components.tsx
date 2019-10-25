@@ -12,6 +12,7 @@ export const AlignTextCenter = styled.div`
 export const SpaceBetween = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 `;
 
 export const FlexEnd = styled.div`
