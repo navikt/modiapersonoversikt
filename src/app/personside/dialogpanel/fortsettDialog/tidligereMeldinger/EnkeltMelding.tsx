@@ -1,4 +1,4 @@
-import { Melding, Meldingstype } from '../../../../../models/meldinger/meldinger';
+import { Melding } from '../../../../../models/meldinger/meldinger';
 import { Ingress, Undertekst, UndertekstBold } from 'nav-frontend-typografi';
 import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
 import { meldingstypeTekst } from '../../../infotabs/meldinger/utils/meldingstekster';
@@ -7,12 +7,11 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
 import { temagruppeTekst } from '../../../../../models/Temagrupper';
+import { erMeldingFraBruker } from '../../../infotabs/meldinger/utils/meldingerUtils';
 
 function Meldingsforfatter(props: { melding: Melding }) {
-    if (
-        props.melding.erDokumentMelding ||
-        [Meldingstype.SPORSMAL_SKRIFTLIG, Meldingstype.SPORSMAL_SKRIFTLIG_DIREKTE].includes(props.melding.meldingstype)
-    ) {
+    console.log(props.melding.erDokumentMelding);
+    if (props.melding.erDokumentMelding || erMeldingFraBruker(props.melding.meldingstype)) {
         return null;
     }
     return <Undertekst>Skrevet av {props.melding.skrevetAvTekst}</Undertekst>;
@@ -26,11 +25,13 @@ const EnkeltMeldingStyle = styled.div`
 const InlineStyle = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 `;
 
 const StyledTekstomrade = styled(Tekstomrade)`
     padding: 1rem;
     overflow-wrap: break-word;
+    padding-top: 0;
 `;
 
 const StyledEkspanderbartpanelBase = styled(EkspanderbartpanelBase)<{ erEnkeltstaende: boolean }>`
