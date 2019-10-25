@@ -843,14 +843,14 @@ Array [
               </span>
             </label>
             <label
-              className="inputPanel radioPanel"
+              className="inputPanel radioPanel inputPanel--disabled"
               htmlFor="Helt tilfeldig ID"
             >
               <input
                 aria-checked={false}
                 checked={false}
                 className="inputPanel__field"
-                disabled={false}
+                disabled={true}
                 id="Helt tilfeldig ID"
                 name="merk"
                 onBlur={[Function]}
