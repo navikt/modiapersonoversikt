@@ -168,9 +168,9 @@ function OppgaveSkjema(props: OppgaveProps) {
     if (resultat) {
         const alert =
             resultat === Resultat.VELLYKKET ? (
-                <AlertStripeSuksess>Tråd merket</AlertStripeSuksess>
+                <AlertStripeSuksess>Oppgave opprettet</AlertStripeSuksess>
             ) : (
-                <AlertStripeFeil>Klarte ikke å merke tråd</AlertStripeFeil>
+                <AlertStripeFeil>Klarte ikke å opprette oppgave</AlertStripeFeil>
             );
         return (
             <AlertStyling>
