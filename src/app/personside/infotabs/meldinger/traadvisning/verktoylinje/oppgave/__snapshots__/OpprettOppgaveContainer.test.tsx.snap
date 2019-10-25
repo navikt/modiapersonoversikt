@@ -353,87 +353,47 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
       </div>
     </div>
     <div
-      className="inputPanelGruppe"
+      className="skjemaelement"
     >
-      <fieldset
-        className="skjema__fieldset"
+      <label
+        className="skjemaelement__label"
+        htmlFor="Helt tilfeldig ID"
       >
-        <legend
-          className="skjema__legend"
+        Velg prioritert
+      </label>
+      <div
+        className="selectContainer input--fullbredde"
+      >
+        <select
+          className="skjemaelement__input"
+          defaultValue="NORM"
+          disabled={false}
+          id="Helt tilfeldig ID"
+          onChange={[Function]}
         >
-          Prioritet
-        </legend>
-        <div
-          className="inputPanelGruppe__inner"
-        >
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
+          <option
+            disabled={true}
+            value=""
           >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              id="Helt tilfeldig ID"
-              name="Prioritet"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-              value="HOY"
-            />
-            <span
-              className="inputPanel__label"
-            >
-              Høy
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel inputPanel--checked"
-            htmlFor="Helt tilfeldig ID"
+            Velg prioritet
+          </option>
+          <option
+            value="HOY"
           >
-            <input
-              aria-checked={true}
-              checked={true}
-              className="inputPanel__field"
-              id="Helt tilfeldig ID"
-              name="Prioritet"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-              value="NORM"
-            />
-            <span
-              className="inputPanel__label"
-            >
-              Normal
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
+            Høy
+          </option>
+          <option
+            value="NORM"
           >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              id="Helt tilfeldig ID"
-              name="Prioritet"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-              value="LAV"
-            />
-            <span
-              className="inputPanel__label"
-            >
-              Lav
-            </span>
-          </label>
-        </div>
-      </fieldset>
+            Normal
+          </option>
+          <option
+            value="LAV"
+          >
+            Lav
+          </option>
+        </select>
+      </div>
       <div
         aria-live="assertive"
         role="alert"
