@@ -15,10 +15,9 @@ import {
     erMeldingFeilsendt,
     erMeldingSpørsmål,
     erSamtalereferat,
-    harDelsvar,
-    harTilgangTilSletting
+    harDelsvar
 } from '../../../utils/meldingerUtils';
-import { Melding, Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
+import { Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
 import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import { apiBaseUri } from '../../../../../../../api/config';
@@ -33,6 +32,8 @@ import { loggError } from '../../../../../../../utils/frontendLogger';
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
 import { useRestResource } from '../../../../../../../utils/customHooks';
+import { AsyncResult, hasData, isPending } from '@nutgaard/use-async';
+import useFetch from '@nutgaard/use-fetch';
 
 interface Props {
     lukkPanel: () => void;
@@ -57,6 +58,8 @@ const AlertStyling = styled.div`
         margin-top: 1rem;
     }
 `;
+
+const credentials: RequestInit = { credentials: 'include' };
 
 const MERK_AVSLUTT_URL = `${apiBaseUri}/dialogmerking/avslutt`;
 const MERK_BISYS_URL = `${apiBaseUri}/dialogmerking/bidrag`;
@@ -85,10 +88,6 @@ function visFerdigstillUtenSvar(meldingstype: Meldingstype, valgtTraad: Traad) {
     );
 }
 
-function skalViseSletting(melding: Melding) {
-    return harTilgangTilSletting() && (erSamtalereferat(melding.temagruppe) || erMeldingSpørsmål(melding.meldingstype));
-}
-
 function getMerkAvsluttRequest(fnr: string, traad: Traad): MerkAvsluttUtenSvarRequest {
     return {
         fnr: fnr,
@@ -114,6 +113,7 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
+    const kanSlette: AsyncResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, credentials);
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
@@ -123,10 +123,14 @@ function MerkPanel(props: Props) {
 
     const melding = eldsteMelding(valgtTraad);
 
+    const visSletting =
+        (!isPending(kanSlette) || (hasData(kanSlette) && kanSlette.data)) &&
+        (erSamtalereferat(melding.temagruppe) || erMeldingSpørsmål(melding.meldingstype));
+
     const disableStandardvalg = !visStandardvalg(valgtTraad);
     const disableBidrag = !(!erKommunaleTjenester(melding.temagruppe) && visStandardvalg(valgtTraad));
     const disableFerdigstillUtenSvar = !visFerdigstillUtenSvar(melding.meldingstype, valgtTraad);
-    const disableSlett = !skalViseSletting(melding);
+    const disableSlett = !visSletting;
 
     const submitHandler = (event: FormEvent) => {
         setSubmitting(true);

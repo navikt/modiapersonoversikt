@@ -34,6 +34,7 @@ import { mockPersonsokResponse, mockStaticPersonsokRequest } from './person/pers
 import { setupWsControlAndMock } from './context-mock';
 import standardTekster from './standardtekster.js';
 import { henvendelseResponseMock } from './meldinger/henvendelseMock';
+import { mockTilgangTilSlett } from './meldinger/merk-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -214,6 +215,13 @@ function setupAnsattePaaEnhetMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/enheter/:enhetId/ansatte',
         withDelayedResponse(randomDelay(), STATUS_OK, mockGeneratorMedEnhetId(enhetId => getMockAnsatte(enhetId)))
+    );
+}
+
+function setupTilgangTilSlettMock(mock: FetchMock) {
+    mock.get(
+        `${apiBaseUri}/dialogmerking/slett`,
+        withDelayedResponse(randomDelay(), STATUS_OK, () => mockTilgangTilSlett())
     );
 }
 
@@ -518,6 +526,7 @@ export function setupMock() {
     setupGsakTemaMock(mock);
     setupOppgaveEnhetMock(mock);
     setupAnsattePaaEnhetMock(mock);
+    setupTilgangTilSlettMock(mock);
     setupYtelserOgKontrakter(mock);
     setupVarselMock(mock);
     opprettOppgaveMock(mock);

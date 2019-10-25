@@ -123,10 +123,6 @@ export function harDelsvar(traad: Traad): boolean {
 export function erDelvisBesvart(traad: Traad): boolean {
     return erDelsvar(nyesteMelding(traad));
 }
-export function harTilgangTilSletting() {
-    // TODO Fiks når vi har satt opp vault/fasit
-    return true;
-}
 
 export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
     if (!saksbehandler) {
