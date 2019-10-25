@@ -30,6 +30,11 @@ const AppWrapper = styled.div`
             background-color: #0005;
         }
     }
+    &.is-ie {
+        .alertstripe__tekst {
+            flex: auto !important;
+        }
+    }
 `;
 
 export const ContentStyle = styled.div`
