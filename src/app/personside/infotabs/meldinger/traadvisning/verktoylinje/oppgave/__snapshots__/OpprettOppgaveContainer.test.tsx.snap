@@ -60,11 +60,6 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   border-color: #0067c5;
 }
 
-.c6 {
-  padding-top: .8rem;
-  color: #d0021b;
-}
-
 .c0 .inputPanelGruppe__inner {
   display: -webkit-box;
   display: -webkit-flex;
@@ -372,12 +367,6 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           onChange={[Function]}
         >
           <option
-            disabled={true}
-            value=""
-          >
-            Velg prioritet
-          </option>
-          <option
             value="HOY"
           >
             Høy
@@ -452,9 +441,5 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
       </button>
     </div>
   </form>
-  <div
-    aria-live="polite"
-    className="c6"
-  />
 </div>
 `;

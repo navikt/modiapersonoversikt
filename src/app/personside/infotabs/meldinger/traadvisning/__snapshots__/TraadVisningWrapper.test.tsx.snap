@@ -71,11 +71,6 @@ Array [
   margin-bottom: 0;
 }
 
-.c14 {
-  padding-top: .8rem;
-  color: #d0021b;
-}
-
 .c9 .inputPanelGruppe__inner {
   display: -webkit-box;
   display: -webkit-flex;
@@ -105,7 +100,7 @@ Array [
   margin: 0;
 }
 
-.c15 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -608,12 +603,6 @@ Array [
               onChange={[Function]}
             >
               <option
-                disabled={true}
-                value=""
-              >
-                Velg prioritet
-              </option>
-              <option
                 value="HOY"
               >
                 Høy
@@ -688,10 +677,6 @@ Array [
           </button>
         </div>
       </form>
-      <div
-        aria-live="polite"
-        className="c14"
-      />
     </div>
     <form
       onSubmit={[Function]}
@@ -833,7 +818,7 @@ Array [
         />
       </div>
       <div
-        className="c15"
+        className="c14"
       >
         <button
           className="knapp knapp--hoved"
