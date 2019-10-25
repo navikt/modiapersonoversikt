@@ -31,18 +31,30 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
     return (
         <>
             <Select
+                feil={
+                    props.form.valideringsResultat.felter.valgtTema &&
+                    props.form.valideringsResultat.felter.valgtTema.skjemafeil
+                }
                 label={'Tema'}
                 onChange={event => props.form.actions.oppdaterStateVedValgtTema(hentValgtTema(props.gsakTema, event))}
             >
                 <TemaOptions gsakTema={props.gsakTema} />
             </Select>
             <Select
+                feil={
+                    props.form.valideringsResultat.felter.valgtUnderkategori &&
+                    props.form.valideringsResultat.felter.valgtUnderkategori.skjemafeil
+                }
                 label={'Gjelder'}
                 onChange={event => props.form.actions.settValgtUnderkategori(hentValgtUnderkategori(event, valgtTema))}
             >
                 <UnderkategoriOptions valgtGsakTema={valgtTema} />
             </Select>
             <Select
+                feil={
+                    props.form.valideringsResultat.felter.valgtOppgavetype &&
+                    props.form.valideringsResultat.felter.valgtOppgavetype.skjemafeil
+                }
                 label={'Type oppgave'}
                 onChange={event => props.form.actions.settValgtOppgavetype(hentValgtOppgavetype(event, valgtTema))}
             >
@@ -84,6 +96,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 <PrioritetOptions />
             </Select>
             <Textarea
+                feil={props.form.valideringsResultat.felter.beskrivelse.skjemafeil}
                 maxLength={0}
                 value={props.form.state.beskrivelse}
                 label={'Beskrivelse'}
@@ -175,9 +188,6 @@ function OppgavetypeOptions(props: { valgtGsakTema?: GsakTema }) {
 function PrioritetOptions() {
     return (
         <>
-            <option disabled={true} value={''} key={''}>
-                Velg prioritet
-            </option>
             <option value={OppgavePrioritet.HOY}>Høy</option>
             <option value={OppgavePrioritet.NORM}>Normal</option>
             <option value={OppgavePrioritet.LAV}>Lav</option>
