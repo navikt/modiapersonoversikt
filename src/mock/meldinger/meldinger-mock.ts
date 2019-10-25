@@ -34,7 +34,7 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
 
     return traadArray.map(traad => {
         const meldinger = traad.meldinger;
-        meldinger[0].id = traad.traadId;
+        meldinger[0].id = traad.traadId; // Første melding i en tråd har alltid id === traadId
         return {
             ...traad,
             meldinger
