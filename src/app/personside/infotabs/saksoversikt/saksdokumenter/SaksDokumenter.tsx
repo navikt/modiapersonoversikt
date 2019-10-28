@@ -20,6 +20,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListe from '../sakstemaliste/SakstemaListe';
 import { useEffect } from 'react';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
+import { usePrevious } from '../../../../../utils/customHooks';
 
 interface Props {
     valgtSakstema: Sakstema;
@@ -174,16 +175,7 @@ function DokumentListe(props: DokumentListeProps) {
         />
     ));
 
-    return (
-        <>
-            <DokumenterListe aria-label="Dokumenter gruppert på årstall">{årsgrupper}</DokumenterListe>
-            <Luft />
-            <AlertStripeInfo>
-                Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter
-                som er journalført vises fra og med 4.juni 2016
-            </AlertStripeInfo>
-        </>
-    );
+    return <DokumenterListe aria-label="Dokumenter gruppert på årstall">{årsgrupper}</DokumenterListe>;
 }
 
 const PaginatorStyling = styled.div`
@@ -195,6 +187,10 @@ const PaginatorStyling = styled.div`
     }
 `;
 
+const PrevNextButtonsStyling = styled.div`
+    margin-top: 0.5rem;
+`;
+
 function SaksDokumenter(props: Props) {
     const tittelRef = React.createRef<HTMLDivElement>();
     const filtrerteDokumenter = props.valgtSakstema.dokumentMetadata
@@ -202,14 +198,17 @@ function SaksDokumenter(props: Props) {
         .sort(datoSynkende(dokumentmetadata => saksdatoSomDate(dokumentmetadata.dato)));
     const paginering = usePaginering(filtrerteDokumenter, 50, 'journalpost');
 
+    const prevSakstema = usePrevious(props.valgtSakstema);
     useEffect(
         function scrollToTopVedNyttSakstema() {
-            if (!props.valgtSakstema) {
+            if (!props.valgtSakstema || !prevSakstema) {
                 return;
             }
-            tittelRef.current && tittelRef.current.focus();
+            if (prevSakstema !== props.valgtSakstema) {
+                tittelRef.current && tittelRef.current.focus();
+            }
         },
-        [props.valgtSakstema, tittelRef]
+        [props.valgtSakstema, tittelRef, prevSakstema]
     );
 
     const filterCheckboxer = (
@@ -256,9 +255,17 @@ function SaksDokumenter(props: Props) {
                     <ToggleViktigAaViteKnapp valgtSakstema={props.valgtSakstema} />
                 </div>
             </InfoOgFilterPanel>
-            <PaginatorStyling>{paginering.pageSelect}</PaginatorStyling>
+            {paginering.pageSelect && <PaginatorStyling>{paginering.pageSelect}</PaginatorStyling>}
             <ViktigÅVite valgtSakstema={props.valgtSakstema} />
             <DokumentListe sakstema={props.valgtSakstema} filtrerteDokumenter={paginering.currentPage} />
+            {paginering.prevNextButtons && (
+                <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
+            )}
+            <Luft />
+            <AlertStripeInfo>
+                Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter
+                som er journalført vises fra og med 4.juni 2016
+            </AlertStripeInfo>
         </SaksdokumenterStyling>
     );
 }
