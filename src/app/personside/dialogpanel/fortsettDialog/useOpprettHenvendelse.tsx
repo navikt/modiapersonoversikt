@@ -21,10 +21,13 @@ type OpprettHenvendelseStatus = NotFinishedOpprettHenvendelseStatus | FinishedOp
 
 function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseStatus {
     const opprettHenvendelseResource = useRestResource(resources => resources.opprettHenvendelse);
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
     const dispatch = useDispatch();
 
     useOnMount(function getBehandlingsId() {
-        dispatch(opprettHenvendelseResource.actions.post({ traadId: traad.traadId }));
+        dispatch(
+            opprettHenvendelseResource.actions.post({ traadId: traad.traadId }, () => dispatch(reloadTildelteOppgaver))
+        );
         return () => {
             dispatch(opprettHenvendelseResource.actions.reset);
         };

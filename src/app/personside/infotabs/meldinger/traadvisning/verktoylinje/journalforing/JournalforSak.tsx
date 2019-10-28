@@ -42,7 +42,6 @@ const SuksessStyling = styled.div`
         margin-top: 1rem;
     }
 `;
-
 export function JournalforSak(props: Props) {
     const dispatch = useDispatch();
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
@@ -64,7 +63,7 @@ export function JournalforSak(props: Props) {
             },
             error => {
                 setSubmitting(false);
-                setError('Kunne ikke gjennomføre journalføring.');
+                setError('Kunne ikke gjennomføre journalføring');
                 loggError(error, `Kunne ikke gjennomføre journalføring.`, { traadId, saksId: sak.saksId });
             }
         );

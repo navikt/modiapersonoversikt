@@ -51,8 +51,8 @@ describe('Sorterer etter dato', () => {
         const liten2 = new Date('2000-01-01');
         const stor = new Date('2000-01-10');
 
-        expect(ascendingDateComparator(stor, liten)).toEqual(1);
-        expect(ascendingDateComparator(liten, stor)).toEqual(-1);
+        expect(ascendingDateComparator(stor, liten)).toBeGreaterThan(1);
+        expect(ascendingDateComparator(liten, stor)).toBeLessThan(-1);
         expect(ascendingDateComparator(liten, liten2)).toEqual(0);
     });
 

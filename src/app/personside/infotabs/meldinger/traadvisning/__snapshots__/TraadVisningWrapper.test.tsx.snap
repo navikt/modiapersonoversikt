@@ -699,16 +699,6 @@ Array [
               type="text"
               value=""
             />
-            <p
-              className="textarea--medMeta__teller"
-            >
-              <span
-                aria-live="polite"
-                className="teller-tekst"
-              >
-                Du har 2000 tegn igjen
-              </span>
-            </p>
           </div>
           <div
             aria-live="assertive"
@@ -911,6 +901,10 @@ Array [
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
 }
 
 .c5 {

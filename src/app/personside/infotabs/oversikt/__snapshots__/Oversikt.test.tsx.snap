@@ -403,9 +403,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  01.01.1970
+                  05.05.2019
                    / 
-                  Returnert til NAV for saksbehandling
+                  Ligger hos banken
                 </p>
                 <p
                   className="typo-normal"
@@ -413,15 +413,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <span
                     className="c9"
                   >
-                    Diverse ytelser
+                    Barnetrygd
                   </span>
                 </p>
                 <p
                   className="typo-normal"
                 >
-                  01.01.1970
+                  13.02.2018
                    - 
-                  01.01.1970
+                  20.09.2018
                 </p>
                 <p
                   className="typo-normal"
@@ -452,7 +452,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  01.01.1970
+                  17.12.2018
                    / 
                   Ligger hos banken
                 </p>
@@ -462,15 +462,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <span
                     className="c9"
                   >
-                    Barnetrygd
+                    Diverse ytelser
                   </span>
                 </p>
                 <p
                   className="typo-normal"
                 >
-                  01.01.1970
+                  12.05.2018
                    - 
-                  01.01.1970
+                  10.04.2019
                 </p>
                 <p
                   className="typo-normal"
@@ -607,7 +607,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                01.01.1970
+                28.03.2019
               </p>
               <p
                 className="typo-normal"
@@ -666,7 +666,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    01. jan. 1970
+                    01. mars 2019
                   </p>
                 </div>
                 <div>
@@ -715,7 +715,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    01. jan. 1970
+                    24. jan. 2019
                   </p>
                 </div>
                 <div>
@@ -749,7 +749,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <p
                 className="typo-normal"
               >
-                01.01.1970
+                10.01.2019
               </p>
               <p
                 className="typo-normal"
@@ -803,7 +803,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   <p
                     className="typo-normal"
                   >
-                    01. jan. 1970
+                    02. feb. 2019
                   </p>
                 </div>
                 <div>
@@ -922,7 +922,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <p
                       className="typo-normal"
                     >
-                      01.01.1970 01:00
+                      13.08.2019 00:00
                     </p>
                     <p
                       className="typo-element"
@@ -995,7 +995,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 className="typo-normal"
               >
                 ID dato: 
-                01.01.1970
+                06.02.2019
               </p>
               <p
                 className="typo-normal"
@@ -1011,7 +1011,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               >
                 100% sykemeldt - Maksdato
                  
-                01.01.1970
+                16.01.2019
               </p>
             </div>
             <button
@@ -1116,7 +1116,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <p
                         className="typo-normal order-first"
                       >
-                        01.01.1970
+                        24.12.2018
                       </p>
                     </div>
                     <p
@@ -1186,7 +1186,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <p
                         className="typo-normal order-first"
                       >
-                        01.01.1970
+                        25.06.2018
                       </p>
                     </div>
                     <p
