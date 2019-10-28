@@ -90,7 +90,7 @@ function Verktoylinje(props: Props) {
                     <Normaltekst>Skriv ut</Normaltekst>
                 </PrintKnapp>
             </KnapperPanelStyle>
-            <UnmountClosed isOpened={visJournalforing}>
+            <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
                 <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />
             </UnmountClosed>
             <UnmountClosed isOpened={visOppgave}>
