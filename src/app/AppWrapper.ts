@@ -16,7 +16,7 @@ const AppWrapper = styled.div`
         text-transform: none;
     }
     .skjema__feilomrade--harFeil {
-        box-shadow: 0 0 0 ${pxToRem(8)} ${theme.color.pinkErrorBg}, 0 0 0 ${pxToRem(9)} ${theme.color.redError}55;
+        box-shadow: 0 0 0 ${pxToRem(8)} ${theme.color.pinkErrorBg}, 0 0 0 ${pxToRem(9)} ${theme.color.redError};
     }
     &.is-mac {
         *::-webkit-scrollbar {
@@ -28,6 +28,11 @@ const AppWrapper = styled.div`
         *::-webkit-scrollbar-thumb {
             border-radius: ${pxToRem(4)};
             background-color: #0005;
+        }
+    }
+    &.is-ie {
+        .alertstripe__tekst {
+            flex: auto !important;
         }
     }
 `;

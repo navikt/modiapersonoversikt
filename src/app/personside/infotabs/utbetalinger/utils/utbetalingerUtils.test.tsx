@@ -1,5 +1,5 @@
 import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
-import { getMockUtbetaling, getMockYtelse } from '../../../../../mock/utbetalinger-mock';
+import { getMockUtbetaling, getMockYtelse } from '../../../../../mock/utbetalinger/utbetalinger-mock';
 import {
     filtrerBortUtbetalingerSomIkkeErUtbetalt,
     getBruttoSumYtelser,
@@ -17,7 +17,7 @@ import {
     utbetalingDatoComparator
 } from './utbetalingerUtils';
 import moment from 'moment';
-import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/statiskMockUtbetaling';
+import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
 import { Periode } from '../../../../../models/periode';
 import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 

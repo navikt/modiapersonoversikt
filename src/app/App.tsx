@@ -28,21 +28,24 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
 function Personoveriskt() {
     const [isMac, setIsMac] = useState<undefined | boolean>(undefined);
-
+    const [isIE, setIsIE] = useState<undefined | boolean>(undefined);
     useOnMount(() => {
         const browser = detect();
+        const name = browser && browser.name;
         const os = browser && browser.os;
         setIsMac(os ? os.toLowerCase().includes('mac') : undefined);
+        setIsIE(name ? name.toLowerCase().includes('ie') : undefined);
         settJobberIkkeMedSpørsmålOgSvar();
     });
 
+    const className = [isMac ? 'is-mac' : '', isIE ? 'is-ie' : ''].join(' ');
     return (
         <Provider store={store}>
             <>
                 <PersonOppslagHandler />
                 <HentGlobaleVerdier />
                 <PersonsokContainer />
-                <AppStyle className={isMac ? 'is-mac' : ''}>
+                <AppStyle className={className}>
                     <Decorator />
                     <ContentStyle>
                         <Routing />

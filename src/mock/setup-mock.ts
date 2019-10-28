@@ -16,7 +16,7 @@ import { mockPostnummere } from './kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
 import { mockVergemal } from './person/vergemal/vergemalMock';
-import { getMockUtbetalinger } from './utbetalinger-mock';
+import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
 import navfaker from 'nav-faker';
 import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
