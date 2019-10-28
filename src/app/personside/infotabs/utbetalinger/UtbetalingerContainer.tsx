@@ -11,13 +11,13 @@ import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHidden
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { useOnMount } from '../../../../utils/customHooks';
-import { erIE11, erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
+import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
 const UtbetalingerArticle = styled.article`
     ${scrollBarContainerStyle(theme.media.utbetalinger)};
     @media (min-width: ${theme.media.utbetalinger}) {
-        ${erIE11() &&
+        ${erModiabrukerdialog() &&
             css`
                 height: 0; /* IE11 */
                 flex-grow: 1; /* IE11 */
