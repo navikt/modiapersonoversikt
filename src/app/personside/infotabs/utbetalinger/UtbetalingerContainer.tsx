@@ -3,7 +3,7 @@ import Utbetalinger from './Utbetalinger';
 import { UtbetalingerResponse } from '../../../../models/utbetalinger';
 import Filter from './filter/Filter';
 import theme from '../../../../styles/personOversiktTheme';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';
@@ -11,14 +11,17 @@ import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHidden
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { useOnMount } from '../../../../utils/customHooks';
-import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
+import { erIE11, erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
 const UtbetalingerArticle = styled.article`
     ${scrollBarContainerStyle(theme.media.utbetalinger)};
     @media (min-width: ${theme.media.utbetalinger}) {
-        height: 0; /* IE11 */
-        flex-grow: 1; /* IE11 */
+        ${erIE11() &&
+            css`
+                height: 0; /* IE11 */
+                flex-grow: 1; /* IE11 */
+            `};
         display: flex;
         align-items: flex-start;
         > *:last-child {
