@@ -2,9 +2,10 @@ import * as React from 'react';
 import { Melding, Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components';
 import EnkeltMelding from './EnkeltMelding';
-import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Ingress } from 'nav-frontend-typografi';
+import { useState } from 'react';
 
 interface Props {
     traad: Traad;
@@ -20,11 +21,12 @@ const Wrapper = styled.div`
     }
 `;
 
-const StyledEkspanderbartpanel = styled(EkspanderbartpanelBase)`
+const StyledEkspanderbartpanel = styled(EkspanderbartpanelBasePure)`
     overflow: hidden;
 `;
 
 function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: boolean }) {
+    const [apen, setApen] = useState(props.defaultApen);
     const flereMeldinger = props.traad.length > 1;
     const meldinger = props.traad.map(melding => (
         <EnkeltMelding
@@ -37,7 +39,12 @@ function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: bool
 
     if (flereMeldinger) {
         return (
-            <StyledEkspanderbartpanel heading={<Ingress>{props.tittel}</Ingress>} apen={props.defaultApen}>
+            <StyledEkspanderbartpanel
+                apen={apen}
+                onClick={() => setApen(value => !value)}
+                collapseProps={{ hasNestedCollapse: true, forceInitialAnimation: false }} // Litt trøbbel med mye hopping pga nestede ekspanderebare paneler
+                heading={<Ingress>{props.tittel}</Ingress>}
+            >
                 {meldinger}
             </StyledEkspanderbartpanel>
         );

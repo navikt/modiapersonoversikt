@@ -18,7 +18,7 @@ import { useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 
-const meldingerMediaTreshold = pxToRem(1000);
+const meldingerMediaTreshold = pxToRem(850);
 
 const MeldingerArticleStyle = styled.article`
     ${scrollBarContainerStyle(meldingerMediaTreshold)};
