@@ -64,9 +64,9 @@ function TildelteOppgaver(props: RouteComponentProps) {
         <LazySpinner />
     ) : (
         oppgaverPaaBruker.map(oppgave => {
-            const traad = traaderResource.data.find(traad => traad.traadId === oppgave.henvendelseid);
+            const traad = traaderResource.data.find(traad => traad.traadId === oppgave.traadId);
             if (!traad) {
-                const error = new Error(`Kunne ikke finne tråd tilknyttet oppgave: ${oppgave.oppgaveid}`);
+                const error = new Error(`Kunne ikke finne tråd tilknyttet oppgave: ${oppgave.oppgaveId}`);
                 loggError(error);
                 return <AlertStripeFeil>{error.message}</AlertStripeFeil>;
             }
@@ -79,10 +79,10 @@ function TildelteOppgaver(props: RouteComponentProps) {
                 sisteMelding.temagruppe
             )}`;
             return (
-                <li key={oppgave.oppgaveid}>
+                <li key={oppgave.oppgaveId}>
                     <div>
                         <Normaltekst>{tittel}</Normaltekst>
-                        <Normaltekst>OppgaveID: {oppgave.oppgaveid}</Normaltekst>
+                        <Normaltekst>OppgaveID: {oppgave.oppgaveId}</Normaltekst>
                     </div>
                     <Knapp onClick={handleClick}>Vis</Knapp>
                 </li>

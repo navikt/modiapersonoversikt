@@ -20,6 +20,15 @@ function DialogPanel(props: RouteComponentProps) {
         return slåOppOppgave.placeholder;
     }
 
+<<<<<<< HEAD
+=======
+    const tilknyttetOppgave = dialogpanelTraad
+        ? tildelteOppgaver.paaBruker.find(oppgave => oppgave.traadId === dialogpanelTraad.traadId)
+        : undefined;
+
+    console.log(tilknyttetOppgave);
+
+>>>>>>> 91fba45e... oppdaterer interface for bedre navn-bruk. Bruken av ordet henvendelseId skapte en del forvirringer. Renamer derfor til traadId. Oppdaterer i backend også
     return (
         <ErrorBoundary boundaryName="Dialogpanel">
             <DialogPanelWrapper role="region" aria-label="Dialogpanel">

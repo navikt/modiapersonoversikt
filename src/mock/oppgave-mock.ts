@@ -13,14 +13,14 @@ export function getTilfeldigeOppgaver(): Oppgave[] {
 
     const oppgaveArray = fyllRandomListe(() => lagOppgave(fodselsnummer), 5);
 
-    oppgaveArray[0].henvendelseid = MOCKED_TRAADID_1;
+    oppgaveArray[0].traadId = MOCKED_TRAADID_1;
 
     if (oppgaveArray.length > 1) {
-        oppgaveArray[1].henvendelseid = MOCKED_TRAADID_2;
+        oppgaveArray[1].traadId = MOCKED_TRAADID_2;
     }
 
     if (oppgaveArray.length > 2) {
-        oppgaveArray[2].henvendelseid = MOCKED_TRAADID_3;
+        oppgaveArray[2].traadId = MOCKED_TRAADID_3;
     }
 
     return oppgaveArray;
@@ -29,7 +29,7 @@ export function getTilfeldigeOppgaver(): Oppgave[] {
 function lagOppgave(fodselsnummer: string): Oppgave {
     return {
         fødselsnummer: fodselsnummer,
-        henvendelseid: faker.random.alphaNumeric(5),
-        oppgaveid: faker.random.alphaNumeric(5)
+        traadId: faker.random.alphaNumeric(5),
+        oppgaveId: faker.random.alphaNumeric(5)
     };
 }
