@@ -23,11 +23,7 @@ import { LenkeKnapp } from '../../../../../../../components/common-styled-compon
 import { erBehandlet } from '../../../utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import {
-    getValidOppgaveSkjemaState,
-    opprettOppgaveSkjemaHarNokInformasjonTilOpprettOppgave,
-    validerOppgaveSkjema
-} from './oppgaveSkjemaValidator';
+import { getValidOppgaveSkjemaState, validerOppgaveSkjema } from './oppgaveSkjemaValidator';
 import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
 
 const AlertStyling = styled.div`
@@ -68,7 +64,6 @@ function OppgaveSkjema(props: OppgaveProps) {
     const [valgtAnsatt, settValgtAnsatt] = useState<Ansatt | undefined>(undefined);
     const [valgtPrioritet, settValgtPrioritet] = useState<OppgavePrioritet>(OppgavePrioritet.NORM);
     const [beskrivelse, settBeskrivelse] = useState('');
-    const [minimumsKriterierOppfylt, setMinimumsKriterierOppfylt] = useState<boolean>(true);
     const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<OppgaveSkjemaForm>>(
         getValidOppgaveSkjemaState()
     );
@@ -106,20 +101,12 @@ function OppgaveSkjema(props: OppgaveProps) {
     };
 
     const submitHandler = (event: FormEvent) => {
-        setSubmitting(true);
         event.preventDefault();
-        if (!opprettOppgaveSkjemaHarNokInformasjonTilOpprettOppgave(formState)) {
-            console.log('IKKE VALIDERT');
-            setMinimumsKriterierOppfylt(false);
-            setSubmitting(false);
-            return;
-        }
-        setMinimumsKriterierOppfylt(true);
         const valideringsResultat = validerOppgaveSkjema(formState);
 
         if (valideringsResultat.formErGyldig) {
+            setSubmitting(true);
             settValideringsresultat(getValidOppgaveSkjemaState());
-            console.log('VALID');
             const request = lagOppgaveRequest(props, formProps, valgtBrukersFnr, props.valgtTraad);
             post(`${apiBaseUri}/dialogoppgave/opprett`, request)
                 .then(() => {
@@ -134,7 +121,6 @@ function OppgaveSkjema(props: OppgaveProps) {
                 });
         } else {
             settValideringsresultat(valideringsResultat);
-            setSubmitting(false);
         }
     };
 
@@ -177,13 +163,6 @@ function OppgaveSkjema(props: OppgaveProps) {
                     </LenkeKnapp>
                 </KnappStyle>
             </form>
-            {!minimumsKriterierOppfylt && (
-                <AlertStyling>
-                    <AlertStripeInfo aria-live={'polite'}>
-                        Du må minimum fylle inn tema, underkategori, oppgavetype, enhet og beskrivelse
-                    </AlertStripeInfo>
-                </AlertStyling>
-            )}
         </SkjemaStyle>
     );
 }

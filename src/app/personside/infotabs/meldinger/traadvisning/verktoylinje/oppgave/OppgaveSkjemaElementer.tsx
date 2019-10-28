@@ -61,6 +61,10 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 <OppgavetypeOptions valgtGsakTema={valgtTema} />
             </Select>
             <AutoComplete<Enhet>
+                feil={
+                    props.form.valideringsResultat.felter.valgtEnhet &&
+                    props.form.valideringsResultat.felter.valgtEnhet.skjemafeil
+                }
                 setValue={enhet => {
                     props.form.actions.settValgtEnhet(enhet);
                 }}

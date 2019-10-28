@@ -5,6 +5,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { Input } from 'nav-frontend-skjema';
 import NavFrontendSpinner from 'nav-frontend-spinner';
+import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 
 const DropDownWrapper = styled.div`
     ul {
@@ -51,6 +52,7 @@ interface Props<Item> {
     suggestions: Item[];
     filter: (item: Item, input: string) => boolean;
     spinner: boolean;
+    feil?: SkjemaelementFeil;
 }
 
 function AutoComplete<Item>(props: Props<Item>) {
@@ -72,6 +74,7 @@ function AutoComplete<Item>(props: Props<Item>) {
                 <Style {...helpers.getRootProps()}>
                     <InputfeltWrapper>
                         <Input
+                            feil={props.feil}
                             // @ts-ignore
                             {...helpers.getInputProps({
                                 onChange: e => {
