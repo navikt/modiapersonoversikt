@@ -6,11 +6,11 @@ import { UnmountClosed } from 'react-collapse';
 import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
 import { LenkeKnapp } from '../../../../../../components/common-styled-components';
 import { apiBaseUri } from '../../../../../../api/config';
-import { useFødselsnummer } from '../../../../../../utils/customHooks';
+import { useFødselsnummer, usePrevious } from '../../../../../../utils/customHooks';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 interface Props {
@@ -45,63 +45,60 @@ const PrintKnapp = styled(LenkeKnapp.withComponent('a'))`
     color: #3e3832;
 `;
 
-enum FunksjonVindu {
+enum VerktøyPanel {
     JOURNALFORING,
     OPPGAVE,
     MERK
 }
 
-function Funksjoner(props: { valgtTraad: Traad }) {
+function Verktoylinje(props: Props) {
     const fnr = useFødselsnummer();
-    const [aktivtVindu, settAktivtVindu] = React.useState<FunksjonVindu | null>(null);
+    const [aktivtPanel, settAktivtPanel] = React.useState<VerktøyPanel | null>(null);
+    const lukk = useCallback(() => settAktivtPanel(null), [settAktivtPanel]);
+
+    const prevTraad = usePrevious(props.valgtTraad);
     useEffect(() => {
-        settAktivtVindu(null);
-    }, [props.valgtTraad, settAktivtVindu]);
+        if (prevTraad && prevTraad.traadId !== props.valgtTraad.traadId) {
+            lukk();
+        }
+    }, [props.valgtTraad, lukk, prevTraad]);
 
-    const setResetVindu = (klikketVindu: FunksjonVindu) => () =>
-        aktivtVindu === klikketVindu ? settAktivtVindu(null) : settAktivtVindu(klikketVindu);
+    const togglePanel = (panel: VerktøyPanel) => () =>
+        aktivtPanel === panel ? settAktivtPanel(null) : settAktivtPanel(panel);
 
-    const visJournalforing = aktivtVindu === FunksjonVindu.JOURNALFORING;
-    const visOppgave = aktivtVindu === FunksjonVindu.OPPGAVE;
-    const visMerk = aktivtVindu === FunksjonVindu.MERK;
+    const visJournalforing = aktivtPanel === VerktøyPanel.JOURNALFORING;
+    const visOppgave = aktivtPanel === VerktøyPanel.OPPGAVE;
+    const visMerk = aktivtPanel === VerktøyPanel.MERK;
 
     return (
-        <>
+        <PanelStyle>
             <KnapperPanelStyle>
                 <OppgaveknapperStyle>
                     <SvartLenkeKnapp
-                        onClick={setResetVindu(FunksjonVindu.JOURNALFORING)}
+                        onClick={togglePanel(VerktøyPanel.JOURNALFORING)}
                         open={visJournalforing}
                         tittel="Journalfør"
                     />
                     <SvartLenkeKnapp
-                        onClick={setResetVindu(FunksjonVindu.OPPGAVE)}
+                        onClick={togglePanel(VerktøyPanel.OPPGAVE)}
                         open={visOppgave}
                         tittel="Lag oppgave"
                     />
-                    <SvartLenkeKnapp onClick={setResetVindu(FunksjonVindu.MERK)} open={visMerk} tittel="Merk" />
+                    <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
                 </OppgaveknapperStyle>
                 <PrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
                     <Normaltekst>Skriv ut</Normaltekst>
                 </PrintKnapp>
             </KnapperPanelStyle>
             <UnmountClosed isOpened={visJournalforing}>
-                <JournalforingPanel traad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
+                <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />
             </UnmountClosed>
             <UnmountClosed isOpened={visOppgave}>
-                <OpprettOppgaveContainer valgtTraad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
+                <OpprettOppgaveContainer valgtTraad={props.valgtTraad} lukkPanel={lukk} />
             </UnmountClosed>
             <UnmountClosed isOpened={visMerk}>
-                <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={() => settAktivtVindu(null)} />
+                <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={lukk} />
             </UnmountClosed>
-        </>
-    );
-}
-
-function Verktoylinje(props: Props) {
-    return (
-        <PanelStyle>
-            <Funksjoner valgtTraad={props.valgtTraad} />
         </PanelStyle>
     );
 }
