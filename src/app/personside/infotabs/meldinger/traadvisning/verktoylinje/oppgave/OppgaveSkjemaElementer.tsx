@@ -93,11 +93,13 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 spinner={isLoading(ansattliste)}
             />
             <Select
-                defaultValue={OppgavePrioritet.NORM}
+                value={OppgavePrioritet.NORM}
                 label={'Velg prioritert'}
                 onChange={value => props.form.actions.settValgtPrioritet(OppgavePrioritet[value.target.value])}
             >
-                <PrioritetOptions />
+                <option value={OppgavePrioritet.HOY}>Høy</option>
+                <option value={OppgavePrioritet.NORM}>Normal</option>
+                <option value={OppgavePrioritet.LAV}>Lav</option>
             </Select>
             <Textarea
                 feil={props.form.valideringsResultat.felter.beskrivelse.skjemafeil}
@@ -187,14 +189,4 @@ function OppgavetypeOptions(props: { valgtGsakTema?: GsakTema }) {
           ];
 
     return <>{options}</>;
-}
-
-function PrioritetOptions() {
-    return (
-        <>
-            <option value={OppgavePrioritet.HOY}>Høy</option>
-            <option value={OppgavePrioritet.NORM}>Normal</option>
-            <option value={OppgavePrioritet.LAV}>Lav</option>
-        </>
-    );
 }
