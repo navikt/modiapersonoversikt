@@ -1,6 +1,6 @@
 import { Melding, Meldingstype, Saksbehandler, Traad } from '../../../../../models/meldinger/meldinger';
 import { meldingstypeTekst } from './meldingstekster';
-import { datoStigende, datoSynkende } from '../../../../../utils/dateUtils';
+import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/dateUtils';
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import {
@@ -146,7 +146,8 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
                     const fritekst = melding.fritekst;
                     const tittel = meldingstittel(melding);
                     const saksbehandler = melding.skrevetAvTekst;
-                    const sokbarTekst = (fritekst + tittel + saksbehandler).toLowerCase();
+                    const datotekst = formatterDatoTid(melding.opprettetDato);
+                    const sokbarTekst = (fritekst + tittel + saksbehandler + datotekst).toLowerCase();
                     return words.every(word => sokbarTekst.includes(word.toLowerCase()));
                 });
             })
