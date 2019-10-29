@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { datoSynkende } from '../../../../../utils/dateUtils';
+import { datoSynkende, formatterDatoMedMaanedsnavn } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
@@ -45,12 +45,11 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
 
     const melding = eldsteMelding(valgtTraad);
-
     if (melding.erFerdigstiltUtenSvar) {
         return (
             <AlertStripeInfo>
-                Ferdigstilt uten svar av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
-                {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
+                Henvendelsen er avsluttet uten å svare bruker av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
+                {melding.ferdigstiltDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltDato)}
             </AlertStripeInfo>
         );
     }
