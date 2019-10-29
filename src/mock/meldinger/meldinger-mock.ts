@@ -11,7 +11,7 @@ import navfaker from 'nav-faker';
 import moment from 'moment';
 import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 import { saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
-import { Temagruppe } from '../../models/Temagrupper';
+import { Temagruppe, TemaPlukkbare } from '../../models/Temagrupper';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)
 export const MOCKED_TRAADID_1 = '123';
@@ -43,12 +43,7 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
 }
 
 export function getMockTraad(): Traad {
-    const temagruppe = navfaker.random.arrayElement([
-        Temagruppe.Arbeid,
-        Temagruppe.Pensjon,
-        Temagruppe.Uføretrygd,
-        Temagruppe.Null
-    ]);
+    const temagruppe = navfaker.random.arrayElement(TemaPlukkbare);
     const meldinger = Array(navfaker.random.integer(5, 1))
         .fill(null)
         .map(() => getMelding(temagruppe));
@@ -62,17 +57,11 @@ function getMelding(temagruppe: Temagruppe): Melding {
     const visKontrosperre = navfaker.random.vektetSjanse(0.1);
     const ferdigstilUtenSvar = navfaker.random.vektetSjanse(0.1);
     const visMarkertSomFeilsendt = navfaker.random.vektetSjanse(0.1);
+    const meldingstype = navfaker.random.arrayElement(Object.entries(Meldingstype))[0];
 
     return {
         id: faker.random.alphaNumeric(8),
-        meldingstype: navfaker.random.arrayElement([
-            Meldingstype.DELVIS_SVAR_SKRIFTLIG,
-            Meldingstype.SAMTALEREFERAT_OPPMOTE,
-            Meldingstype.SPORSMAL_SKRIFTLIG,
-            Meldingstype.SVAR_TELEFON,
-            Meldingstype.DOKUMENT_VARSEL,
-            Meldingstype.OPPGAVE_VARSEL
-        ]),
+        meldingstype: meldingstype,
         temagruppe: temagruppe,
         skrevetAvTekst: saksbehandlerTekst(getSaksbehandler()),
         journalfortAv: getSaksbehandler(),
@@ -91,7 +80,7 @@ function getMelding(temagruppe: Temagruppe): Melding {
         kontorsperretAv: visKontrosperre ? getSaksbehandler() : undefined,
         kontorsperretEnhet: visKontrosperre ? faker.company.companyName() : undefined,
         markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined,
-        erDokumentMelding: faker.random.boolean()
+        erDokumentMelding: meldingstype === Meldingstype.DOKUMENT_VARSEL
     };
 }
 

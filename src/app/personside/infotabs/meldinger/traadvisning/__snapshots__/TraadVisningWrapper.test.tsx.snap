@@ -5,11 +5,11 @@ Array [
   .c7 {
   position: relative;
   text-align: center;
-  margin-top: 1rem;
+  padding-top: 1rem;
 }
 
 .c8 > * {
-  margin-top: 1rem;
+  padding-top: 1rem;
 }
 
 .c4 {

@@ -202,14 +202,14 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   position: relative;
 }
 
-@media (min-width:62.5rem) {
+@media (min-width:53.125rem) {
   .c0 {
     max-height: 100%;
     max-width: 100%;
   }
 }
 
-@media (min-width:62.5rem) {
+@media (min-width:53.125rem) {
   .c0 {
     height: 0;
     -webkit-box-flex: 1;

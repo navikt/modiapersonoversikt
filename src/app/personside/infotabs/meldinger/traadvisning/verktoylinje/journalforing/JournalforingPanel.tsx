@@ -44,12 +44,12 @@ interface Props {
 const Container = styled.section`
     position: relative;
     text-align: center;
-    margin-top: 1rem;
+    padding-top: 1rem;
 `;
 
 const Margin = styled.div`
     > * {
-        margin-top: 1rem;
+        padding-top: 1rem;
     }
 `;
 
