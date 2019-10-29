@@ -33,6 +33,10 @@ export function meldingstittel(melding: Melding) {
     return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe)}`;
 }
 
+export function erMeldingstypeSamtalereferat(meldingstype: Meldingstype) {
+    return [Meldingstype.SAMTALEREFERAT_OPPMOTE, Meldingstype.SAMTALEREFERAT_TELEFON].includes(meldingstype);
+}
+
 export function erSamtalereferat(temagruppe: Temagruppe) {
     return TemaSamtalereferat.includes(temagruppe);
 }
