@@ -3,13 +3,7 @@ import { meldingstypeTekst } from './meldingstekster';
 import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/dateUtils';
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
-import {
-    Temagruppe,
-    temagruppeTekst,
-    TemaKommunaleTjenester,
-    TemaPlukkbare,
-    TemaSamtalereferat
-} from '../../../../../models/Temagrupper';
+import { Temagruppe, temagruppeTekst, TemaKommunaleTjenester, TemaPlukkbare } from '../../../../../models/Temagrupper';
 
 export function nyesteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
@@ -33,8 +27,8 @@ export function meldingstittel(melding: Melding) {
     return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe)}`;
 }
 
-export function erSamtalereferat(temagruppe: Temagruppe) {
-    return TemaSamtalereferat.includes(temagruppe);
+export function erMeldingstypeSamtalereferat(meldingstype: Meldingstype) {
+    return [Meldingstype.SAMTALEREFERAT_OPPMOTE, Meldingstype.SAMTALEREFERAT_TELEFON].includes(meldingstype);
 }
 
 export function kanLeggesTilbake(temagruppe: Temagruppe) {
@@ -122,10 +116,6 @@ export function harDelsvar(traad: Traad): boolean {
 
 export function erDelvisBesvart(traad: Traad): boolean {
     return erDelsvar(nyesteMelding(traad));
-}
-export function harTilgangTilSletting() {
-    // TODO Fiks når vi har satt opp vault/fasit
-    return true;
 }
 
 export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {

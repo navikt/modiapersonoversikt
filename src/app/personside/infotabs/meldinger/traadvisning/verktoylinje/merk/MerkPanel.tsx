@@ -14,11 +14,10 @@ import {
     erKontorsperret,
     erMeldingFeilsendt,
     erMeldingSpørsmål,
-    erSamtalereferat,
-    harDelsvar,
-    harTilgangTilSletting
+    erMeldingstypeSamtalereferat,
+    harDelsvar
 } from '../../../utils/meldingerUtils';
-import { Melding, Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
+import { Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
 import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import { apiBaseUri } from '../../../../../../../api/config';
@@ -33,6 +32,9 @@ import { loggError } from '../../../../../../../utils/frontendLogger';
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
 import { useRestResource } from '../../../../../../../utils/customHooks';
+import { AsyncResult, hasData, isPending } from '@nutgaard/use-async';
+import useFetch from '@nutgaard/use-fetch';
+import { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 
 interface Props {
     lukkPanel: () => void;
@@ -57,6 +59,8 @@ const AlertStyling = styled.div`
         margin-top: 1rem;
     }
 `;
+
+const credentials: RequestInit = { credentials: 'include' };
 
 const MERK_AVSLUTT_URL = `${apiBaseUri}/dialogmerking/avslutt`;
 const MERK_BISYS_URL = `${apiBaseUri}/dialogmerking/bidrag`;
@@ -85,10 +89,6 @@ function visFerdigstillUtenSvar(meldingstype: Meldingstype, valgtTraad: Traad) {
     );
 }
 
-function skalViseSletting(melding: Melding) {
-    return harTilgangTilSletting() && (erSamtalereferat(melding.temagruppe) || erMeldingSpørsmål(melding.meldingstype));
-}
-
 function getMerkAvsluttRequest(fnr: string, traad: Traad): MerkAvsluttUtenSvarRequest {
     return {
         fnr: fnr,
@@ -114,6 +114,7 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
+    const saksbehandlerKanSletteFetch: AsyncResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, credentials);
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
@@ -123,10 +124,16 @@ function MerkPanel(props: Props) {
 
     const melding = eldsteMelding(valgtTraad);
 
+    const saksbehandlerKanSlette =
+        !isPending(saksbehandlerKanSletteFetch) ||
+        (hasData(saksbehandlerKanSletteFetch) && saksbehandlerKanSletteFetch.data);
+    const visSletting =
+        saksbehandlerKanSlette &&
+        (erMeldingstypeSamtalereferat(melding.meldingstype) || erMeldingSpørsmål(melding.meldingstype));
+
     const disableStandardvalg = !visStandardvalg(valgtTraad);
     const disableBidrag = !(!erKommunaleTjenester(melding.temagruppe) && visStandardvalg(valgtTraad));
     const disableFerdigstillUtenSvar = !visFerdigstillUtenSvar(melding.meldingstype, valgtTraad);
-    const disableSlett = !skalViseSletting(melding);
 
     const submitHandler = (event: FormEvent) => {
         setSubmitting(true);
@@ -192,20 +199,23 @@ function MerkPanel(props: Props) {
             />
         );
     } else {
+        const radioprops: RadioProps[] = [
+            { label: 'Merk som feilsendt', value: MerkOperasjon.FEILSENDT, disabled: disableStandardvalg },
+            { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag },
+            { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: disableStandardvalg },
+            {
+                label: 'Avslutt uten å svare bruker',
+                value: MerkOperasjon.AVSLUTT,
+                disabled: disableFerdigstillUtenSvar
+            }
+        ];
+        if (visSletting) {
+            radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT });
+        }
         return (
             <form onSubmit={submitHandler}>
                 <RadioPanelGruppe
-                    radios={[
-                        { label: 'Merk som feilsendt', value: MerkOperasjon.FEILSENDT, disabled: disableStandardvalg },
-                        { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag },
-                        { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: disableStandardvalg },
-                        {
-                            label: 'Avslutt uten å svare bruker',
-                            value: MerkOperasjon.AVSLUTT,
-                            disabled: disableFerdigstillUtenSvar
-                        },
-                        { label: 'Merk for sletting', value: MerkOperasjon.SLETT, disabled: disableSlett }
-                    ]}
+                    radios={radioprops}
                     name={'merk'}
                     checked={valgtOperasjon}
                     legend={''}

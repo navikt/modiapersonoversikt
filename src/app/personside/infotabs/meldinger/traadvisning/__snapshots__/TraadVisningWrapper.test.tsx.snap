@@ -787,29 +787,6 @@ Array [
                 Avslutt uten å svare bruker
               </span>
             </label>
-            <label
-              className="inputPanel radioPanel"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                checked={false}
-                className="inputPanel__field"
-                disabled={false}
-                id="Helt tilfeldig ID"
-                name="merk"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="SLETT"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Merk for sletting
-              </span>
-            </label>
           </div>
         </fieldset>
         <div
