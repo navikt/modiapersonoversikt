@@ -129,7 +129,7 @@ function VelgSak(props: Props) {
 
     return (
         <>
-            <Form className="blokk-xxs">
+            <Form>
                 <SakgruppeRadio label={SakKategori.FAG} {...valgtKategori} />
                 <SakgruppeRadio label={SakKategori.GEN} {...valgtKategori} />
             </Form>
