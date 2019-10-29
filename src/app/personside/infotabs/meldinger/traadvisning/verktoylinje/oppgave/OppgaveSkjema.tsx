@@ -9,9 +9,8 @@ import {
 } from '../../../../../../../models/meldinger/oppgave';
 import { OppgaveSkjemaElementer } from './OppgaveSkjemaElementer';
 import { lagOppgaveRequest } from './byggRequest';
-import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaForm, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import styled from 'styled-components';
-import theme from '../../../../../../../styles/personOversiktTheme';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import { cache, createCacheKey } from '@nutgaard/use-fetch';
@@ -24,11 +23,8 @@ import { LenkeKnapp } from '../../../../../../../components/common-styled-compon
 import { erBehandlet } from '../../../utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
-
-const ValideringsfeilStyle = styled.div`
-    padding-top: ${theme.margin.layout};
-    color: #d0021b;
-`;
+import { getValidOppgaveSkjemaState, validerOppgaveSkjema } from './oppgaveSkjemaValidator';
+import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
 
 const AlertStyling = styled.div`
     > * {
@@ -53,40 +49,6 @@ const KnappStyle = styled.div`
     }
 `;
 
-function skjemavalidering(props: OppgaveSkjemaProps): string | undefined {
-    const tommeKomponenter = [];
-
-    if (!props.state.valgtTema) {
-        tommeKomponenter.push('Tema');
-    }
-
-    if (!props.state.valgtOppgavetype) {
-        tommeKomponenter.push('Oppgavetype');
-    }
-
-    if (!props.state.valgtPrioritet) {
-        tommeKomponenter.push('Prioritet');
-    }
-
-    if (!props.state.beskrivelse) {
-        tommeKomponenter.push('Beskrivelse');
-    }
-
-    if (!props.state.valgtEnhet) {
-        tommeKomponenter.push('Enhet');
-    }
-
-    if (!props.state.valgtAnsatt) {
-        tommeKomponenter.push('Ansatt');
-    }
-
-    if (tommeKomponenter.length > 0) {
-        return 'Følgende felt er ikke satt: ' + tommeKomponenter.join(', ');
-    }
-
-    return undefined;
-}
-
 function populerCacheMedTomAnsattliste() {
     cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
 }
@@ -100,10 +62,11 @@ function OppgaveSkjema(props: OppgaveProps) {
     const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
     const [valgtEnhet, settValgtEnhet] = useState<Enhet | undefined>(undefined);
     const [valgtAnsatt, settValgtAnsatt] = useState<Ansatt | undefined>(undefined);
-    const [valgtPrioritet, settValgtPrioritet] = useState(OppgavePrioritet.NORM);
+    const [valgtPrioritet, settValgtPrioritet] = useState<OppgavePrioritet>(OppgavePrioritet.NORM);
     const [beskrivelse, settBeskrivelse] = useState('');
-    const [valideringsfeil, settValideringsfeil] = useState<string | undefined>(undefined);
-
+    const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<OppgaveSkjemaForm>>(
+        getValidOppgaveSkjemaState()
+    );
     populerCacheMedTomAnsattliste();
 
     function oppdaterStateVedValgtTema(tema: GsakTema | undefined) {
@@ -114,16 +77,17 @@ function OppgaveSkjema(props: OppgaveProps) {
         }
     }
 
-    const formState: OppgaveSkjemaProps = {
-        state: {
-            valgtTema,
-            valgtUnderkategori,
-            valgtOppgavetype,
-            valgtEnhet,
-            valgtAnsatt,
-            valgtPrioritet,
-            beskrivelse
-        },
+    const formState: OppgaveSkjemaForm = {
+        valgtTema,
+        valgtUnderkategori,
+        valgtOppgavetype,
+        valgtEnhet,
+        valgtAnsatt,
+        valgtPrioritet,
+        beskrivelse
+    };
+    const formProps: OppgaveSkjemaProps = {
+        state: formState,
         actions: {
             oppdaterStateVedValgtTema,
             settValgtUnderkategori,
@@ -132,16 +96,18 @@ function OppgaveSkjema(props: OppgaveProps) {
             settValgtAnsatt,
             settValgtPrioritet,
             settBeskrivelse
-        }
+        },
+        valideringsResultat: valideringsResultat
     };
 
     const submitHandler = (event: FormEvent) => {
-        setSubmitting(true);
         event.preventDefault();
-        const harSkjemaValideringsfeil = skjemavalidering(formState);
-        settValideringsfeil(harSkjemaValideringsfeil);
-        if (!harSkjemaValideringsfeil) {
-            const request = lagOppgaveRequest(props, formState, valgtBrukersFnr, props.valgtTraad);
+        const valideringsResultat = validerOppgaveSkjema(formState);
+
+        if (valideringsResultat.formErGyldig) {
+            setSubmitting(true);
+            settValideringsresultat(getValidOppgaveSkjemaState());
+            const request = lagOppgaveRequest(props, formProps, valgtBrukersFnr, props.valgtTraad);
             post(`${apiBaseUri}/dialogoppgave/opprett`, request)
                 .then(() => {
                     settResultat(Resultat.VELLYKKET);
@@ -153,6 +119,8 @@ function OppgaveSkjema(props: OppgaveProps) {
                     setSubmitting(false);
                     loggError(error, 'Klarte ikke opprette oppgave');
                 });
+        } else {
+            settValideringsresultat(valideringsResultat);
         }
     };
 
@@ -168,9 +136,9 @@ function OppgaveSkjema(props: OppgaveProps) {
     if (resultat) {
         const alert =
             resultat === Resultat.VELLYKKET ? (
-                <AlertStripeSuksess>Tråd merket</AlertStripeSuksess>
+                <AlertStripeSuksess>Oppgave opprettet</AlertStripeSuksess>
             ) : (
-                <AlertStripeFeil>Klarte ikke å merke tråd</AlertStripeFeil>
+                <AlertStripeFeil>Klarte ikke å opprette oppgave</AlertStripeFeil>
             );
         return (
             <AlertStyling>
@@ -185,9 +153,9 @@ function OppgaveSkjema(props: OppgaveProps) {
     return (
         <SkjemaStyle>
             <form onSubmit={submitHandler}>
-                <OppgaveSkjemaElementer {...props} form={formState} />
+                <OppgaveSkjemaElementer {...props} form={formProps} />
                 <KnappStyle>
-                    <Hovedknapp htmlType="submit" spinner={submitting} autoDisableVedSpinner>
+                    <Hovedknapp htmlType="submit" spinner={submitting}>
                         {knappetekst}
                     </Hovedknapp>
                     <LenkeKnapp type="button" onClick={props.lukkPanel}>
@@ -195,7 +163,6 @@ function OppgaveSkjema(props: OppgaveProps) {
                     </LenkeKnapp>
                 </KnappStyle>
             </form>
-            <ValideringsfeilStyle aria-live={'polite'}>{valideringsfeil}</ValideringsfeilStyle>
         </SkjemaStyle>
     );
 }

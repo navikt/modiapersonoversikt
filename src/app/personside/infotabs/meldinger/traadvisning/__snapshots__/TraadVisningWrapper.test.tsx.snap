@@ -71,11 +71,6 @@ Array [
   margin-bottom: 0;
 }
 
-.c14 {
-  padding-top: .8rem;
-  color: #d0021b;
-}
-
 .c9 .inputPanelGruppe__inner {
   display: -webkit-box;
   display: -webkit-flex;
@@ -105,7 +100,7 @@ Array [
   margin: 0;
 }
 
-.c15 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -589,87 +584,41 @@ Array [
           </div>
         </div>
         <div
-          className="inputPanelGruppe"
+          className="skjemaelement"
         >
-          <fieldset
-            className="skjema__fieldset"
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
           >
-            <legend
-              className="skjema__legend"
+            Velg prioritert
+          </label>
+          <div
+            className="selectContainer input--fullbredde"
+          >
+            <select
+              className="skjemaelement__input"
+              disabled={false}
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              value="NORM"
             >
-              Prioritet
-            </legend>
-            <div
-              className="inputPanelGruppe__inner"
-            >
-              <label
-                className="inputPanel radioPanel"
-                htmlFor="Helt tilfeldig ID"
+              <option
+                value="HOY"
               >
-                <input
-                  aria-checked={false}
-                  checked={false}
-                  className="inputPanel__field"
-                  id="Helt tilfeldig ID"
-                  name="Prioritet"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  type="radio"
-                  value="HOY"
-                />
-                <span
-                  className="inputPanel__label"
-                >
-                  Høy
-                </span>
-              </label>
-              <label
-                className="inputPanel radioPanel inputPanel--checked"
-                htmlFor="Helt tilfeldig ID"
+                Høy
+              </option>
+              <option
+                value="NORM"
               >
-                <input
-                  aria-checked={true}
-                  checked={true}
-                  className="inputPanel__field"
-                  id="Helt tilfeldig ID"
-                  name="Prioritet"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  type="radio"
-                  value="NORM"
-                />
-                <span
-                  className="inputPanel__label"
-                >
-                  Normal
-                </span>
-              </label>
-              <label
-                className="inputPanel radioPanel"
-                htmlFor="Helt tilfeldig ID"
+                Normal
+              </option>
+              <option
+                value="LAV"
               >
-                <input
-                  aria-checked={false}
-                  checked={false}
-                  className="inputPanel__field"
-                  id="Helt tilfeldig ID"
-                  name="Prioritet"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  type="radio"
-                  value="LAV"
-                />
-                <span
-                  className="inputPanel__label"
-                >
-                  Lav
-                </span>
-              </label>
-            </div>
-          </fieldset>
+                Lav
+              </option>
+            </select>
+          </div>
           <div
             aria-live="assertive"
             role="alert"
@@ -728,10 +677,6 @@ Array [
           </button>
         </div>
       </form>
-      <div
-        aria-live="polite"
-        className="c14"
-      />
     </div>
     <form
       onSubmit={[Function]}
@@ -873,7 +818,7 @@ Array [
         />
       </div>
       <div
-        className="c15"
+        className="c14"
       >
         <button
           className="knapp knapp--hoved"
@@ -995,10 +940,10 @@ Array [
       <div
         className="typo-normal alertstripe__tekst"
       >
-        Ferdigstilt uten svar av 
+        Henvendelsen er avsluttet uten å svare bruker av 
         Ukjent saksbehandler
          
-        07.07.2019
+        07. juli 2019
       </div>
     </div>
     <div>
