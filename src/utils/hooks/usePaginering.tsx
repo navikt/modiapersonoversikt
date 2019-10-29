@@ -1,11 +1,20 @@
 import * as React from 'react';
-import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { Select } from 'nav-frontend-skjema';
+import { LenkeKnapp } from '../../components/common-styled-components';
+import styled from 'styled-components';
+import { usePrevious } from '../customHooks';
 
 interface PagineringsData<T> {
     currentPage: T[];
     pageSelect: ReactNode;
+    prevNextButtons: ReactNode;
 }
+
+const KnappStyling = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
 
 const getRange = (index: number, pageSize: number, list: any[]) => {
     return {
@@ -14,7 +23,31 @@ const getRange = (index: number, pageSize: number, list: any[]) => {
     };
 };
 
-function usePaginering<T>(list: T[], pageSize: number): PagineringsData<T> {
+const PrevNextButton = (props: {
+    index: number;
+    pageSize: number;
+    list: any[];
+    itemLabel: string;
+    setCurrentPage: (newPage: number) => void;
+    className?: string;
+}) => {
+    const range = getRange(props.index, props.pageSize, props.list);
+    if (range.til < 0 || range.fra >= props.list.length) {
+        return null;
+    }
+    return (
+        <LenkeKnapp onClick={() => props.setCurrentPage(props.index)} className={props.className}>
+            Vis {props.itemLabel} {range.fra + 1} til {range.til + 1}
+        </LenkeKnapp>
+    );
+};
+
+const HoyrejustertPrevNextButton = styled(PrevNextButton)`
+    margin-left: auto;
+`;
+
+function usePaginering<T>(list: T[], pageSize: number, itemLabel: string): PagineringsData<T> {
+    const selectRef = useRef<HTMLSelectElement | null>();
     const [currentPage, setCurrentPage] = useState(0);
 
     const numberOfPages = Math.ceil(list.length / pageSize);
@@ -25,35 +58,69 @@ function usePaginering<T>(list: T[], pageSize: number): PagineringsData<T> {
         }
     }, [numberOfPages, currentPage]);
 
+    const prevPage = usePrevious(currentPage);
+    useEffect(() => {
+        if (prevPage !== undefined && prevPage !== currentPage) {
+            selectRef.current && selectRef.current.focus();
+        }
+    }, [currentPage, selectRef, prevPage]);
+
     const pageSelect = useMemo(() => {
         const options = new Array(numberOfPages).fill(0).map((_, index) => {
             const optionRange = getRange(index, pageSize, list);
             const selected = index === currentPage;
             return (
                 <option key={index} value={index}>
-                    {selected ? 'Viser' : 'Vis'} {optionRange.fra + 1} til {optionRange.til + 1}
+                    {selected ? 'Viser' : 'Vis'} {itemLabel} {optionRange.fra + 1} til {optionRange.til + 1}
                 </option>
             );
         });
         return list.length <= pageSize ? null : (
             <Select
+                value={currentPage}
+                // @ts-ignore
+                selectRef={ref => (selectRef.current = ref)}
                 label="Velg paginering"
-                selected={currentPage}
                 onChange={e => setCurrentPage(parseInt(e.target.value))}
             >
                 {options}
             </Select>
         );
-    }, [list, pageSize, currentPage, numberOfPages]);
+    }, [list, pageSize, currentPage, numberOfPages, itemLabel]);
+
+    const prevNextButtons = useMemo(() => {
+        if (list.length <= pageSize) {
+            return null;
+        }
+        return (
+            <KnappStyling>
+                <PrevNextButton
+                    index={currentPage - 1}
+                    pageSize={pageSize}
+                    list={list}
+                    itemLabel={itemLabel}
+                    setCurrentPage={setCurrentPage}
+                />
+                <HoyrejustertPrevNextButton
+                    index={currentPage + 1}
+                    pageSize={pageSize}
+                    list={list}
+                    itemLabel={itemLabel}
+                    setCurrentPage={setCurrentPage}
+                />
+            </KnappStyling>
+        );
+    }, [setCurrentPage, currentPage, itemLabel, pageSize, list]);
 
     const currentRange = useMemo(() => getRange(currentPage, pageSize, list), [list, pageSize, currentPage]);
 
     return useMemo(
         () => ({
             currentPage: list.slice(currentRange.fra, currentRange.til + 1),
-            pageSelect: pageSelect
+            pageSelect: pageSelect,
+            prevNextButtons: prevNextButtons
         }),
-        [list, currentRange, pageSelect]
+        [list, currentRange, pageSelect, prevNextButtons]
     );
 }
 
