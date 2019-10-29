@@ -4,7 +4,7 @@ import { useFødselsnummer, useRestResource } from '../customHooks';
 import { Oppgave } from '../../models/oppgave';
 
 export function removeDuplicateOppgaver(value: Oppgave, index: number, list: Oppgave[]) {
-    return list.findIndex(oppgave => oppgave.oppgaveid === value.oppgaveid) === index;
+    return list.findIndex(oppgave => oppgave.oppgaveId === value.oppgaveId) === index;
 }
 
 function useTildelteOppgaver() {
