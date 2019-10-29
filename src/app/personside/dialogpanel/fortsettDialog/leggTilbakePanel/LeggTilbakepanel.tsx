@@ -9,7 +9,7 @@ import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../utils/customHooks';
-import { LeggTilbakeOppgaveRequest, Oppgave } from '../../../../../models/oppgave';
+import { LeggTilbakeOppgaveRequest } from '../../../../../models/oppgave';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Temagruppe, TemaPlukkbare } from '../../../../../models/Temagrupper';
 import { apiBaseUri } from '../../../../../api/config';
@@ -53,7 +53,7 @@ const Style = styled.div`
 `;
 
 interface Props {
-    oppgave: Oppgave;
+    oppgaveId: string;
     temagruppe: Temagruppe;
     status: FortsettDialogPanelState;
     setDialogStatus: (status: FortsettDialogPanelState) => void;
@@ -102,7 +102,7 @@ function LeggTilbakepanel(props: Props) {
         };
         if (LeggTilbakeValidator.erGyldigInnhabilRequest(state)) {
             props.setDialogStatus({ type: DialogPanelStatus.POSTING });
-            const payload: LeggTilbakeOppgaveRequest = { oppgaveId: props.oppgave.oppgaveid, type: 'Innhabil' };
+            const payload: LeggTilbakeOppgaveRequest = { oppgaveId: props.oppgaveId, type: 'Innhabil' };
             post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload)
                 .then(() => {
                     callback();
@@ -115,7 +115,7 @@ function LeggTilbakepanel(props: Props) {
             props.setDialogStatus({ type: DialogPanelStatus.POSTING });
             const payload: LeggTilbakeOppgaveRequest = {
                 beskrivelse: state.tekst,
-                oppgaveId: props.oppgave.oppgaveid,
+                oppgaveId: props.oppgaveId,
                 type: 'AnnenAarsak'
             };
             post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload)
@@ -130,7 +130,7 @@ function LeggTilbakepanel(props: Props) {
             props.setDialogStatus({ type: DialogPanelStatus.POSTING });
             const payload: LeggTilbakeOppgaveRequest = {
                 temagruppe: state.temagruppe,
-                oppgaveId: props.oppgave.oppgaveid,
+                oppgaveId: props.oppgaveId,
                 type: 'FeilTema'
             };
             post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload)

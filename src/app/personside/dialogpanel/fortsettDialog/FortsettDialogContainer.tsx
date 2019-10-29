@@ -47,7 +47,6 @@ export interface FortsettDialogState {
 
 interface Props {
     traad: Traad;
-    tilknyttetOppgave?: Oppgave;
 }
 
 function FortsettDialogContainer(props: Props) {
@@ -55,7 +54,6 @@ function FortsettDialogContainer(props: Props) {
         tekst: '',
         dialogType: Meldingstype.SVAR_SKRIFTLIG as FortsettDialogType,
         tema: undefined,
-        oppgave: props.tilknyttetOppgave,
         visFeilmeldinger: false,
         sak: undefined,
         oppgaveListe: OppgavelisteValg.MinListe
@@ -91,6 +89,7 @@ function FortsettDialogContainer(props: Props) {
     if (opprettHenvendelse.success === false) {
         return opprettHenvendelse.placeholder;
     }
+    const oppgaveId = opprettHenvendelse.henvendelse.oppgaveId;
 
     const handleAvbryt = () => dispatch(setIngenValgtTraadDialogpanel());
 
@@ -104,13 +103,13 @@ function FortsettDialogContainer(props: Props) {
             dispatch(reloadTildelteOppgaver);
             dispatch(reloadMeldinger);
         };
+
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
-        const oppgaveId = props.tilknyttetOppgave ? props.tilknyttetOppgave.oppgaveid : undefined;
         const commonPayload = {
             fritekst: state.tekst,
             meldingstype: state.dialogType,
             traadId: props.traad.traadId,
-            behandlingsId: opprettHenvendelse.behandlingsId,
+            behandlingsId: opprettHenvendelse.henvendelse.behandlingsId,
             oppgaveId: oppgaveId
         };
         if (
@@ -161,14 +160,14 @@ function FortsettDialogContainer(props: Props) {
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
-        } else if (FortsettDialogValidator.erGyldigDelsvar(state) && props.tilknyttetOppgave && state.temagruppe) {
+        } else if (FortsettDialogValidator.erGyldigDelsvar(state) && oppgaveId && state.temagruppe) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
             const request: SendDelsvarRequest = {
                 fritekst: state.tekst,
                 traadId: props.traad.traadId,
-                oppgaveId: props.tilknyttetOppgave.oppgaveid,
+                oppgaveId: oppgaveId,
                 temagruppe: state.temagruppe,
-                behandlingsId: opprettHenvendelse.behandlingsId
+                behandlingsId: opprettHenvendelse.henvendelse.behandlingsId
             };
             post(`${apiBaseUri}/dialog/${fnr}/delvis-svar`, request)
                 .then(() => {
@@ -202,9 +201,9 @@ function FortsettDialogContainer(props: Props) {
                 key={props.traad.traadId}
                 fortsettDialogPanelState={dialogStatus}
             />
-            {props.tilknyttetOppgave && (
+            {oppgaveId && (
                 <LeggTilbakepanel
-                    oppgave={props.tilknyttetOppgave}
+                    oppgaveId={oppgaveId}
                     status={dialogStatus}
                     setDialogStatus={setDialogStatus}
                     temagruppe={temagruppe}
