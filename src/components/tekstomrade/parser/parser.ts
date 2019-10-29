@@ -73,7 +73,7 @@ function internalBuild(ruleMap: { [name: string]: Rule }, node: ASTNode, key: nu
 }
 
 export function parse(content: string, rules: Array<Rule>): AST {
-    const trimmed = content.trim();
+    const trimmed = content.trim().replace(/\r/g, '');
     const preppedContent = trimmed.includes('\n') ? `${trimmed}\n` : trimmed;
     return internalParser([preppedContent], rules).flatMap(simplify);
 }

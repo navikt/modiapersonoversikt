@@ -54,11 +54,16 @@ const PagineringStyling = styled.div`
     }
 `;
 
+const PrevNextButtonsStyling = styled.div`
+    padding: ${theme.margin.layout};
+    border-top: ${theme.border.skilleSvak};
+`;
+
 function TraadListe(props: Props) {
     const [erForsteRender, setErForsteRender] = useState(true);
     const inputRef = React.useRef<HTMLInputElement>();
     const traaderEtterSok = useSokEtterMeldinger(props.traader, props.sokeord);
-    const paginering = usePaginering(traaderEtterSok, 50);
+    const paginering = usePaginering(traaderEtterSok, 50, 'melding');
 
     useOnMount(() => {
         setErForsteRender(false);
@@ -118,6 +123,9 @@ function TraadListe(props: Props) {
                     />
                 ))}
             </TraadListeStyle>
+            {paginering.prevNextButtons && (
+                <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
+            )}
         </PanelStyle>
     );
 }
