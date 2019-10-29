@@ -3,13 +3,7 @@ import { meldingstypeTekst } from './meldingstekster';
 import { datoStigende, datoSynkende } from '../../../../../utils/dateUtils';
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
-import {
-    Temagruppe,
-    temagruppeTekst,
-    TemaKommunaleTjenester,
-    TemaPlukkbare,
-    TemaSamtalereferat
-} from '../../../../../models/Temagrupper';
+import { Temagruppe, temagruppeTekst, TemaKommunaleTjenester, TemaPlukkbare } from '../../../../../models/Temagrupper';
 
 export function nyesteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
@@ -35,10 +29,6 @@ export function meldingstittel(melding: Melding) {
 
 export function erMeldingstypeSamtalereferat(meldingstype: Meldingstype) {
     return [Meldingstype.SAMTALEREFERAT_OPPMOTE, Meldingstype.SAMTALEREFERAT_TELEFON].includes(meldingstype);
-}
-
-export function erSamtalereferat(temagruppe: Temagruppe) {
-    return TemaSamtalereferat.includes(temagruppe);
 }
 
 export function kanLeggesTilbake(temagruppe: Temagruppe) {

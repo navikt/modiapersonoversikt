@@ -114,7 +114,7 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
-    const saksbehandlerKanSlette: AsyncResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, credentials);
+    const saksbehandlerKanSletteFetch: AsyncResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, credentials);
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
@@ -124,10 +124,11 @@ function MerkPanel(props: Props) {
 
     const melding = eldsteMelding(valgtTraad);
 
-    const svarFraAsyncSjekk =
-        !isPending(saksbehandlerKanSlette) || (hasData(saksbehandlerKanSlette) && saksbehandlerKanSlette.data);
+    const saksbehandlerKanSlette =
+        !isPending(saksbehandlerKanSletteFetch) ||
+        (hasData(saksbehandlerKanSletteFetch) && saksbehandlerKanSletteFetch.data);
     const visSletting =
-        svarFraAsyncSjekk &&
+        saksbehandlerKanSlette &&
         (erMeldingstypeSamtalereferat(melding.meldingstype) || erMeldingSpørsmål(melding.meldingstype));
 
     const disableStandardvalg = !visStandardvalg(valgtTraad);
