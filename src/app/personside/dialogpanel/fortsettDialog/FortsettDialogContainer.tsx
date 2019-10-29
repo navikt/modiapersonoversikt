@@ -7,7 +7,6 @@ import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions
 import { useFødselsnummer, useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
-import { Oppgave } from '../../../../models/oppgave';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
 import {
     DelsvarRegistrertKvittering,
@@ -39,7 +38,6 @@ export interface FortsettDialogState {
     tekst: string;
     dialogType: FortsettDialogType;
     temagruppe?: Temagruppe;
-    oppgave?: Oppgave;
     oppgaveListe: OppgavelisteValg;
     sak?: JournalforingsSak;
     visFeilmeldinger: boolean;
@@ -200,7 +198,7 @@ function FortsettDialogContainer(props: Props) {
                 traad={props.traad}
                 key={props.traad.traadId}
                 fortsettDialogPanelState={dialogStatus}
-                oppgaveId={oppgaveId}
+                erTilknyttetOppgave={!!oppgaveId}
             />
             {oppgaveId && (
                 <LeggTilbakepanel
