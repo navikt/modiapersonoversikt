@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { Select } from 'nav-frontend-skjema';
-import { RadioPanelGruppe, Textarea } from 'nav-frontend-skjema';
+import { Textarea } from 'nav-frontend-skjema';
 import {
     Ansatt,
     Enhet,
@@ -31,24 +31,40 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
     return (
         <>
             <Select
+                feil={
+                    props.form.valideringsResultat.felter.valgtTema &&
+                    props.form.valideringsResultat.felter.valgtTema.skjemafeil
+                }
                 label={'Tema'}
                 onChange={event => props.form.actions.oppdaterStateVedValgtTema(hentValgtTema(props.gsakTema, event))}
             >
                 <TemaOptions gsakTema={props.gsakTema} />
             </Select>
             <Select
+                feil={
+                    props.form.valideringsResultat.felter.valgtUnderkategori &&
+                    props.form.valideringsResultat.felter.valgtUnderkategori.skjemafeil
+                }
                 label={'Gjelder'}
                 onChange={event => props.form.actions.settValgtUnderkategori(hentValgtUnderkategori(event, valgtTema))}
             >
                 <UnderkategoriOptions valgtGsakTema={valgtTema} />
             </Select>
             <Select
+                feil={
+                    props.form.valideringsResultat.felter.valgtOppgavetype &&
+                    props.form.valideringsResultat.felter.valgtOppgavetype.skjemafeil
+                }
                 label={'Type oppgave'}
                 onChange={event => props.form.actions.settValgtOppgavetype(hentValgtOppgavetype(event, valgtTema))}
             >
                 <OppgavetypeOptions valgtGsakTema={valgtTema} />
             </Select>
             <AutoComplete<Enhet>
+                feil={
+                    props.form.valideringsResultat.felter.valgtEnhet &&
+                    props.form.valideringsResultat.felter.valgtEnhet.skjemafeil
+                }
                 setValue={enhet => {
                     props.form.actions.settValgtEnhet(enhet);
                 }}
@@ -76,18 +92,17 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 }
                 spinner={isLoading(ansattliste)}
             />
-            <RadioPanelGruppe
-                radios={[
-                    { label: 'Høy', value: OppgavePrioritet.HOY },
-                    { label: 'Normal', value: OppgavePrioritet.NORM },
-                    { label: 'Lav', value: OppgavePrioritet.LAV }
-                ]}
-                name={'Prioritet'}
-                checked={props.form.state.valgtPrioritet}
-                legend={'Prioritet'}
-                onChange={(_, value) => props.form.actions.settValgtPrioritet(OppgavePrioritet[value])}
-            />
+            <Select
+                value={OppgavePrioritet.NORM}
+                label={'Velg prioritert'}
+                onChange={value => props.form.actions.settValgtPrioritet(OppgavePrioritet[value.target.value])}
+            >
+                <option value={OppgavePrioritet.HOY}>Høy</option>
+                <option value={OppgavePrioritet.NORM}>Normal</option>
+                <option value={OppgavePrioritet.LAV}>Lav</option>
+            </Select>
             <Textarea
+                feil={props.form.valideringsResultat.felter.beskrivelse.skjemafeil}
                 maxLength={0}
                 value={props.form.state.beskrivelse}
                 label={'Beskrivelse'}
