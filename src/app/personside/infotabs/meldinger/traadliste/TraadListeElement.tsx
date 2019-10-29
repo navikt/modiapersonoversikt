@@ -121,7 +121,7 @@ function TraadListeElement(props: Props) {
 function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
     const tildelteOppgaver = useTildelteOppgaver();
 
-    if (tildelteOppgaver.paaBruker.map(oppgave => oppgave.henvendelseid).includes(traadId)) {
+    if (tildelteOppgaver.paaBruker.map(oppgave => oppgave.traadId).includes(traadId)) {
         return <EtikettSuksess>Tildelt meg</EtikettSuksess>;
     }
 

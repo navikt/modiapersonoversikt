@@ -56,7 +56,7 @@ export function DialogpanelKvittering(props: {
             return;
         }
         const traadTilknyttetOppgave = traaderResource.data.find(
-            traad => traad.traadId === nesteOppgavePåBruker.henvendelseid
+            traad => traad.traadId === nesteOppgavePåBruker.traadId
         );
         if (!traadTilknyttetOppgave) {
             return;
