@@ -6,7 +6,6 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
 import VelgDialogType from './VelgDialogType';
-import { Oppgave } from '../../../../models/oppgave';
 import TekstFelt from '../sendMelding/TekstFelt';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { capitalizeName } from '../../../../utils/stringFormatting';
@@ -46,7 +45,7 @@ interface Props {
     state: FortsettDialogState;
     updateState: (change: Partial<FortsettDialogState>) => void;
     traad: Traad;
-    oppgave?: Oppgave;
+    oppgaveId?: string;
     fortsettDialogPanelState: FortsettDialogPanelState;
 }
 function Feilmelding(props: { status: DialogPanelStatus }) {
@@ -65,7 +64,7 @@ function FortsettDialog(props: Props) {
         : 'bruker';
 
     const erDelsvar = state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
-    const erTilknyttetOppgave = state.oppgave !== undefined;
+    const erTilknyttetOppgave = !!props.oppgaveId;
     const brukerKanIkkeSvareInfo = [
         Meldingstype.SVAR_OPPMOTE,
         Meldingstype.SVAR_TELEFON,
