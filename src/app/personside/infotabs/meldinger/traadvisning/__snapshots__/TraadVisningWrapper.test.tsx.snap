@@ -597,10 +597,10 @@ Array [
           >
             <select
               className="skjemaelement__input"
-              defaultValue="NORM"
               disabled={false}
               id="Helt tilfeldig ID"
               onChange={[Function]}
+              value="NORM"
             >
               <option
                 value="HOY"
