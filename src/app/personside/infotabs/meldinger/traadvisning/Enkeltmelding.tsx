@@ -136,7 +136,7 @@ function EnkeltMelding(props: Props) {
                             <BoldTekstomrade rules={[highlightRule]}>{topptekst}</BoldTekstomrade>
                             <MeldingLestEtikett melding={props.melding} />
                         </SpaceBetween>
-                        <Tekstomrade>{datoTekst}</Tekstomrade>
+                        <Tekstomrade rules={[highlightRule]}>{datoTekst}</Tekstomrade>
                         <SkrevetAv melding={props.melding} rule={highlightRule} />
                     </Topptekst>
                     <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>{props.melding.fritekst}</Tekstomrade>
