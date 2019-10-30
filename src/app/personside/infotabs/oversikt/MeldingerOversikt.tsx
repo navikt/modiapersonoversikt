@@ -3,7 +3,7 @@ import { Traad } from '../../../../models/meldinger/meldinger';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { erMonolog, nyesteMelding } from '../meldinger/utils/meldingerUtils';
+import { nyesteMelding } from '../meldinger/utils/meldingerUtils';
 import { meldingstypeTekst } from '../meldinger/utils/meldingstekster';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import Meldingsikon from '../meldinger/utils/Meldingsikon';
@@ -27,7 +27,7 @@ const ListStyle = styled.ol`
 const PanelStyle = styled.div`
     display: flex;
     > *:first-child {
-        padding-right: ${theme.margin.layout};
+        margin-right: ${theme.margin.layout};
     }
 `;
 
@@ -82,12 +82,7 @@ function Traadelement(props: { traad: Traad }) {
                 className={meldingerTest.oversikt}
             >
                 <PanelStyle>
-                    <Meldingsikon
-                        type={sisteMelding.meldingstype}
-                        erFerdigstiltUtenSvar={sisteMelding.erFerdigstiltUtenSvar}
-                        erMonolog={erMonolog(props.traad)}
-                        antallMeldinger={props.traad.meldinger.length}
-                    />
+                    <Meldingsikon traad={props.traad} />
                     <div>
                         <Normaltekst>{datoTekst}</Normaltekst>
                         <Element>{tittel}</Element>

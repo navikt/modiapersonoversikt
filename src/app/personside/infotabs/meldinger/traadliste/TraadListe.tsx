@@ -113,7 +113,7 @@ function TraadListe(props: Props) {
                 {visAlleMeldingerKnapp}
             </SokVerktøyStyle>
             {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
-            <TraadListeStyle>
+            <TraadListeStyle role="tablist" aria-label="Brukers meldinger">
                 {paginering.currentPage.map(traad => (
                     <TraadListeElement
                         taFokusOnMount={erForsteRender && traad === props.valgtTraad}
