@@ -136,7 +136,9 @@ function MerkPanel(props: Props) {
     const disableFerdigstillUtenSvar = !visFerdigstillUtenSvar(melding.meldingstype, valgtTraad);
 
     const submitHandler = (event: FormEvent) => {
-        setSubmitting(true);
+        if (valgtOperasjon) {
+            setSubmitting(true);
+        }
         event.preventDefault();
         switch (valgtOperasjon) {
             case MerkOperasjon.AVSLUTT:
