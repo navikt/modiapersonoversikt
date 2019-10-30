@@ -45,7 +45,7 @@ interface Props {
     state: FortsettDialogState;
     updateState: (change: Partial<FortsettDialogState>) => void;
     traad: Traad;
-    oppgaveId?: string;
+    erTilknyttetOppgave: boolean;
     fortsettDialogPanelState: FortsettDialogPanelState;
 }
 function Feilmelding(props: { status: DialogPanelStatus }) {
@@ -64,7 +64,6 @@ function FortsettDialog(props: Props) {
         : 'bruker';
 
     const erDelsvar = state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
-    const erTilknyttetOppgave = !!props.oppgaveId;
     const brukerKanIkkeSvareInfo = [
         Meldingstype.SVAR_OPPMOTE,
         Meldingstype.SVAR_TELEFON,
@@ -90,7 +89,7 @@ function FortsettDialog(props: Props) {
                 <VelgDialogType
                     formState={state}
                     updateDialogType={dialogType => updateState({ dialogType: dialogType })}
-                    erTilknyttetOppgave={erTilknyttetOppgave}
+                    erTilknyttetOppgave={props.erTilknyttetOppgave}
                     erDelvisBesvart={erDelvisBesvart(props.traad)}
                 />
                 <Margin>
@@ -125,7 +124,7 @@ function FortsettDialog(props: Props) {
                           }`
                         : `Del med ${navn}`}
                 </SubmitKnapp>
-                {!erTilknyttetOppgave && (
+                {!props.erTilknyttetOppgave && (
                     <StyledKnappMedBekreftPopup
                         htmlType="reset"
                         type="flat"
