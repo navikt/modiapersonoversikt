@@ -110,7 +110,7 @@ function HentOppgaveKnapp(props: Props) {
                     onClick={onPlukkOppgaver}
                     spinner={isPosting(oppgaveResource)}
                 >
-                    Plukk oppgave
+                    Hent oppgave
                 </KnappBase>
             </KnappLayout>
             {isFailedPosting(oppgaveResource) && <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>}
