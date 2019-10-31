@@ -230,6 +230,11 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
     <nav
       className="c2"
     >
+      <h2
+        className="sr-only"
+      >
+        Brukerens meldinger
+      </h2>
       <div
         className="c3"
       >
@@ -266,7 +271,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
         </p>
       </div>
       <ol
-        aria-label="Brukers meldinger"
+        aria-label="Meldingsliste"
         className="c5"
         role="tablist"
       >

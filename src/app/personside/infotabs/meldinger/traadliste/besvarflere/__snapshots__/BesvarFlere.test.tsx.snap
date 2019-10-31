@@ -609,11 +609,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
         </label>
       </li>
     </ol>
-    <section
+    <ol
       className="c15"
       role="tabpanel"
     >
-      <div
+      <li
         className="snakkeboble_ikoner"
       >
         <div
@@ -717,8 +717,8 @@ exports[`BesvarFler matcher snapshot 1`] = `
             </div>
           </div>
         </div>
-      </div>
-      <div
+      </li>
+      <li
         className="snakkeboble_ikoner"
       >
         <div
@@ -799,8 +799,8 @@ exports[`BesvarFler matcher snapshot 1`] = `
             </div>
           </div>
         </div>
-      </div>
-      <div
+      </li>
+      <li
         className="snakkeboble_ikoner"
       >
         <div
@@ -881,8 +881,8 @@ exports[`BesvarFler matcher snapshot 1`] = `
             </div>
           </div>
         </div>
-      </div>
-      <div
+      </li>
+      <li
         className="snakkeboble_ikoner"
       >
         <div
@@ -986,8 +986,8 @@ exports[`BesvarFler matcher snapshot 1`] = `
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </li>
+    </ol>
   </div>
   <div
     className="c23"
