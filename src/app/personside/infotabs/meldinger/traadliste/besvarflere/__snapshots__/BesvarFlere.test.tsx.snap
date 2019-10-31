@@ -327,11 +327,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
       role="tablist"
     >
       <li
-        className="test-meldinger-melding c4"
+        className="c4"
       >
         <input
           checked={true}
-          className="sr-only"
+          className="sr-only test-meldinger-melding"
           id="Helt tilfeldig ID"
           name="traadliste-slaa-sammen"
           onChange={[Function]}
@@ -466,11 +466,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
         </label>
       </li>
       <li
-        className="test-meldinger-melding c4"
+        className="c4"
       >
         <input
           checked={true}
-          className="sr-only"
+          className="sr-only test-meldinger-melding"
           id="Helt tilfeldig ID"
           name="traadliste-slaa-sammen"
           onChange={[Function]}
