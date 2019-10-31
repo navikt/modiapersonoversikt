@@ -885,6 +885,7 @@ Array [
 <section
     aria-label="Meldinger for valgt tråd"
     className="c0"
+    role="tabpanel"
   >
     <div
       className="alertstripe alertstripe--info"
