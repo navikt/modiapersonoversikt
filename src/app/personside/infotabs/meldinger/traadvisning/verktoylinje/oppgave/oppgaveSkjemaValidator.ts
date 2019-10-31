@@ -29,11 +29,6 @@ const regler: Valideringsregel<OppgaveSkjemaForm>[] = [
         validator: (form: OppgaveSkjemaForm) => !erTomStreng(form.beskrivelse)
     },
     {
-        felt: 'valgtUnderkategori',
-        feilmelding: 'Du må velge underkategori',
-        validator: (form: OppgaveSkjemaForm) => !!form.valgtUnderkategori
-    },
-    {
         felt: 'valgtEnhet',
         feilmelding: 'Du må velge enhet',
         validator: (form: OppgaveSkjemaForm) => !!form.valgtEnhet

@@ -108,6 +108,7 @@ function OppgaveSkjema(props: OppgaveProps) {
             setSubmitting(true);
             settValideringsresultat(getValidOppgaveSkjemaState());
             const request = lagOppgaveRequest(props, formProps, valgtBrukersFnr, props.valgtTraad);
+            console.log(request);
             post(`${apiBaseUri}/dialogoppgave/opprett`, request)
                 .then(() => {
                     settResultat(Resultat.VELLYKKET);

@@ -25,7 +25,7 @@ export function lagOppgaveRequest(
         ansvarligIdent: form.state.valgtAnsatt ? form.state.valgtAnsatt.ident : null,
         beskrivelse: lagBeskrivelse(form.state.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
         temaKode: temakode,
-        underkategoriKode: form.state.valgtUnderkategori && form.state.valgtUnderkategori.kode,
+        underkategoriKode: form.state.valgtUnderkategori ? form.state.valgtUnderkategori.kode : null,
         brukerid: props.gjeldendeBrukerFnr,
         oppgaveTypeKode: valgtOppgavetype ? valgtOppgavetype.kode : 'UKJENT',
         prioritetKode: form.state.valgtPrioritet + '_' + temakode,

@@ -41,10 +41,6 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 <TemaOptions gsakTema={props.gsakTema} />
             </Select>
             <Select
-                feil={
-                    props.form.valideringsResultat.felter.valgtUnderkategori &&
-                    props.form.valideringsResultat.felter.valgtUnderkategori.skjemafeil
-                }
                 label={'Gjelder'}
                 onChange={event => props.form.actions.settValgtUnderkategori(hentValgtUnderkategori(event, valgtTema))}
             >
