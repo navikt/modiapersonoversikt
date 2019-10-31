@@ -76,7 +76,7 @@ const TraadlistStyle = styled.ol`
     }
 `;
 
-const TraadVisningStyle = styled.section`
+const TraadVisningStyle = styled.ol`
     padding: ${theme.margin.layout};
     flex-grow: 1;
 `;

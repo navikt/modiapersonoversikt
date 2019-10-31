@@ -37,7 +37,7 @@ function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
         .sort(datoSynkende(melding => melding.opprettetDato))
         .map(melding => <EnkeltMelding sokeord={sokeord} melding={melding} key={melding.id} />);
 
-    return <div>{meldingskomponenter}</div>;
+    return <ol aria-label="Dialog">{meldingskomponenter}</ol>;
 }
 
 function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
@@ -89,7 +89,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 
 function TraadVisning(props: Props) {
     return (
-        <VisningStyle aria-label={'Meldinger for valgt tråd'} key={props.valgtTraad.traadId} role="tabpanel">
+        <VisningStyle>
             <Topplinje valgtTraad={props.valgtTraad} />
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>

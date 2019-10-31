@@ -272,6 +272,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
       >
         <li
           className="c6"
+          role="presentation"
         >
           <input
             checked={false}
@@ -279,6 +280,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
             id="Helt tilfeldig ID"
             name="traadliste-meldinger"
             onChange={[Function]}
+            role="tab"
             type="radio"
             value="sg838exr"
           />
