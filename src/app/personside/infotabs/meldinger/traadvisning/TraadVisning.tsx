@@ -12,7 +12,6 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
-import { traadListeRoles } from '../traadliste/traadListeRoles';
 interface Props {
     valgtTraad: Traad;
     sokeord: string;
@@ -90,13 +89,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 
 function TraadVisning(props: Props) {
     return (
-        <VisningStyle
-            aria-label={'Meldinger for valgt tråd'}
-            key={props.valgtTraad.traadId}
-            role="tabpanel"
-            id={traadListeRoles.ariaControls}
-            aria-labelledby={traadListeRoles.ariaLabeledBy(props.valgtTraad)}
-        >
+        <VisningStyle aria-label={'Meldinger for valgt tråd'} key={props.valgtTraad.traadId} role="tabpanel">
             <Topplinje valgtTraad={props.valgtTraad} />
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>

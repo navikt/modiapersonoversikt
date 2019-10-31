@@ -30,6 +30,8 @@ import JournalforingPanel from '../../app/personside/infotabs/meldinger/traadvis
 import PersonsokStandAloneKomponent from './PersonsokStandAloneKomponent';
 import TidligereMeldinger from '../../app/personside/dialogpanel/fortsettDialog/tidligereMeldinger/TidligereMeldinger';
 import { statiskTraadMock } from '../../mock/meldinger/statiskTraadMock';
+import BesvarFlere from '../../app/personside/infotabs/meldinger/traadliste/besvarflere/BesvarFlere';
+import { getMockTraader } from '../../mock/meldinger/meldinger-mock';
 
 enum Komponenter {
     Visittkort,
@@ -45,7 +47,8 @@ enum Komponenter {
     Dialogpanel,
     Personsok,
     JournalforingPanel,
-    TraadVisningDialogpanel
+    TraadVisningDialogpanel,
+    BesvarFlere
 }
 
 const Style = styled.div`
@@ -118,6 +121,12 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             );
         case Komponenter.TraadVisningDialogpanel:
             return <TidligereMeldinger traad={statiskTraadMock} />;
+        case Komponenter.BesvarFlere:
+            return (
+                <TestProvider>
+                    <BesvarFlere traader={getMockTraader(aremark.fødselsnummer).slice(0, 3)} lukkModal={() => null} />
+                </TestProvider>
+            );
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

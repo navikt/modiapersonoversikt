@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ChangeEvent, ReactNode } from 'react';
+import { ChangeEvent, ReactNode, useRef } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled, { css } from 'styled-components';
 import { theme } from '../../../../../styles/personOversiktTheme';
@@ -8,8 +8,8 @@ import { useInfotabsDyplenker } from '../../dyplenker';
 import { meldingerTest } from '../../dyplenkeTest/utils';
 import { useHistory } from 'react-router';
 import { HoyreChevron } from 'nav-frontend-chevron';
-import { traadListeRoles } from './traadListeRoles';
 import TraadSammendrag from './TraadSammendrag';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     traad: Traad;
@@ -17,6 +17,7 @@ interface Props {
     taFokusOnMount?: boolean;
     onClick?: (event: React.ChangeEvent) => void;
     tillegskomponent?: ReactNode;
+    listeId: string;
 }
 
 const StyledLabel = styled.label`
@@ -56,7 +57,7 @@ const ChevronStyling = styled.div`
 function TraadListeElement(props: Props) {
     const ref = React.createRef<HTMLInputElement>();
     const dyplenker = useInfotabsDyplenker();
-    const id = traadListeRoles.ariaLabeledBy(props.traad);
+    const id = useRef(guid());
     const history = useHistory();
 
     useOnMount(() => {
@@ -78,15 +79,14 @@ function TraadListeElement(props: Props) {
             <input
                 className="sr-only"
                 type="radio"
-                aria-controls={traadListeRoles.ariaControls}
-                name="traadliste"
+                name={props.listeId}
                 value={props.traad.traadId}
-                id={id}
+                id={id.current}
                 onChange={handleChange}
                 checked={props.erValgt}
                 ref={ref}
             />
-            <StyledLabel htmlFor={id}>
+            <StyledLabel htmlFor={id.current}>
                 {props.tillegskomponent}
                 <FlexGrow>
                     <TraadSammendrag traad={props.traad} />

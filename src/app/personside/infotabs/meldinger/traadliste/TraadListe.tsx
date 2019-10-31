@@ -120,6 +120,7 @@ function TraadListe(props: Props) {
                         traad={traad}
                         key={traad.traadId}
                         erValgt={traad === props.valgtTraad}
+                        listeId="traadliste-meldinger"
                     />
                 ))}
             </TraadListeStyle>
