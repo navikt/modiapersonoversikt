@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import { MerkKontorsperrRequest } from '../../../../../../../models/meldinger/merk';
 import styled from 'styled-components';
-import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
+import { Hovedknapp } from 'nav-frontend-knapper';
 
 interface Props {
     valgtTraad: Traad;
@@ -49,16 +49,13 @@ export function Kontorsperr(props: Props) {
                 onChange={_ => settOpprettOppgave(!opprettOppgave)}
             />
             <UnmountClosed isOpened={opprettOppgave}>
-                <OpprettOppgaveContainer lukkPanel={() => props.lukkPanel} onSuccessCallback={kontorsperr} />
+                <OpprettOppgaveContainer lukkPanel={props.tilbake} onSuccessCallback={kontorsperr} />
             </UnmountClosed>
             {opprettOppgave ? null : (
                 <Hovedknapp htmlType="button" onClick={kontorsperr}>
                     Merk som kontorsperret
                 </Hovedknapp>
             )}
-            <Flatknapp htmlType="button" onClick={props.tilbake}>
-                Tilbake
-            </Flatknapp>
         </Style>
     );
 }
