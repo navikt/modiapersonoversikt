@@ -11,7 +11,7 @@ export enum Temagruppe {
     Utland = 'UTLAND',
     AndreSosiale = 'ANSOS',
     ØkonomiskSosial = 'OKSOS',
-    Null = ''
+    Slettet = ''
 }
 
 export const TemaSamtalereferat = [
@@ -62,9 +62,9 @@ export function temagruppeTekst(temagruppe: Temagruppe) {
             return 'Hjelpemidler';
         case Temagruppe.Familie:
             return 'Familie';
-        case Temagruppe.Null:
+        case Temagruppe.Slettet:
+            return 'Kassert';
         case null:
-        case '':
             return '';
         default:
             return 'Ukjent temagruppe: ' + temagruppe;

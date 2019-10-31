@@ -56,7 +56,7 @@ describe('Meldingstyper', () => {
 describe('Dokumentvarsler', () => {
     const tomTemaGruppeNull = null;
     const tomTemaGruppeEmpty = '';
-    const tomTemagruppeTNull = Temagruppe.Null;
+    const tomTemagruppeSlettet = Temagruppe.Slettet;
 
     it('Gir temagruppe Arbeid ved temagruppe ARB', function() {
         expect(temagruppeTekst(Temagruppe.Arbeid)).toBe('Arbeid');
@@ -64,10 +64,10 @@ describe('Dokumentvarsler', () => {
     it('Gir tom temagruppe på dokumentvarsler med null', function() {
         expect(temagruppeTekst(<Temagruppe>(<unknown>tomTemaGruppeNull))).toBe('');
     });
-    it('Gir tom temagruppe på dokumentvarsler med emtpy', function() {
-        expect(temagruppeTekst(<Temagruppe>tomTemaGruppeEmpty)).toBe('');
+    it('Gir Kassert temagruppe på dokumentvarsler med emtpy (da dette tolkes som slettet melding)', function() {
+        expect(temagruppeTekst(<Temagruppe>tomTemaGruppeEmpty)).toBe('Kassert');
     });
-    it('Gir tom temagruppe på dokumentvarsler temagryppe.Null', function() {
-        expect(temagruppeTekst(<Temagruppe>tomTemagruppeTNull)).toBe('');
+    it('Gir Kassert temagruppe på dokumentvarsler temagruppe.Slettet', function() {
+        expect(temagruppeTekst(<Temagruppe>tomTemagruppeSlettet)).toBe('Kassert');
     });
 });
