@@ -170,7 +170,7 @@ function MerkPanel(props: Props) {
             .catch((error: Error) => {
                 settResultat(Resultat.FEIL);
                 setSubmitting(false);
-                loggError(error, 'Klarte ikke merke trååd', object);
+                loggError(error, 'Klarte ikke merke tråd', object);
             });
     }
 
