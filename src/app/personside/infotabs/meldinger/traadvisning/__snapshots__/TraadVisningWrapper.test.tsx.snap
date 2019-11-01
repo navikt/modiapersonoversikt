@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser traad med verktøylinje 1`] = `
-Array [
-  .c7 {
+.c7 {
   position: relative;
   text-align: center;
   padding-top: 1rem;
@@ -10,6 +9,21 @@ Array [
 
 .c8 > * {
   padding-top: 1rem;
+}
+
+.c17 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
 }
 
 .c4 {
@@ -199,7 +213,77 @@ Array [
   border-color: #0067c5;
 }
 
-<div
+.c20 {
+  margin-right: 0.3rem;
+}
+
+.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c18 {
+  font-weight: 600;
+}
+
+.c16 {
+  text-align: left;
+}
+
+.c16 em {
+  font-style: normal;
+  background-color: #eed28c;
+  border-radius: 0.625rem;
+  padding: 0 0.3125rem;
+}
+
+.c16 > *:not(:last-child) {
+  border-bottom: solid 0.0625rem #b7b1a9;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.c22 {
+  color: #0067c5;
+}
+
+.c21 .ekspanderbartPanel__hode,
+.c21 .ekspanderbartPanel__innhold {
+  padding: 0.3rem 0;
+}
+
+.c15 {
+  padding: .8rem;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c15 > *:last-child {
+  margin-top: .8rem;
+}
+
+<article
+  role="tabpanel"
+>
+  <h2
+    className="sr-only"
+  >
+    Valgt melding
+  </h2>
+  <h3
+    aria-live="assertive"
+    className="sr-only"
+  >
+    Viser 
+    Delsvar - Arbeid
+     
+    13.08.2019 00:00
+  </h3>
+  <section
     className="c0"
   >
     <div
@@ -813,78 +897,9 @@ Array [
         </button>
       </div>
     </form>
-  </div>,
-  .c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-}
-
-.c5 {
-  margin-right: 0.3rem;
-}
-
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c3 {
-  font-weight: 600;
-}
-
-.c1 {
-  text-align: left;
-}
-
-.c1 em {
-  font-style: normal;
-  background-color: #eed28c;
-  border-radius: 0.625rem;
-  padding: 0 0.3125rem;
-}
-
-.c1 > *:not(:last-child) {
-  border-bottom: solid 0.0625rem #b7b1a9;
-  padding-bottom: 0.7rem;
-  margin-bottom: 0.5rem;
-}
-
-.c7 {
-  color: #0067c5;
-}
-
-.c6 .ekspanderbartPanel__hode,
-.c6 .ekspanderbartPanel__innhold {
-  padding: 0.3rem 0;
-}
-
-.c0 {
-  padding: .8rem;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c0 > *:last-child {
-  margin-top: .8rem;
-}
-
-<section
-    aria-label="Meldinger for valgt tråd"
-    className="c0"
+  </section>
+  <section
+    className="c15"
   >
     <div
       className="alertstripe alertstripe--info"
@@ -923,8 +938,10 @@ Array [
         07. juli 2019
       </div>
     </div>
-    <div>
-      <div
+    <ol
+      aria-label="Dialog"
+    >
+      <li
         className="snakkeboble_ikoner"
       >
         <div
@@ -947,16 +964,16 @@ Array [
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c1"
+                className="c16"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c2"
+                    className="c17"
                   >
                     <div
-                      className="tekstomrade c3"
+                      className="tekstomrade c18"
                     >
                       Delsvar - Arbeid
                     </div>
@@ -976,10 +993,10 @@ Array [
                     13.08.2019 00:00
                   </div>
                   <div
-                    className="c4"
+                    className="c19"
                   >
                     <span
-                      className="c5"
+                      className="c20"
                     >
                       Skrevet av:
                     </span>
@@ -996,7 +1013,7 @@ Array [
                   Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                 </div>
                 <div
-                  className="ekspanderbartPanel c6 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -1009,7 +1026,7 @@ Array [
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c7"
+                        className="typo-etikett-liten c22"
                       >
                         Meldingen er journalført
                       </p>
@@ -1028,8 +1045,8 @@ Array [
             </div>
           </div>
         </div>
-      </div>
-      <div
+      </li>
+      <li
         className="snakkeboble_ikoner"
       >
         <div
@@ -1052,16 +1069,16 @@ Array [
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c1"
+                className="c16"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c2"
+                    className="c17"
                   >
                     <div
-                      className="tekstomrade c3"
+                      className="tekstomrade c18"
                     >
                       Spørsmål fra bruker - Arbeid
                     </div>
@@ -1078,7 +1095,7 @@ Array [
                   Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
                 </div>
                 <div
-                  className="ekspanderbartPanel c6 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -1091,7 +1108,7 @@ Array [
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c7"
+                        className="typo-etikett-liten c22"
                       >
                         Meldingen er journalført
                       </p>
@@ -1110,8 +1127,8 @@ Array [
             </div>
           </div>
         </div>
-      </div>
-      <div
+      </li>
+      <li
         className="snakkeboble_ikoner"
       >
         <div
@@ -1134,16 +1151,16 @@ Array [
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c1"
+                className="c16"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c2"
+                    className="c17"
                   >
                     <div
-                      className="tekstomrade c3"
+                      className="tekstomrade c18"
                     >
                       Spørsmål fra bruker - Arbeid
                     </div>
@@ -1160,7 +1177,7 @@ Array [
                   Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
                 </div>
                 <div
-                  className="ekspanderbartPanel c6 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -1173,7 +1190,7 @@ Array [
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c7"
+                        className="typo-etikett-liten c22"
                       >
                         Meldingen er journalført
                       </p>
@@ -1192,8 +1209,8 @@ Array [
             </div>
           </div>
         </div>
-      </div>
-      <div
+      </li>
+      <li
         className="snakkeboble_ikoner"
       >
         <div
@@ -1216,16 +1233,16 @@ Array [
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c1"
+                className="c16"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c2"
+                    className="c17"
                   >
                     <div
-                      className="tekstomrade c3"
+                      className="tekstomrade c18"
                     >
                       Samtalereferat oppmøte - Arbeid
                     </div>
@@ -1245,10 +1262,10 @@ Array [
                     30.07.2019 00:00
                   </div>
                   <div
-                    className="c4"
+                    className="c19"
                   >
                     <span
-                      className="c5"
+                      className="c20"
                     >
                       Skrevet av:
                     </span>
@@ -1265,7 +1282,7 @@ Array [
                   Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
                 </div>
                 <div
-                  className="ekspanderbartPanel c6 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -1278,7 +1295,7 @@ Array [
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c7"
+                        className="typo-etikett-liten c22"
                       >
                         Meldingen er journalført
                       </p>
@@ -1297,8 +1314,8 @@ Array [
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>,
-]
+      </li>
+    </ol>
+  </section>
+</article>
 `;
