@@ -4,8 +4,6 @@ import theme from '../../../styles/personOversiktTheme';
 import KontrollSpørsmålKnapper from './KontrollSpørsmålKnapper';
 import SpørsmålOgSvar from './SporsmalOgSvarContainer';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
-import IfFeatureToggleOn from '../../../components/featureToggle/IfFeatureToggleOn';
-import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
 import { jobberMedSpørsmålOgSvar, kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
 import { erKontaktsenter } from '../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { useAppState, useFødselsnummer, useRestResource } from '../../../utils/customHooks';
@@ -34,6 +32,12 @@ const KontrollSporsmalStyling = styled.section`
     }
 `;
 
+const SpinnerWrapper = styled(FillCenterAndFadeIn)`
+    background-color: white;
+    height: 7rem;
+    margin-bottom: 0.5rem;
+`;
+
 function Kontrollsporsmal() {
     const visKontrollSpørsmål = useAppState(state => state.kontrollSpørsmål.open);
     const fnr = useFødselsnummer();
@@ -50,14 +54,14 @@ function Kontrollsporsmal() {
 
     if (isLoading(personResource)) {
         return (
-            <FillCenterAndFadeIn>
+            <SpinnerWrapper>
                 <LazySpinner />
-            </FillCenterAndFadeIn>
+            </SpinnerWrapper>
         );
     }
 
     return (
-        <IfFeatureToggleOn toggleID={FeatureToggles.Kontrollspørsmål}>
+        <>
             <KontrollSporsmalStyling role="region" aria-label="Visittkort-hode">
                 <h2 className={'visually-hidden'}>Kontrollspørsmål</h2>
                 <div className="innhold">
@@ -68,7 +72,7 @@ function Kontrollsporsmal() {
                 </div>
             </KontrollSporsmalStyling>
             <HandleKontrollSporsmalHotkeys />
-        </IfFeatureToggleOn>
+        </>
     );
 }
 
