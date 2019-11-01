@@ -377,15 +377,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
             </div>
           </div>
         </div>
-        <div
-          role="alert"
-        >
-          <div
-            className="skjemaelement__feilmelding"
-          >
-            Du må velge gyldige datoer
-          </div>
-        </div>
         <button
           className="knapp knapp--standard"
           disabled={false}

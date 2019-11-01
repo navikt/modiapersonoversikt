@@ -49,7 +49,7 @@ const Container = styled.section`
 
 const Margin = styled.div`
     > * {
-        padding-top: 1rem;
+        margin-top: 1rem;
     }
 `;
 
