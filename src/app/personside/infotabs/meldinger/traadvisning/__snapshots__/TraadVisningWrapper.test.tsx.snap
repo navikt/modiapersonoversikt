@@ -9,7 +9,7 @@ Array [
 }
 
 .c8 > * {
-  padding-top: 1rem;
+  margin-top: 1rem;
 }
 
 .c4 {
