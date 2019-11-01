@@ -6,7 +6,7 @@ import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import styled from 'styled-components';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import { erDelvisBesvart, erMonolog, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
+import { erDelvisBesvart, erFeilsendt, erMonolog, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
 import Meldingsikon from '../utils/Meldingsikon';
 import { EtikettAdvarsel, EtikettFokus, EtikettInfo, EtikettSuksess } from 'nav-frontend-etiketter';
 import { useAppState, useOnMount } from '../../../../../utils/customHooks';
@@ -110,6 +110,7 @@ function TraadListeElement(props: Props) {
                             {erDelvisBesvart(props.traad) && <EtikettInfo>Delvis besvart</EtikettInfo>}
                             <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                             <SlettetEtikett melding={sisteMelding} />
+                            <FeilsendtEtikett traad={props.traad} />
                         </EtikettStyling>
                     </ContentStyle>
                 </PanelStyle>
@@ -128,11 +129,17 @@ function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
     return null;
 }
 
+function FeilsendtEtikett({ traad }: { traad: Traad }) {
+    if (erFeilsendt(traad)) {
+        return <EtikettAdvarsel>Feilsendt</EtikettAdvarsel>;
+    }
+    return null;
+}
+
 function SlettetEtikett({ melding }: { melding: Melding }) {
     if (melding.temagruppe === Temagruppe.Null) {
         return <EtikettAdvarsel>Slettet</EtikettAdvarsel>;
     }
-
     return null;
 }
 
