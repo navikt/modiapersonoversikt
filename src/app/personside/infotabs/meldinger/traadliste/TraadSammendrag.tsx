@@ -49,6 +49,12 @@ const Style = styled.div`
     }
 `;
 
+const PreviewStyle = styled(Normaltekst)`
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+`;
+
 function TraadSammendrag(props: { traad: Traad }) {
     const sisteMelding = nyesteMelding(props.traad);
     const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
@@ -62,7 +68,7 @@ function TraadSammendrag(props: { traad: Traad }) {
                     <Element className="order-second">{tittel}</Element>
                     <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                 </UUcustomOrder>
-                <Normaltekst>{delAvStringMedDots(sisteMelding.fritekst, 35)}</Normaltekst>
+                <PreviewStyle>{delAvStringMedDots(sisteMelding.fritekst, 35)}</PreviewStyle>
                 <EtikettStyling>
                     <UnmountClosed isOpened={underArbeid}>
                         <EtikettFokus>Under arbeid</EtikettFokus>
