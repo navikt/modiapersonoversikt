@@ -45,7 +45,6 @@ export const HøyreKolonne = styled.section<StyleProps>`
         props.dialogPanelEkspandert
             ? css`
                   flex: 30% 1 1;
-                  overflow-y: auto;
               `
             : css`
                   justify-content: flex-end;
@@ -69,7 +68,5 @@ export const HøyreKolonne = styled.section<StyleProps>`
     border-left: ${theme.border.skille};
     > * {
         ${theme.animation.fadeIn};
-        flex-shrink: 0;
-        border-top: ${theme.border.skilleSvak};
     }
 `;

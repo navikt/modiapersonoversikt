@@ -39,6 +39,8 @@ export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
     return openTab || INFOTABS.OVERSIKT;
 }
 
+export const InfotabsFokusContext = React.createContext<() => void>(() => null);
+
 function InfoTabs(props: Props) {
     const fødselsnummer = useFødselsnummer();
     const paths = usePaths();
@@ -46,11 +48,14 @@ function InfoTabs(props: Props) {
     const dyplenker = useInfotabsDyplenker();
     const dispatch = useDispatch();
 
+    const focusOnOpenTab = () => {
+        ref.current && ref.current.focus();
+    };
     const updateRouterPath = (newTab: INFOTABS) => {
         const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`;
         const newPath = props.history.location.pathname !== path;
         if (newPath) {
-            ref.current && ref.current.focus();
+            focusOnOpenTab();
             props.history.push(path);
         }
         dispatch(toggleVisittkort(false));
@@ -66,15 +71,17 @@ function InfoTabs(props: Props) {
                     <h2 ref={ref} tabIndex={-1} className="sr-only">
                         {openTab}
                     </h2>
-                    <Switch location={props.location}>
-                        <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
-                        <Route path={paths.oppfolging} component={OppfolgingContainer} />
-                        <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
-                        <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
-                        <Route path={dyplenker.ytelser.route} component={YtelserContainer} />
-                        <Route path={paths.varsler} component={VarslerContainer} />
-                        <Route path={''} component={Oversikt} />
-                    </Switch>
+                    <InfotabsFokusContext.Provider value={focusOnOpenTab}>
+                        <Switch location={props.location}>
+                            <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
+                            <Route path={paths.oppfolging} component={OppfolgingContainer} />
+                            <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
+                            <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
+                            <Route path={dyplenker.ytelser.route} component={YtelserContainer} />
+                            <Route path={paths.varsler} component={VarslerContainer} />
+                            <Route path={''} component={Oversikt} />
+                        </Switch>
+                    </InfotabsFokusContext.Provider>
                 </OpenTab>
             </ErrorBoundary>
         </ErrorBoundary>

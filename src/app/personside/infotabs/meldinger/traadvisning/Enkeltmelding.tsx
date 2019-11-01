@@ -128,7 +128,7 @@ function EnkeltMelding(props: Props) {
     const highlightRule = createDynamicHighligtingRule(props.sokeord.split(' '));
 
     return (
-        <div className="snakkeboble_ikoner">
+        <li className="snakkeboble_ikoner">
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <SnakkebobleWrapper>
                     <Topptekst>
@@ -143,7 +143,7 @@ function EnkeltMelding(props: Props) {
                     <Journalforing melding={props.melding} />
                 </SnakkebobleWrapper>
             </Snakkeboble>
-        </div>
+        </li>
     );
 }
 

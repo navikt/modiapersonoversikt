@@ -17,7 +17,7 @@ interface Props {
     valgtTraad: Traad;
 }
 
-const PanelStyle = styled.div`
+const PanelStyle = styled.section`
     ${theme.hvittPanel};
     padding: ${theme.margin.layout};
     display: flex;
