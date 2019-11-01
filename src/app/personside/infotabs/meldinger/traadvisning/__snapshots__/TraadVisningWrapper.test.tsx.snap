@@ -8,7 +8,7 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 .c8 > * {
-  padding-top: 1rem;
+  margin-top: 1rem;
 }
 
 .c17 {
