@@ -36,7 +36,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   overflow-wrap: break-word;
 }
 
-.c14 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -51,7 +51,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-top: 0.2rem;
 }
 
-.c14 > *:not(:last-child) {
+.c15 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
@@ -90,6 +90,12 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+}
+
+.c14 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .c7 {
@@ -141,7 +147,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   transform: translateX(0.5rem);
 }
 
-.c15 {
+.c16 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -352,12 +358,12 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     </p>
                   </div>
                   <p
-                    className="typo-normal"
+                    className="typo-normal c14"
                   >
                     Dolores omnis ea voluptatem corrupt...
                   </p>
                   <div
-                    className="c14"
+                    className="c15"
                   >
                     <div
                       className="etikett etikett--fokus"
@@ -382,7 +388,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
               </div>
             </div>
             <div
-              className="hover-animation c15"
+              className="hover-animation c16"
             >
               <i
                 className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
