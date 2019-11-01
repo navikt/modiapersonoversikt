@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Select } from 'nav-frontend-skjema';
 import { Textarea } from 'nav-frontend-skjema';
 import {
@@ -9,19 +9,51 @@ import {
     GsakTemaUnderkategori,
     OppgavePrioritet
 } from '../../../../../../../models/meldinger/oppgave';
-import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaForm, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import AutoComplete from './AutoComplete';
 import { AsyncResult, hasData, isPending, isLoading } from '@nutgaard/use-async';
 import useFetch from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
+import { useFødselsnummer } from '../../../../../../../utils/customHooks';
+import { loggError } from '../../../../../../../utils/frontendLogger';
 
 const credentials: RequestInit = { credentials: 'include' };
 
+function useForeslatteEnheter(form: OppgaveSkjemaForm): Enhet[] {
+    const fnr = useFødselsnummer();
+    const [foreslatteEnheter, setForeslatteEnheter] = useState<Enhet[]>([]);
+
+    useEffect(() => {
+        if (!form.valgtTema || !form.valgtOppgavetype) {
+            return;
+        }
+
+        const request = {
+            fnr: fnr,
+            temakode: form.valgtTema.kode,
+            typekode: form.valgtOppgavetype.kode,
+            underkategori: form.valgtUnderkategori && form.valgtUnderkategori.kode
+        };
+        const queryParams = Object.entries(request)
+            .filter(entry => entry[1])
+            .map(entry => entry[0] + '=' + entry[1])
+            .join('&');
+
+        fetch(`${apiBaseUri}/enheter/oppgavebehandlere/foreslatte?${queryParams}`, credentials)
+            .then(response => response.json())
+            .then(setForeslatteEnheter)
+            .catch(e => loggError(e, 'Feil ved henting av foreslåtte enheter'));
+    }, [form.valgtTema, form.valgtOppgavetype, form.valgtUnderkategori, fnr]);
+
+    return foreslatteEnheter;
+}
+
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
     const enhetliste: AsyncResult<Array<Enhet>> = useFetch<Array<Enhet>>(
-        `${apiBaseUri}/enheter/dialog/oppgave/alle`,
+        `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
         credentials
     );
+    const foreslatteEnheter = useForeslatteEnheter(props.form.state);
     const ansattliste: AsyncResult<Array<Ansatt>> = useFetch<Array<Ansatt>>(
         `${apiBaseUri}/enheter/${props.form.state.valgtEnhet ? props.form.state.valgtEnhet.enhetId : '_'}/ansatte`,
         credentials
@@ -72,6 +104,9 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 itemToString={enhet => `${enhet.enhetId} ${enhet.enhetNavn}`}
                 label={'Velg enhet'}
                 suggestions={hasData(enhetliste) ? enhetliste.data : []}
+                topSuggestions={foreslatteEnheter}
+                topSuggestionsLabel="Foreslåtte enheter"
+                otherSuggestionsLabel="Andre enheter"
                 filter={(enhet, value) =>
                     enhet.enhetId.includes(value) || enhet.enhetNavn.toLowerCase().includes(value.toLowerCase())
                 }

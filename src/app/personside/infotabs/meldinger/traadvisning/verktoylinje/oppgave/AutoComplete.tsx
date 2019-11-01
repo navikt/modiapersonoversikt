@@ -1,11 +1,12 @@
 import React from 'react';
-import Downshift from 'downshift';
+import Downshift, { ControllerStateAndHelpers } from 'downshift';
 import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { Input } from 'nav-frontend-skjema';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
+import EtikettGrå from '../../../../../../../components/EtikettGrå';
 
 const DropDownWrapper = styled.div`
     ul {
@@ -23,6 +24,10 @@ const DropDownWrapper = styled.div`
         background-color: white;
         color: black;
         display: flex;
+        &[aria-selected='true'] {
+            background-color: ${theme.color.navLysGra};
+            border: ${theme.border.skille};
+        }
     }
 `;
 
@@ -48,11 +53,26 @@ interface Props<Item> {
     setValue: (value: Item) => void;
     inputValue: Item | undefined;
     itemToString: (item: Item) => string;
+    filter: (item: Item, input: string) => boolean;
     label: string;
     suggestions: Item[];
-    filter: (item: Item, input: string) => boolean;
-    spinner: boolean;
+    topSuggestions?: Item[];
+    topSuggestionsLabel?: string;
+    otherSuggestionsLabel?: string;
+    spinner?: boolean;
     feil?: SkjemaelementFeil;
+}
+
+function SuggestionMarkup<Item>(props: { item: Item; helpers: ControllerStateAndHelpers<Item> }) {
+    return (
+        <li
+            {...props.helpers.getItemProps({
+                item: props.item
+            })}
+        >
+            <Normaltekst>{props.helpers.itemToString(props.item)}</Normaltekst>
+        </li>
+    );
 }
 
 function AutoComplete<Item>(props: Props<Item>) {
@@ -62,7 +82,15 @@ function AutoComplete<Item>(props: Props<Item>) {
         }
     };
 
-    const spinner = props.spinner && <StyledSpinner type={'S'} />;
+    const itemNotInTopSuggestions = (item: Item) => {
+        return (
+            !props.topSuggestions ||
+            !props.topSuggestions.some(it => props.itemToString(it) === props.itemToString(item))
+        );
+    };
+    const itemMatchesInput = (input: string | null) => (item: Item) => !input || props.filter(item, input);
+
+    const showTopSuggestions = props.topSuggestions && props.topSuggestions.length > 0;
 
     return (
         <Downshift
@@ -87,30 +115,41 @@ function AutoComplete<Item>(props: Props<Item>) {
                             onFocus={helpers.openMenu}
                             aria-label={props.spinner ? 'Laster data' : props.label}
                         />
-                        {spinner}
+                        {props.spinner && <StyledSpinner type={'S'} />}
                     </InputfeltWrapper>
                     {helpers.isOpen ? (
                         <DropDownWrapper>
                             <ul>
+                                {showTopSuggestions && (
+                                    <li>
+                                        <EtikettGrå>{props.topSuggestionsLabel || 'Anbefalte forslag'}</EtikettGrå>
+                                    </li>
+                                )}
+                                {props.topSuggestions
+                                    ? props.topSuggestions
+                                          .filter(itemMatchesInput(helpers.inputValue))
+                                          .map(item => (
+                                              <SuggestionMarkup
+                                                  key={helpers.itemToString(item)}
+                                                  item={item}
+                                                  helpers={helpers}
+                                              />
+                                          ))
+                                    : null}
+                                {showTopSuggestions && (
+                                    <li>
+                                        <EtikettGrå>{props.otherSuggestionsLabel || 'Andre forslag'}</EtikettGrå>
+                                    </li>
+                                )}
                                 {props.suggestions
-                                    .filter(item => !helpers.inputValue || props.filter(item, helpers.inputValue))
-                                    .map((item, index) => (
-                                        <li
-                                            {...helpers.getItemProps({
-                                                key: props.itemToString(item),
-                                                index,
-                                                item,
-                                                style: {
-                                                    backgroundColor:
-                                                        helpers.highlightedIndex === index
-                                                            ? theme.color.navLysGra
-                                                            : '#ffffff',
-                                                    fontWeight: helpers.selectedItem === item ? 'bold' : 'normal'
-                                                }
-                                            })}
-                                        >
-                                            <Normaltekst>{props.itemToString(item)}</Normaltekst>
-                                        </li>
+                                    .filter(itemMatchesInput(helpers.inputValue))
+                                    .filter(itemNotInTopSuggestions)
+                                    .map(item => (
+                                        <SuggestionMarkup
+                                            key={helpers.itemToString(item)}
+                                            item={item}
+                                            helpers={helpers}
+                                        />
                                     ))}
                             </ul>
                         </DropDownWrapper>
