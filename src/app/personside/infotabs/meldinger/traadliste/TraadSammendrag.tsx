@@ -87,7 +87,7 @@ function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
 }
 
 function SlettetEtikett({ melding }: { melding: Melding }) {
-    if (melding.temagruppe === Temagruppe.Slettet) {
+    if (melding.temagruppe === Temagruppe.InnholdSlettet) {
         return <EtikettAdvarsel>Slettet</EtikettAdvarsel>;
     }
 

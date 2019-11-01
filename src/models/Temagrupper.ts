@@ -11,7 +11,7 @@ export enum Temagruppe {
     Utland = 'UTLAND',
     AndreSosiale = 'ANSOS',
     ØkonomiskSosial = 'OKSOS',
-    Slettet = ''
+    InnholdSlettet = '' // Dette er en hack fra baksystemene. Man har der valgt å sette temagruppe til tom string for å vise at innholdet i meldingen har blitt slettet
 }
 
 export const TemaSamtalereferat = [
@@ -62,8 +62,8 @@ export function temagruppeTekst(temagruppe: Temagruppe) {
             return 'Hjelpemidler';
         case Temagruppe.Familie:
             return 'Familie';
-        case Temagruppe.Slettet:
-            return 'Kassert';
+        case Temagruppe.InnholdSlettet:
+            return 'Innhold slettet';
         case null:
             return '';
         default:
