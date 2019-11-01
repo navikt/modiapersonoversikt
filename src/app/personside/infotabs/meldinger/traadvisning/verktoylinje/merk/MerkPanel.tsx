@@ -125,7 +125,7 @@ function MerkPanel(props: Props) {
     const melding = eldsteMelding(valgtTraad);
 
     const saksbehandlerKanSlette =
-        !isPending(saksbehandlerKanSletteFetch) ||
+        !isPending(saksbehandlerKanSletteFetch) &&
         (hasData(saksbehandlerKanSletteFetch) && saksbehandlerKanSletteFetch.data);
     const visSletting =
         saksbehandlerKanSlette &&
