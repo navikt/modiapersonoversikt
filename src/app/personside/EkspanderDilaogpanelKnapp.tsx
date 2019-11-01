@@ -4,11 +4,12 @@ import { toggleDialogpanel } from '../../redux/uiReducers/UIReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import styled from 'styled-components';
-import { pxToRem } from '../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../styles/personOversiktTheme';
 
 const Style = styled.div`
     padding: 0.4rem;
     background-color: white;
+    border-top: ${theme.border.skilleSvak};
 `;
 
 function EkspanderDilaogpanelKnapp() {

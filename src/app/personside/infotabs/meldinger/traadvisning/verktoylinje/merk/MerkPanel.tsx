@@ -125,7 +125,7 @@ function MerkPanel(props: Props) {
     const melding = eldsteMelding(valgtTraad);
 
     const saksbehandlerKanSlette =
-        !isPending(saksbehandlerKanSletteFetch) ||
+        !isPending(saksbehandlerKanSletteFetch) &&
         (hasData(saksbehandlerKanSletteFetch) && saksbehandlerKanSletteFetch.data);
     const visSletting =
         saksbehandlerKanSlette &&
@@ -136,8 +136,12 @@ function MerkPanel(props: Props) {
     const disableFerdigstillUtenSvar = !visFerdigstillUtenSvar(melding.meldingstype, valgtTraad);
 
     const submitHandler = (event: FormEvent) => {
-        setSubmitting(true);
         event.preventDefault();
+        if (!valgtOperasjon) {
+            return;
+        }
+        setSubmitting(true);
+
         switch (valgtOperasjon) {
             case MerkOperasjon.AVSLUTT:
                 merkPost(MERK_AVSLUTT_URL, getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad));
