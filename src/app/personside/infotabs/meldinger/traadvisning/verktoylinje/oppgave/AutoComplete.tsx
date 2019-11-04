@@ -75,7 +75,15 @@ function SuggestionMarkup<Item>(props: { item: Item; helpers: ControllerStateAnd
     );
 }
 
-function AutoComplete<Item>(props: Props<Item>) {
+function AutoComplete<Item>({ itemToString, inputValue, ...props }: Props<Item>) {
+    const [input, setInput] = useState('');
+
+    useEffect(() => {
+        if (inputValue) {
+            setInput(itemToString(inputValue));
+        }
+    }, [itemToString, inputValue]);
+
     const handleStateChange = (changes: any) => {
         if (changes.hasOwnProperty('selectedItem')) {
             props.setValue(changes.selectedItem);
@@ -88,9 +96,11 @@ function AutoComplete<Item>(props: Props<Item>) {
 
     return (
         <Downshift
-            selectedItem={props.inputValue}
+            inputValue={input}
+            selectedItem={inputValue || null}
+            onInputValueChange={i => setInput(i)}
             onStateChange={handleStateChange}
-            itemToString={(item: Item) => (item ? props.itemToString(item) : '')}
+            itemToString={(item: Item) => (item ? itemToString(item) : '')}
         >
             {helpers => (
                 <Style {...helpers.getRootProps()}>

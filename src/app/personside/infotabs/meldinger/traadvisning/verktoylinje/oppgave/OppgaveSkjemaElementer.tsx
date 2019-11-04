@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import { Select } from 'nav-frontend-skjema';
 import { Textarea } from 'nav-frontend-skjema';
 import {
@@ -14,7 +14,7 @@ import AutoComplete from './AutoComplete';
 import { AsyncResult, hasData, isPending, isLoading } from '@nutgaard/use-async';
 import useFetch from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
-import { useFødselsnummer } from '../../../../../../../utils/customHooks';
+import { useFødselsnummer, usePrevious } from '../../../../../../../utils/customHooks';
 import { loggError } from '../../../../../../../utils/frontendLogger';
 
 const credentials: RequestInit = { credentials: 'include' };
@@ -48,10 +48,13 @@ function useForeslatteEnheter(form: OppgaveSkjemaForm) {
             .finally(() => setPending(false));
     }, [form.valgtTema, form.valgtOppgavetype, form.valgtUnderkategori, fnr]);
 
-    return {
-        pending,
-        foreslatteEnheter
-    };
+    return useMemo(
+        () => ({
+            pending,
+            foreslatteEnheter
+        }),
+        [pending, foreslatteEnheter]
+    );
 }
 
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
@@ -65,6 +68,19 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
         credentials
     );
     const valgtTema = props.form.state.valgtTema;
+
+    const prevForeslatteEnheter = usePrevious(foreslatteEnheter);
+    useEffect(
+        function automatiskVelgForeslattEnhet() {
+            if (prevForeslatteEnheter === foreslatteEnheter) {
+                return;
+            }
+            if (!props.form.state.valgtEnhet && foreslatteEnheter.foreslatteEnheter.length === 1) {
+                props.form.actions.settValgtEnhet(foreslatteEnheter.foreslatteEnheter[0]);
+            }
+        },
+        [foreslatteEnheter, props.form.actions, props.form.state.valgtEnhet, prevForeslatteEnheter]
+    );
 
     return (
         <>
@@ -106,7 +122,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 setValue={enhet => {
                     props.form.actions.settValgtEnhet(enhet);
                 }}
-                inputValue={undefined}
+                inputValue={props.form.state.valgtEnhet}
                 itemToString={enhet => `${enhet.enhetId} ${enhet.enhetNavn}`}
                 label={'Velg enhet'}
                 suggestions={hasData(enhetliste) ? enhetliste.data : []}
@@ -122,7 +138,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 setValue={ansatt => {
                     props.form.actions.settValgtAnsatt(ansatt);
                 }}
-                inputValue={undefined}
+                inputValue={props.form.state.valgtAnsatt}
                 itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
                 label={'Velg ansatt'}
                 suggestions={hasData(ansattliste) ? ansattliste.data : []}
