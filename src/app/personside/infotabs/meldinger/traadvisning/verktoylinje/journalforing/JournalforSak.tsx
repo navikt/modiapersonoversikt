@@ -73,7 +73,9 @@ export function JournalforSak(props: Props) {
         return (
             <SuksessStyling>
                 <AlertStripeSuksess>Tråden ble journalført</AlertStripeSuksess>
-                <Hovedknapp onClick={lukkPanel}>Lukk</Hovedknapp>
+                <Hovedknapp autoFocus={true} onClick={lukkPanel}>
+                    Lukk
+                </Hovedknapp>
             </SuksessStyling>
         );
     }
@@ -90,7 +92,13 @@ export function JournalforSak(props: Props) {
                 className="blokk-m"
             />
             {error && <AlertStripeFeil className="blokk-xs">{error}</AlertStripeFeil>}
-            <Hovedknapp className="blokk-xs" onClick={journalfor} spinner={submitting} autoDisableVedSpinner>
+            <Hovedknapp
+                autoFocus={true}
+                className="blokk-xs"
+                onClick={journalfor}
+                spinner={submitting}
+                autoDisableVedSpinner
+            >
                 Journalfør
             </Hovedknapp>
             <Flatknapp htmlType="button" onClick={tilbake}>
