@@ -71,10 +71,10 @@ const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
 `;
 
 function journalfortMelding(melding: Melding) {
-    const navn = melding.journalfortAv ? saksbehandlerTekst(melding.journalfortAv) : 'Ukjent';
-    const dato = melding.journalfortDato ? formaterDato(melding.journalfortDato) : 'Ukjent dato';
-    const tema = melding.journalfortTemanavn ? `tema ${melding.journalfortTemanavn}` : 'Ukjent tema';
-    const saksid = melding.journalfortSaksid ? `saksid ${melding.journalfortSaksid}` : 'Ukjent saksid';
+    const navn = melding.journalfortAv ? saksbehandlerTekst(melding.journalfortAv) : 'ukjent';
+    const dato = melding.journalfortDato ? formaterDato(melding.journalfortDato) : 'ukjent dato';
+    const tema = melding.journalfortTemanavn ? `tema ${melding.journalfortTemanavn}` : 'ukjent tema';
+    const saksid = melding.journalfortSaksid ? `saksid ${melding.journalfortSaksid}` : 'ukjent saksid';
     return `Journalført av ${navn} ${dato} på ${tema} med ${saksid}`;
 }
 
