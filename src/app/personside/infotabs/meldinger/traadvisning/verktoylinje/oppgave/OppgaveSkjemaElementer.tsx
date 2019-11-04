@@ -37,6 +37,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 }
                 label={'Tema'}
                 onChange={event => props.form.actions.oppdaterStateVedValgtTema(hentValgtTema(props.gsakTema, event))}
+                value={(props.form.state.valgtTema && props.form.state.valgtTema.kode) || ''}
             >
                 <TemaOptions gsakTema={props.gsakTema} />
             </Select>
@@ -47,6 +48,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 }
                 label={'Gjelder'}
                 onChange={event => props.form.actions.settValgtUnderkategori(hentValgtUnderkategori(event, valgtTema))}
+                value={(props.form.state.valgtUnderkategori && props.form.state.valgtUnderkategori.kode) || ''}
             >
                 <UnderkategoriOptions valgtGsakTema={valgtTema} />
             </Select>
@@ -57,6 +59,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 }
                 label={'Type oppgave'}
                 onChange={event => props.form.actions.settValgtOppgavetype(hentValgtOppgavetype(event, valgtTema))}
+                value={(props.form.state.valgtOppgavetype && props.form.state.valgtOppgavetype.kode) || ''}
             >
                 <OppgavetypeOptions valgtGsakTema={valgtTema} />
             </Select>
@@ -136,7 +139,7 @@ function hentValgtOppgavetype(
 
 function TemaOptions(props: { gsakTema: GsakTema[] }) {
     const options = [
-        <option value={''} key={''}>
+        <option value={''} key={''} disabled>
             Velg tema
         </option>,
         props.gsakTema.map(gsakTema => (
@@ -153,7 +156,7 @@ function UnderkategoriOptions(props: { valgtGsakTema?: GsakTema }) {
     const options = props.valgtGsakTema
         ? [
               <option value={''} key={''}>
-                  Velg underkategori
+                  Ingen underkategori
               </option>,
               props.valgtGsakTema.underkategorier.map(underkategori => (
                   <option value={`${underkategori.kode}`} key={underkategori.kode}>
@@ -162,7 +165,7 @@ function UnderkategoriOptions(props: { valgtGsakTema?: GsakTema }) {
               ))
           ]
         : [
-              <option value={''} key={''}>
+              <option value={''} key={''} disabled>
                   Ingen tema valgt
               </option>
           ];
@@ -173,7 +176,7 @@ function UnderkategoriOptions(props: { valgtGsakTema?: GsakTema }) {
 function OppgavetypeOptions(props: { valgtGsakTema?: GsakTema }) {
     const options = props.valgtGsakTema
         ? [
-              <option value={''} key={''}>
+              <option value={''} key={''} disabled>
                   Velg oppgavetype
               </option>,
               props.valgtGsakTema.oppgavetyper.map(oppgavetype => (
@@ -183,7 +186,7 @@ function OppgavetypeOptions(props: { valgtGsakTema?: GsakTema }) {
               ))
           ]
         : [
-              <option value={''} key={''}>
+              <option value={''} key={''} disabled>
                   Ingen tema valgt
               </option>
           ];
