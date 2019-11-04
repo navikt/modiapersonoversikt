@@ -82,12 +82,6 @@ function AutoComplete<Item>(props: Props<Item>) {
         }
     };
 
-    const itemNotInTopSuggestions = (item: Item) => {
-        return (
-            !props.topSuggestions ||
-            !props.topSuggestions.some(it => props.itemToString(it) === props.itemToString(item))
-        );
-    };
     const itemMatchesInput = (input: string | null) => (item: Item) => !input || props.filter(item, input);
 
     const showTopSuggestions = props.topSuggestions && props.topSuggestions.length > 0;
@@ -141,16 +135,9 @@ function AutoComplete<Item>(props: Props<Item>) {
                                         <EtikettGrå>{props.otherSuggestionsLabel || 'Andre forslag'}</EtikettGrå>
                                     </li>
                                 )}
-                                {props.suggestions
-                                    .filter(itemMatchesInput(helpers.inputValue))
-                                    .filter(itemNotInTopSuggestions)
-                                    .map(item => (
-                                        <SuggestionMarkup
-                                            key={helpers.itemToString(item)}
-                                            item={item}
-                                            helpers={helpers}
-                                        />
-                                    ))}
+                                {props.suggestions.filter(itemMatchesInput(helpers.inputValue)).map(item => (
+                                    <SuggestionMarkup key={helpers.itemToString(item)} item={item} helpers={helpers} />
+                                ))}
                             </ul>
                         </DropDownWrapper>
                     ) : null}
