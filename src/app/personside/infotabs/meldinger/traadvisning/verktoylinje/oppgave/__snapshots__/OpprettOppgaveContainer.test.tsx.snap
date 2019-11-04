@@ -112,8 +112,10 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           disabled={false}
           id="Helt tilfeldig ID"
           onChange={[Function]}
+          value=""
         >
           <option
+            disabled={true}
             value=""
           >
             Velg tema
@@ -152,8 +154,10 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           disabled={false}
           id="Helt tilfeldig ID"
           onChange={[Function]}
+          value=""
         >
           <option
+            disabled={true}
             value=""
           >
             Ingen tema valgt
@@ -182,8 +186,10 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           disabled={false}
           id="Helt tilfeldig ID"
           onChange={[Function]}
+          value=""
         >
           <option
+            disabled={true}
             value=""
           >
             Ingen tema valgt

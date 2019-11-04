@@ -62,13 +62,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c29 svg {
+.c30 svg {
   height: 1.875rem;
   width: 1.875rem;
   opacity: 0.5;
 }
 
-.c28 {
+.c29 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -78,19 +78,19 @@ exports[`Viser oversikt med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c28 .order-first {
+.c29 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c28 .order-second {
+.c29 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c27 {
+.c28 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -245,7 +245,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   overflow-wrap: break-word;
 }
 
-.c24 {
+.c25 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -260,7 +260,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   margin-top: 0.2rem;
 }
 
-.c24 > *:not(:last-child) {
+.c25 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
@@ -299,6 +299,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+}
+
+.c24 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .c2 {
@@ -355,7 +361,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #78706a;
 }
 
-.c25 > *:not(:first-child) {
+.c26 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -367,7 +373,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #78706a;
 }
 
-.c26 > *:not(:first-child) {
+.c27 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -997,12 +1003,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </p>
                     </div>
                     <p
-                      className="typo-normal"
+                      className="typo-normal c24"
                     >
-                      Dolores omnis ea voluptatem corrupt...
+                      Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                     </p>
                     <div
-                      className="c24"
+                      className="c25"
                     >
                       <div
                         className="etikett etikett--fokus"
@@ -1073,7 +1079,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c6"
       >
         <div
-          className="c25"
+          className="c26"
         >
           <div
             className="test-ytelse-oversikt c8"
@@ -1180,7 +1186,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c6"
       >
         <ol
-          className="c26"
+          className="c27"
         >
           <li
             className="test-sakstema-list"
@@ -1191,11 +1197,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c27"
+                  className="c28"
                 >
                   <div>
                     <div
-                      className="c28"
+                      className="c29"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -1220,7 +1226,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c29"
+                    className="c30"
                   >
                     <svg
                       contentScriptType="text/ecmascript"
@@ -1261,11 +1267,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c27"
+                  className="c28"
                 >
                   <div>
                     <div
-                      className="c28"
+                      className="c29"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -1300,7 +1306,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c29"
+                    className="c30"
                   />
                 </div>
               </div>
