@@ -8,6 +8,7 @@ const tomtSkjema: OppgaveSkjemaForm = {
     valgtOppgavetype: undefined,
     beskrivelse: '',
     valgtUnderkategori: undefined,
+    valgtAnsatt: undefined,
     valgtEnhet: undefined,
     valgtPrioritet: OppgavePrioritet.NORM
 };
@@ -25,7 +26,7 @@ const regler: Valideringsregel<OppgaveSkjemaForm>[] = [
     },
     {
         felt: 'beskrivelse',
-        feilmelding: 'Du må velge tema',
+        feilmelding: 'Du må skrive beskrivelse',
         validator: (form: OppgaveSkjemaForm) => !erTomStreng(form.beskrivelse)
     },
     {
