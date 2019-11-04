@@ -19,9 +19,10 @@ import { loggError } from '../../../../../../../utils/frontendLogger';
 
 const credentials: RequestInit = { credentials: 'include' };
 
-function useForeslatteEnheter(form: OppgaveSkjemaForm): Enhet[] {
+function useForeslatteEnheter(form: OppgaveSkjemaForm) {
     const fnr = useFødselsnummer();
     const [foreslatteEnheter, setForeslatteEnheter] = useState<Enhet[]>([]);
+    const [pending, setPending] = useState(false);
 
     useEffect(() => {
         if (!form.valgtTema || !form.valgtOppgavetype) {
@@ -39,13 +40,18 @@ function useForeslatteEnheter(form: OppgaveSkjemaForm): Enhet[] {
             .map(entry => entry[0] + '=' + entry[1])
             .join('&');
 
+        setPending(true);
         fetch(`${apiBaseUri}/enheter/oppgavebehandlere/foreslatte?${queryParams}`, credentials)
             .then(response => response.json())
             .then(setForeslatteEnheter)
-            .catch(e => loggError(e, 'Feil ved henting av foreslåtte enheter'));
+            .catch(e => loggError(e, 'Feil ved henting av foreslåtte enheter'))
+            .finally(() => setPending(false));
     }, [form.valgtTema, form.valgtOppgavetype, form.valgtUnderkategori, fnr]);
 
-    return foreslatteEnheter;
+    return {
+        pending,
+        foreslatteEnheter
+    };
 }
 
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
@@ -104,13 +110,13 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 itemToString={enhet => `${enhet.enhetId} ${enhet.enhetNavn}`}
                 label={'Velg enhet'}
                 suggestions={hasData(enhetliste) ? enhetliste.data : []}
-                topSuggestions={foreslatteEnheter}
+                topSuggestions={foreslatteEnheter.foreslatteEnheter}
                 topSuggestionsLabel="Foreslåtte enheter"
                 otherSuggestionsLabel="Andre enheter"
                 filter={(enhet, value) =>
                     enhet.enhetId.includes(value) || enhet.enhetNavn.toLowerCase().includes(value.toLowerCase())
                 }
-                spinner={isPending(enhetliste)}
+                spinner={isPending(enhetliste) || foreslatteEnheter.pending}
             />
             <AutoComplete<Ansatt>
                 setValue={ansatt => {
