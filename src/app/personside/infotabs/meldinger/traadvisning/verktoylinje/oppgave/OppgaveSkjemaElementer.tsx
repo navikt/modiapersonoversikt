@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import { Select } from 'nav-frontend-skjema';
 import { Textarea } from 'nav-frontend-skjema';
 import {
@@ -9,24 +9,78 @@ import {
     GsakTemaUnderkategori,
     OppgavePrioritet
 } from '../../../../../../../models/meldinger/oppgave';
-import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaForm, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import AutoComplete from './AutoComplete';
 import { AsyncResult, hasData, isPending, isLoading } from '@nutgaard/use-async';
 import useFetch from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
+import { useFødselsnummer, usePrevious } from '../../../../../../../utils/customHooks';
+import { loggError } from '../../../../../../../utils/frontendLogger';
 
 const credentials: RequestInit = { credentials: 'include' };
 
+function useForeslatteEnheter(form: OppgaveSkjemaForm) {
+    const fnr = useFødselsnummer();
+    const [foreslatteEnheter, setForeslatteEnheter] = useState<Enhet[]>([]);
+    const [pending, setPending] = useState(false);
+
+    useEffect(() => {
+        if (!form.valgtTema || !form.valgtOppgavetype) {
+            return;
+        }
+
+        const request = {
+            fnr: fnr,
+            temakode: form.valgtTema.kode,
+            typekode: form.valgtOppgavetype.kode,
+            underkategori: form.valgtUnderkategori && form.valgtUnderkategori.kode
+        };
+        const queryParams = Object.entries(request)
+            .filter(entry => entry[1])
+            .map(entry => entry[0] + '=' + entry[1])
+            .join('&');
+
+        setPending(true);
+        fetch(`${apiBaseUri}/enheter/oppgavebehandlere/foreslatte?${queryParams}`, credentials)
+            .then(response => response.json())
+            .then(setForeslatteEnheter)
+            .catch(e => loggError(e, 'Feil ved henting av foreslåtte enheter'))
+            .finally(() => setPending(false));
+    }, [form.valgtTema, form.valgtOppgavetype, form.valgtUnderkategori, fnr]);
+
+    return useMemo(
+        () => ({
+            pending,
+            foreslatteEnheter
+        }),
+        [pending, foreslatteEnheter]
+    );
+}
+
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
     const enhetliste: AsyncResult<Array<Enhet>> = useFetch<Array<Enhet>>(
-        `${apiBaseUri}/enheter/dialog/oppgave/alle`,
+        `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
         credentials
     );
+    const foreslatteEnheter = useForeslatteEnheter(props.form.state);
     const ansattliste: AsyncResult<Array<Ansatt>> = useFetch<Array<Ansatt>>(
         `${apiBaseUri}/enheter/${props.form.state.valgtEnhet ? props.form.state.valgtEnhet.enhetId : '_'}/ansatte`,
         credentials
     );
     const valgtTema = props.form.state.valgtTema;
+
+    const prevForeslatteEnheter = usePrevious(foreslatteEnheter);
+    useEffect(
+        function automatiskVelgForeslattEnhet() {
+            if (prevForeslatteEnheter === foreslatteEnheter) {
+                return;
+            }
+            if (!props.form.state.valgtEnhet && foreslatteEnheter.foreslatteEnheter.length === 1) {
+                props.form.actions.settValgtEnhet(foreslatteEnheter.foreslatteEnheter[0]);
+            }
+        },
+        [foreslatteEnheter, props.form.actions, props.form.state.valgtEnhet, prevForeslatteEnheter]
+    );
 
     return (
         <>
@@ -71,28 +125,23 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 setValue={enhet => {
                     props.form.actions.settValgtEnhet(enhet);
                 }}
-                inputValue={undefined}
+                inputValue={props.form.state.valgtEnhet}
                 itemToString={enhet => `${enhet.enhetId} ${enhet.enhetNavn}`}
                 label={'Velg enhet'}
                 suggestions={hasData(enhetliste) ? enhetliste.data : []}
-                filter={(enhet, value) =>
-                    enhet.enhetId.includes(value) || enhet.enhetNavn.toLowerCase().includes(value.toLowerCase())
-                }
-                spinner={isPending(enhetliste)}
+                topSuggestions={foreslatteEnheter.foreslatteEnheter}
+                topSuggestionsLabel="Foreslåtte enheter"
+                otherSuggestionsLabel="Andre enheter"
+                spinner={isPending(enhetliste) || foreslatteEnheter.pending}
             />
             <AutoComplete<Ansatt>
                 setValue={ansatt => {
                     props.form.actions.settValgtAnsatt(ansatt);
                 }}
-                inputValue={undefined}
+                inputValue={props.form.state.valgtAnsatt}
                 itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
                 label={'Velg ansatt'}
                 suggestions={hasData(ansattliste) ? ansattliste.data : []}
-                filter={(ansatt, value) =>
-                    ansatt.fornavn.toLowerCase().includes(value.toLowerCase()) ||
-                    ansatt.etternavn.toLowerCase().includes(value.toLowerCase()) ||
-                    ansatt.ident.toLowerCase().includes(value.toLowerCase())
-                }
                 spinner={isLoading(ansattliste)}
             />
             <Select
