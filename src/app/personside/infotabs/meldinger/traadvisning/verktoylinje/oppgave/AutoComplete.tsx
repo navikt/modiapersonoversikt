@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Downshift, { ControllerStateAndHelpers } from 'downshift';
 import styled from 'styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -51,9 +51,8 @@ const InputfeltWrapper = styled.div`
 
 interface Props<Item> {
     setValue: (value: Item) => void;
-    inputValue: Item | undefined;
+    inputValue?: Item;
     itemToString: (item: Item) => string;
-    filter: (item: Item, input: string) => boolean;
     label: string;
     suggestions: Item[];
     topSuggestions?: Item[];
@@ -90,9 +89,17 @@ function AutoComplete<Item>({ itemToString, inputValue, ...props }: Props<Item>)
         }
     };
 
-    const itemMatchesInput = (input: string | null) => (item: Item) => !input || props.filter(item, input);
+    const itemMatchesInput = (input: string | null) => (item: Item) => {
+        if (!input || input === '') {
+            return true;
+        }
+        return itemToString(item)
+            .toLowerCase()
+            .includes(input.toLowerCase());
+    };
 
-    const showTopSuggestions = props.topSuggestions && props.topSuggestions.length > 0;
+    const filteredTopSuggetions = props.topSuggestions ? props.topSuggestions.filter(itemMatchesInput(input)) : [];
+    const filteredSuggestions = props.suggestions.filter(itemMatchesInput(input));
 
     return (
         <Downshift
@@ -124,28 +131,20 @@ function AutoComplete<Item>({ itemToString, inputValue, ...props }: Props<Item>)
                     {helpers.isOpen ? (
                         <DropDownWrapper>
                             <ul>
-                                {showTopSuggestions && (
-                                    <li>
-                                        <EtikettGrå>{props.topSuggestionsLabel || 'Anbefalte forslag'}</EtikettGrå>
-                                    </li>
+                                {filteredTopSuggetions.length > 0 && (
+                                    <>
+                                        <li>
+                                            <EtikettGrå>{props.topSuggestionsLabel || 'Anbefalte forslag'}</EtikettGrå>
+                                        </li>
+                                        {filteredTopSuggetions.map(item => (
+                                            <SuggestionMarkup key={itemToString(item)} item={item} helpers={helpers} />
+                                        ))}
+                                        <li>
+                                            <EtikettGrå>{props.otherSuggestionsLabel || 'Andre forslag'}</EtikettGrå>
+                                        </li>
+                                    </>
                                 )}
-                                {props.topSuggestions
-                                    ? props.topSuggestions
-                                          .filter(itemMatchesInput(helpers.inputValue))
-                                          .map(item => (
-                                              <SuggestionMarkup
-                                                  key={helpers.itemToString(item)}
-                                                  item={item}
-                                                  helpers={helpers}
-                                              />
-                                          ))
-                                    : null}
-                                {showTopSuggestions && (
-                                    <li>
-                                        <EtikettGrå>{props.otherSuggestionsLabel || 'Andre forslag'}</EtikettGrå>
-                                    </li>
-                                )}
-                                {props.suggestions.filter(itemMatchesInput(helpers.inputValue)).map(item => (
+                                {filteredSuggestions.map(item => (
                                     <SuggestionMarkup key={helpers.itemToString(item)} item={item} helpers={helpers} />
                                 ))}
                             </ul>

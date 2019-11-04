@@ -129,9 +129,6 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 topSuggestions={foreslatteEnheter.foreslatteEnheter}
                 topSuggestionsLabel="Foreslåtte enheter"
                 otherSuggestionsLabel="Andre enheter"
-                filter={(enhet, value) =>
-                    enhet.enhetId.includes(value) || enhet.enhetNavn.toLowerCase().includes(value.toLowerCase())
-                }
                 spinner={isPending(enhetliste) || foreslatteEnheter.pending}
             />
             <AutoComplete<Ansatt>
@@ -142,11 +139,6 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
                 label={'Velg ansatt'}
                 suggestions={hasData(ansattliste) ? ansattliste.data : []}
-                filter={(ansatt, value) =>
-                    ansatt.fornavn.toLowerCase().includes(value.toLowerCase()) ||
-                    ansatt.etternavn.toLowerCase().includes(value.toLowerCase()) ||
-                    ansatt.ident.toLowerCase().includes(value.toLowerCase())
-                }
                 spinner={isLoading(ansattliste)}
             />
             <Select
