@@ -1,5 +1,5 @@
 import { Melding, Traad } from '../../../../../models/meldinger/meldinger';
-import { erDelvisBesvart, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
+import { erDelvisBesvart, erFeilsendt, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
 import { useAppState } from '../../../../../utils/customHooks';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import Meldingsikon from '../utils/Meldingsikon';
@@ -70,6 +70,7 @@ function TraadSammendrag(props: { traad: Traad }) {
                     {erDelvisBesvart(props.traad) && <EtikettInfo>Delvis besvart</EtikettInfo>}
                     <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                     <SlettetEtikett melding={sisteMelding} />
+                    <FeilsendtEtikett traad={props.traad} />
                 </EtikettStyling>
             </ContentStyle>
         </Style>
@@ -83,6 +84,13 @@ function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
         return <EtikettSuksess>Tildelt meg</EtikettSuksess>;
     }
 
+    return null;
+}
+
+function FeilsendtEtikett({ traad }: { traad: Traad }) {
+    if (erFeilsendt(traad)) {
+        return <EtikettAdvarsel>Feilsendt</EtikettAdvarsel>;
+    }
     return null;
 }
 
