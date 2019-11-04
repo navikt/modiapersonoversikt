@@ -1,36 +1,17 @@
 import * as React from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
-import { erPersonResponsAvTypeBegrensetTilgang, PersonRespons } from '../../models/person/person';
+import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
 import MainLayout from './MainLayout';
-import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
-import RestResourceConsumer from '../../rest/consumer/RestResourceConsumer';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
-
-const onError = (
-    <FillCenterAndFadeIn>
-        <AlertStripe type="advarsel">Beklager. Det skjedde en feil ved lasting av persondata.</AlertStripe>
-    </FillCenterAndFadeIn>
-);
+import { useRestResource } from '../../utils/customHooks';
+import { hasData } from '../../rest/utils/restResource';
 
 function Personside() {
-    function getSideinnhold(personResource: PersonRespons) {
-        if (erPersonResponsAvTypeBegrensetTilgang(personResource)) {
-            return <BegrensetTilgangSide person={personResource} />;
-        } else {
-            return <MainLayout />;
-        }
+    const personResource = useRestResource(resources => resources.personinformasjon);
+    if (hasData(personResource) && erPersonResponsAvTypeBegrensetTilgang(personResource.data)) {
+        return <BegrensetTilgangSide person={personResource.data} />;
+    } else {
+        return <MainLayout />;
     }
-
-    return (
-        <RestResourceConsumer<PersonRespons>
-            getResource={restResources => restResources.personinformasjon}
-            returnOnError={onError}
-            returnOnPending={<CenteredLazySpinner type="XXL" />}
-        >
-            {data => getSideinnhold(data)}
-        </RestResourceConsumer>
-    );
 }
 
 export default Personside;
