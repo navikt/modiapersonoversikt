@@ -4,7 +4,6 @@ import { useAppState } from '../../../../../utils/customHooks';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import Meldingsikon from '../utils/Meldingsikon';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { delAvStringMedDots } from '../../../../../utils/string-utils';
 import { UnmountClosed } from 'react-collapse';
 import { EtikettAdvarsel, EtikettFokus, EtikettInfo, EtikettSuksess } from 'nav-frontend-etiketter';
 import * as React from 'react';
@@ -68,7 +67,7 @@ function TraadSammendrag(props: { traad: Traad }) {
                     <Element className="order-second">{tittel}</Element>
                     <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                 </UUcustomOrder>
-                <PreviewStyle>{delAvStringMedDots(sisteMelding.fritekst, 35)}</PreviewStyle>
+                <PreviewStyle>{sisteMelding.fritekst}</PreviewStyle>
                 <EtikettStyling>
                     <UnmountClosed isOpened={underArbeid}>
                         <EtikettFokus>Under arbeid</EtikettFokus>
