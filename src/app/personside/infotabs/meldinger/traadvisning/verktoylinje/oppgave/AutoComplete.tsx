@@ -51,7 +51,7 @@ const InputfeltWrapper = styled.div`
 
 interface Props<Item> {
     setValue: (value: Item) => void;
-    inputValue?: Item;
+    value?: Item;
     itemToString: (item: Item) => string;
     label: string;
     suggestions: Item[];
@@ -74,14 +74,15 @@ function SuggestionMarkup<Item>(props: { item: Item; helpers: ControllerStateAnd
     );
 }
 
-function AutoComplete<Item>({ itemToString, inputValue, ...props }: Props<Item>) {
+function AutoComplete<Item>(props: Props<Item>) {
     const [input, setInput] = useState('');
 
+    const { value, itemToString } = props;
     useEffect(() => {
-        if (inputValue) {
-            setInput(itemToString(inputValue));
+        if (value) {
+            setInput(itemToString(value));
         }
-    }, [itemToString, inputValue]);
+    }, [itemToString, value]);
 
     const handleStateChange = (changes: any) => {
         if (changes.hasOwnProperty('selectedItem')) {
@@ -89,8 +90,12 @@ function AutoComplete<Item>({ itemToString, inputValue, ...props }: Props<Item>)
         }
     };
 
-    const itemMatchesInput = (input: string | null) => (item: Item) => {
+    const showItemBasedOnInput = (input: string | null) => (item: Item) => {
         if (!input || input === '') {
+            return true;
+        }
+        if (value && input === itemToString(value)) {
+            // Denne sjekken sørger for at man får opp alle alternativer når man kommer tilbake til et felt som allerede er satt.
             return true;
         }
         return itemToString(item)
@@ -98,13 +103,15 @@ function AutoComplete<Item>({ itemToString, inputValue, ...props }: Props<Item>)
             .includes(input.toLowerCase());
     };
 
-    const filteredTopSuggetions = props.topSuggestions ? props.topSuggestions.filter(itemMatchesInput(input)) : [];
-    const filteredSuggestions = props.suggestions.filter(itemMatchesInput(input));
+    const filteredTopSuggetions = props.topSuggestions ? props.topSuggestions.filter(showItemBasedOnInput(input)) : [];
+    const itemNotInTopSuggestions = (item: Item) =>
+        !filteredTopSuggetions.some(it => itemToString(it) === itemToString(item));
+    const filteredSuggestions = props.suggestions.filter(showItemBasedOnInput(input)).filter(itemNotInTopSuggestions);
 
     return (
         <Downshift
             inputValue={input}
-            selectedItem={inputValue || null}
+            selectedItem={value || null}
             onInputValueChange={i => setInput(i)}
             onStateChange={handleStateChange}
             itemToString={(item: Item) => (item ? itemToString(item) : '')}

@@ -121,7 +121,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 setValue={enhet => {
                     props.form.actions.settValgtEnhet(enhet);
                 }}
-                inputValue={props.form.state.valgtEnhet}
+                value={props.form.state.valgtEnhet}
                 itemToString={enhet => `${enhet.enhetId} ${enhet.enhetNavn}`}
                 label={'Velg enhet'}
                 suggestions={hasData(enhetliste) ? enhetliste.data : []}
@@ -134,7 +134,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 setValue={ansatt => {
                     props.form.actions.settValgtAnsatt(ansatt);
                 }}
-                inputValue={props.form.state.valgtAnsatt}
+                value={props.form.state.valgtAnsatt}
                 itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
                 label={'Velg ansatt'}
                 suggestions={hasData(ansattliste) ? ansattliste.data : []}
