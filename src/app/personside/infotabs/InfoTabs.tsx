@@ -66,7 +66,7 @@ function InfoTabs(props: Props) {
         <ErrorBoundary boundaryName="InfoTabs">
             <HandleInfotabsHotkeys />
             <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
-            <ErrorBoundary boundaryName={'OpenTab'}>
+            <ErrorBoundary boundaryName={'Open tab: ' + openTab}>
                 <OpenTab>
                     <h2 ref={ref} tabIndex={-1} className="sr-only">
                         {openTab}

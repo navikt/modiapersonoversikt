@@ -15,6 +15,7 @@ import { LenkeKnapp, TilbakePil } from '../../../../../components/common-styled-
 import { Undertittel } from 'nav-frontend-typografi';
 import { useFocusOnMount } from '../../../../../utils/customHooks';
 import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface StateProps {
     valgtDokument?: DokumentMetadata;
@@ -116,19 +117,21 @@ function DokumentOgVedlegg(props: Props) {
     );
 
     return (
-        <Content>
-            <span ref={ref} tabIndex={-1}>
-                <Undertittel className="visually-hidden">
-                    Dokument: {props.valgtTab && props.valgtTab.tittel}
-                </Undertittel>
-            </span>
-            {tabsHeader}
-            <VisDokumentContainer
-                journalpostId={valgtDokument.journalpostId}
-                dokumentreferanse={valgtTab.dokumentreferanse}
-                fødselsnummer={props.fødselsnummer}
-            />
-        </Content>
+        <ErrorBoundary boundaryName="Dokumentvisning">
+            <Content>
+                <span ref={ref} tabIndex={-1}>
+                    <Undertittel className="visually-hidden">
+                        Dokument: {props.valgtTab && props.valgtTab.tittel}
+                    </Undertittel>
+                </span>
+                {tabsHeader}
+                <VisDokumentContainer
+                    journalpostId={valgtDokument.journalpostId}
+                    dokumentreferanse={valgtTab.dokumentreferanse}
+                    fødselsnummer={props.fødselsnummer}
+                />
+            </Content>
+        </ErrorBoundary>
     );
 }
 
