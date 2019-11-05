@@ -811,7 +811,7 @@ exports[`Viser traad med verktøylinje 1`] = `
               <span
                 className="inputPanel__label"
               >
-                Merk som feilsendt
+                Feilsendt post
               </span>
             </label>
             <label
