@@ -286,6 +286,12 @@ exports[`Viser traad med verktøylinje 1`] = `
   <section
     className="c0"
   >
+    <h3
+      className="sr-only"
+      tabIndex={-1}
+    >
+      Verktøylinje
+    </h3>
     <div
       className="c1"
     >
