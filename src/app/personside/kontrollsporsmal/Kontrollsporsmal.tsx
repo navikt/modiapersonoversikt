@@ -3,27 +3,13 @@ import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import KontrollSpørsmålKnapper from './KontrollSpørsmålKnapper';
 import SpørsmålOgSvar from './SporsmalOgSvarContainer';
-import { connect } from 'react-redux';
-import { AppState } from '../../../redux/reducers';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
-import IfFeatureToggleOn from '../../../components/featureToggle/IfFeatureToggleOn';
-import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
-import { AsyncDispatch } from '../../../redux/ThunkTypes';
-import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { jobberMedSpørsmålOgSvar, kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
 import { erKontaktsenter } from '../../../utils/loggInfo/saksbehandlersEnhetInfo';
-import { useOnMount } from '../../../utils/customHooks';
-
-interface StateProps {
-    visKontrollSpørsmål: boolean;
-    fnr: string;
-}
-
-interface DispatchProps {
-    lukkKontrollSpørsmål: () => void;
-}
-
-type Props = DispatchProps & StateProps;
+import { useAppState, useFødselsnummer, useRestResource } from '../../../utils/customHooks';
+import { isLoading } from '../../../rest/utils/restResource';
+import LazySpinner from '../../../components/LazySpinner';
+import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 
 const KontrollSporsmalStyling = styled.section`
     background-color: white;
@@ -46,19 +32,36 @@ const KontrollSporsmalStyling = styled.section`
     }
 `;
 
-function Kontrollsporsmal(props: Props) {
-    useOnMount(() => {
-        if (kontrollspørsmålHarBlittLukketForBruker(props.fnr)) {
-            props.lukkKontrollSpørsmål();
-        }
-    });
+const SpinnerWrapper = styled(FillCenterAndFadeIn)`
+    background-color: white;
+    height: 7rem;
+    margin-bottom: 0.5rem;
+`;
 
-    if (!props.visKontrollSpørsmål || jobberMedSpørsmålOgSvar() || !erKontaktsenter()) {
+function Kontrollsporsmal() {
+    const visKontrollSpørsmål = useAppState(state => state.kontrollSpørsmål.open);
+    const fnr = useFødselsnummer();
+    const personResource = useRestResource(resources => resources.personinformasjon);
+
+    if (
+        !visKontrollSpørsmål ||
+        jobberMedSpørsmålOgSvar() ||
+        !erKontaktsenter() ||
+        kontrollspørsmålHarBlittLukketForBruker(fnr)
+    ) {
         return null;
     }
 
+    if (isLoading(personResource)) {
+        return (
+            <SpinnerWrapper>
+                <LazySpinner />
+            </SpinnerWrapper>
+        );
+    }
+
     return (
-        <IfFeatureToggleOn toggleID={FeatureToggles.Kontrollspørsmål}>
+        <>
             <KontrollSporsmalStyling role="region" aria-label="Visittkort-hode">
                 <h2 className={'visually-hidden'}>Kontrollspørsmål</h2>
                 <div className="innhold">
@@ -69,24 +72,8 @@ function Kontrollsporsmal(props: Props) {
                 </div>
             </KontrollSporsmalStyling>
             <HandleKontrollSporsmalHotkeys />
-        </IfFeatureToggleOn>
+        </>
     );
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        visKontrollSpørsmål: state.kontrollSpørsmål.open,
-        fnr: state.gjeldendeBruker.fødselsnummer
-    };
-}
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        lukkKontrollSpørsmål: () => dispatch(lukkKontrollSpørsmål())
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Kontrollsporsmal);
+export default Kontrollsporsmal;

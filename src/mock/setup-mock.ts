@@ -27,13 +27,14 @@ import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpe
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getMockVarsler } from './varsler/varsel-mock';
 import { getMockSlaaSammen, getMockTraader } from './meldinger/meldinger-mock';
-import { getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
+import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
 import standardTekster from './standardtekster.js';
 import { henvendelseResponseMock } from './meldinger/henvendelseMock';
+import { mockTilgangTilSlett } from './meldinger/merk-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -205,8 +206,15 @@ function setupGsakTemaMock(mock: FetchMock) {
 
 function setupOppgaveEnhetMock(mock: FetchMock) {
     mock.get(
-        apiBaseUri + '/enheter/dialog/oppgave/alle',
+        apiBaseUri + '/enheter/oppgavebehandlere/alle',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getMockEnheter())
+    );
+}
+
+function setupForeslatteEnheterMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/enheter/oppgavebehandlere/foreslatte',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getForeslattEnhet())
     );
 }
 
@@ -214,6 +222,13 @@ function setupAnsattePaaEnhetMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/enheter/:enhetId/ansatte',
         withDelayedResponse(randomDelay(), STATUS_OK, mockGeneratorMedEnhetId(enhetId => getMockAnsatte(enhetId)))
+    );
+}
+
+function setupTilgangTilSlettMock(mock: FetchMock) {
+    mock.get(
+        `${apiBaseUri}/dialogmerking/slett`,
+        withDelayedResponse(randomDelay(), STATUS_OK, () => mockTilgangTilSlett())
     );
 }
 
@@ -517,7 +532,9 @@ export function setupMock() {
     setupMeldingerMock(mock);
     setupGsakTemaMock(mock);
     setupOppgaveEnhetMock(mock);
+    setupForeslatteEnheterMock(mock);
     setupAnsattePaaEnhetMock(mock);
+    setupTilgangTilSlettMock(mock);
     setupYtelserOgKontrakter(mock);
     setupVarselMock(mock);
     opprettOppgaveMock(mock);

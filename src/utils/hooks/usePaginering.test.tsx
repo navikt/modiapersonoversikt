@@ -10,7 +10,7 @@ const getRandomListe = (length: number) => [...new Array(length)].map(() => navf
 
 test('Paginator paginerer riktig', () => {
     const pageSize = 5;
-    const renderer = renderHook(() => usePaginering(getRandomListe(11), pageSize));
+    const renderer = renderHook(() => usePaginering(getRandomListe(11), pageSize, 'item'));
     const pagination = renderer.result.current;
     const paginator = shallow(<div>{pagination.pageSelect}</div>);
 
@@ -21,5 +21,5 @@ test('Paginator paginerer riktig', () => {
             .find('option')
             .first()
             .text()
-    ).toBe('Viser 1 til 5');
+    ).toBe('Viser item 1 til 5');
 });

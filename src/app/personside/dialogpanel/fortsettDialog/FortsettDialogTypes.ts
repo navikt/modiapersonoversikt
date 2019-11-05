@@ -1,4 +1,4 @@
-import { LeggTilbakeOppgaveRequest, Oppgave } from '../../../../models/oppgave';
+import { LeggTilbakeOppgaveRequest } from '../../../../models/oppgave';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
@@ -44,7 +44,6 @@ export interface FortsettDialogState {
     tekst: string;
     dialogType: FortsettDialogType;
     temagruppe?: Temagruppe;
-    oppgave?: Oppgave;
     oppgaveListe: OppgavelisteValg;
     sak?: JournalforingsSak;
     visFeilmeldinger: boolean;

@@ -54,11 +54,16 @@ const PagineringStyling = styled.div`
     }
 `;
 
+const PrevNextButtonsStyling = styled.div`
+    padding: ${theme.margin.layout};
+    border-top: ${theme.border.skilleSvak};
+`;
+
 function TraadListe(props: Props) {
     const [erForsteRender, setErForsteRender] = useState(true);
     const inputRef = React.useRef<HTMLInputElement>();
     const traaderEtterSok = useSokEtterMeldinger(props.traader, props.sokeord);
-    const paginering = usePaginering(traaderEtterSok, 50);
+    const paginering = usePaginering(traaderEtterSok, 50, 'melding');
 
     useOnMount(() => {
         setErForsteRender(false);
@@ -89,6 +94,7 @@ function TraadListe(props: Props) {
 
     return (
         <PanelStyle>
+            <h2 className="sr-only">Brukerens meldinger</h2>
             <SlaaSammenOppgaverKnapp traader={props.traader} />
             <InputStyle>
                 <Input
@@ -108,16 +114,20 @@ function TraadListe(props: Props) {
                 {visAlleMeldingerKnapp}
             </SokVerktøyStyle>
             {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
-            <TraadListeStyle>
+            <TraadListeStyle role="tablist" aria-label="Meldingsliste">
                 {paginering.currentPage.map(traad => (
                     <TraadListeElement
                         taFokusOnMount={erForsteRender && traad === props.valgtTraad}
                         traad={traad}
                         key={traad.traadId}
                         erValgt={traad === props.valgtTraad}
+                        listeId="traadliste-meldinger"
                     />
                 ))}
             </TraadListeStyle>
+            {paginering.prevNextButtons && (
+                <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
+            )}
         </PanelStyle>
     );
 }

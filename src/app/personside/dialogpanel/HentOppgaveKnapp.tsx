@@ -70,7 +70,7 @@ function HentOppgaveKnapp(props: Props) {
                 const oppgave = response[0];
                 const fødselsnummer = oppgave.fødselsnummer;
                 props.history.push(
-                    `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.henvendelseid}`
+                    `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
                 );
             })
         );
@@ -110,7 +110,7 @@ function HentOppgaveKnapp(props: Props) {
                     onClick={onPlukkOppgaver}
                     spinner={isPosting(oppgaveResource)}
                 >
-                    Plukk oppgave
+                    Hent oppgave
                 </KnappBase>
             </KnappLayout>
             {isFailedPosting(oppgaveResource) && <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>}

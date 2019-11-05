@@ -92,7 +92,11 @@ function SaksoversiktContainer() {
                                         <SakstemaListe valgtSakstema={valgtSakstema} />
                                     </ScrollBar>
                                     <ScrollBar>
-                                        <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
+                                        {valgtSakstema ? (
+                                            <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
+                                        ) : (
+                                            <AlertStripeInfo>Ingen sakstema valgt</AlertStripeInfo>
+                                        )}
                                     </ScrollBar>
                                 </>
                             );

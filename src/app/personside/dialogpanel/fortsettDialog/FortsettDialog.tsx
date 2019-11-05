@@ -6,7 +6,6 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
 import VelgDialogType from './VelgDialogType';
-import { Oppgave } from '../../../../models/oppgave';
 import TekstFelt from '../sendMelding/TekstFelt';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { capitalizeName } from '../../../../utils/stringFormatting';
@@ -46,7 +45,7 @@ interface Props {
     state: FortsettDialogState;
     updateState: (change: Partial<FortsettDialogState>) => void;
     traad: Traad;
-    oppgave?: Oppgave;
+    erTilknyttetOppgave: boolean;
     fortsettDialogPanelState: FortsettDialogPanelState;
 }
 function Feilmelding(props: { status: DialogPanelStatus }) {
@@ -65,7 +64,6 @@ function FortsettDialog(props: Props) {
         : 'bruker';
 
     const erDelsvar = state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
-    const erTilknyttetOppgave = state.oppgave !== undefined;
     const brukerKanIkkeSvareInfo = [
         Meldingstype.SVAR_OPPMOTE,
         Meldingstype.SVAR_TELEFON,
@@ -91,7 +89,7 @@ function FortsettDialog(props: Props) {
                 <VelgDialogType
                     formState={state}
                     updateDialogType={dialogType => updateState({ dialogType: dialogType })}
-                    erTilknyttetOppgave={erTilknyttetOppgave}
+                    erTilknyttetOppgave={props.erTilknyttetOppgave}
                     erDelvisBesvart={erDelvisBesvart(props.traad)}
                 />
                 <Margin>
@@ -126,7 +124,7 @@ function FortsettDialog(props: Props) {
                           }`
                         : `Del med ${navn}`}
                 </SubmitKnapp>
-                {!erTilknyttetOppgave && (
+                {!props.erTilknyttetOppgave && (
                     <StyledKnappMedBekreftPopup
                         htmlType="reset"
                         type="flat"

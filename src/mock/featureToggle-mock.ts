@@ -5,8 +5,6 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
     switch (toggleId) {
         case FeatureToggles.Tooltip:
             return false;
-        case FeatureToggles.Kontrollspørsmål:
-            return true;
         case FeatureToggles.SaksoversiktNyttVindu:
             return true;
         case FeatureToggles.VisTilbakemelding:

@@ -1,84 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BesvarFler matcher snapshot 1`] = `
-.c5 {
-  position: relative;
-  padding: .8rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: pointer;
-  background-color: #cce1f3;
-}
-
-.c5:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
-}
-
-.c5:hover > button:last-child {
-  padding-left: 0.5rem;
-}
-
-.c5 > *:first-child {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c13 {
-  border: none;
-  padding: 0;
-  height: 2rem;
-  width: 2rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  -webkit-transition: padding-left 0.3s;
-  transition: padding-left 0.3s;
-}
-
-.c13:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.c13:focus::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  box-shadow: inset 0 0 0 0.1875rem #254b6d;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
-}
-
-.c8 {
-  position: relative;
-}
-
-.c8 svg {
-  height: 1.875rem;
-  width: 1.875rem;
-  -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
-  clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
-}
-
-.c9 {
-  position: absolute;
-  top: -0.1875rem;
-  right: 0.5625rem;
-  border-radius: 50%;
-  padding: 0 0.1rem;
-}
-
-.c16 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -93,98 +16,77 @@ exports[`BesvarFler matcher snapshot 1`] = `
   align-items: flex-start;
 }
 
-.c19 {
+.c21 {
   margin-right: 0.3rem;
 }
 
-.c18 {
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c17 {
+.c19 {
   font-weight: 600;
 }
 
-.c15 {
+.c17 {
   text-align: left;
 }
 
-.c15 em {
+.c17 em {
   font-style: normal;
   background-color: #eed28c;
   border-radius: 0.625rem;
   padding: 0 0.3125rem;
 }
 
-.c15 > *:not(:last-child) {
+.c17 > *:not(:last-child) {
   border-bottom: solid 0.0625rem #b7b1a9;
   padding-bottom: 0.7rem;
   margin-bottom: 0.5rem;
 }
 
-.c21 {
+.c23 {
   color: #0067c5;
 }
 
-.c20 .ekspanderbartPanel__hode,
-.c20 .ekspanderbartPanel__innhold {
+.c22 .ekspanderbartPanel__hode,
+.c22 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
 }
 
-.c11 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c11 .order-first {
-  -webkit-order: 0;
-  -ms-flex-order: 0;
-  order: 0;
-}
-
-.c11 .order-second {
-  -webkit-order: 1;
-  -ms-flex-order: 1;
-  order: 1;
-}
-
-.c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c6 > *:not(:last-child) {
-  padding-right: .8rem;
-}
-
-.c4:focus {
+.c9 {
   position: relative;
-  outline: none;
-  box-shadow: none;
 }
 
-.c4:focus::after {
+.c9 svg {
+  height: 1.875rem;
+  width: 1.875rem;
+  -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
+  clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
+}
+
+.c10 {
   position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  box-shadow: inset 0 0 0 0.1875rem #254b6d;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
+  top: -0.1875rem;
+  right: -0.25rem;
+  border-radius: 50%;
+  padding: 0 0.1rem;
 }
 
-.c12 {
+.c11 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  width: 0;
+  margin-left: 0.8rem;
+  overflow-wrap: break-word;
+}
+
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -199,17 +101,110 @@ exports[`BesvarFler matcher snapshot 1`] = `
   margin-top: 0.2rem;
 }
 
-.c12 > *:not(:last-child) {
+.c14 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
 
-.c10 {
+.c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c12 .order-first {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+.c12 .order-second {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c8 > *:last-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  width: 0px;
+}
+
+.c13 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.c5 {
+  padding: .8rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+}
+
+.c7 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c4 {
+  background-color: #cce1f3;
+}
+
+.c4:focus-within {
+  position: relative;
+  outline: none;
+  box-shadow: none;
+}
+
+.c4:focus-within::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.c4 .hover-animation {
+  -webkit-transition: -webkit-transform 0.3s;
+  -webkit-transition: transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.c4:hover {
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
+}
+
+.c4:hover .hover-animation {
+  -webkit-transform: translateX(0.5rem);
+  -ms-transform: translateX(0.5rem);
+  transform: translateX(0.5rem);
+}
+
+.c15 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
 }
 
 .c0 {
@@ -246,15 +241,15 @@ exports[`BesvarFler matcher snapshot 1`] = `
 }
 
 .c2 > *:first-child {
-  -webkit-flex: 30% 1 1;
-  -ms-flex: 30% 1 1;
-  flex: 30% 1 1;
+  -webkit-flex: 35% 1 1;
+  -ms-flex: 35% 1 1;
+  flex: 35% 1 1;
 }
 
 .c2 > *:last-child {
-  -webkit-flex: 70% 1 1;
-  -ms-flex: 70% 1 1;
-  flex: 70% 1 1;
+  -webkit-flex: 65% 1 1;
+  -ms-flex: 65% 1 1;
+  flex: 65% 1 1;
 }
 
 .c2 > * {
@@ -277,7 +272,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   border-bottom: solid 0.0625rem #b7b1a9;
 }
 
-.c14 {
+.c16 {
   padding: .8rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -285,8 +280,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
   flex-grow: 1;
 }
 
-.c7 {
-  padding: 1rem;
+.c6 {
+  margin: 0 0.5rem;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
   -webkit-transform: translateY(-0.5rem);
   -ms-transform: translateY(-0.5rem);
   transform: translateY(-0.5rem);
@@ -297,7 +295,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: 1.25rem .8rem;
 }
 
-.c22 {
+.c24 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -310,7 +308,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: .8rem;
 }
 
-.c22 > * {
+.c24 > * {
   margin-left: 1rem;
 }
 
@@ -332,47 +330,60 @@ exports[`BesvarFler matcher snapshot 1`] = `
   >
     <ol
       className="c3"
+      role="tablist"
     >
       <li
-        className="test-meldinger-melding c4"
-        tabIndex={-1}
+        className="c4"
+        role="presentation"
       >
-        <div
+        <input
+          checked={true}
+          className="sr-only test-meldinger-melding"
+          id="Helt tilfeldig ID"
+          name="traadliste-slaa-sammen"
+          onChange={[Function]}
+          role="tab"
+          type="radio"
+          value="sg838exr"
+        />
+        <label
           className="c5"
-          onClick={[Function]}
+          htmlFor="Helt tilfeldig ID"
         >
-          <div>
+          <div
+            className="c6"
+          >
             <div
-              className="c6"
+              className="skjemaelement skjemaelement--horisontal"
             >
-              <div
-                className="c7"
+              <input
+                aria-label="Velg tråd"
+                checked={false}
+                className="skjemaelement__input checkboks"
+                id="Helt tilfeldig ID"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
               >
-                <div
-                  className="skjemaelement skjemaelement--horisontal"
-                >
-                  <input
-                    aria-label="Velg tråd"
-                    checked={false}
-                    className="skjemaelement__input checkboks"
-                    id="Helt tilfeldig ID"
-                    onChange={[Function]}
-                    type="checkbox"
-                  />
-                  <label
-                    className="skjemaelement__label"
-                    htmlFor="Helt tilfeldig ID"
-                  >
-                    
-                  </label>
-                  <div
-                    aria-live="assertive"
-                    role="alert"
-                  />
-                </div>
-              </div>
+                
+              </label>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+          </div>
+          <div
+            className="c7"
+          >
+            <div
+              className="c8"
+            >
               <span
-                className="c8"
+                className="c9"
               >
                 <svg
                   height={24}
@@ -395,16 +406,22 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   </g>
                 </svg>
                 <p
-                  className="typo-undertekst-bold c9"
+                  className="typo-undertekst-bold c10"
                 >
                   4
+                   
+                  <span
+                    className="sr-only"
+                  >
+                    meldinger
+                  </span>
                 </p>
               </span>
               <div
-                className="c10"
+                className="c11"
               >
                 <div
-                  className="c11"
+                  className="c12"
                 >
                   <p
                     className="typo-element order-second"
@@ -418,12 +435,12 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   </p>
                 </div>
                 <p
-                  className="typo-normal"
+                  className="typo-normal c13"
                 >
-                  Dolores omnis ea voluptatem corrupt...
+                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                 </p>
                 <div
-                  className="c12"
+                  className="c14"
                 >
                   <div
                     className="etikett etikett--fokus"
@@ -447,58 +464,67 @@ exports[`BesvarFler matcher snapshot 1`] = `
               </div>
             </div>
           </div>
-          <button
-            aria-label="Vis meldinger for Delsvar - Arbeid"
-            aria-selected={true}
-            className="c13"
-            onClick={[Function]}
+          <div
+            className="hover-animation c15"
           >
             <i
               className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
             />
-          </button>
-        </div>
+          </div>
+        </label>
       </li>
       <li
-        className="test-meldinger-melding c4"
-        tabIndex={-1}
+        className="c4"
+        role="presentation"
       >
-        <div
+        <input
+          checked={true}
+          className="sr-only test-meldinger-melding"
+          id="Helt tilfeldig ID"
+          name="traadliste-slaa-sammen"
+          onChange={[Function]}
+          role="tab"
+          type="radio"
+          value="sg838exr"
+        />
+        <label
           className="c5"
-          onClick={[Function]}
+          htmlFor="Helt tilfeldig ID"
         >
-          <div>
+          <div
+            className="c6"
+          >
             <div
-              className="c6"
+              className="skjemaelement skjemaelement--horisontal"
             >
-              <div
-                className="c7"
+              <input
+                aria-label="Velg tråd"
+                checked={false}
+                className="skjemaelement__input checkboks"
+                id="Helt tilfeldig ID"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
               >
-                <div
-                  className="skjemaelement skjemaelement--horisontal"
-                >
-                  <input
-                    aria-label="Velg tråd"
-                    checked={false}
-                    className="skjemaelement__input checkboks"
-                    id="Helt tilfeldig ID"
-                    onChange={[Function]}
-                    type="checkbox"
-                  />
-                  <label
-                    className="skjemaelement__label"
-                    htmlFor="Helt tilfeldig ID"
-                  >
-                    
-                  </label>
-                  <div
-                    aria-live="assertive"
-                    role="alert"
-                  />
-                </div>
-              </div>
+                
+              </label>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+          </div>
+          <div
+            className="c7"
+          >
+            <div
+              className="c8"
+            >
               <span
-                className="c8"
+                className="c9"
               >
                 <svg
                   height={24}
@@ -521,16 +547,22 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   </g>
                 </svg>
                 <p
-                  className="typo-undertekst-bold c9"
+                  className="typo-undertekst-bold c10"
                 >
                   4
+                   
+                  <span
+                    className="sr-only"
+                  >
+                    meldinger
+                  </span>
                 </p>
               </span>
               <div
-                className="c10"
+                className="c11"
               >
                 <div
-                  className="c11"
+                  className="c12"
                 >
                   <p
                     className="typo-element order-second"
@@ -544,12 +576,12 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   </p>
                 </div>
                 <p
-                  className="typo-normal"
+                  className="typo-normal c13"
                 >
-                  Dolores omnis ea voluptatem corrupt...
+                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                 </p>
                 <div
-                  className="c12"
+                  className="c14"
                 >
                   <div
                     className="etikett etikett--fokus"
@@ -573,23 +605,21 @@ exports[`BesvarFler matcher snapshot 1`] = `
               </div>
             </div>
           </div>
-          <button
-            aria-label="Vis meldinger for Delsvar - Arbeid"
-            aria-selected={true}
-            className="c13"
-            onClick={[Function]}
+          <div
+            className="hover-animation c15"
           >
             <i
               className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
             />
-          </button>
-        </div>
+          </div>
+        </label>
       </li>
     </ol>
-    <section
-      className="c14"
+    <ol
+      className="c16"
+      role="tabpanel"
     >
-      <div
+      <li
         className="snakkeboble_ikoner"
       >
         <div
@@ -612,16 +642,16 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c15"
+                className="c17"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c16"
+                    className="c18"
                   >
                     <div
-                      className="tekstomrade c17"
+                      className="tekstomrade c19"
                     >
                       Samtalereferat oppmøte - Arbeid
                     </div>
@@ -641,10 +671,10 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     30.07.2019 00:00
                   </div>
                   <div
-                    className="c18"
+                    className="c20"
                   >
                     <span
-                      className="c19"
+                      className="c21"
                     >
                       Skrevet av:
                     </span>
@@ -661,7 +691,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
                 </div>
                 <div
-                  className="ekspanderbartPanel c20 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -674,7 +704,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c21"
+                        className="typo-etikett-liten c23"
                       >
                         Meldingen er journalført
                       </p>
@@ -686,15 +716,15 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   <article
                     className="ekspanderbartPanel__innhold"
                   >
-                    Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på tema undefined med saksid undefined
+                    Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
                   </article>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
+      </li>
+      <li
         className="snakkeboble_ikoner"
       >
         <div
@@ -717,16 +747,16 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c15"
+                className="c17"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c16"
+                    className="c18"
                   >
                     <div
-                      className="tekstomrade c17"
+                      className="tekstomrade c19"
                     >
                       Spørsmål fra bruker - Arbeid
                     </div>
@@ -743,7 +773,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
                 </div>
                 <div
-                  className="ekspanderbartPanel c20 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -756,7 +786,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c21"
+                        className="typo-etikett-liten c23"
                       >
                         Meldingen er journalført
                       </p>
@@ -768,15 +798,15 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   <article
                     className="ekspanderbartPanel__innhold"
                   >
-                    Journalført av Emil Nguyen (ly4pps) 21.07.2019 på tema undefined med saksid undefined
+                    Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
                   </article>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
+      </li>
+      <li
         className="snakkeboble_ikoner"
       >
         <div
@@ -799,16 +829,16 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c15"
+                className="c17"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c16"
+                    className="c18"
                   >
                     <div
-                      className="tekstomrade c17"
+                      className="tekstomrade c19"
                     >
                       Spørsmål fra bruker - Arbeid
                     </div>
@@ -825,7 +855,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
                 </div>
                 <div
-                  className="ekspanderbartPanel c20 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -838,7 +868,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c21"
+                        className="typo-etikett-liten c23"
                       >
                         Meldingen er journalført
                       </p>
@@ -850,15 +880,15 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   <article
                     className="ekspanderbartPanel__innhold"
                   >
-                    Journalført av Victoria Andresen (3t55yt) 12.08.2019 på tema undefined med saksid undefined
+                    Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
                   </article>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
+      </li>
+      <li
         className="snakkeboble_ikoner"
       >
         <div
@@ -881,16 +911,16 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c15"
+                className="c17"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c16"
+                    className="c18"
                   >
                     <div
-                      className="tekstomrade c17"
+                      className="tekstomrade c19"
                     >
                       Delsvar - Arbeid
                     </div>
@@ -910,10 +940,10 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     13.08.2019 00:00
                   </div>
                   <div
-                    className="c18"
+                    className="c20"
                   >
                     <span
-                      className="c19"
+                      className="c21"
                     >
                       Skrevet av:
                     </span>
@@ -930,7 +960,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                 </div>
                 <div
-                  className="ekspanderbartPanel c20 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -943,7 +973,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c21"
+                        className="typo-etikett-liten c23"
                       >
                         Meldingen er journalført
                       </p>
@@ -955,18 +985,18 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   <article
                     className="ekspanderbartPanel__innhold"
                   >
-                    Journalført av Jenny Berg (p0jh0d) 30.07.2019 på tema undefined med saksid undefined
+                    Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
                   </article>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </li>
+    </ol>
   </div>
   <div
-    className="c22"
+    className="c24"
   >
     <button
       className="knapp knapp--hoved"

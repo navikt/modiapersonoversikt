@@ -1,7 +1,7 @@
 export interface Oppgave {
-    oppgaveid: string;
+    oppgaveId: string;
     fødselsnummer: string;
-    henvendelseid: string;
+    traadId: string;
 }
 
 interface LeggTilbakeOppgaveBaseRequest {

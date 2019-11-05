@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { datoSynkende } from '../../../../../utils/dateUtils';
+import { datoSynkende, formatterDatoMedMaanedsnavn } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
@@ -37,7 +37,7 @@ function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
         .sort(datoSynkende(melding => melding.opprettetDato))
         .map(melding => <EnkeltMelding sokeord={sokeord} melding={melding} key={melding.id} />);
 
-    return <div>{meldingskomponenter}</div>;
+    return <ol aria-label="Dialog">{meldingskomponenter}</ol>;
 }
 
 function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
@@ -45,12 +45,11 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
 
     const melding = eldsteMelding(valgtTraad);
-
     if (melding.erFerdigstiltUtenSvar) {
         return (
             <AlertStripeInfo>
-                Ferdigstilt uten svar av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
-                {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
+                Henvendelsen er avsluttet uten å svare bruker av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
+                {melding.ferdigstiltDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltDato)}
             </AlertStripeInfo>
         );
     }
@@ -90,7 +89,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 
 function TraadVisning(props: Props) {
     return (
-        <VisningStyle aria-label={'Meldinger for valgt tråd'} key={props.valgtTraad.traadId}>
+        <VisningStyle>
             <Topplinje valgtTraad={props.valgtTraad} />
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>

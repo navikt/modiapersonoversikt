@@ -62,13 +62,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c26 svg {
+.c30 svg {
   height: 1.875rem;
   width: 1.875rem;
   opacity: 0.5;
 }
 
-.c25 {
+.c29 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -78,19 +78,19 @@ exports[`Viser oversikt med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c25 .order-first {
+.c29 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c25 .order-second {
+.c29 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c24 {
+.c28 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -230,9 +230,81 @@ exports[`Viser oversikt med alt innhold 1`] = `
 .c21 {
   position: absolute;
   top: -0.1875rem;
-  right: 0.5625rem;
+  right: -0.25rem;
   border-radius: 50%;
   padding: 0 0.1rem;
+}
+
+.c22 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  width: 0;
+  margin-left: 0.8rem;
+  overflow-wrap: break-word;
+}
+
+.c25 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  margin-top: 0.2rem;
+}
+
+.c25 > *:not(:last-child) {
+  margin-bottom: 0.2rem;
+  margin-right: 0.2rem;
+}
+
+.c23 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c23 .order-first {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+.c23 .order-second {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c19 > *:last-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c24 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .c2 {
@@ -289,7 +361,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #78706a;
 }
 
-.c22 > *:not(:first-child) {
+.c26 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -301,18 +373,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #78706a;
 }
 
-.c19 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c19 > *:first-child {
-  padding-right: .8rem;
-}
-
-.c23 > *:not(:first-child) {
+.c27 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -916,24 +977,58 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="typo-undertekst-bold c21"
                     >
                       4
+                       
+                      <span
+                        className="sr-only"
+                      >
+                        meldinger
+                      </span>
                     </p>
                   </span>
-                  <div>
-                    <p
-                      className="typo-normal"
+                  <div
+                    className="c22"
+                  >
+                    <div
+                      className="c23"
                     >
-                      13.08.2019 00:00
-                    </p>
+                      <p
+                        className="typo-element order-second"
+                      >
+                        Delsvar - Arbeid
+                      </p>
+                      <p
+                        className="typo-normal order-first"
+                      >
+                        13.08.2019 00:00
+                      </p>
+                    </div>
                     <p
-                      className="typo-element"
+                      className="typo-normal c24"
                     >
-                      Delsvar - Arbeid
+                      Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                     </p>
-                    <p
-                      className="typo-normal"
+                    <div
+                      className="c25"
                     >
-                      Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat s...
-                    </p>
+                      <div
+                        className="etikett etikett--fokus"
+                      >
+                        <span
+                          className="typo-normal"
+                        >
+                          Under arbeid
+                        </span>
+                      </div>
+                      <div
+                        className="etikett etikett--info"
+                      >
+                        <span
+                          className="typo-normal"
+                        >
+                          Delvis besvart
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -984,7 +1079,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c6"
       >
         <div
-          className="c22"
+          className="c26"
         >
           <div
             className="test-ytelse-oversikt c8"
@@ -1091,7 +1186,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c6"
       >
         <ol
-          className="c23"
+          className="c27"
         >
           <li
             className="test-sakstema-list"
@@ -1102,11 +1197,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c24"
+                  className="c28"
                 >
                   <div>
                     <div
-                      className="c25"
+                      className="c29"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -1131,7 +1226,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c26"
+                    className="c30"
                   >
                     <svg
                       contentScriptType="text/ecmascript"
@@ -1172,11 +1267,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             >
               <div>
                 <div
-                  className="c24"
+                  className="c28"
                 >
                   <div>
                     <div
-                      className="c25"
+                      className="c29"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -1211,7 +1306,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c26"
+                    className="c30"
                   />
                 </div>
               </div>

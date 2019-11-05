@@ -35,15 +35,13 @@ function useVisTraadTilknyttetPlukketOppgave(props: RouteComponentProps, dialogp
             if (!åpneTrådIFortsettDialogpanel || !hasData(traaderResource)) {
                 return;
             }
-            const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.henvendelseid);
+            const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.traadId);
             if (traadTilknyttetOppgave) {
                 dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
                 props.history.push(dyplenker.meldinger.link(traadTilknyttetOppgave));
             } else {
                 loggError(
-                    new Error(
-                        `Fant ikke tråd tilknyttet oppgave ${oppgave.oppgaveid} med henvendelseId ${oppgave.henvendelseid}`
-                    )
+                    new Error(`Fant ikke tråd tilknyttet oppgave ${oppgave.oppgaveId} med traadId ${oppgave.traadId}`)
                 );
             }
         },

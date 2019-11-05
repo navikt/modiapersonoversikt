@@ -18,7 +18,7 @@ import { useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 
-const meldingerMediaTreshold = pxToRem(1000);
+const meldingerMediaTreshold = pxToRem(850);
 
 const MeldingerArticleStyle = styled.article`
     ${scrollBarContainerStyle(meldingerMediaTreshold)};
@@ -40,10 +40,16 @@ function useHuskValgtTraad() {
     const dispatch = useDispatch();
     const valgtTraad = useValgtTraadIUrl();
     const forrigeValgteTraad = useAppState(state => state.meldinger.forrigeValgteTraad);
+    const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const forrigeTraadErFjernet =
+        hasData(meldingerResource) && forrigeValgteTraad && !meldingerResource.data.includes(forrigeValgteTraad);
 
     useEffect(() => {
+        if (forrigeTraadErFjernet) {
+            dispatch(huskForrigeValgtTraad(undefined));
+        }
         valgtTraad && dispatch(huskForrigeValgtTraad(valgtTraad));
-    }, [dispatch, valgtTraad]);
+    }, [dispatch, valgtTraad, forrigeTraadErFjernet]);
 
     return forrigeValgteTraad;
 }

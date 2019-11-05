@@ -6,24 +6,14 @@ import {
     erMeldingSpørsmål,
     erMeldingVarsel,
     erPlukkbar,
-    erSamtalereferat,
     kanLeggesTilbake
 } from './meldingerUtils';
 import { Temagruppe, temagruppeTekst } from '../../../../../models/Temagrupper';
 
 describe('Temagrupper', () => {
     const pensjon = Temagruppe.Pensjon;
-    const uføretrygd = Temagruppe.Uføretrygd;
     const arbeid = Temagruppe.Arbeid;
     const økonomiskSosial = Temagruppe.ØkonomiskSosial;
-
-    it('gir at pensjon er samtalereferat', () => {
-        expect(erSamtalereferat(pensjon)).toBe(true);
-    });
-
-    it('git at uføretrygd ikke er samtalereferat', function() {
-        expect(erSamtalereferat(uføretrygd)).toBe(false);
-    });
 
     it('gir at arbeid kan legges tilbake', function() {
         expect(kanLeggesTilbake(arbeid)).toBe(true);

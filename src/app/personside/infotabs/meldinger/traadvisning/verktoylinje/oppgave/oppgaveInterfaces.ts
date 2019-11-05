@@ -10,6 +10,7 @@ import {
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { PostResource } from '../../../../../../../rest/utils/postResource';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
+import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
 
 export interface OppgaveProps {
     gsakTema: GsakTema[];
@@ -22,16 +23,18 @@ export interface OppgaveProps {
     valgtTraad?: Traad;
 }
 
+export interface OppgaveSkjemaForm {
+    valgtTema?: GsakTema;
+    valgtOppgavetype?: GsakTemaOppgavetype;
+    beskrivelse: string;
+    valgtPrioritet: OppgavePrioritet;
+    valgtUnderkategori?: GsakTemaUnderkategori;
+    valgtEnhet?: Enhet;
+    valgtAnsatt?: Ansatt;
+}
+
 export interface OppgaveSkjemaProps {
-    state: {
-        valgtTema?: GsakTema;
-        valgtOppgavetype?: GsakTemaOppgavetype;
-        beskrivelse: string;
-        valgtPrioritet: OppgavePrioritet;
-        valgtUnderkategori?: GsakTemaUnderkategori;
-        valgtEnhet?: Enhet;
-        valgtAnsatt?: Ansatt;
-    };
+    state: OppgaveSkjemaForm;
     actions: {
         oppdaterStateVedValgtTema(tema: GsakTema | undefined): void;
         settValgtUnderkategori(underkategori: GsakTemaUnderkategori | undefined): void;
@@ -41,4 +44,5 @@ export interface OppgaveSkjemaProps {
         settValgtEnhet(enhet: Enhet | undefined): void;
         settValgtAnsatt(ansatt: Ansatt | undefined): void;
     };
+    valideringsResultat: ValideringsResultat<OppgaveSkjemaForm>;
 }

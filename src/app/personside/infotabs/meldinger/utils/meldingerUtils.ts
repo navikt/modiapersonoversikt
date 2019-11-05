@@ -1,15 +1,9 @@
 import { Melding, Meldingstype, Saksbehandler, Traad } from '../../../../../models/meldinger/meldinger';
 import { meldingstypeTekst } from './meldingstekster';
-import { datoStigende, datoSynkende } from '../../../../../utils/dateUtils';
+import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/dateUtils';
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
-import {
-    Temagruppe,
-    temagruppeTekst,
-    TemaKommunaleTjenester,
-    TemaPlukkbare,
-    TemaSamtalereferat
-} from '../../../../../models/Temagrupper';
+import { Temagruppe, temagruppeTekst, TemaKommunaleTjenester, TemaPlukkbare } from '../../../../../models/Temagrupper';
 
 export function nyesteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
@@ -33,8 +27,8 @@ export function meldingstittel(melding: Melding) {
     return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe)}`;
 }
 
-export function erSamtalereferat(temagruppe: Temagruppe) {
-    return TemaSamtalereferat.includes(temagruppe);
+export function erMeldingstypeSamtalereferat(meldingstype: Meldingstype) {
+    return [Meldingstype.SAMTALEREFERAT_OPPMOTE, Meldingstype.SAMTALEREFERAT_TELEFON].includes(meldingstype);
 }
 
 export function kanLeggesTilbake(temagruppe: Temagruppe) {
@@ -85,7 +79,8 @@ export function kanTraadJournalfores(traad: Traad): boolean {
         !erKontorsperret(traad) &&
         !erFeilsendt(traad) &&
         !erJournalfort(nyesteMeldingITraad) &&
-        erBehandlet(traad)
+        erBehandlet(traad) &&
+        !erDelsvar(nyesteMeldingITraad)
     );
 }
 
@@ -123,10 +118,6 @@ export function harDelsvar(traad: Traad): boolean {
 export function erDelvisBesvart(traad: Traad): boolean {
     return erDelsvar(nyesteMelding(traad));
 }
-export function harTilgangTilSletting() {
-    // TODO Fiks når vi har satt opp vault/fasit
-    return true;
-}
 
 export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
     if (!saksbehandler) {
@@ -146,7 +137,8 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
                     const fritekst = melding.fritekst;
                     const tittel = meldingstittel(melding);
                     const saksbehandler = melding.skrevetAvTekst;
-                    const sokbarTekst = (fritekst + tittel + saksbehandler).toLowerCase();
+                    const datotekst = formatterDatoTid(melding.opprettetDato);
+                    const sokbarTekst = (fritekst + tittel + saksbehandler + datotekst).toLowerCase();
                     return words.every(word => sokbarTekst.includes(word.toLowerCase()));
                 });
             })

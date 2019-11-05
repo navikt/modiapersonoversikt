@@ -4,7 +4,7 @@ import { isFailedPosting, isFinishedPosting } from '../../../../rest/utils/postR
 import { loggError } from '../../../../utils/frontendLogger';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { Traad } from '../../../../models/meldinger/meldinger';
+import { OpprettHenvendelseResponse, Traad } from '../../../../models/meldinger/meldinger';
 import { useDispatch } from 'react-redux';
 
 interface NotFinishedOpprettHenvendelseStatus {
@@ -14,7 +14,7 @@ interface NotFinishedOpprettHenvendelseStatus {
 
 interface FinishedOpprettHenvendelseStatus {
     success: true;
-    behandlingsId: string;
+    henvendelse: OpprettHenvendelseResponse;
 }
 
 type OpprettHenvendelseStatus = NotFinishedOpprettHenvendelseStatus | FinishedOpprettHenvendelseStatus;
@@ -50,7 +50,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseStatus {
 
     return {
         success: true,
-        behandlingsId: opprettHenvendelseResource.response.behandlingsId
+        henvendelse: opprettHenvendelseResource.response
     };
 }
 
