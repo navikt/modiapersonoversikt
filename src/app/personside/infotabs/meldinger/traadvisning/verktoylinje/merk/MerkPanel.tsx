@@ -116,6 +116,11 @@ function MerkPanel(props: Props) {
     const dispatch = useDispatch();
     const saksbehandlerKanSletteFetch: AsyncResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, credentials);
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
+
+    const reloadMeldinger = tråderResource.actions.reload;
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
+    const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
+
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [submitting, setSubmitting] = useState(false);
@@ -160,12 +165,18 @@ function MerkPanel(props: Props) {
         }
     };
 
+    const callback = () => {
+        dispatch(reloadMeldinger);
+        dispatch(reloadTildelteOppgaver);
+        dispatch(resetPlukkOppgaveResource);
+    };
+
     function merkPost(url: string, object: any) {
         post(url, object)
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
-                dispatch(tråderResource.actions.reload);
+                callback();
             })
             .catch((error: Error) => {
                 settResultat(Resultat.FEIL);
