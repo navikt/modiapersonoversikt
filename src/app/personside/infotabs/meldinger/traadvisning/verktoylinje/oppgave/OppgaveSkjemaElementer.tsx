@@ -93,7 +93,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 spinner={isLoading(ansattliste)}
             />
             <Select
-                value={OppgavePrioritet.NORM}
+                value={props.form.state.valgtPrioritet}
                 label={'Velg prioritert'}
                 onChange={value => props.form.actions.settValgtPrioritet(OppgavePrioritet[value.target.value])}
             >
