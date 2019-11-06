@@ -19,6 +19,7 @@ import PersonsokContainer from './personsok/Personsok';
 import { detect } from 'detect-browser';
 import { useState } from 'react';
 import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
+import { erIE11 } from '../utils/erNyPersonoversikt';
 
 if (mockEnabled) {
     setupMock();
@@ -31,10 +32,9 @@ function Personoveriskt() {
     const [isIE, setIsIE] = useState<undefined | boolean>(undefined);
     useOnMount(() => {
         const browser = detect();
-        const name = browser && browser.name;
         const os = browser && browser.os;
         setIsMac(os ? os.toLowerCase().includes('mac') : undefined);
-        setIsIE(name ? name.toLowerCase().includes('ie') : undefined);
+        setIsIE(erIE11());
         settJobberIkkeMedSpørsmålOgSvar();
     });
 

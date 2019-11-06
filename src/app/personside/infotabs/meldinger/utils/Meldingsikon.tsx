@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Meldingstype } from '../../../../../models/meldinger/meldinger';
+import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import OppmoteIkon from '../../../../../svg/OppmoteIkon';
 import TelefonIkon from '../../../../../svg/TelefonIkon';
 import OppgaveIkon from '../../../../../svg/OppgaveIkon';
@@ -9,12 +9,10 @@ import DialogIkon from '../../../../../svg/DialogIkon';
 import styled, { css } from 'styled-components';
 import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
 import { UndertekstBold } from 'nav-frontend-typografi';
+import { erMonolog, nyesteMelding } from './meldingerUtils';
 
 interface MeldingsikonProps {
-    type: Meldingstype;
-    erFerdigstiltUtenSvar: boolean;
-    erMonolog: boolean;
-    antallMeldinger: number;
+    traad: Traad;
 }
 
 const Styling = styled.span<{ visNumberBadge: boolean }>`
@@ -33,13 +31,15 @@ const Styling = styled.span<{ visNumberBadge: boolean }>`
 const NumberBadge = styled(UndertekstBold)`
     position: absolute;
     top: ${pxToRem(-3)};
-    right: ${pxToRem(9)};
+    right: ${pxToRem(-4)};
     border-radius: 50%;
     padding: 0 0.1rem;
 `;
 
 function Ikon({ props }: { props: MeldingsikonProps }) {
-    switch (props.type) {
+    const sisteMelding = nyesteMelding(props.traad);
+
+    switch (sisteMelding.meldingstype) {
         case Meldingstype.SAMTALEREFERAT_OPPMOTE:
             return <OppmoteIkon />;
         case Meldingstype.SAMTALEREFERAT_TELEFON:
@@ -50,7 +50,7 @@ function Ikon({ props }: { props: MeldingsikonProps }) {
             return <DokumentIkon />;
         default: {
             // TODO Vi må legge på et ekstra besvart / ubesvart ikon (ubesvart inngående rød konvolutt, ubesvart utgående)
-            if (props.erMonolog) {
+            if (erMonolog(props.traad)) {
                 return <MonologIkon />;
             } else {
                 return <DialogIkon />;
@@ -60,11 +60,16 @@ function Ikon({ props }: { props: MeldingsikonProps }) {
 }
 
 function Meldingsikon(props: MeldingsikonProps) {
-    const visNumberBadge = props.antallMeldinger > 1;
+    const antallMeldinger = props.traad.meldinger.length;
+    const visNumberBadge = antallMeldinger > 1;
     return (
         <Styling visNumberBadge={visNumberBadge}>
             <Ikon props={props} />
-            {visNumberBadge && <NumberBadge>{props.antallMeldinger}</NumberBadge>}
+            {visNumberBadge && (
+                <NumberBadge>
+                    {antallMeldinger} <span className="sr-only">meldinger</span>
+                </NumberBadge>
+            )}
         </Styling>
     );
 }

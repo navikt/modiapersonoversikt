@@ -128,7 +128,9 @@ function OppgaveSkjema(props: OppgaveProps) {
         return (
             <AlertStyling>
                 <AlertStripeInfo>Kan ikke opprette oppgave på denne tråden</AlertStripeInfo>
-                <Hovedknapp onClick={props.lukkPanel}>Lukk</Hovedknapp>
+                <Hovedknapp autoFocus={true} onClick={props.lukkPanel}>
+                    Lukk
+                </Hovedknapp>
             </AlertStyling>
         );
     }
@@ -143,7 +145,9 @@ function OppgaveSkjema(props: OppgaveProps) {
         return (
             <AlertStyling>
                 {alert}
-                <Hovedknapp onClick={props.lukkPanel}>Lukk</Hovedknapp>
+                <Hovedknapp autoFocus={true} onClick={props.lukkPanel}>
+                    Lukk
+                </Hovedknapp>
             </AlertStyling>
         );
     }
