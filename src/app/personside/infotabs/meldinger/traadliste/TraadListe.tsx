@@ -63,7 +63,7 @@ function TraadListe(props: Props) {
     const [erForsteRender, setErForsteRender] = useState(true);
     const inputRef = React.useRef<HTMLInputElement>();
     const traaderEtterSok = useSokEtterMeldinger(props.traader, props.sokeord);
-    const paginering = usePaginering(traaderEtterSok, 50, 'melding');
+    const paginering = usePaginering(traaderEtterSok, 50, 'melding', props.valgtTraad);
 
     useOnMount(() => {
         setErForsteRender(false);
