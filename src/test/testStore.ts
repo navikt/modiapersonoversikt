@@ -8,7 +8,6 @@ import { getMockKontaktinformasjon } from '../mock/person/krrKontaktinformasjon/
 import { erEgenAnsatt } from '../mock/egenansatt-mock';
 import { mockVergemal } from '../mock/person/vergemal/vergemalMock';
 import { mockBaseUrls } from '../mock/baseUrls-mock';
-import { getMockVeilederRoller } from '../mock/veilderRoller-mock';
 import { mockTilrettelagtKommunikasjonKodeverk } from '../mock/kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-mock';
 import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
@@ -27,6 +26,7 @@ import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
 import { henvendelseResponseMock } from '../mock/meldinger/henvendelseMock';
 import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUtbetalingRespons';
+import { SaksbehandlerRoller } from '../utils/RollerUtils';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -40,7 +40,7 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.egenAnsatt.actions.setData(erEgenAnsatt(aremarkFnr)));
     testStore.dispatch(restResources.vergemal.actions.setData(mockVergemal(aremarkFnr)));
     testStore.dispatch(restResources.baseUrl.actions.setData(mockBaseUrls()));
-    testStore.dispatch(restResources.veilederRoller.actions.setData(getMockVeilederRoller()));
+    testStore.dispatch(restResources.veilederRoller.actions.setData({ roller: [SaksbehandlerRoller.HentOppgave] }));
     testStore.dispatch(
         restResources.tilrettelagtKommunikasjonKodeverk.actions.setData(mockTilrettelagtKommunikasjonKodeverk())
     );

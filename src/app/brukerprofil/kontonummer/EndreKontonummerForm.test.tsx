@@ -5,8 +5,9 @@ import TestProvider from '../../../test/Testprovider';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { aremark } from '../../../mock/person/aremark';
 import { Bankkonto, Person } from '../../../models/person/person';
+import { SaksbehandlerRoller } from '../../../utils/RollerUtils';
 
-const veilerRoller: VeilederRoller = { roller: ['0000-GA-BD06_EndreKontonummer'] };
+const veilerRoller: VeilederRoller = { roller: [SaksbehandlerRoller.EndreKontonummer] };
 
 test('Viser riktig form for å endre norsk kontonummer', () => {
     const endrekontonummerForm = renderer.create(
