@@ -15,5 +15,6 @@ export function veilederHarPåkrevdRolleForEndreKontonummer(veiledersRoller: Vei
 export enum SaksbehandlerRoller {
     EndreKontonummer = '0000-GA-BD06_EndreKontonummer',
     EndreKontaktAdresse = '0000-GA-BD06_EndreKontaktAdresse',
-    EndreNavn = '0000-GA-BD06_EndreNavn'
+    EndreNavn = '0000-GA-BD06_EndreNavn',
+    HentOppgave = '0000-GA-BD06_HentOppgave'
 }
