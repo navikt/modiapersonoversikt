@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DetaljertOppfolging, Oppfolging } from '../../../../models/oppfolging';
+import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Bold } from '../../../../components/common-styled-components';
@@ -33,26 +33,29 @@ function OppfolgingPanel(props: Props) {
 
     return (
         <VisMerKnapp linkTo={paths.oppfolging} ariaDescription="Gå til oppfølging" valgt={false}>
-            <OppfolgingVisning oppfolging={props.detaljertOppfølging.oppfølging} />
+            <OppfolgingVisning detaljertOppfolging={props.detaljertOppfølging} />
         </VisMerKnapp>
     );
 }
 
-function OppfolgingVisning({ oppfolging }: { oppfolging: Oppfolging }) {
-    const veilederNavn = oppfolging.veileder ? (
-        <Normaltekst>{oppfolging.veileder.navn}</Normaltekst>
+function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
+    const veilederNavn = detaljertOppfolging.oppfølging.veileder ? (
+        <Normaltekst>{detaljertOppfolging.oppfølging.veileder.navn}</Normaltekst>
     ) : (
         <Normaltekst>Ikke angitt</Normaltekst>
     );
 
-    const enhet = oppfolging.enhet ? (
-        <Normaltekst>{oppfolging.enhet.navn}</Normaltekst>
+    const enhet = detaljertOppfolging.oppfølging.enhet ? (
+        <Normaltekst>{detaljertOppfolging.oppfølging.enhet.navn}</Normaltekst>
     ) : (
         <Normaltekst>Ikke angitt</Normaltekst>
     );
 
-    const veilederIdent = oppfolging.veileder ? <Normaltekst>({oppfolging.veileder.ident})</Normaltekst> : null;
-
+    const veilederIdent = detaljertOppfolging.oppfølging.veileder ? (
+        <Normaltekst>({detaljertOppfolging.oppfølging.veileder.ident})</Normaltekst>
+    ) : null;
+    const innsatsgruppe = detaljertOppfolging.innsatsgruppe;
+    const rettighetsgruppe = detaljertOppfolging.rettighetsgruppe;
     return (
         <>
             <Normaltekst>
@@ -64,6 +67,12 @@ function OppfolgingVisning({ oppfolging }: { oppfolging: Oppfolging }) {
             </Normaltekst>
             {veilederNavn}
             {veilederIdent}
+            <Normaltekst>
+                <Bold>Innsatsgruppe / Rettighetsgruppe </Bold>
+            </Normaltekst>
+            <Normaltekst>
+                {innsatsgruppe} / {rettighetsgruppe}{' '}
+            </Normaltekst>
         </>
     );
 }
