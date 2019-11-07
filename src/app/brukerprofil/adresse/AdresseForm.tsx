@@ -32,7 +32,7 @@ import { validerPostboksadresse } from './midlertidigAdresseNorge/postboksadress
 import SubmitFeedback from './common/SubmitFeedback';
 import { VeilederRoller } from '../../../models/veilederRoller';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
-import { veilederHarPåkrevdRolleForEndreAdresse } from '../utils/RollerUtils';
+import { veilederHarPåkrevdRolleForEndreAdresse } from '../../../utils/RollerUtils';
 import {
     getValidUtlandsadresseForm,
     validerUtenlandsAdresse
