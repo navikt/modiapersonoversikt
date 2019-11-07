@@ -40,15 +40,16 @@ function OppfolgingPanel(props: Props) {
 
 function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
     if (detaljertOppfolging.ytelser.length === 0) {
-        return <Normaltekst>Ingen ytelser for bruker</Normaltekst>;
+        return null;
     }
-    const ytelser = detaljertOppfolging.ytelser.map(ytelse => ytelse.type).join(', ');
+    const ytelser = detaljertOppfolging.ytelser.map(ytelse => ytelse.type);
+    const filtrerteYtelser = ytelser.filter((item, index) => ytelser.indexOf(item) === index).join(', ');
     return (
         <>
             <Normaltekst>
                 <Bold>Ytelser:</Bold>
             </Normaltekst>
-            <Normaltekst>{ytelser}</Normaltekst>
+            <Normaltekst>{filtrerteYtelser}</Normaltekst>
         </>
     );
 }
