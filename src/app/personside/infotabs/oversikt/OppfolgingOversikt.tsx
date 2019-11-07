@@ -38,6 +38,21 @@ function OppfolgingPanel(props: Props) {
     );
 }
 
+function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
+    if (detaljertOppfolging.ytelser.length === 0) {
+        return <Normaltekst>Ingen ytelser for bruker</Normaltekst>;
+    }
+    const ytelser = detaljertOppfolging.ytelser.map(ytelse => ytelse.type).join(', ');
+    return (
+        <>
+            <Normaltekst>
+                <Bold>Ytelser:</Bold>
+            </Normaltekst>
+            <Normaltekst>{ytelser}</Normaltekst>
+        </>
+    );
+}
+
 function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
     const veilederNavn = detaljertOppfolging.oppfølging.veileder ? (
         <Normaltekst>{detaljertOppfolging.oppfølging.veileder.navn}</Normaltekst>
@@ -56,6 +71,7 @@ function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: Detal
     ) : null;
     const innsatsgruppe = detaljertOppfolging.innsatsgruppe;
     const rettighetsgruppe = detaljertOppfolging.rettighetsgruppe;
+
     return (
         <>
             <Normaltekst>
@@ -68,11 +84,12 @@ function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: Detal
             {veilederNavn}
             {veilederIdent}
             <Normaltekst>
-                <Bold>Innsatsgruppe / Rettighetsgruppe </Bold>
+                <Bold>Innsatsgruppe / Rettighetsgruppe: </Bold>
             </Normaltekst>
             <Normaltekst>
                 {innsatsgruppe} / {rettighetsgruppe}{' '}
             </Normaltekst>
+            <YtelserForBruker detaljertOppfolging={detaljertOppfolging} />
         </>
     );
 }
