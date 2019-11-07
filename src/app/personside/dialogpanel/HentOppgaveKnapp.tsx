@@ -15,6 +15,10 @@ import TildelteOppgaver from './TildelteOppgaver';
 import { paths } from '../../routes/routing';
 import { INFOTABS } from '../infotabs/InfoTabEnum';
 import { Temagruppe, temagruppeTekst, TemaPlukkbare } from '../../../models/Temagrupper';
+import { useRestResource } from '../../../utils/customHooks';
+import { hasData } from '../../../rest/utils/restResource';
+import LazySpinner from '../../../components/LazySpinner';
+import { SaksbehandlerRoller } from '../../../utils/RollerUtils';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
@@ -43,6 +47,13 @@ const KnappLayout = styled.div`
     }
 `;
 
+const SpinnerWrapper = styled.div`
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 type Props = RouteComponentProps<{}>;
 
 function HentOppgaveKnapp(props: Props) {
@@ -52,6 +63,19 @@ function HentOppgaveKnapp(props: Props) {
     const oppgaveResource = useSelector((state: AppState) => state.restResources.plukkNyeOppgaver);
     const velgTemaGruppe = (temagruppe: Temagruppe) => dispatch(velgTemagruppeForPlukk(temagruppe));
     const valgtTemaGruppe = useSelector((state: AppState) => state.session.temagruppeForPlukk);
+    const rollerResource = useRestResource(resources => resources.veilederRoller);
+
+    if (!hasData(rollerResource)) {
+        return (
+            <SpinnerWrapper>
+                <LazySpinner />
+            </SpinnerWrapper>
+        );
+    }
+
+    if (!rollerResource.data.roller.includes(SaksbehandlerRoller.HentOppgave)) {
+        return <AlertStripeInfo>Du har ikke tilgang til å hente oppgaver</AlertStripeInfo>;
+    }
 
     const onPlukkOppgaver = () => {
         if (!valgtTemaGruppe) {

@@ -27,7 +27,7 @@ import { ValideringsResultat } from '../../../utils/forms/FormValidator';
 import { getValidUtenlandskKontoForm, validerUtenlandskKonto } from './utenlandskKontoValidator';
 import EtikettGrå from '../../../components/EtikettGrå';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
-import { veilederHarPåkrevdRolleForEndreKontonummer } from '../utils/RollerUtils';
+import { veilederHarPåkrevdRolleForEndreKontonummer } from '../../../utils/RollerUtils';
 import { EndreKontonummerInfomeldingWrapper } from '../Infomelding';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
