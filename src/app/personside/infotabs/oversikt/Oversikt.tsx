@@ -44,10 +44,10 @@ function Oversikt() {
                         hurtigtast={'U'}
                     />
                     <Oversiktskomponent
-                        infotabPath={INFOTABS.OPPFOLGING}
-                        tittel={'Oppfølging'}
-                        component={OppfolgingOversikt}
-                        hurtigtast={'O'}
+                        infotabPath={INFOTABS.MELDINGER}
+                        tittel={'Meldinger'}
+                        component={MeldingerOversikt}
+                        hurtigtast={'M'}
                     />
                     <Oversiktskomponent
                         infotabPath={INFOTABS.VARSEL}
@@ -58,10 +58,10 @@ function Oversikt() {
                 </KolonneStyle>
                 <KolonneStyle>
                     <Oversiktskomponent
-                        infotabPath={INFOTABS.MELDINGER}
-                        tittel={'Meldinger'}
-                        component={MeldingerOversikt}
-                        hurtigtast={'M'}
+                        infotabPath={INFOTABS.OPPFOLGING}
+                        tittel={'Oppfølging'}
+                        component={OppfolgingOversikt}
+                        hurtigtast={'O'}
                     />
                     <Oversiktskomponent
                         infotabPath={INFOTABS.YTELSER}
