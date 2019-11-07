@@ -105,7 +105,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c15 {
+.c19 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -113,17 +113,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 0.5em;
 }
 
-.c15:focus {
+.c19:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c15:focus {
+.c19:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c15:focus::after {
+.c19:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -134,7 +134,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c17 {
+.c21 {
   padding: 0.7rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -142,34 +142,34 @@ exports[`Viser oversikt med alt innhold 1`] = `
   display: flex;
 }
 
-.c17 > *:first-child {
+.c21 > *:first-child {
   -webkit-flex: 0 0 20%;
   -ms-flex: 0 0 20%;
   flex: 0 0 20%;
 }
 
-.c17 > *:last-child {
+.c21 > *:last-child {
   max-width: 30rem;
 }
 
-.c16 {
+.c20 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c16 > *:not(:first-child) {
+.c20 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c12 {
+.c16 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
-.c13 {
+.c17 {
   position: relative;
   display: -ms-grid;
   display: grid;
@@ -183,51 +183,51 @@ exports[`Viser oversikt med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c13 > *:nth-child(1) {
+.c17 > *:nth-child(1) {
   -ms-grid-column: 1;
 }
 
-.c13 > *:nth-child(2) {
+.c17 > *:nth-child(2) {
   -ms-grid-column: 2;
 }
 
-.c13 > *:nth-child(3) {
+.c17 > *:nth-child(3) {
   -ms-grid-column: 3;
 }
 
-.c13 > *:nth-child(4) {
+.c17 > *:nth-child(4) {
   -ms-grid-column: 4;
 }
 
-.c13:hover {
+.c17:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c13 > * {
+.c17 > * {
   padding: 0.7rem;
 }
 
-.c14 li {
+.c18 li {
   display: inline-block;
 }
 
-.c14 li:not(:last-child):after {
+.c18 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
 
-.c20 {
+.c13 {
   position: relative;
 }
 
-.c20 svg {
+.c13 svg {
   height: 1.875rem;
   width: 1.875rem;
   -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
   clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
 }
 
-.c21 {
+.c14 {
   position: absolute;
   top: -0.1875rem;
   right: 0.5625rem;
@@ -285,7 +285,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0 1rem;
 }
 
-.c11 > *:not(:first-child) {
+.c15 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -297,18 +297,18 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-top: solid 0.0625rem #78706a;
 }
 
-.c18 > *:not(:first-child) {
+.c11 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c19 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c19 > *:first-child {
+.c12 > *:first-child {
   padding-right: .8rem;
 }
 
@@ -499,66 +499,105 @@ exports[`Viser oversikt med alt innhold 1`] = `
       <div
         className="c3"
         onClick={[Function]}
-        title="Alt + O"
+        title="Alt + M"
       >
         <h3
           className="typo-undertittel"
         >
-          Oppfølging
+          Meldinger
         </h3>
         <div
           className="c4"
         />
         <a
           className="lenke c5"
-          href="/modiapersonoversikt/person/10108000398/oppfølging/"
+          href="/modiapersonoversikt/person/10108000398/meldinger/"
           onClick={[Function]}
         >
           <p
             className="typo-normal"
           >
             Gå til 
-            oppfølging
+            meldinger
           </p>
         </a>
       </div>
       <div
         className="c6"
       >
-        <div
-          className="alertstripe alertstripe--info"
+        <ol
+          aria-label="Oversikt brukers meldinger"
+          className="c11"
         >
-          <span
-            aria-label="info"
-            className="alertstripe__ikon"
-          >
-            <svg
-              focusable="false"
-              height="1.5em"
-              kind="info-sirkel-fyll"
-              viewBox="0 0 24 24"
-              width="1.5em"
+          <li>
+            <div
+              className="test-meldinger-oversikt c8"
+              onClick={[Function]}
             >
-              <g
-                fill="none"
+              <div>
+                <div
+                  className="c12"
+                >
+                  <span
+                    className="c13"
+                  >
+                    <svg
+                      height={24}
+                      viewBox="0 0 24 24"
+                      width={24}
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                      >
+                        <path
+                          d="M7.44 14.564c-.489-.066-.971-.17-1.44-.314l-5 2 2-3.5c-1.573-1.259-2.5-3.125-2.5-5.064 0-3.83 3.806-6.936 8.5-6.936s8.5 3.106 8.5 6.936"
+                        />
+                        <path
+                          d="M9.5 16.25c0 4.289 5 7.5 9.5 5.5l4 1.5-1.5-3c1.296-1.037 2-2.402 2-4 0-3.154-3.134-6-7-6s-7 2.846-7 6z"
+                        />
+                      </g>
+                    </svg>
+                    <p
+                      className="typo-undertekst-bold c14"
+                    >
+                      4
+                    </p>
+                  </span>
+                  <div>
+                    <p
+                      className="typo-normal"
+                    >
+                      13.08.2019 00:00
+                    </p>
+                    <p
+                      className="typo-element"
+                    >
+                      Delsvar - Arbeid
+                    </p>
+                    <p
+                      className="typo-normal"
+                    >
+                      Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat s...
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button
+                aria-label="Vis meldinger for Delsvar - Arbeid"
+                aria-selected={false}
+                className="c10"
               >
-                <path
-                  d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                  fill="#669DB4"
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
                 />
-                <path
-                  d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-                  fill="#FFF"
-                />
-              </g>
-            </svg>
-          </span>
-          <div
-            className="typo-normal alertstripe__tekst"
-          >
-            Er ikke i arbeidsrettet oppfølging
-          </div>
-        </div>
+              </button>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
     <section
@@ -594,14 +633,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
         className="c6"
       >
         <ol
-          className="c11"
+          className="c15"
         >
           <li
             aria-label="Påminnelse om å sende meldekort"
-            className="c12"
+            className="c16"
           >
             <div
-              className="c13"
+              className="c17"
               onClick={[Function]}
             >
               <p
@@ -620,7 +659,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </p>
               <ul
                 aria-label="Kommunikasjonskanaler"
-                className="c14"
+                className="c18"
               >
                 <li
                   className="typo-normal"
@@ -636,7 +675,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-expanded={false}
                 aria-label="Vis meldinger"
-                className="c15"
+                className="c19"
                 onClick={[Function]}
                 title="Vis meldinger"
               >
@@ -647,11 +686,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </div>
             <ol
               aria-label="Meldinger"
-              className="c16"
+              className="c20"
             >
               <li
                 aria-label="EPOST"
-                className="c17"
+                className="c21"
               >
                 <div>
                   <p
@@ -700,7 +739,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </li>
               <li
                 aria-label="SMS"
-                className="c17"
+                className="c21"
               >
                 <div>
                   <p
@@ -740,10 +779,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </li>
           <li
             aria-label="Påminnelse om å sende meldekort"
-            className="c12"
+            className="c16"
           >
             <div
-              className="c13"
+              className="c17"
               onClick={[Function]}
             >
               <p
@@ -762,7 +801,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </p>
               <ul
                 aria-label="Kommunikasjonskanaler"
-                className="c14"
+                className="c18"
               >
                 <li
                   className="typo-normal"
@@ -773,7 +812,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-expanded={false}
                 aria-label="Vis meldinger"
-                className="c15"
+                className="c19"
                 onClick={[Function]}
                 title="Vis meldinger"
               >
@@ -784,11 +823,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </div>
             <ol
               aria-label="Meldinger"
-              className="c16"
+              className="c20"
             >
               <li
                 aria-label="EPOST"
-                className="c17"
+                className="c21"
               >
                 <div>
                   <p
@@ -850,105 +889,66 @@ exports[`Viser oversikt med alt innhold 1`] = `
       <div
         className="c3"
         onClick={[Function]}
-        title="Alt + M"
+        title="Alt + O"
       >
         <h3
           className="typo-undertittel"
         >
-          Meldinger
+          Oppfølging
         </h3>
         <div
           className="c4"
         />
         <a
           className="lenke c5"
-          href="/modiapersonoversikt/person/10108000398/meldinger/"
+          href="/modiapersonoversikt/person/10108000398/oppfølging/"
           onClick={[Function]}
         >
           <p
             className="typo-normal"
           >
             Gå til 
-            meldinger
+            oppfølging
           </p>
         </a>
       </div>
       <div
         className="c6"
       >
-        <ol
-          aria-label="Oversikt brukers meldinger"
-          className="c18"
+        <div
+          className="alertstripe alertstripe--info"
         >
-          <li>
-            <div
-              className="test-meldinger-oversikt c8"
-              onClick={[Function]}
+          <span
+            aria-label="info"
+            className="alertstripe__ikon"
+          >
+            <svg
+              focusable="false"
+              height="1.5em"
+              kind="info-sirkel-fyll"
+              viewBox="0 0 24 24"
+              width="1.5em"
             >
-              <div>
-                <div
-                  className="c19"
-                >
-                  <span
-                    className="c20"
-                  >
-                    <svg
-                      height={24}
-                      viewBox="0 0 24 24"
-                      width={24}
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinejoin="round"
-                        strokeMiterlimit="10"
-                      >
-                        <path
-                          d="M7.44 14.564c-.489-.066-.971-.17-1.44-.314l-5 2 2-3.5c-1.573-1.259-2.5-3.125-2.5-5.064 0-3.83 3.806-6.936 8.5-6.936s8.5 3.106 8.5 6.936"
-                        />
-                        <path
-                          d="M9.5 16.25c0 4.289 5 7.5 9.5 5.5l4 1.5-1.5-3c1.296-1.037 2-2.402 2-4 0-3.154-3.134-6-7-6s-7 2.846-7 6z"
-                        />
-                      </g>
-                    </svg>
-                    <p
-                      className="typo-undertekst-bold c21"
-                    >
-                      4
-                    </p>
-                  </span>
-                  <div>
-                    <p
-                      className="typo-normal"
-                    >
-                      13.08.2019 00:00
-                    </p>
-                    <p
-                      className="typo-element"
-                    >
-                      Delsvar - Arbeid
-                    </p>
-                    <p
-                      className="typo-normal"
-                    >
-                      Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat s...
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <button
-                aria-label="Vis meldinger for Delsvar - Arbeid"
-                aria-selected={false}
-                className="c10"
+              <g
+                fill="none"
               >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                <path
+                  d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                  fill="#669DB4"
                 />
-              </button>
-            </div>
-          </li>
-        </ol>
+                <path
+                  d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+                  fill="#FFF"
+                />
+              </g>
+            </svg>
+          </span>
+          <div
+            className="typo-normal alertstripe__tekst"
+          >
+            Er ikke i arbeidsrettet oppfølging
+          </div>
+        </div>
       </div>
     </section>
     <section
