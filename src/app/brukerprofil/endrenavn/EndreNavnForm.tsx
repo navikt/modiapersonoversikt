@@ -15,7 +15,7 @@ import { brukersNavnKanEndres, validerNavn } from './endrenavn-utils';
 import { EndreNavnInfomeldingWrapper } from '../Infomelding';
 import { ignoreEnter, InputState, visEndringsinfo } from '../utils/formUtils';
 import { FormFieldSet } from '../../personside/visittkort/body/VisittkortStyles';
-import { veilederHarPåkrevdRolleForEndreNavn } from '../utils/RollerUtils';
+import { veilederHarPåkrevdRolleForEndreNavn } from '../../../utils/RollerUtils';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { PostStatus } from '../../../rest/utils/postResource';

@@ -13,8 +13,9 @@ import {
 } from '../../../mock/person/aremark';
 import AdresseForm from './AdresseForm';
 import { Person } from '../../../models/person/person';
+import { SaksbehandlerRoller } from '../../../utils/RollerUtils';
 
-const endreAdresseRolle = { roller: ['0000-GA-BD06_EndreKontaktAdresse'] };
+const endreAdresseRolle = { roller: [SaksbehandlerRoller.EndreKontaktAdresse] };
 
 test('Rendrer adresseform når postnummere er lastet', () => {
     const adresseContainer = mount(
