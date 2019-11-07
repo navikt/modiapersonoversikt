@@ -28,11 +28,11 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
 
     expect(getAktivTab(infoTabs)).toContain(INFOTABS.MELDINGER);
 
-    const activeElement = document.activeElement ? document.activeElement.innerHTML : fail('ingen elementer i fokus');
+    const activeElement = document.activeElement ? document.activeElement.outerHTML : fail('ingen elementer i fokus');
     const expectedElement = infoTabs
         .find('.' + meldingerTest.melding)
-        .at(2)
-        .children()
+        .find('input[type="radio"]')
+        .at(1)
         .html();
 
     expect(activeElement).toEqual(expectedElement);
@@ -41,7 +41,7 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
 function clickOnMeldingerIOversikt(infoTabs: ReactWrapper) {
     infoTabs
         .find('.' + meldingerTest.oversikt)
-        .at(2)
         .find('button')
+        .at(1)
         .simulate('click');
 }

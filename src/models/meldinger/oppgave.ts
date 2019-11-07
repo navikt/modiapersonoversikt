@@ -34,7 +34,7 @@ export interface OpprettOppgaveRequest {
     valgtEnhetId: string;
     behandlingskjedeId: string;
     dagerFrist: number;
-    ansvarligIdent: string | null;
+    ansvarligIdent?: string;
     beskrivelse: string;
     temaKode: string;
     underkategoriKode?: string;

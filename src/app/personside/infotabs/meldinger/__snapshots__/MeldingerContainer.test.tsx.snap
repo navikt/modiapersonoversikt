@@ -1,139 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser meldingercontainer med alt innhold 1`] = `
-.c7 {
-  position: relative;
-  padding: .8rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.c7:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
-}
-
-.c7:hover > button:last-child {
-  padding-left: 0.5rem;
-}
-
-.c7 > *:first-child {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c14 {
-  border: none;
-  padding: 0;
-  height: 2rem;
-  width: 2rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  -webkit-transition: padding-left 0.3s;
-  transition: padding-left 0.3s;
-}
-
-.c14:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.c14:focus::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  box-shadow: inset 0 0 0 0.1875rem #254b6d;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
-}
-
-.c9 {
-  position: relative;
-}
-
-.c9 svg {
-  height: 1.875rem;
-  width: 1.875rem;
-  -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
-  clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
-}
-
-.c10 {
-  position: absolute;
-  top: -0.1875rem;
-  right: 0.5625rem;
-  border-radius: 50%;
-  padding: 0 0.1rem;
-}
-
 .c1 {
   overflow: auto;
   max-height: 100%;
   padding: .8rem;
 }
 
-.c12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c12 .order-first {
-  -webkit-order: 0;
-  -ms-flex-order: 0;
-  order: 0;
-}
-
-.c12 .order-second {
-  -webkit-order: 1;
-  -ms-flex-order: 1;
-  order: 1;
-}
-
-.c8 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c8 > *:not(:last-child) {
-  padding-right: .8rem;
-}
-
-.c6:focus {
+.c10 {
   position: relative;
-  outline: none;
-  box-shadow: none;
 }
 
-.c6:focus::after {
+.c10 svg {
+  height: 1.875rem;
+  width: 1.875rem;
+  -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
+  clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
+}
+
+.c11 {
   position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  box-shadow: inset 0 0 0 0.1875rem #254b6d;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
+  top: -0.1875rem;
+  right: -0.25rem;
+  border-radius: 50%;
+  padding: 0 0.1rem;
 }
 
-.c13 {
+.c12 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  width: 0;
+  margin-left: 0.8rem;
+  overflow-wrap: break-word;
+}
+
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -148,17 +51,106 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-top: 0.2rem;
 }
 
-.c13 > *:not(:last-child) {
+.c15 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
 
-.c11 {
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c13 .order-first {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+.c13 .order-second {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c9 > *:last-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  width: 0px;
+}
+
+.c14 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.c7 {
+  padding: .8rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+}
+
+.c8 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c6:focus-within {
+  position: relative;
+  outline: none;
+  box-shadow: none;
+}
+
+.c6:focus-within::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.c6 .hover-animation {
+  -webkit-transition: -webkit-transform 0.3s;
+  -webkit-transition: transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.c6:hover {
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
+}
+
+.c6:hover .hover-animation {
+  -webkit-transform: translateX(0.5rem);
+  -ms-transform: translateX(0.5rem);
+  transform: translateX(0.5rem);
+}
+
+.c16 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
 }
 
 .c2 {
@@ -244,6 +236,11 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
     <nav
       className="c2"
     >
+      <h2
+        className="sr-only"
+      >
+        Brukerens meldinger
+      </h2>
       <div
         className="c3"
       >
@@ -280,22 +277,36 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
         </p>
       </div>
       <ol
+        aria-label="Meldingsliste"
         className="c5"
+        role="tablist"
       >
         <li
-          className="test-meldinger-melding c6"
-          tabIndex={-1}
+          className="c6"
+          role="presentation"
         >
-          <div
+          <input
+            checked={false}
+            className="sr-only test-meldinger-melding"
+            id="Helt tilfeldig ID"
+            name="traadliste-meldinger"
+            onChange={[Function]}
+            role="tab"
+            type="radio"
+            value="sg838exr"
+          />
+          <label
             className="c7"
-            onClick={[Function]}
+            htmlFor="Helt tilfeldig ID"
           >
-            <div>
+            <div
+              className="c8"
+            >
               <div
-                className="c8"
+                className="c9"
               >
                 <span
-                  className="c9"
+                  className="c10"
                 >
                   <svg
                     height={24}
@@ -318,16 +329,22 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     </g>
                   </svg>
                   <p
-                    className="typo-undertekst-bold c10"
+                    className="typo-undertekst-bold c11"
                   >
                     4
+                     
+                    <span
+                      className="sr-only"
+                    >
+                      meldinger
+                    </span>
                   </p>
                 </span>
                 <div
-                  className="c11"
+                  className="c12"
                 >
                   <div
-                    className="c12"
+                    className="c13"
                   >
                     <p
                       className="typo-element order-second"
@@ -341,12 +358,12 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     </p>
                   </div>
                   <p
-                    className="typo-normal"
+                    className="typo-normal c14"
                   >
-                    Dolores omnis ea voluptatem corrupt...
+                    Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                   </p>
                   <div
-                    className="c13"
+                    className="c15"
                   >
                     <div
                       className="etikett etikett--fokus"
@@ -370,16 +387,14 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                 </div>
               </div>
             </div>
-            <button
-              aria-label="Vis meldinger for Delsvar - Arbeid"
-              aria-selected={false}
-              className="c14"
+            <div
+              className="hover-animation c16"
             >
               <i
                 className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
               />
-            </button>
-          </div>
+            </div>
+          </label>
         </li>
       </ol>
     </nav>

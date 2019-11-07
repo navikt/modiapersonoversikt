@@ -46,20 +46,32 @@ const HoyrejustertPrevNextButton = styled(PrevNextButton)`
     margin-left: auto;
 `;
 
-function usePaginering<T>(list: T[], pageSize: number, itemLabel: string): PagineringsData<T> {
+function usePaginering<T>(list: T[], pageSize: number, itemLabel: string, selectedItem?: T): PagineringsData<T> {
     const selectRef = useRef<HTMLSelectElement | null>();
     const [currentPage, setCurrentPage] = useState(0);
 
     const numberOfPages = Math.ceil(list.length / pageSize);
 
     useEffect(() => {
+        // Dersom listen blir kortet inn og man står på en side som ikke har innhold lenger flyttes man til første side
         if (currentPage >= numberOfPages) {
             setCurrentPage(0);
         }
     }, [numberOfPages, currentPage]);
 
+    const prevSelectedItem = usePrevious(selectedItem);
+    useEffect(() => {
+        // skifter til riktig side dersom selected-item settes programatisk, og viser riktig side ved mount
+        if (selectedItem && prevSelectedItem !== selectedItem) {
+            const index = list.findIndex(item => item === selectedItem);
+            const newPage = Math.floor(index / pageSize);
+            setCurrentPage(newPage);
+        }
+    });
+
     const prevPage = usePrevious(currentPage);
     useEffect(() => {
+        // Dersom man har byttet side med prevNextButton flyttes fokus til pageSelect for å komme til toppen av listen
         if (prevPage !== undefined && prevPage !== currentPage) {
             selectRef.current && selectRef.current.focus();
         }
