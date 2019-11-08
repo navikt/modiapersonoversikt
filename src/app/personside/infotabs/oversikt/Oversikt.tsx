@@ -38,30 +38,30 @@ function Oversikt() {
             <Style>
                 <KolonneStyle>
                     <Oversiktskomponent
+                        infotabPath={INFOTABS.OPPFOLGING}
+                        tittel={'Oppfølging'}
+                        component={OppfolgingOversikt}
+                        hurtigtast={'O'}
+                    />
+                    <Oversiktskomponent
                         infotabPath={INFOTABS.UTBETALING}
                         tittel={'Utbetalinger'}
                         component={UtbetalingerOversikt}
                         hurtigtast={'U'}
                     />
                     <Oversiktskomponent
-                        infotabPath={INFOTABS.MELDINGER}
-                        tittel={'Meldinger'}
-                        component={MeldingerOversikt}
-                        hurtigtast={'M'}
-                    />
-                    <Oversiktskomponent
-                        infotabPath={INFOTABS.VARSEL}
-                        tittel={'Varsler'}
-                        component={VarselOversikt}
-                        hurtigtast={'V'}
+                        tittel={'Saker'}
+                        infotabPath={INFOTABS.SAKER}
+                        component={SakerOversikt}
+                        hurtigtast={'S'}
                     />
                 </KolonneStyle>
                 <KolonneStyle>
                     <Oversiktskomponent
-                        infotabPath={INFOTABS.OPPFOLGING}
-                        tittel={'Oppfølging'}
-                        component={OppfolgingOversikt}
-                        hurtigtast={'O'}
+                        infotabPath={INFOTABS.MELDINGER}
+                        tittel={'Meldinger'}
+                        component={MeldingerOversikt}
+                        hurtigtast={'M'}
                     />
                     <Oversiktskomponent
                         infotabPath={INFOTABS.YTELSER}
@@ -70,10 +70,10 @@ function Oversikt() {
                         hurtigtast={'Y'}
                     />
                     <Oversiktskomponent
-                        tittel={'Saker'}
-                        infotabPath={INFOTABS.SAKER}
-                        component={SakerOversikt}
-                        hurtigtast={'S'}
+                        infotabPath={INFOTABS.VARSEL}
+                        tittel={'Varsler'}
+                        component={VarselOversikt}
+                        hurtigtast={'V'}
                     />
                 </KolonneStyle>
             </Style>
