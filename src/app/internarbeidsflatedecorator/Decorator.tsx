@@ -3,13 +3,14 @@ import { useCallback, useState } from 'react';
 import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import { AppState } from '../../redux/reducers';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { DecoratorProps } from './decoratorprops';
 import { apiBaseUri } from '../../api/config';
 import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
 import './personsokKnapp.less';
+import { useRestResource } from '../../utils/customHooks';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -58,8 +59,13 @@ function lagConfig(
 function Decorator({ history }: RouteComponentProps<{}>) {
     const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const [enhet, settEnhet] = useState(getSaksbehandlerEnhet());
-    const config = useCallback(lagConfig, [fnr, enhet, history, settEnhet])(fnr, enhet, history, settEnhet);
-
+    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
+    const dispatch = useDispatch();
+    const handleSetEnhet = (enhet: string) => {
+        dispatch(reloadMeldinger);
+        settEnhet(enhet);
+    };
+    const config = useCallback(lagConfig, [fnr, enhet, history, handleSetEnhet])(fnr, enhet, history, handleSetEnhet);
     return (
         <nav id="header">
             <InternflateDecorator {...config} />
