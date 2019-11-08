@@ -141,5 +141,14 @@ export default combineResettableReducers<RestEndepunkter>(
         personsok: personsok,
         slaaSammen: slaaSammen
     },
-    ['innloggetSaksbehandler', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles', 'plukkNyeOppgaver']
+    [
+        'innloggetSaksbehandler',
+        'veilederRoller',
+        'baseUrl',
+        'postnummer',
+        'valuta',
+        'land',
+        'featureToggles',
+        'plukkNyeOppgaver'
+    ]
 );
