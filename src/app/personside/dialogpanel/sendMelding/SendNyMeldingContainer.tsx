@@ -9,6 +9,7 @@ import { ReferatSendtKvittering, SporsmalSendtKvittering } from './SendNyMelding
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
+import { loggEvent } from '../../../../utils/frontendLogger';
 
 const initialState: SendNyMeldingState = {
     tekst: '',
@@ -72,9 +73,11 @@ function SendNyMeldingContainer() {
                 .then(() => {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: request });
+                    loggEvent('Send-Referat', 'SendNyMelding');
                 })
                 .catch(() => {
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
+                    loggEvent('Send-Referat', 'SendNyMelding', { type: 'failed' });
                 });
         } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
@@ -83,13 +86,14 @@ function SendNyMeldingContainer() {
                 saksID: state.sak.saksId,
                 erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
             };
-
             post(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, request)
                 .then(() => {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: request.fritekst });
+                    loggEvent('Send-Sporsmal', 'SendNyMelding');
                 })
                 .catch(() => {
+                    loggEvent('Send-Sporsmal', 'SendNyMelding', { type: 'failed' });
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
                 });
         } else {

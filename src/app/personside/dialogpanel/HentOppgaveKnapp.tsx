@@ -19,6 +19,7 @@ import { useRestResource } from '../../../utils/customHooks';
 import { hasData } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
 import { SaksbehandlerRoller } from '../../../utils/RollerUtils';
+import { loggEvent } from '../../../utils/frontendLogger';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
@@ -96,6 +97,7 @@ function HentOppgaveKnapp(props: Props) {
                 props.history.push(
                     `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
                 );
+                loggEvent('Hent-Oppgave', 'HentOppgave');
             })
         );
     };

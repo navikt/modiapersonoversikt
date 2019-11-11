@@ -15,7 +15,7 @@ import {
 } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { loggError } from '../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../utils/frontendLogger';
 import { Temagruppe } from '../../../../models/Temagrupper';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
@@ -128,9 +128,11 @@ function FortsettDialogContainer(props: Props) {
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
+                    loggEvent('Send-Svar', 'FortsettDialog');
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
+                    loggEvent('Send-Svar', 'FortsettDialog', { type: 'failed' });
                 });
         } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
             const erJournalfort = erEldsteMeldingJournalfort(props.traad);
@@ -154,9 +156,11 @@ function FortsettDialogContainer(props: Props) {
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
+                    loggEvent('Send-Spørsmål', 'FortsettDialog');
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
+                    loggEvent('Send-Spørsmål', 'FortsettDialog', { type: 'failed' });
                 });
         } else if (FortsettDialogValidator.erGyldigDelsvar(state) && oppgaveId && state.temagruppe) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
@@ -176,9 +180,11 @@ function FortsettDialogContainer(props: Props) {
                         temagruppe: request.temagruppe
                     };
                     setDialogStatus({ type: DialogPanelStatus.DELSVAR_SENDT, kvitteringsData: kvitteringsData });
+                    loggEvent('Send-Delsvar', 'FortsettDialog');
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
+                    loggEvent('Send-Delsvar', 'FortsettDialog', { type: 'failed' });
                 });
         } else {
             updateState({ visFeilmeldinger: true });
