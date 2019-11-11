@@ -14,7 +14,7 @@ export enum MeldingerActionTypes {
 
 export interface HuskValgtTraad {
     type: MeldingerActionTypes.HuskValgtTraad;
-    traad: Traad;
+    traad?: Traad;
 }
 
 export type MeldingerActions = HuskValgtTraad;

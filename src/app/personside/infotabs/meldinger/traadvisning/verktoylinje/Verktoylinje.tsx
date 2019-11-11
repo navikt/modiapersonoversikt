@@ -6,7 +6,7 @@ import { UnmountClosed } from 'react-collapse';
 import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
-import { useCallback, useEffect } from 'react';
+import { createRef, useCallback, useEffect } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
 import { LenkeKnapp } from '../../../../../../components/common-styled-components';
 import { apiBaseUri } from '../../../../../../api/config';
@@ -52,9 +52,13 @@ enum VerktøyPanel {
 }
 
 function Verktoylinje(props: Props) {
+    const titleRef = createRef<HTMLHeadingElement>();
     const fnr = useFødselsnummer();
     const [aktivtPanel, settAktivtPanel] = React.useState<VerktøyPanel | null>(null);
-    const lukk = useCallback(() => settAktivtPanel(null), [settAktivtPanel]);
+    const lukk = useCallback(() => {
+        settAktivtPanel(null);
+        titleRef.current && titleRef.current.focus();
+    }, [settAktivtPanel, titleRef]);
 
     const prevTraad = usePrevious(props.valgtTraad);
     useEffect(() => {
@@ -72,6 +76,9 @@ function Verktoylinje(props: Props) {
 
     return (
         <PanelStyle>
+            <h3 className="sr-only" ref={titleRef} tabIndex={-1}>
+                Verktøylinje
+            </h3>
             <KnapperPanelStyle>
                 <OppgaveknapperStyle>
                     <SvartLenkeKnapp

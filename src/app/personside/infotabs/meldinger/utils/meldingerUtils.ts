@@ -85,7 +85,8 @@ export function kanTraadJournalfores(traad: Traad): boolean {
         !erKontorsperret(traad) &&
         !erFeilsendt(traad) &&
         !erJournalfort(nyesteMeldingITraad) &&
-        erBehandlet(traad)
+        erBehandlet(traad) &&
+        !erDelsvar(nyesteMeldingITraad)
     );
 }
 

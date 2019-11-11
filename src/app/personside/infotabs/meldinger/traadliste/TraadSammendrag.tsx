@@ -1,10 +1,9 @@
 import { Melding, Traad } from '../../../../../models/meldinger/meldinger';
-import { erDelvisBesvart, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
+import { erDelvisBesvart, erFeilsendt, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
 import { useAppState } from '../../../../../utils/customHooks';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import Meldingsikon from '../utils/Meldingsikon';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { delAvStringMedDots } from '../../../../../utils/string-utils';
 import { UnmountClosed } from 'react-collapse';
 import { EtikettAdvarsel, EtikettFokus, EtikettInfo, EtikettSuksess } from 'nav-frontend-etiketter';
 import * as React from 'react';
@@ -49,6 +48,12 @@ const Style = styled.div`
     }
 `;
 
+const PreviewStyle = styled(Normaltekst)`
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+`;
+
 function TraadSammendrag(props: { traad: Traad }) {
     const sisteMelding = nyesteMelding(props.traad);
     const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
@@ -62,7 +67,7 @@ function TraadSammendrag(props: { traad: Traad }) {
                     <Element className="order-second">{tittel}</Element>
                     <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                 </UUcustomOrder>
-                <Normaltekst>{delAvStringMedDots(sisteMelding.fritekst, 35)}</Normaltekst>
+                <PreviewStyle>{sisteMelding.fritekst}</PreviewStyle>
                 <EtikettStyling>
                     <UnmountClosed isOpened={underArbeid}>
                         <EtikettFokus>Under arbeid</EtikettFokus>
@@ -70,6 +75,7 @@ function TraadSammendrag(props: { traad: Traad }) {
                     {erDelvisBesvart(props.traad) && <EtikettInfo>Delvis besvart</EtikettInfo>}
                     <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                     <SlettetEtikett melding={sisteMelding} />
+                    <FeilsendtEtikett traad={props.traad} />
                 </EtikettStyling>
             </ContentStyle>
         </Style>
@@ -83,6 +89,13 @@ function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
         return <EtikettSuksess>Tildelt meg</EtikettSuksess>;
     }
 
+    return null;
+}
+
+function FeilsendtEtikett({ traad }: { traad: Traad }) {
+    if (erFeilsendt(traad)) {
+        return <EtikettAdvarsel>Feilsendt</EtikettAdvarsel>;
+    }
     return null;
 }
 

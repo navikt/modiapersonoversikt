@@ -9,7 +9,7 @@ interface Props {
 
 function SaksTabell(props: Props) {
     const tittelRekke = ['Saks id', 'Opprettet dato', 'Fagsystem'];
-    const rows = props.saker.map(sak => [sak.saksId, sak.opprettetDatoFormatert, sak.fagsystemNavn]);
+    const rows = props.saker.map(sak => [sak.saksIdVisning, sak.opprettetDatoFormatert, sak.fagsystemNavn]);
     const handlers = props.saker.map(sak => () => props.velgSak(sak));
 
     return <ClickableTable rows={rows} tittelRekke={tittelRekke} rowsOnClickHandlers={handlers} />;

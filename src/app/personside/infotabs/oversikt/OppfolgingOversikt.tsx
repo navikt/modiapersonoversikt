@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DetaljertOppfolging, Oppfolging } from '../../../../models/oppfolging';
+import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Bold } from '../../../../components/common-styled-components';
@@ -33,25 +33,45 @@ function OppfolgingPanel(props: Props) {
 
     return (
         <VisMerKnapp linkTo={paths.oppfolging} ariaDescription="Gå til oppfølging" valgt={false}>
-            <OppfolgingVisning oppfolging={props.detaljertOppfølging.oppfølging} />
+            <OppfolgingVisning detaljertOppfolging={props.detaljertOppfølging} />
         </VisMerKnapp>
     );
 }
 
-function OppfolgingVisning({ oppfolging }: { oppfolging: Oppfolging }) {
-    const veilederNavn = oppfolging.veileder ? (
-        <Normaltekst>{oppfolging.veileder.navn}</Normaltekst>
+function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
+    if (detaljertOppfolging.ytelser.length === 0) {
+        return null;
+    }
+    const ytelser = detaljertOppfolging.ytelser.map(ytelse => ytelse.type);
+    const filtrerteYtelser = ytelser.filter((item, index) => ytelser.indexOf(item) === index).join(', ');
+    return (
+        <>
+            <Normaltekst>
+                <Bold>Ytelser:</Bold>
+            </Normaltekst>
+            <Normaltekst>{filtrerteYtelser}</Normaltekst>
+        </>
+    );
+}
+
+function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
+    const veilederNavn = detaljertOppfolging.oppfølging.veileder ? (
+        <Normaltekst>{detaljertOppfolging.oppfølging.veileder.navn}</Normaltekst>
     ) : (
         <Normaltekst>Ikke angitt</Normaltekst>
     );
 
-    const enhet = oppfolging.enhet ? (
-        <Normaltekst>{oppfolging.enhet.navn}</Normaltekst>
+    const enhet = detaljertOppfolging.oppfølging.enhet ? (
+        <Normaltekst>{detaljertOppfolging.oppfølging.enhet.navn}</Normaltekst>
     ) : (
         <Normaltekst>Ikke angitt</Normaltekst>
     );
 
-    const veilederIdent = oppfolging.veileder ? <Normaltekst>({oppfolging.veileder.ident})</Normaltekst> : null;
+    const veilederIdent = detaljertOppfolging.oppfølging.veileder ? (
+        <Normaltekst>({detaljertOppfolging.oppfølging.veileder.ident})</Normaltekst>
+    ) : null;
+    const innsatsgruppe = detaljertOppfolging.innsatsgruppe;
+    const rettighetsgruppe = detaljertOppfolging.rettighetsgruppe;
 
     return (
         <>
@@ -64,6 +84,13 @@ function OppfolgingVisning({ oppfolging }: { oppfolging: Oppfolging }) {
             </Normaltekst>
             {veilederNavn}
             {veilederIdent}
+            <Normaltekst>
+                <Bold>Innsatsgruppe / Rettighetsgruppe: </Bold>
+            </Normaltekst>
+            <Normaltekst>
+                {innsatsgruppe} / {rettighetsgruppe}{' '}
+            </Normaltekst>
+            <YtelserForBruker detaljertOppfolging={detaljertOppfolging} />
         </>
     );
 }
