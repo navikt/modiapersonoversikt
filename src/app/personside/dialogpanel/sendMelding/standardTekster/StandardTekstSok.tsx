@@ -88,7 +88,6 @@ function velgTekst(
 
 function tilhorerSaksbehandlerKontaktsenter() {
     const enhet = getSaksbehandlerEnhet();
-    console.log(enhet);
     return enhet && enhet.startsWith('41');
 }
 
