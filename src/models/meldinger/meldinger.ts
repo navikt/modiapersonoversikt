@@ -19,6 +19,7 @@ export interface Melding {
     fritekst: string;
     lestDato?: string;
     status: LestStatus;
+    statusTekst?: string;
     opprettetDato: string;
     ferdigstiltDato?: string;
     erFerdigstiltUtenSvar: boolean;
