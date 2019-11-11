@@ -15,6 +15,7 @@ import styled from 'styled-components';
 const Scrollbar = styled.div`
     overflow-y: auto;
     flex-grow: 1;
+    flex-shrink: 1;
 `;
 
 function MainLayout() {
@@ -42,8 +43,10 @@ function MainLayout() {
                 aria-label="Oppgavepanel"
                 dialogPanelEkspandert={UI.dialogPanel.ekspandert}
             >
-                <HentOppgaveKnapp />
-                <DialogPanel />
+                <Scrollbar>
+                    <HentOppgaveKnapp />
+                    <DialogPanel />
+                </Scrollbar>
                 <EkspanderDilaogpanelKnapp />
             </HøyreKolonne>
             <SmallScreenToggleButton UI={UI} toggleDialogpanel={() => dispatch(toggleDialogpanel())} />

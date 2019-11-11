@@ -10,7 +10,7 @@ import {
     veilederHarPåkrevdRolleForEndreAdresse,
     veilederHarPåkrevdRolleForEndreKontonummer,
     veilederHarPåkrevdRolleForEndreNavn
-} from './utils/RollerUtils';
+} from '../../utils/RollerUtils';
 
 const Luft = styled.div`
     margin-top: 1em;

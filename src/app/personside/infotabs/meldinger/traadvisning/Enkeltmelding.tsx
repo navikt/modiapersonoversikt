@@ -71,9 +71,11 @@ const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
 `;
 
 function journalfortMelding(melding: Melding) {
-    const navn = melding.journalfortAv && saksbehandlerTekst(melding.journalfortAv);
-    const dato = melding.journalfortDato && formaterDato(melding.journalfortDato);
-    return `Journalført av ${navn} ${dato} på tema ${melding.journalfortTemanavn} med saksid ${melding.journalfortSaksid}`;
+    const navn = melding.journalfortAv ? saksbehandlerTekst(melding.journalfortAv) : 'ukjent';
+    const dato = melding.journalfortDato ? formaterDato(melding.journalfortDato) : 'ukjent dato';
+    const tema = melding.journalfortTemanavn ? `tema ${melding.journalfortTemanavn}` : 'ukjent tema';
+    const saksid = melding.journalfortSaksid ? `saksid ${melding.journalfortSaksid}` : 'ukjent saksid';
+    return `Journalført av ${navn} ${dato} på ${tema} med ${saksid}`;
 }
 
 function Journalforing({ melding }: { melding: Melding }) {
@@ -128,7 +130,7 @@ function EnkeltMelding(props: Props) {
     const highlightRule = createDynamicHighligtingRule(props.sokeord.split(' '));
 
     return (
-        <div className="snakkeboble_ikoner">
+        <li className="snakkeboble_ikoner">
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <SnakkebobleWrapper>
                     <Topptekst>
@@ -143,7 +145,7 @@ function EnkeltMelding(props: Props) {
                     <Journalforing melding={props.melding} />
                 </SnakkebobleWrapper>
             </Snakkeboble>
-        </div>
+        </li>
     );
 }
 

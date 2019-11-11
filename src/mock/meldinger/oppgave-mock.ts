@@ -29,6 +29,10 @@ export function getMockGsakTema(): GsakTema[] {
     ];
 }
 
+export function getForeslattEnhet(): Enhet[] {
+    return getMockEnheter().slice(0, navfaker.random.integer(2, 0));
+}
+
 export function getMockEnheter(): Enhet[] {
     return [
         {
