@@ -186,7 +186,7 @@ function FortsettDialogContainer(props: Props) {
     };
 
     const meldingMedTemagruppe = props.traad.meldinger.find(melding => melding.temagruppe);
-    const temagruppe = meldingMedTemagruppe ? meldingMedTemagruppe.temagruppe : Temagruppe.Null;
+    const temagruppe = meldingMedTemagruppe ? meldingMedTemagruppe.temagruppe : undefined;
 
     return (
         <>
