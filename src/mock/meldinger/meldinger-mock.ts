@@ -43,7 +43,7 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
 }
 
 export function getMockTraad(): Traad {
-    const temagruppe = navfaker.random.arrayElement(TemaPlukkbare);
+    const temagruppe = navfaker.random.arrayElement([...TemaPlukkbare, null, Temagruppe.InnholdSlettet]);
     const meldinger = Array(navfaker.random.integer(5, 1))
         .fill(null)
         .map(() => getMelding(temagruppe));
