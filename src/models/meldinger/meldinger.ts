@@ -9,7 +9,7 @@ export interface Melding {
     id: string;
     oppgaveId?: string;
     meldingstype: Meldingstype;
-    temagruppe: Temagruppe;
+    temagruppe: Temagruppe | null;
     skrevetAvTekst: string;
     journalfortAv?: Saksbehandler;
     journalfortDato?: string;

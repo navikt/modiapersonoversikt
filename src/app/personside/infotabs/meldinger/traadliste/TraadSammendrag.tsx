@@ -100,7 +100,7 @@ function FeilsendtEtikett({ traad }: { traad: Traad }) {
 }
 
 function SlettetEtikett({ melding }: { melding: Melding }) {
-    if (melding.temagruppe === Temagruppe.Null) {
+    if (melding.temagruppe === Temagruppe.InnholdSlettet) {
         return <EtikettAdvarsel>Slettet</EtikettAdvarsel>;
     }
 

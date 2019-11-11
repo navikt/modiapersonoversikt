@@ -21,7 +21,10 @@ export function erMonolog(traad: Traad) {
 }
 
 export function meldingstittel(melding: Melding) {
-    if (melding.temagruppe === Temagruppe.Null) {
+    if (
+        melding.temagruppe === Temagruppe.InnholdSlettet ||
+        [Meldingstype.DOKUMENT_VARSEL].includes(melding.meldingstype)
+    ) {
         return meldingstypeTekst(melding.meldingstype);
     }
     return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe)}`;
@@ -39,7 +42,10 @@ export function erPlukkbar(temagruppe: Temagruppe) {
     return TemaPlukkbare.includes(temagruppe);
 }
 
-export function erKommunaleTjenester(temagruppe: Temagruppe) {
+export function erKommunaleTjenester(temagruppe: Temagruppe | null) {
+    if (!temagruppe) {
+        return false;
+    }
     return TemaKommunaleTjenester.includes(temagruppe);
 }
 
