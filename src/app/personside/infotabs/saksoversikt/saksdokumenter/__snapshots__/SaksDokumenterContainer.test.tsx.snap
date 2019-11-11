@@ -13,12 +13,12 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   font-weight: bold;
 }
 
-.c14 {
+.c13 {
   color: #645f5a;
   margin-top: 3px;
 }
 
-.c14 .typo-etikett-liten {
+.c13 .typo-etikett-liten {
   line-height: 1rem;
 }
 
@@ -30,7 +30,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   display: flex;
 }
 
-.c15 {
+.c14 {
   padding: 1.25rem 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -39,11 +39,11 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c15:hover {
+.c14:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c15:active {
+.c14:active {
   background-color: rgba(0,0,0,0.1);
 }
 
@@ -73,7 +73,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   white-space: nowrap;
 }
 
-.c13 {
+.c15 {
   position: relative;
   border: none;
   padding: 0;
@@ -92,7 +92,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   text-align: left;
 }
 
-.c13:after {
+.c15:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -100,16 +100,16 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   width: 100%;
 }
 
-.c13:focus {
+.c15:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c13:hover {
+.c15:hover {
   opacity: 0.8;
 }
 
-.c13:hover:after {
+.c15:hover:after {
   content: '';
   border-color: #0067c5;
 }
@@ -421,17 +421,11 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               <div
                 className="order-second"
               >
-                <button
-                  aria-disabled={true}
-                  className="c13"
-                  onClick={[Function]}
+                <p
+                  className="typo-element"
                 >
-                  <p
-                    className="typo-element"
-                  >
-                    Vurdering feilutbetaling/revurdering
-                  </p>
-                </button>
+                  Vurdering feilutbetaling/revurdering
+                </p>
               </div>
               <div
                 className="order-first"
@@ -445,7 +439,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
             
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -490,17 +484,11 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               <div
                 className="order-second"
               >
-                <button
-                  aria-disabled={true}
-                  className="c13"
-                  onClick={[Function]}
+                <p
+                  className="typo-element"
                 >
-                  <p
-                    className="typo-element"
-                  >
-                    Innhenting av opplysninger
-                  </p>
-                </button>
+                  Innhenting av opplysninger
+                </p>
               </div>
               <div
                 className="order-first"
@@ -553,7 +541,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               </li>
             </ul>
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -566,7 +554,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </div>
         </li>
         <li
-          className="c15"
+          className="c14"
           onClick={[Function]}
         >
           <div
@@ -596,8 +584,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
                 className="order-second"
               >
                 <button
-                  aria-disabled={false}
-                  className="c13"
+                  className="c15"
                   onClick={[Function]}
                 >
                   <p
@@ -630,7 +617,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
                 <span>
                   <button
                     aria-disabled={true}
-                    className="c13"
+                    className="c15"
                     onClick={[Function]}
                   >
                     <p
@@ -646,7 +633,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
                 <span>
                   <button
                     aria-disabled={false}
-                    className="c13"
+                    className="c15"
                     onClick={[Function]}
                   >
                     <p
@@ -670,7 +657,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               </li>
             </ul>
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -750,17 +737,11 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               <div
                 className="order-second"
               >
-                <button
-                  aria-disabled={true}
-                  className="c13"
-                  onClick={[Function]}
+                <p
+                  className="typo-element"
                 >
-                  <p
-                    className="typo-element"
-                  >
-                    Spørsmål via nav.no (Skjermet)
-                  </p>
-                </button>
+                  Spørsmål via nav.no (Skjermet)
+                </p>
               </div>
               <div
                 className="order-first"
@@ -785,7 +766,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
                 <span>
                   <button
                     aria-disabled={false}
-                    className="c13"
+                    className="c15"
                     onClick={[Function]}
                   >
                     <p
@@ -819,7 +800,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               </li>
             </ul>
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -832,7 +813,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </div>
         </li>
         <li
-          className="c15"
+          className="c14"
           onClick={[Function]}
         >
           <div
@@ -862,8 +843,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
                 className="order-second"
               >
                 <button
-                  aria-disabled={false}
-                  className="c13"
+                  className="c15"
                   onClick={[Function]}
                 >
                   <p
@@ -885,7 +865,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
             
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -913,7 +893,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </span>
         </li>
         <li
-          className="c15"
+          className="c14"
           onClick={[Function]}
         >
           <div
@@ -943,8 +923,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
                 className="order-second"
               >
                 <button
-                  aria-disabled={false}
-                  className="c13"
+                  className="c15"
                   onClick={[Function]}
                 >
                   <p
@@ -985,7 +964,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               </li>
             </ul>
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -1045,17 +1024,11 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               <div
                 className="order-second"
               >
-                <button
-                  aria-disabled={true}
-                  className="c13"
-                  onClick={[Function]}
+                <p
+                  className="typo-element"
                 >
-                  <p
-                    className="typo-element"
-                  >
-                    Inntektsopplysninger
-                  </p>
-                </button>
+                  Inntektsopplysninger
+                </p>
               </div>
               <div
                 className="order-first"
@@ -1080,7 +1053,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
                 <span>
                   <button
                     aria-disabled={false}
-                    className="c13"
+                    className="c15"
                     onClick={[Function]}
                   >
                     <p
@@ -1094,7 +1067,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               </li>
             </ul>
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -1139,17 +1112,11 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               <div
                 className="order-second"
               >
-                <button
-                  aria-disabled={true}
-                  className="c13"
-                  onClick={[Function]}
+                <p
+                  className="typo-element"
                 >
-                  <p
-                    className="typo-element"
-                  >
-                    Innhenting av opplysninger
-                  </p>
-                </button>
+                  Innhenting av opplysninger
+                </p>
               </div>
               <div
                 className="order-first"
@@ -1163,7 +1130,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
             
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -1199,7 +1166,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
       </h3>
       <ol>
         <li
-          className="c15"
+          className="c14"
           onClick={[Function]}
         >
           <div
@@ -1229,8 +1196,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
                 className="order-second"
               >
                 <button
-                  aria-disabled={false}
-                  className="c13"
+                  className="c15"
                   onClick={[Function]}
                 >
                   <p
@@ -1252,7 +1218,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
             
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -1280,7 +1246,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </span>
         </li>
         <li
-          className="c15"
+          className="c14"
           onClick={[Function]}
         >
           <div
@@ -1310,8 +1276,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
                 className="order-second"
               >
                 <button
-                  aria-disabled={false}
-                  className="c13"
+                  className="c15"
                   onClick={[Function]}
                 >
                   <p
@@ -1333,7 +1298,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
             
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -1361,7 +1326,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </span>
         </li>
         <li
-          className="c15"
+          className="c14"
           onClick={[Function]}
         >
           <div
@@ -1391,8 +1356,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
                 className="order-second"
               >
                 <button
-                  aria-disabled={false}
-                  className="c13"
+                  className="c15"
                   onClick={[Function]}
                 >
                   <p
@@ -1414,7 +1378,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
             
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -1474,17 +1438,11 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
               <div
                 className="order-second"
               >
-                <button
-                  aria-disabled={true}
-                  className="c13"
-                  onClick={[Function]}
+                <p
+                  className="typo-element"
                 >
-                  <p
-                    className="typo-element"
-                  >
-                    Referat fra samtale på telefon
-                  </p>
-                </button>
+                  Referat fra samtale på telefon
+                </p>
               </div>
               <div
                 className="order-first"
@@ -1498,7 +1456,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
             
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -1511,7 +1469,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </div>
         </li>
         <li
-          className="c15"
+          className="c14"
           onClick={[Function]}
         >
           <div
@@ -1541,8 +1499,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
                 className="order-second"
               >
                 <button
-                  aria-disabled={false}
-                  className="c13"
+                  className="c15"
                   onClick={[Function]}
                 >
                   <p
@@ -1564,7 +1521,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
             
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"
@@ -1592,7 +1549,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
           </span>
         </li>
         <li
-          className="c15"
+          className="c14"
           onClick={[Function]}
         >
           <div
@@ -1622,8 +1579,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
                 className="order-second"
               >
                 <button
-                  aria-disabled={false}
-                  className="c13"
+                  className="c15"
                   onClick={[Function]}
                 >
                   <p
@@ -1645,7 +1601,7 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
             </div>
             
             <div
-              className="c14"
+              className="c13"
             >
               <p
                 className="typo-etikett-liten"

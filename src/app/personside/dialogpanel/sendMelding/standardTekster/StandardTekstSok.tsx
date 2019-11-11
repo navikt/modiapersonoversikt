@@ -14,6 +14,7 @@ import { captitalize } from '../../../../../utils/stringFormatting';
 import MultiRestResourceConsumer from '../../../../../rest/consumer/MultiRestResourceConsumer';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
+import { erKontaktsenter } from '../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -88,7 +89,7 @@ function velgTekst(
 function StandardTekstSok(props: Props) {
     const inputRef = React.useRef<HTMLInputElement>();
     const data = useFetch<StandardTekster.Tekster>('/modiapersonoversikt-skrivestotte/skrivestotte');
-    const sokefelt = useFieldState('');
+    const sokefelt = useFieldState(erKontaktsenter() ? '#ks ' : '');
     const debouncedSokefelt = useDebounce(sokefelt.input.value, 100);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() => sokEtterTekster(data, debouncedSokefelt));
     const valgt = useFieldState('');
