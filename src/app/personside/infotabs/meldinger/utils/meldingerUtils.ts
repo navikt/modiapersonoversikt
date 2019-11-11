@@ -23,7 +23,7 @@ export function erMonolog(traad: Traad) {
 export function meldingstittel(melding: Melding) {
     if (
         melding.temagruppe === Temagruppe.InnholdSlettet ||
-        [Meldingstype.DOKUMENT_VARSEL].includes(melding.meldingstype)
+        [Meldingstype.DOKUMENT_VARSEL, Meldingstype.OPPGAVE_VARSEL].includes(melding.meldingstype)
     ) {
         return meldingstypeTekst(melding.meldingstype);
     }
