@@ -3,7 +3,6 @@ import { detect } from 'detect-browser';
 import { roundToNearest100 } from '../math';
 import { runOnceDaily } from '../runOnceDaily';
 import { erKontaktsenter, getSaksbehandlerEnhet } from './saksbehandlersEnhetInfo';
-import { erModiabrukerdialog, erNyePersonoversikten } from '../erNyPersonoversikt';
 
 export function loggSkjermInfoDaglig() {
     runOnceDaily('Skjerminfo', loggInfo);
@@ -17,8 +16,6 @@ function loggInfo() {
         screen: `${roundToNearest100(screen.width)} x ${roundToNearest100(screen.height)}`,
         window: `${roundToNearest100(window.innerWidth)} x ${roundToNearest100(window.innerHeight)}`,
         erKontaktsenter: erKontaktsenter(),
-        erNyePersonoversikten: erNyePersonoversikten(),
-        erGamleModiabrukerdialog: erModiabrukerdialog(),
         browser: (browser && browser.name) || undefined
     };
 
