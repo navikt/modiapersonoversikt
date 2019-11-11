@@ -61,8 +61,8 @@ describe('Dokumentvarsler', () => {
     it('Gir temagruppe Arbeid ved temagruppe ARB', function() {
         expect(temagruppeTekst(Temagruppe.Arbeid)).toBe('Arbeid');
     });
-    it('Gir tom temagruppe på dokumentvarsler med null', function() {
-        expect(temagruppeTekst(<Temagruppe>(<unknown>tomTemaGruppeNull))).toBe('');
+    it('Gir Ingen temagruppe for temagruppe null', function() {
+        expect(temagruppeTekst(<Temagruppe>(<unknown>tomTemaGruppeNull))).toBe('Ingen temagruppe');
     });
     it('Gir riktig temagruppe på dokumentvarsler med emtpy (da dette tolkes som slettet melding)', function() {
         expect(temagruppeTekst(<Temagruppe>tomTemaGruppeEmpty)).toBe('Innhold slettet');
