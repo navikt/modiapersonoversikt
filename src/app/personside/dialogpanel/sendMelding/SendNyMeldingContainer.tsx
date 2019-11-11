@@ -73,11 +73,11 @@ function SendNyMeldingContainer() {
                 .then(() => {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: request });
-                    loggEvent('Send Referat', 'Send Ny Melding');
+                    loggEvent('Send-Referat', 'SendNyMelding');
                 })
                 .catch(() => {
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
-                    loggEvent('Send Referat', 'Send Ny Melding', { type: 'failed' });
+                    loggEvent('Send-Referat', 'SendNyMelding', { type: 'failed' });
                 });
         } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
@@ -90,10 +90,10 @@ function SendNyMeldingContainer() {
                 .then(() => {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: request.fritekst });
-                    loggEvent('Send Sporsmal', 'Send Ny Melding');
+                    loggEvent('Send-Sporsmal', 'SendNyMelding');
                 })
                 .catch(() => {
-                    loggEvent('Send Sporsmal', 'Send Ny Melding', { type: 'failed' });
+                    loggEvent('Send-Sporsmal', 'SendNyMelding', { type: 'failed' });
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
                 });
         } else {

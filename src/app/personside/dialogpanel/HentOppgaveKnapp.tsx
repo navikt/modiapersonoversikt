@@ -15,6 +15,7 @@ import TildelteOppgaver from './TildelteOppgaver';
 import { paths } from '../../routes/routing';
 import { INFOTABS } from '../infotabs/InfoTabEnum';
 import { Temagruppe, temagruppeTekst, TemaPlukkbare } from '../../../models/Temagrupper';
+import { loggEvent } from '../../../utils/frontendLogger';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
@@ -72,6 +73,7 @@ function HentOppgaveKnapp(props: Props) {
                 props.history.push(
                     `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
                 );
+                loggEvent('Hent-Oppgave', 'HentOppgave');
             })
         );
     };

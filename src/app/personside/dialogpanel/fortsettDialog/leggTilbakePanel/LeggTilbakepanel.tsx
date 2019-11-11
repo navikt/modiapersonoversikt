@@ -16,6 +16,7 @@ import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { DialogPanelStatus, FortsettDialogPanelState } from '../FortsettDialogTypes';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -107,6 +108,7 @@ function LeggTilbakepanel(props: Props) {
                 .then(() => {
                     callback();
                     props.setDialogStatus({ type: DialogPanelStatus.OPPGAVE_LAGT_TILBAKE, payload: payload });
+                    loggEvent('LeggTilbakeOppgave-Innhabil', 'LeggTilbakeOppgave');
                 })
                 .catch(() => {
                     props.setDialogStatus({ type: DialogPanelStatus.ERROR });
@@ -122,6 +124,7 @@ function LeggTilbakepanel(props: Props) {
                 .then(() => {
                     callback();
                     props.setDialogStatus({ type: DialogPanelStatus.OPPGAVE_LAGT_TILBAKE, payload: payload });
+                    loggEvent('LeggTilbakeOppgave-AnnenÅrsak', 'LeggTilbakeOppgave');
                 })
                 .catch(() => {
                     props.setDialogStatus({ type: DialogPanelStatus.ERROR });
@@ -137,6 +140,7 @@ function LeggTilbakepanel(props: Props) {
                 .then(() => {
                     props.setDialogStatus({ type: DialogPanelStatus.OPPGAVE_LAGT_TILBAKE, payload: payload });
                     callback();
+                    loggEvent('LeggTilbakeOppgave-FeilTema', 'LeggTilbakeOppgave');
                 })
                 .catch(() => {
                     props.setDialogStatus({ type: DialogPanelStatus.ERROR });

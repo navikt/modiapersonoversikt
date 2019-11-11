@@ -128,11 +128,11 @@ function FortsettDialogContainer(props: Props) {
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
-                    loggEvent('Send Svar', 'Fortsett Dialog');
+                    loggEvent('Send-Svar', 'FortsettDialog');
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
-                    loggEvent('Send Svar', 'Fortsett Dialog', { type: 'feilet' });
+                    loggEvent('Send-Svar', 'FortsettDialog', { type: 'failed' });
                 });
         } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
             const erJournalfort = erEldsteMeldingJournalfort(props.traad);
@@ -156,11 +156,11 @@ function FortsettDialogContainer(props: Props) {
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
-                    loggEvent('Send Spørsmål', 'Fortsett Dialog');
+                    loggEvent('Send-Spørsmål', 'FortsettDialog');
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
-                    loggEvent('Send Spørsmål', 'Fortsett Dialog', { type: 'feilet' });
+                    loggEvent('Send-Spørsmål', 'FortsettDialog', { type: 'failed' });
                 });
         } else if (FortsettDialogValidator.erGyldigDelsvar(state) && oppgaveId && state.temagruppe) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
@@ -180,11 +180,11 @@ function FortsettDialogContainer(props: Props) {
                         temagruppe: request.temagruppe
                     };
                     setDialogStatus({ type: DialogPanelStatus.DELSVAR_SENDT, kvitteringsData: kvitteringsData });
-                    loggEvent('Send Delsvar', 'Fortsett Dialog');
+                    loggEvent('Send-Delsvar', 'FortsettDialog');
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
-                    loggEvent('Send Delsvar', 'Fortsett Dialog', { type: 'failed' });
+                    loggEvent('Send-Delsvar', 'FortsettDialog', { type: 'failed' });
                 });
         } else {
             updateState({ visFeilmeldinger: true });

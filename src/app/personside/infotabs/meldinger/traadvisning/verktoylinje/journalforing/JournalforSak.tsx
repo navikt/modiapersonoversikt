@@ -9,7 +9,7 @@ import { Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { post } from '../../../../../../../api/api';
-import { loggError } from '../../../../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../../../../utils/frontendLogger';
 import { useDispatch, useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
 import { useRestResource } from '../../../../../../../utils/customHooks';
@@ -60,6 +60,7 @@ export function JournalforSak(props: Props) {
                 setSubmitting(false);
                 setJournalforingSuksess(true);
                 dispatch(tråderResource.actions.reload);
+                loggEvent('Journalfør-Traad', 'Journalføring');
             },
             error => {
                 setSubmitting(false);
