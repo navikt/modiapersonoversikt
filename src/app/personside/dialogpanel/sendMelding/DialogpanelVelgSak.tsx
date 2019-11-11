@@ -51,7 +51,7 @@ const Dropdown = styled.div`
 
 function getTittel(sak: JournalforingsSak) {
     return `${sak.opprettetDato && formatterDatoMedMaanedsnavn(sak.opprettetDato) + ' | '}${sak.temaNavn} | ${
-        sak.saksId
+        sak.saksIdVisning
     }`;
 }
 

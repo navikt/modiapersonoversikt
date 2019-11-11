@@ -116,6 +116,11 @@ function MerkPanel(props: Props) {
     const dispatch = useDispatch();
     const saksbehandlerKanSletteFetch: AsyncResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, credentials);
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
+
+    const reloadMeldinger = tråderResource.actions.reload;
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
+    const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
+
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [submitting, setSubmitting] = useState(false);
@@ -125,7 +130,7 @@ function MerkPanel(props: Props) {
     const melding = eldsteMelding(valgtTraad);
 
     const saksbehandlerKanSlette =
-        !isPending(saksbehandlerKanSletteFetch) ||
+        !isPending(saksbehandlerKanSletteFetch) &&
         (hasData(saksbehandlerKanSletteFetch) && saksbehandlerKanSletteFetch.data);
     const visSletting =
         saksbehandlerKanSlette &&
@@ -136,8 +141,12 @@ function MerkPanel(props: Props) {
     const disableFerdigstillUtenSvar = !visFerdigstillUtenSvar(melding.meldingstype, valgtTraad);
 
     const submitHandler = (event: FormEvent) => {
-        setSubmitting(true);
         event.preventDefault();
+        if (!valgtOperasjon) {
+            return;
+        }
+        setSubmitting(true);
+
         switch (valgtOperasjon) {
             case MerkOperasjon.AVSLUTT:
                 merkPost(MERK_AVSLUTT_URL, getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad));
@@ -156,17 +165,23 @@ function MerkPanel(props: Props) {
         }
     };
 
+    const callback = () => {
+        dispatch(reloadMeldinger);
+        dispatch(reloadTildelteOppgaver);
+        dispatch(resetPlukkOppgaveResource);
+    };
+
     function merkPost(url: string, object: any) {
         post(url, object)
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
-                dispatch(tråderResource.actions.reload);
+                callback();
             })
             .catch((error: Error) => {
                 settResultat(Resultat.FEIL);
                 setSubmitting(false);
-                loggError(error, 'Klarte ikke merke trååd', object);
+                loggError(error, 'Klarte ikke merke tråd', object);
             });
     }
 
@@ -200,7 +215,7 @@ function MerkPanel(props: Props) {
         );
     } else {
         const radioprops: RadioProps[] = [
-            { label: 'Merk som feilsendt', value: MerkOperasjon.FEILSENDT, disabled: disableStandardvalg },
+            { label: 'Feilsendt post', value: MerkOperasjon.FEILSENDT, disabled: disableStandardvalg },
             { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag },
             { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: disableStandardvalg },
             {

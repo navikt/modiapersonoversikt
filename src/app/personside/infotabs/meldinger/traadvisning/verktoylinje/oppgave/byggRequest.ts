@@ -22,7 +22,7 @@ export function lagOppgaveRequest(
         valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
         behandlingskjedeId: valgtTraad ? eldsteMelding(valgtTraad).id : 'UKJENT',
         dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
-        ansvarligIdent: form.state.valgtAnsatt ? form.state.valgtAnsatt.ident : null,
+        ansvarligIdent: form.state.valgtAnsatt && form.state.valgtAnsatt.ident,
         beskrivelse: lagBeskrivelse(form.state.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
         temaKode: temakode,
         underkategoriKode: form.state.valgtUnderkategori && form.state.valgtUnderkategori.kode,

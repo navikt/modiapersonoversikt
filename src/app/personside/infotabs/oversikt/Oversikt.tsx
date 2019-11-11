@@ -38,22 +38,22 @@ function Oversikt() {
             <Style>
                 <KolonneStyle>
                     <Oversiktskomponent
-                        infotabPath={INFOTABS.UTBETALING}
-                        tittel={'Utbetalinger'}
-                        component={UtbetalingerOversikt}
-                        hurtigtast={'U'}
-                    />
-                    <Oversiktskomponent
                         infotabPath={INFOTABS.OPPFOLGING}
                         tittel={'Oppfølging'}
                         component={OppfolgingOversikt}
                         hurtigtast={'O'}
                     />
                     <Oversiktskomponent
-                        infotabPath={INFOTABS.VARSEL}
-                        tittel={'Varsler'}
-                        component={VarselOversikt}
-                        hurtigtast={'V'}
+                        infotabPath={INFOTABS.UTBETALING}
+                        tittel={'Utbetalinger'}
+                        component={UtbetalingerOversikt}
+                        hurtigtast={'U'}
+                    />
+                    <Oversiktskomponent
+                        tittel={'Saker'}
+                        infotabPath={INFOTABS.SAKER}
+                        component={SakerOversikt}
+                        hurtigtast={'S'}
                     />
                 </KolonneStyle>
                 <KolonneStyle>
@@ -70,10 +70,10 @@ function Oversikt() {
                         hurtigtast={'Y'}
                     />
                     <Oversiktskomponent
-                        tittel={'Saker'}
-                        infotabPath={INFOTABS.SAKER}
-                        component={SakerOversikt}
-                        hurtigtast={'S'}
+                        infotabPath={INFOTABS.VARSEL}
+                        tittel={'Varsler'}
+                        component={VarselOversikt}
+                        hurtigtast={'V'}
                     />
                 </KolonneStyle>
             </Style>

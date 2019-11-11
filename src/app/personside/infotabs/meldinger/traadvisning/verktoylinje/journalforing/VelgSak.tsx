@@ -12,6 +12,7 @@ import { apiBaseUri } from '../../../../../../../api/config';
 import Spinner from 'nav-frontend-spinner';
 import { useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
+import VisuallyHiddenAutoFokusHeader from '../../../../../../../components/VisuallyHiddenAutoFokusHeader';
 
 const credentials: RequestInit = { credentials: 'include' };
 
@@ -129,6 +130,7 @@ function VelgSak(props: Props) {
 
     return (
         <>
+            <VisuallyHiddenAutoFokusHeader tittel="Velg sak" />
             <Form>
                 <SakgruppeRadio label={SakKategori.FAG} {...valgtKategori} />
                 <SakgruppeRadio label={SakKategori.GEN} {...valgtKategori} />

@@ -2,6 +2,7 @@ import { isDevelopment } from './environment';
 import { getSaksbehandlerIdent } from './loggInfo/getSaksbehandlerIdent';
 import md5 from 'md5';
 import { detect } from 'detect-browser';
+import { erNyePersonoversikten } from './erNyPersonoversikt';
 
 interface ValuePairs {
     [name: string]: string | number | boolean | object | undefined;
@@ -28,7 +29,7 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
     const event = {
         table: 'modiapersonoversikt',
         fields: { ...fields, identHash: identHash },
-        tags: { action: action, location: location, ...extraTags }
+        tags: { action: action, location: location, erNyePersonoversikten: erNyePersonoversikten(), ...extraTags }
     };
     // @ts-ignore
     window['frontendlogger'].event(

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import theme from '../../../../styles/personOversiktTheme';
@@ -9,6 +9,7 @@ import { AppState } from '../../../../redux/reducers';
 import { paths } from '../../../routes/routing';
 import { INFOTABS } from '../InfoTabEnum';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
+import { InfotabsFokusContext } from '../InfoTabs';
 
 interface Props {
     component: React.ComponentType<{ setHeaderContent: (content: ReactNode) => void }>;
@@ -56,12 +57,14 @@ function Oversiktskomponent(props: Props) {
     const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath.toLowerCase()}/`;
     const [customContent, setCustomContent] = useState<ReactNode>(null);
     const [redirect, setRedirect] = useState(false);
+    const fokusContext = useContext(InfotabsFokusContext);
 
     if (redirect) {
         return <Redirect to={path} />;
     }
 
     const handleClick = () => {
+        fokusContext();
         setRedirect(true);
     };
 
