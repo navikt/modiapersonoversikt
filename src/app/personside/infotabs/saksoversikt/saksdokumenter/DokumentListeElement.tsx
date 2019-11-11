@@ -231,14 +231,17 @@ class DokumentListeElement extends React.PureComponent<Props> {
                 <InnholdWrapper>
                     <UUcustomOrder>
                         <div ref={this.hoveddokumentLinkRef} className="order-second">
-                            <VenstrestiltLenkeKnapp
-                                aria-disabled={!tilgangTilHoveddokument}
-                                onClick={() =>
-                                    this.visDokumentHvisTilgang(dokumentMetadata.hoveddokument, dokumentMetadata)
-                                }
-                            >
+                            {tilgangTilHoveddokument ? (
+                                <VenstrestiltLenkeKnapp
+                                    onClick={() =>
+                                        this.visDokumentHvisTilgang(dokumentMetadata.hoveddokument, dokumentMetadata)
+                                    }
+                                >
+                                    <Element>{this.dokumentTekst(dokumentMetadata.hoveddokument)}</Element>
+                                </VenstrestiltLenkeKnapp>
+                            ) : (
                                 <Element>{this.dokumentTekst(dokumentMetadata.hoveddokument)}</Element>
-                            </VenstrestiltLenkeKnapp>
+                            )}
                         </div>
                         <div className="order-first">
                             <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokumentMetadata)}</Normaltekst>
@@ -262,8 +265,13 @@ class DokumentListeElement extends React.PureComponent<Props> {
     }
 
     private harTilgangTilJournalpost(dokumentMetadata: DokumentMetadata) {
+        const saksid = dokumentMetadata.tilhørendeFagsaksid
+            ? dokumentMetadata.tilhørendeFagsaksid
+            : dokumentMetadata.tilhørendeSaksid;
         return (
-            this.props.harTilgangTilSakstema && dokumentMetadata.feil.feilmelding !== Feilmelding.Sikkerhetsbegrensning
+            this.props.harTilgangTilSakstema &&
+            dokumentMetadata.feil.feilmelding !== Feilmelding.Sikkerhetsbegrensning &&
+            saksid.length !== 0
         );
     }
 
