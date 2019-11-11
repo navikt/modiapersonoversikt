@@ -20,11 +20,11 @@ export function erMonolog(traad: Traad) {
     return bareSaksbehandler !== bareBruker;
 }
 
-export function meldingstittel(melding: Melding) {
-    if (
-        melding.temagruppe === Temagruppe.InnholdSlettet ||
-        [Meldingstype.DOKUMENT_VARSEL, Meldingstype.OPPGAVE_VARSEL].includes(melding.meldingstype)
-    ) {
+export function meldingstittel(melding: Melding): string {
+    if ([Meldingstype.DOKUMENT_VARSEL, Meldingstype.OPPGAVE_VARSEL].includes(melding.meldingstype)) {
+        return melding.statusTekst || meldingstypeTekst(melding.meldingstype);
+    }
+    if (melding.temagruppe === Temagruppe.InnholdSlettet) {
         return meldingstypeTekst(melding.meldingstype);
     }
     return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe)}`;
