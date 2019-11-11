@@ -203,12 +203,22 @@ function BesvarFlere(props: Props & RouteComponentProps) {
             setFeilmelding('Du må minst velge to tråder');
             return;
         }
+        const temagruppe = getTemagruppeForTraader(valgteTraader);
+        const traaderSomSkalSlaasSammen = getTraaderSomSkalSlaasSammen(valgteTraader);
+        if (!temagruppe) {
+            const message = 'Kunne ikke finne temagruppe for tråder, kontakt brukerstøtte';
+            setFeilmelding(message);
+            loggError(Error(message), 'Kunne ikke finne temagruppe for tråder som skulle slåes sammen', {
+                traader: JSON.stringify(traaderSomSkalSlaasSammen)
+            });
+            return;
+        }
         if (isPosting(slaaSammenResource)) {
             return;
         }
         const request: SlaaSammenRequest = {
-            temagruppe: getTemagruppeForTraader(valgteTraader),
-            traader: getTraaderSomSkalSlaasSammen(valgteTraader)
+            temagruppe: temagruppe,
+            traader: traaderSomSkalSlaasSammen
         };
         const callback = (response: SlaaSammenResponse) => {
             dispatch(setTråderITråderResource(response.traader));

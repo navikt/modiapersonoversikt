@@ -36,7 +36,7 @@ export const TemaPlukkbare = [
 
 export const TemaKommunaleTjenester = [Temagruppe.AndreSosiale, Temagruppe.ØkonomiskSosial];
 
-export function temagruppeTekst(temagruppe: Temagruppe) {
+export function temagruppeTekst(temagruppe: Temagruppe | null) {
     switch (temagruppe) {
         case Temagruppe.Uføretrygd:
             return 'Uføretrygd';
@@ -65,7 +65,7 @@ export function temagruppeTekst(temagruppe: Temagruppe) {
         case Temagruppe.InnholdSlettet:
             return 'Innhold slettet';
         case null:
-            return '';
+            return 'Ingen temagruppe';
         default:
             return 'Ukjent temagruppe: ' + temagruppe;
     }

@@ -54,7 +54,7 @@ const Style = styled.div`
 
 interface Props {
     oppgaveId: string;
-    temagruppe?: Temagruppe;
+    temagruppe?: Temagruppe | null;
     status: FortsettDialogPanelState;
     setDialogStatus: (status: FortsettDialogPanelState) => void;
 }

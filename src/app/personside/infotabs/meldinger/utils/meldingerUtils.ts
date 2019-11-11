@@ -39,7 +39,10 @@ export function erPlukkbar(temagruppe: Temagruppe) {
     return TemaPlukkbare.includes(temagruppe);
 }
 
-export function erKommunaleTjenester(temagruppe: Temagruppe) {
+export function erKommunaleTjenester(temagruppe: Temagruppe | null) {
+    if (!temagruppe) {
+        return false;
+    }
     return TemaKommunaleTjenester.includes(temagruppe);
 }
 
