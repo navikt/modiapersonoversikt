@@ -55,6 +55,11 @@ exports[`viser fortsett dialog 1`] = `
   border: solid 0.0625rem #78706a;
 }
 
+.c2:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
 .c3 {
   overflow: hidden;
 }
@@ -212,9 +217,15 @@ exports[`viser fortsett dialog 1`] = `
     className="c1"
     onSubmit={[Function]}
   >
-    <div
+    <article
       className="c2"
     >
+      <h3
+        className="sr-only"
+        tabIndex={-1}
+      >
+        Tråd under arbeid
+      </h3>
       <div
         className="ekspanderbartPanel c3 ekspanderbartPanel--apen"
       >
@@ -461,7 +472,7 @@ exports[`viser fortsett dialog 1`] = `
           </div>
         </article>
       </div>
-    </div>
+    </article>
     <div
       className="c9"
     >
