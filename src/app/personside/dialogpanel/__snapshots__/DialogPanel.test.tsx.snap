@@ -520,6 +520,7 @@ exports[`viser dialogpanel 1`] = `
                 className="skjemaelement__input textarea--medMeta"
                 id="Helt tilfeldig ID"
                 onChange={[Function]}
+                onKeyDown={[Function]}
                 placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
                 style={
                   Object {
