@@ -12,6 +12,7 @@ import { LenkeKnapp } from '../../../../../../components/common-styled-component
 import { apiBaseUri } from '../../../../../../api/config';
 import { useFødselsnummer, usePrevious } from '../../../../../../utils/customHooks';
 import { Normaltekst } from 'nav-frontend-typografi';
+import { meldingstittel, nyesteMelding } from '../../utils/meldingerUtils';
 
 interface Props {
     valgtTraad: Traad;
@@ -77,7 +78,7 @@ function Verktoylinje(props: Props) {
     return (
         <PanelStyle>
             <h3 className="sr-only" ref={titleRef} tabIndex={-1}>
-                Verktøylinje
+                Verktøylinje - {meldingstittel(nyesteMelding(props.valgtTraad))}
             </h3>
             <KnapperPanelStyle>
                 <OppgaveknapperStyle>
