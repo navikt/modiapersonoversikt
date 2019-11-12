@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser send ny melding 1`] = `
-.c3 label {
+.c7 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -12,14 +12,14 @@ exports[`viser send ny melding 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c5 {
+.c9 {
   background-color: white;
   border-radius: .25rem;
   border: 1px solid #78706a;
   position: relative;
 }
 
-.c6 {
+.c10 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -40,12 +40,12 @@ exports[`viser send ny melding 1`] = `
   align-items: center;
 }
 
-.c6:focus {
+.c10:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c9 {
+.c3 {
   position: absolute;
   height: 2rem;
   width: 2rem;
@@ -59,31 +59,31 @@ exports[`viser send ny melding 1`] = `
   transform: none;
 }
 
-.c9:after {
+.c3:after {
   background: none;
 }
 
-.c9:hover {
+.c3:hover {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
 }
 
-.c10 {
+.c4 {
   position: relative;
   top: 2px;
   width: 18px;
 }
 
-.c8 {
+.c2 {
   position: relative;
 }
 
-.c8 textarea {
+.c2 textarea {
   min-height: 9rem;
 }
 
-.c8 label {
+.c2 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -94,8 +94,8 @@ exports[`viser send ny melding 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c11 textarea,
-.c11 .textareamirror {
+.c5 textarea,
+.c5 .textareamirror {
   padding-left: 2.25rem;
 }
 
@@ -122,7 +122,7 @@ exports[`viser send ny melding 1`] = `
   margin-bottom: 1rem;
 }
 
-.c2 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -136,19 +136,19 @@ exports[`viser send ny melding 1`] = `
   flex-wrap: wrap;
 }
 
-.c2 > * {
+.c6 > * {
   margin-top: 0.3rem;
 }
 
-.c2 > *:not(:last-child) {
+.c6 > *:not(:last-child) {
   margin-right: 1rem;
 }
 
-.c7 {
+.c11 {
   margin-top: 1rem;
 }
 
-.c7 label {
+.c11 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -177,7 +177,7 @@ exports[`viser send ny melding 1`] = `
   margin-bottom: 0.7rem;
 }
 
-.c4 {
+.c8 {
   margin-top: 1rem;
 }
 
@@ -195,6 +195,90 @@ exports[`viser send ny melding 1`] = `
   >
     <div
       className="c2"
+    >
+      <button
+        className="knapp c3 knapp--hoved"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          className="c4"
+          height="24px"
+          preserveAspectRatio="xMidYMid meet"
+          viewBox="0 0 24 24"
+          width="24px"
+          x="0px"
+          xmlns="http://www.w3.org/2000/svg"
+          y="0px"
+        >
+          <path
+            d="M20.854,6.146l-6-6C14.76,0.053,14.632,0,14.5,0h-11C3.224,0,3,0.224,3,0.5v23C3,23.776,3.224,24,3.5,24h17  c0.276,0,0.5-0.224,0.5-0.5v-17C21,6.367,20.947,6.24,20.854,6.146z M7.5,7H12c0.276,0,0.5,0.224,0.5,0.5S12.276,8,12,8H7.5  C7.224,8,7,7.776,7,7.5S7.224,7,7.5,7z M16.5,20h-9C7.224,20,7,19.776,7,19.5S7.224,19,7.5,19h9c0.276,0,0.5,0.224,0.5,0.5  S16.776,20,16.5,20z M16.5,17h-9C7.224,17,7,16.776,7,16.5S7.224,16,7.5,16h9c0.276,0,0.5,0.224,0.5,0.5S16.776,17,16.5,17z   M16.5,14h-9C7.224,14,7,13.776,7,13.5S7.224,13,7.5,13h9c0.276,0,0.5,0.224,0.5,0.5S16.776,14,16.5,14z M16.5,11h-9  C7.224,11,7,10.776,7,10.5S7.224,10,7.5,10h9c0.276,0,0.5,0.224,0.5,0.5S16.776,11,16.5,11z M14.5,6.5v-6l6,6H14.5z"
+            fill="currentColor"
+          />
+        </svg>
+        <span
+          className="sr-only"
+        >
+          Standardtekster
+        </span>
+      </button>
+      <div
+        className="c5"
+      >
+        <div
+          className="skjemaelement textarea__container"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Melding
+          </label>
+          <div
+            className="textarea--medMeta__wrapper"
+          >
+            <textarea
+              className="skjemaelement__input textarea--medMeta"
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
+              style={
+                Object {
+                  "height": "30px",
+                }
+              }
+              type="text"
+              value=""
+            />
+            <p
+              className="textarea--medMeta__teller"
+            >
+              <span
+                aria-live="polite"
+                className="teller-tekst"
+              >
+                Du har 5000 tegn igjen
+              </span>
+            </p>
+          </div>
+          <div
+            aria-live="assertive"
+            role="alert"
+          />
+          <div
+            aria-hidden="true"
+            className="textareamirror"
+          />
+        </div>
+      </div>
+      <div
+        aria-live="assertive"
+        role="alert"
+      />
+    </div>
+    <div
+      className="c6"
     >
       <div
         className="skjemaelement skjemaelement--horisontal"
@@ -258,7 +342,7 @@ exports[`viser send ny melding 1`] = `
         className=""
       >
         <div
-          className="skjemaelement c3"
+          className="skjemaelement c7"
         >
           <label
             className="skjemaelement__label"
@@ -320,7 +404,7 @@ exports[`viser send ny melding 1`] = `
         />
       </div>
       <div
-        className="alertstripe c4 alertstripe--info"
+        className="alertstripe c8 alertstripe--info"
       >
         <span
           aria-label="info"
@@ -357,11 +441,11 @@ exports[`viser send ny melding 1`] = `
         className=""
       >
         <div
-          className="c5"
+          className="c9"
         >
           <button
             aria-expanded={false}
-            className="c6"
+            className="c10"
             onClick={[Function]}
             type="button"
           >
@@ -381,7 +465,7 @@ exports[`viser send ny melding 1`] = `
         />
       </div>
       <div
-        className="skjemaelement c7"
+        className="skjemaelement c11"
       >
         <label
           className="skjemaelement__label"
@@ -419,7 +503,7 @@ exports[`viser send ny melding 1`] = `
         />
       </div>
       <div
-        className="alertstripe c4 alertstripe--info"
+        className="alertstripe c8 alertstripe--info"
       >
         <span
           aria-label="info"
@@ -452,90 +536,6 @@ exports[`viser send ny melding 1`] = `
           Bruker kan svare
         </div>
       </div>
-    </div>
-    <div
-      className="c8"
-    >
-      <button
-        className="knapp c9 knapp--hoved"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        <svg
-          className="c10"
-          height="24px"
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 24 24"
-          width="24px"
-          x="0px"
-          xmlns="http://www.w3.org/2000/svg"
-          y="0px"
-        >
-          <path
-            d="M20.854,6.146l-6-6C14.76,0.053,14.632,0,14.5,0h-11C3.224,0,3,0.224,3,0.5v23C3,23.776,3.224,24,3.5,24h17  c0.276,0,0.5-0.224,0.5-0.5v-17C21,6.367,20.947,6.24,20.854,6.146z M7.5,7H12c0.276,0,0.5,0.224,0.5,0.5S12.276,8,12,8H7.5  C7.224,8,7,7.776,7,7.5S7.224,7,7.5,7z M16.5,20h-9C7.224,20,7,19.776,7,19.5S7.224,19,7.5,19h9c0.276,0,0.5,0.224,0.5,0.5  S16.776,20,16.5,20z M16.5,17h-9C7.224,17,7,16.776,7,16.5S7.224,16,7.5,16h9c0.276,0,0.5,0.224,0.5,0.5S16.776,17,16.5,17z   M16.5,14h-9C7.224,14,7,13.776,7,13.5S7.224,13,7.5,13h9c0.276,0,0.5,0.224,0.5,0.5S16.776,14,16.5,14z M16.5,11h-9  C7.224,11,7,10.776,7,10.5S7.224,10,7.5,10h9c0.276,0,0.5,0.224,0.5,0.5S16.776,11,16.5,11z M14.5,6.5v-6l6,6H14.5z"
-            fill="currentColor"
-          />
-        </svg>
-        <span
-          className="sr-only"
-        >
-          Standardtekster
-        </span>
-      </button>
-      <div
-        className="c11"
-      >
-        <div
-          className="skjemaelement textarea__container"
-        >
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Melding
-          </label>
-          <div
-            className="textarea--medMeta__wrapper"
-          >
-            <textarea
-              className="skjemaelement__input textarea--medMeta"
-              id="Helt tilfeldig ID"
-              onChange={[Function]}
-              placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
-              style={
-                Object {
-                  "height": "30px",
-                }
-              }
-              type="text"
-              value=""
-            />
-            <p
-              className="textarea--medMeta__teller"
-            >
-              <span
-                aria-live="polite"
-                className="teller-tekst"
-              >
-                Du har 5000 tegn igjen
-              </span>
-            </p>
-          </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
-          <div
-            aria-hidden="true"
-            className="textareamirror"
-          />
-        </div>
-      </div>
-      <div
-        aria-live="assertive"
-        role="alert"
-      />
     </div>
     <div
       className="c12"
