@@ -1,9 +1,10 @@
 import * as React from 'react';
+import { ReactNode } from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { nyesteMelding } from '../meldinger/utils/meldingerUtils';
+import { filtrerBortVarsel, nyesteMelding } from '../meldinger/utils/meldingerUtils';
 import { meldingstypeTekst } from '../meldinger/utils/meldingstekster';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { datoSynkende } from '../../../../utils/dateUtils';
@@ -12,7 +13,6 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { meldingerTest } from '../dyplenkeTest/utils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { ReactNode } from 'react';
 import { useOnMount } from '../../../../utils/customHooks';
 import { temagruppeTekst } from '../../../../models/Temagrupper';
 import TraadSammendrag from '../meldinger/traadliste/TraadSammendrag';
@@ -40,6 +40,7 @@ function MeldingerOversikt(props: Props) {
 
 function TraadListe(props: { traader: Traad[] } & Props) {
     const traadKomponenter = props.traader
+        .filter(traad => filtrerBortVarsel(traad))
         .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato))
         .slice(0, 2)
         .map(traad => <Traadelement traad={traad} key={traad.traadId} />);

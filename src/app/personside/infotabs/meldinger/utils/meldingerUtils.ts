@@ -151,3 +151,7 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
             .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato));
     }, [debouncedQuery, traader]);
 }
+
+export function filtrerBortVarsel(traad: Traad): boolean {
+    return ![Meldingstype.DOKUMENT_VARSEL, Meldingstype.OPPGAVE_VARSEL].includes(nyesteMelding(traad).meldingstype);
+}

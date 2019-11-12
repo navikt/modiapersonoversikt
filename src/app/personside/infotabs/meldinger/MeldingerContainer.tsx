@@ -14,7 +14,7 @@ import { useInfotabsDyplenker } from '../dyplenker';
 import { useHistory, withRouter } from 'react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
-import { useSokEtterMeldinger } from './utils/meldingerUtils';
+import { filtrerBortVarsel, useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 
@@ -98,7 +98,8 @@ function MeldingerContainer() {
             returnOnPending={<CenteredLazySpinner />}
         >
             {data => {
-                if (data.length === 0) {
+                const traader = data.filter(traad => filtrerBortVarsel(traad));
+                if (traader.length === 0) {
                     return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
                 }
                 return (
@@ -107,7 +108,7 @@ function MeldingerContainer() {
                             <TraadListe
                                 sokeord={sokeord}
                                 setSokeord={setSokeord}
-                                traader={data}
+                                traader={traader}
                                 valgtTraad={valgtTraad}
                             />
                         </ScrollBar>
