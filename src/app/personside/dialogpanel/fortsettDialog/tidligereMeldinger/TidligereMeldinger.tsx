@@ -58,8 +58,6 @@ function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: bool
 }
 
 function TidligereMeldinger(props: Props) {
-    const ref = React.createRef<HTMLHeadingElement>();
-    useFocusOnMount(ref);
     const traadUtenDelviseSvar = props.traad.meldinger.filter(
         melding => melding.meldingstype !== Meldingstype.DELVIS_SVAR_SKRIFTLIG
     );
@@ -71,7 +69,7 @@ function TidligereMeldinger(props: Props) {
 
     return (
         <Wrapper>
-            <h3 ref={ref} tabIndex={-1} className="sr-only">
+            <h3 tabIndex={-1} className="sr-only">
                 Tråd under arbeid
             </h3>
             <Traadpanel traad={traadUtenDelviseSvar} tittel="Vis tidligere meldinger" defaultApen={defaultApen} />
