@@ -236,11 +236,11 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
     <nav
       className="c2"
     >
-      <h2
+      <h3
         className="sr-only"
       >
-        Brukerens meldinger
-      </h2>
+        Søk i brukerens meldinger
+      </h3>
       <div
         className="c3"
       >
@@ -270,14 +270,19 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
         className="c4"
       >
         <p
-          aria-live="polite"
+          aria-live="assertive"
           className="typo-normal"
         >
           Totalt 1 melding
         </p>
       </div>
+      <h3
+        className="sr-only"
+      >
+        Meldingsliste - 
+        Totalt 1 melding
+      </h3>
       <ol
-        aria-label="Meldingsliste"
         className="c5"
         role="tablist"
       >

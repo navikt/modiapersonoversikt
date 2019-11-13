@@ -55,13 +55,24 @@ exports[`viser fortsett dialog 1`] = `
   border: solid 0.0625rem #78706a;
 }
 
+.c0:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
 .c1 {
   overflow: hidden;
 }
 
-<div
+<article
   className="c0"
 >
+  <h3
+    className="sr-only"
+    tabIndex={-1}
+  >
+    Tråd under arbeid
+  </h3>
   <div
     className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
   >
@@ -308,5 +319,5 @@ exports[`viser fortsett dialog 1`] = `
       </div>
     </article>
   </div>
-</div>
+</article>
 `;
