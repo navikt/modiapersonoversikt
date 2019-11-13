@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { SkjemaGruppe, Textarea } from 'nav-frontend-skjema';
+import { SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import StandardTekstModal from './standardTekster/StandardTekstModal';
+import AutocompleteTextarea from '../../../../components/autocomplete-textarea/autocomplete-textarea';
 
 const StyledSkjemagruppe = styled(SkjemaGruppe)`
     position: relative;
@@ -43,7 +44,7 @@ function TekstFelt(props: Props) {
         <StyledSkjemagruppe feil={props.feilmelding ? { feilmelding: props.feilmelding } : undefined}>
             <StandardTekstModal appendTekst={appendTekst(props.tekst, props.updateTekst)} />
             <TextareaWrapper>
-                <Textarea
+                <AutocompleteTextarea
                     value={props.tekst}
                     onChange={e =>
                         props.updateTekst((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)
