@@ -187,6 +187,7 @@ exports[`viser dialogpanel 1`] = `
   -ms-flex-positive: 1;
   flex-grow: 1;
   border-top: solid 0.0625rem #b7b1a9;
+  word-break: break-word;
 }
 
 <article
