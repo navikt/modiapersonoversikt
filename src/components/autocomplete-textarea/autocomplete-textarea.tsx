@@ -86,10 +86,12 @@ function AutocompleteTextareaComponent(props: TextareaProps & { status: STATUS; 
                     event.currentTarget.value = [value.substring(0, start), fullfortTekst, value.substring(end)].join(
                         ''
                     );
+
+                    props.onChange(event);
                 }
             }
         },
-        [status]
+        [status, props.onChange]
     );
 
     return <Textarea onKeyDown={onKeyDown} {...rest} />;
