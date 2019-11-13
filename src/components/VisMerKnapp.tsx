@@ -3,6 +3,7 @@ import { theme } from '../styles/personOversiktTheme';
 import styled, { css } from 'styled-components';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { isSelectingText } from '../utils/functionUtils';
 
 const Wrapper = styled.div<{ valgt: boolean }>`
     position: relative;
@@ -51,6 +52,9 @@ interface Props extends RouteComponentProps {
 
 function VisMerKnapp(props: Props) {
     const handleClick = (event: React.MouseEvent) => {
+        if (isSelectingText()) {
+            return;
+        }
         if (props.onClick) {
             props.onClick(event);
         } else if (props.linkTo) {
