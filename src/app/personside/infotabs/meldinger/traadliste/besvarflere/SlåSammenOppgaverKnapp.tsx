@@ -40,6 +40,7 @@ function SlaaSammenOppgaverKnapp({ traader }: { traader: Traad[] }) {
     return (
         <ErrorBoundary boundaryName="Slå sammen oppgaver">
             <KnappWrapperStyle>
+                <h3 className="sr-only">Besvar flere oppgaver</h3>
                 <KnappBase type={'hoved'} onClick={() => settApen(true)}>
                     Besvar flere
                 </KnappBase>

@@ -168,6 +168,7 @@ function Preview({ tekst, locale, sokefelt, highlightRule }: PreviewProps) {
     }
     return (
         <PreviewWrapper>
+            <h3 className="sr-only">Forhåndsvisning</h3>
             <Systemtittel className="blokk-xs">{tekst && tekst.overskrift}</Systemtittel>
             <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]} className="typo-normal blokk-m">
                 {tekst && tekst.innhold[locale]}
@@ -190,6 +191,7 @@ function StandardTekstVisning(props: Props) {
 
     return (
         <Container>
+            <h3 className="sr-only">Standardtekster</h3>
             <Liste className="standardtekster__liste">{tekstElementer}</Liste>
             <PreviewContainer>
                 <Preview

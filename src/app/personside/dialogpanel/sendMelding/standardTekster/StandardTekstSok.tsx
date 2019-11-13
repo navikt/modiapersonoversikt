@@ -90,7 +90,7 @@ function StandardTekstSok(props: Props) {
     const inputRef = React.useRef<HTMLInputElement>();
     const data = useFetch<StandardTekster.Tekster>('/modiapersonoversikt-skrivestotte/skrivestotte');
     const sokefelt = useFieldState(erKontaktsenter() ? '#ks ' : '');
-    const debouncedSokefelt = useDebounce(sokefelt.input.value, 100);
+    const debouncedSokefelt = useDebounce(sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() => sokEtterTekster(data, debouncedSokefelt));
     const valgt = useFieldState('');
     const valgtLocale = useFieldState('');
@@ -152,6 +152,9 @@ function StandardTekstSok(props: Props) {
                                 autoFocus={true}
                             />
                         </Sokefelt>
+                        <h3 className="sr-only" aria-live="polite">
+                            {filtrerteTekster.length} tekster traff søket
+                        </h3>
                         {content}
                     </FormContainer>
                 )}
