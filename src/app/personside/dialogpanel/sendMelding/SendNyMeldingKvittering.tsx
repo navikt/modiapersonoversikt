@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { Meldingstype, SendReferatRequest } from '../../../../models/meldinger/meldinger';
 import { DialogpanelKvittering } from '../fellesStyling';
+import { meldingstypeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
 
 export function ReferatSendtKvittering(props: { request: SendReferatRequest; lukk: () => void }) {
+    const tittel = `${meldingstypeTekst(props.request.meldingstype)} sent til bruker`;
     return (
         <DialogpanelKvittering
-            tittel="Referatet ble loggført"
+            tittel={tittel}
             fritekst={props.request.fritekst}
             meldingstype={props.request.meldingstype}
             lukk={props.lukk}
