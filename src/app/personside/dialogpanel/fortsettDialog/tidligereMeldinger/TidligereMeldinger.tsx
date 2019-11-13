@@ -6,8 +6,6 @@ import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Ingress } from 'nav-frontend-typografi';
 import { useState } from 'react';
-import { useFocusOnMount } from '../../../../../utils/customHooks';
-
 interface Props {
     traad: Traad;
 }
