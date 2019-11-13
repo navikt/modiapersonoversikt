@@ -12,6 +12,7 @@ import theme from '../../../styles/personOversiktTheme';
 const DialogPanelWrapper = styled.article`
     flex-grow: 1;
     border-top: ${theme.border.skilleSvak};
+    word-break: break-word;
 `;
 
 function DialogPanel(props: RouteComponentProps) {
