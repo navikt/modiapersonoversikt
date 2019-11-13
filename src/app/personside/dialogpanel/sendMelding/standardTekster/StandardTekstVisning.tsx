@@ -131,7 +131,9 @@ function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; so
         return null;
     }
 
-    const { tags } = parseTekst(sokefelt.input.value);
+    const { tags: queryTags } = parseTekst(sokefelt.input.value);
+    const tags = queryTags.map(tag => tag.toLowerCase());
+
     const tagElements = valgtTekst.tags
         .filter(tag => tag.length > 0)
         .filter((tag, index, list) => list.indexOf(tag) === index)
