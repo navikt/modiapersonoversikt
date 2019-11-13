@@ -11,7 +11,7 @@ import { STATUS } from '../../rest/utils/utils';
 import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
 
 const rules = [
-    { regex: /^hei,?$/i, replacement: 'Hei, [bruker.navn]\n' },
+    { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
     { regex: /^mvh$/i, replacement: 'Med vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter' }
 ];
 
