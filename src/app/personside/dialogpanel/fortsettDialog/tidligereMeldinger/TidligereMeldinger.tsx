@@ -6,18 +6,22 @@ import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Ingress } from 'nav-frontend-typografi';
 import { useState } from 'react';
+import { useFocusOnMount } from '../../../../../utils/customHooks';
 
 interface Props {
     traad: Traad;
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.article`
     ${theme.resetEkspanderbartPanelStyling}
     > *:not(:first-child) {
         margin-top: 1rem;
     }
     > * {
         border: ${theme.border.skille};
+    }
+    &:focus {
+        ${theme.focus};
     }
 `;
 
@@ -54,6 +58,8 @@ function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: bool
 }
 
 function TidligereMeldinger(props: Props) {
+    const ref = React.createRef<HTMLHeadingElement>();
+    useFocusOnMount(ref);
     const traadUtenDelviseSvar = props.traad.meldinger.filter(
         melding => melding.meldingstype !== Meldingstype.DELVIS_SVAR_SKRIFTLIG
     );
@@ -65,6 +71,9 @@ function TidligereMeldinger(props: Props) {
 
     return (
         <Wrapper>
+            <h3 ref={ref} tabIndex={-1} className="sr-only">
+                Tråd under arbeid
+            </h3>
             <Traadpanel traad={traadUtenDelviseSvar} tittel="Vis tidligere meldinger" defaultApen={defaultApen} />
             <Traadpanel traad={delsvar} tittel="Vis alle delsvar" defaultApen={defaultApen} />
         </Wrapper>

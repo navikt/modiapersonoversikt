@@ -93,6 +93,17 @@ function SendNyMelding(props: Props) {
         <StyledArticle>
             <Undertittel>Send ny melding</Undertittel>
             <FormStyle onSubmit={props.handleSubmit}>
+                <TekstFelt
+                    tekst={state.tekst}
+                    navn={navn}
+                    tekstMaksLengde={tekstMaksLengde}
+                    updateTekst={tekst => updateState({ tekst })}
+                    feilmelding={
+                        !NyMeldingValidator.tekst(state) && state.visFeilmeldinger
+                            ? `Du må skrive en tekst på mellom 0 og ${tekstMaksLengde} tegn`
+                            : undefined
+                    }
+                />
                 <VelgDialogType formState={state} updateDialogType={dialogType => updateState({ dialogType })} />
                 <Margin>
                     <UnmountClosed isOpened={erReferat} hasNestedCollapse={true}>
@@ -118,17 +129,6 @@ function SendNyMelding(props: Props) {
                         <StyledAlertStripeInfo>Bruker kan svare</StyledAlertStripeInfo>
                     </UnmountClosed>
                 </Margin>
-                <TekstFelt
-                    tekst={state.tekst}
-                    navn={navn}
-                    tekstMaksLengde={tekstMaksLengde}
-                    updateTekst={tekst => updateState({ tekst })}
-                    feilmelding={
-                        !NyMeldingValidator.tekst(state) && state.visFeilmeldinger
-                            ? `Du må skrive en tekst på mellom 0 og ${tekstMaksLengde} tegn`
-                            : undefined
-                    }
-                />
                 <Feilmelding sendNyMeldingPanelState={props.sendNyMeldingPanelState.type} />
                 <KnappWrapper>
                     <KnappBase

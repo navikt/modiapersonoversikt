@@ -11,13 +11,18 @@ export function sokEtterTekster(
         return tekster;
     }
 
-    const { tags, text } = parseTekst(query);
-    const words = text.split(' ');
+    const { tags: queryTags, text } = parseTekst(query);
+
+    const tags = queryTags.map(tag => tag.toLowerCase());
+    const words = text.split(' ').map(word => word.toLowerCase());
 
     return tekster
-        .filter(tekst => tags.every(tag => tekst.tags.includes(tag)))
         .filter(tekst => {
-            const matchtext = `${tekst.overskrift} \u0000 ${Object.values(tekst.innhold).join('\u0000')}`;
+            const searchTags = tekst.tags.map(tag => tag.toLowerCase());
+            return tags.every(tag => searchTags.includes(tag));
+        })
+        .filter(tekst => {
+            const matchtext = `${tekst.overskrift} \u0000 ${Object.values(tekst.innhold).join('\u0000')}`.toLowerCase();
             return words.every(word => matchtext.includes(word));
         });
 }
