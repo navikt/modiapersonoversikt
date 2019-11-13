@@ -91,7 +91,7 @@ export function byggAutofullforMap(
 
     return {
         ...personData,
-        'bruker.navkontor': navKontor.enhetNavn,
+        'bruker.navkontor': navKontor ? navKontor.enhetNavn : 'Ukjent kontor',
         'saksbehandler.fornavn': saksbehandler.fornavn,
         'saksbehandler.etternavn': saksbehandler.etternavn,
         'saksbehandler.navn': saksbehandler.navn,
