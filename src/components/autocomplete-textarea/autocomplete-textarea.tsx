@@ -12,25 +12,27 @@ import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTek
 
 const rules = [
     { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
-    { regex: /^mvh$/i, replacement: 'Med vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter' }
+    { regex: /^mvh$/i, replacement: 'Med vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter' },
+    { regex: /^foet$/i, replacement: '[bruker.navn]' }
 ];
 
 const SPACE = 32;
 const ENTER = 13;
 
 function findWordBoundary(text: string, initialPosition: number): [number, number] {
-    let start = initialPosition;
-    let end = initialPosition;
-    let spaces = /\s/;
+    const words = text.split(/\s/);
+    const indices = new Array(words.length);
+    for (let i = 0; i < words.length; i++) {
+        const start = i === 0 ? 0 : indices[i - 1][1] + 1;
+        const end = start + words[i].length;
+        indices[i] = [start, end];
 
-    while (start >= 0 && !spaces.exec(text[start])) {
-        start--;
-    }
-    while (end < text.length && !spaces.exec(text[end])) {
-        end++;
+        if (start <= initialPosition && end >= initialPosition) {
+            return [start, end];
+        }
     }
 
-    return [Math.max(0, start + 1), Math.min(text.length, end)];
+    return [0, 0];
 }
 
 function AutocompleteTextarea(props: TextareaProps) {
@@ -61,7 +63,8 @@ function AutocompleteTextareaComponent(props: TextareaProps & { status: STATUS; 
                 if (cursorPosition >= 0) {
                     const value = event.currentTarget.value;
                     const [start, end] = findWordBoundary(value, cursorPosition);
-                    const word = value.substring(start, end);
+
+                    const word = value.substring(start, end).trim();
 
                     const replacement = rules.reduce((acc: string, { regex, replacement }) => {
                         if (acc.match(regex)) {
@@ -86,6 +89,8 @@ function AutocompleteTextareaComponent(props: TextareaProps & { status: STATUS; 
                     event.currentTarget.value = [value.substring(0, start), fullfortTekst, value.substring(end)].join(
                         ''
                     );
+
+                    event.currentTarget.selectionEnd = cursorPosition + (fullfortTekst.length - word.length);
 
                     props.onChange(event);
                 }
