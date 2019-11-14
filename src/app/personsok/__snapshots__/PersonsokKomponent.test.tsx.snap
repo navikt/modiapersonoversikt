@@ -289,7 +289,7 @@ exports[`viser personsøk-komponent 1`] = `
             className="skjemaelement__label"
             htmlFor="Helt tilfeldig ID"
           >
-            Kommunenummer
+            Bosted
           </label>
           <input
             className="skjemaelement__input input--m"
