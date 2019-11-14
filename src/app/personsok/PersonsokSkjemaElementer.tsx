@@ -19,7 +19,9 @@ const FormStyle = styled.article`
 const SectionStyle = styled.section`
     display: flex;
     > *:first-child {
-        padding-right: 3em;
+        padding-right: 2em;
+        border-right: ${theme.border.skille};
+        margin-right: 2rem;
     }
 `;
 
@@ -111,7 +113,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                     <Systemtittel tag={'h2'}>Begrens søket</Systemtittel>
                     <Input
                         bredde={'M'}
-                        label={'Bosted'}
+                        label={'Kommunenummer'}
                         value={props.form.state.kommunenummer}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
                             props.form.actions.settKommunenummer(event.target.value)
