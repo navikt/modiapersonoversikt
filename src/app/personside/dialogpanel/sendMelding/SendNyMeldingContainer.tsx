@@ -83,7 +83,7 @@ function SendNyMeldingContainer() {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
             const request: SendSpørsmålRequest = {
                 fritekst: state.tekst,
-                saksID: state.sak.saksId,
+                sak: state.sak,
                 erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
             };
             post(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, request)
