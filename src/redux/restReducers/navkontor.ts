@@ -3,7 +3,6 @@ import { apiBaseUri } from '../../api/config';
 import { AppState } from '../reducers';
 import { isLoadedPerson } from './personinformasjon';
 import { NavKontorResponse } from '../../models/navkontor';
-import { loggError } from '../../utils/frontendLogger';
 import { Kodeverk } from '../../models/kodeverk';
 
 export function getUrl(geografiskTilknytning?: string, diskresjonsKode?: Kodeverk) {
@@ -15,7 +14,6 @@ export function getUrl(geografiskTilknytning?: string, diskresjonsKode?: Kodever
 function getBrukersNavkontorFetchUri(state: AppState) {
     const personResource = state.restResources.personinformasjon;
     if (!isLoadedPerson(personResource)) {
-        loggError(new Error('Fetch Nav-kontor: Kunne ikke finne personinformasjon'));
         return `${apiBaseUri}/enheter?gt=`;
     }
     const geografiskTilknytning = personResource.data.geografiskTilknytning;
