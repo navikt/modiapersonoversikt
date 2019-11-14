@@ -508,7 +508,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   }
 }
 
-@media (max-width:80rem) {
+@media (max-width:1279px) {
   .c5 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -534,14 +534,14 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   }
 }
 
-@media (min-width:80rem) {
+@media (min-width:1280px) {
   .c0 {
     max-height: 100%;
     max-width: 100%;
   }
 }
 
-@media (min-width:80rem) {
+@media (min-width:1280px) {
   .c0 {
     display: -webkit-box;
     display: -webkit-flex;
