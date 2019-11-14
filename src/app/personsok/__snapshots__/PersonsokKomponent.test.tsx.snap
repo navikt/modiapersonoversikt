@@ -72,7 +72,9 @@ exports[`viser personsøk-komponent 1`] = `
 }
 
 .c1 > *:first-child {
-  padding-right: 3em;
+  padding-right: 2em;
+  border-right: solid 0.0625rem #78706a;
+  margin-right: 2rem;
 }
 
 .c5 {
@@ -287,7 +289,7 @@ exports[`viser personsøk-komponent 1`] = `
             className="skjemaelement__label"
             htmlFor="Helt tilfeldig ID"
           >
-            Bosted
+            Kommunenummer
           </label>
           <input
             className="skjemaelement__input input--m"
