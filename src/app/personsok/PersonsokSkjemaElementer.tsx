@@ -113,7 +113,7 @@ function PersonsokSkjemaElementer(props: { form: PersonsokSkjemaProps }) {
                     <Systemtittel tag={'h2'}>Begrens søket</Systemtittel>
                     <Input
                         bredde={'M'}
-                        label={'Kommunenummer'}
+                        label={'Bosted'}
                         value={props.form.state.kommunenummer}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
                             props.form.actions.settKommunenummer(event.target.value)
