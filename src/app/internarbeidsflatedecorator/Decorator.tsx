@@ -59,6 +59,22 @@ function lagConfig(
     };
 }
 
+function useKlargjorContextholder(sokFnr?: string) {
+    const [klar, setKlar] = useState(false);
+    useOnMount(() => {
+        if (sokFnr === '0') {
+            // Manuell nullstilling av bruker i context
+            fetch('/modiacontextholder/api/context/aktivbruker', { method: 'DELETE', credentials: 'include' }).then(
+                () => setKlar(true)
+            );
+        } else {
+            setKlar(true);
+        }
+    });
+
+    return klar;
+}
+
 function Decorator({ location, history }: RouteComponentProps<{}>) {
     const queryParams = parseQueryParams(location.search);
     const sokFnr = queryParams.sokFnr === '0' ? '' : queryParams.sokFnr;
@@ -72,12 +88,7 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
         settEnhet(enhet);
     };
 
-    useOnMount(() => {
-        if (queryParams.sokFnr === '0') {
-            // Manuell nullstilling av bruker i context
-            fetch('/modiacontextholder/api/context/aktivbruker', { method: 'DELETE', credentials: 'include' });
-        }
-    });
+    const contextErKlar = useKlargjorContextholder(queryParams.sokFnr);
 
     const config = useCallback(lagConfig, [sokFnr, fnr, enhet, history, handleSetEnhet])(
         sokFnr,
@@ -87,10 +98,6 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
         handleSetEnhet
     );
 
-    return (
-        <nav id="header">
-            <InternflateDecorator {...config} />
-        </nav>
-    );
+    return <nav id="header">{contextErKlar && <InternflateDecorator {...config} />}</nav>;
 }
 export default withRouter(Decorator);
