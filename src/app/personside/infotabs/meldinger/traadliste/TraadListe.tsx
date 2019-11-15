@@ -5,7 +5,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useSokEtterMeldinger } from '../utils/meldingerUtils';
-import { Input } from 'nav-frontend-skjema';
+import { Checkbox, Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import TraadListeElement from './TraadListeElement';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
@@ -18,6 +18,8 @@ interface Props {
     valgtTraad?: Traad;
     sokeord: string;
     setSokeord: (newSokeord: string) => void;
+    skjulVarsler: boolean;
+    setSkjulVarsler: (skjul: boolean) => void;
 }
 
 const PanelStyle = styled.nav`
@@ -57,6 +59,11 @@ const PagineringStyling = styled.div`
 const PrevNextButtonsStyling = styled.div`
     padding: ${theme.margin.layout};
     border-top: ${theme.border.skilleSvak};
+`;
+
+const StyledCheckbox = styled(Checkbox)`
+    padding: ${theme.margin.layout};
+    margin-bottom: 0 !important;
 `;
 
 function TraadListe(props: Props) {
@@ -109,6 +116,11 @@ function TraadListe(props: Props) {
                     className={'move-input-label'}
                 />
             </InputStyle>
+            <StyledCheckbox
+                label="Skjul varsler"
+                checked={props.skjulVarsler}
+                onChange={() => props.setSkjulVarsler(!props.skjulVarsler)}
+            />
             <SokVerktøyStyle>
                 <Normaltekst aria-live="polite">{soketreffTekst}</Normaltekst>
                 {visAlleMeldingerKnapp}

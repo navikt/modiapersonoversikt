@@ -89,6 +89,7 @@ function MeldingerContainer() {
     const [sokeord, setSokeord] = useState('');
     const traaderFørSøk = hasData(traaderResource) ? traaderResource.data : [];
     const traaderEtterSok = useSokEtterMeldinger(traaderFørSøk, sokeord);
+    const [skjulVarsler, setSkjulVarsler] = useState(false);
     useSyncSøkMedVisning(traaderFørSøk, traaderEtterSok);
     useVelgTraadHvisIngenTraadErValgt(traaderEtterSok);
 
@@ -98,7 +99,7 @@ function MeldingerContainer() {
             returnOnPending={<CenteredLazySpinner />}
         >
             {data => {
-                const traader = data.filter(traad => filtrerBortVarsel(traad));
+                const traader = data.filter(traad => filtrerBortVarsel(traad) || !skjulVarsler);
                 if (traader.length === 0) {
                     return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
                 }
@@ -110,6 +111,8 @@ function MeldingerContainer() {
                                 setSokeord={setSokeord}
                                 traader={traader}
                                 valgtTraad={valgtTraad}
+                                skjulVarsler={skjulVarsler}
+                                setSkjulVarsler={setSkjulVarsler}
                             />
                         </ScrollBar>
                         <ScrollBar>

@@ -4,7 +4,7 @@ import { Traad } from '../../../../models/meldinger/meldinger';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { filtrerBortVarsel, nyesteMelding } from '../meldinger/utils/meldingerUtils';
+import { nyesteMelding } from '../meldinger/utils/meldingerUtils';
 import { meldingstypeTekst } from '../meldinger/utils/meldingstekster';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { datoSynkende } from '../../../../utils/dateUtils';
@@ -40,7 +40,6 @@ function MeldingerOversikt(props: Props) {
 
 function TraadListe(props: { traader: Traad[] } & Props) {
     const traadKomponenter = props.traader
-        .filter(traad => filtrerBortVarsel(traad))
         .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato))
         .slice(0, 2)
         .map(traad => <Traadelement traad={traad} key={traad.traadId} />);

@@ -153,5 +153,8 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
 }
 
 export function filtrerBortVarsel(traad: Traad): boolean {
+    if (traad.meldinger.length > 1) {
+        return true;
+    }
     return ![Meldingstype.DOKUMENT_VARSEL, Meldingstype.OPPGAVE_VARSEL].includes(nyesteMelding(traad).meldingstype);
 }
