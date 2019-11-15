@@ -19,7 +19,7 @@ const FormStyle = styled.article`
 const SectionStyle = styled.section`
     display: flex;
     > *:first-child {
-        padding-right: 3em;
+        margin-right: 10rem;
     }
 `;
 

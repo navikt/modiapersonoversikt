@@ -72,7 +72,7 @@ exports[`viser personsøk-komponent 1`] = `
 }
 
 .c1 > *:first-child {
-  padding-right: 3em;
+  margin-right: 10rem;
 }
 
 .c5 {
