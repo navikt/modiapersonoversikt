@@ -19,9 +19,7 @@ const FormStyle = styled.article`
 const SectionStyle = styled.section`
     display: flex;
     > *:first-child {
-        padding-right: 2em;
-        border-right: ${theme.border.skille};
-        margin-right: 2rem;
+        margin-right: 10rem;
     }
 `;
 
