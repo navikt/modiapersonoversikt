@@ -10,7 +10,7 @@ import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
 import './personsokKnapp.less';
-import { useRestResource } from '../../utils/customHooks';
+import { useOnMount, useRestResource } from '../../utils/customHooks';
 import { parseQueryParams } from '../../utils/url-utils';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
@@ -71,6 +71,14 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
         dispatch(reloadMeldinger);
         settEnhet(enhet);
     };
+
+    useOnMount(() => {
+        if (queryParams.sokFnr === '0') {
+            // Manuell nullstilling av bruker i context
+            fetch('/modiacontextholder/api/context/aktivbruker', { method: 'DELETE', credentials: 'include' });
+        }
+    });
+
     const config = useCallback(lagConfig, [sokFnr, fnr, enhet, history, handleSetEnhet])(
         sokFnr,
         fnr,
