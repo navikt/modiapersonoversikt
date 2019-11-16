@@ -32,7 +32,7 @@ import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
-import standardTekster from './standardtekster.js';
+import standardTekster from './standardTeksterMock.js';
 import { henvendelseResponseMock } from './meldinger/henvendelseMock';
 import { mockTilgangTilSlett } from './meldinger/merk-mock';
 

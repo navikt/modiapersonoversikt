@@ -10,8 +10,10 @@ import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import moment from 'moment';
 import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
-import { saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { erMeldingFraNav, saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import { Temagruppe, TemaPlukkbare } from '../../models/Temagrupper';
+import standardTeksterMock from '../standardTeksterMock';
+import { autofullfor, AutofullforMap } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)
 export const MOCKED_TRAADID_1 = '123';
@@ -59,6 +61,13 @@ function getMelding(temagruppe: Temagruppe): Melding {
     const visMarkertSomFeilsendt = navfaker.random.vektetSjanse(0.1);
     const meldingstype = navfaker.random.arrayElement(Object.entries(Meldingstype))[0];
 
+    const tekstFraNav = navfaker.random.arrayElement(
+        Object.entries(standardTeksterMock).map(it => it[1].innhold.nb_NO)
+    );
+    const fritekst = erMeldingFraNav(meldingstype)
+        ? autofullfor(tekstFraNav, getMockAutoFullførMap())
+        : faker.lorem.sentences(faker.random.number(15));
+
     return {
         id: faker.random.alphaNumeric(8),
         meldingstype: meldingstype,
@@ -70,7 +79,7 @@ function getMelding(temagruppe: Temagruppe): Melding {
             : undefined,
         journalfortSaksid: faker.random.alphaNumeric(5),
         journalfortTemanavn: navfaker.random.arrayElement(['Dagpenger', 'Arbeid', 'Pensjon', 'Bidrag']),
-        fritekst: faker.lorem.sentences(4),
+        fritekst: fritekst,
         lestDato: moment(faker.date.recent(40)).format(backendDatoformat),
         status: navfaker.random.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
         opprettetDato: moment(faker.date.recent(40)).format(backendDatoformat),
@@ -98,5 +107,21 @@ export function getMockSlaaSammen(fødselsnummer: string): SlaaSammenResponse {
     return {
         nyTraadId: MOCKED_TRAADID_1,
         traader: traader
+    };
+}
+
+function getMockAutoFullførMap(): AutofullforMap {
+    return {
+        'bruker.fnr': '10108000398',
+        'bruker.fornavn': 'Aremark',
+        'bruker.etternavn': 'Testfamilien',
+        'bruker.navn': 'Aremark Testfamilien',
+        'bruker.subjekt': 'han',
+        'bruker.objekt': 'ham',
+        'bruker.navkontor': 'NAV Norge',
+        'saksbehandler.fornavn': 'Kari',
+        'saksbehandler.etternavn': 'Etternavn',
+        'saksbehandler.navn': 'Kari Veileder',
+        'saksbehandler.enhet': 'NAV Testmark'
     };
 }
