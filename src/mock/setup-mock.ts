@@ -26,7 +26,7 @@ import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getMockVarsler } from './varsler/varsel-mock';
-import { getMockSlaaSammen, getMockTraader } from './meldinger/meldinger-mock';
+import { getMockSlaaSammen } from './meldinger/meldinger-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
@@ -35,9 +35,12 @@ import { setupWsControlAndMock } from './context-mock';
 import standardTekster from './standardTeksterMock.js';
 import { henvendelseResponseMock } from './meldinger/henvendelseMock';
 import { mockTilgangTilSlett } from './meldinger/merk-mock';
+import { MeldingerBackendMock } from './meldingerBackendMock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
+
+const meldingerBackendMock = new MeldingerBackendMock();
 
 function randomDelay() {
     if (navfaker.random.vektetSjanse(0.05)) {
@@ -181,7 +184,7 @@ function setupMeldingerMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fodselsnummer => getMockTraader(fodselsnummer))
+            mockGeneratorMedFødselsnummer(fodselsnummer => meldingerBackendMock.getMeldinger(fodselsnummer))
         )
     );
 }
@@ -273,7 +276,20 @@ function setupOpprettHenvendelseMock(mock: FetchMock) {
 function setupFerdigstillHenvendelseMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fnr/fortsett/ferdigstill',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+        withDelayedResponse(randomDelay(), STATUS_OK, request => {
+            meldingerBackendMock.sendSvar(request.body);
+            return {};
+        })
+    );
+}
+
+function setupSendDelsvarMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fnr/delvis-svar',
+        withDelayedResponse(randomDelay(), STATUS_OK, request => {
+            meldingerBackendMock.sendDelsvar(request.body);
+            return {};
+        })
     );
 }
 
@@ -331,7 +347,8 @@ function endreTilrettelagtKommunikasjonnMock(mock: FetchMock) {
 function setupSendReferatMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendreferat',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
+            meldingerBackendMock.sendReferat(request.body);
             return {};
         })
     );
@@ -340,7 +357,8 @@ function setupSendReferatMock(mock: FetchMock) {
 function setupSendSpørsmålMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendsporsmal',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
+            meldingerBackendMock.sendSpørsmål(request.body);
             return {};
         })
     );
@@ -511,6 +529,7 @@ export function setupMock() {
     setupOppgaveMock(mock);
     setupOpprettHenvendelseMock(mock);
     setupFerdigstillHenvendelseMock(mock);
+    setupSendDelsvarMock(mock);
     setupTildelteOppgaverMock(mock);
     setupLeggTilbakeOppgaveMock(mock);
     setupVergemalMock(mock);

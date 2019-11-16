@@ -9,7 +9,7 @@ import {
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import moment from 'moment';
-import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
+import { backendDatoTidformat, fyllRandomListe } from '../utils/mock-utils';
 import { erMeldingFraNav, saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import { Temagruppe, TemaPlukkbare } from '../../models/Temagrupper';
 import standardTeksterMock from '../standardTeksterMock';
@@ -75,15 +75,15 @@ function getMelding(temagruppe: Temagruppe): Melding {
         skrevetAvTekst: saksbehandlerTekst(getSaksbehandler()),
         journalfortAv: getSaksbehandler(),
         journalfortDato: navfaker.random.vektetSjanse(0.5)
-            ? moment(faker.date.recent(50)).format(backendDatoformat)
+            ? moment(faker.date.recent(50)).format(backendDatoTidformat)
             : undefined,
         journalfortSaksid: faker.random.alphaNumeric(5),
         journalfortTemanavn: navfaker.random.arrayElement(['Dagpenger', 'Arbeid', 'Pensjon', 'Bidrag']),
         fritekst: fritekst,
-        lestDato: moment(faker.date.recent(40)).format(backendDatoformat),
+        lestDato: moment(faker.date.recent(40)).format(backendDatoTidformat),
         status: navfaker.random.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
-        opprettetDato: moment(faker.date.recent(40)).format(backendDatoformat),
-        ferdigstiltDato: moment(faker.date.recent(40)).format(backendDatoformat),
+        opprettetDato: moment(faker.date.recent(40)).format(backendDatoTidformat),
+        ferdigstiltDato: moment(faker.date.recent(40)).format(backendDatoTidformat),
         erFerdigstiltUtenSvar: ferdigstilUtenSvar,
         ferdigstiltUtenSvarAv: ferdigstilUtenSvar ? getSaksbehandler() : undefined,
         kontorsperretAv: visKontrosperre ? getSaksbehandler() : undefined,
