@@ -87,11 +87,13 @@ function MeldingerContainer() {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const valgtTraad = useValgtTraadIUrl();
     const [sokeord, setSokeord] = useState('');
-    const traaderFørSøk = hasData(traaderResource) ? traaderResource.data : [];
-    const traaderEtterSok = useSokEtterMeldinger(traaderFørSøk, sokeord);
     const [skjulVarsler, setSkjulVarsler] = useState(false);
-    useSyncSøkMedVisning(traaderFørSøk, traaderEtterSok);
-    useVelgTraadHvisIngenTraadErValgt(traaderEtterSok);
+    const traaderFørSøk = hasData(traaderResource) ? traaderResource.data : [];
+    const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderFørSøk, sokeord).filter(traad =>
+        skjulVarsler ? filtrerBortVarsel(traad) : true
+    );
+    useSyncSøkMedVisning(traaderFørSøk, traaderEtterSokOgFiltrering);
+    useVelgTraadHvisIngenTraadErValgt(traaderEtterSokOgFiltrering);
 
     return (
         <RestResourceConsumer<Traad[]>
@@ -99,8 +101,7 @@ function MeldingerContainer() {
             returnOnPending={<CenteredLazySpinner />}
         >
             {data => {
-                const traader = data.filter(traad => filtrerBortVarsel(traad) || !skjulVarsler);
-                if (traader.length === 0) {
+                if (traaderFørSøk.length === 0) {
                     return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
                 }
                 return (
@@ -109,14 +110,15 @@ function MeldingerContainer() {
                             <TraadListe
                                 sokeord={sokeord}
                                 setSokeord={setSokeord}
-                                traader={traader}
+                                traader={traaderFørSøk}
+                                traaderEtterSokOgFiltrering={traaderEtterSokOgFiltrering}
                                 valgtTraad={valgtTraad}
                                 skjulVarsler={skjulVarsler}
                                 setSkjulVarsler={setSkjulVarsler}
                             />
                         </ScrollBar>
                         <ScrollBar>
-                            {traaderEtterSok.length === 0 ? (
+                            {traaderEtterSokOgFiltrering.length === 0 ? (
                                 <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>
                             ) : (
                                 <TraadVisningWrapper sokeord={sokeord} valgtTraad={valgtTraad} />
