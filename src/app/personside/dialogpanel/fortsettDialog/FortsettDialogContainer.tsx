@@ -146,7 +146,7 @@ function FortsettDialogContainer(props: Props) {
             const request: ForsettDialogRequest = {
                 ...commonPayload,
                 erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
-                saksId: state.sak ? state.sak.saksId : undefined
+                sak: state.sak ? state.sak : undefined
             };
             const kvitteringsData = {
                 fritekst: request.fritekst,

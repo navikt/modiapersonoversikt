@@ -15,8 +15,8 @@ import { erIE11, erModiabrukerdialog, erNyePersonoversikten } from '../../../../
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
 const UtbetalingerArticle = styled.article`
-    ${scrollBarContainerStyle(theme.media.utbetalinger)};
-    @media (min-width: ${theme.media.utbetalinger}) {
+    ${scrollBarContainerStyle(theme.media.utbetalinger.minWidth)};
+    @media (min-width: ${theme.media.utbetalinger.minWidth}) {
         ${erNyePersonoversikten() &&
             erIE11() &&
             css`

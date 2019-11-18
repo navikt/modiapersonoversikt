@@ -267,7 +267,9 @@ class DokumentListeElement extends React.PureComponent<Props> {
     private harTilgangTilJournalpost(dokumentMetadata: DokumentMetadata) {
         const saksid = dokumentMetadata.tilhørendeFagsaksid
             ? dokumentMetadata.tilhørendeFagsaksid
-            : dokumentMetadata.tilhørendeSaksid;
+            : dokumentMetadata.tilhørendeSaksid
+            ? dokumentMetadata.tilhørendeSaksid
+            : '';
         return (
             this.props.harTilgangTilSakstema &&
             dokumentMetadata.feil.feilmelding !== Feilmelding.Sikkerhetsbegrensning &&

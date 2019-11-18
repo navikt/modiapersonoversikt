@@ -6,18 +6,20 @@ import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Ingress } from 'nav-frontend-typografi';
 import { useState } from 'react';
-
 interface Props {
     traad: Traad;
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.article`
     ${theme.resetEkspanderbartPanelStyling}
     > *:not(:first-child) {
         margin-top: 1rem;
     }
     > * {
         border: ${theme.border.skille};
+    }
+    &:focus {
+        ${theme.focus};
     }
 `;
 
@@ -65,6 +67,9 @@ function TidligereMeldinger(props: Props) {
 
     return (
         <Wrapper>
+            <h3 tabIndex={-1} className="sr-only">
+                Tråd under arbeid
+            </h3>
             <Traadpanel traad={traadUtenDelviseSvar} tittel="Vis tidligere meldinger" defaultApen={defaultApen} />
             <Traadpanel traad={delsvar} tittel="Vis alle delsvar" defaultApen={defaultApen} />
         </Wrapper>

@@ -64,14 +64,14 @@ function InfoTabs(props: Props) {
     const openTab = getOpenTabFromRouterPath(props.history.location.pathname);
     return (
         <ErrorBoundary boundaryName="InfoTabs">
-            <HandleInfotabsHotkeys />
-            <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
-            <ErrorBoundary boundaryName={'Open tab: ' + openTab}>
-                <OpenTab>
-                    <h2 ref={ref} tabIndex={-1} className="sr-only">
-                        {openTab}
-                    </h2>
-                    <InfotabsFokusContext.Provider value={focusOnOpenTab}>
+            <InfotabsFokusContext.Provider value={focusOnOpenTab}>
+                <HandleInfotabsHotkeys />
+                <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
+                <ErrorBoundary boundaryName={'Open tab: ' + openTab}>
+                    <OpenTab>
+                        <h2 ref={ref} tabIndex={-1} className="sr-only">
+                            {openTab}
+                        </h2>
                         <Switch location={props.location}>
                             <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
                             <Route path={paths.oppfolging} component={OppfolgingContainer} />
@@ -81,9 +81,9 @@ function InfoTabs(props: Props) {
                             <Route path={paths.varsler} component={VarslerContainer} />
                             <Route path={''} component={Oversikt} />
                         </Switch>
-                    </InfotabsFokusContext.Provider>
-                </OpenTab>
-            </ErrorBoundary>
+                    </OpenTab>
+                </ErrorBoundary>
+            </InfotabsFokusContext.Provider>
         </ErrorBoundary>
     );
 }

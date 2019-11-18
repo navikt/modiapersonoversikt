@@ -101,8 +101,8 @@ function TraadListe(props: Props) {
 
     return (
         <PanelStyle>
-            <h2 className="sr-only">Brukerens meldinger</h2>
             <SlaaSammenOppgaverKnapp traader={props.traader} />
+            <h3 className="sr-only">Søk i brukerens meldinger</h3>
             <InputStyle>
                 <Input
                     inputRef={
@@ -122,11 +122,12 @@ function TraadListe(props: Props) {
                 onChange={() => props.setSkjulVarsler(!props.skjulVarsler)}
             />
             <SokVerktøyStyle>
-                <Normaltekst aria-live="polite">{soketreffTekst}</Normaltekst>
+                <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>
                 {visAlleMeldingerKnapp}
             </SokVerktøyStyle>
+            <h3 className="sr-only">Meldingsliste - {soketreffTekst}</h3>
             {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
-            <TraadListeStyle role="tablist" aria-label="Meldingsliste">
+            <TraadListeStyle role="tablist">
                 {paginering.currentPage.map(traad => (
                     <TraadListeElement
                         taFokusOnMount={erForsteRender && traad === props.valgtTraad}

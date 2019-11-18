@@ -3,8 +3,9 @@ import { apiBaseUri } from '../../api/config';
 import { AppState } from '../reducers';
 import { isLoadedPerson } from './personinformasjon';
 import { NavKontorResponse } from '../../models/navkontor';
-import { loggError } from '../../utils/frontendLogger';
 import { Kodeverk } from '../../models/kodeverk';
+import { abortFetch } from '../../rest/utils/utils';
+import { loggError } from '../../utils/frontendLogger';
 
 export function getUrl(geografiskTilknytning?: string, diskresjonsKode?: Kodeverk) {
     return `${apiBaseUri}/enheter?gt=${geografiskTilknytning || ''}${
@@ -15,8 +16,12 @@ export function getUrl(geografiskTilknytning?: string, diskresjonsKode?: Kodever
 function getBrukersNavkontorFetchUri(state: AppState) {
     const personResource = state.restResources.personinformasjon;
     if (!isLoadedPerson(personResource)) {
-        loggError(new Error('Fetch Nav-kontor: Kunne ikke finne personinformasjon'));
-        return `${apiBaseUri}/enheter?gt=`;
+        loggError(
+            Error(
+                'Prøvde å fetche navkontor før personinfo var lastet. Uten personinfo har vi ikke geografisk tilknytning som trengs for å fetche navkontor'
+            )
+        );
+        return abortFetch;
     }
     const geografiskTilknytning = personResource.data.geografiskTilknytning;
     const diskresjonsKode = personResource.data.diskresjonskode;

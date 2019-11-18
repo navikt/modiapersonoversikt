@@ -51,7 +51,7 @@ const FieldSet = styled.fieldset`
 `;
 
 const WrapOnSmallScreen = styled.div`
-    @media (max-width: ${theme.media.utbetalinger}) {
+    @media (max-width: ${theme.media.utbetalinger.maxWidth}) {
         display: flex;
         flex-wrap: wrap;
         > * {
