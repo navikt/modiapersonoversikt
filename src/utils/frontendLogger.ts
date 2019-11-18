@@ -1,4 +1,4 @@
-import { isDevelopment } from './environment';
+import { isDevelopment, isTest } from './environment';
 import { getSaksbehandlerIdent } from './loggInfo/getSaksbehandlerIdent';
 import md5 from 'md5';
 import { detect } from 'detect-browser';
@@ -47,6 +47,9 @@ function loggEventUtenIdentHash(
 }
 
 export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
+    if (isTest()) {
+        return;
+    }
     const info = {
         message: message,
         ...ekstraFelter
@@ -62,6 +65,9 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
 }
 
 export function loggErrorUtenSaksbehandlerIdent(error: Error, message?: string, ekstraFelter?: ValuePairs) {
+    if (isTest()) {
+        return;
+    }
     const browser = detect();
     const info = {
         message: `${message ? message + ': ' : ''} ${error.name} ${error.message}`,
