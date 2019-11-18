@@ -13,6 +13,7 @@ import './personsokKnapp.less';
 import { useOnMount, useRestResource } from '../../utils/customHooks';
 import { parseQueryParams } from '../../utils/url-utils';
 import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
+import PersonsokContainer from '../personsok/Personsok';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -100,6 +101,16 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
         handleSetEnhet
     );
 
-    return <nav id="header">{contextErKlar && <InternflateDecorator {...config} />}</nav>;
+    return (
+        <nav id="header">
+            {contextErKlar && (
+                <>
+                    <InternflateDecorator {...config} />
+                    <PersonsokContainer />
+                </>
+            )}
+        </nav>
+    );
 }
+
 export default withRouter(Decorator);

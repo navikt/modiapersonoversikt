@@ -15,7 +15,6 @@ import Decorator from './internarbeidsflatedecorator/Decorator';
 import StandAloneKomponenter from '../components/standalone/StandAloneKomponenter';
 import HentGlobaleVerdier from './globaleVerdier/FetchSessionInfoOgLeggIRedux';
 import { useOnMount } from '../utils/customHooks';
-import PersonsokContainer from './personsok/Personsok';
 import { detect } from 'detect-browser';
 import { useState } from 'react';
 import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
@@ -45,7 +44,6 @@ function Personoveriskt() {
             <>
                 <PersonOppslagHandler />
                 <HentGlobaleVerdier />
-                <PersonsokContainer />
                 <AppStyle className={className}>
                     <Decorator />
                     <ContentStyle>
