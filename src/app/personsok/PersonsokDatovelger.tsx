@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { PersonsokSkjemaProps } from './PersonsokSkjema';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -33,8 +33,8 @@ function beregnDropdownCoordinate(clientRect: ClientRect) {
 }
 
 function PersonsokDatovelger(props: { form: PersonsokSkjemaProps }) {
-    const fraRef = React.createRef<HTMLDivElement>();
-    const tilRef = React.createRef<HTMLDivElement>();
+    const fraRef = useRef(React.createRef<HTMLDivElement>()).current;
+    const tilRef = useRef(React.createRef<HTMLDivElement>()).current;
     const datovelgerFraRect = useBoundingRect(fraRef);
     const datovelgerTilRect = useBoundingRect(tilRef);
     const dropdownFraCoordinate = beregnDropdownCoordinate(datovelgerFraRect);
