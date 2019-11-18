@@ -9,7 +9,6 @@ interface ValuePairs {
 }
 
 function frontendLoggerIsInitialized(): boolean {
-    // @ts-ignore
     if (!window['frontendlogger']) {
         console.warn('frontend-logger er ikke satt opp riktig');
         return false;
@@ -40,7 +39,6 @@ function loggEventUtenIdentHash(
         fields: { ...fields, identHash: identHash },
         tags: { action: action, location: location, erNyePersonoversikten: erNyePersonoversikten(), ...extraTags }
     };
-    // @ts-ignore
     window['frontendlogger'].event(
         event.table,
         emptyStringToUndefined(event.fields),
@@ -53,11 +51,9 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
         message: message,
         ...ekstraFelter
     };
+    console.info(info);
     if (uselogger()) {
-        // @ts-ignore
         window['frontendlogger'].info(info);
-    } else {
-        console.info(info);
     }
 }
 
@@ -74,12 +70,10 @@ export function loggErrorUtenSaksbehandlerIdent(error: Error, message?: string, 
         browser: (browser && browser.name) || undefined,
         ...ekstraFelter
     };
+    console.error(info);
     if (uselogger()) {
-        // @ts-ignore
         loggEventUtenIdentHash('Error', 'Logger');
         window['frontendlogger'].error(info);
-    } else {
-        console.error(error, info);
     }
 }
 

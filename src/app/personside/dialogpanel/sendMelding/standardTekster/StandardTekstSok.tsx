@@ -16,6 +16,8 @@ import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
 import { erKontaktsenter } from '../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { autofullfor, AutofullforData, byggAutofullforMap } from '../autofullforUtils';
+import { useRestResource } from '../../../../../utils/customHooks';
+import { hasData as restResourceHasData } from '../../../../../rest/utils/restResource';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -96,6 +98,7 @@ function StandardTekstSok(props: Props) {
     const valgt = useFieldState('');
     const valgtLocale = useFieldState('');
     const valgtTekst = filtrerteTekster.find(tekst => tekst.id === valgt.input.value);
+    const personResource = useRestResource(resources => resources.personinformasjon);
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
     useDefaultValgtTekst(filtrerteTekster, valgt);
@@ -131,6 +134,10 @@ function StandardTekstSok(props: Props) {
                 valgtTekst={valgtTekst}
             />
         );
+    }
+
+    if (!restResourceHasData(personResource)) {
+        return null;
     }
 
     return (
