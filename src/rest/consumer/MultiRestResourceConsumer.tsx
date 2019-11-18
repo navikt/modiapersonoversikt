@@ -72,7 +72,7 @@ function MultiRestResourceConsumer<T>(props: Props<T>) {
     return (
         <MultiRestResourceConsumerBase<T> getResource={getResource}>
             {(status: STATUS, data: T | null) => {
-                if (status == STATUS.FAILED) {
+                if (status === STATUS.FAILED) {
                     return returnOnError || <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
                 }
                 if (status === STATUS.LOADING) {
