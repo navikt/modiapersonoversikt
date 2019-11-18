@@ -1,4 +1,4 @@
-const tekster = {
+const standardTeksterMock = {
     'tester-alle-nokler': {
         id: 'tester-alle-nokler',
         overskrift: 'Test av autofullføring',
@@ -5069,4 +5069,4 @@ const tekster = {
     }
 };
 
-export default tekster;
+export default standardTeksterMock;

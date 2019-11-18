@@ -12,6 +12,8 @@ import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetI
 import './personsokKnapp.less';
 import { useOnMount, useRestResource } from '../../utils/customHooks';
 import { parseQueryParams } from '../../utils/url-utils';
+import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
+import PersonsokContainer from '../personsok/Personsok';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -33,6 +35,7 @@ function lagConfig(
             visVeilder: true
         },
         onSok(fnr: string | null): void {
+            settJobberIkkeMedSpørsmålOgSvar();
             if (fnr && fnr.length > 0) {
                 setNyBrukerIPath(history, fnr);
             } else {
@@ -59,6 +62,22 @@ function lagConfig(
     };
 }
 
+function useKlargjorContextholder(sokFnr?: string) {
+    const [klar, setKlar] = useState(false);
+    useOnMount(() => {
+        if (sokFnr === '0') {
+            // Manuell nullstilling av bruker i context
+            fetch('/modiacontextholder/api/context/aktivbruker', { method: 'DELETE', credentials: 'include' }).then(
+                () => setKlar(true)
+            );
+        } else {
+            setKlar(true);
+        }
+    });
+
+    return klar;
+}
+
 function Decorator({ location, history }: RouteComponentProps<{}>) {
     const queryParams = parseQueryParams(location.search);
     const sokFnr = queryParams.sokFnr === '0' ? '' : queryParams.sokFnr;
@@ -72,12 +91,7 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
         settEnhet(enhet);
     };
 
-    useOnMount(() => {
-        if (queryParams.sokFnr === '0') {
-            // Manuell nullstilling av bruker i context
-            fetch('/modiacontextholder/api/context/aktivbruker', { method: 'DELETE', credentials: 'include' });
-        }
-    });
+    const contextErKlar = useKlargjorContextholder(queryParams.sokFnr);
 
     const config = useCallback(lagConfig, [sokFnr, fnr, enhet, history, handleSetEnhet])(
         sokFnr,
@@ -89,8 +103,14 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
 
     return (
         <nav id="header">
-            <InternflateDecorator {...config} />
+            {contextErKlar && (
+                <>
+                    <InternflateDecorator {...config} />
+                    <PersonsokContainer />
+                </>
+            )}
         </nav>
     );
 }
+
 export default withRouter(Decorator);

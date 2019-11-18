@@ -5,6 +5,7 @@ import { AppState } from '../../redux/reducers';
 import { loggError } from '../../utils/frontendLogger';
 
 const notFound = new Error();
+export const abortFetch = '';
 
 export enum STATUS {
     NOT_STARTED = 'NOT_STARTED',
@@ -78,6 +79,10 @@ export function fetchDataAndDispatchToRedux<T>(
 ) {
     return (dispatch: AsyncDispatch, getState: () => AppState) => {
         const uri = fetchUriCreator(getState());
+        if (uri === abortFetch) {
+            console.info('Empty fetch-uri, aborting fetch in: ' + actionNames.STARTING);
+            return Promise.resolve();
+        }
         dispatch({ type: reload ? actionNames.RELOADING : actionNames.STARTING, fetchUrl: uri });
         return fetch(uri, { credentials: 'include' })
             .then(parseResponse)

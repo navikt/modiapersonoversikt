@@ -4,6 +4,7 @@ import { FortsettDialogType } from './FortsettDialogContainer';
 import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
 import { FortsettDialogState } from './FortsettDialogTypes';
+import { jobberMedSpørsmålOgSvar } from '../../kontrollsporsmal/cookieUtils';
 
 interface Props {
     formState: FortsettDialogState;
@@ -45,6 +46,8 @@ function VelgDialogType(props: Props) {
                 {svar}
                 {spørsmål}
                 {delvisSvar}
+                {!jobberMedSpørsmålOgSvar() && svarTelefon}
+                {!jobberMedSpørsmålOgSvar() && svarOppmote}
             </VelgDialogtypeStyle>
         );
     }
