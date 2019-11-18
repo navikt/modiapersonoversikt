@@ -20,6 +20,7 @@ import { detect } from 'detect-browser';
 import { useState } from 'react';
 import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
 import { erIE11 } from '../utils/erNyPersonoversikt';
+import DemoBanner from '../components/DemoBanner';
 
 if (mockEnabled) {
     setupMock();
@@ -60,12 +61,18 @@ function App() {
     ModalWrapper.setAppElement('#root');
 
     return (
-        <BrowserRouter>
-            <Switch>
-                <Route path={`${paths.standaloneKomponenter}/:component?/:fnr?`} component={StandAloneKomponenter} />
-                <Route path={'/'} component={Personoveriskt} />
-            </Switch>
-        </BrowserRouter>
+        <>
+            <DemoBanner />
+            <BrowserRouter>
+                <Switch>
+                    <Route
+                        path={`${paths.standaloneKomponenter}/:component?/:fnr?`}
+                        component={StandAloneKomponenter}
+                    />
+                    <Route path={'/'} component={Personoveriskt} />
+                </Switch>
+            </BrowserRouter>
+        </>
     );
 }
 
