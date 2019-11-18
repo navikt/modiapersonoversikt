@@ -12,6 +12,7 @@ import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetI
 import './personsokKnapp.less';
 import { useOnMount, useRestResource } from '../../utils/customHooks';
 import { parseQueryParams } from '../../utils/url-utils';
+import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -33,6 +34,7 @@ function lagConfig(
             visVeilder: true
         },
         onSok(fnr: string | null): void {
+            settJobberIkkeMedSpørsmålOgSvar();
             if (fnr && fnr.length > 0) {
                 setNyBrukerIPath(history, fnr);
             } else {
