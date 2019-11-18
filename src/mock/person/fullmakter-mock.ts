@@ -25,7 +25,7 @@ function getMockFullmakt(faker: Faker.FakerStatic, navfaker: NavFaker): Fullmakt
         fullmaktsgiver: fullmaktsgiver,
         fullmektig: fullmektig,
         omraade: getOmraade(faker),
-        gyldigFraOgMed: moment(faker.date.soon()).format(backendDatoformat),
+        gyldigFraOgMed: moment(faker.date.past(1)).format(backendDatoformat),
         gyldigTilOgMed: moment(faker.date.future(2)).format(backendDatoformat)
     };
 }
