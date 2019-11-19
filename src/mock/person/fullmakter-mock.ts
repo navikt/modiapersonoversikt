@@ -13,7 +13,7 @@ export function getMockFullmakter(faker: Faker.FakerStatic, navfaker: NavFaker):
 
 function getMockFullmakt(faker: Faker.FakerStatic, navfaker: NavFaker): Fullmakt {
     return {
-        fullmaktsrolle: 'FULLMEKTIG',
+        motpartsRolle: 'FULLMEKTIG',
         motpartsPersonident: navfaker.personIdentifikator.fødselsnummer(),
         omraade: getOmraade(faker),
         gyldigFraOgMed: moment(faker.date.past(1)).format(backendDatoformat),

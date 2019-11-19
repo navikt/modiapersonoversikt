@@ -15,7 +15,7 @@ function getOmraade(omraader: string[]): string {
 
 function Fullmakt(props: { fullmakt: FullmaktInterface }) {
     const { fullmakt } = props;
-    const beskrivelse = `${fullmakt.fullmaktsrolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver'}: ${
+    const beskrivelse = `${fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver'}: ${
         fullmakt.motpartsPersonident
     }`;
 

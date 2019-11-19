@@ -189,7 +189,7 @@ export const aremark: Person = {
     },
     fullmakt: [
         {
-            fullmaktsrolle: 'FULLMEKTIG',
+            motpartsRolle: 'FULLMEKTIG',
             motpartsPersonident: '12345678',
             omraade: ['*'],
             gyldigFraOgMed: '2019-01-01',
