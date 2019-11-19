@@ -16,7 +16,6 @@ import {
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { loggError, loggEvent } from '../../../../utils/frontendLogger';
-import { Temagruppe } from '../../../../models/Temagrupper';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import {
@@ -25,7 +24,6 @@ import {
     FortsettDialogState,
     KvitteringsData
 } from './FortsettDialogTypes';
-import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -33,15 +31,6 @@ export type FortsettDialogType =
     | Meldingstype.SVAR_OPPMOTE
     | Meldingstype.SVAR_TELEFON
     | Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
-
-export interface FortsettDialogState {
-    tekst: string;
-    dialogType: FortsettDialogType;
-    temagruppe?: Temagruppe;
-    oppgaveListe: OppgavelisteValg;
-    sak?: JournalforingsSak;
-    visFeilmeldinger: boolean;
-}
 
 interface Props {
     traad: Traad;
