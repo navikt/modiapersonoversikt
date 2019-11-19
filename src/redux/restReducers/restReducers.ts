@@ -66,6 +66,7 @@ import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
 import opprettHenvendelse from './meldinger/opprettHenvendelse';
 import slaaSammen from './meldinger/slaaSammen';
+import utbetalingerOversikt from './utbetalingerOversikt';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
@@ -89,6 +90,7 @@ export interface RestEndepunkter {
     valuta: RestResource<KodeverkResponse>;
     land: RestResource<KodeverkResponse>;
     utbetalinger: RestResource<UtbetalingerResponse>;
+    utbetalingerOversikt: RestResource<UtbetalingerResponse>;
     sykepenger: RestResource<SykepengerResponse>;
     pleiepenger: RestResource<PleiepengerResponse>;
     foreldrepenger: RestResource<ForeldrepengerResponse>;
@@ -127,6 +129,7 @@ export default combineResettableReducers<RestEndepunkter>(
         valuta: valutaKodeverkReducer,
         land: landKodeverkReducer,
         utbetalinger: utbetalingerReducer,
+        utbetalingerOversikt: utbetalingerOversikt,
         sykepenger: sykepengerReducer,
         pleiepenger: pleiepengerReducer,
         foreldrepenger: foreldrepengerReducer,
