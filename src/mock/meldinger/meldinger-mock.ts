@@ -10,7 +10,12 @@ import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import moment from 'moment';
 import { backendDatoTidformat, fyllRandomListe } from '../utils/mock-utils';
-import { erMeldingFraNav, saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import {
+    erMeldingstypeSamtalereferat,
+    erVarselMelding,
+    erMeldingFraNav,
+    saksbehandlerTekst
+} from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import { Temagruppe, TemaPlukkbare } from '../../models/Temagrupper';
 import standardTeksterMock from '../standardTeksterMock';
 import { autofullfor, AutofullforMap } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
@@ -46,12 +51,17 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
 
 export function getMockTraad(): Traad {
     const temagruppe = navfaker.random.arrayElement([...TemaPlukkbare, null, Temagruppe.InnholdSlettet]);
-    const meldinger = Array(navfaker.random.integer(5, 1))
+    const meldinger = Array(navfaker.random.integer(4, 1))
         .fill(null)
         .map(() => getMelding(temagruppe));
+
+    const enkeltStaaendeMelding = meldinger.find(
+        melding => erVarselMelding(melding.meldingstype) || erMeldingstypeSamtalereferat(melding.meldingstype)
+    );
+
     return {
         traadId: faker.random.alphaNumeric(8),
-        meldinger: meldinger
+        meldinger: enkeltStaaendeMelding ? [enkeltStaaendeMelding] : meldinger
     };
 }
 

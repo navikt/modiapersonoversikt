@@ -4,8 +4,7 @@ import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import { useSokEtterMeldinger } from '../utils/meldingerUtils';
-import { Input } from 'nav-frontend-skjema';
+import { Checkbox, Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import TraadListeElement from './TraadListeElement';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
@@ -15,9 +14,12 @@ import usePaginering from '../../../../../utils/hooks/usePaginering';
 
 interface Props {
     traader: Traad[];
+    traaderEtterSokOgFiltrering: Traad[];
     valgtTraad?: Traad;
     sokeord: string;
     setSokeord: (newSokeord: string) => void;
+    skjulVarsler: boolean;
+    setSkjulVarsler: (skjul: boolean) => void;
 }
 
 const PanelStyle = styled.nav`
@@ -45,6 +47,9 @@ const InputStyle = styled.div`
     .skjemaelement {
         margin-bottom: 0.2rem;
     }
+    .skjemaelement__label {
+        ${theme.visuallyHidden};
+    }
 `;
 
 const PagineringStyling = styled.div`
@@ -59,11 +64,15 @@ const PrevNextButtonsStyling = styled.div`
     border-top: ${theme.border.skilleSvak};
 `;
 
+const StyledCheckbox = styled(Checkbox)`
+    padding: ${theme.margin.layout};
+    margin-bottom: 0 !important;
+`;
+
 function TraadListe(props: Props) {
     const [erForsteRender, setErForsteRender] = useState(true);
     const inputRef = React.useRef<HTMLInputElement>();
-    const traaderEtterSok = useSokEtterMeldinger(props.traader, props.sokeord);
-    const paginering = usePaginering(traaderEtterSok, 50, 'melding', props.valgtTraad);
+    const paginering = usePaginering(props.traaderEtterSokOgFiltrering, 50, 'melding', props.valgtTraad);
 
     useOnMount(() => {
         setErForsteRender(false);
@@ -88,8 +97,8 @@ function TraadListe(props: Props) {
 
     const meldingTekst = props.traader.length === 1 ? 'melding' : 'meldinger';
     const soketreffTekst =
-        props.sokeord.length > 0
-            ? `Søket traff ${traaderEtterSok.length} av ${props.traader.length} ${meldingTekst}`
+        props.traaderEtterSokOgFiltrering.length !== props.traader.length
+            ? `Søket traff ${props.traaderEtterSokOgFiltrering.length} av ${props.traader.length} ${meldingTekst}`
             : `Totalt ${props.traader.length} ${meldingTekst}`;
 
     return (
@@ -106,9 +115,15 @@ function TraadListe(props: Props) {
                     value={props.sokeord}
                     onChange={event => props.setSokeord(event.target.value)}
                     label={'Søk etter melding'}
+                    placeholder={'Søk etter melding'}
                     className={'move-input-label'}
                 />
             </InputStyle>
+            <StyledCheckbox
+                label="Skjul varsler"
+                checked={props.skjulVarsler}
+                onChange={() => props.setSkjulVarsler(!props.skjulVarsler)}
+            />
             <SokVerktøyStyle>
                 <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>
                 {visAlleMeldingerKnapp}

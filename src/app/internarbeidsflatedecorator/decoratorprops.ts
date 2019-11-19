@@ -24,5 +24,5 @@ export interface DecoratorProps {
 
     onEnhetChange(enhet: string): void;
     contextholder?: true | Contextholder;
-    autoSubmit?: boolean;
+    autoSubmitOnMount?: boolean;
 }

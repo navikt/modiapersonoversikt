@@ -4,7 +4,7 @@ import {
     erMeldingFraBruker,
     erMeldingFraNav,
     erMeldingSpørsmål,
-    erMeldingVarsel,
+    erVarselMelding,
     erPlukkbar,
     kanLeggesTilbake
 } from './meldingerUtils';
@@ -46,7 +46,7 @@ describe('Meldingstyper', () => {
     });
 
     it('gir at dokumentvarsel er et varsel', function() {
-        expect(erMeldingVarsel(dokumentvarsel)).toBe(true);
+        expect(erVarselMelding(dokumentvarsel)).toBe(true);
     });
 
     it('gir at spørsmål skriftlig er et spørsmål', function() {
