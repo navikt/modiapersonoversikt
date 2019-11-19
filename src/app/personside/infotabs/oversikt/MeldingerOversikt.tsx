@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ReactNode } from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components';
@@ -12,7 +13,6 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { meldingerTest } from '../dyplenkeTest/utils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { ReactNode } from 'react';
 import { useOnMount } from '../../../../utils/customHooks';
 import { temagruppeTekst } from '../../../../models/Temagrupper';
 import TraadSammendrag from '../meldinger/traadliste/TraadSammendrag';
