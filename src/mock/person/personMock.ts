@@ -26,6 +26,7 @@ import { getDiskresjonskode } from '../utils/diskresjonskode-util';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { moss } from './moss';
 import { getMockDoedsbo } from './doedsbo';
+import { getMockFullmakter } from './fullmakter-mock';
 
 export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {
@@ -74,7 +75,8 @@ function genererPerson(fødselsnummer: string): Person {
         familierelasjoner: getFamilierelasjoner(fødselsnummer, sivilstand),
         sikkerhetstiltak: getSikkerhetstiltak(),
         kontaktinformasjon: getNavKontaktinformasjon(faker),
-        kontaktinformasjonForDoedsbo: getMockDoedsbo(faker)
+        kontaktinformasjonForDoedsbo: getMockDoedsbo(faker),
+        fullmakt: getMockFullmakter(faker, navfaker)
     };
 }
 
