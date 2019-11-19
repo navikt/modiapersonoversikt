@@ -561,6 +561,82 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       <div
         className="c2"
       >
+        <div
+          className="c5"
+        >
+          <svg
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="50"
+              cy="50"
+              fill="#FFB249"
+              r="50"
+            />
+            <line
+              stroke="#3E3832"
+              strokeLinecap="round"
+              strokeWidth="4"
+              x1="50"
+              x2="50"
+              y1="25"
+              y2="57"
+            />
+            <circle
+              cx="50"
+              cy="72"
+              fill="#3E3832"
+              r="4.5"
+            />
+          </svg>
+        </div>
+        <h3
+          className="typo-undertittel"
+        >
+          Fullmakter
+        </h3>
+      </div>
+      <div
+        className="c3"
+      />
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+          <h4
+            className="typo-element"
+          >
+            Fullmektig: 12345678
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Gyldig fra og med 
+          01.01.2019
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Gyldig til og med 
+          12.12.2022
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Gjelder 
+          alle ytelser
+        </p>
+      </div>
+    </section>
+    <section>
+      <div
+        className="c2"
+      >
         
         <h3
           className="typo-undertittel"

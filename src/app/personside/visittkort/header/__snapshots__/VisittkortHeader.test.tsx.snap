@@ -365,6 +365,15 @@ exports[`viser info om bruker i visittkort-header 1`] = `
             Tolkehjelp
           </span>
         </div>
+        <div
+          className="etikett etikett--fokus"
+        >
+          <span
+            className="typo-normal"
+          >
+            Fullmakt
+          </span>
+        </div>
       </section>
     </div>
     <section

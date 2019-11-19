@@ -35,6 +35,9 @@ const AppWrapper = styled.div`
             flex: auto !important;
         }
     }
+    .spinner {
+        flex: 0 0 auto;
+    }
 `;
 
 export const ContentStyle = styled.div`

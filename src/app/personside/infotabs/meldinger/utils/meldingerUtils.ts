@@ -67,7 +67,7 @@ export function erMeldingFraNav(meldingstype: Meldingstype) {
     ].includes(meldingstype);
 }
 
-export function erMeldingVarsel(meldingstype: Meldingstype) {
+export function erVarselMelding(meldingstype: Meldingstype) {
     return [Meldingstype.OPPGAVE_VARSEL, Meldingstype.DOKUMENT_VARSEL].includes(meldingstype);
 }
 
@@ -81,7 +81,7 @@ export function erKontorsperret(traad: Traad): boolean {
 export function kanTraadJournalfores(traad: Traad): boolean {
     const nyesteMeldingITraad = nyesteMelding(traad);
     return (
-        !erMeldingVarsel(nyesteMeldingITraad.meldingstype) &&
+        !erVarselMelding(nyesteMeldingITraad.meldingstype) &&
         !erKontorsperret(traad) &&
         !erFeilsendt(traad) &&
         !erJournalfort(nyesteMeldingITraad) &&
@@ -150,4 +150,11 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
             })
             .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato));
     }, [debouncedQuery, traader]);
+}
+
+export function filtrerBortVarsel(traad: Traad): boolean {
+    if (traad.meldinger.length > 1) {
+        return true;
+    }
+    return !erVarselMelding(nyesteMelding(traad).meldingstype);
 }
