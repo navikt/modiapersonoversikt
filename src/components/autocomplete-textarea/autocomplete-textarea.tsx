@@ -9,6 +9,8 @@ import {
 import { MultiRestResourceConsumerBase } from '../../rest/consumer/MultiRestResourceConsumer';
 import { STATUS } from '../../rest/utils/utils';
 import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
+import { useRestResource } from '../../utils/customHooks';
+import { hasData } from '../../rest/utils/restResource';
 
 const rules = [
     { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
@@ -36,6 +38,12 @@ function findWordBoundary(text: string, initialPosition: number): [number, numbe
 }
 
 function AutocompleteTextarea(props: TextareaProps) {
+    const personResource = useRestResource(resources => resources.personinformasjon);
+
+    if (!hasData(personResource)) {
+        return null;
+    }
+
     return (
         <MultiRestResourceConsumerBase<AutofullforData>
             getResource={restResources => ({
