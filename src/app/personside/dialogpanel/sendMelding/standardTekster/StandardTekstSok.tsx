@@ -18,6 +18,7 @@ import { erKontaktsenter } from '../../../../../utils/loggInfo/saksbehandlersEnh
 import { autofullfor, AutofullforData, byggAutofullforMap } from '../autofullforUtils';
 import { useRestResource } from '../../../../../utils/customHooks';
 import { hasData as restResourceHasData } from '../../../../../rest/utils/restResource';
+import { useFetchLogger } from '../../../../../utils/hooks/useFetchLogger';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -92,6 +93,7 @@ function velgTekst(
 function StandardTekstSok(props: Props) {
     const inputRef = React.useRef<HTMLInputElement>();
     const data = useFetch<StandardTekster.Tekster>('/modiapersonoversikt-skrivestotte/skrivestotte');
+    useFetchLogger(data, 'Standardtekster');
     const sokefelt = useFieldState(erKontaktsenter() ? '#ks ' : '');
     const debouncedSokefelt = useDebounce(sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() => sokEtterTekster(data, debouncedSokefelt));

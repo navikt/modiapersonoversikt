@@ -1,5 +1,5 @@
 import React from 'react';
-import useFetch, { AsyncResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
+import useFetch, { AsyncResult, FetchResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { JournalforingsSak, Kategorier, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio } from 'nav-frontend-skjema';
@@ -13,6 +13,7 @@ import Spinner from 'nav-frontend-spinner';
 import { useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
 import VisuallyHiddenAutoFokusHeader from '../../../../../../../components/VisuallyHiddenAutoFokusHeader';
+import { useFetchLogger } from '../../../../../../../utils/hooks/useFetchLogger';
 
 const credentials: RequestInit = { credentials: 'include' };
 
@@ -102,14 +103,16 @@ export function sakKategori(sak: JournalforingsSak): SakKategori {
 function VelgSak(props: Props) {
     const fnr = useSelector(fnrSelector);
     const valgtKategori = useFieldState(SakKategori.FAG);
-    const gsakSaker: AsyncResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
+    const gsakSaker: FetchResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`,
         credentials
     );
-    const psakSaker: AsyncResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
+    useFetchLogger(gsakSaker, 'VelgSak', 'GsakSaker');
+    const psakSaker: FetchResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`,
         credentials
     );
+    useFetchLogger(gsakSaker, 'VelgSak', 'PsakSaker');
 
     const saker = getSaker(gsakSaker, psakSaker);
     const fordelteSaker = fordelSaker(saker);

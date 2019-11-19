@@ -11,11 +11,12 @@ import {
 } from '../../../../../../../models/meldinger/oppgave';
 import { OppgaveProps, OppgaveSkjemaForm, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import AutoComplete from './AutoComplete';
-import { AsyncResult, hasData, isPending, isLoading } from '@nutgaard/use-async';
-import useFetch from '@nutgaard/use-fetch';
+import { hasData, isPending, isLoading } from '@nutgaard/use-async';
+import useFetch, { FetchResult } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { useFødselsnummer, usePrevious } from '../../../../../../../utils/customHooks';
 import { loggError } from '../../../../../../../utils/frontendLogger';
+import { useFetchLogger } from '../../../../../../../utils/hooks/useFetchLogger';
 
 const credentials: RequestInit = { credentials: 'include' };
 
@@ -58,15 +59,17 @@ function useForeslatteEnheter(form: OppgaveSkjemaForm) {
 }
 
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
-    const enhetliste: AsyncResult<Array<Enhet>> = useFetch<Array<Enhet>>(
+    const enhetliste: FetchResult<Array<Enhet>> = useFetch<Array<Enhet>>(
         `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
         credentials
     );
+    useFetchLogger(enhetliste, 'Oppgaveskjema', 'Enhetsliste');
     const foreslatteEnheter = useForeslatteEnheter(props.form.state);
-    const ansattliste: AsyncResult<Array<Ansatt>> = useFetch<Array<Ansatt>>(
+    const ansattliste: FetchResult<Array<Ansatt>> = useFetch<Array<Ansatt>>(
         `${apiBaseUri}/enheter/${props.form.state.valgtEnhet ? props.form.state.valgtEnhet.enhetId : '_'}/ansatte`,
         credentials
     );
+    useFetchLogger(enhetliste, 'Oppgaveskjema', 'Ansattliste');
     const valgtTema = props.form.state.valgtTema;
 
     const prevForeslatteEnheter = usePrevious(foreslatteEnheter);

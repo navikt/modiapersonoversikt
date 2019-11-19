@@ -32,9 +32,10 @@ import { loggError, loggEvent } from '../../../../../../../utils/frontendLogger'
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
 import { useRestResource } from '../../../../../../../utils/customHooks';
-import { AsyncResult, hasData, isPending } from '@nutgaard/use-async';
-import useFetch from '@nutgaard/use-fetch';
+import { hasData, isPending } from '@nutgaard/use-async';
+import useFetch, { FetchResult } from '@nutgaard/use-fetch';
 import { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
+import { useFetchLogger } from '../../../../../../../utils/hooks/useFetchLogger';
 
 interface Props {
     lukkPanel: () => void;
@@ -114,7 +115,8 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
-    const saksbehandlerKanSletteFetch: AsyncResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, credentials);
+    const saksbehandlerKanSletteFetch: FetchResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, credentials);
+    useFetchLogger(saksbehandlerKanSletteFetch, 'MerkPanel', 'KanSletteMelding');
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
 
     const reloadMeldinger = tråderResource.actions.reload;
