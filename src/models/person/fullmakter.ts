@@ -1,6 +1,6 @@
 export interface Fullmakt {
-    fullmaktsgiver: string | null;
-    fullmektig: string | null;
+    fullmaktsrolle: string;
+    motpartsPersonident: string;
     omraade: string[];
     gyldigFraOgMed: string;
     gyldigTilOgMed: string;

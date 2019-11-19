@@ -11,7 +11,7 @@ import NavKontorContainer from './navkontor/NavKontorContainer';
 import LenkeBrukerprofilContainer from './lenkebrukerprofil/LenkeBrukerprofilContainer';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
-import FullmaktWrapper from './fullmakt/Fullmakt';
+import Fullmakter from './fullmakt/Fullmakt';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -29,7 +29,7 @@ function OneColumnLayout(person: Person) {
     return (
         <Kolonne>
             <Kontaktinformasjon person={person} />
-            <FullmaktWrapper fullmakter={person.fullmakt} />
+            <Fullmakter fullmakter={person.fullmakt} />
             <Familie person={person} />
             <NavKontorSeksjon />
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
@@ -45,7 +45,7 @@ function TwoColumnLayout(person: Person) {
         <>
             <Kolonne>
                 <Kontaktinformasjon person={person} />
-                <FullmaktWrapper fullmakter={person.fullmakt} />
+                <Fullmakter fullmakter={person.fullmakt} />
                 <Familie person={person} />
             </Kolonne>
             <Kolonne>
@@ -64,7 +64,7 @@ function ThreeColumnLayout(person: Person) {
         <>
             <Kolonne>
                 <Kontaktinformasjon person={person} />
-                <FullmaktWrapper fullmakter={person.fullmakt} />
+                <Fullmakter fullmakter={person.fullmakt} />
             </Kolonne>
             <Kolonne>
                 <Familie person={person} />
