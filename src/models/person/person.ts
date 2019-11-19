@@ -3,6 +3,7 @@ import { Sikkerhetstiltak } from '../sikkerhetstiltak';
 import { NavKontaktinformasjon } from './NAVKontaktinformasjon';
 import { Kodeverk } from '../kodeverk';
 import { Doedsbo } from './doedsbo';
+import { Fullmakt } from './fullmakter';
 
 export interface PersonRespons {
     sikkerhetstiltak?: Sikkerhetstiltak;
@@ -30,6 +31,7 @@ export interface Person extends PersonRespons {
     familierelasjoner: Familierelasjon[];
     kontaktinformasjon: NavKontaktinformasjon;
     kontaktinformasjonForDoedsbo?: Doedsbo[];
+    fullmakt?: Fullmakt[];
 }
 
 export interface Navn {

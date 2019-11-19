@@ -77,7 +77,7 @@ function VisDokumentContainer(props: { fødselsnummer: string; journalpostId: st
     }
 
     return (
-        <ObjectHttpFeilHandtering url={dokUrl} width="100%" onError={onError}>
+        <ObjectHttpFeilHandtering type="application/pdf" url={dokUrl} width="100%" onError={onError}>
             <AlertStripeAdvarsel>{errMsg}</AlertStripeAdvarsel>
         </ObjectHttpFeilHandtering>
     );

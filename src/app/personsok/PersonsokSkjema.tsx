@@ -72,8 +72,8 @@ function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
         postnummer: emptyString(form.state.postnummer),
         kontonummer: emptyString(form.state.kontonummer),
         kommunenummer: emptyString(form.state.kommunenummer),
-        fodsesldatoFra: form.state.fodselsdatoFra,
-        fodsesldatoTil: form.state.fodselsdatoTil,
+        fodselsdatoFra: form.state.fodselsdatoFra,
+        fodselsdatoTil: form.state.fodselsdatoTil,
         alderFra: stringToNumber(form.state.alderFra),
         alderTil: stringToNumber(form.state.alderTil),
         kjonn: emptyString(form.state.kjonn)
