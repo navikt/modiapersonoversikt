@@ -158,3 +158,11 @@ export function filtrerBortVarsel(traad: Traad): boolean {
     }
     return !erVarselMelding(nyesteMelding(traad).meldingstype);
 }
+
+export function sammenlignFritekstMedTraad(traad: Traad, fritekst: string): boolean {
+    const fritekstFraNyesteMeldingITraad = nyesteMelding(traad)
+        .fritekst.toLowerCase()
+        .replace(/\s+/g, '');
+    const fritekstFraMelding = fritekst.toLowerCase().replace(/\s+/g, '');
+    return fritekstFraNyesteMeldingITraad === fritekstFraMelding;
+}
