@@ -121,7 +121,7 @@ function FortsettDialogContainer(props: Props) {
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
-                    loggEvent('Send-Svar', 'FortsettDialog', { type: 'failed' });
+                    loggEvent('Send-Svar-Failed', 'FortsettDialog');
                 });
         } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
             const erJournalfort = erEldsteMeldingJournalfort(props.traad);
@@ -149,7 +149,7 @@ function FortsettDialogContainer(props: Props) {
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
-                    loggEvent('Send-Spørsmål', 'FortsettDialog', { type: 'failed' });
+                    loggEvent('Send-Spørsmål-Failed', 'FortsettDialog');
                 });
         } else if (FortsettDialogValidator.erGyldigDelsvar(state) && oppgaveId && state.temagruppe) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
@@ -173,7 +173,7 @@ function FortsettDialogContainer(props: Props) {
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
-                    loggEvent('Send-Delsvar', 'FortsettDialog', { type: 'failed' });
+                    loggEvent('Send-Delsvar-Failed', 'FortsettDialog');
                 });
         } else {
             updateState({ visFeilmeldinger: true });

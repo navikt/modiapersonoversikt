@@ -28,7 +28,7 @@ import {
     MerkRequestMedTraadId
 } from '../../../../../../../models/meldinger/merk';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { loggError, loggEvent } from '../../../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../../../utils/frontendLogger';
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
 import { useRestResource } from '../../../../../../../utils/customHooks';
@@ -151,18 +151,18 @@ function MerkPanel(props: Props) {
 
         switch (valgtOperasjon) {
             case MerkOperasjon.AVSLUTT:
-                merkPost(MERK_AVSLUTT_URL, getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad));
+                merkPost(MERK_AVSLUTT_URL, getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad), 'AvluttUtenSvar');
                 break;
             case MerkOperasjon.BISYS:
-                merkPost(MERK_BISYS_URL, getMerkBisysRequest(valgtBrukersFnr, valgtTraad));
+                merkPost(MERK_BISYS_URL, getMerkBisysRequest(valgtBrukersFnr, valgtTraad), 'Bisys');
                 break;
             case MerkOperasjon.FEILSENDT:
-                merkPost(MERK_FEILSENDT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad));
+                merkPost(MERK_FEILSENDT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Feilsendt');
                 break;
             case MerkOperasjon.KONTORSPERRET: // Håndteres i egen funksjon
                 break;
             case MerkOperasjon.SLETT:
-                merkPost(MERK_SLETT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad));
+                merkPost(MERK_SLETT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Sletting');
                 break;
         }
     };
@@ -173,18 +173,18 @@ function MerkPanel(props: Props) {
         dispatch(resetPlukkOppgaveResource);
     };
 
-    function merkPost(url: string, object: any) {
+    function merkPost(url: string, object: any, name: string) {
         post(url, object)
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
                 callback();
-                loggEvent('Merk-Post', 'MerkPanel');
+                loggEvent('Merk-' + name, 'MerkPanel');
             })
             .catch((error: Error) => {
                 settResultat(Resultat.FEIL);
                 setSubmitting(false);
-                loggError(error, 'Klarte ikke merke tråd', object);
+                loggEvent('Post-Failed', 'MerkPanel', { type: name });
             });
     }
 

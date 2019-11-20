@@ -7,7 +7,7 @@ export function post(uri: string, body: object) {
             return parseResponse(response);
         } else {
             return response.text().then(text => {
-                loggError(Error('Feil ved posting på ' + uri), text, { request: body });
+                loggError(Error('Post failed on: ' + uri), text, { request: body });
                 return Promise.reject(text);
             });
         }
