@@ -30,7 +30,7 @@ interface Props {
 function UtbetalingerOversikt(props: Props) {
     return (
         <RestResourceConsumer<UtbetalingerResponse>
-            getResource={restResources => restResources.utbetalinger}
+            getResource={restResources => restResources.utbetalingerOversikt}
             returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
         >
             {data => <UtbetalingerPanel utbetalinger={data} {...props} />}
