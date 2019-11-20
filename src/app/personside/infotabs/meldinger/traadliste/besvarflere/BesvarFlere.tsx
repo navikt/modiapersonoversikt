@@ -18,7 +18,7 @@ import { AppState } from '../../../../../../redux/reducers';
 import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../../../rest/utils/postResource';
 import { useOnMount, useRestResource } from '../../../../../../utils/customHooks';
 import { setValgtTraadDialogpanel } from '../../../../../../redux/oppgave/actions';
-import { loggError } from '../../../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../../../utils/frontendLogger';
 import { useInfotabsDyplenker } from '../../../dyplenker';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Feilmelding } from '../../../../../../utils/Feilmelding';
@@ -172,6 +172,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
     const dyplenker = useInfotabsDyplenker();
 
     useOnMount(() => {
+        loggEvent('Åpnet', 'BesvarFlere');
         dispatch(slaaSammenResource.actions.reset);
     });
 
@@ -221,6 +222,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
             traader: traaderSomSkalSlaasSammen
         };
         const callback = (response: SlaaSammenResponse) => {
+            loggEvent('SloSammenOppgaver', 'BesvarFlere');
             dispatch(setTråderITråderResource(response.traader));
             dispatch(resetPlukkOppgave);
             dispatch(reloadTildelteOppgaver);

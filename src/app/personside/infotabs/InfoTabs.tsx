@@ -18,6 +18,8 @@ import { useFødselsnummer } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
+import { useEffect } from 'react';
+import { loggEvent } from '../../../utils/frontendLogger';
 
 type Props = RouteComponentProps<{}>;
 
@@ -62,6 +64,11 @@ function InfoTabs(props: Props) {
     };
 
     const openTab = getOpenTabFromRouterPath(props.history.location.pathname);
+
+    useEffect(() => {
+        loggEvent('Vis-' + openTab, 'Tabs');
+    }, [openTab]);
+
     return (
         <ErrorBoundary boundaryName="InfoTabs">
             <InfotabsFokusContext.Provider value={focusOnOpenTab}>

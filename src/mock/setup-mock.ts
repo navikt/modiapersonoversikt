@@ -485,7 +485,10 @@ function merkSlettMock(mock: FetchMock) {
 }
 
 function setupStandardteksterMock(mock: FetchMock) {
-    mock.get('/modiapersonoversikt-skrivestotte/skrivestotte', standardTekster);
+    mock.get(
+        '/modiapersonoversikt-skrivestotte/skrivestotte',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => standardTekster)
+    );
 }
 
 const contentTypeMiddleware: Middleware = (requestArgs, response) => {

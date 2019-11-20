@@ -15,7 +15,7 @@ interface Props {
     valgtTraad: Traad;
     tilbake: () => void;
     lukkPanel: () => void;
-    merkPost: (url: string, object: any) => void;
+    merkPost: (url: string, object: any, name: string) => void;
 }
 
 const MERK_KONTORSPERRET_URL = `${apiBaseUri}/dialogmerking/kontorsperret`;
@@ -38,7 +38,11 @@ export function Kontorsperr(props: Props) {
     const valgtTraad = props.valgtTraad;
 
     const kontorsperr = () => {
-        props.merkPost(MERK_KONTORSPERRET_URL, getMerkKontrorsperretRequest(valgtBrukersFnr, valgtTraad));
+        props.merkPost(
+            MERK_KONTORSPERRET_URL,
+            getMerkKontrorsperretRequest(valgtBrukersFnr, valgtTraad),
+            'Kontorsperring'
+        );
     };
 
     return (
