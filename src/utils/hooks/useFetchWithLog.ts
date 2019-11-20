@@ -14,9 +14,9 @@ export function useFetchWithLog<TYPE>(
     const status = result.status;
     const prevStatus = usePrevious(status);
     useEffect(() => {
-        if (prevStatus === undefined && status === Status.PENDING) {
+        if (prevStatus !== Status.PENDING && status === Status.PENDING) {
             loggEvent('Fetch', loggerLocation, { type: loggerExtraTag });
-        } else if (prevStatus === Status.PENDING && status === Status.ERROR) {
+        } else if (prevStatus !== Status.ERROR && status === Status.ERROR) {
             loggEvent('Fetch-Failed', loggerLocation, { type: loggerExtraTag });
         } else if (prevStatus !== Status.RELOADING && status === Status.RELOADING) {
             loggEvent('Re-fetch', loggerLocation, { type: loggerExtraTag });
