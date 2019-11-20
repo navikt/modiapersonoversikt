@@ -19,6 +19,7 @@ import { autofullfor, AutofullforData, byggAutofullforMap } from '../autofullfor
 import { useRestResource } from '../../../../../utils/customHooks';
 import { hasData as restResourceHasData } from '../../../../../rest/utils/restResource';
 import { useFetchLogger } from '../../../../../utils/hooks/useFetchLogger';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -84,6 +85,7 @@ function velgTekst(
             const localeTekst = tekst.innhold[locale];
             const nokler = byggAutofullforMap(data.person, data.kontor, data.saksbehandler, locale);
             const ferdigTekst = captitalize(autofullfor(localeTekst, nokler));
+            loggEvent('Velg tekst', 'Standardtekster');
 
             settTekst(ferdigTekst);
         }

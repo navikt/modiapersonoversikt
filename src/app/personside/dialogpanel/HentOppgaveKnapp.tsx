@@ -97,6 +97,7 @@ function HentOppgaveKnapp(props: Props) {
                 props.history.push(
                     `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
                 );
+                response.length > 1 && loggEvent('FlereOppgaverTildelt', 'HentOppgave');
                 loggEvent('Hent-Oppgave', 'HentOppgave');
             })
         );
