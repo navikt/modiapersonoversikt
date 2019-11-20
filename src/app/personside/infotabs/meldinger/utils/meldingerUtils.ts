@@ -158,11 +158,12 @@ export function filtrerBortVarsel(traad: Traad): boolean {
     }
     return !erVarselMelding(nyesteMelding(traad).meldingstype);
 }
+function removeWhiteSpaces(text: string) {
+    return text.replace(/\s+/g, '');
+}
 
-export function sammenlignFritekstMedTraad(traad: Traad, fritekst: string): boolean {
-    const fritekstFraNyesteMeldingITraad = nyesteMelding(traad)
-        .fritekst.toLowerCase()
-        .replace(/\s+/g, '');
-    const fritekstFraMelding = fritekst.toLowerCase().replace(/\s+/g, '');
+export function erSammefritekstSomNyesteMeldingITraad(traad: Traad, fritekst: string): boolean {
+    const fritekstFraNyesteMeldingITraad = removeWhiteSpaces(nyesteMelding(traad).fritekst.toLowerCase());
+    const fritekstFraMelding = removeWhiteSpaces(fritekst.toLowerCase());
     return fritekstFraNyesteMeldingITraad === fritekstFraMelding;
 }

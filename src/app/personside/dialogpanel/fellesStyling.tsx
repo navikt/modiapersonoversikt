@@ -11,9 +11,10 @@ import { useDispatch } from 'react-redux';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useRestResource } from '../../../utils/customHooks';
-import { hasData } from '../../../rest/utils/restResource';
+import { hasData, isLoading } from '../../../rest/utils/restResource';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
-import { nyesteMelding, sammenlignFritekstMedTraad } from '../infotabs/meldinger/utils/meldingerUtils';
+import { erSammefritekstSomNyesteMeldingITraad } from '../infotabs/meldinger/utils/meldingerUtils';
+import LazySpinner from '../../../components/LazySpinner';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -41,7 +42,18 @@ export const DialogpanelKvitteringStyling = styled.div`
 export function DialogpanelFeilmelding() {
     return <AlertStripeFeil>Det skjedde en feil ved sending av melding</AlertStripeFeil>;
 }
+function Verktøylinje(props: { fritekst: string }) {
+    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const traader = hasData(traaderResource) ? traaderResource.data : [];
+    const sisteTraad = traader[0];
+    const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(sisteTraad, props.fritekst);
 
+    if (isLoading(traaderResource)) {
+        return <LazySpinner />;
+    }
+
+    return <>{erRiktigMelding && <Verktoylinje valgtTraad={sisteTraad} skjulSkrivUt={true} />}</>;
+}
 export function DialogpanelKvittering(props: {
     tittel: string;
     fritekst: string;
@@ -51,11 +63,6 @@ export function DialogpanelKvittering(props: {
     const tildelteOppgaver = useTildelteOppgaver();
     const dispatch = useDispatch();
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
-    const traader = hasData(traaderResource) ? traaderResource.data : [];
-    const sisteTraad = traader[0];
-    const sisteMelding = nyesteMelding(sisteTraad);
-
-    const erNyesteMelding = sammenlignFritekstMedTraad(sisteTraad, props.fritekst);
 
     const nesteOppgavePåBruker = tildelteOppgaver.paaBruker[0];
     const gaaTilNesteSporsmaal = () => {
@@ -75,8 +82,8 @@ export function DialogpanelKvittering(props: {
         <DialogpanelKvitteringStyling>
             <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
             <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
-            {erNyesteMelding && <Verktoylinje valgtTraad={sisteTraad} skjulSkrivUt={true} />}
-            <Preview fritekst={sisteMelding.fritekst} tittel={meldingstypeTekst(sisteMelding.meldingstype)} />
+            <Verktøylinje fritekst={props.fritekst} />
+            <Preview fritekst={props.fritekst} tittel={meldingstypeTekst(props.meldingstype)} />
             <KnappBase type="standard" onClick={props.lukk}>
                 Start ny dialog
             </KnappBase>
