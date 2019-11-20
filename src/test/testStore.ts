@@ -49,6 +49,7 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.land.actions.setData(mockLandKodeverk()));
     testStore.dispatch(restResources.valuta.actions.setData(mockValutaKodeverk()));
     testStore.dispatch(restResources.utbetalinger.actions.setData(statiskMockUtbetalingRespons));
+    testStore.dispatch(restResources.utbetalingerOversikt.actions.setData(statiskMockUtbetalingRespons));
     testStore.dispatch(restResources.sakstema.actions.setData(getStaticMockSaksoversikt()));
     testStore.dispatch(restResources.brukersVarsler.actions.setData(statiskVarselMock));
     testStore.dispatch(setGjeldendeBrukerIRedux(aremarkFnr));

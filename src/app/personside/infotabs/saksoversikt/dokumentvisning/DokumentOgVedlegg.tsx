@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Dokument, DokumentMetadata } from '../../../../../models/saksoversikt/dokumentmetadata';
 import { TabsPure } from 'nav-frontend-tabs';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { getSaksdokument } from '../../../../../utils/url-utils';
@@ -13,9 +13,11 @@ import { connect } from 'react-redux';
 import { settValgtEnkeltdokument, settVisDokument } from '../../../../../redux/saksoversikt/actions';
 import { LenkeKnapp, TilbakePil } from '../../../../../components/common-styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useFocusOnMount } from '../../../../../utils/customHooks';
+import { useFocusOnMount, useOnMount } from '../../../../../utils/customHooks';
 import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import { erIE11 } from '../../../../../utils/erNyPersonoversikt';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface StateProps {
     valgtDokument?: DokumentMetadata;
@@ -64,8 +66,18 @@ function VisDokumentContainer(props: { fødselsnummer: string; journalpostId: st
     const [errMsg, setErrMsg] = useState('');
     const onError = (statusKode: number) => setErrMsg(feilmelding(statusKode));
 
+    useOnMount(() => {
+        if (erIE11()) {
+            loggEvent('KanIkkeViseDokumentIIE11', 'Saker');
+        }
+    });
+
+    if (erIE11()) {
+        return <AlertStripeInfo>Kan ikke vise dokumenter i Internet Explorer. Prøv chrome</AlertStripeInfo>;
+    }
+
     return (
-        <ObjectHttpFeilHandtering url={dokUrl} width="100%" onError={onError}>
+        <ObjectHttpFeilHandtering type="application/pdf" url={dokUrl} width="100%" onError={onError}>
             <AlertStripeAdvarsel>{errMsg}</AlertStripeAdvarsel>
         </ObjectHttpFeilHandtering>
     );
