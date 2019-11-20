@@ -1,5 +1,5 @@
 import React, { FormEvent, ReactNode, useEffect, useState } from 'react';
-import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
+import { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import styled from 'styled-components';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
@@ -18,7 +18,7 @@ import { erKontaktsenter } from '../../../../../utils/loggInfo/saksbehandlersEnh
 import { autofullfor, AutofullforData, byggAutofullforMap } from '../autofullforUtils';
 import { useRestResource } from '../../../../../utils/customHooks';
 import { hasData as restResourceHasData } from '../../../../../rest/utils/restResource';
-import { useFetchLogger } from '../../../../../utils/hooks/useFetchLogger';
+import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface Props {
@@ -94,8 +94,10 @@ function velgTekst(
 
 function StandardTekstSok(props: Props) {
     const inputRef = React.useRef<HTMLInputElement>();
-    const data = useFetch<StandardTekster.Tekster>('/modiapersonoversikt-skrivestotte/skrivestotte');
-    useFetchLogger(data, 'Standardtekster');
+    const data = useFetchWithLog<StandardTekster.Tekster>(
+        '/modiapersonoversikt-skrivestotte/skrivestotte',
+        'Standardtekster'
+    );
     const sokefelt = useFieldState(erKontaktsenter() ? '#ks ' : '');
     const debouncedSokefelt = useDebounce(sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() => sokEtterTekster(data, debouncedSokefelt));
