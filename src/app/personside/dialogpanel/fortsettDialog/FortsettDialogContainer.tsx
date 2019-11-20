@@ -24,6 +24,7 @@ import {
     FortsettDialogState,
     KvitteringsData
 } from './FortsettDialogTypes';
+import { useTimer } from '../../../../utils/hooks/useTimer';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -60,6 +61,7 @@ function FortsettDialogContainer(props: Props) {
             visFeilmeldinger: false,
             ...change
         });
+    const getDuration = useTimer();
 
     const opprettHenvendelse = useOpprettHenvendelse(props.traad);
 
@@ -86,6 +88,7 @@ function FortsettDialogContainer(props: Props) {
             return;
         }
         const callback = () => {
+            loggEvent('TidsbrukMillisekunder', 'FortsettDialog', undefined, { ms: getDuration() });
             dispatch(resetPlukkOppgaveResource);
             dispatch(reloadTildelteOppgaver);
             dispatch(reloadMeldinger);
