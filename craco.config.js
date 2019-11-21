@@ -15,6 +15,9 @@ module.exports = function({ env }) {
         eslint: {
             mode: ESLINT_MODES.file
         },
-        plugins: [{ plugin: DisableAsciiOnly }, { plugin: CracoLessPlugin }]
+        plugins: [{ plugin: DisableAsciiOnly }, { plugin: CracoLessPlugin }],
+        babel: {
+            plugins: ['@babel/plugin-proposal-optional-chaining']
+        }
     };
 };
