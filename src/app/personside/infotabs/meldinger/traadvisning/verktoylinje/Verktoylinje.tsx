@@ -16,6 +16,7 @@ import { meldingstittel, nyesteMelding } from '../../utils/meldingerUtils';
 
 interface Props {
     valgtTraad: Traad;
+    skjulSkrivUt?: boolean;
 }
 
 const PanelStyle = styled.section`
@@ -94,9 +95,11 @@ function Verktoylinje(props: Props) {
                     />
                     <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
                 </OppgaveknapperStyle>
-                <PrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
-                    <Normaltekst>Skriv ut</Normaltekst>
-                </PrintKnapp>
+                {!props.skjulSkrivUt && (
+                    <PrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
+                        <Normaltekst>Skriv ut</Normaltekst>
+                    </PrintKnapp>
+                )}
             </KnapperPanelStyle>
             <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
                 <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />

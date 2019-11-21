@@ -11,7 +11,10 @@ import { useDispatch } from 'react-redux';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useRestResource } from '../../../utils/customHooks';
-import { hasData } from '../../../rest/utils/restResource';
+import { hasData, isLoading } from '../../../rest/utils/restResource';
+import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
+import { erSammefritekstSomNyesteMeldingITraad } from '../infotabs/meldinger/utils/meldingerUtils';
+import LazySpinner from '../../../components/LazySpinner';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -39,7 +42,21 @@ export const DialogpanelKvitteringStyling = styled.div`
 export function DialogpanelFeilmelding() {
     return <AlertStripeFeil>Det skjedde en feil ved sending av melding</AlertStripeFeil>;
 }
+function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
+    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const traader = hasData(traaderResource) ? traaderResource.data : [];
+    const sisteTraad = traader[0];
+    const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(sisteTraad, props.fritekst); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
 
+    if (isLoading(traaderResource)) {
+        return <LazySpinner />;
+    }
+
+    if (!erRiktigMelding) {
+        return null;
+    }
+    return <Verktoylinje valgtTraad={sisteTraad} skjulSkrivUt={true} />;
+}
 export function DialogpanelKvittering(props: {
     tittel: string;
     fritekst: string;
@@ -64,11 +81,11 @@ export function DialogpanelKvittering(props: {
         props.lukk();
         dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
     };
-
     return (
         <DialogpanelKvitteringStyling>
             <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
             <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
+            <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
             <Preview fritekst={props.fritekst} tittel={meldingstypeTekst(props.meldingstype)} />
             <KnappBase type="standard" onClick={props.lukk}>
                 Start ny dialog
