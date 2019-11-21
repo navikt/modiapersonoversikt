@@ -46,7 +46,7 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const traader = hasData(traaderResource) ? traaderResource.data : [];
     const sisteTraad = traader[0];
-    const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(sisteTraad, props.fritekst); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
+    const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(props.fritekst, sisteTraad); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
 
     if (isLoading(traaderResource)) {
         return <LazySpinner />;

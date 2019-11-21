@@ -162,7 +162,10 @@ function removeWhiteSpaces(text: string) {
     return text.replace(/\s+/g, '');
 }
 
-export function erSammefritekstSomNyesteMeldingITraad(traad: Traad, fritekst: string): boolean {
+export function erSammefritekstSomNyesteMeldingITraad(fritekst: string, traad?: Traad): boolean {
+    if (traad === undefined) {
+        return false;
+    }
     const fritekstFraNyesteMeldingITraad = removeWhiteSpaces(nyesteMelding(traad).fritekst.toLowerCase());
     const fritekstFraMelding = removeWhiteSpaces(fritekst.toLowerCase());
     return fritekstFraNyesteMeldingITraad === fritekstFraMelding;
