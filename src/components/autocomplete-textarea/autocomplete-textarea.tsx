@@ -61,6 +61,7 @@ function AutocompleteTextarea(props: TextareaProps) {
 
 function AutocompleteTextareaComponent(props: TextareaProps & { status: STATUS; data: AutofullforData | null }) {
     const { status, data, ...rest } = props;
+    const onChange = props.onChange;
     const onKeyDown: React.KeyboardEventHandler = useCallback(
         (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
             if (data === null) {
@@ -100,11 +101,11 @@ function AutocompleteTextareaComponent(props: TextareaProps & { status: STATUS; 
 
                     event.currentTarget.selectionEnd = cursorPosition + (fullfortTekst.length - word.length);
 
-                    props.onChange(event);
+                    onChange(event);
                 }
             }
         },
-        [data, props.onChange]
+        [data, onChange]
     );
 
     return <Textarea onKeyDown={onKeyDown} {...rest} />;
