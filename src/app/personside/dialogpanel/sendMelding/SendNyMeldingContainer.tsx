@@ -77,7 +77,7 @@ function SendNyMeldingContainer() {
                 })
                 .catch(() => {
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
-                    loggEvent('Send-Referat', 'SendNyMelding', { type: 'failed' });
+                    loggEvent('Post-Failed', 'SendNyMelding', { type: 'Send-Referat' });
                 });
         } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
@@ -93,7 +93,7 @@ function SendNyMeldingContainer() {
                     loggEvent('Send-Sporsmal', 'SendNyMelding');
                 })
                 .catch(() => {
-                    loggEvent('Send-Sporsmal', 'SendNyMelding', { type: 'failed' });
+                    loggEvent('Post-Failed', 'SendNyMelding', { type: 'SendSpørsmål' });
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
                 });
         } else {

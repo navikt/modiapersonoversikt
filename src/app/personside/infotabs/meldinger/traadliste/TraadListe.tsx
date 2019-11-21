@@ -11,6 +11,7 @@ import { LenkeKnapp } from '../../../../../components/common-styled-components';
 import { useOnMount } from '../../../../../utils/customHooks';
 import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface Props {
     traader: Traad[];
@@ -101,6 +102,15 @@ function TraadListe(props: Props) {
             ? `Søket traff ${props.traaderEtterSokOgFiltrering.length} av ${props.traader.length} ${meldingTekst}`
             : `Totalt ${props.traader.length} ${meldingTekst}`;
 
+    const onMeldingerSok = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const sokeOrd = event.target.value;
+        const brukerStarterEtNyttSøk = props.sokeord === '' && sokeOrd.length > 0;
+        if (brukerStarterEtNyttSøk) {
+            loggEvent('SøkIMeldinger', 'TraadListe');
+        }
+        props.setSokeord(sokeOrd);
+    };
+
     return (
         <PanelStyle>
             <SlaaSammenOppgaverKnapp traader={props.traader} />
@@ -113,7 +123,7 @@ function TraadListe(props: Props) {
                         }) as any
                     }
                     value={props.sokeord}
-                    onChange={event => props.setSokeord(event.target.value)}
+                    onChange={onMeldingerSok}
                     label={'Søk etter melding'}
                     placeholder={'Søk etter melding'}
                     className={'move-input-label'}

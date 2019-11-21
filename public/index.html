@@ -13,7 +13,8 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link rel="stylesheet" href="index.css">
     <script>
-        const _apiBaseUri = "%REACT_APP_MODIA_URL%";
+        const harNyBackendQueryParam = window.location.search.indexOf('nybackend') >= 0;
+        const _apiBaseUri = harNyBackendQueryParam ? "/modiapersonoversikt-api/rest" : "%REACT_APP_MODIA_URL%";
         const _mockEnabled = "%REACT_APP_MOCK_ENABLED%";
     </script>
     <script src="%REACT_APP_HODE_URL%/v2/static/js/head.v2.min.js"></script>

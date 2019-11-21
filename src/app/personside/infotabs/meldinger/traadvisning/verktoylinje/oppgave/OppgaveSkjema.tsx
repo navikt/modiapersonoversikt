@@ -18,7 +18,7 @@ import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { Resultat } from '../utils/VisPostResultat';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { loggError } from '../../../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../../../utils/frontendLogger';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { erBehandlet } from '../../../utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -112,12 +112,13 @@ function OppgaveSkjema(props: OppgaveProps) {
                 .then(() => {
                     settResultat(Resultat.VELLYKKET);
                     setSubmitting(false);
+                    loggEvent('OpprettOppgave', 'OppgaveSkjema');
                     props.onSuccessCallback && props.onSuccessCallback();
                 })
                 .catch((error: Error) => {
                     settResultat(Resultat.FEIL);
                     setSubmitting(false);
-                    loggError(error, 'Klarte ikke opprette oppgave');
+                    loggEvent('OpprettOppgave-Failed', 'OppgaveSkjema');
                 });
         } else {
             settValideringsresultat(valideringsResultat);

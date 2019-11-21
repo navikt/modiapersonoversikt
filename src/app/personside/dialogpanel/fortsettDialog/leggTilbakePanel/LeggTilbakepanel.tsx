@@ -111,6 +111,7 @@ function LeggTilbakepanel(props: Props) {
                     loggEvent('LeggTilbakeOppgave-Innhabil', 'LeggTilbakeOppgave');
                 })
                 .catch(() => {
+                    loggEvent('Post-Failed', 'LeggTilbakeOppgave', { type: 'Innhabil' });
                     props.setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else if (LeggTilbakeValidator.erGyldigAnnenAarsakRequest(state)) {
@@ -127,6 +128,7 @@ function LeggTilbakepanel(props: Props) {
                     loggEvent('LeggTilbakeOppgave-AnnenÅrsak', 'LeggTilbakeOppgave');
                 })
                 .catch(() => {
+                    loggEvent('Post-Failed', 'LeggTilbakeOppgave', { type: 'AnnenÅrsak' });
                     props.setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state) && state.temagruppe) {
@@ -143,6 +145,7 @@ function LeggTilbakepanel(props: Props) {
                     loggEvent('LeggTilbakeOppgave-FeilTema', 'LeggTilbakeOppgave');
                 })
                 .catch(() => {
+                    loggEvent('Post-Failed', 'LeggTilbakeOppgave', { type: 'FeilTema' });
                     props.setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else {

@@ -28,13 +28,14 @@ import {
     MerkRequestMedTraadId
 } from '../../../../../../../models/meldinger/merk';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { loggError, loggEvent } from '../../../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../../../utils/frontendLogger';
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
 import { useRestResource } from '../../../../../../../utils/customHooks';
-import { AsyncResult, hasData, isPending } from '@nutgaard/use-async';
-import useFetch from '@nutgaard/use-fetch';
+import { hasData, isPending } from '@nutgaard/use-async';
+import { FetchResult } from '@nutgaard/use-fetch';
 import { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
+import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 
 interface Props {
     lukkPanel: () => void;
@@ -114,7 +115,12 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
-    const saksbehandlerKanSletteFetch: AsyncResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, credentials);
+    const saksbehandlerKanSletteFetch: FetchResult<Boolean> = useFetchWithLog<Boolean>(
+        MERK_SLETT_URL,
+        'MerkPanel',
+        credentials,
+        'KanSletteMelding'
+    );
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
 
     const reloadMeldinger = tråderResource.actions.reload;
@@ -149,18 +155,18 @@ function MerkPanel(props: Props) {
 
         switch (valgtOperasjon) {
             case MerkOperasjon.AVSLUTT:
-                merkPost(MERK_AVSLUTT_URL, getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad));
+                merkPost(MERK_AVSLUTT_URL, getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad), 'AvluttUtenSvar');
                 break;
             case MerkOperasjon.BISYS:
-                merkPost(MERK_BISYS_URL, getMerkBisysRequest(valgtBrukersFnr, valgtTraad));
+                merkPost(MERK_BISYS_URL, getMerkBisysRequest(valgtBrukersFnr, valgtTraad), 'Bisys');
                 break;
             case MerkOperasjon.FEILSENDT:
-                merkPost(MERK_FEILSENDT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad));
+                merkPost(MERK_FEILSENDT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Feilsendt');
                 break;
             case MerkOperasjon.KONTORSPERRET: // Håndteres i egen funksjon
                 break;
             case MerkOperasjon.SLETT:
-                merkPost(MERK_SLETT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad));
+                merkPost(MERK_SLETT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Sletting');
                 break;
         }
     };
@@ -171,18 +177,18 @@ function MerkPanel(props: Props) {
         dispatch(resetPlukkOppgaveResource);
     };
 
-    function merkPost(url: string, object: any) {
+    function merkPost(url: string, object: any, name: string) {
         post(url, object)
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
                 callback();
-                loggEvent('Merk-Post', 'MerkPanel');
+                loggEvent('Merk-' + name, 'MerkPanel');
             })
             .catch((error: Error) => {
                 settResultat(Resultat.FEIL);
                 setSubmitting(false);
-                loggError(error, 'Klarte ikke merke tråd', object);
+                loggEvent('Post-Failed', 'MerkPanel', { type: name });
             });
     }
 
