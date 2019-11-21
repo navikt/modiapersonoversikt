@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useCallback } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { Textarea, TextareaProps } from 'nav-frontend-skjema';
 import {
     autofullfor,
@@ -62,7 +62,7 @@ function AutocompleteTextarea(props: TextareaProps) {
 function AutocompleteTextareaComponent(props: TextareaProps & { status: STATUS; data: AutofullforData | null }) {
     const { status, data, ...rest } = props;
     const onChange = props.onChange;
-    const onKeyDown: React.KeyboardEventHandler = useCallback(
+    const onKeyDown = useCallback(
         (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
             if (data === null) {
                 return;
@@ -101,7 +101,7 @@ function AutocompleteTextareaComponent(props: TextareaProps & { status: STATUS; 
 
                     event.currentTarget.selectionEnd = cursorPosition + (fullfortTekst.length - word.length);
 
-                    onChange(event);
+                    onChange((event as unknown) as ChangeEvent<HTMLTextAreaElement>);
                 }
             }
         },
