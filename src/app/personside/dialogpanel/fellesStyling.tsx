@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useRestResource } from '../../../utils/customHooks';
-import { hasData, isReloading } from '../../../rest/utils/restResource';
+import { hasData, isLoading, isReloading } from '../../../rest/utils/restResource';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
 import { erSammefritekstSomNyesteMeldingITraad } from '../infotabs/meldinger/utils/meldingerUtils';
 import NavFrontendSpinner from 'nav-frontend-spinner';
@@ -53,7 +53,7 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     const sisteTraad = traader[0];
     const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(props.fritekst, sisteTraad); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
 
-    if (isReloading(traaderResource)) {
+    if (isReloading(traaderResource) || isLoading(traaderResource)) {
         return (
             <SpinnerWrapper>
                 <NavFrontendSpinner type="S" />
