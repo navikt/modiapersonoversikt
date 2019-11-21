@@ -42,17 +42,20 @@ export const DialogpanelKvitteringStyling = styled.div`
 export function DialogpanelFeilmelding() {
     return <AlertStripeFeil>Det skjedde en feil ved sending av melding</AlertStripeFeil>;
 }
-function Verktøylinje(props: { fritekst: string }) {
+function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const traader = hasData(traaderResource) ? traaderResource.data : [];
     const sisteTraad = traader[0];
-    const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(sisteTraad, props.fritekst);
+    const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(sisteTraad, props.fritekst); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
 
     if (isLoading(traaderResource)) {
         return <LazySpinner />;
     }
 
-    return <>{erRiktigMelding && <Verktoylinje valgtTraad={sisteTraad} skjulSkrivUt={true} />}</>;
+    if (!erRiktigMelding) {
+        return null;
+    }
+    return <Verktoylinje valgtTraad={sisteTraad} skjulSkrivUt={true} />;
 }
 export function DialogpanelKvittering(props: {
     tittel: string;
@@ -82,7 +85,7 @@ export function DialogpanelKvittering(props: {
         <DialogpanelKvitteringStyling>
             <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
             <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
-            <Verktøylinje fritekst={props.fritekst} />
+            <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
             <Preview fritekst={props.fritekst} tittel={meldingstypeTekst(props.meldingstype)} />
             <KnappBase type="standard" onClick={props.lukk}>
                 Start ny dialog
