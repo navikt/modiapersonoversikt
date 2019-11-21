@@ -67,7 +67,7 @@ function usePaginering<T>(list: T[], pageSize: number, itemLabel: string, select
             const newPage = Math.floor(index / pageSize);
             setCurrentPage(newPage);
         }
-    });
+    }, [selectedItem, prevSelectedItem, setCurrentPage, pageSize, list]);
 
     const prevPage = usePrevious(currentPage);
     useEffect(() => {
