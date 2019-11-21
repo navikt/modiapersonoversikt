@@ -338,7 +338,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
       Anviste utbetalinger
     </h2>
     <div
-      className="typo-normal c2"
+      className="c2 typo-normal"
     >
       <table
         role="table"

@@ -54,7 +54,7 @@ exports[`Kommende enkelutbetaling matcher snapshot 1`] = `
     Utbetalinger
   </h4>
   <div
-    className="typo-normal c1"
+    className="c1 typo-normal"
   >
     <table
       role="table"

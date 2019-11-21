@@ -518,7 +518,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                   </div>
                 </dl>
                 <div
-                  className="typo-normal c8"
+                  className="c8 typo-normal"
                 >
                   <table
                     role="table"
@@ -725,7 +725,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               Utbetalinger på vent
             </h4>
             <div
-              className="typo-normal c8"
+              className="c8 typo-normal"
             >
               <table
                 role="table"
@@ -807,7 +807,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               Utbetalinger
             </h4>
             <div
-              className="typo-normal c8"
+              className="c8 typo-normal"
             >
               <table
                 role="table"
@@ -1257,7 +1257,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                   Anviste utbetalinger
                 </h2>
                 <div
-                  className="typo-normal c8"
+                  className="c8 typo-normal"
                 >
                   <table
                     role="table"
@@ -1393,7 +1393,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                   Anviste utbetalinger
                 </h2>
                 <div
-                  className="typo-normal c8"
+                  className="c8 typo-normal"
                 >
                   <table
                     role="table"
@@ -2032,7 +2032,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     Utbetalinger
                   </h4>
                   <div
-                    className="typo-normal c8"
+                    className="c8 typo-normal"
                   >
                     <table
                       role="table"

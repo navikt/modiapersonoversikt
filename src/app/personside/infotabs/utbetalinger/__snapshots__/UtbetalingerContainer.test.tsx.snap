@@ -1114,7 +1114,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                   aria-label="Utbetalinger fra Mars 2017"
                 >
                   <li
-                    className="test-utbetaling-utbetalinglamell c31"
+                    className="c31 test-utbetaling-utbetalinglamell"
                     onClick={[Function]}
                     onFocus={[Function]}
                     tabIndex={0}
