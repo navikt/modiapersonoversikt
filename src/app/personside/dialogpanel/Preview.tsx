@@ -20,13 +20,14 @@ const PreviewStyle = styled.article`
 interface Props {
     tittel: string;
     fritekst: string;
+    opprettetDato: string;
 }
 
 function Preview(props: Props) {
     return (
         <PreviewStyle>
             <Normaltekst>{props.tittel}</Normaltekst>
-            <EtikettGrå>{formatterDatoTid(new Date())}</EtikettGrå>
+            <EtikettGrå>{formatterDatoTid(props.opprettetDato)}</EtikettGrå>
             <Tekstomrade>{props.fritekst}</Tekstomrade>
         </PreviewStyle>
     );
