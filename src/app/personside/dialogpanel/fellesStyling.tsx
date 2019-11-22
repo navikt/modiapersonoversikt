@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/personOversiktTheme';
-import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
 import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
@@ -13,7 +13,7 @@ import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useRestResource } from '../../../utils/customHooks';
 import { hasData, isLoading, isReloading } from '../../../rest/utils/restResource';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
-import { erSammefritekstSomNyesteMeldingITraad } from '../infotabs/meldinger/utils/meldingerUtils';
+import { erSammefritekstSomNyesteMeldingITraad, nyesteTraad } from '../infotabs/meldinger/utils/meldingerUtils';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 
@@ -50,7 +50,7 @@ export function DialogpanelFeilmelding() {
 function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const traader = hasData(traaderResource) ? traaderResource.data : [];
-    const sisteTraad = traader[0];
+    const sisteTraad = nyesteTraad(traader);
     const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(props.fritekst, sisteTraad); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
 
     if (isReloading(traaderResource) || isLoading(traaderResource)) {
@@ -62,7 +62,7 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     }
 
     if (!erRiktigMelding) {
-        return null;
+        return <AlertStripeInfo>Kunne ikke vise verktøylinje</AlertStripeInfo>;
     }
     return <Verktoylinje valgtTraad={sisteTraad} skjulSkrivUt={true} />;
 }
