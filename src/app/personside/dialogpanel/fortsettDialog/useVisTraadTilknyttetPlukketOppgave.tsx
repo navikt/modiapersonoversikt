@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import { useRestResource } from '../../../../utils/customHooks';
 import useTildelteOppgaver from '../../../../utils/hooks/useTildelteOppgaver';
@@ -10,6 +9,7 @@ import { hasData } from '../../../../rest/utils/restResource';
 import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { loggError } from '../../../../utils/frontendLogger';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
+import { useHistory } from 'react-router';
 
 interface Pending {
     pending: true;
@@ -22,11 +22,12 @@ interface Success {
 
 type Response = Pending | Success;
 
-function useVisTraadTilknyttetPlukketOppgave(props: RouteComponentProps, dialogpanelTraad?: Traad): Response {
+function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const tildelteOppgaver = useTildelteOppgaver();
     const dispatch = useDispatch();
     const dyplenker = useInfotabsDyplenker();
+    const history = useHistory();
 
     useEffect(
         function visTraadTilknyttetOppgaveIDialogpanel() {
@@ -38,14 +39,14 @@ function useVisTraadTilknyttetPlukketOppgave(props: RouteComponentProps, dialogp
             const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.traadId);
             if (traadTilknyttetOppgave) {
                 dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
-                props.history.push(dyplenker.meldinger.link(traadTilknyttetOppgave));
+                history.push(dyplenker.meldinger.link(traadTilknyttetOppgave));
             } else {
                 loggError(
                     new Error(`Fant ikke tråd tilknyttet oppgave ${oppgave.oppgaveId} med traadId ${oppgave.traadId}`)
                 );
             }
         },
-        [tildelteOppgaver.nettopTildelt, dialogpanelTraad, dispatch, dyplenker, props.history, traaderResource]
+        [tildelteOppgaver.nettopTildelt, dialogpanelTraad, dispatch, dyplenker, history, traaderResource]
     );
 
     if (tildelteOppgaver.nettopTildelt.length > 0 && !hasData(traaderResource)) {

@@ -5,7 +5,6 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 import { useAppState } from '../../../utils/customHooks';
 import SendNyMeldingContainer from './sendMelding/SendNyMeldingContainer';
 import FortsettDialogContainer from './fortsettDialog/FortsettDialogContainer';
-import { RouteComponentProps, withRouter } from 'react-router';
 import useVisTraadTilknyttetPlukketOppgave from './fortsettDialog/useVisTraadTilknyttetPlukketOppgave';
 import theme from '../../../styles/personOversiktTheme';
 
@@ -15,9 +14,9 @@ const DialogPanelWrapper = styled.article`
     word-break: break-word;
 `;
 
-function DialogPanel(props: RouteComponentProps) {
+function DialogPanel() {
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
-    const slåOppOppgave = useVisTraadTilknyttetPlukketOppgave(props, dialogpanelTraad);
+    const slåOppOppgave = useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad);
 
     if (slåOppOppgave.pending) {
         return slåOppOppgave.placeholder;
@@ -40,4 +39,4 @@ function DialogPanel(props: RouteComponentProps) {
     );
 }
 
-export default withRouter(DialogPanel);
+export default React.memo(DialogPanel);
