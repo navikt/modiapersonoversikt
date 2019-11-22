@@ -115,7 +115,7 @@ exports[`Sykemelding matcher snapshot 1`] = `
     </div>
   </dl>
   <div
-    className="c2 typo-normal"
+    className="typo-normal c2"
   >
     <table
       role="table"

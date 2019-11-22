@@ -54,7 +54,7 @@ exports[`UtbetalingerPVent matcher snapshot 1`] = `
     Utbetalinger på vent
   </h4>
   <div
-    className="c1 typo-normal"
+    className="typo-normal c1"
   >
     <table
       role="table"

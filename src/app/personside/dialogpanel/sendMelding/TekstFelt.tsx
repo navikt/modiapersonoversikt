@@ -47,9 +47,7 @@ function TekstFelt(props: Props) {
                 <AutocompleteTextarea
                     value={props.tekst}
                     onChange={e =>
-                        props.updateTekst(
-                            ((e as unknown) as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value
-                        )
+                        props.updateTekst((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)
                     }
                     label={'Melding'}
                     maxLength={props.tekstMaksLengde}
