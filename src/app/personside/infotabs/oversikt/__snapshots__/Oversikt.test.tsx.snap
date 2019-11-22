@@ -434,7 +434,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c4"
         />
         <a
-          className="lenke c5"
+          className="c5 lenke"
           href="/modiapersonoversikt/person/10108000398/oppfølging/"
           onClick={[Function]}
         >
@@ -502,7 +502,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c4"
         />
         <a
-          className="lenke c5"
+          className="c5 lenke"
           href="/modiapersonoversikt/person/10108000398/utbetaling/"
           onClick={[Function]}
         >
@@ -639,7 +639,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c4"
         />
         <a
-          className="lenke c5"
+          className="c5 lenke"
           href="/modiapersonoversikt/person/10108000398/saker/"
           onClick={[Function]}
         >
@@ -814,7 +814,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c4"
         />
         <a
-          className="lenke c5"
+          className="c5 lenke"
           href="/modiapersonoversikt/person/10108000398/meldinger/"
           onClick={[Function]}
         >
@@ -835,7 +835,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         >
           <li>
             <div
-              className="test-meldinger-oversikt c8"
+              className="c8 test-meldinger-oversikt"
               onClick={[Function]}
             >
               <div>
@@ -955,7 +955,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c4"
         />
         <a
-          className="lenke c5"
+          className="c5 lenke"
           href="/modiapersonoversikt/person/10108000398/ytelser/"
           onClick={[Function]}
         >
@@ -974,7 +974,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c23"
         >
           <div
-            className="test-ytelse-oversikt c8"
+            className="c8 test-ytelse-oversikt"
             onClick={[Function]}
           >
             <div>
@@ -1012,7 +1012,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </button>
           </div>
           <div
-            className="test-ytelse-oversikt c8"
+            className="c8 test-ytelse-oversikt"
             onClick={[Function]}
           >
             <div>
@@ -1062,7 +1062,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c4"
         />
         <a
-          className="lenke c5"
+          className="c5 lenke"
           href="/modiapersonoversikt/person/10108000398/varsler/"
           onClick={[Function]}
         >

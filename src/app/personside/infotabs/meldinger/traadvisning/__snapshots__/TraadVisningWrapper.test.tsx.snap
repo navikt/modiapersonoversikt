@@ -26,7 +26,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   align-items: flex-start;
 }
 
-.c13 {
+.c12 {
   position: relative;
   border: none;
   padding: 0;
@@ -44,7 +44,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   color: #0067c5;
 }
 
-.c13:after {
+.c12:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -52,16 +52,16 @@ exports[`Viser traad med verktøylinje 1`] = `
   width: 100%;
 }
 
-.c13:focus {
+.c12:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c13:hover {
+.c12:hover {
   opacity: 0.8;
 }
 
-.c13:hover:after {
+.c12:hover:after {
   content: '';
   border-color: #0067c5;
 }
@@ -166,7 +166,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-right: 1.5rem;
 }
 
-.c12 {
+.c13 {
   color: #3e3832;
 }
 
@@ -1202,7 +1202,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             Opprett oppgave
           </button>
           <button
-            className="c13"
+            className="c12"
             onClick={[Function]}
             type="button"
           >
@@ -1338,7 +1338,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           Merk
         </button>
         <button
-          className="c13"
+          className="c12"
           onClick={[Function]}
           type="button"
         >

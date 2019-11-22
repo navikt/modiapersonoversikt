@@ -465,7 +465,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
             </div>
           </div>
           <div
-            className="hover-animation c15"
+            className="c15 hover-animation"
           >
             <i
               className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
@@ -606,7 +606,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
             </div>
           </div>
           <div
-            className="hover-animation c15"
+            className="c15 hover-animation"
           >
             <i
               className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"

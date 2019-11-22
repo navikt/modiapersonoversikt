@@ -308,7 +308,7 @@ exports[`viser personsøk-komponent 1`] = `
             className="c3"
           >
             <label
-              className="skjemaelement__label c4"
+              className="c4 skjemaelement__label"
               htmlFor="personsok-datovelger-fra"
             >
               <p
@@ -382,7 +382,7 @@ exports[`viser personsøk-komponent 1`] = `
             className="c3"
           >
             <label
-              className="skjemaelement__label c4"
+              className="c4 skjemaelement__label"
               htmlFor="personsok-datovelger-til"
             >
               <p
