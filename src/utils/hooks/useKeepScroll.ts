@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { isTest } from '../environment';
 
 let scrollStore: ScrollValue = {};
 
@@ -24,7 +25,7 @@ const storeScroll = (name: string, position: ScrollPosition) => {
 function useKeepScroll(ref: React.RefObject<HTMLElement>, keepScrollId: string) {
     useEffect(() => {
         const scroll = getStoredScroll(keepScrollId);
-        ref.current && ref.current.scrollTo(scroll.x, scroll.y);
+        !isTest() && ref.current && ref.current.scrollTo(scroll.x, scroll.y);
     }, [keepScrollId, ref]);
 
     return () => {
