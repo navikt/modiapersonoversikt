@@ -49,13 +49,13 @@ function UtbetalingerContainer() {
         <ErrorBoundary boundaryName={'UtbetalingerContainer'}>
             <UtbetalingerArticle role="region" aria-label="Utbetalinger">
                 {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Utbetalinger" />}
-                <ScrollBar>
+                <ScrollBar keepScrollId="utbetalinger-filter">
                     <Arenalenke />
                     <FiltreringSection>
                         <Filter />
                     </FiltreringSection>
                 </ScrollBar>
-                <ScrollBar>
+                <ScrollBar keepScrollId="utbetalinger-liste">
                     <UtbetalingerSection aria-label="Filtrerte utbetalinger">
                         <RestResourceConsumer<UtbetalingerResponse>
                             getResource={restResources => restResources.utbetalinger}
