@@ -13,10 +13,10 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { LenkeKnapp } from '../../../components/common-styled-components';
 import { createRef, useState } from 'react';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
-import { RouteComponentProps, withRouter } from 'react-router';
 import { useInfotabsDyplenker } from '../infotabs/dyplenker';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { temagruppeTekst } from '../../../models/Temagrupper';
+import { useHistory } from 'react-router';
 
 const Wrapper = styled.div`
     position: relative;
@@ -51,44 +51,51 @@ const JustifyRight = styled.div`
     align-items: flex-end;
 `;
 
-function TildelteOppgaver(props: RouteComponentProps) {
+function OppgaverDropdown(props: { lukk: () => void }) {
+    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const dyplenker = useInfotabsDyplenker();
+    const tildelteOppgaver = useTildelteOppgaver();
+    const oppgaverPaaBruker = tildelteOppgaver.paaBruker;
+    const history = useHistory();
+
+    if (!hasData(traaderResource)) {
+        return <LazySpinner />;
+    }
+
+    const oppgaver = oppgaverPaaBruker.map(oppgave => {
+        const traad = traaderResource.data.find(traad => traad.traadId === oppgave.traadId);
+        if (!traad) {
+            const error = new Error(`Kunne ikke finne tråd tilknyttet oppgave: ${oppgave.oppgaveId}`);
+            loggError(error);
+            return <AlertStripeFeil>{error.message}</AlertStripeFeil>;
+        }
+        const handleClick = () => {
+            history.push(dyplenker.meldinger.link(traad));
+            props.lukk();
+        };
+        const sisteMelding = nyesteMelding(traad);
+        const tittel = `${meldingstypeTekst(sisteMelding.meldingstype)} - ${temagruppeTekst(sisteMelding.temagruppe)}`;
+        return (
+            <li key={oppgave.oppgaveId}>
+                <div>
+                    <Normaltekst>{tittel}</Normaltekst>
+                    <Normaltekst>OppgaveID: {oppgave.oppgaveId}</Normaltekst>
+                </div>
+                <Knapp onClick={handleClick}>Vis</Knapp>
+            </li>
+        );
+    });
+
+    return <OppgaveListe>{oppgaver}</OppgaveListe>;
+}
+
+function TildelteOppgaver() {
     const ref = createRef<HTMLDivElement>();
     const [visOppgaver, setVisOppgaver] = useState(false);
-    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     useClickOutside(ref, () => setVisOppgaver(false));
     const tildelteOppgaver = useTildelteOppgaver();
-    const dyplenker = useInfotabsDyplenker();
 
     const oppgaverPaaBruker = tildelteOppgaver.paaBruker;
-    const oppgaverPåBrukerDropDown = !hasData(traaderResource) ? (
-        <LazySpinner />
-    ) : (
-        oppgaverPaaBruker.map(oppgave => {
-            const traad = traaderResource.data.find(traad => traad.traadId === oppgave.traadId);
-            if (!traad) {
-                const error = new Error(`Kunne ikke finne tråd tilknyttet oppgave: ${oppgave.oppgaveId}`);
-                loggError(error);
-                return <AlertStripeFeil>{error.message}</AlertStripeFeil>;
-            }
-            const handleClick = () => {
-                props.history.push(dyplenker.meldinger.link(traad));
-                setVisOppgaver(false);
-            };
-            const sisteMelding = nyesteMelding(traad);
-            const tittel = `${meldingstypeTekst(sisteMelding.meldingstype)} - ${temagruppeTekst(
-                sisteMelding.temagruppe
-            )}`;
-            return (
-                <li key={oppgave.oppgaveId}>
-                    <div>
-                        <Normaltekst>{tittel}</Normaltekst>
-                        <Normaltekst>OppgaveID: {oppgave.oppgaveId}</Normaltekst>
-                    </div>
-                    <Knapp onClick={handleClick}>Vis</Knapp>
-                </li>
-            );
-        })
-    );
 
     const antallOppgaver = oppgaverPaaBruker.length;
     return (
@@ -104,9 +111,9 @@ function TildelteOppgaver(props: RouteComponentProps) {
                     </LenkeKnapp>
                 )}
             </JustifyRight>
-            {visOppgaver && <OppgaveListe>{oppgaverPåBrukerDropDown}</OppgaveListe>}
+            {visOppgaver && <OppgaverDropdown lukk={() => setVisOppgaver(false)} />}
         </Wrapper>
     );
 }
 
-export default withRouter(TildelteOppgaver);
+export default TildelteOppgaver;
