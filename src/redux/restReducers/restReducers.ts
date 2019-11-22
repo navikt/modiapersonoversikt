@@ -46,13 +46,7 @@ import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
-import {
-    Traad,
-    OpprettHenvendelseRequest,
-    OpprettHenvendelseResponse,
-    SlaaSammenRequest,
-    SlaaSammenResponse
-} from '../../models/meldinger/meldinger';
+import { Traad, SlaaSammenRequest, SlaaSammenResponse } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
@@ -64,7 +58,6 @@ import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinfor
 import { EndreAdresseRequest } from './brukerprofil/adresse-api';
 import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
-import opprettHenvendelse from './meldinger/opprettHenvendelse';
 import slaaSammen from './meldinger/slaaSammen';
 import utbetalingerOversikt from './utbetalingerOversikt';
 
@@ -101,7 +94,6 @@ export interface RestEndepunkter {
     tråderOgMeldinger: RestResource<Traad[]>;
     oppgaveGsakTema: RestResource<GsakTema[]>;
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
-    opprettHenvendelse: PostResource<OpprettHenvendelseRequest, OpprettHenvendelseResponse>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
     slaaSammen: PostResource<SlaaSammenRequest, SlaaSammenResponse>;
 }
@@ -139,7 +131,6 @@ export default combineResettableReducers<RestEndepunkter>(
         brukersVarsler: varselReducer,
         tråderOgMeldinger: meldingerReducer,
         oppgaveGsakTema: oppgaveGsakTemaReducer,
-        opprettHenvendelse: opprettHenvendelse,
         opprettOppgave: opprettOppgave,
         personsok: personsok,
         slaaSammen: slaaSammen
