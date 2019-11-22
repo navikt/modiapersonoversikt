@@ -248,6 +248,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 >
   <div
     className="c1"
+    onScroll={[Function]}
   >
     <nav
       className="c2"
@@ -444,6 +445,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   </div>
   <div
     className="c1"
+    onScroll={[Function]}
   >
     <div
       className="alertstripe alertstripe--info"

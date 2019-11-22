@@ -18,8 +18,9 @@ import { useFødselsnummer } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { loggEvent } from '../../../utils/frontendLogger';
+import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 
 type Props = RouteComponentProps<{}>;
 
@@ -69,13 +70,16 @@ function InfoTabs(props: Props) {
         loggEvent('Vis-' + openTab, 'Tabs');
     }, [openTab]);
 
+    const keepScrollRef = useRef<HTMLDivElement>(null);
+    const storeCroll = useKeepScroll(keepScrollRef, 'Opentab-' + openTab);
+
     return (
         <ErrorBoundary boundaryName="InfoTabs">
             <InfotabsFokusContext.Provider value={focusOnOpenTab}>
                 <HandleInfotabsHotkeys />
                 <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
                 <ErrorBoundary boundaryName={'Open tab: ' + openTab}>
-                    <OpenTab>
+                    <OpenTab ref={keepScrollRef} onScroll={storeCroll}>
                         <h2 ref={ref} tabIndex={-1} className="sr-only">
                             {openTab}
                         </h2>
