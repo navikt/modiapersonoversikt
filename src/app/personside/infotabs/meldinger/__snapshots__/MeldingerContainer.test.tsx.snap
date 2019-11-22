@@ -431,7 +431,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
               </div>
             </div>
             <div
-              className="c17 hover-animation"
+              className="hover-animation c17"
             >
               <i
                 className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"

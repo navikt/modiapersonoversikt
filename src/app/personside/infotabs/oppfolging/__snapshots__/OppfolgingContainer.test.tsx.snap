@@ -538,7 +538,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           className="c10"
         >
           <div
-            className="c11 typo-normal"
+            className="typo-normal c11"
           >
             <table
               role="table"
@@ -787,7 +787,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   Vedtak
                 </h2>
                 <div
-                  className="c11 typo-normal"
+                  className="typo-normal c11"
                 >
                   <table
                     role="table"

@@ -293,7 +293,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         Utbetalinger
       </h4>
       <div
-        className="c5 typo-normal"
+        className="typo-normal c5"
       >
         <table
           role="table"
