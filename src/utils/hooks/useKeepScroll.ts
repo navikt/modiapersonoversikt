@@ -21,16 +21,16 @@ const storeScroll = (name: string, position: ScrollPosition) => {
     };
 };
 
-function useKeepScroll(ref: React.RefObject<HTMLElement>, name: string) {
+function useKeepScroll(ref: React.RefObject<HTMLElement>, keepScrollId: string) {
     useEffect(() => {
-        const scroll = getStoredScroll(name);
+        const scroll = getStoredScroll(keepScrollId);
         ref.current && ref.current.scrollTo(scroll.x, scroll.y);
-    }, [name, ref]);
+    }, [keepScrollId, ref]);
 
     return () => {
         const scrollLeft = (ref.current && ref.current.scrollLeft) || 0;
         const scrollTop = (ref.current && ref.current.scrollTop) || 0;
-        storeScroll(name, { x: scrollLeft, y: scrollTop });
+        storeScroll(keepScrollId, { x: scrollLeft, y: scrollTop });
     };
 }
 
