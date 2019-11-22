@@ -24,7 +24,6 @@ import { pleiepengerTestData } from '../app/personside/infotabs/ytelser/pleiepen
 import { statiskForeldrepengeMock } from '../mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
-import { henvendelseResponseMock } from '../mock/meldinger/henvendelseMock';
 import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUtbetalingRespons';
 import { SaksbehandlerRoller } from '../utils/RollerUtils';
 
@@ -64,6 +63,5 @@ export function getTestStore(): Store<AppState> {
     testStore.dispatch(restResources.pleiepenger.actions.setData({ pleiepenger: [pleiepengerTestData] }));
     testStore.dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));
     testStore.dispatch(restResources.sykepenger.actions.setData({ sykepenger: [statiskSykepengerMock] }));
-    testStore.dispatch(restResources.opprettHenvendelse.actions.setResponse(henvendelseResponseMock));
     return testStore;
 }
