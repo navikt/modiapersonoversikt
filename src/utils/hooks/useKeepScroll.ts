@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { isTest } from '../environment';
 
 let scrollStore: ScrollValue = {};
@@ -23,20 +23,20 @@ const storeScroll = (name: string, position: ScrollPosition) => {
 };
 
 function useKeepScroll(ref: React.RefObject<HTMLElement>, keepScrollId: string) {
-    const [debounceTimer, setDebounceTimer] = useState();
+    const timer = useRef<number | undefined>();
     useEffect(() => {
         const scroll = getStoredScroll(keepScrollId);
         !isTest() && ref.current && ref.current.scrollTo(scroll.x, scroll.y);
     }, [keepScrollId, ref]);
 
     return () => {
-        clearTimeout(debounceTimer);
-        const timer = setTimeout(() => {
+        clearTimeout(timer.current);
+        const timeout = setTimeout(() => {
             const scrollLeft = (ref.current && ref.current.scrollLeft) || 0;
             const scrollTop = (ref.current && ref.current.scrollTop) || 0;
             storeScroll(keepScrollId, { x: scrollLeft, y: scrollTop });
         }, 150);
-        setDebounceTimer(timer);
+        timer.current = timeout;
     };
 }
 
