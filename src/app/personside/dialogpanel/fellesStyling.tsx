@@ -11,10 +11,11 @@ import { useDispatch } from 'react-redux';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useRestResource } from '../../../utils/customHooks';
-import { hasData, isLoading } from '../../../rest/utils/restResource';
+import { hasData, isLoading, isReloading } from '../../../rest/utils/restResource';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
 import { erSammefritekstSomNyesteMeldingITraad } from '../infotabs/meldinger/utils/meldingerUtils';
-import LazySpinner from '../../../components/LazySpinner';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -38,6 +39,10 @@ export const DialogpanelKvitteringStyling = styled.div`
     padding: 1rem ${theme.margin.layout};
     ${theme.animation.fadeIn};
 `;
+const SpinnerWrapper = styled(FillCenterAndFadeIn)`
+    ${theme.hvittPanel};
+    padding: 0.5rem;
+`;
 
 export function DialogpanelFeilmelding() {
     return <AlertStripeFeil>Det skjedde en feil ved sending av melding</AlertStripeFeil>;
@@ -48,8 +53,12 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     const sisteTraad = traader[0];
     const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(props.fritekst, sisteTraad); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
 
-    if (isLoading(traaderResource)) {
-        return <LazySpinner />;
+    if (isReloading(traaderResource) || isLoading(traaderResource)) {
+        return (
+            <SpinnerWrapper>
+                <NavFrontendSpinner type="S" />
+            </SpinnerWrapper>
+        );
     }
 
     if (!erRiktigMelding) {
