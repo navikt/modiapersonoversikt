@@ -5,6 +5,7 @@ import { cache } from '@nutgaard/use-fetch';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { AppState } from '../../redux/reducers';
 import { useFetchFeatureTogglesOnNewFnr } from './FetchFeatureToggles';
+import { loggEvent } from '../../utils/frontendLogger';
 
 function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
         cache.clear();
         dispatch(reset());
         if (fnr.length !== 0) {
+            loggEvent('OppslagNyPerson', 'HentAllPersoninfo');
             dispatch(personinformasjonFetch);
             dispatch(tråderFetch);
             dispatch(kontaktinformasjonFetch);
