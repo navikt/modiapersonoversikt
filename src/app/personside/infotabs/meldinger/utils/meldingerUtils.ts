@@ -1,9 +1,11 @@
 import { Melding, Meldingstype, Saksbehandler, Traad } from '../../../../../models/meldinger/meldinger';
 import { meldingstypeTekst } from './meldingstekster';
-import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/dateUtils';
+import { datoStigende, datoSynkende, erMaks10MinSiden, formatterDatoTid } from '../../../../../utils/dateUtils';
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import { Temagruppe, temagruppeTekst, TemaKommunaleTjenester, TemaPlukkbare } from '../../../../../models/Temagrupper';
+import { useRestResource } from '../../../../../utils/customHooks';
+import { hasData, isLoading, isReloading } from '../../../../../rest/utils/restResource';
 
 export function nyesteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
@@ -173,4 +175,18 @@ export function erSammefritekstSomNyesteMeldingITraad(fritekst: string, traad?: 
     const fritekstFraNyesteMeldingITraad = removeWhiteSpaces(nyesteMelding(traad).fritekst.toLowerCase());
     const fritekstFraMelding = removeWhiteSpaces(fritekst.toLowerCase());
     return fritekstFraNyesteMeldingITraad === fritekstFraMelding;
+}
+
+export function useSentMelding(fritekst: string) {
+    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const traader = hasData(traaderResource) ? traaderResource.data : [];
+    const sisteTraad = nyesteTraad(traader);
+    const sisteMelding = sisteTraad && nyesteMelding(sisteTraad);
+    const erRiktigMelding =
+        erSammefritekstSomNyesteMeldingITraad(fritekst, sisteTraad) && erMaks10MinSiden(sisteMelding.opprettetDato); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt når det er vanskelig å få ut traadUd / behandlingsId fra backend
+    return {
+        pending: isReloading(traaderResource) || isLoading(traaderResource),
+        melding: erRiktigMelding ? sisteMelding : undefined,
+        sisteTraad: erRiktigMelding ? sisteTraad : undefined
+    };
 }

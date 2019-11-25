@@ -21,7 +21,7 @@ const PreviewStyle = styled.article`
 interface Props {
     tittel: string;
     fritekst: string;
-    opprettetDato: string | undefined;
+    opprettetDato?: string;
 }
 
 function Preview(props: Props) {

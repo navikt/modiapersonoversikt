@@ -11,16 +11,11 @@ import { useDispatch } from 'react-redux';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useRestResource } from '../../../utils/customHooks';
-import { hasData, isLoading, isReloading } from '../../../rest/utils/restResource';
+import { hasData } from '../../../rest/utils/restResource';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
-import {
-    erSammefritekstSomNyesteMeldingITraad,
-    nyesteMelding,
-    nyesteTraad
-} from '../infotabs/meldinger/utils/meldingerUtils';
+import { useSentMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
-import { erMaks10MinSiden } from '../../../utils/dateUtils';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -53,20 +48,6 @@ export function DialogpanelFeilmelding() {
     return <AlertStripeFeil>Det skjedde en feil ved sending av melding</AlertStripeFeil>;
 }
 
-function useSentMelding(fritekst: string) {
-    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
-    const traader = hasData(traaderResource) ? traaderResource.data : [];
-    const sisteTraad = nyesteTraad(traader);
-    const sisteMelding = sisteTraad && nyesteMelding(sisteTraad);
-    const erRiktigMelding =
-        erSammefritekstSomNyesteMeldingITraad(fritekst, sisteTraad) && erMaks10MinSiden(sisteMelding.opprettetDato); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
-    return {
-        pending: isReloading(traaderResource) || isLoading(traaderResource),
-        melding: erRiktigMelding ? sisteMelding : undefined,
-        sisteTraad: sisteTraad
-    };
-}
-
 function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     const sentMelding = useSentMelding(props.fritekst);
 
@@ -78,7 +59,7 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
         );
     }
 
-    if (!sentMelding.melding) {
+    if (!sentMelding.sisteTraad) {
         return <AlertStripeInfo>Feil ved lasting av journalføring/merk/oppgave</AlertStripeInfo>;
     }
     return <Verktoylinje valgtTraad={sentMelding.sisteTraad} skjulSkrivUt={true} />;
