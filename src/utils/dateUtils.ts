@@ -83,6 +83,10 @@ export function erImorgenEllerSenere(date: Date) {
     return moment(date).isAfter(new Date(), 'day');
 }
 
+export function erMaks10MinSiden(date: string | Date) {
+    return moment(date).isAfter(moment().subtract(10, 'minute'));
+}
+
 export function erMaksEttÅrFramITid(date: Date) {
     const ettÅrFramITid = moment().add(1, 'years');
     return moment(date).isSameOrBefore(ettÅrFramITid);

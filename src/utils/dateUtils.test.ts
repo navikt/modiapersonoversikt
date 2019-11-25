@@ -6,7 +6,8 @@ import {
     getNewestDate,
     getOldestDate,
     datoStigende,
-    datoSynkende
+    datoSynkende,
+    erMaks10MinSiden
 } from './dateUtils';
 import moment from 'moment';
 import { backendDatoformat } from '../mock/utils/mock-utils';
@@ -138,5 +139,22 @@ describe('getOldestDate', () => {
         const result = getOldestDate(newDate, oldDate);
 
         expect(result).toEqual(oldDate);
+    });
+});
+
+describe('erMaks10MinSiden', () => {
+    it('sjekker om dato er mindre enn 10 min siden', () => {
+        const date1 = moment()
+            .subtract(5, 'minute')
+            .toDate();
+        const date2 = moment()
+            .subtract(15, 'minute')
+            .toDate();
+
+        const result1 = erMaks10MinSiden(date1);
+        const result2 = erMaks10MinSiden(date2);
+
+        expect(result1).toEqual(true);
+        expect(result2).toEqual(false);
     });
 });

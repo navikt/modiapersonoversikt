@@ -20,6 +20,7 @@ import {
 } from '../infotabs/meldinger/utils/meldingerUtils';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
+import { erMaks10MinSiden } from '../../../utils/dateUtils';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -57,7 +58,8 @@ function useSentMelding(fritekst: string) {
     const traader = hasData(traaderResource) ? traaderResource.data : [];
     const sisteTraad = nyesteTraad(traader);
     const sisteMelding = sisteTraad && nyesteMelding(sisteTraad);
-    const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(fritekst, sisteTraad); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
+    const erRiktigMelding =
+        erSammefritekstSomNyesteMeldingITraad(fritekst, sisteTraad) && erMaks10MinSiden(sisteMelding.opprettetDato); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
     return {
         pending: isReloading(traaderResource) || isLoading(traaderResource),
         melding: erRiktigMelding ? sisteMelding : undefined,
@@ -77,7 +79,7 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     }
 
     if (!sentMelding.melding) {
-        return <AlertStripeInfo>Feil ved lasting av valg</AlertStripeInfo>;
+        return <AlertStripeInfo>Feil ved lasting av journalføring/merk/oppgave</AlertStripeInfo>;
     }
     return <Verktoylinje valgtTraad={sentMelding.sisteTraad} skjulSkrivUt={true} />;
 }
