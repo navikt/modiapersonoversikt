@@ -16,7 +16,6 @@ import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { DialogPanelStatus, FortsettDialogPanelState } from '../FortsettDialogTypes';
-import { loggEvent } from '../../../../../utils/frontendLogger';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -104,14 +103,12 @@ function LeggTilbakepanel(props: Props) {
         if (LeggTilbakeValidator.erGyldigInnhabilRequest(state)) {
             props.setDialogStatus({ type: DialogPanelStatus.POSTING });
             const payload: LeggTilbakeOppgaveRequest = { oppgaveId: props.oppgaveId, type: 'Innhabil' };
-            post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload)
+            post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload, 'LeggTilbakeOppgave-Innhabil')
                 .then(() => {
                     callback();
                     props.setDialogStatus({ type: DialogPanelStatus.OPPGAVE_LAGT_TILBAKE, payload: payload });
-                    loggEvent('LeggTilbakeOppgave-Innhabil', 'LeggTilbakeOppgave');
                 })
                 .catch(() => {
-                    loggEvent('Post-Failed', 'LeggTilbakeOppgave', { type: 'Innhabil' });
                     props.setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else if (LeggTilbakeValidator.erGyldigAnnenAarsakRequest(state)) {
@@ -121,14 +118,12 @@ function LeggTilbakepanel(props: Props) {
                 oppgaveId: props.oppgaveId,
                 type: 'AnnenAarsak'
             };
-            post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload)
+            post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload, 'LeggTilbakeOppgave-AnnenÅrsak')
                 .then(() => {
                     callback();
                     props.setDialogStatus({ type: DialogPanelStatus.OPPGAVE_LAGT_TILBAKE, payload: payload });
-                    loggEvent('LeggTilbakeOppgave-AnnenÅrsak', 'LeggTilbakeOppgave');
                 })
                 .catch(() => {
-                    loggEvent('Post-Failed', 'LeggTilbakeOppgave', { type: 'AnnenÅrsak' });
                     props.setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state) && state.temagruppe) {
@@ -138,14 +133,12 @@ function LeggTilbakepanel(props: Props) {
                 oppgaveId: props.oppgaveId,
                 type: 'FeilTema'
             };
-            post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload)
+            post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload, 'LeggTilbakeOppgave-FeilTema')
                 .then(() => {
                     props.setDialogStatus({ type: DialogPanelStatus.OPPGAVE_LAGT_TILBAKE, payload: payload });
                     callback();
-                    loggEvent('LeggTilbakeOppgave-FeilTema', 'LeggTilbakeOppgave');
                 })
                 .catch(() => {
-                    loggEvent('Post-Failed', 'LeggTilbakeOppgave', { type: 'FeilTema' });
                     props.setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else {

@@ -1,11 +1,25 @@
 import { SetNyGjeldendeBrukerAction, SetNyGjeldendeBrukerActionTypes } from './types';
+import { AsyncAction, AsyncDispatch } from '../ThunkTypes';
+import { cache } from '@nutgaard/use-fetch';
+import { reset } from '../reducer-utils';
+import { resetKeepScroll } from '../../utils/hooks/useKeepScroll';
+import { AppState } from '../reducers';
 
 // Det er neppe denne du har lyst til å bruke
-// Denne brukes kun til å sette gjeldende fnr i redux, den vil ikke oppdatere url med nytt fnr
+// Denne vil ikke oppdatere url med nytt fnr
 // Sansynligvis ønsker du å bruke setNyBrukerIPath som propagerer videre til resten av appen
-export default function setGjeldendeBrukerIRedux(fødselsnummer: string): SetNyGjeldendeBrukerAction {
-    return {
-        type: SetNyGjeldendeBrukerActionTypes.SetNyPerson,
-        fnr: fødselsnummer
+export default function setGjeldendeBrukerIRedux(fødselsnummer: string): AsyncAction {
+    return (dispatch: AsyncDispatch, getState: () => AppState) => {
+        if (getState().gjeldendeBruker.fødselsnummer !== fødselsnummer) {
+            dispatch(reset());
+            cache.clear();
+            resetKeepScroll();
+
+            const setGjeldendeBrukerAction: SetNyGjeldendeBrukerAction = {
+                type: SetNyGjeldendeBrukerActionTypes.SetNyPerson,
+                fnr: fødselsnummer
+            };
+            dispatch(setGjeldendeBrukerAction);
+        }
     };
 }

@@ -18,7 +18,6 @@ import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { Resultat } from '../utils/VisPostResultat';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { loggEvent } from '../../../../../../../utils/frontendLogger';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { erBehandlet } from '../../../utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -108,17 +107,15 @@ function OppgaveSkjema(props: OppgaveProps) {
             setSubmitting(true);
             settValideringsresultat(getValidOppgaveSkjemaState());
             const request = lagOppgaveRequest(props, formProps, valgtBrukersFnr, props.valgtTraad);
-            post(`${apiBaseUri}/dialogoppgave/opprett`, request)
+            post(`${apiBaseUri}/dialogoppgave/opprett`, request, 'OpprettOppgave')
                 .then(() => {
                     settResultat(Resultat.VELLYKKET);
                     setSubmitting(false);
-                    loggEvent('OpprettOppgave', 'OppgaveSkjema');
                     props.onSuccessCallback && props.onSuccessCallback();
                 })
                 .catch((error: Error) => {
                     settResultat(Resultat.FEIL);
                     setSubmitting(false);
-                    loggEvent('OpprettOppgave-Failed', 'OppgaveSkjema');
                 });
         } else {
             settValideringsresultat(valideringsResultat);

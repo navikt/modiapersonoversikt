@@ -28,7 +28,6 @@ import {
     MerkRequestMedTraadId
 } from '../../../../../../../models/meldinger/merk';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { loggEvent } from '../../../../../../../utils/frontendLogger';
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
 import { useRestResource } from '../../../../../../../utils/customHooks';
@@ -178,17 +177,15 @@ function MerkPanel(props: Props) {
     };
 
     function merkPost(url: string, object: any, name: string) {
-        post(url, object)
+        post(url, object, 'MerkPanel-' + name)
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
                 callback();
-                loggEvent('Merk-' + name, 'MerkPanel');
             })
             .catch((error: Error) => {
                 settResultat(Resultat.FEIL);
                 setSubmitting(false);
-                loggEvent('Post-Failed', 'MerkPanel', { type: name });
             });
     }
 
