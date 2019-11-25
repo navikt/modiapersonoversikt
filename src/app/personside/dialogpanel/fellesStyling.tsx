@@ -11,11 +11,11 @@ import { useDispatch } from 'react-redux';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useRestResource } from '../../../utils/customHooks';
-import { hasData, isLoading, isReloading } from '../../../rest/utils/restResource';
+import { hasData } from '../../../rest/utils/restResource';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
-import { erSammefritekstSomNyesteMeldingITraad, nyesteTraad } from '../infotabs/meldinger/utils/meldingerUtils';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
+import { useSentMelding } from './useSendtMelding';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -47,13 +47,11 @@ const SpinnerWrapper = styled(FillCenterAndFadeIn)`
 export function DialogpanelFeilmelding() {
     return <AlertStripeFeil>Det skjedde en feil ved sending av melding</AlertStripeFeil>;
 }
-function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
-    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
-    const traader = hasData(traaderResource) ? traaderResource.data : [];
-    const sisteTraad = nyesteTraad(traader);
-    const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(props.fritekst, sisteTraad); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
 
-    if (isReloading(traaderResource) || isLoading(traaderResource)) {
+function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
+    const sentMelding = useSentMelding(props.fritekst);
+
+    if (sentMelding.pending) {
         return (
             <SpinnerWrapper>
                 <NavFrontendSpinner type="S" />
@@ -61,11 +59,12 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
         );
     }
 
-    if (!erRiktigMelding) {
-        return <AlertStripeInfo>Kunne ikke vise verktøylinje</AlertStripeInfo>;
+    if (!sentMelding.traad) {
+        return <AlertStripeInfo>Feil ved lasting av journalføring/merk/oppgave</AlertStripeInfo>;
     }
-    return <Verktoylinje valgtTraad={sisteTraad} skjulSkrivUt={true} />;
+    return <Verktoylinje valgtTraad={sentMelding.traad} skjulSkrivUt={true} />;
 }
+
 export function DialogpanelKvittering(props: {
     tittel: string;
     fritekst: string;
@@ -75,6 +74,9 @@ export function DialogpanelKvittering(props: {
     const tildelteOppgaver = useTildelteOppgaver();
     const dispatch = useDispatch();
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+
+    const sentMelding = useSentMelding(props.fritekst);
+    const opprettetDato = sentMelding.melding ? sentMelding.melding.opprettetDato : undefined;
 
     const nesteOppgavePåBruker = tildelteOppgaver.paaBruker[0];
     const gaaTilNesteSporsmaal = () => {
@@ -95,7 +97,11 @@ export function DialogpanelKvittering(props: {
             <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
             <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
             <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
-            <Preview fritekst={props.fritekst} tittel={meldingstypeTekst(props.meldingstype)} />
+            <Preview
+                opprettetDato={opprettetDato}
+                fritekst={props.fritekst}
+                tittel={meldingstypeTekst(props.meldingstype)}
+            />
             <KnappBase type="standard" onClick={props.lukk}>
                 Start ny dialog
             </KnappBase>
