@@ -106,7 +106,7 @@ function MeldingerContainer() {
                 }
                 return (
                     <MeldingerArticleStyle>
-                        <ScrollBar>
+                        <ScrollBar keepScrollId="meldinger-trådliste">
                             <TraadListe
                                 sokeord={sokeord}
                                 setSokeord={setSokeord}
@@ -117,7 +117,7 @@ function MeldingerContainer() {
                                 setSkjulVarsler={setSkjulVarsler}
                             />
                         </ScrollBar>
-                        <ScrollBar>
+                        <ScrollBar keepScrollId="meldinger-trådvisning">
                             {traaderEtterSokOgFiltrering.length === 0 ? (
                                 <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>
                             ) : (

@@ -5,6 +5,7 @@ import { cache } from '@nutgaard/use-fetch';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { AppState } from '../../redux/reducers';
 import { useFetchFeatureTogglesOnNewFnr } from './FetchFeatureToggles';
+import { resetKeepScroll } from '../../utils/hooks/useKeepScroll';
 
 function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     useEffect(() => {
         cache.clear();
         dispatch(reset());
+        resetKeepScroll();
         if (fnr.length !== 0) {
             dispatch(personinformasjonFetch);
             dispatch(tråderFetch);
