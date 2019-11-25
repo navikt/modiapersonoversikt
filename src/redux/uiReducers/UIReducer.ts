@@ -1,5 +1,4 @@
 import { Action } from 'redux';
-import { loggEvent } from '../../utils/frontendLogger';
 
 export interface VisittkortAction extends Action {
     erApen?: boolean;
@@ -40,7 +39,6 @@ export function toggleVisittkort(erApent?: boolean): VisittkortAction {
 }
 
 export function toggleDialogpanel(erApen?: boolean): DialogpanelAction {
-    loggEvent('Toggle', 'MinimerDialogpanel');
     return {
         type: UIActionTypes.TOGGLE_DIALOGPANEL,
         erApen: erApen
