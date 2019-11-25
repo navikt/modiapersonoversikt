@@ -59,10 +59,10 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
         );
     }
 
-    if (!sentMelding.sisteTraad) {
+    if (!sentMelding.traad) {
         return <AlertStripeInfo>Feil ved lasting av journalføring/merk/oppgave</AlertStripeInfo>;
     }
-    return <Verktoylinje valgtTraad={sentMelding.sisteTraad} skjulSkrivUt={true} />;
+    return <Verktoylinje valgtTraad={sentMelding.traad} skjulSkrivUt={true} />;
 }
 
 export function DialogpanelKvittering(props: {

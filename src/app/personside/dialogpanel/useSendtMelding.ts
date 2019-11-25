@@ -17,6 +17,6 @@ export function useSentMelding(fritekst: string) {
     return {
         pending: isReloading(traaderResource) || isLoading(traaderResource),
         melding: erRiktigMelding ? sisteMelding : undefined,
-        sisteTraad: erRiktigMelding ? sisteTraad : undefined
+        traad: erRiktigMelding ? sisteTraad : undefined
     };
 }
