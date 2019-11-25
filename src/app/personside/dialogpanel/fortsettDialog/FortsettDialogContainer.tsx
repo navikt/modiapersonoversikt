@@ -116,15 +116,13 @@ function FortsettDialogContainer(props: Props) {
                 fritekst: request.fritekst,
                 meldingstype: request.meldingstype
             };
-            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request)
+            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Send-Svar')
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
-                    loggEvent('Send-Svar', 'FortsettDialog');
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
-                    loggEvent('Send-Svar-Failed', 'FortsettDialog');
                 });
         } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
             const erJournalfort = erEldsteMeldingJournalfort(props.traad);
@@ -144,15 +142,13 @@ function FortsettDialogContainer(props: Props) {
                 fritekst: request.fritekst,
                 meldingstype: request.meldingstype
             };
-            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request)
+            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Send-Spørsmål')
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
-                    loggEvent('Send-Spørsmål', 'FortsettDialog');
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
-                    loggEvent('Send-Spørsmål-Failed', 'FortsettDialog');
                 });
         } else if (FortsettDialogValidator.erGyldigDelsvar(state) && oppgaveId && state.temagruppe) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
@@ -163,7 +159,7 @@ function FortsettDialogContainer(props: Props) {
                 temagruppe: state.temagruppe,
                 behandlingsId: opprettHenvendelse.henvendelse.behandlingsId
             };
-            post(`${apiBaseUri}/dialog/${fnr}/delvis-svar`, request)
+            post(`${apiBaseUri}/dialog/${fnr}/delvis-svar`, request, 'Send-Delsvar')
                 .then(() => {
                     callback();
                     const kvitteringsData: KvitteringsData = {
@@ -172,11 +168,9 @@ function FortsettDialogContainer(props: Props) {
                         temagruppe: request.temagruppe
                     };
                     setDialogStatus({ type: DialogPanelStatus.DELSVAR_SENDT, kvitteringsData: kvitteringsData });
-                    loggEvent('Send-Delsvar', 'FortsettDialog');
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
-                    loggEvent('Send-Delsvar-Failed', 'FortsettDialog');
                 });
         } else {
             updateState({ visFeilmeldinger: true });

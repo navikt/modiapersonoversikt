@@ -30,7 +30,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
 
     useOnMount(function getBehandlingsId() {
         const opprettHenvendelseRequest: OpprettHenvendelseRequest = { traadId: traad.traadId };
-        post(`${apiBaseUri}/dialog/${fnr}/fortsett/opprett`, opprettHenvendelseRequest)
+        post(`${apiBaseUri}/dialog/${fnr}/fortsett/opprett`, opprettHenvendelseRequest, 'Opprett-henvendelse')
             .then(data => setResponse(data as OpprettHenvendelseResponse))
             .then(() => dispatch(reloadTildelteOppgaver))
             .catch(e => {
