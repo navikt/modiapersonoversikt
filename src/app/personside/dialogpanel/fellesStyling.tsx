@@ -13,9 +13,9 @@ import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useRestResource } from '../../../utils/customHooks';
 import { hasData } from '../../../rest/utils/restResource';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
-import { useSentMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
+import { useSentMelding } from './useSendtMelding';
 
 export const FormStyle = styled.form`
     display: flex;
