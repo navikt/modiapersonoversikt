@@ -6,14 +6,14 @@ import { AppState } from '../redux/reducers';
 import { RestEndepunkter } from '../redux/restReducers/restReducers';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
-    useEffect(() => {
+    useOnMount(() => {
         if (ref.current) {
             ref.current.focus();
             if (document.activeElement !== ref.current) {
                 console.error('Kunne ikke sette fokus på: ' + ref.current.innerText);
             }
         }
-    }, [ref]);
+    });
 }
 
 export function useOnMount(effect: EffectCallback) {

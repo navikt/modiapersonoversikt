@@ -3,6 +3,10 @@ import { isTest } from '../environment';
 
 let scrollStore: ScrollValue = {};
 
+export function resetKeepScroll() {
+    scrollStore = {};
+}
+
 type ScrollPosition = { x: number; y: number };
 
 interface ScrollValue {
