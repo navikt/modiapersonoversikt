@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { AppState } from '../../redux/reducers';
 import { useFetchFeatureTogglesOnNewFnr } from './FetchFeatureToggles';
+import { loggEvent } from '../../utils/frontendLogger';
 
 function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
 
     useEffect(() => {
         if (fnr.length !== 0) {
+            loggEvent('OppslagNyPerson', 'HentAllPersoninfo');
             dispatch(personinformasjonFetch);
             dispatch(tråderFetch);
             dispatch(kontaktinformasjonFetch);
