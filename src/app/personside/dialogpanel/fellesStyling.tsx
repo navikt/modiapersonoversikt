@@ -5,7 +5,7 @@ import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
 import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
 import Preview from './Preview';
-import { Meldingstype, Traad } from '../../../models/meldinger/meldinger';
+import { Meldingstype } from '../../../models/meldinger/meldinger';
 import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
 import { useDispatch } from 'react-redux';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
@@ -51,11 +51,24 @@ const SpinnerWrapper = styled(FillCenterAndFadeIn)`
 export function DialogpanelFeilmelding() {
     return <AlertStripeFeil>Det skjedde en feil ved sending av melding</AlertStripeFeil>;
 }
-function MeldingSendtVerktoyLinje(props: { fritekst: string; sisteTraad: Traad }) {
-    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
-    const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(props.fritekst, props.sisteTraad); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
 
-    if (isReloading(traaderResource) || isLoading(traaderResource)) {
+function useSentMelding(fritekst: string) {
+    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const traader = hasData(traaderResource) ? traaderResource.data : [];
+    const sisteTraad = nyesteTraad(traader);
+    const sisteMelding = sisteTraad && nyesteMelding(sisteTraad);
+    const erRiktigMelding = erSammefritekstSomNyesteMeldingITraad(fritekst, sisteTraad); //Sjekker om nyeste meldingen hentet ut er samme som ble sendt
+    return {
+        pending: isReloading(traaderResource) || isLoading(traaderResource),
+        melding: erRiktigMelding ? sisteMelding : undefined,
+        sisteTraad: sisteTraad
+    };
+}
+
+function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
+    const sentMelding = useSentMelding(props.fritekst);
+
+    if (sentMelding.pending) {
         return (
             <SpinnerWrapper>
                 <NavFrontendSpinner type="S" />
@@ -63,11 +76,12 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string; sisteTraad: Traad }
         );
     }
 
-    if (!erRiktigMelding) {
-        return <AlertStripeInfo>Kunne ikke vise verktøylinje</AlertStripeInfo>;
+    if (!sentMelding.melding) {
+        return <AlertStripeInfo>Feil ved lasting av valg</AlertStripeInfo>;
     }
-    return <Verktoylinje valgtTraad={props.sisteTraad} skjulSkrivUt={true} />;
+    return <Verktoylinje valgtTraad={sentMelding.sisteTraad} skjulSkrivUt={true} />;
 }
+
 export function DialogpanelKvittering(props: {
     tittel: string;
     fritekst: string;
@@ -77,9 +91,9 @@ export function DialogpanelKvittering(props: {
     const tildelteOppgaver = useTildelteOppgaver();
     const dispatch = useDispatch();
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
-    const traader = hasData(traaderResource) ? traaderResource.data : [];
-    const sisteTraad = nyesteTraad(traader);
-    const sisteMelding = sisteTraad && nyesteMelding(sisteTraad);
+
+    const sentMelding = useSentMelding(props.fritekst);
+    const opprettetDato = sentMelding.melding ? sentMelding.melding.opprettetDato : undefined;
 
     const nesteOppgavePåBruker = tildelteOppgaver.paaBruker[0];
     const gaaTilNesteSporsmaal = () => {
@@ -99,9 +113,9 @@ export function DialogpanelKvittering(props: {
         <DialogpanelKvitteringStyling>
             <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
             <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
-            <MeldingSendtVerktoyLinje fritekst={props.fritekst} sisteTraad={sisteTraad} />
+            <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
             <Preview
-                opprettetDato={sisteMelding.opprettetDato}
+                opprettetDato={opprettetDato}
                 fritekst={props.fritekst}
                 tittel={meldingstypeTekst(props.meldingstype)}
             />

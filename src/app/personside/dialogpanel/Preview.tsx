@@ -5,6 +5,7 @@ import theme from '../../../styles/personOversiktTheme';
 import EtikettGrå from '../../../components/EtikettGrå';
 import { formatterDatoTid } from '../../../utils/dateUtils';
 import Tekstomrade from 'nav-frontend-tekstomrade';
+import NavFrontendSpinner from 'nav-frontend-spinner';
 
 const PreviewStyle = styled.article`
     padding: 1rem;
@@ -20,14 +21,20 @@ const PreviewStyle = styled.article`
 interface Props {
     tittel: string;
     fritekst: string;
-    opprettetDato: string;
+    opprettetDato: string | undefined;
 }
 
 function Preview(props: Props) {
+    const opprettetDato = props.opprettetDato ? (
+        <EtikettGrå>{formatterDatoTid(props.opprettetDato)}</EtikettGrå>
+    ) : (
+        <NavFrontendSpinner type="XXS" />
+    );
+
     return (
         <PreviewStyle>
             <Normaltekst>{props.tittel}</Normaltekst>
-            <EtikettGrå>{formatterDatoTid(props.opprettetDato)}</EtikettGrå>
+            {opprettetDato}
             <Tekstomrade>{props.fritekst}</Tekstomrade>
         </PreviewStyle>
     );
