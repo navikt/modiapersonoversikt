@@ -23,7 +23,7 @@ import { loggEvent } from '../../../utils/frontendLogger';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
-    padding: ${theme.margin.layout};
+    margin: ${theme.margin.layout};
     label {
         ${theme.visuallyHidden}
     }
@@ -34,17 +34,12 @@ const KnappLayout = styled.div`
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-top: 0.4em;
     > * {
-        margin-right: 0.4em;
+        margin: 0.2em !important;
         flex-grow: 1;
     }
     > *:first-child {
-        margin-bottom: 0.6em;
         white-space: nowrap;
-    }
-    > *:last-child {
-        margin-bottom: 0.4em;
     }
 `;
 
