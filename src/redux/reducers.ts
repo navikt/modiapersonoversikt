@@ -17,6 +17,7 @@ import { meldingerReducer } from './meldinger/reducer';
 import { OppgaveState } from './oppgave/types';
 import { oppgaverReducer } from './oppgave/reducer';
 import { combineResettableReducers } from './reducer-utils';
+import varslerReducer, { VarslerState } from './varsler/varslerReducer';
 
 export interface AppState {
     restResources: RestEndepunkter;
@@ -27,6 +28,7 @@ export interface AppState {
     meldinger: MeldingerState;
     oppgaver: OppgaveState;
     ytelser: YtelserState;
+    varsler: VarslerState;
     kontrollSpørsmål: KontrollSpørsmålState;
     oppfolging: OppfolgingState;
     gjeldendeBruker: GjeldendeBrukerState;
@@ -42,6 +44,7 @@ export default combineResettableReducers<AppState>(
         meldinger: meldingerReducer,
         oppgaver: oppgaverReducer,
         ytelser: ytelserReducere,
+        varsler: varslerReducer,
         kontrollSpørsmål: kontrollspørsmålReducer,
         oppfolging: oppfolgingReducer,
         gjeldendeBruker: gjeldendeBrukerReducer
