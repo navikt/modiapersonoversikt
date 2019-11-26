@@ -8,7 +8,7 @@ import KnappBase from 'nav-frontend-knapper';
 import { useState } from 'react';
 import { AppState } from '../../../../../../redux/reducers';
 import { AsyncDispatch } from '../../../../../../redux/ThunkTypes';
-import { toggleVisAlleArbeidsforholdActionCreator } from '../../../../../../redux/ytelser/pleiepengerReducer';
+import { toggleVisAlleArbeidsforholdActionCreator } from '../../../../../../redux/ytelser/ytelserReducer';
 import { connect } from 'react-redux';
 
 interface StateProps {
@@ -59,7 +59,7 @@ function ArbeidsForholdListe({ arbeidsforhold }: Props) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        visAlleArbeidsforhold: state.ytelser.pleiepenger.visAlleArbeidsforhold
+        visAlleArbeidsforhold: state.ytelser.visAlleArbeidsforhold
     };
 }
 

@@ -6,7 +6,7 @@ import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
 import { KontrollSpørsmålState } from './kontrollSporsmal/types';
 import kontrollspørsmålReducer from './kontrollSporsmal/reducer';
-import ytelserReducere, { YtelserState } from './ytelser/ytelserReducere';
+import ytelserReducer, { YtelserState } from './ytelser/ytelserReducer';
 import { OppfolgingState } from './oppfolging/types';
 import { oppfolgingReducer } from './oppfolging/reducer';
 import { GjeldendeBrukerState } from './gjeldendeBruker/types';
@@ -43,7 +43,7 @@ export default combineResettableReducers<AppState>(
         saksoversikt: saksoversiktReducer,
         meldinger: meldingerReducer,
         oppgaver: oppgaverReducer,
-        ytelser: ytelserReducere,
+        ytelser: ytelserReducer,
         varsler: varslerReducer,
         kontrollSpørsmål: kontrollspørsmålReducer,
         oppfolging: oppfolgingReducer,

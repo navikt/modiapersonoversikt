@@ -9,6 +9,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import DescriptionList, { DescriptionListEntries, fjernEntriesUtenVerdi } from '../../../../components/DescriptionList';
 import OppfolgingsVedtakTabell from './OppfolgingVedtakKomponent';
 import { datoEllerNull } from '../../../../utils/stringFormatting';
+import { useState } from 'react';
 
 interface Props {
     ytelser: OppfolgingsYtelse[];
@@ -81,12 +82,13 @@ function dersomDagpengerLeggTilFelter(ytelse: OppfolgingsYtelse): DescriptionLis
 }
 
 function OppfolgingYtelserEkspanderbartPanel(props: Props) {
+    const [open, setOpen] = useState(false);
     if (props.ytelser.length === 0) {
         return <AlertStripeInfo>Det finnes ikke informasjon om ytelser for valgt periode i Arena</AlertStripeInfo>;
     }
 
     return (
-        <EkspanderbartYtelserPanel tittel="Ytelser">
+        <EkspanderbartYtelserPanel open={open} setOpen={setOpen} tittel="Ytelser">
             <OppfolgingYtelserListe ytelser={props.ytelser} />
         </EkspanderbartYtelserPanel>
     );
