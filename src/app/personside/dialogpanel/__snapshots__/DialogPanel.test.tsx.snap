@@ -160,7 +160,7 @@ exports[`viser dialogpanel 1`] = `
 }
 
 .c1 {
-  padding: 1rem .8rem;
+  padding: 1rem .5rem;
 }
 
 .c13 {

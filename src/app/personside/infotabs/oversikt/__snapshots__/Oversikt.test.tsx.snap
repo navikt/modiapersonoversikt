@@ -7,7 +7,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 
 .c8 {
   position: relative;
-  padding: .8rem;
+  padding: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -378,7 +378,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c0 {
-  padding: .8rem;
+  padding: .5rem;
 }
 
 .c1 {
@@ -389,7 +389,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c1 > * {
-  margin-bottom: .8rem;
+  margin-bottom: .5rem;
 }
 
 @media (min-width:35rem) {
@@ -407,7 +407,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 
 @media (min-width:35rem) {
   .c1:not(:last-child) {
-    margin-right: .8rem;
+    margin-right: .5rem;
   }
 }
 
