@@ -5,7 +5,7 @@ export function copyCSSStyles(sourceDoc: Document, targetDoc: Document) {
 }
 
 function copySheet(styleSheet: StyleSheet, sourceDoc: Document, targetDoc: Document) {
-    if (styleSheet instanceof CSSStyleSheet && styleSheet.cssRules) {
+    if (styleSheet instanceof CSSStyleSheet && styleSheet.hasOwnProperty('cssRules')) {
         copyCSSStyleSheet(sourceDoc, styleSheet, targetDoc);
     } else if (styleSheet.href) {
         copyLinkedStyleSheet(sourceDoc, styleSheet.href, targetDoc);
