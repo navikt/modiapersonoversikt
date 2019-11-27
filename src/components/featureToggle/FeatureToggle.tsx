@@ -42,7 +42,7 @@ function FeatureToggle(props: Props) {
     return null;
 }
 
-export function featureIsOnSelector(state: AppState, toggleId: string): boolean | undefined {
+function featureIsOnSelector(state: AppState, toggleId: string): boolean | undefined {
     const toggleResource = state.restResources.featureToggles;
     if (!hasData(toggleResource)) {
         return undefined;

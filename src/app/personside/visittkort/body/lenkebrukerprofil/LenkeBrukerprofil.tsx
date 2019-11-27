@@ -3,35 +3,25 @@ import { Person } from '../../../../../models/person/person';
 import { paths } from '../../../../routes/routing';
 import { Link } from 'react-router-dom';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../../../../redux/reducers';
 import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
-import { featureIsOnSelector } from '../../../../../components/featureToggle/FeatureToggle';
-import { hasData, RestResource } from '../../../../../rest/utils/restResource';
-import { BaseUrlsResponse } from '../../../../../models/baseurls';
-import { hentBaseUrl } from '../../../../../redux/restReducers/baseurls';
-
-function hentUrl(baseUrlResource: RestResource<BaseUrlsResponse>) {
-    return hasData(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'personforvalter') : '';
-}
+import useUrlNyPersonforvalter from '../../../../brukerprofil/useUrlNyPersonforvalter';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
 
 function LenkeBrukerprofilVisning(props: { nyModiaPersonoversikt: boolean; person: Person }) {
-    const baseUrlResource = useSelector((appstate: AppState) => appstate.restResources.baseUrl);
-    const featureToggleIsOn = useSelector((state: AppState) =>
-        featureIsOnSelector(state, FeatureToggles.NyPersonforvalter)
-    );
-    const personforvalterUrl = hentUrl(baseUrlResource);
+    const nyPersonforvalterFT = useFeatureToggle(FeatureToggles.NyPersonforvalter);
+    const personforvalterUrl = useUrlNyPersonforvalter();
 
     if (props.nyModiaPersonoversikt) {
-        if (featureToggleIsOn) {
+        if (nyPersonforvalterFT.isOn) {
             return (
-                <Link
+                <a
                     className="lenke"
-                    to={`${personforvalterUrl}?aktoerId=${props.person.fødselsnummer}`}
+                    href={`${personforvalterUrl}?aktoerId=${props.person.fødselsnummer}`}
                     target={'_blank'}
+                    rel="noreferrer noopener"
                 >
                     <Normaltekst tag="span">Administrer brukerprofil</Normaltekst>
-                </Link>
+                </a>
             );
         } else {
             return (
@@ -41,12 +31,13 @@ function LenkeBrukerprofilVisning(props: { nyModiaPersonoversikt: boolean; perso
             );
         }
     } else {
-        if (featureToggleIsOn) {
+        if (nyPersonforvalterFT.isOn) {
             return (
                 <a
                     className="lenke"
                     href={`${personforvalterUrl}?aktoerId=${props.person.fødselsnummer}`}
                     target={'_blank'}
+                    rel="noreferrer noopener"
                 >
                     <Normaltekst tag="span">Administrer brukerprofil</Normaltekst>
                 </a>
