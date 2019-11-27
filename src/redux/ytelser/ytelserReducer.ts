@@ -6,12 +6,12 @@ import { Sykepenger } from '../../models/ytelse/sykepenger';
 type Ytelse = Pleiepengerettighet | Foreldrepengerettighet | Sykepenger;
 
 export interface YtelserState {
-    visAlleArbeidsforhold: boolean;
+    visAlleArbeidsforhold: Ytelse[];
     aapnedeYtesler: Ytelse[];
 }
 
 const initialState: YtelserState = {
-    visAlleArbeidsforhold: false,
+    visAlleArbeidsforhold: [],
     aapnedeYtesler: []
 };
 
@@ -22,6 +22,8 @@ enum actionKeys {
 
 interface ToggleVisAlleArbeidsforhold extends Action {
     type: actionKeys.TOGGLE_VIS_ALLE_ARBEIDSFORHOLD;
+    ytelse: Ytelse;
+    vis: boolean;
 }
 
 interface ToggleVisYtelse extends Action {
@@ -32,9 +34,11 @@ interface ToggleVisYtelse extends Action {
 
 type Actions = ToggleVisAlleArbeidsforhold | ToggleVisYtelse;
 
-export function toggleVisAlleArbeidsforholdActionCreator(): ToggleVisAlleArbeidsforhold {
+export function toggleVisAlleArbeidsforhold(ytelse: Ytelse, vis: boolean): ToggleVisAlleArbeidsforhold {
     return {
-        type: actionKeys.TOGGLE_VIS_ALLE_ARBEIDSFORHOLD
+        type: actionKeys.TOGGLE_VIS_ALLE_ARBEIDSFORHOLD,
+        ytelse: ytelse,
+        vis: vis
     };
 }
 
@@ -49,9 +53,12 @@ export function toggleVisYtesle(ytelse: Ytelse, vis: boolean): ToggleVisYtelse {
 export function ytelserReducer(state: YtelserState = initialState, action: Actions): YtelserState {
     switch (action.type) {
         case actionKeys.TOGGLE_VIS_ALLE_ARBEIDSFORHOLD:
+            const aapnedeArbeidsforhold = action.vis
+                ? [...state.aapnedeYtesler, action.ytelse]
+                : state.visAlleArbeidsforhold.filter(it => it !== action.ytelse);
             return {
                 ...state,
-                visAlleArbeidsforhold: !state.visAlleArbeidsforhold
+                visAlleArbeidsforhold: aapnedeArbeidsforhold
             };
         case actionKeys.TOGGLE_APNEYTELSE:
             const aapnedeYtelser = action.vis
