@@ -20,10 +20,17 @@ import { useState } from 'react';
 import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
 import { erIE11 } from '../utils/erNyPersonoversikt';
 import DemoBanner from '../components/DemoBanner';
+import styled from 'styled-components';
 
 if (mockEnabled) {
     setupMock();
 }
+
+const SkjulVedPrint = styled.div`
+    @media print {
+        display: none;
+    }
+`;
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -59,7 +66,7 @@ function App() {
     ModalWrapper.setAppElement('#root');
 
     return (
-        <>
+        <SkjulVedPrint>
             <DemoBanner />
             <BrowserRouter>
                 <Switch>
@@ -70,7 +77,7 @@ function App() {
                     <Route path={'/'} component={Personoveriskt} />
                 </Switch>
             </BrowserRouter>
-        </>
+        </SkjulVedPrint>
     );
 }
 

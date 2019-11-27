@@ -85,7 +85,6 @@ class SammensattUtbetaling extends React.PureComponent<Props> {
 
     render() {
         const utbetaling = this.props.utbetaling;
-
         if (!utbetaling.ytelser) {
             return <>'Manglende data i utbetaling.'</>;
         }
