@@ -8,4 +8,4 @@ function getOppgaveFetchUri(state: AppState) {
     return `${apiBaseUri}/oppgaver/plukk/${temagruppe}`;
 }
 
-export default createPostResourceReducerAndActions<{}, Oppgave[]>('oppgave', getOppgaveFetchUri);
+export default createPostResourceReducerAndActions<{}, Oppgave[]>('HentOppgave', getOppgaveFetchUri);
