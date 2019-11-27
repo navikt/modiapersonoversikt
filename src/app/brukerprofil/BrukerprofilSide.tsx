@@ -156,7 +156,7 @@ function BrukerprofilSide() {
     if (nyPersonforvalter.isOn) {
         return (
             <NyBrukerprofilStyling>
-                <AlertStripeInfo>Brukerprofilen er flyttet</AlertStripeInfo>
+                <AlertStripeInfo>Redigering av brukerprofil er flyttet</AlertStripeInfo>
                 <LenkepanelBase href={urlNyPersonForvalter}>Gå til den nye personforvalteren</LenkepanelBase>
             </NyBrukerprofilStyling>
         );
