@@ -142,7 +142,7 @@ function FortsettDialogContainer(props: Props) {
                 fritekst: request.fritekst,
                 meldingstype: request.meldingstype
             };
-            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Send-Spørsmål')
+            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
