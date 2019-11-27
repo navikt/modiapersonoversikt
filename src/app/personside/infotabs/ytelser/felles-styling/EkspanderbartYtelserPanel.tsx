@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import styled from 'styled-components';
 import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
@@ -10,7 +10,8 @@ interface Props {
     children: ReactNode;
     tittel: string;
     tittelTillegsInfo?: (string | null)[];
-    defaultApen?: boolean;
+    open: boolean;
+    setOpen: (open: boolean) => void;
 }
 
 const TittelStyle = styled.div`
@@ -34,8 +35,6 @@ const CustomStyling = styled.div`
 `;
 
 function EkspanderbartYtelserPanel(props: Props) {
-    const [apen, setApen] = useState(props.defaultApen);
-
     const tillegsinfo =
         props.tittelTillegsInfo &&
         props.tittelTillegsInfo
@@ -53,8 +52,8 @@ function EkspanderbartYtelserPanel(props: Props) {
         <CustomStyling>
             <EkspanderbartpanelBasePure
                 className={ytelserTest.ytelse}
-                apen={apen}
-                onClick={() => setApen(!apen)}
+                apen={props.open}
+                onClick={() => props.setOpen(!props.open)}
                 heading={tittel}
                 ariaTittel={props.tittel}
             >

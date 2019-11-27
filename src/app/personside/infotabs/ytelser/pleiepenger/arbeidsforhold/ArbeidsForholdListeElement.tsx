@@ -1,15 +1,10 @@
 import * as React from 'react';
 import { Arbeidsforhold } from '../../../../../../models/ytelse/pleiepenger';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
 import { datoEllerNull, NOKellerNull } from '../../../../../../utils/stringFormatting';
 import DescriptionList from '../../../../../../components/DescriptionList';
 
-function ArbeidsForhold({ arbeidsforhold }: { arbeidsforhold?: Arbeidsforhold }) {
-    if (!arbeidsforhold) {
-        return <AlertStripeInfo>Kunne ikke finne arbeidsforhold</AlertStripeInfo>;
-    }
-
+function ArbeidsForhold({ arbeidsforhold }: { arbeidsforhold: Arbeidsforhold }) {
     const arbeidsSituasjonEntries = {
         Arbeidsgiver: arbeidsforhold.arbeidsgiverNavn,
         Arbeidskategori: arbeidsforhold.arbeidskategori,
