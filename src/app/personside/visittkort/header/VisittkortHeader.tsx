@@ -26,8 +26,8 @@ interface State {
 
 const VisittkortHeaderDiv = styled.section`
     background-color: white;
-    padding: ${theme.margin.px20};
-    padding-right: ${pxToRem(5)};
+    padding: ${theme.margin.layout};
+    padding-right: 0;
     position: relative;
     width: 100%;
     display: flex;

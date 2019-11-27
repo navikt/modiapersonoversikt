@@ -160,7 +160,7 @@ exports[`viser send ny melding 1`] = `
 }
 
 .c0 {
-  padding: 1rem .8rem;
+  padding: 1rem .5rem;
 }
 
 .c12 {

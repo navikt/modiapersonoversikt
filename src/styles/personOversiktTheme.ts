@@ -75,7 +75,7 @@ export const theme = {
         }
     },
     margin: {
-        layout: '.8rem',
+        layout: '.5rem',
         px50: pxToRem(50),
         px40: pxToRem(40),
         px30: pxToRem(30),

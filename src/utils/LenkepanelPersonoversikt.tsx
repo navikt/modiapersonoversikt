@@ -7,6 +7,7 @@ import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 interface Props {
     url: string;
     children: string;
+    className?: string;
 }
 
 const CustomStyling = styled.nav`
@@ -15,16 +16,23 @@ const CustomStyling = styled.nav`
     a {
         padding: ${theme.margin.px20};
     }
+    .lenkepanel {
+        margin-bottom: 0;
+    }
 `;
 
 function LenkepanelPersonoversikt(props: Props) {
     return (
-        <CustomStyling>
+        <CustomStyling className={props.className}>
             <LenkepanelBase
                 href={props.url}
                 linkCreator={(props: React.HTMLProps<HTMLElement>): ReactNode => (
                     // eslint-disable-next-line jsx-a11y/anchor-has-content
-                    <a target={'_blank'} rel={'noopener noreferrer'} {...props as React.HTMLProps<HTMLAnchorElement>} />
+                    <a
+                        target={'_blank'}
+                        rel={'noopener noreferrer'}
+                        {...(props as React.HTMLProps<HTMLAnchorElement>)}
+                    />
                 )}
             >
                 {props.children}
