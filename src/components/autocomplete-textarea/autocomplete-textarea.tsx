@@ -15,7 +15,7 @@ import { hasData } from '../../rest/utils/restResource';
 const rules = [
     { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
     { regex: /^mvh$/i, replacement: 'Med vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter' },
-    { regex: /^foet$/i, replacement: '[bruker.navn]' }
+    { regex: /^foet$/i, replacement: '[bruker.navn] ' }
 ];
 
 const SPACE = 32;
