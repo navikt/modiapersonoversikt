@@ -20,6 +20,7 @@ import { useRestResource } from '../../../../../utils/customHooks';
 import { hasData as restResourceHasData } from '../../../../../rest/utils/restResource';
 import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -154,6 +155,9 @@ function StandardTekstSok(props: Props) {
                     saksbehandler: restResources.innloggetSaksbehandler,
                     kontor: restResources.brukersNavKontor
                 })}
+                returnOnError={
+                    <AlertStripeFeil>Kunne ikke laste samtalemaler. Prøv å laste siden på nytt (f5)</AlertStripeFeil>
+                }
             >
                 {(data: AutofullforData) => (
                     <FormContainer onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, data)}>
