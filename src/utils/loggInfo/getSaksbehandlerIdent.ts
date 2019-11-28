@@ -2,6 +2,8 @@ import * as Cookies from 'js-cookie';
 import { loggErrorUtenSaksbehandlerIdent } from '../frontendLogger';
 import { mockEnabled } from '../../api/config';
 
+let saksbehandlerinnstillerCookieFeilErLogget = false;
+
 interface Cookie {
     [name: string]: string;
 }
@@ -17,7 +19,10 @@ export function getSaksbehandlerInstillingerCookieNavn() {
         if (mockEnabled) {
             Cookies.set(saksbehandlerCookieNavn + '-Z990099', '4100');
         }
-        loggErrorUtenSaksbehandlerIdent(new Error(`Kunne ikke finne ${saksbehandlerCookieNavn}-cookie`));
+        if (!saksbehandlerinnstillerCookieFeilErLogget) {
+            loggErrorUtenSaksbehandlerIdent(new Error(`Kunne ikke finne ${saksbehandlerCookieNavn}-cookie`));
+            saksbehandlerinnstillerCookieFeilErLogget = true;
+        }
     }
     return cookienavn;
 }
