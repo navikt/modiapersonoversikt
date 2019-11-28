@@ -5,39 +5,26 @@ import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
-import Printer from '../../../../../utils/Printer';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { loggEvent } from '../../../../../utils/frontendLogger';
-import { AnyAction, Dispatch } from 'redux';
-import { connect } from 'react-redux';
-import { AppState } from '../../../../../redux/reducers';
+import { useDispatch } from 'react-redux';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
 import { datoVerbose } from '../../../../../utils/dateUtils';
 import { utbetalingerTest } from '../../dyplenkeTest/utils';
+import { useAppState, useOnMount, usePrevious } from '../../../../../utils/customHooks';
+import usePrinter from '../../../../../utils/UsePrinter';
+import { useEffect } from 'react';
 
-interface OwnProps {
+interface Props {
     utbetaling: UtbetalingInterface;
     ytelse: Ytelse;
     valgt: boolean;
 }
-
-interface DispatchProps {
-    setYtelseIFokus: () => void;
-    setEkspanderYtelse: (ekspander: boolean) => void;
-}
-
-interface StateProps {
-    erIFokus: boolean;
-    visDetaljer: boolean;
-}
-
-type Props = DispatchProps & OwnProps & StateProps;
-
 const UtbetalingStyle = styled.li`
     cursor: pointer;
     transition: 0.3s;
@@ -63,125 +50,109 @@ const UtbetalingHeaderStyle = styled.div`
     }
 `;
 
-class EnkelUtbetaling extends React.PureComponent<Props> {
-    private printerButtonRef = React.createRef<HTMLSpanElement>();
-    private utbetalingRef = React.createRef<HTMLLIElement>();
-    private print?: () => void;
+function EnkelUtbetaling(props: Props) {
+    const printerButtonRef = React.createRef<HTMLSpanElement>();
+    const utbetalingRef = React.createRef<HTMLLIElement>();
+    const dispatch = useDispatch();
+    const utbetaling = props.utbetaling;
+    const ytelse = props.ytelse;
+    const tittel = ytelse.type;
 
-    constructor(props: Props) {
-        super(props);
-        this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
-        this.handlePrint = this.handlePrint.bind(this);
-    }
+    const utbetalinger = useAppState(state => state.utbetalinger);
+    const printer = usePrinter();
+    const PrinterWrapper = printer.printerWrapper;
+    const print = printer.print;
+    const erIFokus = utbetalinger.ytelseIFokus === ytelse;
+    const visDetaljer = utbetalinger.ekspanderteYtelser.includes(ytelse);
 
-    componentDidMount() {
-        if (this.props.valgt) {
-            this.utbetalingRef.current && this.utbetalingRef.current.focus();
+    const dato = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt;
+    const sum = formaterNOK(ytelse.nettobeløp);
+    const periode = periodeStringFromYtelse(ytelse);
+    const forfallsInfo = utbetaling.forfallsdato && !utbetaling.utbetalingsdato ? `Forfallsdato: ${dato}` : '';
+
+    const ekspanderYtelse = (ekspander: boolean) => dispatch(setEkspanderYtelse(ytelse, ekspander));
+    const setYtelseIFokus = () => dispatch(setNyYtelseIFokus(ytelse));
+    const prevErIFokus = usePrevious(erIFokus);
+
+    useOnMount(() => {
+        if (props.valgt) {
+            utbetalingRef.current && utbetalingRef.current.focus();
         }
-    }
+    });
 
-    componentDidUpdate(prevProps: Props) {
-        const fikkFokus = this.props.erIFokus && !prevProps.erIFokus;
-        if (fikkFokus && this.utbetalingRef.current) {
-            this.utbetalingRef.current.focus();
+    useEffect(() => {
+        const fikkFokus = erIFokus && !prevErIFokus;
+        if (fikkFokus && utbetalingRef.current) {
+            utbetalingRef.current.focus();
         }
-    }
+    }, [erIFokus, utbetalingRef]);
 
-    toggleVisDetaljer() {
-        this.props.setEkspanderYtelse(!this.props.visDetaljer);
-        this.props.setYtelseIFokus();
-    }
+    const toggleVisDetaljer = () => {
+        ekspanderYtelse(!visDetaljer);
+        setYtelseIFokus();
+    };
 
-    handlePrint() {
+    const handlePrint = () => {
+        ekspanderYtelse(true);
+        print();
         loggEvent('EnkeltUtbetaling', 'Printer');
-        this.props.setEkspanderYtelse(true);
-        this.print && this.print();
-    }
+    };
 
-    handleClickOnUtbetaling(event: React.MouseEvent<HTMLElement>) {
-        const printKnappTrykket = eventTagetIsInsideRef(event, this.printerButtonRef);
+    const handleClickOnUtbetaling = (event: React.MouseEvent<HTMLElement>) => {
+        const printKnappTrykket = eventTagetIsInsideRef(event, printerButtonRef);
         if (!printKnappTrykket) {
-            this.toggleVisDetaljer();
+            toggleVisDetaljer();
         }
-    }
+    };
 
-    render() {
-        const utbetaling = this.props.utbetaling;
-
-        const ytelse = this.props.ytelse;
-
-        const dato = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt;
-        const tittel = ytelse.type;
-        const sum = formaterNOK(ytelse.nettobeløp);
-        const periode = periodeStringFromYtelse(ytelse);
-        const forfallsInfo = utbetaling.forfallsdato && !utbetaling.utbetalingsdato ? `Forfallsdato: ${dato}` : '';
-
-        return (
-            <Printer getPrintTrigger={(trigger: () => void) => (this.print = trigger)}>
-                <UtbetalingStyle
-                    onClick={(event: React.MouseEvent<HTMLElement>) =>
-                        cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))
-                    }
-                    ref={this.utbetalingRef}
-                    tabIndex={0}
-                    onFocus={this.props.setYtelseIFokus}
-                    className={utbetalingerTest.utbetaling}
-                >
-                    <article aria-expanded={this.props.visDetaljer} aria-label={'Utbetaling ' + ytelse.type}>
-                        <UtbetalingTabellStyling>
-                            <UtbetalingHeaderStyle>
-                                <SpaceBetween>
-                                    <Normaltekst tag={'h4'}>
-                                        <Bold>{tittel}</Bold>
-                                    </Normaltekst>
-                                    <Normaltekst>
-                                        <Bold>{sum}</Bold>
-                                    </Normaltekst>
-                                </SpaceBetween>
-                                <Normaltekst className="order-first">
-                                    {dato} / <Bold>{utbetaling.status}</Bold>
+    return (
+        <PrinterWrapper>
+            <UtbetalingStyle
+                onClick={(event: React.MouseEvent<HTMLElement>) =>
+                    cancelIfHighlighting(() => handleClickOnUtbetaling(event))
+                }
+                ref={utbetalingRef}
+                tabIndex={0}
+                onFocus={setYtelseIFokus}
+                className={utbetalingerTest.utbetaling}
+            >
+                <article aria-expanded={visDetaljer} aria-label={'Utbetaling ' + ytelse.type}>
+                    <UtbetalingTabellStyling>
+                        <UtbetalingHeaderStyle>
+                            <SpaceBetween>
+                                <Normaltekst tag={'h4'}>
+                                    <Bold>{tittel}</Bold>
                                 </Normaltekst>
-                                <SpaceBetween>
-                                    <Normaltekst>{periode}</Normaltekst>
-                                    <Normaltekst>{forfallsInfo}</Normaltekst>
-                                </SpaceBetween>
-                                <SpaceBetween>
-                                    <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
-                                    <span ref={this.printerButtonRef}>
-                                        <PrintKnapp onClick={this.handlePrint} />
-                                    </span>
-                                </SpaceBetween>
-                            </UtbetalingHeaderStyle>
-                            <DetaljerCollapse open={this.props.visDetaljer} toggle={this.toggleVisDetaljer}>
-                                <UtbetalingsDetaljer
-                                    ytelse={ytelse}
-                                    konto={utbetaling.konto}
-                                    melding={utbetaling.melding}
-                                />
-                            </DetaljerCollapse>
-                        </UtbetalingTabellStyling>
-                    </article>
-                </UtbetalingStyle>
-            </Printer>
-        );
-    }
+                                <Normaltekst>
+                                    <Bold>{sum}</Bold>
+                                </Normaltekst>
+                            </SpaceBetween>
+                            <Normaltekst className="order-first">
+                                {dato} / <Bold>{utbetaling.status}</Bold>
+                            </Normaltekst>
+                            <SpaceBetween>
+                                <Normaltekst>{periode}</Normaltekst>
+                                <Normaltekst>{forfallsInfo}</Normaltekst>
+                            </SpaceBetween>
+                            <SpaceBetween>
+                                <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
+                                <span ref={printerButtonRef}>
+                                    <PrintKnapp onClick={handlePrint} />
+                                </span>
+                            </SpaceBetween>
+                        </UtbetalingHeaderStyle>
+                        <DetaljerCollapse open={visDetaljer} toggle={toggleVisDetaljer}>
+                            <UtbetalingsDetaljer
+                                ytelse={ytelse}
+                                konto={utbetaling.konto}
+                                melding={utbetaling.melding}
+                            />
+                        </DetaljerCollapse>
+                    </UtbetalingTabellStyling>
+                </article>
+            </UtbetalingStyle>
+        </PrinterWrapper>
+    );
 }
 
-function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): DispatchProps {
-    return {
-        setYtelseIFokus: () => dispatch(setNyYtelseIFokus(ownProps.ytelse)),
-        setEkspanderYtelse: (ekspander: boolean) => dispatch(setEkspanderYtelse(ownProps.ytelse, ekspander))
-    };
-}
-
-function mapStateToProps(state: AppState, ownProps: OwnProps): StateProps {
-    return {
-        erIFokus: state.utbetalinger.ytelseIFokus === ownProps.ytelse,
-        visDetaljer: state.utbetalinger.ekspanderteYtelser.includes(ownProps.ytelse)
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(EnkelUtbetaling);
+export default EnkelUtbetaling;
