@@ -20,7 +20,6 @@ import Tekstomrade, {
     ParagraphRule
 } from '../../../../../components/tekstomrade/tekstomrade';
 import theme from '../../../../../styles/personOversiktTheme';
-import './enkeltmelding.less';
 import Etikett from 'nav-frontend-etiketter';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { SpaceBetween } from '../../../../../components/common-styled-components';
