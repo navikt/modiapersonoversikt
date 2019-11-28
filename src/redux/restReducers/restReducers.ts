@@ -1,7 +1,7 @@
 import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
 import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
-import oppgaverReducer from './oppgaver';
+import hentOppgaverReducer from './hentOppgaver';
 import kontaktinformasjonReducer from './kontaktinformasjon';
 import egenAnsattReducer from './egenansatt';
 import vergemalReducer from './vergemal';
@@ -103,7 +103,7 @@ export default combineResettableReducers<RestEndepunkter>(
         innloggetSaksbehandler: innloggetSaksbehandlerReducer,
         personinformasjon: personinformasjonReducer,
         brukersNavKontor: navkontorReducer,
-        plukkNyeOppgaver: oppgaverReducer,
+        plukkNyeOppgaver: hentOppgaverReducer,
         tildelteOppgaver: tildelteOppgaver,
         kontaktinformasjon: kontaktinformasjonReducer,
         egenAnsatt: egenAnsattReducer,

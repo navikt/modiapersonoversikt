@@ -7,7 +7,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 
 export const VisittkortBodyWrapper = styled.section`
     background-color: white;
-    padding: ${theme.margin.px20};
+    padding: ${theme.margin.layout};
     display: flex;
     margin-top: 0.2rem;
     &:focus {

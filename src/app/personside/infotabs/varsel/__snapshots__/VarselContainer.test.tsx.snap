@@ -117,7 +117,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 }
 
 .c0 {
-  padding: .8rem;
+  padding: .5rem;
 }
 
 .c1 {

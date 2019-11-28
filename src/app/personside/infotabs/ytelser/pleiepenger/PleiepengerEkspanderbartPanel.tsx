@@ -8,27 +8,34 @@ import {
 } from '../../../../../models/ytelse/pleiepenger';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { useInfotabsDyplenker } from '../../dyplenker';
+import { useAppState, useOnMount } from '../../../../../utils/customHooks';
+import { useDispatch } from 'react-redux';
+import { toggleVisYtesle } from '../../../../../redux/ytelser/ytelserReducer';
 
 interface Props {
-    pleiepenger: Pleiepengerettighet | null;
+    pleiepenger: Pleiepengerettighet;
 }
 
 function PleiepengerEkspanderbartpanel({ pleiepenger }: Props) {
+    const open = useAppState(state => state.ytelser.aapnedeYtesler).includes(pleiepenger);
+    const dispatch = useDispatch();
+    const setOpen = (vis: boolean) => dispatch(toggleVisYtesle(pleiepenger, vis));
+
     const dyplenker = useInfotabsDyplenker();
-    if (pleiepenger === null) {
-        return null;
-    }
+    useOnMount(() => {
+        const erValgtIUrl = dyplenker.ytelser.erValgt(getUnikPleiepengerKey(pleiepenger));
+        erValgtIUrl && setOpen(true);
+    });
 
     const tittelTillegsInfo = [
         'ID-dato: ' + formaterDato(getPleiepengerIdDato(pleiepenger)),
         'Barnets f.nr: ' + pleiepenger.barnet
     ];
 
-    const erValgtIUrl = dyplenker.ytelser.erValgt(getUnikPleiepengerKey(pleiepenger));
-
     return (
         <EkspanderbartYtelserPanel
-            defaultApen={erValgtIUrl}
+            open={open}
+            setOpen={setOpen}
             tittel="Pleiepenger sykt barn"
             tittelTillegsInfo={tittelTillegsInfo}
         >

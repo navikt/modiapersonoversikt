@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { Varsel as VarselModell, Varseltype } from '../../../../models/varsel';
 import { datoSynkende } from '../../../../utils/dateUtils';
 import { Bold } from '../../../../components/common-styled-components';
@@ -10,6 +9,9 @@ import theme from '../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
 import VisMerChevron from '../../../../components/VisMerChevron';
 import { formaterDato } from '../../../../utils/stringFormatting';
+import { useAppState } from '../../../../utils/customHooks';
+import { useDispatch } from 'react-redux';
+import { toggleVisVarsel } from '../../../../redux/varsler/varslerReducer';
 
 const Style = styled.li`
     ${theme.hvittPanel};
@@ -57,7 +59,9 @@ const Kommaliste = styled.ul`
 `;
 
 function Varsel({ varsel }: { varsel: VarselModell }) {
-    const [open, setOpen] = useState(false);
+    const open = useAppState(state => state.varsler.aapneVarsler).includes(varsel);
+    const dispatch = useDispatch();
+    const setOpen = (open: boolean) => dispatch(toggleVisVarsel(varsel, open));
     const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende(melding => melding.utsendingsTidspunkt));
 
     const toggleOpen = () => setOpen(!open);

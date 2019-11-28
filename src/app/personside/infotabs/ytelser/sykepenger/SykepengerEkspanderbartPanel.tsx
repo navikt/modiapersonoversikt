@@ -8,19 +8,34 @@ import {
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import Sykepenger from './Sykepenger';
 import { useInfotabsDyplenker } from '../../dyplenker';
+import { useAppState, useOnMount } from '../../../../../utils/customHooks';
+import { useDispatch } from 'react-redux';
+import { toggleVisYtesle } from '../../../../../redux/ytelser/ytelserReducer';
 
 interface Props {
     sykepenger: ISykepenger;
 }
 
 function SykepengerEkspanderbartpanel({ sykepenger }: Props) {
+    const open = useAppState(state => state.ytelser.aapnedeYtesler).includes(sykepenger);
+    const dispatch = useDispatch();
+    const setOpen = (vis: boolean) => dispatch(toggleVisYtesle(sykepenger, vis));
+
     const dyplenker = useInfotabsDyplenker();
+    useOnMount(() => {
+        const erValgtIUrl = dyplenker.ytelser.erValgt(getUnikSykepengerKey(sykepenger));
+        erValgtIUrl && setOpen(true);
+    });
+
     const tittelTillegsInfo = ['ID-dato: ' + formaterDato(getSykepengerIdDato(sykepenger))];
 
-    const erValgtIUrl = dyplenker.ytelser.erValgt(getUnikSykepengerKey(sykepenger));
-
     return (
-        <EkspanderbartYtelserPanel defaultApen={erValgtIUrl} tittel="Sykepenger" tittelTillegsInfo={tittelTillegsInfo}>
+        <EkspanderbartYtelserPanel
+            open={open}
+            setOpen={setOpen}
+            tittel="Sykepenger"
+            tittelTillegsInfo={tittelTillegsInfo}
+        >
             <Sykepenger sykepenger={sykepenger} />
         </EkspanderbartYtelserPanel>
     );

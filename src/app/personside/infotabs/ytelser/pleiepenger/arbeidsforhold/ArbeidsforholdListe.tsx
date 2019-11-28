@@ -1,29 +1,18 @@
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Arbeidsforhold } from '../../../../../../models/ytelse/pleiepenger';
+import { Pleiepengerettighet } from '../../../../../../models/ytelse/pleiepenger';
 import ArbeidsForholdListeElement from './ArbeidsForholdListeElement';
 import styled from 'styled-components';
 import theme from '../../../../../../styles/personOversiktTheme';
 import KnappBase from 'nav-frontend-knapper';
-import { useState } from 'react';
-import { AppState } from '../../../../../../redux/reducers';
-import { AsyncDispatch } from '../../../../../../redux/ThunkTypes';
-import { toggleVisAlleArbeidsforholdActionCreator } from '../../../../../../redux/ytelser/pleiepengerReducer';
-import { connect } from 'react-redux';
+import { useAppState } from '../../../../../../utils/customHooks';
+import { getAlleArbiedsforholdSortert } from '../pleiepengerUtils';
+import { useDispatch } from 'react-redux';
+import { toggleVisAlleArbeidsforhold } from '../../../../../../redux/ytelser/ytelserReducer';
 
-interface StateProps {
-    visAlleArbeidsforhold: boolean;
+interface Props {
+    pleiepengerettighet: Pleiepengerettighet;
 }
-
-interface DispatchProps {
-    toggleVisAlleArbeidsforhold: () => void;
-}
-
-interface OwnProps {
-    arbeidsforhold?: Arbeidsforhold[];
-}
-
-type Props = DispatchProps & StateProps & OwnProps;
 
 const StyledListe = styled.ol`
     li:not(:first-child) {
@@ -31,15 +20,19 @@ const StyledListe = styled.ol`
     }
 `;
 
-function ArbeidsForholdListe({ arbeidsforhold }: Props) {
-    const [visAlle, setVisAlle] = useState(false);
+function ArbeidsForholdListe(props: Props) {
+    const visAlle = useAppState(state => state.ytelser.visAlleArbeidsforhold).includes(props.pleiepengerettighet);
+    const dispatch = useDispatch();
+    const toggleVisAlle = (vis: boolean) => dispatch(toggleVisAlleArbeidsforhold(props.pleiepengerettighet, vis));
+
+    const arbeidsforhold = getAlleArbiedsforholdSortert(props.pleiepengerettighet);
     if (!arbeidsforhold || arbeidsforhold.length === 0) {
         return <AlertStripeInfo>Ingen arbeidsgiver er registrert</AlertStripeInfo>;
     }
 
     const [førsteArbForhold, ...resten] = arbeidsforhold;
     const visAlleArbeidsforholdKnapp = (
-        <KnappBase type={'hoved'} onClick={() => setVisAlle(!visAlle)}>
+        <KnappBase type={'hoved'} onClick={() => toggleVisAlle(!visAlle)}>
             {visAlle ? 'Vis færre arbeidsforhold' : 'Vis alle arbeidsforhold'}
         </KnappBase>
     );
@@ -57,19 +50,4 @@ function ArbeidsForholdListe({ arbeidsforhold }: Props) {
     );
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        visAlleArbeidsforhold: state.ytelser.pleiepenger.visAlleArbeidsforhold
-    };
-}
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        toggleVisAlleArbeidsforhold: () => dispatch(toggleVisAlleArbeidsforholdActionCreator())
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ArbeidsForholdListe);
+export default ArbeidsForholdListe;

@@ -15,6 +15,7 @@ import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import useAlwaysInViewport from '../../../../../utils/hooks/use-always-in-viewport';
 import { Rule } from '../../../../../components/tekstomrade/parser/domain';
 import { erGyldigValg } from './sokUtils';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
     tekster: Array<StandardTekster.Tekst>;
@@ -22,6 +23,7 @@ interface Props {
     valgt: FieldState;
     valgtLocale: FieldState;
     valgtTekst?: StandardTekster.Tekst;
+    harAutofullførData: boolean;
 }
 
 const Container = styled.div`
@@ -100,6 +102,10 @@ const Tag = styled(({ highlight, ...rest }) => <Knapp {...rest} />)`
     &:hover {
         color: ${props => (props.highlight ? theme.color.lenke : '#ffffff')};
     }
+`;
+
+const StyledAlertstripeAdvarsel = styled(AlertStripeAdvarsel)`
+    margin-bottom: 0.5rem;
 `;
 
 function TekstValg({
@@ -201,10 +207,18 @@ function StandardTekstVisning(props: Props) {
                     highlightRule={highlightRule}
                 />
                 <VelgTekst>
-                    <LocaleVelgerContainer>
-                        <LocaleVelger tekst={valgtTekst} valgt={valgtLocale} />
-                    </LocaleVelgerContainer>
-                    <VelgKnapp>Velg</VelgKnapp>
+                    {!props.harAutofullførData && (
+                        <StyledAlertstripeAdvarsel>
+                            Kunne ikke laste autofullfør-data. Du må gå over teksten og fylle inn manuelt (feks:
+                            [bruker.navn]).
+                        </StyledAlertstripeAdvarsel>
+                    )}
+                    <div>
+                        <LocaleVelgerContainer>
+                            <LocaleVelger tekst={valgtTekst} valgt={valgtLocale} />
+                        </LocaleVelgerContainer>
+                        <VelgKnapp>Velg</VelgKnapp>
+                    </div>
                 </VelgTekst>
             </PreviewContainer>
         </Container>
