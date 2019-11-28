@@ -14,19 +14,16 @@ import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { FlexEnd } from '../../../../../components/common-styled-components';
-import Printer from '../../../../../utils/Printer';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import { Table } from '../../../../../utils/table/Table';
+import { useState } from 'react';
+import usePrinter from '../../../../../utils/UsePrinter';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
     periode: UtbetalingerPeriode;
-}
-
-interface State {
-    visDetaljer: boolean;
 }
 
 const Wrapper = styled.article`
@@ -51,84 +48,69 @@ const TotaltUtbetaltOversikt = styled.section`
     }
 `;
 
-class TotaltUtbetalt extends React.PureComponent<TotaltUtbetaltProps, State> {
-    private print?: () => void;
-    private printerButtonRef = React.createRef<HTMLButtonElement>();
+function TotaltUtbetalt(props: TotaltUtbetaltProps) {
+    const printerButtonRef = React.createRef<HTMLButtonElement>();
+    const [visDetaljer, setVisDetaljer] = useState(false);
+    const printer = usePrinter();
+    const print = printer.print;
+    const PrinterWrapper = printer.printerWrapper;
+    const sluttDato = new Date(props.periode.sluttDato) > new Date() ? new Date() : props.periode.sluttDato;
+    const periode: string = formaterDato(props.periode.startDato) + ' - ' + formaterDato(sluttDato);
+    const brutto: string = summertBeløpStringFraUtbetalinger(props.utbetalinger, getBruttoSumYtelser);
+    const trekk: string = summertBeløpStringFraUtbetalinger(props.utbetalinger, getTrekkSumYtelser);
+    const utbetalt: string = summertBeløpStringFraUtbetalinger(props.utbetalinger, getNettoSumYtelser);
+    const totaltUtbetaltTabell = (
+        <Table
+            tittelRekke={['Totalt Utbetalt', 'Brutto', 'Trekk', 'Utbetalt']}
+            rows={[[periode, brutto, trekk, utbetalt]]}
+        />
+    );
 
-    constructor(props: TotaltUtbetaltProps) {
-        super(props);
-        this.state = { visDetaljer: false };
-        this.toggleVisDetaljer = this.toggleVisDetaljer.bind(this);
-        this.handlePrint = this.handlePrint.bind(this);
-    }
-
-    toggleVisDetaljer() {
-        this.setState({
-            visDetaljer: !this.state.visDetaljer
-        });
-    }
-
-    handlePrint() {
+    const toggelVisDetaljer = () => {
+        setVisDetaljer(!visDetaljer);
+    };
+    const handlePrint = () => {
         loggEvent('UtskriftTotaltUtbetalt', 'Printer');
-        this.setState(
-            {
-                visDetaljer: true
-            },
-            this.print
-        );
-    }
+        setVisDetaljer(true);
+        print();
+    };
 
-    handleClickOnUtbetaling(event: React.MouseEvent<HTMLElement>) {
-        const printerButtonClicked = eventTagetIsInsideRef(event, this.printerButtonRef);
+    const handleClickOnUtbetaling = (event: React.MouseEvent<HTMLElement>) => {
+        const printerButtonClicked = eventTagetIsInsideRef(event, printerButtonRef);
         if (!printerButtonClicked) {
-            this.toggleVisDetaljer();
+            setVisDetaljer(!visDetaljer);
         }
-    }
+    };
 
-    render() {
-        const sluttDato =
-            new Date(this.props.periode.sluttDato) > new Date() ? new Date() : this.props.periode.sluttDato;
-        const periode: string = formaterDato(this.props.periode.startDato) + ' - ' + formaterDato(sluttDato);
-        const brutto: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getBruttoSumYtelser);
-        const trekk: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getTrekkSumYtelser);
-        const utbetalt: string = summertBeløpStringFraUtbetalinger(this.props.utbetalinger, getNettoSumYtelser);
-        const totaltUtbetaltTabell = (
-            <Table
-                tittelRekke={['Totalt Utbetalt', 'Brutto', 'Trekk', 'Utbetalt']}
-                rows={[[periode, brutto, trekk, utbetalt]]}
-            />
-        );
-
-        return (
-            <Printer getPrintTrigger={trigger => (this.print = trigger)}>
-                <Wrapper
-                    aria-label="Totalt utbetalt"
-                    onClick={(event: React.MouseEvent<HTMLElement>) =>
-                        cancelIfHighlighting(() => this.handleClickOnUtbetaling(event))
-                    }
-                >
-                    <UtbetalingTabellStyling>
-                        <Header>
-                            <Undertittel>Totalt utbetalt for perioden</Undertittel>
-                            <TotaltUtbetaltOversikt>
-                                <Normaltekst tag="span">{totaltUtbetaltTabell}</Normaltekst>
-                            </TotaltUtbetaltOversikt>
-                            <FlexEnd>
-                                <span ref={this.printerButtonRef}>
-                                    <PrintKnapp onClick={this.handlePrint} />
-                                </span>
-                            </FlexEnd>
-                        </Header>
-                        <TotaltUtbetaltDetaljer
-                            visDetaljer={this.state.visDetaljer}
-                            toggleVisDetaljer={this.toggleVisDetaljer}
-                            {...this.props}
-                        />
-                    </UtbetalingTabellStyling>
-                </Wrapper>
-            </Printer>
-        );
-    }
+    return (
+        <PrinterWrapper>
+            <Wrapper
+                aria-label="Totalt utbetalt"
+                onClick={(event: React.MouseEvent<HTMLElement>) =>
+                    cancelIfHighlighting(() => handleClickOnUtbetaling(event))
+                }
+            >
+                <UtbetalingTabellStyling>
+                    <Header>
+                        <Undertittel>Totalt utbetalt for perioden</Undertittel>
+                        <TotaltUtbetaltOversikt>
+                            <Normaltekst tag="span">{totaltUtbetaltTabell}</Normaltekst>
+                        </TotaltUtbetaltOversikt>
+                        <FlexEnd>
+                            <span ref={printerButtonRef}>
+                                <PrintKnapp onClick={handlePrint} />
+                            </span>
+                        </FlexEnd>
+                    </Header>
+                    <TotaltUtbetaltDetaljer
+                        visDetaljer={visDetaljer}
+                        toggleVisDetaljer={toggelVisDetaljer}
+                        {...props}
+                    />
+                </UtbetalingTabellStyling>
+            </Wrapper>
+        </PrinterWrapper>
+    );
 }
 
 export default TotaltUtbetalt;
