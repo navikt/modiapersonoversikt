@@ -71,7 +71,7 @@ function SammensattUtbetaling(props: Props) {
         }
         ytelser.forEach(ytelse => ekspanderYtelse(ytelse));
         print();
-        loggEvent('SammensattUtbetaling', 'Printer');
+        loggEvent('SammensattUtbetaling', 'usePrinter');
     };
 
     const utbetaling = props.utbetaling;

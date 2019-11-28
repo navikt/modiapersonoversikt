@@ -70,7 +70,7 @@ function TotaltUtbetalt(props: TotaltUtbetaltProps) {
         setVisDetaljer(!visDetaljer);
     };
     const handlePrint = () => {
-        loggEvent('UtskriftTotaltUtbetalt', 'Printer');
+        loggEvent('UtskriftTotaltUtbetalt', 'usePrinter');
         setVisDetaljer(true);
         print();
     };
