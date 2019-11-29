@@ -58,10 +58,11 @@ function EnkelUtbetaling(props: Props) {
     const ytelse = props.ytelse;
     const tittel = ytelse.type;
 
-    const utbetalinger = useAppState(state => state.utbetalinger);
     const printer = usePrinter();
     const PrinterWrapper = printer.printerWrapper;
     const print = printer.print;
+
+    const utbetalinger = useAppState(state => state.utbetalinger);
     const erIFokus = utbetalinger.ytelseIFokus === ytelse;
     const visDetaljer = utbetalinger.ekspanderteYtelser.includes(ytelse);
 
@@ -72,7 +73,6 @@ function EnkelUtbetaling(props: Props) {
 
     const ekspanderYtelse = (ekspander: boolean) => dispatch(setEkspanderYtelse(ytelse, ekspander));
     const setYtelseIFokus = () => dispatch(setNyYtelseIFokus(ytelse));
-    const prevErIFokus = usePrevious(erIFokus);
 
     useOnMount(() => {
         if (props.valgt) {
@@ -80,12 +80,13 @@ function EnkelUtbetaling(props: Props) {
         }
     });
 
+    const prevErIFokus = usePrevious(erIFokus);
     useEffect(() => {
         const fikkFokus = erIFokus && !prevErIFokus;
         if (fikkFokus && utbetalingRef.current) {
             utbetalingRef.current.focus();
         }
-    }, [erIFokus, utbetalingRef]);
+    }, [prevErIFokus, erIFokus, utbetalingRef]);
 
     const toggleVisDetaljer = () => {
         ekspanderYtelse(!visDetaljer);
@@ -95,7 +96,7 @@ function EnkelUtbetaling(props: Props) {
     const handlePrint = () => {
         ekspanderYtelse(true);
         print();
-        loggEvent('EnkeltUtbetaling', 'Printer');
+        loggEvent('EnkeltUtbetaling', 'usePrinter');
     };
 
     const handleClickOnUtbetaling = (event: React.MouseEvent<HTMLElement>) => {
@@ -108,12 +109,12 @@ function EnkelUtbetaling(props: Props) {
     return (
         <PrinterWrapper>
             <UtbetalingStyle
-                onClick={(event: React.MouseEvent<HTMLElement>) =>
-                    cancelIfHighlighting(() => handleClickOnUtbetaling(event))
-                }
+                onClick={(event: React.MouseEvent<HTMLElement>) => {
+                    cancelIfHighlighting(() => handleClickOnUtbetaling(event));
+                }}
                 ref={utbetalingRef}
                 tabIndex={0}
-                onFocus={setYtelseIFokus}
+                //onFocus={setYtelseIFokus}
                 className={utbetalingerTest.utbetaling}
             >
                 <article aria-expanded={visDetaljer} aria-label={'Utbetaling ' + ytelse.type}>
