@@ -14,12 +14,7 @@ function LenkeBrukerprofilVisning(props: { nyModiaPersonoversikt: boolean; perso
     if (props.nyModiaPersonoversikt) {
         if (nyPersonforvalterFT.isOn) {
             return (
-                <a
-                    className="lenke"
-                    href={`${personforvalterUrl}?aktoerId=${props.person.fødselsnummer}`}
-                    target={'_blank'}
-                    rel="noreferrer noopener"
-                >
+                <a className="lenke" href={personforvalterUrl} target={'_blank'} rel="noreferrer noopener">
                     <Normaltekst tag="span">Administrer brukerprofil</Normaltekst>
                 </a>
             );
@@ -33,12 +28,7 @@ function LenkeBrukerprofilVisning(props: { nyModiaPersonoversikt: boolean; perso
     } else {
         if (nyPersonforvalterFT.isOn) {
             return (
-                <a
-                    className="lenke"
-                    href={`${personforvalterUrl}?aktoerId=${props.person.fødselsnummer}`}
-                    target={'_blank'}
-                    rel="noreferrer noopener"
-                >
+                <a className="lenke" href={personforvalterUrl} target={'_blank'} rel="noreferrer noopener">
                     <Normaltekst tag="span">Administrer brukerprofil</Normaltekst>
                 </a>
             );
