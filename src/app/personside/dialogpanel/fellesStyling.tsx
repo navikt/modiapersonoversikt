@@ -60,7 +60,7 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     }
 
     if (!sentMelding.traad) {
-        return <AlertStripeInfo>Feil ved lasting av journalføring/merk/oppgave</AlertStripeInfo>;
+        return <AlertStripeInfo>Kunne ikke vise journalføring/merk/oppgave-panel</AlertStripeInfo>;
     }
     return <Verktoylinje valgtTraad={sentMelding.traad} skjulSkrivUt={true} />;
 }
