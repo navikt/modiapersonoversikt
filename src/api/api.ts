@@ -1,7 +1,7 @@
 import { postConfig } from './config';
 import { loggError, loggEvent } from '../utils/frontendLogger';
 
-export function post(uri: string, body: object, loggLocation: string) {
+export function post(uri: string, body: object | string, loggLocation: string) {
     loggEvent('Post', loggLocation);
     return fetch(uri, postConfig(body)).then(response => {
         if (response.ok && !response.redirected) {

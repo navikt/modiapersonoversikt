@@ -14,6 +14,7 @@ import { parseQueryParams } from '../../utils/url-utils';
 import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
+import { post } from '../../api/api';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -46,14 +47,7 @@ function lagConfig(
             }
         },
         onEnhetChange(enhet: string): void {
-            fetch(`${apiBaseUri}/hode/velgenhet`, {
-                credentials: 'same-origin',
-                method: 'POST',
-                body: enhet,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            post(`${apiBaseUri}/hode/velgenhet`, enhet, 'VelgEnhet');
             settEnhet(enhet);
         },
         contextholder: true,
