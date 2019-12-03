@@ -8,6 +8,7 @@ import styled, { css } from 'styled-components';
 import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
 import { temagruppeTekst } from '../../../../../models/Temagrupper';
 import { erMeldingFraBruker } from '../../../infotabs/meldinger/utils/meldingerUtils';
+import theme from '../../../../../styles/personOversiktTheme';
 
 function Meldingsforfatter(props: { melding: Melding }) {
     if (props.melding.erDokumentMelding || erMeldingFraBruker(props.melding.meldingstype)) {
@@ -45,6 +46,9 @@ const StyledEkspanderbartpanelBase = styled(({ erEnkeltstaende, ...rest }) => <E
                 : ''};
     }
     border-top: 0.1rem rgba(0, 0, 0, 0.2) solid;
+    .ekspanderbartPanel__hode:focus {
+        ${theme.focusInset};
+    }
 `;
 
 interface Props {

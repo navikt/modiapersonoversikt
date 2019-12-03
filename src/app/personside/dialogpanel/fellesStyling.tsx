@@ -96,12 +96,12 @@ export function DialogpanelKvittering(props: {
         <DialogpanelKvitteringStyling>
             <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
             <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
-            <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
             <Preview
                 opprettetDato={opprettetDato}
                 fritekst={props.fritekst}
                 tittel={meldingstypeTekst(props.meldingstype)}
             />
+            <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
             <KnappBase type="standard" onClick={props.lukk}>
                 Start ny dialog
             </KnappBase>
