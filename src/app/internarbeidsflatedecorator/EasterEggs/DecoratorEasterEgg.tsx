@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 import nisselue from './nisselue.svg';
 import moment from 'moment';
+import { erKontaktsenter } from '../../../utils/loggInfo/saksbehandlersEnhetInfo';
 
 const dropDown = keyframes`
   from {
@@ -19,6 +20,10 @@ const StyledImg = styled.img`
 `;
 
 function DecoratorEasterEgg() {
+    if (!erKontaktsenter()) {
+        return null;
+    }
+
     const today = moment();
     const erJul = today.month() === 11 && 17 < today.date() && today.date() < 28;
 
