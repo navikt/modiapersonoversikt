@@ -4,13 +4,10 @@ import { Textarea, TextareaProps } from 'nav-frontend-skjema';
 import {
     autofullfor,
     AutofullforData,
-    byggAutofullforMap
+    byggAutofullforMap,
+    useAutoFullførData
 } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
-import { MultiRestResourceConsumerBase } from '../../rest/consumer/MultiRestResourceConsumer';
-import { STATUS } from '../../rest/utils/utils';
 import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
-import { useRestResource } from '../../utils/customHooks';
-import { hasData } from '../../rest/utils/restResource';
 import styled from 'styled-components';
 import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
 import { guid } from 'nav-frontend-js-utils';
@@ -73,36 +70,22 @@ const Style = styled.div`
     position: relative;
 `;
 
-function AutocompleteTextarea(props: TextareaProps) {
-    const personResource = useRestResource(resources => resources.personinformasjon);
-
-    if (!hasData(personResource)) {
-        return null;
-    }
-
-    return (
-        <MultiRestResourceConsumerBase<AutofullforData>
-            getResource={restResources => ({
-                person: restResources.personinformasjon,
-                saksbehandler: restResources.innloggetSaksbehandler,
-                kontor: restResources.brukersNavKontor
-            })}
-        >
-            {(status: STATUS, data: AutofullforData | null) => (
-                <AutocompleteTextareaComponent {...props} status={status} data={data} />
-            )}
-        </MultiRestResourceConsumerBase>
+function autoFullfør(autofullførData: AutofullforData, parsedText: string) {
+    const autofullforMap = byggAutofullforMap(
+        autofullførData.person,
+        autofullførData.kontor,
+        autofullførData.saksbehandler,
+        Locale.nb_NO
     );
+    const fullfortTekst = autofullfor(parsedText, autofullforMap);
+    return fullfortTekst;
 }
 
-function AutocompleteTextareaComponent(props: TextareaProps & { status: STATUS; data: AutofullforData | null }) {
-    const { status, data, ...rest } = props;
+function AutocompleteTextarea(props: TextareaProps) {
+    const autofullførData = useAutoFullførData();
     const onChange = props.onChange;
     const onKeyDown: React.KeyboardEventHandler = useCallback(
         (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-            if (data === null) {
-                return;
-            }
             if ([SPACE, ENTER].includes(event.which)) {
                 const cursorPosition =
                     event.currentTarget.selectionStart === event.currentTarget.selectionEnd
@@ -123,13 +106,7 @@ function AutocompleteTextareaComponent(props: TextareaProps & { status: STATUS; 
                         return acc;
                     }, word);
 
-                    const autofullforMap = byggAutofullforMap(
-                        data.person,
-                        data.kontor,
-                        data.saksbehandler,
-                        Locale.nb_NO
-                    );
-                    const fullfortTekst = autofullfor(replacement, autofullforMap);
+                    const fullfortTekst = autofullførData ? autoFullfør(autofullførData, replacement) : replacement;
 
                     event.currentTarget.value = [value.substring(0, start), fullfortTekst, value.substring(end)].join(
                         ''
@@ -141,12 +118,12 @@ function AutocompleteTextareaComponent(props: TextareaProps & { status: STATUS; 
                 }
             }
         },
-        [data, onChange]
+        [autofullførData, onChange]
     );
 
     return (
         <Style>
-            <Textarea onKeyDown={onKeyDown} {...rest} />
+            <Textarea onKeyDown={onKeyDown} {...props} />
             <AutoTekstTips />
         </Style>
     );
