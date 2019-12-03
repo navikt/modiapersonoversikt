@@ -11,12 +11,44 @@ import { STATUS } from '../../rest/utils/utils';
 import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
 import { useRestResource } from '../../utils/customHooks';
 import { hasData } from '../../rest/utils/restResource';
+import styled from 'styled-components';
+import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
+import { guid } from 'nav-frontend-js-utils';
+import { Undertittel } from 'nav-frontend-typografi';
 
 const rules = [
     { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
     { regex: /^mvh$/i, replacement: 'Med vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter' },
     { regex: /^foet$/i, replacement: '[bruker.navn] ' }
 ];
+
+const HjelpetekstStyle = styled.div`
+    position: absolute;
+    top: 2.5rem;
+    left: -0.9rem;
+    ul {
+        list-style: circle;
+        margin-top: 1rem;
+        li {
+            margin-left: 1.5rem;
+        }
+    }
+`;
+
+function AutoTekstTips() {
+    return (
+        <HjelpetekstStyle>
+            <HjelpetekstUnderHoyre id={guid()}>
+                <Undertittel>Autofullfør-tips:</Undertittel>
+                <ul>
+                    <li>foet + mellomrom: Brukers fulle navn</li>
+                    <li>mvh + mellomrom: Signatur</li>
+                    <li>hei + mellomrom: Hei bruker</li>
+                </ul>
+            </HjelpetekstUnderHoyre>
+        </HjelpetekstStyle>
+    );
+}
 
 const SPACE = 32;
 const ENTER = 13;
@@ -36,6 +68,10 @@ function findWordBoundary(text: string, initialPosition: number): [number, numbe
 
     return [0, 0];
 }
+
+const Style = styled.div`
+    position: relative;
+`;
 
 function AutocompleteTextarea(props: TextareaProps) {
     const personResource = useRestResource(resources => resources.personinformasjon);
@@ -108,7 +144,12 @@ function AutocompleteTextareaComponent(props: TextareaProps & { status: STATUS; 
         [data, onChange]
     );
 
-    return <Textarea onKeyDown={onKeyDown} {...rest} />;
+    return (
+        <Style>
+            <Textarea onKeyDown={onKeyDown} {...rest} />
+            <AutoTekstTips />
+        </Style>
+    );
 }
 
 export default AutocompleteTextarea;
