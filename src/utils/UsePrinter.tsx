@@ -1,11 +1,20 @@
 import * as React from 'react';
 import { ReactNode, useState } from 'react';
 import ReactModal from 'react-modal';
+import styled from 'styled-components';
 
 interface Returns {
     printerWrapper: (props: { children: ReactNode }) => JSX.Element;
     print: () => void;
 }
+
+const PrintModal = styled(ReactModal)`
+    @media print {
+        height: 100%;
+    }
+    overflow-y: auto;
+    max-height: 100vh;
+`;
 
 export function usePrinter(): Returns {
     const [apen, setApen] = useState(false);
@@ -18,11 +27,12 @@ export function usePrinter(): Returns {
         setTimeout(() => setApen(false), 1000);
     };
 
-    const printWrapper = (props: { children: ReactNode }) => {
-        return apen ? <ReactModal isOpen={apen}>{props.children} </ReactModal> : <>{props.children}</>;
+    const printerWrapper = (props: { children: ReactNode }) => {
+        return apen ? <PrintModal isOpen={apen}>{props.children} </PrintModal> : <>{props.children}</>;
     };
+
     return {
-        printerWrapper: printWrapper,
+        printerWrapper: printerWrapper,
         print: print
     };
 }
