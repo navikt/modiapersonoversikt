@@ -54,7 +54,7 @@ const YtelsesListe = styled.ul`
 function SammensattUtbetaling(props: Props) {
     const utbetalingRef = React.createRef<HTMLLIElement>();
     const printer = usePrinter();
-    const print = printer.print;
+    const print = printer.triggerPrint;
     const PrinterWrapper = printer.printerWrapper;
     const dispatch = useDispatch();
     const ekspanderYtelse = (ytelse: Ytelse) => dispatch(setEkspanderYtelse(ytelse, true));
@@ -71,7 +71,7 @@ function SammensattUtbetaling(props: Props) {
         }
         ytelser.forEach(ytelse => ekspanderYtelse(ytelse));
         print();
-        loggEvent('SammensattUtbetaling', 'usePrinter');
+        loggEvent('Print', 'SammensattUtbetaling');
     };
 
     const utbetaling = props.utbetaling;

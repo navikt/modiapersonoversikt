@@ -60,7 +60,7 @@ function EnkelUtbetaling(props: Props) {
 
     const printer = usePrinter();
     const PrinterWrapper = printer.printerWrapper;
-    const print = printer.print;
+    const print = printer.triggerPrint;
 
     const utbetalinger = useAppState(state => state.utbetalinger);
     const erIFokus = utbetalinger.ytelseIFokus === ytelse;

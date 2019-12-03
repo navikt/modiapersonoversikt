@@ -52,7 +52,7 @@ function TotaltUtbetalt(props: TotaltUtbetaltProps) {
     const printerButtonRef = React.createRef<HTMLButtonElement>();
     const [visDetaljer, setVisDetaljer] = useState(false);
     const printer = usePrinter();
-    const print = printer.print;
+    const print = printer.triggerPrint;
     const PrinterWrapper = printer.printerWrapper;
     const sluttDato = new Date(props.periode.sluttDato) > new Date() ? new Date() : props.periode.sluttDato;
     const periode: string = formaterDato(props.periode.startDato) + ' - ' + formaterDato(sluttDato);
