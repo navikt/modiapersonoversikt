@@ -24,8 +24,8 @@ const rules = [
 
 const HjelpetekstStyle = styled.div`
     position: absolute;
-    top: 2.5rem;
-    left: -0.9rem;
+    top: 2.8rem;
+    left: -1rem;
     ul {
         list-style: circle;
         margin-top: 1rem;
