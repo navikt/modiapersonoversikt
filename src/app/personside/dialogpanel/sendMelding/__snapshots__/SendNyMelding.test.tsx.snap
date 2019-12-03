@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser send ny melding 1`] = `
-.c7 label {
+.c9 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -12,14 +12,14 @@ exports[`viser send ny melding 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c9 {
+.c11 {
   background-color: white;
   border-radius: .25rem;
   border: 1px solid #78706a;
   position: relative;
 }
 
-.c10 {
+.c12 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -40,7 +40,7 @@ exports[`viser send ny melding 1`] = `
   align-items: center;
 }
 
-.c10:focus {
+.c12:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
@@ -73,6 +73,25 @@ exports[`viser send ny melding 1`] = `
   position: relative;
   top: 2px;
   width: 18px;
+}
+
+.c7 {
+  position: absolute;
+  top: 2.5rem;
+  left: -0.9rem;
+}
+
+.c7 ul {
+  list-style: circle;
+  margin-top: 1rem;
+}
+
+.c7 ul li {
+  margin-left: 1.5rem;
+}
+
+.c6 {
+  position: relative;
 }
 
 .c2 {
@@ -122,7 +141,7 @@ exports[`viser send ny melding 1`] = `
   margin-bottom: 1rem;
 }
 
-.c6 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -136,19 +155,19 @@ exports[`viser send ny melding 1`] = `
   flex-wrap: wrap;
 }
 
-.c6 > * {
+.c8 > * {
   margin-top: 0.3rem;
 }
 
-.c6 > *:not(:last-child) {
+.c8 > *:not(:last-child) {
   margin-right: 1rem;
 }
 
-.c11 {
+.c13 {
   margin-top: 1rem;
 }
 
-.c11 label {
+.c13 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -163,7 +182,7 @@ exports[`viser send ny melding 1`] = `
   padding: 1rem .5rem;
 }
 
-.c12 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -173,11 +192,11 @@ exports[`viser send ny melding 1`] = `
   flex-direction: column;
 }
 
-.c12 > * {
+.c14 > * {
   margin-bottom: 0.7rem;
 }
 
-.c8 {
+.c10 {
   margin-top: 1rem;
 }
 
@@ -227,50 +246,112 @@ exports[`viser send ny melding 1`] = `
         className="c5"
       >
         <div
-          className="skjemaelement textarea__container"
+          className="c6"
         >
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Melding
-          </label>
           <div
-            className="textarea--medMeta__wrapper"
+            className="skjemaelement textarea__container"
           >
-            <textarea
-              className="skjemaelement__input textarea--medMeta"
-              id="Helt tilfeldig ID"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
-              style={
-                Object {
-                  "height": "30px",
-                }
-              }
-              type="text"
-              value=""
-            />
-            <p
-              className="textarea--medMeta__teller"
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
             >
-              <span
-                aria-live="polite"
-                className="teller-tekst"
+              Melding
+            </label>
+            <div
+              className="textarea--medMeta__wrapper"
+            >
+              <textarea
+                className="skjemaelement__input textarea--medMeta"
+                id="Helt tilfeldig ID"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
+                style={
+                  Object {
+                    "height": "30px",
+                  }
+                }
+                type="text"
+                value=""
+              />
+              <p
+                className="textarea--medMeta__teller"
               >
-                Du har 5000 tegn igjen
-              </span>
-            </p>
+                <span
+                  aria-live="polite"
+                  className="teller-tekst"
+                >
+                  Du har 5000 tegn igjen
+                </span>
+              </p>
+            </div>
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+            <div
+              aria-hidden="true"
+              className="textareamirror"
+            />
           </div>
           <div
-            aria-live="assertive"
-            role="alert"
-          />
-          <div
-            aria-hidden="true"
-            className="textareamirror"
-          />
+            className="c7"
+          >
+            <div
+              className="hjelpetekst"
+            >
+              <button
+                aria-label="Hjelptekst"
+                aria-pressed={false}
+                className="hjelpetekst__apneknapp"
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onMouseDown={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                title="Hjelptekst"
+                type="button"
+              >
+                <span
+                  className="sr-only"
+                >
+                  Hjelptekst
+                </span>
+                <svg
+                  className="hjelpetekst__anchor"
+                  focusable="false"
+                  height={32}
+                  kind="help-circle"
+                  viewBox="0 0 18.22 18.22"
+                  width={32}
+                >
+                  <title>
+                    Hjelp
+                  </title>
+                  <path
+                    d="M9.11 1a8.11 8.11 0 1 0 8.11 8.11A8.12 8.12 0 0 0 9.11 1zm0 13.7a.89.89 0 1 1 .89-.9.89.89 0 0 1-.89.9zm.5-5.7v1.89a.5.5 0 0 1-1 0V8.5a.5.5 0 0 1 .5-.5 1.85 1.85 0 1 0-1.85-1.85.5.5 0 0 1-1 0A2.85 2.85 0 1 1 9.61 9z"
+                    fill="none"
+                  />
+                  <path
+                    d="M9.11 0a9.11 9.11 0 1 0 9.11 9.11A9.12 9.12 0 0 0 9.11 0zm0 17.22a8.11 8.11 0 1 1 8.11-8.11 8.12 8.12 0 0 1-8.11 8.11z"
+                    fill="#2968b2"
+                  />
+                  <path
+                    d="M9.11 3.3a2.85 2.85 0 0 0-2.85 2.85.5.5 0 0 0 1 0A1.85 1.85 0 1 1 9.11 8a.5.5 0 0 0-.5.5v2.35a.5.5 0 0 0 1 0V9a2.85 2.85 0 0 0-.5-5.65z"
+                    fill="#2968b2"
+                  />
+                  <circle
+                    cx="9.11"
+                    cy="13.8"
+                    fill="#2968b2"
+                    r=".89"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -279,7 +360,7 @@ exports[`viser send ny melding 1`] = `
       />
     </div>
     <div
-      className="c6"
+      className="c8"
     >
       <div
         className="skjemaelement skjemaelement--horisontal"
@@ -343,7 +424,7 @@ exports[`viser send ny melding 1`] = `
         className=""
       >
         <div
-          className="skjemaelement c7"
+          className="skjemaelement c9"
         >
           <label
             className="skjemaelement__label"
@@ -405,7 +486,7 @@ exports[`viser send ny melding 1`] = `
         />
       </div>
       <div
-        className="alertstripe c8 alertstripe--info"
+        className="alertstripe c10 alertstripe--info"
       >
         <span
           aria-label="info"
@@ -442,11 +523,11 @@ exports[`viser send ny melding 1`] = `
         className=""
       >
         <div
-          className="c9"
+          className="c11"
         >
           <button
             aria-expanded={false}
-            className="c10"
+            className="c12"
             onClick={[Function]}
             type="button"
           >
@@ -466,7 +547,7 @@ exports[`viser send ny melding 1`] = `
         />
       </div>
       <div
-        className="skjemaelement c11"
+        className="skjemaelement c13"
       >
         <label
           className="skjemaelement__label"
@@ -504,7 +585,7 @@ exports[`viser send ny melding 1`] = `
         />
       </div>
       <div
-        className="alertstripe c8 alertstripe--info"
+        className="alertstripe c10 alertstripe--info"
       >
         <span
           aria-label="info"
@@ -539,7 +620,7 @@ exports[`viser send ny melding 1`] = `
       </div>
     </div>
     <div
-      className="c12"
+      className="c14"
     >
       <button
         className="knapp knapp--hoved"
