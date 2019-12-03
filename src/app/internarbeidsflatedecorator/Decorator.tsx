@@ -14,6 +14,7 @@ import { useOnMount, useRestResource } from '../../utils/customHooks';
 import { parseQueryParams } from '../../utils/url-utils';
 import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
 import PersonsokContainer from '../personsok/Personsok';
+import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -107,6 +108,7 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
                 <>
                     <InternflateDecorator {...config} />
                     <PersonsokContainer />
+                    <DecoratorEasterEgg />
                 </>
             )}
         </nav>
