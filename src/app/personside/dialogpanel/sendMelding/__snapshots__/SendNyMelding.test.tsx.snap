@@ -77,8 +77,8 @@ exports[`viser send ny melding 1`] = `
 
 .c7 {
   position: absolute;
-  top: 2.5rem;
-  left: -0.9rem;
+  top: 2.8rem;
+  left: -1rem;
 }
 
 .c7 ul {
