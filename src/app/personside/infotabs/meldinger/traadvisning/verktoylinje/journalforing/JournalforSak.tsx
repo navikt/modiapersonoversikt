@@ -9,7 +9,7 @@ import { Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { post } from '../../../../../../../api/api';
-import { loggError, loggEvent } from '../../../../../../../utils/frontendLogger';
+import { loggError } from '../../../../../../../utils/frontendLogger';
 import { useDispatch, useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
 import { useRestResource } from '../../../../../../../utils/customHooks';
@@ -55,17 +55,15 @@ export function JournalforSak(props: Props) {
 
     const journalfor = () => {
         setSubmitting(true);
-        post(`${apiBaseUri}/journalforing/${fnr}/${traadId}`, sak).then(
+        post(`${apiBaseUri}/journalforing/${fnr}/${traadId}`, sak, 'Journalføring').then(
             () => {
                 setSubmitting(false);
                 setJournalforingSuksess(true);
                 dispatch(tråderResource.actions.reload);
-                loggEvent('Journalfør-Traad', 'Journalføring');
             },
             error => {
                 setSubmitting(false);
                 setError('Kunne ikke gjennomføre journalføring');
-                loggEvent('Post-Failed', 'Journalføring');
                 loggError(error, `Kunne ikke gjennomføre journalføring.`, { traadId, saksId: sak.saksId });
             }
         );

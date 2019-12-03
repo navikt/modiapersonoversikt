@@ -19,14 +19,13 @@ const Wrapper = styled.article`
     > * {
         border: ${theme.border.skille};
     }
-    &:focus {
-        ${theme.focus};
-    }
 `;
 
 const StyledEkspanderbartpanel = styled(EkspanderbartpanelBasePure)`
     overflow: hidden;
-    ${theme.focusOverlay};
+    .ekspanderbartPanel__hode:focus {
+        ${theme.focusInset};
+    }
 `;
 
 function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: boolean }) {

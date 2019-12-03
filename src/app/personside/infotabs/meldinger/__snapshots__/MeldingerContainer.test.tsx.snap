@@ -4,7 +4,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 .c1 {
   overflow: auto;
   max-height: 100%;
-  padding: .8rem;
+  padding: .5rem;
 }
 
 .c11 {
@@ -99,7 +99,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 }
 
 .c8 {
-  padding: .8rem;
+  padding: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -164,7 +164,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 }
 
 .c5 {
-  padding: 0 .8rem .8rem;
+  padding: 0 .5rem .5rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -183,7 +183,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 }
 
 .c3 {
-  padding: .8rem .8rem 0;
+  padding: .5rem .5rem 0;
 }
 
 .c3 .skjemaelement {
@@ -202,7 +202,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 }
 
 .c4 {
-  padding: .8rem;
+  padding: .5rem;
   margin-bottom: 0 !important;
 }
 

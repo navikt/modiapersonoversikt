@@ -6,6 +6,7 @@ import { datoSynkende, formatterDato } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { StyledTable } from '../../../../utils/table/StyledTable';
+import { useState } from 'react';
 
 interface Props {
     syfoPunkter: SyfoPunkt[];
@@ -33,6 +34,8 @@ function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
 }
 
 function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {
+    const [open, setOpen] = useState(false);
+
     if (props.syfoPunkter.length === 0) {
         return (
             <AlertStripeInfo>
@@ -42,7 +45,7 @@ function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {
     }
 
     return (
-        <EkspanderbartYtelserPanel tittel="Sykefraværsoppfølging">
+        <EkspanderbartYtelserPanel open={open} setOpen={setOpen} tittel="Sykefraværsoppfølging">
             <SykefravarsoppfolgingTabell syfoPunkter={props.syfoPunkter} />
         </EkspanderbartYtelserPanel>
     );

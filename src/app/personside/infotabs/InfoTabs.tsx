@@ -67,7 +67,7 @@ function InfoTabs(props: Props) {
     const openTab = getOpenTabFromRouterPath(props.history.location.pathname);
 
     useEffect(() => {
-        loggEvent('Vis-' + openTab, 'Tabs');
+        loggEvent(openTab, 'Tabs');
     }, [openTab]);
 
     const keepScrollRef = useRef<HTMLDivElement>(null);

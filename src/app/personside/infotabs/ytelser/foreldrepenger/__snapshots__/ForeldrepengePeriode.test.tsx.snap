@@ -89,7 +89,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 }
 
 .c1 {
-  padding: .8rem;
+  padding: .5rem;
 }
 
 <li

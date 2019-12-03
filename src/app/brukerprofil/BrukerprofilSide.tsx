@@ -15,12 +15,29 @@ import { TilbakePil } from '../../components/common-styled-components';
 import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../rest/consumer/RestResourceConsumer';
 import { useOnMount } from '../../utils/customHooks';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import useUrlNyPersonforvalter from './useUrlNyPersonforvalter';
+import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
+import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
+import LazySpinner from '../../components/LazySpinner';
 
 const BrukerprofilWrapper = styled.article`
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     ${theme.animation.fadeIn};
+`;
+
+export const NyBrukerprofilStyling = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    > *:first-child {
+        margin-bottom: 1rem;
+    }
 `;
 
 const HeaderStyle = styled.section`
@@ -129,6 +146,21 @@ class Header extends React.PureComponent<{ person: Person }> {
 
 function BrukerprofilSide() {
     useOnMount(() => loggEvent('Sidevisning', 'Brukerprofil'));
+    const nyPersonforvalter = useFeatureToggle(FeatureToggles.NyPersonforvalter);
+    const urlNyPersonForvalter = useUrlNyPersonforvalter();
+
+    if (nyPersonforvalter.pending) {
+        return <LazySpinner />;
+    }
+
+    if (nyPersonforvalter.isOn) {
+        return (
+            <NyBrukerprofilStyling>
+                <AlertStripeInfo>Redigering av brukerprofil er flyttet</AlertStripeInfo>
+                <LenkepanelBase href={urlNyPersonForvalter}>Gå til den nye personforvalteren</LenkepanelBase>
+            </NyBrukerprofilStyling>
+        );
+    }
 
     return (
         <BrukerprofilWrapper>

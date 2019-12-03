@@ -84,7 +84,7 @@ function Oversikt({ foreldrePenger }: Props) {
                 </YtelserInfoGruppe>
             </Flex>
             <YtelserInfoGruppe tittel="Arbeidssituasjon">
-                <ArbeidsForholdListe arbeidsforhold={foreldrePenger.arbeidsforhold} />
+                <ArbeidsForholdListe ytelse={foreldrePenger} arbeidsForhold={foreldrePenger.arbeidsforhold} />
             </YtelserInfoGruppe>
         </OversiktStyling>
     );

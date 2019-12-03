@@ -4,6 +4,9 @@ import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandle
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/stringFormatting';
 import { loggError } from '../../../../utils/frontendLogger';
+import { useOnMount, useRestResource } from '../../../../utils/customHooks';
+import { hasData as restResourceHasData, isFailed, isNotStarted } from '../../../../rest/utils/restResource';
+import { useDispatch } from 'react-redux';
 
 export type AutofullforData = {
     person: PersonRespons;
@@ -108,4 +111,32 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
         }
         return autofullforMap[key] || '[fant ingen verdi]';
     });
+}
+
+export function useAutoFullførData(): AutofullforData | undefined {
+    const personResource = useRestResource(resources => resources.personinformasjon);
+    const saksbehandler = useRestResource(resources => resources.innloggetSaksbehandler);
+    const navKontorResource = useRestResource(resources => resources.brukersNavKontor);
+    const dispatch = useDispatch();
+
+    useOnMount(() => {
+        // innloggetSaksbehandler feiler for førstegangsbrukere pga problematikk med saksbehandlerinnstillingercookie (OPP-1025) intill den feilen er fikset legget vi på denne logikken som prøver å fetche på nytt (cookien blir satt etter første pageload) slik at det blir minst mulig merkbart for brukerne våre
+        if (isNotStarted(saksbehandler) || isFailed(saksbehandler)) {
+            dispatch(saksbehandler.actions.fetch);
+        }
+    });
+
+    if (
+        !restResourceHasData(personResource) ||
+        !restResourceHasData(saksbehandler) ||
+        !restResourceHasData(navKontorResource)
+    ) {
+        return undefined;
+    }
+
+    return {
+        person: personResource.data,
+        kontor: navKontorResource.data,
+        saksbehandler: saksbehandler.data
+    };
 }
