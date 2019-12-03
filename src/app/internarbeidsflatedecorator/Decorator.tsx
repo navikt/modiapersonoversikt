@@ -2,15 +2,14 @@ import * as React from 'react';
 import { useCallback, useState } from 'react';
 import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
-import { AppState } from '../../redux/reducers';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { DecoratorProps } from './decoratorprops';
 import { apiBaseUri } from '../../api/config';
 import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
 import './personsokKnapp.less';
-import { useOnMount, useRestResource } from '../../utils/customHooks';
+import { useFødselsnummer, useOnMount, useRestResource } from '../../utils/customHooks';
 import { parseQueryParams } from '../../utils/url-utils';
 import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
 import PersonsokContainer from '../personsok/Personsok';
@@ -20,14 +19,14 @@ const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflate
 
 function lagConfig(
     sokFnr: string | undefined | null,
-    fnr: string | undefined | null,
+    gjeldendeFnr: string | undefined | null,
     enhet: string | undefined | null,
     history: History,
     settEnhet: (enhet: string) => void
 ): DecoratorProps {
     return {
         appname: 'Modia personoversikt',
-        fnr: sokFnr || fnr,
+        fnr: sokFnr || gjeldendeFnr,
         enhet,
         toggles: {
             visEnhet: false,
@@ -36,6 +35,9 @@ function lagConfig(
             visVeilder: true
         },
         onSok(fnr: string | null): void {
+            if (fnr === gjeldendeFnr) {
+                return;
+            }
             settJobberIkkeMedSpørsmålOgSvar();
             if (fnr && fnr.length > 0) {
                 setNyBrukerIPath(history, fnr);
@@ -82,7 +84,7 @@ function useKlargjorContextholder(sokFnr?: string) {
 function Decorator({ location, history }: RouteComponentProps<{}>) {
     const queryParams = parseQueryParams(location.search);
     const sokFnr = queryParams.sokFnr === '0' ? '' : queryParams.sokFnr;
-    const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+    const gjeldendeFnr = useFødselsnummer();
 
     const [enhet, settEnhet] = useState(getSaksbehandlerEnhet());
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
@@ -94,9 +96,9 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
 
     const contextErKlar = useKlargjorContextholder(queryParams.sokFnr);
 
-    const config = useCallback(lagConfig, [sokFnr, fnr, enhet, history, handleSetEnhet])(
+    const config = useCallback(lagConfig, [sokFnr, gjeldendeFnr, enhet, history, handleSetEnhet])(
         sokFnr,
-        fnr,
+        gjeldendeFnr,
         enhet,
         history,
         handleSetEnhet
