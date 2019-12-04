@@ -10,7 +10,7 @@ function toKeyDescription(value: string | KeyDescription): KeyDescription {
 function matches(keyDescription: KeyDescription, event: KeyboardEvent): boolean {
     const { altKey, ctrlKey, metaKey, shiftKey } = keyDescription;
     const wantedKey = keyDescription.char.toLowerCase();
-    const actualKey = (event.code ? event.code.replace('Key', '') : event.key).toLowerCase();
+    const actualKey = (event.code ? event.code.replace('Key', '') : event.key || '').toLowerCase();
 
     return [
         wantedKey === actualKey,
