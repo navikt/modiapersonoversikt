@@ -4,6 +4,7 @@ import { Temagruppe } from '../../models/Temagrupper';
 import { getSaksbehandlerEnhetFraCookieDeprecated } from './saksbehandlersEnhetCookieUtils';
 import { post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
+import { AsyncDispatch } from '../ThunkTypes';
 
 export enum actions {
     VELG_TEMAGRUPPE = 'VELG_TEMAGRUPPE',
@@ -17,10 +18,15 @@ export function velgTemagruppeForPlukk(temagruppe: Temagruppe): VelgTemagruppeAc
     };
 }
 
-export function velgEnhetAction(enhetsId: string): VelgEnhetAction {
-    return {
-        enhetId: enhetsId,
-        type: actions.VELG_ENHET
+export function velgEnhetAction(enhetsId: string) {
+    return (dispatch: AsyncDispatch) => {
+        const action: VelgEnhetAction = {
+            enhetId: enhetsId,
+            type: actions.VELG_ENHET
+        };
+        post(`${apiBaseUri}/hode/velgenhet`, enhetsId, 'VelgEnhet').then(() => {
+            dispatch(action);
+        });
     };
 }
 
@@ -55,7 +61,6 @@ export default function reducer(state: SessionState = SessionInitState, action: 
                 temagruppeForPlukk: action.temagruppe
             };
         case actions.VELG_ENHET:
-            post(`${apiBaseUri}/hode/velgenhet`, action.enhetId, 'VelgEnhet-SessionReducer');
             return {
                 ...state,
                 valgtEnhetId: action.enhetId
