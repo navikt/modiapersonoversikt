@@ -1,6 +1,5 @@
 import * as Cookies from 'js-cookie';
 import { loggErrorUtenSaksbehandlerIdent } from '../frontendLogger';
-import { mockEnabled } from '../../api/config';
 
 let saksbehandlerinnstillerCookieFeilErLogget = false;
 

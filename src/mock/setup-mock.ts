@@ -36,6 +36,9 @@ import standardTekster from './standardTeksterMock.js';
 import { henvendelseResponseMock } from './meldinger/henvendelseMock';
 import { mockTilgangTilSlett } from './meldinger/merk-mock';
 import { MeldingerBackendMock } from './meldingerBackendMock';
+import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
+import Cookies from 'js-cookie';
+import { saksbehandlerCookieNavnPrefix } from '../utils/loggInfo/getSaksbehandlerIdent';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -57,6 +60,10 @@ function setupInnloggetSaksbehandlerMock(mock: FetchMock) {
         apiBaseUri + '/hode/me',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getMockInnloggetSaksbehandler())
     );
+}
+
+function setUpSaksbehandlersEnheterMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/hode/enheter', withDelayedResponse(randomDelay(), STATUS_OK, getSaksBehandlersEnheterMock));
 }
 
 function setupPersonMock(mock: FetchMock) {
@@ -256,6 +263,18 @@ function setupPersonsokMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/personsok',
         withDelayedResponse(randomDelay(), STATUS_OK, () => mockPersonsokResponse(mockStaticPersonsokRequest()))
+    );
+}
+
+function setSaksbehandlerinnstillingerMockBackend(args: HandlerArgument) {
+    Cookies.set(saksbehandlerCookieNavnPrefix + '-Z990099', args.body);
+    return args.body;
+}
+
+function setupVelgEnhetMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/hode/velgenhet',
+        withDelayedResponse(randomDelay(), STATUS_OK, setSaksbehandlerinnstillingerMockBackend)
     );
 }
 
@@ -572,4 +591,6 @@ export function setupMock() {
     setupJournalforingMock(mock);
     setupStandardteksterMock(mock);
     setupSlaasammenMock(mock);
+    setupVelgEnhetMock(mock);
+    setUpSaksbehandlersEnheterMock(mock);
 }
