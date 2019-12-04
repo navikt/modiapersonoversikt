@@ -3,6 +3,13 @@ import FetchMock, { JSONObject } from 'yet-another-fetch-mock';
 type Context = { aktivEnhet: string | null; aktivBruker: string | null };
 const context: Context = { aktivEnhet: '', aktivBruker: '' };
 
+export const enheter = [
+    { enhetId: '0219', navn: 'NAV Bærum' },
+    { enhetId: '0118', navn: 'NAV Aremark' },
+    { enhetId: '0604', navn: 'NAV Kongsberg' },
+    { enhetId: '0602', navn: 'NAV Drammer' }
+];
+
 export function setupWsControlAndMock(mock: FetchMock) {
     mock.post('/modiacontextholder/api/context', ({ body }) => {
         if (body.eventType === 'NY_AKTIV_ENHET') {
@@ -39,12 +46,7 @@ export function setupWsControlAndMock(mock: FetchMock) {
         navn: 'Fornavn Ettersen',
         fornavn: 'Fornavn',
         etternavn: 'Ettersen',
-        enheter: [
-            { enhetId: '0219', navn: 'NAV Bærum' },
-            { enhetId: '0118', navn: 'NAV Aremark' },
-            { enhetId: '0604', navn: 'NAV Kongsberg' },
-            { enhetId: '0602', navn: 'NAV Drammer' }
-        ]
+        enheter: enheter
     };
 
     mock.get('/modiacontextholder/api/decorator', me);

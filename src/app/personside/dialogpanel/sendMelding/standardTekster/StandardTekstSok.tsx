@@ -13,12 +13,12 @@ import TagInput from '../../../../../components/tag-input/tag-input';
 import { captitalize } from '../../../../../utils/stringFormatting';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
-import { erKontaktsenter } from '../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullførData } from '../autofullforUtils';
 import { useRestResource } from '../../../../../utils/customHooks';
 import { hasData as restResourceHasData } from '../../../../../rest/utils/restResource';
 import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -105,7 +105,8 @@ function StandardTekstSok(props: Props) {
         '/modiapersonoversikt-skrivestotte/skrivestotte',
         'Standardtekster'
     );
-    const sokefelt = useFieldState(erKontaktsenter() ? '#ks ' : '');
+    const erKontaktSenter = useErKontaktsenter();
+    const sokefelt = useFieldState(erKontaktSenter ? '#ks ' : '');
     const debouncedSokefelt = useDebounce(sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() =>
         sokEtterTekster(standardTekster, debouncedSokefelt)

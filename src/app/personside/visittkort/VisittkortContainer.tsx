@@ -10,9 +10,9 @@ import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
-import { loggSkjermInfoDaglig } from '../../../utils/loggInfo/loggSkjermInfoDaglig';
+import { useLoggSkjermInfoDaglig } from '../../../utils/loggInfo/useLoggSkjermInfoDaglig';
 import { hasData, isFailed } from '../../../rest/utils/restResource';
-import { useAppState, useOnMount, useRestResource } from '../../../utils/customHooks';
+import { useAppState, useRestResource } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { useCallback } from 'react';
@@ -40,9 +40,7 @@ function VisittkortContainer() {
         [dispatch]
     );
 
-    useOnMount(() => {
-        loggSkjermInfoDaglig();
-    });
+    useLoggSkjermInfoDaglig();
 
     if (isFailed(personResource)) {
         return <AlertStripeFeil>Kunne ikke hente personinfo</AlertStripeFeil>;

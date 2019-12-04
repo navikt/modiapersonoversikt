@@ -6,9 +6,10 @@ import Startbilde from '../startbilde/Startbilde';
 import Brukerprofilside from '../brukerprofil/BrukerprofilSide';
 import SaksoversiktMicroFrontend from '../personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
 import Personside from '../personside/Personside';
-import { useFødselsnummer } from '../../utils/customHooks';
+import { useAppState, useFødselsnummer } from '../../utils/customHooks';
 import { INFOTABS } from '../personside/infotabs/InfoTabEnum';
 import { useCallback, useMemo } from 'react';
+import VelgEnhet from './VelgEnhet';
 
 export const paths = {
     personUri: '/modiapersonoversikt/person',
@@ -53,6 +54,10 @@ type Props = RouteComponentProps<RouterProps>;
 
 function Routing(props: Props) {
     const fnr = useFødselsnummer();
+    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+    if (!valgtEnhet) {
+        return <VelgEnhet />;
+    }
     return (
         <Switch location={props.location}>
             <Route key={fnr} path={`${paths.personUri}/:fodselsnummer/`} component={Personside} />

@@ -111,6 +111,10 @@ function TraadListe(props: Props) {
         props.setSokeord(sokeOrd);
     };
 
+    const handleSkjulVarsler = () => {
+        !props.skjulVarsler && loggEvent('SkjulVarsler', 'TraadListe');
+        props.setSkjulVarsler(!props.skjulVarsler);
+    };
     return (
         <PanelStyle>
             <SlaaSammenOppgaverKnapp traader={props.traader} />
@@ -129,11 +133,7 @@ function TraadListe(props: Props) {
                     className={'move-input-label'}
                 />
             </InputStyle>
-            <StyledCheckbox
-                label="Skjul varsler"
-                checked={props.skjulVarsler}
-                onChange={() => props.setSkjulVarsler(!props.skjulVarsler)}
-            />
+            <StyledCheckbox label="Skjul varsler" checked={props.skjulVarsler} onChange={handleSkjulVarsler} />
             <SokVerktøyStyle>
                 <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>
                 {visAlleMeldingerKnapp}

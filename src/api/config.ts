@@ -17,7 +17,7 @@ function getMockEnabled(): boolean {
     }
 }
 
-export function postConfig(body: object) {
+export function postConfig(body: object | string) {
     return {
         body: JSON.stringify(body),
         cache: 'no-cache' as RequestCache,

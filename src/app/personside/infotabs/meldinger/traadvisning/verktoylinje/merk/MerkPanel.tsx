@@ -18,7 +18,6 @@ import {
     harDelsvar
 } from '../../../utils/meldingerUtils';
 import { Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
-import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
@@ -30,7 +29,7 @@ import {
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
-import { useRestResource } from '../../../../../../../utils/customHooks';
+import { useAppState, useRestResource } from '../../../../../../../utils/customHooks';
 import { hasData, isPending } from '@nutgaard/use-async';
 import { FetchResult } from '@nutgaard/use-fetch';
 import { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
@@ -89,10 +88,10 @@ function visFerdigstillUtenSvar(meldingstype: Meldingstype, valgtTraad: Traad) {
     );
 }
 
-function getMerkAvsluttRequest(fnr: string, traad: Traad): MerkAvsluttUtenSvarRequest {
+function getMerkAvsluttRequest(fnr: string, traad: Traad, valgtEnhet: string): MerkAvsluttUtenSvarRequest {
     return {
         fnr: fnr,
-        saksbehandlerValgtEnhet: getSaksbehandlerEnhet(),
+        saksbehandlerValgtEnhet: valgtEnhet,
         eldsteMeldingOppgaveId: eldsteMelding(traad).oppgaveId,
         eldsteMeldingTraadId: traad.traadId
     };
@@ -131,6 +130,7 @@ function MerkPanel(props: Props) {
     const [submitting, setSubmitting] = useState(false);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const valgtTraad = props.valgtTraad;
+    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
 
     const melding = eldsteMelding(valgtTraad);
 
@@ -154,7 +154,11 @@ function MerkPanel(props: Props) {
 
         switch (valgtOperasjon) {
             case MerkOperasjon.AVSLUTT:
-                merkPost(MERK_AVSLUTT_URL, getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad), 'AvluttUtenSvar');
+                merkPost(
+                    MERK_AVSLUTT_URL,
+                    getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad, valgtEnhet || ''),
+                    'AvluttUtenSvar'
+                );
                 break;
             case MerkOperasjon.BISYS:
                 merkPost(MERK_BISYS_URL, getMerkBisysRequest(valgtBrukersFnr, valgtTraad), 'Bisys');

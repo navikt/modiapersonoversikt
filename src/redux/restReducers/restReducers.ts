@@ -60,9 +60,12 @@ import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
 import slaaSammen from './meldinger/slaaSammen';
 import utbetalingerOversikt from './utbetalingerOversikt';
+import saksbehandlersEnheter from './saksbehandlersEnheter';
+import { SaksbehandlersEnheter } from '../../models/saksbehandlersEnheter';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
+    saksbehandlersEnheter: RestResource<SaksbehandlersEnheter>;
     personinformasjon: RestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
     plukkNyeOppgaver: PostResource<{}, Oppgave[]>;
@@ -101,6 +104,7 @@ export interface RestEndepunkter {
 export default combineResettableReducers<RestEndepunkter>(
     {
         innloggetSaksbehandler: innloggetSaksbehandlerReducer,
+        saksbehandlersEnheter: saksbehandlersEnheter,
         personinformasjon: personinformasjonReducer,
         brukersNavKontor: navkontorReducer,
         plukkNyeOppgaver: hentOppgaverReducer,
