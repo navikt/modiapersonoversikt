@@ -4,7 +4,6 @@ import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import { useDispatch } from 'react-redux';
 import { DecoratorProps } from './decoratorprops';
-import { apiBaseUri } from '../../api/config';
 import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
 import './personsokKnapp.less';
@@ -13,7 +12,6 @@ import { parseQueryParams } from '../../utils/url-utils';
 import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
-import { post } from '../../api/api';
 import { hasData } from '../../rest/utils/restResource';
 import { velgEnhetAction } from '../../redux/session/session';
 
@@ -48,7 +46,6 @@ function lagConfig(
             }
         },
         onEnhetChange(enhet: string): void {
-            post(`${apiBaseUri}/hode/velgenhet`, enhet, 'VelgEnhet');
             settEnhet(enhet);
         },
         contextholder: true,
@@ -81,15 +78,14 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
     const sokFnr = queryParams.sokFnr === '0' ? '' : queryParams.sokFnr;
     const gjeldendeFnr = useFødselsnummer();
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
-    const dispatch = useDispatch();
-    const setEnhet = (enhetId: string) => dispatch(velgEnhetAction(enhetId));
-
     const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const dispatch = useDispatch();
+
     const handleSetEnhet = (enhet: string) => {
         if (hasData(meldingerResource)) {
             dispatch(meldingerResource.actions.reload);
         }
-        setEnhet(enhet);
+        dispatch(velgEnhetAction(enhet));
     };
 
     const contextErKlar = useKlargjorContextholder(queryParams.sokFnr);
