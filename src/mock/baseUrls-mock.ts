@@ -6,6 +6,10 @@ export function mockBaseUrls(): BaseUrlsResponse {
             {
                 key: 'norg2-frontend',
                 url: 'https://norg2-frontend.nais.preprod.local'
+            },
+            {
+                key: 'personforvalter',
+                url: 'https://person-forvalter.nais.preprod.local/'
             }
         ]
     };
