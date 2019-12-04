@@ -2,8 +2,10 @@ import { useEffect } from 'react';
 import { AppState } from '../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRestResource } from '../../utils/customHooks';
+import { useInitializeLogger } from '../../utils/frontendLogger';
 
 function FetchSessionInfoOgLeggIRedux() {
+    useInitializeLogger();
     const dispatch = useDispatch();
     const innlogetSaksbehandlerFetch = useSelector(
         (state: AppState) => state.restResources.innloggetSaksbehandler.actions.fetch

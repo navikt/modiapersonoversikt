@@ -1,48 +1,36 @@
-import * as React from 'react';
-import styled from 'styled-components';
-import { Select } from 'nav-frontend-skjema';
-import { useRestResource } from '../../utils/customHooks';
-import { hasData, isFailed, isNotStarted } from '../../rest/utils/restResource';
+import React from 'react';
+import { useEffect } from 'react';
+import { useAppState, useRestResource } from '../../utils/customHooks';
+import { hasData } from '../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
-import LazySpinner from '../../components/LazySpinner';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { velgEnhetAction } from '../../redux/session/session';
-import { ChangeEvent, useEffect } from 'react';
-import theme from '../../styles/personOversiktTheme';
+import styled from 'styled-components';
+import LazySpinner from '../../components/LazySpinner';
+import { loggError } from '../../utils/frontendLogger';
 
 const Style = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    .skjemaelement__label {
-        ${theme.visuallyHidden};
-    }
 `;
 
 function VelgEnhet() {
     const enheter = useRestResource(resources => resources.saksbehandlersEnheter);
+    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (hasData(enheter) && enheter.data.enhetliste.length === 1) {
-            dispatch(velgEnhetAction(enheter.data.enhetliste[0].enhetId));
+        if (hasData(enheter) && !valgtEnhet) {
+            const førsteEnhet = enheter.data.enhetliste[0];
+            if (!førsteEnhet) {
+                loggError(Error('Kunne ikke finne enheter for bruker'));
+            }
+            dispatch(velgEnhetAction(førsteEnhet.enhetId));
         }
-    }, [enheter, dispatch]);
+    }, [enheter, dispatch, valgtEnhet]);
 
-    if (isNotStarted(enheter)) {
-        dispatch(enheter.actions.fetch);
-    }
-
-    if (isFailed(enheter)) {
-        return (
-            <Style>
-                <AlertStripeFeil>Kunne ikke hente enhetsliste</AlertStripeFeil>
-            </Style>
-        );
-    }
-
-    if (!hasData(enheter)) {
+    if (!valgtEnhet) {
         return (
             <Style>
                 <LazySpinner />
@@ -50,28 +38,7 @@ function VelgEnhet() {
         );
     }
 
-    const options = enheter.data.enhetliste.map(enhet => {
-        return (
-            <option value={enhet.enhetId} key={enhet.enhetId}>
-                {enhet.enhetId} {enhet.navn}
-            </option>
-        );
-    });
-
-    const handleOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        dispatch(velgEnhetAction(e.target.value));
-    };
-
-    return (
-        <Style>
-            <Select label="Velg enhet" onChange={handleOnChange} value={''}>
-                <option disabled={true} value={''}>
-                    Velg enhet
-                </option>
-                {options}
-            </Select>
-        </Style>
-    );
+    return null;
 }
 
 export default VelgEnhet;

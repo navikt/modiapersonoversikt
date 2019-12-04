@@ -38,7 +38,7 @@ import { mockTilgangTilSlett } from './meldinger/merk-mock';
 import { MeldingerBackendMock } from './meldingerBackendMock';
 import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
 import Cookies from 'js-cookie';
-import { saksbehandlerCookieNavnPrefix } from '../utils/loggInfo/getSaksbehandlerIdent';
+import { saksbehandlerCookieNavnPrefix } from '../redux/session/saksbehandlersEnhetCookieUtils';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;

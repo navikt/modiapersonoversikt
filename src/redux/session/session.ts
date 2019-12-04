@@ -1,7 +1,7 @@
 import { Action } from 'redux';
 import { getTemaFraCookie, setTemaCookie } from './plukkTemaCookie';
 import { Temagruppe } from '../../models/Temagrupper';
-import { getSaksbehandlerEnhetUtenFeilHandtering } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
+import { getSaksbehandlerEnhetFraCookieDeprecated } from './saksbehandlersEnhetCookieUtils';
 import { post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 
@@ -41,7 +41,7 @@ export interface SessionState {
 
 export const SessionInitState: SessionState = {
     temagruppeForPlukk: getTemaFraCookie(),
-    valgtEnhetId: getSaksbehandlerEnhetUtenFeilHandtering()
+    valgtEnhetId: getSaksbehandlerEnhetFraCookieDeprecated()
 };
 
 type Actions = VelgTemagruppeAction | VelgEnhetAction;

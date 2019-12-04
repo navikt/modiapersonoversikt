@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 import nisselue from './nisselue.svg';
 import moment from 'moment';
-import { erKontaktsenter } from '../../../utils/loggInfo/saksbehandlersEnhetInfo';
+import { useErKontaktsenter } from '../../../utils/enheterUtils';
 
 const dropDown = keyframes`
   from {
@@ -20,7 +20,8 @@ const StyledImg = styled.img`
 `;
 
 function DecoratorEasterEgg() {
-    if (!erKontaktsenter()) {
+    const erKontaktsenter = useErKontaktsenter();
+    if (!erKontaktsenter) {
         return null;
     }
 

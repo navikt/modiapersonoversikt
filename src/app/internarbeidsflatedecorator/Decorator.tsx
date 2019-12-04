@@ -7,15 +7,15 @@ import { DecoratorProps } from './decoratorprops';
 import { apiBaseUri } from '../../api/config';
 import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
 import './personsokKnapp.less';
-import { useFødselsnummer, useOnMount, useRestResource } from '../../utils/customHooks';
+import { useAppState, useFødselsnummer, useOnMount, useRestResource } from '../../utils/customHooks';
 import { parseQueryParams } from '../../utils/url-utils';
 import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { post } from '../../api/api';
 import { hasData } from '../../rest/utils/restResource';
+import { velgEnhetAction } from '../../redux/session/session';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -80,23 +80,24 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
     const queryParams = parseQueryParams(location.search);
     const sokFnr = queryParams.sokFnr === '0' ? '' : queryParams.sokFnr;
     const gjeldendeFnr = useFødselsnummer();
-
-    const [enhet, settEnhet] = useState(getSaksbehandlerEnhet());
-    const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
     const dispatch = useDispatch();
+    const setEnhet = (enhetId: string) => dispatch(velgEnhetAction(enhetId));
+
+    const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
     const handleSetEnhet = (enhet: string) => {
         if (hasData(meldingerResource)) {
             dispatch(meldingerResource.actions.reload);
         }
-        settEnhet(enhet);
+        setEnhet(enhet);
     };
 
     const contextErKlar = useKlargjorContextholder(queryParams.sokFnr);
 
-    const config = useCallback(lagConfig, [sokFnr, gjeldendeFnr, enhet, history, handleSetEnhet])(
+    const config = useCallback(lagConfig, [sokFnr, gjeldendeFnr, valgtEnhet, history, handleSetEnhet])(
         sokFnr,
         gjeldendeFnr,
-        enhet,
+        valgtEnhet,
         history,
         handleSetEnhet
     );

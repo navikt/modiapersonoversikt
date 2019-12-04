@@ -5,11 +5,11 @@ import KontrollSpørsmålKnapper from './KontrollSpørsmålKnapper';
 import SpørsmålOgSvar from './SporsmalOgSvarContainer';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
 import { jobberMedSpørsmålOgSvar, kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
-import { erKontaktsenter } from '../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { useAppState, useFødselsnummer, useRestResource } from '../../../utils/customHooks';
 import { isLoading } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
+import { useErKontaktsenter } from '../../../utils/enheterUtils';
 
 const KontrollSporsmalStyling = styled.section`
     background-color: white;
@@ -42,11 +42,12 @@ function Kontrollsporsmal() {
     const visKontrollSpørsmål = useAppState(state => state.kontrollSpørsmål.open);
     const fnr = useFødselsnummer();
     const personResource = useRestResource(resources => resources.personinformasjon);
+    const erKontaktsenter = useErKontaktsenter();
 
     if (
         !visKontrollSpørsmål ||
         jobberMedSpørsmålOgSvar() ||
-        !erKontaktsenter() ||
+        !erKontaktsenter ||
         kontrollspørsmålHarBlittLukketForBruker(fnr)
     ) {
         return null;

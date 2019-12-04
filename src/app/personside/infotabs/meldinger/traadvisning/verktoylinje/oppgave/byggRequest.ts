@@ -1,5 +1,4 @@
 import { OpprettOppgaveRequest } from '../../../../../../../models/meldinger/oppgave';
-import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
 import { eldsteMelding } from '../../../utils/meldingerUtils';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
@@ -10,9 +9,9 @@ export function lagOppgaveRequest(
     props: OppgaveProps,
     form: OppgaveSkjemaProps,
     fodselsnummer: string,
+    saksbehandlerEnhet: string,
     valgtTraad?: Traad
 ): OpprettOppgaveRequest {
-    const saksbehandlerEnhet = getSaksbehandlerEnhet();
     const valgtTema = form.state.valgtTema;
     const temakode = valgtTema ? valgtTema.kode : 'UKJENT';
     const valgtOppgavetype = form.state.valgtOppgavetype;

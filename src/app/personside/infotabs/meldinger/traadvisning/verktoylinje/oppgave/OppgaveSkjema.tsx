@@ -24,6 +24,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { getValidOppgaveSkjemaState, validerOppgaveSkjema } from './oppgaveSkjemaValidator';
 import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
+import { useAppState } from '../../../../../../../utils/customHooks';
 
 const AlertStyling = styled.div`
     > * {
@@ -54,6 +55,7 @@ function populerCacheMedTomAnsattliste() {
 
 function OppgaveSkjema(props: OppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+    const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [submitting, setSubmitting] = useState(false);
     const [valgtTema, settValgtTema] = useState<GsakTema | undefined>(undefined);
@@ -106,7 +108,13 @@ function OppgaveSkjema(props: OppgaveProps) {
         if (valideringsResultat.formErGyldig) {
             setSubmitting(true);
             settValideringsresultat(getValidOppgaveSkjemaState());
-            const request = lagOppgaveRequest(props, formProps, valgtBrukersFnr, props.valgtTraad);
+            const request = lagOppgaveRequest(
+                props,
+                formProps,
+                valgtBrukersFnr,
+                saksbehandlersEnhet || '',
+                props.valgtTraad
+            );
             post(`${apiBaseUri}/dialogoppgave/opprett`, request, 'OpprettOppgave')
                 .then(() => {
                     settResultat(Resultat.VELLYKKET);
