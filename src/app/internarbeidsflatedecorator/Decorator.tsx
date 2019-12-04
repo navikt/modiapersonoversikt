@@ -15,6 +15,7 @@ import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsma
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { post } from '../../api/api';
+import { hasData } from '../../rest/utils/restResource';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -81,10 +82,12 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
     const gjeldendeFnr = useFødselsnummer();
 
     const [enhet, settEnhet] = useState(getSaksbehandlerEnhet());
-    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
+    const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
     const dispatch = useDispatch();
     const handleSetEnhet = (enhet: string) => {
-        dispatch(reloadMeldinger);
+        if (hasData(meldingerResource)) {
+            dispatch(meldingerResource.actions.reload);
+        }
         settEnhet(enhet);
     };
 
