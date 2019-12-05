@@ -21,7 +21,7 @@ const handleVisibilityChange = () => {
     }
 };
 
-export function setupTimeSpentMetricks() {
+export function setupTimeSpentMetrics() {
     document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('beforeunload', reportTime);
     startTimer();
