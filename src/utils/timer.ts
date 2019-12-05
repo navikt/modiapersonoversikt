@@ -1,10 +1,8 @@
-import moment, { Moment } from 'moment';
-
 export class Timer {
-    private startTime?: Moment;
+    private startTime?: number;
 
     public startTimer(): void {
-        this.startTime = moment();
+        this.startTime = Date.now();
     }
 
     public getTime(): number {
@@ -12,7 +10,6 @@ export class Timer {
             console.warn('Timer has not been started');
             return 0;
         }
-        const time = moment();
-        return moment.duration(time.diff(this.startTime)).asMilliseconds();
+        return Date.now() - this.startTime;
     }
 }
