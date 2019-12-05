@@ -1,13 +1,13 @@
 import { useRef } from 'react';
-import moment from 'moment';
+import { Timer } from '../timer';
+import { useOnMount } from '../customHooks';
 
 export function useTimer() {
-    const startTime = useRef(moment());
+    const timer = useRef(new Timer());
 
-    const getDuration = () => {
-        const stopTime = moment();
-        return moment.duration(stopTime.diff(startTime.current)).asMilliseconds();
-    };
+    useOnMount(() => {
+        timer.current.startTimer();
+    });
 
-    return getDuration;
+    return timer.current.getTime;
 }
