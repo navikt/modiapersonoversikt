@@ -64,7 +64,7 @@ export function JournalforSak(props: Props) {
             error => {
                 setSubmitting(false);
                 setError('Kunne ikke gjennomføre journalføring');
-                loggError(error, `Kunne ikke gjennomføre journalføring.`, { traadId, saksId: sak.saksId });
+                loggError(error, `Kunne ikke gjennomføre journalføring`, { traadId: traadId, saksId: sak.saksId });
             }
         );
     };
