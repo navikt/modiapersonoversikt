@@ -151,9 +151,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 label={'Velg prioritert'}
                 onChange={value => props.form.actions.settValgtPrioritet(OppgavePrioritet[value.target.value])}
             >
-                <option value={OppgavePrioritet.HOY}>Høy</option>
-                <option value={OppgavePrioritet.NORM}>Normal</option>
-                <option value={OppgavePrioritet.LAV}>Lav</option>
+                <Prioriteter valgtGsakTeam={valgtTema} />
             </Select>
             <Textarea
                 feil={props.form.valideringsResultat.felter.beskrivelse.skjemafeil}
@@ -242,5 +240,22 @@ function OppgavetypeOptions(props: { valgtGsakTema?: GsakTema }) {
               </option>
           ];
 
+    return <>{options}</>;
+}
+
+function Prioriteter(props: { valgtGsakTeam?: GsakTema }) {
+    const options = props.valgtGsakTeam
+        ? [
+              props.valgtGsakTeam.prioriteter.map(prioritet => (
+                  <option value={`${prioritet.kode}`} key={prioritet.kode}>
+                      {prioritet.tekst}
+                  </option>
+              ))
+          ]
+        : [
+              <option value={''} key={''}>
+                  Ingen tema valgt
+              </option>
+          ];
     return <>{options}</>;
 }
