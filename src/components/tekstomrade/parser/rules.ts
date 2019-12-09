@@ -94,7 +94,7 @@ export const LinkRule: Rule = {
 
         return {
             type: Lenke,
-            props: { href }
+            props: { href, target: '_blank' }
         };
     }
 };
