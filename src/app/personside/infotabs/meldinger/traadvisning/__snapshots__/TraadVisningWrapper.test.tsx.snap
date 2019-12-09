@@ -1136,19 +1136,9 @@ exports[`Viser traad med verktøylinje 1`] = `
               value="NORM"
             >
               <option
-                value="HOY"
+                value=""
               >
-                Høy
-              </option>
-              <option
-                value="NORM"
-              >
-                Normal
-              </option>
-              <option
-                value="LAV"
-              >
-                Lav
+                Ingen tema valgt
               </option>
             </select>
           </div>
