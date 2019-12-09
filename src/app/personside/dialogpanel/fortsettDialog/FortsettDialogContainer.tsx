@@ -121,7 +121,8 @@ function FortsettDialogContainer(props: Props) {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
-                .catch(() => {
+                .catch(error => {
+                    console.log(error);
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
@@ -147,7 +148,8 @@ function FortsettDialogContainer(props: Props) {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
-                .catch(() => {
+                .catch(error => {
+                    console.log(error);
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else if (FortsettDialogValidator.erGyldigDelsvar(state) && oppgaveId && state.temagruppe) {
