@@ -128,8 +128,8 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 
 .c0 {
   background-color: white;
-  padding: 1.25rem;
-  padding-right: 0.3125rem;
+  padding: .5rem;
+  padding-right: 0;
   position: relative;
   width: 100%;
   display: -webkit-box;
@@ -363,6 +363,15 @@ exports[`viser info om bruker i visittkort-header 1`] = `
             className="typo-normal"
           >
             Tolkehjelp
+          </span>
+        </div>
+        <div
+          className="etikett etikett--fokus"
+        >
+          <span
+            className="typo-normal"
+          >
+            Fullmakt
           </span>
         </div>
       </section>

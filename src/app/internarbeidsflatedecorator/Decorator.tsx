@@ -2,26 +2,31 @@ import * as React from 'react';
 import { useCallback, useState } from 'react';
 import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
-import { AppState } from '../../redux/reducers';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { DecoratorProps } from './decoratorprops';
-import { apiBaseUri } from '../../api/config';
 import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
 import './personsokKnapp.less';
+import { useAppState, useFødselsnummer, useOnMount, useRestResource } from '../../utils/customHooks';
+import { parseQueryParams } from '../../utils/url-utils';
+import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
+import PersonsokContainer from '../personsok/Personsok';
+import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
+import { hasData } from '../../rest/utils/restResource';
+import { velgEnhetAction } from '../../redux/session/session';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
 function lagConfig(
-    fnr: string | undefined | null,
+    sokFnr: string | undefined | null,
+    gjeldendeFnr: string | undefined | null,
     enhet: string | undefined | null,
     history: History,
     settEnhet: (enhet: string) => void
 ): DecoratorProps {
     return {
         appname: 'Modia personoversikt',
-        fnr,
+        fnr: sokFnr || gjeldendeFnr,
         enhet,
         toggles: {
             visEnhet: false,
@@ -30,6 +35,10 @@ function lagConfig(
             visVeilder: true
         },
         onSok(fnr: string | null): void {
+            if (fnr === gjeldendeFnr) {
+                return;
+            }
+            settJobberIkkeMedSpørsmålOgSvar();
             if (fnr && fnr.length > 0) {
                 setNyBrukerIPath(history, fnr);
             } else {
@@ -37,33 +46,69 @@ function lagConfig(
             }
         },
         onEnhetChange(enhet: string): void {
-            fetch(`${apiBaseUri}/hode/velgenhet`, {
-                credentials: 'same-origin',
-                method: 'POST',
-                body: enhet,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
             settEnhet(enhet);
         },
         contextholder: true,
         markup: {
             etterSokefelt:
                 '<button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk" data-apne="Åpne avansert søk" data-lukke="Lukk avansert søk"> <span> A <span class="personsok-pil"></span> </span> </button>'
-        }
+        },
+        autoSubmitOnMount: true
     };
 }
 
-function Decorator({ history }: RouteComponentProps<{}>) {
-    const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const [enhet, settEnhet] = useState(getSaksbehandlerEnhet());
-    const config = useCallback(lagConfig, [fnr, enhet, history, settEnhet])(fnr, enhet, history, settEnhet);
+function useKlargjorContextholder(sokFnr?: string) {
+    const [klar, setKlar] = useState(false);
+    useOnMount(() => {
+        if (sokFnr === '0') {
+            // Manuell nullstilling av bruker i context
+            fetch('/modiacontextholder/api/context/aktivbruker', { method: 'DELETE', credentials: 'include' }).then(
+                () => setKlar(true)
+            );
+        } else {
+            setKlar(true);
+        }
+    });
+
+    return klar;
+}
+
+function Decorator({ location, history }: RouteComponentProps<{}>) {
+    const queryParams = parseQueryParams(location.search);
+    const sokFnr = queryParams.sokFnr === '0' ? '' : queryParams.sokFnr;
+    const gjeldendeFnr = useFødselsnummer();
+    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+    const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const dispatch = useDispatch();
+
+    const handleSetEnhet = (enhet: string) => {
+        if (hasData(meldingerResource)) {
+            dispatch(meldingerResource.actions.reload);
+        }
+        dispatch(velgEnhetAction(enhet));
+    };
+
+    const contextErKlar = useKlargjorContextholder(queryParams.sokFnr);
+
+    const config = useCallback(lagConfig, [sokFnr, gjeldendeFnr, valgtEnhet, history, handleSetEnhet])(
+        sokFnr,
+        gjeldendeFnr,
+        valgtEnhet,
+        history,
+        handleSetEnhet
+    );
 
     return (
         <nav id="header">
-            <InternflateDecorator {...config} />
+            {contextErKlar && (
+                <>
+                    <InternflateDecorator {...config} />
+                    <PersonsokContainer />
+                    <DecoratorEasterEgg />
+                </>
+            )}
         </nav>
     );
 }
+
 export default withRouter(Decorator);

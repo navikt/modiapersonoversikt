@@ -1,5 +1,5 @@
 import React from 'react';
-import useFetch, { AsyncResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
+import { AsyncResult, FetchResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { JournalforingsSak, Kategorier, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio } from 'nav-frontend-skjema';
@@ -12,6 +12,8 @@ import { apiBaseUri } from '../../../../../../../api/config';
 import Spinner from 'nav-frontend-spinner';
 import { useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
+import VisuallyHiddenAutoFokusHeader from '../../../../../../../components/VisuallyHiddenAutoFokusHeader';
+import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 
 const credentials: RequestInit = { credentials: 'include' };
 
@@ -101,13 +103,17 @@ export function sakKategori(sak: JournalforingsSak): SakKategori {
 function VelgSak(props: Props) {
     const fnr = useSelector(fnrSelector);
     const valgtKategori = useFieldState(SakKategori.FAG);
-    const gsakSaker: AsyncResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
+    const gsakSaker: FetchResult<Array<JournalforingsSak>> = useFetchWithLog<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`,
-        credentials
+        'VelgSak',
+        credentials,
+        'GsakSaker'
     );
-    const psakSaker: AsyncResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
+    const psakSaker: FetchResult<Array<JournalforingsSak>> = useFetchWithLog<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`,
-        credentials
+        'VelgSak',
+        credentials,
+        'PsakSaker'
     );
 
     const saker = getSaker(gsakSaker, psakSaker);
@@ -129,7 +135,8 @@ function VelgSak(props: Props) {
 
     return (
         <>
-            <Form className="blokk-xxs">
+            <VisuallyHiddenAutoFokusHeader tittel="Velg sak" />
+            <Form>
                 <SakgruppeRadio label={SakKategori.FAG} {...valgtKategori} />
                 <SakgruppeRadio label={SakKategori.GEN} {...valgtKategori} />
             </Form>

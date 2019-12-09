@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import DescriptionList from '../../../../../components/DescriptionList';
-import { getAlleArbiedsforholdSortert, getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
+import { getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';
 import { Kjønn } from '../../../../../models/person/person';
@@ -40,7 +40,6 @@ function getKjønnString(fnr: string): string {
 function Oversikt({ pleiepenger }: Props) {
     const gjeldeneVedtak = getSisteVedtakForPleiepengerettighet(pleiepenger);
     const kjønn = getKjønnString(pleiepenger.barnet);
-    const arbiedsforholdSortert = getAlleArbiedsforholdSortert(pleiepenger);
 
     const omPleiepengerettenEntries = {
         'Fra og med': gjeldeneVedtak ? formaterDato(gjeldeneVedtak.periode.fom) : '',
@@ -56,7 +55,7 @@ function Oversikt({ pleiepenger }: Props) {
                 <DescriptionList entries={omPleiepengerettenEntries} />
             </YtelserInfoGruppe>
             <YtelserInfoGruppe tittel="Arbeidssituasjon">
-                <ArbeidsForholdListe arbeidsforhold={arbiedsforholdSortert} />
+                <ArbeidsForholdListe pleiepengerettighet={pleiepenger} />
             </YtelserInfoGruppe>
         </OversiktStyling>
     );

@@ -1,16 +1,9 @@
 import { Melding, Meldingstype, Saksbehandler, Traad } from '../../../../../models/meldinger/meldinger';
 import { meldingstypeTekst } from './meldingstekster';
-import { datoStigende, datoSynkende } from '../../../../../utils/dateUtils';
+import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/dateUtils';
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
-import {
-    Temagruppe,
-    temagruppeTekst,
-    TemaKommunaleTjenester,
-    TemaPlukkbare,
-    TemaSamtalereferat
-} from '../../../../../models/Temagrupper';
-
+import { Temagruppe, temagruppeTekst, TemaKommunaleTjenester, TemaPlukkbare } from '../../../../../models/Temagrupper';
 export function nyesteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
 }
@@ -26,15 +19,18 @@ export function erMonolog(traad: Traad) {
     return bareSaksbehandler !== bareBruker;
 }
 
-export function meldingstittel(melding: Melding) {
-    if (melding.temagruppe === Temagruppe.Null) {
+export function meldingstittel(melding: Melding): string {
+    if ([Meldingstype.DOKUMENT_VARSEL, Meldingstype.OPPGAVE_VARSEL].includes(melding.meldingstype)) {
+        return melding.statusTekst || meldingstypeTekst(melding.meldingstype);
+    }
+    if (melding.temagruppe === Temagruppe.InnholdSlettet) {
         return meldingstypeTekst(melding.meldingstype);
     }
     return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe)}`;
 }
 
-export function erSamtalereferat(temagruppe: Temagruppe) {
-    return TemaSamtalereferat.includes(temagruppe);
+export function erMeldingstypeSamtalereferat(meldingstype: Meldingstype) {
+    return [Meldingstype.SAMTALEREFERAT_OPPMOTE, Meldingstype.SAMTALEREFERAT_TELEFON].includes(meldingstype);
 }
 
 export function kanLeggesTilbake(temagruppe: Temagruppe) {
@@ -45,7 +41,10 @@ export function erPlukkbar(temagruppe: Temagruppe) {
     return TemaPlukkbare.includes(temagruppe);
 }
 
-export function erKommunaleTjenester(temagruppe: Temagruppe) {
+export function erKommunaleTjenester(temagruppe: Temagruppe | null) {
+    if (!temagruppe) {
+        return false;
+    }
     return TemaKommunaleTjenester.includes(temagruppe);
 }
 
@@ -67,7 +66,7 @@ export function erMeldingFraNav(meldingstype: Meldingstype) {
     ].includes(meldingstype);
 }
 
-export function erMeldingVarsel(meldingstype: Meldingstype) {
+export function erVarselMelding(meldingstype: Meldingstype) {
     return [Meldingstype.OPPGAVE_VARSEL, Meldingstype.DOKUMENT_VARSEL].includes(meldingstype);
 }
 
@@ -81,11 +80,12 @@ export function erKontorsperret(traad: Traad): boolean {
 export function kanTraadJournalfores(traad: Traad): boolean {
     const nyesteMeldingITraad = nyesteMelding(traad);
     return (
-        !erMeldingVarsel(nyesteMeldingITraad.meldingstype) &&
+        !erVarselMelding(nyesteMeldingITraad.meldingstype) &&
         !erKontorsperret(traad) &&
         !erFeilsendt(traad) &&
         !erJournalfort(nyesteMeldingITraad) &&
-        erBehandlet(traad)
+        erBehandlet(traad) &&
+        !erDelsvar(nyesteMeldingITraad)
     );
 }
 
@@ -123,10 +123,6 @@ export function harDelsvar(traad: Traad): boolean {
 export function erDelvisBesvart(traad: Traad): boolean {
     return erDelsvar(nyesteMelding(traad));
 }
-export function harTilgangTilSletting() {
-    // TODO Fiks når vi har satt opp vault/fasit
-    return true;
-}
 
 export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
     if (!saksbehandler) {
@@ -146,10 +142,34 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
                     const fritekst = melding.fritekst;
                     const tittel = meldingstittel(melding);
                     const saksbehandler = melding.skrevetAvTekst;
-                    const sokbarTekst = (fritekst + tittel + saksbehandler).toLowerCase();
+                    const datotekst = formatterDatoTid(melding.opprettetDato);
+                    const sokbarTekst = (fritekst + tittel + saksbehandler + datotekst).toLowerCase();
                     return words.every(word => sokbarTekst.includes(word.toLowerCase()));
                 });
             })
             .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato));
     }, [debouncedQuery, traader]);
+}
+
+export function nyesteTraad(traader: Traad[]) {
+    return traader.sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato))[0];
+}
+
+export function filtrerBortVarsel(traad: Traad): boolean {
+    if (traad.meldinger.length > 1) {
+        return true;
+    }
+    return !erVarselMelding(nyesteMelding(traad).meldingstype);
+}
+function removeWhiteSpaces(text: string) {
+    return text.replace(/\s+/g, '');
+}
+
+export function erSammefritekstSomNyesteMeldingITraad(fritekst: string, traad?: Traad): boolean {
+    if (traad === undefined) {
+        return false;
+    }
+    const fritekstFraNyesteMeldingITraad = removeWhiteSpaces(nyesteMelding(traad).fritekst.toLowerCase());
+    const fritekstFraMelding = removeWhiteSpaces(fritekst.toLowerCase());
+    return fritekstFraNyesteMeldingITraad === fritekstFraMelding;
 }

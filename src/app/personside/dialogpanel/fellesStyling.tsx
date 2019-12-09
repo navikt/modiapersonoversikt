@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../../styles/personOversiktTheme';
-import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
 import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
@@ -12,6 +12,10 @@ import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useRestResource } from '../../../utils/customHooks';
 import { hasData } from '../../../rest/utils/restResource';
+import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
+import { useSentMelding } from './useSendtMelding';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -35,9 +39,30 @@ export const DialogpanelKvitteringStyling = styled.div`
     padding: 1rem ${theme.margin.layout};
     ${theme.animation.fadeIn};
 `;
+const SpinnerWrapper = styled(FillCenterAndFadeIn)`
+    ${theme.hvittPanel};
+    padding: 0.5rem;
+`;
 
 export function DialogpanelFeilmelding() {
     return <AlertStripeFeil>Det skjedde en feil ved sending av melding</AlertStripeFeil>;
+}
+
+function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
+    const sentMelding = useSentMelding(props.fritekst);
+
+    if (sentMelding.pending) {
+        return (
+            <SpinnerWrapper>
+                <NavFrontendSpinner type="S" />
+            </SpinnerWrapper>
+        );
+    }
+
+    if (!sentMelding.traad) {
+        return <AlertStripeInfo>Kunne ikke vise journalføring/merk/oppgave-panel</AlertStripeInfo>;
+    }
+    return <Verktoylinje valgtTraad={sentMelding.traad} skjulSkrivUt={true} />;
 }
 
 export function DialogpanelKvittering(props: {
@@ -50,13 +75,16 @@ export function DialogpanelKvittering(props: {
     const dispatch = useDispatch();
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
 
+    const sentMelding = useSentMelding(props.fritekst);
+    const opprettetDato = sentMelding.melding ? sentMelding.melding.opprettetDato : undefined;
+
     const nesteOppgavePåBruker = tildelteOppgaver.paaBruker[0];
     const gaaTilNesteSporsmaal = () => {
         if (!nesteOppgavePåBruker || !hasData(traaderResource)) {
             return;
         }
         const traadTilknyttetOppgave = traaderResource.data.find(
-            traad => traad.traadId === nesteOppgavePåBruker.henvendelseid
+            traad => traad.traadId === nesteOppgavePåBruker.traadId
         );
         if (!traadTilknyttetOppgave) {
             return;
@@ -64,12 +92,16 @@ export function DialogpanelKvittering(props: {
         props.lukk();
         dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
     };
-
     return (
         <DialogpanelKvitteringStyling>
             <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
             <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
-            <Preview fritekst={props.fritekst} tittel={meldingstypeTekst(props.meldingstype)} />
+            <Preview
+                opprettetDato={opprettetDato}
+                fritekst={props.fritekst}
+                tittel={meldingstypeTekst(props.meldingstype)}
+            />
+            <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
             <KnappBase type="standard" onClick={props.lukk}>
                 Start ny dialog
             </KnappBase>

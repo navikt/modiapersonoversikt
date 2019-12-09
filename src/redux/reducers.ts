@@ -6,7 +6,7 @@ import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
 import { KontrollSpørsmålState } from './kontrollSporsmal/types';
 import kontrollspørsmålReducer from './kontrollSporsmal/reducer';
-import ytelserReducere, { YtelserState } from './ytelser/ytelserReducere';
+import ytelserReducer, { YtelserState } from './ytelser/ytelserReducer';
 import { OppfolgingState } from './oppfolging/types';
 import { oppfolgingReducer } from './oppfolging/reducer';
 import { GjeldendeBrukerState } from './gjeldendeBruker/types';
@@ -17,6 +17,7 @@ import { meldingerReducer } from './meldinger/reducer';
 import { OppgaveState } from './oppgave/types';
 import { oppgaverReducer } from './oppgave/reducer';
 import { combineResettableReducers } from './reducer-utils';
+import varslerReducer, { VarslerState } from './varsler/varslerReducer';
 
 export interface AppState {
     restResources: RestEndepunkter;
@@ -27,6 +28,7 @@ export interface AppState {
     meldinger: MeldingerState;
     oppgaver: OppgaveState;
     ytelser: YtelserState;
+    varsler: VarslerState;
     kontrollSpørsmål: KontrollSpørsmålState;
     oppfolging: OppfolgingState;
     gjeldendeBruker: GjeldendeBrukerState;
@@ -41,7 +43,8 @@ export default combineResettableReducers<AppState>(
         saksoversikt: saksoversiktReducer,
         meldinger: meldingerReducer,
         oppgaver: oppgaverReducer,
-        ytelser: ytelserReducere,
+        ytelser: ytelserReducer,
+        varsler: varslerReducer,
         kontrollSpørsmål: kontrollspørsmålReducer,
         oppfolging: oppfolgingReducer,
         gjeldendeBruker: gjeldendeBrukerReducer

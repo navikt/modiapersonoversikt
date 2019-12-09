@@ -14,12 +14,10 @@ import {
     erKontorsperret,
     erMeldingFeilsendt,
     erMeldingSpørsmål,
-    erSamtalereferat,
-    harDelsvar,
-    harTilgangTilSletting
+    erMeldingstypeSamtalereferat,
+    harDelsvar
 } from '../../../utils/meldingerUtils';
-import { Melding, Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
-import { getSaksbehandlerEnhet } from '../../../../../../../utils/loggInfo/saksbehandlersEnhetInfo';
+import { Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
@@ -29,10 +27,13 @@ import {
     MerkRequestMedTraadId
 } from '../../../../../../../models/meldinger/merk';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { loggError } from '../../../../../../../utils/frontendLogger';
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
-import { useRestResource } from '../../../../../../../utils/customHooks';
+import { useAppState, useRestResource } from '../../../../../../../utils/customHooks';
+import { hasData, isPending } from '@nutgaard/use-async';
+import { FetchResult } from '@nutgaard/use-fetch';
+import { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
+import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 
 interface Props {
     lukkPanel: () => void;
@@ -57,6 +58,8 @@ const AlertStyling = styled.div`
         margin-top: 1rem;
     }
 `;
+
+const credentials: RequestInit = { credentials: 'include' };
 
 const MERK_AVSLUTT_URL = `${apiBaseUri}/dialogmerking/avslutt`;
 const MERK_BISYS_URL = `${apiBaseUri}/dialogmerking/bidrag`;
@@ -85,14 +88,10 @@ function visFerdigstillUtenSvar(meldingstype: Meldingstype, valgtTraad: Traad) {
     );
 }
 
-function skalViseSletting(melding: Melding) {
-    return harTilgangTilSletting() && (erSamtalereferat(melding.temagruppe) || erMeldingSpørsmål(melding.meldingstype));
-}
-
-function getMerkAvsluttRequest(fnr: string, traad: Traad): MerkAvsluttUtenSvarRequest {
+function getMerkAvsluttRequest(fnr: string, traad: Traad, valgtEnhet: string): MerkAvsluttUtenSvarRequest {
     return {
         fnr: fnr,
-        saksbehandlerValgtEnhet: getSaksbehandlerEnhet(),
+        saksbehandlerValgtEnhet: valgtEnhet,
         eldsteMeldingOppgaveId: eldsteMelding(traad).oppgaveId,
         eldsteMeldingTraadId: traad.traadId
     };
@@ -114,52 +113,83 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
+    const saksbehandlerKanSletteFetch: FetchResult<Boolean> = useFetchWithLog<Boolean>(
+        MERK_SLETT_URL,
+        'MerkPanel',
+        credentials,
+        'KanSletteMelding'
+    );
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
+
+    const reloadMeldinger = tråderResource.actions.reload;
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
+    const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
+
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [submitting, setSubmitting] = useState(false);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const valgtTraad = props.valgtTraad;
+    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
 
     const melding = eldsteMelding(valgtTraad);
+
+    const saksbehandlerKanSlette =
+        !isPending(saksbehandlerKanSletteFetch) &&
+        (hasData(saksbehandlerKanSletteFetch) && saksbehandlerKanSletteFetch.data);
+    const visSletting =
+        saksbehandlerKanSlette &&
+        (erMeldingstypeSamtalereferat(melding.meldingstype) || erMeldingSpørsmål(melding.meldingstype));
 
     const disableStandardvalg = !visStandardvalg(valgtTraad);
     const disableBidrag = !(!erKommunaleTjenester(melding.temagruppe) && visStandardvalg(valgtTraad));
     const disableFerdigstillUtenSvar = !visFerdigstillUtenSvar(melding.meldingstype, valgtTraad);
-    const disableSlett = !skalViseSletting(melding);
 
     const submitHandler = (event: FormEvent) => {
-        setSubmitting(true);
         event.preventDefault();
+        if (!valgtOperasjon) {
+            return;
+        }
+        setSubmitting(true);
+
         switch (valgtOperasjon) {
             case MerkOperasjon.AVSLUTT:
-                merkPost(MERK_AVSLUTT_URL, getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad));
+                merkPost(
+                    MERK_AVSLUTT_URL,
+                    getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad, valgtEnhet || ''),
+                    'AvluttUtenSvar'
+                );
                 break;
             case MerkOperasjon.BISYS:
-                merkPost(MERK_BISYS_URL, getMerkBisysRequest(valgtBrukersFnr, valgtTraad));
+                merkPost(MERK_BISYS_URL, getMerkBisysRequest(valgtBrukersFnr, valgtTraad), 'Bisys');
                 break;
             case MerkOperasjon.FEILSENDT:
-                merkPost(MERK_FEILSENDT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad));
+                merkPost(MERK_FEILSENDT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Feilsendt');
                 break;
             case MerkOperasjon.KONTORSPERRET: // Håndteres i egen funksjon
                 break;
             case MerkOperasjon.SLETT:
-                merkPost(MERK_SLETT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad));
+                merkPost(MERK_SLETT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Sletting');
                 break;
         }
     };
 
-    function merkPost(url: string, object: any) {
-        post(url, object)
+    const callback = () => {
+        dispatch(reloadMeldinger);
+        dispatch(reloadTildelteOppgaver);
+        dispatch(resetPlukkOppgaveResource);
+    };
+
+    function merkPost(url: string, object: any, name: string) {
+        post(url, object, 'MerkPanel-' + name)
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
-                dispatch(tråderResource.actions.reload);
+                callback();
             })
             .catch((error: Error) => {
                 settResultat(Resultat.FEIL);
                 setSubmitting(false);
-                loggError(error, 'Klarte ikke merke trååd', object);
             });
     }
 
@@ -192,20 +222,23 @@ function MerkPanel(props: Props) {
             />
         );
     } else {
+        const radioprops: RadioProps[] = [
+            { label: 'Feilsendt post', value: MerkOperasjon.FEILSENDT, disabled: disableStandardvalg },
+            { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag },
+            { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: disableStandardvalg },
+            {
+                label: 'Avslutt uten å svare bruker',
+                value: MerkOperasjon.AVSLUTT,
+                disabled: disableFerdigstillUtenSvar
+            }
+        ];
+        if (visSletting) {
+            radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT });
+        }
         return (
             <form onSubmit={submitHandler}>
                 <RadioPanelGruppe
-                    radios={[
-                        { label: 'Merk som feilsendt', value: MerkOperasjon.FEILSENDT, disabled: disableStandardvalg },
-                        { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag },
-                        { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: disableStandardvalg },
-                        {
-                            label: 'Avslutt uten å svare bruker',
-                            value: MerkOperasjon.AVSLUTT,
-                            disabled: disableFerdigstillUtenSvar
-                        },
-                        { label: 'Merk for sletting', value: MerkOperasjon.SLETT, disabled: disableSlett }
-                    ]}
+                    radios={radioprops}
                     name={'merk'}
                     checked={valgtOperasjon}
                     legend={''}

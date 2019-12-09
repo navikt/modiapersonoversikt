@@ -186,5 +186,14 @@ export const aremark: Person = {
             retningsnummer: { kodeRef: '+47', beskrivelse: 'Norge' },
             sistEndretAv: '10108000398'
         }
-    }
+    },
+    fullmakt: [
+        {
+            motpartsRolle: 'FULLMEKTIG',
+            motpartsPersonident: '12345678',
+            omraade: ['*'],
+            gyldigFraOgMed: '2019-01-01',
+            gyldigTilOgMed: '2022-12-12'
+        }
+    ]
 };

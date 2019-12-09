@@ -9,13 +9,13 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import { MerkKontorsperrRequest } from '../../../../../../../models/meldinger/merk';
 import styled from 'styled-components';
-import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
+import { Hovedknapp } from 'nav-frontend-knapper';
 
 interface Props {
     valgtTraad: Traad;
     tilbake: () => void;
     lukkPanel: () => void;
-    merkPost: (url: string, object: any) => void;
+    merkPost: (url: string, object: any, name: string) => void;
 }
 
 const MERK_KONTORSPERRET_URL = `${apiBaseUri}/dialogmerking/kontorsperret`;
@@ -38,7 +38,11 @@ export function Kontorsperr(props: Props) {
     const valgtTraad = props.valgtTraad;
 
     const kontorsperr = () => {
-        props.merkPost(MERK_KONTORSPERRET_URL, getMerkKontrorsperretRequest(valgtBrukersFnr, valgtTraad));
+        props.merkPost(
+            MERK_KONTORSPERRET_URL,
+            getMerkKontrorsperretRequest(valgtBrukersFnr, valgtTraad),
+            'Kontorsperring'
+        );
     };
 
     return (
@@ -49,16 +53,13 @@ export function Kontorsperr(props: Props) {
                 onChange={_ => settOpprettOppgave(!opprettOppgave)}
             />
             <UnmountClosed isOpened={opprettOppgave}>
-                <OpprettOppgaveContainer lukkPanel={() => props.lukkPanel} onSuccessCallback={kontorsperr} />
+                <OpprettOppgaveContainer lukkPanel={props.tilbake} onSuccessCallback={kontorsperr} />
             </UnmountClosed>
             {opprettOppgave ? null : (
                 <Hovedknapp htmlType="button" onClick={kontorsperr}>
                     Merk som kontorsperret
                 </Hovedknapp>
             )}
-            <Flatknapp htmlType="button" onClick={props.tilbake}>
-                Tilbake
-            </Flatknapp>
         </Style>
     );
 }

@@ -26,7 +26,7 @@ function SlaaSammenOppgaverKnapp({ traader }: { traader: Traad[] }) {
     const [apen, settApen] = useState(false);
     const tildelteOppgaver = useTildelteOppgaver();
 
-    const tildelteOppgaverIdListe = tildelteOppgaver.paaBruker.map(oppgave => oppgave.henvendelseid);
+    const tildelteOppgaverIdListe = tildelteOppgaver.paaBruker.map(oppgave => oppgave.traadId);
 
     const traaderSomKanSlaesSammen = traader
         .filter(traad => tildelteOppgaverIdListe.includes(traad.traadId))
@@ -40,6 +40,7 @@ function SlaaSammenOppgaverKnapp({ traader }: { traader: Traad[] }) {
     return (
         <ErrorBoundary boundaryName="Slå sammen oppgaver">
             <KnappWrapperStyle>
+                <h3 className="sr-only">Besvar flere oppgaver</h3>
                 <KnappBase type={'hoved'} onClick={() => settApen(true)}>
                     Besvar flere
                 </KnappBase>

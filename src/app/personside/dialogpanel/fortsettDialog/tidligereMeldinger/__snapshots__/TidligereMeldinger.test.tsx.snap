@@ -15,11 +15,16 @@ exports[`viser fortsett dialog 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
 }
 
 .c5 {
   padding: 1rem;
   overflow-wrap: break-word;
+  padding-top: 0;
 }
 
 .c2 {
@@ -30,8 +35,18 @@ exports[`viser fortsett dialog 1`] = `
   border-radius: 0;
 }
 
+.c2 .ekspanderbartPanel__hode:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+}
+
 .c6 {
   border-top: 0.1rem rgba(0,0,0,0.2) solid;
+}
+
+.c6 .ekspanderbartPanel__hode:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
 }
 
 .c0 .ekspanderbartPanel__innhold {
@@ -54,9 +69,20 @@ exports[`viser fortsett dialog 1`] = `
   overflow: hidden;
 }
 
-<div
+.c1 .ekspanderbartPanel__hode:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+}
+
+<article
   className="c0"
 >
+  <h3
+    className="sr-only"
+    tabIndex={-1}
+  >
+    Tråd under arbeid
+  </h3>
   <div
     className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
   >
@@ -86,7 +112,6 @@ exports[`viser fortsett dialog 1`] = `
     >
       <div
         className="ekspanderbartPanel c2 ekspanderbartPanel--lukket"
-        erEnkeltstaende={false}
       >
         <button
           aria-expanded={false}
@@ -144,7 +169,6 @@ exports[`viser fortsett dialog 1`] = `
       </div>
       <div
         className="ekspanderbartPanel c2 ekspanderbartPanel--lukket"
-        erEnkeltstaende={false}
       >
         <button
           aria-expanded={false}
@@ -196,7 +220,6 @@ exports[`viser fortsett dialog 1`] = `
       </div>
       <div
         className="ekspanderbartPanel c2 ekspanderbartPanel--lukket"
-        erEnkeltstaende={false}
       >
         <button
           aria-expanded={false}
@@ -250,7 +273,6 @@ exports[`viser fortsett dialog 1`] = `
   </div>
   <div
     className="ekspanderbartPanel c6 ekspanderbartPanel--apen"
-    erEnkeltstaende={true}
   >
     <button
       aria-controls="Helt tilfeldig ID"
@@ -307,5 +329,5 @@ exports[`viser fortsett dialog 1`] = `
       </div>
     </article>
   </div>
-</div>
+</article>
 `;

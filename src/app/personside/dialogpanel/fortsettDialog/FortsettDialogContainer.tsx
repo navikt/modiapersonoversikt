@@ -7,7 +7,6 @@ import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions
 import { useFødselsnummer, useRestResource } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
-import { Oppgave } from '../../../../models/oppgave';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
 import {
     DelsvarRegistrertKvittering,
@@ -17,7 +16,6 @@ import {
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { loggError } from '../../../../utils/frontendLogger';
-import { Temagruppe } from '../../../../models/Temagrupper';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import {
@@ -26,7 +24,6 @@ import {
     FortsettDialogState,
     KvitteringsData
 } from './FortsettDialogTypes';
-import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -35,19 +32,8 @@ export type FortsettDialogType =
     | Meldingstype.SVAR_TELEFON
     | Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
 
-export interface FortsettDialogState {
-    tekst: string;
-    dialogType: FortsettDialogType;
-    temagruppe?: Temagruppe;
-    oppgave?: Oppgave;
-    oppgaveListe: OppgavelisteValg;
-    sak?: JournalforingsSak;
-    visFeilmeldinger: boolean;
-}
-
 interface Props {
     traad: Traad;
-    tilknyttetOppgave?: Oppgave;
 }
 
 function FortsettDialogContainer(props: Props) {
@@ -55,7 +41,6 @@ function FortsettDialogContainer(props: Props) {
         tekst: '',
         dialogType: Meldingstype.SVAR_SKRIFTLIG as FortsettDialogType,
         tema: undefined,
-        oppgave: props.tilknyttetOppgave,
         visFeilmeldinger: false,
         sak: undefined,
         oppgaveListe: OppgavelisteValg.MinListe
@@ -91,6 +76,7 @@ function FortsettDialogContainer(props: Props) {
     if (opprettHenvendelse.success === false) {
         return opprettHenvendelse.placeholder;
     }
+    const oppgaveId = opprettHenvendelse.henvendelse.oppgaveId;
 
     const handleAvbryt = () => dispatch(setIngenValgtTraadDialogpanel());
 
@@ -104,13 +90,13 @@ function FortsettDialogContainer(props: Props) {
             dispatch(reloadTildelteOppgaver);
             dispatch(reloadMeldinger);
         };
+
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
-        const oppgaveId = props.tilknyttetOppgave ? props.tilknyttetOppgave.oppgaveid : undefined;
         const commonPayload = {
             fritekst: state.tekst,
             meldingstype: state.dialogType,
             traadId: props.traad.traadId,
-            behandlingsId: opprettHenvendelse.behandlingsId,
+            behandlingsId: opprettHenvendelse.henvendelse.behandlingsId,
             oppgaveId: oppgaveId
         };
         if (
@@ -121,13 +107,13 @@ function FortsettDialogContainer(props: Props) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
             const request: ForsettDialogRequest = {
                 ...commonPayload,
-                erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt // TODO: Hva skal denne være?
+                erOppgaveTilknyttetAnsatt: true // TODO, denne bør ikke være nødvendig å sende med her
             };
             const kvitteringsData = {
                 fritekst: request.fritekst,
                 meldingstype: request.meldingstype
             };
-            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request)
+            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Send-Svar')
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
@@ -147,13 +133,13 @@ function FortsettDialogContainer(props: Props) {
             const request: ForsettDialogRequest = {
                 ...commonPayload,
                 erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
-                saksId: state.sak ? state.sak.saksId : undefined
+                sak: state.sak ? state.sak : undefined
             };
             const kvitteringsData = {
                 fritekst: request.fritekst,
                 meldingstype: request.meldingstype
             };
-            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request)
+            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
@@ -161,16 +147,16 @@ function FortsettDialogContainer(props: Props) {
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
-        } else if (FortsettDialogValidator.erGyldigDelsvar(state) && props.tilknyttetOppgave && state.temagruppe) {
+        } else if (FortsettDialogValidator.erGyldigDelsvar(state) && oppgaveId && state.temagruppe) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
             const request: SendDelsvarRequest = {
                 fritekst: state.tekst,
                 traadId: props.traad.traadId,
-                oppgaveId: props.tilknyttetOppgave.oppgaveid,
+                oppgaveId: oppgaveId,
                 temagruppe: state.temagruppe,
-                behandlingsId: opprettHenvendelse.behandlingsId
+                behandlingsId: opprettHenvendelse.henvendelse.behandlingsId
             };
-            post(`${apiBaseUri}/dialog/${fnr}/delvis-svar`, request)
+            post(`${apiBaseUri}/dialog/${fnr}/delvis-svar`, request, 'Send-Delsvar')
                 .then(() => {
                     callback();
                     const kvitteringsData: KvitteringsData = {
@@ -189,7 +175,7 @@ function FortsettDialogContainer(props: Props) {
     };
 
     const meldingMedTemagruppe = props.traad.meldinger.find(melding => melding.temagruppe);
-    const temagruppe = meldingMedTemagruppe ? meldingMedTemagruppe.temagruppe : Temagruppe.Null;
+    const temagruppe = meldingMedTemagruppe ? meldingMedTemagruppe.temagruppe : undefined;
 
     return (
         <>
@@ -201,10 +187,11 @@ function FortsettDialogContainer(props: Props) {
                 traad={props.traad}
                 key={props.traad.traadId}
                 fortsettDialogPanelState={dialogStatus}
+                erTilknyttetOppgave={!!oppgaveId}
             />
-            {props.tilknyttetOppgave && (
+            {oppgaveId && (
                 <LeggTilbakepanel
-                    oppgave={props.tilknyttetOppgave}
+                    oppgaveId={oppgaveId}
                     status={dialogStatus}
                     setDialogStatus={setDialogStatus}
                     temagruppe={temagruppe}

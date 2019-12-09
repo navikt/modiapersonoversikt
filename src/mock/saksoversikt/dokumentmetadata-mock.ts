@@ -61,7 +61,8 @@ const fakeDokumentNavn = [
     'Inntektsopplysninger',
     'Spørsmål via nav.no',
     'Innhenting av opplysninger',
-    'Automatisk vedtak/nyfødt barn'
+    'Automatisk vedtak/nyfødt barn',
+    'Søknad om innvilget en kjempe lang tittel for å kunne få utbetalinger fortest mulig i henhold til mange paragrafer'
 ];
 
 function getDokument(faker: Faker.FakerStatic, navFaker: NavFaker): Dokument {

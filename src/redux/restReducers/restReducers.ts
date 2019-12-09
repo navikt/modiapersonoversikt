@@ -1,7 +1,7 @@
 import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
 import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
-import oppgaverReducer from './oppgaver';
+import hentOppgaverReducer from './hentOppgaver';
 import kontaktinformasjonReducer from './kontaktinformasjon';
 import egenAnsattReducer from './egenansatt';
 import vergemalReducer from './vergemal';
@@ -46,13 +46,7 @@ import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
-import {
-    Traad,
-    OpprettHenvendelseRequest,
-    OpprettHenvendelseResponse,
-    SlaaSammenRequest,
-    SlaaSammenResponse
-} from '../../models/meldinger/meldinger';
+import { Traad, SlaaSammenRequest, SlaaSammenResponse } from '../../models/meldinger/meldinger';
 import { PostResource } from '../../rest/utils/postResource';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
@@ -64,11 +58,14 @@ import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinfor
 import { EndreAdresseRequest } from './brukerprofil/adresse-api';
 import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
-import opprettHenvendelse from './meldinger/opprettHenvendelse';
 import slaaSammen from './meldinger/slaaSammen';
+import utbetalingerOversikt from './utbetalingerOversikt';
+import saksbehandlersEnheter from './saksbehandlersEnheter';
+import { SaksbehandlersEnheter } from '../../models/saksbehandlersEnheter';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
+    saksbehandlersEnheter: RestResource<SaksbehandlersEnheter>;
     personinformasjon: RestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
     plukkNyeOppgaver: PostResource<{}, Oppgave[]>;
@@ -89,6 +86,7 @@ export interface RestEndepunkter {
     valuta: RestResource<KodeverkResponse>;
     land: RestResource<KodeverkResponse>;
     utbetalinger: RestResource<UtbetalingerResponse>;
+    utbetalingerOversikt: RestResource<UtbetalingerResponse>;
     sykepenger: RestResource<SykepengerResponse>;
     pleiepenger: RestResource<PleiepengerResponse>;
     foreldrepenger: RestResource<ForeldrepengerResponse>;
@@ -99,7 +97,6 @@ export interface RestEndepunkter {
     tråderOgMeldinger: RestResource<Traad[]>;
     oppgaveGsakTema: RestResource<GsakTema[]>;
     opprettOppgave: PostResource<OpprettOppgaveRequest>;
-    opprettHenvendelse: PostResource<OpprettHenvendelseRequest, OpprettHenvendelseResponse>;
     personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
     slaaSammen: PostResource<SlaaSammenRequest, SlaaSammenResponse>;
 }
@@ -107,9 +104,10 @@ export interface RestEndepunkter {
 export default combineResettableReducers<RestEndepunkter>(
     {
         innloggetSaksbehandler: innloggetSaksbehandlerReducer,
+        saksbehandlersEnheter: saksbehandlersEnheter,
         personinformasjon: personinformasjonReducer,
         brukersNavKontor: navkontorReducer,
-        plukkNyeOppgaver: oppgaverReducer,
+        plukkNyeOppgaver: hentOppgaverReducer,
         tildelteOppgaver: tildelteOppgaver,
         kontaktinformasjon: kontaktinformasjonReducer,
         egenAnsatt: egenAnsattReducer,
@@ -127,6 +125,7 @@ export default combineResettableReducers<RestEndepunkter>(
         valuta: valutaKodeverkReducer,
         land: landKodeverkReducer,
         utbetalinger: utbetalingerReducer,
+        utbetalingerOversikt: utbetalingerOversikt,
         sykepenger: sykepengerReducer,
         pleiepenger: pleiepengerReducer,
         foreldrepenger: foreldrepengerReducer,
@@ -136,10 +135,18 @@ export default combineResettableReducers<RestEndepunkter>(
         brukersVarsler: varselReducer,
         tråderOgMeldinger: meldingerReducer,
         oppgaveGsakTema: oppgaveGsakTemaReducer,
-        opprettHenvendelse: opprettHenvendelse,
         opprettOppgave: opprettOppgave,
         personsok: personsok,
         slaaSammen: slaaSammen
     },
-    ['innloggetSaksbehandler', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles', 'plukkNyeOppgaver']
+    [
+        'innloggetSaksbehandler',
+        'veilederRoller',
+        'baseUrl',
+        'postnummer',
+        'valuta',
+        'land',
+        'featureToggles',
+        'plukkNyeOppgaver'
+    ]
 );

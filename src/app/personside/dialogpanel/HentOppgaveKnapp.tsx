@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
 import { Select } from 'nav-frontend-skjema';
-import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel, AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { velgTemagruppeForPlukk } from '../../../redux/session/session';
 import { AppState } from '../../../redux/reducers';
 import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
@@ -15,10 +15,15 @@ import TildelteOppgaver from './TildelteOppgaver';
 import { paths } from '../../routes/routing';
 import { INFOTABS } from '../infotabs/InfoTabEnum';
 import { Temagruppe, temagruppeTekst, TemaPlukkbare } from '../../../models/Temagrupper';
+import { useRestResource } from '../../../utils/customHooks';
+import { hasData, isFailed } from '../../../rest/utils/restResource';
+import LazySpinner from '../../../components/LazySpinner';
+import { SaksbehandlerRoller } from '../../../utils/RollerUtils';
+import { loggEvent } from '../../../utils/frontendLogger';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
-    padding: ${theme.margin.layout};
+    margin: ${theme.margin.layout};
     label {
         ${theme.visuallyHidden}
     }
@@ -29,18 +34,20 @@ const KnappLayout = styled.div`
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-top: 0.4em;
     > * {
-        margin-right: 0.4em;
+        margin: 0.2em !important;
         flex-grow: 1;
     }
     > *:first-child {
-        margin-bottom: 0.6em;
         white-space: nowrap;
     }
-    > *:last-child {
-        margin-bottom: 0.4em;
-    }
+`;
+
+const SpinnerWrapper = styled.div`
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 type Props = RouteComponentProps<{}>;
@@ -52,6 +59,23 @@ function HentOppgaveKnapp(props: Props) {
     const oppgaveResource = useSelector((state: AppState) => state.restResources.plukkNyeOppgaver);
     const velgTemaGruppe = (temagruppe: Temagruppe) => dispatch(velgTemagruppeForPlukk(temagruppe));
     const valgtTemaGruppe = useSelector((state: AppState) => state.session.temagruppeForPlukk);
+    const rollerResource = useRestResource(resources => resources.veilederRoller);
+
+    if (isFailed(rollerResource)) {
+        return <AlertStripeFeil>Kunne ikke hente roller</AlertStripeFeil>;
+    }
+
+    if (!hasData(rollerResource)) {
+        return (
+            <SpinnerWrapper>
+                <LazySpinner />
+            </SpinnerWrapper>
+        );
+    }
+
+    if (!rollerResource.data.roller.includes(SaksbehandlerRoller.HentOppgave)) {
+        return null;
+    }
 
     const onPlukkOppgaver = () => {
         if (!valgtTemaGruppe) {
@@ -70,8 +94,10 @@ function HentOppgaveKnapp(props: Props) {
                 const oppgave = response[0];
                 const fødselsnummer = oppgave.fødselsnummer;
                 props.history.push(
-                    `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.henvendelseid}`
+                    `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
                 );
+                response.length > 1 && loggEvent('FlereOppgaverTildelt', 'HentOppgave');
+                loggEvent('Hent-Oppgave', 'HentOppgave');
             })
         );
     };
@@ -110,7 +136,7 @@ function HentOppgaveKnapp(props: Props) {
                     onClick={onPlukkOppgaver}
                     spinner={isPosting(oppgaveResource)}
                 >
-                    Plukk oppgave
+                    Hent oppgave
                 </KnappBase>
             </KnappLayout>
             {isFailedPosting(oppgaveResource) && <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>}

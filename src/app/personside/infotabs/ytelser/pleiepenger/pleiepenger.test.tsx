@@ -5,11 +5,6 @@ import TestProvider from '../../../../../test/Testprovider';
 import Pleiepengerperiode from './Pleiepengerperiode';
 import { pleiepengerTestData } from './pleiepengerTestData';
 
-beforeEach(() => {
-    Date.prototype.getTime = jest.fn(() => 0);
-    Date.parse = jest.fn(() => 0);
-});
-
 test('Om Oversikten i pleiepengeretten matcher snapshot', () => {
     const resultat = renderer.create(
         <TestProvider>

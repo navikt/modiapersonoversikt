@@ -1,6 +1,6 @@
 export enum FeatureToggles {
     Tooltip = 'tooltip',
     SaksoversiktNyttVindu = 'saksoversikt-nytt-vindu',
-    Kontrollspørsmål = 'kontrollsporsmal',
-    VisTilbakemelding = 'vis-tilbakemelding'
+    VisTilbakemelding = 'vis-tilbakemelding',
+    NyPersonforvalter = 'pdl-ny-brukerprofil'
 }

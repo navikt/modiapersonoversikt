@@ -174,13 +174,13 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
                 }
             case actionNames.FINISHED:
                 if ((action as FetchSuccess<T>).fetchUrl !== state.fetchUrl) {
-                    loggInfo(
-                        `In ${resourceNavn}: Got data from unexpected source, expected data from: '${
-                            state.fetchUrl
-                        }' but got: '${
-                            (action as FetchSuccess<T>).fetchUrl
-                        }'. This could be because the user navigated to a new user before the fetch finished. Ignoring data.`
-                    );
+                    const message = `In ${resourceNavn}: Got data from unexpected source, expected data from: '${
+                        state.fetchUrl
+                    }' but got: '${
+                        (action as FetchSuccess<T>).fetchUrl
+                    }'. This could be because the user navigated to a new user before the fetch finished. Ignoring data.`;
+                    loggInfo(message);
+                    console.info(message);
                     return state;
                 }
                 return {

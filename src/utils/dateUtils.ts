@@ -1,7 +1,7 @@
 import moment from 'moment';
 import 'moment/locale/nb';
 import navfaker from 'nav-faker';
-import { backendDatoformat } from '../mock/utils/mock-utils';
+import { loggError } from './frontendLogger';
 
 const DATO_FORMAT = 'DD.MM.YYYY';
 const DATO_FORMAT_MANEDSNAVN = 'DD. MMM YYYY';
@@ -26,13 +26,6 @@ export function formatterDatoTidMedMaanedsnavn(dato?: string | Date) {
 
 export function formatterDatoTidNaa() {
     return moment().format(DATO_TID_FORMAT);
-}
-
-export function formatterDatoForBackendPost(dato?: Date): string | undefined {
-    if (!dato) {
-        return undefined;
-    }
-    return moment().format(backendDatoformat);
 }
 
 const månedTilNavnMapping = (månednr: number) => {
@@ -83,12 +76,15 @@ export function datoVerbose(dato?: string | Date) {
 }
 
 export function isValidDate(date: string | Date) {
-    const timestamp = date instanceof Date ? date.getTime() : Date.parse(date);
-    return !isNaN(timestamp);
+    return moment(date).isValid();
 }
 
 export function erImorgenEllerSenere(date: Date) {
     return moment(date).isAfter(new Date(), 'day');
+}
+
+export function erMaks10MinSiden(date: string | Date) {
+    return moment(date).isAfter(moment().subtract(10, 'minute'));
 }
 
 export function erMaksEttÅrFramITid(date: Date) {
@@ -101,25 +97,26 @@ export function getAlderFromFødselsnummer(fødselsnummer: string) {
 }
 
 export function getOldestDate<T extends string | Date>(date1: T, date2: T): T {
-    return new Date(date1) < new Date(date2) ? date1 : date2;
+    return moment(date1).isBefore(date2) ? date1 : date2;
 }
 
 export function getNewestDate<T extends string | Date>(date1: T, date2: T): T {
-    return new Date(date1) > new Date(date2) ? date1 : date2;
+    return moment(date1).isAfter(date2) ? date1 : date2;
 }
 
-export function ascendingDateComparator(a: Date, b: Date) {
-    if (+a === +b) {
-        //converterer til int for å sjekke equality
-        return 0;
+export function ascendingDateComparator(a: Date | string, b: Date | string) {
+    const dateA = moment(a);
+    const dateB = moment(b);
+    if (!dateA.isValid() || !dateB.isValid()) {
+        loggError(Error('Invalid date in date comparator'));
     }
-    return a > b ? 1 : -1;
+    return +dateA - +dateB;
 }
 
 export function datoStigende<T>(getDate: (element: T) => Date | string) {
-    return (a: T, b: T): number => ascendingDateComparator(new Date(getDate(a)), new Date(getDate(b)));
+    return (a: T, b: T): number => ascendingDateComparator(getDate(a), getDate(b));
 }
 
 export function datoSynkende<T>(getDate: (element: T) => Date | string) {
-    return (a: T, b: T): number => -ascendingDateComparator(new Date(getDate(a)), new Date(getDate(b)));
+    return (a: T, b: T): number => -ascendingDateComparator(getDate(a), getDate(b));
 }

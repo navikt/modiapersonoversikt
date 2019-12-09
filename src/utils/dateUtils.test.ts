@@ -6,7 +6,8 @@ import {
     getNewestDate,
     getOldestDate,
     datoStigende,
-    datoSynkende
+    datoSynkende,
+    erMaks10MinSiden
 } from './dateUtils';
 import moment from 'moment';
 import { backendDatoformat } from '../mock/utils/mock-utils';
@@ -51,8 +52,8 @@ describe('Sorterer etter dato', () => {
         const liten2 = new Date('2000-01-01');
         const stor = new Date('2000-01-10');
 
-        expect(ascendingDateComparator(stor, liten)).toEqual(1);
-        expect(ascendingDateComparator(liten, stor)).toEqual(-1);
+        expect(ascendingDateComparator(stor, liten)).toBeGreaterThan(1);
+        expect(ascendingDateComparator(liten, stor)).toBeLessThan(-1);
         expect(ascendingDateComparator(liten, liten2)).toEqual(0);
     });
 
@@ -138,5 +139,22 @@ describe('getOldestDate', () => {
         const result = getOldestDate(newDate, oldDate);
 
         expect(result).toEqual(oldDate);
+    });
+});
+
+describe('erMaks10MinSiden', () => {
+    it('sjekker om dato er mindre enn 10 min siden', () => {
+        const dateUnder10min = moment()
+            .subtract(5, 'minute')
+            .toDate();
+        const dateOver10min = moment()
+            .subtract(15, 'minute')
+            .toDate();
+
+        const resultUnder10min = erMaks10MinSiden(dateUnder10min);
+        const resultOver10min = erMaks10MinSiden(dateOver10min);
+
+        expect(resultUnder10min).toEqual(true);
+        expect(resultOver10min).toEqual(false);
     });
 });

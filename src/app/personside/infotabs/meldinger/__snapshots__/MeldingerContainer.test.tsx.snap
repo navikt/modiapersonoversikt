@@ -1,139 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser meldingercontainer med alt innhold 1`] = `
-.c7 {
-  position: relative;
-  padding: .8rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: pointer;
+.c1 {
+  overflow: auto;
+  max-height: 100%;
+  padding: .5rem;
 }
 
-.c7:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
-}
-
-.c7:hover > button:last-child {
-  padding-left: 0.5rem;
-}
-
-.c7 > *:first-child {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c14 {
-  border: none;
-  padding: 0;
-  height: 2rem;
-  width: 2rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  -webkit-transition: padding-left 0.3s;
-  transition: padding-left 0.3s;
-}
-
-.c14:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.c14:focus::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  box-shadow: inset 0 0 0 0.1875rem #254b6d;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
-}
-
-.c9 {
+.c11 {
   position: relative;
 }
 
-.c9 svg {
+.c11 svg {
   height: 1.875rem;
   width: 1.875rem;
   -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
   clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
 }
 
-.c10 {
+.c12 {
   position: absolute;
   top: -0.1875rem;
-  right: 0.5625rem;
+  right: -0.25rem;
   border-radius: 50%;
   padding: 0 0.1rem;
 }
 
-.c1 {
-  overflow: auto;
-  max-height: 100%;
-  padding: .8rem;
-}
-
-.c12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c12 .order-first {
-  -webkit-order: 0;
-  -ms-flex-order: 0;
-  order: 0;
-}
-
-.c12 .order-second {
-  -webkit-order: 1;
-  -ms-flex-order: 1;
-  order: 1;
-}
-
-.c8 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c8 > *:not(:last-child) {
-  padding-right: .8rem;
-}
-
-.c6:focus {
-  position: relative;
-  outline: none;
-  box-shadow: none;
-}
-
-.c6:focus::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  box-shadow: inset 0 0 0 0.1875rem #254b6d;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
-}
-
 .c13 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  width: 0;
+  margin-left: 0.8rem;
+  overflow-wrap: break-word;
+}
+
+.c16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -148,17 +51,106 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-top: 0.2rem;
 }
 
-.c13 > *:not(:last-child) {
+.c16 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
 
-.c11 {
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c14 .order-first {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+.c14 .order-second {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c10 > *:last-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  width: 0px;
+}
+
+.c15 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.c8 {
+  padding: .5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+}
+
+.c9 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c7:focus-within {
+  position: relative;
+  outline: none;
+  box-shadow: none;
+}
+
+.c7:focus-within::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.c7 .hover-animation {
+  -webkit-transition: -webkit-transform 0.3s;
+  -webkit-transition: transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.c7:hover {
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
+}
+
+.c7:hover .hover-animation {
+  -webkit-transform: translateX(0.5rem);
+  -ms-transform: translateX(0.5rem);
+  transform: translateX(0.5rem);
+}
+
+.c17 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
 }
 
 .c2 {
@@ -171,8 +163,8 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   list-style: none;
 }
 
-.c4 {
-  padding: 0 .8rem .8rem;
+.c5 {
+  padding: 0 .5rem .5rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -186,30 +178,46 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c5 > * {
+.c6 > * {
   border-top: solid 0.0625rem #78706a;
 }
 
 .c3 {
-  padding: .8rem .8rem 0;
+  padding: .5rem .5rem 0;
 }
 
 .c3 .skjemaelement {
   margin-bottom: 0.2rem;
 }
 
+.c3 .skjemaelement__label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+.c4 {
+  padding: .5rem;
+  margin-bottom: 0 !important;
+}
+
 .c0 {
   position: relative;
 }
 
-@media (min-width:62.5rem) {
+@media (min-width:53.125rem) {
   .c0 {
     max-height: 100%;
     max-width: 100%;
   }
 }
 
-@media (min-width:62.5rem) {
+@media (min-width:53.125rem) {
   .c0 {
     height: 0;
     -webkit-box-flex: 1;
@@ -240,10 +248,16 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 >
   <div
     className="c1"
+    onScroll={[Function]}
   >
     <nav
       className="c2"
     >
+      <h3
+        className="sr-only"
+      >
+        Søk i brukerens meldinger
+      </h3>
       <div
         className="c3"
       >
@@ -260,6 +274,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
             className="skjemaelement__input input--fullbredde"
             id="Helt tilfeldig ID"
             onChange={[Function]}
+            placeholder="Søk etter melding"
             type="text"
             value=""
           />
@@ -270,32 +285,72 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
         </div>
       </div>
       <div
-        className="c4"
+        className="skjemaelement skjemaelement--horisontal c4"
+      >
+        <input
+          checked={false}
+          className="skjemaelement__input checkboks"
+          id="Helt tilfeldig ID"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <label
+          className="skjemaelement__label"
+          htmlFor="Helt tilfeldig ID"
+        >
+          Skjul varsler
+        </label>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+      <div
+        className="c5"
       >
         <p
-          aria-live="polite"
+          aria-live="assertive"
           className="typo-normal"
         >
           Totalt 1 melding
         </p>
       </div>
+      <h3
+        className="sr-only"
+      >
+        Meldingsliste - 
+        Totalt 1 melding
+      </h3>
       <ol
-        className="c5"
+        className="c6"
+        role="tablist"
       >
         <li
-          className="test-meldinger-melding c6"
-          tabIndex={-1}
+          className="c7"
+          role="presentation"
         >
-          <div
-            className="c7"
-            onClick={[Function]}
+          <input
+            checked={false}
+            className="sr-only test-meldinger-melding"
+            id="Helt tilfeldig ID"
+            name="traadliste-meldinger"
+            onChange={[Function]}
+            role="tab"
+            type="radio"
+            value="sg838exr"
+          />
+          <label
+            className="c8"
+            htmlFor="Helt tilfeldig ID"
           >
-            <div>
+            <div
+              className="c9"
+            >
               <div
-                className="c8"
+                className="c10"
               >
                 <span
-                  className="c9"
+                  className="c11"
                 >
                   <svg
                     height={24}
@@ -318,16 +373,22 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     </g>
                   </svg>
                   <p
-                    className="typo-undertekst-bold c10"
+                    className="typo-undertekst-bold c12"
                   >
                     4
+                     
+                    <span
+                      className="sr-only"
+                    >
+                      meldinger
+                    </span>
                   </p>
                 </span>
                 <div
-                  className="c11"
+                  className="c13"
                 >
                   <div
-                    className="c12"
+                    className="c14"
                   >
                     <p
                       className="typo-element order-second"
@@ -341,12 +402,12 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     </p>
                   </div>
                   <p
-                    className="typo-normal"
+                    className="typo-normal c15"
                   >
-                    Dolores omnis ea voluptatem corrupt...
+                    Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                   </p>
                   <div
-                    className="c13"
+                    className="c16"
                   >
                     <div
                       className="etikett etikett--fokus"
@@ -370,22 +431,21 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                 </div>
               </div>
             </div>
-            <button
-              aria-label="Vis meldinger for Delsvar - Arbeid"
-              aria-selected={false}
-              className="c14"
+            <div
+              className="hover-animation c17"
             >
               <i
                 className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
               />
-            </button>
-          </div>
+            </div>
+          </label>
         </li>
       </ol>
     </nav>
   </div>
   <div
     className="c1"
+    onScroll={[Function]}
   >
     <div
       className="alertstripe alertstripe--info"

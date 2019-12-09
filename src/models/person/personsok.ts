@@ -31,8 +31,8 @@ export interface PersonsokRequest {
     alderFra?: number;
     alderTil?: number;
     kommunenummer?: string;
-    fodsesldatoFra?: string;
-    fodsesldatoTil?: string;
+    fodselsdatoFra?: string;
+    fodselsdatoTil?: string;
     kjonn?: string;
     husnummer?: number;
     husbokstav?: string;

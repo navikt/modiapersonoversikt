@@ -1,83 +1,83 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Person, PersonRespons } from '../../../models/person/person';
+import { Person } from '../../../models/person/person';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import HandleVisittkortHotkeys from './HandleVisittkortHotkeys';
-import { AppState } from '../../../redux/reducers';
-import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
-import { loggSkjermInfoDaglig } from '../../../utils/loggInfo/loggSkjermInfoDaglig';
-import { AsyncDispatch } from '../../../redux/ThunkTypes';
-import { HasData } from '../../../rest/utils/restResource';
-
-interface StateProps {
-    visittkortErApent: boolean;
-    person: Person;
-}
-
-interface DispatchProps {
-    toggleVisittkort: (erApen?: boolean) => void;
-}
-
-type Props = StateProps & DispatchProps;
+import { useLoggSkjermInfoDaglig } from '../../../utils/loggInfo/useLoggSkjermInfoDaglig';
+import { hasData, isFailed } from '../../../rest/utils/restResource';
+import { useAppState, useRestResource } from '../../../utils/customHooks';
+import { useDispatch } from 'react-redux';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { useCallback } from 'react';
+import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 
 const VisittkortBodyWrapper = styled.div`
     border-radius: ${theme.borderRadius.layout};
 `;
 
-class VisittkortContainer extends React.PureComponent<Props> {
-    componentDidMount() {
-        loggSkjermInfoDaglig();
+const SpinnerWrapper = styled(FillCenterAndFadeIn)`
+    background-color: white;
+    padding: 1rem;
+`;
+
+function VisittkortContainer() {
+    const erApnet = useAppState(state => state.ui.visittkort.apent);
+    const personResource = useRestResource(resources => resources.personinformasjon);
+    const dispatch = useDispatch();
+    const toggle = useCallback(
+        (apent?: boolean) => {
+            dispatch(toggleVisittkort(apent));
+        },
+        [dispatch]
+    );
+
+    useLoggSkjermInfoDaglig();
+
+    if (isFailed(personResource)) {
+        return <AlertStripeFeil>Kunne ikke hente personinfo</AlertStripeFeil>;
     }
 
-    render() {
-        const { person, visittkortErApent: erApnet, toggleVisittkort: toggle } = this.props;
-        const visittkortHotkeys = erNyePersonoversikten() ? (
-            <HandleVisittkortHotkeys />
-        ) : (
-            <HandleVisittkortHotkeysGamlemodia />
-        );
+    if (!hasData(personResource)) {
         return (
-            <ErrorBoundary>
-                <AriaNotification
-                    beskjed={`Visittkortet ble ${erApnet ? 'åpnet' : 'lukket'}`}
-                    dontShowOnFirstRender={true}
-                />
-                {visittkortHotkeys}
-                <article role="region" aria-label="Visittkort" aria-expanded={erApnet}>
-                    <VisittkortHeader person={person} toggleVisittkort={toggle} visittkortApent={erApnet} />
-                    <VisittkortBodyWrapper className="hook-for-spesialstyling-i-gamlemodia-visittkortbodywrapper">
-                        <UnmountClosed isOpened={erApnet}>
-                            <VisittkortBody person={person} />
-                        </UnmountClosed>
-                    </VisittkortBodyWrapper>
-                </article>
-            </ErrorBoundary>
+            <SpinnerWrapper>
+                <NavFrontendSpinner type="XL" />
+            </SpinnerWrapper>
         );
     }
+
+    const person = personResource.data as Person;
+
+    const visittkortHotkeys = erNyePersonoversikten() ? (
+        <HandleVisittkortHotkeys />
+    ) : (
+        <HandleVisittkortHotkeysGamlemodia />
+    );
+    return (
+        <ErrorBoundary>
+            <AriaNotification
+                beskjed={`Visittkortet ble ${erApnet ? 'åpnet' : 'lukket'}`}
+                dontShowOnFirstRender={true}
+            />
+            {visittkortHotkeys}
+            <article role="region" aria-label="Visittkort" aria-expanded={erApnet}>
+                <VisittkortHeader person={person} toggleVisittkort={toggle} visittkortApent={erApnet} />
+                <VisittkortBodyWrapper className="hook-for-spesialstyling-i-gamlemodia-visittkortbodywrapper">
+                    <UnmountClosed isOpened={erApnet}>
+                        <VisittkortBody person={person} />
+                    </UnmountClosed>
+                </VisittkortBodyWrapper>
+            </article>
+        </ErrorBoundary>
+    );
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        visittkortErApent: state.ui.visittkort.apent,
-        person: (state.restResources.personinformasjon as HasData<PersonRespons>).data as Person
-    };
-}
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        toggleVisittkort: (erApen?: boolean) => dispatch(toggleVisittkort(erApen))
-    };
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(VisittkortContainer);
+export default VisittkortContainer;

@@ -61,7 +61,7 @@ exports[`viser personsøk-komponent 1`] = `
 }
 
 .c0 {
-  padding: .8rem;
+  padding: .5rem;
 }
 
 .c1 {
@@ -72,11 +72,11 @@ exports[`viser personsøk-komponent 1`] = `
 }
 
 .c1 > *:first-child {
-  padding-right: 3em;
+  margin-right: 10rem;
 }
 
 .c5 {
-  padding-top: .8rem;
+  padding-top: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

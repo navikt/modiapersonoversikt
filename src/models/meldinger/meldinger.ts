@@ -1,4 +1,5 @@
 import { Temagruppe } from '../Temagrupper';
+import { JournalforingsSak } from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 
 export interface Traad {
     traadId: string;
@@ -9,7 +10,7 @@ export interface Melding {
     id: string;
     oppgaveId?: string;
     meldingstype: Meldingstype;
-    temagruppe: Temagruppe;
+    temagruppe: Temagruppe | null;
     skrevetAvTekst: string;
     journalfortAv?: Saksbehandler;
     journalfortDato?: string;
@@ -19,6 +20,7 @@ export interface Melding {
     fritekst: string;
     lestDato?: string;
     status: LestStatus;
+    statusTekst?: string;
     opprettetDato: string;
     ferdigstiltDato?: string;
     erFerdigstiltUtenSvar: boolean;
@@ -75,7 +77,7 @@ export interface SendReferatRequest {
 
 export interface SendSpørsmålRequest {
     fritekst: string;
-    saksID: string;
+    sak: JournalforingsSak;
     erOppgaveTilknyttetAnsatt: boolean;
 }
 
@@ -83,7 +85,7 @@ export interface ForsettDialogRequest {
     traadId: string;
     behandlingsId: string;
     fritekst: string;
-    saksId?: string;
+    sak?: JournalforingsSak;
     erOppgaveTilknyttetAnsatt: boolean;
     meldingstype: Meldingstype;
     oppgaveId?: string;

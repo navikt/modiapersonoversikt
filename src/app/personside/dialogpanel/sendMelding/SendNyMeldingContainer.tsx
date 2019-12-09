@@ -68,7 +68,7 @@ function SendNyMeldingContainer() {
                 meldingstype: state.dialogType,
                 temagruppe: state.tema
             };
-            post(`${apiBaseUri}/dialog/${fnr}/sendreferat`, request)
+            post(`${apiBaseUri}/dialog/${fnr}/sendreferat`, request, 'Send-Referat')
                 .then(() => {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: request });
@@ -80,11 +80,10 @@ function SendNyMeldingContainer() {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
             const request: SendSpørsmålRequest = {
                 fritekst: state.tekst,
-                saksID: state.sak.saksId,
+                sak: state.sak,
                 erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
             };
-
-            post(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, request)
+            post(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, request, 'Send-Sporsmal')
                 .then(() => {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: request.fritekst });

@@ -14,11 +14,11 @@ import { useInfotabsDyplenker } from '../dyplenker';
 import { useHistory, withRouter } from 'react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
-import { useSokEtterMeldinger } from './utils/meldingerUtils';
+import { filtrerBortVarsel, useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 
-const meldingerMediaTreshold = pxToRem(1000);
+const meldingerMediaTreshold = pxToRem(850);
 
 const MeldingerArticleStyle = styled.article`
     ${scrollBarContainerStyle(meldingerMediaTreshold)};
@@ -40,10 +40,16 @@ function useHuskValgtTraad() {
     const dispatch = useDispatch();
     const valgtTraad = useValgtTraadIUrl();
     const forrigeValgteTraad = useAppState(state => state.meldinger.forrigeValgteTraad);
+    const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const forrigeTraadErFjernet =
+        hasData(meldingerResource) && forrigeValgteTraad && !meldingerResource.data.includes(forrigeValgteTraad);
 
     useEffect(() => {
+        if (forrigeTraadErFjernet) {
+            dispatch(huskForrigeValgtTraad(undefined));
+        }
         valgtTraad && dispatch(huskForrigeValgtTraad(valgtTraad));
-    }, [dispatch, valgtTraad]);
+    }, [dispatch, valgtTraad, forrigeTraadErFjernet]);
 
     return forrigeValgteTraad;
 }
@@ -81,10 +87,13 @@ function MeldingerContainer() {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const valgtTraad = useValgtTraadIUrl();
     const [sokeord, setSokeord] = useState('');
+    const [skjulVarsler, setSkjulVarsler] = useState(false);
     const traaderFørSøk = hasData(traaderResource) ? traaderResource.data : [];
-    const traaderEtterSok = useSokEtterMeldinger(traaderFørSøk, sokeord);
-    useSyncSøkMedVisning(traaderFørSøk, traaderEtterSok);
-    useVelgTraadHvisIngenTraadErValgt(traaderEtterSok);
+    const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderFørSøk, sokeord).filter(traad =>
+        skjulVarsler ? filtrerBortVarsel(traad) : true
+    );
+    useSyncSøkMedVisning(traaderFørSøk, traaderEtterSokOgFiltrering);
+    useVelgTraadHvisIngenTraadErValgt(traaderEtterSokOgFiltrering);
 
     return (
         <RestResourceConsumer<Traad[]>
@@ -92,21 +101,24 @@ function MeldingerContainer() {
             returnOnPending={<CenteredLazySpinner />}
         >
             {data => {
-                if (data.length === 0) {
+                if (traaderFørSøk.length === 0) {
                     return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
                 }
                 return (
                     <MeldingerArticleStyle>
-                        <ScrollBar>
+                        <ScrollBar keepScrollId="meldinger-trådliste">
                             <TraadListe
                                 sokeord={sokeord}
                                 setSokeord={setSokeord}
-                                traader={data}
+                                traader={traaderFørSøk}
+                                traaderEtterSokOgFiltrering={traaderEtterSokOgFiltrering}
                                 valgtTraad={valgtTraad}
+                                skjulVarsler={skjulVarsler}
+                                setSkjulVarsler={setSkjulVarsler}
                             />
                         </ScrollBar>
-                        <ScrollBar>
-                            {traaderEtterSok.length === 0 ? (
+                        <ScrollBar keepScrollId="meldinger-trådvisning">
+                            {traaderEtterSokOgFiltrering.length === 0 ? (
                                 <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>
                             ) : (
                                 <TraadVisningWrapper sokeord={sokeord} valgtTraad={valgtTraad} />

@@ -1,14 +1,20 @@
 import { RestEndepunkter } from '../../redux/restReducers/restReducers';
-import { isFailed, isNotStarted, RestResource, isLoaded, hasData, HasData } from '../utils/restResource';
+import { hasData, HasData, isFailed, isLoaded, isNotStarted, RestResource } from '../utils/restResource';
 import React, { ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LazySpinner from '../../components/LazySpinner';
 import { useOnMount } from '../../utils/customHooks';
+import { STATUS } from '../utils/utils';
 
 type Resources<T> = {
     [P in keyof T]: RestResource<T[P]>;
+};
+
+export type BaseProps<T extends { [key: string]: any }> = {
+    getResource: (restResources: RestEndepunkter) => Resources<T>;
+    children: (status: STATUS, data: T | null) => ReactNode;
 };
 
 export type Props<T extends { [key: string]: any }> = {
@@ -31,8 +37,8 @@ function forEach<T>(resources: Resources<T>, fn: (restResource: RestResource<any
     (Object.values(resources) as Array<RestResource<any>>).forEach(fn);
 }
 
-function MultiRestResourceConsumer<T>(props: Props<T>) {
-    const { spinnerSize, returnOnPending, returnOnError, returnOnNotFound, children } = props;
+export function MultiRestResourceConsumerBase<T>(props: BaseProps<T>) {
+    const { children } = props;
     const restResources: Resources<T> = useSelector((state: AppState) => props.getResource(state.restResources));
     const dispatch = useDispatch();
 
@@ -45,19 +51,41 @@ function MultiRestResourceConsumer<T>(props: Props<T>) {
     });
 
     if (some(restResources, isFailed)) {
-        return returnOnError || <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
+        return <>{children(STATUS.FAILED, null)}</>;
     }
     if (!every(restResources, isLoaded)) {
-        return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;
+        return <>{children(STATUS.LOADING, null)}</>;
     }
     if (!some(restResources, hasData)) {
-        return returnOnNotFound || <AlertStripeAdvarsel>Fant ingen data</AlertStripeAdvarsel>;
+        return <>{children(STATUS.NOT_FOUND, null)}</>;
     }
+
     const data = Object.entries<RestResource<any>>(restResources)
         .map(([key, value]) => [key, (value as HasData<any>).data])
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {} as T);
 
-    return <>{children(data)}</>;
+    return <>{children(STATUS.SUCCESS, data)}</>;
+}
+
+function MultiRestResourceConsumer<T>(props: Props<T>) {
+    const { spinnerSize, returnOnPending, returnOnError, returnOnNotFound, getResource, children } = props;
+    return (
+        <MultiRestResourceConsumerBase<T> getResource={getResource}>
+            {(status: STATUS, data: T | null) => {
+                if (status === STATUS.FAILED) {
+                    return returnOnError || <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
+                }
+                if (status === STATUS.LOADING) {
+                    return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;
+                }
+                if (status === STATUS.NOT_FOUND) {
+                    return returnOnNotFound || <AlertStripeAdvarsel>Fant ingen data</AlertStripeAdvarsel>;
+                }
+
+                return <>{children(data as T)}</>;
+            }}
+        </MultiRestResourceConsumerBase>
+    );
 }
 
 export default MultiRestResourceConsumer;

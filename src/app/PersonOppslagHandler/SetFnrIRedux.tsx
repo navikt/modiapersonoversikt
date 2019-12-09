@@ -1,29 +1,19 @@
 import setGjeldendeBrukerIRedux from '../../redux/gjeldendeBruker/actions';
-import { connect } from 'react-redux';
-import { AsyncDispatch } from '../../redux/ThunkTypes';
+import { useDispatch } from 'react-redux';
+import { useFødselsnummer } from '../../utils/customHooks';
 
-interface OwnProps {
+interface Props {
     fødselsnummer: string;
 }
 
-interface DispatchProps {
-    setFnrIRedux: (fnr: string) => void;
-}
-
-type Props = DispatchProps & OwnProps;
-
 function SetFnrIRedux(props: Props) {
-    props.setFnrIRedux(props.fødselsnummer);
+    const fnr = useFødselsnummer();
+    const dispatch = useDispatch();
+
+    if (fnr !== props.fødselsnummer) {
+        dispatch(setGjeldendeBrukerIRedux(props.fødselsnummer));
+    }
     return null;
 }
 
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        setFnrIRedux: (fnr: string) => dispatch(setGjeldendeBrukerIRedux(fnr))
-    };
-}
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(SetFnrIRedux);
+export default SetFnrIRedux;

@@ -12,6 +12,7 @@ import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../../app/PersonOppslagHand
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 import styled from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
+import FetchSessionInfoOgLeggIRedux from '../../app/globaleVerdier/FetchSessionInfoOgLeggIRedux';
 
 interface Props {
     fødselsnummer: string;
@@ -36,6 +37,7 @@ class BrukerprofilStandalone extends React.Component<Props> {
             <ErrorBoundary boundaryName="Brukerprofil">
                 <Provider store={store}>
                     <Styles>
+                        <FetchSessionInfoOgLeggIRedux />
                         <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
                         <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
                         <BrukerprofilSide />

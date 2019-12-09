@@ -75,7 +75,7 @@ export function formaterTilISO8601Date(date: Date) {
 }
 
 export function capitalizeName(name: string): string {
-    return name.replace(/\w[^\s'-]*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+    return name.replace(/[\wæøåÆØÅ][^\s'-]*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 }
 
 export function capitalizeAfterPunctuation(name: string): string {

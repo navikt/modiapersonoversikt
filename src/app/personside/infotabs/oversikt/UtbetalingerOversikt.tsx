@@ -15,7 +15,6 @@ import { useInfotabsDyplenker } from '../dyplenker';
 import { utbetalingerTest } from '../dyplenkeTest/utils';
 import moment from 'moment';
 import { ReactNode } from 'react';
-import { useOnMount } from '../../../../utils/customHooks';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -30,7 +29,7 @@ interface Props {
 function UtbetalingerOversikt(props: Props) {
     return (
         <RestResourceConsumer<UtbetalingerResponse>
-            getResource={restResources => restResources.utbetalinger}
+            getResource={restResources => restResources.utbetalingerOversikt}
             returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
         >
             {data => <UtbetalingerPanel utbetalinger={data} {...props} />}
@@ -47,14 +46,6 @@ function UtbetalingerPanel(props: { utbetalinger: UtbetalingerResponse } & Props
         .sort(utbetalingDatoComparator)
         .slice(0, 2)
         .filter(utbetaling => !datoEldreEnn30Dager(utbetaling));
-
-    useOnMount(() => {
-        props.setHeaderContent(
-            <Normaltekst>
-                {filtrertOgSorterteUtbetalinger.length} / {props.utbetalinger.utbetalinger.length}
-            </Normaltekst>
-        );
-    });
 
     if (filtrertOgSorterteUtbetalinger.length === 0) {
         return (

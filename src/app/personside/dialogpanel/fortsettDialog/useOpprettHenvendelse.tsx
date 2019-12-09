@@ -1,44 +1,52 @@
 import * as React from 'react';
-import { useOnMount, useRestResource } from '../../../../utils/customHooks';
-import { isFailedPosting, isFinishedPosting } from '../../../../rest/utils/postResource';
+import { useFødselsnummer, useOnMount, useRestResource } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/frontendLogger';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { Traad } from '../../../../models/meldinger/meldinger';
+import { OpprettHenvendelseRequest, OpprettHenvendelseResponse, Traad } from '../../../../models/meldinger/meldinger';
 import { useDispatch } from 'react-redux';
+import { apiBaseUri } from '../../../../api/config';
+import { post } from '../../../../api/api';
+import { useState } from 'react';
 
-interface NotFinishedOpprettHenvendelseStatus {
+interface NotFinishedOpprettHenvendelse {
     success: false;
     placeholder: JSX.Element;
 }
 
-interface FinishedOpprettHenvendelseStatus {
+interface FinishedOpprettHenvendelse {
     success: true;
-    behandlingsId: string;
+    henvendelse: OpprettHenvendelseResponse;
 }
 
-type OpprettHenvendelseStatus = NotFinishedOpprettHenvendelseStatus | FinishedOpprettHenvendelseStatus;
+type OpprettHenvendelseReturns = NotFinishedOpprettHenvendelse | FinishedOpprettHenvendelse;
 
-function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseStatus {
-    const opprettHenvendelseResource = useRestResource(resources => resources.opprettHenvendelse);
+function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
+    const [error, setError] = useState(false);
+    const [response, setResponse] = useState<OpprettHenvendelseResponse | undefined>();
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
     const dispatch = useDispatch();
+    const fnr = useFødselsnummer();
 
     useOnMount(function getBehandlingsId() {
-        dispatch(opprettHenvendelseResource.actions.post({ traadId: traad.traadId }));
-        return () => {
-            dispatch(opprettHenvendelseResource.actions.reset);
-        };
+        const opprettHenvendelseRequest: OpprettHenvendelseRequest = { traadId: traad.traadId };
+        post(`${apiBaseUri}/dialog/${fnr}/fortsett/opprett`, opprettHenvendelseRequest, 'Opprett-henvendelse')
+            .then(data => setResponse(data as OpprettHenvendelseResponse))
+            .then(() => dispatch(reloadTildelteOppgaver))
+            .catch(e => {
+                setError(true);
+                loggError(e, 'Kunne ikke opprette henvendelse for traadId: ' + traad.traadId);
+            });
     });
 
-    if (isFailedPosting(opprettHenvendelseResource)) {
-        loggError(new Error('Kunne ikke opprette henvendelse for traadId: ' + traad.traadId));
+    if (error) {
         return {
             success: false,
             placeholder: <AlertStripeFeil>Kunne ikke opprette henvendelse</AlertStripeFeil>
         };
     }
 
-    if (!isFinishedPosting(opprettHenvendelseResource)) {
+    if (!response) {
         return {
             success: false,
             placeholder: <CenteredLazySpinner />
@@ -47,7 +55,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseStatus {
 
     return {
         success: true,
-        behandlingsId: opprettHenvendelseResource.response.behandlingsId
+        henvendelse: response
     };
 }
 

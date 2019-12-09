@@ -13,13 +13,14 @@ import {
 import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 import { aremark } from '../person/aremark';
 import { moss } from '../person/moss';
+import { pleiepengerTestData } from '../../app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
 
 export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse {
     if (fødselsnummer === aremark.fødselsnummer) {
         return {
             pleiepenger: [
                 {
-                    ...getMockPleiepengerettighet(aremark.fødselsnummer),
+                    ...pleiepengerTestData,
                     barnet: moss.fødselsnummer
                 }
             ]

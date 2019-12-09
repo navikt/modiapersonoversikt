@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser dialogpanel 1`] = `
-.c4 label {
+.c10 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -12,14 +12,14 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c6 {
+.c12 {
   background-color: white;
   border-radius: .25rem;
   border: 1px solid #78706a;
   position: relative;
 }
 
-.c7 {
+.c13 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -40,12 +40,12 @@ exports[`viser dialogpanel 1`] = `
   align-items: center;
 }
 
-.c7:focus {
+.c13:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c10 {
+.c4 {
   position: absolute;
   height: 2rem;
   width: 2rem;
@@ -59,31 +59,50 @@ exports[`viser dialogpanel 1`] = `
   transform: none;
 }
 
-.c10:after {
+.c4:after {
   background: none;
 }
 
-.c10:hover {
+.c4:hover {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
 }
 
-.c11 {
+.c5 {
   position: relative;
   top: 2px;
   width: 18px;
 }
 
-.c9 {
+.c8 {
+  position: absolute;
+  top: 2.8rem;
+  left: -1rem;
+}
+
+.c8 ul {
+  list-style: circle;
+  margin-top: 1rem;
+}
+
+.c8 ul li {
+  margin-left: 1.5rem;
+}
+
+.c7 {
   position: relative;
 }
 
-.c9 textarea {
+.c3 {
+  position: relative;
+}
+
+.c3 textarea {
   min-height: 9rem;
 }
 
-.c9 label {
+.c3 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -94,8 +113,8 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c12 textarea,
-.c12 .textareamirror {
+.c6 textarea,
+.c6 .textareamirror {
   padding-left: 2.25rem;
 }
 
@@ -122,7 +141,7 @@ exports[`viser dialogpanel 1`] = `
   margin-bottom: 1rem;
 }
 
-.c3 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -136,19 +155,19 @@ exports[`viser dialogpanel 1`] = `
   flex-wrap: wrap;
 }
 
-.c3 > * {
+.c9 > * {
   margin-top: 0.3rem;
 }
 
-.c3 > *:not(:last-child) {
+.c9 > *:not(:last-child) {
   margin-right: 1rem;
 }
 
-.c8 {
+.c14 {
   margin-top: 1rem;
 }
 
-.c8 label {
+.c14 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -160,10 +179,10 @@ exports[`viser dialogpanel 1`] = `
 }
 
 .c1 {
-  padding: 1rem .8rem;
+  padding: 1rem .5rem;
 }
 
-.c13 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -173,11 +192,11 @@ exports[`viser dialogpanel 1`] = `
   flex-direction: column;
 }
 
-.c13 > * {
+.c15 > * {
   margin-bottom: 0.7rem;
 }
 
-.c5 {
+.c11 {
   margin-top: 1rem;
 }
 
@@ -186,6 +205,8 @@ exports[`viser dialogpanel 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  border-top: solid 0.0625rem #b7b1a9;
+  word-break: break-word;
 }
 
 <article
@@ -212,6 +233,153 @@ exports[`viser dialogpanel 1`] = `
     >
       <div
         className="c3"
+      >
+        <button
+          className="knapp c4 knapp--hoved"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            className="c5"
+            height="24px"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 24 24"
+            width="24px"
+            x="0px"
+            xmlns="http://www.w3.org/2000/svg"
+            y="0px"
+          >
+            <path
+              d="M20.854,6.146l-6-6C14.76,0.053,14.632,0,14.5,0h-11C3.224,0,3,0.224,3,0.5v23C3,23.776,3.224,24,3.5,24h17  c0.276,0,0.5-0.224,0.5-0.5v-17C21,6.367,20.947,6.24,20.854,6.146z M7.5,7H12c0.276,0,0.5,0.224,0.5,0.5S12.276,8,12,8H7.5  C7.224,8,7,7.776,7,7.5S7.224,7,7.5,7z M16.5,20h-9C7.224,20,7,19.776,7,19.5S7.224,19,7.5,19h9c0.276,0,0.5,0.224,0.5,0.5  S16.776,20,16.5,20z M16.5,17h-9C7.224,17,7,16.776,7,16.5S7.224,16,7.5,16h9c0.276,0,0.5,0.224,0.5,0.5S16.776,17,16.5,17z   M16.5,14h-9C7.224,14,7,13.776,7,13.5S7.224,13,7.5,13h9c0.276,0,0.5,0.224,0.5,0.5S16.776,14,16.5,14z M16.5,11h-9  C7.224,11,7,10.776,7,10.5S7.224,10,7.5,10h9c0.276,0,0.5,0.224,0.5,0.5S16.776,11,16.5,11z M14.5,6.5v-6l6,6H14.5z"
+              fill="currentColor"
+            />
+          </svg>
+          <span
+            className="sr-only"
+          >
+            Standardtekster
+          </span>
+        </button>
+        <div
+          className="c6"
+        >
+          <div
+            className="c7"
+          >
+            <div
+              className="skjemaelement textarea__container"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Melding
+              </label>
+              <div
+                className="textarea--medMeta__wrapper"
+              >
+                <textarea
+                  className="skjemaelement__input textarea--medMeta"
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
+                  style={
+                    Object {
+                      "height": "30px",
+                    }
+                  }
+                  type="text"
+                  value=""
+                />
+                <p
+                  className="textarea--medMeta__teller"
+                >
+                  <span
+                    aria-live="polite"
+                    className="teller-tekst"
+                  >
+                    Du har 5000 tegn igjen
+                  </span>
+                </p>
+              </div>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+              <div
+                aria-hidden="true"
+                className="textareamirror"
+              />
+            </div>
+            <div
+              className="c8"
+            >
+              <div
+                className="hjelpetekst"
+              >
+                <button
+                  aria-label="Hjelptekst"
+                  aria-pressed={false}
+                  className="hjelpetekst__apneknapp"
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  title="Hjelptekst"
+                  type="button"
+                >
+                  <span
+                    className="sr-only"
+                  >
+                    Hjelptekst
+                  </span>
+                  <svg
+                    className="hjelpetekst__anchor"
+                    focusable="false"
+                    height={32}
+                    kind="help-circle"
+                    viewBox="0 0 18.22 18.22"
+                    width={32}
+                  >
+                    <title>
+                      Hjelp
+                    </title>
+                    <path
+                      d="M9.11 1a8.11 8.11 0 1 0 8.11 8.11A8.12 8.12 0 0 0 9.11 1zm0 13.7a.89.89 0 1 1 .89-.9.89.89 0 0 1-.89.9zm.5-5.7v1.89a.5.5 0 0 1-1 0V8.5a.5.5 0 0 1 .5-.5 1.85 1.85 0 1 0-1.85-1.85.5.5 0 0 1-1 0A2.85 2.85 0 1 1 9.61 9z"
+                      fill="none"
+                    />
+                    <path
+                      d="M9.11 0a9.11 9.11 0 1 0 9.11 9.11A9.12 9.12 0 0 0 9.11 0zm0 17.22a8.11 8.11 0 1 1 8.11-8.11 8.12 8.12 0 0 1-8.11 8.11z"
+                      fill="#2968b2"
+                    />
+                    <path
+                      d="M9.11 3.3a2.85 2.85 0 0 0-2.85 2.85.5.5 0 0 0 1 0A1.85 1.85 0 1 1 9.11 8a.5.5 0 0 0-.5.5v2.35a.5.5 0 0 0 1 0V9a2.85 2.85 0 0 0-.5-5.65z"
+                      fill="#2968b2"
+                    />
+                    <circle
+                      cx="9.11"
+                      cy="13.8"
+                      fill="#2968b2"
+                      r=".89"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+      <div
+        className="c9"
       >
         <div
           className="skjemaelement skjemaelement--horisontal"
@@ -275,7 +443,7 @@ exports[`viser dialogpanel 1`] = `
           className=""
         >
           <div
-            className="skjemaelement c4"
+            className="skjemaelement c10"
           >
             <label
               className="skjemaelement__label"
@@ -337,7 +505,7 @@ exports[`viser dialogpanel 1`] = `
           />
         </div>
         <div
-          className="alertstripe c5 alertstripe--info"
+          className="alertstripe c11 alertstripe--info"
         >
           <span
             aria-label="info"
@@ -374,11 +542,11 @@ exports[`viser dialogpanel 1`] = `
           className=""
         >
           <div
-            className="c6"
+            className="c12"
           >
             <button
               aria-expanded={false}
-              className="c7"
+              className="c13"
               onClick={[Function]}
               type="button"
             >
@@ -398,7 +566,7 @@ exports[`viser dialogpanel 1`] = `
           />
         </div>
         <div
-          className="skjemaelement c8"
+          className="skjemaelement c14"
         >
           <label
             className="skjemaelement__label"
@@ -436,7 +604,7 @@ exports[`viser dialogpanel 1`] = `
           />
         </div>
         <div
-          className="alertstripe c5 alertstripe--info"
+          className="alertstripe c11 alertstripe--info"
         >
           <span
             aria-label="info"
@@ -471,91 +639,7 @@ exports[`viser dialogpanel 1`] = `
         </div>
       </div>
       <div
-        className="c9"
-      >
-        <button
-          className="knapp c10 knapp--hoved"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          <svg
-            className="c11"
-            height="24px"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 24 24"
-            width="24px"
-            x="0px"
-            xmlns="http://www.w3.org/2000/svg"
-            y="0px"
-          >
-            <path
-              d="M20.854,6.146l-6-6C14.76,0.053,14.632,0,14.5,0h-11C3.224,0,3,0.224,3,0.5v23C3,23.776,3.224,24,3.5,24h17  c0.276,0,0.5-0.224,0.5-0.5v-17C21,6.367,20.947,6.24,20.854,6.146z M7.5,7H12c0.276,0,0.5,0.224,0.5,0.5S12.276,8,12,8H7.5  C7.224,8,7,7.776,7,7.5S7.224,7,7.5,7z M16.5,20h-9C7.224,20,7,19.776,7,19.5S7.224,19,7.5,19h9c0.276,0,0.5,0.224,0.5,0.5  S16.776,20,16.5,20z M16.5,17h-9C7.224,17,7,16.776,7,16.5S7.224,16,7.5,16h9c0.276,0,0.5,0.224,0.5,0.5S16.776,17,16.5,17z   M16.5,14h-9C7.224,14,7,13.776,7,13.5S7.224,13,7.5,13h9c0.276,0,0.5,0.224,0.5,0.5S16.776,14,16.5,14z M16.5,11h-9  C7.224,11,7,10.776,7,10.5S7.224,10,7.5,10h9c0.276,0,0.5,0.224,0.5,0.5S16.776,11,16.5,11z M14.5,6.5v-6l6,6H14.5z"
-              fill="currentColor"
-            />
-          </svg>
-          <span
-            className="sr-only"
-          >
-            Standardtekster
-          </span>
-        </button>
-        <div
-          className="c12"
-        >
-          <div
-            className="skjemaelement textarea__container"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Melding
-            </label>
-            <div
-              className="textarea--medMeta__wrapper"
-            >
-              <textarea
-                className="skjemaelement__input textarea--medMeta"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
-                style={
-                  Object {
-                    "height": "30px",
-                  }
-                }
-                type="text"
-                value=""
-              />
-              <p
-                className="textarea--medMeta__teller"
-              >
-                <span
-                  aria-live="polite"
-                  className="teller-tekst"
-                >
-                  Du har 5000 tegn igjen
-                </span>
-              </p>
-            </div>
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
-            <div
-              aria-hidden="true"
-              className="textareamirror"
-            />
-          </div>
-        </div>
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-      <div
-        className="c13"
+        className="c15"
       >
         <button
           className="knapp knapp--hoved"

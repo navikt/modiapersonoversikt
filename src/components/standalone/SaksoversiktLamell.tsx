@@ -37,23 +37,21 @@ const Styles = styled.div`
 
 function Routing() {
     const dyplenker = useInfotabsDyplenker();
-    return (
-        <MemoryRouter>
-            <Route path={[dyplenker.saker.route, '/']} component={SaksoversiktContainer} />
-        </MemoryRouter>
-    );
+    return <Route path={[dyplenker.saker.route, '/']} component={SaksoversiktContainer} />;
 }
 
 function SaksoversiktLamell(props: Props) {
     return (
         <ErrorBoundary boundaryName="SaksoversiktLamell">
             <Provider store={store}>
-                <Styles>
-                    <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
-                    <LyttPåNyttFnrIReduxOgHentPersoninfo />
-                    <FetchFeatureToggles />
-                    <Routing />
-                </Styles>
+                <MemoryRouter>
+                    <Styles>
+                        <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
+                        <LyttPåNyttFnrIReduxOgHentPersoninfo />
+                        <FetchFeatureToggles />
+                        <Routing />
+                    </Styles>
+                </MemoryRouter>
             </Provider>
         </ErrorBoundary>
     );

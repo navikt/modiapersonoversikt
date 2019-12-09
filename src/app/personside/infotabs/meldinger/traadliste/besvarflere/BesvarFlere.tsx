@@ -18,7 +18,7 @@ import { AppState } from '../../../../../../redux/reducers';
 import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../../../rest/utils/postResource';
 import { useOnMount, useRestResource } from '../../../../../../utils/customHooks';
 import { setValgtTraadDialogpanel } from '../../../../../../redux/oppgave/actions';
-import { loggError } from '../../../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../../../utils/frontendLogger';
 import { useInfotabsDyplenker } from '../../../dyplenker';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Feilmelding } from '../../../../../../utils/Feilmelding';
@@ -56,10 +56,10 @@ const FormStyle = styled.form`
 const TraadStyle = styled.div`
     display: flex;
     > *:first-child {
-        flex: 30% 1 1;
+        flex: 35% 1 1;
     }
     > *:last-child {
-        flex: 70% 1 1;
+        flex: 65% 1 1;
     }
     > * {
         overflow: auto;
@@ -76,13 +76,14 @@ const TraadlistStyle = styled.ol`
     }
 `;
 
-const TraadVisningStyle = styled.section`
+const TraadVisningStyle = styled.ol`
     padding: ${theme.margin.layout};
     flex-grow: 1;
 `;
 
 const CheckboxWrapper = styled.div`
-    padding: 1rem;
+    margin: 0 0.5rem;
+    align-self: center;
     transform: translateY(-0.5rem);
 `;
 
@@ -130,7 +131,7 @@ function getTraaderSomSkalSlaasSammen(traader: Traad[]): SlaaSammenTraad[] {
 function Meldingsvisning({ traad }: { traad: Traad }) {
     const meldinger = traad.meldinger.map(melding => <EnkeltMelding melding={melding} sokeord={''} />);
 
-    return <TraadVisningStyle>{meldinger}</TraadVisningStyle>;
+    return <TraadVisningStyle role="tabpanel">{meldinger}</TraadVisningStyle>;
 }
 
 function ListeElement(props: {
@@ -154,6 +155,7 @@ function ListeElement(props: {
             erValgt={props.shown}
             onClick={runIfEventIsNotInsideRef(checkBoxRef, props.visTraad)}
             tillegskomponent={checkbox}
+            listeId="traadliste-slaa-sammen"
         />
     );
 }
@@ -170,6 +172,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
     const dyplenker = useInfotabsDyplenker();
 
     useOnMount(() => {
+        loggEvent('Åpnet', 'BesvarFlere');
         dispatch(slaaSammenResource.actions.reset);
     });
 
@@ -201,14 +204,25 @@ function BesvarFlere(props: Props & RouteComponentProps) {
             setFeilmelding('Du må minst velge to tråder');
             return;
         }
+        const temagruppe = getTemagruppeForTraader(valgteTraader);
+        const traaderSomSkalSlaasSammen = getTraaderSomSkalSlaasSammen(valgteTraader);
+        if (!temagruppe) {
+            const message = 'Kunne ikke finne temagruppe for tråder, kontakt brukerstøtte';
+            setFeilmelding(message);
+            loggError(Error(message), 'Kunne ikke finne temagruppe for tråder som skulle slåes sammen', {
+                traader: JSON.stringify(traaderSomSkalSlaasSammen)
+            });
+            return;
+        }
         if (isPosting(slaaSammenResource)) {
             return;
         }
         const request: SlaaSammenRequest = {
-            temagruppe: getTemagruppeForTraader(valgteTraader),
-            traader: getTraaderSomSkalSlaasSammen(valgteTraader)
+            temagruppe: temagruppe,
+            traader: traaderSomSkalSlaasSammen
         };
         const callback = (response: SlaaSammenResponse) => {
+            loggEvent('SloSammenOppgaver', 'BesvarFlere');
             dispatch(setTråderITråderResource(response.traader));
             dispatch(resetPlukkOppgave);
             dispatch(reloadTildelteOppgaver);
@@ -245,7 +259,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
                 <Ingress>Slå sammen oppgaver</Ingress>
             </TittelWrapper>
             <TraadStyle>
-                <TraadlistStyle>{traadkomponenter}</TraadlistStyle>
+                <TraadlistStyle role="tablist">{traadkomponenter}</TraadlistStyle>
                 <Meldingsvisning traad={traadSomSkalVises} />
             </TraadStyle>
             <KnappWrapper>

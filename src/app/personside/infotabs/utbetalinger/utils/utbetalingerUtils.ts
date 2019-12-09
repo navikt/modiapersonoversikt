@@ -29,6 +29,19 @@ export function trekkBelopAscComparator(a: Trekk, b: Trekk) {
     return a.trekkbeløp - b.trekkbeløp;
 }
 
+export function getUtbetalingerForSiste30DagerDatoer() {
+    return {
+        fra: moment()
+            .subtract(30, 'day')
+            .startOf('day')
+            .toDate(),
+        til: moment()
+            .add(100, 'day')
+            .endOf('day')
+            .toDate()
+    };
+}
+
 export function getFraDateFromFilter(filter: UtbetalingFilterState): Date {
     switch (filter.periode.radioValg) {
         case PeriodeValg.INNEVÆRENDE_ÅR:
@@ -44,10 +57,7 @@ export function getFraDateFromFilter(filter: UtbetalingFilterState): Date {
             return filter.periode.egendefinertPeriode.fra;
         case PeriodeValg.SISTE_30_DAGER:
         default:
-            return moment()
-                .subtract(30, 'day')
-                .startOf('day')
-                .toDate();
+            return getUtbetalingerForSiste30DagerDatoer().fra;
     }
 }
 
@@ -63,11 +73,7 @@ export function getTilDateFromFilter(filter: UtbetalingFilterState): Date {
         case PeriodeValg.INNEVÆRENDE_ÅR:
         case PeriodeValg.SISTE_30_DAGER:
         default:
-            const datoSomInkludererFremtidigeUtbetalinger = moment()
-                .add(100, 'day')
-                .endOf('day')
-                .toDate();
-            return datoSomInkludererFremtidigeUtbetalinger;
+            return getUtbetalingerForSiste30DagerDatoer().til;
     }
 }
 

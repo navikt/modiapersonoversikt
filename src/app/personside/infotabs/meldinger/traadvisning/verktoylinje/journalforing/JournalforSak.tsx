@@ -42,7 +42,6 @@ const SuksessStyling = styled.div`
         margin-top: 1rem;
     }
 `;
-
 export function JournalforSak(props: Props) {
     const dispatch = useDispatch();
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
@@ -56,7 +55,7 @@ export function JournalforSak(props: Props) {
 
     const journalfor = () => {
         setSubmitting(true);
-        post(`${apiBaseUri}/journalforing/${fnr}/${traadId}`, sak).then(
+        post(`${apiBaseUri}/journalforing/${fnr}/${traadId}`, sak, 'Journalføring').then(
             () => {
                 setSubmitting(false);
                 setJournalforingSuksess(true);
@@ -64,8 +63,8 @@ export function JournalforSak(props: Props) {
             },
             error => {
                 setSubmitting(false);
-                setError('Kunne ikke gjennomføre journalføring.');
-                loggError(error, `Kunne ikke gjennomføre journalføring.`, { traadId, saksId: sak.saksId });
+                setError('Kunne ikke gjennomføre journalføring');
+                loggError(error, `Kunne ikke gjennomføre journalføring`, { traadId: traadId, saksId: sak.saksId });
             }
         );
     };
@@ -74,7 +73,9 @@ export function JournalforSak(props: Props) {
         return (
             <SuksessStyling>
                 <AlertStripeSuksess>Tråden ble journalført</AlertStripeSuksess>
-                <Hovedknapp onClick={lukkPanel}>Lukk</Hovedknapp>
+                <Hovedknapp autoFocus={true} onClick={lukkPanel}>
+                    Lukk
+                </Hovedknapp>
             </SuksessStyling>
         );
     }
@@ -91,7 +92,13 @@ export function JournalforSak(props: Props) {
                 className="blokk-m"
             />
             {error && <AlertStripeFeil className="blokk-xs">{error}</AlertStripeFeil>}
-            <Hovedknapp className="blokk-xs" onClick={journalfor} spinner={submitting} autoDisableVedSpinner>
+            <Hovedknapp
+                autoFocus={true}
+                className="blokk-xs"
+                onClick={journalfor}
+                spinner={submitting}
+                autoDisableVedSpinner
+            >
                 Journalfør
             </Hovedknapp>
             <Flatknapp htmlType="button" onClick={tilbake}>

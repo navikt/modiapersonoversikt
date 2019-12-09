@@ -1,13 +1,15 @@
 import { postConfig } from './config';
-import { loggError } from '../utils/frontendLogger';
+import { loggError, loggEvent } from '../utils/frontendLogger';
 
-export function post(uri: string, body: object) {
+export function post(uri: string, body: object | string, loggLocation: string) {
+    loggEvent('Post', loggLocation);
     return fetch(uri, postConfig(body)).then(response => {
         if (response.ok && !response.redirected) {
             return parseResponse(response);
         } else {
             return response.text().then(text => {
-                loggError(Error('Feil ved posting på ' + uri), text, { request: body });
+                loggEvent('Post-failed', loggLocation);
+                loggError(Error(`Post failed in ${loggLocation} on: ${uri}`), text, { request: body });
                 return Promise.reject(text);
             });
         }

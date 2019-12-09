@@ -1,19 +1,24 @@
 import React, { FormEvent, ReactNode, useEffect, useState } from 'react';
-import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
+import { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import styled from 'styled-components';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
 import useFieldState, { FieldState } from '../../../../../utils/hooks/use-field-state';
-import { autofullfor, byggAutofullforMap, erGyldigValg, sokEtterTekster } from './sokUtils';
+import { erGyldigValg, sokEtterTekster } from './sokUtils';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import StandardTekstVisning from './StandardTekstVisning';
 import * as StandardTekster from './domain';
 import theme from '../../../../../styles/personOversiktTheme';
 import TagInput from '../../../../../components/tag-input/tag-input';
 import { captitalize } from '../../../../../utils/stringFormatting';
-import MultiRestResourceConsumer from '../../../../../rest/consumer/MultiRestResourceConsumer';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
+import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullførData } from '../autofullforUtils';
+import { useRestResource } from '../../../../../utils/customHooks';
+import { hasData as restResourceHasData } from '../../../../../rest/utils/restResource';
+import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
+import { loggEvent } from '../../../../../utils/frontendLogger';
+import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -70,37 +75,54 @@ function velgTekst(
     settTekst: (tekst: string) => void,
     tekst: StandardTekster.Tekst | undefined,
     locale: string,
-    data: StandardTekster.AutofullforData
+    autofullforData?: AutofullforData
 ) {
     return (event: FormEvent) => {
         event.preventDefault();
         event.stopPropagation();
         if (erGyldigValg(tekst, locale)) {
+            loggEvent('Velg tekst', 'Standardtekster');
             const localeTekst = tekst.innhold[locale];
-            const nokler = byggAutofullforMap(data.person, data.kontor, data.saksbehandler, locale);
-            const ferdigTekst = captitalize(autofullfor(localeTekst, nokler));
-
-            settTekst(ferdigTekst);
+            if (autofullforData) {
+                const nokler = byggAutofullforMap(
+                    autofullforData.person,
+                    autofullforData.kontor,
+                    autofullforData.saksbehandler,
+                    locale
+                );
+                const ferdigTekst = captitalize(autofullfor(localeTekst, nokler));
+                settTekst(ferdigTekst);
+            } else {
+                settTekst(localeTekst);
+            }
         }
     };
 }
 
 function StandardTekstSok(props: Props) {
     const inputRef = React.useRef<HTMLInputElement>();
-    const data = useFetch<StandardTekster.Tekster>('/modiapersonoversikt-skrivestotte/skrivestotte');
-    const sokefelt = useFieldState('');
-    const debouncedSokefelt = useDebounce(sokefelt.input.value, 100);
-    const [filtrerteTekster, settFiltrerteTekster] = useState(() => sokEtterTekster(data, debouncedSokefelt));
+    const standardTekster = useFetchWithLog<StandardTekster.Tekster>(
+        '/modiapersonoversikt-skrivestotte/skrivestotte',
+        'Standardtekster'
+    );
+    const erKontaktSenter = useErKontaktsenter();
+    const sokefelt = useFieldState(erKontaktSenter ? '#ks ' : '');
+    const debouncedSokefelt = useDebounce(sokefelt.input.value, 250);
+    const [filtrerteTekster, settFiltrerteTekster] = useState(() =>
+        sokEtterTekster(standardTekster, debouncedSokefelt)
+    );
     const valgt = useFieldState('');
     const valgtLocale = useFieldState('');
     const valgtTekst = filtrerteTekster.find(tekst => tekst.id === valgt.input.value);
+    const personResource = useRestResource(resources => resources.personinformasjon);
+    const autofullforData = useAutoFullførData();
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
     useDefaultValgtTekst(filtrerteTekster, valgt);
 
     useEffect(() => {
-        settFiltrerteTekster(sokEtterTekster(data, debouncedSokefelt));
-    }, [settFiltrerteTekster, data, debouncedSokefelt]);
+        settFiltrerteTekster(sokEtterTekster(standardTekster, debouncedSokefelt));
+    }, [settFiltrerteTekster, standardTekster, debouncedSokefelt]);
 
     const velg = (offset: number) => () => {
         const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
@@ -115,11 +137,11 @@ function StandardTekstSok(props: Props) {
     useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], inputRef.current);
 
     let content: ReactNode = null;
-    if (isPending(data)) {
+    if (isPending(standardTekster)) {
         content = <Spinner type="XL" />;
-    } else if (hasError(data)) {
+    } else if (hasError(standardTekster)) {
         content = <Feilmelding feil={{ feilmelding: 'Kunne ikke laste inn standardtekster' }} />;
-    } else if (hasData(data)) {
+    } else if (hasData(standardTekster)) {
         content = (
             <StandardTekstVisning
                 tekster={filtrerteTekster}
@@ -127,35 +149,31 @@ function StandardTekstSok(props: Props) {
                 valgt={valgt}
                 valgtLocale={valgtLocale}
                 valgtTekst={valgtTekst}
+                harAutofullførData={!!autofullforData}
             />
         );
     }
 
+    if (!restResourceHasData(personResource)) {
+        return null;
+    }
+
     return (
-        <>
-            <MultiRestResourceConsumer<StandardTekster.AutofullforData>
-                getResource={restResources => ({
-                    person: restResources.personinformasjon,
-                    saksbehandler: restResources.innloggetSaksbehandler,
-                    kontor: restResources.brukersNavKontor
-                })}
-            >
-                {(data: StandardTekster.AutofullforData) => (
-                    <FormContainer onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, data)}>
-                        <Sokefelt>
-                            <TagInput
-                                {...sokefelt.input}
-                                inputRef={inputRef}
-                                name="standardtekstsok"
-                                label="Søk etter standardtekster"
-                                autoFocus={true}
-                            />
-                        </Sokefelt>
-                        {content}
-                    </FormContainer>
-                )}
-            </MultiRestResourceConsumer>
-        </>
+        <FormContainer onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
+            <Sokefelt>
+                <TagInput
+                    {...sokefelt.input}
+                    inputRef={inputRef}
+                    name="standardtekstsok"
+                    label="Søk etter standardtekster"
+                    autoFocus={true}
+                />
+            </Sokefelt>
+            <h3 className="sr-only" aria-live="polite">
+                {filtrerteTekster.length} tekster traff søket
+            </h3>
+            {content}
+        </FormContainer>
     );
 }
 

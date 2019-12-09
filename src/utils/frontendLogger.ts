@@ -1,14 +1,30 @@
-import { isDevelopment } from './environment';
-import { getSaksbehandlerIdent } from './loggInfo/getSaksbehandlerIdent';
+import { isDevelopment, isTest } from './environment';
 import md5 from 'md5';
 import { detect } from 'detect-browser';
+import { erNyePersonoversikten } from './erNyPersonoversikt';
+import { useRestResource } from './customHooks';
+import { useEffect } from 'react';
+import { hasData } from '../rest/utils/restResource';
+
+let ident = 'ikke satt';
+let enhet = 'ikke valgt';
+
+export function useInitializeLogger() {
+    const innloggetSaksbehResource = useRestResource(resources => resources.innloggetSaksbehandler);
+
+    useEffect(() => {
+        if (hasData(innloggetSaksbehResource)) {
+            ident = innloggetSaksbehResource.data.ident;
+            enhet = innloggetSaksbehResource.data.enhetId;
+        }
+    }, [innloggetSaksbehResource]);
+}
 
 interface ValuePairs {
     [name: string]: string | number | boolean | object | undefined;
 }
 
 function frontendLoggerIsInitialized(): boolean {
-    // @ts-ignore
     if (!window['frontendlogger']) {
         console.warn('frontend-logger er ikke satt opp riktig');
         return false;
@@ -24,13 +40,11 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
     if (!uselogger()) {
         return;
     }
-    const identHash = md5(getSaksbehandlerIdent() || '');
     const event = {
         table: 'modiapersonoversikt',
-        fields: { ...fields, identHash: identHash },
-        tags: { action: action, location: location, ...extraTags }
+        fields: { ...fields, identHash: md5(ident) },
+        tags: { action: action, location: location, erNyePersonoversikten: erNyePersonoversikten(), ...extraTags }
     };
-    // @ts-ignore
     window['frontendlogger'].event(
         event.table,
         emptyStringToUndefined(event.fields),
@@ -39,36 +53,37 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
 }
 
 export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
+    if (isTest()) {
+        return;
+    }
     const info = {
         message: message,
         ...ekstraFelter
     };
+    console.info(info);
     if (uselogger()) {
-        // @ts-ignore
         window['frontendlogger'].info(info);
-    } else {
-        console.info(info);
     }
 }
 
 export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
-    loggErrorUtenSaksbehandlerIdent(error, message, { ...ekstraFelter, saksbehandler: getSaksbehandlerIdent() });
-}
-
-export function loggErrorUtenSaksbehandlerIdent(error: Error, message?: string, ekstraFelter?: ValuePairs) {
+    if (isTest()) {
+        return;
+    }
     const browser = detect();
     const info = {
         message: `${message ? message + ': ' : ''} ${error.name} ${error.message}`,
         url: document.URL,
         error: error.stack,
         browser: (browser && browser.name) || undefined,
+        saksbehandler: ident,
+        enhet: enhet,
         ...ekstraFelter
     };
+    console.error(info);
     if (uselogger()) {
-        // @ts-ignore
+        loggEvent('Error', 'Logger');
         window['frontendlogger'].error(info);
-    } else {
-        console.error(error, info);
     }
 }
 

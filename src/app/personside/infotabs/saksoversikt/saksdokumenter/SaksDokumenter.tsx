@@ -19,9 +19,11 @@ import { sakerTest } from '../../dyplenkeTest/utils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListe from '../sakstemaliste/SakstemaListe';
 import { useEffect } from 'react';
+import usePaginering from '../../../../../utils/hooks/usePaginering';
+import { usePrevious } from '../../../../../utils/customHooks';
 
 interface Props {
-    valgtSakstema?: Sakstema;
+    valgtSakstema: Sakstema;
     avsenderFilter: DokumentAvsenderFilter;
     erStandaloneVindu: boolean;
     oppdaterAvsenderfilter: (filter: Partial<DokumentAvsenderFilter>) => void;
@@ -162,10 +164,7 @@ function DokumentListe(props: DokumentListeProps) {
         );
     }
 
-    const dokumenterGruppert: GroupedArray<DokumentMetadata> = groupArray(
-        props.filtrerteDokumenter.sort(datoSynkende(dokumentmetadata => saksdatoSomDate(dokumentmetadata.dato))),
-        årForDokument
-    );
+    const dokumenterGruppert: GroupedArray<DokumentMetadata> = groupArray(props.filtrerteDokumenter, årForDokument);
 
     const årsgrupper = dokumenterGruppert.map((gruppe: ArrayGroup<DokumentMetadata>) => (
         <Dokumentgruppe
@@ -176,34 +175,41 @@ function DokumentListe(props: DokumentListeProps) {
         />
     ));
 
-    return (
-        <>
-            <DokumenterListe aria-label="Dokumenter gruppert på årstall">{årsgrupper}</DokumenterListe>
-            <Luft />
-            <AlertStripeInfo>
-                Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter
-                som er journalført vises fra og med 4.juni 2016
-            </AlertStripeInfo>
-        </>
-    );
+    return <DokumenterListe aria-label="Dokumenter gruppert på årstall">{årsgrupper}</DokumenterListe>;
 }
+
+const PaginatorStyling = styled.div`
+    label {
+        ${theme.visuallyHidden};
+    }
+    .skjemaelement {
+        margin: 1rem 0 0;
+    }
+`;
+
+const PrevNextButtonsStyling = styled.div`
+    margin-top: 0.5rem;
+`;
 
 function SaksDokumenter(props: Props) {
     const tittelRef = React.createRef<HTMLDivElement>();
+    const filtrerteDokumenter = props.valgtSakstema.dokumentMetadata
+        .filter(metadata => hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter))
+        .sort(datoSynkende(dokumentmetadata => saksdatoSomDate(dokumentmetadata.dato)));
+    const paginering = usePaginering(filtrerteDokumenter, 50, 'journalpost');
 
+    const prevSakstema = usePrevious(props.valgtSakstema);
     useEffect(
         function scrollToTopVedNyttSakstema() {
-            if (!props.valgtSakstema) {
+            if (!props.valgtSakstema || !prevSakstema) {
                 return;
             }
-            tittelRef.current && tittelRef.current.focus();
+            if (prevSakstema !== props.valgtSakstema) {
+                tittelRef.current && tittelRef.current.focus();
+            }
         },
-        [props.valgtSakstema, tittelRef]
+        [props.valgtSakstema, tittelRef, prevSakstema]
     );
-
-    if (!props.valgtSakstema) {
-        return <AlertStripeInfo>Ingen sakstema valgt</AlertStripeInfo>;
-    }
 
     const filterCheckboxer = (
         <Form aria-label="Filter">
@@ -233,9 +239,6 @@ function SaksDokumenter(props: Props) {
     ) : (
         tittel
     );
-    const filtrerteDokumenter = props.valgtSakstema.dokumentMetadata.filter(metadata =>
-        hentRiktigAvsenderfilter(metadata.avsender, props.avsenderFilter)
-    );
 
     return (
         <SaksdokumenterStyling aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
@@ -252,8 +255,17 @@ function SaksDokumenter(props: Props) {
                     <ToggleViktigAaViteKnapp valgtSakstema={props.valgtSakstema} />
                 </div>
             </InfoOgFilterPanel>
+            {paginering.pageSelect && <PaginatorStyling>{paginering.pageSelect}</PaginatorStyling>}
             <ViktigÅVite valgtSakstema={props.valgtSakstema} />
-            <DokumentListe sakstema={props.valgtSakstema} filtrerteDokumenter={filtrerteDokumenter} />
+            <DokumentListe sakstema={props.valgtSakstema} filtrerteDokumenter={paginering.currentPage} />
+            {paginering.prevNextButtons && (
+                <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
+            )}
+            <Luft />
+            <AlertStripeInfo>
+                Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter
+                som er journalført vises fra og med 4.juni 2016
+            </AlertStripeInfo>
         </SaksdokumenterStyling>
     );
 }

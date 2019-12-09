@@ -69,10 +69,13 @@ export const theme = {
     media: {
         smallScreen: 'max-width: 35rem',
         wideScreen: 'min-width: 35rem',
-        utbetalinger: '80rem'
+        utbetalinger: {
+            minWidth: `${80 * 16}px`,
+            maxWidth: `${80 * 16 - 1}px`
+        }
     },
     margin: {
-        layout: '.8rem',
+        layout: '.5rem',
         px50: pxToRem(50),
         px40: pxToRem(40),
         px30: pxToRem(30),

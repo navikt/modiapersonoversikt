@@ -60,11 +60,6 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   border-color: #0067c5;
 }
 
-.c6 {
-  padding-top: .8rem;
-  color: #d0021b;
-}
-
 .c0 .inputPanelGruppe__inner {
   display: -webkit-box;
   display: -webkit-flex;
@@ -117,8 +112,10 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           disabled={false}
           id="Helt tilfeldig ID"
           onChange={[Function]}
+          value=""
         >
           <option
+            disabled={true}
             value=""
           >
             Velg tema
@@ -157,8 +154,10 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           disabled={false}
           id="Helt tilfeldig ID"
           onChange={[Function]}
+          value=""
         >
           <option
+            disabled={true}
             value=""
           >
             Ingen tema valgt
@@ -187,8 +186,10 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           disabled={false}
           id="Helt tilfeldig ID"
           onChange={[Function]}
+          value=""
         >
           <option
+            disabled={true}
             value=""
           >
             Ingen tema valgt
@@ -353,87 +354,31 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
       </div>
     </div>
     <div
-      className="inputPanelGruppe"
+      className="skjemaelement"
     >
-      <fieldset
-        className="skjema__fieldset"
+      <label
+        className="skjemaelement__label"
+        htmlFor="Helt tilfeldig ID"
       >
-        <legend
-          className="skjema__legend"
+        Velg prioritert
+      </label>
+      <div
+        className="selectContainer input--fullbredde"
+      >
+        <select
+          className="skjemaelement__input"
+          disabled={false}
+          id="Helt tilfeldig ID"
+          onChange={[Function]}
+          value="NORM"
         >
-          Prioritet
-        </legend>
-        <div
-          className="inputPanelGruppe__inner"
-        >
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
+          <option
+            value=""
           >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              id="Helt tilfeldig ID"
-              name="Prioritet"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-              value="HOY"
-            />
-            <span
-              className="inputPanel__label"
-            >
-              Høy
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel inputPanel--checked"
-            htmlFor="Helt tilfeldig ID"
-          >
-            <input
-              aria-checked={true}
-              checked={true}
-              className="inputPanel__field"
-              id="Helt tilfeldig ID"
-              name="Prioritet"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-              value="NORM"
-            />
-            <span
-              className="inputPanel__label"
-            >
-              Normal
-            </span>
-          </label>
-          <label
-            className="inputPanel radioPanel"
-            htmlFor="Helt tilfeldig ID"
-          >
-            <input
-              aria-checked={false}
-              checked={false}
-              className="inputPanel__field"
-              id="Helt tilfeldig ID"
-              name="Prioritet"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="radio"
-              value="LAV"
-            />
-            <span
-              className="inputPanel__label"
-            >
-              Lav
-            </span>
-          </label>
-        </div>
-      </fieldset>
+            Ingen tema valgt
+          </option>
+        </select>
+      </div>
       <div
         aria-live="assertive"
         role="alert"
@@ -492,9 +437,5 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
       </button>
     </div>
   </form>
-  <div
-    aria-live="polite"
-    className="c6"
-  />
 </div>
 `;

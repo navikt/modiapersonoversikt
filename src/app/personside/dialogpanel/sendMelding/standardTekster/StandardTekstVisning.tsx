@@ -15,6 +15,7 @@ import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import useAlwaysInViewport from '../../../../../utils/hooks/use-always-in-viewport';
 import { Rule } from '../../../../../components/tekstomrade/parser/domain';
 import { erGyldigValg } from './sokUtils';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
     tekster: Array<StandardTekster.Tekst>;
@@ -22,6 +23,7 @@ interface Props {
     valgt: FieldState;
     valgtLocale: FieldState;
     valgtTekst?: StandardTekster.Tekst;
+    harAutofullførData: boolean;
 }
 
 const Container = styled.div`
@@ -102,6 +104,10 @@ const Tag = styled(({ highlight, ...rest }) => <Knapp {...rest} />)`
     }
 `;
 
+const StyledAlertstripeAdvarsel = styled(AlertStripeAdvarsel)`
+    margin-bottom: 0.5rem;
+`;
+
 function TekstValg({
     tekst,
     valgt,
@@ -131,7 +137,9 @@ function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; so
         return null;
     }
 
-    const { tags } = parseTekst(sokefelt.input.value);
+    const { tags: queryTags } = parseTekst(sokefelt.input.value);
+    const tags = queryTags.map(tag => tag.toLowerCase());
+
     const tagElements = valgtTekst.tags
         .filter(tag => tag.length > 0)
         .filter((tag, index, list) => list.indexOf(tag) === index)
@@ -166,6 +174,7 @@ function Preview({ tekst, locale, sokefelt, highlightRule }: PreviewProps) {
     }
     return (
         <PreviewWrapper>
+            <h3 className="sr-only">Forhåndsvisning</h3>
             <Systemtittel className="blokk-xs">{tekst && tekst.overskrift}</Systemtittel>
             <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]} className="typo-normal blokk-m">
                 {tekst && tekst.innhold[locale]}
@@ -188,6 +197,7 @@ function StandardTekstVisning(props: Props) {
 
     return (
         <Container>
+            <h3 className="sr-only">Standardtekster</h3>
             <Liste className="standardtekster__liste">{tekstElementer}</Liste>
             <PreviewContainer>
                 <Preview
@@ -197,10 +207,18 @@ function StandardTekstVisning(props: Props) {
                     highlightRule={highlightRule}
                 />
                 <VelgTekst>
-                    <LocaleVelgerContainer>
-                        <LocaleVelger tekst={valgtTekst} valgt={valgtLocale} />
-                    </LocaleVelgerContainer>
-                    <VelgKnapp>Velg</VelgKnapp>
+                    {!props.harAutofullførData && (
+                        <StyledAlertstripeAdvarsel>
+                            Kunne ikke laste autofullfør-data. Du må gå over teksten og fylle inn manuelt (feks:
+                            [bruker.navn]).
+                        </StyledAlertstripeAdvarsel>
+                    )}
+                    <div>
+                        <LocaleVelgerContainer>
+                            <LocaleVelger tekst={valgtTekst} valgt={valgtLocale} />
+                        </LocaleVelgerContainer>
+                        <VelgKnapp>Velg</VelgKnapp>
+                    </div>
                 </VelgTekst>
             </PreviewContainer>
         </Container>

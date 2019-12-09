@@ -3,6 +3,12 @@ import LenkepanelPersonoversikt from '../../../../../utils/LenkepanelPersonovers
 import { finnMiljoStreng } from '../../../../../utils/url-utils';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
+import styled from 'styled-components';
+import theme from '../../../../../styles/personOversiktTheme';
+
+const StyledLenkepanelPersonoversikt = styled(LenkepanelPersonoversikt)`
+    margin-bottom: ${theme.margin.layout};
+`;
 
 const utbetalingUrlPart = '?oppstart_skj=UB_22_MELDEHISTORIKK&fodselsnr=';
 
@@ -16,7 +22,7 @@ const arenaURL = (fnr: string) => {
 function Arenalenke() {
     const fødselsnummer = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const url = arenaURL(fødselsnummer);
-    return <LenkepanelPersonoversikt url={url}>Meldekort i Arena</LenkepanelPersonoversikt>;
+    return <StyledLenkepanelPersonoversikt url={url}>Meldekort i Arena</StyledLenkepanelPersonoversikt>;
 }
 
 export default Arenalenke;

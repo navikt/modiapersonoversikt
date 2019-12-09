@@ -18,7 +18,7 @@ function Arbeidssituasjon(props: Props) {
     return (
         <YtelserInfoGruppe tittel="Arbeidssituasjon">
             <DescriptionList entries={sykemeldingEntries} />
-            <ArbeidsForholdListe arbeidsforhold={props.sykepenger.arbeidsforholdListe} />
+            <ArbeidsForholdListe ytelse={props.sykepenger} arbeidsForhold={props.sykepenger.arbeidsforholdListe} />
         </YtelserInfoGruppe>
     );
 }

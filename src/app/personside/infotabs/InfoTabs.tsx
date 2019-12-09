@@ -18,6 +18,9 @@ import { useFødselsnummer } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
+import { useEffect, useRef } from 'react';
+import { loggEvent } from '../../../utils/frontendLogger';
+import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 
 type Props = RouteComponentProps<{}>;
 
@@ -39,6 +42,8 @@ export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
     return openTab || INFOTABS.OVERSIKT;
 }
 
+export const InfotabsFokusContext = React.createContext<() => void>(() => null);
+
 function InfoTabs(props: Props) {
     const fødselsnummer = useFødselsnummer();
     const paths = usePaths();
@@ -46,37 +51,50 @@ function InfoTabs(props: Props) {
     const dyplenker = useInfotabsDyplenker();
     const dispatch = useDispatch();
 
+    const focusOnOpenTab = () => {
+        ref.current && ref.current.focus();
+    };
     const updateRouterPath = (newTab: INFOTABS) => {
         const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`;
         const newPath = props.history.location.pathname !== path;
         if (newPath) {
-            ref.current && ref.current.focus();
+            focusOnOpenTab();
             props.history.push(path);
         }
         dispatch(toggleVisittkort(false));
     };
 
     const openTab = getOpenTabFromRouterPath(props.history.location.pathname);
+
+    useEffect(() => {
+        loggEvent(openTab, 'Tabs');
+    }, [openTab]);
+
+    const keepScrollRef = useRef<HTMLDivElement>(null);
+    const storeCroll = useKeepScroll(keepScrollRef, 'Opentab-' + openTab);
+
     return (
         <ErrorBoundary boundaryName="InfoTabs">
-            <HandleInfotabsHotkeys />
-            <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
-            <ErrorBoundary boundaryName={'OpenTab'}>
-                <OpenTab>
-                    <h2 ref={ref} tabIndex={-1} className="sr-only">
-                        {openTab}
-                    </h2>
-                    <Switch location={props.location}>
-                        <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
-                        <Route path={paths.oppfolging} component={OppfolgingContainer} />
-                        <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
-                        <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
-                        <Route path={dyplenker.ytelser.route} component={YtelserContainer} />
-                        <Route path={paths.varsler} component={VarslerContainer} />
-                        <Route path={''} component={Oversikt} />
-                    </Switch>
-                </OpenTab>
-            </ErrorBoundary>
+            <InfotabsFokusContext.Provider value={focusOnOpenTab}>
+                <HandleInfotabsHotkeys />
+                <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
+                <ErrorBoundary boundaryName={'Open tab: ' + openTab}>
+                    <OpenTab ref={keepScrollRef} onScroll={storeCroll}>
+                        <h2 ref={ref} tabIndex={-1} className="sr-only">
+                            {openTab}
+                        </h2>
+                        <Switch location={props.location}>
+                            <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
+                            <Route path={paths.oppfolging} component={OppfolgingContainer} />
+                            <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
+                            <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
+                            <Route path={dyplenker.ytelser.route} component={YtelserContainer} />
+                            <Route path={paths.varsler} component={VarslerContainer} />
+                            <Route path={''} component={Oversikt} />
+                        </Switch>
+                    </OpenTab>
+                </ErrorBoundary>
+            </InfotabsFokusContext.Provider>
         </ErrorBoundary>
     );
 }

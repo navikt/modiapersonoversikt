@@ -52,9 +52,10 @@ interface RouterProps {
 type Props = RouteComponentProps<RouterProps>;
 
 function Routing(props: Props) {
+    const fnr = useFødselsnummer();
     return (
         <Switch location={props.location}>
-            <Route path={`${paths.personUri}/:fodselsnummer/`} component={Personside} />
+            <Route key={fnr} path={`${paths.personUri}/:fodselsnummer/`} component={Personside} />
             <Route
                 path={`${paths.saksoversikt}/:fodselsnummer/`}
                 render={routeProps => (
@@ -64,7 +65,7 @@ function Routing(props: Props) {
                     />
                 )}
             />
-            <Route path={`${paths.brukerprofil}/:fodselsnummer/`} component={() => <Brukerprofilside />} />
+            <Route key={fnr} path={`${paths.brukerprofil}/:fodselsnummer/`} component={() => <Brukerprofilside />} />
             <Route component={Startbilde} />
         </Switch>
     );
