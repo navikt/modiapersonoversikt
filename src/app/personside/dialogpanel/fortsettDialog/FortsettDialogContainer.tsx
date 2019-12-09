@@ -15,7 +15,7 @@ import {
 } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { loggError, loggEvent } from '../../../../utils/frontendLogger';
+import { loggError } from '../../../../utils/frontendLogger';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import {
@@ -24,7 +24,6 @@ import {
     FortsettDialogState,
     KvitteringsData
 } from './FortsettDialogTypes';
-import { useTimer } from '../../../../utils/hooks/useTimer';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -61,7 +60,6 @@ function FortsettDialogContainer(props: Props) {
             visFeilmeldinger: false,
             ...change
         });
-    const getDuration = useTimer();
 
     const opprettHenvendelse = useOpprettHenvendelse(props.traad);
 
@@ -88,7 +86,6 @@ function FortsettDialogContainer(props: Props) {
             return;
         }
         const callback = () => {
-            loggEvent('TidsbrukMillisekunder', 'FortsettDialog', undefined, { ms: getDuration() });
             dispatch(resetPlukkOppgaveResource);
             dispatch(reloadTildelteOppgaver);
             dispatch(reloadMeldinger);
@@ -121,8 +118,7 @@ function FortsettDialogContainer(props: Props) {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
-                .catch(error => {
-                    console.log(error);
+                .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
@@ -148,8 +144,7 @@ function FortsettDialogContainer(props: Props) {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
-                .catch(error => {
-                    console.log(error);
+                .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else if (FortsettDialogValidator.erGyldigDelsvar(state) && oppgaveId && state.temagruppe) {
