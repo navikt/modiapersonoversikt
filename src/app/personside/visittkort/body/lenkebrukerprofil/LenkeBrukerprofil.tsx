@@ -15,13 +15,13 @@ function LenkeBrukerprofilVisning(props: { nyModiaPersonoversikt: boolean; perso
         if (nyPersonforvalterFT.isOn) {
             return (
                 <a className="lenke" href={personforvalterUrl} target={'_blank'} rel="noreferrer noopener">
-                    <Normaltekst tag="span">Administrer brukerprofil</Normaltekst>
+                    <Normaltekst tag="span">Endre personopplysninger</Normaltekst>
                 </a>
             );
         } else {
             return (
                 <Link className="lenke" to={`${paths.brukerprofil}/${props.person.fødselsnummer}`}>
-                    <Normaltekst tag="span">Administrer brukerprofil</Normaltekst>
+                    <Normaltekst tag="span">Endre personopplysninger</Normaltekst>
                 </Link>
             );
         }
@@ -29,7 +29,7 @@ function LenkeBrukerprofilVisning(props: { nyModiaPersonoversikt: boolean; perso
         if (nyPersonforvalterFT.isOn) {
             return (
                 <a className="lenke" href={personforvalterUrl} target={'_blank'} rel="noreferrer noopener">
-                    <Normaltekst tag="span">Administrer brukerprofil</Normaltekst>
+                    <Normaltekst tag="span">Endre personopplysninger</Normaltekst>
                 </a>
             );
         } else {
@@ -38,7 +38,7 @@ function LenkeBrukerprofilVisning(props: { nyModiaPersonoversikt: boolean; perso
                     className="lenke"
                     href={`${paths.legacyPersonPath}/${props.person.fødselsnummer}${paths.legacyBrukerprofil}`}
                 >
-                    <Normaltekst tag="span">Administrer brukerprofil</Normaltekst>
+                    <Normaltekst tag="span">Endre personopplysninger</Normaltekst>
                 </a>
             );
         }
