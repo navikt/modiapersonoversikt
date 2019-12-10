@@ -18,7 +18,7 @@ import { datoVerbose } from '../../../../../utils/dateUtils';
 import { utbetalingerTest } from '../../dyplenkeTest/utils';
 import { useAppState, useOnMount, usePrevious } from '../../../../../utils/customHooks';
 import usePrinter from '../../../../../utils/UsePrinter';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface Props {
     utbetaling: UtbetalingInterface;
@@ -51,28 +51,15 @@ const UtbetalingHeaderStyle = styled.div`
 `;
 
 function EnkelUtbetaling(props: Props) {
-    const printerButtonRef = React.createRef<HTMLSpanElement>();
-    const utbetalingRef = React.createRef<HTMLLIElement>();
+    const printerButtonRef = useRef<HTMLSpanElement>(null);
+    const utbetalingRef = useRef<HTMLLIElement>(null);
     const dispatch = useDispatch();
-    const utbetaling = props.utbetaling;
-    const ytelse = props.ytelse;
-    const tittel = ytelse.type;
-
     const printer = usePrinter();
-    const PrinterWrapper = printer.printerWrapper;
-    const print = printer.triggerPrint;
-
-    const utbetalinger = useAppState(state => state.utbetalinger);
-    const erIFokus = utbetalinger.ytelseIFokus === ytelse;
-    const visDetaljer = utbetalinger.ekspanderteYtelser.includes(ytelse);
-
-    const dato = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling)).sammensatt;
-    const sum = formaterNOK(ytelse.nettobeløp);
-    const periode = periodeStringFromYtelse(ytelse);
-    const forfallsInfo = utbetaling.forfallsdato && !utbetaling.utbetalingsdato ? `Forfallsdato: ${dato}` : '';
-
-    const ekspanderYtelse = (ekspander: boolean) => dispatch(setEkspanderYtelse(ytelse, ekspander));
-    const setYtelseIFokus = () => dispatch(setNyYtelseIFokus(ytelse));
+    const utbetalingerState = useAppState(state => state.utbetalinger);
+    const erIFokus = utbetalingerState.ytelseIFokus === props.ytelse;
+    const visDetaljer = utbetalingerState.ekspanderteYtelser.includes(props.ytelse);
+    const ekspanderYtelse = (ekspander: boolean) => dispatch(setEkspanderYtelse(props.ytelse, ekspander));
+    const setYtelseIFokus = () => !erIFokus && dispatch(setNyYtelseIFokus(props.ytelse));
 
     useOnMount(() => {
         if (props.valgt) {
@@ -95,8 +82,8 @@ function EnkelUtbetaling(props: Props) {
 
     const handlePrint = () => {
         ekspanderYtelse(true);
-        print();
-        loggEvent('EnkeltUtbetaling', 'usePrinter');
+        printer.triggerPrint();
+        loggEvent('Print', 'EnkeltUtbetlaing');
     };
 
     const handleClickOnUtbetaling = (event: React.MouseEvent<HTMLElement>) => {
@@ -106,6 +93,14 @@ function EnkelUtbetaling(props: Props) {
         }
     };
 
+    const dato = datoVerbose(getGjeldendeDatoForUtbetaling(props.utbetaling)).sammensatt;
+    const sum = formaterNOK(props.ytelse.nettobeløp);
+    const periode = periodeStringFromYtelse(props.ytelse);
+    const forfallsInfo =
+        props.utbetaling.forfallsdato && !props.utbetaling.utbetalingsdato ? `Forfallsdato: ${dato}` : '';
+    const tittel = props.ytelse.type;
+    const PrinterWrapper = printer.printerWrapper;
+
     return (
         <PrinterWrapper>
             <UtbetalingStyle
@@ -114,10 +109,10 @@ function EnkelUtbetaling(props: Props) {
                 }}
                 ref={utbetalingRef}
                 tabIndex={0}
-                //onFocus={setYtelseIFokus}
+                onFocus={setYtelseIFokus}
                 className={utbetalingerTest.utbetaling}
             >
-                <article aria-expanded={visDetaljer} aria-label={'Utbetaling ' + ytelse.type}>
+                <article aria-expanded={visDetaljer} aria-label={'Utbetaling ' + props.ytelse.type}>
                     <UtbetalingTabellStyling>
                         <UtbetalingHeaderStyle>
                             <SpaceBetween>
@@ -129,14 +124,14 @@ function EnkelUtbetaling(props: Props) {
                                 </Normaltekst>
                             </SpaceBetween>
                             <Normaltekst className="order-first">
-                                {dato} / <Bold>{utbetaling.status}</Bold>
+                                {dato} / <Bold>{props.utbetaling.status}</Bold>
                             </Normaltekst>
                             <SpaceBetween>
                                 <Normaltekst>{periode}</Normaltekst>
                                 <Normaltekst>{forfallsInfo}</Normaltekst>
                             </SpaceBetween>
                             <SpaceBetween>
-                                <Normaltekst>Utbetaling til: {utbetaling.utbetaltTil}</Normaltekst>
+                                <Normaltekst>Utbetaling til: {props.utbetaling.utbetaltTil}</Normaltekst>
                                 <span ref={printerButtonRef}>
                                     <PrintKnapp onClick={handlePrint} />
                                 </span>
@@ -144,9 +139,9 @@ function EnkelUtbetaling(props: Props) {
                         </UtbetalingHeaderStyle>
                         <DetaljerCollapse open={visDetaljer} toggle={toggleVisDetaljer}>
                             <UtbetalingsDetaljer
-                                ytelse={ytelse}
-                                konto={utbetaling.konto}
-                                melding={utbetaling.melding}
+                                ytelse={props.ytelse}
+                                konto={props.utbetaling.konto}
+                                melding={props.utbetaling.melding}
                             />
                         </DetaljerCollapse>
                     </UtbetalingTabellStyling>
@@ -156,4 +151,4 @@ function EnkelUtbetaling(props: Props) {
     );
 }
 
-export default EnkelUtbetaling;
+export default React.memo(EnkelUtbetaling);
