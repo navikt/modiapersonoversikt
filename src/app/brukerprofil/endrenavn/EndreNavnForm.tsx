@@ -263,7 +263,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(EndreNavnForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EndreNavnForm);

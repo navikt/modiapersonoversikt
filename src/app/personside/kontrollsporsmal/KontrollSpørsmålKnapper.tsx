@@ -91,7 +91,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(KontrollSpørsmålKnapper);
+export default connect(mapStateToProps, mapDispatchToProps)(KontrollSpørsmålKnapper);

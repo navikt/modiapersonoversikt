@@ -29,8 +29,9 @@ export function DelsvarRegistrertKvittering(props: { kvitteringsData: Kvittering
     const dispatch = useDispatch();
     return (
         <DialogpanelKvittering
-            tittel={`Delsvar ble registrert og lagt tilbake på ${temagruppeTekst(props.kvitteringsData
-                .temagruppe as Temagruppe)}`}
+            tittel={`Delsvar ble registrert og lagt tilbake på ${temagruppeTekst(
+                props.kvitteringsData.temagruppe as Temagruppe
+            )}`}
             fritekst={props.kvitteringsData.fritekst}
             meldingstype={Meldingstype.DELVIS_SVAR_SKRIFTLIG}
             lukk={() => {

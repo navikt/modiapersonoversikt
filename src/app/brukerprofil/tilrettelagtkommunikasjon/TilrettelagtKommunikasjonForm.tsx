@@ -173,7 +173,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(TilrettelagtKommunikasjonsForm);
+export default connect(mapStateToProps, mapDispatchToProps)(TilrettelagtKommunikasjonsForm);
