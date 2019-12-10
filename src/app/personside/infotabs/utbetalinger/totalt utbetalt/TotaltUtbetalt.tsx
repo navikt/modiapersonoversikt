@@ -52,7 +52,24 @@ function TotaltUtbetalt(props: TotaltUtbetaltProps) {
     const printerButtonRef = React.createRef<HTMLButtonElement>();
     const [visDetaljer, setVisDetaljer] = useState(false);
     const printer = usePrinter();
-    const print = printer.triggerPrint;
+
+    const toggelVisDetaljer = () => {
+        setVisDetaljer(!visDetaljer);
+    };
+
+    const handlePrint = () => {
+        loggEvent('UtskriftTotaltUtbetalt', 'usePrinter');
+        setVisDetaljer(true);
+        printer.triggerPrint();
+    };
+
+    const handleClickOnUtbetaling = (event: React.MouseEvent<HTMLElement>) => {
+        const printerButtonClicked = eventTagetIsInsideRef(event, printerButtonRef);
+        if (!printerButtonClicked) {
+            setVisDetaljer(!visDetaljer);
+        }
+    };
+
     const PrinterWrapper = printer.printerWrapper;
     const sluttDato = new Date(props.periode.sluttDato) > new Date() ? new Date() : props.periode.sluttDato;
     const periode: string = formaterDato(props.periode.startDato) + ' - ' + formaterDato(sluttDato);
@@ -65,22 +82,6 @@ function TotaltUtbetalt(props: TotaltUtbetaltProps) {
             rows={[[periode, brutto, trekk, utbetalt]]}
         />
     );
-
-    const toggelVisDetaljer = () => {
-        setVisDetaljer(!visDetaljer);
-    };
-    const handlePrint = () => {
-        loggEvent('UtskriftTotaltUtbetalt', 'usePrinter');
-        setVisDetaljer(true);
-        print();
-    };
-
-    const handleClickOnUtbetaling = (event: React.MouseEvent<HTMLElement>) => {
-        const printerButtonClicked = eventTagetIsInsideRef(event, printerButtonRef);
-        if (!printerButtonClicked) {
-            setVisDetaljer(!visDetaljer);
-        }
-    };
 
     return (
         <PrinterWrapper>
