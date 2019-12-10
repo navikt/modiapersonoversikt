@@ -13,6 +13,10 @@ const Wrapper = styled.div`
     @media print {
         margin: 5mm;
         display: block;
+    @page { 
+        margin: 0; 
+       }
+}
     }
     .visually-hidden {
         display: none;
