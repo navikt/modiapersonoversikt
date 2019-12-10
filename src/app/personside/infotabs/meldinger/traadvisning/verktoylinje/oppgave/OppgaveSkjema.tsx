@@ -76,6 +76,7 @@ function OppgaveSkjema(props: OppgaveProps) {
             settValgtUnderkategori(undefined);
             settValgtOppgavetype(undefined);
         }
+        tema && settValgtPrioritet(OppgavePrioritet[tema.prioriteter[1].kode]);
     }
 
     const formState: OppgaveSkjemaForm = {
