@@ -42,7 +42,4 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     };
 }
 
-export default connect(
-    null,
-    mapDispatchToProps
-)(HandleKontrollSporsmalHotkeys);
+export default connect(null, mapDispatchToProps)(HandleKontrollSporsmalHotkeys);

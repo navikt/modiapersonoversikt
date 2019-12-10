@@ -21,10 +21,17 @@ import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal
 import { erIE11 } from '../utils/erNyPersonoversikt';
 import DemoBanner from '../components/DemoBanner';
 import VelgEnhet from './routes/VelgEnhet';
+import styled from 'styled-components';
 
 if (mockEnabled) {
     setupMock();
 }
+
+const SkjulVedPrint = styled.div`
+    @media print {
+        display: none;
+    }
+`;
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -73,7 +80,7 @@ function App() {
     ModalWrapper.setAppElement('#root');
 
     return (
-        <>
+        <SkjulVedPrint>
             <DemoBanner />
             <BrowserRouter>
                 <Switch>
@@ -84,7 +91,7 @@ function App() {
                     <Route path={'/'} component={PersonoverisktProvider} />
                 </Switch>
             </BrowserRouter>
-        </>
+        </SkjulVedPrint>
     );
 }
 
