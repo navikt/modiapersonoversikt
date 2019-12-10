@@ -9,9 +9,9 @@ import { hasData as restResourceHasData, isFailed, isNotStarted } from '../../..
 import { useDispatch } from 'react-redux';
 
 export type AutofullforData = {
-    person: PersonRespons;
-    saksbehandler: InnloggetSaksbehandler;
-    kontor: NavKontorResponse;
+    person?: PersonRespons;
+    saksbehandler?: InnloggetSaksbehandler;
+    kontor?: NavKontorResponse;
 };
 
 export type AutofullforMap = {
@@ -63,21 +63,21 @@ function subjectPronomen(kjonn: Kjønn, locale: string) {
 }
 
 export function byggAutofullforMap(
-    person: PersonRespons,
-    navKontor: NavKontorResponse,
-    saksbehandler: InnloggetSaksbehandler,
-    locale: string
+    locale: string,
+    person?: PersonRespons,
+    navKontor?: NavKontorResponse,
+    saksbehandler?: InnloggetSaksbehandler
 ): AutofullforMap {
     let personData = {
-        'bruker.fnr': '',
-        'bruker.fornavn': '',
-        'bruker.etternavn': '',
-        'bruker.navn': '',
-        'bruker.subjekt': '',
-        'bruker.objekt': ''
+        'bruker.fnr': '[bruker.fnr]',
+        'bruker.fornavn': '[bruker.fornavn]',
+        'bruker.etternavn': '[bruker.etternavn]',
+        'bruker.navn': '[bruker.navn]',
+        'bruker.subjekt': '[bruker.subjekt]',
+        'bruker.objekt': '[bruker.objekt]'
     };
 
-    if (erPersonResponsAvTypePerson(person)) {
+    if (person && erPersonResponsAvTypePerson(person)) {
         personData = {
             'bruker.fnr': person.fødselsnummer,
             'bruker.fornavn': capitalizeName(person.navn.fornavn || ''),
@@ -94,11 +94,11 @@ export function byggAutofullforMap(
 
     return {
         ...personData,
-        'bruker.navkontor': navKontor ? navKontor.enhetNavn : 'Ukjent kontor',
-        'saksbehandler.fornavn': saksbehandler.fornavn,
-        'saksbehandler.etternavn': saksbehandler.etternavn,
-        'saksbehandler.navn': saksbehandler.navn,
-        'saksbehandler.enhet': saksbehandler.enhetNavn
+        'bruker.navkontor': navKontor?.enhetNavn || 'Ukjent kontor',
+        'saksbehandler.fornavn': saksbehandler?.fornavn || '[saksbehandler.fornavn]',
+        'saksbehandler.etternavn': saksbehandler?.etternavn || '[saksbehandler.etternavn]',
+        'saksbehandler.navn': saksbehandler?.navn || '[saksbehandler.navn]',
+        'saksbehandler.enhet': saksbehandler?.enhetNavn || '[saksbehandler.enhet]'
     };
 }
 
@@ -126,17 +126,9 @@ export function useAutoFullførData(): AutofullforData | undefined {
         }
     });
 
-    if (
-        !restResourceHasData(personResource) ||
-        !restResourceHasData(saksbehandler) ||
-        !restResourceHasData(navKontorResource)
-    ) {
-        return undefined;
-    }
-
     return {
-        person: personResource.data,
-        kontor: navKontorResource.data,
-        saksbehandler: saksbehandler.data
+        person: restResourceHasData(personResource) ? personResource.data : undefined,
+        kontor: restResourceHasData(navKontorResource) ? navKontorResource.data : undefined,
+        saksbehandler: restResourceHasData(saksbehandler) ? saksbehandler.data : undefined
     };
 }
