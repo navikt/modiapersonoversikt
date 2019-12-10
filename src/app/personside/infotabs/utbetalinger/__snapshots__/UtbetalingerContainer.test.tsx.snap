@@ -1126,6 +1126,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                   <li
                     className="test-utbetaling-utbetalinglamell c32"
                     onClick={[Function]}
+                    onFocus={[Function]}
                     tabIndex={0}
                   >
                     <article
