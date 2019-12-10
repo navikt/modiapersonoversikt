@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ReactNode, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { PrinterMedHeader } from './PrinterMedHeader';
 
 interface Returns {
     printerWrapper: (props: { children: ReactNode }) => JSX.Element;
@@ -22,12 +23,11 @@ export function usePrinter(): Returns {
             }, 0);
         }
     }, [print, setPrint]);
-
     const printerWrapper = (props: { children: ReactNode }) => {
         return (
             <>
                 {props.children}
-                {print && createPortal(props.children, document.body)}
+                {print && createPortal(<PrinterMedHeader children={props.children} />, document.body)}
             </>
         );
     };
