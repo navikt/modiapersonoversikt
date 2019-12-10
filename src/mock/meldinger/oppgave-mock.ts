@@ -25,6 +25,13 @@ export function getMockGsakTema(): GsakTema[] {
             oppgavetyper: getOppgavetyper(),
             prioriteter: getPrioriteter(),
             underkategorier: getUnderkategorier()
+        },
+        {
+            kode: 'BID',
+            tekst: 'Bidrag',
+            oppgavetyper: getOppgavetyper(),
+            prioriteter: getPrioriteterUtenNormal(),
+            underkategorier: getUnderkategorier()
         }
     ];
 }
@@ -83,6 +90,19 @@ function getOppgavetyper(): GsakTemaOppgavetype[] {
             kode: 'VUR_KONS_YTE',
             tekst: 'Vurder konsekvens av ytelse',
             dagerFrist: 0
+        }
+    ];
+}
+
+function getPrioriteterUtenNormal(): GsakTemaPrioritet[] {
+    return [
+        {
+            kode: 'HOY',
+            tekst: 'Høy'
+        },
+        {
+            kode: 'LAV',
+            tekst: 'Lav'
         }
     ];
 }

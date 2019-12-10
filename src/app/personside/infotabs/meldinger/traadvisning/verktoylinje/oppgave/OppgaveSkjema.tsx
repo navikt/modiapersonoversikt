@@ -17,10 +17,9 @@ import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { Resultat } from '../utils/VisPostResultat';
-import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { erBehandlet } from '../../../utils/meldingerUtils';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { getValidOppgaveSkjemaState, validerOppgaveSkjema } from './oppgaveSkjemaValidator';
 import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
@@ -63,7 +62,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
     const [valgtEnhet, settValgtEnhet] = useState<Enhet | undefined>(undefined);
     const [valgtAnsatt, settValgtAnsatt] = useState<Ansatt | undefined>(undefined);
-    const [valgtPrioritet, settValgtPrioritet] = useState<OppgavePrioritet>(OppgavePrioritet.NORM);
+    const [valgtPrioritet, settValgtPrioritet] = useState<OppgavePrioritet | undefined>(OppgavePrioritet.NORM);
     const [beskrivelse, settBeskrivelse] = useState('');
     const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<OppgaveSkjemaForm>>(
         getValidOppgaveSkjemaState()
@@ -76,7 +75,12 @@ function OppgaveSkjema(props: OppgaveProps) {
             settValgtUnderkategori(undefined);
             settValgtOppgavetype(undefined);
         }
-        tema && settValgtPrioritet(OppgavePrioritet[tema.prioriteter[1].kode]);
+
+        const harNormalPrioritet =
+            tema && tema.prioriteter.map(prioritet => prioritet.kode.includes(OppgavePrioritet.NORM));
+        if (harNormalPrioritet) {
+            settValgtPrioritet(OppgavePrioritet.NORM);
+        }
     }
 
     const formState: OppgaveSkjemaForm = {
