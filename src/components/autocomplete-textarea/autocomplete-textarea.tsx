@@ -72,10 +72,10 @@ const Style = styled.div`
 
 function autoFullfør(autofullførData: AutofullforData, parsedText: string) {
     const autofullforMap = byggAutofullforMap(
+        Locale.nb_NO,
         autofullførData.person,
         autofullførData.kontor,
-        autofullførData.saksbehandler,
-        Locale.nb_NO
+        autofullførData.saksbehandler
     );
     const fullfortTekst = autofullfor(parsedText, autofullforMap);
     return fullfortTekst;
