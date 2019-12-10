@@ -16,6 +16,7 @@ import styled from 'styled-components';
 import TilbakemeldingFab from './Tilbakemelding/TilbakemeldingFab';
 import { FeatureToggles } from '../featureToggle/toggleIDs';
 import IfFeatureToggleOn from '../featureToggle/IfFeatureToggleOn';
+import FetchSessionInfoOgLeggIRedux from '../../app/globaleVerdier/FetchSessionInfoOgLeggIRedux';
 
 interface Props {
     fødselsnummer: string;
@@ -45,6 +46,7 @@ class VisittkortStandAlone extends React.Component<Props> {
             <ErrorBoundary>
                 <Provider store={store}>
                     <Styles>
+                        <FetchSessionInfoOgLeggIRedux />
                         <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
                         <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
                         <Kontrollsporsmal />

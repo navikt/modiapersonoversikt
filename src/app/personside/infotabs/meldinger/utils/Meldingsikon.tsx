@@ -9,7 +9,8 @@ import DialogIkon from '../../../../../svg/DialogIkon';
 import styled, { css } from 'styled-components';
 import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
 import { UndertekstBold } from 'nav-frontend-typografi';
-import { erMonolog, nyesteMelding } from './meldingerUtils';
+import { erMeldingFraBruker, erMonolog, nyesteMelding } from './meldingerUtils';
+import BrevIkon from '../../../../../svg/BrevIkon';
 
 interface MeldingsikonProps {
     traad: Traad;
@@ -49,7 +50,11 @@ function Ikon({ props }: { props: MeldingsikonProps }) {
         case Meldingstype.DOKUMENT_VARSEL:
             return <DokumentIkon />;
         default: {
-            // TODO Vi må legge på et ekstra besvart / ubesvart ikon (ubesvart inngående rød konvolutt, ubesvart utgående)
+            const erUbesvartMeldingFraBruker =
+                erMonolog(props.traad) && erMeldingFraBruker(props.traad.meldinger[0].meldingstype);
+            if (erUbesvartMeldingFraBruker) {
+                return <BrevIkon />;
+            }
             if (erMonolog(props.traad)) {
                 return <MonologIkon />;
             } else {

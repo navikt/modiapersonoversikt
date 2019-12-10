@@ -1,8 +1,24 @@
 import { isDevelopment, isTest } from './environment';
-import { getSaksbehandlerIdent } from './loggInfo/getSaksbehandlerIdent';
 import md5 from 'md5';
 import { detect } from 'detect-browser';
 import { erNyePersonoversikten } from './erNyPersonoversikt';
+import { useRestResource } from './customHooks';
+import { useEffect } from 'react';
+import { hasData } from '../rest/utils/restResource';
+
+let ident = 'ikke satt';
+let enhet = 'ikke valgt';
+
+export function useInitializeLogger() {
+    const innloggetSaksbehResource = useRestResource(resources => resources.innloggetSaksbehandler);
+
+    useEffect(() => {
+        if (hasData(innloggetSaksbehResource)) {
+            ident = innloggetSaksbehResource.data.ident;
+            enhet = innloggetSaksbehResource.data.enhetId;
+        }
+    }, [innloggetSaksbehResource]);
+}
 
 interface ValuePairs {
     [name: string]: string | number | boolean | object | undefined;
@@ -21,22 +37,12 @@ function uselogger(): boolean {
 }
 
 export function loggEvent(action: string, location: string, extraTags?: ValuePairs, fields?: ValuePairs) {
-    loggEventUtenIdentHash(action, location, extraTags, fields, md5(getSaksbehandlerIdent() || ''));
-}
-
-function loggEventUtenIdentHash(
-    action: string,
-    location: string,
-    extraTags?: ValuePairs,
-    fields?: ValuePairs,
-    identHash?: string
-) {
     if (!uselogger()) {
         return;
     }
     const event = {
         table: 'modiapersonoversikt',
-        fields: { ...fields, identHash: identHash },
+        fields: { ...fields, identHash: md5(ident) },
         tags: { action: action, location: location, erNyePersonoversikten: erNyePersonoversikten(), ...extraTags }
     };
     window['frontendlogger'].event(
@@ -61,10 +67,6 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
 }
 
 export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
-    loggErrorUtenSaksbehandlerIdent(error, message, { ...ekstraFelter, saksbehandler: getSaksbehandlerIdent() });
-}
-
-export function loggErrorUtenSaksbehandlerIdent(error: Error, message?: string, ekstraFelter?: ValuePairs) {
     if (isTest()) {
         return;
     }
@@ -74,11 +76,13 @@ export function loggErrorUtenSaksbehandlerIdent(error: Error, message?: string, 
         url: document.URL,
         error: error.stack,
         browser: (browser && browser.name) || undefined,
+        saksbehandler: ident,
+        enhet: enhet,
         ...ekstraFelter
     };
     console.error(info);
     if (uselogger()) {
-        loggEventUtenIdentHash('Error', 'Logger');
+        loggEvent('Error', 'Logger');
         window['frontendlogger'].error(info);
     }
 }

@@ -4,16 +4,16 @@ import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import { useDispatch } from 'react-redux';
 import { DecoratorProps } from './decoratorprops';
-import { apiBaseUri } from '../../api/config';
 import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { getSaksbehandlerEnhet } from '../../utils/loggInfo/saksbehandlersEnhetInfo';
 import './personsokKnapp.less';
-import { useFødselsnummer, useOnMount, useRestResource } from '../../utils/customHooks';
+import { useAppState, useFødselsnummer, useOnMount, useRestResource } from '../../utils/customHooks';
 import { parseQueryParams } from '../../utils/url-utils';
 import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
+import { hasData } from '../../rest/utils/restResource';
+import { velgEnhetAction } from '../../redux/session/session';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -46,14 +46,6 @@ function lagConfig(
             }
         },
         onEnhetChange(enhet: string): void {
-            fetch(`${apiBaseUri}/hode/velgenhet`, {
-                credentials: 'same-origin',
-                method: 'POST',
-                body: enhet,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
             settEnhet(enhet);
         },
         contextholder: true,
@@ -70,9 +62,10 @@ function useKlargjorContextholder(sokFnr?: string) {
     useOnMount(() => {
         if (sokFnr === '0') {
             // Manuell nullstilling av bruker i context
-            fetch('/modiacontextholder/api/context/aktivbruker', { method: 'DELETE', credentials: 'include' }).then(
-                () => setKlar(true)
-            );
+            fetch('/modiacontextholder/api/context/aktivbruker', {
+                method: 'DELETE',
+                credentials: 'include'
+            }).then(() => setKlar(true));
         } else {
             setKlar(true);
         }
@@ -85,21 +78,23 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
     const queryParams = parseQueryParams(location.search);
     const sokFnr = queryParams.sokFnr === '0' ? '' : queryParams.sokFnr;
     const gjeldendeFnr = useFødselsnummer();
-
-    const [enhet, settEnhet] = useState(getSaksbehandlerEnhet());
-    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
+    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+    const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
     const dispatch = useDispatch();
+
     const handleSetEnhet = (enhet: string) => {
-        dispatch(reloadMeldinger);
-        settEnhet(enhet);
+        if (hasData(meldingerResource)) {
+            dispatch(meldingerResource.actions.reload);
+        }
+        dispatch(velgEnhetAction(enhet));
     };
 
     const contextErKlar = useKlargjorContextholder(queryParams.sokFnr);
 
-    const config = useCallback(lagConfig, [sokFnr, gjeldendeFnr, enhet, history, handleSetEnhet])(
+    const config = useCallback(lagConfig, [sokFnr, gjeldendeFnr, valgtEnhet, history, handleSetEnhet])(
         sokFnr,
         gjeldendeFnr,
-        enhet,
+        valgtEnhet,
         history,
         handleSetEnhet
     );

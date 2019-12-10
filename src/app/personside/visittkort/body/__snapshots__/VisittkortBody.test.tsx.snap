@@ -1404,7 +1404,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <span
           className="typo-normal"
         >
-          Administrer brukerprofil
+          Endre personopplysninger
         </span>
       </a>
     </div>

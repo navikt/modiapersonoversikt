@@ -36,6 +36,9 @@ import standardTekster from './standardTeksterMock.js';
 import { henvendelseResponseMock } from './meldinger/henvendelseMock';
 import { mockTilgangTilSlett } from './meldinger/merk-mock';
 import { MeldingerBackendMock } from './meldingerBackendMock';
+import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
+import Cookies from 'js-cookie';
+import { saksbehandlerCookieNavnPrefix } from '../redux/session/saksbehandlersEnhetCookieUtils';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -57,6 +60,10 @@ function setupInnloggetSaksbehandlerMock(mock: FetchMock) {
         apiBaseUri + '/hode/me',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getMockInnloggetSaksbehandler())
     );
+}
+
+function setUpSaksbehandlersEnheterMock(mock: FetchMock) {
+    mock.get(apiBaseUri + '/hode/enheter', withDelayedResponse(randomDelay(), STATUS_OK, getSaksBehandlersEnheterMock));
 }
 
 function setupPersonMock(mock: FetchMock) {
@@ -224,7 +231,11 @@ function setupForeslatteEnheterMock(mock: FetchMock) {
 function setupAnsattePaaEnhetMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/enheter/:enhetId/ansatte',
-        withDelayedResponse(randomDelay(), STATUS_OK, mockGeneratorMedEnhetId(enhetId => getMockAnsatte(enhetId)))
+        withDelayedResponse(
+            randomDelay(),
+            STATUS_OK,
+            mockGeneratorMedEnhetId(enhetId => getMockAnsatte(enhetId))
+        )
     );
 }
 
@@ -256,6 +267,18 @@ function setupPersonsokMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/personsok',
         withDelayedResponse(randomDelay(), STATUS_OK, () => mockPersonsokResponse(mockStaticPersonsokRequest()))
+    );
+}
+
+function setSaksbehandlerinnstillingerMockBackend(args: HandlerArgument) {
+    Cookies.set(saksbehandlerCookieNavnPrefix + '-Z990099', args.body);
+    return args.body;
+}
+
+function setupVelgEnhetMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/hode/velgenhet',
+        withDelayedResponse(randomDelay(), STATUS_OK, setSaksbehandlerinnstillingerMockBackend)
     );
 }
 
@@ -457,31 +480,52 @@ function setupJournalforingMock(mock: FetchMock) {
         apiBaseUri + '/journalforing/:fnr/saker/pensjon',
         withDelayedResponse(randomDelay(), STATUS_OK, () => pesysSaker)
     );
-    mock.post(apiBaseUri + '/journalforing/:fnr/:traadId', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/journalforing/:fnr/:traadId',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function opprettOppgaveMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/dialogoppgave/opprett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/dialogoppgave/opprett',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function merkAvsluttMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/dialogmerking/avslutt', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/dialogmerking/avslutt',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function merkBidragMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/dialogmerking/bidrag', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/dialogmerking/bidrag',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function merkFeilsendtMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/dialogmerking/feilsendt', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/dialogmerking/feilsendt',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function merkKontorsperretMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/dialogmerking/kontorsperret', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/dialogmerking/kontorsperret',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function merkSlettMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/dialogmerking/slett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/dialogmerking/slett',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function setupStandardteksterMock(mock: FetchMock) {
@@ -572,4 +616,6 @@ export function setupMock() {
     setupJournalforingMock(mock);
     setupStandardteksterMock(mock);
     setupSlaasammenMock(mock);
+    setupVelgEnhetMock(mock);
+    setUpSaksbehandlersEnheterMock(mock);
 }

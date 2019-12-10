@@ -14,12 +14,13 @@ import PersonOppslagHandler from './PersonOppslagHandler/PersonOppslagHandler';
 import Decorator from './internarbeidsflatedecorator/Decorator';
 import StandAloneKomponenter from '../components/standalone/StandAloneKomponenter';
 import HentGlobaleVerdier from './globaleVerdier/FetchSessionInfoOgLeggIRedux';
-import { useOnMount } from '../utils/customHooks';
+import { useAppState, useOnMount } from '../utils/customHooks';
 import { detect } from 'detect-browser';
 import { useState } from 'react';
 import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
 import { erIE11 } from '../utils/erNyPersonoversikt';
 import DemoBanner from '../components/DemoBanner';
+import VelgEnhet from './routes/VelgEnhet';
 import styled from 'styled-components';
 
 if (mockEnabled) {
@@ -34,7 +35,25 @@ const SkjulVedPrint = styled.div`
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
-function Personoveriskt() {
+function Personoversikt() {
+    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+
+    if (!valgtEnhet) {
+        return <VelgEnhet />;
+    }
+
+    return (
+        <>
+            <PersonOppslagHandler />
+            <HentGlobaleVerdier />
+            <ContentStyle>
+                <Routing />
+            </ContentStyle>
+        </>
+    );
+}
+
+function PersonoverisktProvider() {
     const [isMac, setIsMac] = useState<undefined | boolean>(undefined);
     const [isIE, setIsIE] = useState<undefined | boolean>(undefined);
     useOnMount(() => {
@@ -46,18 +65,13 @@ function Personoveriskt() {
     });
 
     const className = [isMac ? 'is-mac' : '', isIE ? 'is-ie' : ''].join(' ');
+
     return (
         <Provider store={store}>
-            <>
-                <PersonOppslagHandler />
-                <HentGlobaleVerdier />
-                <AppStyle className={className}>
-                    <Decorator />
-                    <ContentStyle>
-                        <Routing />
-                    </ContentStyle>
-                </AppStyle>
-            </>
+            <AppStyle className={className}>
+                <Decorator />
+                <Personoversikt />
+            </AppStyle>
         </Provider>
     );
 }
@@ -74,7 +88,7 @@ function App() {
                         path={`${paths.standaloneKomponenter}/:component?/:fnr?`}
                         component={StandAloneKomponenter}
                     />
-                    <Route path={'/'} component={Personoveriskt} />
+                    <Route path={'/'} component={PersonoverisktProvider} />
                 </Switch>
             </BrowserRouter>
         </SkjulVedPrint>
