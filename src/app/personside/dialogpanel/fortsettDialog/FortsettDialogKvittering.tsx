@@ -9,6 +9,7 @@ import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import KnappBase from 'nav-frontend-knapper';
 import { KvitteringsData } from './FortsettDialogTypes';
 import { Temagruppe, temagruppeTekst } from '../../../../models/Temagrupper';
+import GaaTilNesteOppgaveKnapp from '../GaaTilNesteOppgaveKnapp';
 
 export function SvarSendtKvittering(props: { kvitteringsData: KvitteringsData }) {
     const dispatch = useDispatch();
@@ -60,6 +61,7 @@ export function OppgaveLagtTilbakeKvittering(props: { payload: LeggTilbakeOppgav
             <KnappBase type="standard" onClick={lukk}>
                 Lukk
             </KnappBase>
+            <GaaTilNesteOppgaveKnapp lukk={lukk} />
         </DialogpanelKvitteringStyling>
     );
 }
