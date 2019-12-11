@@ -106,7 +106,4 @@ function mapDispatchToProps(dispatch: Dispatch<AnyAction>, ownProps: OwnProps): 
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(DelUtbetaling);
+export default connect(mapStateToProps, mapDispatchToProps)(DelUtbetaling);

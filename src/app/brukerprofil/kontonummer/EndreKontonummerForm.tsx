@@ -331,7 +331,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(EndreKontonummerForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EndreKontonummerForm);

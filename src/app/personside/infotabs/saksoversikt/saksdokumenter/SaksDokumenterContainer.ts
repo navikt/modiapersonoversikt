@@ -29,7 +29,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SaksDokumenter);
+export default connect(mapStateToProps, mapDispatchToProps)(SaksDokumenter);

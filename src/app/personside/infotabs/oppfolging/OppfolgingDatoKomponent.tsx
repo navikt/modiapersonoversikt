@@ -152,7 +152,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(OppfolgingDatoPanel);
+export default connect(mapStateToProps, mapDispatchToProps)(OppfolgingDatoPanel);

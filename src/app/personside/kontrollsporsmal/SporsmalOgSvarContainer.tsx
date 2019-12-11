@@ -106,7 +106,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SpørsmålOgSvarContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SpørsmålOgSvarContainer);
