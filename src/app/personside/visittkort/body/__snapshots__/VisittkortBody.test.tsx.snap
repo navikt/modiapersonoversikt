@@ -1294,7 +1294,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
-          Her kommen en fritekst som er sånn passelig lang
+          Her kommer en mandattekst som er sånn passelig lang
         </p>
         <div
           className="c6"
