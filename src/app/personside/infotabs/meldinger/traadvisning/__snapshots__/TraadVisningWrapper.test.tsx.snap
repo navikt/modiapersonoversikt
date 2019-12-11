@@ -893,6 +893,11 @@ exports[`Viser traad med verktøylinje 1`] = `
               >
                 Arbeidsavklaringspenger
               </option>
+              <option
+                value="BID"
+              >
+                Bidrag
+              </option>
             </select>
           </div>
           <div

@@ -17,10 +17,9 @@ import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { Resultat } from '../utils/VisPostResultat';
-import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { erBehandlet } from '../../../utils/meldingerUtils';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { getValidOppgaveSkjemaState, validerOppgaveSkjema } from './oppgaveSkjemaValidator';
 import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
@@ -75,6 +74,13 @@ function OppgaveSkjema(props: OppgaveProps) {
         if (!tema) {
             settValgtUnderkategori(undefined);
             settValgtOppgavetype(undefined);
+        }
+
+        const harNormalPrioritet = tema?.prioriteter.some(prioritet => prioritet.kode.includes(OppgavePrioritet.NORM));
+        if (harNormalPrioritet) {
+            settValgtPrioritet(OppgavePrioritet.NORM);
+        } else {
+            settValgtPrioritet(undefined);
         }
     }
 

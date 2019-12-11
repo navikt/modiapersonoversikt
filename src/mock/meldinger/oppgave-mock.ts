@@ -4,7 +4,8 @@ import {
     GsakTema,
     GsakTemaOppgavetype,
     GsakTemaPrioritet,
-    GsakTemaUnderkategori
+    GsakTemaUnderkategori,
+    OppgavePrioritet
 } from '../../models/meldinger/oppgave';
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
@@ -24,6 +25,13 @@ export function getMockGsakTema(): GsakTema[] {
             tekst: 'Arbeidsavklaringspenger',
             oppgavetyper: getOppgavetyper(),
             prioriteter: getPrioriteter(),
+            underkategorier: getUnderkategorier()
+        },
+        {
+            kode: 'BID',
+            tekst: 'Bidrag',
+            oppgavetyper: getOppgavetyper(),
+            prioriteter: getPrioriteterUtenNormal(),
             underkategorier: getUnderkategorier()
         }
     ];
@@ -85,6 +93,10 @@ function getOppgavetyper(): GsakTemaOppgavetype[] {
             dagerFrist: 0
         }
     ];
+}
+
+function getPrioriteterUtenNormal(): GsakTemaPrioritet[] {
+    return getPrioriteter().filter(it => it.kode !== OppgavePrioritet.NORM);
 }
 
 function getPrioriteter(): GsakTemaPrioritet[] {
