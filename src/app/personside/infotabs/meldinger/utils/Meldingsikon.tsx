@@ -9,7 +9,7 @@ import DialogIkon from '../../../../../svg/DialogIkon';
 import styled, { css } from 'styled-components';
 import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
 import { UndertekstBold } from 'nav-frontend-typografi';
-import { erMeldingFraBruker, erMonolog, nyesteMelding } from './meldingerUtils';
+import { erMonolog, erUbesvartHenvendelseFraBruker, nyesteMelding } from './meldingerUtils';
 import BrevIkon from '../../../../../svg/BrevIkon';
 
 interface MeldingsikonProps {
@@ -50,10 +50,8 @@ function Ikon({ props }: { props: MeldingsikonProps }) {
         case Meldingstype.DOKUMENT_VARSEL:
             return <DokumentIkon />;
         default: {
-            const erUbesvartMeldingFraBruker =
-                erMonolog(props.traad) && erMeldingFraBruker(props.traad.meldinger[0].meldingstype);
-            if (erUbesvartMeldingFraBruker) {
-                return <BrevIkon />;
+            if (erUbesvartHenvendelseFraBruker(props.traad)) {
+                return <BrevIkon alt="Ubesvart henvendelse" />;
             }
             if (erMonolog(props.traad)) {
                 return <MonologIkon />;

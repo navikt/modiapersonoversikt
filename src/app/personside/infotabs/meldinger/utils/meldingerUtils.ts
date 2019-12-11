@@ -4,6 +4,7 @@ import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../uti
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import { Temagruppe, temagruppeTekst, TemaKommunaleTjenester, TemaPlukkbare } from '../../../../../models/Temagrupper';
+
 export function nyesteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
 }
@@ -52,6 +53,17 @@ export function erMeldingFraBruker(meldingstype: Meldingstype) {
     return [Meldingstype.SPORSMAL_SKRIFTLIG, Meldingstype.SvarSblInngående].includes(meldingstype);
 }
 
+export function erUbesvartHenvendelseFraBruker(traad: Traad) {
+    if (traad.meldinger.length > 1) {
+        return false;
+    }
+    const melding = traad.meldinger[0];
+    if (!erMeldingFraBruker(melding.meldingstype)) {
+        return false;
+    }
+    return !melding.erFerdigstiltUtenSvar;
+}
+
 export function erMeldingFraNav(meldingstype: Meldingstype) {
     return [
         Meldingstype.SVAR_SKRIFTLIG,
@@ -77,6 +89,7 @@ export function erMeldingSpørsmål(meldingstype: Meldingstype) {
 export function erKontorsperret(traad: Traad): boolean {
     return !!eldsteMelding(traad).kontorsperretEnhet;
 }
+
 export function kanTraadJournalfores(traad: Traad): boolean {
     const nyesteMeldingITraad = nyesteMelding(traad);
     return (
@@ -161,6 +174,7 @@ export function filtrerBortVarsel(traad: Traad): boolean {
     }
     return !erVarselMelding(nyesteMelding(traad).meldingstype);
 }
+
 function removeWhiteSpaces(text: string) {
     return text.replace(/\s+/g, '');
 }
