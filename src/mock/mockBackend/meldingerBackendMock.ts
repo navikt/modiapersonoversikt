@@ -3,21 +3,29 @@ import {
     LestStatus,
     Melding,
     Meldingstype,
+    OpprettHenvendelseRequest,
+    OpprettHenvendelseResponse,
     SendDelsvarRequest,
     SendReferatRequest,
     SendSpørsmålRequest,
     Traad
-} from '../models/meldinger/meldinger';
+} from '../../models/meldinger/meldinger';
 import { guid } from 'nav-frontend-js-utils';
 import moment from 'moment';
-import { backendDatoTidformat } from './utils/mock-utils';
-import { getMockTraader } from './meldinger/meldinger-mock';
-import { Temagruppe } from '../models/Temagrupper';
+import { backendDatoTidformat } from '../utils/mock-utils';
+import { getMockTraader } from '../meldinger/meldinger-mock';
+import { Temagruppe } from '../../models/Temagrupper';
+import { OppgaverBackendMock } from './oppgaverBackendMock';
 
 export class MeldingerBackendMock {
     private sendteNyeMeldinger: Traad[] = [];
     private sendteSvar: Traad[] = [];
     private fnr: string = '';
+    private oppgaveBackendMock: OppgaverBackendMock;
+
+    constructor(oppgaveBackendMock: OppgaverBackendMock) {
+        this.oppgaveBackendMock = oppgaveBackendMock;
+    }
 
     private clearSendteMeldingerOnNewFnr(fnr: string) {
         if (fnr !== this.fnr) {
@@ -71,7 +79,10 @@ export class MeldingerBackendMock {
         });
     }
 
-    public sendSvar(request: ForsettDialogRequest) {
+    public ferdigstillHenvendelse(request: ForsettDialogRequest) {
+        if (request.oppgaveId) {
+            this.oppgaveBackendMock.ferdigStillOppgave(request.oppgaveId);
+        }
         const melding: Melding = {
             ...getMockMelding(),
             fritekst: request.fritekst,
@@ -84,6 +95,9 @@ export class MeldingerBackendMock {
     }
 
     public sendDelsvar(request: SendDelsvarRequest) {
+        if (request.oppgaveId) {
+            this.oppgaveBackendMock.ferdigStillOppgave(request.oppgaveId);
+        }
         const melding: Melding = {
             ...getMockMelding(),
             fritekst: request.fritekst,
@@ -94,6 +108,14 @@ export class MeldingerBackendMock {
             traadId: request.traadId,
             meldinger: [melding]
         });
+    }
+
+    public opprettHenvendelse(request: OpprettHenvendelseRequest): OpprettHenvendelseResponse {
+        const oppgave = this.oppgaveBackendMock.getTildelteOppgaver().find(it => it.traadId === request.traadId);
+        return {
+            behandlingsId: guid(),
+            oppgaveId: oppgave?.oppgaveId
+        };
     }
 }
 

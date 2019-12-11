@@ -2,7 +2,6 @@ import faker from 'faker/locale/nb_NO';
 
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
-import { getTilfeldigeOppgaver } from './oppgave-mock';
 import FetchMock, { HandlerArgument, Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { getMockKontaktinformasjon } from './person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import { mockGeneratorMedEnhetId, mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
@@ -33,17 +32,18 @@ import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
 import standardTekster from './standardTeksterMock.js';
-import { henvendelseResponseMock } from './meldinger/henvendelseMock';
 import { mockTilgangTilSlett } from './meldinger/merk-mock';
-import { MeldingerBackendMock } from './meldingerBackendMock';
+import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
 import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
 import Cookies from 'js-cookie';
 import { saksbehandlerCookieNavnPrefix } from '../redux/session/saksbehandlersEnhetCookieUtils';
+import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
 
-const meldingerBackendMock = new MeldingerBackendMock();
+const oppgaveBackendMock = new OppgaverBackendMock();
+const meldingerBackendMock = new MeldingerBackendMock(oppgaveBackendMock);
 
 function randomDelay() {
     if (navfaker.random.vektetSjanse(0.05)) {
@@ -285,14 +285,14 @@ function setupVelgEnhetMock(mock: FetchMock) {
 function setupOppgaveMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/oppgaver/plukk/:temagruppe',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => getTilfeldigeOppgaver())
+        withDelayedResponse(randomDelay(), STATUS_OK, () => oppgaveBackendMock.plukkOppgave())
     );
 }
 
 function setupOpprettHenvendelseMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fnr/fortsett/opprett',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => henvendelseResponseMock)
+        withDelayedResponse(randomDelay(), STATUS_OK, request => meldingerBackendMock.opprettHenvendelse(request.body))
     );
 }
 
@@ -300,7 +300,7 @@ function setupFerdigstillHenvendelseMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fnr/fortsett/ferdigstill',
         withDelayedResponse(randomDelay(), STATUS_OK, request => {
-            meldingerBackendMock.sendSvar(request.body);
+            meldingerBackendMock.ferdigstillHenvendelse(request.body);
             return {};
         })
     );
@@ -319,14 +319,14 @@ function setupSendDelsvarMock(mock: FetchMock) {
 function setupTildelteOppgaverMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/oppgaver/tildelt',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => getTilfeldigeOppgaver())
+        withDelayedResponse(randomDelay(), STATUS_OK, () => oppgaveBackendMock.getTildelteOppgaver())
     );
 }
 
 function setupLeggTilbakeOppgaveMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/oppgaver/legg-tilbake',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => getTilfeldigeOppgaver())
+        withDelayedResponse(randomDelay(), STATUS_OK, request => oppgaveBackendMock.leggTilbake(request.body))
     );
 }
 
