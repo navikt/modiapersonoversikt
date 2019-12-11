@@ -149,7 +149,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
             <Select
                 value={props.form.state.valgtPrioritet || ''}
                 label={'Velg prioritert'}
-                onChange={value => props.form.actions.settValgtPrioritet(OppgavePrioritet[value.target.value])}
+                onChange={event => props.form.actions.settValgtPrioritet(event.target.value as OppgavePrioritet)}
                 feil={props.form.valideringsResultat.felter.valgtPrioritet?.skjemafeil}
             >
                 <Prioriteter valgtGsakTeam={valgtTema} />
