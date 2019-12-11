@@ -76,10 +76,11 @@ function OppgaveSkjema(props: OppgaveProps) {
             settValgtOppgavetype(undefined);
         }
 
-        const harNormalPrioritet =
-            tema && tema.prioriteter.map(prioritet => prioritet.kode.includes(OppgavePrioritet.NORM));
+        const harNormalPrioritet = tema?.prioriteter.some(prioritet => prioritet.kode.includes(OppgavePrioritet.NORM));
         if (harNormalPrioritet) {
             settValgtPrioritet(OppgavePrioritet.NORM);
+        } else {
+            settValgtPrioritet(undefined);
         }
     }
 

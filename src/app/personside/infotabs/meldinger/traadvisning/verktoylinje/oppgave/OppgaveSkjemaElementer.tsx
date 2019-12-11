@@ -245,6 +245,7 @@ function OppgavetypeOptions(props: { valgtGsakTema?: GsakTema }) {
 }
 
 function Prioriteter(props: { valgtGsakTeam?: GsakTema }) {
+    console.log(props.valgtGsakTeam);
     const options = props.valgtGsakTeam
         ? [
               <option value={''} key={''} disabled>
