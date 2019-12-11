@@ -130,6 +130,11 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           >
             Arbeidsavklaringspenger
           </option>
+          <option
+            value="BID"
+          >
+            Bidrag
+          </option>
         </select>
       </div>
       <div
