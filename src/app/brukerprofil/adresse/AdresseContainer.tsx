@@ -92,7 +92,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(AdresseFormContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AdresseFormContainer);

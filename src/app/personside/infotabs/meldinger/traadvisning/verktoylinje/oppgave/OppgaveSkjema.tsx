@@ -62,7 +62,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
     const [valgtEnhet, settValgtEnhet] = useState<Enhet | undefined>(undefined);
     const [valgtAnsatt, settValgtAnsatt] = useState<Ansatt | undefined>(undefined);
-    const [valgtPrioritet, settValgtPrioritet] = useState<OppgavePrioritet | undefined>(OppgavePrioritet.NORM);
+    const [valgtPrioritet, settValgtPrioritet] = useState<OppgavePrioritet | undefined>(undefined);
     const [beskrivelse, settBeskrivelse] = useState('');
     const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<OppgaveSkjemaForm>>(
         getValidOppgaveSkjemaState()

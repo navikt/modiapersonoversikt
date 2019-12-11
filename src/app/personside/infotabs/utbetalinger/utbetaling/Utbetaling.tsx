@@ -21,7 +21,6 @@ function Utbetaling(props: Props) {
     const enkeltYtelse = utbetaling.ytelser.length === 1;
 
     const erValgtIUrl = dyplenker.utbetaling.erValgt(utbetaling);
-
     if (enkeltYtelse) {
         const ytelse = utbetaling.ytelser[0];
         return <EnkelUtbetaling utbetaling={utbetaling} ytelse={ytelse} valgt={erValgtIUrl} />;

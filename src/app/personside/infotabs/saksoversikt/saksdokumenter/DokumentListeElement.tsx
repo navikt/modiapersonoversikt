@@ -313,7 +313,4 @@ function mapStateToProps(state: AppState): StateProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(DokumentListeElement);
+export default connect(mapStateToProps, mapDispatchToProps)(DokumentListeElement);

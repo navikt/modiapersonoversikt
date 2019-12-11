@@ -1133,9 +1133,10 @@ exports[`Viser traad med verktøylinje 1`] = `
               disabled={false}
               id="Helt tilfeldig ID"
               onChange={[Function]}
-              value="NORM"
+              value=""
             >
               <option
+                disabled={true}
                 value=""
               >
                 Ingen tema valgt

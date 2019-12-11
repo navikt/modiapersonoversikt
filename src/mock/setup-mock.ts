@@ -231,7 +231,11 @@ function setupForeslatteEnheterMock(mock: FetchMock) {
 function setupAnsattePaaEnhetMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/enheter/:enhetId/ansatte',
-        withDelayedResponse(randomDelay(), STATUS_OK, mockGeneratorMedEnhetId(enhetId => getMockAnsatte(enhetId)))
+        withDelayedResponse(
+            randomDelay(),
+            STATUS_OK,
+            mockGeneratorMedEnhetId(enhetId => getMockAnsatte(enhetId))
+        )
     );
 }
 
@@ -476,31 +480,52 @@ function setupJournalforingMock(mock: FetchMock) {
         apiBaseUri + '/journalforing/:fnr/saker/pensjon',
         withDelayedResponse(randomDelay(), STATUS_OK, () => pesysSaker)
     );
-    mock.post(apiBaseUri + '/journalforing/:fnr/:traadId', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/journalforing/:fnr/:traadId',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function opprettOppgaveMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/dialogoppgave/opprett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/dialogoppgave/opprett',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function merkAvsluttMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/dialogmerking/avslutt', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/dialogmerking/avslutt',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function merkBidragMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/dialogmerking/bidrag', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/dialogmerking/bidrag',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function merkFeilsendtMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/dialogmerking/feilsendt', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/dialogmerking/feilsendt',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function merkKontorsperretMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/dialogmerking/kontorsperret', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/dialogmerking/kontorsperret',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function merkSlettMock(mock: FetchMock) {
-    mock.post(apiBaseUri + '/dialogmerking/slett', withDelayedResponse(randomDelay(), STATUS_OK, () => ({})));
+    mock.post(
+        apiBaseUri + '/dialogmerking/slett',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
 }
 
 function setupStandardteksterMock(mock: FetchMock) {
