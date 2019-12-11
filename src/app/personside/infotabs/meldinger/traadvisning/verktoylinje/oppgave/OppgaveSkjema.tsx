@@ -4,8 +4,7 @@ import {
     Enhet,
     GsakTema,
     GsakTemaOppgavetype,
-    GsakTemaUnderkategori,
-    OppgavePrioritet
+    GsakTemaUnderkategori
 } from '../../../../../../../models/meldinger/oppgave';
 import { OppgaveSkjemaElementer } from './OppgaveSkjemaElementer';
 import { lagOppgaveRequest } from './byggRequest';
@@ -62,7 +61,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
     const [valgtEnhet, settValgtEnhet] = useState<Enhet | undefined>(undefined);
     const [valgtAnsatt, settValgtAnsatt] = useState<Ansatt | undefined>(undefined);
-    const [valgtPrioritet, settValgtPrioritet] = useState<OppgavePrioritet | undefined>(undefined);
+    const [valgtPrioritet, settValgtPrioritet] = useState<string | undefined>(undefined);
     const [beskrivelse, settBeskrivelse] = useState('');
     const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<OppgaveSkjemaForm>>(
         getValidOppgaveSkjemaState()
@@ -76,12 +75,8 @@ function OppgaveSkjema(props: OppgaveProps) {
             settValgtOppgavetype(undefined);
         }
 
-        const harNormalPrioritet = tema?.prioriteter.some(prioritet => prioritet.kode.includes(OppgavePrioritet.NORM));
-        if (harNormalPrioritet) {
-            settValgtPrioritet(OppgavePrioritet.NORM);
-        } else {
-            settValgtPrioritet(undefined);
-        }
+        const normalOppgaveprioritet = tema?.prioriteter.find(prioritet => prioritet.kode.includes('NORM'));
+        settValgtPrioritet(normalOppgaveprioritet?.kode);
     }
 
     const formState: OppgaveSkjemaForm = {

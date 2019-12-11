@@ -23,12 +23,6 @@ export interface GsakTemaUnderkategori {
     erGyldig: boolean;
 }
 
-export enum OppgavePrioritet {
-    HOY = 'HOY',
-    NORM = 'NORM',
-    LAV = 'LAV'
-}
-
 export interface OpprettOppgaveRequest {
     fnr: string;
     valgtEnhetId: string;

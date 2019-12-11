@@ -6,8 +6,7 @@ import {
     Enhet,
     GsakTema,
     GsakTemaOppgavetype,
-    GsakTemaUnderkategori,
-    OppgavePrioritet
+    GsakTemaUnderkategori
 } from '../../../../../../../models/meldinger/oppgave';
 import { OppgaveProps, OppgaveSkjemaForm, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import AutoComplete from './AutoComplete';
@@ -149,7 +148,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
             <Select
                 value={props.form.state.valgtPrioritet || ''}
                 label={'Velg prioritert'}
-                onChange={event => props.form.actions.settValgtPrioritet(event.target.value as OppgavePrioritet)}
+                onChange={event => props.form.actions.settValgtPrioritet(event.target.value)}
                 feil={props.form.valideringsResultat.felter.valgtPrioritet?.skjemafeil}
             >
                 <Prioriteter valgtGsakTeam={valgtTema} />

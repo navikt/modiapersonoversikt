@@ -4,8 +4,7 @@ import {
     GsakTema,
     GsakTemaOppgavetype,
     GsakTemaPrioritet,
-    GsakTemaUnderkategori,
-    OppgavePrioritet
+    GsakTemaUnderkategori
 } from '../../models/meldinger/oppgave';
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
@@ -96,21 +95,21 @@ function getOppgavetyper(): GsakTemaOppgavetype[] {
 }
 
 function getPrioriteterUtenNormal(): GsakTemaPrioritet[] {
-    return getPrioriteter().filter(it => it.kode !== OppgavePrioritet.NORM);
+    return getPrioriteter().filter(it => !it.kode.includes('NORM'));
 }
 
 function getPrioriteter(): GsakTemaPrioritet[] {
     return [
         {
-            kode: 'HOY',
+            kode: 'HOY_TEMA',
             tekst: 'Høy'
         },
         {
-            kode: 'NORM',
+            kode: 'NORM_TEMA',
             tekst: 'Normal'
         },
         {
-            kode: 'LAV',
+            kode: 'LAV_TEMA',
             tekst: 'Lav'
         }
     ];
