@@ -11,12 +11,11 @@ const Wrapper = styled.div`
         size: auto;
     }
     @media print {
-        margin: 5mm;
+        margin: 15mm;
         display: block;
-    @page { 
-        margin: 0; 
-       }
-}
+        @page {
+            margin: 0;
+        }
     }
     .visually-hidden {
         display: none;

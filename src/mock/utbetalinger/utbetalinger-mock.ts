@@ -53,7 +53,7 @@ function randomDato(seededFaker: Faker.FakerStatic) {
 export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
     const status = randomStatus();
     const utbetalingsDato = status === 'Utbetalt' ? randomDato(faker) : null;
-    const ytelser = fyllRandomListe(() => getMockYtelse(), navfaker.random.vektetSjanse(0.7) ? 1 : 3);
+    const ytelser = fyllRandomListe(() => getMockYtelse(), navfaker.random.vektetSjanse(0.7) ? 1 : 5);
     const netto = ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.nettobeløp, 0);
 
     const utbetaltTilPerson = vektetSjanse(faker, 0.9);
