@@ -11,6 +11,9 @@ import {
 } from '../../../../../../utils/stringFormatting';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { StyledTable } from '../../../../../../utils/table/StyledTable';
+import { erNyePersonoversikten } from '../../../../../../utils/erNyPersonoversikt';
+import { Link } from 'react-router-dom';
+import { usePaths } from '../../../../../routes/routing';
 
 interface Props {
     kommendeUtbetalinger: KommendeUtbetaling[];
@@ -52,11 +55,18 @@ function Utbetalinger({ kommendeUtbetalinger }: Props) {
 }
 
 function KommendeUtbetalinger(props: Props) {
+    const paths = usePaths();
     return (
         <KommendeUtbetalingerStyle>
             <Undertittel tag="h4">Utbetalinger</Undertittel>
             <Utbetalinger kommendeUtbetalinger={props.kommendeUtbetalinger} />
-            <AlertStripeInfo>For detaljer om utførte utbetalinger, se Utbetalingsoversikten.</AlertStripeInfo>
+            {erNyePersonoversikten() ? (
+                <AlertStripeInfo>
+                    For detaljer om utførte utbetalinger <Link to={paths.utbetlainger}>se Utbetalingsoversikten.</Link>
+                </AlertStripeInfo>
+            ) : (
+                <AlertStripeInfo>For detaljer om utførte utbetalinger, se Utbetalingsoversikten.</AlertStripeInfo>
+            )}
         </KommendeUtbetalingerStyle>
     );
 }
