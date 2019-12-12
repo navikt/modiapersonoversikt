@@ -73,7 +73,9 @@ function handterFeil(dispatch: Dispatch<Action>, actionNames: ActionTypes, fetch
             );
             return;
         }
-        loggError(error, `Kune ikke fetche data på ${fetchUri}. ${error.message}`, undefined, { type: 'Fetch-Failed' });
+        loggError(error, `Kunne ikke fetche data på ${fetchUri}. ${error.message}`, undefined, {
+            type: 'Fetch-Failed'
+        });
     };
 }
 
