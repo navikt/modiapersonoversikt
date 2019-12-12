@@ -124,7 +124,4 @@ function mapStateToProps(state: AppState): StateProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(HandleUtbetalingerHotKeys);
+export default connect(mapStateToProps, mapDispatchToProps)(HandleUtbetalingerHotKeys);

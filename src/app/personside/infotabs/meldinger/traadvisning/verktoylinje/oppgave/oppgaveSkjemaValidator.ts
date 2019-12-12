@@ -1,7 +1,6 @@
 import { OppgaveSkjemaForm } from './oppgaveInterfaces';
 import FormValidator, { Valideringsregel } from '../../../../../../../utils/forms/FormValidator';
 import { erTomStreng } from '../../../../../../../utils/string-utils';
-import { OppgavePrioritet } from '../../../../../../../models/meldinger/oppgave';
 
 const tomtSkjema: OppgaveSkjemaForm = {
     valgtTema: undefined,
@@ -10,7 +9,7 @@ const tomtSkjema: OppgaveSkjemaForm = {
     valgtUnderkategori: undefined,
     valgtAnsatt: undefined,
     valgtEnhet: undefined,
-    valgtPrioritet: OppgavePrioritet.NORM
+    valgtPrioritet: undefined
 };
 
 const regler: Valideringsregel<OppgaveSkjemaForm>[] = [
@@ -33,6 +32,11 @@ const regler: Valideringsregel<OppgaveSkjemaForm>[] = [
         felt: 'valgtEnhet',
         feilmelding: 'Du må velge enhet',
         validator: (form: OppgaveSkjemaForm) => !!form.valgtEnhet
+    },
+    {
+        felt: 'valgtPrioritet',
+        feilmelding: 'Du må velge prioritet',
+        validator: (form: OppgaveSkjemaForm) => !!form.valgtPrioritet
     }
 ];
 

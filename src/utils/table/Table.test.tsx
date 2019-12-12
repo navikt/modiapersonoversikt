@@ -30,7 +30,10 @@ test('lager tabell basert på input', () => {
 
 test('setter på riktige click-handlere på riktige kolonner', () => {
     const header: TitleRow = ['kolonne 1', 'kolonne 2'];
-    const body: TableRows = [['rad1 kolonne 1', 'rad1 kolonne 2'], ['rad2 kolonne 1', 'rad2 kolonne 2']];
+    const body: TableRows = [
+        ['rad1 kolonne 1', 'rad1 kolonne 2'],
+        ['rad2 kolonne 1', 'rad2 kolonne 2']
+    ];
     const callbackFørsteRekke = jest.fn();
     const callbackAndreRekke = jest.fn();
     const onClickHandlere = [callbackFørsteRekke, callbackAndreRekke];

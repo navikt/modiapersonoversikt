@@ -6,8 +6,7 @@ import {
     Enhet,
     GsakTema,
     GsakTemaOppgavetype,
-    GsakTemaUnderkategori,
-    OppgavePrioritet
+    GsakTemaUnderkategori
 } from '../../../../../../../models/meldinger/oppgave';
 import { OppgaveProps, OppgaveSkjemaForm, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import AutoComplete from './AutoComplete';
@@ -147,9 +146,10 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 spinner={isLoading(ansattliste)}
             />
             <Select
-                value={props.form.state.valgtPrioritet}
+                value={props.form.state.valgtPrioritet || ''}
                 label={'Velg prioritert'}
-                onChange={value => props.form.actions.settValgtPrioritet(OppgavePrioritet[value.target.value])}
+                onChange={event => props.form.actions.settValgtPrioritet(event.target.value)}
+                feil={props.form.valideringsResultat.felter.valgtPrioritet?.skjemafeil}
             >
                 <Prioriteter valgtGsakTeam={valgtTema} />
             </Select>
@@ -246,6 +246,9 @@ function OppgavetypeOptions(props: { valgtGsakTema?: GsakTema }) {
 function Prioriteter(props: { valgtGsakTeam?: GsakTema }) {
     const options = props.valgtGsakTeam
         ? [
+              <option value={''} key={''} disabled>
+                  Velg prioritet
+              </option>,
               props.valgtGsakTeam.prioriteter.map(prioritet => (
                   <option value={`${prioritet.kode}`} key={prioritet.kode}>
                       {prioritet.tekst}
@@ -253,7 +256,7 @@ function Prioriteter(props: { valgtGsakTeam?: GsakTema }) {
               ))
           ]
         : [
-              <option value={''} key={''}>
+              <option value={''} key={''} disabled>
                   Ingen tema valgt
               </option>
           ];

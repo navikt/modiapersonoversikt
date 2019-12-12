@@ -136,7 +136,8 @@ function MerkPanel(props: Props) {
 
     const saksbehandlerKanSlette =
         !isPending(saksbehandlerKanSletteFetch) &&
-        hasData(saksbehandlerKanSletteFetch) && saksbehandlerKanSletteFetch.data;
+        hasData(saksbehandlerKanSletteFetch) &&
+        saksbehandlerKanSletteFetch.data;
     const visSletting =
         saksbehandlerKanSlette &&
         (erMeldingstypeSamtalereferat(melding.meldingstype) || erMeldingSpørsmål(melding.meldingstype));
