@@ -66,7 +66,7 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
     }
 }
 
-export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs) {
+export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs, ekstraTagsLoggEvent?: ValuePairs) {
     if (isTest()) {
         return;
     }
@@ -82,7 +82,7 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
     };
     console.error(info);
     if (uselogger()) {
-        loggEvent('Error', 'Logger');
+        loggEvent('Error', 'Logger', ekstraTagsLoggEvent);
         window['frontendlogger'].error(info);
     }
 }
