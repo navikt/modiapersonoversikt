@@ -65,10 +65,15 @@ function handterFeil(dispatch: Dispatch<Action>, actionNames: ActionTypes, fetch
             error: 'Kunne ikke hente data'
         });
         if (error instanceof Response) {
-            loggError(new Error(`Kunne ikke fetche data på ${fetchUri}. Status ${error.status}: ${error.statusText}`));
+            loggError(
+                new Error(`Kunne ikke fetche data på ${fetchUri}. Status ${error.status}: ${error.statusText}`),
+                undefined,
+                undefined,
+                { type: 'Fetch-Failed' }
+            );
             return;
         }
-        loggError(error, `Kune ikke fetche data på ${fetchUri}. ${error.message}`);
+        loggError(error, `Kune ikke fetche data på ${fetchUri}. ${error.message}`, undefined, { type: 'Fetch-Failed' });
     };
 }
 
