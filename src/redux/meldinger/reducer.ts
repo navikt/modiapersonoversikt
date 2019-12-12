@@ -12,6 +12,11 @@ export function meldingerReducer(state: MeldingerState = initialState, action: M
                 ...state,
                 skjulVarsler: action.skjul
             };
+        case MeldingerActionTypes.HuskSok:
+            return {
+                ...state,
+                forrigeSok: action.sok
+            };
         default:
             return state;
     }

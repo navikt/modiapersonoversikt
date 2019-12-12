@@ -7,7 +7,7 @@ import TraadListe from './traadliste/TraadListe';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useEffect, useState } from 'react';
 import { hasData } from '../../../../rest/utils/restResource';
-import { huskForrigeValgtTraad, setSkjulVarslerAction } from '../../../../redux/meldinger/actions';
+import { huskForrigeValgtTraad, huskSokAction, setSkjulVarslerAction } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
 import { useAppState, useRestResource } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
@@ -83,10 +83,21 @@ function useVelgTraadHvisIngenTraadErValgt(traaderEtterSok: Traad[]) {
     });
 }
 
+function useHuskSokeord(sokeord: string) {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            dispatch(huskSokAction(sokeord));
+        }, 200);
+        return () => clearTimeout(timeout);
+    }, [sokeord, dispatch]);
+}
+
 function MeldingerContainer() {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const valgtTraad = useValgtTraadIUrl();
-    const [sokeord, setSokeord] = useState('');
+    const forrigeSok = useAppState(state => state.meldinger.forrigeSok);
+    const [sokeord, setSokeord] = useState(forrigeSok);
     const skjulVarsler = useAppState(state => state.meldinger.skjulVarsler);
     const dispatch = useDispatch();
     const setSkjulVarsler = (skjul: boolean) => dispatch(setSkjulVarslerAction(skjul));
@@ -96,6 +107,7 @@ function MeldingerContainer() {
     );
     useSyncSøkMedVisning(traaderFørSøk, traaderEtterSokOgFiltrering);
     useVelgTraadHvisIngenTraadErValgt(traaderEtterSokOgFiltrering);
+    useHuskSokeord(sokeord);
 
     return (
         <RestResourceConsumer<Traad[]>
