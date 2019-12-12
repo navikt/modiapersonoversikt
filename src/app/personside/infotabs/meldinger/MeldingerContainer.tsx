@@ -7,7 +7,7 @@ import TraadListe from './traadliste/TraadListe';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useEffect, useState } from 'react';
 import { hasData } from '../../../../rest/utils/restResource';
-import { huskForrigeValgtTraad } from '../../../../redux/meldinger/actions';
+import { huskForrigeValgtTraad, setSkjulVarslerAction } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
 import { useAppState, useRestResource } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
@@ -87,7 +87,9 @@ function MeldingerContainer() {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const valgtTraad = useValgtTraadIUrl();
     const [sokeord, setSokeord] = useState('');
-    const [skjulVarsler, setSkjulVarsler] = useState(false);
+    const skjulVarsler = useAppState(state => state.meldinger.skjulVarsler);
+    const dispatch = useDispatch();
+    const setSkjulVarsler = (skjul: boolean) => dispatch(setSkjulVarslerAction(skjul));
     const traaderFørSøk = hasData(traaderResource) ? traaderResource.data : [];
     const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderFørSøk, sokeord).filter(traad =>
         skjulVarsler ? filtrerBortVarsel(traad) : true

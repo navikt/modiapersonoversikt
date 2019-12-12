@@ -7,6 +7,11 @@ export function meldingerReducer(state: MeldingerState = initialState, action: M
                 ...state,
                 forrigeValgteTraad: action.traad
             };
+        case MeldingerActionTypes.SkjulVarsler:
+            return {
+                ...state,
+                skjulVarsler: action.skjul
+            };
         default:
             return state;
     }
