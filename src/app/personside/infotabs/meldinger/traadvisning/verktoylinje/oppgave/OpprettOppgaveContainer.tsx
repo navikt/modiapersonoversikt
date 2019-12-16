@@ -9,7 +9,7 @@ import ErrorBoundary from '../../../../../../../components/ErrorBoundary';
 interface Props {
     lukkPanel: () => void;
     onSuccessCallback?: () => void;
-    valgtTraad?: Traad;
+    valgtTraad: Traad;
 }
 
 function OpprettOppgaveContainer(props: Props) {

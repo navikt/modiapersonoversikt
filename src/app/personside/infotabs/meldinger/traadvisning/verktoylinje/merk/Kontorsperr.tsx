@@ -53,7 +53,11 @@ export function Kontorsperr(props: Props) {
                 onChange={_ => settOpprettOppgave(!opprettOppgave)}
             />
             <UnmountClosed isOpened={opprettOppgave}>
-                <OpprettOppgaveContainer lukkPanel={props.tilbake} onSuccessCallback={kontorsperr} />
+                <OpprettOppgaveContainer
+                    lukkPanel={props.tilbake}
+                    valgtTraad={valgtTraad}
+                    onSuccessCallback={kontorsperr}
+                />
             </UnmountClosed>
             {opprettOppgave ? null : (
                 <Hovedknapp htmlType="button" onClick={kontorsperr}>
