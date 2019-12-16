@@ -50,7 +50,7 @@ export function erKommunaleTjenester(temagruppe: Temagruppe | null) {
 }
 
 export function erMeldingFraBruker(meldingstype: Meldingstype) {
-    return [Meldingstype.SPORSMAL_SKRIFTLIG, Meldingstype.SvarSblInngående].includes(meldingstype);
+    return [Meldingstype.SPORSMAL_SKRIFTLIG, Meldingstype.SVAR_SBL_INNGAAENDE].includes(meldingstype);
 }
 
 export function erUbesvartHenvendelseFraBruker(traad: Traad) {
