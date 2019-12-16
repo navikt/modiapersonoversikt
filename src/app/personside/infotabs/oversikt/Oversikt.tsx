@@ -41,7 +41,7 @@ function Oversikt() {
                         infotabPath={INFOTABS.OPPFOLGING}
                         tittel={'Oppfølging'}
                         component={OppfolgingOversikt}
-                        hurtigtast={'O'}
+                        hurtigtast={'T'}
                     />
                     <Oversiktskomponent
                         infotabPath={INFOTABS.UTBETALING}
