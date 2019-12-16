@@ -19,7 +19,10 @@ function nodeParser(node: ASTNode, rules: Array<Rule>): AST {
                 };
             })
             .filter(result => result)
-            .reduce(minBy<Match>(result => (result ? result.match.index : Number.MAX_SAFE_INTEGER)), null as Match);
+            .reduce(
+                minBy<Match>(result => (result ? result.match.index : Number.MAX_SAFE_INTEGER)),
+                null as Match
+            );
 
         if (matched) {
             const matchStart = matched.match.index;

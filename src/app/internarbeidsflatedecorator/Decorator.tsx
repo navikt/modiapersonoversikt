@@ -62,9 +62,10 @@ function useKlargjorContextholder(sokFnr?: string) {
     useOnMount(() => {
         if (sokFnr === '0') {
             // Manuell nullstilling av bruker i context
-            fetch('/modiacontextholder/api/context/aktivbruker', { method: 'DELETE', credentials: 'include' }).then(
-                () => setKlar(true)
-            );
+            fetch('/modiacontextholder/api/context/aktivbruker', {
+                method: 'DELETE',
+                credentials: 'include'
+            }).then(() => setKlar(true));
         } else {
             setKlar(true);
         }

@@ -114,7 +114,7 @@ function getAremarkVerge() {
                 ident: '21042900076',
                 vergesakstype: VERGESAKSTYPER[0],
                 mandattype: MANDATTYPER[0],
-                mandattekst: 'Her kommen en fritekst som er sånn passelig lang',
+                mandattekst: 'Her kommer en mandattekst som er sånn passelig lang',
                 vergetype: VERGETYPER[0],
                 virkningsperiode: {
                     fom: '2016-03-27T18:16:49+02:00',

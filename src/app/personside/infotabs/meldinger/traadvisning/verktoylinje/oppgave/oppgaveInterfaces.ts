@@ -4,7 +4,6 @@ import {
     GsakTema,
     GsakTemaOppgavetype,
     GsakTemaUnderkategori,
-    OppgavePrioritet,
     OpprettOppgaveRequest
 } from '../../../../../../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
@@ -27,7 +26,7 @@ export interface OppgaveSkjemaForm {
     valgtTema?: GsakTema;
     valgtOppgavetype?: GsakTemaOppgavetype;
     beskrivelse: string;
-    valgtPrioritet: OppgavePrioritet;
+    valgtPrioritet?: string;
     valgtUnderkategori?: GsakTemaUnderkategori;
     valgtEnhet?: Enhet;
     valgtAnsatt?: Ansatt;
@@ -39,7 +38,7 @@ export interface OppgaveSkjemaProps {
         oppdaterStateVedValgtTema(tema: GsakTema | undefined): void;
         settValgtUnderkategori(underkategori: GsakTemaUnderkategori | undefined): void;
         settValgtOppgavetype(oppgavetype: GsakTemaOppgavetype | undefined): void;
-        settValgtPrioritet(prioritet: OppgavePrioritet): void;
+        settValgtPrioritet(prioritet: string): void;
         settBeskrivelse(beskrivelse: string): void;
         settValgtEnhet(enhet: Enhet | undefined): void;
         settValgtAnsatt(ansatt: Ansatt | undefined): void;

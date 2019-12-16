@@ -25,6 +25,13 @@ export function getMockGsakTema(): GsakTema[] {
             oppgavetyper: getOppgavetyper(),
             prioriteter: getPrioriteter(),
             underkategorier: getUnderkategorier()
+        },
+        {
+            kode: 'BID',
+            tekst: 'Bidrag',
+            oppgavetyper: getOppgavetyper(),
+            prioriteter: getPrioriteterUtenNormal(),
+            underkategorier: getUnderkategorier()
         }
     ];
 }
@@ -87,18 +94,22 @@ function getOppgavetyper(): GsakTemaOppgavetype[] {
     ];
 }
 
+function getPrioriteterUtenNormal(): GsakTemaPrioritet[] {
+    return getPrioriteter().filter(it => !it.kode.includes('NORM'));
+}
+
 function getPrioriteter(): GsakTemaPrioritet[] {
     return [
         {
-            kode: 'HOY',
+            kode: 'HOY_TEMA',
             tekst: 'Høy'
         },
         {
-            kode: 'NORM',
+            kode: 'NORM_TEMA',
             tekst: 'Normal'
         },
         {
-            kode: 'LAV',
+            kode: 'LAV_TEMA',
             tekst: 'Lav'
         }
     ];

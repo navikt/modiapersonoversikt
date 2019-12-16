@@ -4,8 +4,7 @@ import {
     Enhet,
     GsakTema,
     GsakTemaOppgavetype,
-    GsakTemaUnderkategori,
-    OppgavePrioritet
+    GsakTemaUnderkategori
 } from '../../../../../../../models/meldinger/oppgave';
 import { OppgaveSkjemaElementer } from './OppgaveSkjemaElementer';
 import { lagOppgaveRequest } from './byggRequest';
@@ -17,10 +16,9 @@ import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { Resultat } from '../utils/VisPostResultat';
-import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { erBehandlet } from '../../../utils/meldingerUtils';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { getValidOppgaveSkjemaState, validerOppgaveSkjema } from './oppgaveSkjemaValidator';
 import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
@@ -63,7 +61,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
     const [valgtEnhet, settValgtEnhet] = useState<Enhet | undefined>(undefined);
     const [valgtAnsatt, settValgtAnsatt] = useState<Ansatt | undefined>(undefined);
-    const [valgtPrioritet, settValgtPrioritet] = useState<OppgavePrioritet>(OppgavePrioritet.NORM);
+    const [valgtPrioritet, settValgtPrioritet] = useState<string | undefined>(undefined);
     const [beskrivelse, settBeskrivelse] = useState('');
     const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<OppgaveSkjemaForm>>(
         getValidOppgaveSkjemaState()
@@ -76,6 +74,9 @@ function OppgaveSkjema(props: OppgaveProps) {
             settValgtUnderkategori(undefined);
             settValgtOppgavetype(undefined);
         }
+
+        const normalOppgaveprioritet = tema?.prioriteter.find(prioritet => prioritet.kode.includes('NORM'));
+        settValgtPrioritet(normalOppgaveprioritet?.kode);
     }
 
     const formState: OppgaveSkjemaForm = {
