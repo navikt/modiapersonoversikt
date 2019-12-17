@@ -2,14 +2,20 @@ import { Traad } from '../../models/meldinger/meldinger';
 
 export interface MeldingerState {
     forrigeValgteTraad?: Traad;
+    skjulVarsler: boolean;
+    forrigeSok: string;
 }
 
 export const initialState: MeldingerState = {
-    forrigeValgteTraad: undefined
+    forrigeValgteTraad: undefined,
+    skjulVarsler: false,
+    forrigeSok: ''
 };
 
 export enum MeldingerActionTypes {
-    HuskValgtTraad = 'SetValgtTraad'
+    HuskValgtTraad = 'SetValgtTraad',
+    SkjulVarsler = 'SkjulVarsler',
+    HuskSok = 'HuskSok'
 }
 
 export interface HuskValgtTraad {
@@ -17,4 +23,14 @@ export interface HuskValgtTraad {
     traad?: Traad;
 }
 
-export type MeldingerActions = HuskValgtTraad;
+export interface SetSkjulVarsler {
+    type: MeldingerActionTypes.SkjulVarsler;
+    skjul: boolean;
+}
+
+export interface HuskSok {
+    type: MeldingerActionTypes.HuskSok;
+    sok: string;
+}
+
+export type MeldingerActions = HuskValgtTraad | SetSkjulVarsler | HuskSok;
