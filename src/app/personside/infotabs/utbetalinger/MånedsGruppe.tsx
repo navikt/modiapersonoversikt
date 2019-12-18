@@ -2,21 +2,18 @@ import * as React from 'react';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { ArrayGroup } from '../../../../utils/groupArray';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { Bold, Uppercase } from '../../../../components/common-styled-components';
+import { Element } from 'nav-frontend-typografi';
+import { Uppercase } from '../../../../components/common-styled-components';
 import { getGjeldendeDatoForUtbetaling } from './utils/utbetalingerUtils';
 import UtbetalingsKomponent from './utbetaling/Utbetaling';
 import { Utbetaling } from '../../../../models/utbetalinger';
+import { KategoriSkille } from '../../dialogpanel/fellesStyling';
 
 interface Props {
     gruppe: ArrayGroup<Utbetaling>;
 }
 
 const Wrapper = styled.li`
-    > *:first-child {
-        background-color: ${theme.color.kategori};
-        padding: 0.2rem ${theme.margin.px20};
-    }
     ol {
         padding: 0;
         margin: 0;
@@ -35,11 +32,11 @@ function Månedsgruppe({ gruppe }: Props) {
     ));
     return (
         <Wrapper>
-            <Normaltekst tag={'h3'}>
-                <Bold>
+            <KategoriSkille>
+                <Element tag={'h3'}>
                     <Uppercase>{gruppe.category}</Uppercase>
-                </Bold>
-            </Normaltekst>
+                </Element>
+            </KategoriSkille>
             <ol aria-label={`Utbetalinger fra ${gruppe.category}`}>{utbetalingsKomponenter}</ol>
         </Wrapper>
     );

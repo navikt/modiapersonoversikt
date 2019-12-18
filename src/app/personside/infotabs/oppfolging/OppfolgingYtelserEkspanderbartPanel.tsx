@@ -16,7 +16,9 @@ interface Props {
 }
 
 const ListeStyle = styled.ol`
-    > * {
+    > li:not(:first-child) {
+        padding-top: 2rem;
+        margin-top: 2rem;
         border-top: ${theme.border.skille};
     }
 `;
@@ -28,10 +30,6 @@ const YtelsePanelStyle = styled.div`
         flex-shrink: 0;
         flex-basis: 70%;
     }
-`;
-
-const ElementStyle = styled.div`
-    padding: ${theme.margin.px20};
 `;
 
 function OppfolgingYtelserListe(props: { ytelser: OppfolgingsYtelse[] }) {
@@ -56,13 +54,13 @@ function YtelseElement({ ytelse }: { ytelse: OppfolgingsYtelse }) {
     };
 
     return (
-        <ElementStyle>
+        <li>
             <Undertittel>{ytelse.type}</Undertittel>
             <YtelsePanelStyle>
                 <DescriptionList entries={descriptionListProps} />
                 <OppfolgingsVedtakTabell ytelseVedtak={ytelse.vedtak} />
             </YtelsePanelStyle>
-        </ElementStyle>
+        </li>
     );
 }
 

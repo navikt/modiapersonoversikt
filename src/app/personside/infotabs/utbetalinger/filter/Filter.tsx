@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useCallback } from 'react';
 import { Radio } from 'nav-frontend-skjema';
-import { EtikettLiten, Undertittel } from 'nav-frontend-typografi';
+import { Element, Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
 import { hasData, isLoading, isReloading } from '../../../../../rest/utils/restResource';
 import UtbetaltTilValg from './UtbetaltTilValg';
@@ -32,10 +32,13 @@ const InputPanel = styled.form`
     > * {
         margin-top: 0.5rem;
     }
+    .skjemaelement--horisontal {
+        margin-bottom: 0.4rem;
+    }
 `;
 
 const KnappWrapper = styled.div`
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 `;
 
 const FieldSet = styled.fieldset`
@@ -113,7 +116,7 @@ function Filtrering() {
     const checkBokser = hasData(utbetalingerResource) && visCheckbokser(utbetalingerResource.data) && (
         <>
             <InputPanel>
-                <EtikettLiten>Utbetaling til</EtikettLiten>
+                <Element>Utbetaling til</Element>
                 <UtbetaltTilValg
                     utbetalinger={utbetalingerResource.data.utbetalinger}
                     onChange={updateFilter}
@@ -121,7 +124,7 @@ function Filtrering() {
                 />
             </InputPanel>
             <InputPanel>
-                <EtikettLiten>Velg ytelse</EtikettLiten>
+                <Element>Velg ytelse</Element>
                 <YtelseValg
                     onChange={updateFilter}
                     filterState={filter}
@@ -133,7 +136,7 @@ function Filtrering() {
     const hentUtbetalingerPanel = (
         <InputPanel>
             <FieldSet>
-                <EtikettLiten tag="legend">Velg periode</EtikettLiten>
+                <Element tag="legend">Velg periode</Element>
                 {radios}
             </FieldSet>
             {filter.periode.radioValg === PeriodeValg.EGENDEFINERT && (

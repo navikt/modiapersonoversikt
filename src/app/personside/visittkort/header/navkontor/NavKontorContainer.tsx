@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { NavKontorResponse } from '../../../../../models/navkontor';
 import { Bold } from '../../../../../components/common-styled-components';
 import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
@@ -33,20 +33,16 @@ const onNotFound = (
 
 function NavKontorVisning(props: { navKontor: NavKontorResponse }) {
     return (
-        <Normaltekst>
-            <Bold>
-                {props.navKontor.enhetId} {props.navKontor.enhetNavn}
-            </Bold>
-        </Normaltekst>
+        <Element>
+            {props.navKontor.enhetId} {props.navKontor.enhetNavn}
+        </Element>
     );
 }
 
 function NavKontorContainer() {
     return (
         <NavKontorSection aria-label="Nav kontor">
-            <Normaltekst tag="h2">
-                <Bold>NAV-kontor</Bold>
-            </Normaltekst>
+            <Element tag="h2">NAV-kontor</Element>
             <RestResourceConsumer<NavKontorResponse>
                 getResource={restResources => restResources.brukersNavKontor}
                 spinnerSize={'S'}

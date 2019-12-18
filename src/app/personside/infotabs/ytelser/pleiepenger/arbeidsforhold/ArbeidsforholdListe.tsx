@@ -16,8 +16,14 @@ interface Props {
 
 const StyledListe = styled.ol`
     li:not(:first-child) {
+        padding-top: 1rem;
+        margin-top: 1rem;
         border-top: ${theme.border.skilleSvak};
     }
+`;
+
+const StyledKnappBase = styled(KnappBase)`
+    margin-top: 1rem;
 `;
 
 function ArbeidsForholdListe(props: Props) {
@@ -32,9 +38,9 @@ function ArbeidsForholdListe(props: Props) {
 
     const [førsteArbForhold, ...resten] = arbeidsforhold;
     const visAlleArbeidsforholdKnapp = (
-        <KnappBase type={'hoved'} onClick={() => toggleVisAlle(!visAlle)}>
+        <StyledKnappBase type={'hoved'} onClick={() => toggleVisAlle(!visAlle)}>
             {visAlle ? 'Vis færre arbeidsforhold' : 'Vis alle arbeidsforhold'}
-        </KnappBase>
+        </StyledKnappBase>
     );
     return (
         <>

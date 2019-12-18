@@ -12,7 +12,7 @@ interface Props {
 
 const CustomStyling = styled.nav`
     ${theme.hvittPanel};
-    font-weight: bold;
+    font-weight: 600;
     a {
         padding: ${theme.margin.px20};
     }

@@ -5,8 +5,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { Checkbox } from 'nav-frontend-skjema';
 import { DokumentMetadata, Entitet } from '../../../../../models/saksoversikt/dokumentmetadata';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../../utils/groupArray';
-import { AlignTextCenter, Bold, Uppercase } from '../../../../../components/common-styled-components';
-import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
+import { Undertittel, Normaltekst, Element } from 'nav-frontend-typografi';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import ViktigÅVite from '../viktigavite/viktigavite';
 import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types';
@@ -21,6 +20,7 @@ import SakstemaListe from '../sakstemaliste/SakstemaListe';
 import { useEffect } from 'react';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { usePrevious } from '../../../../../utils/customHooks';
+import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 
 interface Props {
     valgtSakstema: Sakstema;
@@ -37,11 +37,12 @@ interface DokumentGruppeProps {
 }
 
 const SaksdokumenterStyling = styled.section`
+    ${theme.hvittPanel};
     position: relative;
+    margin-bottom: 2rem;
 `;
 
 const InfoOgFilterPanel = styled.section`
-    ${theme.hvittPanel};
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -70,11 +71,7 @@ const DokumenterListe = styled.ol`
 `;
 
 const ÅrsGruppeStyle = styled.li`
-    > *:first-child {
-        padding: 0.2rem ${theme.margin.px10};
-    }
     ol {
-        ${theme.hvittPanel};
         padding: 0;
         margin: 0;
     }
@@ -91,10 +88,6 @@ const Form = styled.form`
     > * {
         margin-bottom: 0;
     }
-`;
-
-const Luft = styled.div`
-    margin-top: 2rem;
 `;
 
 const TittelWrapperStyling = styled.div`
@@ -121,13 +114,9 @@ function Dokumentgruppe({ gruppe, harTilgang, sakstemakode }: DokumentGruppeProp
 
     return (
         <ÅrsGruppeStyle>
-            <Normaltekst tag={'h3'}>
-                <AlignTextCenter>
-                    <Bold>
-                        <Uppercase>{gruppe.category}</Uppercase>
-                    </Bold>
-                </AlignTextCenter>
-            </Normaltekst>
+            <KategoriSkille>
+                <Element tag={'h3'}>{gruppe.category}</Element>
+            </KategoriSkille>
             <ol>{dokumentKomponenter}</ol>
         </ÅrsGruppeStyle>
     );
@@ -241,32 +230,33 @@ function SaksDokumenter(props: Props) {
     );
 
     return (
-        <SaksdokumenterStyling aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
-            <InfoOgFilterPanel>
-                <div>
-                    <TittelWrapperStyling ref={tittelRef} tabIndex={-1}>
-                        {valgtSakstemaTittel}
-                        <Normaltekst>({filtrerteDokumenter.length} journalposter)</Normaltekst>
-                    </TittelWrapperStyling>
-                    {filterCheckboxer}
-                </div>
-                <div>
-                    <LenkeNorg valgtSakstema={props.valgtSakstema} />
-                    <ToggleViktigAaViteKnapp valgtSakstema={props.valgtSakstema} />
-                </div>
-            </InfoOgFilterPanel>
-            {paginering.pageSelect && <PaginatorStyling>{paginering.pageSelect}</PaginatorStyling>}
-            <ViktigÅVite valgtSakstema={props.valgtSakstema} />
-            <DokumentListe sakstema={props.valgtSakstema} filtrerteDokumenter={paginering.currentPage} />
-            {paginering.prevNextButtons && (
-                <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
-            )}
-            <Luft />
+        <>
+            <SaksdokumenterStyling aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
+                <InfoOgFilterPanel>
+                    <div>
+                        <TittelWrapperStyling ref={tittelRef} tabIndex={-1}>
+                            {valgtSakstemaTittel}
+                            <Normaltekst>({filtrerteDokumenter.length} journalposter)</Normaltekst>
+                        </TittelWrapperStyling>
+                        {filterCheckboxer}
+                    </div>
+                    <div>
+                        <LenkeNorg valgtSakstema={props.valgtSakstema} />
+                        <ToggleViktigAaViteKnapp valgtSakstema={props.valgtSakstema} />
+                    </div>
+                </InfoOgFilterPanel>
+                {paginering.pageSelect && <PaginatorStyling>{paginering.pageSelect}</PaginatorStyling>}
+                <ViktigÅVite valgtSakstema={props.valgtSakstema} />
+                <DokumentListe sakstema={props.valgtSakstema} filtrerteDokumenter={paginering.currentPage} />
+                {paginering.prevNextButtons && (
+                    <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
+                )}
+            </SaksdokumenterStyling>
             <AlertStripeInfo>
                 Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter
                 som er journalført vises fra og med 4.juni 2016
             </AlertStripeInfo>
-        </SaksdokumenterStyling>
+        </>
     );
 }
 

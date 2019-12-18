@@ -15,7 +15,6 @@ import GaaTilNesteOppgaveKnapp from './GaaTilNesteOppgaveKnapp';
 
 export const FormStyle = styled.form`
     display: flex;
-    margin-top: 1rem;
     flex-direction: column;
     align-items: stretch;
     .skjemaelement {
@@ -97,4 +96,9 @@ export const VelgDialogtypeStyle = styled.div`
     > *:not(:last-child) {
         margin-right: 1rem;
     }
+`;
+
+export const KategoriSkille = styled.div`
+    background-color: ${theme.color.kategori};
+    padding: 0.2rem ${theme.margin.px20};
 `;

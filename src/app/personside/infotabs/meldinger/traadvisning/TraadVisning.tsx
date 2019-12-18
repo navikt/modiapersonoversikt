@@ -4,7 +4,7 @@ import { datoSynkende, formatterDatoMedMaanedsnavn } from '../../../../../utils/
 import EnkeltMelding from './Enkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
-import { Flatknapp } from 'nav-frontend-knapper';
+import { Hovedknapp } from 'nav-frontend-knapper';
 import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
@@ -79,7 +79,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     if (KanBesvaresMeldingstyper.includes(melding.meldingstype)) {
         return (
             <KnappWrapper>
-                <Flatknapp onClick={handleNyMelding}>Ny melding</Flatknapp>
+                <Hovedknapp onClick={handleNyMelding}>Ny melding</Hovedknapp>
             </KnappWrapper>
         );
     } else {

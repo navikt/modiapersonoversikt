@@ -30,6 +30,7 @@ export const Uppercase = styled.span`
 `;
 
 export const Bold = styled.span`
+    // TODO font-weight: 600 (men helst bruke <Element/>)
     font-weight: bold;
 `;
 

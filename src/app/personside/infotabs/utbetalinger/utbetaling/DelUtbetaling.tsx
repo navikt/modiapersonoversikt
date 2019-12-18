@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { formaterNOK, periodeStringFromYtelse } from '../utils/utbetalingerUtils';
-import { Bold, BulletPoint, SpaceBetween } from '../../../../../components/common-styled-components';
+import { BulletPoint, SpaceBetween } from '../../../../../components/common-styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import { Ytelse } from '../../../../../models/utbetalinger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import { AnyAction, Dispatch } from 'redux';
 import { connect } from 'react-redux';
@@ -64,12 +64,8 @@ class DelUtbetaling extends React.PureComponent<Props> {
         const header = (
             <BulletPoint showBulletPoint={!this.props.erEkspandert} color={theme.color.kategori}>
                 <SpaceBetween>
-                    <Normaltekst tag="h5">
-                        <Bold>{ytelse.type}</Bold>
-                    </Normaltekst>
-                    <Normaltekst>
-                        <Bold>{formaterNOK(ytelse.nettobeløp)}</Bold>
-                    </Normaltekst>
+                    <Element tag="h5">{ytelse.type}</Element>
+                    <Element>{formaterNOK(ytelse.nettobeløp)}</Element>
                 </SpaceBetween>
                 <Normaltekst>{periode}</Normaltekst>
             </BulletPoint>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Pleiepengeperiode } from '../../../../../models/ytelse/pleiepenger';
 import styled from 'styled-components';
 import YtelserPeriode from '../felles-styling/YtelserPeriode';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Ingress } from 'nav-frontend-typografi';
 import { formaterDato, NOKellerNull, prosentEllerNull } from '../../../../../utils/stringFormatting';
 import theme from '../../../../../styles/personOversiktTheme';
 import { StyledTable } from '../../../../../utils/table/StyledTable';
@@ -34,7 +34,7 @@ function Pleiepengerperiode({ periode, ...props }: Props) {
     return (
         <YtelserPeriode tittel={`Periode ${props.periodeNummer} - ${formaterDato(periode.fom)}`}>
             <VedtaksTable>
-                <Undertittel>Anviste utbetalinger</Undertittel>
+                <Ingress>Anviste utbetalinger</Ingress>
                 <StyledTable tittelRekke={tittelRekke} rows={rows} />
             </VedtaksTable>
         </YtelserPeriode>

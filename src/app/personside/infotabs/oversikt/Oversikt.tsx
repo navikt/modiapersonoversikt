@@ -17,6 +17,10 @@ const Style = styled.article`
         justify-content: center;
     }
     padding: ${theme.margin.layout};
+    .alertstripe--info {
+        background-color: transparent;
+        border: none;
+    }
 `;
 
 const KolonneStyle = styled.div`

@@ -3,7 +3,7 @@ import { formaterNOK, getGjeldendeDatoForUtbetaling, getNettoSumYtelser } from '
 import styled from 'styled-components';
 import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import theme from '../../../../../styles/personOversiktTheme';
 import DelUtbetaling from './DelUtbetaling';
@@ -94,12 +94,8 @@ function SammensattUtbetaling(props: Props) {
                         {dato} / <Bold>{utbetaling.status}</Bold>
                     </Normaltekst>
                     <SpaceBetween>
-                        <Normaltekst tag={'h4'}>
-                            <Bold>Diverse ytelser</Bold>
-                        </Normaltekst>
-                        <Normaltekst>
-                            <Bold>{sum}</Bold>
-                        </Normaltekst>
+                        <Element tag={'h4'}>Diverse ytelser</Element>
+                        <Element>{sum}</Element>
                     </SpaceBetween>
                     <FlexEnd>
                         <Normaltekst>{forfallsInfo}</Normaltekst>

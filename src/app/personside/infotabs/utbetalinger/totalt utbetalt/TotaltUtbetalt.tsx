@@ -44,7 +44,7 @@ const TotaltUtbetaltOversikt = styled.section`
         text-transform: uppercase;
     }
     td {
-        font-weight: bold;
+        font-weight: 600;
     }
 `;
 

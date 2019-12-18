@@ -2,7 +2,7 @@ import { KommendeUtbetaling } from '../../../../../../models/ytelse/ytelse-utbet
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Ingress } from 'nav-frontend-typografi';
 import {
     datoEllerNull,
     NOKellerNull,
@@ -58,7 +58,7 @@ function KommendeUtbetalinger(props: Props) {
     const paths = usePaths();
     return (
         <KommendeUtbetalingerStyle>
-            <Undertittel tag="h4">Utbetalinger</Undertittel>
+            <Ingress tag="h4">Utbetalinger</Ingress>
             <Utbetalinger kommendeUtbetalinger={props.kommendeUtbetalinger} />
             {erNyePersonoversikten() ? (
                 <AlertStripeInfo>

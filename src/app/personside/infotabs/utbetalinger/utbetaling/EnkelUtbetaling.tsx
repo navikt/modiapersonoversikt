@@ -6,7 +6,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { loggEvent } from '../../../../../utils/frontendLogger';
@@ -116,12 +116,8 @@ function EnkelUtbetaling(props: Props) {
                     <UtbetalingTabellStyling>
                         <UtbetalingHeaderStyle>
                             <SpaceBetween>
-                                <Normaltekst tag={'h4'}>
-                                    <Bold>{tittel}</Bold>
-                                </Normaltekst>
-                                <Normaltekst>
-                                    <Bold>{sum}</Bold>
-                                </Normaltekst>
+                                <Element tag={'h4'}>{tittel}</Element>
+                                <Element>{sum}</Element>
                             </SpaceBetween>
                             <Normaltekst className="order-first">
                                 {dato} / <Bold>{props.utbetaling.status}</Bold>
