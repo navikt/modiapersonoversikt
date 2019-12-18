@@ -6,7 +6,9 @@ import { datoSynkende, formatterDato } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { StyledTable } from '../../../../utils/table/StyledTable';
-import { useState } from 'react';
+import { useAppState } from '../../../../utils/customHooks';
+import { useDispatch } from 'react-redux';
+import { setSykefraværEkspandert } from '../../../../redux/oppfolging/actions';
 
 interface Props {
     syfoPunkter: SyfoPunkt[];
@@ -34,7 +36,9 @@ function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
 }
 
 function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {
-    const [open, setOpen] = useState(false);
+    const open = useAppState(state => state.oppfolging.sykefraværEkspandert);
+    const dispatch = useDispatch();
+    const setOpen = (open: boolean) => dispatch(setSykefraværEkspandert(open));
 
     if (props.syfoPunkter.length === 0) {
         return (
