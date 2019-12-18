@@ -21,6 +21,7 @@ const Styling = styled.span<{ visNumberBadge: boolean }>`
     svg {
         height: ${pxToRem(25)};
         width: ${pxToRem(25)};
+        opacity: 0.5;
         ${props =>
             props.visNumberBadge &&
             css`
