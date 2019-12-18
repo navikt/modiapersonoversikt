@@ -62,7 +62,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c35 {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .c20 {
@@ -136,6 +136,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c24 th {
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .c24 tr {
@@ -269,7 +270,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c14 {
-  padding: 1.25rem 1.25rem 0;
+  padding: 0.9375rem 0.9375rem 0;
 }
 
 .c15 {
@@ -333,7 +334,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 0.625rem 1.25rem 0;
+  padding: 0.625rem 0.9375rem 0;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   cursor: pointer;
@@ -351,7 +352,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c30 {
   background-color: #cce1f3;
-  padding: 0.2rem 1.25rem;
+  padding: 0.2rem 0.9375rem;
 }
 
 .c1 {
@@ -382,7 +383,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c26 > *:first-child {
-  padding: 1.25rem;
+  padding: 0.9375rem;
 }
 
 .c28 {
@@ -413,7 +414,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
-  padding: 1.25rem;
+  padding: 0.9375rem;
 }
 
 .c7 {
@@ -465,7 +466,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c3 a {
-  padding: 1.25rem;
+  padding: 0.9375rem;
 }
 
 .c3 .lenkepanel {

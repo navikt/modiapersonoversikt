@@ -2,7 +2,7 @@
 
 exports[`Viser oversikt med alt innhold 1`] = `
 .c10 {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .c9 {

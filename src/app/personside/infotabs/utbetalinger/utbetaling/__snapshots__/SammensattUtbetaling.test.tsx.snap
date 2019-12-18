@@ -28,7 +28,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 }
 
 .c2 {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .c9 {
@@ -189,7 +189,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 }
 
 .c0 {
-  padding: 1.25rem;
+  padding: 0.9375rem;
 }
 
 .c0 > *:nth-child(3) {

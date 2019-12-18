@@ -126,7 +126,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c3 {
-  padding: 1.25rem;
+  padding: 0.9375rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

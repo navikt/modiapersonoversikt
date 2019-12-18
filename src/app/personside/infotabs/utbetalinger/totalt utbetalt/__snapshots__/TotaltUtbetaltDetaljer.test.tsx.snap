@@ -181,6 +181,7 @@ Array [
 
 .c2 th {
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .c2 tr {

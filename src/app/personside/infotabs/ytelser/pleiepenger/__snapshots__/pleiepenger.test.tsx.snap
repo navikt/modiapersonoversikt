@@ -306,7 +306,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
 
 .c1 {
   background-color: #cce1f3;
-  padding: 0.2rem 1.25rem;
+  padding: 0.2rem 0.9375rem;
 }
 
 .c0 ol {
