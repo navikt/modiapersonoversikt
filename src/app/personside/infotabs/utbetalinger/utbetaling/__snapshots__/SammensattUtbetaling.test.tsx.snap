@@ -125,7 +125,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 }
 
 .c16 td:not(:first-child) {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .c17 {
@@ -263,22 +263,14 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
       className="c3"
     >
       <h4
-        className="typo-normal"
+        className="typo-element"
       >
-        <span
-          className="c2"
-        >
-          Diverse ytelser
-        </span>
+        Diverse ytelser
       </h4>
       <p
-        className="typo-normal"
+        className="typo-element"
       >
-        <span
-          className="c2"
-        >
-          22,772.00
-        </span>
+        22,772.00
       </p>
     </div>
     <div
@@ -353,22 +345,14 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
                 className="c3"
               >
                 <h5
-                  className="typo-normal"
+                  className="typo-element"
                 >
-                  <span
-                    className="c2"
-                  >
-                    Sykepenger
-                  </span>
+                  Sykepenger
                 </h5>
                 <p
-                  className="typo-normal"
+                  className="typo-element"
                 >
-                  <span
-                    className="c2"
-                  >
-                    11,386.00
-                  </span>
+                  11,386.00
                 </p>
               </div>
               <p
@@ -674,13 +658,9 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
                   className="c17"
                 />
                 <h4
-                  className="typo-normal"
+                  className="typo-element"
                 >
-                  <span
-                    className="c2"
-                  >
-                    Melding
-                  </span>
+                  Melding
                 </h4>
                 <p
                   className="typo-normal"
@@ -714,22 +694,14 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
                 className="c3"
               >
                 <h5
-                  className="typo-normal"
+                  className="typo-element"
                 >
-                  <span
-                    className="c2"
-                  >
-                    Sykepenger
-                  </span>
+                  Sykepenger
                 </h5>
                 <p
-                  className="typo-normal"
+                  className="typo-element"
                 >
-                  <span
-                    className="c2"
-                  >
-                    11,386.00
-                  </span>
+                  11,386.00
                 </p>
               </div>
               <p
@@ -1035,13 +1007,9 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
                   className="c17"
                 />
                 <h4
-                  className="typo-normal"
+                  className="typo-element"
                 >
-                  <span
-                    className="c2"
-                  >
-                    Melding
-                  </span>
+                  Melding
                 </h4>
                 <p
                   className="typo-normal"

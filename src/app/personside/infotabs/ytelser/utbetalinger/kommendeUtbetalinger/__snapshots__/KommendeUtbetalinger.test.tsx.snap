@@ -16,7 +16,7 @@ exports[`Kommende enkelutbetaling matcher snapshot 1`] = `
 .c1 [role='table'] thead,
 .c1 [role='table'] .thead[role='rowgroup'] {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .c1 [role='table'] [role='cell'],
@@ -49,7 +49,7 @@ exports[`Kommende enkelutbetaling matcher snapshot 1`] = `
   className="c0"
 >
   <h4
-    className="typo-undertittel"
+    className="typo-ingress"
   >
     Utbetalinger
   </h4>

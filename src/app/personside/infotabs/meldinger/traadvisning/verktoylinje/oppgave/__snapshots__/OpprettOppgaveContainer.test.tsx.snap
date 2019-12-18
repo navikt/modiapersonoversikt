@@ -13,7 +13,6 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
 
 .c2 {
   position: relative;
-  margin-bottom: 1rem;
 }
 
 .c2 .skjemaelement {
@@ -60,6 +59,10 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   border-color: #0067c5;
 }
 
+.c0 {
+  padding-top: 1rem;
+}
+
 .c0 .inputPanelGruppe__inner {
   display: -webkit-box;
   display: -webkit-flex;
@@ -72,6 +75,15 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+}
+
+.c0 label {
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+.c0 .skjemaelement {
+  margin-bottom: 0.7rem;
 }
 
 .c4 {

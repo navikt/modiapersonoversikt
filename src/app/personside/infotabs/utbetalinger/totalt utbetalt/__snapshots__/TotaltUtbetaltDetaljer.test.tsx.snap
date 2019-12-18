@@ -221,7 +221,7 @@ Array [
 }
 
 .c2 tr td.sumNetto {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .c2 tr .periodeForYtelse,

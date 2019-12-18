@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Foreldrepengeperiode matcher snapshot 1`] = `
-.c3 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -11,25 +11,52 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   flex-wrap: wrap;
 }
 
-.c3 dt {
+.c4 dt {
   color: #645f5a;
 }
 
-.c3 dd {
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-
-.c3 > div {
-  margin: 0.9375rem 0;
-  padding-right: 1rem;
+.c4 > div {
+  margin: 0.5625rem 0;
+  padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
 
-.c0 > *:first-child {
+.c6 {
+  overflow: auto;
+  box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
+  border-radius: .25rem;
+  background-color: white;
+}
+
+.c6 [role='table'] {
+  text-align: left;
+  width: 100%;
+}
+
+.c6 [role='table'] thead,
+.c6 [role='table'] .thead[role='rowgroup'] {
+  border-bottom: 0.2rem solid rgba(0,0,0,0.15);
+  font-weight: 600;
+}
+
+.c6 [role='table'] [role='cell'],
+.c6 [role='table'] [role='columnheader'] {
+  padding: 0.7rem;
+  vertical-align: middle;
+}
+
+.c6 [role='table'] [role='columnheader'] {
+  padding-bottom: 0.7rem;
+}
+
+.c6 [role='table'] [role='row']:nth-child(even) {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.c1 {
   background-color: #cce1f3;
-  padding: 0.5rem 1.25rem;
+  padding: 0.2rem 1.25rem;
 }
 
 .c0 ol {
@@ -37,46 +64,18 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   margin: 0;
 }
 
-.c5 {
-  overflow: auto;
-  box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
-  border-radius: .25rem;
-  background-color: white;
-}
-
-.c5 [role='table'] {
-  text-align: left;
-  width: 100%;
-}
-
-.c5 [role='table'] thead,
-.c5 [role='table'] .thead[role='rowgroup'] {
-  border-bottom: 0.2rem solid rgba(0,0,0,0.15);
-  font-weight: bold;
-}
-
-.c5 [role='table'] [role='cell'],
-.c5 [role='table'] [role='columnheader'] {
-  padding: 0.7rem;
-  vertical-align: middle;
-}
-
-.c5 [role='table'] [role='columnheader'] {
-  padding-bottom: 0.7rem;
-}
-
-.c5 [role='table'] [role='row']:nth-child(even) {
-  background-color: rgba(0,0,0,0.1);
-}
-
-.c2 {
+.c3 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c4 {
+.c3 > h3 {
+  margin-bottom: 1rem;
+}
+
+.c5 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
@@ -84,35 +83,39 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   white-space: nowrap;
 }
 
-.c4 > *:not(:last-child) {
+.c5 > *:not(:last-child) {
   margin-bottom: 1rem;
 }
 
-.c1 {
+.c2 {
   padding: .5rem;
 }
 
 <li
   className="c0"
 >
-  <h3
-    className="typo-undertittel"
-  >
-    Periode 1 - 29.04.2017
-  </h3>
-  <article
+  <div
     className="c1"
   >
-    <div
-      className="c2"
+    <h3
+      className="typo-element"
     >
-      <h2
-        className="typo-undertittel"
+      Periode 1 - 29.04.2017
+    </h3>
+  </div>
+  <article
+    className="c2"
+  >
+    <div
+      className="c3"
+    >
+      <h3
+        className="typo-ingress"
       >
         Om foreldrepengeperioden
-      </h2>
+      </h3>
       <dl
-        className="c3"
+        className="c4"
       >
         <div>
           <dt
@@ -121,7 +124,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Arbeidsprosent mor
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             58%
           </dd>
@@ -133,7 +136,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Mors situasjon
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             nobis sit quo et quis
           </dd>
@@ -145,7 +148,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Disponibel gradering
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             9%
           </dd>
@@ -157,7 +160,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Forskyvelsesperiode
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             08.10.2014 - 22.08.2014
           </dd>
@@ -169,7 +172,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Andre forskyvelsesperiode
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             09.12.2014 - 26.08.2014
           </dd>
@@ -181,7 +184,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Midlertidig stans
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             2019-02-10
           </dd>
@@ -193,7 +196,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Stansårsak
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             Avsluttet
           </dd>
@@ -205,7 +208,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Avslått
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             Avslått
           </dd>
@@ -217,7 +220,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Mødrekvote
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             —
           </dd>
@@ -229,7 +232,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Rett til Mødrekvote
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             Ingen rett til mødrekvote
           </dd>
@@ -241,7 +244,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Aleneomsorg Mor
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             —
           </dd>
@@ -253,7 +256,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Fedrekvote
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             —
           </dd>
@@ -265,7 +268,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Rett til Fedrekvote
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             Rett til fedrekvote
           </dd>
@@ -277,7 +280,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             Aleneomsorg Far
           </dt>
           <dd
-            className="typo-normal"
+            className="typo-element"
           >
             —
           </dd>
@@ -285,15 +288,15 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
       </dl>
     </div>
     <section
-      className="c4"
+      className="c5"
     >
       <h4
-        className="typo-undertittel"
+        className="typo-ingress"
       >
         Utbetalinger
       </h4>
       <div
-        className="typo-normal c5"
+        className="typo-normal c6"
       >
         <table
           role="table"

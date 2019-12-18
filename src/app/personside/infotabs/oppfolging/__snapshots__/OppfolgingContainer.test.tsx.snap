@@ -9,7 +9,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
-  padding: 1.25rem;
+  padding: 0.9375rem;
 }
 
 .c3 {
@@ -20,7 +20,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   outline: none;
 }
 
-.c7 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -30,18 +30,13 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   flex-wrap: wrap;
 }
 
-.c7 dt {
+.c6 dt {
   color: #645f5a;
 }
 
-.c7 dd {
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-
-.c7 > div {
-  margin: 0.9375rem 0;
-  padding-right: 1rem;
+.c6 > div {
+  margin: 0.5625rem 0;
+  padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
@@ -50,28 +45,14 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
-  padding: 1.25rem;
+  padding: 0.9375rem;
 }
 
 .c5 > *:first-child {
   margin-bottom: 1rem;
 }
 
-.c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-.c6 > *:first-child {
-  margin-right: 5rem;
-}
-
-.c9 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -82,7 +63,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   width: 100%;
 }
 
-.c9 > *:first-child {
+.c8 > *:first-child {
   -webkit-flex-basis: 10em;
   -ms-flex-preferred-size: 10em;
   flex-basis: 10em;
@@ -91,66 +72,62 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   flex-shrink: 0;
 }
 
-.c9 > * {
+.c8 > * {
   white-space: nowrap;
 }
 
-.c9 > *:not(:last-child) {
+.c8 > *:not(:last-child) {
   margin-right: 2rem;
 }
 
-.c8 {
+.c7 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
-.c11 {
+.c9 {
   overflow: auto;
   box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
   border-radius: .25rem;
   background-color: white;
 }
 
-.c11 [role='table'] {
+.c9 [role='table'] {
   text-align: left;
   width: 100%;
 }
 
-.c11 [role='table'] thead,
-.c11 [role='table'] .thead[role='rowgroup'] {
+.c9 [role='table'] thead,
+.c9 [role='table'] .thead[role='rowgroup'] {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
-  font-weight: bold;
+  font-weight: 600;
 }
 
-.c11 [role='table'] [role='cell'],
-.c11 [role='table'] [role='columnheader'] {
+.c9 [role='table'] [role='cell'],
+.c9 [role='table'] [role='columnheader'] {
   padding: 0.7rem;
   vertical-align: middle;
 }
 
-.c11 [role='table'] [role='columnheader'] {
+.c9 [role='table'] [role='columnheader'] {
   padding-bottom: 0.7rem;
 }
 
-.c11 [role='table'] [role='row']:nth-child(even) {
+.c9 [role='table'] [role='row']:nth-child(even) {
   background-color: rgba(0,0,0,0.1);
 }
 
-.c10 {
-  border-top: solid 0.0625rem #78706a;
-}
-
-.c16 {
+.c13 {
   color: #645f5a;
   margin-top: 3px;
 }
 
-.c16 .typo-etikett-liten {
+.c13 .typo-etikett-liten {
   line-height: 1rem;
 }
 
-.c15 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -160,24 +137,25 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c15 .first {
+.c12 .first {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c15 .second {
+.c12 .second {
   -webkit-order: 2;
   -ms-flex-order: 2;
   order: 2;
-  font-weight: bold;
 }
 
-.c12 > * {
+.c10 > li:not(:first-child) {
+  padding-top: 2rem;
+  margin-top: 2rem;
   border-top: solid 0.0625rem #78706a;
 }
 
-.c14 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -188,17 +166,13 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   align-items: flex-start;
 }
 
-.c14 > *:last-child {
+.c11 > *:last-child {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
   -webkit-flex-basis: 70%;
   -ms-flex-preferred-size: 70%;
   flex-basis: 70%;
-}
-
-.c13 {
-  padding: 1.25rem;
 }
 
 .c0 {
@@ -395,114 +369,110 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
       >
         Arbeidsoppfølging
       </h2>
-      <div
+      <dl
         className="c6"
       >
-        <dl
-          className="c7"
-        >
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Er under oppfølging
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              Nei
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Oppfølgingsenhet
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              E0001 Tangen AS
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Rettighetsgruppe
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              RGRP8
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Innsatsgruppe
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              INGRP10
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Veileder
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              Testident Testidentesen (Z0000001)
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Meldeplikt
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              Nei
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Formidlingsgruppe
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              FMGRP2
-            </dd>
-          </div>
-          <div>
-            <dt
-              className="typo-normal"
-            >
-              Oppfølgingsvedtak
-            </dt>
-            <dd
-              className="typo-normal"
-            >
-              24.04.2019
-            </dd>
-          </div>
-        </dl>
-      </div>
+        <div>
+          <dt
+            className="typo-normal"
+          >
+            Er under oppfølging
+          </dt>
+          <dd
+            className="typo-element"
+          >
+            Nei
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-normal"
+          >
+            Oppfølgingsenhet
+          </dt>
+          <dd
+            className="typo-element"
+          >
+            E0001 Tangen AS
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-normal"
+          >
+            Rettighetsgruppe
+          </dt>
+          <dd
+            className="typo-element"
+          >
+            RGRP8
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-normal"
+          >
+            Innsatsgruppe
+          </dt>
+          <dd
+            className="typo-element"
+          >
+            INGRP10
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-normal"
+          >
+            Veileder
+          </dt>
+          <dd
+            className="typo-element"
+          >
+            Testident Testidentesen (Z0000001)
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-normal"
+          >
+            Meldeplikt
+          </dt>
+          <dd
+            className="typo-element"
+          >
+            Nei
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-normal"
+          >
+            Formidlingsgruppe
+          </dt>
+          <dd
+            className="typo-element"
+          >
+            FMGRP2
+          </dd>
+        </div>
+        <div>
+          <dt
+            className="typo-normal"
+          >
+            Oppfølgingsvedtak
+          </dt>
+          <dd
+            className="typo-element"
+          >
+            24.04.2019
+          </dd>
+        </div>
+      </dl>
     </div>
   </div>
   <div
-    className="c8"
+    className="c7"
   >
     <div
       className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
@@ -518,7 +488,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           className="ekspanderbartPanel__flex-wrapper"
         >
           <div
-            className="c9"
+            className="c8"
           >
             <h2
               className="typo-undertittel"
@@ -536,10 +506,10 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
         className="ekspanderbartPanel__innhold"
       >
         <div
-          className="c10"
+          className=""
         >
           <div
-            className="typo-normal c11"
+            className="typo-normal c9"
           >
             <table
               role="table"
@@ -635,7 +605,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     </div>
   </div>
   <div
-    className="c8"
+    className="c7"
   >
     <div
       className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
@@ -651,7 +621,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           className="ekspanderbartPanel__flex-wrapper"
         >
           <div
-            className="c9"
+            className="c8"
           >
             <h2
               className="typo-undertittel"
@@ -669,21 +639,19 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
         className="ekspanderbartPanel__innhold"
       >
         <ol
-          className="c12"
+          className="c10"
         >
-          <div
-            className="c13"
-          >
+          <li>
             <h2
               className="typo-undertittel"
             >
               Dagpenger
             </h2>
             <div
-              className="c14"
+              className="c11"
             >
               <dl
-                className="c7"
+                className="c6"
               >
                 <div>
                   <dt
@@ -692,7 +660,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     Status
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     Avsluttet
                   </dd>
@@ -704,7 +672,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     Dato søknad mottatt
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     28.04.2019
                   </dd>
@@ -716,7 +684,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     Dato fra
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     14.04.2019
                   </dd>
@@ -728,7 +696,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     Dato til
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     01.05.2019
                   </dd>
@@ -740,7 +708,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     Bortfall: Dager igjen
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     46
                   </dd>
@@ -752,7 +720,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     Bortfall: Uker igjen
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     8
                   </dd>
@@ -764,7 +732,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     Dager igjen
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     28
                   </dd>
@@ -776,7 +744,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     Uker igjen
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     10
                   </dd>
@@ -789,7 +757,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   Vedtak
                 </h2>
                 <div
-                  className="typo-normal c11"
+                  className="typo-normal c9"
                 >
                   <table
                     role="table"
@@ -827,15 +795,15 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                           role="cell"
                         >
                           <div
-                            className="c15"
+                            className="c12"
                           >
-                            <h4
-                              className="second"
+                            <p
+                              className="typo-element second"
                             >
                               Ordinære dagpenger
-                            </h4>
+                            </p>
                             <div
-                              className="c16"
+                              className="c13"
                             >
                               <p
                                 className="typo-etikett-liten first"
@@ -863,15 +831,15 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                           role="cell"
                         >
                           <div
-                            className="c15"
+                            className="c12"
                           >
-                            <h4
-                              className="second"
+                            <p
+                              className="typo-element second"
                             >
                               Ordinære dagpenger
-                            </h4>
+                            </p>
                             <div
-                              className="c16"
+                              className="c13"
                             >
                               <p
                                 className="typo-etikett-liten first"
@@ -899,15 +867,15 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                           role="cell"
                         >
                           <div
-                            className="c15"
+                            className="c12"
                           >
-                            <h4
-                              className="second"
+                            <p
+                              className="typo-element second"
                             >
                               Ordinære dagpenger
-                            </h4>
+                            </p>
                             <div
-                              className="c16"
+                              className="c13"
                             >
                               <p
                                 className="typo-etikett-liten first"
@@ -933,7 +901,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                 </div>
               </section>
             </div>
-          </div>
+          </li>
         </ol>
       </article>
     </div>
