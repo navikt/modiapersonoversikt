@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser traad med verktøylinje 1`] = `
-.c17 {
+.c16 {
   position: relative;
   text-align: center;
   padding-top: 1rem;
 }
 
-.c18 > * {
+.c17 > * {
   margin-top: 1rem;
 }
 
-.c4 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -26,7 +26,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   align-items: flex-start;
 }
 
-.c14 {
+.c13 {
   position: relative;
   border: none;
   padding: 0;
@@ -44,7 +44,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   color: #0067c5;
 }
 
-.c14:after {
+.c13:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -52,63 +52,78 @@ exports[`Viser traad med verktøylinje 1`] = `
   width: 100%;
 }
 
-.c14:focus {
+.c13:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c14:hover {
+.c13:hover {
   opacity: 0.8;
 }
 
-.c14:hover:after {
+.c13:hover:after {
   content: '';
   border-color: #0067c5;
+}
+
+.c19 {
+  position: relative;
+}
+
+.c21 {
+  position: absolute !important;
+  bottom: 0.4rem;
+  right: 0.4rem;
 }
 
 .c20 {
   position: relative;
 }
 
-.c22 {
-  position: absolute !important;
-  bottom: 0.4rem;
-  right: 0.4rem;
-}
-
-.c21 {
-  position: relative;
-}
-
-.c21 .skjemaelement {
+.c20 .skjemaelement {
   margin-bottom: 0;
 }
 
-.c19 {
+.c18 {
   padding-top: 1rem;
 }
 
-.c19 .inputPanelGruppe__inner {
+.c18 .inputPanelGruppe__inner {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c19 .inputPanelGruppe__inner > * {
+.c18 .inputPanelGruppe__inner > * {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c19 label {
+.c18 label {
   font-weight: 600;
   margin-bottom: 0.1rem;
 }
 
-.c19 .skjemaelement {
+.c18 .skjemaelement {
   margin-bottom: 0.7rem;
+}
+
+.c22 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c22 button {
+  margin: 0;
 }
 
 .c23 {
@@ -122,26 +137,11 @@ exports[`Viser traad med verktøylinje 1`] = `
   justify-content: space-between;
 }
 
-.c23 button {
-  margin: 0;
-}
-
-.c24 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c15 {
+.c14 {
   margin-right: 0.5rem;
 }
 
-.c10 {
+.c9 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
@@ -156,7 +156,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-bottom: 0.24rem;
 }
 
-.c11 {
+.c10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -167,22 +167,22 @@ exports[`Viser traad med verktøylinje 1`] = `
   justify-content: space-between;
 }
 
-.c12 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c12 > *:not(:last-child) {
+.c11 > *:not(:last-child) {
   margin-right: 1.5rem;
 }
 
-.c13 {
+.c12 {
   color: #3e3832;
 }
 
-.c16 {
+.c15 {
   position: relative;
   border: none;
   padding: 0;
@@ -203,7 +203,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   color: #3e3832;
 }
 
-.c16:after {
+.c15:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -211,71 +211,58 @@ exports[`Viser traad med verktøylinje 1`] = `
   width: 100%;
 }
 
-.c16:focus {
+.c15:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c16:hover {
+.c15:hover {
   opacity: 0.8;
 }
 
-.c16:hover:after {
+.c15:hover:after {
   content: '';
   border-color: #0067c5;
 }
 
-.c2 .snakkeboble {
-  margin: 0;
-}
-
-.c2 .snakkeboble-panel {
-  -webkit-flex-shrink: 1;
-  -ms-flex-negative: 1;
-  flex-shrink: 1;
-  -webkit-flex-basis: 40rem;
-  -ms-flex-preferred-size: 40rem;
-  flex-basis: 40rem;
-}
-
-.c7 {
+.c6 {
   margin-right: 0.3rem !important;
 }
 
-.c6 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c5 {
+.c4 {
   font-weight: 600;
 }
 
-.c3 {
+.c2 {
   text-align: left;
 }
 
-.c3 em {
+.c2 em {
   font-style: normal;
   background-color: #eed28c;
   border-radius: 0.625rem;
   padding: 0 0.3125rem;
 }
 
-.c3 > *:not(:last-child) {
+.c2 > *:not(:last-child) {
   border-bottom: solid 0.0625rem #b7b1a9;
   padding-bottom: 0.7rem;
   margin-bottom: 0.5rem;
 }
 
-.c9 {
+.c8 {
   color: #0067c5;
 }
 
-.c8 .ekspanderbartPanel__hode,
-.c8 .ekspanderbartPanel__innhold {
+.c7 .ekspanderbartPanel__hode,
+.c7 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
 }
 
@@ -369,7 +356,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       aria-label="Dialog"
     >
       <li
-        className="snakkeboble_ikoner c2"
+        className="snakkeboble_ikoner "
       >
         <div
           className="snakkeboble snakkeboble--hoyre"
@@ -391,16 +378,16 @@ exports[`Viser traad med verktøylinje 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c3"
+                className="c2"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c4"
+                    className="c3"
                   >
                     <div
-                      className="tekstomrade c5"
+                      className="tekstomrade c4"
                     >
                       Delsvar - Arbeid
                     </div>
@@ -420,10 +407,10 @@ exports[`Viser traad med verktøylinje 1`] = `
                     13.08.2019 00:00
                   </div>
                   <div
-                    className="c6"
+                    className="c5"
                   >
                     <p
-                      className="typo-normal c7"
+                      className="typo-normal c6"
                     >
                       Skrevet av:
                     </p>
@@ -440,7 +427,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                 </div>
                 <div
-                  className="ekspanderbartPanel c8 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c7 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -453,7 +440,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c9"
+                        className="typo-etikett-liten c8"
                       >
                         Meldingen er journalført
                       </p>
@@ -474,7 +461,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </div>
       </li>
       <li
-        className="snakkeboble_ikoner c2"
+        className="snakkeboble_ikoner "
       >
         <div
           className="snakkeboble snakkeboble--venstre"
@@ -496,16 +483,16 @@ exports[`Viser traad med verktøylinje 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c3"
+                className="c2"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c4"
+                    className="c3"
                   >
                     <div
-                      className="tekstomrade c5"
+                      className="tekstomrade c4"
                     >
                       Spørsmål fra bruker - Arbeid
                     </div>
@@ -522,7 +509,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
                 </div>
                 <div
-                  className="ekspanderbartPanel c8 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c7 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -535,7 +522,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c9"
+                        className="typo-etikett-liten c8"
                       >
                         Meldingen er journalført
                       </p>
@@ -556,7 +543,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </div>
       </li>
       <li
-        className="snakkeboble_ikoner c2"
+        className="snakkeboble_ikoner "
       >
         <div
           className="snakkeboble snakkeboble--venstre"
@@ -578,16 +565,16 @@ exports[`Viser traad med verktøylinje 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c3"
+                className="c2"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c4"
+                    className="c3"
                   >
                     <div
-                      className="tekstomrade c5"
+                      className="tekstomrade c4"
                     >
                       Spørsmål fra bruker - Arbeid
                     </div>
@@ -604,7 +591,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
                 </div>
                 <div
-                  className="ekspanderbartPanel c8 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c7 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -617,7 +604,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c9"
+                        className="typo-etikett-liten c8"
                       >
                         Meldingen er journalført
                       </p>
@@ -638,7 +625,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </div>
       </li>
       <li
-        className="snakkeboble_ikoner c2"
+        className="snakkeboble_ikoner "
       >
         <div
           className="snakkeboble snakkeboble--hoyre"
@@ -660,16 +647,16 @@ exports[`Viser traad med verktøylinje 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c3"
+                className="c2"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c4"
+                    className="c3"
                   >
                     <div
-                      className="tekstomrade c5"
+                      className="tekstomrade c4"
                     >
                       Samtalereferat oppmøte - Arbeid
                     </div>
@@ -689,10 +676,10 @@ exports[`Viser traad med verktøylinje 1`] = `
                     30.07.2019 00:00
                   </div>
                   <div
-                    className="c6"
+                    className="c5"
                   >
                     <p
-                      className="typo-normal c7"
+                      className="typo-normal c6"
                     >
                       Skrevet av:
                     </p>
@@ -709,7 +696,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
                 </div>
                 <div
-                  className="ekspanderbartPanel c8 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c7 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -722,7 +709,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c9"
+                        className="typo-etikett-liten c8"
                       >
                         Meldingen er journalført
                       </p>
@@ -745,7 +732,7 @@ exports[`Viser traad med verktøylinje 1`] = `
     </ol>
   </section>
   <section
-    className="c10"
+    className="c9"
   >
     <h3
       className="sr-only"
@@ -755,18 +742,18 @@ exports[`Viser traad med verktøylinje 1`] = `
       Delsvar - Arbeid
     </h3>
     <div
-      className="c11"
+      className="c10"
     >
       <div
-        className="c12"
+        className="c11"
       >
         <button
           aria-expanded={false}
-          className="c13 c14"
+          className="c12 c13"
           onClick={[Function]}
         >
           <span
-            className="c15"
+            className="c14"
           >
             <span
               className="typo-normal"
@@ -780,11 +767,11 @@ exports[`Viser traad med verktøylinje 1`] = `
         </button>
         <button
           aria-expanded={false}
-          className="c13 c14"
+          className="c12 c13"
           onClick={[Function]}
         >
           <span
-            className="c15"
+            className="c14"
           >
             <span
               className="typo-normal"
@@ -798,11 +785,11 @@ exports[`Viser traad med verktøylinje 1`] = `
         </button>
         <button
           aria-expanded={false}
-          className="c13 c14"
+          className="c12 c13"
           onClick={[Function]}
         >
           <span
-            className="c15"
+            className="c14"
           >
             <span
               className="typo-normal"
@@ -816,7 +803,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </button>
       </div>
       <a
-        className="c16"
+        className="c15"
         download={true}
         href="/dialog/10108000398/sg838exr/print"
       >
@@ -828,10 +815,10 @@ exports[`Viser traad med verktøylinje 1`] = `
       </a>
     </div>
     <section
-      className="c17"
+      className="c16"
     >
       <div
-        className="c18"
+        className="c17"
       >
         <div
           className="alertstripe alertstripe--info"
@@ -878,7 +865,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       </div>
     </section>
     <div
-      className="c19"
+      className="c18"
     >
       <form
         onSubmit={[Function]}
@@ -999,11 +986,11 @@ exports[`Viser traad med verktøylinje 1`] = `
           aria-haspopup="listbox"
           aria-labelledby="downshift-0-label"
           aria-owns={null}
-          className="c20"
+          className="c19"
           role="combobox"
         >
           <div
-            className="c21"
+            className="c20"
           >
             <div
               className="skjemaelement"
@@ -1037,7 +1024,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             </div>
             <svg
               aria-label="Laster innhold"
-              className="spinner c22 spinner--s"
+              className="spinner c21 spinner--s"
               focusable="false"
               height={32}
               kind="spinner"
@@ -1075,11 +1062,11 @@ exports[`Viser traad med verktøylinje 1`] = `
           aria-haspopup="listbox"
           aria-labelledby="downshift-1-label"
           aria-owns={null}
-          className="c20"
+          className="c19"
           role="combobox"
         >
           <div
-            className="c21"
+            className="c20"
           >
             <div
               className="skjemaelement"
@@ -1113,7 +1100,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             </div>
             <svg
               aria-label="Laster innhold"
-              className="spinner c22 spinner--s"
+              className="spinner c21 spinner--s"
               focusable="false"
               height={32}
               kind="spinner"
@@ -1213,7 +1200,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           />
         </div>
         <div
-          className="c23"
+          className="c22"
         >
           <button
             className="knapp knapp--hoved"
@@ -1223,7 +1210,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             Opprett oppgave
           </button>
           <button
-            className="c14"
+            className="c13"
             onClick={[Function]}
             type="button"
           >
@@ -1349,7 +1336,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         />
       </div>
       <div
-        className="c24"
+        className="c23"
       >
         <button
           className="knapp knapp--hoved"
@@ -1359,7 +1346,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           Merk
         </button>
         <button
-          className="c14"
+          className="c13"
           onClick={[Function]}
           type="button"
         >
