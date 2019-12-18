@@ -31,15 +31,7 @@ interface Props {
     sokeord: string;
 }
 
-const StyledLi = styled.li`
-    .snakkeboble {
-        margin: 0;
-    }
-    .snakkeboble-panel {
-        flex-shrink: 1;
-        flex-basis: 40rem;
-    }
-`;
+const StyledLi = styled.li``;
 
 const SkrevetAvTekst = styled(Normaltekst)`
     margin-right: 0.3rem !important;
