@@ -227,6 +227,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 .c18 svg {
   height: 1.5625rem;
   width: 1.5625rem;
+  opacity: 0.5;
   -webkit-clip-path: polygon(0 0,73% 0,73% 51%,100% 52%,100% 100%,0 100%);
   clip-path: polygon(0 0,73% 0,73% 51%,100% 52%,100% 100%,0 100%);
 }
