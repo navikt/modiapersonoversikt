@@ -8,7 +8,7 @@ import {
     Kommunikasjonsretning
 } from '../../../../../models/saksoversikt/dokumentmetadata';
 import styled, { css } from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import moment from 'moment';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -58,7 +58,7 @@ const ListeElementStyle = styled.li<{ valgt: boolean; klikkbar: boolean }>`
         css`
             background-color: rgba(0, 0, 0, 0.09);
         `};
-    padding: ${theme.margin.px20} ${theme.margin.px10};
+    padding: ${pxToRem(15)} ${theme.margin.px10};
     display: flex;
     ${props =>
         props.klikkbar &&

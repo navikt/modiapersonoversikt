@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme } from '../../../styles/personOversiktTheme';
+import { pxToRem, theme } from '../../../styles/personOversiktTheme';
 import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
@@ -100,5 +100,5 @@ export const VelgDialogtypeStyle = styled.div`
 
 export const KategoriSkille = styled.div`
     background-color: ${theme.color.kategori};
-    padding: 0.2rem ${theme.margin.px20};
+    padding: 0.2rem ${pxToRem(15)};
 `;

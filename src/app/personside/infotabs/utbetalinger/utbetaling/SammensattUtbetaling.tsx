@@ -5,7 +5,7 @@ import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-st
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import DelUtbetaling from './DelUtbetaling';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { useDispatch } from 'react-redux';
@@ -22,7 +22,7 @@ interface Props {
 }
 
 const SammensattUtbetalingStyle = styled.li`
-    padding: ${theme.margin.px20};
+    padding: ${pxToRem(15)};
     > *:nth-child(3) {
         margin-bottom: 0.8rem;
     }

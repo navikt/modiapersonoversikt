@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models/utbetalinger';
 import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalingerUtils';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
@@ -39,7 +39,7 @@ const UtbetalingStyle = styled.li`
 const UtbetalingHeaderStyle = styled.div`
     display: flex;
     flex-direction: column;
-    padding: ${theme.margin.px10} ${theme.margin.px20} 0;
+    padding: ${theme.margin.px10} ${pxToRem(15)} 0;
     transition: 0.3s;
     cursor: pointer;
     > *:nth-child(3) {

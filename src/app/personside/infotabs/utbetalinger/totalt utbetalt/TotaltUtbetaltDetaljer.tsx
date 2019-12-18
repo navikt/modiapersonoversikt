@@ -40,6 +40,7 @@ const DetaljerStyle = styled.aside`
     }
     th {
         text-transform: uppercase;
+        font-weight: 600;
     }
     tr {
         display: flex;

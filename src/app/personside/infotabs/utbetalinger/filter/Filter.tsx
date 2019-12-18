@@ -13,13 +13,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { oppdaterFilter } from '../../../../../redux/utbetalinger/actions';
 import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 import { isValidDate } from '../../../../../utils/dateUtils';
 
 const FiltreringsPanel = styled.nav`
     ${theme.hvittPanel};
-    padding: ${theme.margin.px20};
+    padding: ${pxToRem(15)};
 `;
 
 const InputPanel = styled.form`

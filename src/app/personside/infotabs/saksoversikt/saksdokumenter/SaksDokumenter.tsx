@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { Checkbox } from 'nav-frontend-skjema';
 import { DokumentMetadata, Entitet } from '../../../../../models/saksoversikt/dokumentmetadata';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../../utils/groupArray';
@@ -46,7 +46,7 @@ const InfoOgFilterPanel = styled.section`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: ${theme.margin.px20};
+    padding: ${pxToRem(15)};
     > *:first-child {
         flex-grow: 1;
     }
