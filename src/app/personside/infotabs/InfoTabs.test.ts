@@ -6,7 +6,7 @@ test('henter riktig tab fra routerpath', () => {
 
     const åpenLamell: INFOTABS = getOpenTabFromRouterPath(path);
 
-    expect(åpenLamell).toEqual(INFOTABS.UTBETALING);
+    expect(åpenLamell.toLowerCase()).toEqual(INFOTABS.UTBETALING.toLowerCase());
 });
 
 test('åpner oversikt som default hvis url ikke matcher en infotab', () => {
@@ -14,5 +14,5 @@ test('åpner oversikt som default hvis url ikke matcher en infotab', () => {
 
     const åpenLamell: INFOTABS = getOpenTabFromRouterPath(path);
 
-    expect(åpenLamell).toEqual(INFOTABS.OVERSIKT);
+    expect(åpenLamell.toLowerCase()).toEqual(INFOTABS.OVERSIKT.toLowerCase());
 });
