@@ -1,5 +1,7 @@
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { useOnMount } from '../../../utils/customHooks';
+import { loggEvent } from '../../../utils/frontendLogger';
 
 const descend = keyframes`
     from {
@@ -48,6 +50,10 @@ const SnoFlak = styled.div<{ offset: number; speed: number; sway: number }>`
 `;
 
 function Sno() {
+    useOnMount(() => {
+        loggEvent('DetSnør', 'EasterEgg');
+    });
+
     return (
         <Base>
             {[...new Array(10)].map(() => (
