@@ -14,9 +14,11 @@ import { eldsteMelding, meldingstittel, nyesteMelding, saksbehandlerTekst } from
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { useEffect } from 'react';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import { Printer } from '../../../../../utils/UsePrinter';
 interface Props {
     valgtTraad: Traad;
     sokeord: string;
+    printer: Printer;
 }
 
 const VisningStyle = styled.section`
@@ -95,13 +97,16 @@ function TraadVisning(props: Props) {
     }, [props.valgtTraad]);
 
     const sisteMelding = nyesteMelding(props.valgtTraad);
+    const PrinterWrapper = props.printer.printerWrapper;
     return (
         <VisningStyle>
             <Topplinje valgtTraad={props.valgtTraad} />
             <h3 className="sr-only" aria-live="polite" aria-atomic="false">
                 Valgt melding - {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
             </h3>
-            <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
+            <PrinterWrapper>
+                <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
+            </PrinterWrapper>
         </VisningStyle>
     );
 }

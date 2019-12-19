@@ -13,7 +13,7 @@ const SkulAppVedPrint = createGlobalStyle`
     }
 `;
 
-interface Printer {
+export interface Printer {
     printerWrapper: (props: { children: ReactNode }) => JSX.Element;
     triggerPrint: () => void;
 }
