@@ -12,9 +12,11 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
+import { Printer } from '../../../../../utils/UsePrinter';
 interface Props {
     valgtTraad: Traad;
     sokeord: string;
+    printer: Printer;
 }
 
 const VisningStyle = styled.section`
@@ -88,10 +90,13 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 }
 
 function TraadVisning(props: Props) {
+    const PrinterWrapper = props.printer.printerWrapper;
     return (
         <VisningStyle>
             <Topplinje valgtTraad={props.valgtTraad} />
-            <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
+            <PrinterWrapper>
+                <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
+            </PrinterWrapper>
         </VisningStyle>
     );
 }

@@ -58,7 +58,7 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     if (!sentMelding.traad) {
         return <AlertStripeInfo>Kunne ikke vise journalføring/merk/oppgave-panel</AlertStripeInfo>;
     }
-    return <Verktoylinje valgtTraad={sentMelding.traad} skjulSkrivUt={true} />;
+    return <Verktoylinje valgtTraad={sentMelding.traad} />;
 }
 
 export function DialogpanelKvittering(props: {

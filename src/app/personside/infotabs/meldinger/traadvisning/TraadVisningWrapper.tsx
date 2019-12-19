@@ -6,6 +6,7 @@ import { Traad } from '../../../../../models/meldinger/meldinger';
 import { meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import styled from 'styled-components';
+import usePrinter from '../../../../../utils/UsePrinter';
 
 interface TraadVisningWrapperProps {
     valgtTraad?: Traad;
@@ -24,6 +25,7 @@ const StyledArticle = styled.article`
 `;
 
 function TraadVisningWrapper(props: TraadVisningWrapperProps) {
+    const printer = usePrinter();
     if (!props.valgtTraad) {
         return <AlertStripeInfo>Ingen melding valgt</AlertStripeInfo>;
     }
@@ -33,8 +35,8 @@ function TraadVisningWrapper(props: TraadVisningWrapperProps) {
             <h3 className="sr-only">
                 Valgt melding - {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
             </h3>
-            <TraadVisning sokeord={props.sokeord} valgtTraad={props.valgtTraad} />
-            <Verktoylinje valgtTraad={props.valgtTraad} />
+            <TraadVisning sokeord={props.sokeord} valgtTraad={props.valgtTraad} printer={printer} />
+            <Verktoylinje valgtTraad={props.valgtTraad} printer={printer} />
         </StyledArticle>
     );
 }
