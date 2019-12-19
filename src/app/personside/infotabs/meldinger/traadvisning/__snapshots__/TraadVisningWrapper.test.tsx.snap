@@ -415,7 +415,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       Skrevet av:
                     </p>
                     <div
-                      className="tekstomrade"
+                      className="tekstomrade typo-normal"
                     >
                       Kristoffer Fredriksen (xy70r8)
                     </div>
@@ -684,7 +684,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       Skrevet av:
                     </p>
                     <div
-                      className="tekstomrade"
+                      className="tekstomrade typo-normal"
                     >
                       Sander Hansen (nzxo4q)
                     </div>

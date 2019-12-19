@@ -32,6 +32,10 @@ const TittelStyle = styled.div`
 
 const CustomStyling = styled.div`
     ${theme.hvittPanel};
+    .ekspanderbartPanel__hode {
+        position: sticky;
+        top: 0;
+    }
 `;
 
 function EkspanderbartYtelserPanel(props: Props) {
