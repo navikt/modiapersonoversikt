@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
 import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
@@ -26,7 +26,7 @@ const UtbetalingerArticle = styled.article`
     margin-top: ${theme.margin.layout};
     margin-bottom: ${theme.margin.layout};
     > *:first-child {
-        padding: ${theme.margin.px20};
+        padding: ${pxToRem(15)};
     }
 `;
 

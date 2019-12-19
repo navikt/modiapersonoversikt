@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import { EtikettLiten } from 'nav-frontend-typografi';
+import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
 import {
     erDelsvar,
     erJournalfort,
@@ -31,8 +31,8 @@ interface Props {
     sokeord: string;
 }
 
-const SkrevetAvTekst = styled.span`
-    margin-right: 0.3rem;
+const SkrevetAvTekst = styled(Normaltekst)`
+    margin-right: 0.3rem !important;
 `;
 
 const SkrevetAvStyle = styled.div`
@@ -111,14 +111,14 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
     return null;
 }
 
-function SkrevetAv({ melding, rule }: { melding: Melding; rule: Rule }) {
+export function SkrevetAv({ melding, rule }: { melding: Melding; rule?: Rule }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }
     return (
         <SkrevetAvStyle>
             <SkrevetAvTekst>Skrevet av:</SkrevetAvTekst>
-            <Tekstomrade rules={[rule]}>{melding.skrevetAvTekst}</Tekstomrade>
+            <Tekstomrade rules={rule && [rule]}>{melding.skrevetAvTekst}</Tekstomrade>
         </SkrevetAvStyle>
     );
 }

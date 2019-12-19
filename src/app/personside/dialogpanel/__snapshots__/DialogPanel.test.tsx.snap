@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser dialogpanel 1`] = `
-.c10 label {
+.c11 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -12,14 +12,14 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c12 {
+.c13 {
   background-color: white;
   border-radius: .25rem;
   border: 1px solid #78706a;
   position: relative;
 }
 
-.c13 {
+.c14 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -40,12 +40,12 @@ exports[`viser dialogpanel 1`] = `
   align-items: center;
 }
 
-.c13:focus {
+.c14:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c4 {
+.c5 {
   position: absolute;
   height: 2rem;
   width: 2rem;
@@ -59,50 +59,50 @@ exports[`viser dialogpanel 1`] = `
   transform: none;
 }
 
-.c4:after {
+.c5:after {
   background: none;
 }
 
-.c4:hover {
+.c5:hover {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
 }
 
-.c5 {
+.c6 {
   position: relative;
   top: 2px;
   width: 18px;
 }
 
-.c8 {
+.c9 {
   position: absolute;
   top: 2.8rem;
   left: -1rem;
 }
 
-.c8 ul {
+.c9 ul {
   list-style: circle;
   margin-top: 1rem;
 }
 
-.c8 ul li {
+.c9 ul li {
   margin-left: 1.5rem;
 }
 
-.c7 {
+.c8 {
   position: relative;
 }
 
-.c3 {
+.c4 {
   position: relative;
 }
 
-.c3 textarea {
+.c4 textarea {
   min-height: 9rem;
 }
 
-.c3 label {
+.c4 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -113,17 +113,16 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c6 textarea,
-.c6 .textareamirror {
+.c7 textarea,
+.c7 .textareamirror {
   padding-left: 2.25rem;
 }
 
-.c2 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 1rem;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -133,15 +132,15 @@ exports[`viser dialogpanel 1`] = `
   align-items: stretch;
 }
 
-.c2 .skjemaelement {
+.c3 .skjemaelement {
   margin-bottom: 0;
 }
 
-.c2 > * {
+.c3 > * {
   margin-bottom: 1rem;
 }
 
-.c9 {
+.c10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -155,19 +154,19 @@ exports[`viser dialogpanel 1`] = `
   flex-wrap: wrap;
 }
 
-.c9 > * {
+.c10 > * {
   margin-top: 0.3rem;
 }
 
-.c9 > *:not(:last-child) {
+.c10 > *:not(:last-child) {
   margin-right: 1rem;
 }
 
-.c14 {
+.c15 {
   margin-top: 1rem;
 }
 
-.c14 label {
+.c15 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -182,7 +181,7 @@ exports[`viser dialogpanel 1`] = `
   padding: 1rem .5rem;
 }
 
-.c15 {
+.c16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -192,12 +191,16 @@ exports[`viser dialogpanel 1`] = `
   flex-direction: column;
 }
 
-.c15 > * {
+.c16 > * {
   margin-bottom: 0.7rem;
 }
 
-.c11 {
+.c12 {
   margin-top: 1rem;
+}
+
+.c2 {
+  margin-bottom: 1rem !important;
 }
 
 .c0 {
@@ -223,25 +226,25 @@ exports[`viser dialogpanel 1`] = `
     className="c1"
   >
     <h2
-      className="typo-undertittel"
+      className="typo-undertittel c2"
     >
       Send ny melding
     </h2>
     <form
-      className="c2"
+      className="c3"
       onSubmit={[Function]}
     >
       <div
-        className="c3"
+        className="c4"
       >
         <button
-          className="knapp c4 knapp--hoved"
+          className="knapp c5 knapp--hoved"
           disabled={false}
           onClick={[Function]}
           type="button"
         >
           <svg
-            className="c5"
+            className="c6"
             height="24px"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24"
@@ -262,10 +265,10 @@ exports[`viser dialogpanel 1`] = `
           </span>
         </button>
         <div
-          className="c6"
+          className="c7"
         >
           <div
-            className="c7"
+            className="c8"
           >
             <div
               className="skjemaelement textarea__container"
@@ -314,7 +317,7 @@ exports[`viser dialogpanel 1`] = `
               />
             </div>
             <div
-              className="c8"
+              className="c9"
             >
               <div
                 className="hjelpetekst"
@@ -379,7 +382,7 @@ exports[`viser dialogpanel 1`] = `
         />
       </div>
       <div
-        className="c9"
+        className="c10"
       >
         <div
           className="skjemaelement skjemaelement--horisontal"
@@ -443,7 +446,7 @@ exports[`viser dialogpanel 1`] = `
           className=""
         >
           <div
-            className="skjemaelement c10"
+            className="skjemaelement c11"
           >
             <label
               className="skjemaelement__label"
@@ -505,7 +508,7 @@ exports[`viser dialogpanel 1`] = `
           />
         </div>
         <div
-          className="alertstripe c11 alertstripe--info"
+          className="alertstripe c12 alertstripe--info"
         >
           <span
             aria-label="info"
@@ -542,11 +545,11 @@ exports[`viser dialogpanel 1`] = `
           className=""
         >
           <div
-            className="c12"
+            className="c13"
           >
             <button
               aria-expanded={false}
-              className="c13"
+              className="c14"
               onClick={[Function]}
               type="button"
             >
@@ -566,7 +569,7 @@ exports[`viser dialogpanel 1`] = `
           />
         </div>
         <div
-          className="skjemaelement c14"
+          className="skjemaelement c15"
         >
           <label
             className="skjemaelement__label"
@@ -604,7 +607,7 @@ exports[`viser dialogpanel 1`] = `
           />
         </div>
         <div
-          className="alertstripe c11 alertstripe--info"
+          className="alertstripe c12 alertstripe--info"
         >
           <span
             aria-label="info"
@@ -639,7 +642,7 @@ exports[`viser dialogpanel 1`] = `
         </div>
       </div>
       <div
-        className="c15"
+        className="c16"
       >
         <button
           className="knapp knapp--hoved"

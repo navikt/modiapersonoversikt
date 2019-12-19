@@ -3,8 +3,6 @@ import { SyfoPunkt } from '../../../../models/oppfolging';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { datoSynkende, formatterDato } from '../../../../utils/dateUtils';
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
 import { StyledTable } from '../../../../utils/table/StyledTable';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
@@ -13,10 +11,6 @@ import { setSykefraværEkspandert } from '../../../../redux/oppfolging/actions';
 interface Props {
     syfoPunkter: SyfoPunkt[];
 }
-
-const TableStyle = styled.div`
-    border-top: ${theme.border.skille};
-`;
 
 function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
     const sortertPåDato = props.syfoPunkter.sort(datoSynkende(syfoPunkt => syfoPunkt.dato));
@@ -28,11 +22,7 @@ function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
         syfopunkt.status
     ]);
 
-    return (
-        <TableStyle>
-            <StyledTable tittelRekke={tableHeaders} rows={tableRows} />
-        </TableStyle>
-    );
+    return <StyledTable tittelRekke={tableHeaders} rows={tableRows} />;
 }
 
 function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {

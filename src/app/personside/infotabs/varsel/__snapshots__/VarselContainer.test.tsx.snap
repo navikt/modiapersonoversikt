@@ -1,11 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser varselcontainer med alt innhold 1`] = `
-.c5 {
-  font-weight: bold;
-}
-
-.c9 {
+.c8 {
   padding: 0.7rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -13,28 +9,28 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   display: flex;
 }
 
-.c9 > *:first-child {
+.c8 > *:first-child {
   -webkit-flex: 0 0 20%;
   -ms-flex: 0 0 20%;
   flex: 0 0 20%;
 }
 
-.c9 > *:last-child {
+.c8 > *:last-child {
   max-width: 30rem;
 }
 
-.c8 {
+.c7 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c8 > *:not(:first-child) {
+.c7 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c7 {
+.c6 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -42,17 +38,17 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   border-radius: 0.5em;
 }
 
-.c7:focus {
+.c6:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c7:focus {
+.c6:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c7:focus::after {
+.c6:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -107,11 +103,11 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   padding: 0.7rem;
 }
 
-.c6 li {
+.c5 li {
   display: inline-block;
 }
 
-.c6 li:not(:last-child):after {
+.c5 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
@@ -121,11 +117,14 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 }
 
 .c1 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 6rem 55% 1fr;
   grid-template-columns: 6rem minmax(35%,55%) 1fr;
-  font-weight: bold;
+  margin-bottom: 1rem;
 }
 
 .c1 > *:nth-child(1) {
@@ -141,7 +140,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 }
 
 .c1 > * {
-  padding: 0.7rem 0.7rem 0.3rem;
+  padding: 0.7rem;
 }
 
 .c2 > * {
@@ -154,13 +153,19 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   <div
     className="c1"
   >
-    <p>
+    <p
+      className="typo-element"
+    >
       Dato
     </p>
-    <p>
+    <p
+      className="typo-element"
+    >
       Type
     </p>
-    <p>
+    <p
+      className="typo-element"
+    >
       Kanal
     </p>
   </div>
@@ -182,17 +187,13 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           28.03.2019
         </p>
         <p
-          className="typo-normal"
+          className="typo-element"
         >
-          <span
-            className="c5"
-          >
-            Påminnelse om å sende meldekort
-          </span>
+          Påminnelse om å sende meldekort
         </p>
         <ul
           aria-label="Kommunikasjonskanaler"
-          className="c6"
+          className="c5"
         >
           <li
             className="typo-normal"
@@ -208,7 +209,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
         <button
           aria-expanded={false}
           aria-label="Vis meldinger"
-          className="c7"
+          className="c6"
           onClick={[Function]}
           title="Vis meldinger"
         >
@@ -219,21 +220,17 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
       </div>
       <ol
         aria-label="Meldinger"
-        className="c8"
+        className="c7"
       >
         <li
           aria-label="EPOST"
-          className="c9"
+          className="c8"
         >
           <div>
             <p
-              className="typo-normal"
+              className="typo-element"
             >
-              <span
-                className="c5"
-              >
-                EPOST
-              </span>
+              EPOST
             </p>
             <p
               className="typo-normal"
@@ -244,13 +241,9 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           <div>
             <div>
               <p
-                className="typo-normal"
+                className="typo-element"
               >
-                <span
-                  className="c5"
-                >
-                  Epostemne
-                </span>
+                Epostemne
               </p>
               <p
                 className="typo-normal"
@@ -259,30 +252,22 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </p>
             </div>
             <p
-              className="typo-normal"
+              className="typo-element"
             >
-              <span
-                className="c5"
-              >
-                Epost: 
-                mottakerinfo
-              </span>
+              Epost: 
+              mottakerinfo
             </p>
           </div>
         </li>
         <li
           aria-label="SMS"
-          className="c9"
+          className="c8"
         >
           <div>
             <p
-              className="typo-normal"
+              className="typo-element"
             >
-              <span
-                className="c5"
-              >
-                SMS
-              </span>
+              SMS
             </p>
             <p
               className="typo-normal"
@@ -297,14 +282,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               Meldingsinnhold
             </p>
             <p
-              className="typo-normal"
+              className="typo-element"
             >
-              <span
-                className="c5"
-              >
-                Tlf: 
-                mottakerinfo
-              </span>
+              Tlf: 
+              mottakerinfo
             </p>
           </div>
         </li>
@@ -324,17 +305,13 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           10.01.2019
         </p>
         <p
-          className="typo-normal"
+          className="typo-element"
         >
-          <span
-            className="c5"
-          >
-            Påminnelse om å sende meldekort
-          </span>
+          Påminnelse om å sende meldekort
         </p>
         <ul
           aria-label="Kommunikasjonskanaler"
-          className="c6"
+          className="c5"
         >
           <li
             className="typo-normal"
@@ -345,7 +322,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
         <button
           aria-expanded={false}
           aria-label="Vis meldinger"
-          className="c7"
+          className="c6"
           onClick={[Function]}
           title="Vis meldinger"
         >
@@ -356,21 +333,17 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
       </div>
       <ol
         aria-label="Meldinger"
-        className="c8"
+        className="c7"
       >
         <li
           aria-label="EPOST"
-          className="c9"
+          className="c8"
         >
           <div>
             <p
-              className="typo-normal"
+              className="typo-element"
             >
-              <span
-                className="c5"
-              >
-                EPOST
-              </span>
+              EPOST
             </p>
             <p
               className="typo-normal"
@@ -381,13 +354,9 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           <div>
             <div>
               <p
-                className="typo-normal"
+                className="typo-element"
               >
-                <span
-                  className="c5"
-                >
-                  Epostemne
-                </span>
+                Epostemne
               </p>
               <p
                 className="typo-normal"
@@ -396,14 +365,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </p>
             </div>
             <p
-              className="typo-normal"
+              className="typo-element"
             >
-              <span
-                className="c5"
-              >
-                Epost: 
-                mottakerinfo
-              </span>
+              Epost: 
+              mottakerinfo
             </p>
           </div>
         </li>

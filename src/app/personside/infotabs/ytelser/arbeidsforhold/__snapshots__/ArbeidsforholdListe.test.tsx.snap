@@ -19,19 +19,16 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
   color: #645f5a;
 }
 
-.c1 dd {
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-
 .c1 > div {
-  margin: 0.9375rem 0;
-  padding-right: 1rem;
+  margin: 0.5625rem 0;
+  padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
 
 .c0 li:not(:first-child) {
+  padding-top: 1rem;
+  margin-top: 1rem;
   border-top: solid 0.0625rem #b7b1a9;
 }
 
@@ -50,7 +47,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
           Arbeidsgiver
         </dt>
         <dd
-          className="typo-normal"
+          className="typo-element"
         >
           Bærlevåg Burger og Bitcoin
         </dd>
@@ -62,7 +59,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
           Kontonummer
         </dt>
         <dd
-          className="typo-normal"
+          className="typo-element"
         >
           <span
             className="c2"
@@ -86,7 +83,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
           Inntekstsperiode
         </dt>
         <dd
-          className="typo-normal"
+          className="typo-element"
         >
           Månedssats
         </dd>
@@ -98,7 +95,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
           Inntekt for perioden
         </dt>
         <dd
-          className="typo-normal"
+          className="typo-element"
         >
           39,691.00 NOK
         </dd>
@@ -110,7 +107,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
           Refusjonstype
         </dt>
         <dd
-          className="typo-normal"
+          className="typo-element"
         >
           Ikke refusjon
         </dd>
@@ -122,7 +119,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
           Refusjon til dato
         </dt>
         <dd
-          className="typo-normal"
+          className="typo-element"
         >
           12.03.2018
         </dd>
@@ -134,7 +131,7 @@ exports[`ArbeidsforholdListe matcher snapshot 1`] = `
           Sykepenger fra og med
         </dt>
         <dd
-          className="typo-normal"
+          className="typo-element"
         >
           18.02.2018
         </dd>

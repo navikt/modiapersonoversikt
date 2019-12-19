@@ -31,11 +31,19 @@ const AlertStyling = styled.div`
 `;
 
 const SkjemaStyle = styled.div`
+    padding-top: 1rem;
     .inputPanelGruppe__inner {
         display: flex;
         > * {
             flex-grow: 1;
         }
+    }
+    label {
+        font-weight: 600;
+        margin-bottom: 0.1rem;
+    }
+    .skjemaelement {
+        margin-bottom: 0.7rem;
     }
 `;
 

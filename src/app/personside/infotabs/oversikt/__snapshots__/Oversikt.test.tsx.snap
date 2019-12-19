@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser oversikt med alt innhold 1`] = `
-.c9 {
-  font-weight: bold;
+.c10 {
+  font-weight: 600;
 }
 
-.c8 {
+.c9 {
   position: relative;
   padding: .5rem;
   display: -webkit-box;
@@ -19,22 +19,22 @@ exports[`Viser oversikt med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c8:hover {
+.c9:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c8:hover > button:last-child {
+.c9:hover > button:last-child {
   padding-left: 0.5rem;
 }
 
-.c8 > *:first-child {
+.c9 > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c10 {
+.c11 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -46,12 +46,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c10:focus {
+.c11 .nav-frontend-chevron {
+  width: 1.5625rem;
+}
+
+.c11:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c10:focus::after {
+.c11:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -62,13 +66,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c14 svg {
+.c15 svg {
   height: 1.875rem;
   width: 1.875rem;
   opacity: 0.5;
 }
 
-.c13 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -78,19 +82,19 @@ exports[`Viser oversikt med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c13 .order-first {
+.c14 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c13 .order-second {
+.c14 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c12 {
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -105,7 +109,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c28 {
+.c29 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -113,17 +117,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 0.5em;
 }
 
-.c28:focus {
+.c29:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c28:focus {
+.c29:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c28:focus::after {
+.c29:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -134,7 +138,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c30 {
+.c31 {
   padding: 0.7rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -142,34 +146,34 @@ exports[`Viser oversikt med alt innhold 1`] = `
   display: flex;
 }
 
-.c30 > *:first-child {
+.c31 > *:first-child {
   -webkit-flex: 0 0 20%;
   -ms-flex: 0 0 20%;
   flex: 0 0 20%;
 }
 
-.c30 > *:last-child {
+.c31 > *:last-child {
   max-width: 30rem;
 }
 
-.c29 {
+.c30 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c29 > *:not(:first-child) {
+.c30 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c25 {
+.c26 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
-.c26 {
+.c27 {
   position: relative;
   display: -ms-grid;
   display: grid;
@@ -183,52 +187,52 @@ exports[`Viser oversikt med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c26 > *:nth-child(1) {
+.c27 > *:nth-child(1) {
   -ms-grid-column: 1;
 }
 
-.c26 > *:nth-child(2) {
+.c27 > *:nth-child(2) {
   -ms-grid-column: 2;
 }
 
-.c26 > *:nth-child(3) {
+.c27 > *:nth-child(3) {
   -ms-grid-column: 3;
 }
 
-.c26 > *:nth-child(4) {
+.c27 > *:nth-child(4) {
   -ms-grid-column: 4;
 }
 
-.c26:hover {
+.c27:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c26 > * {
+.c27 > * {
   padding: 0.7rem;
 }
 
-.c27 li {
+.c28 li {
   display: inline-block;
 }
 
-.c27 li:not(:last-child):after {
+.c28 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
 
-.c17 {
+.c18 {
   position: relative;
 }
 
-.c17 svg {
-  height: 1.875rem;
-  width: 1.875rem;
+.c18 svg {
+  height: 1.5625rem;
+  width: 1.5625rem;
   opacity: 0.5;
-  -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
-  clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
+  -webkit-clip-path: polygon(0 0,73% 0,73% 51%,100% 52%,100% 100%,0 100%);
+  clip-path: polygon(0 0,73% 0,73% 51%,100% 52%,100% 100%,0 100%);
 }
 
-.c18 {
+.c19 {
   position: absolute;
   top: -0.1875rem;
   right: -0.25rem;
@@ -236,7 +240,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0 0.1rem;
 }
 
-.c19 {
+.c20 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -246,7 +250,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   overflow-wrap: break-word;
 }
 
-.c22 {
+.c23 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -261,12 +265,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
   margin-top: 0.2rem;
 }
 
-.c22 > *:not(:last-child) {
+.c23 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
 
-.c20 {
+.c21 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -276,33 +280,33 @@ exports[`Viser oversikt med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c20 .order-first {
+.c21 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c20 .order-second {
+.c21 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c16 {
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c16 > *:last-child {
+.c17 > *:last-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c21 {
+.c22 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -312,6 +316,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+  padding-bottom: 0.3rem;
 }
 
 .c3 {
@@ -319,7 +324,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  background-color: #e9e7e7;
+  background-color: white;
   border-top-left-radius: .25rem;
   border-top-right-radius: .25rem;
   -webkit-box-pack: justify;
@@ -328,21 +333,22 @@ exports[`Viser oversikt med alt innhold 1`] = `
   justify-content: space-between;
   padding: 0.625rem;
   cursor: pointer;
+  border-bottom: #b7b1a9 0.125rem solid;
 }
 
 .c3:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c6 > *:not(:first-child) {
+.c7 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c5 {
+.c6 {
   text-align: right;
 }
 
-.c4 {
+.c5 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -358,28 +364,38 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0 1rem;
 }
 
+.c4 {
+  font-weight: bold !important;
+  font-size: 1.125rem !important;
+}
+
+.c25 > *:not(:first-child) {
+  border-top: solid 0.0625rem #78706a;
+}
+
 .c24 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c23 > *:not(:first-child) {
+.c8 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c7 > *:not(:first-child) {
+.c16 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c15 > *:not(:first-child) {
-  border-top: solid 0.0625rem #78706a;
-}
-
-.c11 > *:not(:first-child) {
+.c12 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
 .c0 {
   padding: .5rem;
+}
+
+.c0 .alertstripe--info {
+  background-color: transparent;
+  border: none;
 }
 
 .c1 {
@@ -427,15 +443,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
         title="Alt + T"
       >
         <h3
-          className="typo-undertittel"
+          className="typo-undertittel c4"
         >
           Oppfølging
         </h3>
         <div
-          className="c4"
+          className="c5"
         />
         <a
-          className="lenke c5"
+          className="lenke c6"
           href="/modiapersonoversikt/person/10108000398/oppfølging/"
           onClick={[Function]}
         >
@@ -448,7 +464,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </a>
       </div>
       <div
-        className="c6"
+        className="c7"
       >
         <div
           className="alertstripe alertstripe--info"
@@ -495,15 +511,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
         title="Alt + U"
       >
         <h3
-          className="typo-undertittel"
+          className="typo-undertittel c4"
         >
           Utbetalinger
         </h3>
         <div
-          className="c4"
+          className="c5"
         />
         <a
-          className="lenke c5"
+          className="lenke c6"
           href="/modiapersonoversikt/person/10108000398/utbetaling/"
           onClick={[Function]}
         >
@@ -516,17 +532,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </a>
       </div>
       <div
-        className="c6"
+        className="c7"
       >
         <ol
           aria-label="Oversikt brukers utbetalinger"
-          className="c7"
+          className="c8"
         >
           <li
             className="test-utbetalinger-oversikt"
           >
             <div
-              className="c8"
+              className="c9"
               onClick={[Function]}
             >
               <div>
@@ -541,7 +557,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   className="typo-normal"
                 >
                   <span
-                    className="c9"
+                    className="c10"
                   >
                     Barnetrygd
                   </span>
@@ -563,10 +579,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-label="Vis utbetaling"
                 aria-selected={false}
-                className="c10"
+                className="c11"
               >
                 <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
             </div>
@@ -575,7 +591,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             className="test-utbetalinger-oversikt"
           >
             <div
-              className="c8"
+              className="c9"
               onClick={[Function]}
             >
               <div>
@@ -590,7 +606,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   className="typo-normal"
                 >
                   <span
-                    className="c9"
+                    className="c10"
                   >
                     Diverse ytelser
                   </span>
@@ -612,10 +628,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-label="Vis utbetaling"
                 aria-selected={false}
-                className="c10"
+                className="c11"
               >
                 <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
             </div>
@@ -632,15 +648,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
         title="Alt + S"
       >
         <h3
-          className="typo-undertittel"
+          className="typo-undertittel c4"
         >
           Saker
         </h3>
         <div
-          className="c4"
+          className="c5"
         />
         <a
-          className="lenke c5"
+          className="lenke c6"
           href="/modiapersonoversikt/person/10108000398/saker/"
           onClick={[Function]}
         >
@@ -653,25 +669,25 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </a>
       </div>
       <div
-        className="c6"
+        className="c7"
       >
         <ol
-          className="c11"
+          className="c12"
         >
           <li
             className="test-sakstema-list"
           >
             <div
-              className="c8"
+              className="c9"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c12"
+                  className="c13"
                 >
                   <div>
                     <div
-                      className="c13"
+                      className="c14"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -696,7 +712,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c14"
+                    className="c15"
                   >
                     <svg
                       contentScriptType="text/ecmascript"
@@ -720,10 +736,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-label="Vis Sykepenger"
                 aria-selected={false}
-                className="c10"
+                className="c11"
               >
                 <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
             </div>
@@ -732,16 +748,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
             className="test-sakstema-list"
           >
             <div
-              className="c8"
+              className="c9"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c12"
+                  className="c13"
                 >
                   <div>
                     <div
-                      className="c13"
+                      className="c14"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -776,17 +792,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c14"
+                    className="c15"
                   />
                 </div>
               </div>
               <button
                 aria-label="Vis Arbeidsavklaringspenger"
                 aria-selected={false}
-                className="c10"
+                className="c11"
               >
                 <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
             </div>
@@ -807,15 +823,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
         title="Alt + M"
       >
         <h3
-          className="typo-undertittel"
+          className="typo-undertittel c4"
         >
           Meldinger
         </h3>
         <div
-          className="c4"
+          className="c5"
         />
         <a
-          className="lenke c5"
+          className="lenke c6"
           href="/modiapersonoversikt/person/10108000398/meldinger/"
           onClick={[Function]}
         >
@@ -828,23 +844,23 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </a>
       </div>
       <div
-        className="c6"
+        className="c7"
       >
         <ol
           aria-label="Oversikt brukers meldinger"
-          className="c15"
+          className="c16"
         >
           <li>
             <div
-              className="test-meldinger-oversikt c8"
+              className="test-meldinger-oversikt c9"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c16"
+                  className="c17"
                 >
                   <span
-                    className="c17"
+                    className="c18"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -862,7 +878,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </g>
                     </svg>
                     <p
-                      className="typo-undertekst-bold c18"
+                      className="typo-undertekst-bold c19"
                     >
                       4
                        
@@ -874,10 +890,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </span>
                   <div
-                    className="c19"
+                    className="c20"
                   >
                     <div
-                      className="c20"
+                      className="c21"
                     >
                       <p
                         className="typo-element order-second"
@@ -891,12 +907,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </p>
                     </div>
                     <p
-                      className="typo-normal c21"
+                      className="typo-normal c22"
                     >
                       Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                     </p>
                     <div
-                      className="c22"
+                      className="c23"
                     >
                       <div
                         className="etikett etikett--fokus"
@@ -923,10 +939,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-label="Vis meldinger for Delsvar - Arbeid"
                 aria-selected={false}
-                className="c10"
+                className="c11"
               >
                 <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
             </div>
@@ -943,15 +959,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
         title="Alt + Y"
       >
         <h3
-          className="typo-undertittel"
+          className="typo-undertittel c4"
         >
           Ytelser
         </h3>
         <div
-          className="c4"
+          className="c5"
         />
         <a
-          className="lenke c5"
+          className="lenke c6"
           href="/modiapersonoversikt/person/10108000398/ytelser/"
           onClick={[Function]}
         >
@@ -964,13 +980,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </a>
       </div>
       <div
-        className="c6"
+        className="c7"
       >
         <div
-          className="c23"
+          className="c24"
         >
           <div
-            className="test-ytelse-oversikt c8"
+            className="test-ytelse-oversikt c9"
             onClick={[Function]}
           >
             <div>
@@ -981,13 +997,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 06.02.2019
               </p>
               <p
-                className="typo-normal"
+                className="typo-element"
               >
-                <span
-                  className="c9"
-                >
-                  Sykepenger
-                </span>
+                Sykepenger
               </p>
               <p
                 className="typo-normal"
@@ -1000,26 +1012,22 @@ exports[`Viser oversikt med alt innhold 1`] = `
             <button
               aria-label="Vis sykepenger"
               aria-selected={false}
-              className="c10"
+              className="c11"
             >
               <i
-                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                className="nav-frontend-chevron chevronboks chevron--hoyre"
               />
             </button>
           </div>
           <div
-            className="test-ytelse-oversikt c8"
+            className="test-ytelse-oversikt c9"
             onClick={[Function]}
           >
             <div>
               <p
-                className="typo-normal"
+                className="typo-element"
               >
-                <span
-                  className="c9"
-                >
-                  Pleiepenger sykt barn
-                </span>
+                Pleiepenger sykt barn
               </p>
               <p
                 className="typo-normal"
@@ -1031,10 +1039,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
             <button
               aria-label="Vis pleiepenger"
               aria-selected={false}
-              className="c10"
+              className="c11"
             >
               <i
-                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                className="nav-frontend-chevron chevronboks chevron--hoyre"
               />
             </button>
           </div>
@@ -1050,15 +1058,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
         title="Alt + V"
       >
         <h3
-          className="typo-undertittel"
+          className="typo-undertittel c4"
         >
           Varsler
         </h3>
         <div
-          className="c4"
+          className="c5"
         />
         <a
-          className="lenke c5"
+          className="lenke c6"
           href="/modiapersonoversikt/person/10108000398/varsler/"
           onClick={[Function]}
         >
@@ -1071,17 +1079,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </a>
       </div>
       <div
-        className="c6"
+        className="c7"
       >
         <ol
-          className="c24"
+          className="c25"
         >
           <li
             aria-label="Påminnelse om å sende meldekort"
-            className="c25"
+            className="c26"
           >
             <div
-              className="c26"
+              className="c27"
               onClick={[Function]}
             >
               <p
@@ -1090,17 +1098,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 28.03.2019
               </p>
               <p
-                className="typo-normal"
+                className="typo-element"
               >
-                <span
-                  className="c9"
-                >
-                  Påminnelse om å sende meldekort
-                </span>
+                Påminnelse om å sende meldekort
               </p>
               <ul
                 aria-label="Kommunikasjonskanaler"
-                className="c27"
+                className="c28"
               >
                 <li
                   className="typo-normal"
@@ -1116,7 +1120,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-expanded={false}
                 aria-label="Vis meldinger"
-                className="c28"
+                className="c29"
                 onClick={[Function]}
                 title="Vis meldinger"
               >
@@ -1127,21 +1131,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </div>
             <ol
               aria-label="Meldinger"
-              className="c29"
+              className="c30"
             >
               <li
                 aria-label="EPOST"
-                className="c30"
+                className="c31"
               >
                 <div>
                   <p
-                    className="typo-normal"
+                    className="typo-element"
                   >
-                    <span
-                      className="c9"
-                    >
-                      EPOST
-                    </span>
+                    EPOST
                   </p>
                   <p
                     className="typo-normal"
@@ -1152,13 +1152,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <div>
                   <div>
                     <p
-                      className="typo-normal"
+                      className="typo-element"
                     >
-                      <span
-                        className="c9"
-                      >
-                        Epostemne
-                      </span>
+                      Epostemne
                     </p>
                     <p
                       className="typo-normal"
@@ -1167,30 +1163,22 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <p
-                    className="typo-normal"
+                    className="typo-element"
                   >
-                    <span
-                      className="c9"
-                    >
-                      Epost: 
-                      mottakerinfo
-                    </span>
+                    Epost: 
+                    mottakerinfo
                   </p>
                 </div>
               </li>
               <li
                 aria-label="SMS"
-                className="c30"
+                className="c31"
               >
                 <div>
                   <p
-                    className="typo-normal"
+                    className="typo-element"
                   >
-                    <span
-                      className="c9"
-                    >
-                      SMS
-                    </span>
+                    SMS
                   </p>
                   <p
                     className="typo-normal"
@@ -1205,14 +1193,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     Meldingsinnhold
                   </p>
                   <p
-                    className="typo-normal"
+                    className="typo-element"
                   >
-                    <span
-                      className="c9"
-                    >
-                      Tlf: 
-                      mottakerinfo
-                    </span>
+                    Tlf: 
+                    mottakerinfo
                   </p>
                 </div>
               </li>
@@ -1220,10 +1204,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </li>
           <li
             aria-label="Påminnelse om å sende meldekort"
-            className="c25"
+            className="c26"
           >
             <div
-              className="c26"
+              className="c27"
               onClick={[Function]}
             >
               <p
@@ -1232,17 +1216,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 10.01.2019
               </p>
               <p
-                className="typo-normal"
+                className="typo-element"
               >
-                <span
-                  className="c9"
-                >
-                  Påminnelse om å sende meldekort
-                </span>
+                Påminnelse om å sende meldekort
               </p>
               <ul
                 aria-label="Kommunikasjonskanaler"
-                className="c27"
+                className="c28"
               >
                 <li
                   className="typo-normal"
@@ -1253,7 +1233,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-expanded={false}
                 aria-label="Vis meldinger"
-                className="c28"
+                className="c29"
                 onClick={[Function]}
                 title="Vis meldinger"
               >
@@ -1264,21 +1244,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </div>
             <ol
               aria-label="Meldinger"
-              className="c29"
+              className="c30"
             >
               <li
                 aria-label="EPOST"
-                className="c30"
+                className="c31"
               >
                 <div>
                   <p
-                    className="typo-normal"
+                    className="typo-element"
                   >
-                    <span
-                      className="c9"
-                    >
-                      EPOST
-                    </span>
+                    EPOST
                   </p>
                   <p
                     className="typo-normal"
@@ -1289,13 +1265,9 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <div>
                   <div>
                     <p
-                      className="typo-normal"
+                      className="typo-element"
                     >
-                      <span
-                        className="c9"
-                      >
-                        Epostemne
-                      </span>
+                      Epostemne
                     </p>
                     <p
                       className="typo-normal"
@@ -1304,14 +1276,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <p
-                    className="typo-normal"
+                    className="typo-element"
                   >
-                    <span
-                      className="c9"
-                    >
-                      Epost: 
-                      mottakerinfo
-                    </span>
+                    Epost: 
+                    mottakerinfo
                   </p>
                 </div>
               </li>

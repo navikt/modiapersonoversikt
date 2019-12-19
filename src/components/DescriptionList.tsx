@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../styles/personOversiktTheme';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 
 const ListStyling = styled.dl`
     display: flex;
@@ -10,13 +10,9 @@ const ListStyling = styled.dl`
     dt {
         color: ${theme.color.gråSkrift};
     }
-    dd {
-        font-weight: bold;
-        margin-top: 0.3rem;
-    }
     > div {
-        margin: ${pxToRem(15)} 0;
-        padding-right: 1rem;
+        margin: ${pxToRem(9)} 0;
+        padding-right: 0.7rem;
         width: 13rem;
         overflow-wrap: break-word;
     }
@@ -52,7 +48,7 @@ function getDescriptionlistEntry(term: string, description: DescriptionlistEntry
     return (
         <div key={term}>
             <Normaltekst tag="dt">{term || ''}</Normaltekst>
-            <Normaltekst tag="dd">{description || (description === 0 && '0') || '\u2014'}</Normaltekst>
+            <Element tag="dd">{description || (description === 0 && '0') || '\u2014'}</Element>
         </div>
     );
 }

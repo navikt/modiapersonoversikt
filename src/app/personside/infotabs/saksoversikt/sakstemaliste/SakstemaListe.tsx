@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListeElement from './SakstemaListeElement';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 `;
 
 const TittelWrapper = styled.div`
-    padding: ${theme.margin.px20};
+    padding: ${pxToRem(15)};
     display: flex;
     align-items: flex-end;
     > *:not(:last-child) {

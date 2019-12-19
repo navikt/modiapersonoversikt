@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ChangeEvent, ReactNode, useRef } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled, { css } from 'styled-components';
-import { theme } from '../../../../../styles/personOversiktTheme';
+import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
 import { useOnMount } from '../../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { meldingerTest } from '../../dyplenkeTest/utils';
@@ -52,6 +52,9 @@ const StyledLi = styled.li<{ valgt: boolean }>`
 
 const ChevronStyling = styled.div`
     align-self: center;
+    .nav-frontend-chevron {
+        width: ${pxToRem(25)};
+    }
 `;
 
 function TraadListeElement(props: Props) {
@@ -93,7 +96,7 @@ function TraadListeElement(props: Props) {
                     <TraadSammendrag traad={props.traad} />
                 </FlexGrow>
                 <ChevronStyling className="hover-animation">
-                    <HoyreChevron stor={true} />
+                    <HoyreChevron />
                 </ChevronStyling>
             </StyledLabel>
         </StyledLi>

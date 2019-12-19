@@ -48,7 +48,7 @@ export const theme = {
         lenkeSelected: '#005b82',
         lenkeHover: navFarger.navGra20,
         lenke: '#0067c5',
-        bakgrunn: navFarger.navGra20,
+        bakgrunn: navFarger.navGra40,
         kategori: '#cce1f3',
         ytelser: '#d6897d',
         gråSkrift: '#645f5a',

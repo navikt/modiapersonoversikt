@@ -40,6 +40,7 @@ const DetaljerStyle = styled.aside`
     }
     th {
         text-transform: uppercase;
+        font-weight: 600;
     }
     tr {
         display: flex;
@@ -64,7 +65,7 @@ const DetaljerStyle = styled.aside`
             right: 0; /* IE11 */
         }
         td.sumNetto {
-            font-weight: bold;
+            font-weight: 600;
         }
         .periodeForYtelse,
         .ytelseDetaljer {

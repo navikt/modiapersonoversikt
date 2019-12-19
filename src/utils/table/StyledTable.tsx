@@ -15,7 +15,7 @@ export const TableStyle = styled.div`
         thead,
         .thead[role='rowgroup'] {
             border-bottom: 0.2rem solid rgba(0, 0, 0, 0.15);
-            font-weight: bold;
+            font-weight: 600;
         }
         [role='cell'],
         [role='columnheader'] {

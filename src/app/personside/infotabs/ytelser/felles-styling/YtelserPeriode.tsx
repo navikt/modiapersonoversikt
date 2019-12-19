@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import { Undertittel } from 'nav-frontend-typografi';
-import theme from '../../../../../styles/personOversiktTheme';
+import { Element } from 'nav-frontend-typografi';
+import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 
 interface Props {
     tittel: string;
@@ -10,10 +10,6 @@ interface Props {
 }
 
 const PeriodeStyling = styled.li`
-    > *:first-child {
-        background-color: ${theme.color.kategori};
-        padding: 0.5rem ${theme.margin.px20};
-    }
     ol {
         padding: 0;
         margin: 0;
@@ -23,7 +19,9 @@ const PeriodeStyling = styled.li`
 function YtelserPeriode(props: Props) {
     return (
         <PeriodeStyling>
-            <Undertittel tag="h3">{props.tittel}</Undertittel>
+            <KategoriSkille>
+                <Element tag="h3">{props.tittel}</Element>
+            </KategoriSkille>
             {props.children}
         </PeriodeStyling>
     );

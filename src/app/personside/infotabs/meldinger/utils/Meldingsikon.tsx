@@ -7,7 +7,7 @@ import DokumentIkon from '../../../../../svg/DokumentIkon';
 import MonologIkon from '../../../../../svg/MonologIkon';
 import DialogIkon from '../../../../../svg/DialogIkon';
 import styled, { css } from 'styled-components';
-import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
+import { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { UndertekstBold } from 'nav-frontend-typografi';
 import { erMonolog, erUbesvartHenvendelseFraBruker, nyesteMelding } from './meldingerUtils';
 import BrevIkon from '../../../../../svg/BrevIkon';
@@ -19,13 +19,13 @@ interface MeldingsikonProps {
 const Styling = styled.span<{ visNumberBadge: boolean }>`
     position: relative;
     svg {
-        height: ${theme.margin.px30};
-        width: ${theme.margin.px30};
+        height: ${pxToRem(25)};
+        width: ${pxToRem(25)};
         opacity: 0.5;
         ${props =>
             props.visNumberBadge &&
             css`
-                clip-path: polygon(0 0, 79% 0, 79% 46%, 100% 46%, 100% 100%, 0 100%);
+                clip-path: polygon(0 0, 73% 0, 73% 51%, 100% 52%, 100% 100%, 0 100%);
             `};
     }
 `;

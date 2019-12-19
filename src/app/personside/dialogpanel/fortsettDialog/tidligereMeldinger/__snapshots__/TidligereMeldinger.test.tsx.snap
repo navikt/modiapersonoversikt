@@ -1,9 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser fortsett dialog 1`] = `
-.c3 {
-  width: 100%;
-  padding-right: 1rem;
+.c5 {
+  margin-right: 0.3rem !important;
 }
 
 .c4 {
@@ -11,17 +10,14 @@ exports[`viser fortsett dialog 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
 }
 
-.c5 {
+.c3 {
+  width: 100%;
+  padding-right: 1rem;
+}
+
+.c6 {
   padding: 1rem;
   overflow-wrap: break-word;
   padding-top: 0;
@@ -40,11 +36,11 @@ exports[`viser fortsett dialog 1`] = `
   box-shadow: inset 0 0 0 0.1875rem #254b6d;
 }
 
-.c6 {
+.c7 {
   border-top: 0.1rem rgba(0,0,0,0.2) solid;
 }
 
-.c6 .ekspanderbartPanel__hode:focus {
+.c7 .ekspanderbartPanel__hode:focus {
   outline: none;
   box-shadow: inset 0 0 0 0.1875rem #254b6d;
 }
@@ -127,29 +123,28 @@ exports[`viser fortsett dialog 1`] = `
               className="c3"
             >
               <p
-                className="typo-undertekst"
+                className="typo-element"
               >
-                07. juli 2019 00:00
+                Samtalereferat oppmøte - Arbeid
               </p>
               <p
                 className="typo-undertekst"
               >
-                Skrevet av 
-                Sander Hansen (nzxo4q)
+                30. juli 2019 00:00
               </p>
               <div
                 className="c4"
               >
                 <p
-                  className="typo-ingress"
+                  className="typo-normal c5"
                 >
-                  Samtalereferat oppmøte
+                  Skrevet av:
                 </p>
-                <p
-                  className="typo-undertekst-bold"
+                <div
+                  className="tekstomrade"
                 >
-                  Arbeid
-                </p>
+                  Sander Hansen (nzxo4q)
+                </div>
               </div>
             </div>
             <span
@@ -161,7 +156,7 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="tekstomrade c5"
+            className="tekstomrade c6"
           >
             Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
           </div>
@@ -184,24 +179,15 @@ exports[`viser fortsett dialog 1`] = `
               className="c3"
             >
               <p
+                className="typo-element"
+              >
+                Spørsmål fra bruker - Arbeid
+              </p>
+              <p
                 className="typo-undertekst"
               >
-                16. juli 2019 00:00
+                10. aug. 2019 00:00
               </p>
-              <div
-                className="c4"
-              >
-                <p
-                  className="typo-ingress"
-                >
-                  Spørsmål fra bruker
-                </p>
-                <p
-                  className="typo-undertekst-bold"
-                >
-                  Arbeid
-                </p>
-              </div>
             </div>
             <span
               className="ekspanderbartPanel__indikator"
@@ -212,7 +198,7 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="tekstomrade c5"
+            className="tekstomrade c6"
           >
             Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
           </div>
@@ -235,24 +221,15 @@ exports[`viser fortsett dialog 1`] = `
               className="c3"
             >
               <p
+                className="typo-element"
+              >
+                Spørsmål fra bruker - Arbeid
+              </p>
+              <p
                 className="typo-undertekst"
               >
-                12. juli 2019 00:00
+                06. aug. 2019 00:00
               </p>
-              <div
-                className="c4"
-              >
-                <p
-                  className="typo-ingress"
-                >
-                  Spørsmål fra bruker
-                </p>
-                <p
-                  className="typo-undertekst-bold"
-                >
-                  Arbeid
-                </p>
-              </div>
             </div>
             <span
               className="ekspanderbartPanel__indikator"
@@ -263,7 +240,7 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="tekstomrade c5"
+            className="tekstomrade c6"
           >
             Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
           </div>
@@ -272,7 +249,7 @@ exports[`viser fortsett dialog 1`] = `
     </article>
   </div>
   <div
-    className="ekspanderbartPanel c6 ekspanderbartPanel--apen"
+    className="ekspanderbartPanel c7 ekspanderbartPanel--apen"
   >
     <button
       aria-controls="Helt tilfeldig ID"
@@ -289,29 +266,28 @@ exports[`viser fortsett dialog 1`] = `
           className="c3"
         >
           <p
-            className="typo-undertekst"
+            className="typo-element"
           >
-            27. juli 2019 00:00
+            Delsvar - Arbeid
           </p>
           <p
             className="typo-undertekst"
           >
-            Skrevet av 
-            Kristoffer Fredriksen (xy70r8)
+            13. aug. 2019 00:00
           </p>
           <div
             className="c4"
           >
             <p
-              className="typo-ingress"
+              className="typo-normal c5"
             >
-              Delsvar
+              Skrevet av:
             </p>
-            <p
-              className="typo-undertekst-bold"
+            <div
+              className="tekstomrade"
             >
-              Arbeid
-            </p>
+              Kristoffer Fredriksen (xy70r8)
+            </div>
           </div>
         </div>
         <span
@@ -323,7 +299,7 @@ exports[`viser fortsett dialog 1`] = `
       className="ekspanderbartPanel__innhold"
     >
       <div
-        className="tekstomrade c5"
+        className="tekstomrade c6"
       >
         Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
       </div>

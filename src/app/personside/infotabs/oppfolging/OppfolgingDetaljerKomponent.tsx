@@ -1,24 +1,16 @@
 import * as React from 'react';
 import { DetaljertOppfolging, Saksbehandler } from '../../../../models/oppfolging';
 import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import DescriptionList from '../../../../components/DescriptionList';
 import { datoEllerNull } from '../../../../utils/stringFormatting';
 
 const Wrapper = styled.div`
     ${theme.hvittPanel};
-    padding: ${theme.margin.px20};
+    padding: ${pxToRem(15)};
     > *:first-child {
         margin-bottom: 1rem;
-    }
-`;
-
-const VisningWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    > *:first-child {
-        margin-right: 5rem;
     }
 `;
 
@@ -48,9 +40,7 @@ function VisOppfolgingDetaljer(props: Props) {
     return (
         <Wrapper>
             <Undertittel>Arbeidsoppfølging</Undertittel>
-            <VisningWrapper>
-                <DescriptionList entries={descriptionListProps} />
-            </VisningWrapper>
+            <DescriptionList entries={descriptionListProps} />
         </Wrapper>
     );
 }

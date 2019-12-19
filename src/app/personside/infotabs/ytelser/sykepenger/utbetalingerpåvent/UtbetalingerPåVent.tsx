@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Ingress } from 'nav-frontend-typografi';
 import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import { utledUtbetalingPåVentÅrsak } from './utledUtbetalingerPåVentÅrsak';
 import { periodeEllerNull, prosentEllerNull } from '../../../../../../utils/stringFormatting';
@@ -36,7 +36,7 @@ function getInnhold(utbetalingerpåVent: UtbetalingPåVent[]) {
 function UtbetalingerPVent(props: Props) {
     return (
         <Style>
-            <Undertittel tag="h4">Utbetalinger på vent</Undertittel>
+            <Ingress tag="h4">Utbetalinger på vent</Ingress>
             {getInnhold(props.utbetalingerPåVent)}
         </Style>
     );

@@ -17,7 +17,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
 }
 
 .c21 {
-  margin-right: 0.3rem;
+  margin-right: 0.3rem !important;
 }
 
 .c20 {
@@ -62,11 +62,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
 }
 
 .c9 svg {
-  height: 1.875rem;
-  width: 1.875rem;
+  height: 1.5625rem;
+  width: 1.5625rem;
   opacity: 0.5;
-  -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
-  clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
+  -webkit-clip-path: polygon(0 0,73% 0,73% 51%,100% 52%,100% 100%,0 100%);
+  clip-path: polygon(0 0,73% 0,73% 51%,100% 52%,100% 100%,0 100%);
 }
 
 .c10 {
@@ -206,6 +206,10 @@ exports[`BesvarFler matcher snapshot 1`] = `
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
+}
+
+.c15 .nav-frontend-chevron {
+  width: 1.5625rem;
 }
 
 .c0 {
@@ -464,7 +468,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
             className="hover-animation c15"
           >
             <i
-              className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              className="nav-frontend-chevron chevronboks chevron--hoyre"
             />
           </div>
         </label>
@@ -600,7 +604,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
             className="hover-animation c15"
           >
             <i
-              className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+              className="nav-frontend-chevron chevronboks chevron--hoyre"
             />
           </div>
         </label>
@@ -664,11 +668,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   <div
                     className="c20"
                   >
-                    <span
-                      className="c21"
+                    <p
+                      className="typo-normal c21"
                     >
                       Skrevet av:
-                    </span>
+                    </p>
                     <div
                       className="tekstomrade"
                     >
@@ -933,11 +937,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   <div
                     className="c20"
                   >
-                    <span
-                      className="c21"
+                    <p
+                      className="typo-normal c21"
                     >
                       Skrevet av:
-                    </span>
+                    </p>
                     <div
                       className="tekstomrade"
                     >

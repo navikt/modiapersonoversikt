@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { INFOTABS } from './InfoTabEnum';
 import styled, { css } from 'styled-components';
-import theme from '../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../styles/personOversiktTheme';
+import { capitalizeName } from '../../../utils/stringFormatting';
 
 interface TabPanelProps {
     onTabChange: Function;
@@ -13,7 +14,6 @@ const TabKnapperNav = styled.nav`
     display: flex;
     flex-flow: row wrap;
     width: 100%;
-    padding: ${theme.margin.layout};
     > *:not(:last-child) {
         margin-right: 0.2em;
     }
@@ -38,7 +38,8 @@ const TabKnapp = styled.button<TabKnappProps>`
     width: 100%;
     box-sizing: border-box;
     background-color: transparent;
-    padding-top: 0.5em;
+    margin-top: ${pxToRem(4)};
+    padding: ${theme.margin.layout};
     border: none;
     border-bottom: 4px solid ${props => (props.valgt ? theme.color.lenkeSelected : 'transparent')};
     ${props =>
@@ -65,7 +66,7 @@ function TabKnapper(props: TabPanelProps) {
         return (
             <KnappWrapper key={key}>
                 <TabKnapp role="tab" aria-selected={erValgt} valgt={erValgt} onClick={() => props.onTabChange(key)}>
-                    {INFOTABS[key]}
+                    {capitalizeName(INFOTABS[key])}
                 </TabKnapp>
             </KnappWrapper>
         );

@@ -1,10 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser info om bruker i visittkort-header 1`] = `
-.c11 {
-  font-weight: bold;
-}
-
 .c10 {
   margin: 0.5rem 0 0 0;
   display: -webkit-box;
@@ -97,7 +93,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   align-items: center;
 }
 
-.c13 {
+.c12 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -105,17 +101,17 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   border-radius: 0.5em;
 }
 
-.c13:focus {
+.c12:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c13:focus {
+.c12:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c13:focus::after {
+.c12:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -211,7 +207,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin-bottom: 0.2em !important;
 }
 
-.c12 {
+.c11 {
   padding: 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -381,34 +377,26 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       className="c10"
     >
       <h2
-        className="typo-normal"
+        className="typo-element"
       >
-        <span
-          className="c11"
-        >
-          NAV-kontor
-        </span>
+        NAV-kontor
       </h2>
       <p
-        className="typo-normal"
+        className="typo-element"
       >
-        <span
-          className="c11"
-        >
-          0118
-           
-          NAV Aremark
-        </span>
+        0118
+         
+        NAV Aremark
       </p>
     </section>
   </div>
   <div
-    className="c12"
+    className="c11"
   >
     <button
       aria-expanded={false}
       aria-label="Åpne visittkort (Alt + N)"
-      className="c13"
+      className="c12"
       onClick={[Function]}
       title="Åpne visittkort (Alt + N)"
     >
