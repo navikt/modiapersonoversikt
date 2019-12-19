@@ -6,11 +6,11 @@ import OppgaveIkon from '../../../../../svg/OppgaveIkon';
 import DokumentIkon from '../../../../../svg/DokumentIkon';
 import MonologIkon from '../../../../../svg/MonologIkon';
 import DialogIkon from '../../../../../svg/DialogIkon';
-import styled, { css } from 'styled-components';
-import { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { UndertekstBold } from 'nav-frontend-typografi';
+import styled from 'styled-components';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { erMonolog, erUbesvartHenvendelseFraBruker, nyesteMelding } from './meldingerUtils';
 import BrevIkon from '../../../../../svg/BrevIkon';
+import { Element } from 'nav-frontend-typografi';
 
 interface MeldingsikonProps {
     traad: Traad;
@@ -22,20 +22,21 @@ const Styling = styled.span<{ visNumberBadge: boolean }>`
         height: ${pxToRem(25)};
         width: ${pxToRem(25)};
         opacity: 0.5;
-        ${props =>
-            props.visNumberBadge &&
-            css`
-                clip-path: polygon(0 0, 73% 0, 73% 51%, 100% 52%, 100% 100%, 0 100%);
-            `};
     }
 `;
 
-const NumberBadge = styled(UndertekstBold)`
+const NumberBadge = styled(Element)`
     position: absolute;
     top: ${pxToRem(-3)};
-    right: ${pxToRem(-4)};
+    right: ${pxToRem(-8)};
+    background-color: ${theme.color.navGra60};
+    color: white;
+    height: 1.2rem;
+    width: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    padding: 0 0.1rem;
 `;
 
 function Ikon({ props }: { props: MeldingsikonProps }) {
