@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
 import { guid } from 'nav-frontend-js-utils';
 import { Undertittel } from 'nav-frontend-typografi';
+import { loggEvent } from '../../utils/frontendLogger';
 
 const rules = [
     { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
@@ -101,6 +102,7 @@ function AutocompleteTextarea(props: TextareaProps) {
                         if (acc.match(regex)) {
                             event.preventDefault();
                             event.stopPropagation();
+                            loggEvent('Autocomplete', 'Textarea', { type: acc });
                             return replacement;
                         }
                         return acc;
