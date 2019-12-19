@@ -227,7 +227,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 .c18 svg {
   height: 1.5625rem;
   width: 1.5625rem;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .c19 {
@@ -236,8 +236,8 @@ exports[`Viser oversikt med alt innhold 1`] = `
   right: -0.5rem;
   background-color: #78706a;
   color: white;
-  height: 1.2rem;
-  width: 1.2rem;
+  height: 1.1rem;
+  width: 1.1rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -891,7 +891,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </g>
                     </svg>
                     <p
-                      className="typo-element c19"
+                      className="typo-undertekst c19"
                     >
                       4
                        
