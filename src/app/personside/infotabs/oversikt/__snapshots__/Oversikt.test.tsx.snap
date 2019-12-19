@@ -228,16 +228,29 @@ exports[`Viser oversikt med alt innhold 1`] = `
   height: 1.5625rem;
   width: 1.5625rem;
   opacity: 0.5;
-  -webkit-clip-path: polygon(0 0,73% 0,73% 51%,100% 52%,100% 100%,0 100%);
-  clip-path: polygon(0 0,73% 0,73% 51%,100% 52%,100% 100%,0 100%);
 }
 
 .c19 {
   position: absolute;
   top: -0.1875rem;
-  right: -0.25rem;
+  right: -0.5rem;
+  background-color: #78706a;
+  color: white;
+  height: 1.2rem;
+  width: 1.2rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   border-radius: 50%;
-  padding: 0 0.1rem;
 }
 
 .c20 {
@@ -878,7 +891,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </g>
                     </svg>
                     <p
-                      className="typo-undertekst-bold c19"
+                      className="typo-element c19"
                     >
                       4
                        
