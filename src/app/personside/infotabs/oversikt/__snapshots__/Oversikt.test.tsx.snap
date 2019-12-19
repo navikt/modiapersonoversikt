@@ -340,10 +340,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c3 .typo-undertittel {
-  font-size: 1.125rem;
-}
-
 .c7 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
@@ -370,6 +366,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 
 .c4 {
   font-weight: bold !important;
+  font-size: 1.125rem !important;
 }
 
 .c25 > *:not(:first-child) {

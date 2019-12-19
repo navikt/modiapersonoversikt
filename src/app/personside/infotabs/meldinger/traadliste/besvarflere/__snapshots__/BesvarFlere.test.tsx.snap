@@ -615,7 +615,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
       role="tabpanel"
     >
       <li
-        className="snakkeboble_ikoner "
+        className="snakkeboble_ikoner"
       >
         <div
           className="snakkeboble snakkeboble--hoyre"
@@ -720,7 +720,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         </div>
       </li>
       <li
-        className="snakkeboble_ikoner "
+        className="snakkeboble_ikoner"
       >
         <div
           className="snakkeboble snakkeboble--venstre"
@@ -802,7 +802,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         </div>
       </li>
       <li
-        className="snakkeboble_ikoner "
+        className="snakkeboble_ikoner"
       >
         <div
           className="snakkeboble snakkeboble--venstre"
@@ -884,7 +884,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         </div>
       </li>
       <li
-        className="snakkeboble_ikoner "
+        className="snakkeboble_ikoner"
       >
         <div
           className="snakkeboble snakkeboble--hoyre"

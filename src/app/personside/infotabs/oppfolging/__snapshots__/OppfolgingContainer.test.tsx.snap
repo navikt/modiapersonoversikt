@@ -506,100 +506,96 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
         className="ekspanderbartPanel__innhold"
       >
         <div
-          className=""
+          className="typo-normal c9"
         >
-          <div
-            className="typo-normal c9"
+          <table
+            role="table"
           >
-            <table
-              role="table"
+            <thead
+              role="rowgroup"
             >
-              <thead
-                role="rowgroup"
+              <tr
+                role="row"
               >
-                <tr
-                  role="row"
+                <th
+                  role="columnheader"
                 >
-                  <th
-                    role="columnheader"
-                  >
-                    Innen
-                  </th>
-                  <th
-                    role="columnheader"
-                  >
-                    Hendelse
-                  </th>
-                  <th
-                    role="columnheader"
-                  >
-                    Status
-                  </th>
-                </tr>
-              </thead>
-              <tbody
-                role="rowgroup"
+                  Innen
+                </th>
+                <th
+                  role="columnheader"
+                >
+                  Hendelse
+                </th>
+                <th
+                  role="columnheader"
+                >
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              role="rowgroup"
+            >
+              <tr
+                role="row"
               >
-                <tr
-                  role="row"
+                <td
+                  role="cell"
                 >
-                  <td
-                    role="cell"
-                  >
-                    10.04.2019
-                  </td>
-                  <td
-                    role="cell"
-                  >
-                    vel expedita dolore excepturi est alias
-                  </td>
-                  <td
-                    role="cell"
-                  >
-                    Ferdig behandlet
-                  </td>
-                </tr>
-                <tr
-                  role="row"
+                  10.04.2019
+                </td>
+                <td
+                  role="cell"
                 >
-                  <td
-                    role="cell"
-                  >
-                    12.02.2019
-                  </td>
-                  <td
-                    role="cell"
-                  >
-                    illo repellendus ad iste neque maxime
-                  </td>
-                  <td
-                    role="cell"
-                  >
-                    Ferdig behandlet
-                  </td>
-                </tr>
-                <tr
-                  role="row"
+                  vel expedita dolore excepturi est alias
+                </td>
+                <td
+                  role="cell"
                 >
-                  <td
-                    role="cell"
-                  >
-                    27.01.2019
-                  </td>
-                  <td
-                    role="cell"
-                  >
-                    nostrum sunt quia mollitia impedit sint
-                  </td>
-                  <td
-                    role="cell"
-                  >
-                    Ferdig behandlet
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                  Ferdig behandlet
+                </td>
+              </tr>
+              <tr
+                role="row"
+              >
+                <td
+                  role="cell"
+                >
+                  12.02.2019
+                </td>
+                <td
+                  role="cell"
+                >
+                  illo repellendus ad iste neque maxime
+                </td>
+                <td
+                  role="cell"
+                >
+                  Ferdig behandlet
+                </td>
+              </tr>
+              <tr
+                role="row"
+              >
+                <td
+                  role="cell"
+                >
+                  27.01.2019
+                </td>
+                <td
+                  role="cell"
+                >
+                  nostrum sunt quia mollitia impedit sint
+                </td>
+                <td
+                  role="cell"
+                >
+                  Ferdig behandlet
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </article>
     </div>
@@ -797,11 +793,11 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                           <div
                             className="c12"
                           >
-                            <p
+                            <h4
                               className="typo-element second"
                             >
                               Ordinære dagpenger
-                            </p>
+                            </h4>
                             <div
                               className="c13"
                             >
@@ -833,11 +829,11 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                           <div
                             className="c12"
                           >
-                            <p
+                            <h4
                               className="typo-element second"
                             >
                               Ordinære dagpenger
-                            </p>
+                            </h4>
                             <div
                               className="c13"
                             >
@@ -869,11 +865,11 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                           <div
                             className="c12"
                           >
-                            <p
+                            <h4
                               className="typo-element second"
                             >
                               Ordinære dagpenger
-                            </p>
+                            </h4>
                             <div
                               className="c13"
                             >
