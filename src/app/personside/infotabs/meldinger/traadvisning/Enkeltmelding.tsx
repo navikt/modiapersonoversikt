@@ -31,8 +31,6 @@ interface Props {
     sokeord: string;
 }
 
-const StyledLi = styled.li``;
-
 const SkrevetAvTekst = styled(Normaltekst)`
     margin-right: 0.3rem !important;
 `;
@@ -132,7 +130,7 @@ function EnkeltMelding(props: Props) {
     const highlightRule = createDynamicHighligtingRule(props.sokeord.split(' '));
 
     return (
-        <StyledLi className="snakkeboble_ikoner">
+        <li className="snakkeboble_ikoner">
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <SnakkebobleWrapper>
                     <Topptekst>
@@ -147,7 +145,7 @@ function EnkeltMelding(props: Props) {
                     <Journalforing melding={props.melding} />
                 </SnakkebobleWrapper>
             </Snakkeboble>
-        </StyledLi>
+        </li>
     );
 }
 

@@ -31,7 +31,9 @@ function OppfolgingsVedtakTabell(props: Props) {
     const tittelrekke = ['Vedtak', 'Status', 'Aktivitetsfase'];
     const rows = sortertPåDato.map((vedtak, index) => [
         <UUOrder key={index}>
-            <Element className="second">{vedtak.vedtakstype}</Element>
+            <Element tag="h4" className="second">
+                {vedtak.vedtakstype}
+            </Element>
             <EtikettGrå className="first">{formaterPeriode(vedtak)}</EtikettGrå>
         </UUOrder>,
         vedtak.vedtakstatus,

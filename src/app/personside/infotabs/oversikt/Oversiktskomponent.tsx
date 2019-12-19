@@ -35,9 +35,6 @@ const OverskriftStyle = styled.div`
     &:hover {
         ${theme.hover};
     }
-    .typo-undertittel {
-        font-size: ${pxToRem(18)};
-    }
 `;
 
 const MainStyle = styled.div`
@@ -59,6 +56,7 @@ const CustomContent = styled.div`
 
 const StyledUndertittel = styled(Undertittel)`
     font-weight: bold !important;
+    font-size: ${pxToRem(18)} !important;
 `;
 
 function Oversiktskomponent(props: Props) {

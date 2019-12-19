@@ -53,7 +53,7 @@ function EnkeltMelding(props: Props) {
     );
     return (
         <StyledEkspanderbartpanelBase heading={header} erEnkeltstaende={props.erEnkeltstaende} apen={props.defaultApen}>
-            <StyledTekstomrade>{'HEIHEI ' + props.melding.fritekst}</StyledTekstomrade>
+            <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
         </StyledEkspanderbartpanelBase>
     );
 }
