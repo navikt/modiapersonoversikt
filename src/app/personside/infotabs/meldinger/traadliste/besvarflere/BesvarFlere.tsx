@@ -129,7 +129,7 @@ function getTraaderSomSkalSlaasSammen(traader: Traad[]): SlaaSammenTraad[] {
 }
 
 function Meldingsvisning({ traad }: { traad: Traad }) {
-    const meldinger = traad.meldinger.map(melding => <EnkeltMelding melding={melding} sokeord={''} />);
+    const meldinger = traad.meldinger.map(melding => <EnkeltMelding key={melding.id} melding={melding} sokeord={''} />);
 
     return <TraadVisningStyle role="tabpanel">{meldinger}</TraadVisningStyle>;
 }
