@@ -118,7 +118,9 @@ export function SkrevetAv({ melding, rule }: { melding: Melding; rule?: Rule }) 
     return (
         <SkrevetAvStyle>
             <SkrevetAvTekst>Skrevet av:</SkrevetAvTekst>
-            <Tekstomrade rules={rule && [rule]}>{melding.skrevetAvTekst}</Tekstomrade>
+            <Tekstomrade className={'typo-normal'} rules={rule && [rule]}>
+                {melding.skrevetAvTekst}
+            </Tekstomrade>
         </SkrevetAvStyle>
     );
 }
