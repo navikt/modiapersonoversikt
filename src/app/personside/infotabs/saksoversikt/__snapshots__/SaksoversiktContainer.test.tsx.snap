@@ -42,6 +42,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   transition: padding-left 0.3s;
 }
 
+.c9 .nav-frontend-chevron {
+  width: 1.5625rem;
+}
+
 .c9:focus {
   outline: none;
   box-shadow: none;
@@ -122,7 +126,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c3 {
-  padding: 1.25rem;
+  padding: 0.9375rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -266,7 +270,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 className="c9"
               >
                 <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
             </div>
@@ -336,7 +340,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 className="c9"
               >
                 <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
             </div>
@@ -399,7 +403,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 className="c9"
               >
                 <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
             </div>
@@ -442,7 +446,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 className="c9"
               >
                 <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
             </div>
@@ -495,7 +499,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 className="c9"
               >
                 <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
             </div>
@@ -538,7 +542,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 className="c9"
               >
                 <i
-                  className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                  className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
             </div>

@@ -48,12 +48,7 @@ function UtbetalingerPanel(props: { utbetalinger: UtbetalingerResponse } & Props
         .filter(utbetaling => !datoEldreEnn30Dager(utbetaling));
 
     if (filtrertOgSorterteUtbetalinger.length === 0) {
-        return (
-            <AlertStripeInfo>
-                Det finnes ikke noen utbetalinger for de siste 30 dagene. Trykk på utbetalinger for å utvide
-                søkeperioden.
-            </AlertStripeInfo>
-        );
+        return <AlertStripeInfo>Det finnes ikke noen utbetalinger for de siste 30 dagene</AlertStripeInfo>;
     }
 
     return (

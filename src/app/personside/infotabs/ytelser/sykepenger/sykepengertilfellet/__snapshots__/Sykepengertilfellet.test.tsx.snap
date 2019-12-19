@@ -15,14 +15,9 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
   color: #645f5a;
 }
 
-.c1 dd {
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-
 .c1 > div {
-  margin: 0.9375rem 0;
-  padding-right: 1rem;
+  margin: 0.5625rem 0;
+  padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
@@ -34,11 +29,15 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
   padding: 1.25rem;
 }
 
+.c0 > h3 {
+  margin-bottom: 1rem;
+}
+
 <div
   className="c0"
 >
   <h3
-    className="typo-undertittel"
+    className="typo-ingress"
   >
     Sykepengetilfellet
   </h3>
@@ -52,7 +51,7 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
         Sykemeldt fra og med
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         06.02.2019
       </dd>
@@ -64,7 +63,7 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
         Forbrukte dager
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         23
       </dd>
@@ -76,7 +75,7 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
         Maksdato
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         16.01.2019
       </dd>
@@ -88,7 +87,7 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
         Untatt aktivitet
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         —
       </dd>
@@ -100,7 +99,7 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
         Midlertidig stans
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         —
       </dd>
@@ -112,7 +111,7 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
         Sanksjonperiode
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         19.01.2014 - 05.09.2014
       </dd>
@@ -124,7 +123,7 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
         Ferieperioder
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         19.01.2014 - 14.01.2014
       </dd>
@@ -136,7 +135,7 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
         Forsikring
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         837.00 NOK
       </dd>
@@ -148,7 +147,7 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
         Gyldig forsikring
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         Nei
       </dd>
@@ -160,7 +159,7 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
         Forsikringsperiode
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         —
       </dd>

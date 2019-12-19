@@ -35,16 +35,6 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
-.c15 > *:first-child {
-  background-color: #cce1f3;
-  padding: 0.5rem 1.25rem;
-}
-
-.c15 ol {
-  padding: 0;
-  margin: 0;
-}
-
 .c8 {
   overflow: auto;
   box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
@@ -60,7 +50,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
 .c8 [role='table'] thead,
 .c8 [role='table'] .thead[role='rowgroup'] {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .c8 [role='table'] [role='cell'],
@@ -77,7 +67,17 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   background-color: rgba(0,0,0,0.1);
 }
 
-.c16 {
+.c18 {
+  background-color: #cce1f3;
+  padding: 0.2rem 0.9375rem;
+}
+
+.c17 ol {
+  padding: 0;
+  margin: 0;
+}
+
+.c19 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
@@ -85,7 +85,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   margin: .5rem;
 }
 
-.c16 > *:not(:last-child) {
+.c19 > *:not(:last-child) {
   margin-bottom: 1rem;
 }
 
@@ -94,6 +94,10 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
+}
+
+.c6 > h3 {
+  margin-bottom: 1rem;
 }
 
 .c7 {
@@ -110,14 +114,9 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   color: #645f5a;
 }
 
-.c7 dd {
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-
 .c7 > div {
-  margin: 0.9375rem 0;
-  padding-right: 1rem;
+  margin: 0.5625rem 0;
+  padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
@@ -126,11 +125,17 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   content: '.';
 }
 
-.c14 li:not(:first-child) {
+.c15 li:not(:first-child) {
+  padding-top: 1rem;
+  margin-top: 1rem;
   border-top: solid 0.0625rem #b7b1a9;
 }
 
-.c13 {
+.c16 {
+  margin-top: 1rem;
+}
+
+.c14 {
   padding: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -141,7 +146,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   flex-wrap: wrap;
 }
 
-.c13 > * {
+.c14 > * {
   -webkit-flex-basis: 40%;
   -ms-flex-preferred-size: 40%;
   flex-basis: 40%;
@@ -151,15 +156,26 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   flex-grow: 1;
 }
 
-.c20 {
+.c9 li:not(:first-child) {
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c11 {
+  margin-top: 1rem;
+}
+
+.c13 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
+  white-space: nowrap;
 }
 
-.c9 li:not(:first-child) {
-  border-top: solid 0.0625rem #b7b1a9;
+.c13 > *:not(:last-child) {
+  margin-bottom: 1rem;
 }
 
 .c12 {
@@ -171,18 +187,6 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
 }
 
 .c12 > *:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
-.c11 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-  white-space: nowrap;
-}
-
-.c11 > *:not(:last-child) {
   margin-bottom: 1rem;
 }
 
@@ -227,11 +231,11 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   flex-grow: 1;
 }
 
-.c19 {
+.c22 {
   padding: .5rem;
 }
 
-.c17 {
+.c20 {
   padding: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -242,7 +246,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   flex-wrap: wrap;
 }
 
-.c17 > * {
+.c20 > * {
   -webkit-flex-basis: 40%;
   -ms-flex-preferred-size: 40%;
   flex-basis: 40%;
@@ -252,7 +256,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   flex-grow: 1;
 }
 
-.c18 {
+.c21 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -262,7 +266,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
   flex-direction: column;
 }
 
-.c18 > * {
+.c21 > * {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -340,7 +344,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                 className="c6"
               >
                 <h3
-                  className="typo-undertittel"
+                  className="typo-ingress"
                 >
                   Sykepengetilfellet
                 </h3>
@@ -354,7 +358,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Sykemeldt fra og med
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       06.02.2019
                     </dd>
@@ -366,7 +370,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Forbrukte dager
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       23
                     </dd>
@@ -378,7 +382,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Maksdato
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       16.01.2019
                     </dd>
@@ -390,7 +394,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Untatt aktivitet
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       —
                     </dd>
@@ -402,7 +406,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Midlertidig stans
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       —
                     </dd>
@@ -414,7 +418,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Sanksjonperiode
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       19.01.2014 - 05.09.2014
                     </dd>
@@ -426,7 +430,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Ferieperioder
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       19.01.2014 - 14.01.2014
                     </dd>
@@ -438,7 +442,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Forsikring
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       837.00 NOK
                     </dd>
@@ -450,7 +454,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Gyldig forsikring
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       Nei
                     </dd>
@@ -462,7 +466,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Forsikringsperiode
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       —
                     </dd>
@@ -473,7 +477,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                 className="c6"
               >
                 <h3
-                  className="typo-undertittel"
+                  className="typo-ingress"
                 >
                   Sykmelding
                 </h3>
@@ -487,7 +491,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Periode
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       09.02.2014 - 11.05.2014
                     </dd>
@@ -499,7 +503,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Behandlingsdato
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       01.04.2018
                     </dd>
@@ -511,7 +515,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Sykmelder
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       Lommelegen AS
                     </dd>
@@ -567,7 +571,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               className="c6"
             >
               <h3
-                className="typo-undertittel"
+                className="typo-ingress"
               >
                 Arbeidssituasjon
               </h3>
@@ -581,7 +585,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     Arbeidsgiverperiode
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     Ja
                   </dd>
@@ -593,7 +597,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     Arbeidskategori
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     Ærlig arbeid
                   </dd>
@@ -614,7 +618,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Arbeidsgiver
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Bærlevåg Burger og Bitcoin
                       </dd>
@@ -626,7 +630,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Kontonummer
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         <span
                           className="c10"
@@ -650,7 +654,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Inntekstsperiode
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Månedssats
                       </dd>
@@ -662,7 +666,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Inntekt for perioden
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         39,691.00 NOK
                       </dd>
@@ -674,7 +678,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Refusjonstype
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Ikke refusjon
                       </dd>
@@ -686,7 +690,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Refusjon til dato
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         12.03.2018
                       </dd>
@@ -698,7 +702,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Sykepenger fra og med
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         18.02.2018
                       </dd>
@@ -707,7 +711,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                 </li>
               </ol>
               <button
-                className="knapp knapp--hoved"
+                className="knapp c11 knapp--hoved"
                 disabled={false}
                 onClick={[Function]}
                 type="submit"
@@ -717,10 +721,10 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
             </div>
           </div>
           <section
-            className="c11"
+            className="c12"
           >
             <h4
-              className="typo-undertittel"
+              className="typo-ingress"
             >
               Utbetalinger på vent
             </h4>
@@ -799,10 +803,10 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
             </div>
           </section>
           <section
-            className="c12"
+            className="c13"
           >
             <h4
-              className="typo-undertittel"
+              className="typo-ingress"
             >
               Utbetalinger
             </h4>
@@ -1039,13 +1043,13 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
       >
         <article>
           <div
-            className="c13"
+            className="c14"
           >
             <div
               className="c6"
             >
               <h3
-                className="typo-undertittel"
+                className="typo-ingress"
               >
                 Om pleiepengeretten
               </h3>
@@ -1059,7 +1063,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     Fra og med
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     29.09.2017
                   </dd>
@@ -1071,7 +1075,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     Til og med
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     24.10.2017
                   </dd>
@@ -1083,7 +1087,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     Pleiepengegrad
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     66%
                   </dd>
@@ -1095,7 +1099,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     Barnet (jente)
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     08031815240
                   </dd>
@@ -1107,7 +1111,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     Annen forelder
                   </dt>
                   <dd
-                    className="typo-normal"
+                    className="typo-element"
                   >
                     26087625779
                   </dd>
@@ -1118,13 +1122,13 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               className="c6"
             >
               <h3
-                className="typo-undertittel"
+                className="typo-ingress"
               >
                 Arbeidssituasjon
               </h3>
               <ol
                 aria-label="Arbeidsgivere"
-                className="c14"
+                className="c15"
               >
                 <li>
                   <dl
@@ -1137,7 +1141,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Arbeidsgiver
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Ryan og Sønner
                       </dd>
@@ -1149,7 +1153,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Arbeidskategori
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Arbeidstaker
                       </dd>
@@ -1161,7 +1165,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Inntekstsperiode
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Månedssats
                       </dd>
@@ -1173,7 +1177,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Kontonummer
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         <span
                           className="c10"
@@ -1197,7 +1201,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Refusjonstype
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Ikke refusjon
                       </dd>
@@ -1209,7 +1213,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Inntekt for perioden
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         45,029.00 NOK
                       </dd>
@@ -1221,7 +1225,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Refusjon til dato
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         11.10.2018
                       </dd>
@@ -1230,7 +1234,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                 </li>
               </ol>
               <button
-                className="knapp knapp--hoved"
+                className="knapp c16 knapp--hoved"
                 disabled={false}
                 onClick={[Function]}
                 type="submit"
@@ -1241,21 +1245,25 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
           </div>
           <ol>
             <li
-              className="c15"
+              className="c17"
             >
-              <h3
-                className="typo-undertittel"
-              >
-                Periode 2 - 14.11.2018
-              </h3>
               <div
-                className="c16"
+                className="c18"
               >
-                <h2
-                  className="typo-undertittel"
+                <h3
+                  className="typo-element"
+                >
+                  Periode 2 - 14.11.2018
+                </h3>
+              </div>
+              <div
+                className="c19"
+              >
+                <p
+                  className="typo-ingress"
                 >
                   Anviste utbetalinger
-                </h2>
+                </p>
                 <div
                   className="typo-normal c8"
                 >
@@ -1377,21 +1385,25 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               </div>
             </li>
             <li
-              className="c15"
+              className="c17"
             >
-              <h3
-                className="typo-undertittel"
-              >
-                Periode 1 - 16.10.2018
-              </h3>
               <div
-                className="c16"
+                className="c18"
               >
-                <h2
-                  className="typo-undertittel"
+                <h3
+                  className="typo-element"
+                >
+                  Periode 1 - 16.10.2018
+                </h3>
+              </div>
+              <div
+                className="c19"
+              >
+                <p
+                  className="typo-ingress"
                 >
                   Anviste utbetalinger
-                </h2>
+                </p>
                 <div
                   className="typo-normal c8"
                 >
@@ -1529,16 +1541,16 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
       >
         <article>
           <div
-            className="c17"
+            className="c20"
           >
             <div
-              className="c18"
+              className="c21"
             >
               <div
                 className="c6"
               >
                 <h3
-                  className="typo-undertittel"
+                  className="typo-ingress"
                 >
                   Om foreldrepengeretten
                 </h3>
@@ -1552,7 +1564,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Foreldrepengetype
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       Fødselspenger
                     </dd>
@@ -1564,7 +1576,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Dekningsgrad
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       34%
                     </dd>
@@ -1576,7 +1588,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Rettighet fra dato
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       29.04.2017
                     </dd>
@@ -1588,7 +1600,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Graderingsdager
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       55
                     </dd>
@@ -1600,7 +1612,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Restdager
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       41
                     </dd>
@@ -1612,7 +1624,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Maksdato
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       —
                     </dd>
@@ -1624,7 +1636,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Arbeidskategori
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       Arbeidstaker
                     </dd>
@@ -1636,7 +1648,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Fedrekvote til og med
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       10.02.2019
                     </dd>
@@ -1647,7 +1659,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                 className="c6"
               >
                 <h3
-                  className="typo-undertittel"
+                  className="typo-ingress"
                 >
                   Om barnet
                 </h3>
@@ -1661,7 +1673,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Termindato
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       11.02.2019
                     </dd>
@@ -1673,7 +1685,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Fødselsdato
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       11.02.2019
                     </dd>
@@ -1685,7 +1697,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Annen forelder
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       03063850003
                     </dd>
@@ -1697,7 +1709,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       Antall barn
                     </dt>
                     <dd
-                      className="typo-normal"
+                      className="typo-element"
                     >
                       5
                     </dd>
@@ -1709,7 +1721,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               className="c6"
             >
               <h3
-                className="typo-undertittel"
+                className="typo-ingress"
               >
                 Arbeidssituasjon
               </h3>
@@ -1728,7 +1740,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Arbeidsgiver
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Bakke - Solheim
                       </dd>
@@ -1740,7 +1752,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Kontonummer
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         <span
                           className="c10"
@@ -1764,7 +1776,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Inntekstsperiode
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Månedlig
                       </dd>
@@ -1776,7 +1788,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Inntekt for perioden
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         40,062.00 NOK
                       </dd>
@@ -1788,7 +1800,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Refusjonstype
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Ikke refusjon
                       </dd>
@@ -1800,7 +1812,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Refusjon til dato
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         11.02.2019
                       </dd>
@@ -1812,7 +1824,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Sykepenger fra og med
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         10.02.2019
                       </dd>
@@ -1821,7 +1833,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                 </li>
               </ol>
               <button
-                className="knapp knapp--hoved"
+                className="knapp c11 knapp--hoved"
                 disabled={false}
                 onClick={[Function]}
                 type="submit"
@@ -1832,24 +1844,28 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
           </div>
           <ol>
             <li
-              className="c15"
+              className="c17"
             >
-              <h3
-                className="typo-undertittel"
+              <div
+                className="c18"
               >
-                Periode 1 - 29.04.2017
-              </h3>
+                <h3
+                  className="typo-element"
+                >
+                  Periode 1 - 29.04.2017
+                </h3>
+              </div>
               <article
-                className="c19"
+                className="c22"
               >
                 <div
-                  className="c20"
+                  className="c6"
                 >
-                  <h2
-                    className="typo-undertittel"
+                  <h3
+                    className="typo-ingress"
                   >
                     Om foreldrepengeperioden
-                  </h2>
+                  </h3>
                   <dl
                     className="c7"
                   >
@@ -1860,7 +1876,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Arbeidsprosent mor
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         58%
                       </dd>
@@ -1872,7 +1888,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Mors situasjon
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         nobis sit quo et quis
                       </dd>
@@ -1884,7 +1900,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Disponibel gradering
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         9%
                       </dd>
@@ -1896,7 +1912,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Forskyvelsesperiode
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         08.10.2014 - 22.08.2014
                       </dd>
@@ -1908,7 +1924,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Andre forskyvelsesperiode
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         09.12.2014 - 26.08.2014
                       </dd>
@@ -1920,7 +1936,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Midlertidig stans
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         2019-02-10
                       </dd>
@@ -1932,7 +1948,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Stansårsak
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Avsluttet
                       </dd>
@@ -1944,7 +1960,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Avslått
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Avslått
                       </dd>
@@ -1956,7 +1972,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Mødrekvote
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         —
                       </dd>
@@ -1968,7 +1984,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Rett til Mødrekvote
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Ingen rett til mødrekvote
                       </dd>
@@ -1980,7 +1996,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Aleneomsorg Mor
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         —
                       </dd>
@@ -1992,7 +2008,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Fedrekvote
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         —
                       </dd>
@@ -2004,7 +2020,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Rett til Fedrekvote
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         Rett til fedrekvote
                       </dd>
@@ -2016,7 +2032,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                         Aleneomsorg Far
                       </dt>
                       <dd
-                        className="typo-normal"
+                        className="typo-element"
                       >
                         —
                       </dd>
@@ -2024,10 +2040,10 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                   </dl>
                 </div>
                 <section
-                  className="c12"
+                  className="c13"
                 >
                   <h4
-                    className="typo-undertittel"
+                    className="typo-ingress"
                   >
                     Utbetalinger
                   </h4>

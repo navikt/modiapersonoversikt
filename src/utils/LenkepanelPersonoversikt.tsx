@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import theme from '../styles/personOversiktTheme';
+import theme, { pxToRem } from '../styles/personOversiktTheme';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 
 interface Props {
@@ -12,9 +12,9 @@ interface Props {
 
 const CustomStyling = styled.nav`
     ${theme.hvittPanel};
-    font-weight: bold;
+    font-weight: 600;
     a {
-        padding: ${theme.margin.px20};
+        padding: ${pxToRem(15)};
     }
     .lenkepanel {
         margin-bottom: 0;

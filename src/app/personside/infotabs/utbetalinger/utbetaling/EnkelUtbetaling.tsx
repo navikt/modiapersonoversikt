@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models/utbetalinger';
 import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalingerUtils';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { loggEvent } from '../../../../../utils/frontendLogger';
@@ -39,7 +39,7 @@ const UtbetalingStyle = styled.li`
 const UtbetalingHeaderStyle = styled.div`
     display: flex;
     flex-direction: column;
-    padding: ${theme.margin.px10} ${theme.margin.px20} 0;
+    padding: ${theme.margin.px10} ${pxToRem(15)} 0;
     transition: 0.3s;
     cursor: pointer;
     > *:nth-child(3) {
@@ -116,12 +116,8 @@ function EnkelUtbetaling(props: Props) {
                     <UtbetalingTabellStyling>
                         <UtbetalingHeaderStyle>
                             <SpaceBetween>
-                                <Normaltekst tag={'h4'}>
-                                    <Bold>{tittel}</Bold>
-                                </Normaltekst>
-                                <Normaltekst>
-                                    <Bold>{sum}</Bold>
-                                </Normaltekst>
+                                <Element tag={'h4'}>{tittel}</Element>
+                                <Element>{sum}</Element>
                             </SpaceBetween>
                             <Normaltekst className="order-first">
                                 {dato} / <Bold>{props.utbetaling.status}</Bold>

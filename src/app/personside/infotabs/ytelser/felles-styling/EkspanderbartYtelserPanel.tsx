@@ -53,6 +53,7 @@ function EkspanderbartYtelserPanel(props: Props) {
             <EkspanderbartpanelBasePure
                 className={ytelserTest.ytelse}
                 apen={props.open}
+                /* TODO position:sticky på tittel */
                 onClick={() => props.setOpen(!props.open)}
                 heading={tittel}
                 ariaTittel={props.tittel}

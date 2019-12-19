@@ -15,14 +15,9 @@ exports[`Sykemelding matcher snapshot 1`] = `
   color: #645f5a;
 }
 
-.c1 dd {
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-
 .c1 > div {
-  margin: 0.9375rem 0;
-  padding-right: 1rem;
+  margin: 0.5625rem 0;
+  padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
@@ -32,6 +27,10 @@ exports[`Sykemelding matcher snapshot 1`] = `
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
+}
+
+.c0 > h3 {
+  margin-bottom: 1rem;
 }
 
 .c2 {
@@ -49,7 +48,7 @@ exports[`Sykemelding matcher snapshot 1`] = `
 .c2 [role='table'] thead,
 .c2 [role='table'] .thead[role='rowgroup'] {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .c2 [role='table'] [role='cell'],
@@ -70,7 +69,7 @@ exports[`Sykemelding matcher snapshot 1`] = `
   className="c0"
 >
   <h3
-    className="typo-undertittel"
+    className="typo-ingress"
   >
     Sykmelding
   </h3>
@@ -84,7 +83,7 @@ exports[`Sykemelding matcher snapshot 1`] = `
         Periode
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         09.02.2014 - 11.05.2014
       </dd>
@@ -96,7 +95,7 @@ exports[`Sykemelding matcher snapshot 1`] = `
         Behandlingsdato
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         01.04.2018
       </dd>
@@ -108,7 +107,7 @@ exports[`Sykemelding matcher snapshot 1`] = `
         Sykmelder
       </dt>
       <dd
-        className="typo-normal"
+        className="typo-element"
       >
         Lommelegen AS
       </dd>

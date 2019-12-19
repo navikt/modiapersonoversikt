@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser send ny melding 1`] = `
-.c9 label {
+.c10 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -12,14 +12,14 @@ exports[`viser send ny melding 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c11 {
+.c12 {
   background-color: white;
   border-radius: .25rem;
   border: 1px solid #78706a;
   position: relative;
 }
 
-.c12 {
+.c13 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -40,12 +40,12 @@ exports[`viser send ny melding 1`] = `
   align-items: center;
 }
 
-.c12:focus {
+.c13:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c3 {
+.c4 {
   position: absolute;
   height: 2rem;
   width: 2rem;
@@ -59,50 +59,50 @@ exports[`viser send ny melding 1`] = `
   transform: none;
 }
 
-.c3:after {
+.c4:after {
   background: none;
 }
 
-.c3:hover {
+.c4:hover {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
 }
 
-.c4 {
+.c5 {
   position: relative;
   top: 2px;
   width: 18px;
 }
 
-.c7 {
+.c8 {
   position: absolute;
   top: 2.8rem;
   left: -1rem;
 }
 
-.c7 ul {
+.c8 ul {
   list-style: circle;
   margin-top: 1rem;
 }
 
-.c7 ul li {
+.c8 ul li {
   margin-left: 1.5rem;
 }
 
-.c6 {
+.c7 {
   position: relative;
 }
 
-.c2 {
+.c3 {
   position: relative;
 }
 
-.c2 textarea {
+.c3 textarea {
   min-height: 9rem;
 }
 
-.c2 label {
+.c3 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -113,17 +113,16 @@ exports[`viser send ny melding 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c5 textarea,
-.c5 .textareamirror {
+.c6 textarea,
+.c6 .textareamirror {
   padding-left: 2.25rem;
 }
 
-.c1 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 1rem;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -133,15 +132,15 @@ exports[`viser send ny melding 1`] = `
   align-items: stretch;
 }
 
-.c1 .skjemaelement {
+.c2 .skjemaelement {
   margin-bottom: 0;
 }
 
-.c1 > * {
+.c2 > * {
   margin-bottom: 1rem;
 }
 
-.c8 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -155,19 +154,19 @@ exports[`viser send ny melding 1`] = `
   flex-wrap: wrap;
 }
 
-.c8 > * {
+.c9 > * {
   margin-top: 0.3rem;
 }
 
-.c8 > *:not(:last-child) {
+.c9 > *:not(:last-child) {
   margin-right: 1rem;
 }
 
-.c13 {
+.c14 {
   margin-top: 1rem;
 }
 
-.c13 label {
+.c14 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -182,7 +181,7 @@ exports[`viser send ny melding 1`] = `
   padding: 1rem .5rem;
 }
 
-.c14 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -192,37 +191,41 @@ exports[`viser send ny melding 1`] = `
   flex-direction: column;
 }
 
-.c14 > * {
+.c15 > * {
   margin-bottom: 0.7rem;
 }
 
-.c10 {
+.c11 {
   margin-top: 1rem;
+}
+
+.c1 {
+  margin-bottom: 1rem !important;
 }
 
 <article
   className="c0"
 >
   <h2
-    className="typo-undertittel"
+    className="typo-undertittel c1"
   >
     Send ny melding
   </h2>
   <form
-    className="c1"
+    className="c2"
     onSubmit={[Function]}
   >
     <div
-      className="c2"
+      className="c3"
     >
       <button
-        className="knapp c3 knapp--hoved"
+        className="knapp c4 knapp--hoved"
         disabled={false}
         onClick={[Function]}
         type="button"
       >
         <svg
-          className="c4"
+          className="c5"
           height="24px"
           preserveAspectRatio="xMidYMid meet"
           viewBox="0 0 24 24"
@@ -243,10 +246,10 @@ exports[`viser send ny melding 1`] = `
         </span>
       </button>
       <div
-        className="c5"
+        className="c6"
       >
         <div
-          className="c6"
+          className="c7"
         >
           <div
             className="skjemaelement textarea__container"
@@ -295,7 +298,7 @@ exports[`viser send ny melding 1`] = `
             />
           </div>
           <div
-            className="c7"
+            className="c8"
           >
             <div
               className="hjelpetekst"
@@ -360,7 +363,7 @@ exports[`viser send ny melding 1`] = `
       />
     </div>
     <div
-      className="c8"
+      className="c9"
     >
       <div
         className="skjemaelement skjemaelement--horisontal"
@@ -424,7 +427,7 @@ exports[`viser send ny melding 1`] = `
         className=""
       >
         <div
-          className="skjemaelement c9"
+          className="skjemaelement c10"
         >
           <label
             className="skjemaelement__label"
@@ -486,7 +489,7 @@ exports[`viser send ny melding 1`] = `
         />
       </div>
       <div
-        className="alertstripe c10 alertstripe--info"
+        className="alertstripe c11 alertstripe--info"
       >
         <span
           aria-label="info"
@@ -523,11 +526,11 @@ exports[`viser send ny melding 1`] = `
         className=""
       >
         <div
-          className="c11"
+          className="c12"
         >
           <button
             aria-expanded={false}
-            className="c12"
+            className="c13"
             onClick={[Function]}
             type="button"
           >
@@ -547,7 +550,7 @@ exports[`viser send ny melding 1`] = `
         />
       </div>
       <div
-        className="skjemaelement c13"
+        className="skjemaelement c14"
       >
         <label
           className="skjemaelement__label"
@@ -585,7 +588,7 @@ exports[`viser send ny melding 1`] = `
         />
       </div>
       <div
-        className="alertstripe c10 alertstripe--info"
+        className="alertstripe c11 alertstripe--info"
       >
         <span
           aria-label="info"
@@ -620,7 +623,7 @@ exports[`viser send ny melding 1`] = `
       </div>
     </div>
     <div
-      className="c14"
+      className="c15"
     >
       <button
         className="knapp knapp--hoved"

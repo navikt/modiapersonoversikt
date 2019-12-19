@@ -6,10 +6,9 @@ import {
     getForeldepengerIdDato,
     getUnikForeldrepengerKey
 } from '../../../../models/ytelse/foreldrepenger';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { Bold } from '../../../../components/common-styled-components';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import useBrukersYtelser from '../ytelser/useBrukersYtelser';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
@@ -80,9 +79,7 @@ function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet }) {
             ariaDescription="Vis pleiepenger"
             className={ytelserTest.oversikt}
         >
-            <Normaltekst>
-                <Bold>Pleiepenger sykt barn</Bold>
-            </Normaltekst>
+            <Element>Pleiepenger sykt barn</Element>
             <Normaltekst>Barnets f.nr: {props.pleiepenger.barnet}</Normaltekst>
         </VisMerKnapp>
     );
@@ -99,9 +96,7 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
             className={ytelserTest.oversikt}
         >
             <Normaltekst>ID dato: {formaterDato(getSykepengerIdDato(props.sykepenger))}</Normaltekst>
-            <Normaltekst>
-                <Bold>Sykepenger</Bold>
-            </Normaltekst>
+            <Element>Sykepenger</Element>
             <Normaltekst>
                 100% sykemeldt - Maksdato{' '}
                 {props.sykepenger.slutt ? formaterDato(props.sykepenger.slutt) : 'ikke tilgjenglig'}
@@ -120,9 +115,7 @@ function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet
             className={ytelserTest.oversikt}
         >
             <Normaltekst>ID dato: {formaterDato(getForeldepengerIdDato(props.foreldrepenger))}</Normaltekst>
-            <Normaltekst>
-                <Bold>Foreldrepenger</Bold>
-            </Normaltekst>
+            <Element>Foreldrepenger</Element>
             <Normaltekst>
                 {props.foreldrepenger.dekningsgrad}% dekningsgrad - Maksdato{' '}
                 {props.foreldrepenger.slutt ? formaterDato(props.foreldrepenger.slutt) : 'ikke tilgjengelig'}

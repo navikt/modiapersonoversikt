@@ -61,8 +61,8 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   text-transform: uppercase;
 }
 
-.c30 {
-  font-weight: bold;
+.c35 {
+  font-weight: 600;
 }
 
 .c20 {
@@ -136,6 +136,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c24 th {
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .c24 tr {
@@ -176,7 +177,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c24 tr td.sumNetto {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .c24 tr .periodeForYtelse,
@@ -269,7 +270,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c14 {
-  padding: 1.25rem 1.25rem 0;
+  padding: 0.9375rem 0.9375rem 0;
 }
 
 .c15 {
@@ -285,19 +286,19 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c15 td {
-  font-weight: bold;
+  font-weight: 600;
 }
 
-.c35 th:not(:first-child) {
+.c36 th:not(:first-child) {
   font-weight: normal;
   font-style: italic;
 }
 
-.c36 td:not(:first-child) {
-  font-weight: bold;
+.c37 td:not(:first-child) {
+  font-weight: 600;
 }
 
-.c37 {
+.c38 {
   border-top: solid 0.0625rem #b7b1a9;
   margin: 0.5rem 0;
 }
@@ -333,7 +334,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 0.625rem 1.25rem 0;
+  padding: 0.625rem 0.9375rem 0;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   cursor: pointer;
@@ -349,15 +350,15 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   order: -1;
 }
 
+.c30 {
+  background-color: #cce1f3;
+  padding: 0.2rem 0.9375rem;
+}
+
 .c1 {
   overflow: auto;
   max-height: 100%;
   padding: .5rem;
-}
-
-.c29 > *:first-child {
-  background-color: #cce1f3;
-  padding: 0.2rem 1.25rem;
 }
 
 .c29 ol {
@@ -382,7 +383,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c26 > *:first-child {
-  padding: 1.25rem;
+  padding: 0.9375rem;
 }
 
 .c28 {
@@ -413,7 +414,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
-  padding: 1.25rem;
+  padding: 0.9375rem;
 }
 
 .c7 {
@@ -435,8 +436,12 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   margin-top: 0.5rem;
 }
 
+.c7 .skjemaelement--horisontal {
+  margin-bottom: 0.4rem;
+}
+
 .c9 {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .c8 {
@@ -457,11 +462,11 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .c3 a {
-  padding: 1.25rem;
+  padding: 0.9375rem;
 }
 
 .c3 .lenkepanel {
@@ -616,7 +621,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
               className="c8"
             >
               <legend
-                className="typo-etikett-liten"
+                className="typo-element"
               >
                 Velg periode
               </legend>
@@ -710,7 +715,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             className="c7"
           >
             <p
-              className="typo-etikett-liten"
+              className="typo-element"
             >
               Utbetaling til
             </p>
@@ -740,7 +745,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
             className="c7"
           >
             <p
-              className="typo-etikett-liten"
+              className="typo-element"
             >
               Velg ytelse
             </p>
@@ -1107,19 +1112,19 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
               <li
                 className="c29"
               >
-                <h3
-                  className="typo-normal"
+                <div
+                  className="c30"
                 >
-                  <span
-                    className="c30"
+                  <h3
+                    className="typo-element"
                   >
                     <span
                       className="c31"
                     >
                       Mars 2017
                     </span>
-                  </span>
-                </h3>
+                  </h3>
+                </div>
                 <ol
                   aria-label="Utbetalinger fra Mars 2017"
                 >
@@ -1143,22 +1148,14 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                             className="c34"
                           >
                             <h4
-                              className="typo-normal"
+                              className="typo-element"
                             >
-                              <span
-                                className="c30"
-                              >
-                                Sykepenger
-                              </span>
+                              Sykepenger
                             </h4>
                             <p
-                              className="typo-normal"
+                              className="typo-element"
                             >
-                              <span
-                                className="c30"
-                              >
-                                11,386.00
-                              </span>
+                              11,386.00
                             </p>
                           </div>
                           <p
@@ -1167,7 +1164,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                             29. Mars 2017
                              / 
                             <span
-                              className="c30"
+                              className="c35"
                             >
                               Utbetalt
                             </span>
@@ -1266,13 +1263,13 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           >
                             <aside
                               aria-label="Utbetalingsdetaljer"
-                              className="c35"
+                              className="c36"
                             >
                               <span
                                 className="typo-normal"
                               >
                                 <div
-                                  className="c36"
+                                  className="c37"
                                 >
                                   <table
                                     role="table"
@@ -1337,7 +1334,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                 </div>
                               </span>
                               <div
-                                className="c37"
+                                className="c38"
                               />
                               <span
                                 className="typo-normal"
@@ -1524,16 +1521,12 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                 </table>
                               </span>
                               <div
-                                className="c37"
+                                className="c38"
                               />
                               <h4
-                                className="typo-normal"
+                                className="typo-element"
                               >
-                                <span
-                                  className="c30"
-                                >
-                                  Melding
-                                </span>
+                                Melding
                               </h4>
                               <p
                                 className="typo-normal"

@@ -11,7 +11,7 @@ import {
     summertBeløpStringFraUtbetalinger
 } from '../utils/utbetalingerUtils';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { FlexEnd } from '../../../../../components/common-styled-components';
 import { loggEvent } from '../../../../../utils/frontendLogger';
@@ -32,7 +32,7 @@ const Wrapper = styled.article`
 `;
 
 const Header = styled.div`
-    padding: ${theme.margin.px20} ${theme.margin.px20} 0;
+    padding: ${pxToRem(15)} ${pxToRem(15)} 0;
 `;
 
 const TotaltUtbetaltOversikt = styled.section`
@@ -44,7 +44,7 @@ const TotaltUtbetaltOversikt = styled.section`
         text-transform: uppercase;
     }
     td {
-        font-weight: bold;
+        font-weight: 600;
     }
 `;
 

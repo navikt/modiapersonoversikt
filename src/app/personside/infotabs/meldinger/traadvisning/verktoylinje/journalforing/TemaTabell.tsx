@@ -1,16 +1,16 @@
 import { JournalforingsSak, Tema } from './JournalforingPanel';
 import React, { useState } from 'react';
-import { UndertekstBold } from 'nav-frontend-typografi';
+import { Element } from 'nav-frontend-typografi';
 import SaksTabell from './SaksTabell';
 import styled from 'styled-components';
 import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 
 const MiniEkspanderbartpanelBasePure = styled(EkspanderbartpanelBasePure)`
     .ekspanderbartPanel__hode {
-        padding: 0.25rem 0.5rem;
+        padding: 0.35rem 0.5rem;
     }
     .ekspanderbartPanel__innhold {
-        padding: 0.5rem;
+        padding: 0.3rem;
     }
 `;
 
@@ -24,7 +24,7 @@ function TemaTable({
     const [apen, settApen] = useState(apenByDefault);
     return (
         <MiniEkspanderbartpanelBasePure
-            heading={<UndertekstBold tag="h4">{tema}</UndertekstBold>}
+            heading={<Element tag="h4">{tema}</Element>}
             apen={apen}
             onClick={() => settApen(!apen)}
             className="blokk-xxxs"

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ReactNode, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import theme from '../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Link, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
@@ -20,16 +20,18 @@ interface Props {
 
 const PanelStyle = styled.section`
     ${theme.hvittPanel};
+    padding-bottom: 0.3rem;
 `;
 
 const OverskriftStyle = styled.div`
     display: flex;
-    background-color: ${theme.color.navLysGra};
+    background-color: white;
     border-top-left-radius: ${theme.borderRadius.layout};
     border-top-right-radius: ${theme.borderRadius.layout};
     justify-content: space-between;
     padding: ${theme.margin.px10};
     cursor: pointer;
+    border-bottom: ${theme.color.navGra40} ${pxToRem(2)} solid;
     &:hover {
         ${theme.hover};
     }
@@ -50,6 +52,11 @@ const CustomContent = styled.div`
     display: inline-flex;
     align-items: flex-end;
     padding: 0 1rem;
+`;
+
+const StyledUndertittel = styled(Undertittel)`
+    font-weight: bold !important;
+    font-size: ${pxToRem(18)} !important;
 `;
 
 function Oversiktskomponent(props: Props) {
@@ -74,7 +81,7 @@ function Oversiktskomponent(props: Props) {
         <ErrorBoundary boundaryName={'Oversikt ' + props.tittel}>
             <PanelStyle>
                 <OverskriftStyle title={'Alt + ' + props.hurtigtast} onClick={handleClick}>
-                    <Undertittel tag="h3">{props.tittel}</Undertittel>
+                    <StyledUndertittel tag="h3">{props.tittel}</StyledUndertittel>
                     <CustomContent>{customContent}</CustomContent>
                     <StyledLink className="lenke" to={path}>
                         <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>

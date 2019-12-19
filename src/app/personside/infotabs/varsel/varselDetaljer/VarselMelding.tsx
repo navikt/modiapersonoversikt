@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Kanal, Varselmelding } from '../../../../../models/varsel';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
-import { Bold } from '../../../../../components/common-styled-components';
 import { formatterDatoMedMaanedsnavn } from '../../../../../utils/dateUtils';
 
 interface Props {
@@ -25,9 +24,7 @@ function MeldingsInnhold(props: Props) {
         case Kanal.EPOST:
             return (
                 <div>
-                    <Normaltekst>
-                        <Bold>{props.melding.epostemne}</Bold>
-                    </Normaltekst>
+                    <Element>{props.melding.epostemne}</Element>
                     <Normaltekst>{props.melding.innhold}</Normaltekst>
                 </div>
             );
@@ -39,17 +36,9 @@ function MeldingsInnhold(props: Props) {
 function Mottakerinformasjon(props: Props) {
     switch (props.melding.kanal) {
         case Kanal.EPOST:
-            return (
-                <Normaltekst>
-                    <Bold>Epost: {props.melding.mottakerInformasjon}</Bold>
-                </Normaltekst>
-            );
+            return <Element>Epost: {props.melding.mottakerInformasjon}</Element>;
         case Kanal.SMS:
-            return (
-                <Normaltekst>
-                    <Bold>Tlf: {props.melding.mottakerInformasjon}</Bold>
-                </Normaltekst>
-            );
+            return <Element>Tlf: {props.melding.mottakerInformasjon}</Element>;
         case Kanal.NAVNO:
         default:
             return null;
@@ -60,9 +49,7 @@ function VarselMelding(props: Props) {
     return (
         <Style aria-label={props.melding.kanal}>
             <div>
-                <Normaltekst>
-                    <Bold>{props.melding.kanal}</Bold>
-                </Normaltekst>
+                <Element>{props.melding.kanal}</Element>
                 <Normaltekst>{formatterDatoMedMaanedsnavn(props.melding.utsendingsTidspunkt)}</Normaltekst>
             </div>
             <div>

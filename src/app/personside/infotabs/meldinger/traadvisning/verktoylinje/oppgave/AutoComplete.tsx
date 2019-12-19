@@ -43,7 +43,6 @@ const StyledSpinner = styled(NavFrontendSpinner)`
 
 const InputfeltWrapper = styled.div`
     position: relative;
-    margin-bottom: 1rem;
     .skjemaelement {
         margin-bottom: 0;
     }

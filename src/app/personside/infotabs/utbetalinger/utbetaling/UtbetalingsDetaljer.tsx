@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
 import {
     formaterNOK,
@@ -10,7 +10,6 @@ import {
 } from '../utils/utbetalingerUtils';
 import { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { Bold } from '../../../../../components/common-styled-components';
 import { Table } from '../../../../../utils/table/Table';
 
 type Props = {
@@ -28,7 +27,7 @@ const Wrapper = styled.aside`
 
 const OversiktStyle = styled.div`
     td:not(:first-child) {
-        font-weight: bold;
+        font-weight: 600;
     }
 `;
 
@@ -101,9 +100,7 @@ function UtbetalingsDetaljer(props: Props) {
             <Border />
             <Normaltekst tag="span">{detaljer}</Normaltekst>
             <Border />
-            <Normaltekst tag={'h4'}>
-                <Bold>Melding</Bold>
-            </Normaltekst>
+            <Element tag={'h4'}>Melding</Element>
             <Normaltekst>{props.melding || ''}</Normaltekst>
         </Wrapper>
     );

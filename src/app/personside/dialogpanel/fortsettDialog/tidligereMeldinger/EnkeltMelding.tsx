@@ -1,31 +1,17 @@
 import { Melding } from '../../../../../models/meldinger/meldinger';
-import { Ingress, Undertekst, UndertekstBold } from 'nav-frontend-typografi';
+import { Element, Undertekst } from 'nav-frontend-typografi';
 import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
-import { meldingstypeTekst } from '../../../infotabs/meldinger/utils/meldingstekster';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
-import { temagruppeTekst } from '../../../../../models/Temagrupper';
-import { erMeldingFraBruker } from '../../../infotabs/meldinger/utils/meldingerUtils';
+import { meldingstittel } from '../../../infotabs/meldinger/utils/meldingerUtils';
 import theme from '../../../../../styles/personOversiktTheme';
-
-function Meldingsforfatter(props: { melding: Melding }) {
-    if (props.melding.erDokumentMelding || erMeldingFraBruker(props.melding.meldingstype)) {
-        return null;
-    }
-    return <Undertekst>Skrevet av {props.melding.skrevetAvTekst}</Undertekst>;
-}
+import { SkrevetAv } from '../../../infotabs/meldinger/traadvisning/Enkeltmelding';
 
 const EnkeltMeldingStyle = styled.div`
     width: 100%;
     padding-right: 1rem;
-`;
-
-const InlineStyle = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
 `;
 
 const StyledTekstomrade = styled(Tekstomrade)`
@@ -60,12 +46,9 @@ interface Props {
 function EnkeltMelding(props: Props) {
     const header = (
         <EnkeltMeldingStyle>
-            <Undertekst>{formatterDatoTidMedMaanedsnavn(props.melding.ferdigstiltDato)}</Undertekst>
-            <Meldingsforfatter melding={props.melding} />
-            <InlineStyle>
-                <Ingress>{meldingstypeTekst(props.melding.meldingstype)}</Ingress>
-                <UndertekstBold>{temagruppeTekst(props.melding.temagruppe)}</UndertekstBold>
-            </InlineStyle>
+            <Element>{meldingstittel(props.melding)}</Element>
+            <Undertekst>{formatterDatoTidMedMaanedsnavn(props.melding.opprettetDato)}</Undertekst>
+            <SkrevetAv melding={props.melding} />
         </EnkeltMeldingStyle>
     );
     return (

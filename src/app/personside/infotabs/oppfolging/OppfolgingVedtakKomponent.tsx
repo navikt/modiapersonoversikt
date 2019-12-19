@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OppfolgingsVedtak } from '../../../../models/oppfolging';
 import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Element, Undertittel } from 'nav-frontend-typografi';
 import { datoEllerTomString } from '../../../../utils/stringFormatting';
 import EtikettGrå from '../../../../components/EtikettGrå';
 import { StyledTable } from '../../../../utils/table/StyledTable';
@@ -19,7 +19,6 @@ const UUOrder = styled.div`
     }
     .second {
         order: 2;
-        font-weight: bold;
     }
 `;
 
@@ -32,7 +31,9 @@ function OppfolgingsVedtakTabell(props: Props) {
     const tittelrekke = ['Vedtak', 'Status', 'Aktivitetsfase'];
     const rows = sortertPåDato.map((vedtak, index) => [
         <UUOrder key={index}>
-            <h4 className="second">{vedtak.vedtakstype}</h4>
+            <Element tag="h4" className="second">
+                {vedtak.vedtakstype}
+            </Element>
             <EtikettGrå className="first">{formaterPeriode(vedtak)}</EtikettGrå>
         </UUOrder>,
         vedtak.vedtakstatus,

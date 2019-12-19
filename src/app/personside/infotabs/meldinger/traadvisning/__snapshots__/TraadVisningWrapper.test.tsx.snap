@@ -78,11 +78,14 @@ exports[`Viser traad med verktøylinje 1`] = `
 
 .c20 {
   position: relative;
-  margin-bottom: 1rem;
 }
 
 .c20 .skjemaelement {
   margin-bottom: 0;
+}
+
+.c18 {
+  padding-top: 1rem;
 }
 
 .c18 .inputPanelGruppe__inner {
@@ -97,6 +100,15 @@ exports[`Viser traad med verktøylinje 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+}
+
+.c18 label {
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+.c18 .skjemaelement {
+  margin-bottom: 0.7rem;
 }
 
 .c22 {
@@ -214,7 +226,7 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 .c6 {
-  margin-right: 0.3rem;
+  margin-right: 0.3rem !important;
 }
 
 .c5 {
@@ -397,11 +409,11 @@ exports[`Viser traad med verktøylinje 1`] = `
                   <div
                     className="c5"
                   >
-                    <span
-                      className="c6"
+                    <p
+                      className="typo-normal c6"
                     >
                       Skrevet av:
-                    </span>
+                    </p>
                     <div
                       className="tekstomrade"
                     >
@@ -666,11 +678,11 @@ exports[`Viser traad med verktøylinje 1`] = `
                   <div
                     className="c5"
                   >
-                    <span
-                      className="c6"
+                    <p
+                      className="typo-normal c6"
                     >
                       Skrevet av:
-                    </span>
+                    </p>
                     <div
                       className="tekstomrade"
                     >

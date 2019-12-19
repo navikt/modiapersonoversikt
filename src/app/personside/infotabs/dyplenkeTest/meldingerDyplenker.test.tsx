@@ -22,11 +22,11 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
         </TestProvider>
     );
 
-    expect(getAktivTab(infoTabs)).toContain(INFOTABS.OVERSIKT);
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.toLowerCase());
 
     clickOnMeldingerIOversikt(infoTabs);
 
-    expect(getAktivTab(infoTabs)).toContain(INFOTABS.MELDINGER);
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.MELDINGER.toLowerCase());
 
     const activeElement = document.activeElement ? document.activeElement.outerHTML : fail('ingen elementer i fokus');
     const expectedElement = infoTabs

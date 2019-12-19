@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { Varsel as VarselModell, Varseltype } from '../../../../models/varsel';
 import { datoSynkende } from '../../../../utils/dateUtils';
-import { Bold } from '../../../../components/common-styled-components';
 import VarselMeldinger from './varselDetaljer/VarselMeldinger';
 import styled from 'styled-components';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
 import VisMerChevron from '../../../../components/VisMerChevron';
@@ -82,9 +81,7 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
         <Style aria-label={varselTekst}>
             <HeaderStyle onClick={toggleOpen}>
                 <Normaltekst>{formaterDato(varsel.mottattTidspunkt)}</Normaltekst>
-                <Normaltekst>
-                    <Bold>{varselTekst}</Bold>
-                </Normaltekst>
+                <Element>{varselTekst}</Element>
                 {kommunikasjonskanaler}
 
                 <VisMerChevron

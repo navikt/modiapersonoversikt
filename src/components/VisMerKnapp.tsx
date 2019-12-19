@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { theme } from '../styles/personOversiktTheme';
+import { pxToRem, theme } from '../styles/personOversiktTheme';
 import styled, { css } from 'styled-components';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { RouteComponentProps, withRouter } from 'react-router';
@@ -36,6 +36,9 @@ const Knapp = styled.button`
     cursor: pointer;
     background-color: transparent;
     transition: padding-left 0.3s;
+    .nav-frontend-chevron {
+        width: ${pxToRem(25)};
+    }
     &:focus {
         ${theme.focusOnRelativeParent};
     }
@@ -68,7 +71,7 @@ function VisMerKnapp(props: Props) {
         <Wrapper valgt={props.valgt} onClick={handleClick} className={props.className}>
             <div>{props.children}</div>
             <Knapp onClick={props.onClick} aria-selected={props.valgt} aria-label={props.ariaDescription}>
-                <HoyreChevron stor={true} />
+                <HoyreChevron />
             </Knapp>
         </Wrapper>
     );

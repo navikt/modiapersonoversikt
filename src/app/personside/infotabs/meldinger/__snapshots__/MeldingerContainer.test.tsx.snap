@@ -12,11 +12,11 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 }
 
 .c11 svg {
-  height: 1.875rem;
-  width: 1.875rem;
+  height: 1.5625rem;
+  width: 1.5625rem;
   opacity: 0.5;
-  -webkit-clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
-  clip-path: polygon(0 0,79% 0,79% 46%,100% 46%,100% 100%,0 100%);
+  -webkit-clip-path: polygon(0 0,73% 0,73% 51%,100% 52%,100% 100%,0 100%);
+  clip-path: polygon(0 0,73% 0,73% 51%,100% 52%,100% 100%,0 100%);
 }
 
 .c12 {
@@ -152,6 +152,10 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
+}
+
+.c17 .nav-frontend-chevron {
+  width: 1.5625rem;
 }
 
 .c2 {
@@ -431,7 +435,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
               className="hover-animation c17"
             >
               <i
-                className="nav-frontend-chevron chevronboks chevron--stor chevron--hoyre"
+                className="nav-frontend-chevron chevronboks chevron--hoyre"
               />
             </div>
           </label>

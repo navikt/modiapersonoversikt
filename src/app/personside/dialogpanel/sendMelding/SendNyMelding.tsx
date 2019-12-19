@@ -61,6 +61,10 @@ const Margin = styled.div`
     /* Pga React Collapse må vi slenge på noen div'er som tar seg av marginer for å unngå hopp i animasjon */
 `;
 
+const StyledUndertittel = styled(Undertittel)`
+    margin-bottom: 1rem !important;
+`;
+
 export const tekstMaksLengde = 5000;
 
 interface Props {
@@ -91,7 +95,7 @@ function SendNyMelding(props: Props) {
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
     return (
         <StyledArticle>
-            <Undertittel>Send ny melding</Undertittel>
+            <StyledUndertittel>Send ny melding</StyledUndertittel>
             <FormStyle onSubmit={props.handleSubmit}>
                 <TekstFelt
                     tekst={state.tekst}
