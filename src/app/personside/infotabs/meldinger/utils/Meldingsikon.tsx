@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { erMonolog, erUbesvartHenvendelseFraBruker, nyesteMelding } from './meldingerUtils';
 import BrevIkon from '../../../../../svg/BrevIkon';
-import { Element } from 'nav-frontend-typografi';
+import { Undertekst } from 'nav-frontend-typografi';
 
 interface MeldingsikonProps {
     traad: Traad;
@@ -21,18 +21,18 @@ const Styling = styled.span<{ visNumberBadge: boolean }>`
     svg {
         height: ${pxToRem(25)};
         width: ${pxToRem(25)};
-        opacity: 0.5;
+        opacity: 0.4;
     }
 `;
 
-const NumberBadge = styled(Element)`
+const NumberBadge = styled(Undertekst)`
     position: absolute;
     top: ${pxToRem(-3)};
     right: ${pxToRem(-8)};
     background-color: ${theme.color.navGra60};
     color: white;
-    height: 1.2rem;
-    width: 1.2rem;
+    height: 1.1rem;
+    width: 1.1rem;
     display: flex;
     align-items: center;
     justify-content: center;
