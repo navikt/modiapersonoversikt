@@ -27,9 +27,14 @@ const Position = styled.div`
     animation: ${dropDown} 1.5s backwards 1.5s;
 `;
 
-const StyledImg = styled.img<{ shake: boolean }>`
+const StyledImg = styled.img<{ shake: boolean; clickable: boolean }>`
     height: 3rem;
     transform: rotateY(180deg);
+    ${props =>
+        props.clickable &&
+        css`
+            cursor: pointer;
+        `};
     ${props =>
         props.shake &&
         css`
@@ -47,7 +52,7 @@ function Nisselue() {
         return (
             <Position>
                 {sno && <Sno />}
-                <StyledImg shake={sno} onClick={() => setSno(true)} src={nisselue} alt="nisselue" />
+                <StyledImg shake={sno} onClick={() => setSno(true)} clickable={!sno} src={nisselue} alt="nisselue" />
             </Position>
         );
     }
