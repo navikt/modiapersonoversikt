@@ -15,6 +15,7 @@ import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { hasData } from '../../rest/utils/restResource';
 import { velgEnhetAction } from '../../redux/session/session';
 import styled, { css } from 'styled-components';
+import theme from '../../styles/personOversiktTheme';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -22,9 +23,10 @@ const StyledNav = styled.nav<{ hide: boolean }>`
     ${props =>
         props.hide &&
         css`
-            display: none;
+            ${theme.visuallyHidden};
         `}
 `;
+
 function lagConfig(
     sokFnr: string | undefined | null,
     gjeldendeFnr: string | undefined | null,
