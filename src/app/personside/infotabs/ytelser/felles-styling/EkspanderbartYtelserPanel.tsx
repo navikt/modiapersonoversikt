@@ -35,6 +35,8 @@ const CustomStyling = styled.div`
     .ekspanderbartPanel__hode {
         position: sticky;
         top: 0;
+        border-bottom: ${theme.border.skilleSvak};
+        z-index: 10;
     }
 `;
 
