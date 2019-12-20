@@ -56,8 +56,8 @@ function Sno() {
 
     return (
         <Base>
-            {[...new Array(10)].map(() => (
-                <SnoFlak speed={2 + Math.random() * 4} offset={0.5 - Math.random()} sway={Math.random()} />
+            {[...new Array(10)].map((_, index) => (
+                <SnoFlak key={index} speed={2 + Math.random() * 4} offset={0.5 - Math.random()} sway={Math.random()} />
             ))}
         </Base>
     );

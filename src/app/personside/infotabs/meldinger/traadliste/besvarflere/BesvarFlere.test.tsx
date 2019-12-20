@@ -7,7 +7,7 @@ import * as renderer from 'react-test-renderer';
 test('BesvarFler matcher snapshot', () => {
     const besvarFler = renderer.create(
         <TestProvider>
-            <BesvarFlere traader={[statiskTraadMock, statiskTraadMock]} lukkModal={() => null} />
+            <BesvarFlere traader={[statiskTraadMock, { ...statiskTraadMock, traadId: '123' }]} lukkModal={() => null} />
         </TestProvider>
     );
 

@@ -33,7 +33,7 @@ function Fullmakter(props: { fullmakter?: FullmaktInterface[] }) {
         return null;
     }
 
-    const fullmakter = props.fullmakter.map(fullmakt => <Fullmakt fullmakt={fullmakt} />);
+    const fullmakter = props.fullmakter.map((fullmakt, index) => <Fullmakt key={index} fullmakt={fullmakt} />);
 
     return (
         <VisittkortGruppe tittel={'Fullmakter'} ikon={<Fullmaktlogo />}>

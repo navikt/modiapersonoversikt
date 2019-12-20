@@ -11,6 +11,7 @@ import { formaterDato } from '../../../../utils/stringFormatting';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisVarsel } from '../../../../redux/varsler/varslerReducer';
+import { loggError } from '../../../../utils/frontendLogger';
 
 const Style = styled.li`
     ${theme.hvittPanel};
@@ -57,6 +58,18 @@ const Kommaliste = styled.ul`
     }
 `;
 
+function getVarselTekst(varsel: VarselModell) {
+    const varselTekst = Varseltype[varsel.varselType];
+
+    if (!varselTekst) {
+        const ukjentNøkkelTekst = 'Ukjent nøkkel: ' + varsel.varselType;
+        loggError(Error(ukjentNøkkelTekst));
+        return ukjentNøkkelTekst;
+    }
+
+    return varselTekst;
+}
+
 function Varsel({ varsel }: { varsel: VarselModell }) {
     const open = useAppState(state => state.varsler.aapneVarsler).includes(varsel);
     const dispatch = useDispatch();
@@ -76,7 +89,7 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
         </Kommaliste>
     );
 
-    const varselTekst = Varseltype[varsel.varselType] || 'Ukjent nøkkel: ' + varsel.varselType;
+    const varselTekst = getVarselTekst(varsel);
     return (
         <Style aria-label={varselTekst}>
             <HeaderStyle onClick={toggleOpen}>

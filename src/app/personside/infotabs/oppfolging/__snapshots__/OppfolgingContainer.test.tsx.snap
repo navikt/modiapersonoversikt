@@ -90,6 +90,8 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  border-bottom: solid 0.0625rem #b7b1a9;
+  z-index: 10;
 }
 
 .c9 {

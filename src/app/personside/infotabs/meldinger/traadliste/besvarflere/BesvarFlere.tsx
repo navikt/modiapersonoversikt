@@ -129,7 +129,7 @@ function getTraaderSomSkalSlaasSammen(traader: Traad[]): SlaaSammenTraad[] {
 }
 
 function Meldingsvisning({ traad }: { traad: Traad }) {
-    const meldinger = traad.meldinger.map(melding => <EnkeltMelding melding={melding} sokeord={''} />);
+    const meldinger = traad.meldinger.map(melding => <EnkeltMelding key={melding.id} melding={melding} sokeord={''} />);
 
     return <TraadVisningStyle role="tabpanel">{meldinger}</TraadVisningStyle>;
 }
@@ -222,7 +222,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
             traader: traaderSomSkalSlaasSammen
         };
         const callback = (response: SlaaSammenResponse) => {
-            loggEvent('SloSammenOppgaver', 'BesvarFlere');
+            loggEvent('OppgaverSlåttSammen', 'BesvarFlere', { antall: request.traader.length });
             dispatch(setTråderITråderResource(response.traader));
             dispatch(resetPlukkOppgave);
             dispatch(reloadTildelteOppgaver);
