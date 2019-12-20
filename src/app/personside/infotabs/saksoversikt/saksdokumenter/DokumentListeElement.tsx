@@ -60,6 +60,7 @@ const ListeElementStyle = styled.li<{ valgt: boolean; klikkbar: boolean }>`
         `};
     padding: ${theme.margin.layout};
     display: flex;
+    align-items: flex-start;
     ${props =>
         props.klikkbar &&
         css`
@@ -70,7 +71,7 @@ const ListeElementStyle = styled.li<{ valgt: boolean; klikkbar: boolean }>`
             &:active {
                 background-color: rgba(0, 0, 0, 0.1);
             }
-        `}
+        `};
 `;
 
 const InnholdWrapper = styled.div`

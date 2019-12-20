@@ -79,13 +79,6 @@ function useVelgSakFraQueryParametre() {
     const saksoversiktResource = useRestResource(resources => resources.sakstema);
     const dispatch = useDispatch();
     const queryParamsString = useLocation().search;
-    const fnr = useFødselsnummer();
-
-    useEffect(() => {
-        if (isNotStarted(saksoversiktResource) && fnr) {
-            dispatch(saksoversiktResource.actions.fetch);
-        }
-    }, [fnr, dispatch, saksoversiktResource]);
 
     useEffect(() => {
         if (!hasData(saksoversiktResource)) {
@@ -147,11 +140,19 @@ function SaksoversiktMicroFrontend() {
 
 function SaksoversiktMicroFrontendContainer(props: Props) {
     const dispatch = useDispatch();
+    const fnr = useFødselsnummer();
+    const saksoversiktResource = useRestResource(resources => resources.sakstema);
 
     useOnMount(() => {
         dispatch(setErStandaloneVindu(true));
         loggEvent('Sidevisning', 'SaksoversiktEgetVindu');
     });
+
+    useEffect(() => {
+        if (isNotStarted(saksoversiktResource) && fnr) {
+            dispatch(saksoversiktResource.actions.fetch);
+        }
+    }, [fnr, dispatch, saksoversiktResource]);
 
     return (
         <>
