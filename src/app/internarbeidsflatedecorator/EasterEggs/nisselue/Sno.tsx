@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { useOnMount } from '../../../utils/customHooks';
-import { loggEvent } from '../../../utils/frontendLogger';
+import { useOnMount } from '../../../../utils/customHooks';
+import { loggEvent } from '../../../../utils/frontendLogger';
 
 const descend = keyframes`
     from {
