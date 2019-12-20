@@ -42,13 +42,13 @@ const StyledImg = styled.img<{ shake: boolean; clickable: boolean }>`
         `};
 `;
 
-function Nisselue() {
+function Nisselue(props: { forceShow: boolean }) {
     const today = moment();
     const erJul = today.month() === 11 && 17 <= today.date() && today.date() <= 28;
 
     const [sno, setSno] = useState(false);
 
-    if (erJul) {
+    if (erJul || props.forceShow) {
         return (
             <Position>
                 {sno && <Sno />}

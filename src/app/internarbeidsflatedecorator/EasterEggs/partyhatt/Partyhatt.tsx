@@ -65,13 +65,13 @@ const StyledImg = styled.img<{ jump: boolean; clickable: boolean }>`
         `};
 `;
 
-function Partyhatt() {
+function Partyhatt(props: { forceShow: boolean }) {
     const today = moment();
     const erNyttårsaften = today.month() === 11 && today.date() === 31;
 
     const [fireworks, setFireworks] = useState(false);
 
-    if (erNyttårsaften) {
+    if (erNyttårsaften || props.forceShow) {
         return (
             <Position>
                 <GlobalStyles />
