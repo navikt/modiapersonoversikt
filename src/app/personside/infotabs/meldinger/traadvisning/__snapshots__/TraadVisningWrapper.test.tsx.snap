@@ -957,6 +957,8 @@ exports[`Viser traad med verktøylinje 1`] = `
       </div>
     </div>
     <h3
+      aria-atomic="false"
+      aria-live="polite"
       className="sr-only"
     >
       Valgt melding - 
