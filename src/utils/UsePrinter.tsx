@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { PrinterMedHeader } from './PrinterMedHeader';
+import { erModiabrukerdialog } from './erNyPersonoversikt';
 
 interface Returns {
     printerWrapper: (props: { children: ReactNode }) => JSX.Element;
@@ -12,6 +13,12 @@ export function usePrinter(): Returns {
     const [print, setPrint] = useState(false);
 
     const triggerPrint = () => {
+        if (erModiabrukerdialog()) {
+            alert(
+                'Print støttes ikke lenger i Modia brukerdialog, bruk Modia personoversikt - nais https://app.adeo.no/modiapersonoversikt/'
+            );
+            return;
+        }
         setPrint(true);
     };
 
