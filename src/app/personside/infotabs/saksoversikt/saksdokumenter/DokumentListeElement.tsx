@@ -30,6 +30,7 @@ import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeature
 import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 import { RestResource } from '../../../../../rest/utils/restResource';
+import { erNyePersonoversikten } from '../../../../../utils/erNyPersonoversikt';
 
 interface OwnProps {
     dokumentMetadata: DokumentMetadata;
@@ -256,7 +257,13 @@ class DokumentListeElement extends React.PureComponent<Props> {
                     {dokumentVedlegg}
                     {saksvisning}
                 </InnholdWrapper>
-                <IfFeatureToggleOn toggleID={FeatureToggles.SaksoversiktNyttVindu}>{egetVinduLenke}</IfFeatureToggleOn>
+                {erNyePersonoversikten() ? (
+                    egetVinduLenke
+                ) : (
+                    <IfFeatureToggleOn toggleID={FeatureToggles.SaksoversiktNyttVindu}>
+                        {egetVinduLenke}
+                    </IfFeatureToggleOn>
+                )}
             </ListeElementStyle>
         );
     }
