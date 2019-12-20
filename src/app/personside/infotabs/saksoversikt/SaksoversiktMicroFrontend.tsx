@@ -36,6 +36,7 @@ const SaksoversiktArticle = styled.article`
     align-items: flex-start;
     width: 100%;
     height: 100%;
+    padding: ${theme.margin.layout};
     > *:last-child {
         flex-basis: 70%;
         flex-shrink: 0;
@@ -146,6 +147,9 @@ function SaksoversiktMicroFrontendContainer(props: Props) {
     useOnMount(() => {
         dispatch(setErStandaloneVindu(true));
         loggEvent('Sidevisning', 'SaksoversiktEgetVindu');
+        return () => {
+            dispatch(setErStandaloneVindu(false));
+        };
     });
 
     useEffect(() => {
