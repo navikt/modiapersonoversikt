@@ -11,8 +11,9 @@ import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTek
 import styled from 'styled-components';
 import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
 import { guid } from 'nav-frontend-js-utils';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/frontendLogger';
+import theme from '../../styles/personOversiktTheme';
 
 const rules = [
     { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
@@ -82,6 +83,24 @@ function autoFullfør(autofullførData: AutofullforData, parsedText: string) {
     return fullfortTekst;
 }
 
+const TegnIgjenStyle = styled(Normaltekst)<{ feil: boolean }>`
+    text-align: right;
+    font-style: italic;
+    color: ${props => (props.feil ? theme.color.redError : theme.color.navGra60)};
+`;
+
+function TegnIgjen(props: { maxLength?: number; text: string }) {
+    if (!props.maxLength) {
+        return null;
+    }
+
+    return (
+        <TegnIgjenStyle feil={props.text.length > props.maxLength}>
+            Du har {props.maxLength - props.text.length} tegn igjen
+        </TegnIgjenStyle>
+    );
+}
+
 function AutocompleteTextarea(props: TextareaProps) {
     const autofullførData = useAutoFullførData();
     const onChange = props.onChange;
@@ -125,8 +144,9 @@ function AutocompleteTextarea(props: TextareaProps) {
 
     return (
         <Style>
-            <Textarea onKeyDown={onKeyDown} {...props} />
+            <Textarea onKeyDown={onKeyDown} {...props} maxLength={0} />
             <AutoTekstTips />
+            <TegnIgjen maxLength={props.maxLength} text={props.value} />
         </Style>
     );
 }
