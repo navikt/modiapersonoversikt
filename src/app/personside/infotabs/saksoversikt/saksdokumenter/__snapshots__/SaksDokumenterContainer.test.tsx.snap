@@ -21,6 +21,10 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
 }
 
 .c13 {
@@ -29,6 +33,10 @@ exports[`Viser saksdokumenter med alt innhold 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
   cursor: pointer;
 }
 
