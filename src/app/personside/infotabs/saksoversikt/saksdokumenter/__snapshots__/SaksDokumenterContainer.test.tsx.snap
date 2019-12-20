@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser saksdokumenter med alt innhold 1`] = `
-Array [
-  .c11 {
+.c11 {
   color: #645f5a;
   margin-top: 3px;
 }
@@ -65,6 +64,10 @@ Array [
 
 .c14 {
   white-space: nowrap;
+}
+
+.c14:visited {
+  color: darkslategray;
 }
 
 .c13 {
@@ -238,7 +241,8 @@ Array [
   outline: none;
 }
 
-<section
+<div>
+  <section
     aria-label="Saksdokumenter for Alle tema"
     className="c0"
   >
@@ -413,7 +417,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -476,7 +479,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <p
                 className="typo-normal"
               >
@@ -493,7 +495,6 @@ Array [
                       A-inntekt
                     </p>
                   </span>
-                  
                 </li>
                 <li>
                   <span>
@@ -503,7 +504,6 @@ Array [
                       Spørsmål via nav.no
                     </p>
                   </span>
-                  
                 </li>
                 <li>
                   <span>
@@ -513,7 +513,6 @@ Array [
                       Inntektsopplysninger
                     </p>
                   </span>
-                  
                 </li>
               </ul>
               <div
@@ -576,7 +575,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <p
                 className="typo-normal"
               >
@@ -599,7 +597,6 @@ Array [
                       </p>
                     </button>
                   </span>
-                  
                 </li>
                 <li>
                   <span>
@@ -615,7 +612,6 @@ Array [
                       </p>
                     </button>
                   </span>
-                  
                 </li>
                 <li>
                   <span>
@@ -625,7 +621,6 @@ Array [
                       Vedtak korrigert refusjon/u bet
                     </p>
                   </span>
-                  
                 </li>
               </ul>
               <div
@@ -640,21 +635,17 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c14"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=etcoicxr&dokumentId=q90p8dnw"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=etcoicxr&dokumentId=q90p8dnw"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
         </ol>
       </li>
@@ -713,7 +704,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <p
                 className="typo-normal"
               >
@@ -736,7 +726,6 @@ Array [
                       </p>
                     </button>
                   </span>
-                  
                 </li>
                 <li>
                   <span>
@@ -746,7 +735,6 @@ Array [
                       Innhenting av opplysninger
                     </p>
                   </span>
-                  
                 </li>
                 <li>
                   <span>
@@ -756,7 +744,6 @@ Array [
                       Spørsmål via nav.no
                     </p>
                   </span>
-                  
                 </li>
               </ul>
               <div
@@ -819,7 +806,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -832,21 +818,17 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c14"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=fg1w15sz&dokumentId=nvqxc1ip"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=fg1w15sz&dokumentId=nvqxc1ip"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
           <li
             className="c12"
@@ -895,7 +877,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <p
                 className="typo-normal"
               >
@@ -912,7 +893,6 @@ Array [
                       A-inntekt
                     </p>
                   </span>
-                  
                 </li>
               </ul>
               <div
@@ -927,21 +907,17 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c14"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=o5z5pcse&dokumentId=me3wv1le"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=o5z5pcse&dokumentId=me3wv1le"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
           <li
             className="c7"
@@ -992,7 +968,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <p
                 className="typo-normal"
               >
@@ -1015,7 +990,6 @@ Array [
                       </p>
                     </button>
                   </span>
-                  
                 </li>
               </ul>
               <div
@@ -1080,7 +1054,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1156,7 +1129,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1169,21 +1141,17 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c14"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=fhtkfp66&dokumentId=bjol9s20"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=fhtkfp66&dokumentId=bjol9s20"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
           <li
             className="c12"
@@ -1232,7 +1200,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1245,21 +1212,17 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c14"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=s9765sz0&dokumentId=113wxk3r"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=s9765sz0&dokumentId=113wxk3r"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
           <li
             className="c12"
@@ -1308,7 +1271,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1321,21 +1283,17 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c14"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=aamyoz7n&dokumentId=mt1cssx0"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=aamyoz7n&dokumentId=mt1cssx0"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
           <li
             className="c7"
@@ -1386,7 +1344,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1447,7 +1404,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1460,21 +1416,17 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c14"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=cmlub095&dokumentId=nnp1em30"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=cmlub095&dokumentId=nnp1em30"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
           <li
             className="c12"
@@ -1523,7 +1475,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1536,26 +1487,22 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c14"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=ai9t2h2n&dokumentId=gplzp0ho"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=ai9t2h2n&dokumentId=gplzp0ho"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
         </ol>
       </li>
     </ol>
-  </section>,
+  </section>
   <div
     className="alertstripe alertstripe--info"
   >
@@ -1589,6 +1536,6 @@ Array [
     >
       Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter som er journalført vises fra og med 4.juni 2016
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
