@@ -59,10 +59,7 @@ function Routing(props: Props) {
             <Route
                 path={`${paths.saksoversikt}/:fodselsnummer/`}
                 render={routeProps => (
-                    <SaksoversiktMicroFrontend
-                        fødselsnummer={routeProps.match.params.fodselsnummer}
-                        queryParamString={routeProps.location.search}
-                    />
+                    <SaksoversiktMicroFrontend fødselsnummer={routeProps.match.params.fodselsnummer} />
                 )}
             />
             <Route key={fnr} path={`${paths.brukerprofil}/:fodselsnummer/`} component={() => <Brukerprofilside />} />

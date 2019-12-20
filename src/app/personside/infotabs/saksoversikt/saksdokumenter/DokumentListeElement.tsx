@@ -8,7 +8,7 @@ import {
     Kommunikasjonsretning
 } from '../../../../../models/saksoversikt/dokumentmetadata';
 import styled, { css } from 'styled-components';
-import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
+import theme from '../../../../../styles/personOversiktTheme';
 import moment from 'moment';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -58,7 +58,7 @@ const ListeElementStyle = styled.li<{ valgt: boolean; klikkbar: boolean }>`
         css`
             background-color: rgba(0, 0, 0, 0.09);
         `};
-    padding: ${pxToRem(15)} ${theme.margin.px10};
+    padding: ${theme.margin.layout};
     display: flex;
     ${props =>
         props.klikkbar &&
@@ -90,8 +90,11 @@ const IkonWrapper = styled.div`
     padding-right: 1rem;
 `;
 
-const NyttVinduLenkeStyle = styled.span`
+const StyledLink = styled.a`
     white-space: nowrap;
+    &:visited {
+        color: darkslategray; // Mange brukere har etterspurt en visuell markering på at et dokument har vært åpnet
+    }
 `;
 
 const VenstrestiltLenkeKnapp = styled(LenkeKnapp)`
@@ -106,6 +109,12 @@ const UUcustomOrder = styled.div`
     }
     .order-second {
         order: 1;
+    }
+`;
+
+const VedleggStyle = styled.div`
+    ul {
+        list-style: disc;
     }
 `;
 
@@ -148,15 +157,11 @@ function lagSaksoversiktLenke(props: Props) {
     return `${paths.saksoversikt}/${brukersFnr}?${sakstemaQuery}&${journalpostQuery}&${dokumentQuery}`;
 }
 
-function valgtTekst(visTekst: boolean) {
-    return visTekst ? ' (Dokumentet vises til høyre)' : '';
-}
-
 class DokumentListeElement extends React.PureComponent<Props> {
-    private vedleggLinkRef = React.createRef<HTMLAnchorElement>();
+    private vedleggLinkRef = React.createRef<HTMLUListElement>();
     private hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
     private dokumentRef = React.createRef<HTMLLIElement>();
-    private nyttVinduLinkRef = React.createRef<HTMLSpanElement>();
+    private nyttVinduLinkRef = React.createRef<HTMLAnchorElement>();
 
     handleClickOnDokument(event: React.MouseEvent<HTMLElement>) {
         const lenkeTrykket = eventTagetIsInsideRef(event, [
@@ -193,30 +198,30 @@ class DokumentListeElement extends React.PureComponent<Props> {
             );
 
         const dokumentVedlegg = dokumentMetadata.vedlegg && dokumentMetadata.vedlegg.length > 0 && (
-            <>
+            <VedleggStyle>
                 <Normaltekst>Dokumentet har {dokumentMetadata.vedlegg.length} vedlegg:</Normaltekst>
-                <ul>
+                <ul ref={this.vedleggLinkRef}>
                     {dokumentMetadata.vedlegg.map(vedlegg => (
                         <li key={vedlegg.dokumentreferanse + dokumentMetadata.journalpostId}>
-                            <span ref={this.vedleggLinkRef}>{this.vedleggItem(vedlegg, dokumentMetadata)}</span>
-                            {valgtTekst(vedlegg === this.props.valgtEnkeltDokument && this.props.visDokument)}
+                            <span>{this.vedleggItem(vedlegg, dokumentMetadata)}</span>
                         </li>
                     ))}
                 </ul>
-            </>
+            </VedleggStyle>
         );
 
         const tilgangTilHoveddokument = this.dokumentKanVises(dokumentMetadata.hoveddokument, dokumentMetadata);
 
         const egetVinduLenke = !this.props.erStandaloneVindu && tilgangTilHoveddokument && (
-            <NyttVinduLenkeStyle ref={this.nyttVinduLinkRef}>
-                <a href={lagSaksoversiktLenke(this.props)} target={'_blank'} className={'lenke'}>
-                    <Normaltekst tag="span">Åpne i eget vindu</Normaltekst>
-                </a>
-            </NyttVinduLenkeStyle>
+            <StyledLink
+                ref={this.nyttVinduLinkRef}
+                href={lagSaksoversiktLenke(this.props)}
+                target={'_blank'}
+                className={'lenke'}
+            >
+                <Normaltekst tag="span">Åpne i nytt vindu</Normaltekst>
+            </StyledLink>
         );
-
-        const hoveddokumentErValgt = dokumentMetadata.hoveddokument === this.props.valgtEnkeltDokument;
 
         return (
             <ListeElementStyle
@@ -247,7 +252,6 @@ class DokumentListeElement extends React.PureComponent<Props> {
                             <Normaltekst>{formaterDatoOgAvsender(brukersNavn, dokumentMetadata)}</Normaltekst>
                         </div>
                     </UUcustomOrder>
-                    {valgtTekst(hoveddokumentErValgt && this.props.visDokument)}
                     {dokumentVedlegg}
                     {saksvisning}
                 </InnholdWrapper>

@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import DokumentListeContainer from './saksdokumenter/SaksDokumenterContainer';
-import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
-import { AppState } from '../../../../redux/reducers';
-import { useDispatch, useSelector } from 'react-redux';
-import { AsyncDispatch } from '../../../../redux/ThunkTypes';
+import { Sakstema } from '../../../../models/saksoversikt/sakstema';
+import { useDispatch } from 'react-redux';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import { parseQueryParams } from '../../../../utils/url-utils';
 import { Dokument, DokumentMetadata } from '../../../../models/saksoversikt/dokumentmetadata';
@@ -18,19 +15,20 @@ import {
     settVisDokument
 } from '../../../../redux/saksoversikt/actions';
 import { sakstemakodeAlle } from './sakstemaliste/SakstemaListe';
-import { aggregertSakstema } from './utils/saksoversiktUtils';
+import { aggregertSakstema, useAgregerteSaker } from './utils/saksoversiktUtils';
 import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
-import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
-import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import { useAppState, useOnMount } from '../../../../utils/customHooks';
-import { hasData } from '../../../../rest/utils/restResource';
+import { useAppState, useFødselsnummer, useOnMount, useRestResource } from '../../../../utils/customHooks';
+import { hasData, isNotStarted } from '../../../../rest/utils/restResource';
 import LazySpinner from '../../../../components/LazySpinner';
+import { useLocation } from 'react-router';
+import { useEffect } from 'react';
+import FillCenterAndFadeIn from '../../../../components/FillCenterAndFadeIn';
+import { loggEvent } from '../../../../utils/frontendLogger';
 
 interface Props {
     fødselsnummer: string;
-    queryParamString?: string;
 }
 
 const SaksoversiktArticle = styled.article`
@@ -39,7 +37,8 @@ const SaksoversiktArticle = styled.article`
     width: 100%;
     height: 100%;
     > *:last-child {
-        width: 70%;
+        flex-basis: 70%;
+        flex-shrink: 0;
         margin-left: ${theme.margin.layout};
     }
     > *:not(:last-child) {
@@ -76,76 +75,92 @@ function hentUtValgtDokument(dokumentMetadata: DokumentMetadata, dokumentId: str
     return dokumentMetadata.vedlegg.find(vedlegg => vedlegg.dokumentreferanse === dokumentId);
 }
 
-function hentQueryParametreFraUrlOgVisDokument(
-    sakstemaListe: Sakstema[],
-    dispatch: AsyncDispatch,
-    queryParamString: string
-) {
-    const queryParams = parseQueryParams(queryParamString);
-    const sakstemaKode = queryParams.sakstemaKode;
-    const journalId = queryParams.journalpostId;
-    const dokumentId = queryParams.dokumentId;
+function useVelgSakFraQueryParametre() {
+    const saksoversiktResource = useRestResource(resources => resources.sakstema);
+    const dispatch = useDispatch();
+    const queryParamsString = useLocation().search;
+    const fnr = useFødselsnummer();
 
-    if (!(sakstemaKode && journalId && dokumentId)) {
-        return;
-    }
+    useEffect(() => {
+        if (isNotStarted(saksoversiktResource) && fnr) {
+            dispatch(saksoversiktResource.actions.fetch);
+        }
+    }, [fnr, dispatch, saksoversiktResource]);
 
-    const sakstema = hentUtSakstema(sakstemaListe, sakstemaKode, journalId);
-    if (!sakstema) {
-        return;
-    }
+    useEffect(() => {
+        if (!hasData(saksoversiktResource)) {
+            return;
+        }
+        const sakstemaListe = saksoversiktResource.data.resultat;
+        const queryParams = parseQueryParams(queryParamsString);
+        const sakstemaKode = queryParams.sakstemaKode;
+        const journalId = queryParams.journalpostId;
+        const dokumentId = queryParams.dokumentId;
 
-    const dokumentMetadata = hentUtDokumentMetadata(sakstema, journalId);
-    if (!dokumentMetadata) {
-        return;
-    }
+        if (!(sakstemaKode && journalId && dokumentId)) {
+            return;
+        }
 
-    const dokument = hentUtValgtDokument(dokumentMetadata, dokumentId);
-    if (!dokument) {
-        return;
-    }
+        const sakstema = hentUtSakstema(sakstemaListe, sakstemaKode, journalId);
+        if (!sakstema) {
+            return;
+        }
 
-    dispatch(huskValgtSakstema(sakstema));
-    dispatch(settValgtDokument(dokumentMetadata));
-    dispatch(settValgtEnkeltdokument(dokument));
-    dispatch(settVisDokument(true));
+        const dokumentMetadata = hentUtDokumentMetadata(sakstema, journalId);
+        if (!dokumentMetadata) {
+            return;
+        }
+
+        const dokument = hentUtValgtDokument(dokumentMetadata, dokumentId);
+        if (!dokument) {
+            return;
+        }
+
+        dispatch(huskValgtSakstema(sakstema));
+        dispatch(settValgtDokument(dokumentMetadata));
+        dispatch(settValgtEnkeltdokument(dokument));
+        dispatch(settVisDokument(true));
+    }, [dispatch, queryParamsString, saksoversiktResource]);
 }
 
-function SaksoversiktMicroFrontend(props: Props) {
-    const saksoversiktResource = useSelector((state: AppState) => state.restResources.sakstema);
+function SaksoversiktMicroFrontend() {
     const valgtSakstema = useAppState(state => state.saksoversikt.forrigeValgteSakstema);
-    const dispatch = useDispatch();
-    useOnMount(() => {
-        dispatch(setErStandaloneVindu(true));
-    });
-    useEffect(() => {
-        if (hasData(saksoversiktResource) && props.queryParamString) {
-            hentQueryParametreFraUrlOgVisDokument(saksoversiktResource.data.resultat, dispatch, props.queryParamString);
-        }
-    }, [saksoversiktResource, props.queryParamString, dispatch]);
+    const aggregerteSaker = useAgregerteSaker();
 
-    if (!valgtSakstema) {
-        return <LazySpinner />;
+    useVelgSakFraQueryParametre();
+
+    if (!aggregerteSaker) {
+        return (
+            <FillCenterAndFadeIn>
+                <LazySpinner />
+            </FillCenterAndFadeIn>
+        );
     }
 
     return (
         <SaksoversiktArticle>
-            <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
-            <LyttPåNyttFnrIReduxOgHentPersoninfo />
-            <FetchFeatureToggles />
-            <RestResourceConsumer<SakstemaResponse>
-                getResource={restResources => restResources.sakstema}
-                returnOnPending={BigCenteredLazySpinner}
-            >
-                {sakstema => (
-                    <>
-                        <DokumentListeContainer valgtSakstema={valgtSakstema} />
-                        <DokumentOgVedlegg />
-                    </>
-                )}
-            </RestResourceConsumer>
+            <DokumentListeContainer valgtSakstema={valgtSakstema || aggregerteSaker} />
+            <DokumentOgVedlegg />
         </SaksoversiktArticle>
     );
 }
 
-export default SaksoversiktMicroFrontend;
+function SaksoversiktMicroFrontendContainer(props: Props) {
+    const dispatch = useDispatch();
+
+    useOnMount(() => {
+        dispatch(setErStandaloneVindu(true));
+        loggEvent('Sidevisning', 'SaksoversiktEgetVindu');
+    });
+
+    return (
+        <>
+            <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
+            <LyttPåNyttFnrIReduxOgHentPersoninfo />
+            <FetchFeatureToggles />
+            <SaksoversiktMicroFrontend />
+        </>
+    );
+}
+
+export default SaksoversiktMicroFrontendContainer;

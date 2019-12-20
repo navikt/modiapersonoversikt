@@ -5,7 +5,7 @@ import { TabsPure } from 'nav-frontend-tabs';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { getSaksdokument } from '../../../../../utils/url-utils';
 import { AppState } from '../../../../../redux/reducers';
 import { Action, Dispatch } from 'redux';
@@ -61,6 +61,12 @@ const KnappWrapper = styled.div`
     right: 0.5rem;
 `;
 
+const HeaderStyle = styled.div`
+    ${theme.hvittPanel};
+    margin-bottom: ${theme.margin.layout};
+    padding: ${pxToRem(15)};
+`;
+
 function VisDokumentContainer(props: { fødselsnummer: string; journalpostId: string; dokumentreferanse: string }) {
     const dokUrl = getSaksdokument(props.fødselsnummer, props.journalpostId, props.dokumentreferanse);
     const [errMsg, setErrMsg] = useState('');
@@ -96,7 +102,7 @@ function feilmelding(statusKode: number) {
 }
 
 function DokumentOgVedlegg(props: Props) {
-    const ref = React.createRef<HTMLSpanElement>();
+    const ref = React.createRef<HTMLDivElement>();
 
     useFocusOnMount(ref);
 
@@ -104,7 +110,7 @@ function DokumentOgVedlegg(props: Props) {
     if (!valgtDokument || !valgtTab) {
         return (
             <AlertWrapper>
-                <AlertStripeAdvarsel>Ingen dokument valgt.</AlertStripeAdvarsel>
+                <AlertStripeInfo>Ingen dokument valgt.</AlertStripeInfo>
             </AlertWrapper>
         );
     }
@@ -131,11 +137,9 @@ function DokumentOgVedlegg(props: Props) {
     return (
         <ErrorBoundary boundaryName="Dokumentvisning">
             <Content>
-                <span ref={ref} tabIndex={-1}>
-                    <Undertittel className="visually-hidden">
-                        Dokument: {props.valgtTab && props.valgtTab.tittel}
-                    </Undertittel>
-                </span>
+                <HeaderStyle ref={ref} tabIndex={-1} className={!props.erStandaloneVindu ? 'sr-only' : undefined}>
+                    <Undertittel>{props.valgtTab && props.valgtTab.tittel}</Undertittel>
+                </HeaderStyle>
                 {tabsHeader}
                 <VisDokumentContainer
                     journalpostId={valgtDokument.journalpostId}

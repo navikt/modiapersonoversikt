@@ -171,13 +171,15 @@ const PaginatorStyling = styled.div`
     label {
         ${theme.visuallyHidden};
     }
+    padding: ${pxToRem(15)};
+    padding-top: 0;
     .skjemaelement {
-        margin: 1rem 0 0;
+        margin: 0;
     }
 `;
 
 const PrevNextButtonsStyling = styled.div`
-    margin-top: 0.5rem;
+    padding: ${pxToRem(15)};
 `;
 
 function SaksDokumenter(props: Props) {
@@ -230,7 +232,7 @@ function SaksDokumenter(props: Props) {
     );
 
     return (
-        <>
+        <div>
             <SaksdokumenterStyling aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
                 <InfoOgFilterPanel>
                     <div>
@@ -256,7 +258,7 @@ function SaksDokumenter(props: Props) {
                 Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter
                 som er journalført vises fra og med 4.juni 2016
             </AlertStripeInfo>
-        </>
+        </div>
     );
 }
 
