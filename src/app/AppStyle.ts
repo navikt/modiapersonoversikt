@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { pxToRem, theme } from '../styles/personOversiktTheme';
 
-const AppWrapper = styled.div`
+const AppStyle = styled.div`
     height: 100vh;
     @media print {
         height: auto;
@@ -49,4 +49,4 @@ export const ContentStyle = styled.div`
     display: flex;
 `;
 
-export default AppWrapper;
+export default AppStyle;

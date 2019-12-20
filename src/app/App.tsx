@@ -7,7 +7,7 @@ import Routing, { paths } from './routes/routing';
 import { setupMock } from '../mock/setup-mock';
 import reducers from '../redux/reducers';
 import { mockEnabled } from '../api/config';
-import AppStyle, { ContentStyle } from './AppWrapper';
+import AppStyle, { ContentStyle } from './AppStyle';
 import ModalWrapper from 'nav-frontend-modal';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import PersonOppslagHandler from './PersonOppslagHandler/PersonOppslagHandler';
@@ -22,6 +22,7 @@ import { erIE11 } from '../utils/erNyPersonoversikt';
 import DemoBanner from '../components/DemoBanner';
 import VelgEnhet from './routes/VelgEnhet';
 import styled from 'styled-components';
+import SaksoversiktMicroFrontend from './personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
 
 if (mockEnabled) {
     setupMock();
@@ -70,7 +71,15 @@ function PersonoverisktProvider() {
         <Provider store={store}>
             <AppStyle className={className}>
                 <Decorator />
-                <Personoversikt />
+                <Switch>
+                    <Route
+                        path={`${paths.saksoversikt}/:fodselsnummer/`}
+                        render={routeProps => (
+                            <SaksoversiktMicroFrontend fødselsnummer={routeProps.match.params.fodselsnummer} />
+                        )}
+                    />
+                    <Route path={''} component={Personoversikt} />
+                </Switch>
             </AppStyle>
         </Provider>
     );
@@ -88,6 +97,7 @@ function App() {
                         path={`${paths.standaloneKomponenter}/:component?/:fnr?`}
                         component={StandAloneKomponenter}
                     />
+
                     <Route path={'/'} component={PersonoverisktProvider} />
                 </Switch>
             </BrowserRouter>
