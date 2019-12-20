@@ -3,7 +3,7 @@ import { NavKontorResponse } from '../../../../models/navkontor';
 import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/stringFormatting';
-import { loggError } from '../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../utils/frontendLogger';
 import { useOnMount, useRestResource } from '../../../../utils/customHooks';
 import { hasData as restResourceHasData, isFailed, isNotStarted } from '../../../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
@@ -107,6 +107,7 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
     return tekst.replace(/\[(.*?)\]/g, (fullmatch, key) => {
         if (!keys.includes(key)) {
             loggError(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
+            loggEvent('manglendeNokkel', 'autofullfør', { nøkkel: key });
             return '[ukjent nøkkel]';
         }
         return autofullforMap[key] || '[fant ingen verdi]';
