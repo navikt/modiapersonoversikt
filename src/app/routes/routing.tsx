@@ -4,7 +4,6 @@ import { Route, RouteComponentProps, Switch } from 'react-router';
 import { History } from 'history';
 import Startbilde from '../startbilde/Startbilde';
 import Brukerprofilside from '../brukerprofil/BrukerprofilSide';
-import SaksoversiktMicroFrontend from '../personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
 import Personside from '../personside/Personside';
 import { useFødselsnummer } from '../../utils/customHooks';
 import { INFOTABS } from '../personside/infotabs/InfoTabEnum';
@@ -56,12 +55,7 @@ function Routing(props: Props) {
     return (
         <Switch location={props.location}>
             <Route key={fnr} path={`${paths.personUri}/:fodselsnummer/`} component={Personside} />
-            <Route
-                path={`${paths.saksoversikt}/:fodselsnummer/`}
-                render={routeProps => (
-                    <SaksoversiktMicroFrontend fødselsnummer={routeProps.match.params.fodselsnummer} />
-                )}
-            />
+
             <Route key={fnr} path={`${paths.brukerprofil}/:fodselsnummer/`} component={() => <Brukerprofilside />} />
             <Route component={Startbilde} />
         </Switch>

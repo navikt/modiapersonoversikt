@@ -14,9 +14,17 @@ import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { hasData } from '../../rest/utils/restResource';
 import { velgEnhetAction } from '../../redux/session/session';
+import styled, { css } from 'styled-components';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
+const StyledNav = styled.nav<{ hide: boolean }>`
+    ${props =>
+        props.hide &&
+        css`
+            display: none;
+        `}
+`;
 function lagConfig(
     sokFnr: string | undefined | null,
     gjeldendeFnr: string | undefined | null,
@@ -81,6 +89,7 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
     const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
     const dispatch = useDispatch();
+    const erStandaloneSaksoversikt = useAppState(state => state.saksoversikt.erStandaloneVindu);
 
     const handleSetEnhet = (enhet: string) => {
         if (hasData(meldingerResource)) {
@@ -100,7 +109,7 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
     );
 
     return (
-        <nav id="header">
+        <StyledNav id="header" hide={erStandaloneSaksoversikt}>
             {contextErKlar && (
                 <>
                     <InternflateDecorator {...config} />
@@ -108,7 +117,7 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
                     <DecoratorEasterEgg />
                 </>
             )}
-        </nav>
+        </StyledNav>
     );
 }
 
