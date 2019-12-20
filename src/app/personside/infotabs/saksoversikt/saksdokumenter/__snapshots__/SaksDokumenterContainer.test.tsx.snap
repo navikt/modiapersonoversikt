@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser saksdokumenter med alt innhold 1`] = `
-Array [
-  .c11 {
+.c11 {
   color: #645f5a;
   margin-top: 3px;
 }
@@ -17,15 +16,15 @@ Array [
 }
 
 .c7 {
-  padding: 0.9375rem 0.625rem;
+  padding: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c12 {
-  padding: 0.9375rem 0.625rem;
+.c13 {
+  padding: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -33,11 +32,11 @@ Array [
   cursor: pointer;
 }
 
-.c12:hover {
+.c13:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c12:active {
+.c13:active {
   background-color: rgba(0,0,0,0.1);
 }
 
@@ -63,11 +62,15 @@ Array [
   opacity: 0.5;
 }
 
-.c14 {
+.c15 {
   white-space: nowrap;
 }
 
-.c13 {
+.c15:visited {
+  color: darkslategray;
+}
+
+.c14 {
   position: relative;
   border: none;
   padding: 0;
@@ -86,7 +89,7 @@ Array [
   text-align: left;
 }
 
-.c13:after {
+.c14:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -94,16 +97,16 @@ Array [
   width: 100%;
 }
 
-.c13:focus {
+.c14:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c13:hover {
+.c14:hover {
   opacity: 0.8;
 }
 
-.c13:hover:after {
+.c14:hover:after {
   content: '';
   border-color: #0067c5;
 }
@@ -128,6 +131,10 @@ Array [
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
+}
+
+.c12 ul {
+  list-style: disc;
 }
 
 .c0 {
@@ -238,7 +245,8 @@ Array [
   outline: none;
 }
 
-<section
+<div>
+  <section
     aria-label="Saksdokumenter for Alle tema"
     className="c0"
   >
@@ -413,7 +421,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -476,46 +483,46 @@ Array [
                   </p>
                 </div>
               </div>
-              
-              <p
-                className="typo-normal"
+              <div
+                className="c12"
               >
-                Dokumentet har 
-                3
-                 vedlegg:
-              </p>
-              <ul>
-                <li>
-                  <span>
-                    <p
-                      className="typo-element"
-                    >
-                      A-inntekt
-                    </p>
-                  </span>
-                  
-                </li>
-                <li>
-                  <span>
-                    <p
-                      className="typo-element"
-                    >
-                      Spørsmål via nav.no
-                    </p>
-                  </span>
-                  
-                </li>
-                <li>
-                  <span>
-                    <p
-                      className="typo-element"
-                    >
-                      Inntektsopplysninger
-                    </p>
-                  </span>
-                  
-                </li>
-              </ul>
+                <p
+                  className="typo-normal"
+                >
+                  Dokumentet har 
+                  3
+                   vedlegg:
+                </p>
+                <ul>
+                  <li>
+                    <span>
+                      <p
+                        className="typo-element"
+                      >
+                        A-inntekt
+                      </p>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <p
+                        className="typo-element"
+                      >
+                        Spørsmål via nav.no
+                      </p>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <p
+                        className="typo-element"
+                      >
+                        Inntektsopplysninger
+                      </p>
+                    </span>
+                  </li>
+                </ul>
+              </div>
               <div
                 className="c11"
               >
@@ -530,7 +537,7 @@ Array [
             </div>
           </li>
           <li
-            className="c12"
+            className="c13"
             onClick={[Function]}
           >
             <div
@@ -556,7 +563,7 @@ Array [
                   className="order-second"
                 >
                   <button
-                    className="c13"
+                    className="c14"
                     onClick={[Function]}
                   >
                     <p
@@ -576,58 +583,58 @@ Array [
                   </p>
                 </div>
               </div>
-              
-              <p
-                className="typo-normal"
+              <div
+                className="c12"
               >
-                Dokumentet har 
-                3
-                 vedlegg:
-              </p>
-              <ul>
-                <li>
-                  <span>
-                    <button
-                      aria-disabled={true}
-                      className="c13"
-                      onClick={[Function]}
-                    >
+                <p
+                  className="typo-normal"
+                >
+                  Dokumentet har 
+                  3
+                   vedlegg:
+                </p>
+                <ul>
+                  <li>
+                    <span>
+                      <button
+                        aria-disabled={true}
+                        className="c14"
+                        onClick={[Function]}
+                      >
+                        <p
+                          className="typo-element"
+                        >
+                          A-inntekt (Skjermet)
+                        </p>
+                      </button>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <button
+                        aria-disabled={false}
+                        className="c14"
+                        onClick={[Function]}
+                      >
+                        <p
+                          className="typo-element"
+                        >
+                          Referat fra samtale på telefon
+                        </p>
+                      </button>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
                       <p
                         className="typo-element"
                       >
-                        A-inntekt (Skjermet)
+                        Vedtak korrigert refusjon/u bet
                       </p>
-                    </button>
-                  </span>
-                  
-                </li>
-                <li>
-                  <span>
-                    <button
-                      aria-disabled={false}
-                      className="c13"
-                      onClick={[Function]}
-                    >
-                      <p
-                        className="typo-element"
-                      >
-                        Referat fra samtale på telefon
-                      </p>
-                    </button>
-                  </span>
-                  
-                </li>
-                <li>
-                  <span>
-                    <p
-                      className="typo-element"
-                    >
-                      Vedtak korrigert refusjon/u bet
-                    </p>
-                  </span>
-                  
-                </li>
-              </ul>
+                    </span>
+                  </li>
+                </ul>
+              </div>
               <div
                 className="c11"
               >
@@ -640,21 +647,17 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c15"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=etcoicxr&dokumentId=q90p8dnw"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=etcoicxr&dokumentId=q90p8dnw"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
         </ol>
       </li>
@@ -713,52 +716,52 @@ Array [
                   </p>
                 </div>
               </div>
-              
-              <p
-                className="typo-normal"
+              <div
+                className="c12"
               >
-                Dokumentet har 
-                3
-                 vedlegg:
-              </p>
-              <ul>
-                <li>
-                  <span>
-                    <button
-                      aria-disabled={false}
-                      className="c13"
-                      onClick={[Function]}
-                    >
+                <p
+                  className="typo-normal"
+                >
+                  Dokumentet har 
+                  3
+                   vedlegg:
+                </p>
+                <ul>
+                  <li>
+                    <span>
+                      <button
+                        aria-disabled={false}
+                        className="c14"
+                        onClick={[Function]}
+                      >
+                        <p
+                          className="typo-element"
+                        >
+                          Spørsmål via nav.no
+                        </p>
+                      </button>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <p
+                        className="typo-element"
+                      >
+                        Innhenting av opplysninger
+                      </p>
+                    </span>
+                  </li>
+                  <li>
+                    <span>
                       <p
                         className="typo-element"
                       >
                         Spørsmål via nav.no
                       </p>
-                    </button>
-                  </span>
-                  
-                </li>
-                <li>
-                  <span>
-                    <p
-                      className="typo-element"
-                    >
-                      Innhenting av opplysninger
-                    </p>
-                  </span>
-                  
-                </li>
-                <li>
-                  <span>
-                    <p
-                      className="typo-element"
-                    >
-                      Spørsmål via nav.no
-                    </p>
-                  </span>
-                  
-                </li>
-              </ul>
+                    </span>
+                  </li>
+                </ul>
+              </div>
               <div
                 className="c11"
               >
@@ -773,7 +776,7 @@ Array [
             </div>
           </li>
           <li
-            className="c12"
+            className="c13"
             onClick={[Function]}
           >
             <div
@@ -799,7 +802,7 @@ Array [
                   className="order-second"
                 >
                   <button
-                    className="c13"
+                    className="c14"
                     onClick={[Function]}
                   >
                     <p
@@ -819,7 +822,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -832,24 +834,20 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c15"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=fg1w15sz&dokumentId=nvqxc1ip"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=fg1w15sz&dokumentId=nvqxc1ip"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
           <li
-            className="c12"
+            className="c13"
             onClick={[Function]}
           >
             <div
@@ -875,7 +873,7 @@ Array [
                   className="order-second"
                 >
                   <button
-                    className="c13"
+                    className="c14"
                     onClick={[Function]}
                   >
                     <p
@@ -895,26 +893,28 @@ Array [
                   </p>
                 </div>
               </div>
-              
-              <p
-                className="typo-normal"
+              <div
+                className="c12"
               >
-                Dokumentet har 
-                1
-                 vedlegg:
-              </p>
-              <ul>
-                <li>
-                  <span>
-                    <p
-                      className="typo-element"
-                    >
-                      A-inntekt
-                    </p>
-                  </span>
-                  
-                </li>
-              </ul>
+                <p
+                  className="typo-normal"
+                >
+                  Dokumentet har 
+                  1
+                   vedlegg:
+                </p>
+                <ul>
+                  <li>
+                    <span>
+                      <p
+                        className="typo-element"
+                      >
+                        A-inntekt
+                      </p>
+                    </span>
+                  </li>
+                </ul>
+              </div>
               <div
                 className="c11"
               >
@@ -927,21 +927,17 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c15"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=o5z5pcse&dokumentId=me3wv1le"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=o5z5pcse&dokumentId=me3wv1le"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
           <li
             className="c7"
@@ -992,32 +988,34 @@ Array [
                   </p>
                 </div>
               </div>
-              
-              <p
-                className="typo-normal"
+              <div
+                className="c12"
               >
-                Dokumentet har 
-                1
-                 vedlegg:
-              </p>
-              <ul>
-                <li>
-                  <span>
-                    <button
-                      aria-disabled={false}
-                      className="c13"
-                      onClick={[Function]}
-                    >
-                      <p
-                        className="typo-element"
+                <p
+                  className="typo-normal"
+                >
+                  Dokumentet har 
+                  1
+                   vedlegg:
+                </p>
+                <ul>
+                  <li>
+                    <span>
+                      <button
+                        aria-disabled={false}
+                        className="c14"
+                        onClick={[Function]}
                       >
-                        A-inntekt
-                      </p>
-                    </button>
-                  </span>
-                  
-                </li>
-              </ul>
+                        <p
+                          className="typo-element"
+                        >
+                          A-inntekt
+                        </p>
+                      </button>
+                    </span>
+                  </li>
+                </ul>
+              </div>
               <div
                 className="c11"
               >
@@ -1080,7 +1078,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1110,7 +1107,7 @@ Array [
         </div>
         <ol>
           <li
-            className="c12"
+            className="c13"
             onClick={[Function]}
           >
             <div
@@ -1136,7 +1133,7 @@ Array [
                   className="order-second"
                 >
                   <button
-                    className="c13"
+                    className="c14"
                     onClick={[Function]}
                   >
                     <p
@@ -1156,7 +1153,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1169,24 +1165,20 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c15"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=fhtkfp66&dokumentId=bjol9s20"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=fhtkfp66&dokumentId=bjol9s20"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
           <li
-            className="c12"
+            className="c13"
             onClick={[Function]}
           >
             <div
@@ -1212,7 +1204,7 @@ Array [
                   className="order-second"
                 >
                   <button
-                    className="c13"
+                    className="c14"
                     onClick={[Function]}
                   >
                     <p
@@ -1232,7 +1224,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1245,24 +1236,20 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c15"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=s9765sz0&dokumentId=113wxk3r"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=s9765sz0&dokumentId=113wxk3r"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
           <li
-            className="c12"
+            className="c13"
             onClick={[Function]}
           >
             <div
@@ -1288,7 +1275,7 @@ Array [
                   className="order-second"
                 >
                   <button
-                    className="c13"
+                    className="c14"
                     onClick={[Function]}
                   >
                     <p
@@ -1308,7 +1295,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1321,21 +1307,17 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c15"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=aamyoz7n&dokumentId=mt1cssx0"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=aamyoz7n&dokumentId=mt1cssx0"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
           <li
             className="c7"
@@ -1386,7 +1368,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1401,7 +1382,7 @@ Array [
             </div>
           </li>
           <li
-            className="c12"
+            className="c13"
             onClick={[Function]}
           >
             <div
@@ -1427,7 +1408,7 @@ Array [
                   className="order-second"
                 >
                   <button
-                    className="c13"
+                    className="c14"
                     onClick={[Function]}
                   >
                     <p
@@ -1447,7 +1428,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1460,24 +1440,20 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c15"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=cmlub095&dokumentId=nnp1em30"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=cmlub095&dokumentId=nnp1em30"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
           <li
-            className="c12"
+            className="c13"
             onClick={[Function]}
           >
             <div
@@ -1503,7 +1479,7 @@ Array [
                   className="order-second"
                 >
                   <button
-                    className="c13"
+                    className="c14"
                     onClick={[Function]}
                   >
                     <p
@@ -1523,7 +1499,6 @@ Array [
                   </p>
                 </div>
               </div>
-              
               <div
                 className="c11"
               >
@@ -1536,26 +1511,22 @@ Array [
                 </p>
               </div>
             </div>
-            <span
-              className="c14"
+            <a
+              className="lenke c15"
+              href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=ai9t2h2n&dokumentId=gplzp0ho"
+              target="_blank"
             >
-              <a
-                className="lenke"
-                href="/modiapersonoversikt/saker/10108000398?sakstemaKode=ALLE&journalpostId=ai9t2h2n&dokumentId=gplzp0ho"
-                target="_blank"
+              <span
+                className="typo-normal"
               >
-                <span
-                  className="typo-normal"
-                >
-                  Åpne i eget vindu
-                </span>
-              </a>
-            </span>
+                Åpne i nytt vindu
+              </span>
+            </a>
           </li>
         </ol>
       </li>
     </ol>
-  </section>,
+  </section>
   <div
     className="alertstripe alertstripe--info"
   >
@@ -1589,6 +1560,6 @@ Array [
     >
       Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter som er journalført vises fra og med 4.juni 2016
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
