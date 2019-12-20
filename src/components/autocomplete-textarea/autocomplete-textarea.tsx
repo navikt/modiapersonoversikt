@@ -102,7 +102,7 @@ function AutocompleteTextarea(props: TextareaProps) {
                         if (acc.match(regex)) {
                             event.preventDefault();
                             event.stopPropagation();
-                            loggEvent('Autocomplete', 'Textarea', { type: acc });
+                            loggEvent('Autocomplete', 'Textarea', { type: acc.toLowerCase() });
                             return replacement;
                         }
                         return acc;
