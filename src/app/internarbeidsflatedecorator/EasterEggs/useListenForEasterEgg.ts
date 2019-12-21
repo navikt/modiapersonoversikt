@@ -6,8 +6,8 @@ export enum easterEggs {
     nisse = 'nisse'
 }
 
-export function useListenForEasterEgg() {
-    const [easterEgg, setEasterEgg] = useState('');
+export function useListenForEasterEgg(defaultEasterEgg: string) {
+    const [easterEgg, setEasterEgg] = useState(defaultEasterEgg);
 
     useOnMount(() => {
         const input = document.getElementsByTagName('input')[0];

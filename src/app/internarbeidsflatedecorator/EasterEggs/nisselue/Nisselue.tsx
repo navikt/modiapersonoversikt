@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import moment from 'moment';
 import nisselue from './nisselue.svg';
 import styled, { css, keyframes } from 'styled-components';
 import Sno from './Sno';
@@ -42,22 +41,15 @@ const StyledImg = styled.img<{ shake: boolean; clickable: boolean }>`
         `};
 `;
 
-function Nisselue(props: { forceShow: boolean }) {
-    const today = moment();
-    const erJul = today.month() === 11 && 17 <= today.date() && today.date() <= 28;
-
+function Nisselue() {
     const [sno, setSno] = useState(false);
 
-    if (erJul || props.forceShow) {
-        return (
-            <Position>
-                {sno && <Sno />}
-                <StyledImg shake={sno} onClick={() => setSno(true)} clickable={!sno} src={nisselue} alt="nisselue" />
-            </Position>
-        );
-    }
-
-    return null;
+    return (
+        <Position>
+            {sno && <Sno />}
+            <StyledImg shake={sno} onClick={() => setSno(true)} clickable={!sno} src={nisselue} alt="nisselue" />
+        </Position>
+    );
 }
 
 export default Nisselue;

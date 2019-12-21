@@ -5,21 +5,41 @@ import { mockEnabled } from '../../../api/config';
 import Partyhatt from './partyhatt/Partyhatt';
 import { easterEggs, useListenForEasterEgg } from './useListenForEasterEgg';
 import ErrorBoundary from '../../../components/ErrorBoundary';
+import moment from 'moment';
 
-function DecoratorEasterEgg() {
-    const easterEgg = useListenForEasterEgg();
+function useDefaultEasterEgg() {
     const erKontaktsenter = useErKontaktsenter();
-
-    if (!mockEnabled && !erKontaktsenter && !easterEgg) {
-        return null;
+    if (!erKontaktsenter && !mockEnabled) {
+        return '';
     }
 
-    return (
-        <>
-            <Nisselue forceShow={easterEgg === easterEggs.nisse} />
-            <Partyhatt forceShow={easterEgg === easterEggs.party} />
-        </>
-    );
+    const today = moment();
+    const erJul = today.month() === 11 && 17 <= today.date() && today.date() <= 28;
+    const erNyttårsaften = today.month() === 11 && today.date() === 31;
+
+    if (erJul) {
+        return easterEggs.nisse;
+    }
+
+    if (erNyttårsaften) {
+        return easterEggs.party;
+    }
+
+    return '';
+}
+
+function DecoratorEasterEgg() {
+    const defaultEasterEegg = useDefaultEasterEgg();
+    const easterEgg = useListenForEasterEgg(defaultEasterEegg);
+
+    if (easterEggs.nisse === easterEgg) {
+        return <Nisselue />;
+    }
+    if (easterEggs.party === easterEgg) {
+        return <Partyhatt />;
+    }
+
+    return null;
 }
 
 function DecoratorEasterEggContainer() {
