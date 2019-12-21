@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import moment from 'moment';
 import partyhatt from './partyhatt.svg';
 import styled, { createGlobalStyle, css, keyframes } from 'styled-components';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
@@ -65,29 +64,22 @@ const StyledImg = styled.img<{ jump: boolean; clickable: boolean }>`
         `};
 `;
 
-function Partyhatt(props: { forceShow: boolean }) {
-    const today = moment();
-    const erNyttårsaften = today.month() === 11 && today.date() === 31;
-
+function Partyhatt() {
     const [fireworks, setFireworks] = useState(false);
 
-    if (erNyttårsaften || props.forceShow) {
-        return (
-            <Position>
-                <GlobalStyles />
-                {fireworks && <Fireworks />}
-                <StyledImg
-                    jump={fireworks}
-                    onClick={() => setFireworks(true)}
-                    clickable={!fireworks}
-                    src={partyhatt}
-                    alt="partyhatt"
-                />
-            </Position>
-        );
-    }
-
-    return null;
+    return (
+        <Position>
+            <GlobalStyles />
+            {fireworks && <Fireworks />}
+            <StyledImg
+                jump={fireworks}
+                onClick={() => setFireworks(true)}
+                clickable={!fireworks}
+                src={partyhatt}
+                alt="partyhatt"
+            />
+        </Position>
+    );
 }
 
 export default Partyhatt;
