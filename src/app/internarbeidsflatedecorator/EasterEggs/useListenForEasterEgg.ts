@@ -17,8 +17,11 @@ export function useListenForEasterEgg(defaultEasterEgg: string) {
         const listener = (e: Event) => {
             // @ts-ignore
             const input = e.target.value;
-            if (Object.keys(easterEggs).includes(input)) {
-                setEasterEgg(input);
+            if (!input) {
+                return;
+            }
+            if (Object.keys(easterEggs).includes(input.toLowerCase())) {
+                setEasterEgg(input.toLowerCase());
             }
         };
         input.addEventListener('input', listener);
