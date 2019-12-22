@@ -41,8 +41,8 @@ const Glow = styled.div<{ xSpeed: number; ySpeed: number }>`
     }
     position: absolute;
     top: 2rem;
-    height: 0.2rem;
-    width: 0.2rem;
+    height: 0.25rem;
+    width: 0.25rem;
     border-radius: 50%;
     z-index: 10;
     box-shadow: 0 0 4px black;

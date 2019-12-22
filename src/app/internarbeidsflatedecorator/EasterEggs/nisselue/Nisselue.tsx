@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import nisselue from './nisselue.svg';
 import styled, { css, keyframes } from 'styled-components';
 import Sno from './Sno';
@@ -43,6 +43,14 @@ const StyledImg = styled.img<{ shake: boolean; clickable: boolean }>`
 
 function Nisselue() {
     const [sno, setSno] = useState(false);
+
+    useEffect(() => {
+        if (sno) {
+            const timeout = setTimeout(() => setSno(false), 6000);
+            return () => clearTimeout(timeout);
+        }
+        return () => null;
+    }, [sno]);
 
     return (
         <Position>

@@ -5,15 +5,15 @@ import styled, { createGlobalStyle, css, keyframes } from 'styled-components';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import Fireworks from './Fireworks';
 
-const dropLogo = keyframes`
-  to {
-    transform: translateY(1.5rem);
-  }
-`;
-
-const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle<{ dropNavLogo: boolean }>`
   .dekorator__hode__logo svg {
-    animation: ${dropLogo} 1.5s forwards 1.5s;
+      transition: 2s;
+      ${props =>
+          props.dropNavLogo &&
+          css`
+              transform: translateY(1.5rem);
+              border-right: 1px solid transparent !important;
+          `};
   }
 `;
 
@@ -30,12 +30,14 @@ const spinUp = keyframes`
 const jump = keyframes`
 from {
   bottom: 0;
+  left: 0;
 }
 20% {
   bottom: 1rem;
 }
   to {
     bottom: -4rem;
+    left: 1rem;
     opacity: 0;
   }
 `;
@@ -44,7 +46,7 @@ const Position = styled.div`
     position: absolute;
     left: ${pxToRem(31)};
     top: ${pxToRem(-4)};
-    animation: ${spinUp} 0.7s both 2.5s;
+    animation: ${spinUp} 0.5s both 2s;
     transform-origin: bottom;
 `;
 
@@ -69,7 +71,7 @@ function Partyhatt() {
 
     return (
         <Position>
-            <GlobalStyles />
+            <GlobalStyles dropNavLogo={!fireworks} />
             {fireworks && <Fireworks />}
             <StyledImg
                 jump={fireworks}
