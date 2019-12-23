@@ -2,7 +2,7 @@ import { BaseUrlsResponse } from '../../../../../models/baseurls';
 import { hentBaseUrl } from '../../../../../redux/restReducers/baseurls';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
-import { DokumentMetadata } from '../../../../../models/saksoversikt/dokumentmetadata';
+import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import * as React from 'react';
 import { hasData, RestResource } from '../../../../../rest/utils/restResource';
 import { PersonRespons } from '../../../../../models/person/person';
@@ -31,7 +31,7 @@ function byggSøkestrengTilNorgTemaOppslag(sakstema: Sakstema) {
     if (sakstema.temakode !== sakstemakodeAlle) {
         return sakstema.temakode;
     }
-    const temaArray: string[] = sakstema.dokumentMetadata.reduce((acc: string[], dok: DokumentMetadata) => {
+    const temaArray: string[] = sakstema.journalPoster.reduce((acc: string[], dok: Journalpost) => {
         const tema = dok.temakode;
         if (acc.includes(tema)) {
             return acc;

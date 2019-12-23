@@ -2,24 +2,18 @@ import * as React from 'react';
 import { SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { useDispatch } from 'react-redux';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
-import SaksDokumenterContainer from './saksdokumenter/SaksDokumenterContainer';
-import { settVisDokument } from '../../../../redux/saksoversikt/actions';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import { useAppState, useOnMount } from '../../../../utils/customHooks';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import SakstemaListe from './sakstemaliste/SakstemaListe';
-import { useHistory, withRouter } from 'react-router';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
-import { useAgregerteSaker } from './utils/saksoversiktUtils';
-import { useInfotabsDyplenker } from '../dyplenker';
-import { useHuskValgtSakstema, useValgtSakstemaIUrl } from './useValgtSakstema';
-import { useEffect } from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import JournalPoster from './saksdokumenter/JournalPoster';
+import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
+import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
 
 export const saksoversiktMediaTreshold = '65rem';
 
@@ -45,34 +39,12 @@ const SaksoversiktArticle = styled.article`
     position: relative;
 `;
 
-function useVelgSakHvisIngenSakErValgt() {
-    const valgtSakstema = useValgtSakstemaIUrl();
-    const agregerteSakstema = useAgregerteSaker();
-    const history = useHistory();
-    const dyplenker = useInfotabsDyplenker();
-    const forrigeValgtSakstema = useHuskValgtSakstema();
-
-    useEffect(() => {
-        if (!valgtSakstema) {
-            const redirectTo = forrigeValgtSakstema || agregerteSakstema;
-            redirectTo && history.replace(dyplenker.saker.link(redirectTo));
-        }
-    });
-}
-
 function SaksoversiktContainer() {
-    const dispatch = useDispatch();
-    const skjulDokumentOgVisSaksoversikt = () => dispatch(settVisDokument(false));
-    const visDokument = useAppState(state => state.saksoversikt.visDokument);
-    const valgtSakstema = useValgtSakstemaIUrl();
-    useVelgSakHvisIngenSakErValgt();
+    const state = useSaksoversiktValg();
+    useKeepQueryParams();
 
-    useOnMount(() => {
-        skjulDokumentOgVisSaksoversikt();
-    });
-
-    if (visDokument) {
-        return <DokumentOgVedlegg />;
+    if (state.saksdokument) {
+        return <DokumentOgVedlegg {...state} />;
     } else {
         return (
             <ErrorBoundary boundaryName="Saksoversikt">
@@ -89,11 +61,15 @@ function SaksoversiktContainer() {
                             return (
                                 <>
                                     <ScrollBar keepScrollId="saker-sakstema">
-                                        <SakstemaListe valgtSakstema={valgtSakstema} />
+                                        <ErrorBoundary boundaryName="Sakstemaliste">
+                                            <SakstemaListe valgtSakstema={state.sakstema} />
+                                        </ErrorBoundary>
                                     </ScrollBar>
                                     <ScrollBar keepScrollId="saker-saksdokumenter">
-                                        {valgtSakstema ? (
-                                            <SaksDokumenterContainer valgtSakstema={valgtSakstema} />
+                                        {state.sakstema ? (
+                                            <ErrorBoundary boundaryName="Journalposter">
+                                                <JournalPoster valgtSakstema={state.sakstema} />
+                                            </ErrorBoundary>
                                         ) : (
                                             <AlertStripeInfo>Ingen sakstema valgt</AlertStripeInfo>
                                         )}
@@ -108,4 +84,4 @@ function SaksoversiktContainer() {
     }
 }
 
-export default withRouter(SaksoversiktContainer);
+export default SaksoversiktContainer;

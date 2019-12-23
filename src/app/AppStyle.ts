@@ -38,6 +38,9 @@ const AppStyle = styled.div`
     .spinner {
         flex: 0 0 auto;
     }
+    a:visited:not(:focus) {
+        color: purple; // Mange brukere har etterspurt en visuell markering på at et dokument/lenke har vært åpnet
+    }
 `;
 
 export const ContentStyle = styled.div`

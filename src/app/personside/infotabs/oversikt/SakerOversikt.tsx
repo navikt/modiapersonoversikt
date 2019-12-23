@@ -33,7 +33,7 @@ function SakerOversikt(props: Props) {
 
 function SakerPanel(props: { sakstema: Sakstema[] } & Props) {
     const sakstemakomponenter = props.sakstema
-        .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
+        .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.journalPoster.length > 0)
         .slice(0, 2)
         .map((sakstema, index) => <SakstemaListeElement sakstema={sakstema} key={index} erValgt={false} />);
 

@@ -1,19 +1,21 @@
 import * as React from 'react';
-import DokumentListeElement from './DokumentListeElement';
+import JournalpostLiseElement from './JournalpostLiseElement';
 import TestProvider from '../../../../../test/Testprovider';
 import { getStaticMockSaksoversikt } from '../../../../../mock/saksoversikt/saksoversikt-mock';
 import { getTestStore } from '../../../../../test/testStore';
 import { SakstemaResponse } from '../../../../../models/saksoversikt/sakstema';
-import { DokumentMetadata, Feilmelding } from '../../../../../models/saksoversikt/dokumentmetadata';
+import { Journalpost, Feilmelding } from '../../../../../models/saksoversikt/journalpost';
 import { mount } from 'enzyme';
 import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
 import DokumentIkon from '../../../../../svg/DokumentIkon';
+import { aggregertSakstema } from '../utils/saksoversiktUtils';
 
-describe('DokumentListeElement', () => {
+describe('JournalpostListeElement', () => {
     const staticSaksoversikt = getStaticMockSaksoversikt();
+    const valgtSakstema = aggregertSakstema(staticSaksoversikt.resultat);
 
-    it('Viser ikke-tilgang-ikon om dokumentmetadata har sikkerhetsbegrensning', () => {
-        const { testStore, dokumentMetadata: dokumentMetadata } = lagStoreMedJustertDokumentMetadata({
+    it('Viser ikke-tilgang-ikon om journalpost har sikkerhetsbegrensning', () => {
+        const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
             feil: {
                 inneholderFeil: true,
                 feilmelding: Feilmelding.Sikkerhetsbegrensning
@@ -22,11 +24,10 @@ describe('DokumentListeElement', () => {
 
         const wrapper = mount(
             <TestProvider customStore={testStore}>
-                <DokumentListeElement
-                    dokumentMetadata={dokumentMetadata}
+                <JournalpostLiseElement
+                    journalpost={journalposter}
                     harTilgangTilSakstema={true}
-                    sakstemakode={'SYK'}
-                    sakstemanavn={'Sykepenger'}
+                    valgtSakstema={valgtSakstema}
                 />
             </TestProvider>
         );
@@ -34,15 +35,14 @@ describe('DokumentListeElement', () => {
     });
 
     it('Viser ikke-tilgang-ikon hvis ikke tilgang til sakstema', () => {
-        const { testStore, dokumentMetadata } = lagStoreMedJustertDokumentMetadata({});
+        const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({});
 
         const wrapper = mount(
             <TestProvider customStore={testStore}>
-                <DokumentListeElement
-                    dokumentMetadata={dokumentMetadata}
+                <JournalpostLiseElement
+                    valgtSakstema={valgtSakstema}
+                    journalpost={journalposter}
                     harTilgangTilSakstema={false}
-                    sakstemakode={'SYK'}
-                    sakstemanavn={'Sykepenger'}
                 />
             </TestProvider>
         );
@@ -50,9 +50,9 @@ describe('DokumentListeElement', () => {
     });
 
     it('Viser tilgang-ikon hvis tilgang til sakstema og ikke sikkerhetsbegrensning, selv om ikke tilgang til alle dokumenter', () => {
-        const hoveddokument = staticSaksoversikt.resultat[0].dokumentMetadata[0].hoveddokument;
-        const vedlegg = staticSaksoversikt.resultat[0].dokumentMetadata[0].vedlegg[0];
-        const { testStore, dokumentMetadata } = lagStoreMedJustertDokumentMetadata({
+        const hoveddokument = staticSaksoversikt.resultat[0].journalPoster[0].hoveddokument;
+        const vedlegg = staticSaksoversikt.resultat[0].journalPoster[0].vedlegg[0];
+        const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
             feil: { inneholderFeil: false, feilmelding: null },
             hoveddokument: {
                 ...hoveddokument,
@@ -68,11 +68,10 @@ describe('DokumentListeElement', () => {
 
         const wrapper = mount(
             <TestProvider customStore={testStore}>
-                <DokumentListeElement
-                    dokumentMetadata={dokumentMetadata}
+                <JournalpostLiseElement
+                    journalpost={journalposter}
                     harTilgangTilSakstema={true}
-                    sakstemakode={'SYK'}
-                    sakstemanavn={'Sykepenger'}
+                    valgtSakstema={valgtSakstema}
                 />
             </TestProvider>
         );
@@ -80,32 +79,31 @@ describe('DokumentListeElement', () => {
     });
 
     it('Viser ikke-tilgang-ikon selv i "Alle" sakstemalisten', () => {
-        const { testStore, dokumentMetadata } = lagStoreMedJustertDokumentMetadata({
+        const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
             feil: { inneholderFeil: false, feilmelding: null }
         });
 
         const wrapper = mount(
             <TestProvider customStore={testStore}>
-                <DokumentListeElement
-                    dokumentMetadata={dokumentMetadata}
+                <JournalpostLiseElement
+                    journalpost={journalposter}
                     harTilgangTilSakstema={true}
-                    sakstemakode={'ALLE'}
-                    sakstemanavn={'Alle tema'}
+                    valgtSakstema={valgtSakstema}
                 />
             </TestProvider>
         );
         expect(wrapper.find(DokumentIkon)).toHaveLength(1);
     });
 
-    function lagStoreMedJustertDokumentMetadata(partialDok: Partial<DokumentMetadata>) {
+    function lagStoreMedJustertDokumentMetadata(partialDok: Partial<Journalpost>) {
         const staticMockSaksoversikt: SakstemaResponse = {
             ...staticSaksoversikt,
             resultat: [
                 {
                     ...staticSaksoversikt.resultat[0],
-                    dokumentMetadata: [
+                    journalPoster: [
                         {
-                            ...staticSaksoversikt.resultat[0].dokumentMetadata[0],
+                            ...staticSaksoversikt.resultat[0].journalPoster[0],
                             ...partialDok
                         }
                     ]
@@ -117,11 +115,11 @@ describe('DokumentListeElement', () => {
         const state = testStore.getState();
         dispatch(state.restResources.sakstema.actions.setData(staticMockSaksoversikt));
 
-        const dokumentResultat: DokumentMetadata = {
-            ...staticSaksoversikt.resultat[0].dokumentMetadata[0],
+        const dokumentResultat: Journalpost = {
+            ...staticSaksoversikt.resultat[0].journalPoster[0],
             ...partialDok
         };
 
-        return { testStore, dokumentMetadata: dokumentResultat };
+        return { testStore, journalposter: dokumentResultat };
     }
 });
