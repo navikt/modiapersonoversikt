@@ -66,5 +66,6 @@ export enum Varseltype {
     'NySykmelding' = 'Ny sykmelding',
     'SyfoplanOpprettetSyk' = 'Oppfølgingsplan påbegynt av leder',
     'SyfoplangodkjenningSyk' = 'Oppfølgingsplan venter godkjenning',
-    'SyfoSvarMotebehov' = 'Avventer svar om behov for dialogmøte'
+    'SyfoSvarMotebehov' = 'Avventer svar om behov for dialogmøte',
+    'SyfoplanRevideringSyk' = 'Revider oppfølgingsplanen før godkjenning'
 }
