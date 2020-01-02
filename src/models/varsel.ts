@@ -68,6 +68,7 @@ export enum Varseltype {
     'SyfoplangodkjenningSyk' = 'Oppfølgingsplan venter godkjenning',
     'SyfoSvarMotebehov' = 'Avventer svar om behov for dialogmøte',
     'SyfoplanRevideringSyk' = 'Venter på revidering fra bruker',
+    'SyfoMerVeiledning' = 'Snart slutt på sykepenger',
     'PAM_KONV01' = 'Ny og forbedret CV-løsning',
     'PAM_SYNLIGHET_01' = 'Informasjon om CV på Ditt NAV'
 }
