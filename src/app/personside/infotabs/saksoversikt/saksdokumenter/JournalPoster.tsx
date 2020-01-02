@@ -182,7 +182,7 @@ const PrevNextButtonsStyling = styled.div`
 function JournalPoster(props: Props) {
     const tittelRef = React.createRef<HTMLDivElement>();
     const avsenderFilter = useAppState(state => state.saksoversikt.avsenderFilter);
-    const filtrerteJournalposter = props.valgtSakstema.journalPoster
+    const filtrerteJournalposter = props.valgtSakstema.dokumentMetadata
         .filter(journalpost => hentRiktigAvsenderfilter(journalpost.avsender, avsenderFilter))
         .sort(datoSynkende(journalpost => saksdatoSomDate(journalpost.dato)));
     const paginering = usePaginering(filtrerteJournalposter, 50, 'journalpost');

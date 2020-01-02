@@ -9,7 +9,7 @@ import { hasData } from '../../../../../rest/utils/restResource';
 
 export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     const alleBehandlingskjeder = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.behandlingskjeder);
-    const alleJournalposter = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.journalPoster);
+    const alleJournalposter = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.dokumentMetadata);
     const alleTilhørendeSaker = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.tilhørendeSaker);
 
     return {
@@ -17,7 +17,7 @@ export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
         temakode: sakstemakodeAlle,
         harTilgang: true,
         behandlingskjeder: alleBehandlingskjeder,
-        journalPoster: alleJournalposter,
+        dokumentMetadata: alleJournalposter,
         tilhørendeSaker: alleTilhørendeSaker,
         erGruppert: false,
         feilkoder: []
@@ -42,15 +42,15 @@ export function hentFormattertDatoForSisteHendelse(sakstema: Sakstema) {
 }
 
 export function hentDatoForSisteHendelse(sakstema: Sakstema): Date {
-    if (sakstema.behandlingskjeder.length > 0 && sakstema.journalPoster.length === 0) {
+    if (sakstema.behandlingskjeder.length > 0 && sakstema.dokumentMetadata.length === 0) {
         return hentSenesteDatoForBehandling(sakstema.behandlingskjeder);
     }
-    if (sakstema.behandlingskjeder.length === 0 && sakstema.journalPoster.length > 0) {
-        return hentSenesteDatoForDokumenter(sakstema.journalPoster);
+    if (sakstema.behandlingskjeder.length === 0 && sakstema.dokumentMetadata.length > 0) {
+        return hentSenesteDatoForDokumenter(sakstema.dokumentMetadata);
     }
 
     const dateBehandling = hentSenesteDatoForBehandling(sakstema.behandlingskjeder);
-    const dateDokumenter = hentSenesteDatoForDokumenter(sakstema.journalPoster);
+    const dateDokumenter = hentSenesteDatoForDokumenter(sakstema.dokumentMetadata);
     return dateBehandling > dateDokumenter ? dateBehandling : dateDokumenter;
 }
 

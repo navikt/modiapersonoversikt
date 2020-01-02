@@ -50,8 +50,8 @@ describe('JournalpostListeElement', () => {
     });
 
     it('Viser tilgang-ikon hvis tilgang til sakstema og ikke sikkerhetsbegrensning, selv om ikke tilgang til alle dokumenter', () => {
-        const hoveddokument = staticSaksoversikt.resultat[0].journalPoster[0].hoveddokument;
-        const vedlegg = staticSaksoversikt.resultat[0].journalPoster[0].vedlegg[0];
+        const hoveddokument = staticSaksoversikt.resultat[0].dokumentMetadata[0].hoveddokument;
+        const vedlegg = staticSaksoversikt.resultat[0].dokumentMetadata[0].vedlegg[0];
         const { testStore, journalposter } = lagStoreMedJustertDokumentMetadata({
             feil: { inneholderFeil: false, feilmelding: null },
             hoveddokument: {
@@ -101,9 +101,9 @@ describe('JournalpostListeElement', () => {
             resultat: [
                 {
                     ...staticSaksoversikt.resultat[0],
-                    journalPoster: [
+                    dokumentMetadata: [
                         {
-                            ...staticSaksoversikt.resultat[0].journalPoster[0],
+                            ...staticSaksoversikt.resultat[0].dokumentMetadata[0],
                             ...partialDok
                         }
                     ]
@@ -116,7 +116,7 @@ describe('JournalpostListeElement', () => {
         dispatch(state.restResources.sakstema.actions.setData(staticMockSaksoversikt));
 
         const dokumentResultat: Journalpost = {
-            ...staticSaksoversikt.resultat[0].journalPoster[0],
+            ...staticSaksoversikt.resultat[0].dokumentMetadata[0],
             ...partialDok
         };
 

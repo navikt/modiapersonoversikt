@@ -63,7 +63,7 @@ function getSakstema(): Sakstema {
         temanavn: tema[1],
         erGruppert: faker.random.boolean(),
         behandlingskjeder: getBehandlingskjeder(faker, navfaker),
-        journalPoster: getJournalposter(faker, navfaker, tema),
+        dokumentMetadata: getJournalposter(faker, navfaker, tema),
         tilhørendeSaker: fyllRandomListe(() => getSak(tema[0]), 15),
         feilkoder: getFeilkoder()
     };
