@@ -80,7 +80,7 @@ function InfoTabs(props: Props) {
                 <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
                 <ErrorBoundary boundaryName={'Open tab: ' + openTab}>
                     <OpenTab ref={keepScrollRef} onScroll={storeCroll}>
-                        <h2 ref={ref} tabIndex={-1} className="sr-only">
+                        <h2 ref={ref} tabIndex={-1} className="sr-only" aria-live={'assertive'}>
                             {openTab}
                         </h2>
                         <Switch location={props.location}>
