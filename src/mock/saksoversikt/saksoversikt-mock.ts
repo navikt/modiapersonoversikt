@@ -5,7 +5,7 @@ import { Sakstema, SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Sak } from '../../models/saksoversikt/sak';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
 import { getBehandlingskjeder } from './behandlingskjeder-mock';
-import { getDokumentMetadataListe } from './dokumentmetadata-mock';
+import { getJournalposter } from './journalpost-mock';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { getAremarkSakstemaListe } from './aremark-saksoversikt-mock';
 import { aremark } from '../person/aremark';
@@ -63,7 +63,7 @@ function getSakstema(): Sakstema {
         temanavn: tema[1],
         erGruppert: faker.random.boolean(),
         behandlingskjeder: getBehandlingskjeder(faker, navfaker),
-        dokumentMetadata: getDokumentMetadataListe(faker, navfaker, tema),
+        journalPoster: getJournalposter(faker, navfaker, tema),
         tilhørendeSaker: fyllRandomListe(() => getSak(tema[0]), 15),
         feilkoder: getFeilkoder()
     };

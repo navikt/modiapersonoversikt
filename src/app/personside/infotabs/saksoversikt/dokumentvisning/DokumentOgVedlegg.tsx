@@ -1,38 +1,22 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Dokument, DokumentMetadata } from '../../../../../models/saksoversikt/dokumentmetadata';
 import { TabsPure } from 'nav-frontend-tabs';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { getSaksdokument } from '../../../../../utils/url-utils';
-import { AppState } from '../../../../../redux/reducers';
-import { Action, Dispatch } from 'redux';
-import { connect } from 'react-redux';
-import { settValgtEnkeltdokument, settVisDokument } from '../../../../../redux/saksoversikt/actions';
-import { LenkeKnapp, TilbakePil } from '../../../../../components/common-styled-components';
+import { getSaksdokumentUrl } from './getSaksdokumentUrl';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useFocusOnMount, useOnMount } from '../../../../../utils/customHooks';
+import { useAppState, useFocusOnMount, useFødselsnummer, useOnMount } from '../../../../../utils/customHooks';
 import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import { erIE11 } from '../../../../../utils/erNyPersonoversikt';
 import { loggEvent } from '../../../../../utils/frontendLogger';
-
-interface StateProps {
-    valgtDokument?: DokumentMetadata;
-    valgtTab?: Dokument;
-    visDokument: boolean;
-    erStandaloneVindu: boolean;
-    fødselsnummer: string;
-}
-
-interface DispatchProps {
-    setEnkeltDokument: (valgtDokument: Dokument) => void;
-    lukkDokument: () => void;
-}
-
-type Props = DispatchProps & StateProps;
+import { SaksoversiktValg } from '../utils/useSaksoversiktValg';
+import { useInfotabsDyplenker } from '../../dyplenker';
+import { useHistory } from 'react-router';
+import { Hovedknapp } from 'nav-frontend-knapper';
+import { TilbakePil } from '../../../../../components/common-styled-components';
 
 const Content = styled.div`
     flex-grow: 1;
@@ -57,8 +41,8 @@ const Header = styled.div`
 
 const KnappWrapper = styled.div`
     position: absolute;
-    bottom: 0.5rem;
-    right: 0.5rem;
+    right: 0.2rem;
+    top: 0.4rem;
 `;
 
 const HeaderStyle = styled.div`
@@ -67,8 +51,9 @@ const HeaderStyle = styled.div`
     padding: ${pxToRem(15)};
 `;
 
-function VisDokumentContainer(props: { fødselsnummer: string; journalpostId: string; dokumentreferanse: string }) {
-    const dokUrl = getSaksdokument(props.fødselsnummer, props.journalpostId, props.dokumentreferanse);
+function VisDokumentContainer(props: { journalpostId: string; dokumentreferanse: string }) {
+    const fødselsnummer = useFødselsnummer();
+    const dokUrl = getSaksdokumentUrl(fødselsnummer, props.journalpostId, props.dokumentreferanse);
     const [errMsg, setErrMsg] = useState('');
     const onError = (statusKode: number) => setErrMsg(feilmelding(statusKode));
 
@@ -101,13 +86,14 @@ function feilmelding(statusKode: number) {
     }
 }
 
-function DokumentOgVedlegg(props: Props) {
+function DokumentOgVedlegg(props: SaksoversiktValg) {
     const ref = React.createRef<HTMLDivElement>();
-
+    const erStandaloneVindu = useAppState(state => state.saksoversikt.erStandaloneVindu);
+    const dyplenker = useInfotabsDyplenker();
+    const history = useHistory();
     useFocusOnMount(ref);
 
-    const { valgtDokument, valgtTab } = props;
-    if (!valgtDokument || !valgtTab) {
+    if (!props.saksdokument || !props.journalpost) {
         return (
             <AlertWrapper>
                 <AlertStripeInfo>Ingen dokument valgt.</AlertStripeInfo>
@@ -115,21 +101,26 @@ function DokumentOgVedlegg(props: Props) {
         );
     }
 
-    const tabs = [valgtDokument.hoveddokument, ...valgtDokument.vedlegg.filter(vedlegg => !vedlegg.logiskDokument)];
+    const tabs = [
+        props.journalpost.hoveddokument,
+        ...props.journalpost.vedlegg.filter(vedlegg => !vedlegg.logiskDokument)
+    ];
     const tabProps: TabProps[] = tabs.map(tab => {
         return {
             label: tab.tittel,
-            aktiv: tab === props.valgtTab
+            aktiv: tab === props.saksdokument
         };
     });
 
-    const tabsHeader = !props.erStandaloneVindu && (
+    const handleTabChange = (_: any, index: number) => history.push(dyplenker.saker.link(props.sakstema, tabs[index]));
+
+    const tabsHeader = !erStandaloneVindu && (
         <Header>
-            <TabsPure tabs={tabProps} onChange={(event, index) => props.setEnkeltDokument(tabs[index])} />
+            <TabsPure tabs={tabProps} onChange={handleTabChange} />
             <KnappWrapper>
-                <LenkeKnapp onClick={props.lukkDokument}>
+                <Hovedknapp onClick={() => history.push(dyplenker.saker.link(props.sakstema))}>
                     <TilbakePil>Tilbake til saker</TilbakePil>
-                </LenkeKnapp>
+                </Hovedknapp>
             </KnappWrapper>
         </Header>
     );
@@ -137,35 +128,18 @@ function DokumentOgVedlegg(props: Props) {
     return (
         <ErrorBoundary boundaryName="Dokumentvisning">
             <Content>
-                <HeaderStyle ref={ref} tabIndex={-1} className={!props.erStandaloneVindu ? 'sr-only' : undefined}>
-                    <Undertittel>{props.valgtTab && props.valgtTab.tittel}</Undertittel>
+                <HeaderStyle ref={ref} tabIndex={-1} className={!erStandaloneVindu ? 'sr-only' : undefined}>
+                    <Undertittel>{props.saksdokument.tittel}</Undertittel>
                 </HeaderStyle>
                 {tabsHeader}
                 <VisDokumentContainer
-                    journalpostId={valgtDokument.journalpostId}
-                    dokumentreferanse={valgtTab.dokumentreferanse}
-                    fødselsnummer={props.fødselsnummer}
+                    key={props.saksdokument.dokumentreferanse}
+                    journalpostId={props.journalpost.journalpostId}
+                    dokumentreferanse={props.saksdokument.dokumentreferanse}
                 />
             </Content>
         </ErrorBoundary>
     );
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        visDokument: state.saksoversikt.visDokument,
-        valgtDokument: state.saksoversikt.valgtDokument,
-        valgtTab: state.saksoversikt.valgtEnkeltdokument,
-        erStandaloneVindu: state.saksoversikt.erStandaloneVindu,
-        fødselsnummer: state.gjeldendeBruker.fødselsnummer
-    };
-}
-
-function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
-    return {
-        lukkDokument: () => dispatch(settVisDokument(false)),
-        setEnkeltDokument: (enkeltdokument: Dokument) => dispatch(settValgtEnkeltdokument(enkeltdokument))
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DokumentOgVedlegg);
+export default DokumentOgVedlegg;

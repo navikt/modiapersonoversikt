@@ -8,7 +8,6 @@ import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
 import './personsokKnapp.less';
 import { useAppState, useFødselsnummer, useOnMount, useRestResource } from '../../utils/customHooks';
-import { parseQueryParams } from '../../utils/url-utils';
 import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
@@ -16,6 +15,7 @@ import { hasData } from '../../rest/utils/restResource';
 import { velgEnhetAction } from '../../redux/session/session';
 import styled, { css } from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
+import { useQueryParams } from '../../utils/urlUtils';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -85,7 +85,7 @@ function useKlargjorContextholder(sokFnr?: string) {
 }
 
 function Decorator({ location, history }: RouteComponentProps<{}>) {
-    const queryParams = parseQueryParams(location.search);
+    const queryParams = useQueryParams<{ sokFnr: string }>();
     const sokFnr = queryParams.sokFnr === '0' ? '' : queryParams.sokFnr;
     const gjeldendeFnr = useFødselsnummer();
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);

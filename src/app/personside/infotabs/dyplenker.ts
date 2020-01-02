@@ -3,16 +3,42 @@ import { usePaths } from '../../routes/routing';
 import { Utbetaling } from '../../../models/utbetalinger';
 import { useParams } from 'react-router';
 import { Traad } from '../../../models/meldinger/meldinger';
-import { Sakstema } from '../../../models/saksoversikt/sakstema';
-import { getUnikSakstemaKey } from './saksoversikt/utils/saksoversiktUtils';
 import { useMemo } from 'react';
+import { SakerRouting, useSakerRouting } from './saksoversikt/utils/saksoversiktRoutingUtils';
 
-type DyplenkeParams = { posteringsdato?: string; traadId?: string; sakstemakey?: string; unikId?: string };
+export interface Dyplenker {
+    utbetaling: {
+        link: (utbetaling: Utbetaling) => string;
+        route: string;
+        erValgt: (utbetaling: Utbetaling) => boolean;
+    };
+    meldinger: {
+        link: (traad: Traad) => string;
+        route: string;
+        erValgt: (traad: Traad) => boolean;
+    };
+    saker: SakerRouting;
+    ytelser: {
+        link: (unikId: string) => string;
+        route: string;
+        erValgt: (unikId: UnikYtelseKey) => boolean;
+    };
+}
+
+type DyplenkeParams = {
+    posteringsdato?: string;
+    traadId?: string;
+    sakstemakey?: string;
+    saksDokumentId?: string;
+    unikId?: string;
+};
 export type UnikYtelseKey = string;
 
-export function useInfotabsDyplenker() {
+export function useInfotabsDyplenker(): Dyplenker {
     const params = useParams<DyplenkeParams>();
     const paths = usePaths();
+    const sakerRouting = useSakerRouting();
+
     return useMemo(
         () => ({
             utbetaling: {
@@ -28,17 +54,13 @@ export function useInfotabsDyplenker() {
                 route: `${paths.meldinger}/:traadId?`,
                 erValgt: (traad: Traad) => traad.traadId === params.traadId
             },
-            saker: {
-                link: (saksTema: Sakstema) => `${paths.saker}/${getUnikSakstemaKey(saksTema)}`,
-                route: `${paths.saker}/:sakstemakey?`,
-                erValgt: (sakstema: Sakstema) => getUnikSakstemaKey(sakstema) === params.sakstemakey
-            },
+            saker: sakerRouting,
             ytelser: {
                 link: (unikId: string) => `${paths.ytelser}/${unikId}`,
                 route: `${paths.ytelser}/:unikId?`,
                 erValgt: (unikId: UnikYtelseKey) => unikId === params.unikId
             }
         }),
-        [paths, params]
+        [paths, params, sakerRouting]
     );
 }

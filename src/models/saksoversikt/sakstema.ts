@@ -1,4 +1,4 @@
-import { DokumentMetadata } from './dokumentmetadata';
+import { Journalpost } from './journalpost';
 import { Sak } from './sak';
 import { Saksdato } from './fellesSak';
 
@@ -12,7 +12,7 @@ export interface Sakstema {
     temanavn: string;
     erGruppert: boolean;
     behandlingskjeder: Behandlingskjede[];
-    dokumentMetadata: DokumentMetadata[];
+    journalPoster: Journalpost[];
     tilhørendeSaker: Sak[];
     feilkoder: number[];
 }

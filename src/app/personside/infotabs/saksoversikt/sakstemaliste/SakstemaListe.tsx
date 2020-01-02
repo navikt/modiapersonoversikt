@@ -41,7 +41,7 @@ const TittelWrapper = styled.div`
 
 function GrupperteTema(props: { sakstema: Sakstema[]; valgtSakstema?: Sakstema }) {
     const sakstemakomponenter = props.sakstema
-        .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
+        .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.journalPoster.length > 0)
         .map(sakstema => {
             return (
                 <SakstemaListeElement
