@@ -22,7 +22,7 @@ import { erIE11 } from '../utils/erNyPersonoversikt';
 import DemoBanner from '../components/DemoBanner';
 import VelgEnhet from './routes/VelgEnhet';
 import styled from 'styled-components';
-import SaksoversiktMicroFrontend from './personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
+import SakerEgetVindu from './personside/infotabs/saksoversikt/SakerEgetVindu';
 
 if (mockEnabled) {
     setupMock();
@@ -73,10 +73,8 @@ function PersonoverisktProvider() {
                 <Decorator />
                 <Switch>
                     <Route
-                        path={`${paths.saksoversikt}/:fodselsnummer/`}
-                        render={routeProps => (
-                            <SaksoversiktMicroFrontend fødselsnummer={routeProps.match.params.fodselsnummer} />
-                        )}
+                        path={`${paths.sakerEgetVindu}/:fodselsnummer/`}
+                        render={routeProps => <SakerEgetVindu fødselsnummer={routeProps.match.params.fodselsnummer} />}
                     />
                     <Route path={''} component={Personoversikt} />
                 </Switch>

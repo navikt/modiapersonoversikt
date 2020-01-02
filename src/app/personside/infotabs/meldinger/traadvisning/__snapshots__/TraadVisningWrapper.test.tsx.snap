@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser traad med verktøylinje 1`] = `
-.c16 {
+.c8 {
   position: relative;
   text-align: center;
   padding-top: 1rem;
 }
 
-.c17 > * {
+.c9 > * {
   margin-top: 1rem;
 }
 
-.c3 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -26,7 +26,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   align-items: flex-start;
 }
 
-.c13 {
+.c5 {
   position: relative;
   border: none;
   padding: 0;
@@ -44,7 +44,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   color: #0067c5;
 }
 
-.c13:after {
+.c5:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -52,66 +52,66 @@ exports[`Viser traad med verktøylinje 1`] = `
   width: 100%;
 }
 
-.c13:focus {
+.c5:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c13:hover {
+.c5:hover {
   opacity: 0.8;
 }
 
-.c13:hover:after {
+.c5:hover:after {
   content: '';
   border-color: #0067c5;
 }
 
-.c19 {
+.c11 {
   position: relative;
 }
 
-.c21 {
+.c13 {
   position: absolute !important;
   bottom: 0.4rem;
   right: 0.4rem;
 }
 
-.c20 {
+.c12 {
   position: relative;
 }
 
-.c20 .skjemaelement {
+.c12 .skjemaelement {
   margin-bottom: 0;
 }
 
-.c18 {
+.c10 {
   padding-top: 1rem;
 }
 
-.c18 .inputPanelGruppe__inner {
+.c10 .inputPanelGruppe__inner {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c18 .inputPanelGruppe__inner > * {
+.c10 .inputPanelGruppe__inner > * {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c18 label {
+.c10 label {
   font-weight: 600;
   margin-bottom: 0.1rem;
 }
 
-.c18 .skjemaelement {
+.c10 .skjemaelement {
   margin-bottom: 0.7rem;
 }
 
-.c22 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -122,11 +122,11 @@ exports[`Viser traad med verktøylinje 1`] = `
   justify-content: space-between;
 }
 
-.c22 button {
+.c14 button {
   margin: 0;
 }
 
-.c23 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -137,11 +137,11 @@ exports[`Viser traad med verktøylinje 1`] = `
   justify-content: space-between;
 }
 
-.c14 {
+.c6 {
   margin-right: 0.5rem;
 }
 
-.c9 {
+.c1 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
@@ -156,7 +156,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-bottom: 0.24rem;
 }
 
-.c10 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -167,22 +167,22 @@ exports[`Viser traad med verktøylinje 1`] = `
   justify-content: space-between;
 }
 
-.c11 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c11 > *:not(:last-child) {
+.c3 > *:not(:last-child) {
   margin-right: 1.5rem;
 }
 
-.c12 {
+.c4 {
   color: #3e3832;
 }
 
-.c15 {
+.c7 {
   position: relative;
   border: none;
   padding: 0;
@@ -203,7 +203,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   color: #3e3832;
 }
 
-.c15:after {
+.c7:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -211,62 +211,62 @@ exports[`Viser traad med verktøylinje 1`] = `
   width: 100%;
 }
 
-.c15:focus {
+.c7:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c15:hover {
+.c7:hover {
   opacity: 0.8;
 }
 
-.c15:hover:after {
+.c7:hover:after {
   content: '';
   border-color: #0067c5;
 }
 
-.c6 {
+.c21 {
   margin-right: 0.3rem !important;
 }
 
-.c5 {
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c4 {
+.c19 {
   font-weight: 600;
 }
 
-.c2 {
+.c17 {
   text-align: left;
 }
 
-.c2 em {
+.c17 em {
   font-style: normal;
   background-color: #eed28c;
   border-radius: 0.625rem;
   padding: 0 0.3125rem;
 }
 
-.c2 > *:not(:last-child) {
+.c17 > *:not(:last-child) {
   border-bottom: solid 0.0625rem #b7b1a9;
   padding-bottom: 0.7rem;
   margin-bottom: 0.5rem;
 }
 
-.c8 {
+.c23 {
   color: #0067c5;
 }
 
-.c7 .ekspanderbartPanel__hode,
-.c7 .ekspanderbartPanel__innhold {
+.c22 .ekspanderbartPanel__hode,
+.c22 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
 }
 
-.c1 {
+.c16 {
   padding: .5rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -274,7 +274,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   flex-grow: 1;
 }
 
-.c1 > *:last-child {
+.c16 > *:last-child {
   margin-top: .5rem;
 }
 
@@ -288,451 +288,12 @@ exports[`Viser traad med verktøylinje 1`] = `
   flex-direction: column;
 }
 
-.c0 > *:nth-child(1) {
-  -webkit-order: 2;
-  -ms-flex-order: 2;
-  order: 2;
-}
-
-.c0 > *:nth-child(2) {
-  -webkit-order: 1;
-  -ms-flex-order: 1;
-  order: 1;
-}
-
 <article
   className="c0"
   role="tabpanel"
 >
-  <h3
-    className="sr-only"
-  >
-    Valgt melding - 
-    Delsvar - Arbeid
-     
-    13.08.2019 00:00
-  </h3>
   <section
     className="c1"
-  >
-    <div
-      className="alertstripe alertstripe--info"
-    >
-      <span
-        aria-label="info"
-        className="alertstripe__ikon"
-      >
-        <svg
-          focusable="false"
-          height="1.5em"
-          kind="info-sirkel-fyll"
-          viewBox="0 0 24 24"
-          width="1.5em"
-        >
-          <g
-            fill="none"
-          >
-            <path
-              d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-              fill="#669DB4"
-            />
-            <path
-              d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-              fill="#FFF"
-            />
-          </g>
-        </svg>
-      </span>
-      <div
-        className="typo-normal alertstripe__tekst"
-      >
-        Henvendelsen er avsluttet uten å svare bruker av 
-        Ukjent saksbehandler
-         
-        07. juli 2019
-      </div>
-    </div>
-    <ol
-      aria-label="Dialog"
-    >
-      <li
-        className="snakkeboble_ikoner"
-      >
-        <div
-          className="snakkeboble snakkeboble--hoyre"
-        >
-          <i
-            className="nav-ikon"
-          />
-          <div
-            className="snakkeboble__snakkeboble-pil-container"
-          >
-            <i
-              className="snakkeboble__snakkebole-pil"
-            />
-          </div>
-          <div
-            className="panel snakkeboble-panel"
-          >
-            <div
-              className="snakkeboble-panel__tekst"
-            >
-              <div
-                className="c2"
-              >
-                <div
-                  className=""
-                >
-                  <div
-                    className="c3"
-                  >
-                    <div
-                      className="tekstomrade c4"
-                    >
-                      Delsvar - Arbeid
-                    </div>
-                    <div
-                      className="etikett etikett--info"
-                    >
-                      <span
-                        className="typo-normal"
-                      >
-                        Delsvar
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className="tekstomrade"
-                  >
-                    13.08.2019 00:00
-                  </div>
-                  <div
-                    className="c5"
-                  >
-                    <p
-                      className="typo-normal c6"
-                    >
-                      Skrevet av:
-                    </p>
-                    <div
-                      className="tekstomrade typo-normal"
-                    >
-                      Kristoffer Fredriksen (xy70r8)
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="tekstomrade"
-                >
-                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-                </div>
-                <div
-                  className="ekspanderbartPanel c7 ekspanderbartPanel--lukket"
-                >
-                  <button
-                    aria-expanded={false}
-                    className="ekspanderbartPanel__hode"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    type="button"
-                  >
-                    <div
-                      className="ekspanderbartPanel__flex-wrapper"
-                    >
-                      <p
-                        className="typo-etikett-liten c8"
-                      >
-                        Meldingen er journalført
-                      </p>
-                      <span
-                        className="ekspanderbartPanel__indikator"
-                      />
-                    </div>
-                  </button>
-                  <article
-                    className="ekspanderbartPanel__innhold"
-                  >
-                    Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li
-        className="snakkeboble_ikoner"
-      >
-        <div
-          className="snakkeboble snakkeboble--venstre"
-        >
-          <i
-            className="bruker-ikon"
-          />
-          <div
-            className="snakkeboble__snakkeboble-pil-container"
-          >
-            <i
-              className="snakkeboble__snakkebole-pil"
-            />
-          </div>
-          <div
-            className="panel snakkeboble-panel"
-          >
-            <div
-              className="snakkeboble-panel__tekst"
-            >
-              <div
-                className="c2"
-              >
-                <div
-                  className=""
-                >
-                  <div
-                    className="c3"
-                  >
-                    <div
-                      className="tekstomrade c4"
-                    >
-                      Spørsmål fra bruker - Arbeid
-                    </div>
-                  </div>
-                  <div
-                    className="tekstomrade"
-                  >
-                    10.08.2019 00:00
-                  </div>
-                </div>
-                <div
-                  className="tekstomrade"
-                >
-                  Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
-                </div>
-                <div
-                  className="ekspanderbartPanel c7 ekspanderbartPanel--lukket"
-                >
-                  <button
-                    aria-expanded={false}
-                    className="ekspanderbartPanel__hode"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    type="button"
-                  >
-                    <div
-                      className="ekspanderbartPanel__flex-wrapper"
-                    >
-                      <p
-                        className="typo-etikett-liten c8"
-                      >
-                        Meldingen er journalført
-                      </p>
-                      <span
-                        className="ekspanderbartPanel__indikator"
-                      />
-                    </div>
-                  </button>
-                  <article
-                    className="ekspanderbartPanel__innhold"
-                  >
-                    Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li
-        className="snakkeboble_ikoner"
-      >
-        <div
-          className="snakkeboble snakkeboble--venstre"
-        >
-          <i
-            className="bruker-ikon"
-          />
-          <div
-            className="snakkeboble__snakkeboble-pil-container"
-          >
-            <i
-              className="snakkeboble__snakkebole-pil"
-            />
-          </div>
-          <div
-            className="panel snakkeboble-panel"
-          >
-            <div
-              className="snakkeboble-panel__tekst"
-            >
-              <div
-                className="c2"
-              >
-                <div
-                  className=""
-                >
-                  <div
-                    className="c3"
-                  >
-                    <div
-                      className="tekstomrade c4"
-                    >
-                      Spørsmål fra bruker - Arbeid
-                    </div>
-                  </div>
-                  <div
-                    className="tekstomrade"
-                  >
-                    06.08.2019 00:00
-                  </div>
-                </div>
-                <div
-                  className="tekstomrade"
-                >
-                  Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
-                </div>
-                <div
-                  className="ekspanderbartPanel c7 ekspanderbartPanel--lukket"
-                >
-                  <button
-                    aria-expanded={false}
-                    className="ekspanderbartPanel__hode"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    type="button"
-                  >
-                    <div
-                      className="ekspanderbartPanel__flex-wrapper"
-                    >
-                      <p
-                        className="typo-etikett-liten c8"
-                      >
-                        Meldingen er journalført
-                      </p>
-                      <span
-                        className="ekspanderbartPanel__indikator"
-                      />
-                    </div>
-                  </button>
-                  <article
-                    className="ekspanderbartPanel__innhold"
-                  >
-                    Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li
-        className="snakkeboble_ikoner"
-      >
-        <div
-          className="snakkeboble snakkeboble--hoyre"
-        >
-          <i
-            className="nav-ikon"
-          />
-          <div
-            className="snakkeboble__snakkeboble-pil-container"
-          >
-            <i
-              className="snakkeboble__snakkebole-pil"
-            />
-          </div>
-          <div
-            className="panel snakkeboble-panel"
-          >
-            <div
-              className="snakkeboble-panel__tekst"
-            >
-              <div
-                className="c2"
-              >
-                <div
-                  className=""
-                >
-                  <div
-                    className="c3"
-                  >
-                    <div
-                      className="tekstomrade c4"
-                    >
-                      Samtalereferat oppmøte - Arbeid
-                    </div>
-                    <div
-                      className="etikett etikett--suksess"
-                    >
-                      <span
-                        className="typo-normal"
-                      >
-                        Lest
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className="tekstomrade"
-                  >
-                    30.07.2019 00:00
-                  </div>
-                  <div
-                    className="c5"
-                  >
-                    <p
-                      className="typo-normal c6"
-                    >
-                      Skrevet av:
-                    </p>
-                    <div
-                      className="tekstomrade typo-normal"
-                    >
-                      Sander Hansen (nzxo4q)
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="tekstomrade"
-                >
-                  Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
-                </div>
-                <div
-                  className="ekspanderbartPanel c7 ekspanderbartPanel--lukket"
-                >
-                  <button
-                    aria-expanded={false}
-                    className="ekspanderbartPanel__hode"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    type="button"
-                  >
-                    <div
-                      className="ekspanderbartPanel__flex-wrapper"
-                    >
-                      <p
-                        className="typo-etikett-liten c8"
-                      >
-                        Meldingen er journalført
-                      </p>
-                      <span
-                        className="ekspanderbartPanel__indikator"
-                      />
-                    </div>
-                  </button>
-                  <article
-                    className="ekspanderbartPanel__innhold"
-                  >
-                    Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-    </ol>
-  </section>
-  <section
-    className="c9"
   >
     <h3
       className="sr-only"
@@ -742,18 +303,18 @@ exports[`Viser traad med verktøylinje 1`] = `
       Delsvar - Arbeid
     </h3>
     <div
-      className="c10"
+      className="c2"
     >
       <div
-        className="c11"
+        className="c3"
       >
         <button
           aria-expanded={false}
-          className="c12 c13"
+          className="c4 c5"
           onClick={[Function]}
         >
           <span
-            className="c14"
+            className="c6"
           >
             <span
               className="typo-normal"
@@ -767,11 +328,11 @@ exports[`Viser traad med verktøylinje 1`] = `
         </button>
         <button
           aria-expanded={false}
-          className="c12 c13"
+          className="c4 c5"
           onClick={[Function]}
         >
           <span
-            className="c14"
+            className="c6"
           >
             <span
               className="typo-normal"
@@ -785,11 +346,11 @@ exports[`Viser traad med verktøylinje 1`] = `
         </button>
         <button
           aria-expanded={false}
-          className="c12 c13"
+          className="c4 c5"
           onClick={[Function]}
         >
           <span
-            className="c14"
+            className="c6"
           >
             <span
               className="typo-normal"
@@ -803,7 +364,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </button>
       </div>
       <a
-        className="c15"
+        className="c7"
         download={true}
         href="/dialog/10108000398/sg838exr/print"
       >
@@ -815,10 +376,10 @@ exports[`Viser traad med verktøylinje 1`] = `
       </a>
     </div>
     <section
-      className="c16"
+      className="c8"
     >
       <div
-        className="c17"
+        className="c9"
       >
         <div
           className="alertstripe alertstripe--info"
@@ -865,7 +426,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       </div>
     </section>
     <div
-      className="c18"
+      className="c10"
     >
       <form
         onSubmit={[Function]}
@@ -986,11 +547,11 @@ exports[`Viser traad med verktøylinje 1`] = `
           aria-haspopup="listbox"
           aria-labelledby="downshift-0-label"
           aria-owns={null}
-          className="c19"
+          className="c11"
           role="combobox"
         >
           <div
-            className="c20"
+            className="c12"
           >
             <div
               className="skjemaelement"
@@ -1024,7 +585,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             </div>
             <svg
               aria-label="Laster innhold"
-              className="spinner c21 spinner--s"
+              className="spinner c13 spinner--s"
               focusable="false"
               height={32}
               kind="spinner"
@@ -1062,11 +623,11 @@ exports[`Viser traad med verktøylinje 1`] = `
           aria-haspopup="listbox"
           aria-labelledby="downshift-1-label"
           aria-owns={null}
-          className="c19"
+          className="c11"
           role="combobox"
         >
           <div
-            className="c20"
+            className="c12"
           >
             <div
               className="skjemaelement"
@@ -1100,7 +661,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             </div>
             <svg
               aria-label="Laster innhold"
-              className="spinner c21 spinner--s"
+              className="spinner c13 spinner--s"
               focusable="false"
               height={32}
               kind="spinner"
@@ -1200,7 +761,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           />
         </div>
         <div
-          className="c22"
+          className="c14"
         >
           <button
             className="knapp knapp--hoved"
@@ -1210,7 +771,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             Opprett oppgave
           </button>
           <button
-            className="c13"
+            className="c5"
             onClick={[Function]}
             type="button"
           >
@@ -1336,7 +897,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         />
       </div>
       <div
-        className="c23"
+        className="c15"
       >
         <button
           className="knapp knapp--hoved"
@@ -1346,7 +907,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           Merk
         </button>
         <button
-          className="c13"
+          className="c5"
           onClick={[Function]}
           type="button"
         >
@@ -1354,6 +915,435 @@ exports[`Viser traad med verktøylinje 1`] = `
         </button>
       </div>
     </form>
+  </section>
+  <section
+    className="c16"
+  >
+    <div
+      className="alertstripe alertstripe--info"
+    >
+      <span
+        aria-label="info"
+        className="alertstripe__ikon"
+      >
+        <svg
+          focusable="false"
+          height="1.5em"
+          kind="info-sirkel-fyll"
+          viewBox="0 0 24 24"
+          width="1.5em"
+        >
+          <g
+            fill="none"
+          >
+            <path
+              d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+              fill="#669DB4"
+            />
+            <path
+              d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+              fill="#FFF"
+            />
+          </g>
+        </svg>
+      </span>
+      <div
+        className="typo-normal alertstripe__tekst"
+      >
+        Henvendelsen er avsluttet uten å svare bruker av 
+        Ukjent saksbehandler
+         
+        07. juli 2019
+      </div>
+    </div>
+    <h3
+      aria-atomic="false"
+      aria-live="polite"
+      className="sr-only"
+    >
+      Valgt melding - 
+      Delsvar - Arbeid
+       
+      13.08.2019 00:00
+    </h3>
+    <ol
+      aria-label="Dialog"
+    >
+      <li
+        className="snakkeboble_ikoner"
+      >
+        <div
+          className="snakkeboble snakkeboble--hoyre"
+        >
+          <i
+            className="nav-ikon"
+          />
+          <div
+            className="snakkeboble__snakkeboble-pil-container"
+          >
+            <i
+              className="snakkeboble__snakkebole-pil"
+            />
+          </div>
+          <div
+            className="panel snakkeboble-panel"
+          >
+            <div
+              className="snakkeboble-panel__tekst"
+            >
+              <div
+                className="c17"
+              >
+                <div
+                  className=""
+                >
+                  <div
+                    className="c18"
+                  >
+                    <div
+                      className="tekstomrade c19"
+                    >
+                      Delsvar - Arbeid
+                    </div>
+                    <div
+                      className="etikett etikett--info"
+                    >
+                      <span
+                        className="typo-normal"
+                      >
+                        Delsvar
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="tekstomrade"
+                  >
+                    13.08.2019 00:00
+                  </div>
+                  <div
+                    className="c20"
+                  >
+                    <p
+                      className="typo-normal c21"
+                    >
+                      Skrevet av:
+                    </p>
+                    <div
+                      className="tekstomrade typo-normal"
+                    >
+                      Kristoffer Fredriksen (xy70r8)
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="tekstomrade"
+                >
+                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                </div>
+                <div
+                  className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                >
+                  <button
+                    aria-expanded={false}
+                    className="ekspanderbartPanel__hode"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    type="button"
+                  >
+                    <div
+                      className="ekspanderbartPanel__flex-wrapper"
+                    >
+                      <p
+                        className="typo-etikett-liten c23"
+                      >
+                        Meldingen er journalført
+                      </p>
+                      <span
+                        className="ekspanderbartPanel__indikator"
+                      />
+                    </div>
+                  </button>
+                  <article
+                    className="ekspanderbartPanel__innhold"
+                  >
+                    Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li
+        className="snakkeboble_ikoner"
+      >
+        <div
+          className="snakkeboble snakkeboble--venstre"
+        >
+          <i
+            className="bruker-ikon"
+          />
+          <div
+            className="snakkeboble__snakkeboble-pil-container"
+          >
+            <i
+              className="snakkeboble__snakkebole-pil"
+            />
+          </div>
+          <div
+            className="panel snakkeboble-panel"
+          >
+            <div
+              className="snakkeboble-panel__tekst"
+            >
+              <div
+                className="c17"
+              >
+                <div
+                  className=""
+                >
+                  <div
+                    className="c18"
+                  >
+                    <div
+                      className="tekstomrade c19"
+                    >
+                      Spørsmål fra bruker - Arbeid
+                    </div>
+                  </div>
+                  <div
+                    className="tekstomrade"
+                  >
+                    10.08.2019 00:00
+                  </div>
+                </div>
+                <div
+                  className="tekstomrade"
+                >
+                  Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+                </div>
+                <div
+                  className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                >
+                  <button
+                    aria-expanded={false}
+                    className="ekspanderbartPanel__hode"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    type="button"
+                  >
+                    <div
+                      className="ekspanderbartPanel__flex-wrapper"
+                    >
+                      <p
+                        className="typo-etikett-liten c23"
+                      >
+                        Meldingen er journalført
+                      </p>
+                      <span
+                        className="ekspanderbartPanel__indikator"
+                      />
+                    </div>
+                  </button>
+                  <article
+                    className="ekspanderbartPanel__innhold"
+                  >
+                    Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li
+        className="snakkeboble_ikoner"
+      >
+        <div
+          className="snakkeboble snakkeboble--venstre"
+        >
+          <i
+            className="bruker-ikon"
+          />
+          <div
+            className="snakkeboble__snakkeboble-pil-container"
+          >
+            <i
+              className="snakkeboble__snakkebole-pil"
+            />
+          </div>
+          <div
+            className="panel snakkeboble-panel"
+          >
+            <div
+              className="snakkeboble-panel__tekst"
+            >
+              <div
+                className="c17"
+              >
+                <div
+                  className=""
+                >
+                  <div
+                    className="c18"
+                  >
+                    <div
+                      className="tekstomrade c19"
+                    >
+                      Spørsmål fra bruker - Arbeid
+                    </div>
+                  </div>
+                  <div
+                    className="tekstomrade"
+                  >
+                    06.08.2019 00:00
+                  </div>
+                </div>
+                <div
+                  className="tekstomrade"
+                >
+                  Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+                </div>
+                <div
+                  className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                >
+                  <button
+                    aria-expanded={false}
+                    className="ekspanderbartPanel__hode"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    type="button"
+                  >
+                    <div
+                      className="ekspanderbartPanel__flex-wrapper"
+                    >
+                      <p
+                        className="typo-etikett-liten c23"
+                      >
+                        Meldingen er journalført
+                      </p>
+                      <span
+                        className="ekspanderbartPanel__indikator"
+                      />
+                    </div>
+                  </button>
+                  <article
+                    className="ekspanderbartPanel__innhold"
+                  >
+                    Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li
+        className="snakkeboble_ikoner"
+      >
+        <div
+          className="snakkeboble snakkeboble--hoyre"
+        >
+          <i
+            className="nav-ikon"
+          />
+          <div
+            className="snakkeboble__snakkeboble-pil-container"
+          >
+            <i
+              className="snakkeboble__snakkebole-pil"
+            />
+          </div>
+          <div
+            className="panel snakkeboble-panel"
+          >
+            <div
+              className="snakkeboble-panel__tekst"
+            >
+              <div
+                className="c17"
+              >
+                <div
+                  className=""
+                >
+                  <div
+                    className="c18"
+                  >
+                    <div
+                      className="tekstomrade c19"
+                    >
+                      Samtalereferat oppmøte - Arbeid
+                    </div>
+                    <div
+                      className="etikett etikett--suksess"
+                    >
+                      <span
+                        className="typo-normal"
+                      >
+                        Lest
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="tekstomrade"
+                  >
+                    30.07.2019 00:00
+                  </div>
+                  <div
+                    className="c20"
+                  >
+                    <p
+                      className="typo-normal c21"
+                    >
+                      Skrevet av:
+                    </p>
+                    <div
+                      className="tekstomrade typo-normal"
+                    >
+                      Sander Hansen (nzxo4q)
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="tekstomrade"
+                >
+                  Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+                </div>
+                <div
+                  className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                >
+                  <button
+                    aria-expanded={false}
+                    className="ekspanderbartPanel__hode"
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    type="button"
+                  >
+                    <div
+                      className="ekspanderbartPanel__flex-wrapper"
+                    >
+                      <p
+                        className="typo-etikett-liten c23"
+                      >
+                        Meldingen er journalført
+                      </p>
+                      <span
+                        className="ekspanderbartPanel__indikator"
+                      />
+                    </div>
+                  </button>
+                  <article
+                    className="ekspanderbartPanel__innhold"
+                  >
+                    Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ol>
   </section>
 </article>
 `;

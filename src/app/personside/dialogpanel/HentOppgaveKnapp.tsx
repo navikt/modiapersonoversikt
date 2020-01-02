@@ -20,6 +20,7 @@ import { hasData, isFailed } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
 import { SaksbehandlerRoller } from '../../../utils/RollerUtils';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { useEffect } from 'react';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
@@ -60,6 +61,13 @@ function HentOppgaveKnapp(props: Props) {
     const velgTemaGruppe = (temagruppe: Temagruppe) => dispatch(velgTemagruppeForPlukk(temagruppe));
     const valgtTemaGruppe = useSelector((state: AppState) => state.session.temagruppeForPlukk);
     const rollerResource = useRestResource(resources => resources.veilederRoller);
+    let selectRef: HTMLSelectElement | null = null;
+
+    useEffect(() => {
+        if (temaGruppeFeilmelding) {
+            selectRef && selectRef.focus();
+        }
+    }, [selectRef, temaGruppeFeilmelding]);
 
     if (isFailed(rollerResource)) {
         return <AlertStripeFeil>Kunne ikke hente roller</AlertStripeFeil>;
@@ -120,6 +128,8 @@ function HentOppgaveKnapp(props: Props) {
             <h2 className="sr-only">Hent oppgave</h2>
             <KnappLayout>
                 <Select
+                    // @ts-ignore
+                    selectRef={ref => (selectRef = ref)}
                     label="Hent oppgave fra temagruppe"
                     value={valgtTemaGruppe || ''}
                     onChange={onTemagruppeChange}

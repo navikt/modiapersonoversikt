@@ -1,30 +1,26 @@
 import {
     Dokument,
-    DokumentMetadata,
+    Journalpost,
     Entitet,
     Feilmelding,
     FeilWrapper,
     Kommunikasjonsretning
-} from '../../models/saksoversikt/dokumentmetadata';
+} from '../../models/saksoversikt/journalpost';
 import { fyllRandomListe } from '../utils/mock-utils';
 import NavFaker from 'nav-faker/dist/navfaker';
 import { getBaksystem, getSaksdato } from './saksoversikt-felles-mock';
 
-export function getDokumentMetadataListe(
-    faker: Faker.FakerStatic,
-    navfaker: NavFaker,
-    tema: string[]
-): DokumentMetadata[] {
+export function getJournalposter(faker: Faker.FakerStatic, navfaker: NavFaker, tema: string[]): Journalpost[] {
     if (navfaker.random.vektetSjanse(0.3)) {
         return [];
     }
 
     return Array(navfaker.random.integer(5, 1))
         .fill(null)
-        .map(() => getDokumentMetadata(faker, navfaker, tema));
+        .map(() => getJournalpost(faker, navfaker, tema));
 }
 
-export function getDokumentMetadata(faker: Faker.FakerStatic, navfaker: NavFaker, tema: string[]): DokumentMetadata {
+export function getJournalpost(faker: Faker.FakerStatic, navfaker: NavFaker, tema: string[]): Journalpost {
     return {
         id: faker.random.alphaNumeric(8),
         retning: getKommunikasjonsretning(navfaker),
