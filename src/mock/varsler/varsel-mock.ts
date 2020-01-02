@@ -1,6 +1,6 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
-import { Varsel, Varselmelding } from '../../models/varsel';
+import { Varsel, Varselmelding, Varseltype } from '../../models/varsel';
 import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 import moment from 'moment';
 import { aremark } from '../person/aremark';
@@ -18,11 +18,7 @@ export function getMockVarsler(fødselsnummer: string): Varsel[] {
 
 function getVarsel(): Varsel {
     return {
-        varselType: navfaker.random.arrayElement([
-            'IkkeLevMeldekortNO',
-            'IkkeMeldtSegFristNO',
-            'RettTil4UkerFerieKonvertertInn'
-        ]),
+        varselType: navfaker.random.arrayElement(Object.keys(Varseltype)),
         mottattTidspunkt: moment(faker.date.recent(90)).format(backendDatoformat),
         erRevarsling: faker.random.boolean(),
         meldingListe: fyllRandomListe(getVarselMelding, 5)
