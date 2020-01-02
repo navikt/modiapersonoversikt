@@ -393,7 +393,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     <span
                       className="sr-only"
                     >
-                      meldinger
+                      tekster
                     </span>
                   </p>
                 </span>

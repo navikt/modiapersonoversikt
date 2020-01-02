@@ -72,7 +72,7 @@ function Meldingsikon(props: MeldingsikonProps) {
             <Ikon props={props} />
             {visNumberBadge && (
                 <NumberBadge>
-                    {antallMeldinger} <span className="sr-only">meldinger</span>
+                    {antallMeldinger} <span className="sr-only">tekster</span>
                 </NumberBadge>
             )}
         </Styling>
