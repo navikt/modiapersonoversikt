@@ -12,7 +12,7 @@ export interface Sakstema {
     temanavn: string;
     erGruppert: boolean;
     behandlingskjeder: Behandlingskjede[];
-    journalPoster: Journalpost[];
+    dokumentMetadata: Journalpost[];
     tilhørendeSaker: Sak[];
     feilkoder: number[];
 }

@@ -36,7 +36,7 @@ function useValgtJournalpostIUrl(): Journalpost | undefined {
             return undefined;
         }
 
-        const journalPoster = saker.data.resultat.flatMap(it => it.journalPoster);
+        const journalPoster = saker.data.resultat.flatMap(it => it.dokumentMetadata);
         return journalPoster.find(it => sakerRouting.erValgtJournalpost(it));
     }, [saker, sakerRouting]);
 }
@@ -51,7 +51,7 @@ function useValgtSaksdokumentIUrl(): Dokument | undefined {
         }
 
         const saksDokumenter = saker.data.resultat
-            .flatMap(it => it.journalPoster)
+            .flatMap(it => it.dokumentMetadata)
             .flatMap(it => [it.hoveddokument, ...it.vedlegg]);
         return saksDokumenter.find(it => sakerRouting.erValgtSaksdokument(it));
     }, [sakerRouting, saker]);

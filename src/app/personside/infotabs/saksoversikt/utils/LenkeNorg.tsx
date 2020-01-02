@@ -31,7 +31,7 @@ function byggSøkestrengTilNorgTemaOppslag(sakstema: Sakstema) {
     if (sakstema.temakode !== sakstemakodeAlle) {
         return sakstema.temakode;
     }
-    const temaArray: string[] = sakstema.journalPoster.reduce((acc: string[], dok: Journalpost) => {
+    const temaArray: string[] = sakstema.dokumentMetadata.reduce((acc: string[], dok: Journalpost) => {
         const tema = dok.temakode;
         if (acc.includes(tema)) {
             return acc;

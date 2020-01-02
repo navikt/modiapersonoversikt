@@ -15,7 +15,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     sistOppdatert: { år: 2018, måned: 12, dag: 24, time: 14, minutt: 24, sekund: 51 }
                 }
             ],
-            journalPoster: [
+            dokumentMetadata: [
                 {
                     id: 'u9fcztqt',
                     retning: Kommunikasjonsretning.Intern,
@@ -194,7 +194,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     sistOppdatert: { år: 2016, måned: 5, dag: 20, time: 9, minutt: 36, sekund: 9 }
                 }
             ],
-            journalPoster: [
+            dokumentMetadata: [
                 {
                     id: 'wdxbl8gq',
                     retning: Kommunikasjonsretning.Ut,
@@ -349,7 +349,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     sistOppdatert: { år: 2018, måned: 3, dag: 20, time: 19, minutt: 27, sekund: 45 }
                 }
             ],
-            journalPoster: [
+            dokumentMetadata: [
                 {
                     id: '03fmouny',
                     retning: Kommunikasjonsretning.Intern,
@@ -431,7 +431,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     sistOppdatert: { år: 2018, måned: 1, dag: 14, time: 3, minutt: 43, sekund: 31 }
                 }
             ],
-            journalPoster: [
+            dokumentMetadata: [
                 {
                     id: '1ml24a5l',
                     retning: Kommunikasjonsretning.Ut,
@@ -501,7 +501,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
             temanavn: 'Generell',
             erGruppert: true,
             behandlingskjeder: [],
-            journalPoster: [
+            dokumentMetadata: [
                 {
                     id: 'afp4donc',
                     retning: Kommunikasjonsretning.Intern,
