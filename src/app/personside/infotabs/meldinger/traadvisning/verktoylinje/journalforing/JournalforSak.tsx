@@ -88,7 +88,7 @@ export function JournalforSak(props: Props) {
             <Ingress className="blokk-xxxs">{sak.temaNavn}</Ingress>
             <CustomStyledTable
                 tittelRekke={['Saksid', 'Opprettet', 'Fagsystem']}
-                rows={[[sak.saksId, sak.opprettetDatoFormatert, sak.fagsystemNavn]]}
+                rows={[[sak.saksIdVisning, sak.opprettetDatoFormatert, sak.fagsystemNavn]]}
                 className="blokk-m"
             />
             {error && <AlertStripeFeil className="blokk-xs">{error}</AlertStripeFeil>}
