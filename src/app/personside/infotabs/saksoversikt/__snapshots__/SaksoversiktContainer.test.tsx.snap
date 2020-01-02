@@ -393,6 +393,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
+.c0 a:visited:not(:focus) {
+  color: purple;
+}
+
 @media (min-width:65rem) {
   .c0 {
     max-height: 100%;

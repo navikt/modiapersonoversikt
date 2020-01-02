@@ -37,6 +37,7 @@ const SaksoversiktArticle = styled.article`
         ${theme.visuallyHidden}
     }
     position: relative;
+    ${theme.visitedLinkPurple};
 `;
 
 function SaksoversiktContainer() {
