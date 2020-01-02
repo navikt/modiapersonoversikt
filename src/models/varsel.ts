@@ -63,5 +63,8 @@ export enum Varseltype {
     'SyfoOppgave' = 'Sykmelding',
     'SyfoSykepengesoknad' = 'Sykepengesøknad',
     'UR_StoppPrint' = 'Utbetalingsmelding',
-    'nysykemelding' = 'Ny sykemelding'
+    'NySykmelding' = 'Ny sykmelding',
+    'SyfoplanOpprettetSyk' = 'Oppfølgingsplan påbegynt av leder',
+    'SyfoplangodkjenningSyk' = 'Oppfølgingsplan venter godkjenning',
+    'SyfoSvarMotebehov' = 'Avventer svar om behov for dialogmøte'
 }
