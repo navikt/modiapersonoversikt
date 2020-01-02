@@ -141,6 +141,11 @@ export const theme = {
         background-color: #eed28c;
         border-radius: ${pxToRem(10)};
         padding: 0 ${pxToRem(5)};
+    `,
+    visitedLinkPurple: css`
+        a:visited:not(:focus) {
+            color: purple; // Mange brukere har etterspurt en visuell markering på at et dokument/lenke har vært åpnet
+        }
     `
 };
 

@@ -10,7 +10,7 @@ import UtbetalingsLamell from './UtbetalingsLamell';
 import { RouteComponentProps } from 'react-router';
 import PleiepengerLamell from './Pleiepenger/PleiepengerLamell';
 import ForeldrepengerLamell from './Foreldrepenger/ForeldrepengerLamell';
-import SaksoversiktMicroFrontend from '../../app/personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
+import SakerEgetVindu from '../../app/personside/infotabs/saksoversikt/SakerEgetVindu';
 import theme from '../../styles/personOversiktTheme';
 import { moss } from '../../mock/person/moss';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -37,7 +37,7 @@ enum Komponenter {
     Visittkort,
     Oppfølging,
     Saksoversikt,
-    SaksoversiktMCF,
+    SaksoversiktEgetVindu,
     Brukerprofil,
     Utbetalinger,
     Pleiepenger,
@@ -81,10 +81,10 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
     switch (props.valgtTab) {
         case Komponenter.Saksoversikt:
             return <SaksoversiktLamell fødselsnummer={props.fnr} />;
-        case Komponenter.SaksoversiktMCF:
+        case Komponenter.SaksoversiktEgetVindu:
             return (
                 <Provider store={store}>
-                    <SaksoversiktMicroFrontend fødselsnummer={props.fnr} />
+                    <SakerEgetVindu fødselsnummer={props.fnr} />
                 </Provider>
             );
         case Komponenter.Brukerprofil:

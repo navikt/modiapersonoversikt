@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { datoSynkende, formatterDatoMedMaanedsnavn } from '../../../../../utils/dateUtils';
+import { datoSynkende, formatterDatoMedMaanedsnavn, formatterDatoTid } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
@@ -10,7 +10,7 @@ import { useAppState } from '../../../../../utils/customHooks';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
-import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
+import { eldsteMelding, meldingstittel, nyesteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 interface Props {
     valgtTraad: Traad;
@@ -88,9 +88,13 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 }
 
 function TraadVisning(props: Props) {
+    const sisteMelding = nyesteMelding(props.valgtTraad);
     return (
         <VisningStyle>
             <Topplinje valgtTraad={props.valgtTraad} />
+            <h3 className="sr-only" aria-live="polite" aria-atomic="false">
+                Valgt melding - {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
+            </h3>
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>
     );
