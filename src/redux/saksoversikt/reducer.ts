@@ -5,26 +5,6 @@ export function saksoversiktReducer(
     action: SaksoversiktActions
 ): SaksoversikState {
     switch (action.type) {
-        case SaksoversiktActionTypes.SetForrigeValgteSakstema:
-            return {
-                ...state,
-                forrigeValgteSakstema: action.sakstema
-            };
-        case SaksoversiktActionTypes.SetVisDokument:
-            return {
-                ...state,
-                visDokument: action.vis
-            };
-        case SaksoversiktActionTypes.SetValgtDokument:
-            return {
-                ...state,
-                valgtDokument: action.dokument
-            };
-        case SaksoversiktActionTypes.SetValgtEnkeltdokument:
-            return {
-                ...state,
-                valgtEnkeltdokument: action.enkeltdokument
-            };
         case SaksoversiktActionTypes.SetViktigÅViteÅpen: {
             return {
                 ...state,

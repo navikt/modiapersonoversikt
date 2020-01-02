@@ -1,10 +1,10 @@
 import * as React from 'react';
 import LenkepanelPersonoversikt from '../../../../../utils/LenkepanelPersonoversikt';
-import { finnMiljoStreng } from '../../../../../utils/url-utils';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
+import { finnMiljoStreng } from '../../../../../utils/urlUtils';
 
 const StyledLenkepanelPersonoversikt = styled(LenkepanelPersonoversikt)`
     margin-bottom: ${theme.margin.layout};
