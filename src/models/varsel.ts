@@ -63,9 +63,11 @@ export enum Varseltype {
     'SyfoOppgave' = 'Sykmelding',
     'SyfoSykepengesoknad' = 'Sykepengesøknad',
     'UR_StoppPrint' = 'Utbetalingsmelding',
-    'NySykmelding' = 'Ny sykmelding',
+    'NySykmelding' = 'Ny oppgave',
     'SyfoplanOpprettetSyk' = 'Oppfølgingsplan påbegynt av leder',
     'SyfoplangodkjenningSyk' = 'Oppfølgingsplan venter godkjenning',
     'SyfoSvarMotebehov' = 'Avventer svar om behov for dialogmøte',
-    'SyfoplanRevideringSyk' = 'Revider oppfølgingsplanen før godkjenning'
+    'SyfoplanRevideringSyk' = 'Venter på revidering fra bruker',
+    'PAM_KONV01' = 'Ny og forbedret CV-løsning',
+    'PAM_SYNLIGHET_01' = 'Informasjon om CV på Ditt NAV'
 }
