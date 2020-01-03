@@ -4,7 +4,7 @@ import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import SaksoversiktLamell from './SaksoversiktLamell';
 import { aremark } from '../../mock/person/aremark';
 import VisittkortStandAlone from './VisittKort';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import BrukerprofilStandalone from './Brukerprofil';
 import UtbetalingsLamell from './UtbetalingsLamell';
 import { RouteComponentProps } from 'react-router';

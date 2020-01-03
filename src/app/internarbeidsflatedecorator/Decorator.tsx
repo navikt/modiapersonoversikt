@@ -13,7 +13,7 @@ import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { hasData } from '../../rest/utils/restResource';
 import { velgEnhetAction } from '../../redux/session/session';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import { useQueryParams } from '../../utils/urlUtils';
 

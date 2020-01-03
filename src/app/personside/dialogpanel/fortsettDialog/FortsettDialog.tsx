@@ -16,7 +16,7 @@ import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import BrukerKanSvare from './BrukerKanSvare';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { FortsettDialogValidator } from './validatorer';
 import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';

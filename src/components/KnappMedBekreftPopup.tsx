@@ -2,7 +2,7 @@ import * as React from 'react';
 import ModalWrapper from 'nav-frontend-modal';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KnappBase, { KnappBaseProps } from 'nav-frontend-knapper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 interface Props extends Partial<Pick<KnappBaseProps, 'type' | 'htmlType'>> {
     onBekreft: () => void;

@@ -5,7 +5,7 @@ import { harDelsvar, nyesteMelding } from '../../utils/meldingerUtils';
 import { datoSynkende } from '../../../../../../utils/dateUtils';
 import KnappBase from 'nav-frontend-knapper';
 import BesvarFlere from './BesvarFlere';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import ModalWrapper from 'nav-frontend-modal';
 import theme from '../../../../../../styles/personOversiktTheme';
 import ErrorBoundary from '../../../../../../components/ErrorBoundary';

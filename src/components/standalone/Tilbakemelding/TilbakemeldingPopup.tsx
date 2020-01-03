@@ -1,5 +1,5 @@
 import React, { useState, FormEvent, useRef } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Innholdstittel, Normaltekst, Element } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 import TilbakemeldingValg from './TilbakemeldingValg';

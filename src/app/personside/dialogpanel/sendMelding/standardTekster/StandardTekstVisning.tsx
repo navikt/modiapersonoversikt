@@ -10,7 +10,7 @@ import { parseTekst } from '../../../../../components/tag-input/tag-input';
 import { FieldState } from '../../../../../utils/hooks/use-field-state';
 import * as StandardTekster from './domain';
 import LocaleVelger from './LocaleVelger';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import useAlwaysInViewport from '../../../../../utils/hooks/use-always-in-viewport';
 import { Rule } from '../../../../../components/tekstomrade/parser/domain';

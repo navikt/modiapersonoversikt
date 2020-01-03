@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Oppgaveliste from '../sendMelding/Oppgaveliste';
 import DialogpanelVelgSak from '../sendMelding/DialogpanelVelgSak';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { FortsettDialogValidator } from './validatorer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { FortsettDialogState } from './FortsettDialogTypes';

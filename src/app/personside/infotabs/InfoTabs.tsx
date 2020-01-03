@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { INFOTABS } from './InfoTabEnum';
 import TabKnapper from './TabKnapper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
 import YtelserContainer from './ytelser/YtelserContainer';
 import { usePaths } from '../../routes/routing';

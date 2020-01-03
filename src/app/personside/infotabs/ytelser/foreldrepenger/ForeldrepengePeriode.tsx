@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepenger';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import DescriptionList, {
     DescriptionListEntries,

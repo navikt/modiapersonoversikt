@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ChangeEvent, ReactNode, useRef } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
 import { useOnMount } from '../../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../../dyplenker';

@@ -1,6 +1,6 @@
 // Ved å bytte ut `tr`/`td` etc med html-elementer mister man tabell-semantikken og styling
 // Div-Table gjennopprettet denne vha role=XXX og display-attributtet, samtidig som man har mer fleksibilitet i tabellen
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { TableStyle } from './StyledTable';
 import theme, { pxToRem } from '../../styles/personOversiktTheme';
 import { TableProps, TableRow, TitleCell } from './Table';

@@ -7,7 +7,7 @@ import {
     Traad
 } from '../../../../../../models/meldinger/meldinger';
 import TraadListeElement from '../TraadListeElement';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { Checkbox } from 'nav-frontend-skjema';
 import EnkeltMelding from '../../traadvisning/Enkeltmelding';

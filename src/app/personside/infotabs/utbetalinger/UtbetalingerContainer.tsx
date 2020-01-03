@@ -3,7 +3,7 @@ import Utbetalinger from './Utbetalinger';
 import { UtbetalingerResponse } from '../../../../models/utbetalinger';
 import Filter from './filter/Filter';
 import theme from '../../../../styles/personOversiktTheme';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';

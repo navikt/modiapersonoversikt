@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ChangeEvent, useState } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import KnappBase from 'nav-frontend-knapper';
 import { Select } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';

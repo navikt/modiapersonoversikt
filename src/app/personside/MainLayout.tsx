@@ -10,7 +10,7 @@ import { HøyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './Respon
 import Kontrollsporsmal from './kontrollsporsmal/Kontrollsporsmal';
 import InfoTabs from './infotabs/InfoTabs';
 import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const Scrollbar = styled.div`
     overflow-y: auto;

@@ -7,7 +7,7 @@ import {
     getUnikForeldrepengerKey
 } from '../../../../models/ytelse/foreldrepenger';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import useBrukersYtelser from '../ytelser/useBrukersYtelser';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Kanal, Varselmelding } from '../../../../../models/varsel';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { formatterDatoMedMaanedsnavn } from '../../../../../utils/dateUtils';
 
 interface Props {

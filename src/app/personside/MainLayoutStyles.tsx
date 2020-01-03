@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import { theme } from '../../styles/personOversiktTheme';
 
 export const LayoutWrapper = styled.div`

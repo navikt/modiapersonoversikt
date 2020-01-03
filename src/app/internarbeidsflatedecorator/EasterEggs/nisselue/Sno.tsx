@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components/macro';
 import { useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/frontendLogger';
 
