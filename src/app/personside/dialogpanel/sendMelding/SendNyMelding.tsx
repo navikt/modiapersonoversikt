@@ -130,7 +130,7 @@ function SendNyMelding(props: Props) {
                             oppgaveliste={state.oppgaveListe}
                             setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
                         />
-                        <StyledAlertStripeInfo>Bruker kan svare</StyledAlertStripeInfo>
+                        <StyledAlertStripeInfo>Bruker kan svare, og får varsel</StyledAlertStripeInfo>
                     </UnmountClosed>
                 </Margin>
                 <Feilmelding sendNyMeldingPanelState={props.sendNyMeldingPanelState.type} />
