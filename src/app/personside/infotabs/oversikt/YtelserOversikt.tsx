@@ -18,7 +18,6 @@ import { ytelserTest } from '../dyplenkeTest/utils';
 import { formaterDato } from '../../../../utils/stringFormatting';
 import { ReactNode, useEffect } from 'react';
 import { usePrevious } from '../../../../utils/customHooks';
-import { datoSynkende } from '../../../../utils/dateUtils';
 
 const YtelserStyle = styled.div`
     > *:not(:first-child) {
@@ -89,10 +88,6 @@ function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet }) {
 function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
     const dyplenker = useInfotabsDyplenker();
 
-    const idDato = formaterDato(getSykepengerIdDato(props.sykepenger));
-    const tomDatoForSykmelding = formaterDato(
-        props.sykepenger.sykmeldinger.sort(datoSynkende(it => it.sykmeldt.til))[0].sykmeldt.til
-    );
     return (
         <VisMerKnapp
             linkTo={dyplenker.ytelser.link(getUnikSykepengerKey(props.sykepenger))}
@@ -100,10 +95,8 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
             ariaDescription="Vis sykepenger"
             className={ytelserTest.oversikt}
         >
+            <Normaltekst>ID dato: {formaterDato(getSykepengerIdDato(props.sykepenger))}</Normaltekst>
             <Element>Sykepenger</Element>
-            <Normaltekst>
-                ID dato: {idDato} - Sykmeldt til: {tomDatoForSykmelding}
-            </Normaltekst>
             <Normaltekst>
                 100% sykemeldt - Maksdato{' '}
                 {props.sykepenger.slutt ? formaterDato(props.sykepenger.slutt) : 'ikke tilgjenglig'}
@@ -121,8 +114,8 @@ function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet
             ariaDescription="Vis foreldrepenger"
             className={ytelserTest.oversikt}
         >
-            <Element>Foreldrepenger</Element>
             <Normaltekst>ID dato: {formaterDato(getForeldepengerIdDato(props.foreldrepenger))}</Normaltekst>
+            <Element>Foreldrepenger</Element>
             <Normaltekst>
                 {props.foreldrepenger.dekningsgrad}% dekningsgrad - Maksdato{' '}
                 {props.foreldrepenger.slutt ? formaterDato(props.foreldrepenger.slutt) : 'ikke tilgjengelig'}
