@@ -38,6 +38,7 @@ export enum Varseltype {
     'DittNAV_000008' = 'Aktivitetsplan - Oppgave',
     'DittNAV_000010' = 'Dokument - Årsoppgave',
     'DittNAV_000011' = 'Dokument - Endringsoppgave',
+    'DittNAV_000001_temp' = 'Innkalling til møte med NAV',
     'EessiPenVarsleBrukerUfore' = 'EØS- Opplysninger',
     'ForeldrepengerSoknadsvarsel' = 'Foreldrepengesøknad',
     'GodkjentAMO' = 'Aktivitetsplan - Godkjent AMO',
@@ -66,5 +67,9 @@ export enum Varseltype {
     'NySykmelding' = 'Ny sykmelding',
     'SyfoplanOpprettetSyk' = 'Oppfølgingsplan påbegynt av leder',
     'SyfoplangodkjenningSyk' = 'Oppfølgingsplan venter godkjenning',
-    'SyfoSvarMotebehov' = 'Avventer svar om behov for dialogmøte'
+    'SyfoSvarMotebehov' = 'Avventer svar om behov for dialogmøte',
+    'SyfoplanRevideringSyk' = 'Venter på revidering fra bruker',
+    'SyfoMerVeiledning' = 'Snart slutt på sykepenger',
+    'PAM_KONV01' = 'Ny og forbedret CV-løsning',
+    'PAM_SYNLIGHET_01' = 'Informasjon om CV på Ditt NAV'
 }
