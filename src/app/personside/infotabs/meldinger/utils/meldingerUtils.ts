@@ -185,5 +185,5 @@ export function erSammefritekstSomNyesteMeldingITraad(fritekst: string, traad?: 
     }
     const fritekstFraNyesteMeldingITraad = removeWhiteSpaces(nyesteMelding(traad).fritekst.toLowerCase());
     const fritekstFraMelding = removeWhiteSpaces(fritekst.toLowerCase());
-    return fritekstFraNyesteMeldingITraad === fritekstFraMelding;
+    return fritekstFraNyesteMeldingITraad.includes(fritekstFraMelding);
 }
