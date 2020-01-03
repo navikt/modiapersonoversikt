@@ -21,7 +21,7 @@ const Style = styled.div`
 function BrukerKanSvare(props: Props) {
     return (
         <Style>
-            <AlertStripeInfo>Bruker kan svare</AlertStripeInfo>
+            <AlertStripeInfo>Bruker kan svare, og får varsel</AlertStripeInfo>
             <Oppgaveliste
                 oppgaveliste={props.formState.oppgaveListe}
                 setOppgaveliste={oppgaveliste => props.updateFormState({ oppgaveListe: oppgaveliste })}
