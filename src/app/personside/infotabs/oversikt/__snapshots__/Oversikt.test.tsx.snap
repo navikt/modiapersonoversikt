@@ -1004,15 +1004,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
           >
             <div>
               <p
+                className="typo-element"
+              >
+                Sykepenger
+              </p>
+              <p
                 className="typo-normal"
               >
                 ID dato: 
                 06.02.2019
-              </p>
-              <p
-                className="typo-element"
-              >
-                Sykepenger
+                 - Sykmeldt til: 
+                11.05.2014
               </p>
               <p
                 className="typo-normal"
