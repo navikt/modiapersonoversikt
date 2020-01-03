@@ -33,8 +33,11 @@ export function usePrinter(): Printer {
 
     useEffect(() => {
         if (print) {
+            const title = document.title;
+            document.title = `Utskrift`;
             setTimeout(() => {
                 window.print();
+                document.title = title;
                 setPrint(false);
             }, 0);
         }
