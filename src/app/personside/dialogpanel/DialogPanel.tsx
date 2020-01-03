@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import { useAppState } from '../../../utils/customHooks';

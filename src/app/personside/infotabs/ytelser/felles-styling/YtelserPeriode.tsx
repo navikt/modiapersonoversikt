@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Element } from 'nav-frontend-typografi';
 import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 

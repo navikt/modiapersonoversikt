@@ -1,7 +1,7 @@
 import React, { FormEvent, ReactNode, useEffect, useState } from 'react';
 import { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
 import useFieldState, { FieldState } from '../../../../../utils/hooks/use-field-state';
 import { erGyldigValg, sokEtterTekster } from './sokUtils';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PersonsokSkjemaProps } from './PersonsokSkjema';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Input } from 'nav-frontend-skjema';
 import { ChangeEvent } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';

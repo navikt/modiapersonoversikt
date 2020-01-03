@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Foreldrepengerettighet, ForeldrepengerResponse } from '../../../models/ytelse/foreldrepenger';
 import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';

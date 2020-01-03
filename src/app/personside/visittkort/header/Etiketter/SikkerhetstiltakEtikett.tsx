@@ -1,7 +1,7 @@
 import * as React from 'react';
 import EtikettBase from 'nav-frontend-etiketter';
 import theme from '../../../../../styles/personOversiktTheme';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components/macro';
 import { useFocusOnMount } from '../../../../../utils/customHooks';
 import { Sikkerhetstiltak } from '../../../../../models/sikkerhetstiltak';
 

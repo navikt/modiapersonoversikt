@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ViktigÅViteDAGInnhold } from './DAGInnhold';
 import { ViktigÅViteAAPInnhold } from './AAPInnhold';
 import { ViktigÅViteINDInnhold } from './INDInnhold';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { UnmountClosed } from 'react-collapse';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Varsel as VarselModell } from '../../../../models/varsel';
 import { datoSynkende } from '../../../../utils/dateUtils';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import Varsel from './Varsel';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';

@@ -14,7 +14,7 @@ import EtikettGrå from '../../../../../../components/EtikettGrå';
 import VisittkortElement from '../../VisittkortElement';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import LocationPin from '../../../../../../svg/LocationPin';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { hentNavn } from '../../../utils';
 
 interface Props {

@@ -364,7 +364,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </button>
       </div>
       <a
-        className="c7"
+        className="-a c7"
         download={true}
         href="/dialog/10108000398/sg838exr/print"
       >

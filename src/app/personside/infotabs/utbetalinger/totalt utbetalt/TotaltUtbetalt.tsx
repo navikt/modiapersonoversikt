@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalinger';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import {

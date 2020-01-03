@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { Bold } from '../common-styled-components';
 import { removeWhitespace } from '../../utils/string-utils';

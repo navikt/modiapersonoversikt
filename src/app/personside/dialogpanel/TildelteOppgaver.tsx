@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useClickOutside, useRestResource } from '../../../utils/customHooks';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Knapp } from 'nav-frontend-knapper';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { loggError } from '../../../utils/frontendLogger';

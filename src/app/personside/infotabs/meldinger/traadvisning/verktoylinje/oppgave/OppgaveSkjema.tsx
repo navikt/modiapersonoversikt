@@ -9,7 +9,7 @@ import {
 import { OppgaveSkjemaElementer } from './OppgaveSkjemaElementer';
 import { lagOppgaveRequest } from './byggRequest';
 import { OppgaveProps, OppgaveSkjemaForm, OppgaveSkjemaProps } from './oppgaveInterfaces';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import { cache, createCacheKey } from '@nutgaard/use-fetch';

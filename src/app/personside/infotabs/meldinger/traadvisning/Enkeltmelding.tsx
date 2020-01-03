@@ -13,7 +13,7 @@ import {
 } from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Tekstomrade, {
     createDynamicHighligtingRule,
     LinkRule,

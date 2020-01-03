@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select as NavFrontendSelect } from 'nav-frontend-skjema';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import * as Domain from './domain';
 import { FieldState } from '../../../../../utils/hooks/use-field-state';
 import { localeString } from './domain';

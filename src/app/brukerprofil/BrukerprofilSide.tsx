@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { paths } from '../routes/routing';
 import { erDød, Person, PersonRespons } from '../../models/person/person';
 import { VeilederRoller } from '../../models/veilederRoller';

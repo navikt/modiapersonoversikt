@@ -1,6 +1,6 @@
 import React from 'react';
 import NavFrontendModal from 'nav-frontend-modal';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import StandardTekstSok from './StandardTekstSok';
 import SvgIkon from './StandardTekstIkon';
 import { Hovedknapp } from 'nav-frontend-knapper';
