@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import { theme } from '../styles/personOversiktTheme';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from './FillCenterAndFadeIn';

@@ -12,7 +12,7 @@ import { AppState } from '../../../../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { oppdaterFilter } from '../../../../../redux/utbetalinger/actions';
 import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 import { isValidDate } from '../../../../../utils/dateUtils';

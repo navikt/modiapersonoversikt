@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { Select } from 'nav-frontend-skjema';
 import { LenkeKnapp } from '../../components/common-styled-components';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { usePrevious } from '../customHooks';
 
 interface PagineringsData<T> {

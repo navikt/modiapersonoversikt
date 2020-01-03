@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import OppfolgingDatoPanel from './OppfolgingDatoKomponent';
 import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';

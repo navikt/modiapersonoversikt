@@ -3,7 +3,7 @@ import * as React from 'react';
 import { formatterRiktigAdresse } from '../../personside/visittkort/body/kontaktinformasjon/adresse/Adresse';
 import { Person } from '../../../models/person/person';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const AdresseWrapper = styled.div`
     padding-top: 1rem;

@@ -5,7 +5,7 @@ import VelgSak from '../../infotabs/meldinger/traadvisning/verktoylinje/journalf
 import { formatterDatoMedMaanedsnavn } from '../../../../utils/dateUtils';
 import { SkjemaGruppe } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { NedChevron, OppChevron } from 'nav-frontend-chevron';
 import { cache, createCacheKey } from '@nutgaard/use-fetch';

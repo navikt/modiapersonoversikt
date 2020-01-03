@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';

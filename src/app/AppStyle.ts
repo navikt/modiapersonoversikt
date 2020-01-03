@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { pxToRem, theme } from '../styles/personOversiktTheme';
 
 const AppStyle = styled.div`

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import TraadListe from './traadliste/TraadListe';

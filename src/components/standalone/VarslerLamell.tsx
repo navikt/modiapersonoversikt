@@ -9,7 +9,7 @@ import VarslerContainer from '../../app/personside/infotabs/varsel/VarslerContai
 import reducers from '../../redux/reducers';
 import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 interface Props {
     fødselsnummer: string;

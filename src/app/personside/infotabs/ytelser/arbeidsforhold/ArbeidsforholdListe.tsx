@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import ArbeidsForholdListeElement from './ArbeidsForholdListeElement';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import KnappBase from 'nav-frontend-knapper';
 import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';

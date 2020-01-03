@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import classNames from 'classnames';
 import theme from '../../styles/personOversiktTheme';
 import * as React from 'react';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Undertittel } from 'nav-frontend-typografi';
 import { Person } from '../../../models/person/person';
 import { KodeverkResponse } from '../../../models/kodeverk';

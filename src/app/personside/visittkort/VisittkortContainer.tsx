@@ -6,7 +6,7 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 import HandleVisittkortHotkeys from './HandleVisittkortHotkeys';
 import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../styles/personOversiktTheme';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';

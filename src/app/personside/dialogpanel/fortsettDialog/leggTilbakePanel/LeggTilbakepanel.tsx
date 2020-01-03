@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Radio, SkjemaGruppe, Textarea } from 'nav-frontend-skjema';
 import { UnmountClosed } from 'react-collapse';
 import Temavelger from '../../component/Temavelger';

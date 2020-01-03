@@ -21,7 +21,7 @@ import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal
 import { erIE11 } from '../utils/erNyPersonoversikt';
 import DemoBanner from '../components/DemoBanner';
 import VelgEnhet from './routes/VelgEnhet';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import SakerEgetVindu from './personside/infotabs/saksoversikt/SakerEgetVindu';
 
 if (mockEnabled) {

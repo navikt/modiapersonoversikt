@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Melding, Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import EnkeltMelding from './EnkeltMelding';
 import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';

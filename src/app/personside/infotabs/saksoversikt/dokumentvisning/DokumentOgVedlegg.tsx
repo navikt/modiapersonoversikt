@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { TabsPure } from 'nav-frontend-tabs';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { getSaksdokumentUrl } from './getSaksdokumentUrl';
 import { Undertittel } from 'nav-frontend-typografi';

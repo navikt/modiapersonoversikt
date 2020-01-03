@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import SakstemaListeElement from '../saksoversikt/sakstemaliste/SakstemaListeElement';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';

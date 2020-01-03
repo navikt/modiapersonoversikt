@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import BrukerProfilDatovelger, { tilPeriode } from '../../../../components/forms/BrukerProfilDatovelger';
 import { Input } from 'nav-frontend-skjema';
 import { Endringsinfo, Utlandsadresse } from '../../../../models/personadresse';

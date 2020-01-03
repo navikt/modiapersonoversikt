@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Pleiepengerettighet } from '../../../../../../models/ytelse/pleiepenger';
 import ArbeidsForholdListeElement from './ArbeidsForholdListeElement';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../../styles/personOversiktTheme';
 import KnappBase from 'nav-frontend-knapper';
 import { useAppState } from '../../../../../../utils/customHooks';

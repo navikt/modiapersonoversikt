@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import theme from '../../../../styles/personOversiktTheme';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';

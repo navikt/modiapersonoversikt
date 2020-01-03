@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Input } from 'nav-frontend-skjema';
 import { useHistory } from 'react-router';
 import { setNyBrukerIPath } from '../routes/routing';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 
 const Form = styled.form`
