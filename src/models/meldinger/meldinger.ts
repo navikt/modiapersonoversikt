@@ -29,6 +29,7 @@ export interface Melding {
     kontorsperretAv?: Saksbehandler;
     markertSomFeilsendtAv?: Saksbehandler;
     erDokumentMelding: boolean;
+    ferdigstiltUtenSvarDato?: string;
 }
 
 export interface Saksbehandler {

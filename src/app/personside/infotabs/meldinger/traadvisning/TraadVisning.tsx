@@ -49,7 +49,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         return (
             <AlertStripeInfo>
                 Henvendelsen er avsluttet uten å svare bruker av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
-                {melding.ferdigstiltDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltDato)}
+                {melding.ferdigstiltUtenSvarDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltUtenSvarDato)}
             </AlertStripeInfo>
         );
     }
