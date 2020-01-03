@@ -641,7 +641,7 @@ exports[`viser dialogpanel 1`] = `
           <div
             className="typo-normal alertstripe__tekst"
           >
-            Bruker kan svare
+            Bruker kan svare, og får varsel
           </div>
         </div>
       </div>
