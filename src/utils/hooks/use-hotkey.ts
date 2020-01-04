@@ -1,4 +1,5 @@
 import { DependencyList, useCallback, useEffect } from 'react';
+import { loggEvent } from '../frontendLogger';
 
 type KeyDescription = { char: string; altKey?: boolean; ctrlKey?: boolean; metaKey?: boolean; shiftKey?: boolean };
 function toKeyDescription(value: string | KeyDescription): KeyDescription {
@@ -25,6 +26,7 @@ export default function useHotkey(
     key: string | KeyDescription,
     action: () => void,
     deps: DependencyList,
+    loggLocation: string,
     element: HTMLElement = document.body
 ) {
     const stableAction = useCallback(action, deps);
@@ -34,10 +36,11 @@ export default function useHotkey(
             if (matches(keyDescription, event)) {
                 event.preventDefault();
                 event.stopPropagation();
+                loggEvent('Hurtigtast', loggLocation, { type: 'Alt + ' + keyDescription.char });
                 stableAction();
             }
         },
-        [keyDescription, stableAction]
+        [keyDescription, stableAction, loggLocation]
     );
 
     useEffect(() => {
