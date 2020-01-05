@@ -20,25 +20,25 @@ function HandleInfotabsHotkeys(props: Props) {
             }
             const key = event.code ? event.code.replace('Key', '').toLowerCase() : event.key;
             if (key === 'u') {
-                loggEvent('Hurtigtast', 'Utbetalinger', { type: 'Alt + U' });
+                loggEvent('Utbetalinger', 'Hurtigtast', { type: 'Alt + U' });
                 props.history.push(paths.utbetlainger);
             } else if (key === 'v') {
-                loggEvent('Hurtigtast', 'Varsler', { type: 'Alt + V' });
+                loggEvent('Varsler', 'Hurtigtast', { type: 'Alt + V' });
                 props.history.push(paths.varsler);
             } else if (key === 't') {
-                loggEvent('Hurtigtast', 'Oppfølging', { type: 'Alt + T' });
+                loggEvent('Oppfølging', 'Hurtigtast', { type: 'Alt + T' });
                 props.history.push(paths.oppfolging);
             } else if (key === 'o') {
-                loggEvent('Hurtigtast', 'Oversikt', { type: 'Alt + O' });
+                loggEvent('Oversikt', 'Hurtigtast', { type: 'Alt + O' });
                 props.history.push(paths.oversikt);
             } else if (key === 'y') {
-                loggEvent('Hurtigtast', 'Ytelser', { type: 'Alt + Y' });
+                loggEvent('Ytelser', 'Hurtigtast', { type: 'Alt + Y' });
                 props.history.push(paths.ytelser);
             } else if (key === 'm') {
-                loggEvent('Hurtigtast', 'Meldinger', { type: 'Alt + M' });
+                loggEvent('Meldinger', 'Hurtigtast', { type: 'Alt + M' });
                 props.history.push(paths.meldinger);
             } else if (key === 's') {
-                loggEvent('Hurtigtast', 'Saker', { type: 'Alt + S' });
+                loggEvent('Saker', 'Hurtigtast', { type: 'Alt + S' });
                 props.history.push(paths.saker);
             }
             fokusContext();
