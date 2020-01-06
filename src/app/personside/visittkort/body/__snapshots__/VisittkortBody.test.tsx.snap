@@ -1399,7 +1399,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
     >
       <a
         className="lenke"
-        href="/modiabrukerdialog/person/10108000398#!brukerprofil"
+        href="https://person-forvalter.nais.preprod.local/?aktoerId=10108000398"
+        rel="noreferrer noopener"
+        target="_blank"
       >
         <span
           className="typo-normal"
