@@ -2,12 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { loggEvent } from '../../utils/frontendLogger';
 import { useOnMount } from '../../utils/customHooks';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import useUrlNyPersonforvalter from './useUrlNyPersonforvalter';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import LazySpinner from '../../components/LazySpinner';
 
 export const NyBrukerprofilStyling = styled.div`
     display: flex;
@@ -22,12 +19,7 @@ export const NyBrukerprofilStyling = styled.div`
 
 function BrukerprofilSide() {
     useOnMount(() => loggEvent('Sidevisning', 'Brukerprofil'));
-    const nyPersonforvalter = useFeatureToggle(FeatureToggles.NyPersonforvalter);
     const urlNyPersonForvalter = useUrlNyPersonforvalter();
-
-    if (nyPersonforvalter.pending) {
-        return <LazySpinner />;
-    }
 
     return (
         <NyBrukerprofilStyling>
