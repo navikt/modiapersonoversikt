@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactNode, useEffect, useState } from 'react';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import { Omit } from '../utils/types';
+import { CenteredLazySpinner } from './LazySpinner';
 
 interface Props
     extends Omit<React.DetailedHTMLProps<React.ObjectHTMLAttributes<HTMLObjectElement>, HTMLObjectElement>, 'onError'> {
@@ -37,7 +37,7 @@ export function ObjectHttpFeilHandtering({ url, onError, children, ...rest }: Pr
     }, [url, setBlobUrl, onError, setError]);
 
     if (blobUrl === '') {
-        return <NavFrontendSpinner />;
+        return <CenteredLazySpinner />;
     } else if (isError) {
         return <>{children}</>;
     }
