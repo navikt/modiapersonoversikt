@@ -12,6 +12,7 @@ import { useCallback, useMemo } from 'react';
 export const paths = {
     personUri: '/modiapersonoversikt/person',
     sakerEgetVindu: `/modiapersonoversikt/saker`,
+    saksdokumentEgetVindu: `/modiapersonoversikt/dokument`,
     brukerprofil: '/modiapersonoversikt/brukerprofil',
     basePath: '/modiapersonoversikt',
     standaloneKomponenter: '/modiapersonoversikt/components',

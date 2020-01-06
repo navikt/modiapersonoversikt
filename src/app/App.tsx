@@ -22,6 +22,7 @@ import { erIE11 } from '../utils/erNyPersonoversikt';
 import DemoBanner from '../components/DemoBanner';
 import VelgEnhet from './routes/VelgEnhet';
 import SakerEgetVindu from './personside/infotabs/saksoversikt/SakerEgetVindu';
+import SaksDokumentEgetVindu from './personside/infotabs/saksoversikt/SaksDokumentIEgetVindu';
 
 if (mockEnabled) {
     setupMock();
@@ -69,6 +70,7 @@ function PersonoverisktProvider() {
                         path={`${paths.sakerEgetVindu}/:fodselsnummer/`}
                         render={routeProps => <SakerEgetVindu fødselsnummer={routeProps.match.params.fodselsnummer} />}
                     />
+                    <Route path={`${paths.saksdokumentEgetVindu}/`} render={routeProps => <SaksDokumentEgetVindu />} />
                     <Route path={''} component={Personoversikt} />
                 </Switch>
             </AppStyle>
