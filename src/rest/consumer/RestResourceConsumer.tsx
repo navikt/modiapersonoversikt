@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RestEndepunkter } from '../../redux/restReducers/restReducers';
 import { AppState } from '../../redux/reducers';
-import { isFailed, isNotStarted, RestResource, isLoaded, hasData } from '../utils/restResource';
+import { isFailed, isNotStarted, RestResource, isLoaded, hasData, isForbidden } from '../utils/restResource';
 import LazySpinner from '../../components/LazySpinner';
 import { ReactNode } from 'react';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
@@ -13,13 +13,14 @@ export type Props<T> = {
     returnOnError?: JSX.Element;
     returnOnPending?: JSX.Element;
     returnOnNotFound?: JSX.Element;
+    returnForbidden?: JSX.Element;
     spinnerSize?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 };
 
 function RestResourceConsumer<T>(props: Props<T>) {
     const dispatch = useDispatch();
     const restResource = useSelector((state: AppState) => props.getResource(state.restResources));
-    const { spinnerSize, returnOnPending, returnOnError, returnOnNotFound, children } = props;
+    const { spinnerSize, returnOnPending, returnOnError, returnOnNotFound, returnForbidden, children } = props;
     if (isNotStarted(restResource)) {
         dispatch(restResource.actions.fetch);
     }
@@ -31,6 +32,9 @@ function RestResourceConsumer<T>(props: Props<T>) {
     }
     if (!hasData(restResource)) {
         return returnOnNotFound || <AlertStripeAdvarsel>Fant ingen data</AlertStripeAdvarsel>;
+    }
+    if (!isForbidden(restResource)) {
+        return returnForbidden || <AlertStripeAdvarsel>Avvist tilgang til informasjon</AlertStripeAdvarsel>;
     }
     return <>{children(restResource.data)}</>;
 }

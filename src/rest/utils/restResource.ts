@@ -20,6 +20,7 @@ export interface ActionTypes {
     FAILED: string;
     INITIALIZE: string;
     SET_DATA: string;
+    FORBIDDEN: string;
 }
 
 type ThunkFetcher<T> = (dispatch: AsyncDispatch, getState: () => AppState) => Promise<T>;
@@ -63,6 +64,10 @@ export interface Failed<T> extends RestResource<T> {
     status: STATUS.FAILED;
     error: string;
 }
+export interface Forbidden<T> extends RestResource<T> {
+    status: STATUS.FORBIDDEN;
+    error: string;
+}
 
 export type RestResourceStates<T> =
     | Success<T>
@@ -71,6 +76,7 @@ export type RestResourceStates<T> =
     | NotStarted<T>
     | Loading<T>
     | Failed<T>
+    | Forbidden<T>
     | RestResource<T>;
 
 export type HasData<T> = Success<T> | Reloading<T>;
@@ -108,6 +114,9 @@ export function isLoading<T>(restResource: RestResource<T>): restResource is Loa
 export function isFailed<T>(restResource: RestResource<T>): restResource is Failed<T> {
     return restResource.status === STATUS.FAILED;
 }
+export function isForbidden<T>(restResource: RestResource<T>): restResource is Forbidden<T> {
+    return restResource.status === STATUS.FORBIDDEN;
+}
 
 function getActionTypes(resourceNavn: string): ActionTypes {
     const navnUppercase = resourceNavn.toUpperCase() + ' / ';
@@ -118,7 +127,8 @@ function getActionTypes(resourceNavn: string): ActionTypes {
         NOTFOUND: navnUppercase + 'NOT_FOUND',
         FAILED: navnUppercase + 'FAILED',
         INITIALIZE: navnUppercase + 'INITIALIZE',
-        SET_DATA: navnUppercase + 'SET_DATA'
+        SET_DATA: navnUppercase + 'SET_DATA',
+        FORBIDDEN: navnUppercase + 'FORBIDDEN'
     };
 }
 
