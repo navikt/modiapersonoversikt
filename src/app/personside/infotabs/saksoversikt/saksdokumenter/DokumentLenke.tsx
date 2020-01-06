@@ -7,6 +7,9 @@ import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { paths } from '../../../../routes/routing';
 import { useFødselsnummer } from '../../../../../utils/customHooks';
 import { getSaksdokumentUrl } from '../dokumentvisning/getSaksdokumentUrl';
+import IfFeatureToggleOff from '../../../../../components/featureToggle/IfFeatureToggleOff';
+import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
+import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
 
 interface Props {
     dokument: Dokument;
@@ -27,30 +30,31 @@ function DokumentLenke(props: Props) {
         props.journalPost.journalpostId,
         props.dokument.dokumentreferanse
     );
+    if (!props.kanVises) {
+        return <Element>{dokumentTekst(props.dokument)}</Element>;
+    }
+
     return (
-        <li>
-            {!props.kanVises ? (
-                <Element>{dokumentTekst(props.dokument)}</Element>
-            ) : (
-                <div>
-                    <Link
-                        to={dyplenker.saker.link(props.valgtSakstema, props.dokument)}
-                        aria-disabled={!props.dokument.kanVises}
-                        className="lenke typo-element"
-                    >
-                        {dokumentTekst(props.dokument)}
-                    </Link>
-                    <a
-                        href={`${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`}
-                        target={'_blank'}
-                        className="lenke typo-element"
-                    >
-                        {' '}
-                        Åpne{' '}
-                    </a>
-                </div>
-            )}
-        </li>
+        <>
+            <IfFeatureToggleOff toggleID={FeatureToggles.ApneSaksdokumentiEgetVindu}>
+                <Link
+                    to={dyplenker.saker.link(props.valgtSakstema, props.dokument)}
+                    aria-disabled={!props.dokument.kanVises}
+                    className="lenke typo-element"
+                >
+                    {dokumentTekst(props.dokument)}
+                </Link>
+            </IfFeatureToggleOff>
+            <IfFeatureToggleOn toggleID={FeatureToggles.ApneSaksdokumentiEgetVindu}>
+                <a
+                    href={`${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`}
+                    target={'_blank'}
+                    className="lenke typo-element"
+                >
+                    {dokumentTekst(props.dokument)}
+                </a>
+            </IfFeatureToggleOn>
+        </>
     );
 }
 

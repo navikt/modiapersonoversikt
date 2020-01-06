@@ -183,13 +183,14 @@ function JournalpostLiseElement(props: Props) {
             <Normaltekst>Dokumentet har {journalpost.vedlegg.length} vedlegg:</Normaltekst>
             <ul ref={vedleggLinkRef}>
                 {journalpost.vedlegg.map(vedlegg => (
-                    <DokumentLenke
-                        key={vedlegg.dokumentreferanse + journalpost.journalpostId}
-                        dokument={vedlegg}
-                        valgtSakstema={props.valgtSakstema}
-                        kanVises={!vedlegg.logiskDokument}
-                        journalPost={journalpost}
-                    />
+                    <li key={vedlegg.dokumentreferanse + journalpost.journalpostId}>
+                        <DokumentLenke
+                            dokument={vedlegg}
+                            valgtSakstema={props.valgtSakstema}
+                            kanVises={!vedlegg.logiskDokument}
+                            journalPost={journalpost}
+                        />
+                    </li>
                 ))}
             </ul>
         </VedleggStyle>

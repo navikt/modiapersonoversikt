@@ -20,7 +20,6 @@ const Sentring = styled.div`
 
 function SaksDokumentEgetVindu(props: Props) {
     const queryParams = useQueryParams<{ dokumenturl?: string }>();
-    console.log(queryParams);
     useOnMount(() => {
         loggEvent('Sidevisning', 'SaksDokumentEgetVindu');
     });
