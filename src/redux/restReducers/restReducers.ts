@@ -6,15 +6,10 @@ import kontaktinformasjonReducer from './kontaktinformasjon';
 import egenAnsattReducer from './egenansatt';
 import vergemalReducer from './vergemal';
 import baseUrlReducer from './baseurls';
-import endreNavnReducer from './brukerprofil/endreNavn';
-import endrekontonummerReducer from './brukerprofil/endreKontonummer';
-import endreTilrettelagtKommunikasjonReducer from './brukerprofil/endreTilrettelagtKommunikasjon';
 import veilederRollerReducer from './veilederRoller';
 import retningsnummereReducer from './kodeverk/retningsnummereReducer';
 import tilrettelagtKommunikasjonKodeverkReducer from './kodeverk/tilrettelagtKommunikasjonReducer';
-import endreKontaktinformasjonReducer from './brukerprofil/kontaktinformasjon';
 import valutaKodeverkReducer from './kodeverk/valutaKodeverk';
-import endreAdresseReducer from './brukerprofil/endreAdresseReducer';
 import landKodeverkReducer from './kodeverk/landKodeverk';
 import postnummerReducer from './kodeverk/postnummerReducer';
 import utbetalingerReducer from './utbetalinger';
@@ -51,11 +46,6 @@ import { PostResource } from '../../rest/utils/postResource';
 import { GsakTema, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
-import { EndreNavnRequest } from './brukerprofil/endreNavnRequest';
-import { EndreKontonummerRequest } from './brukerprofil/endreKontonummerRequest';
-import { EndreTilrettelagtKommunikasjonrequest } from './brukerprofil/endreTilrettelagtKommunikasjonrequest';
-import { EndreKontaktinformasjonRequest } from './brukerprofil/endreKontaktinformasjonRequest';
-import { EndreAdresseRequest } from './brukerprofil/adresse-api';
 import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
 import slaaSammen from './meldinger/slaaSammen';
@@ -74,15 +64,10 @@ export interface RestEndepunkter {
     egenAnsatt: RestResource<Egenansatt>;
     vergemal: RestResource<Vergemal>;
     baseUrl: RestResource<BaseUrlsResponse>;
-    endreNavn: PostResource<EndreNavnRequest>;
-    endreKontonummer: PostResource<EndreKontonummerRequest>;
-    endreTilrettelagtKommunikasjon: PostResource<EndreTilrettelagtKommunikasjonrequest>;
     veilederRoller: RestResource<VeilederRoller>;
     retningsnummer: RestResource<KodeverkResponse>;
     tilrettelagtKommunikasjonKodeverk: RestResource<KodeverkResponse>;
-    endreKontaktinformasjon: PostResource<EndreKontaktinformasjonRequest>;
     postnummer: RestResource<KodeverkResponse>;
-    endreAdresse: PostResource<EndreAdresseRequest>;
     valuta: RestResource<KodeverkResponse>;
     land: RestResource<KodeverkResponse>;
     utbetalinger: RestResource<UtbetalingerResponse>;
@@ -113,15 +98,10 @@ export default combineResettableReducers<RestEndepunkter>(
         egenAnsatt: egenAnsattReducer,
         vergemal: vergemalReducer,
         baseUrl: baseUrlReducer,
-        endreKontonummer: endrekontonummerReducer,
-        endreNavn: endreNavnReducer,
-        endreTilrettelagtKommunikasjon: endreTilrettelagtKommunikasjonReducer,
         veilederRoller: veilederRollerReducer,
         retningsnummer: retningsnummereReducer,
         tilrettelagtKommunikasjonKodeverk: tilrettelagtKommunikasjonKodeverkReducer,
-        endreKontaktinformasjon: endreKontaktinformasjonReducer,
         postnummer: postnummerReducer,
-        endreAdresse: endreAdresseReducer,
         valuta: valutaKodeverkReducer,
         land: landKodeverkReducer,
         utbetalinger: utbetalingerReducer,
