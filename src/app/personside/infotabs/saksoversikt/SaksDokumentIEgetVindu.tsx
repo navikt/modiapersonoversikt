@@ -5,6 +5,11 @@ import DokumentVisning from './dokumentvisning/SaksDokumentVisning';
 import { useQueryParams } from '../../../../utils/urlUtils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
+import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
+
+interface Props {
+    fødselsnummer: string;
+}
 
 const Sentring = styled.div`
     display: flex;
@@ -13,7 +18,7 @@ const Sentring = styled.div`
     height: 100%;
 `;
 
-function SaksDokumentEgetVindu() {
+function SaksDokumentEgetVindu(props: Props) {
     const queryParams = useQueryParams<{ dokumenturl?: string }>();
     console.log(queryParams);
     useOnMount(() => {
@@ -27,7 +32,12 @@ function SaksDokumentEgetVindu() {
             </Sentring>
         );
     }
-    return <DokumentVisning url={queryParams.dokumenturl} />;
+    return (
+        <>
+            <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
+            <DokumentVisning url={queryParams.dokumenturl} />
+        </>
+    );
 }
 
 export default SaksDokumentEgetVindu;
