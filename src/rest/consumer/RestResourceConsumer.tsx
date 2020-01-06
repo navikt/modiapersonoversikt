@@ -33,7 +33,7 @@ function RestResourceConsumer<T>(props: Props<T>) {
     if (!hasData(restResource)) {
         return returnOnNotFound || <AlertStripeAdvarsel>Fant ingen data</AlertStripeAdvarsel>;
     }
-    if (!isForbidden(restResource)) {
+    if (isForbidden(restResource)) {
         return returnForbidden || <AlertStripeAdvarsel>Avvist tilgang til informasjon</AlertStripeAdvarsel>;
     }
     return <>{children(restResource.data)}</>;
