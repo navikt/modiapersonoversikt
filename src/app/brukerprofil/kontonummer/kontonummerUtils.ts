@@ -1,19 +1,3 @@
-import { BankAdresse, Bankkonto, Person } from '../../../models/person/person';
-import { Kodeverk } from '../../../models/kodeverk';
-import { formaterDato, formatNumber } from '../../../utils/stringFormatting';
-
-export function formaterNorskKontonummer(kontonummer: string): string {
-    const rensetKontonummer: string = removeWhitespaceAndDot(kontonummer);
-    if (rensetKontonummer.length >= 11) {
-        return formatNumber('#### ## #####', rensetKontonummer);
-    }
-    return kontonummer;
-}
-
-export function erBrukersKontonummerUtenlandsk(person: Person) {
-    return person.bankkonto && person.bankkonto.landkode && person.bankkonto.landkode.kodeRef !== 'NOR';
-}
-
 export function validerKontonummer(kontonummer?: string) {
     if (!kontonummer) {
         return false;
@@ -45,49 +29,3 @@ export function mod11FraTallMedKontrollsiffer(kontonummer: string) {
     const result = 11 - (sumForMod % 11);
     return result === 11 ? 0 : result;
 }
-
-export function hentEndringstekst(konto: Bankkonto | null): string {
-    if (konto && konto.sistEndret != null && konto.sistEndretAv !== null) {
-        const formattertdato = formaterDato(konto.sistEndret);
-        const endretAv = konto.sistEndretAv;
-        return `Endret ${formattertdato} ${endretAv}`;
-    } else {
-        return '';
-    }
-}
-
-export interface EndreBankkontoState {
-    norskKontonummer: string;
-    utenlandskKontonummer: string;
-    banknavn: string | null;
-    bankkode: string;
-    swift: string;
-    landkode: Kodeverk;
-    adresse: BankAdresse;
-    valuta: Kodeverk;
-    sistEndret: string;
-    sistEndretAv: string;
-}
-
-export const tomBankkonto: EndreBankkontoState = {
-    norskKontonummer: '',
-    utenlandskKontonummer: '',
-    banknavn: '',
-    bankkode: '',
-    swift: '',
-    landkode: {
-        kodeRef: '',
-        beskrivelse: ''
-    },
-    adresse: {
-        linje1: '',
-        linje2: '',
-        linje3: ''
-    },
-    valuta: {
-        kodeRef: '',
-        beskrivelse: ''
-    },
-    sistEndret: '',
-    sistEndretAv: ''
-};
