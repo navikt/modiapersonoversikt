@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Select from 'nav-frontend-skjema/lib/select';
 import { OppgavelisteValg } from './SendNyMelding';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { useRestResource } from '../../../../utils/customHooks';
 import { hasData } from '../../../../rest/utils/restResource';

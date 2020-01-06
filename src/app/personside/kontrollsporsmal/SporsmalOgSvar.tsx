@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import * as React from 'react';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { Bold } from '../../../components/common-styled-components';

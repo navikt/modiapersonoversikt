@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ReactNode } from 'react';
 import { Ingress } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 interface Props {
     children: ReactNode;

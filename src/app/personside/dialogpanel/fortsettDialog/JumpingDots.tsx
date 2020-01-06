@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components/macro';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 
 const dotHeight = 7;

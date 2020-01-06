@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Select } from 'nav-frontend-skjema';
 import { useRestResource } from '../../utils/customHooks';
 import { hasData, isFailed, isNotStarted } from '../../rest/utils/restResource';

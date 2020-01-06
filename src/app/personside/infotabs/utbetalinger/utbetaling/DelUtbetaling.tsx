@@ -3,7 +3,7 @@ import { formaterNOK, periodeStringFromYtelse } from '../utils/utbetalingerUtils
 import { BulletPoint, SpaceBetween } from '../../../../../components/common-styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import { Ytelse } from '../../../../../models/utbetalinger';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
@@ -12,6 +12,7 @@ import { AnyAction, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 export interface OwnProps {
     ytelse: Ytelse;
@@ -56,6 +57,7 @@ class DelUtbetaling extends React.PureComponent<Props> {
 
     toggleVisDetaljer() {
         this.props.ekspanderYtelse(!this.props.erEkspandert);
+        !this.props.erEkspandert && loggEvent('VisUtbetalingsDetaljer', 'Utbetalinger');
     }
 
     render() {

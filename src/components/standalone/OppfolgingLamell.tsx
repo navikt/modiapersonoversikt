@@ -6,7 +6,7 @@ import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
 import ErrorBoundary from '../ErrorBoundary';
 import { Provider } from 'react-redux';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import OppfolgingContainer from '../../app/personside/infotabs/oppfolging/OppfolgingContainer';
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';

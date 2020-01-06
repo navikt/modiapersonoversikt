@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useRef, useState } from 'react';
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { PersonsokSkjemaProps } from './PersonsokSkjema';

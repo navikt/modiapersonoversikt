@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import TittelOgIkon from './IkonOgTittel';
 import { ReactNode } from 'react';
 import { Element } from 'nav-frontend-typografi';

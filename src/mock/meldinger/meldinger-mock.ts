@@ -95,6 +95,9 @@ function getMelding(temagruppe: Temagruppe): Melding {
         opprettetDato: moment(faker.date.recent(40)).format(backendDatoTidformat),
         ferdigstiltDato: moment(faker.date.recent(40)).format(backendDatoTidformat),
         erFerdigstiltUtenSvar: ferdigstilUtenSvar,
+        ferdigstiltUtenSvarDato: ferdigstilUtenSvar
+            ? moment(faker.date.recent(40)).format(backendDatoTidformat)
+            : undefined,
         ferdigstiltUtenSvarAv: ferdigstilUtenSvar ? getSaksbehandler() : undefined,
         kontorsperretAv: visKontrosperre ? getSaksbehandler() : undefined,
         kontorsperretEnhet: visKontrosperre ? faker.company.companyName() : undefined,

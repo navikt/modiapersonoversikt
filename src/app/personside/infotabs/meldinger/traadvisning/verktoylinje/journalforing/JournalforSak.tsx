@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { StyledTable } from '../../../../../../../utils/table/StyledTable';
 import { JournalforingsSak } from './JournalforingPanel';
 import { sakKategori } from './VelgSak';

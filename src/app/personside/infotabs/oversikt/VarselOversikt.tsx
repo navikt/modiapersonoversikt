@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Varsel as VarselModell } from '../../../../models/varsel';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { datoSynkende } from '../../../../utils/dateUtils';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import Varsel from '../varsel/Varsel';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';

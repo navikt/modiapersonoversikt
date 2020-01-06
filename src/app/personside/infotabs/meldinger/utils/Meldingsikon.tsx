@@ -6,7 +6,7 @@ import OppgaveIkon from '../../../../../svg/OppgaveIkon';
 import DokumentIkon from '../../../../../svg/DokumentIkon';
 import MonologIkon from '../../../../../svg/MonologIkon';
 import DialogIkon from '../../../../../svg/DialogIkon';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { erMonolog, erUbesvartHenvendelseFraBruker, nyesteMelding } from './meldingerUtils';
 import BrevIkon from '../../../../../svg/BrevIkon';

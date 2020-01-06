@@ -3,13 +3,22 @@ import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { PrinterMedHeader } from './PrinterMedHeader';
 import { erModiabrukerdialog } from './erNyPersonoversikt';
+import { createGlobalStyle } from 'styled-components';
 
-interface Returns {
+const SkulAppVedPrint = createGlobalStyle`
+    @media print {
+        #root {
+            display: none;
+        }
+    }
+`;
+
+interface Printer {
     printerWrapper: (props: { children: ReactNode }) => JSX.Element;
     triggerPrint: () => void;
 }
 
-export function usePrinter(): Returns {
+export function usePrinter(): Printer {
     const [print, setPrint] = useState(false);
 
     const triggerPrint = () => {
@@ -24,8 +33,11 @@ export function usePrinter(): Returns {
 
     useEffect(() => {
         if (print) {
+            const title = document.title;
+            document.title = `Utskrift`;
             setTimeout(() => {
                 window.print();
+                document.title = title;
                 setPrint(false);
             }, 0);
         }
@@ -36,6 +48,7 @@ export function usePrinter(): Returns {
             return (
                 <>
                     {props.children}
+                    {print && <SkulAppVedPrint />}
                     {print && createPortal(<PrinterMedHeader children={props.children} />, document.body)}
                 </>
             );

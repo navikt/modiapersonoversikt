@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';

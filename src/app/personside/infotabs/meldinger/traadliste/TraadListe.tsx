@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Checkbox, Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -106,13 +106,13 @@ function TraadListe(props: Props) {
         const sokeOrd = event.target.value;
         const brukerStarterEtNyttSøk = props.sokeord === '' && sokeOrd.length > 0;
         if (brukerStarterEtNyttSøk) {
-            loggEvent('SøkIMeldinger', 'TraadListe');
+            loggEvent('SøkIMeldinger', 'Meldinger');
         }
         props.setSokeord(sokeOrd);
     };
 
     const handleSkjulVarsler = () => {
-        !props.skjulVarsler && loggEvent('SkjulVarsler', 'TraadListe');
+        !props.skjulVarsler && loggEvent('SkjulVarsler', 'Meldinger');
         props.setSkjulVarsler(!props.skjulVarsler);
     };
     return (

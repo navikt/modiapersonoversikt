@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ReactNode } from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { nyesteMelding } from '../meldinger/utils/meldingerUtils';
 import { meldingstypeTekst } from '../meldinger/utils/meldingstekster';
