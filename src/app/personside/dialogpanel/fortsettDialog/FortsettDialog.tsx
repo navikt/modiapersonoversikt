@@ -28,6 +28,7 @@ const StyledArticle = styled.article`
 `;
 
 const SubmitKnapp = styled(Hovedknapp)`
+    white-space: normal;
     margin-top: 1rem;
 `;
 

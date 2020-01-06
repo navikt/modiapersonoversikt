@@ -7,6 +7,7 @@ import { StyledTable } from '../../../../utils/table/StyledTable';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { setSykefraværEkspandert } from '../../../../redux/oppfolging/actions';
+import { loggEvent } from '../../../../utils/frontendLogger';
 
 interface Props {
     syfoPunkter: SyfoPunkt[];
@@ -28,7 +29,10 @@ function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
 function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {
     const open = useAppState(state => state.oppfolging.sykefraværEkspandert);
     const dispatch = useDispatch();
-    const setOpen = (open: boolean) => dispatch(setSykefraværEkspandert(open));
+    const setOpen = (open: boolean) => {
+        dispatch(setSykefraværEkspandert(open));
+        !open && loggEvent('VisSykefraværsPanel', 'Oppfølging');
+    };
 
     if (props.syfoPunkter.length === 0) {
         return (

@@ -133,8 +133,8 @@ function StandardTekstSok(props: Props) {
         }
     };
 
-    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], inputRef.current);
-    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], inputRef.current);
+    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], 'ForrigeStandardtekst', inputRef.current);
+    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', inputRef.current);
 
     let content: ReactNode = null;
     if (isPending(standardTekster)) {
