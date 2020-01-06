@@ -40,8 +40,9 @@ function PersonsokContainer() {
     }, [settApen]);
 
     useOnMount(() => {
-        loggEvent('AvansertSok', 'Personsok');
+        loggEvent('Visning', 'Personsok');
     });
+
     return (
         <StyledModalWrapper contentLabel="Avansert søk" onRequestClose={() => settApen(false)} isOpen={apen}>
             <TittelStyle>Avansert Søk</TittelStyle>
