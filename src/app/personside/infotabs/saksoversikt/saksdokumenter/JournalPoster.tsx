@@ -23,6 +23,7 @@ import { useAppState, usePrevious } from '../../../../../utils/customHooks';
 import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 import { useDispatch } from 'react-redux';
 import { oppdaterAvsenderfilter } from '../../../../../redux/saksoversikt/actions';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface Props {
     valgtSakstema: Sakstema;
@@ -189,8 +190,13 @@ function JournalPoster(props: Props) {
     const erStandaloneVindu = useAppState(state => state.saksoversikt.erStandaloneVindu);
     const dispatch = useDispatch();
     const handleOppdaterAvsenderFilter = (filter: Partial<DokumentAvsenderFilter>) => {
+        loggEvent('EndreFilter', 'Saker');
         dispatch(oppdaterAvsenderfilter(filter));
     };
+
+    useEffect(() => {
+        loggEvent('VisSakstema', 'Saker');
+    }, [props.valgtSakstema]);
 
     const prevSakstema = usePrevious(props.valgtSakstema);
     useEffect(

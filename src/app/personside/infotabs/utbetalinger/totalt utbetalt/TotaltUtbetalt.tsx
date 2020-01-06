@@ -67,6 +67,7 @@ function TotaltUtbetalt(props: TotaltUtbetaltProps) {
         const printerButtonClicked = eventTagetIsInsideRef(event, printerButtonRef);
         if (!printerButtonClicked) {
             setVisDetaljer(!visDetaljer);
+            !visDetaljer && loggEvent('VisDetaljerTotaltUtbetalt', 'Utbetalinger');
         }
     };
 

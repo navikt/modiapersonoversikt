@@ -78,6 +78,7 @@ function EnkelUtbetaling(props: Props) {
     const toggleVisDetaljer = () => {
         ekspanderYtelse(!visDetaljer);
         setYtelseIFokus();
+        !visDetaljer && loggEvent('VisUtbetalingsDetaljer', 'Utbetalinger');
     };
 
     const handlePrint = () => {

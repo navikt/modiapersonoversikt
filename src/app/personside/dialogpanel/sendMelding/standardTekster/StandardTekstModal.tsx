@@ -54,7 +54,7 @@ const Ikon = styled(SvgIkon)`
 
 function StandardTekstModal(props: Props) {
     const [isOpen, setOpen] = React.useState(false);
-    useHotkey({ char: 'c', altKey: true }, () => setOpen(true), [setOpen]);
+    useHotkey({ char: 'c', altKey: true }, () => setOpen(true), [setOpen], 'Standardtekster');
 
     return (
         <>

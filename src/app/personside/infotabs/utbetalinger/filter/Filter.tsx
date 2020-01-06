@@ -16,6 +16,7 @@ import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 import { isValidDate } from '../../../../../utils/dateUtils';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 const FiltreringsPanel = styled.nav`
     ${theme.hvittPanel};
@@ -77,9 +78,13 @@ function Filtrering() {
     const reloadUtbetalingerAction = utbetalingerResource.actions.reload;
 
     const filter = useSelector((state: AppState) => state.utbetalinger.filter);
-    const updateFilter = useCallback((change: Partial<UtbetalingFilterState>) => dispatch(oppdaterFilter(change)), [
-        dispatch
-    ]);
+    const updateFilter = useCallback(
+        (change: Partial<UtbetalingFilterState>) => {
+            loggEvent('EndreFilter', 'Utbetalinger');
+            dispatch(oppdaterFilter(change));
+        },
+        [dispatch]
+    );
 
     const reloadUtbetalinger = useCallback(() => {
         if (filter.periode.radioValg === PeriodeValg.EGENDEFINERT) {

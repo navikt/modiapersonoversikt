@@ -17,6 +17,7 @@ import { Feilmelding } from '../../../../utils/Feilmelding';
 import { formaterDato, formaterTilISO8601Date } from '../../../../utils/stringFormatting';
 import moment from 'moment';
 import { isValidDate } from '../../../../utils/dateUtils';
+import { loggEvent } from '../../../../utils/frontendLogger';
 
 const DatoVelgerWrapper = styled.div`
     > * {
@@ -96,6 +97,7 @@ function DatoInputs(props: Props) {
         if (oppfølgingLastes || !isValidDate(fra) || !isValidDate(til)) {
             return;
         }
+        loggEvent('SøkNyPeriode', 'Oppfølging');
         props.reloadDetaljertOppfolging();
     };
 

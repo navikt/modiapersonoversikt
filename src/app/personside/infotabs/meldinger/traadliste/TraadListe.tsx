@@ -106,13 +106,13 @@ function TraadListe(props: Props) {
         const sokeOrd = event.target.value;
         const brukerStarterEtNyttSøk = props.sokeord === '' && sokeOrd.length > 0;
         if (brukerStarterEtNyttSøk) {
-            loggEvent('SøkIMeldinger', 'TraadListe');
+            loggEvent('SøkIMeldinger', 'Meldinger');
         }
         props.setSokeord(sokeOrd);
     };
 
     const handleSkjulVarsler = () => {
-        !props.skjulVarsler && loggEvent('SkjulVarsler', 'TraadListe');
+        !props.skjulVarsler && loggEvent('SkjulVarsler', 'Meldinger');
         props.setSkjulVarsler(!props.skjulVarsler);
     };
     return (
