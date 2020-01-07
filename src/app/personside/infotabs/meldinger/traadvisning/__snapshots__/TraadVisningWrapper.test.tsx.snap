@@ -309,7 +309,9 @@ exports[`Viser traad med verktøylinje 1`] = `
     margin-bottom: 2rem;
   }
 
-  .c17 .snakkeboble__snakkeboble-pil-container {
+  .c17 .snakkeboble__snakkeboble-pil-container,
+  .c17 .nav-ikon,
+  .c17 .bruker-ikon {
     display: none;
   }
 
@@ -317,11 +319,6 @@ exports[`Viser traad med verktøylinje 1`] = `
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
-  }
-
-  .c17 .nav-ikon,
-  .c17 .bruker-ikon {
-    display: none;
   }
 }
 

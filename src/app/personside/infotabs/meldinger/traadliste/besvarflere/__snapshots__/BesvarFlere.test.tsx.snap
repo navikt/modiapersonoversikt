@@ -384,7 +384,9 @@ exports[`BesvarFler matcher snapshot 1`] = `
     margin-bottom: 2rem;
   }
 
-  .c18 .snakkeboble__snakkeboble-pil-container {
+  .c18 .snakkeboble__snakkeboble-pil-container,
+  .c18 .nav-ikon,
+  .c18 .bruker-ikon {
     display: none;
   }
 
@@ -392,11 +394,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
-  }
-
-  .c18 .nav-ikon,
-  .c18 .bruker-ikon {
-    display: none;
   }
 }
 
