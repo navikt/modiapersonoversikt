@@ -23,6 +23,7 @@ export type Props<T extends { [key: string]: any }> = {
     returnOnError?: JSX.Element;
     returnOnPending?: JSX.Element;
     returnOnNotFound?: JSX.Element;
+    returnOnForbidden?: JSX.Element;
     spinnerSize?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 };
 
@@ -68,7 +69,15 @@ export function MultiRestResourceConsumerBase<T>(props: BaseProps<T>) {
 }
 
 function MultiRestResourceConsumer<T>(props: Props<T>) {
-    const { spinnerSize, returnOnPending, returnOnError, returnOnNotFound, getResource, children } = props;
+    const {
+        spinnerSize,
+        returnOnPending,
+        returnOnError,
+        returnOnNotFound,
+        returnOnForbidden,
+        getResource,
+        children
+    } = props;
     return (
         <MultiRestResourceConsumerBase<T> getResource={getResource}>
             {(status: STATUS, data: T | null) => {
@@ -77,6 +86,13 @@ function MultiRestResourceConsumer<T>(props: Props<T>) {
                 }
                 if (status === STATUS.LOADING) {
                     return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;
+                }
+                if (status === STATUS.FORBIDDEN) {
+                    return (
+                        returnOnForbidden || (
+                            <AlertStripeAdvarsel>Du har ikke tilgang til denne informasjonen</AlertStripeAdvarsel>
+                        )
+                    );
                 }
                 if (status === STATUS.NOT_FOUND) {
                     return returnOnNotFound || <AlertStripeAdvarsel>Fant ingen data</AlertStripeAdvarsel>;

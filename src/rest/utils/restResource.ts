@@ -211,6 +211,13 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
                     status: STATUS.FAILED,
                     error: (action as FetchError).error
                 } as Failed<T>;
+            case actionNames.FORBIDDEN:
+                loggEvent('Fetch-forbidden', resourceNavn);
+                return {
+                    ...state,
+                    status: STATUS.FORBIDDEN,
+                    error: (action as FetchError).error
+                } as Forbidden<T>;
             case actionNames.INITIALIZE:
                 return initialState;
             case actionNames.SET_DATA:

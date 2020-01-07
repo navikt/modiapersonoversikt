@@ -13,14 +13,14 @@ export type Props<T> = {
     returnOnError?: JSX.Element;
     returnOnPending?: JSX.Element;
     returnOnNotFound?: JSX.Element;
-    returnForbidden?: JSX.Element;
+    returnOnForbidden?: JSX.Element;
     spinnerSize?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 };
 
 function RestResourceConsumer<T>(props: Props<T>) {
     const dispatch = useDispatch();
     const restResource = useSelector((state: AppState) => props.getResource(state.restResources));
-    const { spinnerSize, returnOnPending, returnOnError, returnOnNotFound, returnForbidden, children } = props;
+    const { spinnerSize, returnOnPending, returnOnError, returnOnNotFound, returnOnForbidden, children } = props;
     if (isNotStarted(restResource)) {
         dispatch(restResource.actions.fetch);
     }
@@ -30,12 +30,13 @@ function RestResourceConsumer<T>(props: Props<T>) {
     if (!isLoaded(restResource)) {
         return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;
     }
+    if (isForbidden(restResource)) {
+        return returnOnForbidden || <AlertStripeAdvarsel>Avvist tilgang til informasjon</AlertStripeAdvarsel>;
+    }
     if (!hasData(restResource)) {
         return returnOnNotFound || <AlertStripeAdvarsel>Fant ingen data</AlertStripeAdvarsel>;
     }
-    if (isForbidden(restResource)) {
-        return returnForbidden || <AlertStripeAdvarsel>Avvist tilgang til informasjon</AlertStripeAdvarsel>;
-    }
+
     return <>{children(restResource.data)}</>;
 }
 
