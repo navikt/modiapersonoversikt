@@ -38,6 +38,7 @@ import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
 import Cookies from 'js-cookie';
 import { saksbehandlerCookieNavnPrefix } from '../redux/session/saksbehandlersEnhetCookieUtils';
 import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
+import { failurerateMiddleware } from './utils/failureMiddleware';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -558,7 +559,7 @@ export function setupMock() {
         enableFallback: true,
         middleware: MiddlewareUtils.combine(
             contentTypeMiddleware,
-            MiddlewareUtils.failurerateMiddleware(0.02),
+            failurerateMiddleware(0.92),
             MiddlewareUtils.loggingMiddleware()
         )
     });

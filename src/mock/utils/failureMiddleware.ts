@@ -20,7 +20,7 @@ export function failurerateMiddleware(probabilityOfFailure: number): Middleware 
         return new Promise<ResponseData>(resolve => {
             const rnd = Math.random();
             if (rnd < probabilityOfFailure) {
-                resolve(failures[Math.random() * failures.length]);
+                resolve(failures[Math.floor(Math.random() * failures.length)]);
             } else {
                 resolve(response);
             }
