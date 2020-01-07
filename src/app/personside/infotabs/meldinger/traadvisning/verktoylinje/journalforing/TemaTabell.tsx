@@ -2,12 +2,17 @@ import { JournalforingsSak, Tema } from './JournalforingPanel';
 import React, { useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import SaksTabell from './SaksTabell';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 
 const MiniEkspanderbartpanelBasePure = styled(EkspanderbartpanelBasePure)`
+    .ekspanderbartPanel {
+        position: relative;
+    }
     .ekspanderbartPanel__hode {
         padding: 0.35rem 0.5rem;
+        position: sticky;
+        top: 0;
     }
     .ekspanderbartPanel__innhold {
         padding: 0.3rem;

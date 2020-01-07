@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ChangeEvent, useEffect } from 'react';
 import { Temagruppe, temagruppeTekst } from '../../../../models/Temagrupper';
 import { Select, SkjemaGruppe } from 'nav-frontend-skjema';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 
 interface Props {

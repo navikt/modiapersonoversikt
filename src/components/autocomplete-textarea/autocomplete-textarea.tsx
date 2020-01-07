@@ -8,7 +8,7 @@ import {
     useAutoFullførData
 } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
 import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
 import { guid } from 'nav-frontend-js-utils';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';

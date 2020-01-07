@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../styles/personOversiktTheme';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 

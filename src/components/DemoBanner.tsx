@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mockEnabled } from '../api/config';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 
 const DemoStyle = styled.div`

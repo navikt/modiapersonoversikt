@@ -3,7 +3,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { datoVerbose } from './dateUtils';
 import Fødselsnummer from '../components/Fødselsnummer';
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { ReactNode } from 'react';
 
 const Wrapper = styled.div`

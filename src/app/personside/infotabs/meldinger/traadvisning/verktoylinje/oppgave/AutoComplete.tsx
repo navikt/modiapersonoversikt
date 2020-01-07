@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Downshift, { ControllerStateAndHelpers } from 'downshift';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { Input } from 'nav-frontend-skjema';

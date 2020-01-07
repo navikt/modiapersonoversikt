@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListeElement from './SakstemaListeElement';

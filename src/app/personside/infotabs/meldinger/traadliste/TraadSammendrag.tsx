@@ -9,7 +9,7 @@ import { EtikettAdvarsel, EtikettFokus, EtikettInfo, EtikettSuksess } from 'nav-
 import * as React from 'react';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import { Temagruppe } from '../../../../../models/Temagrupper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const ContentStyle = styled.div`
     /* IE11-fix*/

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Varsel as VarselModell, Varseltype } from '../../../../models/varsel';
 import { datoSynkende } from '../../../../utils/dateUtils';
 import VarselMeldinger from './varselDetaljer/VarselMeldinger';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TabsPure } from 'nav-frontend-tabs';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { getSaksdokumentUrl } from './getSaksdokumentUrl';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -52,10 +52,15 @@ const HeaderStyle = styled.div`
 `;
 
 function VisDokumentContainer(props: { journalpostId: string; dokumentreferanse: string }) {
+    const erStandalone = useAppState(state => state.saksoversikt.erStandaloneVindu);
     const fødselsnummer = useFødselsnummer();
     const dokUrl = getSaksdokumentUrl(fødselsnummer, props.journalpostId, props.dokumentreferanse);
     const [errMsg, setErrMsg] = useState('');
     const onError = (statusKode: number) => setErrMsg(feilmelding(statusKode));
+
+    useEffect(() => {
+        loggEvent('VisSaksdokument', 'Saker', { standalone: erStandalone });
+    }, [props.dokumentreferanse, erStandalone]);
 
     useOnMount(() => {
         if (erIE11()) {

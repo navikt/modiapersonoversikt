@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { datoSynkende, formatterDatoMedMaanedsnavn, formatterDatoTid } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
@@ -12,6 +12,8 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, meldingstittel, nyesteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
+import { useEffect } from 'react';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 interface Props {
     valgtTraad: Traad;
     sokeord: string;
@@ -49,7 +51,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         return (
             <AlertStripeInfo>
                 Henvendelsen er avsluttet uten å svare bruker av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
-                {melding.ferdigstiltDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltDato)}
+                {melding.ferdigstiltUtenSvarDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltUtenSvarDato)}
             </AlertStripeInfo>
         );
     }
@@ -88,6 +90,10 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 }
 
 function TraadVisning(props: Props) {
+    useEffect(() => {
+        loggEvent('VisTraad', 'Meldinger');
+    }, [props.valgtTraad]);
+
     const sisteMelding = nyesteMelding(props.valgtTraad);
     return (
         <VisningStyle>

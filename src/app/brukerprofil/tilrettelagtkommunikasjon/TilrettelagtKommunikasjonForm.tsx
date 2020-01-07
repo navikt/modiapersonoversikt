@@ -11,7 +11,7 @@ import { CheckboksProps } from 'nav-frontend-skjema/lib/checkboks-panel';
 import { KodeverkResponse } from '../../../models/kodeverk';
 import RequestTilbakemelding from '../RequestTilbakemelding';
 import { FormKnapperWrapper } from '../BrukerprofilForm';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { PostStatus } from '../../../rest/utils/postResource';

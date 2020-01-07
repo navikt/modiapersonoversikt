@@ -8,7 +8,7 @@ import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import { MerkKontorsperrRequest } from '../../../../../../../models/meldinger/merk';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Hovedknapp } from 'nav-frontend-knapper';
 
 interface Props {

@@ -6,7 +6,7 @@ import Sykepenger from '../../../app/personside/infotabs/ytelser/sykepenger/Syke
 import moment from 'moment';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../styles/personOversiktTheme';
 import { BigCenteredLazySpinner } from '../../BigCenteredLazySpinner';
 

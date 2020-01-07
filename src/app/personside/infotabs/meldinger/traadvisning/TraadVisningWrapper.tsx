@@ -3,7 +3,7 @@ import Verktoylinje from './verktoylinje/Verktoylinje';
 import TraadVisning from './TraadVisning';
 import * as React from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 interface TraadVisningWrapperProps {
     valgtTraad?: Traad;

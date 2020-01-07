@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SkjemaGruppe } from 'nav-frontend-skjema';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import StandardTekstModal from './standardTekster/StandardTekstModal';
 import AutocompleteTextarea from '../../../../components/autocomplete-textarea/autocomplete-textarea';

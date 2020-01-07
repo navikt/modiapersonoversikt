@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { NavKontorResponse } from '../../../../../models/navkontor';
 import { Bold } from '../../../../../components/common-styled-components';

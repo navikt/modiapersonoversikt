@@ -4,7 +4,7 @@ import PersonsokResultat from './PersonsokResultat';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import ModalWrapper from 'nav-frontend-modal';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import { Innholdstittel } from 'nav-frontend-typografi';
 
