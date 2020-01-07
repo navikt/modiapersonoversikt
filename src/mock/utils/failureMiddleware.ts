@@ -8,10 +8,6 @@ const failures: ResponseData[] = [
     {
         status: 403,
         statusText: 'Forbidden'
-    },
-    {
-        status: 404,
-        statusText: 'Not Found'
     }
 ];
 

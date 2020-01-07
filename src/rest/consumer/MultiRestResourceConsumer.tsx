@@ -1,5 +1,5 @@
 import { RestEndepunkter } from '../../redux/restReducers/restReducers';
-import { hasData, HasData, isFailed, isLoaded, isNotStarted, RestResource } from '../utils/restResource';
+import { HasData, hasData, isFailed, isForbidden, isLoaded, isNotStarted, RestResource } from '../utils/restResource';
 import React, { ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
@@ -50,10 +50,13 @@ export function MultiRestResourceConsumerBase<T>(props: BaseProps<T>) {
             }
         });
     });
-
+    if (some(restResources, isForbidden)) {
+        return <>{children(STATUS.FORBIDDEN, null)}</>;
+    }
     if (some(restResources, isFailed)) {
         return <>{children(STATUS.FAILED, null)}</>;
     }
+
     if (!every(restResources, isLoaded)) {
         return <>{children(STATUS.LOADING, null)}</>;
     }
@@ -81,12 +84,6 @@ function MultiRestResourceConsumer<T>(props: Props<T>) {
     return (
         <MultiRestResourceConsumerBase<T> getResource={getResource}>
             {(status: STATUS, data: T | null) => {
-                if (status === STATUS.FAILED) {
-                    return returnOnError || <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
-                }
-                if (status === STATUS.LOADING) {
-                    return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;
-                }
                 if (status === STATUS.FORBIDDEN) {
                     return (
                         returnOnForbidden || (
@@ -94,6 +91,14 @@ function MultiRestResourceConsumer<T>(props: Props<T>) {
                         )
                     );
                 }
+                if (status === STATUS.FAILED) {
+                    return returnOnError || <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
+                }
+
+                if (status === STATUS.LOADING) {
+                    return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;
+                }
+
                 if (status === STATUS.NOT_FOUND) {
                     return returnOnNotFound || <AlertStripeAdvarsel>Fant ingen data</AlertStripeAdvarsel>;
                 }

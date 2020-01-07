@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RestEndepunkter } from '../../redux/restReducers/restReducers';
 import { AppState } from '../../redux/reducers';
-import { isFailed, isNotStarted, RestResource, isLoaded, hasData, isForbidden } from '../utils/restResource';
+import { isFailed, isNotStarted, RestResource, hasData, isForbidden, isLoading } from '../utils/restResource';
 import LazySpinner from '../../components/LazySpinner';
 import { ReactNode } from 'react';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
@@ -27,11 +27,11 @@ function RestResourceConsumer<T>(props: Props<T>) {
     if (isFailed(restResource)) {
         return returnOnError || <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
     }
-    if (!isLoaded(restResource)) {
-        return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;
-    }
     if (isForbidden(restResource)) {
         return returnOnForbidden || <AlertStripeAdvarsel>Avvist tilgang til informasjon</AlertStripeAdvarsel>;
+    }
+    if (isLoading(restResource)) {
+        return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;
     }
     if (!hasData(restResource)) {
         return returnOnNotFound || <AlertStripeAdvarsel>Fant ingen data</AlertStripeAdvarsel>;
