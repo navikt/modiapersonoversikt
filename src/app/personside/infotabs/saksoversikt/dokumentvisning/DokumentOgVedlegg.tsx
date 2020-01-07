@@ -1,22 +1,19 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
 import { TabsPure } from 'nav-frontend-tabs';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
-import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { getSaksdokumentUrl } from './getSaksdokumentUrl';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useAppState, useFocusOnMount, useFødselsnummer, useOnMount } from '../../../../../utils/customHooks';
-import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
+import { useAppState, useFocusOnMount, useFødselsnummer } from '../../../../../utils/customHooks';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import { erIE11 } from '../../../../../utils/erNyPersonoversikt';
-import { loggEvent } from '../../../../../utils/frontendLogger';
 import { SaksoversiktValg } from '../utils/useSaksoversiktValg';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { useHistory } from 'react-router';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { TilbakePil } from '../../../../../components/common-styled-components';
+import DokumentVisning from './SaksDokumentVisning';
+import { getSaksdokumentUrl } from './getSaksdokumentUrl';
 
 const Content = styled.div`
     flex-grow: 1;
@@ -51,51 +48,13 @@ const HeaderStyle = styled.div`
     padding: ${pxToRem(15)};
 `;
 
-function VisDokumentContainer(props: { journalpostId: string; dokumentreferanse: string }) {
-    const erStandalone = useAppState(state => state.saksoversikt.erStandaloneVindu);
-    const fødselsnummer = useFødselsnummer();
-    const dokUrl = getSaksdokumentUrl(fødselsnummer, props.journalpostId, props.dokumentreferanse);
-    const [errMsg, setErrMsg] = useState('');
-    const onError = (statusKode: number) => setErrMsg(feilmelding(statusKode));
-
-    useEffect(() => {
-        loggEvent('VisSaksdokument', 'Saker', { standalone: erStandalone });
-    }, [props.dokumentreferanse, erStandalone]);
-
-    useOnMount(() => {
-        if (erIE11()) {
-            loggEvent('KanIkkeViseDokumentIIE11', 'Saker');
-        }
-    });
-
-    if (erIE11()) {
-        return <AlertStripeInfo>Kan ikke vise dokumenter i Internet Explorer. Prøv chrome</AlertStripeInfo>;
-    }
-
-    return (
-        <ObjectHttpFeilHandtering type="application/pdf" url={dokUrl} width="100%" onError={onError}>
-            <AlertStripeAdvarsel>{errMsg}</AlertStripeAdvarsel>
-        </ObjectHttpFeilHandtering>
-    );
-}
-
-function feilmelding(statusKode: number) {
-    switch (statusKode) {
-        case 401:
-        case 403:
-            return 'Du har ikke tilgang til dette dokumentet.';
-        case 404:
-            return 'Dokument ikke funnet.';
-        default:
-            return 'Ukjent feil ved henting av dokument. Kontakt brukerstøtte. Feilkode: ' + statusKode;
-    }
-}
-
 function DokumentOgVedlegg(props: SaksoversiktValg) {
     const ref = React.createRef<HTMLDivElement>();
     const erStandaloneVindu = useAppState(state => state.saksoversikt.erStandaloneVindu);
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
+    const fødselsnummer = useFødselsnummer();
+
     useFocusOnMount(ref);
 
     if (!props.saksdokument || !props.journalpost) {
@@ -130,6 +89,11 @@ function DokumentOgVedlegg(props: SaksoversiktValg) {
         </Header>
     );
 
+    const saksdokumentUrl = getSaksdokumentUrl(
+        fødselsnummer,
+        props.journalpost.journalpostId,
+        props.saksdokument.dokumentreferanse
+    );
     return (
         <ErrorBoundary boundaryName="Dokumentvisning">
             <Content>
@@ -137,11 +101,8 @@ function DokumentOgVedlegg(props: SaksoversiktValg) {
                     <Undertittel>{props.saksdokument.tittel}</Undertittel>
                 </HeaderStyle>
                 {tabsHeader}
-                <VisDokumentContainer
-                    key={props.saksdokument.dokumentreferanse}
-                    journalpostId={props.journalpost.journalpostId}
-                    dokumentreferanse={props.saksdokument.dokumentreferanse}
-                />
+
+                <DokumentVisning key={props.saksdokument.dokumentreferanse} url={saksdokumentUrl} />
             </Content>
         </ErrorBoundary>
     );

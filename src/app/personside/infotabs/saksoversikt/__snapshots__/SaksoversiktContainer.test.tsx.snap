@@ -1108,6 +1108,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="order-second"
                     >
                       <a
+                        aria-disabled={false}
                         className="lenke typo-element"
                         href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=q90p8dnw"
                         onClick={[Function]}
@@ -1319,6 +1320,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="order-second"
                     >
                       <a
+                        aria-disabled={false}
                         className="lenke typo-element"
                         href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=nvqxc1ip"
                         onClick={[Function]}
@@ -1383,6 +1385,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="order-second"
                     >
                       <a
+                        aria-disabled={false}
                         className="lenke typo-element"
                         href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=me3wv1le"
                         onClick={[Function]}
@@ -1629,6 +1632,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="order-second"
                     >
                       <a
+                        aria-disabled={false}
                         className="lenke typo-element"
                         href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=bjol9s20"
                         onClick={[Function]}
@@ -1693,6 +1697,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="order-second"
                     >
                       <a
+                        aria-disabled={false}
                         className="lenke typo-element"
                         href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=113wxk3r"
                         onClick={[Function]}
@@ -1757,6 +1762,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="order-second"
                     >
                       <a
+                        aria-disabled={false}
                         className="lenke typo-element"
                         href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=mt1cssx0"
                         onClick={[Function]}
@@ -1883,6 +1889,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="order-second"
                     >
                       <a
+                        aria-disabled={false}
                         className="lenke typo-element"
                         href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=nnp1em30"
                         onClick={[Function]}
@@ -1947,6 +1954,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       className="order-second"
                     >
                       <a
+                        aria-disabled={false}
                         className="lenke typo-element"
                         href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=gplzp0ho"
                         onClick={[Function]}

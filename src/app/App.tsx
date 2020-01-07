@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -16,12 +17,12 @@ import StandAloneKomponenter from '../components/standalone/StandAloneKomponente
 import HentGlobaleVerdier from './globaleVerdier/FetchSessionInfoOgLeggIRedux';
 import { useAppState, useOnMount } from '../utils/customHooks';
 import { detect } from 'detect-browser';
-import { useState } from 'react';
 import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
 import { erIE11 } from '../utils/erNyPersonoversikt';
 import DemoBanner from '../components/DemoBanner';
 import VelgEnhet from './routes/VelgEnhet';
 import SakerEgetVindu from './personside/infotabs/saksoversikt/SakerEgetVindu';
+import SaksDokumentEgetVindu from './personside/infotabs/saksoversikt/SaksDokumentIEgetVindu';
 
 if (mockEnabled) {
     setupMock();
@@ -68,6 +69,12 @@ function PersonoverisktProvider() {
                     <Route
                         path={`${paths.sakerEgetVindu}/:fodselsnummer/`}
                         render={routeProps => <SakerEgetVindu fødselsnummer={routeProps.match.params.fodselsnummer} />}
+                    />
+                    <Route
+                        path={`${paths.saksdokumentEgetVindu}/:fodselsnummer/`}
+                        render={routeProps => (
+                            <SaksDokumentEgetVindu fødselsnummer={routeProps.match.params.fodselsnummer} />
+                        )}
                     />
                     <Route path={''} component={Personoversikt} />
                 </Switch>

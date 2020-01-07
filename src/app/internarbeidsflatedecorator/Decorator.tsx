@@ -12,19 +12,9 @@ import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsma
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { velgEnhetAction } from '../../redux/session/session';
-import styled, { css } from 'styled-components/macro';
-import theme from '../../styles/personOversiktTheme';
 import { useQueryParams } from '../../utils/urlUtils';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
-
-const StyledNav = styled.nav<{ hide: boolean }>`
-    ${props =>
-        props.hide &&
-        css`
-            ${theme.visuallyHidden};
-        `}
-`;
 
 function lagConfig(
     sokFnr: string | undefined | null,
@@ -90,7 +80,6 @@ function Decorator() {
     const gjeldendeFnr = useFødselsnummer();
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
     const dispatch = useDispatch();
-    const erStandaloneSaksoversikt = useAppState(state => state.saksoversikt.erStandaloneVindu);
 
     const handleSetEnhet = (enhet: string) => {
         dispatch(velgEnhetAction(enhet));
@@ -107,7 +96,7 @@ function Decorator() {
     );
 
     return (
-        <StyledNav id="header" hide={erStandaloneSaksoversikt}>
+        <nav id="header">
             {contextErKlar && (
                 <>
                     <InternflateDecorator {...config} />
@@ -115,7 +104,7 @@ function Decorator() {
                     <DecoratorEasterEgg />
                 </>
             )}
-        </StyledNav>
+        </nav>
     );
 }
 
