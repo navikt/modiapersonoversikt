@@ -45,17 +45,14 @@ const StyledLi = styled.li`
         border: ${theme.border.skille};
         margin-bottom: 2rem;
 
-        .snakkeboble__snakkeboble-pil-container {
+        .snakkeboble__snakkeboble-pil-container,
+        .nav-ikon,
+        .bruker-ikon {
             display: none;
         }
 
         .snakkeboble-panel {
             flex-basis: 100%;
-        }
-
-        .nav-ikon,
-        .bruker-ikon {
-            display: none;
         }
     }
 `;

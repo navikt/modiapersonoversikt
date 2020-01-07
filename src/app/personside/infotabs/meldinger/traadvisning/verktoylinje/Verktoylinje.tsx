@@ -16,6 +16,7 @@ import { LenkeKnapp } from '../../../../../../components/common-styled-component
 import { apiBaseUri } from '../../../../../../api/config';
 import useFeatureToggle from '../../../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../../../components/featureToggle/toggleIDs';
+import PrintKnapp from '../../../../../../components/PrintKnapp';
 
 interface Props {
     valgtTraad: Traad;
@@ -52,7 +53,7 @@ enum VerktøyPanel {
     MERK
 }
 function Print(props: Props) {
-    const PrintKnapp = styled(LenkeKnapp.withComponent('a'))`
+    const GammelPrintKnapp = styled(LenkeKnapp.withComponent('a'))`
         text-decoration: none;
         color: #3e3832;
     `;
@@ -63,9 +64,9 @@ function Print(props: Props) {
         return <PrintKnapp onClick={() => props.printer?.triggerPrint()} />;
     } else {
         return (
-            <PrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
+            <GammelPrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
                 <Normaltekst>Skriv ut</Normaltekst>
-            </PrintKnapp>
+            </GammelPrintKnapp>
         );
     }
 }
