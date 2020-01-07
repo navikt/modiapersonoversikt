@@ -30,7 +30,35 @@ interface Props {
     melding: Melding;
     sokeord: string;
 }
+const StyledLi = styled.li`
+    .snakkeboble-panel {
+        flex-basis: 40rem;
+    }
+    a {
+        word-break: break-word; /* Hvis ikke kan snakkeboblen vokse seg ut av container uten mulighet for scroll */
+    }
+    .snakkeboble {
+        margin: 0;
+    }
+    @media print {
+        page-break-inside: avoid;
+        border: ${theme.border.skille};
+        margin-bottom: 2rem;
 
+        .snakkeboble__snakkeboble-pil-container {
+            display: none;
+        }
+
+        .snakkeboble-panel {
+            flex-basis: 100%;
+        }
+
+        .nav-ikon,
+        .bruker-ikon {
+            display: none;
+        }
+    }
+`;
 const SkrevetAvTekst = styled(Normaltekst)`
     margin-right: 0.3rem !important;
 `;
@@ -132,7 +160,7 @@ function EnkeltMelding(props: Props) {
     const highlightRule = createDynamicHighligtingRule(props.sokeord.split(' '));
 
     return (
-        <li className="snakkeboble_ikoner">
+        <StyledLi className="snakkeboble_ikoner">
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <SnakkebobleWrapper>
                     <Topptekst>
@@ -147,7 +175,7 @@ function EnkeltMelding(props: Props) {
                     <Journalforing melding={props.melding} />
                 </SnakkebobleWrapper>
             </Snakkeboble>
-        </li>
+        </StyledLi>
     );
 }
 
