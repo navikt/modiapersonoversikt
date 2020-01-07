@@ -1,6 +1,5 @@
 import { RouteComponentProps, withRouter } from 'react-router';
 import { useEffect } from 'react';
-import { paths } from '../../routes/routing';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import { loggEvent } from '../../../utils/frontendLogger';
@@ -25,11 +24,7 @@ function HandleVisittkortHotkeys(props: Props) {
             const key = event.code ? event.code.replace('Key', '').toLowerCase() : event.key;
             if (key === 'b') {
                 loggEvent('Hurtigtast', 'Visittkort', { type: 'Alt + B' });
-                if (nyPersonforvalter.isOn) {
-                    window.open(lenkeNyBrukerprofil, '_blank', 'noopener noreferrer');
-                } else {
-                    props.history.push(`${paths.brukerprofil}/${fødselsnummer}`);
-                }
+                window.open(lenkeNyBrukerprofil, '_blank', 'noopener noreferrer');
             } else if (key === 'n') {
                 loggEvent('Hurtigtast', 'Visittkort', { type: 'Alt + N' });
                 dispatch(toggleVisittkort());
