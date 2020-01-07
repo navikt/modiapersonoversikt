@@ -36,7 +36,7 @@ function DokumentLenke(props: Props) {
 
     return (
         <>
-            <IfFeatureToggleOff toggleID={FeatureToggles.ApneSaksdokumentiEgetVindu}>
+            <IfFeatureToggleOff toggleID={FeatureToggles.SaksDokumentIEgetVindu}>
                 <Link
                     to={dyplenker.saker.link(props.valgtSakstema, props.dokument)}
                     aria-disabled={!props.dokument.kanVises}
@@ -45,7 +45,7 @@ function DokumentLenke(props: Props) {
                     {dokumentTekst(props.dokument)}
                 </Link>
             </IfFeatureToggleOff>
-            <IfFeatureToggleOn toggleID={FeatureToggles.ApneSaksdokumentiEgetVindu}>
+            <IfFeatureToggleOn toggleID={FeatureToggles.SaksDokumentIEgetVindu}>
                 <a
                     href={`${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`}
                     target={'_blank'}

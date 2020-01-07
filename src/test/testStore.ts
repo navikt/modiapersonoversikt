@@ -56,7 +56,7 @@ export function getTestStore(): Store<AppState> {
     dispatch(
         restResources.featureToggles.actions.setData({
             [FeatureToggles.SaksoversiktNyttVindu]: true,
-            [FeatureToggles.ApneSaksdokumentiEgetVindu]: false
+            [FeatureToggles.SaksDokumentIEgetVindu]: false
         })
     );
     dispatch(restResources.tråderOgMeldinger.actions.setData([statiskTraadMock]));
