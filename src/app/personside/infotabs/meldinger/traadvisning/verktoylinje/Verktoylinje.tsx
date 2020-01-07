@@ -8,10 +8,14 @@ import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
 import { createRef, useCallback, useEffect } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
-import { usePrevious } from '../../../../../../utils/customHooks';
+import { useFødselsnummer, usePrevious } from '../../../../../../utils/customHooks';
 import { meldingstittel, nyesteMelding } from '../../utils/meldingerUtils';
-import PrintKnapp from '../../../../../../components/PrintKnapp';
 import { Printer } from '../../../../../../utils/UsePrinter';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { LenkeKnapp } from '../../../../../../components/common-styled-components';
+import { apiBaseUri } from '../../../../../../api/config';
+import useFeatureToggle from '../../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     valgtTraad: Traad;
@@ -47,7 +51,24 @@ enum VerktøyPanel {
     OPPGAVE,
     MERK
 }
+function Print(props: Props) {
+    const PrintKnapp = styled(LenkeKnapp.withComponent('a'))`
+        text-decoration: none;
+        color: #3e3832;
+    `;
+    const fnr = useFødselsnummer();
+    const meldingerPrintFT = useFeatureToggle(FeatureToggles.MeldingerPrint);
 
+    if (meldingerPrintFT.isOn && props.printer) {
+        return <PrintKnapp onClick={() => props.printer?.triggerPrint()} />;
+    } else {
+        return (
+            <PrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
+                <Normaltekst>Skriv ut</Normaltekst>
+            </PrintKnapp>
+        );
+    }
+}
 function Verktoylinje(props: Props) {
     const titleRef = createRef<HTMLHeadingElement>();
     const [aktivtPanel, settAktivtPanel] = React.useState<VerktøyPanel | null>(null);
@@ -89,7 +110,7 @@ function Verktoylinje(props: Props) {
                     />
                     <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
                 </OppgaveknapperStyle>
-                {props.printer && <PrintKnapp onClick={() => props.printer?.triggerPrint()} />}
+                <Print valgtTraad={props.valgtTraad} />
             </KnapperPanelStyle>
             <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
                 <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />
