@@ -1,22 +1,22 @@
-import { useAppState, useOnMount } from '../../../../../utils/customHooks';
+import { useOnMount } from '../../../../../utils/customHooks';
 import { default as React, useEffect, useState } from 'react';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { erIE11 } from '../../../../../utils/erNyPersonoversikt';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
+import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 
 interface Props {
     url: string;
 }
 
 function DokumentVisning(props: Props) {
-    const erStandalone = useAppState(state => state.saksoversikt.erStandaloneVindu);
     const [errMsg, setErrMsg] = useState('');
     const onError = (statusKode: number) => setErrMsg(feilmelding(statusKode));
 
     useEffect(() => {
-        loggEvent('VisSaksdokument', 'Saker', { standalone: erStandalone });
-    }, [props.url, erStandalone]);
+        loggEvent('VisSaksdokument', 'Saker', { standalone: erSakerFullscreen() });
+    }, [props.url]);
 
     useOnMount(() => {
         if (erIE11()) {

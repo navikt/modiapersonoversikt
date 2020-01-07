@@ -4,7 +4,6 @@ import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
-import { setErStandaloneVindu } from '../../../../redux/saksoversikt/actions';
 import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
@@ -61,17 +60,13 @@ function Innhold() {
     );
 }
 
-function SakerEgetVindu(props: Props) {
+function SakerFullscreen(props: Props) {
     const dispatch = useDispatch();
     const fnr = useFødselsnummer();
     const saksoversiktResource = useRestResource(resources => resources.sakstema);
 
     useOnMount(() => {
-        dispatch(setErStandaloneVindu(true));
-        loggEvent('Sidevisning', 'SaksoversiktEgetVindu');
-        return () => {
-            dispatch(setErStandaloneVindu(false));
-        };
+        loggEvent('Sidevisning', 'SakerFullscreen');
     });
 
     useEffect(() => {
@@ -90,4 +85,4 @@ function SakerEgetVindu(props: Props) {
     );
 }
 
-export default SakerEgetVindu;
+export default SakerFullscreen;

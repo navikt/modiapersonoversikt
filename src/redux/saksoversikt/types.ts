@@ -8,13 +8,11 @@ export interface DokumentAvsenderFilter {
 
 export interface SaksoversikState {
     viktigÅViteÅpen: boolean;
-    erStandaloneVindu: boolean;
     avsenderFilter: DokumentAvsenderFilter;
 }
 
 export const initialState: SaksoversikState = {
     viktigÅViteÅpen: false,
-    erStandaloneVindu: false,
     avsenderFilter: {
         fraBruker: true,
         fraNav: true,
@@ -24,7 +22,6 @@ export const initialState: SaksoversikState = {
 
 export enum SaksoversiktActionTypes {
     SetViktigÅViteÅpen = 'SetViktigÅViteÅpen',
-    SetErStandaloneVindu = 'SetErStandaloneVindu',
     SetDokumentAvsenderFilter = 'SetDokumentAvsenderFilter'
 }
 
@@ -33,14 +30,9 @@ export interface SetViktigÅViteÅpen extends Action {
     åpen: boolean;
 }
 
-export interface SetErStandaloneVindu extends Action {
-    type: SaksoversiktActionTypes.SetErStandaloneVindu;
-    standaloneVindu: boolean;
-}
-
 export interface SetDokumentAvsenderFilter {
     type: SaksoversiktActionTypes.SetDokumentAvsenderFilter;
     filterEndring: Partial<DokumentAvsenderFilter>;
 }
 
-export type SaksoversiktActions = SetViktigÅViteÅpen | SetErStandaloneVindu | SetDokumentAvsenderFilter;
+export type SaksoversiktActions = SetViktigÅViteÅpen | SetDokumentAvsenderFilter;
