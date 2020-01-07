@@ -23,9 +23,10 @@ import { isLoadedPerson } from '../../../../../redux/restReducers/personinformas
 import { erNyePersonoversikten } from '../../../../../utils/erNyPersonoversikt';
 import { useHistory } from 'react-router-dom';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import { useAppState, useRestResource } from '../../../../../utils/customHooks';
+import { useRestResource } from '../../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import DokumentLenke from './DokumentLenke';
+import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 
 interface Props {
     journalpost: Journalpost;
@@ -130,7 +131,6 @@ function JournalpostLiseElement(props: Props) {
     const dokumentRef = React.createRef<HTMLLIElement>();
     const nyttVinduLinkRef = React.createRef<HTMLAnchorElement>();
     const bruker = useRestResource(resources => resources.personinformasjon);
-    const erStandaloneVindu = useAppState(state => state.saksoversikt.erStandaloneVindu);
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
 
@@ -198,14 +198,14 @@ function JournalpostLiseElement(props: Props) {
 
     const tilgangTilHoveddokument = dokumentKanVises(journalpost.hoveddokument, journalpost);
 
-    const egetVinduLenke = !erStandaloneVindu && tilgangTilHoveddokument && (
+    const egetVinduLenke = !erSakerFullscreen() && tilgangTilHoveddokument && (
         <StyledLink
             ref={nyttVinduLinkRef}
             href={dyplenker.saker.link(props.valgtSakstema, journalpost.hoveddokument, true)}
             target={'_blank'}
-            className={'lenke'}
+            className={'lenke typo-element'}
         >
-            Åpne i nytt vindu
+            Åpne i fullscreen
         </StyledLink>
     );
     const hovedDokument = journalpost.hoveddokument;

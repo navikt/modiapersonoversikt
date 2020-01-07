@@ -5,7 +5,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useAppState, useFocusOnMount, useFødselsnummer } from '../../../../../utils/customHooks';
+import { useFocusOnMount, useFødselsnummer } from '../../../../../utils/customHooks';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import { SaksoversiktValg } from '../utils/useSaksoversiktValg';
 import { useInfotabsDyplenker } from '../../dyplenker';
@@ -14,6 +14,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { TilbakePil } from '../../../../../components/common-styled-components';
 import DokumentVisning from './SaksDokumentVisning';
 import { getSaksdokumentUrl } from './getSaksdokumentUrl';
+import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 
 const Content = styled.div`
     flex-grow: 1;
@@ -50,7 +51,7 @@ const HeaderStyle = styled.div`
 
 function DokumentOgVedlegg(props: SaksoversiktValg) {
     const ref = React.createRef<HTMLDivElement>();
-    const erStandaloneVindu = useAppState(state => state.saksoversikt.erStandaloneVindu);
+    const fullscreen = erSakerFullscreen();
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
     const fødselsnummer = useFødselsnummer();
@@ -78,7 +79,7 @@ function DokumentOgVedlegg(props: SaksoversiktValg) {
 
     const handleTabChange = (_: any, index: number) => history.push(dyplenker.saker.link(props.sakstema, tabs[index]));
 
-    const tabsHeader = !erStandaloneVindu && (
+    const tabsHeader = !fullscreen && (
         <Header>
             <TabsPure tabs={tabProps} onChange={handleTabChange} />
             <KnappWrapper>
@@ -97,7 +98,7 @@ function DokumentOgVedlegg(props: SaksoversiktValg) {
     return (
         <ErrorBoundary boundaryName="Dokumentvisning">
             <Content>
-                <HeaderStyle ref={ref} tabIndex={-1} className={!erStandaloneVindu ? 'sr-only' : undefined}>
+                <HeaderStyle ref={ref} tabIndex={-1} className={!fullscreen ? 'sr-only' : undefined}>
                     <Undertittel>{props.saksdokument.tittel}</Undertittel>
                 </HeaderStyle>
                 {tabsHeader}
