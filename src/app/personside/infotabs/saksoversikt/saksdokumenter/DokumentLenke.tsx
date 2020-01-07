@@ -7,10 +7,9 @@ import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { paths } from '../../../../routes/routing';
 import { useFødselsnummer } from '../../../../../utils/customHooks';
 import { getSaksdokumentUrl } from '../dokumentvisning/getSaksdokumentUrl';
-import IfFeatureToggleOff from '../../../../../components/featureToggle/IfFeatureToggleOff';
 import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
-import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
 
 interface Props {
     dokument: Dokument;
@@ -26,40 +25,31 @@ const dokumentTekst = (dokument: Dokument) => {
 function DokumentLenke(props: Props) {
     const fødselsnummer = useFødselsnummer();
     const dyplenker = useInfotabsDyplenker();
+    const apneDokumenterIEgetVinduFT = useFeatureToggle(FeatureToggles.ApneSaksdokumentiEgetVindu);
     const saksdokumentUrl = getSaksdokumentUrl(
         fødselsnummer,
         props.journalPost.journalpostId,
         props.dokument.dokumentreferanse
     );
+
     if (!props.kanVises) {
         return <Element>{dokumentTekst(props.dokument)}</Element>;
     }
 
+    const apneDokumentINyttVindu = apneDokumenterIEgetVinduFT.isOn && !erSakerFullscreen();
+    const url = apneDokumentINyttVindu
+        ? `${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`
+        : dyplenker.saker.link(props.valgtSakstema, props.dokument);
+
     return (
-        <>
-            <IfFeatureToggleOff toggleID={FeatureToggles.ApneSaksdokumentiEgetVindu}>
-                <Link
-                    to={dyplenker.saker.link(props.valgtSakstema, props.dokument)}
-                    aria-disabled={!props.dokument.kanVises}
-                    className="lenke typo-element"
-                >
-                    {dokumentTekst(props.dokument)}
-                </Link>
-            </IfFeatureToggleOff>
-            <IfFeatureToggleOn toggleID={FeatureToggles.ApneSaksdokumentiEgetVindu}>
-                <a
-                    href={
-                        !erSakerFullscreen()
-                            ? `${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`
-                            : dyplenker.saker.link(props.valgtSakstema, props.dokument)
-                    }
-                    target={'_blank'}
-                    className="lenke typo-element"
-                >
-                    {dokumentTekst(props.dokument)}
-                </a>
-            </IfFeatureToggleOn>
-        </>
+        <Link
+            to={url}
+            target={apneDokumentINyttVindu ? '_blanc' : undefined}
+            aria-disabled={!props.dokument.kanVises}
+            className="lenke typo-element"
+        >
+            {dokumentTekst(props.dokument)}
+        </Link>
     );
 }
 
