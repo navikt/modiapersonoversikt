@@ -5,13 +5,12 @@ import { History } from 'history';
 import { useDispatch } from 'react-redux';
 import { DecoratorProps } from './decoratorprops';
 import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { useHistory } from 'react-router';
 import './personsokKnapp.less';
-import { useAppState, useFødselsnummer, useOnMount, useRestResource } from '../../utils/customHooks';
+import { useAppState, useFødselsnummer, useOnMount } from '../../utils/customHooks';
 import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
-import { hasData } from '../../rest/utils/restResource';
 import { velgEnhetAction } from '../../redux/session/session';
 import { useQueryParams } from '../../utils/urlUtils';
 
@@ -74,18 +73,15 @@ function useKlargjorContextholder(sokFnr?: string) {
     return klar;
 }
 
-function Decorator({ location, history }: RouteComponentProps<{}>) {
+function Decorator() {
+    const history = useHistory();
     const queryParams = useQueryParams<{ sokFnr: string }>();
     const sokFnr = queryParams.sokFnr === '0' ? '' : queryParams.sokFnr;
     const gjeldendeFnr = useFødselsnummer();
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
-    const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
     const dispatch = useDispatch();
 
     const handleSetEnhet = (enhet: string) => {
-        if (hasData(meldingerResource)) {
-            dispatch(meldingerResource.actions.reload);
-        }
         dispatch(velgEnhetAction(enhet));
     };
 
@@ -112,4 +108,4 @@ function Decorator({ location, history }: RouteComponentProps<{}>) {
     );
 }
 
-export default withRouter(Decorator);
+export default Decorator;
