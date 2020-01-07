@@ -10,6 +10,7 @@ import { getSaksdokumentUrl } from '../dokumentvisning/getSaksdokumentUrl';
 import IfFeatureToggleOff from '../../../../../components/featureToggle/IfFeatureToggleOff';
 import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
+import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 
 interface Props {
     dokument: Dokument;
@@ -47,7 +48,11 @@ function DokumentLenke(props: Props) {
             </IfFeatureToggleOff>
             <IfFeatureToggleOn toggleID={FeatureToggles.ApneSaksdokumentiEgetVindu}>
                 <a
-                    href={`${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`}
+                    href={
+                        !erSakerFullscreen()
+                            ? `${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`
+                            : dyplenker.saker.link(props.valgtSakstema, props.dokument)
+                    }
                     target={'_blank'}
                     className="lenke typo-element"
                 >

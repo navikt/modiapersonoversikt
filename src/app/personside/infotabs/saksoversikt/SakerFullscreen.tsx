@@ -39,6 +39,7 @@ const SaksoversiktArticle = styled.article`
     .visually-hidden {
         ${theme.visuallyHidden}
     }
+    ${theme.visitedLinkPurple};
 `;
 
 function Innhold() {

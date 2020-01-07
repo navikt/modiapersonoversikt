@@ -203,9 +203,9 @@ function JournalpostLiseElement(props: Props) {
             ref={nyttVinduLinkRef}
             href={dyplenker.saker.link(props.valgtSakstema, journalpost.hoveddokument, true)}
             target={'_blank'}
-            className={'lenke'}
+            className={'lenke typo-element'}
         >
-            Åpne i nytt vindu
+            Åpne i fullscreen
         </StyledLink>
     );
     const hovedDokument = journalpost.hoveddokument;
