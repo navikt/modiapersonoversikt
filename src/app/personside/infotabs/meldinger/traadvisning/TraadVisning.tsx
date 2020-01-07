@@ -15,6 +15,8 @@ import { formaterDato } from '../../../../../utils/stringFormatting';
 import { useEffect } from 'react';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { Printer } from '../../../../../utils/UsePrinter';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 interface Props {
     valgtTraad: Traad;
     sokeord: string;
@@ -98,15 +100,21 @@ function TraadVisning(props: Props) {
 
     const sisteMelding = nyesteMelding(props.valgtTraad);
     const PrinterWrapper = props.printer.printerWrapper;
+    const meldingerPrintFT = useFeatureToggle(FeatureToggles.MeldingerPrint);
+
     return (
         <VisningStyle>
             <Topplinje valgtTraad={props.valgtTraad} />
             <h3 className="sr-only" aria-live="polite" aria-atomic="false">
                 Valgt melding - {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
             </h3>
-            <PrinterWrapper>
-                <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
-            </PrinterWrapper>
+            {meldingerPrintFT.isOn ? (
+                <PrinterWrapper>
+                    <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
+                </PrinterWrapper>
+            ) : (
+                <AlleMeldinger traad={props.valgtTraad} sokeord={props.sokeord} />
+            )}
         </VisningStyle>
     );
 }
