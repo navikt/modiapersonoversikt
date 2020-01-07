@@ -25,7 +25,7 @@ const dokumentTekst = (dokument: Dokument) => {
 function DokumentLenke(props: Props) {
     const fødselsnummer = useFødselsnummer();
     const dyplenker = useInfotabsDyplenker();
-    const apneDokumenterIEgetVinduFT = useFeatureToggle(FeatureToggles.ApneSaksdokumentiEgetVindu);
+    const apneDokumenterIEgetVinduFT = useFeatureToggle(FeatureToggles.SaksDokumentIEgetVindu);
     const saksdokumentUrl = getSaksdokumentUrl(
         fødselsnummer,
         props.journalPost.journalpostId,

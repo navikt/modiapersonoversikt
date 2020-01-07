@@ -9,9 +9,7 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return true;
         case FeatureToggles.VisTilbakemelding:
             return true;
-        case FeatureToggles.NyPersonforvalter:
-            return true;
-        case FeatureToggles.ApneSaksdokumentiEgetVindu:
+        case FeatureToggles.SaksDokumentIEgetVindu:
             return true;
         default:
             return Math.random() > 0.5;
