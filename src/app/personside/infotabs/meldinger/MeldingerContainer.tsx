@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { hasData } from '../../../../rest/utils/restResource';
 import { huskForrigeValgtTraad, huskSokAction, setSkjulVarslerAction } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
-import { useAppState, useRestResource } from '../../../../utils/customHooks';
+import { useAppState, usePrevious, useRestResource } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useHistory, withRouter } from 'react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -93,6 +93,22 @@ function useHuskSokeord(sokeord: string) {
     }, [sokeord, dispatch]);
 }
 
+function useReloadOnEnhetChange() {
+    const dispatch = useDispatch();
+    const enhet = useAppState(state => state.session.valgtEnhetId);
+    const forrigeEnhet = usePrevious(enhet);
+    const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
+
+    useEffect(() => {
+        if (!forrigeEnhet) {
+            return;
+        }
+        if (forrigeEnhet !== enhet) {
+            hasData(meldingerResource) && dispatch(meldingerResource.actions.reload);
+        }
+    }, [forrigeEnhet, enhet, meldingerResource, dispatch]);
+}
+
 function MeldingerContainer() {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const valgtTraad = useValgtTraadIUrl();
@@ -108,6 +124,7 @@ function MeldingerContainer() {
     useSyncSøkMedVisning(traaderFørSøk, traaderEtterSokOgFiltrering);
     useVelgTraadHvisIngenTraadErValgt(traaderEtterSokOgFiltrering);
     useHuskSokeord(sokeord);
+    useReloadOnEnhetChange();
 
     return (
         <RestResourceConsumer<Traad[]>
