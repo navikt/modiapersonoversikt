@@ -14,9 +14,9 @@ import { Printer } from '../../../../../../utils/UsePrinter';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { LenkeKnapp } from '../../../../../../components/common-styled-components';
 import { apiBaseUri } from '../../../../../../api/config';
+import PrintKnapp from '../../../../../../components/PrintKnapp';
 import useFeatureToggle from '../../../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../../../components/featureToggle/toggleIDs';
-import PrintKnapp from '../../../../../../components/PrintKnapp';
 
 interface Props {
     valgtTraad: Traad;
@@ -111,7 +111,7 @@ function Verktoylinje(props: Props) {
                     />
                     <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
                 </OppgaveknapperStyle>
-                <Print valgtTraad={props.valgtTraad} />
+                <Print valgtTraad={props.valgtTraad} printer={props.printer} />
             </KnapperPanelStyle>
             <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
                 <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />

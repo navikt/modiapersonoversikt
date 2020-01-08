@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
+import { Element, EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
 import {
     erDelsvar,
     erJournalfort,
@@ -93,6 +93,16 @@ const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
     .ekspanderbartPanel__innhold {
         padding: 0.3rem 0;
     }
+    @media print {
+        display: none;
+    }
+`;
+
+const StyledPrintTekst = styled.div`
+    display: none;
+    @media print {
+        display: inline-block;
+    }
 `;
 
 function journalfortMelding(melding: Melding) {
@@ -135,6 +145,10 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
     }
     return null;
 }
+function PrintTekst({ melding }: { melding: Melding }) {
+    const journalfort = erJournalfort(melding) && <Element>{journalfortMelding(melding)}</Element>;
+    return <StyledPrintTekst>{journalfort}</StyledPrintTekst>;
+}
 
 export function SkrevetAv({ melding, rule }: { melding: Melding; rule?: Rule }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
@@ -170,6 +184,7 @@ function EnkeltMelding(props: Props) {
                     </Topptekst>
                     <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>{props.melding.fritekst}</Tekstomrade>
                     <Journalforing melding={props.melding} />
+                    <PrintTekst melding={props.melding} />
                 </SnakkebobleWrapper>
             </Snakkeboble>
         </StyledLi>
