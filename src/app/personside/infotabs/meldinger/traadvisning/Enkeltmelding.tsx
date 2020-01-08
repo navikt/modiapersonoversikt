@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
+import { Element, EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
 import {
     erDelsvar,
     erJournalfort,
@@ -30,7 +30,32 @@ interface Props {
     melding: Melding;
     sokeord: string;
 }
+const StyledLi = styled.li`
+    .snakkeboble-panel {
+        flex-basis: 40rem;
+    }
+    a {
+        word-break: break-word; /* Hvis ikke kan snakkeboblen vokse seg ut av container uten mulighet for scroll */
+    }
+    .snakkeboble {
+        margin: 0;
+    }
+    @media print {
+        page-break-inside: avoid;
+        border: ${theme.border.skille};
+        margin-bottom: 2rem;
 
+        .snakkeboble__snakkeboble-pil-container,
+        .nav-ikon,
+        .bruker-ikon {
+            display: none;
+        }
+
+        .snakkeboble-panel {
+            flex-basis: 100%;
+        }
+    }
+`;
 const SkrevetAvTekst = styled(Normaltekst)`
     margin-right: 0.3rem !important;
 `;
@@ -67,6 +92,16 @@ const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
     .ekspanderbartPanel__hode,
     .ekspanderbartPanel__innhold {
         padding: 0.3rem 0;
+    }
+    @media print {
+        display: none;
+    }
+`;
+
+const StyledPrintTekst = styled.div`
+    display: none;
+    @media print {
+        display: inline-block;
     }
 `;
 
@@ -110,6 +145,10 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
     }
     return null;
 }
+function PrintTekst({ melding }: { melding: Melding }) {
+    const journalfort = erJournalfort(melding) && <Element>{journalfortMelding(melding)}</Element>;
+    return <StyledPrintTekst>{journalfort}</StyledPrintTekst>;
+}
 
 export function SkrevetAv({ melding, rule }: { melding: Melding; rule?: Rule }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
@@ -132,7 +171,7 @@ function EnkeltMelding(props: Props) {
     const highlightRule = createDynamicHighligtingRule(props.sokeord.split(' '));
 
     return (
-        <li className="snakkeboble_ikoner">
+        <StyledLi className="snakkeboble_ikoner">
             <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                 <SnakkebobleWrapper>
                     <Topptekst>
@@ -145,9 +184,10 @@ function EnkeltMelding(props: Props) {
                     </Topptekst>
                     <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>{props.melding.fritekst}</Tekstomrade>
                     <Journalforing melding={props.melding} />
+                    <PrintTekst melding={props.melding} />
                 </SnakkebobleWrapper>
             </Snakkeboble>
-        </li>
+        </StyledLi>
     );
 }
 

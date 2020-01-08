@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BesvarFler matcher snapshot 1`] = `
-.c19 {
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -16,45 +16,63 @@ exports[`BesvarFler matcher snapshot 1`] = `
   align-items: flex-start;
 }
 
-.c22 {
+.c18 .snakkeboble-panel {
+  -webkit-flex-basis: 40rem;
+  -ms-flex-preferred-size: 40rem;
+  flex-basis: 40rem;
+}
+
+.c18 a {
+  word-break: break-word;
+}
+
+.c18 .snakkeboble {
+  margin: 0;
+}
+
+.c23 {
   margin-right: 0.3rem !important;
 }
 
-.c21 {
+.c22 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c20 {
+.c21 {
   font-weight: 600;
 }
 
-.c18 {
+.c19 {
   text-align: left;
 }
 
-.c18 em {
+.c19 em {
   font-style: normal;
   background-color: #eed28c;
   border-radius: 0.625rem;
   padding: 0 0.3125rem;
 }
 
-.c18 > *:not(:last-child) {
+.c19 > *:not(:last-child) {
   border-bottom: solid 0.0625rem #b7b1a9;
   padding-bottom: 0.7rem;
   margin-bottom: 0.5rem;
 }
 
-.c24 {
+.c25 {
   color: #0067c5;
 }
 
-.c23 .ekspanderbartPanel__hode,
-.c23 .ekspanderbartPanel__innhold {
+.c24 .ekspanderbartPanel__hode,
+.c24 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
+}
+
+.c26 {
+  display: none;
 }
 
 .c9 {
@@ -346,7 +364,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: 1.25rem .5rem;
 }
 
-.c25 {
+.c27 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -359,8 +377,40 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: .5rem;
 }
 
-.c25 > * {
+.c27 > * {
   margin-left: 1rem;
+}
+
+@media print {
+  .c18 {
+    page-break-inside: avoid;
+    border: solid 0.0625rem #78706a;
+    margin-bottom: 2rem;
+  }
+
+  .c18 .snakkeboble__snakkeboble-pil-container,
+  .c18 .nav-ikon,
+  .c18 .bruker-ikon {
+    display: none;
+  }
+
+  .c18 .snakkeboble-panel {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@media print {
+  .c24 {
+    display: none;
+  }
+}
+
+@media print {
+  .c26 {
+    display: inline-block;
+  }
 }
 
 <form
@@ -661,7 +711,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
       role="tabpanel"
     >
       <li
-        className="snakkeboble_ikoner"
+        className="snakkeboble_ikoner c18"
       >
         <div
           className="snakkeboble snakkeboble--hoyre"
@@ -683,16 +733,16 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c18"
+                className="c19"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c19"
+                    className="c20"
                   >
                     <div
-                      className="tekstomrade c20"
+                      className="tekstomrade c21"
                     >
                       Samtalereferat oppmøte - Arbeid
                     </div>
@@ -712,10 +762,10 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     30.07.2019 00:00
                   </div>
                   <div
-                    className="c21"
+                    className="c22"
                   >
                     <p
-                      className="typo-normal c22"
+                      className="typo-normal c23"
                     >
                       Skrevet av:
                     </p>
@@ -732,7 +782,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
                 </div>
                 <div
-                  className="ekspanderbartPanel c23 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c24 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -745,7 +795,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c24"
+                        className="typo-etikett-liten c25"
                       >
                         Meldingen er journalført
                       </p>
@@ -760,13 +810,22 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
                   </article>
                 </div>
+                <div
+                  className="c26"
+                >
+                  <p
+                    className="typo-element"
+                  >
+                    Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </li>
       <li
-        className="snakkeboble_ikoner"
+        className="snakkeboble_ikoner c18"
       >
         <div
           className="snakkeboble snakkeboble--venstre"
@@ -788,16 +847,16 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c18"
+                className="c19"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c19"
+                    className="c20"
                   >
                     <div
-                      className="tekstomrade c20"
+                      className="tekstomrade c21"
                     >
                       Spørsmål fra bruker - Arbeid
                     </div>
@@ -814,7 +873,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
                 </div>
                 <div
-                  className="ekspanderbartPanel c23 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c24 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -827,7 +886,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c24"
+                        className="typo-etikett-liten c25"
                       >
                         Meldingen er journalført
                       </p>
@@ -842,13 +901,22 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
                   </article>
                 </div>
+                <div
+                  className="c26"
+                >
+                  <p
+                    className="typo-element"
+                  >
+                    Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </li>
       <li
-        className="snakkeboble_ikoner"
+        className="snakkeboble_ikoner c18"
       >
         <div
           className="snakkeboble snakkeboble--venstre"
@@ -870,16 +938,16 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c18"
+                className="c19"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c19"
+                    className="c20"
                   >
                     <div
-                      className="tekstomrade c20"
+                      className="tekstomrade c21"
                     >
                       Spørsmål fra bruker - Arbeid
                     </div>
@@ -896,7 +964,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
                 </div>
                 <div
-                  className="ekspanderbartPanel c23 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c24 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -909,7 +977,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c24"
+                        className="typo-etikett-liten c25"
                       >
                         Meldingen er journalført
                       </p>
@@ -924,13 +992,22 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
                   </article>
                 </div>
+                <div
+                  className="c26"
+                >
+                  <p
+                    className="typo-element"
+                  >
+                    Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </li>
       <li
-        className="snakkeboble_ikoner"
+        className="snakkeboble_ikoner c18"
       >
         <div
           className="snakkeboble snakkeboble--hoyre"
@@ -952,16 +1029,16 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c18"
+                className="c19"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c19"
+                    className="c20"
                   >
                     <div
-                      className="tekstomrade c20"
+                      className="tekstomrade c21"
                     >
                       Delsvar - Arbeid
                     </div>
@@ -981,10 +1058,10 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     13.08.2019 00:00
                   </div>
                   <div
-                    className="c21"
+                    className="c22"
                   >
                     <p
-                      className="typo-normal c22"
+                      className="typo-normal c23"
                     >
                       Skrevet av:
                     </p>
@@ -1001,7 +1078,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                 </div>
                 <div
-                  className="ekspanderbartPanel c23 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c24 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -1014,7 +1091,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c24"
+                        className="typo-etikett-liten c25"
                       >
                         Meldingen er journalført
                       </p>
@@ -1029,6 +1106,15 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
                   </article>
                 </div>
+                <div
+                  className="c26"
+                >
+                  <p
+                    className="typo-element"
+                  >
+                    Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -1037,7 +1123,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
     </ol>
   </div>
   <div
-    className="c25"
+    className="c27"
   >
     <button
       className="knapp knapp--hoved"
