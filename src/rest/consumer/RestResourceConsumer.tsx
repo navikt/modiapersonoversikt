@@ -1,45 +1,25 @@
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RestEndepunkter } from '../../redux/restReducers/restReducers';
-import { AppState } from '../../redux/reducers';
-import { isFailed, isNotStarted, RestResource, hasData, isForbidden, isLoading } from '../utils/restResource';
-import LazySpinner from '../../components/LazySpinner';
 import { ReactNode } from 'react';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { RestResource } from '../utils/restResource';
+import { RestEndepunkter } from '../../redux/restReducers/restReducers';
+import { useRestResource } from './useRestResource';
+import { RestResourcePlaceholderProps } from './placeholder';
 
 export type Props<T> = {
     getResource: (restResources: RestEndepunkter) => RestResource<T>;
     children: (data: T) => ReactNode;
-    returnOnError?: JSX.Element;
-    returnOnPending?: JSX.Element;
-    returnOnNotFound?: JSX.Element;
-    returnOnForbidden?: JSX.Element;
-    spinnerSize?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
-};
+} & RestResourcePlaceholderProps;
 
 function RestResourceConsumer<T>(props: Props<T>) {
-    const dispatch = useDispatch();
-    const restResource = useSelector((state: AppState) => props.getResource(state.restResources));
-    const { spinnerSize, returnOnPending, returnOnError, returnOnNotFound, returnOnForbidden, children } = props;
-    if (isNotStarted(restResource)) {
-        dispatch(restResource.actions.fetch);
-    }
-    if (isFailed(restResource)) {
-        return returnOnError || <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
-    }
-    if (isForbidden(restResource)) {
-        return (
-            returnOnForbidden || <AlertStripeAdvarsel>Du har ikke tilgang til denne informasjonen</AlertStripeAdvarsel>
-        );
-    }
-    if (isLoading(restResource)) {
-        return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;
-    }
-    if (!hasData(restResource)) {
-        return returnOnNotFound || <AlertStripeAdvarsel>Fant ingen data</AlertStripeAdvarsel>;
+    const { getResource, children, ...placeholderProps } = props;
+
+    const resource = useRestResource(getResource, placeholderProps, true);
+
+    if (!resource.data) {
+        return resource.placeholder;
     }
 
-    return <>{children(restResource.data)}</>;
+    return <>{children(resource.data)}</>;
 }
 
 export default RestResourceConsumer;

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
-import { useRestResource } from '../../../../utils/customHooks';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Undertittel } from 'nav-frontend-typografi';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
@@ -22,6 +21,7 @@ import { FortsettDialogValidator } from './validatorer';
 import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';
 import { erDelvisBesvart, erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { temagruppeTekst, TemaPlukkbare } from '../../../../models/Temagrupper';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 const StyledArticle = styled.article`
     padding: 1rem ${theme.margin.layout};
@@ -57,7 +57,7 @@ function Feilmelding(props: { status: DialogPanelStatus }) {
 }
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;
-    const personinformasjon = useRestResource(resources => resources.personinformasjon);
+    const personinformasjon = useRestResource(resources => resources.personinformasjon).resource;
     const temagrupperITraad = props.traad.meldinger.map(it => it.temagruppe);
 
     const navn = isLoadedPerson(personinformasjon)

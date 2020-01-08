@@ -8,7 +8,6 @@ import { UnmountClosed } from 'react-collapse';
 import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
-import { useRestResource } from '../../../../../utils/customHooks';
 import { LeggTilbakeOppgaveRequest } from '../../../../../models/oppgave';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Temagruppe, TemaPlukkbare } from '../../../../../models/Temagrupper';
@@ -16,6 +15,8 @@ import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { DialogPanelStatus, FortsettDialogPanelState } from '../FortsettDialogTypes';
+import { useRestResource } from '../../../../../rest/consumer/useRestResource';
+import { usePostResource } from '../../../../../rest/consumer/usePostResource';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -76,8 +77,8 @@ function LeggTilbakepanel(props: Props) {
     const updateState = (change: Partial<LeggTilbakeState>) =>
         setState({ ...state, visFeilmeldinger: false, ...change });
     const dispatch = useDispatch();
-    const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
-    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
+    const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const leggerTilbake = props.status.type === DialogPanelStatus.POSTING;
 
     function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak }) {

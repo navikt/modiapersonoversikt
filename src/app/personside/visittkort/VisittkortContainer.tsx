@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useCallback } from 'react';
 import { Person } from '../../../models/person/person';
 import VisittkortHeader from './header/VisittkortHeader';
 import VisittkortBody from './body/VisittkortBody';
@@ -11,14 +12,12 @@ import theme from '../../../styles/personOversiktTheme';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
 import { useLoggSkjermInfoDaglig } from '../../../utils/loggInfo/useLoggSkjermInfoDaglig';
-import { hasData, isFailed } from '../../../rest/utils/restResource';
-import { useAppState, useRestResource } from '../../../utils/customHooks';
+import { useAppState } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import { useCallback } from 'react';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
+import { useRestResource } from '../../../rest/consumer/useRestResource';
+import LazySpinner from '../../../components/LazySpinner';
 
 const VisittkortBodyWrapper = styled.div`
     border-radius: ${theme.borderRadius.layout};
@@ -29,9 +28,18 @@ const SpinnerWrapper = styled(FillCenterAndFadeIn)`
     padding: 1rem;
 `;
 
+const PlaceHolder = (
+    <SpinnerWrapper>
+        <LazySpinner type="XL" />
+    </SpinnerWrapper>
+);
+
 function VisittkortContainer() {
     const erApnet = useAppState(state => state.ui.visittkort.apent);
-    const personResource = useRestResource(resources => resources.personinformasjon);
+    const personResource = useRestResource(resources => resources.personinformasjon, {
+        returnOnError: 'Kunne ikke hente personinfo',
+        returnOnPending: PlaceHolder
+    });
     const dispatch = useDispatch();
     const toggle = useCallback(
         (apent?: boolean) => {
@@ -42,16 +50,8 @@ function VisittkortContainer() {
 
     useLoggSkjermInfoDaglig();
 
-    if (isFailed(personResource)) {
-        return <AlertStripeFeil>Kunne ikke hente personinfo</AlertStripeFeil>;
-    }
-
-    if (!hasData(personResource)) {
-        return (
-            <SpinnerWrapper>
-                <NavFrontendSpinner type="XL" />
-            </SpinnerWrapper>
-        );
+    if (!personResource.data) {
+        return personResource.placeholder;
     }
 
     const person = personResource.data as Person;

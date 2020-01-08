@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { ChangeEvent, useState } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 import KnappBase from 'nav-frontend-knapper';
 import { Select } from 'nav-frontend-skjema';
-import { AlertStripeAdvarsel, AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { velgTemagruppeForPlukk } from '../../../redux/session/session';
 import { AppState } from '../../../redux/reducers';
 import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
@@ -15,12 +15,10 @@ import TildelteOppgaver from './TildelteOppgaver';
 import { paths } from '../../routes/routing';
 import { INFOTABS } from '../infotabs/InfoTabEnum';
 import { Temagruppe, temagruppeTekst, TemaPlukkbare } from '../../../models/Temagrupper';
-import { useRestResource } from '../../../utils/customHooks';
-import { hasData, isFailed } from '../../../rest/utils/restResource';
-import LazySpinner from '../../../components/LazySpinner';
 import { SaksbehandlerRoller } from '../../../utils/RollerUtils';
 import { loggEvent } from '../../../utils/frontendLogger';
-import { useEffect } from 'react';
+import { useRestResource } from '../../../rest/consumer/useRestResource';
+import { RestResourcePlaceholderProps } from '../../../rest/consumer/placeholder';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
@@ -44,24 +42,19 @@ const KnappLayout = styled.div`
     }
 `;
 
-const SpinnerWrapper = styled.div`
-    height: 6rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
+const placeholderProps: RestResourcePlaceholderProps = { returnOnNotFound: 'Kunne ikke hente roller' };
 
-type Props = RouteComponentProps<{}>;
-
-function HentOppgaveKnapp(props: Props) {
+function HentOppgaveKnapp() {
+    const history = useHistory();
     const [tomKø, setTomKø] = useState(false);
     const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
     const dispatch = useDispatch();
     const oppgaveResource = useSelector((state: AppState) => state.restResources.plukkNyeOppgaver);
     const velgTemaGruppe = (temagruppe: Temagruppe) => dispatch(velgTemagruppeForPlukk(temagruppe));
     const valgtTemaGruppe = useSelector((state: AppState) => state.session.temagruppeForPlukk);
-    const rollerResource = useRestResource(resources => resources.veilederRoller);
     let selectRef: HTMLSelectElement | null = null;
+
+    const rollerResource = useRestResource(resources => resources.veilederRoller, placeholderProps);
 
     useEffect(() => {
         if (temaGruppeFeilmelding) {
@@ -69,16 +62,8 @@ function HentOppgaveKnapp(props: Props) {
         }
     }, [selectRef, temaGruppeFeilmelding]);
 
-    if (isFailed(rollerResource)) {
-        return <AlertStripeFeil>Kunne ikke hente roller</AlertStripeFeil>;
-    }
-
-    if (!hasData(rollerResource)) {
-        return (
-            <SpinnerWrapper>
-                <LazySpinner />
-            </SpinnerWrapper>
-        );
+    if (!rollerResource.data) {
+        return rollerResource.placeholder;
     }
 
     if (!rollerResource.data.roller.includes(SaksbehandlerRoller.HentOppgave)) {
@@ -101,7 +86,7 @@ function HentOppgaveKnapp(props: Props) {
                 }
                 const oppgave = response[0];
                 const fødselsnummer = oppgave.fødselsnummer;
-                props.history.push(
+                history.push(
                     `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
                 );
                 response.length > 1 && loggEvent('FlereOppgaverTildelt', 'HentOppgave');
@@ -156,4 +141,4 @@ function HentOppgaveKnapp(props: Props) {
     );
 }
 
-export default withRouter(HentOppgaveKnapp);
+export default HentOppgaveKnapp;

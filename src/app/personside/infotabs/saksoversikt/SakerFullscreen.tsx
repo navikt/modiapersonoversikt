@@ -7,13 +7,13 @@ import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
-import { useFødselsnummer, useOnMount, useRestResource } from '../../../../utils/customHooks';
-import { isNotStarted } from '../../../../rest/utils/restResource';
+import { useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
 import LazySpinner from '../../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../../components/FillCenterAndFadeIn';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import JournalPoster from './saksdokumenter/JournalPoster';
 import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 interface Props {
     fødselsnummer: string;
@@ -71,7 +71,7 @@ function SakerFullscreen(props: Props) {
     });
 
     useEffect(() => {
-        if (isNotStarted(saksoversiktResource) && fnr) {
+        if (saksoversiktResource.isNotStarted && fnr) {
             dispatch(saksoversiktResource.actions.fetch);
         }
     }, [fnr, dispatch, saksoversiktResource]);

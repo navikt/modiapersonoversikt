@@ -1,15 +1,13 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components/macro';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import TraadListe from './traadliste/TraadListe';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import { useEffect, useState } from 'react';
-import { hasData } from '../../../../rest/utils/restResource';
 import { huskForrigeValgtTraad, huskSokAction, setSkjulVarslerAction } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
-import { useAppState, usePrevious, useRestResource } from '../../../../utils/customHooks';
+import { useAppState, usePrevious } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useHistory, withRouter } from 'react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -17,6 +15,7 @@ import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { filtrerBortVarsel, useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 const meldingerMediaTreshold = pxToRem(850);
 
@@ -42,7 +41,7 @@ function useHuskValgtTraad() {
     const forrigeValgteTraad = useAppState(state => state.meldinger.forrigeValgteTraad);
     const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
     const forrigeTraadErFjernet =
-        hasData(meldingerResource) && forrigeValgteTraad && !meldingerResource.data.includes(forrigeValgteTraad);
+        meldingerResource.data && forrigeValgteTraad && !meldingerResource.data.includes(forrigeValgteTraad);
 
     useEffect(() => {
         if (forrigeTraadErFjernet) {
@@ -104,7 +103,7 @@ function useReloadOnEnhetChange() {
             return;
         }
         if (forrigeEnhet !== enhet) {
-            hasData(meldingerResource) && dispatch(meldingerResource.actions.reload);
+            meldingerResource.data && dispatch(meldingerResource.actions.reload);
         }
     }, [forrigeEnhet, enhet, meldingerResource, dispatch]);
 }
@@ -117,7 +116,7 @@ function MeldingerContainer() {
     const skjulVarsler = useAppState(state => state.meldinger.skjulVarsler);
     const dispatch = useDispatch();
     const setSkjulVarsler = (skjul: boolean) => dispatch(setSkjulVarslerAction(skjul));
-    const traaderFørSøk = hasData(traaderResource) ? traaderResource.data : [];
+    const traaderFørSøk = traaderResource.data ? traaderResource.data : [];
     const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderFørSøk, sokeord).filter(traad =>
         skjulVarsler ? filtrerBortVarsel(traad) : true
     );
@@ -127,10 +126,7 @@ function MeldingerContainer() {
     useReloadOnEnhetChange();
 
     return (
-        <RestResourceConsumer<Traad[]>
-            getResource={restResources => restResources.tråderOgMeldinger}
-            returnOnPending={<CenteredLazySpinner />}
-        >
+        <RestResourceConsumer<Traad[]> getResource={restResources => restResources.tråderOgMeldinger}>
             {data => {
                 if (traaderFørSøk.length === 0) {
                     return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;

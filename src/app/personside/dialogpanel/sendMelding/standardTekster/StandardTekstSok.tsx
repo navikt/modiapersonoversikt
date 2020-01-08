@@ -14,11 +14,10 @@ import { captitalize } from '../../../../../utils/stringFormatting';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullførData } from '../autofullforUtils';
-import { useRestResource } from '../../../../../utils/customHooks';
-import { hasData as restResourceHasData } from '../../../../../rest/utils/restResource';
 import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
+import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -154,8 +153,8 @@ function StandardTekstSok(props: Props) {
         );
     }
 
-    if (!restResourceHasData(personResource)) {
-        return null;
+    if (!personResource.data) {
+        return personResource.placeholder;
     }
 
     return (

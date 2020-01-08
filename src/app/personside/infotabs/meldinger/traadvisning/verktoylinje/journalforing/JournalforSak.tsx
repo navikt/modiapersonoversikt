@@ -12,7 +12,7 @@ import { post } from '../../../../../../../api/api';
 import { loggError } from '../../../../../../../utils/frontendLogger';
 import { useDispatch, useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
-import { useRestResource } from '../../../../../../../utils/customHooks';
+import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 
 export interface Props {
     sak: JournalforingsSak;

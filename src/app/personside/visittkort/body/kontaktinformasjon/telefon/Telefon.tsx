@@ -38,7 +38,6 @@ function Telefon() {
     return (
         <VisittkortElement beskrivelse="Telefon" ikon={<PhoneIkon />}>
             <RestResourceConsumer<KRRKontaktinformasjon>
-                spinnerSize={'L'}
                 getResource={restResources => restResources.kontaktinformasjon}
             >
                 {data => <MobiltelefonVisning kontaktinformasjon={data} />}

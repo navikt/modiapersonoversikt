@@ -3,9 +3,8 @@ import { Behandlingskjede, Sakstema } from '../../../../../models/saksoversikt/s
 import moment from 'moment';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
-import { useRestResource } from '../../../../../utils/customHooks';
 import { useMemo } from 'react';
-import { hasData } from '../../../../../rest/utils/restResource';
+import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 
 export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     const alleBehandlingskjeder = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.behandlingskjeder);
@@ -26,7 +25,7 @@ export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
 
 export function useAgregerteSaker(): Sakstema | undefined {
     const sakstemaResource = useRestResource(resources => resources.sakstema);
-    return useMemo(() => (hasData(sakstemaResource) ? aggregertSakstema(sakstemaResource.data.resultat) : undefined), [
+    return useMemo(() => (sakstemaResource.data ? aggregertSakstema(sakstemaResource.data.resultat) : undefined), [
         sakstemaResource
     ]);
 }

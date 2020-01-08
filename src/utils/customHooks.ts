@@ -3,7 +3,6 @@ import { EffectCallback, RefObject, useCallback, useEffect, useRef } from 'react
 import { EventListener, runIfEventIsNotInsideRef } from './reactRefUtils';
 import { useSelector } from 'react-redux';
 import { AppState } from '../redux/reducers';
-import { RestEndepunkter } from '../redux/restReducers/restReducers';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
     useOnMount(() => {
@@ -48,10 +47,6 @@ export function usePrevious<T>(value: T) {
 
 export function useAppState<T>(selector: (state: AppState) => T) {
     return useSelector((state: AppState) => selector(state));
-}
-
-export function useRestResource<T>(selector: (resources: RestEndepunkter) => T) {
-    return useAppState(state => selector(state.restResources));
 }
 
 export function useFødselsnummer() {

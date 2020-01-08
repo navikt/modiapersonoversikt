@@ -1,10 +1,9 @@
-import { useRestResource } from '../../utils/customHooks';
-import { hasData } from '../../rest/utils/restResource';
 import { FeatureToggles } from './toggleIDs';
+import { useRestResource } from '../../rest/consumer/useRestResource';
 
 function useFeatureToggle(toggleId: FeatureToggles) {
     const featureToggleResouce = useRestResource(resources => resources.featureToggles);
-    if (!hasData(featureToggleResouce)) {
+    if (!featureToggleResouce.data) {
         return {
             pending: true
         };
