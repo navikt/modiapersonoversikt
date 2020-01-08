@@ -28,7 +28,9 @@ function RestResourceConsumer<T>(props: Props<T>) {
         return returnOnError || <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
     }
     if (isForbidden(restResource)) {
-        return returnOnForbidden || <AlertStripeAdvarsel>Avvist tilgang til informasjon</AlertStripeAdvarsel>;
+        return (
+            returnOnForbidden || <AlertStripeAdvarsel>Du har ikke tilgang til denne informasjonen</AlertStripeAdvarsel>
+        );
     }
     if (isLoading(restResource)) {
         return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;

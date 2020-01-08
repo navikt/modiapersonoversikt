@@ -16,7 +16,7 @@ import { paths } from '../../routes/routing';
 import { INFOTABS } from '../infotabs/InfoTabEnum';
 import { Temagruppe, temagruppeTekst, TemaPlukkbare } from '../../../models/Temagrupper';
 import { useRestResource } from '../../../utils/customHooks';
-import { hasData, isFailed, isForbidden } from '../../../rest/utils/restResource';
+import { hasData, isFailed } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
 import { SaksbehandlerRoller } from '../../../utils/RollerUtils';
 import { loggEvent } from '../../../utils/frontendLogger';
@@ -71,9 +71,6 @@ function HentOppgaveKnapp(props: Props) {
 
     if (isFailed(rollerResource)) {
         return <AlertStripeFeil>Kunne ikke hente roller</AlertStripeFeil>;
-    }
-    if (isForbidden(rollerResource)) {
-        return null;
     }
 
     if (!hasData(rollerResource)) {

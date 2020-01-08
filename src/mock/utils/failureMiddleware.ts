@@ -8,6 +8,10 @@ const failures: ResponseData[] = [
     {
         status: 403,
         statusText: 'Forbidden'
+    },
+    {
+        status: 404,
+        statusText: 'Not found'
     }
 ];
 
@@ -16,7 +20,8 @@ export function failurerateMiddleware(probabilityOfFailure: number): Middleware 
         return new Promise<ResponseData>(resolve => {
             const rnd = Math.random();
             if (rnd < probabilityOfFailure) {
-                resolve(failures[Math.floor(Math.random() * failures.length)]);
+                const randomFailure = failures[Math.floor(Math.random() * failures.length)];
+                resolve(randomFailure);
             } else {
                 resolve(response);
             }

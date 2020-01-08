@@ -203,6 +203,12 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
                     ...state,
                     status: STATUS.NOT_FOUND
                 };
+            case actionNames.FORBIDDEN:
+                loggEvent('Fetch-forbidden', resourceNavn);
+                return {
+                    ...state,
+                    status: STATUS.FORBIDDEN
+                };
             case actionNames.FAILED:
                 loggEvent('Fetch-Failed', resourceNavn);
                 /* Logging av feilen blir håndtert i handterFeil() i ./utils.ts, der har vi bedre tilgang på relevant informasjon */
@@ -211,13 +217,6 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
                     status: STATUS.FAILED,
                     error: (action as FetchError).error
                 } as Failed<T>;
-            case actionNames.FORBIDDEN:
-                loggEvent('Fetch-forbidden', resourceNavn);
-                return {
-                    ...state,
-                    status: STATUS.FORBIDDEN,
-                    error: (action as FetchError).error
-                } as Forbidden<T>;
             case actionNames.INITIALIZE:
                 return initialState;
             case actionNames.SET_DATA:
