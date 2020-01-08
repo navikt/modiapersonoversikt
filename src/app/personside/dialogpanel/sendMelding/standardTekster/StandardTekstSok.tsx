@@ -14,7 +14,6 @@ import { captitalize } from '../../../../../utils/stringFormatting';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullførData } from '../autofullforUtils';
-import { hasData as restResourceHasData } from '../../../../../rest/utils/restResource';
 import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
@@ -154,8 +153,8 @@ function StandardTekstSok(props: Props) {
         );
     }
 
-    if (!restResourceHasData(personResource)) {
-        return null;
+    if (!personResource.data) {
+        return personResource.placeholder;
     }
 
     return (

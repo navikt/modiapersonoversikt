@@ -6,7 +6,6 @@ import SpørsmålOgSvar from './SporsmalOgSvarContainer';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
 import { jobberMedSpørsmålOgSvar, kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
 import { useAppState, useFødselsnummer } from '../../../utils/customHooks';
-import { isLoading } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useErKontaktsenter } from '../../../utils/enheterUtils';
@@ -39,10 +38,16 @@ const SpinnerWrapper = styled(FillCenterAndFadeIn)`
     margin-bottom: 0.5rem;
 `;
 
+const Placeholder = (
+    <SpinnerWrapper>
+        <LazySpinner />
+    </SpinnerWrapper>
+);
+
 function Kontrollsporsmal() {
     const visKontrollSpørsmål = useAppState(state => state.kontrollSpørsmål.open);
     const fnr = useFødselsnummer();
-    const personResource = useRestResource(resources => resources.personinformasjon);
+    const personResource = useRestResource(resources => resources.personinformasjon, { returnOnPending: Placeholder });
     const erKontaktsenter = useErKontaktsenter();
 
     if (
@@ -54,12 +59,8 @@ function Kontrollsporsmal() {
         return null;
     }
 
-    if (isLoading(personResource)) {
-        return (
-            <SpinnerWrapper>
-                <LazySpinner />
-            </SpinnerWrapper>
-        );
+    if (!personResource.data) {
+        return personResource.placeholder;
     }
 
     return (

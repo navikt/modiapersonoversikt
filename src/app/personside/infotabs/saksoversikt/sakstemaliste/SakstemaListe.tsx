@@ -7,7 +7,6 @@ import SakstemaListeElement from './SakstemaListeElement';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { getUnikSakstemaKey, hentDatoForSisteHendelse, useAgregerteSaker } from '../utils/saksoversiktUtils';
 import { datoSynkende } from '../../../../../utils/dateUtils';
-import { hasData } from '../../../../../rest/utils/restResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 
@@ -62,7 +61,7 @@ function SakstemaListe(props: Props) {
     const sakstemaResource = useRestResource(resources => resources.sakstema);
     const agregerteSaker = useAgregerteSaker();
 
-    if (!hasData(sakstemaResource) || !agregerteSaker) {
+    if (!sakstemaResource.data || !agregerteSaker) {
         return <LazySpinner />;
     }
 

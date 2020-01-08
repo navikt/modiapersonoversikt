@@ -8,7 +8,6 @@ import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../../PersonOppslagHandler/
 import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 import { useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
-import { isNotStarted } from '../../../../rest/utils/restResource';
 import LazySpinner from '../../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../../components/FillCenterAndFadeIn';
 import { loggEvent } from '../../../../utils/frontendLogger';
@@ -72,7 +71,7 @@ function SakerFullscreen(props: Props) {
     });
 
     useEffect(() => {
-        if (isNotStarted(saksoversiktResource) && fnr) {
+        if (saksoversiktResource.isNotStarted && fnr) {
             dispatch(saksoversiktResource.actions.fetch);
         }
     }, [fnr, dispatch, saksoversiktResource]);

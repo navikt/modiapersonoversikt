@@ -166,7 +166,7 @@ function JournalpostLiseElement(props: Props) {
     };
 
     const journalpost = props.journalpost;
-    const brukersNavn = isLoadedPerson(bruker) ? bruker.data.navn.sammensatt : '';
+    const brukersNavn = isLoadedPerson(bruker.resource) ? bruker.resource.data.navn.sammensatt : '';
 
     const saksid = journalpost.tilhørendeFagsaksid ? journalpost.tilhørendeFagsaksid : journalpost.tilhørendeSaksid;
     const saksvisning =

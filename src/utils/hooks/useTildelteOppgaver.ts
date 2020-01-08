@@ -1,4 +1,3 @@
-import { hasData } from '../../rest/utils/restResource';
 import { isFinishedPosting } from '../../rest/utils/postResource';
 import { useFødselsnummer } from '../customHooks';
 import { Oppgave } from '../../models/oppgave';
@@ -16,7 +15,7 @@ function useTildelteOppgaver() {
 
     const tildelteOppgaver = [
         ...(isFinishedPosting(oppgaveResource) ? oppgaveResource.response : []),
-        ...(hasData(tildelteOppgaverResource) ? tildelteOppgaverResource.data : [])
+        ...(tildelteOppgaverResource.data ? tildelteOppgaverResource.data : [])
     ].filter(removeDuplicateOppgaver);
 
     const alleTildelteOppgaverPaaBruker = tildelteOppgaver.filter(oppg => oppg.fødselsnummer === fnr);

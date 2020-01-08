@@ -87,8 +87,8 @@ function SendNyMelding(props: Props) {
     const state = props.state;
     const personinformasjon = useRestResource(resources => resources.personinformasjon);
 
-    const navn = isLoadedPerson(personinformasjon)
-        ? capitalizeName(personinformasjon.data.navn.fornavn || '')
+    const navn = isLoadedPerson(personinformasjon.resource)
+        ? capitalizeName(personinformasjon.resource.data.navn.fornavn || '')
         : 'bruker';
 
     const erReferat = NyMeldingValidator.erReferat(state);

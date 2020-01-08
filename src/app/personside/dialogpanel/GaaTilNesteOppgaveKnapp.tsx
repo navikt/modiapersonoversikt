@@ -1,6 +1,5 @@
 import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
-import { hasData } from '../../../rest/utils/restResource';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useDispatch } from 'react-redux';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
@@ -13,7 +12,7 @@ function GaaTilNesteOppgaveKnapp(props: { lukk: () => void }) {
     const nesteOppgavePåBruker = tildelteOppgaver.paaBruker[0];
 
     const gaaTilNesteSporsmaal = () => {
-        if (!nesteOppgavePåBruker || !hasData(traaderResource)) {
+        if (!nesteOppgavePåBruker || !traaderResource.data) {
             return;
         }
         const traadTilknyttetOppgave = traaderResource.data.find(

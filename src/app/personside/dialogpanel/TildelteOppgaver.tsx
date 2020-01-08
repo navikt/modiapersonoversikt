@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { createRef, useState } from 'react';
 import { useClickOutside } from '../../../utils/customHooks';
 import styled from 'styled-components/macro';
 import { Knapp } from 'nav-frontend-knapper';
@@ -7,11 +8,8 @@ import { loggError } from '../../../utils/frontendLogger';
 import theme from '../../../styles/personOversiktTheme';
 import { nyesteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
-import { hasData } from '../../../rest/utils/restResource';
-import LazySpinner from '../../../components/LazySpinner';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { LenkeKnapp } from '../../../components/common-styled-components';
-import { createRef, useState } from 'react';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { useInfotabsDyplenker } from '../infotabs/dyplenker';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
@@ -59,12 +57,14 @@ function OppgaverDropdown(props: { lukk: () => void }) {
     const oppgaverPaaBruker = tildelteOppgaver.paaBruker;
     const history = useHistory();
 
-    if (!hasData(traaderResource)) {
-        return <LazySpinner />;
+    if (traaderResource.data === undefined) {
+        return traaderResource.placeholder;
     }
 
+    const traader = traaderResource.data;
+
     const oppgaver = oppgaverPaaBruker.map(oppgave => {
-        const traad = traaderResource.data.find(traad => traad.traadId === oppgave.traadId);
+        const traad = traader.find(traad => traad.traadId === oppgave.traadId);
         if (!traad) {
             const error = new Error(`Kunne ikke finne tråd tilknyttet oppgave: ${oppgave.oppgaveId}`);
             loggError(error);

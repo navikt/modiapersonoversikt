@@ -1,13 +1,10 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import useTildelteOppgaver from '../../../../utils/hooks/useTildelteOppgaver';
 import { useDispatch } from 'react-redux';
 import { useInfotabsDyplenker } from '../../infotabs/dyplenker';
-import { useEffect } from 'react';
-import { hasData } from '../../../../rest/utils/restResource';
 import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { loggError } from '../../../../utils/frontendLogger';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useHistory } from 'react-router';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
@@ -33,7 +30,7 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
         function visTraadTilknyttetOppgaveIDialogpanel() {
             const oppgave = tildelteOppgaver.nettopTildelt[0];
             const åpneTrådIFortsettDialogpanel = !dialogpanelTraad && !!oppgave;
-            if (!åpneTrådIFortsettDialogpanel || !hasData(traaderResource)) {
+            if (!åpneTrådIFortsettDialogpanel || !traaderResource.data) {
                 return;
             }
             const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.traadId);
@@ -49,10 +46,10 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
         [tildelteOppgaver.nettopTildelt, dialogpanelTraad, dispatch, dyplenker, history, traaderResource]
     );
 
-    if (tildelteOppgaver.nettopTildelt.length > 0 && !hasData(traaderResource)) {
+    if (tildelteOppgaver.nettopTildelt.length > 0 && !traaderResource.data) {
         return {
             pending: true,
-            placeholder: <CenteredLazySpinner />
+            placeholder: traaderResource.placeholder
         };
     }
 

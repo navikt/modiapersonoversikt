@@ -1,7 +1,6 @@
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { useMemo } from 'react';
-import { hasData } from '../../../../../rest/utils/restResource';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { useAgregerteSaker } from './saksoversiktUtils';
 import { useSakerRouting } from './saksoversiktRoutingUtils';
@@ -32,7 +31,7 @@ function useValgtJournalpostIUrl(): Journalpost | undefined {
     const saker = useRestResource(resources => resources.sakstema);
     const sakerRouting = useSakerRouting();
     return useMemo(() => {
-        if (!hasData(saker)) {
+        if (!saker.data) {
             return undefined;
         }
 
@@ -46,7 +45,7 @@ function useValgtSaksdokumentIUrl(): Dokument | undefined {
     const sakerRouting = useSakerRouting();
 
     return useMemo(() => {
-        if (!hasData(saker)) {
+        if (!saker.data) {
             return undefined;
         }
 
@@ -63,7 +62,7 @@ function useValgtSakstemaIUrl(): Sakstema | undefined {
     const agregerteSaker = useAgregerteSaker();
 
     return useMemo(() => {
-        if (!hasData(sakstemaResource) || !agregerteSaker) {
+        if (!sakstemaResource.data || !agregerteSaker) {
             return undefined;
         }
         const alleSakstema = [agregerteSaker, ...sakstemaResource.data.resultat];

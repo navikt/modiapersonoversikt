@@ -14,7 +14,9 @@ interface State {
     showSpinner: boolean;
 }
 
-const FadeIn = styled.span<{ padding?: string }>`
+const Styling = styled.span<{ padding?: string }>`
+    display: flex;
+    justify-content: center;
     ${theme.animation.fadeIn};
     ${props =>
         props.padding
@@ -48,9 +50,9 @@ class LazySpinner extends React.Component<Props, State> {
     render() {
         if (this.state.showSpinner) {
             return (
-                <FadeIn padding={this.props.padding}>
+                <Styling padding={this.props.padding}>
                     <NavFrontendSpinner type={this.props.type || 'L'} />
-                </FadeIn>
+                </Styling>
             );
         }
         return null;

@@ -57,7 +57,7 @@ function Feilmelding(props: { status: DialogPanelStatus }) {
 }
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;
-    const personinformasjon = useRestResource(resources => resources.personinformasjon);
+    const personinformasjon = useRestResource(resources => resources.personinformasjon).resource;
     const temagrupperITraad = props.traad.meldinger.map(it => it.temagruppe);
 
     const navn = isLoadedPerson(personinformasjon)
