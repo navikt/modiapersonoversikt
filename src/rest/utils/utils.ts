@@ -5,6 +5,7 @@ import { AppState } from '../../redux/reducers';
 import { loggError } from '../../utils/frontendLogger';
 
 const notFound = new Error();
+const forbidden = new Error();
 export const abortFetch = '';
 
 export enum STATUS {
@@ -13,7 +14,8 @@ export enum STATUS {
     SUCCESS = 'SUCCESS',
     NOT_FOUND = 'NOT_FOUND',
     RELOADING = 'RELOADING',
-    FAILED = 'FAILED'
+    FAILED = 'FAILED',
+    FORBIDDEN = 'FORBIDDEN'
 }
 
 export interface FetchSuccess<T> extends Action {
@@ -38,6 +40,8 @@ function parseResponse(response: Response) {
         return response.json();
     } else if (response.status === 404) {
         throw notFound;
+    } else if (response.status === 403) {
+        throw forbidden;
     } else {
         throw response;
     }
@@ -60,10 +64,16 @@ function handterFeil(dispatch: Dispatch<Action>, actionNames: ActionTypes, fetch
             dispatch({ type: actionNames.NOTFOUND });
             return;
         }
+        if (error === forbidden) {
+            dispatch({ type: actionNames.FORBIDDEN });
+            return;
+        }
+
         dispatch({
             type: actionNames.FAILED,
             error: 'Kunne ikke hente data'
         });
+
         if (error instanceof Response) {
             loggError(
                 new Error(`Kunne ikke fetche data på ${fetchUri}. Status ${error.status}: ${error.statusText}`),

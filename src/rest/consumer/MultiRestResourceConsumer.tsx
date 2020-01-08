@@ -1,5 +1,5 @@
 import { RestEndepunkter } from '../../redux/restReducers/restReducers';
-import { hasData, HasData, isFailed, isLoaded, isNotStarted, RestResource } from '../utils/restResource';
+import { HasData, hasData, isFailed, isForbidden, isLoaded, isNotStarted, RestResource } from '../utils/restResource';
 import React, { ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
@@ -23,6 +23,7 @@ export type Props<T extends { [key: string]: any }> = {
     returnOnError?: JSX.Element;
     returnOnPending?: JSX.Element;
     returnOnNotFound?: JSX.Element;
+    returnOnForbidden?: JSX.Element;
     spinnerSize?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 };
 
@@ -49,10 +50,13 @@ export function MultiRestResourceConsumerBase<T>(props: BaseProps<T>) {
             }
         });
     });
-
+    if (some(restResources, isForbidden)) {
+        return <>{children(STATUS.FORBIDDEN, null)}</>;
+    }
     if (some(restResources, isFailed)) {
         return <>{children(STATUS.FAILED, null)}</>;
     }
+
     if (!every(restResources, isLoaded)) {
         return <>{children(STATUS.LOADING, null)}</>;
     }
@@ -68,16 +72,33 @@ export function MultiRestResourceConsumerBase<T>(props: BaseProps<T>) {
 }
 
 function MultiRestResourceConsumer<T>(props: Props<T>) {
-    const { spinnerSize, returnOnPending, returnOnError, returnOnNotFound, getResource, children } = props;
+    const {
+        spinnerSize,
+        returnOnPending,
+        returnOnError,
+        returnOnNotFound,
+        returnOnForbidden,
+        getResource,
+        children
+    } = props;
     return (
         <MultiRestResourceConsumerBase<T> getResource={getResource}>
             {(status: STATUS, data: T | null) => {
+                if (status === STATUS.FORBIDDEN) {
+                    return (
+                        returnOnForbidden || (
+                            <AlertStripeAdvarsel>Du har ikke tilgang til denne informasjonen</AlertStripeAdvarsel>
+                        )
+                    );
+                }
                 if (status === STATUS.FAILED) {
                     return returnOnError || <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
                 }
+
                 if (status === STATUS.LOADING) {
                     return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;
                 }
+
                 if (status === STATUS.NOT_FOUND) {
                     return returnOnNotFound || <AlertStripeAdvarsel>Fant ingen data</AlertStripeAdvarsel>;
                 }
