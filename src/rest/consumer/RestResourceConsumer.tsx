@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RestEndepunkter } from '../../redux/restReducers/restReducers';
 import { AppState } from '../../redux/reducers';
-import { isFailed, isNotStarted, RestResource, isLoaded, hasData } from '../utils/restResource';
+import { isFailed, isNotStarted, RestResource, hasData, isForbidden, isLoading } from '../utils/restResource';
 import LazySpinner from '../../components/LazySpinner';
 import { ReactNode } from 'react';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
@@ -13,25 +13,32 @@ export type Props<T> = {
     returnOnError?: JSX.Element;
     returnOnPending?: JSX.Element;
     returnOnNotFound?: JSX.Element;
+    returnOnForbidden?: JSX.Element;
     spinnerSize?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 };
 
 function RestResourceConsumer<T>(props: Props<T>) {
     const dispatch = useDispatch();
     const restResource = useSelector((state: AppState) => props.getResource(state.restResources));
-    const { spinnerSize, returnOnPending, returnOnError, returnOnNotFound, children } = props;
+    const { spinnerSize, returnOnPending, returnOnError, returnOnNotFound, returnOnForbidden, children } = props;
     if (isNotStarted(restResource)) {
         dispatch(restResource.actions.fetch);
     }
     if (isFailed(restResource)) {
         return returnOnError || <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
     }
-    if (!isLoaded(restResource)) {
+    if (isForbidden(restResource)) {
+        return (
+            returnOnForbidden || <AlertStripeAdvarsel>Du har ikke tilgang til denne informasjonen</AlertStripeAdvarsel>
+        );
+    }
+    if (isLoading(restResource)) {
         return returnOnPending || <LazySpinner type={spinnerSize || 'L'} />;
     }
     if (!hasData(restResource)) {
         return returnOnNotFound || <AlertStripeAdvarsel>Fant ingen data</AlertStripeAdvarsel>;
     }
+
     return <>{children(restResource.data)}</>;
 }
 
