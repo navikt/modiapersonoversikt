@@ -4,9 +4,6 @@ import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandle
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/stringFormatting';
 import { loggError, loggEvent } from '../../../../utils/frontendLogger';
-import { useOnMount } from '../../../../utils/customHooks';
-import { isFailed } from '../../../../rest/utils/restResource';
-import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 export type AutofullforData = {
@@ -119,14 +116,6 @@ export function useAutoFullførData(): AutofullforData | undefined {
     const personResource = useRestResource(resources => resources.personinformasjon);
     const saksbehandler = useRestResource(resources => resources.innloggetSaksbehandler);
     const navKontorResource = useRestResource(resources => resources.brukersNavKontor);
-    const dispatch = useDispatch();
-
-    useOnMount(() => {
-        // innloggetSaksbehandler feiler for førstegangsbrukere pga problematikk med saksbehandlerinnstillingercookie (OPP-1025) intill den feilen er fikset legget vi på denne logikken som prøver å fetche på nytt (cookien blir satt etter første pageload) slik at det blir minst mulig merkbart for brukerne våre
-        if (saksbehandler.data || isFailed(saksbehandler.resource)) {
-            dispatch(saksbehandler.actions.fetch);
-        }
-    });
 
     return {
         person: personResource.data ? personResource.data : undefined,
