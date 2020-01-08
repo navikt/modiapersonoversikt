@@ -71,6 +71,10 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: 0.3rem 0;
 }
 
+.c26 {
+  display: none;
+}
+
 .c9 {
   position: relative;
 }
@@ -360,7 +364,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: 1.25rem .5rem;
 }
 
-.c26 {
+.c27 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -373,7 +377,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: .5rem;
 }
 
-.c26 > * {
+.c27 > * {
   margin-left: 1rem;
 }
 
@@ -394,6 +398,18 @@ exports[`BesvarFler matcher snapshot 1`] = `
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
+  }
+}
+
+@media print {
+  .c24 {
+    display: none;
+  }
+}
+
+@media print {
+  .c26 {
+    display: inline-block;
   }
 }
 
@@ -794,6 +810,15 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
                   </article>
                 </div>
+                <div
+                  className="c26"
+                >
+                  <p
+                    className="typo-element"
+                  >
+                    Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -876,6 +901,15 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
                   </article>
                 </div>
+                <div
+                  className="c26"
+                >
+                  <p
+                    className="typo-element"
+                  >
+                    Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -957,6 +991,15 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   >
                     Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
                   </article>
+                </div>
+                <div
+                  className="c26"
+                >
+                  <p
+                    className="typo-element"
+                  >
+                    Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
+                  </p>
                 </div>
               </div>
             </div>
@@ -1063,6 +1106,15 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
                   </article>
                 </div>
+                <div
+                  className="c26"
+                >
+                  <p
+                    className="typo-element"
+                  >
+                    Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -1071,7 +1123,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
     </ol>
   </div>
   <div
-    className="c26"
+    className="c27"
   >
     <button
       className="knapp knapp--hoved"
