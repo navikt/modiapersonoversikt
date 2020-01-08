@@ -11,7 +11,8 @@ import { useCallback, useMemo } from 'react';
 
 export const paths = {
     personUri: '/modiapersonoversikt/person',
-    sakerEgetVindu: `/modiapersonoversikt/saker`,
+    sakerFullscreen: `/modiapersonoversikt/saker`,
+    saksdokumentEgetVindu: `/modiapersonoversikt/dokument`,
     brukerprofil: '/modiapersonoversikt/brukerprofil',
     basePath: '/modiapersonoversikt',
     standaloneKomponenter: '/modiapersonoversikt/components',
@@ -32,7 +33,7 @@ export function usePaths() {
     return useMemo(
         () => ({
             ...paths,
-            sakerEgetVindu: `${paths.basePath}/saker/${fnr}`,
+            sakerFullscreen: `${paths.basePath}/saker/${fnr}`,
             oversikt: getPath(INFOTABS.OVERSIKT),
             oppfolging: getPath(INFOTABS.OPPFOLGING),
             meldinger: getPath(INFOTABS.MELDINGER),

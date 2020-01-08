@@ -3,8 +3,8 @@ import { getUnikSakstemaKey } from './saksoversiktUtils';
 import { usePaths } from '../../../../routes/routing';
 import { useMemo } from 'react';
 import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import { useAppState } from '../../../../../utils/customHooks';
 import { useQueryParams } from '../../../../../utils/urlUtils';
+import { erSakerFullscreen } from './erSakerFullscreen';
 
 export interface SakerRouting {
     link: (saksTema?: Sakstema, valgtDokument?: Dokument, standalone?: boolean) => string;
@@ -17,21 +17,19 @@ export interface SakerRouting {
 export function useSakerRouting(): SakerRouting {
     const paths = usePaths();
     const queryParams = useQueryParams<{ dokument?: string; sakstema?: string }>();
-    const erStandAlone = useAppState(state => state.saksoversikt.erStandaloneVindu);
 
     return useMemo(
         () => ({
             link: (saksTema, valgtDokumentId, standalone) =>
-                `${standalone || erStandAlone ? paths.sakerEgetVindu : paths.saker}?${getSaksoversiktQueryParametere(
-                    valgtDokumentId,
-                    saksTema
-                )}`,
+                `${
+                    standalone || erSakerFullscreen() ? paths.sakerFullscreen : paths.saker
+                }?${getSaksoversiktQueryParametere(valgtDokumentId, saksTema)}`,
             route: `${paths.saker}`,
             erValgtSakstema: sakstema => getUnikSakstemaKey(sakstema) === queryParams.sakstema,
             erValgtSaksdokument: dokument => dokument.dokumentreferanse === queryParams.dokument,
             erValgtJournalpost: journalpost => inneholderValgtDokument(journalpost, queryParams.dokument)
         }),
-        [paths, queryParams, erStandAlone]
+        [paths, queryParams]
     );
 }
 

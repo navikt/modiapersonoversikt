@@ -1,10 +1,9 @@
 import * as React from 'react';
 import {
-    Dokument,
     Dokument as Enkeltdokument,
-    Journalpost,
     Entitet,
     Feilmelding,
+    Journalpost,
     Kommunikasjonsretning
 } from '../../../../../models/saksoversikt/journalpost';
 import styled, { css } from 'styled-components/macro';
@@ -16,17 +15,18 @@ import DokumentIkon from '../../../../../svg/DokumentIkon';
 import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
-import { Element } from 'nav-frontend-typografi';
 import EtikettGrå from '../../../../../components/EtikettGrå';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 import { erNyePersonoversikten } from '../../../../../utils/erNyPersonoversikt';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import { useAppState, useRestResource } from '../../../../../utils/customHooks';
+import { useRestResource } from '../../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../../dyplenker';
+import DokumentLenke from './DokumentLenke';
+import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 
 interface Props {
     journalpost: Journalpost;
@@ -131,13 +131,8 @@ function JournalpostLiseElement(props: Props) {
     const dokumentRef = React.createRef<HTMLLIElement>();
     const nyttVinduLinkRef = React.createRef<HTMLAnchorElement>();
     const bruker = useRestResource(resources => resources.personinformasjon);
-    const erStandaloneVindu = useAppState(state => state.saksoversikt.erStandaloneVindu);
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
-
-    const dokumentTekst = (dokument: Dokument) => {
-        return dokument.tittel + (dokument.skjerming ? ' (Skjermet)' : '');
-    };
 
     const dokumentKanVises = (dokument: Enkeltdokument, journalpost: Journalpost) => {
         return dokument.kanVises && harTilgangTilJournalpost(journalpost);
@@ -189,17 +184,12 @@ function JournalpostLiseElement(props: Props) {
             <ul ref={vedleggLinkRef}>
                 {journalpost.vedlegg.map(vedlegg => (
                     <li key={vedlegg.dokumentreferanse + journalpost.journalpostId}>
-                        {vedlegg.logiskDokument ? (
-                            <Element>{vedlegg.tittel}</Element>
-                        ) : (
-                            <Link
-                                to={dyplenker.saker.link(props.valgtSakstema, vedlegg)}
-                                aria-disabled={!vedlegg.kanVises}
-                                className="lenke typo-element"
-                            >
-                                {dokumentTekst(vedlegg)}
-                            </Link>
-                        )}
+                        <DokumentLenke
+                            dokument={vedlegg}
+                            valgtSakstema={props.valgtSakstema}
+                            kanVises={!vedlegg.logiskDokument}
+                            journalPost={journalpost}
+                        />
                     </li>
                 ))}
             </ul>
@@ -208,16 +198,17 @@ function JournalpostLiseElement(props: Props) {
 
     const tilgangTilHoveddokument = dokumentKanVises(journalpost.hoveddokument, journalpost);
 
-    const egetVinduLenke = !erStandaloneVindu && tilgangTilHoveddokument && (
+    const egetVinduLenke = !erSakerFullscreen() && tilgangTilHoveddokument && (
         <StyledLink
             ref={nyttVinduLinkRef}
             href={dyplenker.saker.link(props.valgtSakstema, journalpost.hoveddokument, true)}
             target={'_blank'}
-            className={'lenke'}
+            className={'lenke typo-element'}
         >
-            Åpne i nytt vindu
+            Åpne i fullscreen
         </StyledLink>
     );
+    const hovedDokument = journalpost.hoveddokument;
 
     return (
         <ListeElementStyle
@@ -230,16 +221,13 @@ function JournalpostLiseElement(props: Props) {
             <InnholdWrapper>
                 <UUcustomOrder>
                     <div ref={hoveddokumentLinkRef} className="order-second">
-                        {tilgangTilHoveddokument && dokumentKanVises(journalpost.hoveddokument, journalpost) ? (
-                            <Link
-                                to={dyplenker.saker.link(props.valgtSakstema, journalpost.hoveddokument)}
-                                className="lenke typo-element"
-                            >
-                                {dokumentTekst(journalpost.hoveddokument)}
-                            </Link>
-                        ) : (
-                            <Element>{dokumentTekst(journalpost.hoveddokument)}</Element>
-                        )}
+                        <DokumentLenke
+                            key={hovedDokument.dokumentreferanse + journalpost.journalpostId}
+                            dokument={hovedDokument}
+                            valgtSakstema={props.valgtSakstema}
+                            kanVises={tilgangTilHoveddokument && dokumentKanVises(hovedDokument, journalpost)}
+                            journalPost={journalpost}
+                        />
                     </div>
                     <div className="order-first">
                         <Normaltekst>{formaterDatoOgAvsender(brukersNavn, journalpost)}</Normaltekst>

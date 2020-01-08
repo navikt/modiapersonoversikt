@@ -10,7 +10,7 @@ import UtbetalingsLamell from './UtbetalingsLamell';
 import { RouteComponentProps } from 'react-router';
 import PleiepengerLamell from './Pleiepenger/PleiepengerLamell';
 import ForeldrepengerLamell from './Foreldrepenger/ForeldrepengerLamell';
-import SakerEgetVindu from '../../app/personside/infotabs/saksoversikt/SakerEgetVindu';
+import SakerFullscreen from '../../app/personside/infotabs/saksoversikt/SakerFullscreen';
 import theme from '../../styles/personOversiktTheme';
 import { moss } from '../../mock/person/moss';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -84,7 +84,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.SaksoversiktEgetVindu:
             return (
                 <Provider store={store}>
-                    <SakerEgetVindu fødselsnummer={props.fnr} />
+                    <SakerFullscreen fødselsnummer={props.fnr} />
                 </Provider>
             );
         case Komponenter.Brukerprofil:

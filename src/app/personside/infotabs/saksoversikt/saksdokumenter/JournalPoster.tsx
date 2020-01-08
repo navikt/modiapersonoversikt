@@ -24,6 +24,7 @@ import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 import { useDispatch } from 'react-redux';
 import { oppdaterAvsenderfilter } from '../../../../../redux/saksoversikt/actions';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 
 interface Props {
     valgtSakstema: Sakstema;
@@ -187,7 +188,6 @@ function JournalPoster(props: Props) {
         .filter(journalpost => hentRiktigAvsenderfilter(journalpost.avsender, avsenderFilter))
         .sort(datoSynkende(journalpost => saksdatoSomDate(journalpost.dato)));
     const paginering = usePaginering(filtrerteJournalposter, 50, 'journalpost');
-    const erStandaloneVindu = useAppState(state => state.saksoversikt.erStandaloneVindu);
     const dispatch = useDispatch();
     const handleOppdaterAvsenderFilter = (filter: Partial<DokumentAvsenderFilter>) => {
         loggEvent('EndreFilter', 'Saker');
@@ -232,7 +232,7 @@ function JournalPoster(props: Props) {
     );
 
     const tittel = <Undertittel className={sakerTest.dokument}>{props.valgtSakstema.temanavn}</Undertittel>;
-    const valgtSakstemaTittel = erStandaloneVindu ? (
+    const valgtSakstemaTittel = erSakerFullscreen() ? (
         <DropDownMenu header={tittel}>
             <SakstemaListe valgtSakstema={props.valgtSakstema} />
         </DropDownMenu>
