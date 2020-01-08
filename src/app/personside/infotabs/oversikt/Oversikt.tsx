@@ -17,7 +17,7 @@ const Style = styled.article`
         justify-content: center;
     }
     padding: ${theme.margin.layout};
-    .alertstripe--info {
+    .alertstripe {
         background-color: transparent;
         border: none;
     }
