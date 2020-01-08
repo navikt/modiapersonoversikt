@@ -4,6 +4,7 @@ import TraadVisning from './TraadVisning';
 import * as React from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components/macro';
+import usePrinter from '../../../../../utils/UsePrinter';
 
 interface TraadVisningWrapperProps {
     valgtTraad?: Traad;
@@ -16,13 +17,14 @@ const StyledArticle = styled.article`
 `;
 
 function TraadVisningWrapper(props: TraadVisningWrapperProps) {
+    const printer = usePrinter();
     if (!props.valgtTraad) {
         return <AlertStripeInfo>Ingen melding valgt</AlertStripeInfo>;
     }
     return (
         <StyledArticle key={props.valgtTraad.traadId} role="tabpanel">
-            <Verktoylinje valgtTraad={props.valgtTraad} />
-            <TraadVisning sokeord={props.sokeord} valgtTraad={props.valgtTraad} />
+            <Verktoylinje valgtTraad={props.valgtTraad} printer={printer} />
+            <TraadVisning sokeord={props.sokeord} valgtTraad={props.valgtTraad} printer={printer} />
         </StyledArticle>
     );
 }
