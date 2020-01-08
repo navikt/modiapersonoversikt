@@ -15,7 +15,6 @@ import { formaterDato } from '../../../../../utils/stringFormatting';
 import { useEffect } from 'react';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { Printer } from '../../../../../utils/UsePrinter';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
 interface Props {
     valgtTraad: Traad;
     sokeord: string;
@@ -34,13 +33,6 @@ const KnappWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-`;
-const StyledPrintTekst = styled.div`
-    display: none;
-    @media print {
-        display: inline-block;
-        margin-bottom: 1rem;
-    }
 `;
 const KanBesvaresMeldingstyper = [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG];
 
@@ -98,33 +90,6 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         return null;
     }
 }
-function PrintTekst({ valgtTraad }: { valgtTraad: Traad }) {
-    const melding = eldsteMelding(valgtTraad);
-
-    const ferdigstiltUtenSvar = melding.erFerdigstiltUtenSvar && (
-        <Normaltekst>
-            {' '}
-            Henvendelsen er avsluttet uten å svare bruker av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
-            {melding.ferdigstiltUtenSvarDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltUtenSvarDato)}{' '}
-        </Normaltekst>
-    );
-    const feilsendt = melding.markertSomFeilsendtAv && (
-        <Normaltekst>
-            {' '}
-            Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}{' '}
-            {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}{' '}
-        </Normaltekst>
-    );
-    const kontorsperre = melding.kontorsperretAv && <Element>Kontorsperret: {melding.kontorsperretEnhet}</Element>;
-    return (
-        <StyledPrintTekst>
-            <Element>Kanal: NAV_NO</Element>
-            {ferdigstiltUtenSvar}
-            {feilsendt}
-            {kontorsperre}
-        </StyledPrintTekst>
-    );
-}
 
 function TraadVisning(props: Props) {
     useEffect(() => {
@@ -132,7 +97,6 @@ function TraadVisning(props: Props) {
     }, [props.valgtTraad]);
 
     const sisteMelding = nyesteMelding(props.valgtTraad);
-    const PrinterWrapper = props.printer.printerWrapper;
 
     return (
         <VisningStyle>
@@ -140,10 +104,7 @@ function TraadVisning(props: Props) {
             <h3 className="sr-only" aria-live="polite" aria-atomic="false">
                 Valgt melding - {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
             </h3>
-            <PrinterWrapper>
-                <PrintTekst valgtTraad={props.valgtTraad} />
-                <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
-            </PrinterWrapper>
+            <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>
     );
 }

@@ -23,7 +23,7 @@ function TraadVisningWrapper(props: TraadVisningWrapperProps) {
     }
     return (
         <StyledArticle key={props.valgtTraad.traadId} role="tabpanel">
-            <Verktoylinje valgtTraad={props.valgtTraad} printer={printer} />
+            <Verktoylinje valgtTraad={props.valgtTraad} visPrinter={true} />
             <TraadVisning sokeord={props.sokeord} valgtTraad={props.valgtTraad} printer={printer} />
         </StyledArticle>
     );
