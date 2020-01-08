@@ -2,8 +2,8 @@ import * as React from 'react';
 import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
 import MainLayout from './MainLayout';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
-import { useRestResource } from '../../utils/customHooks';
 import { hasData } from '../../rest/utils/restResource';
+import { useRestResource } from '../../rest/consumer/useRestResource';
 
 function Personside() {
     const personResource = useRestResource(resources => resources.personinformasjon);

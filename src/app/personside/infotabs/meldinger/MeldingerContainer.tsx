@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { hasData } from '../../../../rest/utils/restResource';
 import { huskForrigeValgtTraad, huskSokAction, setSkjulVarslerAction } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
-import { useAppState, usePrevious, useRestResource } from '../../../../utils/customHooks';
+import { useAppState, usePrevious } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useHistory, withRouter } from 'react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -17,6 +17,7 @@ import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { filtrerBortVarsel, useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 const meldingerMediaTreshold = pxToRem(850);
 

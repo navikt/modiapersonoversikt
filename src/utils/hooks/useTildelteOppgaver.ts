@@ -1,14 +1,16 @@
 import { hasData } from '../../rest/utils/restResource';
 import { isFinishedPosting } from '../../rest/utils/postResource';
-import { useFødselsnummer, useRestResource } from '../customHooks';
+import { useFødselsnummer } from '../customHooks';
 import { Oppgave } from '../../models/oppgave';
+import { useRestResource } from '../../rest/consumer/useRestResource';
+import { usePostResource } from '../../rest/consumer/usePostResource';
 
 export function removeDuplicateOppgaver(value: Oppgave, index: number, list: Oppgave[]) {
     return list.findIndex(oppgave => oppgave.oppgaveId === value.oppgaveId) === index;
 }
 
 function useTildelteOppgaver() {
-    const oppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver);
+    const oppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
     const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
     const fnr = useFødselsnummer();
 

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
-import { useRestResource } from '../../../../utils/customHooks';
 import useTildelteOppgaver from '../../../../utils/hooks/useTildelteOppgaver';
 import { useDispatch } from 'react-redux';
 import { useInfotabsDyplenker } from '../../infotabs/dyplenker';
@@ -10,6 +9,7 @@ import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { loggError } from '../../../../utils/frontendLogger';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useHistory } from 'react-router';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 interface Pending {
     pending: true;

@@ -4,9 +4,10 @@ import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandle
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/stringFormatting';
 import { loggError, loggEvent } from '../../../../utils/frontendLogger';
-import { useOnMount, useRestResource } from '../../../../utils/customHooks';
+import { useOnMount } from '../../../../utils/customHooks';
 import { hasData as restResourceHasData, isFailed, isNotStarted } from '../../../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 export type AutofullforData = {
     person?: PersonRespons;

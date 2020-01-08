@@ -2,9 +2,9 @@ import { isDevelopment, isTest } from './environment';
 import md5 from 'md5';
 import { detect } from 'detect-browser';
 import { erNyePersonoversikten } from './erNyPersonoversikt';
-import { useRestResource } from './customHooks';
 import { useEffect } from 'react';
 import { hasData } from '../rest/utils/restResource';
+import { useRestResource } from '../rest/consumer/useRestResource';
 
 let ident = 'ikke satt';
 let enhet = 'ikke valgt';

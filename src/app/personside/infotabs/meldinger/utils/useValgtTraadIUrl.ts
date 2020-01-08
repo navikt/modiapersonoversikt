@@ -1,7 +1,7 @@
 import { Traad } from '../../../../../models/meldinger/meldinger';
-import { useRestResource } from '../../../../../utils/customHooks';
 import { hasData } from '../../../../../rest/utils/restResource';
 import { useInfotabsDyplenker } from '../../dyplenker';
+import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 
 export function useValgtTraadIUrl(): Traad | undefined {
     const dyplenker = useInfotabsDyplenker();

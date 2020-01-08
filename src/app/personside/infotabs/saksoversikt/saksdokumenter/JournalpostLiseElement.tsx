@@ -23,10 +23,10 @@ import { isLoadedPerson } from '../../../../../redux/restReducers/personinformas
 import { erNyePersonoversikten } from '../../../../../utils/erNyPersonoversikt';
 import { useHistory } from 'react-router-dom';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import { useRestResource } from '../../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import DokumentLenke from './DokumentLenke';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
+import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 
 interface Props {
     journalpost: Journalpost;

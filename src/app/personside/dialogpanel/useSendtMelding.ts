@@ -1,4 +1,3 @@
-import { useRestResource } from '../../../utils/customHooks';
 import { hasData, isLoading, isReloading } from '../../../rest/utils/restResource';
 import { erMaks10MinSiden } from '../../../utils/dateUtils';
 import {
@@ -6,6 +5,7 @@ import {
     nyesteMelding,
     nyesteTraad
 } from '../infotabs/meldinger/utils/meldingerUtils';
+import { useRestResource } from '../../../rest/consumer/useRestResource';
 
 export function useSentMelding(fritekst: string) {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);

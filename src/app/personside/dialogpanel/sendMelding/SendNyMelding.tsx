@@ -14,13 +14,13 @@ import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { NyMeldingValidator } from './validatorer';
 import TekstFelt from './TekstFelt';
 import VelgDialogType from './VelgDialogType';
-import { useRestResource } from '../../../../utils/customHooks';
 import { Undertittel } from 'nav-frontend-typografi';
 import Oppgaveliste from './Oppgaveliste';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import theme from '../../../../styles/personOversiktTheme';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import { Temagruppe, TemaSamtalereferat } from '../../../../models/Temagrupper';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',

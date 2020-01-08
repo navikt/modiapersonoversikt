@@ -1,11 +1,11 @@
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { useMemo } from 'react';
-import { useRestResource } from '../../../../../utils/customHooks';
 import { hasData } from '../../../../../rest/utils/restResource';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { useAgregerteSaker } from './saksoversiktUtils';
 import { useSakerRouting } from './saksoversiktRoutingUtils';
+import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 
 export interface SaksoversiktValg {
     sakstema?: Sakstema;

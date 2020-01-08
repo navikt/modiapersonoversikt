@@ -3,8 +3,8 @@ import KnappBase from 'nav-frontend-knapper';
 import { hasData } from '../../../rest/utils/restResource';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useDispatch } from 'react-redux';
-import { useRestResource } from '../../../utils/customHooks';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
+import { useRestResource } from '../../../rest/consumer/useRestResource';
 
 function GaaTilNesteOppgaveKnapp(props: { lukk: () => void }) {
     const tildelteOppgaver = useTildelteOppgaver();

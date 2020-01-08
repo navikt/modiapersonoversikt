@@ -12,13 +12,14 @@ import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
 import { useLoggSkjermInfoDaglig } from '../../../utils/loggInfo/useLoggSkjermInfoDaglig';
 import { hasData, isFailed } from '../../../rest/utils/restResource';
-import { useAppState, useRestResource } from '../../../utils/customHooks';
+import { useAppState } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { useCallback } from 'react';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
+import { useRestResource } from '../../../rest/consumer/useRestResource';
 
 const VisittkortBodyWrapper = styled.div`
     border-radius: ${theme.borderRadius.layout};

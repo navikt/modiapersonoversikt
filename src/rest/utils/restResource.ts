@@ -25,17 +25,19 @@ export interface ActionTypes {
 
 type ThunkFetcher<T> = (dispatch: AsyncDispatch, getState: () => AppState) => Promise<T>;
 
+export type RestResourceActions<T> = {
+    fetch: ThunkFetcher<T>;
+    reload: ThunkFetcher<T>;
+    fetchWithCustomUriCreator: (uriCreator: FetchUriCreator) => ThunkFetcher<T>;
+    reloadWithCustomUriCreator: (uriCreator: FetchUriCreator) => ThunkFetcher<T>;
+    setData: (data: T) => Action;
+    reset: (dispatch: AsyncDispatch) => void;
+};
+
 export interface RestResource<T> {
     status: STATUS;
     fetchUrl: string;
-    actions: {
-        fetch: ThunkFetcher<T>;
-        reload: ThunkFetcher<T>;
-        fetchWithCustomUriCreator: (uriCreator: FetchUriCreator) => ThunkFetcher<T>;
-        reloadWithCustomUriCreator: (uriCreator: FetchUriCreator) => ThunkFetcher<T>;
-        setData: (data: T) => Action;
-        reset: (dispatch: AsyncDispatch) => void;
-    };
+    actions: RestResourceActions<T>;
 }
 
 export interface Success<T> extends RestResource<T> {

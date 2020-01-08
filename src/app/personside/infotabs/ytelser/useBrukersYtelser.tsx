@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useOnMount, useRestResource } from '../../../../utils/customHooks';
+import { useOnMount } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { hasData, isFailed, isLoading, isNotStarted } from '../../../../rest/utils/restResource';
 import { ReactNode, useMemo } from 'react';
@@ -8,6 +8,7 @@ import { getPleiepengerIdDato, Pleiepengerettighet } from '../../../../models/yt
 import { getSykepengerIdDato, Sykepenger } from '../../../../models/ytelse/sykepenger';
 import { Foreldrepengerettighet, getForeldepengerIdDato } from '../../../../models/ytelse/foreldrepenger';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 interface YtelseMedDato {
     idDato: string;

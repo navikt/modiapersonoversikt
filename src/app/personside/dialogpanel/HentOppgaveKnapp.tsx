@@ -15,12 +15,12 @@ import TildelteOppgaver from './TildelteOppgaver';
 import { paths } from '../../routes/routing';
 import { INFOTABS } from '../infotabs/InfoTabEnum';
 import { Temagruppe, temagruppeTekst, TemaPlukkbare } from '../../../models/Temagrupper';
-import { useRestResource } from '../../../utils/customHooks';
 import { hasData, isFailed } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
 import { SaksbehandlerRoller } from '../../../utils/RollerUtils';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { useEffect } from 'react';
+import { useRestResource } from '../../../rest/consumer/useRestResource';
 
 const HentOppgaveLayout = styled.article`
     text-align: center;

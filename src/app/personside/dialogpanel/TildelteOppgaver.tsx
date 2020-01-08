@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useClickOutside, useRestResource } from '../../../utils/customHooks';
+import { useClickOutside } from '../../../utils/customHooks';
 import styled from 'styled-components/macro';
 import { Knapp } from 'nav-frontend-knapper';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
@@ -17,6 +17,7 @@ import { useInfotabsDyplenker } from '../infotabs/dyplenker';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { temagruppeTekst } from '../../../models/Temagrupper';
 import { useHistory } from 'react-router';
+import { useRestResource } from '../../../rest/consumer/useRestResource';
 
 const Wrapper = styled.div`
     position: relative;

@@ -5,11 +5,12 @@ import KontrollSpørsmålKnapper from './KontrollSpørsmålKnapper';
 import SpørsmålOgSvar from './SporsmalOgSvarContainer';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
 import { jobberMedSpørsmålOgSvar, kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
-import { useAppState, useFødselsnummer, useRestResource } from '../../../utils/customHooks';
+import { useAppState, useFødselsnummer } from '../../../utils/customHooks';
 import { isLoading } from '../../../rest/utils/restResource';
 import LazySpinner from '../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useErKontaktsenter } from '../../../utils/enheterUtils';
+import { useRestResource } from '../../../rest/consumer/useRestResource';
 
 const KontrollSporsmalStyling = styled.section`
     background-color: white;

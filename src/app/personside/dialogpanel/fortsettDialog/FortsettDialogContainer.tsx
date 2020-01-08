@@ -4,7 +4,7 @@ import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
 import { ForsettDialogRequest, Meldingstype, SendDelsvarRequest, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { useFødselsnummer, useRestResource } from '../../../../utils/customHooks';
+import { useFødselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
@@ -25,6 +25,8 @@ import {
     KvitteringsData
 } from './FortsettDialogTypes';
 import { useTimer } from '../../../../utils/hooks/useTimer';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import { usePostResource } from '../../../../rest/consumer/usePostResource';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -47,9 +49,9 @@ function FortsettDialogContainer(props: Props) {
         oppgaveListe: OppgavelisteValg.MinListe
     };
     const [state, setState] = useState<FortsettDialogState>(initialState);
-    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
-    const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
-    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
+    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
+    const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const fnr = useFødselsnummer();
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID

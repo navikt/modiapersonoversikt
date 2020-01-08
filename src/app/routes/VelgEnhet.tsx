@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Select } from 'nav-frontend-skjema';
-import { useRestResource } from '../../utils/customHooks';
 import { hasData, isFailed, isNotStarted } from '../../rest/utils/restResource';
 import { useDispatch } from 'react-redux';
 import LazySpinner from '../../components/LazySpinner';
@@ -9,6 +8,7 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { velgEnhetAction } from '../../redux/session/session';
 import { ChangeEvent, useEffect } from 'react';
 import theme from '../../styles/personOversiktTheme';
+import { useRestResource } from '../../rest/consumer/useRestResource';
 
 const Style = styled.div`
     display: flex;
