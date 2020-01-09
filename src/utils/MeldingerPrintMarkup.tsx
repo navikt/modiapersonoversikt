@@ -11,6 +11,7 @@ import { datoStigende, formatterDatoMedMaanedsnavn } from './dateUtils';
 import styled from 'styled-components';
 import theme from '../styles/personOversiktTheme';
 import { formaterDato } from './stringFormatting';
+import Tekstomrade from 'nav-frontend-tekstomrade';
 
 interface Props {
     valgtTraad: Traad;
@@ -60,22 +61,22 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
             <Ingress>{tittel}</Ingress>
             <Flex>
                 <div>
+                    <Element>Kanal: NAV_NO</Element>
                     <Element>Type: {melding.meldingstype}</Element>
                     {temagruppe}
-                    <Element>Kanal NAV_NO</Element>
                     {journalfortDato}
                     {journalfortTema}
                 </div>
                 <div>
                     <Element>Fødselsnummer: {fnr}</Element>
                     <Normaltekst>
-                        Mottatt/Sendt: {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}{' '}
+                        Mottatt/Sendt: {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
                     </Normaltekst>
                 </div>
             </Flex>
             <StyledInnhold>
-                <Ingress>Innhold:</Ingress>
-                <Normaltekst>{melding.fritekst}</Normaltekst>
+                <Element>Innhold:</Element>
+                <Tekstomrade>{melding.fritekst}</Tekstomrade>
             </StyledInnhold>
         </StyledEnkeltMelding>
     );
@@ -84,14 +85,14 @@ export function MeldingerPrintMarkup(props: Props) {
     const melding = eldsteMelding(props.valgtTraad);
 
     const ferdigstiltUtenSvar = melding.erFerdigstiltUtenSvar && (
-        <Normaltekst>
+        <Element>
             {' '}
             Henvendelsen er avsluttet uten å svare bruker{' '}
             {melding.ferdigstiltUtenSvarDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltUtenSvarDato)}{' '}
-        </Normaltekst>
+        </Element>
     );
     const feilsendt = melding.markertSomFeilsendtAv && (
-        <Normaltekst> Markert som feilsendt av {melding.markertSomFeilsendtAv.ident}</Normaltekst>
+        <Element> Markert som feilsendt av {melding.markertSomFeilsendtAv.ident?.toUpperCase()}</Element>
     );
     const kontorsperre = melding.kontorsperretAv && <Element>Kontorsperret for {melding.kontorsperretEnhet}</Element>;
     const enkeltmeldinger = props.valgtTraad.meldinger
