@@ -154,7 +154,7 @@ function StandardTekstSok(props: Props) {
     }
 
     if (!personResource.data) {
-        return personResource.placeholder;
+        return null;
     }
 
     return (

@@ -559,7 +559,7 @@ export function setupMock() {
         enableFallback: true,
         middleware: MiddlewareUtils.combine(
             contentTypeMiddleware,
-            failurerateMiddleware(0.72),
+            failurerateMiddleware(0.02),
             MiddlewareUtils.loggingMiddleware()
         )
     });

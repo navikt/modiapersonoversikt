@@ -57,7 +57,7 @@ function OppgaverDropdown(props: { lukk: () => void }) {
     const oppgaverPaaBruker = tildelteOppgaver.paaBruker;
     const history = useHistory();
 
-    if (traaderResource.data === undefined) {
+    if (!traaderResource.data) {
         return traaderResource.placeholder;
     }
 

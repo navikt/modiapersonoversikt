@@ -118,8 +118,8 @@ export function useAutoFullførData(): AutofullforData | undefined {
     const navKontorResource = useRestResource(resources => resources.brukersNavKontor);
 
     return {
-        person: personResource.data ? personResource.data : undefined,
-        kontor: navKontorResource.data ? navKontorResource.data : undefined,
-        saksbehandler: saksbehandler.data ? saksbehandler.data : undefined
+        person: personResource.data,
+        kontor: navKontorResource.data,
+        saksbehandler: saksbehandler.data
     };
 }
