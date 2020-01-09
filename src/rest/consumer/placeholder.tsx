@@ -74,7 +74,7 @@ function Placeholder<T>(props: Props<T>) {
     if (isNotStarted(props.restResource)) {
         return (
             <DelayRender delay={100}>
-                <AlertStripeFeil>Started ikke å laste</AlertStripeFeil>
+                <AlertStripeFeil>Startet ikke å laste</AlertStripeFeil>
             </DelayRender>
         );
     }
