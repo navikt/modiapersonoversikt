@@ -10,6 +10,7 @@ import { useHistory } from 'react-router';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import TraadSammendrag from './TraadSammendrag';
 import { guid } from 'nav-frontend-js-utils';
+import { meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
 
 interface Props {
     traad: Traad;
@@ -62,6 +63,7 @@ function TraadListeElement(props: Props) {
     const dyplenker = useInfotabsDyplenker();
     const id = useRef(guid());
     const history = useHistory();
+    const tittel = meldingstittel(nyesteMelding(props.traad));
 
     useOnMount(() => {
         if (props.taFokusOnMount) {
@@ -83,6 +85,7 @@ function TraadListeElement(props: Props) {
                 className={'sr-only ' + meldingerTest.melding}
                 type="radio"
                 role="tab"
+                aria-label={tittel}
                 name={props.listeId}
                 value={props.traad.traadId}
                 id={id.current}
