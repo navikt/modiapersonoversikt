@@ -348,6 +348,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
           role="presentation"
         >
           <input
+            aria-label="Delsvar - Arbeid"
             checked={false}
             className="sr-only test-meldinger-melding"
             id="Helt tilfeldig ID"
@@ -404,6 +405,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     className="c14"
                   >
                     <p
+                      aria-hidden={true}
                       className="typo-element order-second"
                     >
                       Delsvar - Arbeid

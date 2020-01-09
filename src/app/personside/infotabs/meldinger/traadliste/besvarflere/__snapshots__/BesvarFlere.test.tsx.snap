@@ -438,6 +438,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         role="presentation"
       >
         <input
+          aria-label="Delsvar - Arbeid"
           checked={true}
           className="sr-only test-meldinger-melding"
           id="Helt tilfeldig ID"
@@ -520,6 +521,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   className="c12"
                 >
                   <p
+                    aria-hidden={true}
                     className="typo-element order-second"
                   >
                     Delsvar - Arbeid
@@ -574,6 +576,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         role="presentation"
       >
         <input
+          aria-label="Delsvar - Arbeid"
           checked={false}
           className="sr-only test-meldinger-melding"
           id="Helt tilfeldig ID"
@@ -656,6 +659,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   className="c12"
                 >
                   <p
+                    aria-hidden={true}
                     className="typo-element order-second"
                   >
                     Delsvar - Arbeid

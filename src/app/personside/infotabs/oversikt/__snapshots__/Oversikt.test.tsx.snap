@@ -909,6 +909,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       className="c21"
                     >
                       <p
+                        aria-hidden={true}
                         className="typo-element order-second"
                       >
                         Delsvar - Arbeid
