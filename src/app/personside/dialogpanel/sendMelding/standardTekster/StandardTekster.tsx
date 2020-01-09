@@ -7,7 +7,7 @@ import useFieldState, { FieldState } from '../../../../../utils/hooks/use-field-
 import { erGyldigValg, sokEtterTekster } from './sokUtils';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import StandardTekstVisning from './StandardTekstVisning';
-import * as StandardTekster from './domain';
+import * as StandardTeksterModels from './domain';
 import theme from '../../../../../styles/personOversiktTheme';
 import TagInput from '../../../../../components/tag-input/tag-input';
 import { captitalize } from '../../../../../utils/stringFormatting';
@@ -18,6 +18,8 @@ import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -34,9 +36,9 @@ const Spinner = styled(NavFrontendSpinner)`
 `;
 const Sokefelt = styled.div`
     padding: 1rem;
-    border-bottom: 1px solid ${theme.color.navGra20}
+    border-bottom: 1px solid ${theme.color.navGra20};
     background-color: #f5f5f5;
-    
+
     .skjemaelement {
         max-width: calc(100% - 3rem);
         margin: 0;
@@ -46,7 +48,7 @@ const Sokefelt = styled.div`
     }
 `;
 
-function useDefaultValgtTekst(tekster: Array<StandardTekster.Tekst>, valgt: FieldState) {
+function useDefaultValgtTekst(tekster: Array<StandardTeksterModels.Tekst>, valgt: FieldState) {
     useEffect(() => {
         if (valgt.input.value === '' && tekster.length > 0) {
             valgt.setValue(tekster[0].id);
@@ -59,7 +61,7 @@ function useDefaultValgtTekst(tekster: Array<StandardTekster.Tekst>, valgt: Fiel
     }, [valgt, tekster]);
 }
 
-function useDefaultValgtLocale(valgtTekst: StandardTekster.Tekst | undefined, valgtLocale: FieldState) {
+function useDefaultValgtLocale(valgtTekst: StandardTeksterModels.Tekst | undefined, valgtLocale: FieldState) {
     useEffect(() => {
         if (valgtTekst) {
             const locales = Object.keys(valgtTekst.innhold);
@@ -72,7 +74,7 @@ function useDefaultValgtLocale(valgtTekst: StandardTekster.Tekst | undefined, va
 
 function velgTekst(
     settTekst: (tekst: string) => void,
-    tekst: StandardTekster.Tekst | undefined,
+    tekst: StandardTeksterModels.Tekst | undefined,
     locale: string,
     autofullforData?: AutofullforData
 ) {
@@ -98,15 +100,16 @@ function velgTekst(
     };
 }
 
-function StandardTekstSok(props: Props) {
+function StandardTekster(props: Props) {
     const inputRef = React.useRef<HTMLInputElement>();
-    const standardTekster = useFetchWithLog<StandardTekster.Tekster>(
+    const svaksyntModus = useFeatureToggle(FeatureToggles.SaksDokumentIEgetVindu).isOn;
+    const standardTekster = useFetchWithLog<StandardTeksterModels.Tekster>(
         '/modiapersonoversikt-skrivestotte/skrivestotte',
         'Standardtekster'
     );
     const erKontaktSenter = useErKontaktsenter();
     const sokefelt = useFieldState(erKontaktSenter ? '#ks ' : '');
-    const debouncedSokefelt = useDebounce(sokefelt.input.value, 250);
+    const debouncedSokefelt = useDebounce(sokefelt.input.value, svaksyntModus ? 600 : 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() =>
         sokEtterTekster(standardTekster, debouncedSokefelt)
     );
@@ -154,11 +157,12 @@ function StandardTekstSok(props: Props) {
     }
 
     if (!personResource.data) {
-        return null;
+        return personResource.placeholder;
     }
 
     return (
         <FormContainer onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
+            <h2 className="sr-only">Standardtekster</h2>
             <Sokefelt>
                 <TagInput
                     {...sokefelt.input}
@@ -168,12 +172,9 @@ function StandardTekstSok(props: Props) {
                     autoFocus={true}
                 />
             </Sokefelt>
-            <h3 className="sr-only" aria-live="polite">
-                {filtrerteTekster.length} tekster traff søket
-            </h3>
             {content}
         </FormContainer>
     );
 }
 
-export default StandardTekstSok;
+export default StandardTekster;

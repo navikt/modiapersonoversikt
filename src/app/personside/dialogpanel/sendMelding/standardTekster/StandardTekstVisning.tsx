@@ -1,5 +1,5 @@
 import React from 'react';
-import { Systemtittel } from 'nav-frontend-typografi';
+import { Element, Systemtittel } from 'nav-frontend-typografi';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import Tekstomrade, {
     createDynamicHighligtingRule,
@@ -28,8 +28,8 @@ interface Props {
 
 const Container = styled.div`
     display: flex;
-    flex: 1;
-    height: 100%;
+    flex-grow: 1;
+    height: 0; // hack for å få flex til å funke som vi vil her, bør skrives om til grid
     b {
         font-weight: bolder !important;
     }
@@ -38,7 +38,8 @@ const Container = styled.div`
         ${theme.highlight}
     }
 `;
-const Liste = styled.div`
+
+const ListeStyle = styled.div`
     flex: 0;
     flex-basis: 35%;
     height: 100%;
@@ -47,7 +48,8 @@ const Liste = styled.div`
     border-right: 1px solid ${theme.color.navGra20};
     background-color: #f5f5f5;
 `;
-const ListeElement = styled.div`
+
+const StyledLi = styled.li`
     position: relative;
     border-bottom: 1px solid ${theme.color.navGra20};
 
@@ -108,6 +110,11 @@ const StyledAlertstripeAdvarsel = styled(AlertStripeAdvarsel)`
     margin-bottom: 0.5rem;
 `;
 
+const TreffStyle = styled(Element)`
+    padding: ${pxToRem(7)} ${pxToRem(15)};
+    border-bottom: ${theme.border.skilleSvak};
+`;
+
 function TekstValg({
     tekst,
     valgt,
@@ -121,14 +128,14 @@ function TekstValg({
     const onChange = valgt.input.onChange;
 
     return (
-        <ListeElement>
+        <StyledLi>
             <input type="radio" name="tekstvalg" id={tekst.id} value={tekst.id} onChange={onChange} checked={checked} />
             <label htmlFor={tekst.id}>
                 <Tekstomrade as="span" rules={[highlightRule]}>
                     {tekst.overskrift}
                 </Tekstomrade>
             </label>
-        </ListeElement>
+        </StyledLi>
     );
 }
 
@@ -174,8 +181,10 @@ function Preview({ tekst, locale, sokefelt, highlightRule }: PreviewProps) {
     }
     return (
         <PreviewWrapper>
-            <h3 className="sr-only">Forhåndsvisning</h3>
-            <Systemtittel className="blokk-xs">{tekst && tekst.overskrift}</Systemtittel>
+            <Systemtittel tag="h3" className="blokk-xs">
+                <span className="sr-only">Valgt tekst: </span>
+                {tekst && tekst.overskrift}
+            </Systemtittel>
             <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]} className="typo-normal blokk-m">
                 {tekst && tekst.innhold[locale]}
             </Tekstomrade>
@@ -197,8 +206,12 @@ function StandardTekstVisning(props: Props) {
 
     return (
         <Container>
-            <h3 className="sr-only">Standardtekster</h3>
-            <Liste className="standardtekster__liste">{tekstElementer}</Liste>
+            <ListeStyle>
+                <TreffStyle tag="h3" aria-live="polite">
+                    Samtalemaler ({tekstElementer.length})
+                </TreffStyle>
+                <ul className="standardtekster__liste">{tekstElementer}</ul>
+            </ListeStyle>
             <PreviewContainer>
                 <Preview
                     tekst={valgtTekst}

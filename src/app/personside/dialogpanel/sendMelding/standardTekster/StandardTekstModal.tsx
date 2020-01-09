@@ -1,7 +1,7 @@
 import React from 'react';
 import NavFrontendModal from 'nav-frontend-modal';
 import styled from 'styled-components/macro';
-import StandardTekstSok from './StandardTekstSok';
+import StandardTekster from './StandardTekster';
 import SvgIkon from './StandardTekstIkon';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
@@ -18,7 +18,6 @@ const Modal = styled(NavFrontendModal)`
         max-height: 40rem;
         height: 100%;
         padding: 0;
-        overflow: hidden;
 
         > section {
             height: 100%;
@@ -68,7 +67,7 @@ function StandardTekstModal(props: Props) {
                 onRequestClose={() => setOpen(false)}
                 className={'standardtekst__modal'}
             >
-                <StandardTekstSok
+                <StandardTekster
                     appendTekst={tekst => {
                         props.appendTekst(tekst);
                         setOpen(false);
