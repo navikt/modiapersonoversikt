@@ -1,8 +1,17 @@
 import * as React from 'react';
-import { hasData, isFailed, isForbidden, isLoading, isNotFound, RestResource } from '../utils/restResource';
+import {
+    hasData,
+    isFailed,
+    isForbidden,
+    isLoading,
+    isNotFound,
+    isNotStarted,
+    RestResource
+} from '../utils/restResource';
 import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
 import LazySpinner from '../../components/LazySpinner';
 import { loggError } from '../../utils/frontendLogger';
+import DelayRender from '../../components/DelayRender';
 
 export interface RestResourcePlaceholderProps {
     returnOnError?: JSX.Element | string;
@@ -59,6 +68,14 @@ function Placeholder<T>(props: Props<T>) {
             wrapStringInAlertstripe(placeholders?.returnOnNotFound) || (
                 <AlertStripeAdvarsel>Fant ingen data</AlertStripeAdvarsel>
             )
+        );
+    }
+
+    if (isNotStarted(props.restResource)) {
+        return (
+            <DelayRender delay={100}>
+                <AlertStripeFeil>Started ikke å laste</AlertStripeFeil>
+            </DelayRender>
         );
     }
 
