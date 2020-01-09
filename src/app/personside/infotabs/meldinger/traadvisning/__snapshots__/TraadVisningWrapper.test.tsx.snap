@@ -11,7 +11,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-top: 1rem;
 }
 
-.c20 {
+.c24 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -141,6 +141,66 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-right: 0.5rem;
 }
 
+.c7 {
+  border: none;
+  background-color: transparent;
+  padding: 0.1rem 0.2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #0067c5;
+}
+
+.c7 svg {
+  margin-left: 0.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.c7:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c7:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c16 {
+  display: none;
+}
+
+.c17 {
+  margin-bottom: 2rem;
+}
+
+.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 1rem 0rem;
+}
+
+.c20 > * {
+  margin-bottom: 1rem !important;
+}
+
+.c18 {
+  margin-bottom: 2rem;
+  border-bottom: solid 0.0625rem #78706a;
+  page-break-inside: avoid;
+}
+
 .c1 {
   border-radius: 0.25rem;
   background-color: white;
@@ -182,66 +242,66 @@ exports[`Viser traad med verktøylinje 1`] = `
   color: #3e3832;
 }
 
-.c18 .snakkeboble-panel {
+.c22 .snakkeboble-panel {
   -webkit-flex-basis: 40rem;
   -ms-flex-preferred-size: 40rem;
   flex-basis: 40rem;
 }
 
-.c18 a {
+.c22 a {
   word-break: break-word;
 }
 
-.c18 .snakkeboble {
+.c22 .snakkeboble {
   margin: 0;
 }
 
-.c23 {
+.c27 {
   margin-right: 0.3rem !important;
 }
 
-.c22 {
+.c26 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c21 {
+.c25 {
   font-weight: 600;
 }
 
-.c19 {
+.c23 {
   text-align: left;
 }
 
-.c19 em {
+.c23 em {
   font-style: normal;
   background-color: #eed28c;
   border-radius: 0.625rem;
   padding: 0 0.3125rem;
 }
 
-.c19 > *:not(:last-child) {
+.c23 > *:not(:last-child) {
   border-bottom: solid 0.0625rem #b7b1a9;
   padding-bottom: 0.7rem;
   margin-bottom: 0.5rem;
 }
 
-.c25 {
+.c29 {
   color: #0067c5;
 }
 
-.c24 .ekspanderbartPanel__hode,
-.c24 .ekspanderbartPanel__innhold {
+.c28 .ekspanderbartPanel__hode,
+.c28 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
 }
 
-.c26 {
+.c30 {
   display: none;
 }
 
-.c16 {
+.c21 {
   padding: .5rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -249,12 +309,8 @@ exports[`Viser traad med verktøylinje 1`] = `
   flex-grow: 1;
 }
 
-.c16 > *:last-child {
+.c21 > *:last-child {
   margin-top: .5rem;
-}
-
-.c17 {
-  display: none;
 }
 
 .c0 {
@@ -267,63 +323,32 @@ exports[`Viser traad med verktøylinje 1`] = `
   flex-direction: column;
 }
 
-.c7 {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #0067c5;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  color: #3e3832;
-}
-
-.c7:after {
-  border-bottom: 1px #b7b1a9 solid;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.c7:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c7:hover {
-  opacity: 0.8;
-}
-
-.c7:hover:after {
-  content: '';
-  border-color: #0067c5;
+@media print {
+  .c7 {
+    display: none;
+  }
 }
 
 @media print {
-  .c18 {
+  .c16 {
+    display: inline-block;
+  }
+}
+
+@media print {
+  .c22 {
     page-break-inside: avoid;
     border: solid 0.0625rem #78706a;
     margin-bottom: 2rem;
   }
 
-  .c18 .snakkeboble__snakkeboble-pil-container,
-  .c18 .nav-ikon,
-  .c18 .bruker-ikon {
+  .c22 .snakkeboble__snakkeboble-pil-container,
+  .c22 .nav-ikon,
+  .c22 .bruker-ikon {
     display: none;
   }
 
-  .c18 .snakkeboble-panel {
+  .c22 .snakkeboble-panel {
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
@@ -331,21 +356,14 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c24 {
+  .c28 {
     display: none;
   }
 }
 
 @media print {
-  .c26 {
+  .c30 {
     display: inline-block;
-  }
-}
-
-@media print {
-  .c17 {
-    display: inline-block;
-    margin-bottom: 1rem;
   }
 }
 
@@ -424,17 +442,33 @@ exports[`Viser traad med verktøylinje 1`] = `
           />
         </button>
       </div>
-      <a
-        className="-a c7"
-        download={true}
-        href="/dialog/10108000398/sg838exr/print"
+      <button
+        aria-label="Skriv ut"
+        className="c7"
+        onClick={[Function]}
       >
-        <p
+        <span
           className="typo-normal"
         >
           Skriv ut
-        </p>
-      </a>
+        </span>
+         
+        <svg
+          viewBox="0 0 17 16"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+        >
+          <path
+            d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
+            fill="#0067C5"
+            fillRule="evenodd"
+          />
+          <path
+            d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
+            fill="#0067C5"
+          />
+        </svg>
+      </button>
     </div>
     <section
       className="c8"
@@ -976,9 +1010,339 @@ exports[`Viser traad med verktøylinje 1`] = `
         </button>
       </div>
     </form>
+    <div
+      className="c16"
+    >
+      <div
+        className="c17"
+      >
+        <p
+          className="typo-normal"
+        >
+          <p
+            className="typo-element"
+          >
+             
+            Henvendelsen er avsluttet uten å svare bruker
+             
+             
+          </p>
+        </p>
+        <p
+          className="typo-normal"
+        />
+        <p
+          className="typo-normal"
+        />
+      </div>
+      <div
+        className="c18"
+      >
+        <p
+          className="typo-ingress"
+        >
+          Samtalereferat oppmøte - Arbeid
+        </p>
+        <div
+          className="c19"
+        >
+          <div>
+            <p
+              className="typo-element"
+            >
+              Kanal: NAV_NO
+            </p>
+            <p
+              className="typo-element"
+            >
+              Type: 
+              SAMTALEREFERAT_OPPMOTE
+            </p>
+            <p
+              className="typo-element"
+            >
+              Temagruppe: 
+              ARBD
+            </p>
+            <p
+              className="typo-element"
+            >
+               Journalført: 
+              11.07.2019
+               
+            </p>
+            <p
+              className="typo-element"
+            >
+              Journalført med team: 
+            </p>
+          </div>
+          <div>
+            <p
+              className="typo-element"
+            >
+              Fødselsnummer: 
+              10108000398
+            </p>
+            <p
+              className="typo-normal"
+            >
+              Mottatt/Sendt: 
+              07.07.2019
+            </p>
+          </div>
+        </div>
+        <div
+          className="c20"
+        >
+          <p
+            className="typo-element"
+          >
+            Innhold:
+          </p>
+          <div>
+            <p
+              className="typo-normal"
+            >
+              <span>
+                Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c18"
+      >
+        <p
+          className="typo-ingress"
+        >
+          Spørsmål fra bruker - Arbeid
+        </p>
+        <div
+          className="c19"
+        >
+          <div>
+            <p
+              className="typo-element"
+            >
+              Kanal: NAV_NO
+            </p>
+            <p
+              className="typo-element"
+            >
+              Type: 
+              SPORSMAL_SKRIFTLIG
+            </p>
+            <p
+              className="typo-element"
+            >
+              Temagruppe: 
+              ARBD
+            </p>
+            <p
+              className="typo-element"
+            >
+               Journalført: 
+              12.08.2019
+               
+            </p>
+            <p
+              className="typo-element"
+            >
+              Journalført med team: 
+            </p>
+          </div>
+          <div>
+            <p
+              className="typo-element"
+            >
+              Fødselsnummer: 
+              10108000398
+            </p>
+            <p
+              className="typo-normal"
+            >
+              Mottatt/Sendt: 
+              12.07.2019
+            </p>
+          </div>
+        </div>
+        <div
+          className="c20"
+        >
+          <p
+            className="typo-element"
+          >
+            Innhold:
+          </p>
+          <div>
+            <p
+              className="typo-normal"
+            >
+              <span>
+                Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c18"
+      >
+        <p
+          className="typo-ingress"
+        >
+          Spørsmål fra bruker - Arbeid
+        </p>
+        <div
+          className="c19"
+        >
+          <div>
+            <p
+              className="typo-element"
+            >
+              Kanal: NAV_NO
+            </p>
+            <p
+              className="typo-element"
+            >
+              Type: 
+              SPORSMAL_SKRIFTLIG
+            </p>
+            <p
+              className="typo-element"
+            >
+              Temagruppe: 
+              ARBD
+            </p>
+            <p
+              className="typo-element"
+            >
+               Journalført: 
+              21.07.2019
+               
+            </p>
+            <p
+              className="typo-element"
+            >
+              Journalført med team: 
+            </p>
+          </div>
+          <div>
+            <p
+              className="typo-element"
+            >
+              Fødselsnummer: 
+              10108000398
+            </p>
+            <p
+              className="typo-normal"
+            >
+              Mottatt/Sendt: 
+              16.07.2019
+            </p>
+          </div>
+        </div>
+        <div
+          className="c20"
+        >
+          <p
+            className="typo-element"
+          >
+            Innhold:
+          </p>
+          <div>
+            <p
+              className="typo-normal"
+            >
+              <span>
+                Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c18"
+      >
+        <p
+          className="typo-ingress"
+        >
+          Delsvar - Arbeid
+        </p>
+        <div
+          className="c19"
+        >
+          <div>
+            <p
+              className="typo-element"
+            >
+              Kanal: NAV_NO
+            </p>
+            <p
+              className="typo-element"
+            >
+              Type: 
+              DELVIS_SVAR_SKRIFTLIG
+            </p>
+            <p
+              className="typo-element"
+            >
+              Temagruppe: 
+              ARBD
+            </p>
+            <p
+              className="typo-element"
+            >
+               Journalført: 
+              30.07.2019
+               
+            </p>
+            <p
+              className="typo-element"
+            >
+              Journalført med team: 
+            </p>
+          </div>
+          <div>
+            <p
+              className="typo-element"
+            >
+              Fødselsnummer: 
+              10108000398
+            </p>
+            <p
+              className="typo-normal"
+            >
+              Mottatt/Sendt: 
+              27.07.2019
+            </p>
+          </div>
+        </div>
+        <div
+          className="c20"
+        >
+          <p
+            className="typo-element"
+          >
+            Innhold:
+          </p>
+          <div>
+            <p
+              className="typo-normal"
+            >
+              <span>
+                Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   <section
-    className="c16"
+    className="c21"
   >
     <div
       className="alertstripe alertstripe--info"
@@ -1026,29 +1390,11 @@ exports[`Viser traad med verktøylinje 1`] = `
        
       13.08.2019 00:00
     </h3>
-    <div
-      className="c17"
-    >
-      <p
-        className="typo-element"
-      >
-        Kanal: NAV_NO
-      </p>
-      <p
-        className="typo-normal"
-      >
-         
-        Henvendelsen er avsluttet uten å svare bruker av 
-        Ukjent saksbehandler
-         
-         
-      </p>
-    </div>
     <ol
       aria-label="Dialog"
     >
       <li
-        className="snakkeboble_ikoner c18"
+        className="snakkeboble_ikoner c22"
       >
         <div
           className="snakkeboble snakkeboble--hoyre"
@@ -1070,16 +1416,16 @@ exports[`Viser traad med verktøylinje 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c19"
+                className="c23"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c20"
+                    className="c24"
                   >
                     <div
-                      className="tekstomrade c21"
+                      className="tekstomrade c25"
                     >
                       Delsvar - Arbeid
                     </div>
@@ -1096,13 +1442,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                   <div
                     className="tekstomrade"
                   >
-                    13.08.2019 00:00
+                    27.07.2019 00:00
                   </div>
                   <div
-                    className="c22"
+                    className="c26"
                   >
                     <p
-                      className="typo-normal c23"
+                      className="typo-normal c27"
                     >
                       Skrevet av:
                     </p>
@@ -1119,7 +1465,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                 </div>
                 <div
-                  className="ekspanderbartPanel c24 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c28 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -1132,7 +1478,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c25"
+                        className="typo-etikett-liten c29"
                       >
                         Meldingen er journalført
                       </p>
@@ -1148,7 +1494,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   </article>
                 </div>
                 <div
-                  className="c26"
+                  className="c30"
                 >
                   <p
                     className="typo-element"
@@ -1162,7 +1508,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </div>
       </li>
       <li
-        className="snakkeboble_ikoner c18"
+        className="snakkeboble_ikoner c22"
       >
         <div
           className="snakkeboble snakkeboble--venstre"
@@ -1184,16 +1530,16 @@ exports[`Viser traad med verktøylinje 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c19"
+                className="c23"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c20"
+                    className="c24"
                   >
                     <div
-                      className="tekstomrade c21"
+                      className="tekstomrade c25"
                     >
                       Spørsmål fra bruker - Arbeid
                     </div>
@@ -1201,7 +1547,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   <div
                     className="tekstomrade"
                   >
-                    10.08.2019 00:00
+                    16.07.2019 00:00
                   </div>
                 </div>
                 <div
@@ -1210,7 +1556,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
                 </div>
                 <div
-                  className="ekspanderbartPanel c24 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c28 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -1223,7 +1569,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c25"
+                        className="typo-etikett-liten c29"
                       >
                         Meldingen er journalført
                       </p>
@@ -1239,7 +1585,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   </article>
                 </div>
                 <div
-                  className="c26"
+                  className="c30"
                 >
                   <p
                     className="typo-element"
@@ -1253,7 +1599,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </div>
       </li>
       <li
-        className="snakkeboble_ikoner c18"
+        className="snakkeboble_ikoner c22"
       >
         <div
           className="snakkeboble snakkeboble--venstre"
@@ -1275,16 +1621,16 @@ exports[`Viser traad med verktøylinje 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c19"
+                className="c23"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c20"
+                    className="c24"
                   >
                     <div
-                      className="tekstomrade c21"
+                      className="tekstomrade c25"
                     >
                       Spørsmål fra bruker - Arbeid
                     </div>
@@ -1292,7 +1638,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   <div
                     className="tekstomrade"
                   >
-                    06.08.2019 00:00
+                    12.07.2019 00:00
                   </div>
                 </div>
                 <div
@@ -1301,7 +1647,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
                 </div>
                 <div
-                  className="ekspanderbartPanel c24 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c28 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -1314,7 +1660,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c25"
+                        className="typo-etikett-liten c29"
                       >
                         Meldingen er journalført
                       </p>
@@ -1330,7 +1676,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   </article>
                 </div>
                 <div
-                  className="c26"
+                  className="c30"
                 >
                   <p
                     className="typo-element"
@@ -1344,7 +1690,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </div>
       </li>
       <li
-        className="snakkeboble_ikoner c18"
+        className="snakkeboble_ikoner c22"
       >
         <div
           className="snakkeboble snakkeboble--hoyre"
@@ -1366,16 +1712,16 @@ exports[`Viser traad med verktøylinje 1`] = `
               className="snakkeboble-panel__tekst"
             >
               <div
-                className="c19"
+                className="c23"
               >
                 <div
                   className=""
                 >
                   <div
-                    className="c20"
+                    className="c24"
                   >
                     <div
-                      className="tekstomrade c21"
+                      className="tekstomrade c25"
                     >
                       Samtalereferat oppmøte - Arbeid
                     </div>
@@ -1392,13 +1738,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                   <div
                     className="tekstomrade"
                   >
-                    30.07.2019 00:00
+                    07.07.2019 00:00
                   </div>
                   <div
-                    className="c22"
+                    className="c26"
                   >
                     <p
-                      className="typo-normal c23"
+                      className="typo-normal c27"
                     >
                       Skrevet av:
                     </p>
@@ -1415,7 +1761,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
                 </div>
                 <div
-                  className="ekspanderbartPanel c24 ekspanderbartPanel--lukket"
+                  className="ekspanderbartPanel c28 ekspanderbartPanel--lukket"
                 >
                   <button
                     aria-expanded={false}
@@ -1428,7 +1774,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       className="ekspanderbartPanel__flex-wrapper"
                     >
                       <p
-                        className="typo-etikett-liten c25"
+                        className="typo-etikett-liten c29"
                       >
                         Meldingen er journalført
                       </p>
@@ -1444,7 +1790,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   </article>
                 </div>
                 <div
-                  className="c26"
+                  className="c30"
                 >
                   <p
                     className="typo-element"
