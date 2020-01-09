@@ -8,7 +8,7 @@ import Routing, { paths } from './routes/routing';
 import { setupMock } from '../mock/setup-mock';
 import reducers from '../redux/reducers';
 import { mockEnabled } from '../api/config';
-import AppStyle, { ContentStyle } from './AppStyle';
+import AppStyle, { ContentStyle, IE11Styling, MacStyling } from './AppStyle';
 import ModalWrapper from 'nav-frontend-modal';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import PersonOppslagHandler from './PersonOppslagHandler/PersonOppslagHandler';
@@ -59,11 +59,11 @@ function PersonoverisktProvider() {
         settJobberIkkeMedSpørsmålOgSvar();
     });
 
-    const className = [isMac ? 'is-mac' : '', isIE ? 'is-ie' : ''].join(' ');
-
     return (
         <Provider store={store}>
-            <AppStyle className={className}>
+            {isMac && <MacStyling />}
+            {isIE && <IE11Styling />}
+            <AppStyle>
                 <Decorator />
                 <Switch>
                     <Route
