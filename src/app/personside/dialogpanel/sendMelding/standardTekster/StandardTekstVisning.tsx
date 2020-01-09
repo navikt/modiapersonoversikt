@@ -28,8 +28,8 @@ interface Props {
 
 const Container = styled.div`
     display: flex;
-    flex: 1;
-    height: 100%;
+    flex-grow: 1;
+    height: 0; // hack for å få flex til å funke som vi vil her, bør skrives om til grid
     b {
         font-weight: bolder !important;
     }
@@ -38,7 +38,8 @@ const Container = styled.div`
         ${theme.highlight}
     }
 `;
-const Liste = styled.div`
+
+const ListeStyle = styled.div`
     flex: 0;
     flex-basis: 35%;
     height: 100%;
@@ -47,7 +48,8 @@ const Liste = styled.div`
     border-right: 1px solid ${theme.color.navGra20};
     background-color: #f5f5f5;
 `;
-const ListeElement = styled.div`
+
+const StyledLi = styled.li`
     position: relative;
     border-bottom: 1px solid ${theme.color.navGra20};
 
@@ -126,14 +128,14 @@ function TekstValg({
     const onChange = valgt.input.onChange;
 
     return (
-        <ListeElement>
+        <StyledLi>
             <input type="radio" name="tekstvalg" id={tekst.id} value={tekst.id} onChange={onChange} checked={checked} />
             <label htmlFor={tekst.id}>
                 <Tekstomrade as="span" rules={[highlightRule]}>
                     {tekst.overskrift}
                 </Tekstomrade>
             </label>
-        </ListeElement>
+        </StyledLi>
     );
 }
 
@@ -204,12 +206,12 @@ function StandardTekstVisning(props: Props) {
 
     return (
         <Container>
-            <Liste>
+            <ListeStyle>
                 <TreffStyle tag="h3" aria-live="polite">
                     {tekstElementer.length} tekster traff søket
                 </TreffStyle>
-                <div className="standardtekster__liste">{tekstElementer}</div>
-            </Liste>
+                <ul className="standardtekster__liste">{tekstElementer}</ul>
+            </ListeStyle>
             <PreviewContainer>
                 <Preview
                     tekst={valgtTekst}

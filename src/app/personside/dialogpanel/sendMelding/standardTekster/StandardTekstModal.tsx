@@ -18,7 +18,6 @@ const Modal = styled(NavFrontendModal)`
         max-height: 40rem;
         height: 100%;
         padding: 0;
-        overflow: hidden;
 
         > section {
             height: 100%;
