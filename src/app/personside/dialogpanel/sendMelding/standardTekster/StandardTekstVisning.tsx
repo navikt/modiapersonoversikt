@@ -208,7 +208,7 @@ function StandardTekstVisning(props: Props) {
         <Container>
             <ListeStyle>
                 <TreffStyle tag="h3" aria-live="polite">
-                    {tekstElementer.length} tekster traff søket
+                    Samtalemaler ({tekstElementer.length})
                 </TreffStyle>
                 <ul className="standardtekster__liste">{tekstElementer}</ul>
             </ListeStyle>
