@@ -84,7 +84,7 @@ function EnkelUtbetaling(props: Props) {
     const handlePrint = () => {
         ekspanderYtelse(true);
         printer.triggerPrint();
-        loggEvent('Print', 'EnkeltUtbetlaing');
+        loggEvent('Print-Enkeltutbetaling', 'Utbetalinger');
     };
 
     const handleClickOnUtbetaling = (event: React.MouseEvent<HTMLElement>) => {
