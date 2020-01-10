@@ -141,40 +141,6 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-right: 0.5rem;
 }
 
-.c7 {
-  border: none;
-  background-color: transparent;
-  padding: 0.1rem 0.2rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  color: #0067c5;
-}
-
-.c7 svg {
-  margin-left: 0.5rem;
-  height: 1.2rem;
-  width: 1.2rem;
-}
-
-.c7:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c7:hover {
-  opacity: 0.8;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.c16 {
-  display: none;
-}
-
 .c17 {
   margin-bottom: 2rem;
 }
@@ -323,15 +289,52 @@ exports[`Viser traad med verktøylinje 1`] = `
   flex-direction: column;
 }
 
-@media print {
-  .c7 {
-    display: none;
-  }
+.c7 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: #3e3832;
 }
 
-@media print {
+.c7:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c7:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c7:hover {
+  opacity: 0.8;
+}
+
+.c7:hover:after {
+  content: '';
+  border-color: #0067c5;
+}
+
+@media not print {
   .c16 {
-    display: inline-block;
+    display: none;
   }
 }
 
@@ -442,33 +445,17 @@ exports[`Viser traad med verktøylinje 1`] = `
           />
         </button>
       </div>
-      <button
-        aria-label="Skriv ut"
-        className="c7"
-        onClick={[Function]}
+      <a
+        className="-a c7"
+        download={true}
+        href="/dialog/10108000398/sg838exr/print"
       >
-        <span
+        <p
           className="typo-normal"
         >
           Skriv ut
-        </span>
-         
-        <svg
-          viewBox="0 0 17 16"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-        >
-          <path
-            d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
-            fill="#0067C5"
-            fillRule="evenodd"
-          />
-          <path
-            d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
-            fill="#0067C5"
-          />
-        </svg>
-      </button>
+        </p>
+      </a>
     </div>
     <section
       className="c8"
@@ -1022,7 +1009,6 @@ exports[`Viser traad med verktøylinje 1`] = `
           <p
             className="typo-element"
           >
-             
             Henvendelsen er avsluttet uten å svare bruker
              
              
