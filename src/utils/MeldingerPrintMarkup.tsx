@@ -18,9 +18,8 @@ interface Props {
 }
 
 const StyledTraad = styled.div`
-    display: none;
-    @media print {
-        display: inline-block;
+    @media not print {
+        display: none;
     }
 `;
 
@@ -86,7 +85,6 @@ export function MeldingerPrintMarkup(props: Props) {
 
     const ferdigstiltUtenSvar = melding.erFerdigstiltUtenSvar && (
         <Element>
-            {' '}
             Henvendelsen er avsluttet uten å svare bruker{' '}
             {melding.ferdigstiltUtenSvarDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltUtenSvarDato)}{' '}
         </Element>

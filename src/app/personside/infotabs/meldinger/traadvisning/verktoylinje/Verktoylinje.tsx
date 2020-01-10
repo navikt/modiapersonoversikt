@@ -16,6 +16,8 @@ import { LenkeKnapp } from '../../../../../../components/common-styled-component
 import { apiBaseUri } from '../../../../../../api/config';
 import PrintKnapp from '../../../../../../components/PrintKnapp';
 import MeldingerPrintMarkup from '../../../../../../utils/MeldingerPrintMarkup';
+import useFeatureToggle from '../../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     valgtTraad: Traad;
@@ -57,8 +59,9 @@ function Print({ props, printer }: { props: Props; printer: Printer }) {
         color: #3e3832;
     `;
     const fnr = useFødselsnummer();
+    const meldingerPrintFT = useFeatureToggle(FeatureToggles.MeldingerPrint);
 
-    if (true && props.visPrinter) {
+    if (meldingerPrintFT.isOn && props.visPrinter) {
         return <PrintKnapp onClick={() => printer?.triggerPrint()} />;
     } else {
         return (
