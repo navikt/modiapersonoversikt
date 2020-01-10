@@ -10,11 +10,15 @@ function getPersondataFetchUri(state: AppState) {
 
 export default createRestResourceReducerAndActions<PersonRespons>('personinformasjon', getPersondataFetchUri);
 
+export function isLoadedPerson(person: PersonRespons): person is Person {
+    return person.hasOwnProperty('fødselsnummer');
+}
+
 // @ts-ignore
-export function isLoadedPerson(person: RestResource<PersonRespons>): person is HasData<Person> {
-    return hasData(person) && person.data.hasOwnProperty('fødselsnummer');
+export function isLoadedPersonResource(person: RestResource<PersonRespons>): person is HasData<Person> {
+    return hasData(person) && isLoadedPerson(person.data);
 }
 
 export function getFnrFromPerson(person: RestResource<PersonRespons>): string | undefined {
-    return isLoadedPerson(person) ? person.data.fødselsnummer : undefined;
+    return isLoadedPersonResource(person) ? person.data.fødselsnummer : undefined;
 }

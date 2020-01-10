@@ -8,7 +8,7 @@ import Temavelger from '../component/Temavelger';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import DialogpanelVelgSak from './DialogpanelVelgSak';
-import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
+import { isLoadedPersonResource } from '../../../../redux/restReducers/personinformasjon';
 import { capitalizeName } from '../../../../utils/stringFormatting';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { NyMeldingValidator } from './validatorer';
@@ -87,7 +87,7 @@ function SendNyMelding(props: Props) {
     const state = props.state;
     const personinformasjon = useRestResource(resources => resources.personinformasjon);
 
-    const navn = isLoadedPerson(personinformasjon.resource)
+    const navn = isLoadedPersonResource(personinformasjon.resource)
         ? capitalizeName(personinformasjon.resource.data.navn.fornavn || '')
         : 'bruker';
 

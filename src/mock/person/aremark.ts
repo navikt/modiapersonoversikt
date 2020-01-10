@@ -2,6 +2,7 @@ import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstan
 import { BostatusTyper, Kjønn, Person, Relasjonstype, SivilstandTyper } from '../../models/person/person';
 import { SikkerhetstiltakTyper } from '../../models/sikkerhetstiltak';
 import { Personadresse } from '../../models/personadresse';
+import { moss } from './moss';
 
 export const gateAdresseAremark: Personadresse = {
     endringsinfo: {
@@ -190,7 +191,7 @@ export const aremark: Person = {
     fullmakt: [
         {
             motpartsRolle: 'FULLMEKTIG',
-            motpartsPersonident: '12345678',
+            motpartsPersonident: moss.fødselsnummer,
             omraade: ['*'],
             gyldigFraOgMed: '2019-01-01',
             gyldigTilOgMed: '2022-12-12'

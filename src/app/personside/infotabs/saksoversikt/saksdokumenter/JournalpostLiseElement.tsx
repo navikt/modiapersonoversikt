@@ -19,7 +19,7 @@ import EtikettGrå from '../../../../../components/EtikettGrå';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
-import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
+import { isLoadedPersonResource } from '../../../../../redux/restReducers/personinformasjon';
 import { erNyePersonoversikten } from '../../../../../utils/erNyPersonoversikt';
 import { useHistory } from 'react-router-dom';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
@@ -166,7 +166,7 @@ function JournalpostLiseElement(props: Props) {
     };
 
     const journalpost = props.journalpost;
-    const brukersNavn = isLoadedPerson(bruker.resource) ? bruker.resource.data.navn.sammensatt : '';
+    const brukersNavn = isLoadedPersonResource(bruker.resource) ? bruker.resource.data.navn.sammensatt : '';
 
     const saksid = journalpost.tilhørendeFagsaksid ? journalpost.tilhørendeFagsaksid : journalpost.tilhørendeSaksid;
     const saksvisning =

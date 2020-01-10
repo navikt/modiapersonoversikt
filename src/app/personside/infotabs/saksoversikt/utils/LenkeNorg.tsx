@@ -9,7 +9,7 @@ import { PersonRespons } from '../../../../../models/person/person';
 import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
+import { isLoadedPersonResource } from '../../../../../redux/restReducers/personinformasjon';
 
 interface OwnProps {
     valgtSakstema?: Sakstema;
@@ -47,7 +47,7 @@ function hentNorg2Url(baseUrlResource: RestResource<BaseUrlsResponse>) {
 }
 
 function hentGeografiskTilknytning(personResource: RestResource<PersonRespons>) {
-    return isLoadedPerson(personResource) ? personResource.data.geografiskTilknytning : '';
+    return isLoadedPersonResource(personResource) ? personResource.data.geografiskTilknytning : '';
 }
 
 function LenkeNorg(props: Props) {

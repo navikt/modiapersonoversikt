@@ -5,6 +5,11 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Fullmaktlogo from '../../../../../svg/Utropstegn';
 import { formaterDato } from '../../../../../utils/stringFormatting';
+import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
+import { apiBaseUri } from '../../../../../api/config';
+import { hasData } from '@nutgaard/use-fetch';
+import { PersonRespons } from '../../../../../models/person/person';
+import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 
 function getOmraade(omraader: string[]): string {
     if (omraader.includes('*')) {
@@ -14,16 +19,22 @@ function getOmraade(omraader: string[]): string {
 }
 
 function Fullmakt(props: { fullmakt: FullmaktInterface }) {
-    const { fullmakt } = props;
-    const beskrivelse = `${fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver'}: ${
-        fullmakt.motpartsPersonident
-    }`;
+    const fullmektig = useFetchWithLog<PersonRespons>(
+        `${apiBaseUri}/person/${props.fullmakt.motpartsPersonident}`,
+        'Fullmektig'
+    );
+
+    const navn = (hasData(fullmektig) && isLoadedPerson(fullmektig.data) && fullmektig.data.navn.sammensatt) || '';
+
+    const beskrivelse = `${props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver'}: ${navn} (${
+        props.fullmakt.motpartsPersonident
+    })`;
 
     return (
         <VisittkortElement beskrivelse={beskrivelse}>
-            <Normaltekst>Gyldig fra og med {formaterDato(fullmakt.gyldigFraOgMed)}</Normaltekst>
-            <Normaltekst>Gyldig til og med {formaterDato(fullmakt.gyldigTilOgMed)}</Normaltekst>
-            <Normaltekst>Gjelder {getOmraade(fullmakt.omraade)}</Normaltekst>
+            <Normaltekst>Gyldig fra og med {formaterDato(props.fullmakt.gyldigFraOgMed)}</Normaltekst>
+            <Normaltekst>Gyldig til og med {formaterDato(props.fullmakt.gyldigTilOgMed)}</Normaltekst>
+            <Normaltekst>Gjelder {getOmraade(props.fullmakt.omraade)}</Normaltekst>
         </VisittkortElement>
     );
 }

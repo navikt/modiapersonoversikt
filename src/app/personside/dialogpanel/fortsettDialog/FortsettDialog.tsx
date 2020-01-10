@@ -6,7 +6,7 @@ import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
 import VelgDialogType from './VelgDialogType';
 import TekstFelt from '../sendMelding/TekstFelt';
-import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
+import { isLoadedPersonResource } from '../../../../redux/restReducers/personinformasjon';
 import { capitalizeName } from '../../../../utils/stringFormatting';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
@@ -60,7 +60,7 @@ function FortsettDialog(props: Props) {
     const personinformasjon = useRestResource(resources => resources.personinformasjon).resource;
     const temagrupperITraad = props.traad.meldinger.map(it => it.temagruppe);
 
-    const navn = isLoadedPerson(personinformasjon)
+    const navn = isLoadedPersonResource(personinformasjon)
         ? capitalizeName(personinformasjon.data.navn.fornavn || '')
         : 'bruker';
 
