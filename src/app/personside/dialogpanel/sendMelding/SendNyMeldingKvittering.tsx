@@ -4,7 +4,7 @@ import { DialogpanelKvittering } from '../fellesStyling';
 import { meldingstypeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
 
 export function ReferatSendtKvittering(props: { request: SendReferatRequest; lukk: () => void }) {
-    const tittel = `${meldingstypeTekst(props.request.meldingstype)} sent til bruker`;
+    const tittel = `${meldingstypeTekst(props.request.meldingstype)} sendt til bruker`;
     return (
         <DialogpanelKvittering
             tittel={tittel}
