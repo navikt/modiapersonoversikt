@@ -25,7 +25,7 @@ const VisittkortBodyWrapper = styled.div`
 
 const SpinnerWrapper = styled(FillCenterAndFadeIn)`
     background-color: white;
-    padding: 1rem;
+    height: 5rem;
 `;
 
 const PlaceHolder = (
