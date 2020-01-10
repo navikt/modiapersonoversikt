@@ -24,7 +24,8 @@ export const navFarger = {
     fokusFarge: '#254b6d',
     orangeFokus: '#ffbd66',
     pinkErrorBg: '#f3e3e3',
-    redError: '#ba3a26'
+    redError: '#ba3a26',
+    navRod: '#C30000'
 };
 
 const focusOnRelativeParent = css`
