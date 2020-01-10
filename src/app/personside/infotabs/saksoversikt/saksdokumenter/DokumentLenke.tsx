@@ -44,7 +44,7 @@ function DokumentLenke(props: Props) {
     return (
         <Link
             to={url}
-            target={apneDokumentINyttVindu ? '_blanc' : undefined}
+            target={apneDokumentINyttVindu ? '_blank' : undefined}
             aria-disabled={!props.dokument.kanVises}
             className="lenke typo-element"
         >
