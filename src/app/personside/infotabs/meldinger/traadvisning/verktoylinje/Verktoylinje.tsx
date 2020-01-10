@@ -63,13 +63,12 @@ function Print({ props, printer }: { props: Props; printer: Printer }) {
 
     if (meldingerPrintFT.isOn && props.visPrinter) {
         return <PrintKnapp onClick={() => printer?.triggerPrint()} />;
-    } else {
-        return (
-            <GammelPrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
-                <Normaltekst>Skriv ut</Normaltekst>
-            </GammelPrintKnapp>
-        );
     }
+    return (
+        <GammelPrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
+            <Normaltekst>Skriv ut</Normaltekst>
+        </GammelPrintKnapp>
+    );
 }
 function Verktoylinje(props: Props) {
     const titleRef = createRef<HTMLHeadingElement>();
