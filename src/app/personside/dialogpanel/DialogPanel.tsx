@@ -6,11 +6,9 @@ import { useAppState } from '../../../utils/customHooks';
 import SendNyMeldingContainer from './sendMelding/SendNyMeldingContainer';
 import FortsettDialogContainer from './fortsettDialog/FortsettDialogContainer';
 import useVisTraadTilknyttetPlukketOppgave from './fortsettDialog/useVisTraadTilknyttetPlukketOppgave';
-import theme from '../../../styles/personOversiktTheme';
 
 const DialogPanelWrapper = styled.article`
     flex-grow: 1;
-    border-top: ${theme.border.skilleSvak};
     word-break: break-word;
 `;
 
