@@ -167,7 +167,9 @@ export function SkrevetAv({ melding, rule }: { melding: Melding; rule?: Rule }) 
 function EnkeltMelding(props: Props) {
     const fraNav = erMeldingFraNav(props.melding.meldingstype);
     const topptekst = meldingstittel(props.melding);
-    const datoTekst = formatterDatoTid(props.melding.opprettetDato);
+    const datoTekst = props.melding.ferdigstiltDato
+        ? formatterDatoTid(props.melding.ferdigstiltDato)
+        : formatterDatoTid(props.melding.opprettetDato);
     const highlightRule = createDynamicHighligtingRule(props.sokeord.split(' '));
 
     return (
