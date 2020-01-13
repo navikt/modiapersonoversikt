@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -8,21 +7,19 @@ import Routing, { paths } from './routes/routing';
 import { setupMock } from '../mock/setup-mock';
 import reducers from '../redux/reducers';
 import { mockEnabled } from '../api/config';
-import AppStyle, { ContentStyle, IE11Styling, MacStyling } from './AppStyle';
+import AppStyle, { ContentStyle } from './AppStyle';
 import ModalWrapper from 'nav-frontend-modal';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import PersonOppslagHandler from './PersonOppslagHandler/PersonOppslagHandler';
 import Decorator from './internarbeidsflatedecorator/Decorator';
 import StandAloneKomponenter from '../components/standalone/StandAloneKomponenter';
 import HentGlobaleVerdier from './globaleVerdier/FetchSessionInfoOgLeggIRedux';
-import { useAppState, useOnMount } from '../utils/customHooks';
-import { detect } from 'detect-browser';
-import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
-import { erIE11 } from '../utils/erNyPersonoversikt';
+import { useAppState } from '../utils/customHooks';
 import DemoBanner from '../components/DemoBanner';
 import VelgEnhet from './routes/VelgEnhet';
 import SakerFullscreen from './personside/infotabs/saksoversikt/SakerFullscreen';
 import SaksDokumentEgetVindu from './personside/infotabs/saksoversikt/SaksDokumentIEgetVindu';
+import IeMacStyling from './startbilde/IeMacStyling';
 
 if (mockEnabled) {
     setupMock();
@@ -49,20 +46,8 @@ function Personoversikt() {
 }
 
 function PersonoverisktProvider() {
-    const [isMac, setIsMac] = useState<undefined | boolean>(undefined);
-    const [isIE, setIsIE] = useState<undefined | boolean>(undefined);
-    useOnMount(() => {
-        const browser = detect();
-        const os = browser && browser.os;
-        setIsMac(os ? os.toLowerCase().includes('mac') : undefined);
-        setIsIE(erIE11());
-        settJobberIkkeMedSpørsmålOgSvar();
-    });
-
     return (
         <Provider store={store}>
-            {isMac && <MacStyling />}
-            {isIE && <IE11Styling />}
             <AppStyle>
                 <Decorator />
                 <Switch>
@@ -89,6 +74,7 @@ function App() {
     return (
         <>
             <DemoBanner />
+            <IeMacStyling />
             <BrowserRouter>
                 <Switch>
                     <Route

@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import { pxToRem, theme } from '../styles/personOversiktTheme';
 
 const AppStyle = styled.div`
@@ -30,25 +30,6 @@ export const ContentStyle = styled.div`
     }
     flex-grow: 1;
     display: flex;
-`;
-
-export const MacStyling = createGlobalStyle`
-        *::-webkit-scrollbar {
-            -webkit-appearance: none;
-            width: ${pxToRem(7)};
-            height: ${pxToRem(7)};
-            background-color: #0004;
-        }
-        *::-webkit-scrollbar-thumb {
-            border-radius: ${pxToRem(4)};
-            background-color: #0005;
-        }
-`;
-
-export const IE11Styling = createGlobalStyle`
-        .alertstripe__tekst {
-            flex: auto !important;
-        }
 `;
 
 export default AppStyle;
