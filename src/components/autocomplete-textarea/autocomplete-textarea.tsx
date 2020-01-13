@@ -135,7 +135,7 @@ function AutocompleteTextarea(props: TextareaProps) {
 
                     event.currentTarget.selectionEnd = cursorPosition + (fullfortTekst.length - word.length);
 
-                    onChange(event);
+                    onChange((event as unknown) as React.ChangeEvent<HTMLTextAreaElement>);
                 }
             }
         },
