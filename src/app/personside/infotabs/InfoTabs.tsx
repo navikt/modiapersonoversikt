@@ -21,6 +21,7 @@ import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
 import { useEffect, useRef } from 'react';
 import { loggEvent } from '../../../utils/frontendLogger';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
+import { capitalizeName } from '../../../utils/stringFormatting';
 
 type Props = RouteComponentProps<{}>;
 
@@ -68,6 +69,7 @@ function InfoTabs(props: Props) {
 
     useEffect(() => {
         loggEvent(openTab, 'Tabs');
+        document.title = 'Modia personoversikt - ' + capitalizeName(openTab);
     }, [openTab]);
 
     const keepScrollRef = useRef<HTMLDivElement>(null);

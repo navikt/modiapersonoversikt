@@ -341,11 +341,9 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
       </h3>
       <ol
         className="c6"
-        role="tablist"
       >
         <li
           className="c7"
-          role="presentation"
         >
           <input
             aria-label="Delsvar - Arbeid"
@@ -354,7 +352,6 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
             id="Helt tilfeldig ID"
             name="traadliste-meldinger"
             onChange={[Function]}
-            role="tab"
             type="radio"
             value="sg838exr"
           />
