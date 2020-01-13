@@ -1,7 +1,6 @@
 import { Route } from 'react-router';
-import { paths } from '../routes/routing';
+import { paths } from '../../routes/routing';
 import * as React from 'react';
-import LyttPåNyttFnrIReduxOgHentAllPersoninfo from './LyttPåNyttFnrIReduxOgHentAllPersoninfo';
 import SetFnrIRedux from './SetFnrIRedux';
 
 function LyttPåFnrIURLOgSettIRedux() {
@@ -15,13 +14,4 @@ function LyttPåFnrIURLOgSettIRedux() {
     );
 }
 
-function PersonOppslagHandler() {
-    return (
-        <>
-            <LyttPåFnrIURLOgSettIRedux />
-            <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
-        </>
-    );
-}
-
-export default PersonOppslagHandler;
+export default LyttPåFnrIURLOgSettIRedux;

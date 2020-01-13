@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Route } from 'react-router';
 import StartBildeLayout from './StartBildeLayout';
 import HentOppgaveKnapp from '../personside/dialogpanel/HentOppgaveKnapp';
-import SetFnrIRedux from '../PersonOppslagHandler/SetFnrIRedux';
+import SetFnrIRedux from '../container/PersonOppslagHandler/SetFnrIRedux';
 import StartbildeDevKnapper from './StartbildeDevKnapper';
 import { paths } from '../routes/routing';
 import PersonSokInput from './PersonSokInput';

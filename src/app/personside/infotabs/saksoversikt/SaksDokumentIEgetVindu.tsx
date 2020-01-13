@@ -5,7 +5,7 @@ import DokumentVisning from './dokumentvisning/SaksDokumentVisning';
 import { useQueryParams } from '../../../../utils/urlUtils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
-import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
+import SetFnrIRedux from '../../../container/PersonOppslagHandler/SetFnrIRedux';
 
 interface Props {
     fødselsnummer: string;

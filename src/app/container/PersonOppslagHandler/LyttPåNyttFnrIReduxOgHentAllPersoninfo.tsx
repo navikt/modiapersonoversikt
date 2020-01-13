@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
-import { AppState } from '../../redux/reducers';
+import { useGjeldendeBruker } from '../../../redux/gjeldendeBruker/types';
+import { AppState } from '../../../redux/reducers';
 import { useFetchFeatureTogglesOnNewFnr } from './FetchFeatureToggles';
-import { loggEvent } from '../../utils/frontendLogger';
+import { loggEvent } from '../../../utils/frontendLogger';
 
 function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     const dispatch = useDispatch();

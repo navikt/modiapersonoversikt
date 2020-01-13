@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import OppfolgingContainer from '../../app/personside/infotabs/oppfolging/OppfolgingContainer';
-import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
+import SetFnrIRedux from '../../app/container/PersonOppslagHandler/SetFnrIRedux';
 
 interface Props {
     fødselsnummer: string;

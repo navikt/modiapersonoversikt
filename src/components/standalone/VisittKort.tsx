@@ -9,14 +9,14 @@ import { mockEnabled } from '../../api/config';
 import { setupMock } from '../../mock/setup-mock';
 import ErrorBoundary from '../ErrorBoundary';
 import Kontrollsporsmal from '../../app/personside/kontrollsporsmal/Kontrollsporsmal';
-import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
-import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
+import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../../app/container/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
+import SetFnrIRedux from '../../app/container/PersonOppslagHandler/SetFnrIRedux';
 import theme from '../../styles/personOversiktTheme';
 import styled from 'styled-components/macro';
 import TilbakemeldingFab from './Tilbakemelding/TilbakemeldingFab';
 import { FeatureToggles } from '../featureToggle/toggleIDs';
 import IfFeatureToggleOn from '../featureToggle/IfFeatureToggleOn';
-import FetchSessionInfoOgLeggIRedux from '../../app/globaleVerdier/FetchSessionInfoOgLeggIRedux';
+import FetchSessionInfoOgLeggIRedux from '../../app/container/FetchSessionInfoOgLeggIRedux';
 
 interface Props {
     fødselsnummer: string;

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useOnMount } from '../../utils/customHooks';
 import { detect } from 'detect-browser';
 import { erIE11 } from '../../utils/erNyPersonoversikt';
-import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
 import { createGlobalStyle } from 'styled-components/macro';
 import { pxToRem } from '../../styles/personOversiktTheme';
 
@@ -35,7 +34,6 @@ function IeMacStyling() {
         const os = browser && browser.os;
         setIsMac(os ? os.toLowerCase().includes('mac') : undefined);
         setIsIE(erIE11());
-        settJobberIkkeMedSpørsmålOgSvar();
     });
 
     return (
