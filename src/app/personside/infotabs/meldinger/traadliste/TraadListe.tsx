@@ -140,7 +140,7 @@ function TraadListe(props: Props) {
             </SokVerktøyStyle>
             <h3 className="sr-only">Meldingsliste - {soketreffTekst}</h3>
             {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
-            <TraadListeStyle role="tablist">
+            <TraadListeStyle>
                 {paginering.currentPage.map(traad => (
                     <TraadListeElement
                         taFokusOnMount={erForsteRender && traad === props.valgtTraad}

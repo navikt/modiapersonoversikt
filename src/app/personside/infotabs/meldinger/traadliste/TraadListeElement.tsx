@@ -80,11 +80,10 @@ function TraadListeElement(props: Props) {
     };
 
     return (
-        <StyledLi valgt={props.erValgt} role="presentation">
+        <StyledLi valgt={props.erValgt}>
             <input
                 className={'sr-only ' + meldingerTest.melding}
                 type="radio"
-                role="tab"
                 aria-label={tittel}
                 name={props.listeId}
                 value={props.traad.traadId}
