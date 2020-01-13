@@ -435,7 +435,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
     >
       <li
         className="c4"
-        role="presentation"
       >
         <input
           aria-label="Delsvar - Arbeid"
@@ -444,7 +443,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
           id="Helt tilfeldig ID"
           name="traadliste-slaa-sammen"
           onChange={[Function]}
-          role="tab"
           type="radio"
           value="sg838exr"
         />
@@ -573,7 +571,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
       </li>
       <li
         className="c16"
-        role="presentation"
       >
         <input
           aria-label="Delsvar - Arbeid"
@@ -582,7 +579,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
           id="Helt tilfeldig ID"
           name="traadliste-slaa-sammen"
           onChange={[Function]}
-          role="tab"
           type="radio"
           value="123"
         />
