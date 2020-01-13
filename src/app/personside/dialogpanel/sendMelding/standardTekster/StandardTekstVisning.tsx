@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Element, Systemtittel } from 'nav-frontend-typografi';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import Tekstomrade, {
@@ -16,6 +16,7 @@ import useAlwaysInViewport from '../../../../../utils/hooks/use-always-in-viewpo
 import { Rule } from '../../../../../components/tekstomrade/parser/domain';
 import { erGyldigValg } from './sokUtils';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import TekstListeElement from './TekstListeElement';
 
 interface Props {
     tekster: Array<StandardTekster.Tekst>;
@@ -49,26 +50,6 @@ const ListeStyle = styled.div`
     background-color: #f5f5f5;
 `;
 
-const StyledLi = styled.li`
-    position: relative;
-    border-bottom: 1px solid ${theme.color.navGra20};
-
-    input {
-        ${theme.visuallyHidden}
-    }
-    input + label {
-        display: flex;
-        padding: ${pxToRem(10)} ${pxToRem(15)};
-        border-radius: ${theme.borderRadius.layout};
-    }
-    input:checked + label {
-        background-color: ${theme.color.kategori};
-    }
-    input:focus + label {
-        outline: none;
-        box-shadow: inset 0 0 0 0.1875rem #254b6d;
-    }
-`;
 const PreviewContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -114,30 +95,6 @@ const TreffStyle = styled(Element)`
     padding: ${pxToRem(7)} ${pxToRem(15)};
     border-bottom: ${theme.border.skilleSvak};
 `;
-
-function TekstValg({
-    tekst,
-    valgt,
-    highlightRule
-}: {
-    tekst: StandardTekster.Tekst;
-    valgt: FieldState;
-    highlightRule: Rule;
-}) {
-    const checked = tekst.id === valgt.input.value;
-    const onChange = valgt.input.onChange;
-
-    return (
-        <StyledLi>
-            <input type="radio" name="tekstvalg" id={tekst.id} value={tekst.id} onChange={onChange} checked={checked} />
-            <label htmlFor={tekst.id}>
-                <Tekstomrade as="span" rules={[highlightRule]}>
-                    {tekst.overskrift}
-                </Tekstomrade>
-            </label>
-        </StyledLi>
-    );
-}
 
 function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; sokefelt: FieldState }) {
     if (!valgtTekst) {
@@ -196,10 +153,17 @@ function Preview({ tekst, locale, sokefelt, highlightRule }: PreviewProps) {
 function StandardTekstVisning(props: Props) {
     const { valgt, valgtLocale, valgtTekst, sokefelt, tekster } = props;
 
-    const { tags, text } = parseTekst(sokefelt.input.value);
-    const highlightRule = createDynamicHighligtingRule(tags.concat(text.split(' ')));
+    const { tags, text } = useMemo(() => parseTekst(sokefelt.input.value), [sokefelt.input.value]);
+    const highlightRule = useMemo(() => createDynamicHighligtingRule(tags.concat(text.split(' '))), [tags, text]);
+
     const tekstElementer = tekster.map(tekst => (
-        <TekstValg key={tekst.id} tekst={tekst} valgt={valgt} highlightRule={highlightRule} />
+        <TekstListeElement
+            key={tekst.id}
+            tekst={tekst}
+            onChange={valgt.input.onChange}
+            valgt={tekst.id === valgt.input.value}
+            highlightRule={highlightRule}
+        />
     ));
 
     useAlwaysInViewport('.standardtekster__liste input:checked', [valgtTekst, props.tekster]);
