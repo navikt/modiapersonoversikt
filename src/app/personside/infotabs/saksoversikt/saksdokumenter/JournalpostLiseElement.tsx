@@ -24,9 +24,11 @@ import { erNyePersonoversikten } from '../../../../../utils/erNyPersonoversikt';
 import { useHistory } from 'react-router-dom';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { useInfotabsDyplenker } from '../../dyplenker';
-import DokumentLenke from './DokumentLenke';
+import DokumentLenke, { getUrlSaksdokumentEgetVindu } from './DokumentLenke';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
+import { useFødselsnummer } from '../../../../../utils/customHooks';
 
 interface Props {
     journalpost: Journalpost;
@@ -133,6 +135,8 @@ function JournalpostLiseElement(props: Props) {
     const bruker = useRestResource(resources => resources.personinformasjon);
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
+    const apneDokumenterIEgetVinduFT = useFeatureToggle(FeatureToggles.SaksDokumentIEgetVindu);
+    const fnr = useFødselsnummer();
 
     const dokumentKanVises = (dokument: Enkeltdokument, journalpost: Journalpost) => {
         return dokument.kanVises && harTilgangTilJournalpost(journalpost);
@@ -161,7 +165,11 @@ function JournalpostLiseElement(props: Props) {
 
     const visDokumentHvisTilgang = (dokument: Enkeltdokument, journalpost: Journalpost) => {
         if (dokumentKanVises(dokument, journalpost)) {
-            history.push(dyplenker.saker.link(props.valgtSakstema, dokument));
+            if (apneDokumenterIEgetVinduFT.isOn) {
+                window.open(getUrlSaksdokumentEgetVindu(fnr, journalpost.journalpostId, dokument.dokumentreferanse));
+            } else {
+                history.push(dyplenker.saker.link(props.valgtSakstema, dokument));
+            }
         }
     };
 
