@@ -22,7 +22,8 @@ import { RestResourcePlaceholderProps } from '../../../rest/consumer/placeholder
 
 const HentOppgaveLayout = styled.article`
     text-align: center;
-    margin: ${theme.margin.layout};
+    padding: ${theme.margin.layout};
+    border-bottom: ${theme.border.skilleSvak};
     label {
         ${theme.visuallyHidden}
     }

@@ -11,6 +11,7 @@ import Kontrollsporsmal from './kontrollsporsmal/Kontrollsporsmal';
 import InfoTabs from './infotabs/InfoTabs';
 import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
 import styled from 'styled-components/macro';
+import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMeldinger';
 
 const Scrollbar = styled.div`
     overflow-y: auto;
@@ -44,6 +45,7 @@ function MainLayout() {
                 dialogPanelEkspandert={UI.dialogPanel.ekspandert}
             >
                 <Scrollbar>
+                    <BrukerHarUbesvarteMeldinger />
                     <HentOppgaveKnapp />
                     <DialogPanel />
                 </Scrollbar>

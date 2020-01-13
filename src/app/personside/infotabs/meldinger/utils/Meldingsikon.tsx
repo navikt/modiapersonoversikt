@@ -39,6 +39,13 @@ const NumberBadge = styled(Undertekst)`
     border-radius: 50%;
 `;
 
+const StyledBrevIkon = styled(BrevIkon)`
+    opacity: 1 !important;
+    g {
+        fill: ${theme.color.navRod} !important;
+    }
+`;
+
 function Ikon({ props }: { props: MeldingsikonProps }) {
     const sisteMelding = nyesteMelding(props.traad);
 
@@ -53,7 +60,7 @@ function Ikon({ props }: { props: MeldingsikonProps }) {
             return <DokumentIkon />;
         default: {
             if (erUbesvartHenvendelseFraBruker(props.traad)) {
-                return <BrevIkon alt="Ubesvart henvendelse" />;
+                return <StyledBrevIkon alt="Ubesvart henvendelse" />;
             }
             if (erMonolog(props.traad)) {
                 return <MonologIkon />;
