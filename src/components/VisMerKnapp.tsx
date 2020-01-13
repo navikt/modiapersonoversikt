@@ -14,7 +14,7 @@ const Wrapper = styled.div<{ valgt: boolean }>`
     ${props =>
         props.valgt &&
         css`
-            background-color: ${theme.color.kategori};
+            background-color: ${theme.color.bakgrunn};
         `}
     &:hover {
         ${theme.hover};
