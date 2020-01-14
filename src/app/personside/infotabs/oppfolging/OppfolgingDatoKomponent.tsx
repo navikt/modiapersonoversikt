@@ -18,6 +18,8 @@ import { formaterDato, formaterTilISO8601Date } from '../../../../utils/stringFo
 import moment from 'moment';
 import { isValidDate } from '../../../../utils/dateUtils';
 import { loggEvent } from '../../../../utils/frontendLogger';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
 const DatoVelgerWrapper = styled.div`
     > * {
@@ -25,7 +27,7 @@ const DatoVelgerWrapper = styled.div`
     }
 `;
 
-const DatoKomponentWrapper = styled.div`
+const StyledArticle = styled.article`
     ${theme.hvittPanel};
     padding: ${pxToRem(15)};
 `;
@@ -130,13 +132,15 @@ function DatoInputs(props: Props) {
 }
 
 function OppfolgingDatoPanel(props: Props) {
+    const headerId = useRef(guid());
+
     return (
-        <DatoKomponentWrapper>
+        <StyledArticle aria-describedby={headerId.current}>
             <TittelWrapper>
-                <Undertittel>Oppfølging og ytelser vises for perioden:</Undertittel>
+                <Undertittel id={headerId.current}>Oppfølging og ytelser vises for perioden:</Undertittel>
             </TittelWrapper>
             <DatoInputs {...props} />
-        </DatoKomponentWrapper>
+        </StyledArticle>
     );
 }
 

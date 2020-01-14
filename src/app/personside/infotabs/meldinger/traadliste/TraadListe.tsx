@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components/macro';
@@ -12,6 +12,7 @@ import { useOnMount } from '../../../../../utils/customHooks';
 import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     traader: Traad[];
@@ -23,7 +24,7 @@ interface Props {
     setSkjulVarsler: (skjul: boolean) => void;
 }
 
-const PanelStyle = styled.nav`
+const StyledNav = styled.nav`
     ${theme.hvittPanel};
     ol {
         list-style: none;
@@ -74,6 +75,8 @@ function TraadListe(props: Props) {
     const [erForsteRender, setErForsteRender] = useState(true);
     const inputRef = React.useRef<HTMLInputElement>();
     const paginering = usePaginering(props.traaderEtterSokOgFiltrering, 50, 'melding', props.valgtTraad);
+    const sokTittelId = useRef(guid());
+    const listeId = useRef(guid());
 
     useOnMount(() => {
         setErForsteRender(false);
@@ -115,32 +118,39 @@ function TraadListe(props: Props) {
         !props.skjulVarsler && loggEvent('SkjulVarsler', 'Meldinger');
         props.setSkjulVarsler(!props.skjulVarsler);
     };
+
     return (
-        <PanelStyle>
+        <StyledNav aria-label="Velg melding">
             <SlaaSammenOppgaverKnapp traader={props.traader} />
-            <h3 className="sr-only">Søk i brukerens meldinger</h3>
-            <InputStyle>
-                <Input
-                    inputRef={
-                        ((ref: HTMLInputElement) => {
-                            inputRef.current = ref;
-                        }) as any
-                    }
-                    value={props.sokeord}
-                    onChange={onMeldingerSok}
-                    label={'Søk etter melding'}
-                    placeholder={'Søk etter melding'}
-                    className={'move-input-label'}
-                />
-            </InputStyle>
-            <StyledCheckbox label="Skjul varsler" checked={props.skjulVarsler} onChange={handleSkjulVarsler} />
-            <SokVerktøyStyle>
-                <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>
-                {visAlleMeldingerKnapp}
-            </SokVerktøyStyle>
-            <h3 className="sr-only">Meldingsliste - {soketreffTekst}</h3>
+            <article aria-describedby={sokTittelId.current}>
+                <h3 id={sokTittelId.current} className="sr-only">
+                    Filtrer meldinger
+                </h3>
+                <InputStyle>
+                    <Input
+                        inputRef={
+                            ((ref: HTMLInputElement) => {
+                                inputRef.current = ref;
+                            }) as any
+                        }
+                        value={props.sokeord}
+                        onChange={onMeldingerSok}
+                        label={'Søk etter melding'}
+                        placeholder={'Søk etter melding'}
+                        className={'move-input-label'}
+                    />
+                </InputStyle>
+                <StyledCheckbox label="Skjul varsler" checked={props.skjulVarsler} onChange={handleSkjulVarsler} />
+                <SokVerktøyStyle>
+                    <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>
+                    {visAlleMeldingerKnapp}
+                </SokVerktøyStyle>
+            </article>
+            <h3 className="sr-only" id={listeId.current}>
+                Meldingsliste - {soketreffTekst}
+            </h3>
             {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
-            <TraadListeStyle>
+            <TraadListeStyle aria-describedby={listeId.current}>
                 {paginering.currentPage.map(traad => (
                     <TraadListeElement
                         taFokusOnMount={erForsteRender && traad === props.valgtTraad}
@@ -154,7 +164,7 @@ function TraadListe(props: Props) {
             {paginering.prevNextButtons && (
                 <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
             )}
-        </PanelStyle>
+        </StyledNav>
     );
 }
 

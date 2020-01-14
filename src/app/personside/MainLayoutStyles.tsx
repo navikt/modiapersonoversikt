@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components/macro';
 import { theme } from '../../styles/personOversiktTheme';
 
-export const LayoutWrapper = styled.div`
+export const LayoutWrapper = styled.main`
     width: 100vw;
     flex-grow: 1;
     ${theme.animation.fadeIn};
@@ -18,7 +18,7 @@ export const LayoutWrapper = styled.div`
 interface StyleProps {
     dialogPanelEkspandert?: boolean;
 }
-export const VenstreKolonne = styled.section<StyleProps>`
+export const VenstreKolonne = styled.article<StyleProps>`
     flex-basis: ${props => (props.dialogPanelEkspandert ? '70%' : '90%')};
     flex-grow: 1;
     flex-shrink: 1;
@@ -40,7 +40,7 @@ export const VenstreKolonne = styled.section<StyleProps>`
     }
 `;
 
-export const HøyreKolonne = styled.section<StyleProps>`
+export const HøyreKolonne = styled.article<StyleProps>`
     ${props =>
         props.dialogPanelEkspandert
             ? css`

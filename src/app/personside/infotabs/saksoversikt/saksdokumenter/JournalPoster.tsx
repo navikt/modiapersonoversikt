@@ -36,7 +36,7 @@ interface JournalpostGruppeProps {
     valgtSakstema: Sakstema;
 }
 
-const JournalposterStyling = styled.section`
+const StyledArticle = styled.article`
     ${theme.hvittPanel};
     position: relative;
     margin-bottom: 2rem;
@@ -242,7 +242,7 @@ function JournalPoster(props: Props) {
 
     return (
         <div>
-            <JournalposterStyling aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
+            <StyledArticle aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
                 <InfoOgFilterPanel>
                     <div>
                         <TittelWrapperStyling ref={tittelRef} tabIndex={-1}>
@@ -262,7 +262,7 @@ function JournalPoster(props: Props) {
                 {paginering.prevNextButtons && (
                     <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
                 )}
-            </JournalposterStyling>
+            </StyledArticle>
             <AlertStripeInfo>
                 Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter
                 som er journalført vises fra og med 4.juni 2016

@@ -13,7 +13,7 @@ interface VisningProps {
     detaljertOppfølging: DetaljertOppfolging;
 }
 
-const OppfolgingStyle = styled.article`
+const OppfolgingStyle = styled.div`
     > *:not(:last-child) {
         margin-bottom: ${theme.margin.layout};
     }

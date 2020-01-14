@@ -12,7 +12,7 @@ interface Props {
     varsler: VarselModell[];
 }
 
-const Style = styled.article`
+const Style = styled.div`
     padding: ${theme.margin.layout};
 `;
 

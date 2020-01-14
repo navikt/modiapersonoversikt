@@ -19,7 +19,7 @@ import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 const meldingerMediaTreshold = pxToRem(850);
 
-const MeldingerArticleStyle = styled.article`
+const MeldingerStyle = styled.div`
     ${scrollBarContainerStyle(meldingerMediaTreshold)};
     @media (min-width: ${meldingerMediaTreshold}) {
         height: 0; /* IE11 */
@@ -132,7 +132,7 @@ function MeldingerContainer() {
                     return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
                 }
                 return (
-                    <MeldingerArticleStyle>
+                    <MeldingerStyle>
                         <ScrollBar keepScrollId="meldinger-trådliste">
                             <TraadListe
                                 sokeord={sokeord}
@@ -151,7 +151,7 @@ function MeldingerContainer() {
                                 <TraadVisningWrapper sokeord={sokeord} valgtTraad={valgtTraad} />
                             )}
                         </ScrollBar>
-                    </MeldingerArticleStyle>
+                    </MeldingerStyle>
                 );
             }}
         </RestResourceConsumer>

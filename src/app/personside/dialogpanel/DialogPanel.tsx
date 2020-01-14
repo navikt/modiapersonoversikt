@@ -1,13 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { Undertittel } from 'nav-frontend-typografi';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import { useAppState } from '../../../utils/customHooks';
 import SendNyMeldingContainer from './sendMelding/SendNyMeldingContainer';
 import FortsettDialogContainer from './fortsettDialog/FortsettDialogContainer';
 import useVisTraadTilknyttetPlukketOppgave from './fortsettDialog/useVisTraadTilknyttetPlukketOppgave';
 
-const DialogPanelWrapper = styled.article`
+const DialogPanelWrapper = styled.div`
     flex-grow: 1;
     word-break: break-word;
 `;
@@ -22,8 +21,7 @@ function DialogPanel() {
 
     return (
         <ErrorBoundary boundaryName="Dialogpanel">
-            <DialogPanelWrapper role="region" aria-label="Dialogpanel">
-                <Undertittel className="sr-only">Dialogpanel</Undertittel>
+            <DialogPanelWrapper>
                 {dialogpanelTraad ? (
                     <FortsettDialogContainer
                         traad={dialogpanelTraad}
