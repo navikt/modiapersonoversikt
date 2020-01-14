@@ -9,6 +9,7 @@ interface Props {
     delay?: number;
     type?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
     padding?: string;
+    className?: string;
 }
 
 const Styling = styled.span<{ padding?: string }>`
@@ -34,7 +35,7 @@ export function CenteredLazySpinner(props: Props) {
 function LazySpinner(props: Props) {
     return (
         <DelayRender delay={props.delay || 300}>
-            <Styling padding={props.padding}>
+            <Styling padding={props.padding} className={props.className}>
                 <NavFrontendSpinner type={props.type || 'L'} />
             </Styling>
         </DelayRender>

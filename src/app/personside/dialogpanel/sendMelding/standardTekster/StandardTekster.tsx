@@ -1,12 +1,11 @@
 import React, { FormEvent, ReactNode, useEffect, useState } from 'react';
 import { hasData, hasError, isPending } from '@nutgaard/use-fetch';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import styled from 'styled-components/macro';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
 import useFieldState, { FieldState } from '../../../../../utils/hooks/use-field-state';
 import { erGyldigValg, sokEtterTekster } from './sokUtils';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
-import StandardTekstVisning from './StandardTekstVisning';
+import StandardTekstValg from './velgTekst/StandardTekstValg';
 import * as StandardTeksterModels from './domain';
 import theme from '../../../../../styles/personOversiktTheme';
 import TagInput from '../../../../../components/tag-input/tag-input';
@@ -18,17 +17,19 @@ import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
+import LazySpinner from '../../../../../components/LazySpinner';
 
 interface Props {
     appendTekst(tekst: string): void;
 }
 
-const FormContainer = styled.form`
+const StyledForm = styled.form`
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: white;
 `;
-const Spinner = styled(NavFrontendSpinner)`
+const Spinner = styled(LazySpinner)`
     display: block;
     margin: 0 auto;
 `;
@@ -142,7 +143,7 @@ function StandardTekster(props: Props) {
         content = <Feilmelding feil={{ feilmelding: 'Kunne ikke laste inn standardtekster' }} />;
     } else if (hasData(standardTekster)) {
         content = (
-            <StandardTekstVisning
+            <StandardTekstValg
                 tekster={filtrerteTekster}
                 sokefelt={sokefelt}
                 valgt={valgt}
@@ -158,7 +159,7 @@ function StandardTekster(props: Props) {
     }
 
     return (
-        <FormContainer onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
+        <StyledForm onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
             <h2 className="sr-only">Standardtekster</h2>
             <Sokefelt>
                 <TagInput
@@ -170,7 +171,7 @@ function StandardTekster(props: Props) {
                 />
             </Sokefelt>
             {content}
-        </FormContainer>
+        </StyledForm>
     );
 }
 

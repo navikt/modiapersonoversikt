@@ -1,9 +1,9 @@
-import * as StandardTekster from './domain';
-import { Rule } from '../../../../../components/tekstomrade/parser/domain';
-import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
+import * as StandardTekster from '../domain';
+import { Rule } from '../../../../../../components/tekstomrade/parser/domain';
+import Tekstomrade from '../../../../../../components/tekstomrade/tekstomrade';
 import React from 'react';
 import styled from 'styled-components';
-import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
 
 const StyledLi = styled.li`
     position: relative;
