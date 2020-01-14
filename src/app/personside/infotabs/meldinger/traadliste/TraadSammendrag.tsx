@@ -1,7 +1,12 @@
 import { Melding, Traad } from '../../../../../models/meldinger/meldinger';
-import { erDelvisBesvart, erFeilsendt, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
+import {
+    erDelvisBesvart,
+    erFeilsendt,
+    getFormattertMeldingsDato,
+    meldingstittel,
+    nyesteMelding
+} from '../utils/meldingerUtils';
 import { useAppState } from '../../../../../utils/customHooks';
-import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import Meldingsikon from '../utils/Meldingsikon';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { UnmountClosed } from 'react-collapse';
@@ -57,7 +62,7 @@ const PreviewStyle = styled(Normaltekst)`
 function TraadSammendrag(props: { traad: Traad }) {
     const sisteMelding = nyesteMelding(props.traad);
     const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
-    const datoTekst = formatterDatoTid(sisteMelding.opprettetDato);
+    const datoTekst = getFormattertMeldingsDato(sisteMelding);
     const tittel = meldingstittel(sisteMelding);
     return (
         <Style>
