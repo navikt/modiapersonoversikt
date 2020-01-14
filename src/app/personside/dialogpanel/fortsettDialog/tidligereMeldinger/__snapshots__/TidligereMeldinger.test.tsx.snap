@@ -75,13 +75,15 @@ exports[`viser fortsett dialog 1`] = `
 }
 
 <article
+  aria-describedby="Helt tilfeldig ID"
   className="c0"
 >
   <h3
     className="sr-only"
+    id="Helt tilfeldig ID"
     tabIndex={-1}
   >
-    Tråd under arbeid
+    Tidligere meldinger
   </h3>
   <div
     className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
