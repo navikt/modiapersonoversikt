@@ -126,7 +126,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Standardtekster:
             return (
                 <TestProvider>
-                    <StandardTekster appendTekst={() => null} />
+                    <StandardTekster appendTekst={tekst => alert(tekst)} />
                 </TestProvider>
             );
         case Komponenter.BesvarFlere:

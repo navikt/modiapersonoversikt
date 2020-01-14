@@ -1,7 +1,7 @@
 import { erGyldigValg } from '../sokUtils';
 import { Systemtittel } from 'nav-frontend-typografi';
 import Tekstomrade, { LinkRule, ParagraphRule } from '../../../../../../components/tekstomrade/tekstomrade';
-import React from 'react';
+import React, { useRef } from 'react';
 import * as StandardTekster from '../domain';
 import { FieldState } from '../../../../../../utils/hooks/use-field-state';
 import { Rule } from '../../../../../../components/tekstomrade/parser/domain';
@@ -9,6 +9,7 @@ import { parseTekst } from '../../../../../../components/tag-input/tag-input';
 import styled from 'styled-components';
 import { Knapp } from 'nav-frontend-knapper';
 import theme from '../../../../../../styles/personOversiktTheme';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     tekst: StandardTekster.Tekst | undefined;
@@ -38,6 +39,8 @@ const PreviewStyle = styled.div`
 `;
 
 function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; sokefelt: FieldState }) {
+    const tittelId = useRef(guid());
+
     if (!valgtTekst) {
         return null;
     }
@@ -60,25 +63,40 @@ function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; so
                     highlight={highlight}
                 >
                     {highlight ? <em>{tag}</em> : tag}
+                    <span className="sr-only"> - klikk for å legge til tag i søkefelt</span>
                 </Tag>
             );
         });
-    return <div className="tags">{tagElements}</div>;
+    return (
+        <section className="tags" aria-describedby={tittelId.current}>
+            <h3 id={tittelId.current} className="sr-only">
+                Tags
+            </h3>
+            {tagElements}
+        </section>
+    );
 }
 
 function StandardTekstPreview({ tekst, locale, sokefelt, highlightRule }: Props) {
+    const tittelId = useRef(guid());
+
     if (!erGyldigValg(tekst, locale)) {
         return <PreviewStyle />;
     }
 
     return (
         <PreviewStyle>
-            <Systemtittel tag="h3" className="blokk-xs">
-                {tekst && tekst.overskrift}
-            </Systemtittel>
-            <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]} className="typo-normal blokk-m">
-                {tekst && tekst.innhold[locale]}
-            </Tekstomrade>
+            <article aria-describedby={tittelId.current}>
+                <h3 className="sr-only" id={tittelId.current}>
+                    Forhåndsvisning
+                </h3>
+                <Systemtittel tag="h4" className="blokk-xs">
+                    {tekst && tekst.overskrift}
+                </Systemtittel>
+                <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]} className="typo-normal blokk-m">
+                    {tekst && tekst.innhold[locale]}
+                </Tekstomrade>
+            </article>
             <Tags valgtTekst={tekst} sokefelt={sokefelt} />
         </PreviewStyle>
     );

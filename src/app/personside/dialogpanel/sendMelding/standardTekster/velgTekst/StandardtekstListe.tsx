@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Element } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
@@ -6,6 +7,8 @@ import * as StandardTekster from '../domain';
 import TekstListeElement from './TekstListeElement';
 import { FieldState } from '../../../../../../utils/hooks/use-field-state';
 import { Rule } from '../../../../../../components/tekstomrade/parser/domain';
+import { LenkeKnapp } from '../../../../../../components/common-styled-components';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     tekster: Array<StandardTekster.Tekst>;
@@ -18,7 +21,7 @@ const TreffStyle = styled(Element)`
     border-bottom: ${theme.border.skilleSvak};
 `;
 
-const ListeStyle = styled.div`
+const StyledNav = styled.nav`
     flex: 0;
     flex-basis: 35%;
     height: 100%;
@@ -28,9 +31,17 @@ const ListeStyle = styled.div`
     background-color: #f5f5f5;
 `;
 
+const StyledLenkeknapp = styled(LenkeKnapp)`
+    padding: ${pxToRem(7)};
+    float: right;
+`;
+
 function StandardtekstListe(props: Props) {
+    const [visAntall, setVisAntall] = useState(50);
+    const tittelId = useRef(guid());
+
     const tekstElementer = props.tekster
-        .slice(0, 50)
+        .slice(0, visAntall)
         .map(tekst => (
             <TekstListeElement
                 key={tekst.id}
@@ -41,13 +52,19 @@ function StandardtekstListe(props: Props) {
             />
         ));
 
+    const visFlereTeksterKnapp = (
+        <StyledLenkeknapp onClick={() => setVisAntall(visAntall + 50)}>Vis flere tekster</StyledLenkeknapp>
+    );
+
     return (
-        <ListeStyle>
-            <TreffStyle tag="h3" aria-live="polite">
-                Samtalemaler ({props.tekster.length})
-            </TreffStyle>
+        <StyledNav aria-describedby={tittelId.current}>
+            <h3 className="sr-only" id={tittelId.current}>
+                Velg samtalemal
+            </h3>
+            <TreffStyle aria-live="polite">{props.tekster.length} samtalemaler traff søket</TreffStyle>
             <ul className="standardtekster__liste">{tekstElementer}</ul>
-        </ListeStyle>
+            {props.tekster.length > tekstElementer.length && visFlereTeksterKnapp}
+        </StyledNav>
     );
 }
 

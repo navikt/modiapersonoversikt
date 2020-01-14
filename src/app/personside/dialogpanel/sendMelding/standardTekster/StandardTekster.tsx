@@ -1,4 +1,4 @@
-import React, { FormEvent, ReactNode, useEffect, useState } from 'react';
+import React, { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
 import { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import styled from 'styled-components/macro';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
@@ -18,6 +18,7 @@ import { loggEvent } from '../../../../../utils/frontendLogger';
 import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -29,11 +30,13 @@ const StyledForm = styled.form`
     flex-direction: column;
     background-color: white;
 `;
+
 const Spinner = styled(LazySpinner)`
     display: block;
     margin: 0 auto;
 `;
-const Sokefelt = styled.div`
+
+const SokefeltStyledNav = styled.nav`
     padding: 1rem;
     border-bottom: 1px solid ${theme.color.navGra20};
     background-color: #f5f5f5;
@@ -116,6 +119,7 @@ function StandardTekster(props: Props) {
     const valgtTekst = filtrerteTekster.find(tekst => tekst.id === valgt.input.value);
     const personResource = useRestResource(resources => resources.personinformasjon);
     const autofullforData = useAutoFullførData();
+    const sokeFeltId = useRef(guid());
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
     useDefaultValgtTekst(filtrerteTekster, valgt);
@@ -161,15 +165,16 @@ function StandardTekster(props: Props) {
     return (
         <StyledForm onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
             <h2 className="sr-only">Standardtekster</h2>
-            <Sokefelt>
+            <SokefeltStyledNav aria-describedby={sokeFeltId.current}>
                 <TagInput
                     {...sokefelt.input}
                     inputRef={inputRef}
                     name="standardtekstsok"
                     label="Søk etter standardtekster"
                     autoFocus={true}
+                    id={sokeFeltId.current}
                 />
-            </Sokefelt>
+            </SokefeltStyledNav>
             {content}
         </StyledForm>
     );

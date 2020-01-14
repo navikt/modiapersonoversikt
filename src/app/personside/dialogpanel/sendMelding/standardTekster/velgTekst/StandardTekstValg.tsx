@@ -87,7 +87,9 @@ function StandardTekstValg({ valgt, valgtLocale, valgtTekst, sokefelt, tekster, 
                         <LocaleVelgerStyle>
                             <LocaleVelger tekst={valgtTekst} valgt={valgtLocale} />
                         </LocaleVelgerStyle>
-                        <VelgKnapp>Velg</VelgKnapp>
+                        <VelgKnapp>
+                            Velg <span className="sr-only">tekst</span>
+                        </VelgKnapp>
                     </div>
                 </VelgTekst>
             </PreviewStyle>
