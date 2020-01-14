@@ -3,7 +3,7 @@ import { Element, Undertekst } from 'nav-frontend-typografi';
 import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import * as React from 'react';
-import styled, { css } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
 import { meldingstittel } from '../../../infotabs/meldinger/utils/meldingerUtils';
 import theme from '../../../../../styles/personOversiktTheme';
@@ -20,18 +20,12 @@ const StyledTekstomrade = styled(Tekstomrade)`
     padding-top: 0;
 `;
 
-const StyledEkspanderbartpanelBase = styled(({ erEnkeltstaende, ...rest }) => <EkspanderbartpanelBase {...rest} />)<{
-    erEnkeltstaende: boolean;
-}>`
+const StyledEkspanderbartpanelBase = styled(({ ...rest }) => <EkspanderbartpanelBase {...rest} />)<{}>`
+    ${theme.resetEkspanderbartPanelStyling};
     &.ekspanderbartPanel {
-        ${props =>
-            !props.erEnkeltstaende
-                ? css`
-                      border-radius: 0;
-                  `
-                : ''};
+        border-radius: 0;
     }
-    border-top: 0.1rem rgba(0, 0, 0, 0.2) solid;
+    border-bottom: 0.1rem rgba(0, 0, 0, 0.2) solid;
     .ekspanderbartPanel__hode:focus {
         ${theme.focusInset};
     }

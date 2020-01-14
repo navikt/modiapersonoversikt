@@ -2,62 +2,28 @@ import * as React from 'react';
 import { Melding, Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components/macro';
 import EnkeltMelding from './EnkeltMelding';
-import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
-import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { Undertittel } from 'nav-frontend-typografi';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useFocusOnMount } from '../../../../../utils/customHooks';
+import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
     traad: Traad;
 }
 
-const Wrapper = styled.article`
-    ${theme.resetEkspanderbartPanelStyling}
-    > *:not(:first-child) {
-        margin-top: 1rem;
-    }
-    > * {
-        border: ${theme.border.skille};
-    }
-`;
-
-const StyledEkspanderbartpanel = styled(EkspanderbartpanelBasePure)`
-    overflow: hidden;
-    .ekspanderbartPanel__hode:focus {
-        ${theme.focusInset};
-    }
-`;
-
-const StyledUndertittel = styled(Undertittel)`
-    font-size: ${pxToRem(18)} !important;
+const StyledArticle = styled.article`
+    ${theme.resetEkspanderbartPanelStyling};
+    border: ${theme.border.skille};
 `;
 
 function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: boolean }) {
-    const [apen, setApen] = useState(props.defaultApen);
-    const flereMeldinger = props.traad.length > 1;
     const meldinger = props.traad.map(melding => (
         <EnkeltMelding
             key={melding.id}
             melding={melding}
             erEnkeltstaende={props.traad.length === 1}
-            defaultApen={props.defaultApen && !flereMeldinger}
+            defaultApen={props.defaultApen}
         />
     ));
-
-    if (flereMeldinger) {
-        return (
-            <StyledEkspanderbartpanel
-                apen={apen}
-                onClick={() => setApen(value => !value)}
-                collapseProps={{ hasNestedCollapse: true, forceInitialAnimation: false }} // Litt trøbbel med mye hopping pga nestede ekspanderebare paneler
-                heading={<StyledUndertittel>{props.tittel}</StyledUndertittel>}
-            >
-                {meldinger}
-            </StyledEkspanderbartpanel>
-        );
-    }
-
     return <>{meldinger}</>;
 }
 
@@ -75,13 +41,13 @@ function TidligereMeldinger(props: Props) {
     const defaultApen = delsvar.length > 0 || traadUtenDelviseSvar.length === 1;
 
     return (
-        <Wrapper>
+        <StyledArticle>
             <h3 tabIndex={-1} className="sr-only" ref={ref}>
                 Tråd under arbeid
             </h3>
             <Traadpanel traad={traadUtenDelviseSvar} tittel="Vis tidligere meldinger" defaultApen={defaultApen} />
             <Traadpanel traad={delsvar} tittel="Vis alle delsvar" defaultApen={defaultApen} />
-        </Wrapper>
+        </StyledArticle>
     );
 }
 
