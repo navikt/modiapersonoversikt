@@ -32,6 +32,7 @@ import TidligereMeldinger from '../../app/personside/dialogpanel/fortsettDialog/
 import { statiskTraadMock } from '../../mock/meldinger/statiskTraadMock';
 import BesvarFlere from '../../app/personside/infotabs/meldinger/traadliste/besvarflere/BesvarFlere';
 import { getMockTraader } from '../../mock/meldinger/meldinger-mock';
+import HurtigTasterHjelpModal from './HurtigTasterHjelpModal';
 
 enum Komponenter {
     Visittkort,
@@ -48,7 +49,8 @@ enum Komponenter {
     Personsok,
     JournalforingPanel,
     TraadVisningDialogpanel,
-    BesvarFlere
+    BesvarFlere,
+    HurtigTasterHjelp
 }
 
 const Style = styled.div`
@@ -127,6 +129,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
                     <BesvarFlere traader={getMockTraader(aremark.fødselsnummer).slice(0, 3)} lukkModal={() => null} />
                 </TestProvider>
             );
+        case Komponenter.HurtigTasterHjelp:
+            return <HurtigTasterHjelpModal />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }
