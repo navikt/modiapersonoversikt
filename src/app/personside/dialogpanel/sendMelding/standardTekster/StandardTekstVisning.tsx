@@ -138,7 +138,7 @@ function Preview({ tekst, locale, sokefelt, highlightRule }: PreviewProps) {
     }
     return (
         <PreviewWrapper>
-            <Systemtittel tag="h3" aria-live="assertive" className="blokk-xs">
+            <Systemtittel tag="h3" className="blokk-xs">
                 {tekst && tekst.overskrift}
             </Systemtittel>
             <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]} className="typo-normal blokk-m">
