@@ -3,7 +3,7 @@ import 'react-app-polyfill/stable';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import './index.less';
-import App from './app/container/App';
+import App from './app/App';
 import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
 
 setupTimeSpentMetrics();

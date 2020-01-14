@@ -1,5 +1,5 @@
 import { Route } from 'react-router';
-import { paths } from '../../routes/routing';
+import { paths } from '../routes/routing';
 import * as React from 'react';
 import SetFnrIRedux from './SetFnrIRedux';
 

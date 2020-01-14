@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import theme, { pxToRem } from '../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../styles/personOversiktTheme';
 
 const GlobalStyling = createGlobalStyle`
     body {

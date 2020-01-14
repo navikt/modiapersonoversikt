@@ -7,7 +7,7 @@ import { setupMock } from '../../mock/setup-mock';
 import ErrorBoundary from '../ErrorBoundary';
 import { Provider } from 'react-redux';
 import UtbetalingerContainer from '../../app/personside/infotabs/utbetalinger/UtbetalingerContainer';
-import SetFnrIRedux from '../../app/container/PersonOppslagHandler/SetFnrIRedux';
+import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import { MemoryRouter } from 'react-router';

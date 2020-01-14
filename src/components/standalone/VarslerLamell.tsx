@@ -4,7 +4,7 @@ import theme from '../../styles/personOversiktTheme';
 import thunkMiddleware from 'redux-thunk';
 import ErrorBoundary from '../ErrorBoundary';
 import { Provider } from 'react-redux';
-import SetFnrIRedux from '../../app/container/PersonOppslagHandler/SetFnrIRedux';
+import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 import VarslerContainer from '../../app/personside/infotabs/varsel/VarslerContainer';
 import reducers from '../../redux/reducers';
 import { mockEnabled } from '../../api/config';

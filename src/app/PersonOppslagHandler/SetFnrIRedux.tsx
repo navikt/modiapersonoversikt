@@ -1,6 +1,6 @@
-import setGjeldendeBrukerIRedux from '../../../redux/gjeldendeBruker/actions';
+import setGjeldendeBrukerIRedux from '../../redux/gjeldendeBruker/actions';
 import { useDispatch } from 'react-redux';
-import { useFødselsnummer } from '../../../utils/customHooks';
+import { useFødselsnummer } from '../../utils/customHooks';
 
 interface Props {
     fødselsnummer: string;

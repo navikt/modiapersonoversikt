@@ -8,7 +8,7 @@ import { mockEnabled } from '../../../api/config';
 import { setupMock } from '../../../mock/setup-mock';
 import styled from 'styled-components/macro';
 import theme from '../../../styles/personOversiktTheme';
-import SetFnrIRedux from '../../../app/container/PersonOppslagHandler/SetFnrIRedux';
+import SetFnrIRedux from '../../../app/PersonOppslagHandler/SetFnrIRedux';
 import SykePengerLaster from './SykepengerLaster';
 
 interface Props {

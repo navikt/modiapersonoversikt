@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useAppState } from '../../utils/customHooks';
-import VelgEnhet from '../container/VelgEnhet';
-import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../container/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
+import VelgEnhet from '../VelgEnhet';
+import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
 import BegrensetTilgangSide from './BegrensetTilgangSide';

@@ -1,12 +1,12 @@
 import { Route, Switch } from 'react-router';
-import { paths } from '../routes/routing';
-import StandAloneKomponenter from '../../components/standalone/StandAloneKomponenter';
-import SakerFullscreen from '../personside/infotabs/saksoversikt/SakerFullscreen';
-import SaksDokumentEgetVindu from '../personside/infotabs/saksoversikt/SaksDokumentIEgetVindu';
-import Personoversikt from '../personside/Personoversikt';
-import Startbilde from '../startbilde/Startbilde';
+import { paths } from './routes/routing';
+import StandAloneKomponenter from '../components/standalone/StandAloneKomponenter';
+import SakerFullscreen from './personside/infotabs/saksoversikt/SakerFullscreen';
+import SaksDokumentEgetVindu from './personside/infotabs/saksoversikt/SaksDokumentIEgetVindu';
+import Personoversikt from './personside/Personoversikt';
+import Startbilde from './startbilde/Startbilde';
 import * as React from 'react';
-import { useFødselsnummer } from '../../utils/customHooks';
+import { useFødselsnummer } from '../utils/customHooks';
 
 function Routing() {
     const fnr = useFødselsnummer();
