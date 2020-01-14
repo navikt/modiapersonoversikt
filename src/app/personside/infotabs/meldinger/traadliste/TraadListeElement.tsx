@@ -3,7 +3,6 @@ import { ChangeEvent, ReactNode, useRef } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled, { css } from 'styled-components/macro';
 import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
-import { useOnMount } from '../../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { meldingerTest } from '../../dyplenkeTest/utils';
 import { useHistory } from 'react-router';
@@ -16,7 +15,6 @@ import { loggEvent } from '../../../../../utils/frontendLogger';
 interface Props {
     traad: Traad;
     erValgt: boolean;
-    taFokusOnMount?: boolean;
     onClick?: (event: React.ChangeEvent) => void;
     tillegskomponent?: ReactNode;
     listeId: string;
@@ -60,19 +58,12 @@ const ChevronStyling = styled.div`
 `;
 
 function TraadListeElement(props: Props) {
-    const ref = React.createRef<HTMLInputElement>();
     const dyplenker = useInfotabsDyplenker();
     const id = useRef(guid());
     const history = useHistory();
     const melding = nyesteMelding(props.traad);
     const tittel = meldingstittel(melding);
     const ariaTittel = `${tittel} ${getFormattertMeldingsDato(melding)} (${props.traad.meldinger.length})`;
-
-    useOnMount(() => {
-        if (props.taFokusOnMount) {
-            ref.current && ref.current.focus();
-        }
-    });
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         loggEvent('Vis', 'Meldinger', { type: nyesteMelding(props.traad).meldingstype });
@@ -94,7 +85,6 @@ function TraadListeElement(props: Props) {
                 id={id.current}
                 onChange={handleChange}
                 checked={props.erValgt}
-                ref={ref}
             />
             <StyledLabel htmlFor={id.current}>
                 {props.tillegskomponent}

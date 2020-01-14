@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components/macro';
@@ -8,7 +8,6 @@ import { Checkbox, Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import TraadListeElement from './TraadListeElement';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
-import { useOnMount } from '../../../../../utils/customHooks';
 import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { loggEvent } from '../../../../../utils/frontendLogger';
@@ -72,15 +71,10 @@ const StyledCheckbox = styled(Checkbox)`
 `;
 
 function TraadListe(props: Props) {
-    const [erForsteRender, setErForsteRender] = useState(true);
     const inputRef = React.useRef<HTMLInputElement>();
     const paginering = usePaginering(props.traaderEtterSokOgFiltrering, 50, 'melding', props.valgtTraad);
     const sokTittelId = useRef(guid());
     const listeId = useRef(guid());
-
-    useOnMount(() => {
-        setErForsteRender(false);
-    });
 
     if (props.traader.length === 0) {
         return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
@@ -153,7 +147,6 @@ function TraadListe(props: Props) {
             <TraadListeStyle aria-describedby={listeId.current}>
                 {paginering.currentPage.map(traad => (
                     <TraadListeElement
-                        taFokusOnMount={erForsteRender && traad === props.valgtTraad}
                         traad={traad}
                         key={traad.traadId}
                         erValgt={traad === props.valgtTraad}
