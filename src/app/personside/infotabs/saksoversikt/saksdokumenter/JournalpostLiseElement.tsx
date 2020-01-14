@@ -14,21 +14,16 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import DokumentIkon from '../../../../../svg/DokumentIkon';
 import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
-import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import EtikettGrå from '../../../../../components/EtikettGrå';
-import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
 import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 import { erNyePersonoversikten } from '../../../../../utils/erNyPersonoversikt';
-import { useHistory } from 'react-router-dom';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { useInfotabsDyplenker } from '../../dyplenker';
-import DokumentLenke, { getUrlSaksdokumentEgetVindu } from './DokumentLenke';
+import DokumentLenke from './DokumentLenke';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
-import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
-import { useFødselsnummer } from '../../../../../utils/customHooks';
 
 interface Props {
     journalpost: Journalpost;
@@ -36,7 +31,7 @@ interface Props {
     valgtSakstema: Sakstema;
 }
 
-const ListeElementStyle = styled.li<{ valgt: boolean; klikkbar: boolean }>`
+const ListeElementStyle = styled.li<{ valgt: boolean }>`
     ${props =>
         props.valgt &&
         css`
@@ -45,17 +40,6 @@ const ListeElementStyle = styled.li<{ valgt: boolean; klikkbar: boolean }>`
     padding: ${theme.margin.layout};
     display: flex;
     align-items: flex-start;
-    ${props =>
-        props.klikkbar &&
-        css`
-            cursor: pointer;
-            &:hover {
-                ${theme.hover};
-            }
-            &:active {
-                background-color: rgba(0, 0, 0, 0.1);
-            }
-        `};
 `;
 
 const InnholdWrapper = styled.div`
@@ -134,9 +118,6 @@ function JournalpostLiseElement(props: Props) {
     const nyttVinduLinkRef = React.createRef<HTMLAnchorElement>();
     const bruker = useRestResource(resources => resources.personinformasjon);
     const dyplenker = useInfotabsDyplenker();
-    const history = useHistory();
-    const apneDokumenterIEgetVinduFT = useFeatureToggle(FeatureToggles.SaksDokumentIEgetVindu);
-    const fnr = useFødselsnummer();
 
     const dokumentKanVises = (dokument: Enkeltdokument, journalpost: Journalpost) => {
         return dokument.kanVises && harTilgangTilJournalpost(journalpost);
@@ -153,24 +134,6 @@ function JournalpostLiseElement(props: Props) {
             journalpost.feil.feilmelding !== Feilmelding.Sikkerhetsbegrensning &&
             saksid.length !== 0
         );
-    };
-
-    const handleClickOnDokument = (event: React.MouseEvent<HTMLElement>) => {
-        const lenkeTrykket = eventTagetIsInsideRef(event, [hoveddokumentLinkRef, vedleggLinkRef, nyttVinduLinkRef]);
-
-        if (!lenkeTrykket) {
-            visDokumentHvisTilgang(props.journalpost.hoveddokument, props.journalpost);
-        }
-    };
-
-    const visDokumentHvisTilgang = (dokument: Enkeltdokument, journalpost: Journalpost) => {
-        if (dokumentKanVises(dokument, journalpost)) {
-            if (apneDokumenterIEgetVinduFT.isOn) {
-                window.open(getUrlSaksdokumentEgetVindu(fnr, journalpost.journalpostId, dokument.dokumentreferanse));
-            } else {
-                history.push(dyplenker.saker.link(props.valgtSakstema, dokument));
-            }
-        }
     };
 
     const journalpost = props.journalpost;
@@ -219,12 +182,7 @@ function JournalpostLiseElement(props: Props) {
     const hovedDokument = journalpost.hoveddokument;
 
     return (
-        <ListeElementStyle
-            onClick={(event: React.MouseEvent<HTMLElement>) => cancelIfHighlighting(() => handleClickOnDokument(event))}
-            ref={dokumentRef}
-            valgt={dyplenker.saker.erValgtJournalpost(props.journalpost)}
-            klikkbar={tilgangTilHoveddokument}
-        >
+        <ListeElementStyle ref={dokumentRef} valgt={dyplenker.saker.erValgtJournalpost(props.journalpost)}>
             <IkonWrapper>{getDokumentIkon(harTilgangTilJournalpost(journalpost))}</IkonWrapper>
             <InnholdWrapper>
                 <UUcustomOrder>
