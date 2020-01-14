@@ -68,6 +68,7 @@ function SakerFullscreen(props: Props) {
 
     useOnMount(() => {
         loggEvent('Sidevisning', 'SakerFullscreen');
+        document.title = 'Saksoversikt - Modia personoversikt';
     });
 
     useEffect(() => {
