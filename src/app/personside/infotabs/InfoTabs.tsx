@@ -47,7 +47,7 @@ export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
 function InfoTabs(props: Props) {
     const fødselsnummer = useFødselsnummer();
     const paths = usePaths();
-    const headerRef = React.createRef<HTMLHeadingElement>();
+    const headerRef = useRef<HTMLHeadingElement>(null);
     const dyplenker = useInfotabsDyplenker();
     const dispatch = useDispatch();
     const articleId = useRef(guid());
@@ -64,7 +64,10 @@ function InfoTabs(props: Props) {
     const openTab = getOpenTabFromRouterPath(props.history.location.pathname);
 
     useEffect(() => {
-        headerRef.current?.focus();
+        const focusWithinTab = openTabRef.current?.contains(document.activeElement);
+        if (!focusWithinTab) {
+            headerRef.current?.focus();
+        }
     }, [openTab, headerRef]);
 
     useEffect(() => {
@@ -72,15 +75,15 @@ function InfoTabs(props: Props) {
         document.title = 'Modia personoversikt - ' + capitalizeName(openTab);
     }, [openTab]);
 
-    const keepScrollRef = useRef<HTMLDivElement>(null);
-    const storeCroll = useKeepScroll(keepScrollRef, 'Opentab-' + openTab);
+    const openTabRef = useRef<HTMLDivElement>(null);
+    const storeCroll = useKeepScroll(openTabRef, 'Opentab-' + openTab);
 
     return (
         <ErrorBoundary boundaryName="InfoTabs">
             <HandleInfotabsHotkeys />
             <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
             <ErrorBoundary boundaryName={'Open tab: ' + openTab}>
-                <StyledArticle ref={keepScrollRef} onScroll={storeCroll} aria-describedby={articleId.current}>
+                <StyledArticle ref={openTabRef} onScroll={storeCroll} aria-describedby={articleId.current}>
                     <h2
                         id={articleId.current}
                         ref={headerRef}
