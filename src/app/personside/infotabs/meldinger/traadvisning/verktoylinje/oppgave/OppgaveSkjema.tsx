@@ -112,6 +112,11 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
+
+        if (submitting) {
+            return;
+        }
+
         const valideringsResultat = validerOppgaveSkjema(formState);
 
         if (valideringsResultat.formErGyldig) {

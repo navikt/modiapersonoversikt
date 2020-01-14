@@ -54,6 +54,10 @@ export function JournalforSak(props: Props) {
     const fnr = useSelector(fnrSelector);
 
     const journalfor = () => {
+        if (submitting) {
+            return;
+        }
+
         setSubmitting(true);
         post(`${apiBaseUri}/journalforing/${fnr}/${traadId}`, sak, 'Journalføring').then(
             () => {
