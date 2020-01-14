@@ -18,8 +18,6 @@ import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
-import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -102,14 +100,13 @@ function velgTekst(
 
 function StandardTekster(props: Props) {
     const inputRef = React.useRef<HTMLInputElement>();
-    const svaksyntModus = useFeatureToggle(FeatureToggles.SaksDokumentIEgetVindu).isOn;
     const standardTekster = useFetchWithLog<StandardTeksterModels.Tekster>(
         '/modiapersonoversikt-skrivestotte/skrivestotte',
         'Standardtekster'
     );
     const erKontaktSenter = useErKontaktsenter();
     const sokefelt = useFieldState(erKontaktSenter ? '#ks ' : '');
-    const debouncedSokefelt = useDebounce(sokefelt.input.value, svaksyntModus ? 600 : 250);
+    const debouncedSokefelt = useDebounce(sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() =>
         sokEtterTekster(standardTekster, debouncedSokefelt)
     );
