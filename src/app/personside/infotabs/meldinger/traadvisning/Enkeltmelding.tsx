@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
 import { Element, EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
@@ -25,11 +25,13 @@ import Etikett from 'nav-frontend-etiketter';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { SpaceBetween } from '../../../../../components/common-styled-components';
 import { Rule } from '../../../../../components/tekstomrade/parser/domain';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     melding: Melding;
     sokeord: string;
 }
+
 const StyledLi = styled.li`
     .snakkeboble-panel {
         flex-basis: 40rem;
@@ -145,6 +147,7 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
     }
     return null;
 }
+
 function PrintTekst({ melding }: { melding: Melding }) {
     const journalfort = erJournalfort(melding) && <Element>{journalfortMelding(melding)}</Element>;
     return <StyledPrintTekst>{journalfort}</StyledPrintTekst>;
@@ -166,7 +169,8 @@ export function SkrevetAv({ melding, rule }: { melding: Melding; rule?: Rule }) 
 
 function EnkeltMelding(props: Props) {
     const fraNav = erMeldingFraNav(props.melding.meldingstype);
-    const topptekst = meldingstittel(props.melding);
+    const tittel = meldingstittel(props.melding);
+    const tittelId = useRef(guid());
     const datoTekst = props.melding.ferdigstiltDato
         ? formatterDatoTid(props.melding.ferdigstiltDato)
         : formatterDatoTid(props.melding.opprettetDato);
@@ -174,21 +178,27 @@ function EnkeltMelding(props: Props) {
 
     return (
         <StyledLi className="snakkeboble_ikoner">
-            <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
-                <SnakkebobleWrapper>
-                    <Topptekst>
-                        <SpaceBetween>
-                            <BoldTekstomrade rules={[highlightRule]}>{topptekst}</BoldTekstomrade>
-                            <MeldingLestEtikett melding={props.melding} />
-                        </SpaceBetween>
-                        <Tekstomrade rules={[highlightRule]}>{datoTekst}</Tekstomrade>
-                        <SkrevetAv melding={props.melding} rule={highlightRule} />
-                    </Topptekst>
-                    <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>{props.melding.fritekst}</Tekstomrade>
-                    <Journalforing melding={props.melding} />
-                    <PrintTekst melding={props.melding} />
-                </SnakkebobleWrapper>
-            </Snakkeboble>
+            <article aria-describedby={tittelId.current}>
+                <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
+                    <SnakkebobleWrapper>
+                        <Topptekst>
+                            <SpaceBetween>
+                                <h4 id={tittelId.current}>
+                                    <BoldTekstomrade rules={[highlightRule]}>{tittel}</BoldTekstomrade>
+                                </h4>
+                                <MeldingLestEtikett melding={props.melding} />
+                            </SpaceBetween>
+                            <Tekstomrade rules={[highlightRule]}>{datoTekst}</Tekstomrade>
+                            <SkrevetAv melding={props.melding} rule={highlightRule} />
+                        </Topptekst>
+                        <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>
+                            {props.melding.fritekst}
+                        </Tekstomrade>
+                        <Journalforing melding={props.melding} />
+                        <PrintTekst melding={props.melding} />
+                    </SnakkebobleWrapper>
+                </Snakkeboble>
+            </article>
         </StyledLi>
     );
 }
