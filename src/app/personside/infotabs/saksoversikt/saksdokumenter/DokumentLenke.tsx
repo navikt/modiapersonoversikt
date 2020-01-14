@@ -22,15 +22,16 @@ const dokumentTekst = (dokument: Dokument) => {
     return dokument.tittel + (dokument.skjerming ? ' (Skjermet)' : '');
 };
 
+export function getUrlSaksdokumentEgetVindu(fødselsnummer: string, journalpostId: string, dokumentReferanse: string) {
+    const saksdokumentUrl = getSaksdokumentUrl(fødselsnummer, journalpostId, dokumentReferanse);
+
+    return `${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`;
+}
+
 function DokumentLenke(props: Props) {
     const fødselsnummer = useFødselsnummer();
     const dyplenker = useInfotabsDyplenker();
     const apneDokumenterIEgetVinduFT = useFeatureToggle(FeatureToggles.SaksDokumentIEgetVindu);
-    const saksdokumentUrl = getSaksdokumentUrl(
-        fødselsnummer,
-        props.journalPost.journalpostId,
-        props.dokument.dokumentreferanse
-    );
 
     if (!props.kanVises) {
         return <Element>{dokumentTekst(props.dokument)}</Element>;
@@ -38,7 +39,7 @@ function DokumentLenke(props: Props) {
 
     const apneDokumentINyttVindu = apneDokumenterIEgetVinduFT.isOn && !erSakerFullscreen();
     const url = apneDokumentINyttVindu
-        ? `${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`
+        ? getUrlSaksdokumentEgetVindu(fødselsnummer, props.journalPost.journalpostId, props.dokument.dokumentreferanse)
         : dyplenker.saker.link(props.valgtSakstema, props.dokument);
 
     return (
