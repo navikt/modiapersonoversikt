@@ -11,6 +11,7 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import TraadSammendrag from './TraadSammendrag';
 import { guid } from 'nav-frontend-js-utils';
 import { meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface Props {
     traad: Traad;
@@ -72,6 +73,7 @@ function TraadListeElement(props: Props) {
     });
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        loggEvent('Vis', 'Meldinger', { type: nyesteMelding(props.traad).meldingstype });
         if (props.onClick) {
             props.onClick(e);
             return;
