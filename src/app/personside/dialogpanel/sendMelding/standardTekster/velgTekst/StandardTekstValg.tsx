@@ -38,6 +38,7 @@ const PreviewStyle = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
+    background-color: white;
 `;
 
 const VelgTekst = styled.div`

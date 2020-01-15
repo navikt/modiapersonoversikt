@@ -28,7 +28,6 @@ const StyledForm = styled.form`
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: white;
 `;
 
 const Spinner = styled(LazySpinner)`
