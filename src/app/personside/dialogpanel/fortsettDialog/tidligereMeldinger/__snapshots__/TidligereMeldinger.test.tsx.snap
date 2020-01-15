@@ -69,7 +69,6 @@ exports[`viser fortsett dialog 1`] = `
   </h3>
   <div
     className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
-    erEnkeltstaende={false}
   >
     <button
       aria-controls="Helt tilfeldig ID"
@@ -127,7 +126,6 @@ exports[`viser fortsett dialog 1`] = `
   </div>
   <div
     className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
-    erEnkeltstaende={false}
   >
     <button
       aria-controls="Helt tilfeldig ID"
@@ -171,7 +169,6 @@ exports[`viser fortsett dialog 1`] = `
   </div>
   <div
     className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
-    erEnkeltstaende={false}
   >
     <button
       aria-controls="Helt tilfeldig ID"
@@ -215,7 +212,6 @@ exports[`viser fortsett dialog 1`] = `
   </div>
   <div
     className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
-    erEnkeltstaende={true}
   >
     <button
       aria-controls="Helt tilfeldig ID"
