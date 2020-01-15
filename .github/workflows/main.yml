@@ -25,7 +25,7 @@ jobs:
       - name: Create image tag
         run: |
           echo ::set-env name=IMAGE_VERSION::$(git rev-list --count $GITHUB_SHA) 
-          echo ::set-env name=IMAGE::${IMAGE_NAME}:${IMAGE_VERSION}
+          echo ::set-env name=IMAGE::${IMAGE_NAME}:$(git rev-list --count $GITHUB_SHA)
           echo "::debug::${IMAGE}"
       - name: Install dependencies
         run: |          
