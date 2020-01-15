@@ -101,7 +101,7 @@ function TraadVisning(props: Props) {
     return (
         <VisningStyle>
             <Topplinje valgtTraad={props.valgtTraad} />
-            <h3 className="sr-only" aria-live="polite" aria-atomic="false">
+            <h3 className="sr-only" aria-live="polite">
                 {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
             </h3>
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />

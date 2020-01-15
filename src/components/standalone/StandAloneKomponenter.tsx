@@ -32,9 +32,11 @@ import TidligereMeldinger from '../../app/personside/dialogpanel/fortsettDialog/
 import { statiskTraadMock } from '../../mock/meldinger/statiskTraadMock';
 import BesvarFlere from '../../app/personside/infotabs/meldinger/traadliste/besvarflere/BesvarFlere';
 import { getMockTraader } from '../../mock/meldinger/meldinger-mock';
+import StandardTekster from '../../app/personside/dialogpanel/sendMelding/standardTekster/StandardTekster';
 
 enum Komponenter {
     Visittkort,
+    Standardtekster,
     Oppfølging,
     Saksoversikt,
     SaksoversiktEgetVindu,
@@ -121,6 +123,12 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             );
         case Komponenter.TraadVisningDialogpanel:
             return <TidligereMeldinger traad={statiskTraadMock} />;
+        case Komponenter.Standardtekster:
+            return (
+                <TestProvider>
+                    <StandardTekster appendTekst={tekst => alert(tekst)} />
+                </TestProvider>
+            );
         case Komponenter.BesvarFlere:
             return (
                 <TestProvider>
