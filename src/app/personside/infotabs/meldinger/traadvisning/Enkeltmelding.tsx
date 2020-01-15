@@ -30,6 +30,7 @@ import { guid } from 'nav-frontend-js-utils';
 interface Props {
     melding: Melding;
     sokeord: string;
+    meldingsNummer: number;
 }
 
 const StyledLi = styled.li`
@@ -175,6 +176,7 @@ function EnkeltMelding(props: Props) {
                         <Topptekst>
                             <SpaceBetween>
                                 <h4 id={tittelId.current}>
+                                    <span className="sr-only">Melding {props.meldingsNummer}</span>
                                     <BoldTekstomrade rules={[highlightRule]}>{tittel}</BoldTekstomrade>
                                 </h4>
                                 <MeldingLestEtikett melding={props.melding} />

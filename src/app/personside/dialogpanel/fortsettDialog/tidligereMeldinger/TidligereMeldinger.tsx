@@ -25,14 +25,18 @@ function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: bool
         return null;
     }
 
-    const meldinger = props.traad.map(melding => (
-        <EnkeltMelding
-            key={melding.id}
-            melding={melding}
-            erEnkeltstaende={props.traad.length === 1}
-            defaultApen={props.defaultApen}
-        />
-    ));
+    const meldinger = props.traad.map((melding, index) => {
+        const meldingnummer = props.traad.length - index;
+        return (
+            <EnkeltMelding
+                key={melding.id}
+                melding={melding}
+                erEnkeltstaende={props.traad.length === 1}
+                defaultApen={props.defaultApen}
+                meldingsNummer={meldingnummer}
+            />
+        );
+    });
 
     return <StyledOl aria-label={props.tittel}>{meldinger}</StyledOl>;
 }
