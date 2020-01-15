@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRef, useState } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import { Element, EtikettLiten } from 'nav-frontend-typografi';
+import { EtikettLiten } from 'nav-frontend-typografi';
 import {
     erDelsvar,
     erJournalfort,
@@ -94,13 +94,6 @@ const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
     }
 `;
 
-const StyledPrintTekst = styled.div`
-    display: none;
-    @media print {
-        display: inline-block;
-    }
-`;
-
 function journalfortMelding(melding: Melding) {
     const navn = melding.journalfortAv ? saksbehandlerTekst(melding.journalfortAv) : 'ukjent';
     const dato = melding.journalfortDato ? formaterDato(melding.journalfortDato) : 'ukjent dato';
@@ -140,11 +133,6 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
         return <Etikett type="advarsel">Ulest</Etikett>;
     }
     return null;
-}
-
-function PrintTekst({ melding }: { melding: Melding }) {
-    const journalfort = erJournalfort(melding) && <Element>{journalfortMelding(melding)}</Element>;
-    return <StyledPrintTekst>{journalfort}</StyledPrintTekst>;
 }
 
 export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
@@ -188,7 +176,6 @@ function EnkeltMelding(props: Props) {
                             {props.melding.fritekst}
                         </Tekstomrade>
                         <Journalforing melding={props.melding} />
-                        <PrintTekst melding={props.melding} />
                     </SnakkebobleWrapper>
                 </Snakkeboble>
             </article>
