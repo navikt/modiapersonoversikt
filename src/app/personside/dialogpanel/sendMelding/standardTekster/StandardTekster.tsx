@@ -19,6 +19,7 @@ import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { guid } from 'nav-frontend-js-utils';
+import AriaNotification from '../../../../../components/AriaNotification';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -119,6 +120,7 @@ function StandardTekster(props: Props) {
     const personResource = useRestResource(resources => resources.personinformasjon);
     const autofullforData = useAutoFullførData();
     const sokeFeltId = useRef(guid());
+    const [ariaSkrikVedHotkeyNavigering, setAriaSkrikVedHotkeyNavigering] = useState('');
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
     useDefaultValgtTekst(filtrerteTekster, valgt);
@@ -132,6 +134,7 @@ function StandardTekster(props: Props) {
         if (index !== -1) {
             const nextIndex = cyclicClamp(index + offset, filtrerteTekster.length);
             const nextTekst = filtrerteTekster[nextIndex];
+            setAriaSkrikVedHotkeyNavigering(nextTekst.overskrift);
             valgt.setValue(nextTekst.id);
         }
     };
@@ -177,6 +180,7 @@ function StandardTekster(props: Props) {
                 />
             </SokefeltStyledNav>
             {content}
+            <AriaNotification ariaLive={'assertive'} beskjed={ariaSkrikVedHotkeyNavigering} />
         </StyledForm>
     );
 }
