@@ -3,11 +3,13 @@ import { Element, Undertekst } from 'nav-frontend-typografi';
 import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import * as React from 'react';
-import styled, { css } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
 import { meldingstittel } from '../../../infotabs/meldinger/utils/meldingerUtils';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Avsender } from '../../../infotabs/meldinger/traadvisning/Enkeltmelding';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
 const EnkeltMeldingStyle = styled.div`
     width: 100%;
@@ -15,23 +17,13 @@ const EnkeltMeldingStyle = styled.div`
 `;
 
 const StyledTekstomrade = styled(Tekstomrade)`
-    padding: 1rem;
+    padding: 1.5rem 1rem 1rem;
     overflow-wrap: break-word;
     padding-top: 0;
 `;
 
-const StyledEkspanderbartpanelBase = styled(({ erEnkeltstaende, ...rest }) => <EkspanderbartpanelBase {...rest} />)<{
-    erEnkeltstaende: boolean;
-}>`
-    &.ekspanderbartPanel {
-        ${props =>
-            !props.erEnkeltstaende
-                ? css`
-                      border-radius: 0;
-                  `
-                : ''};
-    }
-    border-top: 0.1rem rgba(0, 0, 0, 0.2) solid;
+const StyledEkspanderbartpanelBase = styled(EkspanderbartpanelBase)`
+    ${theme.resetEkspanderbartPanelStyling};
     .ekspanderbartPanel__hode:focus {
         ${theme.focusInset};
     }
@@ -44,17 +36,26 @@ interface Props {
 }
 
 function EnkeltMelding(props: Props) {
+    const tittelId = useRef(guid());
+
     const header = (
         <EnkeltMeldingStyle>
-            <Element>{meldingstittel(props.melding)}</Element>
+            <Element tag="h4" id={tittelId.current}>
+                {meldingstittel(props.melding)}
+            </Element>
             <Undertekst>{formatterDatoTidMedMaanedsnavn(props.melding.opprettetDato)}</Undertekst>
             <Avsender melding={props.melding} />
         </EnkeltMeldingStyle>
     );
+
     return (
-        <StyledEkspanderbartpanelBase heading={header} erEnkeltstaende={props.erEnkeltstaende} apen={props.defaultApen}>
-            <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
-        </StyledEkspanderbartpanelBase>
+        <li>
+            <article aria-describedby={tittelId.current}>
+                <StyledEkspanderbartpanelBase heading={header} apen={props.defaultApen}>
+                    <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
+                </StyledEkspanderbartpanelBase>
+            </article>
+        </li>
     );
 }
 
