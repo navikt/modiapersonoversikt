@@ -50,3 +50,4 @@ spec:
       value: "https://isso-q.adeo.no/isso/oauth2/connect/jwk_uri"
     - name: OIDC_REDIRECT_URL
       value: "https://app-{{ namespace }}.adeo.no/veilarblogin/api/login"
+

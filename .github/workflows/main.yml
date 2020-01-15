@@ -3,16 +3,19 @@ name: Build, push, and deploy
 on: [push]
 
 env:
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/modiapersonoversikt:${{ github.sha }}
+  IMAGE_VERSION: $(git fetch --unshallow || true && git rev-list --count $GITHUB.SHA)
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/modiapersonoversikt:${{ IMAGE_VERSION }}
   CI: true
   TZ: Europe/Oslo
-
+  ENV REACT_APP_MODIA_URL: "/modiabrukerdialog/rest"
+  REACT_APP_HODE_URL: "/internarbeidsflatedecorator"
 jobs:
   build:
     name: Test and build
     runs-on: ubuntu-latest
     if: github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/master'
     steps:
+
       - uses: actions/checkout@v1
       - uses: actions/cache@v1
         with:
@@ -22,6 +25,7 @@ jobs:
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: |
+          echo $IMAGE_VERSION
           npm ci
 
       - name: Lint and Test
@@ -62,6 +66,8 @@ jobs:
           docker build --tag ${IMAGE} .
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${IMAGE}
+          git tag ${IMAGE_VERSION}
+          git push --tags
 
   deploy-qa:
     name: Deploy to preprod
