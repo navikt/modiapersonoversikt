@@ -74,12 +74,7 @@ function StandardTekstValg({ valgt, valgtLocale, valgtTekst, sokefelt, tekster, 
 
     return (
         <Style>
-            <StandardtekstListe
-                locale={valgtLocale.input.value}
-                tekster={tekster}
-                valgt={valgt}
-                highlightRule={highlightRule}
-            />
+            <StandardtekstListe tekster={tekster} valgt={valgt} highlightRule={highlightRule} />
             <PreviewStyle>
                 <StandardTekstPreview
                     tekst={valgtTekst}

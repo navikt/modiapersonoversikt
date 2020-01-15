@@ -120,7 +120,7 @@ function StandardTekster(props: Props) {
     const personResource = useRestResource(resources => resources.personinformasjon);
     const autofullforData = useAutoFullførData();
     const sokeFeltId = useRef(guid());
-    const [ariaSkrikVedHotkeyNavigering, setAriaSkrikVedHotkeyNavigering] = useState('');
+    const [ariaNotification, setAriaNotification] = useState('');
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
     useDefaultValgtTekst(filtrerteTekster, valgt);
@@ -134,13 +134,20 @@ function StandardTekster(props: Props) {
         if (index !== -1) {
             const nextIndex = cyclicClamp(index + offset, filtrerteTekster.length);
             const nextTekst = filtrerteTekster[nextIndex];
-            setAriaSkrikVedHotkeyNavigering(nextTekst.overskrift);
+            setAriaNotification(nextTekst.overskrift);
             valgt.setValue(nextTekst.id);
         }
     };
 
     useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], 'ForrigeStandardtekst', inputRef.current);
     useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', inputRef.current);
+    useHotkey(
+        { altKey: true, char: 'z' },
+        () => setAriaNotification(valgtTekst?.innhold[valgtLocale.input.value]),
+        [valgtTekst],
+        'Les innhold skjermleser',
+        inputRef.current
+    );
 
     let content: ReactNode = null;
     if (isPending(standardTekster)) {
@@ -180,7 +187,7 @@ function StandardTekster(props: Props) {
                 />
             </SokefeltStyledNav>
             {content}
-            <AriaNotification ariaLive={'assertive'} beskjed={ariaSkrikVedHotkeyNavigering} />
+            <AriaNotification ariaLive={'assertive'} beskjed={ariaNotification} />
         </StyledForm>
     );
 }
