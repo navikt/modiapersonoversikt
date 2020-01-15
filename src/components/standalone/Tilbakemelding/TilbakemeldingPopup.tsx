@@ -52,7 +52,7 @@ function Kommentar(props: InternalProps) {
         <>
             <Textarea
                 value={props.kommentar}
-                onChange={e => props.settKommentar(e.currentTarget.value)}
+                onChange={e => props.settKommentar((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)}
                 label={props.kommentarLabel}
                 maxLength={750}
             />

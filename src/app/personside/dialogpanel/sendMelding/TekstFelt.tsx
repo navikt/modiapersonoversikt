@@ -56,7 +56,9 @@ function TekstFelt(props: Props) {
                     value={props.tekst}
                     // @ts-ignore
                     textareaRef={ref => (textareaRef.current = ref)}
-                    onChange={e => props.updateTekst(e.currentTarget.value)}
+                    onChange={e =>
+                        props.updateTekst((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)
+                    }
                     label={'Melding'}
                     maxLength={props.tekstMaksLengde}
                     placeholder={`Alt du skriver i denne boksen blir synlig for ${props.navn} når du trykker "Del med ${props.navn}"`}
