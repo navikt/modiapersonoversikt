@@ -222,17 +222,6 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin: 0;
 }
 
-.c27 {
-  margin-right: 0.3rem !important;
-}
-
-.c26 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 .c25 {
   font-weight: 600;
 }
@@ -254,16 +243,16 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-bottom: 0.5rem;
 }
 
-.c29 {
+.c27 {
   color: #0067c5;
 }
 
-.c28 .ekspanderbartPanel__hode,
-.c28 .ekspanderbartPanel__innhold {
+.c26 .ekspanderbartPanel__hode,
+.c26 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
 }
 
-.c30 {
+.c28 {
   display: none;
 }
 
@@ -359,13 +348,13 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c28 {
+  .c26 {
     display: none;
   }
 }
 
 @media print {
-  .c30 {
+  .c28 {
     display: inline-block;
   }
 }
@@ -1438,18 +1427,9 @@ exports[`Viser traad med verktøylinje 1`] = `
                       27.07.2019 00:00
                     </div>
                     <div
-                      className="c26"
+                      className="tekstomrade typo-normal"
                     >
-                      <p
-                        className="typo-normal c27"
-                      >
-                        Skrevet av:
-                      </p>
-                      <div
-                        className="tekstomrade typo-normal"
-                      >
-                        Kristoffer Fredriksen (xy70r8)
-                      </div>
+                      Skrevet av Kristoffer Fredriksen (xy70r8)
                     </div>
                   </div>
                   <div
@@ -1458,7 +1438,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                   </div>
                   <div
-                    className="ekspanderbartPanel c28 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1471,7 +1451,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c29"
+                          className="typo-etikett-liten c27"
                         >
                           Meldingen er journalført
                         </p>
@@ -1487,7 +1467,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </article>
                   </div>
                   <div
-                    className="c30"
+                    className="c28"
                   >
                     <p
                       className="typo-element"
@@ -1557,7 +1537,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
                   </div>
                   <div
-                    className="ekspanderbartPanel c28 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1570,7 +1550,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c29"
+                          className="typo-etikett-liten c27"
                         >
                           Meldingen er journalført
                         </p>
@@ -1586,7 +1566,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </article>
                   </div>
                   <div
-                    className="c30"
+                    className="c28"
                   >
                     <p
                       className="typo-element"
@@ -1656,7 +1636,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
                   </div>
                   <div
-                    className="ekspanderbartPanel c28 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1669,7 +1649,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c29"
+                          className="typo-etikett-liten c27"
                         >
                           Meldingen er journalført
                         </p>
@@ -1685,7 +1665,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </article>
                   </div>
                   <div
-                    className="c30"
+                    className="c28"
                   >
                     <p
                       className="typo-element"
@@ -1758,18 +1738,9 @@ exports[`Viser traad med verktøylinje 1`] = `
                       07.07.2019 00:00
                     </div>
                     <div
-                      className="c26"
+                      className="tekstomrade typo-normal"
                     >
-                      <p
-                        className="typo-normal c27"
-                      >
-                        Skrevet av:
-                      </p>
-                      <div
-                        className="tekstomrade typo-normal"
-                      >
-                        Sander Hansen (nzxo4q)
-                      </div>
+                      Skrevet av Sander Hansen (nzxo4q)
                     </div>
                   </div>
                   <div
@@ -1778,7 +1749,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
                   </div>
                   <div
-                    className="ekspanderbartPanel c28 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1791,7 +1762,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c29"
+                          className="typo-etikett-liten c27"
                         >
                           Meldingen er journalført
                         </p>
@@ -1807,7 +1778,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </article>
                   </div>
                   <div
-                    className="c30"
+                    className="c28"
                   >
                     <p
                       className="typo-element"
