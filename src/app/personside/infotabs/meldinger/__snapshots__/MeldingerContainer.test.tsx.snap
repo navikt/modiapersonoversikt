@@ -392,15 +392,10 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     </g>
                   </svg>
                   <p
+                    aria-hidden="true"
                     className="typo-undertekst c12"
                   >
                     4
-                     
-                    <span
-                      className="sr-only"
-                    >
-                      tekster
-                    </span>
                   </p>
                 </span>
                 <div
