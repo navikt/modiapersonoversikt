@@ -77,11 +77,7 @@ function Meldingsikon(props: MeldingsikonProps) {
     return (
         <Styling visNumberBadge={visNumberBadge}>
             <Ikon props={props} />
-            {visNumberBadge && (
-                <NumberBadge>
-                    {antallMeldinger} <span className="sr-only">tekster</span>
-                </NumberBadge>
-            )}
+            {visNumberBadge && <NumberBadge aria-hidden="true">{antallMeldinger}</NumberBadge>}
         </Styling>
     );
 }
