@@ -1,112 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser oversikt med alt innhold 1`] = `
-.c10 {
-  font-weight: 600;
+.c2 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+  padding-bottom: 0.3rem;
 }
 
-.c9 {
-  position: relative;
-  padding: .5rem;
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.c9:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
-}
-
-.c9:hover > button:last-child {
-  padding-left: 0.5rem;
-}
-
-.c9 > *:first-child {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c11 {
-  border: none;
-  padding: 0;
-  height: 2rem;
-  width: 2rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  -webkit-transition: padding-left 0.3s;
-  transition: padding-left 0.3s;
-}
-
-.c11 .nav-frontend-chevron {
-  width: 1.5625rem;
-}
-
-.c11:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.c11:focus::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  box-shadow: inset 0 0 0 0.1875rem #254b6d;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
-}
-
-.c15 svg {
-  height: 1.875rem;
-  width: 1.875rem;
-  opacity: 0.5;
-}
-
-.c14 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c14 .order-first {
-  -webkit-order: 0;
-  -ms-flex-order: 0;
-  order: 0;
-}
-
-.c14 .order-second {
-  -webkit-order: 1;
-  -ms-flex-order: 1;
-  order: 1;
-}
-
-.c13 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  background-color: white;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  padding: 0.625rem;
+  cursor: pointer;
+  border-bottom: #b7b1a9 0.125rem solid;
+}
+
+.c3:hover {
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
+}
+
+.c7 > *:not(:first-child) {
+  border-top: solid 0.0625rem #78706a;
+}
+
+.c6 {
+  text-align: right;
+}
+
+.c5 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  padding: 0 1rem;
+}
+
+.c4 {
+  font-weight: bold !important;
+  font-size: 1.125rem !important;
 }
 
 .c31 {
@@ -220,6 +169,126 @@ exports[`Viser oversikt med alt innhold 1`] = `
   margin-right: 0.5em;
 }
 
+.c25 > *:not(:first-child) {
+  border-top: solid 0.0625rem #78706a;
+}
+
+.c9 {
+  position: relative;
+  padding: .5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.c9:hover {
+  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
+}
+
+.c9:hover > button:last-child {
+  padding-left: 0.5rem;
+}
+
+.c9 > *:first-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c11 {
+  border: none;
+  padding: 0;
+  height: 2rem;
+  width: 2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  -webkit-transition: padding-left 0.3s;
+  transition: padding-left 0.3s;
+}
+
+.c11 .nav-frontend-chevron {
+  width: 1.5625rem;
+}
+
+.c11:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.c11:focus::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  box-shadow: inset 0 0 0 0.1875rem #254b6d;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.c15 svg {
+  height: 1.875rem;
+  width: 1.875rem;
+  opacity: 0.5;
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c14 .order-first {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+.c14 .order-second {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c24 > *:not(:first-child) {
+  border-top: solid 0.0625rem #78706a;
+}
+
+.c10 {
+  font-weight: 600;
+}
+
+.c8 > *:not(:first-child) {
+  border-top: solid 0.0625rem #78706a;
+}
+
 .c18 {
   position: relative;
 }
@@ -323,75 +392,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-}
-
-.c2 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
-  padding-bottom: 0.3rem;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  background-color: white;
-  border-top-left-radius: .25rem;
-  border-top-right-radius: .25rem;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  padding: 0.625rem;
-  cursor: pointer;
-  border-bottom: #b7b1a9 0.125rem solid;
-}
-
-.c3:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
-}
-
-.c7 > *:not(:first-child) {
-  border-top: solid 0.0625rem #78706a;
-}
-
-.c6 {
-  text-align: right;
-}
-
-.c5 {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
-  padding: 0 1rem;
-}
-
-.c4 {
-  font-weight: bold !important;
-  font-size: 1.125rem !important;
-}
-
-.c25 > *:not(:first-child) {
-  border-top: solid 0.0625rem #78706a;
-}
-
-.c24 > *:not(:first-child) {
-  border-top: solid 0.0625rem #78706a;
-}
-
-.c8 > *:not(:first-child) {
-  border-top: solid 0.0625rem #78706a;
 }
 
 .c16 > *:not(:first-child) {
