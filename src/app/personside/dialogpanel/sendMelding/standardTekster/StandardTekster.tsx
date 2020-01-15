@@ -103,7 +103,7 @@ function velgTekst(
 }
 
 function StandardTekster(props: Props) {
-    const inputRef = React.useRef<HTMLInputElement>();
+    const sokRef = React.useRef<HTMLElement>(null);
     const standardTekster = useFetchWithLog<StandardTeksterModels.Tekster>(
         '/modiapersonoversikt-skrivestotte/skrivestotte',
         'Standardtekster'
@@ -120,6 +120,7 @@ function StandardTekster(props: Props) {
     const personResource = useRestResource(resources => resources.personinformasjon);
     const autofullforData = useAutoFullførData();
     const sokeFeltId = useRef(guid());
+    const ariaDescription = useRef(guid());
     const [ariaNotification, setAriaNotification] = useState('');
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
@@ -139,14 +140,14 @@ function StandardTekster(props: Props) {
         }
     };
 
-    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], 'ForrigeStandardtekst', inputRef.current);
-    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', inputRef.current);
+    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], 'ForrigeStandardtekst', sokRef.current || undefined);
+    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', sokRef.current || undefined);
     useHotkey(
         { altKey: true, char: 'z' },
         () => setAriaNotification(valgtTekst?.innhold[valgtLocale.input.value]),
         [valgtTekst],
         'Les innhold skjermleser',
-        inputRef.current
+        sokRef.current || undefined
     );
 
     let content: ReactNode = null;
@@ -174,12 +175,15 @@ function StandardTekster(props: Props) {
     return (
         <StyledForm onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
             <h2 className="sr-only">Standardtekster</h2>
-            <SokefeltStyledNav aria-describedby={sokeFeltId.current}>
+            <SokefeltStyledNav aria-describedby={sokeFeltId.current} ref={sokRef}>
+                <span id={ariaDescription.current} className="sr-only">
+                    Bruk pil opp ned for å navigere i tekster. Bruk alt + z for å høre innhold. Bruk enter for å velge
+                </span>
                 <TagInput
                     {...sokefelt.input}
-                    inputRef={inputRef}
                     name="standardtekstsok"
                     label="Søk etter standardtekster"
+                    aria-describedby={ariaDescription.current}
                     autoFocus={true}
                     id={sokeFeltId.current}
                     // @ts-ignore
