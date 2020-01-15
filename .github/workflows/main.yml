@@ -26,15 +26,12 @@ jobs:
         run: |
           echo ::set-env name=IMAGE_VERSION::$(git rev-list --count $GITHUB_SHA) 
           echo ::set-env name=IMAGE::${IMAGE_NAME}:${IMAGE_VERSION}
-          echo ${IMAGE}
+          echo "::debug::${IMAGE}"
       - name: Install dependencies
-        run: |
-          echo $IMAGE_VERSION
+        run: |          
           npm ci
-
-      - name: Lint and Test
-        run: |
-          npm run lint
+      - name: Test
+        run: |        
           npm run test
       - name: Build
         run: |
