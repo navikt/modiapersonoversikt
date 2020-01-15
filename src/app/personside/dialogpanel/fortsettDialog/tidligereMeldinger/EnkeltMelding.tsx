@@ -20,7 +20,7 @@ const StyledTekstomrade = styled(Tekstomrade)`
     padding-top: 0;
 `;
 
-const StyledEkspanderbartpanelBase = styled(({ ...rest }) => <EkspanderbartpanelBase {...rest} />)<{}>`
+const StyledEkspanderbartpanelBase = styled(EkspanderbartpanelBase)`
     ${theme.resetEkspanderbartPanelStyling};
     &.ekspanderbartPanel {
         border-radius: 0;
@@ -46,7 +46,7 @@ function EnkeltMelding(props: Props) {
         </EnkeltMeldingStyle>
     );
     return (
-        <StyledEkspanderbartpanelBase heading={header} erEnkeltstaende={props.erEnkeltstaende} apen={props.defaultApen}>
+        <StyledEkspanderbartpanelBase heading={header} apen={props.defaultApen}>
             <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
         </StyledEkspanderbartpanelBase>
     );
