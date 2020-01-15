@@ -355,12 +355,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   padding: 0.2rem 0.9375rem;
 }
 
-.c1 {
-  overflow: auto;
-  max-height: 100%;
-  padding: .5rem;
-}
-
 .c29 ol {
   padding: 0;
   margin: 0;
@@ -475,6 +469,12 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 
 .c2 {
   margin-bottom: .5rem;
+}
+
+.c1 {
+  overflow: auto;
+  max-height: 100%;
+  padding: .5rem;
 }
 
 .c0 {

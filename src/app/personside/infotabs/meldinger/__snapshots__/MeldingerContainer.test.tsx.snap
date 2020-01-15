@@ -1,12 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser meldingercontainer med alt innhold 1`] = `
-.c1 {
-  overflow: auto;
-  max-height: 100%;
-  padding: .5rem;
-}
-
 .c11 {
   position: relative;
 }
@@ -222,6 +216,12 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 .c4 {
   padding: .5rem;
   margin-bottom: 0 !important;
+}
+
+.c1 {
+  overflow: auto;
+  max-height: 100%;
+  padding: .5rem;
 }
 
 .c0 {

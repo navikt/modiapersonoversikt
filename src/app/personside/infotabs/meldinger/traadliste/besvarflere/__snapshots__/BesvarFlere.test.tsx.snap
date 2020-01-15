@@ -1,80 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BesvarFler matcher snapshot 1`] = `
-.c20 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-}
-
-.c18 .snakkeboble-panel {
-  -webkit-flex-basis: 40rem;
-  -ms-flex-preferred-size: 40rem;
-  flex-basis: 40rem;
-}
-
-.c18 a {
-  word-break: break-word;
-}
-
-.c18 .snakkeboble {
-  margin: 0;
-}
-
-.c23 {
-  margin-right: 0.3rem !important;
-}
-
-.c22 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c21 {
-  font-weight: 600;
-}
-
-.c19 {
-  text-align: left;
-}
-
-.c19 em {
-  font-style: normal;
-  background-color: #eed28c;
-  border-radius: 0.625rem;
-  padding: 0 0.3125rem;
-}
-
-.c19 > *:not(:last-child) {
-  border-bottom: solid 0.0625rem #b7b1a9;
-  padding-bottom: 0.7rem;
-  margin-bottom: 0.5rem;
-}
-
-.c25 {
-  color: #0067c5;
-}
-
-.c24 .ekspanderbartPanel__hode,
-.c24 .ekspanderbartPanel__innhold {
-  padding: 0.3rem 0;
-}
-
-.c26 {
-  display: none;
-}
-
 .c9 {
   position: relative;
 }
@@ -274,6 +200,80 @@ exports[`BesvarFler matcher snapshot 1`] = `
 
 .c15 .nav-frontend-chevron {
   width: 1.5625rem;
+}
+
+.c20 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+}
+
+.c18 .snakkeboble-panel {
+  -webkit-flex-basis: 40rem;
+  -ms-flex-preferred-size: 40rem;
+  flex-basis: 40rem;
+}
+
+.c18 a {
+  word-break: break-word;
+}
+
+.c18 .snakkeboble {
+  margin: 0;
+}
+
+.c23 {
+  margin-right: 0.3rem !important;
+}
+
+.c22 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c21 {
+  font-weight: 600;
+}
+
+.c19 {
+  text-align: left;
+}
+
+.c19 em {
+  font-style: normal;
+  background-color: #eed28c;
+  border-radius: 0.625rem;
+  padding: 0 0.3125rem;
+}
+
+.c19 > *:not(:last-child) {
+  border-bottom: solid 0.0625rem #b7b1a9;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.c25 {
+  color: #0067c5;
+}
+
+.c24 .ekspanderbartPanel__hode,
+.c24 .ekspanderbartPanel__innhold {
+  padding: 0.3rem 0;
+}
+
+.c26 {
+  display: none;
 }
 
 .c0 {

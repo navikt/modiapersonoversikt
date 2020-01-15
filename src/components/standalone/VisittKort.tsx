@@ -16,7 +16,7 @@ import styled from 'styled-components/macro';
 import TilbakemeldingFab from './Tilbakemelding/TilbakemeldingFab';
 import { FeatureToggles } from '../featureToggle/toggleIDs';
 import IfFeatureToggleOn from '../featureToggle/IfFeatureToggleOn';
-import FetchSessionInfoOgLeggIRedux from '../../app/globaleVerdier/FetchSessionInfoOgLeggIRedux';
+import FetchSessionInfoOgLeggIRedux from '../../app/FetchSessionInfoOgLeggIRedux';
 
 interface Props {
     fødselsnummer: string;

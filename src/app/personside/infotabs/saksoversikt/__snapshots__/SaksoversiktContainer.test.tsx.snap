@@ -1,26 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
-.c22 {
-  color: #645f5a;
-  margin-top: 3px;
-}
-
-.c22 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
-.c17 {
-  background-color: #cce1f3;
-  padding: 0.2rem 0.9375rem;
-}
-
-.c1 {
-  overflow: auto;
-  max-height: 100%;
-  padding: .5rem;
-}
-
 .c5 {
   position: relative;
   padding: .5rem;
@@ -112,36 +92,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c4 > * {
-  border-top: solid 0.0625rem #78706a;
-}
-
-.c2 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
-}
-
-.c2 ol {
-  list-style: none;
-}
-
-.c3 {
-  padding: 0.9375rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
-}
-
-.c3 > *:not(:last-child) {
-  margin-right: 1rem;
-}
-
 .c8 svg {
   height: 1.875rem;
   width: 1.875rem;
@@ -183,6 +133,51 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.c4 > * {
+  border-top: solid 0.0625rem #78706a;
+}
+
+.c2 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+}
+
+.c2 ol {
+  list-style: none;
+}
+
+.c3 {
+  padding: 0.9375rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c3 > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.c1 {
+  overflow: auto;
+  max-height: 100%;
+  padding: .5rem;
+}
+
+.c22 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c22 .typo-etikett-liten {
+  line-height: 1rem;
 }
 
 .c18 {
@@ -247,6 +242,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c23 ul {
   list-style: disc;
+}
+
+.c17 {
+  background-color: #cce1f3;
+  padding: 0.2rem 0.9375rem;
 }
 
 .c11 {

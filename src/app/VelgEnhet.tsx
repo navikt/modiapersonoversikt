@@ -3,9 +3,9 @@ import { ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { Select } from 'nav-frontend-skjema';
 import { useDispatch } from 'react-redux';
-import { velgEnhetAction } from '../../redux/session/session';
-import theme from '../../styles/personOversiktTheme';
-import { useRestResource } from '../../rest/consumer/useRestResource';
+import { velgEnhetAction } from '../redux/session/session';
+import theme from '../styles/personOversiktTheme';
+import { useRestResource } from '../rest/consumer/useRestResource';
 
 const Style = styled.div`
     display: flex;

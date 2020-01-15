@@ -1,28 +1,41 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Routing, { paths } from './routes/routing';
+import { BrowserRouter } from 'react-router-dom';
 import { setupMock } from '../mock/setup-mock';
 import reducers from '../redux/reducers';
 import { mockEnabled } from '../api/config';
-import AppStyle, { ContentStyle, IE11Styling, MacStyling } from './AppStyle';
 import ModalWrapper from 'nav-frontend-modal';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import PersonOppslagHandler from './PersonOppslagHandler/PersonOppslagHandler';
-import Decorator from './internarbeidsflatedecorator/Decorator';
-import StandAloneKomponenter from '../components/standalone/StandAloneKomponenter';
-import HentGlobaleVerdier from './globaleVerdier/FetchSessionInfoOgLeggIRedux';
-import { useAppState, useOnMount } from '../utils/customHooks';
-import { detect } from 'detect-browser';
-import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
-import { erIE11 } from '../utils/erNyPersonoversikt';
 import DemoBanner from '../components/DemoBanner';
-import VelgEnhet from './routes/VelgEnhet';
-import SakerFullscreen from './personside/infotabs/saksoversikt/SakerFullscreen';
-import SaksDokumentEgetVindu from './personside/infotabs/saksoversikt/SaksDokumentIEgetVindu';
+import IeMacStyling from './IeMacStyling';
+import { Provider } from 'react-redux';
+import LyttPåFnrIURLOgSettIRedux from './PersonOppslagHandler/LyttPåFnrIURLOgSettIRedux';
+import HentGlobaleVerdier from './FetchSessionInfoOgLeggIRedux';
+import GlobalStyling from './GlobalStyling';
+import Decorator from './internarbeidsflatedecorator/Decorator';
+import Routing from './Routing';
+import styled from 'styled-components';
+import { useOnMount } from '../utils/customHooks';
+import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
+
+const AppStyle = styled.div`
+    height: 100vh;
+    @media print {
+        height: auto;
+    }
+    display: flex;
+    flex-flow: column nowrap;
+`;
+
+const ContentStyle = styled.div`
+    height: 0; // IE11-hack for at flex skal funke
+    @media print {
+        height: auto;
+    }
+    flex-grow: 1;
+    display: flex;
+`;
 
 if (mockEnabled) {
     setupMock();
@@ -30,75 +43,29 @@ if (mockEnabled) {
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
-function Personoversikt() {
-    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
-
-    if (!valgtEnhet) {
-        return <VelgEnhet />;
-    }
-
-    return (
-        <>
-            <PersonOppslagHandler />
-            <HentGlobaleVerdier />
-            <ContentStyle>
-                <Routing />
-            </ContentStyle>
-        </>
-    );
-}
-
-function PersonoverisktProvider() {
-    const [isMac, setIsMac] = useState<undefined | boolean>(undefined);
-    const [isIE, setIsIE] = useState<undefined | boolean>(undefined);
+function App() {
     useOnMount(() => {
-        const browser = detect();
-        const os = browser && browser.os;
-        setIsMac(os ? os.toLowerCase().includes('mac') : undefined);
-        setIsIE(erIE11());
+        ModalWrapper.setAppElement('#root');
         settJobberIkkeMedSpørsmålOgSvar();
     });
 
     return (
-        <Provider store={store}>
-            {isMac && <MacStyling />}
-            {isIE && <IE11Styling />}
-            <AppStyle>
-                <Decorator />
-                <Switch>
-                    <Route
-                        path={`${paths.sakerFullscreen}/:fodselsnummer/`}
-                        render={routeProps => <SakerFullscreen fødselsnummer={routeProps.match.params.fodselsnummer} />}
-                    />
-                    <Route
-                        path={`${paths.saksdokumentEgetVindu}/:fodselsnummer/`}
-                        render={routeProps => (
-                            <SaksDokumentEgetVindu fødselsnummer={routeProps.match.params.fodselsnummer} />
-                        )}
-                    />
-                    <Route path={''} component={Personoversikt} />
-                </Switch>
-            </AppStyle>
-        </Provider>
-    );
-}
-
-function App() {
-    ModalWrapper.setAppElement('#root');
-
-    return (
         <>
             <DemoBanner />
-            <BrowserRouter>
-                <Switch>
-                    <Route
-                        path={`${paths.standaloneKomponenter}/:component?/:fnr?`}
-                        component={StandAloneKomponenter}
-                    />
-
-                    <Route path={'/'} component={PersonoverisktProvider} />
-                </Switch>
-            </BrowserRouter>
+            <IeMacStyling />
+            <GlobalStyling />
+            <Provider store={store}>
+                <BrowserRouter>
+                    <LyttPåFnrIURLOgSettIRedux />
+                    <HentGlobaleVerdier />
+                    <AppStyle>
+                        <Decorator />
+                        <ContentStyle>
+                            <Routing />
+                        </ContentStyle>
+                    </AppStyle>
+                </BrowserRouter>
+            </Provider>
         </>
     );
 }
