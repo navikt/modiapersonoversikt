@@ -53,7 +53,9 @@ function StandardtekstListe(props: Props) {
         ));
 
     const visFlereTeksterKnapp = (
-        <StyledLenkeknapp onClick={() => setVisAntall(visAntall + 50)}>Vis flere tekster</StyledLenkeknapp>
+        <StyledLenkeknapp type="button" onClick={() => setVisAntall(visAntall + 50)}>
+            Vis flere tekster
+        </StyledLenkeknapp>
     );
 
     return (
