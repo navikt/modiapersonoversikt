@@ -2,9 +2,8 @@ name: Build, push, and deploy
 
 on: [push]
 
-env:
-  IMAGE_VERSION: $(git fetch --unshallow || true && git rev-list --count $GITHUB.SHA)
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/modiapersonoversikt:${{ IMAGE_VERSION }}
+env:  
+  IMAGE_NAME: docker.pkg.github.com/${{ github.repository }}/modiapersonoversikt
   CI: true
   TZ: Europe/Oslo
   ENV REACT_APP_MODIA_URL: "/modiabrukerdialog/rest"
@@ -23,6 +22,11 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - name: Create image tag
+        run: |
+          echo ::set-env name=IMAGE_VERSION::$(git rev-list --count $GITHUB_SHA) 
+          echo ::set-env name=IMAGE::${IMAGE_NAME}:${IMAGE_VERSION}
+          echo ${IMAGE}
       - name: Install dependencies
         run: |
           echo $IMAGE_VERSION
