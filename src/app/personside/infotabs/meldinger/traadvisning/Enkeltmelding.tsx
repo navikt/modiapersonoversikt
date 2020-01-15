@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRef, useState } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import { Element, EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
+import { Element, EtikettLiten } from 'nav-frontend-typografi';
 import {
     erDelsvar,
     erJournalfort,
@@ -58,10 +58,6 @@ const StyledLi = styled.li`
         }
     }
 `;
-const SkrevetAvTekst = styled(Normaltekst)`
-    margin-right: 0.3rem !important;
-`;
-
 const SkrevetAvStyle = styled.div`
     display: flex;
 `;
@@ -157,11 +153,11 @@ export function SkrevetAv({ melding, rule }: { melding: Melding; rule?: Rule }) 
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }
+    const avsender = `Skrevet av ${melding.skrevetAvTekst}`;
     return (
         <SkrevetAvStyle>
-            <SkrevetAvTekst>Skrevet av:</SkrevetAvTekst>
             <Tekstomrade className={'typo-normal'} rules={rule && [rule]}>
-                {melding.skrevetAvTekst}
+                {avsender}
             </Tekstomrade>
         </SkrevetAvStyle>
     );
