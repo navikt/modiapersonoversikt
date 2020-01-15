@@ -1,20 +1,24 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import { datoSynkende, formatterDatoMedMaanedsnavn } from '../../../../../utils/dateUtils';
+import styled from 'styled-components/macro';
+import { datoSynkende, formatterDatoMedMaanedsnavn, formatterDatoTid } from '../../../../../utils/dateUtils';
 import EnkeltMelding from './Enkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
-import { Flatknapp } from 'nav-frontend-knapper';
+import { Hovedknapp } from 'nav-frontend-knapper';
 import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
-import { eldsteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
+import { eldsteMelding, meldingstittel, nyesteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
+import { useEffect } from 'react';
+import { loggEvent } from '../../../../../utils/frontendLogger';
+import { Printer } from '../../../../../utils/UsePrinter';
 interface Props {
     valgtTraad: Traad;
     sokeord: string;
+    printer: Printer;
 }
 
 const VisningStyle = styled.section`
@@ -49,7 +53,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         return (
             <AlertStripeInfo>
                 Henvendelsen er avsluttet uten å svare bruker av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
-                {melding.ferdigstiltDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltDato)}
+                {melding.ferdigstiltUtenSvarDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltUtenSvarDato)}
             </AlertStripeInfo>
         );
     }
@@ -79,7 +83,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     if (KanBesvaresMeldingstyper.includes(melding.meldingstype)) {
         return (
             <KnappWrapper>
-                <Flatknapp onClick={handleNyMelding}>Ny melding</Flatknapp>
+                <Hovedknapp onClick={handleNyMelding}>Ny melding</Hovedknapp>
             </KnappWrapper>
         );
     } else {
@@ -88,9 +92,18 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 }
 
 function TraadVisning(props: Props) {
+    useEffect(() => {
+        loggEvent('VisTraad', 'Meldinger');
+    }, [props.valgtTraad]);
+
+    const sisteMelding = nyesteMelding(props.valgtTraad);
+
     return (
         <VisningStyle>
             <Topplinje valgtTraad={props.valgtTraad} />
+            <h3 className="sr-only" aria-live="polite">
+                {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
+            </h3>
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>
     );

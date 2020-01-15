@@ -3,7 +3,7 @@ import Utbetalinger from './Utbetalinger';
 import { UtbetalingerResponse } from '../../../../models/utbetalinger';
 import Filter from './filter/Filter';
 import theme from '../../../../styles/personOversiktTheme';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { loggEvent } from '../../../../utils/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';
@@ -14,7 +14,7 @@ import { useOnMount } from '../../../../utils/customHooks';
 import { erIE11, erModiabrukerdialog, erNyePersonoversikten } from '../../../../utils/erNyPersonoversikt';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
-const UtbetalingerArticle = styled.article`
+const UtbetalingerStyle = styled.div`
     ${scrollBarContainerStyle(theme.media.utbetalinger.minWidth)};
     @media (min-width: ${theme.media.utbetalinger.minWidth}) {
         ${erNyePersonoversikten() &&
@@ -47,7 +47,7 @@ function UtbetalingerContainer() {
 
     return (
         <ErrorBoundary boundaryName={'UtbetalingerContainer'}>
-            <UtbetalingerArticle role="region" aria-label="Utbetalinger">
+            <UtbetalingerStyle>
                 {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Utbetalinger" />}
                 <ScrollBar keepScrollId="utbetalinger-filter">
                     <Arenalenke />
@@ -65,7 +65,7 @@ function UtbetalingerContainer() {
                         </RestResourceConsumer>
                     </UtbetalingerSection>
                 </ScrollBar>
-            </UtbetalingerArticle>
+            </UtbetalingerStyle>
         </ErrorBoundary>
     );
 }

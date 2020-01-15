@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Route, withRouter } from 'react-router';
+import { Route } from 'react-router';
 import StartBildeLayout from './StartBildeLayout';
 import HentOppgaveKnapp from '../personside/dialogpanel/HentOppgaveKnapp';
 import SetFnrIRedux from '../PersonOppslagHandler/SetFnrIRedux';
 import StartbildeDevKnapper from './StartbildeDevKnapper';
 import { paths } from '../routes/routing';
+import PersonSokInput from './PersonSokInput';
 
 function Startbilde() {
     return (
@@ -12,8 +13,9 @@ function Startbilde() {
             <SetFnrIRedux fødselsnummer="" />
             <Route path={`${paths.basePath}/dev`} component={StartbildeDevKnapper} />
             <HentOppgaveKnapp />
+            <PersonSokInput />
         </StartBildeLayout>
     );
 }
 
-export default withRouter(Startbilde);
+export default Startbilde;

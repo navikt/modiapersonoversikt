@@ -5,12 +5,18 @@ import Oversikt from './Oversikt';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
 import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
+import { useOnMount } from '../../../../../utils/customHooks';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface Props {
     foreldrepenger: Foreldrepengerettighet | null;
 }
 
 function Foreldrepenger({ foreldrepenger }: Props) {
+    useOnMount(() => {
+        loggEvent('Visning', 'Foreldrepenger');
+    });
+
     if (foreldrepenger === null) {
         return <AlertStripeAdvarsel>Finner ikke foreldrepengerettighet</AlertStripeAdvarsel>;
     }

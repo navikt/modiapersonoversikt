@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { EffectCallback, RefObject, useCallback, useEffect, useRef } from 'react';
+import { DependencyList, EffectCallback, RefObject, useCallback, useEffect, useRef } from 'react';
 import { EventListener, runIfEventIsNotInsideRef } from './reactRefUtils';
 import { useSelector } from 'react-redux';
 import { AppState } from '../redux/reducers';
-import { RestEndepunkter } from '../redux/restReducers/restReducers';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
     useOnMount(() => {
@@ -18,6 +17,18 @@ export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
 
 export function useOnMount(effect: EffectCallback) {
     useEffect(effect, []);
+}
+
+export function useOnUpdate(effect: EffectCallback, deps: DependencyList) {
+    const firstMount = useRef(true);
+
+    useEffect(() => {
+        if (firstMount.current) {
+            firstMount.current = false;
+        } else {
+            return effect();
+        }
+    }, [deps, effect]);
 }
 
 export function useClickOutside<T extends HTMLElement>(ref: RefObject<T>, callback: EventListener) {
@@ -48,10 +59,6 @@ export function usePrevious<T>(value: T) {
 
 export function useAppState<T>(selector: (state: AppState) => T) {
     return useSelector((state: AppState) => selector(state));
-}
-
-export function useRestResource<T>(selector: (resources: RestEndepunkter) => T) {
-    return useAppState(state => selector(state.restResources));
 }
 
 export function useFødselsnummer() {

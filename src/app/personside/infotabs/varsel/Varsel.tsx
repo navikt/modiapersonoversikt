@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { Varsel as VarselModell, Varseltype } from '../../../../models/varsel';
 import { datoSynkende } from '../../../../utils/dateUtils';
-import { Bold } from '../../../../components/common-styled-components';
 import VarselMeldinger from './varselDetaljer/VarselMeldinger';
-import styled from 'styled-components';
-import { Normaltekst } from 'nav-frontend-typografi';
+import styled from 'styled-components/macro';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
 import VisMerChevron from '../../../../components/VisMerChevron';
@@ -12,6 +11,9 @@ import { formaterDato } from '../../../../utils/stringFormatting';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisVarsel } from '../../../../redux/varsler/varslerReducer';
+import { loggError } from '../../../../utils/frontendLogger';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
 const Style = styled.li`
     ${theme.hvittPanel};
@@ -58,11 +60,24 @@ const Kommaliste = styled.ul`
     }
 `;
 
+function getVarselTekst(varsel: VarselModell) {
+    const varselTekst = Varseltype[varsel.varselType];
+
+    if (!varselTekst) {
+        const ukjentNøkkelTekst = 'Ukjent nøkkel: ' + varsel.varselType;
+        loggError(Error(ukjentNøkkelTekst));
+        return ukjentNøkkelTekst;
+    }
+
+    return varselTekst;
+}
+
 function Varsel({ varsel }: { varsel: VarselModell }) {
     const open = useAppState(state => state.varsler.aapneVarsler).includes(varsel);
     const dispatch = useDispatch();
     const setOpen = (open: boolean) => dispatch(toggleVisVarsel(varsel, open));
     const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende(melding => melding.utsendingsTidspunkt));
+    const tittelId = useRef(guid());
 
     const toggleOpen = () => setOpen(!open);
 
@@ -77,26 +92,28 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
         </Kommaliste>
     );
 
-    const varselTekst = Varseltype[varsel.varselType] || 'Ukjent nøkkel: ' + varsel.varselType;
+    const varselTekst = getVarselTekst(varsel);
     return (
-        <Style aria-label={varselTekst}>
-            <HeaderStyle onClick={toggleOpen}>
-                <Normaltekst>{formaterDato(varsel.mottattTidspunkt)}</Normaltekst>
-                <Normaltekst>
-                    <Bold>{varselTekst}</Bold>
-                </Normaltekst>
-                {kommunikasjonskanaler}
+        <Style>
+            <article aria-describedby={tittelId.current}>
+                <HeaderStyle onClick={toggleOpen}>
+                    <Normaltekst>{formaterDato(varsel.mottattTidspunkt)}</Normaltekst>
+                    <Element id={tittelId.current} tag="h4">
+                        {varselTekst}
+                    </Element>
+                    {kommunikasjonskanaler}
 
-                <VisMerChevron
-                    focusOnRelativeParent={true}
-                    onClick={toggleOpen}
-                    open={open}
-                    title={(open ? 'Skul' : 'Vis') + ' meldinger'}
-                />
-            </HeaderStyle>
-            <UnmountClosed isOpened={open}>
-                <VarselMeldinger sortertMeldingsliste={sortertMeldingsliste} />
-            </UnmountClosed>
+                    <VisMerChevron
+                        focusOnRelativeParent={true}
+                        onClick={toggleOpen}
+                        open={open}
+                        title={(open ? 'Skul' : 'Vis') + ' meldinger'}
+                    />
+                </HeaderStyle>
+                <UnmountClosed isOpened={open}>
+                    <VarselMeldinger sortertMeldingsliste={sortertMeldingsliste} />
+                </UnmountClosed>
+            </article>
         </Style>
     );
 }

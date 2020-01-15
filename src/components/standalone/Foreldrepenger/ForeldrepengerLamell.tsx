@@ -7,7 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 import { mockEnabled } from '../../../api/config';
 import { setupMock } from '../../../mock/setup-mock';
 import ForeldrepengerLaster from './ForeldrepengerLaster';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../styles/personOversiktTheme';
 import SetFnrIRedux from '../../../app/PersonOppslagHandler/SetFnrIRedux';
 

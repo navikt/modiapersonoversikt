@@ -1,7 +1,7 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Undertittel } from 'nav-frontend-typografi';
-import theme from '../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
 import { isLoading, isReloading, RestResource } from '../../../../rest/utils/restResource';
@@ -17,6 +17,9 @@ import { Feilmelding } from '../../../../utils/Feilmelding';
 import { formaterDato, formaterTilISO8601Date } from '../../../../utils/stringFormatting';
 import moment from 'moment';
 import { isValidDate } from '../../../../utils/dateUtils';
+import { loggEvent } from '../../../../utils/frontendLogger';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
 const DatoVelgerWrapper = styled.div`
     > * {
@@ -24,9 +27,9 @@ const DatoVelgerWrapper = styled.div`
     }
 `;
 
-const DatoKomponentWrapper = styled.div`
+const StyledArticle = styled.article`
     ${theme.hvittPanel};
-    padding: ${theme.margin.px20};
+    padding: ${pxToRem(15)};
 `;
 
 const TittelWrapper = styled.div`
@@ -96,6 +99,7 @@ function DatoInputs(props: Props) {
         if (oppfølgingLastes || !isValidDate(fra) || !isValidDate(til)) {
             return;
         }
+        loggEvent('SøkNyPeriode', 'Oppfølging');
         props.reloadDetaljertOppfolging();
     };
 
@@ -128,13 +132,15 @@ function DatoInputs(props: Props) {
 }
 
 function OppfolgingDatoPanel(props: Props) {
+    const headerId = useRef(guid());
+
     return (
-        <DatoKomponentWrapper>
+        <StyledArticle aria-describedby={headerId.current}>
             <TittelWrapper>
-                <Undertittel>Oppfølging og ytelser vises for perioden:</Undertittel>
+                <Undertittel id={headerId.current}>Oppfølging og ytelser vises for perioden:</Undertittel>
             </TittelWrapper>
             <DatoInputs {...props} />
-        </DatoKomponentWrapper>
+        </StyledArticle>
     );
 }
 
@@ -152,7 +158,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(OppfolgingDatoPanel);
+export default connect(mapStateToProps, mapDispatchToProps)(OppfolgingDatoPanel);

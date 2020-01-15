@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { datoStigende, datoSynkende } from '../../../../utils/dateUtils';
 import { formaterDato } from '../../../../utils/stringFormatting';
@@ -48,12 +48,7 @@ function UtbetalingerPanel(props: { utbetalinger: UtbetalingerResponse } & Props
         .filter(utbetaling => !datoEldreEnn30Dager(utbetaling));
 
     if (filtrertOgSorterteUtbetalinger.length === 0) {
-        return (
-            <AlertStripeInfo>
-                Det finnes ikke noen utbetalinger for de siste 30 dagene. Trykk på utbetalinger for å utvide
-                søkeperioden.
-            </AlertStripeInfo>
-        );
+        return <AlertStripeInfo>Det finnes ikke noen utbetalinger for de siste 30 dagene</AlertStripeInfo>;
     }
 
     return (

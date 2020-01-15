@@ -1,15 +1,14 @@
-import { DokumentMetadata } from '../../../../../models/saksoversikt/dokumentmetadata';
+import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { Behandlingskjede, Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import moment from 'moment';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
-import { useRestResource } from '../../../../../utils/customHooks';
 import { useMemo } from 'react';
-import { hasData } from '../../../../../rest/utils/restResource';
+import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 
 export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
     const alleBehandlingskjeder = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.behandlingskjeder);
-    const alleDokumentmetadata = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.dokumentMetadata);
+    const alleJournalposter = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.dokumentMetadata);
     const alleTilhørendeSaker = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.tilhørendeSaker);
 
     return {
@@ -17,7 +16,7 @@ export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
         temakode: sakstemakodeAlle,
         harTilgang: true,
         behandlingskjeder: alleBehandlingskjeder,
-        dokumentMetadata: alleDokumentmetadata,
+        dokumentMetadata: alleJournalposter,
         tilhørendeSaker: alleTilhørendeSaker,
         erGruppert: false,
         feilkoder: []
@@ -26,7 +25,7 @@ export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
 
 export function useAgregerteSaker(): Sakstema | undefined {
     const sakstemaResource = useRestResource(resources => resources.sakstema);
-    return useMemo(() => (hasData(sakstemaResource) ? aggregertSakstema(sakstemaResource.data.resultat) : undefined), [
+    return useMemo(() => (sakstemaResource.data ? aggregertSakstema(sakstemaResource.data.resultat) : undefined), [
         sakstemaResource
     ]);
 }
@@ -54,8 +53,8 @@ export function hentDatoForSisteHendelse(sakstema: Sakstema): Date {
     return dateBehandling > dateDokumenter ? dateBehandling : dateDokumenter;
 }
 
-function hentSenesteDatoForDokumenter(dokumentmetadata: DokumentMetadata[]) {
-    return dokumentmetadata.reduce((acc: Date, dok: DokumentMetadata) => {
+function hentSenesteDatoForDokumenter(journalposter: Journalpost[]) {
+    return journalposter.reduce((acc: Date, dok: Journalpost) => {
         return acc > saksdatoSomDate(dok.dato) ? acc : saksdatoSomDate(dok.dato);
     }, new Date(0));
 }

@@ -19,7 +19,7 @@ export function getMockVeilederRoller(): VeilederRoller {
         roller.push(SaksbehandlerRoller.EndreKontaktAdresse);
     }
 
-    if (vektetSjanse(faker, 0.8)) {
+    if (vektetSjanse(faker, 0.9)) {
         roller.push(SaksbehandlerRoller.HentOppgave);
     }
 

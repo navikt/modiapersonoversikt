@@ -14,9 +14,11 @@ interface Props {
 class UtbetaltTilValg extends React.Component<Props> {
     constructor(props: Props) {
         super(props);
-        this.props.onChange({
-            utbetaltTil: [...this.getUnikeMottakere(props.utbetalinger)]
-        });
+        if (props.filterState.utbetaltTil.length === 0) {
+            this.props.onChange({
+                utbetaltTil: [...this.getUnikeMottakere(props.utbetalinger)]
+            });
+        }
     }
 
     componentDidUpdate(prevProps: Props) {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
 import Sykepengertilfellet from './sykepengertilfellet/Sykepengertilfellet';
@@ -12,6 +12,8 @@ import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHid
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
+import { useOnMount } from '../../../../../utils/customHooks';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface Props {
     sykepenger: ISykepenger;
@@ -39,6 +41,10 @@ const Flex = styled.div`
 `;
 
 function Sykepenger({ sykepenger }: Props) {
+    useOnMount(() => {
+        loggEvent('Visning', 'Sykepenger');
+    });
+
     const aktuellSykmelding = sykepenger.sykmeldinger.sort(datoSynkende(sykmelding => sykmelding.sykmeldt.til))[0];
     return (
         <ErrorBoundary boundaryName="Sykepenger">

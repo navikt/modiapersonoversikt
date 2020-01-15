@@ -1,6 +1,6 @@
 import { AlertStripeAdvarsel, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 export enum Resultat {
     VELLYKKET = 'VELLYKKET',

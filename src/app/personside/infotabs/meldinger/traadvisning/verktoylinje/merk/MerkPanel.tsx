@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,11 +29,13 @@ import {
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
-import { useAppState, useRestResource } from '../../../../../../../utils/customHooks';
+import { useAppState } from '../../../../../../../utils/customHooks';
 import { hasData, isPending } from '@nutgaard/use-async';
 import { FetchResult } from '@nutgaard/use-fetch';
 import { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
+import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
+import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
 
 interface Props {
     lukkPanel: () => void;
@@ -122,8 +124,8 @@ function MerkPanel(props: Props) {
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
 
     const reloadMeldinger = tråderResource.actions.reload;
-    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
-    const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
+    const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
 
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
@@ -136,7 +138,8 @@ function MerkPanel(props: Props) {
 
     const saksbehandlerKanSlette =
         !isPending(saksbehandlerKanSletteFetch) &&
-        hasData(saksbehandlerKanSletteFetch) && saksbehandlerKanSletteFetch.data;
+        hasData(saksbehandlerKanSletteFetch) &&
+        saksbehandlerKanSletteFetch.data;
     const visSletting =
         saksbehandlerKanSlette &&
         (erMeldingstypeSamtalereferat(melding.meldingstype) || erMeldingSpørsmål(melding.meldingstype));
@@ -147,7 +150,7 @@ function MerkPanel(props: Props) {
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
-        if (!valgtOperasjon) {
+        if (!valgtOperasjon || submitting) {
             return;
         }
         setSubmitting(true);

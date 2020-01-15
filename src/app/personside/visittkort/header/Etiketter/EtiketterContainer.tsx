@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Person, PersonRespons } from '../../../../../models/person/person';
 import Etiketter from './Etiketter';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
 

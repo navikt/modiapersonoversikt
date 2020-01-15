@@ -1,5 +1,5 @@
 import FormValidator, { Valideringsregel } from '../../utils/forms/FormValidator';
-import { removeWhitespaceAndDot, validerKontonummer } from '../brukerprofil/kontonummer/kontonummerUtils';
+import { removeWhitespaceAndDot, validerKontonummer } from './kontonummer/kontonummerUtils';
 import { PersonSokFormState } from './PersonsokSkjema';
 import { erTall, erTomStreng } from '../../utils/string-utils';
 

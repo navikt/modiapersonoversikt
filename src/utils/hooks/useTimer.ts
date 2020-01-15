@@ -9,5 +9,5 @@ export function useTimer() {
         timer.current.startTimer();
     });
 
-    return timer.current.getTime;
+    return () => timer.current.getTime();
 }

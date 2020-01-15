@@ -23,7 +23,7 @@ function Utbetaling(props: Props) {
     const erValgtIUrl = dyplenker.utbetaling.erValgt(utbetaling);
     if (enkeltYtelse) {
         const ytelse = utbetaling.ytelser[0];
-        return <EnkelUtbetaling utbetaling={utbetaling} ytelse={ytelse} valgt={erValgtIUrl} />;
+        return <EnkelUtbetaling utbetaling={utbetaling} ytelse={ytelse} erValgtIUrl={erValgtIUrl} />;
     } else {
         return <SammensattUtbetaling utbetaling={utbetaling} erValgtIUrl={erValgtIUrl} />;
     }

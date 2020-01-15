@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { ReactNode, useContext, useState } from 'react';
-import styled from 'styled-components';
+import { ReactNode, useRef, useState } from 'react';
+import styled from 'styled-components/macro';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import theme from '../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Link, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
 import { paths } from '../../../routes/routing';
 import { INFOTABS } from '../InfoTabEnum';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
-import { InfotabsFokusContext } from '../InfoTabs';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     component: React.ComponentType<{ setHeaderContent: (content: ReactNode) => void }>;
@@ -18,18 +18,20 @@ interface Props {
     hurtigtast: string;
 }
 
-const PanelStyle = styled.section`
+const PanelStyle = styled.article`
     ${theme.hvittPanel};
+    padding-bottom: 0.3rem;
 `;
 
 const OverskriftStyle = styled.div`
     display: flex;
-    background-color: ${theme.color.navLysGra};
+    background-color: white;
     border-top-left-radius: ${theme.borderRadius.layout};
     border-top-right-radius: ${theme.borderRadius.layout};
     justify-content: space-between;
     padding: ${theme.margin.px10};
     cursor: pointer;
+    border-bottom: ${theme.color.navGra40} ${pxToRem(2)} solid;
     &:hover {
         ${theme.hover};
     }
@@ -52,19 +54,23 @@ const CustomContent = styled.div`
     padding: 0 1rem;
 `;
 
+const StyledUndertittel = styled(Undertittel)`
+    font-weight: bold !important;
+    font-size: ${pxToRem(18)} !important;
+`;
+
 function Oversiktskomponent(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath.toLowerCase()}/`;
     const [customContent, setCustomContent] = useState<ReactNode>(null);
     const [redirect, setRedirect] = useState(false);
-    const fokusContext = useContext(InfotabsFokusContext);
+    const headerId = useRef(guid());
 
     if (redirect) {
         return <Redirect to={path} />;
     }
 
     const handleClick = () => {
-        fokusContext();
         setRedirect(true);
     };
 
@@ -72,9 +78,11 @@ function Oversiktskomponent(props: Props) {
 
     return (
         <ErrorBoundary boundaryName={'Oversikt ' + props.tittel}>
-            <PanelStyle>
+            <PanelStyle aria-describedby={headerId.current}>
                 <OverskriftStyle title={'Alt + ' + props.hurtigtast} onClick={handleClick}>
-                    <Undertittel tag="h3">{props.tittel}</Undertittel>
+                    <StyledUndertittel tag="h3" id={headerId.current}>
+                        {props.tittel}
+                    </StyledUndertittel>
                     <CustomContent>{customContent}</CustomContent>
                     <StyledLink className="lenke" to={path}>
                         <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>

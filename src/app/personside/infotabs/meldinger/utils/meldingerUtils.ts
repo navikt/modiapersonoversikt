@@ -4,6 +4,7 @@ import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../uti
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import { Temagruppe, temagruppeTekst, TemaKommunaleTjenester, TemaPlukkbare } from '../../../../../models/Temagrupper';
+
 export function nyesteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
 }
@@ -49,7 +50,18 @@ export function erKommunaleTjenester(temagruppe: Temagruppe | null) {
 }
 
 export function erMeldingFraBruker(meldingstype: Meldingstype) {
-    return [Meldingstype.SPORSMAL_SKRIFTLIG, Meldingstype.SvarSblInngående].includes(meldingstype);
+    return [Meldingstype.SPORSMAL_SKRIFTLIG, Meldingstype.SVAR_SBL_INNGAAENDE].includes(meldingstype);
+}
+
+export function erUbesvartHenvendelseFraBruker(traad: Traad) {
+    if (traad.meldinger.length > 1) {
+        return false;
+    }
+    const melding = traad.meldinger[0];
+    if (!erMeldingFraBruker(melding.meldingstype)) {
+        return false;
+    }
+    return !melding.erFerdigstiltUtenSvar;
 }
 
 export function erMeldingFraNav(meldingstype: Meldingstype) {
@@ -77,6 +89,7 @@ export function erMeldingSpørsmål(meldingstype: Meldingstype) {
 export function erKontorsperret(traad: Traad): boolean {
     return !!eldsteMelding(traad).kontorsperretEnhet;
 }
+
 export function kanTraadJournalfores(traad: Traad): boolean {
     const nyesteMeldingITraad = nyesteMelding(traad);
     return (
@@ -142,7 +155,7 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
                     const fritekst = melding.fritekst;
                     const tittel = meldingstittel(melding);
                     const saksbehandler = melding.skrevetAvTekst;
-                    const datotekst = formatterDatoTid(melding.opprettetDato);
+                    const datotekst = getFormattertMeldingsDato(melding);
                     const sokbarTekst = (fritekst + tittel + saksbehandler + datotekst).toLowerCase();
                     return words.every(word => sokbarTekst.includes(word.toLowerCase()));
                 });
@@ -161,6 +174,7 @@ export function filtrerBortVarsel(traad: Traad): boolean {
     }
     return !erVarselMelding(nyesteMelding(traad).meldingstype);
 }
+
 function removeWhiteSpaces(text: string) {
     return text.replace(/\s+/g, '');
 }
@@ -171,5 +185,9 @@ export function erSammefritekstSomNyesteMeldingITraad(fritekst: string, traad?: 
     }
     const fritekstFraNyesteMeldingITraad = removeWhiteSpaces(nyesteMelding(traad).fritekst.toLowerCase());
     const fritekstFraMelding = removeWhiteSpaces(fritekst.toLowerCase());
-    return fritekstFraNyesteMeldingITraad === fritekstFraMelding;
+    return fritekstFraNyesteMeldingITraad.includes(fritekstFraMelding);
+}
+
+export function getFormattertMeldingsDato(melding: Melding) {
+    return formatterDatoTid(melding?.ferdigstiltDato || melding.opprettetDato);
 }

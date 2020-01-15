@@ -4,13 +4,13 @@ import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import SaksoversiktLamell from './SaksoversiktLamell';
 import { aremark } from '../../mock/person/aremark';
 import VisittkortStandAlone from './VisittKort';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import BrukerprofilStandalone from './Brukerprofil';
 import UtbetalingsLamell from './UtbetalingsLamell';
 import { RouteComponentProps } from 'react-router';
 import PleiepengerLamell from './Pleiepenger/PleiepengerLamell';
 import ForeldrepengerLamell from './Foreldrepenger/ForeldrepengerLamell';
-import SaksoversiktMicroFrontend from '../../app/personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
+import SakerFullscreen from '../../app/personside/infotabs/saksoversikt/SakerFullscreen';
 import theme from '../../styles/personOversiktTheme';
 import { moss } from '../../mock/person/moss';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -32,12 +32,14 @@ import TidligereMeldinger from '../../app/personside/dialogpanel/fortsettDialog/
 import { statiskTraadMock } from '../../mock/meldinger/statiskTraadMock';
 import BesvarFlere from '../../app/personside/infotabs/meldinger/traadliste/besvarflere/BesvarFlere';
 import { getMockTraader } from '../../mock/meldinger/meldinger-mock';
+import StandardTekster from '../../app/personside/dialogpanel/sendMelding/standardTekster/StandardTekster';
 
 enum Komponenter {
     Visittkort,
+    Standardtekster,
     Oppfølging,
     Saksoversikt,
-    SaksoversiktMCF,
+    SaksoversiktEgetVindu,
     Brukerprofil,
     Utbetalinger,
     Pleiepenger,
@@ -81,10 +83,10 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
     switch (props.valgtTab) {
         case Komponenter.Saksoversikt:
             return <SaksoversiktLamell fødselsnummer={props.fnr} />;
-        case Komponenter.SaksoversiktMCF:
+        case Komponenter.SaksoversiktEgetVindu:
             return (
                 <Provider store={store}>
-                    <SaksoversiktMicroFrontend fødselsnummer={props.fnr} />
+                    <SakerFullscreen fødselsnummer={props.fnr} />
                 </Provider>
             );
         case Komponenter.Brukerprofil:
@@ -121,6 +123,12 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             );
         case Komponenter.TraadVisningDialogpanel:
             return <TidligereMeldinger traad={statiskTraadMock} />;
+        case Komponenter.Standardtekster:
+            return (
+                <TestProvider>
+                    <StandardTekster appendTekst={tekst => alert(tekst)} />
+                </TestProvider>
+            );
         case Komponenter.BesvarFlere:
             return (
                 <TestProvider>

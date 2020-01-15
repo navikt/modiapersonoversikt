@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mockEnabled } from '../api/config';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 
 const DemoStyle = styled.div`
@@ -13,7 +13,7 @@ const DemoStyle = styled.div`
     background-color: red;
     color: white;
     width: 20rem;
-    opacity: 0.7;
+    opacity: 0.5;
     filter: drop-shadow(0 1rem 1rem #0008);
     z-index: 1000;
     pointer-events: none;

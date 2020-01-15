@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { LenkeKnapp } from './common-styled-components';
 import { Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import NavFrontendChevron from 'nav-frontend-chevron';
 
 const Luft = styled.span`

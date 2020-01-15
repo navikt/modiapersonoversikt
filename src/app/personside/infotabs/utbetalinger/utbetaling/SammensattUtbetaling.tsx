@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { formaterNOK, getGjeldendeDatoForUtbetaling, getNettoSumYtelser } from '../utils/utbetalingerUtils';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import DelUtbetaling from './DelUtbetaling';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { useDispatch } from 'react-redux';
@@ -22,7 +22,7 @@ interface Props {
 }
 
 const SammensattUtbetalingStyle = styled.li`
-    padding: ${theme.margin.px20};
+    padding: ${pxToRem(15)};
     > *:nth-child(3) {
         margin-bottom: 0.8rem;
     }
@@ -58,6 +58,7 @@ function SammensattUtbetaling(props: Props) {
     const PrinterWrapper = printer.printerWrapper;
     const dispatch = useDispatch();
     const ekspanderYtelse = (ytelse: Ytelse) => dispatch(setEkspanderYtelse(ytelse, true));
+
     useOnMount(() => {
         if (props.erValgtIUrl) {
             utbetalingRef.current && utbetalingRef.current.focus();
@@ -94,12 +95,8 @@ function SammensattUtbetaling(props: Props) {
                         {dato} / <Bold>{utbetaling.status}</Bold>
                     </Normaltekst>
                     <SpaceBetween>
-                        <Normaltekst tag={'h4'}>
-                            <Bold>Diverse ytelser</Bold>
-                        </Normaltekst>
-                        <Normaltekst>
-                            <Bold>{sum}</Bold>
-                        </Normaltekst>
+                        <Element tag={'h4'}>Diverse ytelser</Element>
+                        <Element>{sum}</Element>
                     </SpaceBetween>
                     <FlexEnd>
                         <Normaltekst>{forfallsInfo}</Normaltekst>

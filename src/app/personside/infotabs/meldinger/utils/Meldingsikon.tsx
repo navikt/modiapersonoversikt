@@ -6,11 +6,11 @@ import OppgaveIkon from '../../../../../svg/OppgaveIkon';
 import DokumentIkon from '../../../../../svg/DokumentIkon';
 import MonologIkon from '../../../../../svg/MonologIkon';
 import DialogIkon from '../../../../../svg/DialogIkon';
-import styled, { css } from 'styled-components';
-import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
-import { UndertekstBold } from 'nav-frontend-typografi';
-import { erMeldingFraBruker, erMonolog, nyesteMelding } from './meldingerUtils';
+import styled from 'styled-components/macro';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
+import { erMonolog, erUbesvartHenvendelseFraBruker, nyesteMelding } from './meldingerUtils';
 import BrevIkon from '../../../../../svg/BrevIkon';
+import { Undertekst } from 'nav-frontend-typografi';
 
 interface MeldingsikonProps {
     traad: Traad;
@@ -19,22 +19,31 @@ interface MeldingsikonProps {
 const Styling = styled.span<{ visNumberBadge: boolean }>`
     position: relative;
     svg {
-        height: ${theme.margin.px30};
-        width: ${theme.margin.px30};
-        ${props =>
-            props.visNumberBadge &&
-            css`
-                clip-path: polygon(0 0, 79% 0, 79% 46%, 100% 46%, 100% 100%, 0 100%);
-            `};
+        height: ${pxToRem(25)};
+        width: ${pxToRem(25)};
+        opacity: 0.4;
     }
 `;
 
-const NumberBadge = styled(UndertekstBold)`
+const NumberBadge = styled(Undertekst)`
     position: absolute;
     top: ${pxToRem(-3)};
-    right: ${pxToRem(-4)};
+    right: ${pxToRem(-8)};
+    background-color: ${theme.color.navGra60};
+    color: white;
+    height: 1.1rem;
+    width: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    padding: 0 0.1rem;
+`;
+
+const StyledBrevIkon = styled(BrevIkon)`
+    opacity: 1 !important;
+    g {
+        fill: ${theme.color.navRod} !important;
+    }
 `;
 
 function Ikon({ props }: { props: MeldingsikonProps }) {
@@ -50,10 +59,8 @@ function Ikon({ props }: { props: MeldingsikonProps }) {
         case Meldingstype.DOKUMENT_VARSEL:
             return <DokumentIkon />;
         default: {
-            const erUbesvartMeldingFraBruker =
-                erMonolog(props.traad) && erMeldingFraBruker(props.traad.meldinger[0].meldingstype);
-            if (erUbesvartMeldingFraBruker) {
-                return <BrevIkon />;
+            if (erUbesvartHenvendelseFraBruker(props.traad)) {
+                return <StyledBrevIkon alt="Ubesvart henvendelse" />;
             }
             if (erMonolog(props.traad)) {
                 return <MonologIkon />;
@@ -72,7 +79,7 @@ function Meldingsikon(props: MeldingsikonProps) {
             <Ikon props={props} />
             {visNumberBadge && (
                 <NumberBadge>
-                    {antallMeldinger} <span className="sr-only">meldinger</span>
+                    {antallMeldinger} <span className="sr-only">tekster</span>
                 </NumberBadge>
             )}
         </Styling>

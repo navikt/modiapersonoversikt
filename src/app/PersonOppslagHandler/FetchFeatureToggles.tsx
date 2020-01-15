@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { fetchAllFeatureToggles } from '../../redux/restReducers/featureToggles';
 import { useEffect } from 'react';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
-import { useRestResource } from '../../utils/customHooks';
+import { useRestResource } from '../../rest/consumer/useRestResource';
 
 export function useFetchFeatureTogglesOnNewFnr() {
     const dispatch = useDispatch();

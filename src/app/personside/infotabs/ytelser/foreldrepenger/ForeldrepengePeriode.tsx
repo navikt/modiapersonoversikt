@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepenger';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import DescriptionList, {
     DescriptionListEntries,
@@ -14,8 +14,7 @@ import {
     prosentEllerNull
 } from '../../../../../utils/stringFormatting';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
-import { GråttPanel } from '../../../../../components/common-styled-components';
-import { Undertittel } from 'nav-frontend-typografi';
+import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 
 interface Props {
     periode: Foreldrepengerperiode;
@@ -52,10 +51,9 @@ function ForeldrepengePeriode({ periode, periodenr }: Props) {
     return (
         <YtelserPeriode tittel={`Periode ${periodenr} - ${formaterDato(periode.foreldrepengerFom)}`}>
             <Wrapper>
-                <GråttPanel>
-                    <Undertittel>Om foreldrepengeperioden</Undertittel>
+                <YtelserInfoGruppe tittel="Om foreldrepengeperioden">
                     <DescriptionList entries={entries} />
-                </GråttPanel>
+                </YtelserInfoGruppe>
                 <KommendeUtbetalinger kommendeUtbetalinger={periode.kommendeUtbetalinger} />
             </Wrapper>
         </YtelserPeriode>

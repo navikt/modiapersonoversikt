@@ -11,6 +11,7 @@ import {
     validerPersonsokSkjema
 } from './personsokValidator';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { loggPersonsok } from './loggPersonsok';
 
 export type PersonSokFormState = {
     fornavn: string;
@@ -146,6 +147,7 @@ function PersonsokSkjema() {
         if (valideringsResultat.formErGyldig) {
             settValideringsresultat(getValidPersonSokState());
             const request: PersonsokRequest = lagRequest(formState);
+            loggPersonsok(request);
             dispatch(personsokResource.actions.post(request));
         } else {
             settValideringsresultat(valideringsResultat);

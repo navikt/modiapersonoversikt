@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useFødselsnummer, useOnMount, useRestResource } from '../../../../utils/customHooks';
+import { useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/frontendLogger';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { useState } from 'react';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 interface NotFinishedOpprettHenvendelse {
     success: false;
@@ -24,7 +25,7 @@ type OpprettHenvendelseReturns = NotFinishedOpprettHenvendelse | FinishedOpprett
 function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
     const [error, setError] = useState(false);
     const [response, setResponse] = useState<OpprettHenvendelseResponse | undefined>();
-    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const dispatch = useDispatch();
     const fnr = useFødselsnummer();
 

@@ -16,6 +16,10 @@ export function lagOppgaveRequest(
     const temakode = valgtTema ? valgtTema.kode : 'UKJENT';
     const valgtOppgavetype = form.state.valgtOppgavetype;
 
+    if (!form.state.valgtPrioritet) {
+        throw Error('Valgt prioritet er ikke valgt');
+    }
+
     return {
         fnr: fodselsnummer,
         valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
@@ -27,7 +31,7 @@ export function lagOppgaveRequest(
         underkategoriKode: form.state.valgtUnderkategori && form.state.valgtUnderkategori.kode,
         brukerid: props.gjeldendeBrukerFnr,
         oppgaveTypeKode: valgtOppgavetype ? valgtOppgavetype.kode : 'UKJENT',
-        prioritetKode: form.state.valgtPrioritet + '_' + temakode,
+        prioritetKode: form.state.valgtPrioritet,
         ansvarligEnhetId: form.state.valgtEnhet!.enhetId
     };
 }

@@ -1,25 +1,31 @@
 import * as React from 'react';
 import { Traad } from '../../../../../../models/meldinger/meldinger';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
 import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
-import { createRef, useCallback, useEffect } from 'react';
+import { createRef, useCallback, useEffect, useRef } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
+import { useFødselsnummer, usePrevious } from '../../../../../../utils/customHooks';
+import { meldingstittel, nyesteMelding } from '../../utils/meldingerUtils';
+import usePrinter from '../../../../../../utils/UsePrinter';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { LenkeKnapp } from '../../../../../../components/common-styled-components';
 import { apiBaseUri } from '../../../../../../api/config';
-import { useFødselsnummer, usePrevious } from '../../../../../../utils/customHooks';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { meldingstittel, nyesteMelding } from '../../utils/meldingerUtils';
+import PrintKnapp from '../../../../../../components/PrintKnapp';
+import MeldingerPrintMarkup from '../../../../../../utils/MeldingerPrintMarkup';
+import useFeatureToggle from '../../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../../components/featureToggle/toggleIDs';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     valgtTraad: Traad;
-    skjulSkrivUt?: boolean;
+    visPrinter?: boolean;
 }
 
-const PanelStyle = styled.section`
+const StyledArticle = styled.article`
     ${theme.hvittPanel};
     padding: ${theme.margin.layout};
     display: flex;
@@ -42,10 +48,6 @@ const OppgaveknapperStyle = styled.div`
 const SvartLenkeKnapp = styled(EkspanderKnapp)`
     color: #3e3832;
 `;
-const PrintKnapp = styled(LenkeKnapp.withComponent('a'))`
-    text-decoration: none;
-    color: #3e3832;
-`;
 
 enum VerktøyPanel {
     JOURNALFORING,
@@ -53,16 +55,50 @@ enum VerktøyPanel {
     MERK
 }
 
+function Print(props: Props) {
+    const printer = usePrinter();
+    const PrinterWrapper = printer.printerWrapper;
+
+    const GammelPrintKnapp = styled(LenkeKnapp.withComponent('a'))`
+        text-decoration: none;
+        color: #3e3832;
+    `;
+    const fnr = useFødselsnummer();
+    const meldingerPrintFT = useFeatureToggle(FeatureToggles.MeldingerPrint);
+
+    if (!props.visPrinter) {
+        return null;
+    }
+
+    if (meldingerPrintFT.isOn) {
+        return (
+            <>
+                <PrintKnapp onClick={() => printer?.triggerPrint()} />
+                <PrinterWrapper>
+                    <MeldingerPrintMarkup valgtTraad={props.valgtTraad} />
+                </PrinterWrapper>
+            </>
+        );
+    }
+
+    return (
+        <GammelPrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
+            <Normaltekst>Skriv ut</Normaltekst>
+        </GammelPrintKnapp>
+    );
+}
+
 function Verktoylinje(props: Props) {
     const titleRef = createRef<HTMLHeadingElement>();
-    const fnr = useFødselsnummer();
     const [aktivtPanel, settAktivtPanel] = React.useState<VerktøyPanel | null>(null);
     const lukk = useCallback(() => {
         settAktivtPanel(null);
         titleRef.current && titleRef.current.focus();
     }, [settAktivtPanel, titleRef]);
+    const tittelId = useRef(guid());
 
     const prevTraad = usePrevious(props.valgtTraad);
+
     useEffect(() => {
         if (prevTraad && prevTraad.traadId !== props.valgtTraad.traadId) {
             lukk();
@@ -77,8 +113,8 @@ function Verktoylinje(props: Props) {
     const visMerk = aktivtPanel === VerktøyPanel.MERK;
 
     return (
-        <PanelStyle>
-            <h3 className="sr-only" ref={titleRef} tabIndex={-1}>
+        <StyledArticle aria-describedby={tittelId.current}>
+            <h3 id={tittelId.current} className="sr-only" ref={titleRef} tabIndex={-1}>
                 Verktøylinje - {meldingstittel(nyesteMelding(props.valgtTraad))}
             </h3>
             <KnapperPanelStyle>
@@ -95,11 +131,7 @@ function Verktoylinje(props: Props) {
                     />
                     <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
                 </OppgaveknapperStyle>
-                {!props.skjulSkrivUt && (
-                    <PrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
-                        <Normaltekst>Skriv ut</Normaltekst>
-                    </PrintKnapp>
-                )}
+                <Print {...props} />
             </KnapperPanelStyle>
             <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
                 <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />
@@ -110,7 +142,7 @@ function Verktoylinje(props: Props) {
             <UnmountClosed isOpened={visMerk}>
                 <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={lukk} />
             </UnmountClosed>
-        </PanelStyle>
+        </StyledArticle>
     );
 }
 

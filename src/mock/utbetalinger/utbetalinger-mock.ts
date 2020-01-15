@@ -37,15 +37,15 @@ function getUtbetalinger(fødselsnummer: string) {
     if (fødselsnummer === aremark.fødselsnummer) {
         return [...new Array(5)].map(() => getMockUtbetaling(fødselsnummer));
     }
-    if (navfaker.random.vektetSjanse(0.3)) {
+    if (navfaker.random.vektetSjanse(0.2)) {
         return [];
     }
 
-    return fyllRandomListe(() => getMockUtbetaling(fødselsnummer), 20).filter(fjernDuplikatePosteringsdato);
+    return fyllRandomListe(() => getMockUtbetaling(fødselsnummer), 50).filter(fjernDuplikatePosteringsdato);
 }
 
 function randomDato(seededFaker: Faker.FakerStatic) {
-    return moment(seededFaker.date.past(2))
+    return moment(seededFaker.date.past(1.5))
         .startOf('day')
         .format(backendDatoformat);
 }

@@ -29,6 +29,7 @@ export interface Melding {
     kontorsperretAv?: Saksbehandler;
     markertSomFeilsendtAv?: Saksbehandler;
     erDokumentMelding: boolean;
+    ferdigstiltUtenSvarDato?: string;
 }
 
 export interface Saksbehandler {
@@ -60,7 +61,7 @@ export enum Meldingstype {
     SAMTALEREFERAT_OPPMOTE = 'SAMTALEREFERAT_OPPMOTE',
     SAMTALEREFERAT_TELEFON = 'SAMTALEREFERAT_TELEFON',
     SPORSMAL_MODIA_UTGAAENDE = 'SPORSMAL_MODIA_UTGAAENDE',
-    SvarSblInngående = 'SVAR_SBL_INNGAAENDE'
+    SVAR_SBL_INNGAAENDE = 'SVAR_SBL_INNGAAENDE'
 }
 
 export enum LestStatus {

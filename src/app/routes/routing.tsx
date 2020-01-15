@@ -1,18 +1,12 @@
-import * as React from 'react';
-import { withRouter } from 'react-router-dom';
-import { Route, RouteComponentProps, Switch } from 'react-router';
+import { useCallback, useMemo } from 'react';
 import { History } from 'history';
-import Startbilde from '../startbilde/Startbilde';
-import Brukerprofilside from '../brukerprofil/BrukerprofilSide';
-import SaksoversiktMicroFrontend from '../personside/infotabs/saksoversikt/SaksoversiktMicroFrontend';
-import Personside from '../personside/Personside';
 import { useFødselsnummer } from '../../utils/customHooks';
 import { INFOTABS } from '../personside/infotabs/InfoTabEnum';
-import { useCallback, useMemo } from 'react';
 
 export const paths = {
     personUri: '/modiapersonoversikt/person',
-    saksoversikt: '/modiapersonoversikt/saker',
+    sakerFullscreen: `/modiapersonoversikt/saker`,
+    saksdokumentEgetVindu: `/modiapersonoversikt/dokument`,
     brukerprofil: '/modiapersonoversikt/brukerprofil',
     basePath: '/modiapersonoversikt',
     standaloneKomponenter: '/modiapersonoversikt/components',
@@ -33,6 +27,7 @@ export function usePaths() {
     return useMemo(
         () => ({
             ...paths,
+            sakerFullscreen: `${paths.basePath}/saker/${fnr}`,
             oversikt: getPath(INFOTABS.OVERSIKT),
             oppfolging: getPath(INFOTABS.OPPFOLGING),
             meldinger: getPath(INFOTABS.MELDINGER),
@@ -41,33 +36,7 @@ export function usePaths() {
             ytelser: getPath(INFOTABS.YTELSER),
             varsler: getPath(INFOTABS.VARSEL)
         }),
-        [getPath]
-    );
-}
-
-interface RouterProps {
-    fodselsnummer: string;
-}
-
-type Props = RouteComponentProps<RouterProps>;
-
-function Routing(props: Props) {
-    const fnr = useFødselsnummer();
-    return (
-        <Switch location={props.location}>
-            <Route key={fnr} path={`${paths.personUri}/:fodselsnummer/`} component={Personside} />
-            <Route
-                path={`${paths.saksoversikt}/:fodselsnummer/`}
-                render={routeProps => (
-                    <SaksoversiktMicroFrontend
-                        fødselsnummer={routeProps.match.params.fodselsnummer}
-                        queryParamString={routeProps.location.search}
-                    />
-                )}
-            />
-            <Route key={fnr} path={`${paths.brukerprofil}/:fodselsnummer/`} component={() => <Brukerprofilside />} />
-            <Route component={Startbilde} />
-        </Switch>
+        [getPath, fnr]
     );
 }
 
@@ -78,5 +47,3 @@ export function setNyBrukerIPath(history: History, fødselsnummer: string) {
 export function fjernBrukerFraPath(history: History) {
     history.push(`${paths.basePath}`);
 }
-
-export default withRouter(Routing);

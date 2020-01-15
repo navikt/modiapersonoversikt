@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
 import { ForsettDialogRequest, Meldingstype, SendDelsvarRequest, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { useFødselsnummer, useRestResource } from '../../../../utils/customHooks';
+import { useFødselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
@@ -15,7 +15,7 @@ import {
 } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { loggError } from '../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../utils/frontendLogger';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import {
@@ -24,6 +24,13 @@ import {
     FortsettDialogState,
     KvitteringsData
 } from './FortsettDialogTypes';
+import { useTimer } from '../../../../utils/hooks/useTimer';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import { usePostResource } from '../../../../rest/consumer/usePostResource';
+import { Undertittel } from 'nav-frontend-typografi';
+import { guid } from 'nav-frontend-js-utils';
+import styled from 'styled-components';
+import theme from '../../../../styles/personOversiktTheme';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -36,6 +43,10 @@ interface Props {
     traad: Traad;
 }
 
+const StyledArticle = styled.article`
+    padding: 1rem ${theme.margin.layout};
+`;
+
 function FortsettDialogContainer(props: Props) {
     const initialState = {
         tekst: '',
@@ -45,10 +56,11 @@ function FortsettDialogContainer(props: Props) {
         sak: undefined,
         oppgaveListe: OppgavelisteValg.MinListe
     };
+    const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
-    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
-    const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
-    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
+    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
+    const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const fnr = useFødselsnummer();
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
@@ -60,6 +72,7 @@ function FortsettDialogContainer(props: Props) {
             visFeilmeldinger: false,
             ...change
         });
+    const getDuration = useTimer();
 
     const opprettHenvendelse = useOpprettHenvendelse(props.traad);
 
@@ -86,6 +99,7 @@ function FortsettDialogContainer(props: Props) {
             return;
         }
         const callback = () => {
+            loggEvent('TidsbrukMillisekunder', 'FortsettDialog', undefined, { ms: getDuration() });
             dispatch(resetPlukkOppgaveResource);
             dispatch(reloadTildelteOppgaver);
             dispatch(reloadMeldinger);
@@ -178,7 +192,8 @@ function FortsettDialogContainer(props: Props) {
     const temagruppe = meldingMedTemagruppe ? meldingMedTemagruppe.temagruppe : undefined;
 
     return (
-        <>
+        <StyledArticle aria-describedby={tittelId.current}>
+            <Undertittel id={tittelId.current}>Fortsett dialog</Undertittel>
             <FortsettDialog
                 handleAvbryt={handleAvbryt}
                 state={state}
@@ -197,7 +212,7 @@ function FortsettDialogContainer(props: Props) {
                     temagruppe={temagruppe}
                 />
             )}
-        </>
+        </StyledArticle>
     );
 }
 

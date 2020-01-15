@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { ChangeEvent, useState } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import KnappBase from 'nav-frontend-knapper';
 import { Select } from 'nav-frontend-skjema';
-import { AlertStripeAdvarsel, AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { velgTemagruppeForPlukk } from '../../../redux/session/session';
 import { AppState } from '../../../redux/reducers';
 import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
@@ -15,15 +15,16 @@ import TildelteOppgaver from './TildelteOppgaver';
 import { paths } from '../../routes/routing';
 import { INFOTABS } from '../infotabs/InfoTabEnum';
 import { Temagruppe, temagruppeTekst, TemaPlukkbare } from '../../../models/Temagrupper';
-import { useRestResource } from '../../../utils/customHooks';
-import { hasData, isFailed } from '../../../rest/utils/restResource';
-import LazySpinner from '../../../components/LazySpinner';
 import { SaksbehandlerRoller } from '../../../utils/RollerUtils';
 import { loggEvent } from '../../../utils/frontendLogger';
+import { useRestResource } from '../../../rest/consumer/useRestResource';
+import { RestResourcePlaceholderProps } from '../../../rest/consumer/placeholder';
+import { guid } from 'nav-frontend-js-utils';
 
-const HentOppgaveLayout = styled.article`
+const StyledArticle = styled.article`
     text-align: center;
-    margin: ${theme.margin.layout};
+    padding: ${theme.margin.layout};
+    border-bottom: ${theme.border.skilleSvak};
     label {
         ${theme.visuallyHidden}
     }
@@ -43,34 +44,29 @@ const KnappLayout = styled.div`
     }
 `;
 
-const SpinnerWrapper = styled.div`
-    height: 6rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
+const placeholderProps: RestResourcePlaceholderProps = { returnOnNotFound: 'Kunne ikke hente roller' };
 
-type Props = RouteComponentProps<{}>;
-
-function HentOppgaveKnapp(props: Props) {
+function HentOppgaveKnapp() {
+    const history = useHistory();
     const [tomKø, setTomKø] = useState(false);
     const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
     const dispatch = useDispatch();
     const oppgaveResource = useSelector((state: AppState) => state.restResources.plukkNyeOppgaver);
     const velgTemaGruppe = (temagruppe: Temagruppe) => dispatch(velgTemagruppeForPlukk(temagruppe));
     const valgtTemaGruppe = useSelector((state: AppState) => state.session.temagruppeForPlukk);
-    const rollerResource = useRestResource(resources => resources.veilederRoller);
+    const tittelId = useRef(guid());
+    let selectRef: HTMLSelectElement | null = null;
 
-    if (isFailed(rollerResource)) {
-        return <AlertStripeFeil>Kunne ikke hente roller</AlertStripeFeil>;
-    }
+    const rollerResource = useRestResource(resources => resources.veilederRoller, placeholderProps);
 
-    if (!hasData(rollerResource)) {
-        return (
-            <SpinnerWrapper>
-                <LazySpinner />
-            </SpinnerWrapper>
-        );
+    useEffect(() => {
+        if (temaGruppeFeilmelding) {
+            selectRef && selectRef.focus();
+        }
+    }, [selectRef, temaGruppeFeilmelding]);
+
+    if (!rollerResource.data) {
+        return rollerResource.placeholder;
     }
 
     if (!rollerResource.data.roller.includes(SaksbehandlerRoller.HentOppgave)) {
@@ -93,7 +89,7 @@ function HentOppgaveKnapp(props: Props) {
                 }
                 const oppgave = response[0];
                 const fødselsnummer = oppgave.fødselsnummer;
-                props.history.push(
+                history.push(
                     `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
                 );
                 response.length > 1 && loggEvent('FlereOppgaverTildelt', 'HentOppgave');
@@ -116,10 +112,14 @@ function HentOppgaveKnapp(props: Props) {
         </option>
     ));
     return (
-        <HentOppgaveLayout>
-            <h2 className="sr-only">Hent oppgave</h2>
+        <StyledArticle aria-describedby={tittelId.current}>
+            <h2 className="sr-only" id={tittelId.current}>
+                Hent oppgave
+            </h2>
             <KnappLayout>
                 <Select
+                    // @ts-ignore
+                    selectRef={ref => (selectRef = ref)}
                     label="Hent oppgave fra temagruppe"
                     value={valgtTemaGruppe || ''}
                     onChange={onTemagruppeChange}
@@ -142,8 +142,8 @@ function HentOppgaveKnapp(props: Props) {
             {isFailedPosting(oppgaveResource) && <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>}
             {tomtTilbakemelding}
             <TildelteOppgaver />
-        </HentOppgaveLayout>
+        </StyledArticle>
     );
 }
 
-export default withRouter(HentOppgaveKnapp);
+export default HentOppgaveKnapp;

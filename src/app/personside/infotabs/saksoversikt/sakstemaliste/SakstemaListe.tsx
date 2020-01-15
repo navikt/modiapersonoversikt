@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
+import styled from 'styled-components/macro';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListeElement from './SakstemaListeElement';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { getUnikSakstemaKey, hentDatoForSisteHendelse, useAgregerteSaker } from '../utils/saksoversiktUtils';
 import { datoSynkende } from '../../../../../utils/dateUtils';
-import { useRestResource } from '../../../../../utils/customHooks';
-import { hasData } from '../../../../../rest/utils/restResource';
 import LazySpinner from '../../../../../components/LazySpinner';
+import { useRestResource } from '../../../../../rest/consumer/useRestResource';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     valgtSakstema?: Sakstema;
@@ -23,7 +24,7 @@ const SakstemaListeStyle = styled.ol`
     }
 `;
 
-const Wrapper = styled.div`
+const StyledNav = styled.nav`
     ${theme.hvittPanel};
     ol {
         list-style: none;
@@ -31,7 +32,7 @@ const Wrapper = styled.div`
 `;
 
 const TittelWrapper = styled.div`
-    padding: ${theme.margin.px20};
+    padding: ${pxToRem(15)};
     display: flex;
     align-items: flex-end;
     > *:not(:last-child) {
@@ -61,8 +62,9 @@ function GrupperteTema(props: { sakstema: Sakstema[]; valgtSakstema?: Sakstema }
 function SakstemaListe(props: Props) {
     const sakstemaResource = useRestResource(resources => resources.sakstema);
     const agregerteSaker = useAgregerteSaker();
+    const tittelId = useRef(guid());
 
-    if (!hasData(sakstemaResource) || !agregerteSaker) {
+    if (!sakstemaResource.data || !agregerteSaker) {
         return <LazySpinner />;
     }
 
@@ -75,15 +77,15 @@ function SakstemaListe(props: Props) {
     const sortertSakstema = sakstema.sort(datoSynkende(sakstema => hentDatoForSisteHendelse(sakstema)));
 
     return (
-        <Wrapper>
+        <StyledNav aria-describedby={tittelId.current}>
             <TittelWrapper>
-                <Undertittel>Tema</Undertittel>
+                <Undertittel id={tittelId.current}>Tema</Undertittel>
                 <Normaltekst>({sortertSakstema.length} saker)</Normaltekst>
             </TittelWrapper>
             <nav aria-label="Velg sakstema">
                 <GrupperteTema sakstema={[agregerteSaker, ...sortertSakstema]} valgtSakstema={props.valgtSakstema} />
             </nav>
-        </Wrapper>
+        </StyledNav>
     );
 }
 

@@ -1,20 +1,20 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import { theme } from '../styles/personOversiktTheme';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from './FillCenterAndFadeIn';
+import DelayRender from './DelayRender';
 
 interface Props {
     delay?: number;
     type?: 'XXS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
     padding?: string;
+    className?: string;
 }
 
-interface State {
-    showSpinner: boolean;
-}
-
-const FadeIn = styled.span<{ padding?: string }>`
+const Styling = styled.span<{ padding?: string }>`
+    display: flex;
+    justify-content: center;
     ${theme.animation.fadeIn};
     ${props =>
         props.padding
@@ -32,29 +32,14 @@ export function CenteredLazySpinner(props: Props) {
     );
 }
 
-class LazySpinner extends React.Component<Props, State> {
-    private timer?: number;
-
-    constructor(props: Props) {
-        super(props);
-        this.state = { showSpinner: false };
-        this.timer = window.setTimeout(() => this.setState({ showSpinner: true }), this.props.delay || 300);
-    }
-
-    componentWillUnmount() {
-        window.clearTimeout(this.timer);
-    }
-
-    render() {
-        if (this.state.showSpinner) {
-            return (
-                <FadeIn padding={this.props.padding}>
-                    <NavFrontendSpinner type={this.props.type || 'L'} />
-                </FadeIn>
-            );
-        }
-        return null;
-    }
+function LazySpinner(props: Props) {
+    return (
+        <DelayRender delay={props.delay || 300}>
+            <Styling padding={props.padding} className={props.className}>
+                <NavFrontendSpinner type={props.type || 'L'} />
+            </Styling>
+        </DelayRender>
+    );
 }
 
 export default LazySpinner;

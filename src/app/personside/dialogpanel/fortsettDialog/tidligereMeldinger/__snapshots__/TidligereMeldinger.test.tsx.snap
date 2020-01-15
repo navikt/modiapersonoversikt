@@ -1,50 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser fortsett dialog 1`] = `
-.c3 {
-  width: 100%;
-  padding-right: 1rem;
+.c6 {
+  margin-right: 0.3rem !important;
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
 }
 
-.c5 {
+.c4 {
+  width: 100%;
+  padding-right: 1rem;
+}
+
+.c7 {
   padding: 1rem;
   overflow-wrap: break-word;
   padding-top: 0;
 }
 
-.c2 {
+.c3 {
   border-top: 0.1rem rgba(0,0,0,0.2) solid;
 }
 
-.c2.ekspanderbartPanel {
+.c3.ekspanderbartPanel {
   border-radius: 0;
 }
 
-.c2 .ekspanderbartPanel__hode:focus {
+.c3 .ekspanderbartPanel__hode:focus {
   outline: none;
   box-shadow: inset 0 0 0 0.1875rem #254b6d;
 }
 
-.c6 {
+.c8 {
   border-top: 0.1rem rgba(0,0,0,0.2) solid;
 }
 
-.c6 .ekspanderbartPanel__hode:focus {
+.c8 .ekspanderbartPanel__hode:focus {
   outline: none;
   box-shadow: inset 0 0 0 0.1875rem #254b6d;
 }
@@ -74,14 +70,20 @@ exports[`viser fortsett dialog 1`] = `
   box-shadow: inset 0 0 0 0.1875rem #254b6d;
 }
 
+.c2 {
+  font-size: 1.125rem !important;
+}
+
 <article
+  aria-describedby="Helt tilfeldig ID"
   className="c0"
 >
   <h3
     className="sr-only"
+    id="Helt tilfeldig ID"
     tabIndex={-1}
   >
-    Tråd under arbeid
+    Tidligere meldinger
   </h3>
   <div
     className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
@@ -97,11 +99,11 @@ exports[`viser fortsett dialog 1`] = `
       <div
         className="ekspanderbartPanel__flex-wrapper"
       >
-        <p
-          className="typo-ingress"
+        <h2
+          className="typo-undertittel c2"
         >
           Vis tidligere meldinger
-        </p>
+        </h2>
         <span
           className="ekspanderbartPanel__indikator"
         />
@@ -111,7 +113,7 @@ exports[`viser fortsett dialog 1`] = `
       className="ekspanderbartPanel__innhold"
     >
       <div
-        className="ekspanderbartPanel c2 ekspanderbartPanel--lukket"
+        className="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
       >
         <button
           aria-expanded={false}
@@ -124,32 +126,31 @@ exports[`viser fortsett dialog 1`] = `
             className="ekspanderbartPanel__flex-wrapper"
           >
             <div
-              className="c3"
+              className="c4"
             >
               <p
-                className="typo-undertekst"
+                className="typo-element"
               >
-                07. juli 2019 00:00
+                Samtalereferat oppmøte - Arbeid
               </p>
               <p
                 className="typo-undertekst"
               >
-                Skrevet av 
-                Sander Hansen (nzxo4q)
+                30. juli 2019 00:00
               </p>
               <div
-                className="c4"
+                className="c5"
               >
                 <p
-                  className="typo-ingress"
+                  className="typo-normal c6"
                 >
-                  Samtalereferat oppmøte
+                  Skrevet av:
                 </p>
-                <p
-                  className="typo-undertekst-bold"
+                <div
+                  className="tekstomrade typo-normal"
                 >
-                  Arbeid
-                </p>
+                  Sander Hansen (nzxo4q)
+                </div>
               </div>
             </div>
             <span
@@ -161,14 +162,14 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="tekstomrade c5"
+            className="tekstomrade c7"
           >
             Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
           </div>
         </article>
       </div>
       <div
-        className="ekspanderbartPanel c2 ekspanderbartPanel--lukket"
+        className="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
       >
         <button
           aria-expanded={false}
@@ -181,27 +182,18 @@ exports[`viser fortsett dialog 1`] = `
             className="ekspanderbartPanel__flex-wrapper"
           >
             <div
-              className="c3"
+              className="c4"
             >
+              <p
+                className="typo-element"
+              >
+                Spørsmål fra bruker - Arbeid
+              </p>
               <p
                 className="typo-undertekst"
               >
-                16. juli 2019 00:00
+                10. aug. 2019 00:00
               </p>
-              <div
-                className="c4"
-              >
-                <p
-                  className="typo-ingress"
-                >
-                  Spørsmål fra bruker
-                </p>
-                <p
-                  className="typo-undertekst-bold"
-                >
-                  Arbeid
-                </p>
-              </div>
             </div>
             <span
               className="ekspanderbartPanel__indikator"
@@ -212,14 +204,14 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="tekstomrade c5"
+            className="tekstomrade c7"
           >
             Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
           </div>
         </article>
       </div>
       <div
-        className="ekspanderbartPanel c2 ekspanderbartPanel--lukket"
+        className="ekspanderbartPanel c3 ekspanderbartPanel--lukket"
       >
         <button
           aria-expanded={false}
@@ -232,27 +224,18 @@ exports[`viser fortsett dialog 1`] = `
             className="ekspanderbartPanel__flex-wrapper"
           >
             <div
-              className="c3"
+              className="c4"
             >
+              <p
+                className="typo-element"
+              >
+                Spørsmål fra bruker - Arbeid
+              </p>
               <p
                 className="typo-undertekst"
               >
-                12. juli 2019 00:00
+                06. aug. 2019 00:00
               </p>
-              <div
-                className="c4"
-              >
-                <p
-                  className="typo-ingress"
-                >
-                  Spørsmål fra bruker
-                </p>
-                <p
-                  className="typo-undertekst-bold"
-                >
-                  Arbeid
-                </p>
-              </div>
             </div>
             <span
               className="ekspanderbartPanel__indikator"
@@ -263,7 +246,7 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="tekstomrade c5"
+            className="tekstomrade c7"
           >
             Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
           </div>
@@ -272,7 +255,7 @@ exports[`viser fortsett dialog 1`] = `
     </article>
   </div>
   <div
-    className="ekspanderbartPanel c6 ekspanderbartPanel--apen"
+    className="ekspanderbartPanel c8 ekspanderbartPanel--apen"
   >
     <button
       aria-controls="Helt tilfeldig ID"
@@ -286,32 +269,31 @@ exports[`viser fortsett dialog 1`] = `
         className="ekspanderbartPanel__flex-wrapper"
       >
         <div
-          className="c3"
+          className="c4"
         >
           <p
-            className="typo-undertekst"
+            className="typo-element"
           >
-            27. juli 2019 00:00
+            Delsvar - Arbeid
           </p>
           <p
             className="typo-undertekst"
           >
-            Skrevet av 
-            Kristoffer Fredriksen (xy70r8)
+            13. aug. 2019 00:00
           </p>
           <div
-            className="c4"
+            className="c5"
           >
             <p
-              className="typo-ingress"
+              className="typo-normal c6"
             >
-              Delsvar
+              Skrevet av:
             </p>
-            <p
-              className="typo-undertekst-bold"
+            <div
+              className="tekstomrade typo-normal"
             >
-              Arbeid
-            </p>
+              Kristoffer Fredriksen (xy70r8)
+            </div>
           </div>
         </div>
         <span
@@ -323,7 +305,7 @@ exports[`viser fortsett dialog 1`] = `
       className="ekspanderbartPanel__innhold"
     >
       <div
-        className="tekstomrade c5"
+        className="tekstomrade c7"
       >
         Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
       </div>

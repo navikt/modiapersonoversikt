@@ -3,12 +3,13 @@ import { FormEvent, useState } from 'react';
 import SendNyMelding, { SendNyMeldingState, OppgavelisteValg } from './SendNyMelding';
 import { NyMeldingValidator } from './validatorer';
 import { Meldingstype, SendReferatRequest, SendSpørsmålRequest } from '../../../../models/meldinger/meldinger';
-import { useFødselsnummer, useRestResource } from '../../../../utils/customHooks';
+import { useFødselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { ReferatSendtKvittering, SporsmalSendtKvittering } from './SendNyMeldingKvittering';
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 const initialState: SendNyMeldingState = {
     tekst: '',
@@ -23,7 +24,7 @@ function SendNyMeldingContainer() {
     const [state, setState] = useState<SendNyMeldingState>(initialState);
     const updateState = (change: Partial<SendNyMeldingState>) =>
         setState(currentState => ({ ...currentState, visFeilmeldinger: false, ...change }));
-    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger.actions.reload);
+    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
     const dispatch = useDispatch();
     const fnr = useFødselsnummer();
     const [sendNyMeldingStatus, setSendNyMeldingStatus] = useState<SendNyMeldingPanelState>({
@@ -97,16 +98,14 @@ function SendNyMeldingContainer() {
     };
 
     return (
-        <>
-            <SendNyMelding
-                updateState={updateState}
-                state={state}
-                handleSubmit={handleSubmit}
-                handleAvbryt={handleAvbryt}
-                formErEndret={state !== initialState}
-                sendNyMeldingPanelState={sendNyMeldingStatus}
-            />
-        </>
+        <SendNyMelding
+            updateState={updateState}
+            state={state}
+            handleSubmit={handleSubmit}
+            handleAvbryt={handleAvbryt}
+            formErEndret={state !== initialState}
+            sendNyMeldingPanelState={sendNyMeldingStatus}
+        />
     );
 }
 

@@ -4,23 +4,21 @@ import {
     Enhet,
     GsakTema,
     GsakTemaOppgavetype,
-    GsakTemaUnderkategori,
-    OppgavePrioritet
+    GsakTemaUnderkategori
 } from '../../../../../../../models/meldinger/oppgave';
 import { OppgaveSkjemaElementer } from './OppgaveSkjemaElementer';
 import { lagOppgaveRequest } from './byggRequest';
 import { OppgaveProps, OppgaveSkjemaForm, OppgaveSkjemaProps } from './oppgaveInterfaces';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { Resultat } from '../utils/VisPostResultat';
-import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { erBehandlet } from '../../../utils/meldingerUtils';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { getValidOppgaveSkjemaState, validerOppgaveSkjema } from './oppgaveSkjemaValidator';
 import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
@@ -33,11 +31,19 @@ const AlertStyling = styled.div`
 `;
 
 const SkjemaStyle = styled.div`
+    padding-top: 1rem;
     .inputPanelGruppe__inner {
         display: flex;
         > * {
             flex-grow: 1;
         }
+    }
+    label {
+        font-weight: 600;
+        margin-bottom: 0.1rem;
+    }
+    .skjemaelement {
+        margin-bottom: 0.7rem;
     }
 `;
 
@@ -63,7 +69,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
     const [valgtEnhet, settValgtEnhet] = useState<Enhet | undefined>(undefined);
     const [valgtAnsatt, settValgtAnsatt] = useState<Ansatt | undefined>(undefined);
-    const [valgtPrioritet, settValgtPrioritet] = useState<OppgavePrioritet>(OppgavePrioritet.NORM);
+    const [valgtPrioritet, settValgtPrioritet] = useState<string | undefined>(undefined);
     const [beskrivelse, settBeskrivelse] = useState('');
     const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<OppgaveSkjemaForm>>(
         getValidOppgaveSkjemaState()
@@ -76,6 +82,9 @@ function OppgaveSkjema(props: OppgaveProps) {
             settValgtUnderkategori(undefined);
             settValgtOppgavetype(undefined);
         }
+
+        const normalOppgaveprioritet = tema?.prioriteter.find(prioritet => prioritet.kode.includes('NORM'));
+        settValgtPrioritet(normalOppgaveprioritet?.kode);
     }
 
     const formState: OppgaveSkjemaForm = {
@@ -103,6 +112,11 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
+
+        if (submitting) {
+            return;
+        }
+
         const valideringsResultat = validerOppgaveSkjema(formState);
 
         if (valideringsResultat.formErGyldig) {

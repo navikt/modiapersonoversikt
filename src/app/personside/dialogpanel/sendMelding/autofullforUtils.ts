@@ -3,10 +3,8 @@ import { NavKontorResponse } from '../../../../models/navkontor';
 import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/stringFormatting';
-import { loggError } from '../../../../utils/frontendLogger';
-import { useOnMount, useRestResource } from '../../../../utils/customHooks';
-import { hasData as restResourceHasData, isFailed, isNotStarted } from '../../../../rest/utils/restResource';
-import { useDispatch } from 'react-redux';
+import { loggError, loggEvent } from '../../../../utils/frontendLogger';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 export type AutofullforData = {
     person?: PersonRespons;
@@ -107,6 +105,7 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
     return tekst.replace(/\[(.*?)\]/g, (fullmatch, key) => {
         if (!keys.includes(key)) {
             loggError(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
+            loggEvent('manglendeNokkel', 'autofullfør', { nøkkel: key });
             return '[ukjent nøkkel]';
         }
         return autofullforMap[key] || '[fant ingen verdi]';
@@ -117,18 +116,10 @@ export function useAutoFullførData(): AutofullforData | undefined {
     const personResource = useRestResource(resources => resources.personinformasjon);
     const saksbehandler = useRestResource(resources => resources.innloggetSaksbehandler);
     const navKontorResource = useRestResource(resources => resources.brukersNavKontor);
-    const dispatch = useDispatch();
-
-    useOnMount(() => {
-        // innloggetSaksbehandler feiler for førstegangsbrukere pga problematikk med saksbehandlerinnstillingercookie (OPP-1025) intill den feilen er fikset legget vi på denne logikken som prøver å fetche på nytt (cookien blir satt etter første pageload) slik at det blir minst mulig merkbart for brukerne våre
-        if (isNotStarted(saksbehandler) || isFailed(saksbehandler)) {
-            dispatch(saksbehandler.actions.fetch);
-        }
-    });
 
     return {
-        person: restResourceHasData(personResource) ? personResource.data : undefined,
-        kontor: restResourceHasData(navKontorResource) ? navKontorResource.data : undefined,
-        saksbehandler: restResourceHasData(saksbehandler) ? saksbehandler.data : undefined
+        person: personResource.data,
+        kontor: navKontorResource.data,
+        saksbehandler: saksbehandler.data
     };
 }

@@ -22,20 +22,19 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
         </TestProvider>
     );
 
-    expect(getAktivTab(infoTabs)).toContain(INFOTABS.OVERSIKT);
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.toLowerCase());
 
     clickOnMeldingerIOversikt(infoTabs);
 
-    expect(getAktivTab(infoTabs)).toContain(INFOTABS.MELDINGER);
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.MELDINGER.toLowerCase());
 
-    const activeElement = document.activeElement ? document.activeElement.outerHTML : fail('ingen elementer i fokus');
+    const checkedMelding = infoTabs.find('input[checked=true].' + meldingerTest.melding).html();
     const expectedElement = infoTabs
-        .find('.' + meldingerTest.melding)
-        .find('input[type="radio"]')
+        .find('input[type="radio"].' + meldingerTest.melding)
         .at(1)
         .html();
 
-    expect(activeElement).toEqual(expectedElement);
+    expect(checkedMelding).toEqual(expectedElement);
 });
 
 function clickOnMeldingerIOversikt(infoTabs: ReactWrapper) {

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import LenkeBrukerprofilVisning from './LenkeBrukerprofil';
 import { Person } from '../../../../../models/person/person';
-import styled from 'styled-components';
-import { erNyePersonoversikten } from '../../../../../utils/erNyPersonoversikt';
+import styled from 'styled-components/macro';
 
 interface OwnProps {
     person: Person;
@@ -21,7 +20,7 @@ class LenkeBrukerprofilContainer extends React.Component<Props> {
     render() {
         return (
             <PlaceBottomRight>
-                <LenkeBrukerprofilVisning nyModiaPersonoversikt={erNyePersonoversikten()} person={this.props.person} />
+                <LenkeBrukerprofilVisning />
             </PlaceBottomRight>
         );
     }

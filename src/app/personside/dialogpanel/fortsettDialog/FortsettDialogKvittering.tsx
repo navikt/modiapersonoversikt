@@ -9,6 +9,7 @@ import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import KnappBase from 'nav-frontend-knapper';
 import { KvitteringsData } from './FortsettDialogTypes';
 import { Temagruppe, temagruppeTekst } from '../../../../models/Temagrupper';
+import GaaTilNesteOppgaveKnapp from '../GaaTilNesteOppgaveKnapp';
 
 export function SvarSendtKvittering(props: { kvitteringsData: KvitteringsData }) {
     const dispatch = useDispatch();
@@ -29,8 +30,9 @@ export function DelsvarRegistrertKvittering(props: { kvitteringsData: Kvittering
     const dispatch = useDispatch();
     return (
         <DialogpanelKvittering
-            tittel={`Delsvar ble registrert og lagt tilbake på ${temagruppeTekst(props.kvitteringsData
-                .temagruppe as Temagruppe)}`}
+            tittel={`Delsvar ble registrert og lagt tilbake på ${temagruppeTekst(
+                props.kvitteringsData.temagruppe as Temagruppe
+            )}`}
             fritekst={props.kvitteringsData.fritekst}
             meldingstype={Meldingstype.DELVIS_SVAR_SKRIFTLIG}
             lukk={() => {
@@ -59,6 +61,7 @@ export function OppgaveLagtTilbakeKvittering(props: { payload: LeggTilbakeOppgav
             <KnappBase type="standard" onClick={lukk}>
                 Lukk
             </KnappBase>
+            <GaaTilNesteOppgaveKnapp lukk={lukk} />
         </DialogpanelKvitteringStyling>
     );
 }

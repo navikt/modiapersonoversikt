@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */ // Bruker flex til å style tabell. Da trenger den eksplisitte roller for å funke med skjermleser
 import * as React from 'react';
 import { Fragment } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { TotaltUtbetaltProps } from './TotaltUtbetalt';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
@@ -40,6 +40,7 @@ const DetaljerStyle = styled.aside`
     }
     th {
         text-transform: uppercase;
+        font-weight: 600;
     }
     tr {
         display: flex;
@@ -64,7 +65,7 @@ const DetaljerStyle = styled.aside`
             right: 0; /* IE11 */
         }
         td.sumNetto {
-            font-weight: bold;
+            font-weight: 600;
         }
         .periodeForYtelse,
         .ytelseDetaljer {

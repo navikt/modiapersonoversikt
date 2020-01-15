@@ -1,4 +1,4 @@
-import { css, keyframes } from 'styled-components';
+import { css, keyframes } from 'styled-components/macro';
 
 const fadeIn = keyframes`
     from { opacity: 0 }
@@ -24,7 +24,8 @@ export const navFarger = {
     fokusFarge: '#254b6d',
     orangeFokus: '#ffbd66',
     pinkErrorBg: '#f3e3e3',
-    redError: '#ba3a26'
+    redError: '#ba3a26',
+    navRod: '#C30000'
 };
 
 const focusOnRelativeParent = css`
@@ -48,7 +49,7 @@ export const theme = {
         lenkeSelected: '#005b82',
         lenkeHover: navFarger.navGra20,
         lenke: '#0067c5',
-        bakgrunn: navFarger.navGra20,
+        bakgrunn: navFarger.navGra40,
         kategori: '#cce1f3',
         ytelser: '#d6897d',
         gråSkrift: '#645f5a',
@@ -141,6 +142,11 @@ export const theme = {
         background-color: #eed28c;
         border-radius: ${pxToRem(10)};
         padding: 0 ${pxToRem(5)};
+    `,
+    visitedLinkPurple: css`
+        a:visited:not(:focus) {
+            color: purple; // Mange brukere har etterspurt en visuell markering på at et dokument/lenke har vært åpnet
+        }
     `
 };
 

@@ -1,21 +1,23 @@
 import * as React from 'react';
 import { Varsel as VarselModell } from '../../../../models/varsel';
 import { datoSynkende } from '../../../../utils/dateUtils';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import Varsel from './Varsel';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import theme from '../../../../styles/personOversiktTheme';
+import { Element } from 'nav-frontend-typografi';
 
 interface Props {
     varsler: VarselModell[];
 }
 
-const Style = styled.article`
+const Style = styled.div`
     padding: ${theme.margin.layout};
 `;
 
 const HeaderStyle = styled.div`
+    ${theme.hvittPanel};
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 6rem 55% 1fr;
@@ -29,10 +31,10 @@ const HeaderStyle = styled.div`
     > *:nth-child(3) {
         -ms-grid-column: 3;
     }
-    font-weight: bold;
     > * {
-        padding: 0.7rem 0.7rem 0.3rem;
+        padding: 0.7rem;
     }
+    margin-bottom: 1rem;
 `;
 
 const ListStyle = styled.ol`
@@ -47,9 +49,9 @@ function Varsler(props: Props) {
         <Style>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Varsler" />}
             <HeaderStyle>
-                <p>Dato</p>
-                <p>Type</p>
-                <p>Kanal</p>
+                <Element>Dato</Element>
+                <Element>Type</Element>
+                <Element>Kanal</Element>
             </HeaderStyle>
             <ListStyle aria-label="Brukerens varsler">
                 {sortertPåDato.map((varsel, index) => (

@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { ChangeEvent, ReactNode, useRef } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
-import styled, { css } from 'styled-components';
-import { theme } from '../../../../../styles/personOversiktTheme';
-import { useOnMount } from '../../../../../utils/customHooks';
+import styled, { css } from 'styled-components/macro';
+import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { meldingerTest } from '../../dyplenkeTest/utils';
 import { useHistory } from 'react-router';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import TraadSammendrag from './TraadSammendrag';
 import { guid } from 'nav-frontend-js-utils';
+import { getFormattertMeldingsDato, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface Props {
     traad: Traad;
     erValgt: boolean;
-    taFokusOnMount?: boolean;
     onClick?: (event: React.ChangeEvent) => void;
     tillegskomponent?: ReactNode;
     listeId: string;
@@ -52,21 +52,21 @@ const StyledLi = styled.li<{ valgt: boolean }>`
 
 const ChevronStyling = styled.div`
     align-self: center;
+    .nav-frontend-chevron {
+        width: ${pxToRem(25)};
+    }
 `;
 
 function TraadListeElement(props: Props) {
-    const ref = React.createRef<HTMLInputElement>();
     const dyplenker = useInfotabsDyplenker();
     const id = useRef(guid());
     const history = useHistory();
-
-    useOnMount(() => {
-        if (props.taFokusOnMount) {
-            ref.current && ref.current.focus();
-        }
-    });
+    const melding = nyesteMelding(props.traad);
+    const tittel = meldingstittel(melding);
+    const ariaTittel = `${tittel} ${getFormattertMeldingsDato(melding)} (${props.traad.meldinger.length})`;
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        loggEvent('Vis', 'Meldinger', { type: nyesteMelding(props.traad).meldingstype });
         if (props.onClick) {
             props.onClick(e);
             return;
@@ -75,17 +75,16 @@ function TraadListeElement(props: Props) {
     };
 
     return (
-        <StyledLi valgt={props.erValgt} role="presentation">
+        <StyledLi valgt={props.erValgt}>
             <input
                 className={'sr-only ' + meldingerTest.melding}
                 type="radio"
-                role="tab"
+                aria-label={ariaTittel}
                 name={props.listeId}
                 value={props.traad.traadId}
                 id={id.current}
                 onChange={handleChange}
                 checked={props.erValgt}
-                ref={ref}
             />
             <StyledLabel htmlFor={id.current}>
                 {props.tillegskomponent}
@@ -93,7 +92,7 @@ function TraadListeElement(props: Props) {
                     <TraadSammendrag traad={props.traad} />
                 </FlexGrow>
                 <ChevronStyling className="hover-animation">
-                    <HoyreChevron stor={true} />
+                    <HoyreChevron />
                 </ChevronStyling>
             </StyledLabel>
         </StyledLi>

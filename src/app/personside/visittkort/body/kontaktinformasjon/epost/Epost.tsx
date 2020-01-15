@@ -36,7 +36,6 @@ function Epost() {
     return (
         <VisittkortElement beskrivelse="E-post" ikon={<EmailIkon />}>
             <RestResourceConsumer<KRRKontaktinformasjon>
-                spinnerSize={'L'}
                 getResource={restResources => restResources.kontaktinformasjon}
             >
                 {data => <EpostVisning kontaktinformasjon={data} />}

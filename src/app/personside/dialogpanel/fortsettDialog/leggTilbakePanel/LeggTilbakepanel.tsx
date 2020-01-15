@@ -2,20 +2,20 @@ import * as React from 'react';
 import { useState } from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Radio, SkjemaGruppe, Textarea } from 'nav-frontend-skjema';
 import { UnmountClosed } from 'react-collapse';
 import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
-import { useRestResource } from '../../../../../utils/customHooks';
 import { LeggTilbakeOppgaveRequest } from '../../../../../models/oppgave';
-import theme from '../../../../../styles/personOversiktTheme';
 import { Temagruppe, TemaPlukkbare } from '../../../../../models/Temagrupper';
 import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { DialogPanelStatus, FortsettDialogPanelState } from '../FortsettDialogTypes';
+import { useRestResource } from '../../../../../rest/consumer/useRestResource';
+import { usePostResource } from '../../../../../rest/consumer/usePostResource';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -34,7 +34,6 @@ const StyledEkspanderbartpanel = styled(Ekspanderbartpanel)`
     .ekspanderbartPanel__hode {
         padding: 0.6rem;
     }
-    margin: ${theme.margin.layout};
 `;
 
 const StyledSkjemaGruppe = styled(SkjemaGruppe)`
@@ -76,8 +75,8 @@ function LeggTilbakepanel(props: Props) {
     const updateState = (change: Partial<LeggTilbakeState>) =>
         setState({ ...state, visFeilmeldinger: false, ...change });
     const dispatch = useDispatch();
-    const resetPlukkOppgaveResource = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
-    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
+    const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const leggerTilbake = props.status.type === DialogPanelStatus.POSTING;
 
     function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak }) {
@@ -184,7 +183,7 @@ function LeggTilbakepanel(props: Props) {
                                 value={state.tekst}
                                 onChange={e =>
                                     updateState({
-                                        tekst: (e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value
+                                        tekst: e.currentTarget.value
                                     })
                                 }
                             />

@@ -14,9 +14,11 @@ interface Props {
 class YtelseValg extends React.Component<Props> {
     constructor(props: Props) {
         super(props);
-        this.props.onChange({
-            ytelser: [...this.getUnikeYtelser(props.utbetalinger)]
-        });
+        if (props.filterState.ytelser.length === 0) {
+            this.props.onChange({
+                ytelser: [...this.getUnikeYtelser(props.utbetalinger)]
+            });
+        }
     }
 
     componentDidUpdate(prevProps: Props) {

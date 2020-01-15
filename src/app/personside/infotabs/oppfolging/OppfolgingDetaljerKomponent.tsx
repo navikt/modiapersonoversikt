@@ -1,24 +1,18 @@
 import * as React from 'react';
 import { DetaljertOppfolging, Saksbehandler } from '../../../../models/oppfolging';
-import styled from 'styled-components';
-import theme from '../../../../styles/personOversiktTheme';
+import styled from 'styled-components/macro';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import DescriptionList from '../../../../components/DescriptionList';
 import { datoEllerNull } from '../../../../utils/stringFormatting';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
-const Wrapper = styled.div`
+const StyledArticle = styled.article`
     ${theme.hvittPanel};
-    padding: ${theme.margin.px20};
+    padding: ${pxToRem(15)};
     > *:first-child {
         margin-bottom: 1rem;
-    }
-`;
-
-const VisningWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    > *:first-child {
-        margin-right: 5rem;
     }
 `;
 
@@ -33,6 +27,7 @@ function VisOppfolgingDetaljer(props: Props) {
         ? `${detaljer.oppfølging.enhet.id} ${detaljer.oppfølging.enhet.navn}`
         : 'Ikke angitt';
     const meldeplikt = detaljer.meldeplikt ? 'Ja' : detaljer.meldeplikt === false ? 'Nei' : 'Meldeplikt Ukjent';
+    const headerId = useRef(guid());
 
     const descriptionListProps = {
         'Er under oppfølging': arbeidsrettetOppfølging,
@@ -46,12 +41,10 @@ function VisOppfolgingDetaljer(props: Props) {
     };
 
     return (
-        <Wrapper>
-            <Undertittel>Arbeidsoppfølging</Undertittel>
-            <VisningWrapper>
-                <DescriptionList entries={descriptionListProps} />
-            </VisningWrapper>
-        </Wrapper>
+        <StyledArticle aria-describedby={headerId.current}>
+            <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
+            <DescriptionList entries={descriptionListProps} />
+        </StyledArticle>
     );
 }
 

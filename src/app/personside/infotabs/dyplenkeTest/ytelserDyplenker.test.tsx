@@ -15,11 +15,11 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
         </TestProvider>
     );
 
-    expect(getAktivTab(infoTabs)).toContain(INFOTABS.OVERSIKT);
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.toLowerCase());
 
     clickOnYtelse(infoTabs);
 
-    expect(getAktivTab(infoTabs)).toContain(INFOTABS.YTELSER);
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.YTELSER.toLowerCase());
 
     const apenYtelse = infoTabs.find('.ekspanderbartPanel--apen').html();
     const expectedApenYtelse = infoTabs

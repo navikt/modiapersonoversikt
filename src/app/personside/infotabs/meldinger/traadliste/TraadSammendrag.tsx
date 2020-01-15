@@ -1,7 +1,12 @@
 import { Melding, Traad } from '../../../../../models/meldinger/meldinger';
-import { erDelvisBesvart, erFeilsendt, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
+import {
+    erDelvisBesvart,
+    erFeilsendt,
+    getFormattertMeldingsDato,
+    meldingstittel,
+    nyesteMelding
+} from '../utils/meldingerUtils';
 import { useAppState } from '../../../../../utils/customHooks';
-import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import Meldingsikon from '../utils/Meldingsikon';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { UnmountClosed } from 'react-collapse';
@@ -9,7 +14,7 @@ import { EtikettAdvarsel, EtikettFokus, EtikettInfo, EtikettSuksess } from 'nav-
 import * as React from 'react';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import { Temagruppe } from '../../../../../models/Temagrupper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const ContentStyle = styled.div`
     /* IE11-fix*/
@@ -57,14 +62,16 @@ const PreviewStyle = styled(Normaltekst)`
 function TraadSammendrag(props: { traad: Traad }) {
     const sisteMelding = nyesteMelding(props.traad);
     const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
-    const datoTekst = formatterDatoTid(sisteMelding.opprettetDato);
+    const datoTekst = getFormattertMeldingsDato(sisteMelding);
     const tittel = meldingstittel(sisteMelding);
     return (
         <Style>
             <Meldingsikon traad={props.traad} />
             <ContentStyle>
                 <UUcustomOrder>
-                    <Element className="order-second">{tittel}</Element>
+                    <Element aria-hidden={true} className="order-second">
+                        {tittel}
+                    </Element>
                     <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                 </UUcustomOrder>
                 <PreviewStyle>{sisteMelding.fritekst}</PreviewStyle>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
 import { ytelserTest } from '../../dyplenkeTest/utils';
@@ -32,6 +32,12 @@ const TittelStyle = styled.div`
 
 const CustomStyling = styled.div`
     ${theme.hvittPanel};
+    .ekspanderbartPanel__hode {
+        position: sticky;
+        top: 0;
+        border-bottom: ${theme.border.skilleSvak};
+        z-index: 10;
+    }
 `;
 
 function EkspanderbartYtelserPanel(props: Props) {
@@ -53,6 +59,7 @@ function EkspanderbartYtelserPanel(props: Props) {
             <EkspanderbartpanelBasePure
                 className={ytelserTest.ytelse}
                 apen={props.open}
+                /* TODO position:sticky på tittel */
                 onClick={() => props.setOpen(!props.open)}
                 heading={tittel}
                 ariaTittel={props.tittel}

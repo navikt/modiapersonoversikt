@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { useOnMount, useRestResource } from '../../../../utils/customHooks';
-import { useDispatch } from 'react-redux';
-import { hasData, isFailed, isLoading, isNotStarted } from '../../../../rest/utils/restResource';
 import { ReactNode, useMemo } from 'react';
 import { datoSynkende } from '../../../../utils/dateUtils';
 import { getPleiepengerIdDato, Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
 import { getSykepengerIdDato, Sykepenger } from '../../../../models/ytelse/sykepenger';
 import { Foreldrepengerettighet, getForeldepengerIdDato } from '../../../../models/ytelse/foreldrepenger';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 interface YtelseMedDato {
     idDato: string;
@@ -27,26 +25,13 @@ interface Returns {
 }
 
 function useBrukersYtelser(props: Props): Returns {
-    const foreldrepengerResource = useRestResource(resources => resources.foreldrepenger);
-    const pleiepengerResource = useRestResource(resources => resources.pleiepenger);
-    const sykepengerResource = useRestResource(resources => resources.sykepenger);
-    const dispatch = useDispatch();
-
-    useOnMount(() => {
-        if (isNotStarted(foreldrepengerResource)) {
-            dispatch(foreldrepengerResource.actions.fetch);
-        }
-        if (isNotStarted(pleiepengerResource)) {
-            dispatch(pleiepengerResource.actions.fetch);
-        }
-        if (isNotStarted(sykepengerResource)) {
-            dispatch(sykepengerResource.actions.fetch);
-        }
-    });
+    const foreldrepengerResource = useRestResource(resources => resources.foreldrepenger, undefined, true);
+    const pleiepengerResource = useRestResource(resources => resources.pleiepenger, undefined, true);
+    const sykepengerResource = useRestResource(resources => resources.sykepenger, undefined, true);
 
     const foreldrepenger: YtelseMedDato[] = useMemo(
         () =>
-            hasData(foreldrepengerResource) && foreldrepengerResource.data.foreldrepenger
+            foreldrepengerResource.data && foreldrepengerResource.data.foreldrepenger
                 ? foreldrepengerResource.data.foreldrepenger.map(foreldrepengerettighet => {
                       const idDato = getForeldepengerIdDato(foreldrepengerettighet);
                       return {
@@ -60,7 +45,7 @@ function useBrukersYtelser(props: Props): Returns {
 
     const pleiepenger: YtelseMedDato[] = useMemo(
         () =>
-            hasData(pleiepengerResource) && pleiepengerResource.data.pleiepenger
+            pleiepengerResource.data && pleiepengerResource.data.pleiepenger
                 ? pleiepengerResource.data.pleiepenger.map(pleiepengerettighet => {
                       const idDato = getPleiepengerIdDato(pleiepengerettighet);
                       return {
@@ -74,7 +59,7 @@ function useBrukersYtelser(props: Props): Returns {
 
     const sykepenger: YtelseMedDato[] = useMemo(
         () =>
-            hasData(sykepengerResource) && sykepengerResource.data.sykepenger
+            sykepengerResource.data && sykepengerResource.data.sykepenger
                 ? sykepengerResource.data.sykepenger.map(sykepengerettighet => {
                       const idDato = getSykepengerIdDato(sykepengerettighet);
                       return {
@@ -95,19 +80,18 @@ function useBrukersYtelser(props: Props): Returns {
     );
 
     const feilmeldinger = [
-        isFailed(foreldrepengerResource) && (
+        foreldrepengerResource.isFailed && (
             <AlertStripeAdvarsel key="foreldrepenger-failed">Kunne ikke laste foreldrepenger</AlertStripeAdvarsel>
         ),
-        isFailed(pleiepengerResource) && (
+        pleiepengerResource.isFailed && (
             <AlertStripeAdvarsel key="pleiepenger-failed">Kunne ikke laste pleiepenger</AlertStripeAdvarsel>
         ),
-        isFailed(sykepengerResource) && (
+        sykepengerResource.isFailed && (
             <AlertStripeAdvarsel key="sykepenger-failed">Kunne ikke laste sykepenger</AlertStripeAdvarsel>
         )
     ].filter(feilmelding => feilmelding);
 
-    const pending =
-        isLoading(pleiepengerResource) || isLoading(foreldrepengerResource) || isLoading(sykepengerResource);
+    const pending = pleiepengerResource.isLoading || foreldrepengerResource.isLoading || sykepengerResource.isLoading;
 
     return { ytelser, pending, feilmeldinger };
 }

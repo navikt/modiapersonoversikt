@@ -20,7 +20,7 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
             return 'Spørsmål fra NAV';
         case Meldingstype.SVAR_OPPMOTE:
             return 'Svar oppmøte';
-        case Meldingstype.SvarSblInngående:
+        case Meldingstype.SVAR_SBL_INNGAAENDE:
             return 'Svar fra bruker';
         case Meldingstype.SVAR_SKRIFTLIG:
             return 'Svar skriftlig';

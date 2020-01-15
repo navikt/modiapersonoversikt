@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Fragment } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import { Normaltekst } from 'nav-frontend-typografi';
 

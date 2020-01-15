@@ -5,7 +5,7 @@ import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-
 import { Radio } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import TemaTable from './TemaTabell';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import visibleIf from '../../../../../../../components/visibleIfHoc';
 import { Group, groupBy } from '../../../../../../../utils/groupArray';
 import { apiBaseUri } from '../../../../../../../api/config';

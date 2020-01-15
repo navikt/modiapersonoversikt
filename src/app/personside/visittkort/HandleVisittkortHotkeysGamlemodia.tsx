@@ -48,7 +48,4 @@ function mapDispatchToProps(dispatch: Dispatch<Action>): DispatchProps {
     };
 }
 
-export default connect(
-    null,
-    mapDispatchToProps
-)(HandleVisittkortHotkeysGamleModia);
+export default connect(null, mapDispatchToProps)(HandleVisittkortHotkeysGamleModia);

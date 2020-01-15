@@ -1,8 +1,8 @@
 import { KommendeUtbetaling } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
-import { Undertittel } from 'nav-frontend-typografi';
+import styled from 'styled-components/macro';
+import { Ingress } from 'nav-frontend-typografi';
 import {
     datoEllerNull,
     NOKellerNull,
@@ -11,6 +11,9 @@ import {
 } from '../../../../../../utils/stringFormatting';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { StyledTable } from '../../../../../../utils/table/StyledTable';
+import { erNyePersonoversikten } from '../../../../../../utils/erNyPersonoversikt';
+import { Link } from 'react-router-dom';
+import { usePaths } from '../../../../../routes/routing';
 
 interface Props {
     kommendeUtbetalinger: KommendeUtbetaling[];
@@ -52,11 +55,18 @@ function Utbetalinger({ kommendeUtbetalinger }: Props) {
 }
 
 function KommendeUtbetalinger(props: Props) {
+    const paths = usePaths();
     return (
         <KommendeUtbetalingerStyle>
-            <Undertittel tag="h4">Utbetalinger</Undertittel>
+            <Ingress tag="h4">Utbetalinger</Ingress>
             <Utbetalinger kommendeUtbetalinger={props.kommendeUtbetalinger} />
-            <AlertStripeInfo>For detaljer om utførte utbetalinger, se Utbetalingsoversikten.</AlertStripeInfo>
+            {erNyePersonoversikten() ? (
+                <AlertStripeInfo>
+                    For detaljer om utførte utbetalinger <Link to={paths.utbetlainger}>se Utbetalingsoversikten.</Link>
+                </AlertStripeInfo>
+            ) : (
+                <AlertStripeInfo>For detaljer om utførte utbetalinger, se Utbetalingsoversikten.</AlertStripeInfo>
+            )}
         </KommendeUtbetalingerStyle>
     );
 }

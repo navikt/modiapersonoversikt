@@ -7,7 +7,7 @@ import {
     Traad
 } from '../../../../../../models/meldinger/meldinger';
 import TraadListeElement from '../TraadListeElement';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { Checkbox } from 'nav-frontend-skjema';
 import EnkeltMelding from '../../traadvisning/Enkeltmelding';
@@ -16,7 +16,7 @@ import KnappBase, { Hovedknapp } from 'nav-frontend-knapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../../../../redux/reducers';
 import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../../../rest/utils/postResource';
-import { useOnMount, useRestResource } from '../../../../../../utils/customHooks';
+import { useOnMount } from '../../../../../../utils/customHooks';
 import { setValgtTraadDialogpanel } from '../../../../../../redux/oppgave/actions';
 import { loggError, loggEvent } from '../../../../../../utils/frontendLogger';
 import { useInfotabsDyplenker } from '../../../dyplenker';
@@ -24,6 +24,8 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { Feilmelding } from '../../../../../../utils/Feilmelding';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { runIfEventIsNotInsideRef } from '../../../../../../utils/reactRefUtils';
+import { useRestResource } from '../../../../../../rest/consumer/useRestResource';
+import { usePostResource } from '../../../../../../rest/consumer/usePostResource';
 
 interface Props {
     traader: Traad[];
@@ -129,7 +131,7 @@ function getTraaderSomSkalSlaasSammen(traader: Traad[]): SlaaSammenTraad[] {
 }
 
 function Meldingsvisning({ traad }: { traad: Traad }) {
-    const meldinger = traad.meldinger.map(melding => <EnkeltMelding melding={melding} sokeord={''} />);
+    const meldinger = traad.meldinger.map(melding => <EnkeltMelding key={melding.id} melding={melding} sokeord={''} />);
 
     return <TraadVisningStyle role="tabpanel">{meldinger}</TraadVisningStyle>;
 }
@@ -163,9 +165,9 @@ function ListeElement(props: {
 function BesvarFlere(props: Props & RouteComponentProps) {
     const dispatch = useDispatch();
     const slaaSammenResource = useSelector((state: AppState) => state.restResources.slaaSammen);
-    const setTråderITråderResource = useRestResource(resources => resources.tråderOgMeldinger.actions.setData);
-    const resetPlukkOppgave = useRestResource(resources => resources.plukkNyeOppgaver.actions.reset);
-    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver.actions.reload);
+    const setTråderITråderResource = useRestResource(resources => resources.tråderOgMeldinger).actions.setData;
+    const resetPlukkOppgave = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
+    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const [valgteTraader, setValgteTraader] = useState<Traad[]>([]);
     const [traadSomSkalVises, setTraadSomSkalVises] = useState<Traad>(props.traader[0]);
     const [feilmelding, setFeilmelding] = useState<string | undefined>(undefined);
@@ -222,7 +224,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
             traader: traaderSomSkalSlaasSammen
         };
         const callback = (response: SlaaSammenResponse) => {
-            loggEvent('SloSammenOppgaver', 'BesvarFlere');
+            loggEvent('OppgaverSlåttSammen', 'BesvarFlere', { antall: request.traader.length });
             dispatch(setTråderITråderResource(response.traader));
             dispatch(resetPlukkOppgave);
             dispatch(reloadTildelteOppgaver);

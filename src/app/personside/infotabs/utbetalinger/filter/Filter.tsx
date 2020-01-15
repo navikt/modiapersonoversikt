@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useCallback } from 'react';
 import { Radio } from 'nav-frontend-skjema';
-import { EtikettLiten, Undertittel } from 'nav-frontend-typografi';
+import { Element, Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
 import { hasData, isLoading, isReloading } from '../../../../../rest/utils/restResource';
 import UtbetaltTilValg from './UtbetaltTilValg';
@@ -12,14 +12,15 @@ import { AppState } from '../../../../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { oppdaterFilter } from '../../../../../redux/utbetalinger/actions';
 import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
-import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
+import styled from 'styled-components/macro';
+import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 import { isValidDate } from '../../../../../utils/dateUtils';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 const FiltreringsPanel = styled.nav`
     ${theme.hvittPanel};
-    padding: ${theme.margin.px20};
+    padding: ${pxToRem(15)};
 `;
 
 const InputPanel = styled.form`
@@ -32,10 +33,13 @@ const InputPanel = styled.form`
     > * {
         margin-top: 0.5rem;
     }
+    .skjemaelement--horisontal {
+        margin-bottom: 0.4rem;
+    }
 `;
 
 const KnappWrapper = styled.div`
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 `;
 
 const FieldSet = styled.fieldset`
@@ -74,9 +78,13 @@ function Filtrering() {
     const reloadUtbetalingerAction = utbetalingerResource.actions.reload;
 
     const filter = useSelector((state: AppState) => state.utbetalinger.filter);
-    const updateFilter = useCallback((change: Partial<UtbetalingFilterState>) => dispatch(oppdaterFilter(change)), [
-        dispatch
-    ]);
+    const updateFilter = useCallback(
+        (change: Partial<UtbetalingFilterState>) => {
+            loggEvent('EndreFilter', 'Utbetalinger');
+            dispatch(oppdaterFilter(change));
+        },
+        [dispatch]
+    );
 
     const reloadUtbetalinger = useCallback(() => {
         if (filter.periode.radioValg === PeriodeValg.EGENDEFINERT) {
@@ -113,7 +121,7 @@ function Filtrering() {
     const checkBokser = hasData(utbetalingerResource) && visCheckbokser(utbetalingerResource.data) && (
         <>
             <InputPanel>
-                <EtikettLiten>Utbetaling til</EtikettLiten>
+                <Element>Utbetaling til</Element>
                 <UtbetaltTilValg
                     utbetalinger={utbetalingerResource.data.utbetalinger}
                     onChange={updateFilter}
@@ -121,7 +129,7 @@ function Filtrering() {
                 />
             </InputPanel>
             <InputPanel>
-                <EtikettLiten>Velg ytelse</EtikettLiten>
+                <Element>Velg ytelse</Element>
                 <YtelseValg
                     onChange={updateFilter}
                     filterState={filter}
@@ -133,7 +141,7 @@ function Filtrering() {
     const hentUtbetalingerPanel = (
         <InputPanel>
             <FieldSet>
-                <EtikettLiten tag="legend">Velg periode</EtikettLiten>
+                <Element tag="legend">Velg periode</Element>
                 {radios}
             </FieldSet>
             {filter.periode.radioValg === PeriodeValg.EGENDEFINERT && (

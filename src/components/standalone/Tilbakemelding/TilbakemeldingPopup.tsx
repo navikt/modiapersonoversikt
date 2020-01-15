@@ -1,5 +1,5 @@
 import React, { useState, FormEvent, useRef } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Innholdstittel, Normaltekst, Element } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 import TilbakemeldingValg from './TilbakemeldingValg';
@@ -52,7 +52,7 @@ function Kommentar(props: InternalProps) {
         <>
             <Textarea
                 value={props.kommentar}
-                onChange={e => props.settKommentar((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)}
+                onChange={e => props.settKommentar(e.currentTarget.value)}
                 label={props.kommentarLabel}
                 maxLength={750}
             />

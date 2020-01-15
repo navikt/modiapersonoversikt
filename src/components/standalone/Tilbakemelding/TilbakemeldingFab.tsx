@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useClickOutside } from '../../../utils/customHooks';
 import TilbakemeldingPopup from './TilbakemeldingPopup';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';

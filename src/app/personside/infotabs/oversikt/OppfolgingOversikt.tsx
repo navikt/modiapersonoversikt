@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { Bold } from '../../../../components/common-styled-components';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import theme from '../../../../styles/personOversiktTheme';
@@ -46,9 +45,7 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
     const filtrerteYtelser = ytelser.filter((item, index) => ytelser.indexOf(item) === index).join(', ');
     return (
         <>
-            <Normaltekst>
-                <Bold>Ytelser:</Bold>
-            </Normaltekst>
+            <Element>Ytelser:</Element>
             <Normaltekst>{filtrerteYtelser}</Normaltekst>
         </>
     );
@@ -75,18 +72,12 @@ function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: Detal
 
     return (
         <>
-            <Normaltekst>
-                <Bold>Oppfølgende enhet:</Bold>
-            </Normaltekst>
+            <Element>Oppfølgende enhet:</Element>
             {enhet}
-            <Normaltekst>
-                <Bold>Veileder:</Bold>
-            </Normaltekst>
+            <Element>Veileder:</Element>
             {veilederNavn}
             {veilederIdent}
-            <Normaltekst>
-                <Bold>Innsatsgruppe / Rettighetsgruppe: </Bold>
-            </Normaltekst>
+            <Element>Innsatsgruppe / Rettighetsgruppe:</Element>
             <Normaltekst>
                 {innsatsgruppe} / {rettighetsgruppe}{' '}
             </Normaltekst>

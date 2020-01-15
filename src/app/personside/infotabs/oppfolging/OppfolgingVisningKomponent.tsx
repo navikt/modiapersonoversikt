@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import OppfolgingDatoPanel from './OppfolgingDatoKomponent';
 import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';
@@ -13,7 +13,7 @@ interface VisningProps {
     detaljertOppfølging: DetaljertOppfolging;
 }
 
-const OppfolgingStyle = styled.article`
+const OppfolgingStyle = styled.div`
     > *:not(:last-child) {
         margin-bottom: ${theme.margin.layout};
     }

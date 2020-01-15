@@ -1,5 +1,5 @@
 import { Behandlingsstatus, Sakstema } from '../../models/saksoversikt/sakstema';
-import { Entitet, Feilmelding, Kommunikasjonsretning } from '../../models/saksoversikt/dokumentmetadata';
+import { Entitet, Feilmelding, Kommunikasjonsretning } from '../../models/saksoversikt/journalpost';
 import { Baksystem } from '../../models/saksoversikt/fellesSak';
 
 export function getAremarkSakstemaListe(): Sakstema[] {

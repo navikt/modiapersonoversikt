@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Oversiktskomponent from './Oversiktskomponent';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import VarselOversikt from './VarselOversikt';
@@ -11,12 +11,16 @@ import { INFOTABS } from '../InfoTabEnum';
 import SakerOversikt from './SakerOversikt';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 
-const Style = styled.article`
+const Style = styled.div`
     @media (${theme.media.wideScreen}) {
         display: flex;
         justify-content: center;
     }
     padding: ${theme.margin.layout};
+    .alertstripe {
+        background-color: transparent;
+        border: none;
+    }
 `;
 
 const KolonneStyle = styled.div`
@@ -41,7 +45,7 @@ function Oversikt() {
                         infotabPath={INFOTABS.OPPFOLGING}
                         tittel={'Oppfølging'}
                         component={OppfolgingOversikt}
-                        hurtigtast={'O'}
+                        hurtigtast={'T'}
                     />
                     <Oversiktskomponent
                         infotabPath={INFOTABS.UTBETALING}

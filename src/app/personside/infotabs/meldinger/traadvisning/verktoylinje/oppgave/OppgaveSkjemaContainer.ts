@@ -39,7 +39,4 @@ function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(OppgaveSkjema);
+export default connect(mapStateToProps, mapDispatchToProps)(OppgaveSkjema);

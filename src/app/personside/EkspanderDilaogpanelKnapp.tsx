@@ -3,7 +3,7 @@ import PilKnapp from '../../components/pilknapp';
 import { toggleDialogpanel } from '../../redux/uiReducers/UIReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../styles/personOversiktTheme';
 import { loggEvent } from '../../utils/frontendLogger';
 

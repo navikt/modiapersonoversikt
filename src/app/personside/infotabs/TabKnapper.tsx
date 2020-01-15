@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { INFOTABS } from './InfoTabEnum';
-import styled, { css } from 'styled-components';
-import theme from '../../../styles/personOversiktTheme';
+import styled, { css } from 'styled-components/macro';
+import theme, { pxToRem } from '../../../styles/personOversiktTheme';
+import { capitalizeName } from '../../../utils/stringFormatting';
 
 interface TabPanelProps {
     onTabChange: Function;
@@ -10,22 +11,24 @@ interface TabPanelProps {
 
 const TabKnapperNav = styled.nav`
     flex-shrink: 0;
+    border-top: ${theme.border.skille};
+    border-bottom: ${theme.border.skille};
+    background-color: ${theme.color.navLysGra};
+`;
+
+const TabListStyle = styled.ul`
     display: flex;
     flex-flow: row wrap;
     width: 100%;
-    padding: ${theme.margin.layout};
     > *:not(:last-child) {
         margin-right: 0.2em;
     }
     > *:not(:first-child) {
         margin-left: 0.2em;
     }
-    border-top: ${theme.border.skille};
-    border-bottom: ${theme.border.skille};
-    background-color: ${theme.color.navLysGra};
 `;
 
-const KnappWrapper = styled.div`
+const KnappWrapper = styled.li`
     flex-grow: 1;
     box-sizing: border-box;
 `;
@@ -38,7 +41,8 @@ const TabKnapp = styled.button<TabKnappProps>`
     width: 100%;
     box-sizing: border-box;
     background-color: transparent;
-    padding-top: 0.5em;
+    margin-top: ${pxToRem(4)};
+    padding: ${theme.margin.layout};
     border: none;
     border-bottom: 4px solid ${props => (props.valgt ? theme.color.lenkeSelected : 'transparent')};
     ${props =>
@@ -63,17 +67,18 @@ function TabKnapper(props: TabPanelProps) {
     const knapper = Object.keys(INFOTABS).map(key => {
         const erValgt = INFOTABS[key] === props.openTab;
         return (
-            <KnappWrapper key={key}>
+            <KnappWrapper key={key} role="presentation">
                 <TabKnapp role="tab" aria-selected={erValgt} valgt={erValgt} onClick={() => props.onTabChange(key)}>
-                    {INFOTABS[key]}
+                    {capitalizeName(INFOTABS[key])}
                 </TabKnapp>
             </KnappWrapper>
         );
     });
 
     return (
-        <TabKnapperNav role="tablist" aria-label="Tabpanel">
-            {knapper}
+        <TabKnapperNav aria-label="Faner">
+            <h2 className="sr-only">Faner</h2>
+            <TabListStyle role="tablist">{knapper}</TabListStyle>
         </TabKnapperNav>
     );
 }

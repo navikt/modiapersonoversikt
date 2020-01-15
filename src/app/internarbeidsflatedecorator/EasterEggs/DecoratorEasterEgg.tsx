@@ -1,38 +1,53 @@
 import * as React from 'react';
-import styled, { keyframes } from 'styled-components';
-import nisselue from './nisselue.svg';
-import moment from 'moment';
 import { useErKontaktsenter } from '../../../utils/enheterUtils';
+import Nisselue from './nisselue/Nisselue';
+import { mockEnabled } from '../../../api/config';
+import Partyhatt from './partyhatt/Partyhatt';
+import { easterEggs, useListenForEasterEgg } from './useListenForEasterEgg';
+import ErrorBoundary from '../../../components/ErrorBoundary';
+import moment from 'moment';
 
-const dropDown = keyframes`
-  from {
-    top: -10rem;
-  }
-`;
-
-const StyledImg = styled.img`
-    position: absolute;
-    height: 3rem;
-    top: 0;
-    left: 1.1rem;
-    transform: rotateY(180deg);
-    animation: ${dropDown} 1.5s backwards 1.5s;
-`;
-
-function DecoratorEasterEgg() {
+function useDefaultEasterEgg() {
     const erKontaktsenter = useErKontaktsenter();
-    if (!erKontaktsenter) {
-        return null;
+    if (!erKontaktsenter && !mockEnabled) {
+        return '';
     }
 
     const today = moment();
-    const erJul = today.month() === 11 && 17 < today.date() && today.date() < 28;
+    const erJul = today.month() === 11 && 17 <= today.date() && today.date() <= 28;
+    const erNyttårsaften = today.month() === 11 && today.date() === 31;
 
     if (erJul) {
-        return <StyledImg src={nisselue} alt="nisselue" />;
+        return easterEggs.nisse;
+    }
+
+    if (erNyttårsaften) {
+        return easterEggs.party;
+    }
+
+    return '';
+}
+
+function DecoratorEasterEgg() {
+    const defaultEasterEegg = useDefaultEasterEgg();
+    const easterEgg = useListenForEasterEgg(defaultEasterEegg);
+
+    if (easterEggs.nisse === easterEgg) {
+        return <Nisselue />;
+    }
+    if (easterEggs.party === easterEgg) {
+        return <Partyhatt />;
     }
 
     return null;
 }
 
-export default DecoratorEasterEgg;
+function DecoratorEasterEggContainer() {
+    return (
+        <ErrorBoundary boundaryName="EasterEggs">
+            <DecoratorEasterEgg />
+        </ErrorBoundary>
+    );
+}
+
+export default DecoratorEasterEggContainer;

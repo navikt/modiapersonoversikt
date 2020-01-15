@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { StyledTable } from '../../../../../../../utils/table/StyledTable';
 import { JournalforingsSak } from './JournalforingPanel';
 import { sakKategori } from './VelgSak';
@@ -12,7 +12,7 @@ import { post } from '../../../../../../../api/api';
 import { loggError } from '../../../../../../../utils/frontendLogger';
 import { useDispatch, useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
-import { useRestResource } from '../../../../../../../utils/customHooks';
+import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 
 export interface Props {
     sak: JournalforingsSak;
@@ -54,6 +54,10 @@ export function JournalforSak(props: Props) {
     const fnr = useSelector(fnrSelector);
 
     const journalfor = () => {
+        if (submitting) {
+            return;
+        }
+
         setSubmitting(true);
         post(`${apiBaseUri}/journalforing/${fnr}/${traadId}`, sak, 'Journalføring').then(
             () => {
@@ -88,7 +92,7 @@ export function JournalforSak(props: Props) {
             <Ingress className="blokk-xxxs">{sak.temaNavn}</Ingress>
             <CustomStyledTable
                 tittelRekke={['Saksid', 'Opprettet', 'Fagsystem']}
-                rows={[[sak.saksId, sak.opprettetDatoFormatert, sak.fagsystemNavn]]}
+                rows={[[sak.saksIdVisning, sak.opprettetDatoFormatert, sak.fagsystemNavn]]}
                 className="blokk-m"
             />
             {error && <AlertStripeFeil className="blokk-xs">{error}</AlertStripeFeil>}

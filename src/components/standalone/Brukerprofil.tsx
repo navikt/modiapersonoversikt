@@ -10,9 +10,9 @@ import ErrorBoundary from '../ErrorBoundary';
 import BrukerprofilSide from '../../app/brukerprofil/BrukerprofilSide';
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
-import FetchSessionInfoOgLeggIRedux from '../../app/globaleVerdier/FetchSessionInfoOgLeggIRedux';
+import FetchSessionInfoOgLeggIRedux from '../../app/FetchSessionInfoOgLeggIRedux';
 
 interface Props {
     fødselsnummer: string;

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { theme } from '../../../styles/personOversiktTheme';
+import styled from 'styled-components/macro';
+import { pxToRem, theme } from '../../../styles/personOversiktTheme';
 import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
@@ -7,19 +7,14 @@ import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAut
 import Preview from './Preview';
 import { Meldingstype } from '../../../models/meldinger/meldinger';
 import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
-import { useDispatch } from 'react-redux';
-import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
-import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
-import { useRestResource } from '../../../utils/customHooks';
-import { hasData } from '../../../rest/utils/restResource';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useSentMelding } from './useSendtMelding';
+import GaaTilNesteOppgaveKnapp from './GaaTilNesteOppgaveKnapp';
 
 export const FormStyle = styled.form`
     display: flex;
-    margin-top: 1rem;
     flex-direction: column;
     align-items: stretch;
     .skjemaelement {
@@ -62,7 +57,7 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     if (!sentMelding.traad) {
         return <AlertStripeInfo>Kunne ikke vise journalføring/merk/oppgave-panel</AlertStripeInfo>;
     }
-    return <Verktoylinje valgtTraad={sentMelding.traad} skjulSkrivUt={true} />;
+    return <Verktoylinje valgtTraad={sentMelding.traad} />;
 }
 
 export function DialogpanelKvittering(props: {
@@ -71,27 +66,8 @@ export function DialogpanelKvittering(props: {
     meldingstype: Meldingstype;
     lukk: () => void;
 }) {
-    const tildelteOppgaver = useTildelteOppgaver();
-    const dispatch = useDispatch();
-    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
-
     const sentMelding = useSentMelding(props.fritekst);
     const opprettetDato = sentMelding.melding ? sentMelding.melding.opprettetDato : undefined;
-
-    const nesteOppgavePåBruker = tildelteOppgaver.paaBruker[0];
-    const gaaTilNesteSporsmaal = () => {
-        if (!nesteOppgavePåBruker || !hasData(traaderResource)) {
-            return;
-        }
-        const traadTilknyttetOppgave = traaderResource.data.find(
-            traad => traad.traadId === nesteOppgavePåBruker.traadId
-        );
-        if (!traadTilknyttetOppgave) {
-            return;
-        }
-        props.lukk();
-        dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
-    };
     return (
         <DialogpanelKvitteringStyling>
             <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
@@ -105,11 +81,7 @@ export function DialogpanelKvittering(props: {
             <KnappBase type="standard" onClick={props.lukk}>
                 Start ny dialog
             </KnappBase>
-            {nesteOppgavePåBruker && (
-                <KnappBase type="standard" onClick={gaaTilNesteSporsmaal}>
-                    Gå til neste spørsmål
-                </KnappBase>
-            )}
+            <GaaTilNesteOppgaveKnapp lukk={props.lukk} />
         </DialogpanelKvitteringStyling>
     );
 }
@@ -124,4 +96,9 @@ export const VelgDialogtypeStyle = styled.div`
     > *:not(:last-child) {
         margin-right: 1rem;
     }
+`;
+
+export const KategoriSkille = styled.div`
+    background-color: ${theme.color.kategori};
+    padding: 0.2rem ${pxToRem(15)};
 `;

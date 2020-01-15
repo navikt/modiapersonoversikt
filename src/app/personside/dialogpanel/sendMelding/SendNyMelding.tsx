@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { FormEvent } from 'react';
+import { FormEvent, useRef } from 'react';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { UnmountClosed } from 'react-collapse';
 import KnappBase from 'nav-frontend-knapper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Temavelger from '../component/Temavelger';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
@@ -14,13 +14,14 @@ import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { NyMeldingValidator } from './validatorer';
 import TekstFelt from './TekstFelt';
 import VelgDialogType from './VelgDialogType';
-import { useRestResource } from '../../../../utils/customHooks';
 import { Undertittel } from 'nav-frontend-typografi';
 import Oppgaveliste from './Oppgaveliste';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import theme from '../../../../styles/personOversiktTheme';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import { Temagruppe, TemaSamtalereferat } from '../../../../models/Temagrupper';
+import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import { guid } from 'nav-frontend-js-utils';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -61,6 +62,10 @@ const Margin = styled.div`
     /* Pga React Collapse må vi slenge på noen div'er som tar seg av marginer for å unngå hopp i animasjon */
 `;
 
+const StyledUndertittel = styled(Undertittel)`
+    margin-bottom: 1rem !important;
+`;
+
 export const tekstMaksLengde = 5000;
 
 interface Props {
@@ -82,16 +87,17 @@ function SendNyMelding(props: Props) {
     const updateState = props.updateState;
     const state = props.state;
     const personinformasjon = useRestResource(resources => resources.personinformasjon);
+    const tittelId = useRef(guid());
 
-    const navn = isLoadedPerson(personinformasjon)
-        ? capitalizeName(personinformasjon.data.navn.fornavn || '')
+    const navn = isLoadedPerson(personinformasjon.resource)
+        ? capitalizeName(personinformasjon.resource.data.navn.fornavn || '')
         : 'bruker';
 
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
     return (
-        <StyledArticle>
-            <Undertittel>Send ny melding</Undertittel>
+        <StyledArticle aria-describedby={tittelId.current}>
+            <StyledUndertittel id={tittelId.current}>Send ny melding</StyledUndertittel>
             <FormStyle onSubmit={props.handleSubmit}>
                 <TekstFelt
                     tekst={state.tekst}
@@ -126,7 +132,7 @@ function SendNyMelding(props: Props) {
                             oppgaveliste={state.oppgaveListe}
                             setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
                         />
-                        <StyledAlertStripeInfo>Bruker kan svare</StyledAlertStripeInfo>
+                        <StyledAlertStripeInfo>Gir varsel, bruker kan svare</StyledAlertStripeInfo>
                     </UnmountClosed>
                 </Margin>
                 <Feilmelding sendNyMeldingPanelState={props.sendNyMeldingPanelState.type} />

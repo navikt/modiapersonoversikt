@@ -21,7 +21,8 @@ class Tekstomrade extends React.Component<Props> {
     static defaultProps = {
         as: 'div',
         ingenFormattering: false,
-        rules: [ParagraphRule, HighlightRule, BoldRule, LinkRule]
+        rules: [ParagraphRule, HighlightRule, BoldRule, LinkRule],
+        children: ''
     };
 
     render() {

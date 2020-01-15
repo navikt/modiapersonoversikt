@@ -5,6 +5,7 @@ const context: Context = { aktivEnhet: '', aktivBruker: '' };
 
 export const enheter = [
     { enhetId: '0219', navn: 'NAV Bærum' },
+    { enhetId: '4100', navn: 'NKS' },
     { enhetId: '0118', navn: 'NAV Aremark' },
     { enhetId: '0604', navn: 'NAV Kongsberg' },
     { enhetId: '0602', navn: 'NAV Drammer' }

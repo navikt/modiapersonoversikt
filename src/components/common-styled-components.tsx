@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../styles/personOversiktTheme';
 
 export const AlignTextRight = styled.div`
@@ -30,7 +30,7 @@ export const Uppercase = styled.span`
 `;
 
 export const Bold = styled.span`
-    font-weight: bold;
+    font-weight: 600;
 `;
 
 export const BulletPoint = styled.div<{ showBulletPoint: boolean; color: string }>`
