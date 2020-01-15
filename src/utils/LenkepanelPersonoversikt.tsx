@@ -10,7 +10,7 @@ interface Props {
     className?: string;
 }
 
-const CustomStyling = styled.nav`
+const CustomStyling = styled.div`
     ${theme.hvittPanel};
     font-weight: 600;
     a {

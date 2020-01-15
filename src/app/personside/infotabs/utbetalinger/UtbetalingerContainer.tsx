@@ -14,7 +14,7 @@ import { useOnMount } from '../../../../utils/customHooks';
 import { erIE11, erModiabrukerdialog, erNyePersonoversikten } from '../../../../utils/erNyPersonoversikt';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
-const UtbetalingerArticle = styled.article`
+const UtbetalingerStyle = styled.div`
     ${scrollBarContainerStyle(theme.media.utbetalinger.minWidth)};
     @media (min-width: ${theme.media.utbetalinger.minWidth}) {
         ${erNyePersonoversikten() &&
@@ -47,7 +47,7 @@ function UtbetalingerContainer() {
 
     return (
         <ErrorBoundary boundaryName={'UtbetalingerContainer'}>
-            <UtbetalingerArticle role="region" aria-label="Utbetalinger">
+            <UtbetalingerStyle>
                 {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Utbetalinger" />}
                 <ScrollBar keepScrollId="utbetalinger-filter">
                     <Arenalenke />
@@ -65,7 +65,7 @@ function UtbetalingerContainer() {
                         </RestResourceConsumer>
                     </UtbetalingerSection>
                 </ScrollBar>
-            </UtbetalingerArticle>
+            </UtbetalingerStyle>
         </ErrorBoundary>
     );
 }

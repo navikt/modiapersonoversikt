@@ -12,6 +12,8 @@ import InfoTabs from './infotabs/InfoTabs';
 import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
 import styled from 'styled-components/macro';
 import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMeldinger';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
 const Scrollbar = styled.div`
     overflow-y: auto;
@@ -22,6 +24,7 @@ const Scrollbar = styled.div`
 function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
     const dispatch = useDispatch();
+    const tittelId = useRef(guid());
 
     const ekspanderDialogpanelHandler = () => {
         if (!UI.dialogPanel.ekspandert) {
@@ -30,7 +33,7 @@ function MainLayout() {
     };
 
     return (
-        <LayoutWrapper role="main">
+        <LayoutWrapper>
             <VenstreKolonne dialogPanelEkspandert={UI.dialogPanel.ekspandert}>
                 <Scrollbar>
                     <Kontrollsporsmal />
@@ -40,10 +43,12 @@ function MainLayout() {
             </VenstreKolonne>
             <HøyreKolonne
                 onClick={ekspanderDialogpanelHandler}
-                role="region"
-                aria-label="Oppgavepanel"
                 dialogPanelEkspandert={UI.dialogPanel.ekspandert}
+                aria-describedby={tittelId.current}
             >
+                <h1 className="sr-only" id={tittelId.current}>
+                    Oppgavepanel
+                </h1>
                 <Scrollbar>
                     <BrukerHarUbesvarteMeldinger />
                     <HentOppgaveKnapp />

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormEvent } from 'react';
+import { FormEvent, useRef } from 'react';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { UnmountClosed } from 'react-collapse';
 import KnappBase from 'nav-frontend-knapper';
@@ -21,6 +21,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import { Temagruppe, TemaSamtalereferat } from '../../../../models/Temagrupper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import { guid } from 'nav-frontend-js-utils';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -86,6 +87,7 @@ function SendNyMelding(props: Props) {
     const updateState = props.updateState;
     const state = props.state;
     const personinformasjon = useRestResource(resources => resources.personinformasjon);
+    const tittelId = useRef(guid());
 
     const navn = isLoadedPerson(personinformasjon.resource)
         ? capitalizeName(personinformasjon.resource.data.navn.fornavn || '')
@@ -94,8 +96,8 @@ function SendNyMelding(props: Props) {
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
     return (
-        <StyledArticle>
-            <StyledUndertittel>Send ny melding</StyledUndertittel>
+        <StyledArticle aria-describedby={tittelId.current}>
+            <StyledUndertittel id={tittelId.current}>Send ny melding</StyledUndertittel>
             <FormStyle onSubmit={props.handleSubmit}>
                 <TekstFelt
                     tekst={state.tekst}

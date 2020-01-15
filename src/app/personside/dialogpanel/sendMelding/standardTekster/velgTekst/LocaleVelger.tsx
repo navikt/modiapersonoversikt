@@ -1,10 +1,10 @@
 import React from 'react';
 import { Select as NavFrontendSelect } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
-import * as Domain from './domain';
-import { FieldState } from '../../../../../utils/hooks/use-field-state';
-import { localeString } from './domain';
-import theme from '../../../../../styles/personOversiktTheme';
+import * as Domain from '../domain';
+import { FieldState } from '../../../../../../utils/hooks/use-field-state';
+import { localeString } from '../domain';
+import theme from '../../../../../../styles/personOversiktTheme';
 
 interface Props {
     tekst?: Domain.Tekst;

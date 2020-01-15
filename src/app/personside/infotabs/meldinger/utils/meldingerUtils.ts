@@ -155,7 +155,7 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
                     const fritekst = melding.fritekst;
                     const tittel = meldingstittel(melding);
                     const saksbehandler = melding.skrevetAvTekst;
-                    const datotekst = formatterDatoTid(melding.opprettetDato);
+                    const datotekst = getFormattertMeldingsDato(melding);
                     const sokbarTekst = (fritekst + tittel + saksbehandler + datotekst).toLowerCase();
                     return words.every(word => sokbarTekst.includes(word.toLowerCase()));
                 });
@@ -186,4 +186,8 @@ export function erSammefritekstSomNyesteMeldingITraad(fritekst: string, traad?: 
     const fritekstFraNyesteMeldingITraad = removeWhiteSpaces(nyesteMelding(traad).fritekst.toLowerCase());
     const fritekstFraMelding = removeWhiteSpaces(fritekst.toLowerCase());
     return fritekstFraNyesteMeldingITraad.includes(fritekstFraMelding);
+}
+
+export function getFormattertMeldingsDato(melding: Melding) {
+    return formatterDatoTid(melding?.ferdigstiltDato || melding.opprettetDato);
 }

@@ -1,12 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser meldingercontainer med alt innhold 1`] = `
-.c1 {
-  overflow: auto;
-  max-height: 100%;
-  padding: .5rem;
-}
-
 .c11 {
   position: relative;
 }
@@ -224,6 +218,12 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-bottom: 0 !important;
 }
 
+.c1 {
+  overflow: auto;
+  max-height: 100%;
+  padding: .5rem;
+}
+
 .c0 {
   position: relative;
 }
@@ -261,7 +261,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   }
 }
 
-<article
+<div
   className="c0"
 >
   <div
@@ -269,92 +269,97 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
     onScroll={[Function]}
   >
     <nav
+      aria-label="Velg melding"
       className="c2"
     >
-      <h3
-        className="sr-only"
+      <article
+        aria-describedby="Helt tilfeldig ID"
       >
-        Søk i brukerens meldinger
-      </h3>
-      <div
-        className="c3"
-      >
-        <div
-          className="skjemaelement move-input-label"
+        <h3
+          className="sr-only"
+          id="Helt tilfeldig ID"
         >
+          Filtrer meldinger
+        </h3>
+        <div
+          className="c3"
+        >
+          <div
+            className="skjemaelement move-input-label"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="Helt tilfeldig ID"
+            >
+              Søk etter melding
+            </label>
+            <input
+              className="skjemaelement__input input--fullbredde"
+              id="Helt tilfeldig ID"
+              onChange={[Function]}
+              placeholder="Søk etter melding"
+              type="text"
+              value=""
+            />
+            <div
+              aria-live="assertive"
+              role="alert"
+            />
+          </div>
+        </div>
+        <div
+          className="skjemaelement skjemaelement--horisontal c4"
+        >
+          <input
+            checked={false}
+            className="skjemaelement__input checkboks"
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+            type="checkbox"
+          />
           <label
             className="skjemaelement__label"
             htmlFor="Helt tilfeldig ID"
           >
-            Søk etter melding
+            Skjul varsler
           </label>
-          <input
-            className="skjemaelement__input input--fullbredde"
-            id="Helt tilfeldig ID"
-            onChange={[Function]}
-            placeholder="Søk etter melding"
-            type="text"
-            value=""
-          />
           <div
             aria-live="assertive"
             role="alert"
           />
         </div>
-      </div>
-      <div
-        className="skjemaelement skjemaelement--horisontal c4"
-      >
-        <input
-          checked={false}
-          className="skjemaelement__input checkboks"
-          id="Helt tilfeldig ID"
-          onChange={[Function]}
-          type="checkbox"
-        />
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Skjul varsler
-        </label>
         <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-      <div
-        className="c5"
-      >
-        <p
-          aria-live="assertive"
-          className="typo-normal"
+          className="c5"
         >
-          Totalt 1 melding
-        </p>
-      </div>
+          <p
+            aria-live="assertive"
+            className="typo-normal"
+          >
+            Totalt 1 melding
+          </p>
+        </div>
+      </article>
       <h3
         className="sr-only"
+        id="Helt tilfeldig ID"
       >
         Meldingsliste - 
         Totalt 1 melding
       </h3>
       <ol
+        aria-describedby="Helt tilfeldig ID"
         className="c6"
-        role="tablist"
       >
         <li
           className="c7"
-          role="presentation"
         >
           <input
-            aria-label="Delsvar - Arbeid"
+            aria-label="Delsvar - Arbeid 27.07.2019 00:00 (4)"
             checked={false}
             className="sr-only test-meldinger-melding"
             id="Helt tilfeldig ID"
             name="traadliste-meldinger"
             onChange={[Function]}
-            role="tab"
             type="radio"
             value="sg838exr"
           />
@@ -413,7 +418,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     <p
                       className="typo-normal order-first"
                     >
-                      13.08.2019 00:00
+                      27.07.2019 00:00
                     </p>
                   </div>
                   <p
@@ -497,5 +502,5 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
       </div>
     </div>
   </div>
-</article>
+</div>
 `;

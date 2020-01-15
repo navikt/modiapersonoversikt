@@ -2,14 +2,12 @@ import { Element } from 'nav-frontend-typografi';
 import { Link } from 'react-router-dom';
 import * as React from 'react';
 import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import { useInfotabsDyplenker } from '../../dyplenker';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { paths } from '../../../../routes/routing';
 import { useFødselsnummer } from '../../../../../utils/customHooks';
 import { getSaksdokumentUrl } from '../dokumentvisning/getSaksdokumentUrl';
-import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
-import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
+import { useInfotabsDyplenker } from '../../dyplenker';
 
 interface Props {
     dokument: Dokument;
@@ -22,23 +20,23 @@ const dokumentTekst = (dokument: Dokument) => {
     return dokument.tittel + (dokument.skjerming ? ' (Skjermet)' : '');
 };
 
+export function getUrlSaksdokumentEgetVindu(fødselsnummer: string, journalpostId: string, dokumentReferanse: string) {
+    const saksdokumentUrl = getSaksdokumentUrl(fødselsnummer, journalpostId, dokumentReferanse);
+
+    return `${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`;
+}
+
 function DokumentLenke(props: Props) {
     const fødselsnummer = useFødselsnummer();
     const dyplenker = useInfotabsDyplenker();
-    const apneDokumenterIEgetVinduFT = useFeatureToggle(FeatureToggles.SaksDokumentIEgetVindu);
-    const saksdokumentUrl = getSaksdokumentUrl(
-        fødselsnummer,
-        props.journalPost.journalpostId,
-        props.dokument.dokumentreferanse
-    );
 
     if (!props.kanVises) {
         return <Element>{dokumentTekst(props.dokument)}</Element>;
     }
 
-    const apneDokumentINyttVindu = apneDokumenterIEgetVinduFT.isOn && !erSakerFullscreen();
+    const apneDokumentINyttVindu = !erSakerFullscreen();
     const url = apneDokumentINyttVindu
-        ? `${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`
+        ? getUrlSaksdokumentEgetVindu(fødselsnummer, props.journalPost.journalpostId, props.dokument.dokumentreferanse)
         : dyplenker.saker.link(props.valgtSakstema, props.dokument);
 
     return (

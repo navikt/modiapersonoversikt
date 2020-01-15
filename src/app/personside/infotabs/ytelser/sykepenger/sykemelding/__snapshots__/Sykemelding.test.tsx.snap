@@ -65,11 +65,13 @@ exports[`Sykemelding matcher snapshot 1`] = `
   background-color: rgba(0,0,0,0.1);
 }
 
-<div
+<article
+  aria-describedby="Helt tilfeldig ID"
   className="c0"
 >
   <h3
     className="typo-ingress"
+    id="Helt tilfeldig ID"
   >
     Sykmelding
   </h3>
@@ -157,5 +159,5 @@ exports[`Sykemelding matcher snapshot 1`] = `
       </tbody>
     </table>
   </div>
-</div>
+</article>
 `;

@@ -1,9 +1,9 @@
-import * as StandardTekster from './domain';
-import { Rule } from '../../../../../components/tekstomrade/parser/domain';
-import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
+import * as StandardTekster from '../domain';
+import { Rule } from '../../../../../../components/tekstomrade/parser/domain';
+import Tekstomrade from '../../../../../../components/tekstomrade/tekstomrade';
 import React from 'react';
 import styled from 'styled-components';
-import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
 
 const StyledLi = styled.li`
     position: relative;
@@ -31,6 +31,7 @@ interface Props {
     valgt: boolean;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     highlightRule: Rule;
+    locale: string;
 }
 
 function TekstListeElement(props: Props) {
@@ -49,6 +50,7 @@ function TekstListeElement(props: Props) {
                     {props.tekst.overskrift}
                 </Tekstomrade>
             </label>
+            <Tekstomrade className="sr-only">{props.tekst && props.tekst.innhold[props.locale]}</Tekstomrade>
         </StyledLi>
     );
 }

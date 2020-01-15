@@ -6,7 +6,7 @@ import { UnmountClosed } from 'react-collapse';
 import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
-import { createRef, useCallback, useEffect } from 'react';
+import { createRef, useCallback, useEffect, useRef } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
 import { useFødselsnummer, usePrevious } from '../../../../../../utils/customHooks';
 import { meldingstittel, nyesteMelding } from '../../utils/meldingerUtils';
@@ -18,13 +18,14 @@ import PrintKnapp from '../../../../../../components/PrintKnapp';
 import MeldingerPrintMarkup from '../../../../../../utils/MeldingerPrintMarkup';
 import useFeatureToggle from '../../../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../../../components/featureToggle/toggleIDs';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     valgtTraad: Traad;
     visPrinter?: boolean;
 }
 
-const PanelStyle = styled.section`
+const StyledArticle = styled.article`
     ${theme.hvittPanel};
     padding: ${theme.margin.layout};
     display: flex;
@@ -77,6 +78,7 @@ function Verktoylinje(props: Props) {
         settAktivtPanel(null);
         titleRef.current && titleRef.current.focus();
     }, [settAktivtPanel, titleRef]);
+    const tittelId = useRef(guid());
 
     const prevTraad = usePrevious(props.valgtTraad);
 
@@ -95,8 +97,8 @@ function Verktoylinje(props: Props) {
     const printer = usePrinter();
     const PrinterWrapper = printer.printerWrapper;
     return (
-        <PanelStyle>
-            <h3 className="sr-only" ref={titleRef} tabIndex={-1}>
+        <StyledArticle aria-describedby={tittelId.current}>
+            <h3 id={tittelId.current} className="sr-only" ref={titleRef} tabIndex={-1}>
                 Verktøylinje - {meldingstittel(nyesteMelding(props.valgtTraad))}
             </h3>
             <KnapperPanelStyle>
@@ -127,7 +129,7 @@ function Verktoylinje(props: Props) {
             <PrinterWrapper>
                 <MeldingerPrintMarkup valgtTraad={props.valgtTraad} />
             </PrinterWrapper>
-        </PanelStyle>
+        </StyledArticle>
     );
 }
 

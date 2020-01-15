@@ -150,7 +150,7 @@ function MerkPanel(props: Props) {
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
-        if (!valgtOperasjon) {
+        if (!valgtOperasjon || submitting) {
             return;
         }
         setSubmitting(true);
