@@ -172,6 +172,8 @@ function StandardTekster(props: Props) {
                     label="Søk etter standardtekster"
                     autoFocus={true}
                     id={sokeFeltId.current}
+                    // @ts-ignore
+                    autocomplete="off"
                 />
             </SokefeltStyledNav>
             {content}
