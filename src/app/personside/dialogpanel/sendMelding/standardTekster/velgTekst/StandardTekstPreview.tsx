@@ -85,7 +85,7 @@ function StandardTekstPreview({ tekst, locale, sokefelt, highlightRule }: Props)
     }
 
     return (
-        <PreviewStyle aria-hidden={'true'}>
+        <PreviewStyle>
             <article aria-describedby={tittelId.current}>
                 <h3 className="sr-only" id={tittelId.current}>
                     Forhåndsvisning

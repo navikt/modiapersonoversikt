@@ -1,15 +1,14 @@
 import { Melding } from '../../../../../models/meldinger/meldinger';
 import { Element, Undertekst } from 'nav-frontend-typografi';
 import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
-import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import * as React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components/macro';
 import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
 import { meldingstittel } from '../../../infotabs/meldinger/utils/meldingerUtils';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Avsender } from '../../../infotabs/meldinger/traadvisning/Enkeltmelding';
-import { useRef } from 'react';
-import { guid } from 'nav-frontend-js-utils';
 
 const EnkeltMeldingStyle = styled.div`
     width: 100%;
@@ -22,7 +21,7 @@ const StyledTekstomrade = styled(Tekstomrade)`
     padding-top: 0;
 `;
 
-const StyledEkspanderbartpanelBase = styled(EkspanderbartpanelBase)`
+const StyledEkspanderbartpanelBasePure = styled(EkspanderbartpanelBasePure)`
     ${theme.resetEkspanderbartPanelStyling};
     .ekspanderbartPanel__hode:focus {
         ${theme.focusInset};
@@ -36,13 +35,12 @@ interface Props {
 }
 
 function EnkeltMelding(props: Props) {
-    const tittelId = useRef(guid());
+    const [apen, setApen] = useState(props.defaultApen);
 
     const header = (
         <EnkeltMeldingStyle>
-            <Element tag="h4" id={tittelId.current}>
-                {meldingstittel(props.melding)}
-            </Element>
+            <span className="sr-only">{apen ? 'Åpen' : 'Lukket'}</span>
+            <Element tag="h4">{meldingstittel(props.melding)}</Element>
             <Undertekst>{formatterDatoTidMedMaanedsnavn(props.melding.opprettetDato)}</Undertekst>
             <Avsender melding={props.melding} />
         </EnkeltMeldingStyle>
@@ -50,11 +48,9 @@ function EnkeltMelding(props: Props) {
 
     return (
         <li>
-            <article aria-describedby={tittelId.current}>
-                <StyledEkspanderbartpanelBase heading={header} apen={props.defaultApen}>
-                    <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
-                </StyledEkspanderbartpanelBase>
-            </article>
+            <StyledEkspanderbartpanelBasePure heading={header} apen={apen} onClick={() => setApen(!apen)}>
+                <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
+            </StyledEkspanderbartpanelBasePure>
         </li>
     );
 }
