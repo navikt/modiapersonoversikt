@@ -58,9 +58,6 @@ const StyledLi = styled.li`
         }
     }
 `;
-const SkrevetAvStyle = styled.div`
-    display: flex;
-`;
 
 const BoldTekstomrade = styled(Tekstomrade)`
     font-weight: 600;
@@ -149,17 +146,15 @@ function PrintTekst({ melding }: { melding: Melding }) {
     return <StyledPrintTekst>{journalfort}</StyledPrintTekst>;
 }
 
-export function SkrevetAv({ melding, rule }: { melding: Melding; rule?: Rule }) {
+export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }
     const avsender = `Skrevet av ${melding.skrevetAvTekst}`;
     return (
-        <SkrevetAvStyle>
-            <Tekstomrade className={'typo-normal'} rules={rule && [rule]}>
-                {avsender}
-            </Tekstomrade>
-        </SkrevetAvStyle>
+        <Tekstomrade className={'typo-normal'} rules={rule && [rule]}>
+            {avsender}
+        </Tekstomrade>
     );
 }
 
@@ -185,7 +180,7 @@ function EnkeltMelding(props: Props) {
                                 <MeldingLestEtikett melding={props.melding} />
                             </SpaceBetween>
                             <Tekstomrade rules={[highlightRule]}>{datoTekst}</Tekstomrade>
-                            <SkrevetAv melding={props.melding} rule={highlightRule} />
+                            <Avsender melding={props.melding} rule={highlightRule} />
                         </Topptekst>
                         <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>
                             {props.melding.fritekst}
