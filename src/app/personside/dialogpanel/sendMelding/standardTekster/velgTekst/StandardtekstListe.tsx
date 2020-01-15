@@ -14,6 +14,7 @@ interface Props {
     tekster: Array<StandardTekster.Tekst>;
     valgt: FieldState;
     highlightRule: Rule;
+    locale: string;
 }
 
 const TreffStyle = styled(Element)`
@@ -44,6 +45,7 @@ function StandardtekstListe(props: Props) {
         .slice(0, visAntall)
         .map(tekst => (
             <TekstListeElement
+                locale={props.locale}
                 key={tekst.id}
                 tekst={tekst}
                 onChange={props.valgt.input.onChange}

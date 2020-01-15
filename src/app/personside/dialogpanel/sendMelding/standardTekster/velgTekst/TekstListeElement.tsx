@@ -1,6 +1,6 @@
 import * as StandardTekster from '../domain';
 import { Rule } from '../../../../../../components/tekstomrade/parser/domain';
-import Tekstomrade from '../../../../../../components/tekstomrade/tekstomrade';
+import Tekstomrade, { ParagraphRule } from '../../../../../../components/tekstomrade/tekstomrade';
 import React from 'react';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
@@ -31,6 +31,7 @@ interface Props {
     valgt: boolean;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     highlightRule: Rule;
+    locale: string;
 }
 
 function TekstListeElement(props: Props) {
@@ -49,6 +50,9 @@ function TekstListeElement(props: Props) {
                     {props.tekst.overskrift}
                 </Tekstomrade>
             </label>
+            <article className="sr-only" aria-describedby={props.tekst.id}>
+                <Tekstomrade rules={[ParagraphRule]}>{props.tekst && props.tekst.innhold[props.locale]}</Tekstomrade>
+            </article>
         </StyledLi>
     );
 }
