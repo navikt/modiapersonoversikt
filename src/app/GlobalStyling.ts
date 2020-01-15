@@ -4,7 +4,6 @@ import theme, { pxToRem } from '../styles/personOversiktTheme';
 const GlobalStyling = createGlobalStyle`
     body {
       background-color: ${theme.color.bakgrunn};
-    }
     .visually-hidden {
         ${theme.visuallyHidden}
     }
@@ -16,6 +15,7 @@ const GlobalStyling = createGlobalStyle`
     }
     .spinner {
         flex: 0 0 auto;
+    }
     }
 `;
 

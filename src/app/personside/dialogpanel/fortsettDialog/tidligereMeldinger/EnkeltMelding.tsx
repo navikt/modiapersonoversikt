@@ -7,7 +7,7 @@ import styled from 'styled-components/macro';
 import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
 import { meldingstittel } from '../../../infotabs/meldinger/utils/meldingerUtils';
 import theme from '../../../../../styles/personOversiktTheme';
-import { SkrevetAv } from '../../../infotabs/meldinger/traadvisning/Enkeltmelding';
+import { Avsender } from '../../../infotabs/meldinger/traadvisning/Enkeltmelding';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 
@@ -44,7 +44,7 @@ function EnkeltMelding(props: Props) {
                 {meldingstittel(props.melding)}
             </Element>
             <Undertekst>{formatterDatoTidMedMaanedsnavn(props.melding.opprettetDato)}</Undertekst>
-            <SkrevetAv melding={props.melding} />
+            <Avsender melding={props.melding} />
         </EnkeltMeldingStyle>
     );
 
