@@ -10,7 +10,7 @@ import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
-import { useSentMelding } from './useSendtMelding';
+import { useSendtMelding } from './useSendtMelding';
 import GaaTilNesteOppgaveKnapp from './GaaTilNesteOppgaveKnapp';
 
 export const FormStyle = styled.form`
@@ -44,9 +44,9 @@ export function DialogpanelFeilmelding() {
 }
 
 function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
-    const sentMelding = useSentMelding(props.fritekst);
+    const sendtMelding = useSendtMelding(props.fritekst);
 
-    if (sentMelding.pending) {
+    if (sendtMelding.pending) {
         return (
             <SpinnerWrapper>
                 <NavFrontendSpinner type="S" />
@@ -54,10 +54,10 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
         );
     }
 
-    if (!sentMelding.traad) {
+    if (!sendtMelding.traad) {
         return <AlertStripeInfo>Kunne ikke vise journalføring/merk/oppgave-panel</AlertStripeInfo>;
     }
-    return <Verktoylinje valgtTraad={sentMelding.traad} />;
+    return <Verktoylinje valgtTraad={sendtMelding.traad} />;
 }
 
 export function DialogpanelKvittering(props: {
@@ -66,15 +66,15 @@ export function DialogpanelKvittering(props: {
     meldingstype: Meldingstype;
     lukk: () => void;
 }) {
-    const sentMelding = useSentMelding(props.fritekst);
-    const opprettetDato = sentMelding.melding ? sentMelding.melding.opprettetDato : undefined;
+    const sendtMelding = useSendtMelding(props.fritekst);
+    const opprettetDato = sendtMelding.melding ? sendtMelding.melding.opprettetDato : undefined;
     return (
         <DialogpanelKvitteringStyling>
             <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
             <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
             <Preview
                 opprettetDato={opprettetDato}
-                fritekst={props.fritekst}
+                fritekst={sendtMelding.melding?.fritekst || props.fritekst}
                 tittel={meldingstypeTekst(props.meldingstype)}
             />
             <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
