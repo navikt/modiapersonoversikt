@@ -574,16 +574,14 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   }
 }
 
-<article
-  aria-label="Utbetalinger"
+<div
   className="c0"
-  role="region"
 >
   <div
     className="c1"
     onScroll={[Function]}
   >
-    <nav
+    <div
       className="c2 c3"
     >
       <a
@@ -597,7 +595,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           className="lenkepanel__indikator"
         />
       </a>
-    </nav>
+    </div>
     <section
       className="c4"
     >
@@ -1547,5 +1545,5 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
       </div>
     </section>
   </div>
-</article>
+</div>
 `;

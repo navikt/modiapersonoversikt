@@ -98,16 +98,14 @@ function SendNyMeldingContainer() {
     };
 
     return (
-        <>
-            <SendNyMelding
-                updateState={updateState}
-                state={state}
-                handleSubmit={handleSubmit}
-                handleAvbryt={handleAvbryt}
-                formErEndret={state !== initialState}
-                sendNyMeldingPanelState={sendNyMeldingStatus}
-            />
-        </>
+        <SendNyMelding
+            updateState={updateState}
+            state={state}
+            handleSubmit={handleSubmit}
+            handleAvbryt={handleAvbryt}
+            formErEndret={state !== initialState}
+            sendNyMeldingPanelState={sendNyMeldingStatus}
+        />
     );
 }
 

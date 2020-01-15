@@ -33,11 +33,13 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
   margin-bottom: 1rem;
 }
 
-<div
+<article
+  aria-describedby="Helt tilfeldig ID"
   className="c0"
 >
   <h3
     className="typo-ingress"
+    id="Helt tilfeldig ID"
   >
     Sykepengetilfellet
   </h3>
@@ -165,5 +167,5 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
       </dd>
     </div>
   </dl>
-</div>
+</article>
 `;

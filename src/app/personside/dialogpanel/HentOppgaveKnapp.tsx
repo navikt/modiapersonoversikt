@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
@@ -19,8 +19,9 @@ import { SaksbehandlerRoller } from '../../../utils/RollerUtils';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { RestResourcePlaceholderProps } from '../../../rest/consumer/placeholder';
+import { guid } from 'nav-frontend-js-utils';
 
-const HentOppgaveLayout = styled.article`
+const StyledArticle = styled.article`
     text-align: center;
     padding: ${theme.margin.layout};
     border-bottom: ${theme.border.skilleSvak};
@@ -53,6 +54,7 @@ function HentOppgaveKnapp() {
     const oppgaveResource = useSelector((state: AppState) => state.restResources.plukkNyeOppgaver);
     const velgTemaGruppe = (temagruppe: Temagruppe) => dispatch(velgTemagruppeForPlukk(temagruppe));
     const valgtTemaGruppe = useSelector((state: AppState) => state.session.temagruppeForPlukk);
+    const tittelId = useRef(guid());
     let selectRef: HTMLSelectElement | null = null;
 
     const rollerResource = useRestResource(resources => resources.veilederRoller, placeholderProps);
@@ -110,8 +112,10 @@ function HentOppgaveKnapp() {
         </option>
     ));
     return (
-        <HentOppgaveLayout>
-            <h2 className="sr-only">Hent oppgave</h2>
+        <StyledArticle aria-describedby={tittelId.current}>
+            <h2 className="sr-only" id={tittelId.current}>
+                Hent oppgave
+            </h2>
             <KnappLayout>
                 <Select
                     // @ts-ignore
@@ -138,7 +142,7 @@ function HentOppgaveKnapp() {
             {isFailedPosting(oppgaveResource) && <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>}
             {tomtTilbakemelding}
             <TildelteOppgaver />
-        </HentOppgaveLayout>
+        </StyledArticle>
     );
 }
 

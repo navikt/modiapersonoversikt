@@ -150,11 +150,13 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
     <div
       className="c1"
     >
-      <div
+      <article
+        aria-describedby="Helt tilfeldig ID"
         className="c2"
       >
         <h3
           className="typo-ingress"
+          id="Helt tilfeldig ID"
         >
           Om foreldrepengeretten
         </h3>
@@ -258,12 +260,14 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </dd>
           </div>
         </dl>
-      </div>
-      <div
+      </article>
+      <article
+        aria-describedby="Helt tilfeldig ID"
         className="c2"
       >
         <h3
           className="typo-ingress"
+          id="Helt tilfeldig ID"
         >
           Om barnet
         </h3>
@@ -319,13 +323,15 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
             </dd>
           </div>
         </dl>
-      </div>
+      </article>
     </div>
-    <div
+    <article
+      aria-describedby="Helt tilfeldig ID"
       className="c2"
     >
       <h3
         className="typo-ingress"
+        id="Helt tilfeldig ID"
       >
         Arbeidssituasjon
       </h3>
@@ -444,7 +450,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
       >
         Vis alle arbeidsforhold
       </button>
-    </div>
+    </article>
   </div>
   <ol>
     <li
@@ -462,11 +468,13 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
       <article
         className="c9"
       >
-        <div
+        <article
+          aria-describedby="Helt tilfeldig ID"
           className="c2"
         >
           <h3
             className="typo-ingress"
+            id="Helt tilfeldig ID"
           >
             Om foreldrepengeperioden
           </h3>
@@ -642,7 +650,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
               </dd>
             </div>
           </dl>
-        </div>
+        </article>
         <section
           className="c10"
         >

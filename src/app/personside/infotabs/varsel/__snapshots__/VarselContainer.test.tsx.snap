@@ -147,7 +147,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   margin-top: 0.5rem;
 }
 
-<article
+<div
   className="c0"
 >
   <div
@@ -174,206 +174,214 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
     className="c2"
   >
     <li
-      aria-label="Påminnelse om å sende meldekort"
       className="c3"
     >
-      <div
-        className="c4"
-        onClick={[Function]}
+      <article
+        aria-describedby="Helt tilfeldig ID"
       >
-        <p
-          className="typo-normal"
-        >
-          28.03.2019
-        </p>
-        <p
-          className="typo-element"
-        >
-          Påminnelse om å sende meldekort
-        </p>
-        <ul
-          aria-label="Kommunikasjonskanaler"
-          className="c5"
-        >
-          <li
-            className="typo-normal"
-          >
-            EPOST
-          </li>
-          <li
-            className="typo-normal"
-          >
-            SMS
-          </li>
-        </ul>
-        <button
-          aria-expanded={false}
-          aria-label="Vis meldinger"
-          className="c6"
+        <div
+          className="c4"
           onClick={[Function]}
-          title="Vis meldinger"
         >
-          <i
-            className="nav-frontend-chevron chevronboks chevron--ned"
-          />
-        </button>
-      </div>
-      <ol
-        aria-label="Meldinger"
-        className="c7"
-      >
-        <li
-          aria-label="EPOST"
-          className="c8"
-        >
-          <div>
-            <p
-              className="typo-element"
-            >
-              EPOST
-            </p>
-            <p
+          <p
+            className="typo-normal"
+          >
+            28.03.2019
+          </p>
+          <h4
+            className="typo-element"
+            id="Helt tilfeldig ID"
+          >
+            Påminnelse om å sende meldekort
+          </h4>
+          <ul
+            aria-label="Kommunikasjonskanaler"
+            className="c5"
+          >
+            <li
               className="typo-normal"
             >
-              01. mars 2019
-            </p>
-          </div>
-          <div>
-            <div>
-              <p
-                className="typo-element"
-              >
-                Epostemne
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Meldingsinnhold
-              </p>
-            </div>
-            <p
-              className="typo-element"
-            >
-              Epost: 
-              mottakerinfo
-            </p>
-          </div>
-        </li>
-        <li
-          aria-label="SMS"
-          className="c8"
-        >
-          <div>
-            <p
-              className="typo-element"
+              EPOST
+            </li>
+            <li
+              className="typo-normal"
             >
               SMS
-            </p>
-            <p
-              className="typo-normal"
-            >
-              24. jan. 2019
-            </p>
-          </div>
-          <div>
-            <p
-              className="typo-normal"
-            >
-              Meldingsinnhold
-            </p>
-            <p
-              className="typo-element"
-            >
-              Tlf: 
-              mottakerinfo
-            </p>
-          </div>
-        </li>
-      </ol>
-    </li>
-    <li
-      aria-label="Påminnelse om å sende meldekort"
-      className="c3"
-    >
-      <div
-        className="c4"
-        onClick={[Function]}
-      >
-        <p
-          className="typo-normal"
-        >
-          10.01.2019
-        </p>
-        <p
-          className="typo-element"
-        >
-          Påminnelse om å sende meldekort
-        </p>
-        <ul
-          aria-label="Kommunikasjonskanaler"
-          className="c5"
+            </li>
+          </ul>
+          <button
+            aria-expanded={false}
+            aria-label="Vis meldinger"
+            className="c6"
+            onClick={[Function]}
+            title="Vis meldinger"
+          >
+            <i
+              className="nav-frontend-chevron chevronboks chevron--ned"
+            />
+          </button>
+        </div>
+        <ol
+          aria-label="Meldinger"
+          className="c7"
         >
           <li
-            className="typo-normal"
+            aria-label="EPOST"
+            className="c8"
           >
-            EPOST
-          </li>
-        </ul>
-        <button
-          aria-expanded={false}
-          aria-label="Vis meldinger"
-          className="c6"
-          onClick={[Function]}
-          title="Vis meldinger"
-        >
-          <i
-            className="nav-frontend-chevron chevronboks chevron--ned"
-          />
-        </button>
-      </div>
-      <ol
-        aria-label="Meldinger"
-        className="c7"
-      >
-        <li
-          aria-label="EPOST"
-          className="c8"
-        >
-          <div>
-            <p
-              className="typo-element"
-            >
-              EPOST
-            </p>
-            <p
-              className="typo-normal"
-            >
-              02. feb. 2019
-            </p>
-          </div>
-          <div>
             <div>
               <p
                 className="typo-element"
               >
-                Epostemne
+                EPOST
               </p>
+              <p
+                className="typo-normal"
+              >
+                01. mars 2019
+              </p>
+            </div>
+            <div>
+              <div>
+                <p
+                  className="typo-element"
+                >
+                  Epostemne
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Meldingsinnhold
+                </p>
+              </div>
+              <p
+                className="typo-element"
+              >
+                Epost: 
+                mottakerinfo
+              </p>
+            </div>
+          </li>
+          <li
+            aria-label="SMS"
+            className="c8"
+          >
+            <div>
+              <p
+                className="typo-element"
+              >
+                SMS
+              </p>
+              <p
+                className="typo-normal"
+              >
+                24. jan. 2019
+              </p>
+            </div>
+            <div>
               <p
                 className="typo-normal"
               >
                 Meldingsinnhold
               </p>
+              <p
+                className="typo-element"
+              >
+                Tlf: 
+                mottakerinfo
+              </p>
             </div>
-            <p
-              className="typo-element"
+          </li>
+        </ol>
+      </article>
+    </li>
+    <li
+      className="c3"
+    >
+      <article
+        aria-describedby="Helt tilfeldig ID"
+      >
+        <div
+          className="c4"
+          onClick={[Function]}
+        >
+          <p
+            className="typo-normal"
+          >
+            10.01.2019
+          </p>
+          <h4
+            className="typo-element"
+            id="Helt tilfeldig ID"
+          >
+            Påminnelse om å sende meldekort
+          </h4>
+          <ul
+            aria-label="Kommunikasjonskanaler"
+            className="c5"
+          >
+            <li
+              className="typo-normal"
             >
-              Epost: 
-              mottakerinfo
-            </p>
-          </div>
-        </li>
-      </ol>
+              EPOST
+            </li>
+          </ul>
+          <button
+            aria-expanded={false}
+            aria-label="Vis meldinger"
+            className="c6"
+            onClick={[Function]}
+            title="Vis meldinger"
+          >
+            <i
+              className="nav-frontend-chevron chevronboks chevron--ned"
+            />
+          </button>
+        </div>
+        <ol
+          aria-label="Meldinger"
+          className="c7"
+        >
+          <li
+            aria-label="EPOST"
+            className="c8"
+          >
+            <div>
+              <p
+                className="typo-element"
+              >
+                EPOST
+              </p>
+              <p
+                className="typo-normal"
+              >
+                02. feb. 2019
+              </p>
+            </div>
+            <div>
+              <div>
+                <p
+                  className="typo-element"
+                >
+                  Epostemne
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Meldingsinnhold
+                </p>
+              </div>
+              <p
+                className="typo-element"
+              >
+                Epost: 
+                mottakerinfo
+              </p>
+            </div>
+          </li>
+        </ol>
+      </article>
     </li>
   </ol>
-</article>
+</div>
 `;

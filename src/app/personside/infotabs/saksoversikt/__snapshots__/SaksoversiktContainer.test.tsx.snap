@@ -419,15 +419,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   }
 }
 
-<article
-  aria-label="Brukerens saker"
+<div
   className="c0"
 >
   <div
     className="c1"
     onScroll={[Function]}
   >
-    <div
+    <nav
+      aria-describedby="Helt tilfeldig ID"
       className="c2"
     >
       <div
@@ -435,6 +435,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
       >
         <h2
           className="typo-undertittel"
+          id="Helt tilfeldig ID"
         >
           Tema
         </h2>
@@ -769,14 +770,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </li>
         </ol>
       </nav>
-    </div>
+    </nav>
   </div>
   <div
     className="c1"
     onScroll={[Function]}
   >
     <div>
-      <section
+      <article
         aria-label="Saksdokumenter for Alle tema"
         className="c11"
       >
@@ -1972,7 +1973,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </ol>
           </li>
         </ol>
-      </section>
+      </article>
       <div
         className="alertstripe alertstripe--info"
       >
@@ -2009,5 +2010,5 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
       </div>
     </div>
   </div>
-</article>
+</div>
 `;

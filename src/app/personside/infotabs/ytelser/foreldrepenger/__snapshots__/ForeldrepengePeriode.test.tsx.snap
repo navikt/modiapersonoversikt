@@ -106,11 +106,13 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   <article
     className="c2"
   >
-    <div
+    <article
+      aria-describedby="Helt tilfeldig ID"
       className="c3"
     >
       <h3
         className="typo-ingress"
+        id="Helt tilfeldig ID"
       >
         Om foreldrepengeperioden
       </h3>
@@ -286,7 +288,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </dd>
         </div>
       </dl>
-    </div>
+    </article>
     <section
       className="c5"
     >

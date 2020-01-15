@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
 import { ForsettDialogRequest, Meldingstype, SendDelsvarRequest, Traad } from '../../../../models/meldinger/meldinger';
@@ -27,6 +27,10 @@ import {
 import { useTimer } from '../../../../utils/hooks/useTimer';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../rest/consumer/usePostResource';
+import { Undertittel } from 'nav-frontend-typografi';
+import { guid } from 'nav-frontend-js-utils';
+import styled from 'styled-components';
+import theme from '../../../../styles/personOversiktTheme';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -39,6 +43,10 @@ interface Props {
     traad: Traad;
 }
 
+const StyledArticle = styled.article`
+    padding: 1rem ${theme.margin.layout};
+`;
+
 function FortsettDialogContainer(props: Props) {
     const initialState = {
         tekst: '',
@@ -48,6 +56,7 @@ function FortsettDialogContainer(props: Props) {
         sak: undefined,
         oppgaveListe: OppgavelisteValg.MinListe
     };
+    const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
     const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
@@ -183,7 +192,8 @@ function FortsettDialogContainer(props: Props) {
     const temagruppe = meldingMedTemagruppe ? meldingMedTemagruppe.temagruppe : undefined;
 
     return (
-        <>
+        <StyledArticle aria-describedby={tittelId.current}>
+            <Undertittel id={tittelId.current}>Fortsett dialog</Undertittel>
             <FortsettDialog
                 handleAvbryt={handleAvbryt}
                 state={state}
@@ -202,7 +212,7 @@ function FortsettDialogContainer(props: Props) {
                     temagruppe={temagruppe}
                 />
             )}
-        </>
+        </StyledArticle>
     );
 }
 

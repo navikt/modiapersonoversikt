@@ -217,21 +217,16 @@ exports[`viser dialogpanel 1`] = `
   word-break: break-word;
 }
 
-<article
-  aria-label="Dialogpanel"
+<div
   className="c0"
-  role="region"
 >
-  <h2
-    className="typo-undertittel sr-only"
-  >
-    Dialogpanel
-  </h2>
   <article
+    aria-describedby="Helt tilfeldig ID"
     className="c1"
   >
     <h2
       className="typo-undertittel c2"
+      id="Helt tilfeldig ID"
     >
       Send ny melding
     </h2>
@@ -648,5 +643,5 @@ exports[`viser dialogpanel 1`] = `
       </div>
     </form>
   </article>
-</article>
+</div>
 `;

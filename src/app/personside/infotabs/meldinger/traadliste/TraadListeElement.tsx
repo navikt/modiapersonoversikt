@@ -3,19 +3,18 @@ import { ChangeEvent, ReactNode, useRef } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled, { css } from 'styled-components/macro';
 import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
-import { useOnMount } from '../../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { meldingerTest } from '../../dyplenkeTest/utils';
 import { useHistory } from 'react-router';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import TraadSammendrag from './TraadSammendrag';
 import { guid } from 'nav-frontend-js-utils';
-import { meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
+import { getFormattertMeldingsDato, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
+import { loggEvent } from '../../../../../utils/frontendLogger';
 
 interface Props {
     traad: Traad;
     erValgt: boolean;
-    taFokusOnMount?: boolean;
     onClick?: (event: React.ChangeEvent) => void;
     tillegskomponent?: ReactNode;
     listeId: string;
@@ -59,19 +58,15 @@ const ChevronStyling = styled.div`
 `;
 
 function TraadListeElement(props: Props) {
-    const ref = React.createRef<HTMLInputElement>();
     const dyplenker = useInfotabsDyplenker();
     const id = useRef(guid());
     const history = useHistory();
-    const tittel = meldingstittel(nyesteMelding(props.traad));
-
-    useOnMount(() => {
-        if (props.taFokusOnMount) {
-            ref.current && ref.current.focus();
-        }
-    });
+    const melding = nyesteMelding(props.traad);
+    const tittel = meldingstittel(melding);
+    const ariaTittel = `${tittel} ${getFormattertMeldingsDato(melding)} (${props.traad.meldinger.length})`;
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        loggEvent('Vis', 'Meldinger', { type: nyesteMelding(props.traad).meldingstype });
         if (props.onClick) {
             props.onClick(e);
             return;
@@ -84,13 +79,12 @@ function TraadListeElement(props: Props) {
             <input
                 className={'sr-only ' + meldingerTest.melding}
                 type="radio"
-                aria-label={tittel}
+                aria-label={ariaTittel}
                 name={props.listeId}
                 value={props.traad.traadId}
                 id={id.current}
                 onChange={handleChange}
                 checked={props.erValgt}
-                ref={ref}
             />
             <StyledLabel htmlFor={id.current}>
                 {props.tillegskomponent}

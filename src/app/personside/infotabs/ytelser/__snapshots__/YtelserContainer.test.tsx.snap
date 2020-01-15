@@ -348,11 +348,13 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
             <div
               className="c5"
             >
-              <div
+              <article
+                aria-describedby="Helt tilfeldig ID"
                 className="c6"
               >
                 <h3
                   className="typo-ingress"
+                  id="Helt tilfeldig ID"
                 >
                   Sykepengetilfellet
                 </h3>
@@ -480,12 +482,14 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     </dd>
                   </div>
                 </dl>
-              </div>
-              <div
+              </article>
+              <article
+                aria-describedby="Helt tilfeldig ID"
                 className="c6"
               >
                 <h3
                   className="typo-ingress"
+                  id="Helt tilfeldig ID"
                 >
                   Sykmelding
                 </h3>
@@ -573,13 +577,15 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </article>
             </div>
-            <div
+            <article
+              aria-describedby="Helt tilfeldig ID"
               className="c6"
             >
               <h3
                 className="typo-ingress"
+                id="Helt tilfeldig ID"
               >
                 Arbeidssituasjon
               </h3>
@@ -726,7 +732,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               >
                 Vis alle arbeidsforhold
               </button>
-            </div>
+            </article>
           </div>
           <section
             className="c12"
@@ -1053,11 +1059,13 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
           <div
             className="c14"
           >
-            <div
+            <article
+              aria-describedby="Helt tilfeldig ID"
               className="c6"
             >
               <h3
                 className="typo-ingress"
+                id="Helt tilfeldig ID"
               >
                 Om pleiepengeretten
               </h3>
@@ -1125,12 +1133,14 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                   </dd>
                 </div>
               </dl>
-            </div>
-            <div
+            </article>
+            <article
+              aria-describedby="Helt tilfeldig ID"
               className="c6"
             >
               <h3
                 className="typo-ingress"
+                id="Helt tilfeldig ID"
               >
                 Arbeidssituasjon
               </h3>
@@ -1249,7 +1259,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               >
                 Vis alle arbeidsforhold
               </button>
-            </div>
+            </article>
           </div>
           <ol>
             <li
@@ -1554,11 +1564,13 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
             <div
               className="c21"
             >
-              <div
+              <article
+                aria-describedby="Helt tilfeldig ID"
                 className="c6"
               >
                 <h3
                   className="typo-ingress"
+                  id="Helt tilfeldig ID"
                 >
                   Om foreldrepengeretten
                 </h3>
@@ -1662,12 +1674,14 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     </dd>
                   </div>
                 </dl>
-              </div>
-              <div
+              </article>
+              <article
+                aria-describedby="Helt tilfeldig ID"
                 className="c6"
               >
                 <h3
                   className="typo-ingress"
+                  id="Helt tilfeldig ID"
                 >
                   Om barnet
                 </h3>
@@ -1723,13 +1737,15 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                     </dd>
                   </div>
                 </dl>
-              </div>
+              </article>
             </div>
-            <div
+            <article
+              aria-describedby="Helt tilfeldig ID"
               className="c6"
             >
               <h3
                 className="typo-ingress"
+                id="Helt tilfeldig ID"
               >
                 Arbeidssituasjon
               </h3>
@@ -1848,7 +1864,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               >
                 Vis alle arbeidsforhold
               </button>
-            </div>
+            </article>
           </div>
           <ol>
             <li
@@ -1866,11 +1882,13 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               <article
                 className="c22"
               >
-                <div
+                <article
+                  aria-describedby="Helt tilfeldig ID"
                   className="c6"
                 >
                   <h3
                     className="typo-ingress"
+                    id="Helt tilfeldig ID"
                   >
                     Om foreldrepengeperioden
                   </h3>
@@ -2046,7 +2064,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                       </dd>
                     </div>
                   </dl>
-                </div>
+                </article>
                 <section
                   className="c13"
                 >

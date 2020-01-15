@@ -5,8 +5,10 @@ import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import DescriptionList from '../../../../components/DescriptionList';
 import { datoEllerNull } from '../../../../utils/stringFormatting';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
-const Wrapper = styled.div`
+const StyledArticle = styled.article`
     ${theme.hvittPanel};
     padding: ${pxToRem(15)};
     > *:first-child {
@@ -25,6 +27,7 @@ function VisOppfolgingDetaljer(props: Props) {
         ? `${detaljer.oppfølging.enhet.id} ${detaljer.oppfølging.enhet.navn}`
         : 'Ikke angitt';
     const meldeplikt = detaljer.meldeplikt ? 'Ja' : detaljer.meldeplikt === false ? 'Nei' : 'Meldeplikt Ukjent';
+    const headerId = useRef(guid());
 
     const descriptionListProps = {
         'Er under oppfølging': arbeidsrettetOppfølging,
@@ -38,10 +41,10 @@ function VisOppfolgingDetaljer(props: Props) {
     };
 
     return (
-        <Wrapper>
-            <Undertittel>Arbeidsoppfølging</Undertittel>
+        <StyledArticle aria-describedby={headerId.current}>
+            <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
             <DescriptionList entries={descriptionListProps} />
-        </Wrapper>
+        </StyledArticle>
     );
 }
 

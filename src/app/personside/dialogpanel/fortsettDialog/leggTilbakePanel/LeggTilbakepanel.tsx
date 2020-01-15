@@ -9,7 +9,6 @@ import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { LeggTilbakeOppgaveRequest } from '../../../../../models/oppgave';
-import theme from '../../../../../styles/personOversiktTheme';
 import { Temagruppe, TemaPlukkbare } from '../../../../../models/Temagrupper';
 import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
@@ -35,7 +34,6 @@ const StyledEkspanderbartpanel = styled(Ekspanderbartpanel)`
     .ekspanderbartPanel__hode {
         padding: 0.6rem;
     }
-    margin: ${theme.margin.layout};
 `;
 
 const StyledSkjemaGruppe = styled(SkjemaGruppe)`

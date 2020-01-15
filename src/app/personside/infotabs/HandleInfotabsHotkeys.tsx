@@ -1,17 +1,15 @@
 import { RouteComponentProps, withRouter } from 'react-router';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { loggEvent } from '../../../utils/frontendLogger';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../redux/reducers';
 import { usePaths } from '../../routes/routing';
-import { InfotabsFokusContext } from './InfoTabs';
 
 type Props = RouteComponentProps<{}>;
 
 function HandleInfotabsHotkeys(props: Props) {
     const fødselsnummer = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const paths = usePaths();
-    const fokusContext = useContext(InfotabsFokusContext);
 
     useEffect(() => {
         const handleOversiktHotkeys = (event: KeyboardEvent) => {
@@ -41,12 +39,11 @@ function HandleInfotabsHotkeys(props: Props) {
                 loggEvent('Saker', 'Hurtigtast', { type: 'Alt + S' });
                 props.history.push(paths.saker);
             }
-            fokusContext();
         };
 
         window.addEventListener('keydown', handleOversiktHotkeys);
         return () => window.removeEventListener('keydown', handleOversiktHotkeys);
-    }, [fødselsnummer, props.history, paths, fokusContext]);
+    }, [fødselsnummer, props.history, paths]);
 
     return null;
 }

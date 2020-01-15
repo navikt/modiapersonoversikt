@@ -7,12 +7,13 @@ import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useRef, useState } from 'react';
 import { useFocusOnMount } from '../../../../../utils/customHooks';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     traad: Traad;
 }
 
-const Wrapper = styled.article`
+const StyledArticle = styled.article`
     ${theme.resetEkspanderbartPanelStyling}
     > *:not(:first-child) {
         margin-top: 1rem;
@@ -69,19 +70,20 @@ function TidligereMeldinger(props: Props) {
     const delsvar = props.traad.meldinger.filter(
         melding => melding.meldingstype === Meldingstype.DELVIS_SVAR_SKRIFTLIG
     );
+    const tittelId = useRef(guid());
 
     useFocusOnMount(ref);
 
     const defaultApen = delsvar.length > 0 || traadUtenDelviseSvar.length === 1;
 
     return (
-        <Wrapper>
-            <h3 tabIndex={-1} className="sr-only" ref={ref}>
-                Tråd under arbeid
+        <StyledArticle aria-describedby={tittelId.current}>
+            <h3 tabIndex={-1} className="sr-only" ref={ref} id={tittelId.current}>
+                Tidligere meldinger
             </h3>
             <Traadpanel traad={traadUtenDelviseSvar} tittel="Vis tidligere meldinger" defaultApen={defaultApen} />
             <Traadpanel traad={delsvar} tittel="Vis alle delsvar" defaultApen={defaultApen} />
-        </Wrapper>
+        </StyledArticle>
     );
 }
 
