@@ -1,6 +1,6 @@
 import * as StandardTekster from '../domain';
 import { Rule } from '../../../../../../components/tekstomrade/parser/domain';
-import Tekstomrade, { LinkRule, ParagraphRule } from '../../../../../../components/tekstomrade/tekstomrade';
+import Tekstomrade from '../../../../../../components/tekstomrade/tekstomrade';
 import React from 'react';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
@@ -50,9 +50,7 @@ function TekstListeElement(props: Props) {
                     {props.tekst.overskrift}
                 </Tekstomrade>
             </label>
-            <Tekstomrade rules={[ParagraphRule, LinkRule]} className="sr-only">
-                {props.tekst && props.tekst.innhold[props.locale]}
-            </Tekstomrade>
+            <Tekstomrade className="sr-only">{props.tekst && props.tekst.innhold[props.locale]}</Tekstomrade>
         </StyledLi>
     );
 }
