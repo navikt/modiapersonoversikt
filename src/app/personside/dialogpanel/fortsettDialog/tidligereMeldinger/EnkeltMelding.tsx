@@ -32,6 +32,7 @@ interface Props {
     melding: Melding;
     erEnkeltstaende: boolean;
     defaultApen: boolean;
+    meldingsNummer: number;
 }
 
 function EnkeltMelding(props: Props) {
@@ -39,6 +40,7 @@ function EnkeltMelding(props: Props) {
 
     const header = (
         <EnkeltMeldingStyle>
+            <span className="sr-only">Melding {props.meldingsNummer}</span>
             <span className="sr-only">{apen ? 'Åpen' : 'Lukket'}</span>
             <Element tag="h4">{meldingstittel(props.melding)}</Element>
             <Undertekst>{formatterDatoTidMedMaanedsnavn(props.melding.opprettetDato)}</Undertekst>

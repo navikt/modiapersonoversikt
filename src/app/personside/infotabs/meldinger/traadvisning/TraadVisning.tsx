@@ -39,7 +39,12 @@ const KanBesvaresMeldingstyper = [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Melding
 function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
     const meldingskomponenter = traad.meldinger
         .sort(datoSynkende(melding => melding.opprettetDato))
-        .map(melding => <EnkeltMelding sokeord={sokeord} melding={melding} key={melding.id} />);
+        .map((melding, index) => {
+            const meldingnummer = traad.meldinger.length - index;
+            return (
+                <EnkeltMelding sokeord={sokeord} melding={melding} key={melding.id} meldingsNummer={meldingnummer} />
+            );
+        });
 
     return <ol aria-label="Dialog">{meldingskomponenter}</ol>;
 }

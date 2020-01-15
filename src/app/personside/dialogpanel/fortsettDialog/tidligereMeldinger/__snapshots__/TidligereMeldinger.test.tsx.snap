@@ -70,6 +70,12 @@ exports[`viser fortsett dialog 1`] = `
               <span
                 className="sr-only"
               >
+                Melding 
+                3
+              </span>
+              <span
+                className="sr-only"
+              >
                 Åpen
               </span>
               <h4
@@ -125,6 +131,12 @@ exports[`viser fortsett dialog 1`] = `
               <span
                 className="sr-only"
               >
+                Melding 
+                2
+              </span>
+              <span
+                className="sr-only"
+              >
                 Åpen
               </span>
               <h4
@@ -172,6 +184,12 @@ exports[`viser fortsett dialog 1`] = `
             <div
               className="c2"
             >
+              <span
+                className="sr-only"
+              >
+                Melding 
+                1
+              </span>
               <span
                 className="sr-only"
               >
@@ -227,6 +245,12 @@ exports[`viser fortsett dialog 1`] = `
             <div
               className="c2"
             >
+              <span
+                className="sr-only"
+              >
+                Melding 
+                1
+              </span>
               <span
                 className="sr-only"
               >

@@ -726,6 +726,12 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       <h4
                         id="Helt tilfeldig ID"
                       >
+                        <span
+                          className="sr-only"
+                        >
+                          Melding 
+                          4
+                        </span>
                         <div
                           className="tekstomrade c21"
                         >
@@ -839,6 +845,12 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       <h4
                         id="Helt tilfeldig ID"
                       >
+                        <span
+                          className="sr-only"
+                        >
+                          Melding 
+                          3
+                        </span>
                         <div
                           className="tekstomrade c21"
                         >
@@ -938,6 +950,12 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       <h4
                         id="Helt tilfeldig ID"
                       >
+                        <span
+                          className="sr-only"
+                        >
+                          Melding 
+                          2
+                        </span>
                         <div
                           className="tekstomrade c21"
                         >
@@ -1037,6 +1055,12 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       <h4
                         id="Helt tilfeldig ID"
                       >
+                        <span
+                          className="sr-only"
+                        >
+                          Melding 
+                          1
+                        </span>
                         <div
                           className="tekstomrade c21"
                         >
