@@ -72,9 +72,11 @@ function TraadSammendrag(props: { traad: Traad }) {
                     <Element aria-hidden={true} className="order-second">
                         {tittel}
                     </Element>
-                    <Normaltekst className="order-first">{datoTekst}</Normaltekst>
+                    <Normaltekst aria-hidden="true" className="order-first">
+                        {datoTekst}
+                    </Normaltekst>
                 </UUcustomOrder>
-                <PreviewStyle>{sisteMelding.fritekst}</PreviewStyle>
+                <PreviewStyle aria-hidden="true">{sisteMelding.fritekst}</PreviewStyle>
                 <EtikettStyling>
                     <UnmountClosed isOpened={underArbeid}>
                         <EtikettFokus>Under arbeid</EtikettFokus>
