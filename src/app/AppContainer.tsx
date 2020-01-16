@@ -16,8 +16,9 @@ import GlobalStyling from './GlobalStyling';
 import Decorator from './internarbeidsflatedecorator/Decorator';
 import Routing from './Routing';
 import styled from 'styled-components';
-import { useOnMount } from '../utils/customHooks';
+import { useAppState, useOnMount } from '../utils/customHooks';
 import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
+import VelgEnhet from './VelgEnhet';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -44,6 +45,30 @@ if (mockEnabled) {
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
 function App() {
+    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+
+    if (!valgtEnhet) {
+        return <VelgEnhet />;
+    }
+
+    return (
+        <>
+            <DemoBanner />
+            <IeMacStyling />
+            <GlobalStyling />
+            <LyttPåFnrIURLOgSettIRedux />
+            <HentGlobaleVerdier />
+            <AppStyle>
+                <Decorator />
+                <ContentStyle>
+                    <Routing />
+                </ContentStyle>
+            </AppStyle>
+        </>
+    );
+}
+
+function AppContainer() {
     useOnMount(() => {
         ModalWrapper.setAppElement('#root');
         settJobberIkkeMedSpørsmålOgSvar();
@@ -51,23 +76,13 @@ function App() {
 
     return (
         <>
-            <DemoBanner />
-            <IeMacStyling />
-            <GlobalStyling />
             <Provider store={store}>
                 <BrowserRouter>
-                    <LyttPåFnrIURLOgSettIRedux />
-                    <HentGlobaleVerdier />
-                    <AppStyle>
-                        <Decorator />
-                        <ContentStyle>
-                            <Routing />
-                        </ContentStyle>
-                    </AppStyle>
+                    <App />
                 </BrowserRouter>
             </Provider>
         </>
     );
 }
 
-export default App;
+export default AppContainer;
