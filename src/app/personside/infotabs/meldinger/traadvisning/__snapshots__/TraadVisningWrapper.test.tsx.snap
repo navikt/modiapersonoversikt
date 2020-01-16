@@ -323,16 +323,10 @@ exports[`Viser traad med verktøylinje 1`] = `
 >
   <article
     aria-describedby="Helt tilfeldig ID"
+    aria-label="Verktøylinje"
     className="c1"
+    tabIndex={-1}
   >
-    <h3
-      className="sr-only"
-      id="Helt tilfeldig ID"
-      tabIndex={-1}
-    >
-      Verktøylinje - 
-      Delsvar - Arbeid
-    </h3>
     <div
       className="c2"
     >
