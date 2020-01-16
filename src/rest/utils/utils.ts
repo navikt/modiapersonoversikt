@@ -1,8 +1,9 @@
 import { Action, Dispatch } from 'redux';
-import { ActionTypes, FetchUriCreator } from './restResource';
+import { ActionTypes, FetchUriCreator, getActionTypes } from './restResource';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { AppState } from '../../redux/reducers';
-import { loggError } from '../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../utils/frontendLogger';
+import { Timer } from '../../utils/timer';
 
 const notFound = new Error();
 const forbidden = new Error();
@@ -89,11 +90,14 @@ function handterFeil(dispatch: Dispatch<Action>, actionNames: ActionTypes, fetch
     };
 }
 
+const timer = new Timer();
+
 export function fetchDataAndDispatchToRedux<T>(
     fetchUriCreator: FetchUriCreator,
-    actionNames: ActionTypes,
+    resourceNavn: string,
     reload?: boolean
 ) {
+    const actionNames = getActionTypes(resourceNavn);
     return (dispatch: AsyncDispatch, getState: () => AppState) => {
         const uri = fetchUriCreator(getState());
         if (uri === abortFetch) {
@@ -101,10 +105,12 @@ export function fetchDataAndDispatchToRedux<T>(
             return Promise.resolve();
         }
         dispatch({ type: reload ? actionNames.RELOADING : actionNames.STARTING, fetchUrl: uri });
+        timer.startTimer();
         return fetch(uri, { credentials: 'include' })
             .then(parseResponse)
             .then(dispatchDataTilRedux(dispatch, actionNames.FINISHED, uri))
-            .catch(handterFeil(dispatch, actionNames, uri));
+            .catch(handterFeil(dispatch, actionNames, uri))
+            .finally(() => loggEvent(reload ? 'Re-Fetch' : 'Fetch', resourceNavn, undefined, { ms: timer.getTime() }));
     };
 }
 
