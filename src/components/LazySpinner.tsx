@@ -13,6 +13,7 @@ interface Props {
 }
 
 const Styling = styled.span<{ padding?: string }>`
+    overflow: hidden;
     display: flex;
     justify-content: center;
     ${theme.animation.fadeIn};
