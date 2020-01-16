@@ -21,7 +21,8 @@ import { useEffect, useRef } from 'react';
 import { loggEvent } from '../../../utils/frontendLogger';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import Ytelser from './ytelser/Ytelser';
-
+import { guid } from 'nav-frontend-js-utils';
+import { capitalizeName } from '../../../utils/stringFormatting';
 
 type Props = RouteComponentProps<{}>;
 
@@ -79,7 +80,6 @@ function InfoTabs(props: Props) {
 
     return (
         <ErrorBoundary boundaryName="InfoTabs">
-
             <HandleInfotabsHotkeys />
             <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
             <ErrorBoundary boundaryName={'Open tab: ' + openTab}>

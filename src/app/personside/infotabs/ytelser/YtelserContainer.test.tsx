@@ -6,7 +6,7 @@ import YtelserContainer from './YtelserContainer';
 test('Om YtelserContainer matcher snapshot', () => {
     const resultat = renderer.create(
         <TestProvider>
-            <YtelserContainer />
+            <YtelserContainer valgtYtelse={undefined} />
         </TestProvider>
     );
 

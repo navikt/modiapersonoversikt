@@ -12,6 +12,11 @@ import ForeldrepengerEkspanderbartpanel from './foreldrepenger/ForeldrepengerEks
 import { getUnikPleiepengerKey } from '../../../../models/ytelse/pleiepenger';
 import { getUnikSykepengerKey } from '../../../../models/ytelse/sykepenger';
 import { getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
+import { Ytelse } from './Ytelser';
+
+interface Props {
+    valgtYtelse: Ytelse;
+}
 
 const Styling = styled.section`
     > * {
@@ -21,20 +26,23 @@ const Styling = styled.section`
     padding: ${theme.margin.layout};
 `;
 
-function YtelserContainer() {
+function YtelserContainer(props: Props) {
     const { ytelser, pending, feilmeldinger } = useBrukersYtelser({
-        renderPleiepenger: pleiepenger => (
-            <PleiepengerEkspanderbartpanel pleiepenger={pleiepenger} key={getUnikPleiepengerKey(pleiepenger)} />
-        ),
-        renderSykepenger: sykepenger => (
-            <SykepengerEkspanderbartpanel sykepenger={sykepenger} key={getUnikSykepengerKey(sykepenger)} />
-        ),
-        renderForeldrepenger: foreldrepenger => (
-            <ForeldrepengerEkspanderbartpanel
-                foreldrepenger={foreldrepenger}
-                key={getUnikForeldrepengerKey(foreldrepenger)}
-            />
-        )
+        renderPleiepenger: pleiepenger =>
+            pleiepenger === props.valgtYtelse ? (
+                <PleiepengerEkspanderbartpanel pleiepenger={pleiepenger} key={getUnikPleiepengerKey(pleiepenger)} />
+            ) : null,
+        renderSykepenger: sykepenger =>
+            sykepenger === props.valgtYtelse ? (
+                <SykepengerEkspanderbartpanel sykepenger={sykepenger} key={getUnikSykepengerKey(sykepenger)} />
+            ) : null,
+        renderForeldrepenger: foreldrepenger =>
+            foreldrepenger === props.valgtYtelse ? (
+                <ForeldrepengerEkspanderbartpanel
+                    foreldrepenger={foreldrepenger}
+                    key={getUnikForeldrepengerKey(foreldrepenger)}
+                />
+            ) : null
     });
 
     return (

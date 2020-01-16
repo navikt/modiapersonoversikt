@@ -8,7 +8,7 @@ import {
 } from '../../../../../models/ytelse/pleiepenger';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { useInfotabsDyplenker } from '../../dyplenker';
-import { useAppState, useOnMount } from '../../../../../utils/customHooks';
+import { useOnMount } from '../../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisYtesle } from '../../../../../redux/ytelser/ytelserReducer';
 
@@ -17,7 +17,6 @@ interface Props {
 }
 
 function PleiepengerEkspanderbartpanel({ pleiepenger }: Props) {
-    const open = useAppState(state => state.ytelser.aapnedeYtesler).includes(pleiepenger);
     const dispatch = useDispatch();
     const setOpen = (vis: boolean) => dispatch(toggleVisYtesle(pleiepenger, vis));
 
@@ -34,7 +33,7 @@ function PleiepengerEkspanderbartpanel({ pleiepenger }: Props) {
 
     return (
         <EkspanderbartYtelserPanel
-            open={open}
+            open={true}
             setOpen={setOpen}
             tittel="Pleiepenger sykt barn"
             tittelTillegsInfo={tittelTillegsInfo}

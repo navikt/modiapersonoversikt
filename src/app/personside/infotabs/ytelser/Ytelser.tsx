@@ -1,26 +1,39 @@
 import * as React from 'react';
+import { useState } from 'react';
 import YtelseListe from './YtelserListe';
 import { ScrollBar } from '../utils/InfoTabsScrollBar';
-import EkspanderbartYtelserPanel from './felles-styling/EkspanderbartYtelserPanel';
 import styled from 'styled-components';
+import YtelserContainer from './YtelserContainer';
+import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
+import { Foreldrepengerettighet } from '../../../../models/ytelse/foreldrepenger';
+import { Sykepenger } from '../../../../models/ytelse/sykepenger';
 
 const Styling = styled.section`
+    flex-grow: 1; /* IE11 */
     display: flex;
     > *:first-child {
-        flex-basis: 25%;
+        min-width: 19rem;
+        flex-basis: 19rem;
+        flex-grow: 0;
+        padding-top: 1rem;
     }
     > *:last-child {
         flex-grow: 1;
     }
+    align-items: flex-start;
 `;
+
+export type Ytelse = Pleiepengerettighet | Foreldrepengerettighet | Sykepenger | undefined;
+
 function Ytelser() {
+    const [valgtYtelse, setValgtYtelse] = useState<Ytelse>(undefined);
     return (
         <Styling>
             <ScrollBar keepScrollId="ytelser">
-                <YtelseListe />
+                <YtelseListe setValgtYtelse={setValgtYtelse} />
             </ScrollBar>
             <ScrollBar keepScrollId="ytelser">
-                <EkspanderbartYtelserPanel setOpen={open => false} children={null} open={true} tittel="Test" />
+                <YtelserContainer valgtYtelse={valgtYtelse} />
             </ScrollBar>
         </Styling>
     );

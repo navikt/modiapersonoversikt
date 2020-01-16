@@ -1,7 +1,7 @@
 import useBrukersYtelser from './useBrukersYtelser';
 import { getPleiepengerIdDato, getUnikPleiepengerKey } from '../../../../models/ytelse/pleiepenger';
-import { getUnikSykepengerKey } from '../../../../models/ytelse/sykepenger';
-import { getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
+import { getSykepengerIdDato, getUnikSykepengerKey } from '../../../../models/ytelse/sykepenger';
+import { getForeldepengerIdDato, getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
 import * as React from 'react';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { formaterDato } from '../../../../utils/stringFormatting';
@@ -12,9 +12,15 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
+import { Ytelse } from './Ytelser';
+
+interface Props {
+    setValgtYtelse: (ytelse: Ytelse) => void;
+}
 
 const Styling = styled.section`
     ${theme.hvittPanel};
+    padding: ${theme.margin.layout};
 `;
 
 const YtelserListeStyle = styled.ol`
@@ -23,24 +29,30 @@ const YtelserListeStyle = styled.ol`
     }
 `;
 
-function YtelseListe() {
+function YtelseListe(props: Props) {
     const { ytelser, pending, feilmeldinger } = useBrukersYtelser({
         renderPleiepenger: pleiepenger => (
-            <VisMerKnapp key={getUnikPleiepengerKey(pleiepenger)} ariaDescription="Vis pleiepenger" valgt={false}>
+            <VisMerKnapp
+                key={getUnikPleiepengerKey(pleiepenger)}
+                ariaDescription="Vis pleiepenger"
+                valgt={false}
+                onClick={() => props.setValgtYtelse(pleiepenger)}
+            >
                 <Undertittel>Pleiepenger sykt barn</Undertittel>
                 <Element>ID-dato</Element>
                 <Normaltekst>{formaterDato(getPleiepengerIdDato(pleiepenger))}</Normaltekst>
-                <Element>Barnets f.nr:</Element>
-                <Normaltekst>{pleiepenger.barnet}</Normaltekst>
             </VisMerKnapp>
         ),
         renderSykepenger: sykepenger => (
-            <VisMerKnapp key={getUnikSykepengerKey(sykepenger)} ariaDescription="Vis sykepenger" valgt={false}>
+            <VisMerKnapp
+                key={getUnikSykepengerKey(sykepenger)}
+                ariaDescription="Vis sykepenger"
+                valgt={false}
+                onClick={() => props.setValgtYtelse(sykepenger)}
+            >
                 <Undertittel>Sykepengerrettighet</Undertittel>
                 <Element>ID-dato</Element>
-                <Normaltekst>{formaterDato(getUnikSykepengerKey(sykepenger))}</Normaltekst>
-                <Element>f.nr:</Element>
-                <Normaltekst>{sykepenger.fødselsnummer}</Normaltekst>
+                <Normaltekst>{formaterDato(getSykepengerIdDato(sykepenger))}</Normaltekst>
             </VisMerKnapp>
         ),
         renderForeldrepenger: foreldrepenger => (
@@ -48,12 +60,11 @@ function YtelseListe() {
                 key={getUnikForeldrepengerKey(foreldrepenger)}
                 ariaDescription="Vis foreldrepenger"
                 valgt={false}
+                onClick={() => props.setValgtYtelse(foreldrepenger)}
             >
-                <Undertittel>Pleiepenger sykt barn</Undertittel>
+                <Undertittel>Foreldrepenger</Undertittel>
                 <Element>ID-dato</Element>
-                <Normaltekst>{formaterDato(getUnikForeldrepengerKey(foreldrepenger))}</Normaltekst>
-                <Element>Barnets f.nr:</Element>
-                <Normaltekst>{foreldrepenger.barnetsFødselsdato}</Normaltekst>
+                <Normaltekst>{formaterDato(getForeldepengerIdDato(foreldrepenger))}</Normaltekst>
             </VisMerKnapp>
         )
     });
