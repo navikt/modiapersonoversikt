@@ -54,17 +54,11 @@ function App() {
 
     return (
         <>
-            <DemoBanner />
-            <IeMacStyling />
-            <GlobalStyling />
             <LyttPåFnrIURLOgSettIRedux />
             <HentGlobaleVerdier />
-            <AppStyle>
-                <Decorator />
-                <ContentStyle>
-                    <Routing />
-                </ContentStyle>
-            </AppStyle>
+            <ContentStyle>
+                <Routing />
+            </ContentStyle>
         </>
     );
 }
@@ -77,9 +71,15 @@ function AppContainer() {
 
     return (
         <>
+            <IeMacStyling />
+            <GlobalStyling />
+            <DemoBanner />
             <Provider store={store}>
                 <BrowserRouter>
-                    <App />
+                    <AppStyle>
+                        <Decorator />
+                        <App />
+                    </AppStyle>
                 </BrowserRouter>
             </Provider>
         </>
