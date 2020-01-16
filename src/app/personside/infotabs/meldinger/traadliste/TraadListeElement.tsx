@@ -9,9 +9,8 @@ import { useHistory } from 'react-router';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import TraadSammendrag from './TraadSammendrag';
 import { guid } from 'nav-frontend-js-utils';
-import { getFormattertMeldingsDato, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
+import { nyesteMelding } from '../utils/meldingerUtils';
 import { loggEvent } from '../../../../../utils/frontendLogger';
-import { delAvStringMedDots } from '../../../../../utils/string-utils';
 
 interface Props {
     traad: Traad;
@@ -62,12 +61,6 @@ function TraadListeElement(props: Props) {
     const dyplenker = useInfotabsDyplenker();
     const id = useRef(guid());
     const history = useHistory();
-    const melding = nyesteMelding(props.traad);
-    const tittel = meldingstittel(melding);
-    const preview = delAvStringMedDots(melding.fritekst, 150);
-    const ariaTittel = `${tittel} ${getFormattertMeldingsDato(melding)} (${
-        props.traad.meldinger.length
-    }) Forhåndsvisning: ${preview}`;
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         loggEvent('Vis', 'Meldinger', { type: nyesteMelding(props.traad).meldingstype });
@@ -83,7 +76,6 @@ function TraadListeElement(props: Props) {
             <input
                 className={'sr-only ' + meldingerTest.melding}
                 type="radio"
-                aria-label={ariaTittel}
                 name={props.listeId}
                 value={props.traad.traadId}
                 id={id.current}
