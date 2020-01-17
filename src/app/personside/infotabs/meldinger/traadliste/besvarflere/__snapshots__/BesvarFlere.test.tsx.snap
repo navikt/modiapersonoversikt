@@ -486,6 +486,13 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="c8"
             >
               <span
+                className="sr-only"
+              >
+                (
+                4
+                )
+              </span>
+              <span
                 className="c9"
               >
                 <svg
@@ -527,13 +534,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     27.07.2019 00:00
                   </p>
                 </div>
-                <span
-                  className="sr-only"
-                >
-                  (
-                  4
-                  )
-                </span>
                 <div
                   className="order-third c13"
                 >
@@ -622,6 +622,13 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="c8"
             >
               <span
+                className="sr-only"
+              >
+                (
+                4
+                )
+              </span>
+              <span
                 className="c9"
               >
                 <svg
@@ -663,13 +670,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     27.07.2019 00:00
                   </p>
                 </div>
-                <span
-                  className="sr-only"
-                >
-                  (
-                  4
-                  )
-                </span>
                 <div
                   className="order-third c13"
                 >
