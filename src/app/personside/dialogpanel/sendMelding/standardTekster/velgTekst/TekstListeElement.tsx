@@ -49,10 +49,10 @@ function TekstListeElement(props: Props) {
                 <Tekstomrade as="span" rules={[props.highlightRule]}>
                     {props.tekst.overskrift}
                 </Tekstomrade>
+                <Tekstomrade className="sr-only" rules={[ParagraphRule]}>
+                    {props.tekst && props.tekst.innhold[props.locale]}
+                </Tekstomrade>
             </label>
-            <article className="sr-only" aria-describedby={props.tekst.id}>
-                <Tekstomrade rules={[ParagraphRule]}>{props.tekst && props.tekst.innhold[props.locale]}</Tekstomrade>
-            </article>
         </StyledLi>
     );
 }
