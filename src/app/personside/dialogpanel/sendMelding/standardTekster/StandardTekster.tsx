@@ -121,7 +121,6 @@ function StandardTekster(props: Props) {
     const personResource = useRestResource(resources => resources.personinformasjon);
     const autofullforData = useAutoFullførData();
     const sokeFeltId = useRef(guid());
-    const ariaDescription = useRef(guid());
     const [ariaNotification, setAriaNotification] = useState('');
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
@@ -139,9 +138,11 @@ function StandardTekster(props: Props) {
     }, [filtrerteTekster, valgt, debouncedSokefelt, prevDebouncedSokefelt]);
 
     useEffect(() => {
-        const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
-        const ariaTekst = `${index + 1} ${valgtTekst?.overskrift}: ${valgtTekst?.innhold[valgtLocale.input.value]}`;
-        valgtTekst && setAriaNotification(ariaTekst);
+        if (sokRef.current?.contains(document.activeElement)) {
+            const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
+            const ariaTekst = `${index + 1} ${valgtTekst?.overskrift}: ${valgtTekst?.innhold[valgtLocale.input.value]}`;
+            valgtTekst && setAriaNotification(ariaTekst);
+        }
     }, [valgtLocale, valgtTekst, filtrerteTekster, valgt]);
 
     const velg = (offset: number) => () => {
@@ -155,13 +156,6 @@ function StandardTekster(props: Props) {
 
     useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], 'ForrigeStandardtekst', sokRef.current || undefined);
     useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', sokRef.current || undefined);
-    useHotkey(
-        { altKey: true, char: 'z' },
-        () => setAriaNotification(valgtTekst?.innhold[valgtLocale.input.value]),
-        [valgtTekst],
-        'Les innhold skjermleser',
-        sokRef.current || undefined
-    );
 
     let content: ReactNode = null;
     if (isPending(standardTekster)) {
@@ -189,14 +183,10 @@ function StandardTekster(props: Props) {
         <StyledForm onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
             <h2 className="sr-only">Standardtekster</h2>
             <SokefeltStyledNav aria-describedby={sokeFeltId.current} ref={sokRef}>
-                <span id={ariaDescription.current} className="sr-only">
-                    Bruk pil opp ned for å navigere i tekster. Bruk alt + z for å høre innhold. Bruk enter for å velge
-                </span>
                 <TagInput
                     {...sokefelt.input}
                     name="standardtekstsok"
                     label="Søk etter standardtekster"
-                    aria-describedby={ariaDescription.current}
                     autoFocus={true}
                     id={sokeFeltId.current}
                     // @ts-ignore
