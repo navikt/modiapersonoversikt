@@ -32,6 +32,7 @@ interface Props {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     highlightRule: Rule;
     locale: string;
+    index: number;
 }
 
 function TekstListeElement(props: Props) {
@@ -46,6 +47,7 @@ function TekstListeElement(props: Props) {
                 checked={props.valgt}
             />
             <label htmlFor={props.tekst.id}>
+                <span className="sr-only">{props.index + 1}</span>
                 <Tekstomrade as="span" rules={[props.highlightRule]}>
                     {props.tekst.overskrift}
                 </Tekstomrade>
