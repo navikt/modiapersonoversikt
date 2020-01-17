@@ -416,7 +416,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
         className="c4"
       >
         <input
-          aria-label="Delsvar - Arbeid 27.07.2019 00:00 (4) Forhåndsvisning: Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui..."
           checked={true}
           className="sr-only test-meldinger-melding"
           id="Helt tilfeldig ID"
@@ -493,20 +492,24 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   className="c12"
                 >
                   <p
-                    aria-hidden={true}
                     className="typo-element order-second"
                   >
                     Delsvar - Arbeid
                   </p>
                   <p
-                    aria-hidden="true"
                     className="typo-normal order-first"
                   >
                     27.07.2019 00:00
                   </p>
                 </div>
+                <span
+                  className="sr-only"
+                >
+                  (
+                  4
+                  )
+                </span>
                 <p
-                  aria-hidden="true"
                   className="typo-normal c13"
                 >
                   Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
@@ -549,7 +552,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
         className="c16"
       >
         <input
-          aria-label="Delsvar - Arbeid 27.07.2019 00:00 (4) Forhåndsvisning: Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui..."
           checked={false}
           className="sr-only test-meldinger-melding"
           id="Helt tilfeldig ID"
@@ -626,20 +628,24 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   className="c12"
                 >
                   <p
-                    aria-hidden={true}
                     className="typo-element order-second"
                   >
                     Delsvar - Arbeid
                   </p>
                   <p
-                    aria-hidden="true"
                     className="typo-normal order-first"
                   >
                     27.07.2019 00:00
                   </p>
                 </div>
+                <span
+                  className="sr-only"
+                >
+                  (
+                  4
+                  )
+                </span>
                 <p
-                  aria-hidden="true"
                   className="typo-normal c13"
                 >
                   Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.

@@ -9,7 +9,6 @@ import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
 import { createRef, useCallback, useEffect, useRef } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
 import { useFødselsnummer, usePrevious } from '../../../../../../utils/customHooks';
-import { meldingstittel, nyesteMelding } from '../../utils/meldingerUtils';
 import usePrinter from '../../../../../../utils/UsePrinter';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { LenkeKnapp } from '../../../../../../components/common-styled-components';
@@ -89,12 +88,12 @@ function Print(props: Props) {
 }
 
 function Verktoylinje(props: Props) {
-    const titleRef = createRef<HTMLHeadingElement>();
+    const ref = createRef<HTMLElement>();
     const [aktivtPanel, settAktivtPanel] = React.useState<VerktøyPanel | null>(null);
     const lukk = useCallback(() => {
         settAktivtPanel(null);
-        titleRef.current && titleRef.current.focus();
-    }, [settAktivtPanel, titleRef]);
+        ref.current && ref.current.focus();
+    }, [settAktivtPanel, ref]);
     const tittelId = useRef(guid());
 
     const prevTraad = usePrevious(props.valgtTraad);
@@ -113,10 +112,7 @@ function Verktoylinje(props: Props) {
     const visMerk = aktivtPanel === VerktøyPanel.MERK;
 
     return (
-        <StyledArticle aria-describedby={tittelId.current}>
-            <h3 id={tittelId.current} className="sr-only" ref={titleRef} tabIndex={-1}>
-                Verktøylinje - {meldingstittel(nyesteMelding(props.valgtTraad))}
-            </h3>
+        <StyledArticle aria-describedby={tittelId.current} aria-label="Verktøylinje" ref={ref} tabIndex={-1}>
             <KnapperPanelStyle>
                 <OppgaveknapperStyle>
                     <SvartLenkeKnapp

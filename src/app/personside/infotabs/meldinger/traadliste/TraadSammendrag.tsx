@@ -69,14 +69,11 @@ function TraadSammendrag(props: { traad: Traad }) {
             <Meldingsikon traad={props.traad} />
             <ContentStyle>
                 <UUcustomOrder>
-                    <Element aria-hidden={true} className="order-second">
-                        {tittel}
-                    </Element>
-                    <Normaltekst aria-hidden="true" className="order-first">
-                        {datoTekst}
-                    </Normaltekst>
+                    <Element className="order-second">{tittel}</Element>
+                    <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                 </UUcustomOrder>
-                <PreviewStyle aria-hidden="true">{sisteMelding.fritekst}</PreviewStyle>
+                <span className="sr-only">({props.traad.meldinger.length})</span>
+                <PreviewStyle>{sisteMelding.fritekst}</PreviewStyle>
                 <EtikettStyling>
                     <UnmountClosed isOpened={underArbeid}>
                         <EtikettFokus>Under arbeid</EtikettFokus>
