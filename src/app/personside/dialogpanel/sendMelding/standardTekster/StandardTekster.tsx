@@ -130,12 +130,17 @@ function StandardTekster(props: Props) {
         settFiltrerteTekster(sokEtterTekster(standardTekster, debouncedSokefelt));
     }, [settFiltrerteTekster, standardTekster, debouncedSokefelt]);
 
+    useEffect(() => {
+        const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
+        const ariaTekst = `${index + 1} ${valgtTekst?.overskrift}: ${valgtTekst?.innhold[valgtLocale.input.value]}`;
+        valgtTekst && setAriaNotification(ariaTekst);
+    }, [valgtLocale, valgtTekst, filtrerteTekster, valgt]);
+
     const velg = (offset: number) => () => {
         const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
         if (index !== -1) {
             const nextIndex = cyclicClamp(index + offset, filtrerteTekster.length);
             const nextTekst = filtrerteTekster[nextIndex];
-            setAriaNotification(nextTekst.overskrift);
             valgt.setValue(nextTekst.id);
         }
     };
