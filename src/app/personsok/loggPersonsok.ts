@@ -3,19 +3,19 @@ import { loggEvent } from '../../utils/frontendLogger';
 
 export function loggPersonsok(request: PersonsokRequest) {
     const fields = {
-        fornavn: !!request.fornavn ? '1' : '0',
-        etternavn: !!request.etternavn ? '1' : '0',
-        gatenavn: !!request.gatenavn ? '1' : '0',
-        kontonummer: !!request.kontonummer ? '1' : '0',
-        alderFra: !!request.alderFra ? '1' : '0',
-        alderTil: !!request.alderTil ? '1' : '0',
-        kommunenummer: !!request.kommunenummer ? '1' : '0',
-        fodselsdatoFra: !!request.fodselsdatoFra ? '1' : '0',
-        fodselsdatoTil: !!request.fodselsdatoTil ? '1' : '0',
-        kjonn: !!request.kjonn ? '1' : '0',
-        husnummer: !!request.husnummer ? '1' : '0',
-        husbokstav: !!request.husbokstav ? '1' : '0',
-        postnummer: !!request.postnummer ? '1' : '0'
+        fornavn: !!request.fornavn,
+        etternavn: !!request.etternavn,
+        gatenavn: !!request.gatenavn,
+        kontonummer: !!request.kontonummer,
+        alderFra: !!request.alderFra,
+        alderTil: !!request.alderTil,
+        kommunenummer: !!request.kommunenummer,
+        fodselsdatoFra: !!request.fodselsdatoFra,
+        fodselsdatoTil: !!request.fodselsdatoTil,
+        kjonn: !!request.kjonn,
+        husnummer: !!request.husnummer,
+        husbokstav: !!request.husbokstav,
+        postnummer: !!request.postnummer
     };
     loggEvent('Sok', 'Personsok', undefined, fields);
 }
