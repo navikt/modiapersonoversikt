@@ -20,6 +20,7 @@ import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { guid } from 'nav-frontend-js-utils';
 import AriaNotification from '../../../../../components/AriaNotification';
+import { usePrevious } from '../../../../../utils/customHooks';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -129,6 +130,13 @@ function StandardTekster(props: Props) {
     useEffect(() => {
         settFiltrerteTekster(sokEtterTekster(standardTekster, debouncedSokefelt));
     }, [settFiltrerteTekster, standardTekster, debouncedSokefelt]);
+
+    const prevDebouncedSokefelt = usePrevious(debouncedSokefelt);
+    useEffect(() => {
+        if (prevDebouncedSokefelt !== debouncedSokefelt) {
+            valgt.setValue(filtrerteTekster[0]?.id || '');
+        }
+    }, [filtrerteTekster, valgt, debouncedSokefelt, prevDebouncedSokefelt]);
 
     useEffect(() => {
         const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
