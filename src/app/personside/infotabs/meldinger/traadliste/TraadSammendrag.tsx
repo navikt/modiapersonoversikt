@@ -77,13 +77,13 @@ function TraadSammendrag(props: { traad: Traad }) {
     const tittel = meldingstittel(sisteMelding);
     return (
         <Style>
+            <span className="sr-only">({props.traad.meldinger.length})</span>
             <Meldingsikon traad={props.traad} />
             <ContentStyle>
                 <UUcustomOrder className="order-first">
                     <Element className="order-second">{tittel}</Element>
                     <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                 </UUcustomOrder>
-                <span className="sr-only">({props.traad.meldinger.length})</span>
                 <EtikettStyling className="order-third">
                     <UnmountClosed isOpened={underArbeid}>
                         <EtikettFokus>Under arbeid</EtikettFokus>
