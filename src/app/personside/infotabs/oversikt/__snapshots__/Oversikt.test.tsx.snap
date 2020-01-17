@@ -906,6 +906,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   className="c17"
                 >
                   <span
+                    className="sr-only"
+                  >
+                    (
+                    4
+                    )
+                  </span>
+                  <span
                     className="c18"
                   >
                     <svg
@@ -947,13 +954,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         27.07.2019 00:00
                       </p>
                     </div>
-                    <span
-                      className="sr-only"
-                    >
-                      (
-                      4
-                      )
-                    </span>
                     <div
                       className="order-third c22"
                     >

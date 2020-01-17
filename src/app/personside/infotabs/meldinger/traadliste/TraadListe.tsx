@@ -12,6 +12,7 @@ import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { guid } from 'nav-frontend-js-utils';
+import { useOnMount } from '../../../../../utils/customHooks';
 
 interface Props {
     traader: Traad[];
@@ -37,9 +38,12 @@ const SokVerktøyStyle = styled.div`
     justify-content: space-between;
 `;
 
-const TraadListeStyle = styled.ol`
+const StyledOl = styled.ol`
     > * {
         border-top: ${theme.border.skille};
+    }
+    &:focus {
+        ${theme.focus};
     }
 `;
 
@@ -75,6 +79,11 @@ function TraadListe(props: Props) {
     const paginering = usePaginering(props.traaderEtterSokOgFiltrering, 50, 'melding', props.valgtTraad);
     const sokTittelId = useRef(guid());
     const listeId = useRef(guid());
+    const traadListeRef = useRef<HTMLOListElement>(null);
+
+    useOnMount(() => {
+        traadListeRef.current?.focus();
+    });
 
     if (props.traader.length === 0) {
         return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
@@ -144,7 +153,7 @@ function TraadListe(props: Props) {
                 Meldingsliste - {soketreffTekst}
             </h3>
             {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
-            <TraadListeStyle aria-describedby={listeId.current}>
+            <StyledOl aria-describedby={listeId.current} tabIndex={-1} ref={traadListeRef}>
                 {paginering.currentPage.map(traad => (
                     <TraadListeElement
                         traad={traad}
@@ -153,7 +162,7 @@ function TraadListe(props: Props) {
                         listeId="traadliste-meldinger"
                     />
                 ))}
-            </TraadListeStyle>
+            </StyledOl>
             {paginering.prevNextButtons && (
                 <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
             )}

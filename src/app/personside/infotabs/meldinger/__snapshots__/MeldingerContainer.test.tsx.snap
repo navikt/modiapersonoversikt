@@ -219,6 +219,11 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   border-top: solid 0.0625rem #78706a;
 }
 
+.c6:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
 .c3 {
   padding: .5rem .5rem 0;
 }
@@ -374,6 +379,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
       <ol
         aria-describedby="Helt tilfeldig ID"
         className="c6"
+        tabIndex={-1}
       >
         <li
           className="c7"
@@ -397,6 +403,13 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
               <div
                 className="c10"
               >
+                <span
+                  className="sr-only"
+                >
+                  (
+                  4
+                  )
+                </span>
                 <span
                   className="c11"
                 >
@@ -439,13 +452,6 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                       27.07.2019 00:00
                     </p>
                   </div>
-                  <span
-                    className="sr-only"
-                  >
-                    (
-                    4
-                    )
-                  </span>
                   <div
                     className="order-third c15"
                   >
