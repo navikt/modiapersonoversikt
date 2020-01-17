@@ -35,6 +35,13 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
 }
 
 .c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -44,7 +51,25 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   overflow-wrap: break-word;
 }
 
-.c16 {
+.c13 .order-first {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+.c13 .order-second {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.c13 .order-third {
+  -webkit-order: 3;
+  -ms-flex-order: 3;
+  order: 3;
+}
+
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -59,7 +84,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   margin-top: 0.2rem;
 }
 
-.c16 > *:not(:last-child) {
+.c15 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
@@ -100,7 +125,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
   flex-grow: 1;
 }
 
-.c15 {
+.c16 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -401,7 +426,7 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                   className="c13"
                 >
                   <div
-                    className="c14"
+                    className="order-first c14"
                   >
                     <p
                       className="typo-element order-second"
@@ -421,13 +446,8 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                     4
                     )
                   </span>
-                  <p
-                    className="typo-normal c15"
-                  >
-                    Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-                  </p>
                   <div
-                    className="c16"
+                    className="order-third c15"
                   >
                     <div
                       className="etikett etikett--fokus"
@@ -448,6 +468,11 @@ exports[`Viser meldingercontainer med alt innhold 1`] = `
                       </span>
                     </div>
                   </div>
+                  <p
+                    className="typo-normal order-second c16"
+                  >
+                    Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                  </p>
                 </div>
               </div>
             </div>
