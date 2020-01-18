@@ -1064,7 +1064,11 @@ exports[`Viser traad med verktøylinje 1`] = `
                   <div
                     className="tekstomrade"
                   >
-                    Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                    </p>
                   </div>
                   <div
                     className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
@@ -1160,7 +1164,11 @@ exports[`Viser traad med verktøylinje 1`] = `
                   <div
                     className="tekstomrade"
                   >
-                    Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+                    </p>
                   </div>
                   <div
                     className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
@@ -1256,7 +1264,11 @@ exports[`Viser traad med verktøylinje 1`] = `
                   <div
                     className="tekstomrade"
                   >
-                    Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+                    </p>
                   </div>
                   <div
                     className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
@@ -1366,7 +1378,11 @@ exports[`Viser traad med verktøylinje 1`] = `
                   <div
                     className="tekstomrade"
                   >
-                    Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+                    </p>
                   </div>
                   <div
                     className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
