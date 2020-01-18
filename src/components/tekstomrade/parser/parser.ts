@@ -71,14 +71,16 @@ function internalBuild(ruleMap: { [name: string]: Rule }, node: ASTNode, key: nu
     }
     const type = ruleMap[node.name];
     const element = type.react(node);
-    const children = element.children || node.content.map((child, i) => internalBuild(ruleMap, child, i));
+    const children =
+        element.type === 'br'
+            ? undefined
+            : element.children || node.content.map((child, i) => internalBuild(ruleMap, child, i));
     return React.createElement(element.type, { ...element.props, key }, children);
 }
 
 export function parse(content: string, rules: Array<Rule>): AST {
     const trimmed = content.trim().replace(/\r/g, '');
-    const preppedContent = trimmed.includes('\n') ? `${trimmed}\n` : trimmed;
-    return internalParser([preppedContent], rules).flatMap(simplify);
+    return internalParser([trimmed], rules).flatMap(simplify);
 }
 
 export function build(ast: AST, rules: Array<Rule>): React.ReactNode {

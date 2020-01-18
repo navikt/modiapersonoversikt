@@ -16,6 +16,7 @@ import { formaterDato } from '../../../../../utils/stringFormatting';
 import styled from 'styled-components/macro';
 import Tekstomrade, {
     createDynamicHighligtingRule,
+    LinebreakRule,
     LinkRule,
     ParagraphRule
 } from '../../../../../components/tekstomrade/tekstomrade';
@@ -172,7 +173,7 @@ function EnkeltMelding(props: Props) {
                             <Tekstomrade rules={[highlightRule]}>{datoTekst}</Tekstomrade>
                             <Avsender melding={props.melding} rule={highlightRule} />
                         </Topptekst>
-                        <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>
+                        <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule, LinebreakRule]}>
                             {props.melding.fritekst}
                         </Tekstomrade>
                         <Journalforing melding={props.melding} />

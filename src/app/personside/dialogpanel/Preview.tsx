@@ -4,8 +4,8 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../styles/personOversiktTheme';
 import EtikettGrå from '../../../components/EtikettGrå';
 import { formatterDatoTid } from '../../../utils/dateUtils';
-import Tekstomrade from 'nav-frontend-tekstomrade';
 import NavFrontendSpinner from 'nav-frontend-spinner';
+import Tekstomrade from '../../../components/tekstomrade/tekstomrade';
 
 const PreviewStyle = styled.article`
     padding: 1rem;
