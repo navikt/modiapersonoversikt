@@ -114,3 +114,5 @@ export const LinkRule: Rule = {
         };
     }
 };
+
+export const BaseRules = [LinkRule, LinebreakRule, ParagraphRule];
