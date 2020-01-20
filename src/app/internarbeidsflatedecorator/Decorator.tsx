@@ -8,7 +8,6 @@ import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { useHistory } from 'react-router';
 import './personsokKnapp.less';
 import { useAppState, useFødselsnummer, useOnMount } from '../../utils/customHooks';
-import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { velgEnhetAction } from '../../redux/session/session';
@@ -45,7 +44,6 @@ function lagConfig(
             if (fnr === gjeldendeFnr) {
                 return;
             }
-            settJobberIkkeMedSpørsmålOgSvar();
             if (fnr && fnr.length > 0) {
                 setNyBrukerIPath(history, fnr);
             } else {
