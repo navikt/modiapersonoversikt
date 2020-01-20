@@ -82,7 +82,8 @@ function TraadListe(props: Props) {
     const traadListeRef = useRef<HTMLOListElement>(null);
 
     useOnMount(() => {
-        traadListeRef.current?.focus();
+        const firstInput = traadListeRef.current?.getElementsByTagName('input')[0];
+        firstInput?.focus();
     });
 
     if (props.traader.length === 0) {
