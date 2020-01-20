@@ -3,6 +3,8 @@ import * as React from 'react';
 interface Props {
     beskjed: string;
     dontShowOnFirstRender?: boolean;
+    ariaLive?: 'polite' | 'assertive';
+    role?: 'alert';
 }
 
 interface State {
@@ -50,7 +52,7 @@ class AriaNotification extends React.Component<Props, State> {
             return null;
         }
         return (
-            <div className="visually-hidden" role="alert" aria-live="polite">
+            <div className="visually-hidden" role={this.props.role} aria-live={this.props.ariaLive || 'polite'}>
                 {this.props.beskjed}
             </div>
         );

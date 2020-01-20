@@ -8,12 +8,12 @@ import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { useHistory } from 'react-router';
 import './personsokKnapp.less';
 import { useAppState, useFødselsnummer, useOnMount } from '../../utils/customHooks';
-import { settJobberIkkeMedSpørsmålOgSvar } from '../personside/kontrollsporsmal/cookieUtils';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { velgEnhetAction } from '../../redux/session/session';
 import { useQueryParams } from '../../utils/urlUtils';
 import styled from 'styled-components';
+import { loggEvent } from '../../utils/frontendLogger';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -44,7 +44,6 @@ function lagConfig(
             if (fnr === gjeldendeFnr) {
                 return;
             }
-            settJobberIkkeMedSpørsmålOgSvar();
             if (fnr && fnr.length > 0) {
                 setNyBrukerIPath(history, fnr);
             } else {
@@ -91,6 +90,12 @@ function Decorator() {
     const handleSetEnhet = (enhet: string) => {
         dispatch(velgEnhetAction(enhet));
     };
+
+    useOnMount(() => {
+        if (sokFnr !== undefined) {
+            loggEvent('Oppslag', 'Puzzle');
+        }
+    });
 
     const contextErKlar = useKlargjorContextholder(queryParams.sokFnr);
 

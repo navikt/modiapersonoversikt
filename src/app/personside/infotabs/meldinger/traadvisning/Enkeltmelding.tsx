@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRef, useState } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import { Element, EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
+import { EtikettLiten } from 'nav-frontend-typografi';
 import {
     erDelsvar,
     erJournalfort,
@@ -14,11 +14,7 @@ import {
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import styled from 'styled-components/macro';
-import Tekstomrade, {
-    createDynamicHighligtingRule,
-    LinkRule,
-    ParagraphRule
-} from '../../../../../components/tekstomrade/tekstomrade';
+import Tekstomrade, { Rules, createDynamicHighligtingRule } from '../../../../../components/tekstomrade/tekstomrade';
 import theme from '../../../../../styles/personOversiktTheme';
 import './enkeltmelding.less';
 import Etikett from 'nav-frontend-etiketter';
@@ -30,6 +26,7 @@ import { guid } from 'nav-frontend-js-utils';
 interface Props {
     melding: Melding;
     sokeord: string;
+    meldingsNummer: number;
 }
 
 const StyledLi = styled.li`
@@ -57,13 +54,6 @@ const StyledLi = styled.li`
             flex-basis: 100%;
         }
     }
-`;
-const SkrevetAvTekst = styled(Normaltekst)`
-    margin-right: 0.3rem !important;
-`;
-
-const SkrevetAvStyle = styled.div`
-    display: flex;
 `;
 
 const BoldTekstomrade = styled(Tekstomrade)`
@@ -97,13 +87,6 @@ const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
     }
     @media print {
         display: none;
-    }
-`;
-
-const StyledPrintTekst = styled.div`
-    display: none;
-    @media print {
-        display: inline-block;
     }
 `;
 
@@ -148,22 +131,15 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
     return null;
 }
 
-function PrintTekst({ melding }: { melding: Melding }) {
-    const journalfort = erJournalfort(melding) && <Element>{journalfortMelding(melding)}</Element>;
-    return <StyledPrintTekst>{journalfort}</StyledPrintTekst>;
-}
-
-export function SkrevetAv({ melding, rule }: { melding: Melding; rule?: Rule }) {
+export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }
+    const avsender = `Skrevet av ${melding.skrevetAvTekst}`;
     return (
-        <SkrevetAvStyle>
-            <SkrevetAvTekst>Skrevet av:</SkrevetAvTekst>
-            <Tekstomrade className={'typo-normal'} rules={rule && [rule]}>
-                {melding.skrevetAvTekst}
-            </Tekstomrade>
-        </SkrevetAvStyle>
+        <Tekstomrade className={'typo-normal'} rules={rule && [rule]}>
+            {avsender}
+        </Tekstomrade>
     );
 }
 
@@ -184,18 +160,16 @@ function EnkeltMelding(props: Props) {
                         <Topptekst>
                             <SpaceBetween>
                                 <h4 id={tittelId.current}>
+                                    <span className="sr-only">Melding {props.meldingsNummer}</span>
                                     <BoldTekstomrade rules={[highlightRule]}>{tittel}</BoldTekstomrade>
                                 </h4>
                                 <MeldingLestEtikett melding={props.melding} />
                             </SpaceBetween>
                             <Tekstomrade rules={[highlightRule]}>{datoTekst}</Tekstomrade>
-                            <SkrevetAv melding={props.melding} rule={highlightRule} />
+                            <Avsender melding={props.melding} rule={highlightRule} />
                         </Topptekst>
-                        <Tekstomrade rules={[ParagraphRule, highlightRule, LinkRule]}>
-                            {props.melding.fritekst}
-                        </Tekstomrade>
+                        <Tekstomrade rules={[highlightRule, ...Rules]}>{props.melding.fritekst}</Tekstomrade>
                         <Journalforing melding={props.melding} />
-                        <PrintTekst melding={props.melding} />
                     </SnakkebobleWrapper>
                 </Snakkeboble>
             </article>

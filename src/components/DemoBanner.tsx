@@ -26,7 +26,7 @@ function DemoBanner() {
 
     return (
         <DemoStyle>
-            <Systemtittel>Demo</Systemtittel>
+            <Systemtittel tag="p">Demo</Systemtittel>
             <Normaltekst>Syntetisk informasjon</Normaltekst>
         </DemoStyle>
     );

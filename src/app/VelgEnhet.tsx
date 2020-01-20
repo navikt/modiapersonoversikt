@@ -3,9 +3,12 @@ import { ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { Select } from 'nav-frontend-skjema';
 import { useDispatch } from 'react-redux';
-import { velgEnhetAction } from '../../redux/session/session';
-import theme from '../../styles/personOversiktTheme';
-import { useRestResource } from '../../rest/consumer/useRestResource';
+import { velgEnhetAction } from '../redux/session/session';
+import theme from '../styles/personOversiktTheme';
+import { useRestResource } from '../rest/consumer/useRestResource';
+import { useOnMount } from '../utils/customHooks';
+import { mockEnabled } from '../api/config';
+import { getMockEnheter } from '../mock/meldinger/oppgave-mock';
 
 const Style = styled.div`
     display: flex;
@@ -24,6 +27,12 @@ function VelgEnhet() {
         true
     );
     const dispatch = useDispatch();
+
+    useOnMount(() => {
+        if (mockEnabled) {
+            dispatch(velgEnhetAction(getMockEnheter()[0].enhetId));
+        }
+    });
 
     useEffect(() => {
         if (enheter.data?.enhetliste.length === 1) {

@@ -2,9 +2,25 @@ import { Rule, ASTNode, ReactElementDescription } from './domain';
 import { RegexMatch, getText } from './utils';
 import Lenke from 'nav-frontend-lenker';
 
+export const LinebreakRule: Rule = {
+    name: 'Linebreak',
+    regex: /\n(?!\n)/,
+    parse(match: RegexMatch): ASTNode {
+        return {
+            name: this.name,
+            content: []
+        };
+    },
+    react(node: ASTNode): ReactElementDescription {
+        return {
+            type: 'br'
+        };
+    }
+};
+
 export const ParagraphRule: Rule = {
     name: 'Paragraph',
-    regex: /(.+?)\n/,
+    regex: /((?:.|\s)+?)(?:\n{2,}|$)/,
     parse(match: RegexMatch): ASTNode {
         return {
             name: this.name,
@@ -98,3 +114,5 @@ export const LinkRule: Rule = {
         };
     }
 };
+
+export const Rules = [HighlightRule, BoldRule, LinkRule, LinebreakRule, ParagraphRule];

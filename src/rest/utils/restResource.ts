@@ -120,7 +120,7 @@ export function isForbidden<T>(restResource: RestResource<T>): restResource is F
     return restResource.status === STATUS.FORBIDDEN;
 }
 
-function getActionTypes(resourceNavn: string): ActionTypes {
+export function getActionTypes(resourceNavn: string): ActionTypes {
     const navnUppercase = resourceNavn.toUpperCase() + ' / ';
     return {
         STARTING: navnUppercase + 'STARTING',
@@ -138,12 +138,12 @@ export type FetchUriCreator = (state: AppState) => string;
 
 export function createRestResourceReducerAndActions<T>(resourceNavn: string, defaultUriCreator: FetchUriCreator) {
     const actionNames = getActionTypes(resourceNavn);
-    const fetch = fetchDataAndDispatchToRedux(defaultUriCreator, actionNames);
-    const reload = fetchDataAndDispatchToRedux(defaultUriCreator, actionNames, true);
+    const fetch = fetchDataAndDispatchToRedux(defaultUriCreator, resourceNavn);
+    const reload = fetchDataAndDispatchToRedux(defaultUriCreator, resourceNavn, true);
     const fetchWithCustomUriCreator = (customUriCreator: FetchUriCreator) =>
-        fetchDataAndDispatchToRedux(customUriCreator, actionNames);
+        fetchDataAndDispatchToRedux(customUriCreator, resourceNavn);
     const reloadWithCustomUriCreator = (customUriCreator: FetchUriCreator) =>
-        fetchDataAndDispatchToRedux(customUriCreator, actionNames, true);
+        fetchDataAndDispatchToRedux(customUriCreator, resourceNavn, true);
     const setData = (data: T) => ({ type: actionNames.SET_DATA, data: data });
     const reset = dispatchReset(actionNames);
 
@@ -163,14 +163,12 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
     return (state: RestResourceStates<T> = initialState, action: Action): RestResourceStates<T> => {
         switch (action.type) {
             case actionNames.STARTING:
-                loggEvent('Fetch', resourceNavn);
                 return {
                     ...state,
                     fetchUrl: (action as Fetching).fetchUrl,
                     status: STATUS.LOADING
                 };
             case actionNames.RELOADING:
-                loggEvent('Re-Fetch', resourceNavn);
                 if (state.status === STATUS.SUCCESS || state.status === STATUS.RELOADING) {
                     return {
                         ...state,

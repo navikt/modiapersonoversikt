@@ -140,8 +140,8 @@ export const theme = {
     `,
     highlight: css`
         background-color: #eed28c;
+        box-shadow: 0 0 0 0.2rem #eed28c;
         border-radius: ${pxToRem(10)};
-        padding: 0 ${pxToRem(5)};
     `,
     visitedLinkPurple: css`
         a:visited:not(:focus) {

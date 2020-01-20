@@ -1,13 +1,14 @@
 import { Melding } from '../../../../../models/meldinger/meldinger';
 import { Element, Undertekst } from 'nav-frontend-typografi';
 import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
-import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
+import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import * as React from 'react';
-import styled, { css } from 'styled-components/macro';
+import { useState } from 'react';
+import styled from 'styled-components/macro';
 import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
 import { meldingstittel } from '../../../infotabs/meldinger/utils/meldingerUtils';
 import theme from '../../../../../styles/personOversiktTheme';
-import { SkrevetAv } from '../../../infotabs/meldinger/traadvisning/Enkeltmelding';
+import { Avsender } from '../../../infotabs/meldinger/traadvisning/Enkeltmelding';
 
 const EnkeltMeldingStyle = styled.div`
     width: 100%;
@@ -15,23 +16,13 @@ const EnkeltMeldingStyle = styled.div`
 `;
 
 const StyledTekstomrade = styled(Tekstomrade)`
-    padding: 1rem;
+    padding: 1.5rem 1rem 1rem;
     overflow-wrap: break-word;
     padding-top: 0;
 `;
 
-const StyledEkspanderbartpanelBase = styled(({ erEnkeltstaende, ...rest }) => <EkspanderbartpanelBase {...rest} />)<{
-    erEnkeltstaende: boolean;
-}>`
-    &.ekspanderbartPanel {
-        ${props =>
-            !props.erEnkeltstaende
-                ? css`
-                      border-radius: 0;
-                  `
-                : ''};
-    }
-    border-top: 0.1rem rgba(0, 0, 0, 0.2) solid;
+const StyledEkspanderbartpanelBasePure = styled(EkspanderbartpanelBasePure)`
+    ${theme.resetEkspanderbartPanelStyling};
     .ekspanderbartPanel__hode:focus {
         ${theme.focusInset};
     }
@@ -41,20 +32,28 @@ interface Props {
     melding: Melding;
     erEnkeltstaende: boolean;
     defaultApen: boolean;
+    meldingsNummer: number;
 }
 
 function EnkeltMelding(props: Props) {
+    const [apen, setApen] = useState(props.defaultApen);
+
     const header = (
         <EnkeltMeldingStyle>
-            <Element>{meldingstittel(props.melding)}</Element>
+            <span className="sr-only">Melding {props.meldingsNummer}</span>
+            <span className="sr-only">{apen ? 'Åpen' : 'Lukket'}</span>
+            <Element tag="h4">{meldingstittel(props.melding)}</Element>
             <Undertekst>{formatterDatoTidMedMaanedsnavn(props.melding.opprettetDato)}</Undertekst>
-            <SkrevetAv melding={props.melding} />
+            <Avsender melding={props.melding} />
         </EnkeltMeldingStyle>
     );
+
     return (
-        <StyledEkspanderbartpanelBase heading={header} erEnkeltstaende={props.erEnkeltstaende} apen={props.defaultApen}>
-            <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
-        </StyledEkspanderbartpanelBase>
+        <li>
+            <StyledEkspanderbartpanelBasePure heading={header} apen={apen} onClick={() => setApen(!apen)}>
+                <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
+            </StyledEkspanderbartpanelBasePure>
+        </li>
     );
 }
 

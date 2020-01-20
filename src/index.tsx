@@ -3,9 +3,9 @@ import 'react-app-polyfill/stable';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import './index.less';
-import App from './app/App';
+import AppContainer from './app/AppContainer';
 import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
 
 setupTimeSpentMetrics();
 
-ReactDOM.render(<App />, document.getElementById('root') as HTMLElement);
+ReactDOM.render(<AppContainer />, document.getElementById('root') as HTMLElement);

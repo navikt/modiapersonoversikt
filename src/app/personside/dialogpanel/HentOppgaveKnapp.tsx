@@ -8,7 +8,6 @@ import { Select } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { velgTemagruppeForPlukk } from '../../../redux/session/session';
 import { AppState } from '../../../redux/reducers';
-import { settJobberMedSpørsmålOgSvar } from '../kontrollsporsmal/cookieUtils';
 import { isFailedPosting, isPosting } from '../../../rest/utils/postResource';
 import theme from '../../../styles/personOversiktTheme';
 import TildelteOppgaver from './TildelteOppgaver';
@@ -80,7 +79,6 @@ function HentOppgaveKnapp() {
         }
         setTemaGruppeFeilmelding(false);
         setTomKø(false);
-        settJobberMedSpørsmålOgSvar();
         dispatch(
             oppgaveResource.actions.post({}, response => {
                 if (response.length === 0) {

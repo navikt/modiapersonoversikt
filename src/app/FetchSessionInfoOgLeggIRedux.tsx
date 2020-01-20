@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { AppState } from '../../redux/reducers';
+import { AppState } from '../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
-import { useInitializeLogger } from '../../utils/frontendLogger';
-import { useRestResource } from '../../rest/consumer/useRestResource';
+import { useInitializeLogger } from '../utils/frontendLogger';
+import { useRestResource } from '../rest/consumer/useRestResource';
 
 function FetchSessionInfoOgLeggIRedux() {
     useInitializeLogger();

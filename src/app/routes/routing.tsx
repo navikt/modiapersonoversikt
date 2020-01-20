@@ -1,13 +1,7 @@
-import * as React from 'react';
-import { withRouter } from 'react-router-dom';
-import { Route, RouteComponentProps, Switch } from 'react-router';
+import { useCallback, useMemo } from 'react';
 import { History } from 'history';
-import Startbilde from '../startbilde/Startbilde';
-import Brukerprofilside from '../brukerprofil/BrukerprofilSide';
-import Personside from '../personside/Personside';
 import { useFødselsnummer } from '../../utils/customHooks';
 import { INFOTABS } from '../personside/infotabs/InfoTabEnum';
-import { useCallback, useMemo } from 'react';
 
 export const paths = {
     personUri: '/modiapersonoversikt/person',
@@ -46,24 +40,6 @@ export function usePaths() {
     );
 }
 
-interface RouterProps {
-    fodselsnummer: string;
-}
-
-type Props = RouteComponentProps<RouterProps>;
-
-function Routing(props: Props) {
-    const fnr = useFødselsnummer();
-    return (
-        <Switch location={props.location}>
-            <Route key={fnr} path={`${paths.personUri}/:fodselsnummer/`} component={Personside} />
-
-            <Route key={fnr} path={`${paths.brukerprofil}/:fodselsnummer/`} component={() => <Brukerprofilside />} />
-            <Route component={Startbilde} />
-        </Switch>
-    );
-}
-
 export function setNyBrukerIPath(history: History, fødselsnummer: string) {
     history.push(`${paths.personUri}/${fødselsnummer}`);
 }
@@ -71,5 +47,3 @@ export function setNyBrukerIPath(history: History, fødselsnummer: string) {
 export function fjernBrukerFraPath(history: History) {
     history.push(`${paths.basePath}`);
 }
-
-export default withRouter(Routing);
