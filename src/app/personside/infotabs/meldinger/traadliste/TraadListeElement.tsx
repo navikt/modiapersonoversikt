@@ -11,6 +11,7 @@ import TraadSammendrag from './TraadSammendrag';
 import { guid } from 'nav-frontend-js-utils';
 import { nyesteMelding } from '../utils/meldingerUtils';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import { valgtMeldingKlasse } from './TraadListe';
 
 interface Props {
     traad: Traad;
@@ -74,7 +75,7 @@ function TraadListeElement(props: Props) {
     return (
         <StyledLi valgt={props.erValgt}>
             <input
-                className={'sr-only ' + meldingerTest.melding}
+                className={`sr-only ${meldingerTest.melding} ${props.erValgt && valgtMeldingKlasse} `}
                 type="radio"
                 name={props.listeId}
                 value={props.traad.traadId}
