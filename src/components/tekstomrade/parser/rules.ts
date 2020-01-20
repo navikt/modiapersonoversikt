@@ -8,7 +8,7 @@ export const LinebreakRule: Rule = {
     parse(match: RegexMatch): ASTNode {
         return {
             name: this.name,
-            content: ['']
+            content: []
         };
     },
     react(node: ASTNode): ReactElementDescription {
@@ -20,7 +20,7 @@ export const LinebreakRule: Rule = {
 
 export const ParagraphRule: Rule = {
     name: 'Paragraph',
-    regex: /([\w\W]+?)(\n{2,}|$)/,
+    regex: /((?:.|\s)+?)(?:\n{2,}|$)/,
     parse(match: RegexMatch): ASTNode {
         return {
             name: this.name,
@@ -115,4 +115,4 @@ export const LinkRule: Rule = {
     }
 };
 
-export const BaseRules = [LinkRule, LinebreakRule, ParagraphRule];
+export const Rules = [HighlightRule, BoldRule, LinkRule, LinebreakRule, ParagraphRule];

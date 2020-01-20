@@ -1,7 +1,7 @@
 import React from 'react';
 import 'nav-frontend-skjema-style';
 import classNames from 'classnames';
-import { BaseRules, BoldRule, HighlightRule } from './parser/rules';
+import { Rules } from './parser/rules';
 import { build, parse } from './parser/parser';
 import { Rule } from './parser/domain';
 
@@ -21,7 +21,7 @@ class Tekstomrade extends React.Component<Props> {
     static defaultProps = {
         as: 'div',
         ingenFormattering: false,
-        rules: [HighlightRule, BoldRule, ...BaseRules],
+        rules: Rules,
         children: ''
     };
 

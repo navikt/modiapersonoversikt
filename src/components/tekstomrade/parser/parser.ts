@@ -72,7 +72,7 @@ function internalBuild(ruleMap: { [name: string]: Rule }, node: ASTNode, key: nu
     const type = ruleMap[node.name];
     const element = type.react(node);
     const children =
-        element.type === 'br'
+        element.children?.length === 0 || node.content.length === 0
             ? undefined
             : element.children || node.content.map((child, i) => internalBuild(ruleMap, child, i));
     return React.createElement(element.type, { ...element.props, key }, children);
