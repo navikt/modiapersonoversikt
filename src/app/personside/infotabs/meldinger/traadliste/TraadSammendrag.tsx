@@ -1,7 +1,12 @@
 import { Melding, Traad } from '../../../../../models/meldinger/meldinger';
-import { erDelvisBesvart, erFeilsendt, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
+import {
+    erDelvisBesvart,
+    erFeilsendt,
+    getFormattertMeldingsDato,
+    meldingstittel,
+    nyesteMelding
+} from '../utils/meldingerUtils';
 import { useAppState } from '../../../../../utils/customHooks';
-import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import Meldingsikon from '../utils/Meldingsikon';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { UnmountClosed } from 'react-collapse';
@@ -12,11 +17,22 @@ import { Temagruppe } from '../../../../../models/Temagrupper';
 import styled from 'styled-components/macro';
 
 const ContentStyle = styled.div`
+    display: flex;
+    flex-direction: column;
     /* IE11-fix*/
     flex-grow: 1;
     width: 0;
     margin-left: 0.8rem;
     overflow-wrap: break-word;
+    .order-first {
+        order: 0;
+    }
+    .order-second {
+        order: 1;
+    }
+    .order-third {
+        order: 3;
+    }
 `;
 
 const EtikettStyling = styled.div`
@@ -57,20 +73,18 @@ const PreviewStyle = styled(Normaltekst)`
 function TraadSammendrag(props: { traad: Traad }) {
     const sisteMelding = nyesteMelding(props.traad);
     const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
-    const datoTekst = formatterDatoTid(sisteMelding.opprettetDato);
+    const datoTekst = getFormattertMeldingsDato(sisteMelding);
     const tittel = meldingstittel(sisteMelding);
     return (
         <Style>
+            <span className="sr-only">({props.traad.meldinger.length})</span>
             <Meldingsikon traad={props.traad} />
             <ContentStyle>
-                <UUcustomOrder>
-                    <Element aria-hidden={true} className="order-second">
-                        {tittel}
-                    </Element>
+                <UUcustomOrder className="order-first">
+                    <Element className="order-second">{tittel}</Element>
                     <Normaltekst className="order-first">{datoTekst}</Normaltekst>
                 </UUcustomOrder>
-                <PreviewStyle>{sisteMelding.fritekst}</PreviewStyle>
-                <EtikettStyling>
+                <EtikettStyling className="order-third">
                     <UnmountClosed isOpened={underArbeid}>
                         <EtikettFokus>Under arbeid</EtikettFokus>
                     </UnmountClosed>
@@ -79,6 +93,7 @@ function TraadSammendrag(props: { traad: Traad }) {
                     <SlettetEtikett melding={sisteMelding} />
                     <FeilsendtEtikett traad={props.traad} />
                 </EtikettStyling>
+                <PreviewStyle className="order-second">{sisteMelding.fritekst}</PreviewStyle>
             </ContentStyle>
         </Style>
     );

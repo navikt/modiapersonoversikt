@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactNode, useContext, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
@@ -9,7 +9,7 @@ import { AppState } from '../../../../redux/reducers';
 import { paths } from '../../../routes/routing';
 import { INFOTABS } from '../InfoTabEnum';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
-import { InfotabsFokusContext } from '../InfoTabs';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     component: React.ComponentType<{ setHeaderContent: (content: ReactNode) => void }>;
@@ -18,7 +18,7 @@ interface Props {
     hurtigtast: string;
 }
 
-const PanelStyle = styled.section`
+const PanelStyle = styled.article`
     ${theme.hvittPanel};
     padding-bottom: 0.3rem;
 `;
@@ -64,14 +64,13 @@ function Oversiktskomponent(props: Props) {
     const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath.toLowerCase()}/`;
     const [customContent, setCustomContent] = useState<ReactNode>(null);
     const [redirect, setRedirect] = useState(false);
-    const fokusContext = useContext(InfotabsFokusContext);
+    const headerId = useRef(guid());
 
     if (redirect) {
         return <Redirect to={path} />;
     }
 
     const handleClick = () => {
-        fokusContext();
         setRedirect(true);
     };
 
@@ -79,9 +78,11 @@ function Oversiktskomponent(props: Props) {
 
     return (
         <ErrorBoundary boundaryName={'Oversikt ' + props.tittel}>
-            <PanelStyle>
+            <PanelStyle aria-describedby={headerId.current}>
                 <OverskriftStyle title={'Alt + ' + props.hurtigtast} onClick={handleClick}>
-                    <StyledUndertittel tag="h3">{props.tittel}</StyledUndertittel>
+                    <StyledUndertittel tag="h3" id={headerId.current}>
+                        {props.tittel}
+                    </StyledUndertittel>
                     <CustomContent>{customContent}</CustomContent>
                     <StyledLink className="lenke" to={path}>
                         <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>

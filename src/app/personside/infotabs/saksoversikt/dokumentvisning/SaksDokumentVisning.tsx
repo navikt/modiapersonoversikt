@@ -5,6 +5,7 @@ import { erIE11 } from '../../../../../utils/erNyPersonoversikt';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
+import { mockSaksdokument, mockSaksdokumentUrl } from '../../../../../mock/saksoversikt/dokument-mock';
 
 interface Props {
     url: string;
@@ -28,8 +29,10 @@ function DokumentVisning(props: Props) {
         return <AlertStripeInfo>Kan ikke vise dokumenter i Internet Explorer. Prøv chrome</AlertStripeInfo>;
     }
 
+    const url = props.url === mockSaksdokumentUrl ? mockSaksdokument() : props.url;
+
     return (
-        <ObjectHttpFeilHandtering type="application/pdf" url={props.url} width="100%" height="100%" onError={onError}>
+        <ObjectHttpFeilHandtering type="application/pdf" url={url} width="100%" height="100%" onError={onError}>
             <AlertStripeAdvarsel>{errMsg}</AlertStripeAdvarsel>
         </ObjectHttpFeilHandtering>
     );

@@ -64,17 +64,6 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   margin: 0;
 }
 
-.c3 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-}
-
-.c3 > h3 {
-  margin-bottom: 1rem;
-}
-
 .c5 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
@@ -84,6 +73,17 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 }
 
 .c5 > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.c3 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
+}
+
+.c3 > h3 {
   margin-bottom: 1rem;
 }
 
@@ -106,11 +106,13 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
   <article
     className="c2"
   >
-    <div
+    <article
+      aria-describedby="Helt tilfeldig ID"
       className="c3"
     >
       <h3
         className="typo-ingress"
+        id="Helt tilfeldig ID"
       >
         Om foreldrepengeperioden
       </h3>
@@ -286,7 +288,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
           </dd>
         </div>
       </dl>
-    </div>
+    </article>
     <section
       className="c5"
     >

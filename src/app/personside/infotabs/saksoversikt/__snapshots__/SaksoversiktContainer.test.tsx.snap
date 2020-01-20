@@ -1,26 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
-.c22 {
-  color: #645f5a;
-  margin-top: 3px;
-}
-
-.c22 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
-.c17 {
-  background-color: #cce1f3;
-  padding: 0.2rem 0.9375rem;
-}
-
-.c1 {
-  overflow: auto;
-  max-height: 100%;
-  padding: .5rem;
-}
-
 .c5 {
   position: relative;
   padding: .5rem;
@@ -112,36 +92,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c4 > * {
-  border-top: solid 0.0625rem #78706a;
-}
-
-.c2 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
-}
-
-.c2 ol {
-  list-style: none;
-}
-
-.c3 {
-  padding: 0.9375rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
-}
-
-.c3 > *:not(:last-child) {
-  margin-right: 1rem;
-}
-
 .c8 svg {
   height: 1.875rem;
   width: 1.875rem;
@@ -185,6 +135,51 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
+.c4 > * {
+  border-top: solid 0.0625rem #78706a;
+}
+
+.c2 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+}
+
+.c2 ol {
+  list-style: none;
+}
+
+.c3 {
+  padding: 0.9375rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c3 > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.c1 {
+  overflow: auto;
+  max-height: 100%;
+  padding: .5rem;
+}
+
+.c22 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c22 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 .c18 {
   padding: .5rem;
   display: -webkit-box;
@@ -195,27 +190,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-}
-
-.c24 {
-  padding: .5rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  cursor: pointer;
-}
-
-.c24:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
-}
-
-.c24:active {
-  background-color: rgba(0,0,0,0.1);
 }
 
 .c20 {
@@ -240,7 +214,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   opacity: 0.5;
 }
 
-.c25 {
+.c24 {
   white-space: nowrap;
 }
 
@@ -268,6 +242,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 
 .c23 ul {
   list-style: disc;
+}
+
+.c17 {
+  background-color: #cce1f3;
+  padding: 0.2rem 0.9375rem;
 }
 
 .c11 {
@@ -440,15 +419,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   }
 }
 
-<article
-  aria-label="Brukerens saker"
+<div
   className="c0"
 >
   <div
     className="c1"
     onScroll={[Function]}
   >
-    <div
+    <nav
+      aria-describedby="Helt tilfeldig ID"
       className="c2"
     >
       <div
@@ -456,6 +435,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
       >
         <h2
           className="typo-undertittel"
+          id="Helt tilfeldig ID"
         >
           Tema
         </h2>
@@ -790,14 +770,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
           </li>
         </ol>
       </nav>
-    </div>
+    </nav>
   </div>
   <div
     className="c1"
     onScroll={[Function]}
   >
     <div>
-      <section
+      <article
         aria-label="Saksdokumenter for Alle tema"
         className="c11"
       >
@@ -925,7 +905,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             <ol>
               <li
                 className="c18"
-                onClick={[Function]}
               >
                 <div
                   className="c19"
@@ -987,7 +966,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               </li>
               <li
                 className="c18"
-                onClick={[Function]}
               >
                 <div
                   className="c19"
@@ -1082,8 +1060,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </div>
               </li>
               <li
-                className="c24"
-                onClick={[Function]}
+                className="c18"
               >
                 <div
                   className="c19"
@@ -1110,8 +1087,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <a
                         aria-disabled={false}
                         className="lenke typo-element"
-                        href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=q90p8dnw"
+                        href="/modiapersonoversikt/dokument/10108000398?dokumenturl=https://detteerenmocklenke.no/"
                         onClick={[Function]}
+                        target="_blank"
                       >
                         Inntektsopplysninger
                       </a>
@@ -1141,8 +1119,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <a
                           aria-disabled={true}
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=fbp2nc3l"
+                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=https://detteerenmocklenke.no/"
                           onClick={[Function]}
+                          target="_blank"
                         >
                           A-inntekt (Skjermet)
                         </a>
@@ -1151,8 +1130,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <a
                           aria-disabled={false}
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=x2njhynn"
+                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=https://detteerenmocklenke.no/"
                           onClick={[Function]}
+                          target="_blank"
                         >
                           Referat fra samtale på telefon
                         </a>
@@ -1179,7 +1159,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   </div>
                 </div>
                 <a
-                  className="lenke typo-element c25"
+                  className="lenke typo-element c24"
                   href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=q90p8dnw"
                   target="_blank"
                 >
@@ -1203,7 +1183,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             <ol>
               <li
                 className="c18"
-                onClick={[Function]}
               >
                 <div
                   className="c19"
@@ -1258,8 +1237,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <a
                           aria-disabled={false}
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=428dwf43"
+                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=https://detteerenmocklenke.no/"
                           onClick={[Function]}
+                          target="_blank"
                         >
                           Spørsmål via nav.no
                         </a>
@@ -1294,8 +1274,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </div>
               </li>
               <li
-                className="c24"
-                onClick={[Function]}
+                className="c18"
               >
                 <div
                   className="c19"
@@ -1322,8 +1301,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <a
                         aria-disabled={false}
                         className="lenke typo-element"
-                        href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=nvqxc1ip"
+                        href="/modiapersonoversikt/dokument/10108000398?dokumenturl=https://detteerenmocklenke.no/"
                         onClick={[Function]}
+                        target="_blank"
                       >
                         Spørsmål via nav.no
                       </a>
@@ -1351,7 +1331,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   </div>
                 </div>
                 <a
-                  className="lenke typo-element c25"
+                  className="lenke typo-element c24"
                   href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=nvqxc1ip"
                   target="_blank"
                 >
@@ -1359,8 +1339,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </a>
               </li>
               <li
-                className="c24"
-                onClick={[Function]}
+                className="c18"
               >
                 <div
                   className="c19"
@@ -1387,8 +1366,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <a
                         aria-disabled={false}
                         className="lenke typo-element"
-                        href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=me3wv1le"
+                        href="/modiapersonoversikt/dokument/10108000398?dokumenturl=https://detteerenmocklenke.no/"
                         onClick={[Function]}
+                        target="_blank"
                       >
                         Automatisk vedtak/nyfødt barn
                       </a>
@@ -1436,7 +1416,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   </div>
                 </div>
                 <a
-                  className="lenke typo-element c25"
+                  className="lenke typo-element c24"
                   href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=me3wv1le"
                   target="_blank"
                 >
@@ -1445,7 +1425,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               </li>
               <li
                 className="c18"
-                onClick={[Function]}
               >
                 <div
                   className="c19"
@@ -1507,8 +1486,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <a
                           aria-disabled={false}
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=k51y90us"
+                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=https://detteerenmocklenke.no/"
                           onClick={[Function]}
+                          target="_blank"
                         >
                           A-inntekt
                         </a>
@@ -1530,7 +1510,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               </li>
               <li
                 className="c18"
-                onClick={[Function]}
               >
                 <div
                   className="c19"
@@ -1606,8 +1585,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </div>
             <ol>
               <li
-                className="c24"
-                onClick={[Function]}
+                className="c18"
               >
                 <div
                   className="c19"
@@ -1634,8 +1612,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <a
                         aria-disabled={false}
                         className="lenke typo-element"
-                        href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=bjol9s20"
+                        href="/modiapersonoversikt/dokument/10108000398?dokumenturl=https://detteerenmocklenke.no/"
                         onClick={[Function]}
+                        target="_blank"
                       >
                         Vurdering feilutbetaling/revurdering
                       </a>
@@ -1663,7 +1642,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   </div>
                 </div>
                 <a
-                  className="lenke typo-element c25"
+                  className="lenke typo-element c24"
                   href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=bjol9s20"
                   target="_blank"
                 >
@@ -1671,8 +1650,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </a>
               </li>
               <li
-                className="c24"
-                onClick={[Function]}
+                className="c18"
               >
                 <div
                   className="c19"
@@ -1699,8 +1677,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <a
                         aria-disabled={false}
                         className="lenke typo-element"
-                        href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=113wxk3r"
+                        href="/modiapersonoversikt/dokument/10108000398?dokumenturl=https://detteerenmocklenke.no/"
                         onClick={[Function]}
+                        target="_blank"
                       >
                         Spørsmål via nav.no
                       </a>
@@ -1728,7 +1707,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   </div>
                 </div>
                 <a
-                  className="lenke typo-element c25"
+                  className="lenke typo-element c24"
                   href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=113wxk3r"
                   target="_blank"
                 >
@@ -1736,8 +1715,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </a>
               </li>
               <li
-                className="c24"
-                onClick={[Function]}
+                className="c18"
               >
                 <div
                   className="c19"
@@ -1764,8 +1742,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <a
                         aria-disabled={false}
                         className="lenke typo-element"
-                        href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=mt1cssx0"
+                        href="/modiapersonoversikt/dokument/10108000398?dokumenturl=https://detteerenmocklenke.no/"
                         onClick={[Function]}
+                        target="_blank"
                       >
                         Innhenting av opplysninger
                       </a>
@@ -1793,7 +1772,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   </div>
                 </div>
                 <a
-                  className="lenke typo-element c25"
+                  className="lenke typo-element c24"
                   href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=mt1cssx0"
                   target="_blank"
                 >
@@ -1802,7 +1781,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               </li>
               <li
                 className="c18"
-                onClick={[Function]}
               >
                 <div
                   className="c19"
@@ -1863,8 +1841,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </div>
               </li>
               <li
-                className="c24"
-                onClick={[Function]}
+                className="c18"
               >
                 <div
                   className="c19"
@@ -1891,8 +1868,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <a
                         aria-disabled={false}
                         className="lenke typo-element"
-                        href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=nnp1em30"
+                        href="/modiapersonoversikt/dokument/10108000398?dokumenturl=https://detteerenmocklenke.no/"
                         onClick={[Function]}
+                        target="_blank"
                       >
                         Referat fra samtale på telefon
                       </a>
@@ -1920,7 +1898,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   </div>
                 </div>
                 <a
-                  className="lenke typo-element c25"
+                  className="lenke typo-element c24"
                   href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=nnp1em30"
                   target="_blank"
                 >
@@ -1928,8 +1906,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 </a>
               </li>
               <li
-                className="c24"
-                onClick={[Function]}
+                className="c18"
               >
                 <div
                   className="c19"
@@ -1956,8 +1933,9 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <a
                         aria-disabled={false}
                         className="lenke typo-element"
-                        href="/modiapersonoversikt/person/10108000398/saker?sakstema=ALLE1545606000&dokument=gplzp0ho"
+                        href="/modiapersonoversikt/dokument/10108000398?dokumenturl=https://detteerenmocklenke.no/"
                         onClick={[Function]}
+                        target="_blank"
                       >
                         A-inntekt
                       </a>
@@ -1985,7 +1963,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   </div>
                 </div>
                 <a
-                  className="lenke typo-element c25"
+                  className="lenke typo-element c24"
                   href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=gplzp0ho"
                   target="_blank"
                 >
@@ -1995,7 +1973,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </ol>
           </li>
         </ol>
-      </section>
+      </article>
       <div
         className="alertstripe alertstripe--info"
       >
@@ -2032,5 +2010,5 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
       </div>
     </div>
   </div>
-</article>
+</div>
 `;

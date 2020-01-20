@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useRef } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components/macro';
@@ -8,22 +8,23 @@ import { Checkbox, Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import TraadListeElement from './TraadListeElement';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
-import { useOnMount } from '../../../../../utils/customHooks';
 import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import { guid } from 'nav-frontend-js-utils';
+import { useOnMount } from '../../../../../utils/customHooks';
 
 interface Props {
     traader: Traad[];
     traaderEtterSokOgFiltrering: Traad[];
-    valgtTraad?: Traad;
+    valgtTraad: Traad;
     sokeord: string;
     setSokeord: (newSokeord: string) => void;
     skjulVarsler: boolean;
     setSkjulVarsler: (skjul: boolean) => void;
 }
 
-const PanelStyle = styled.nav`
+const StyledNav = styled.nav`
     ${theme.hvittPanel};
     ol {
         list-style: none;
@@ -37,9 +38,12 @@ const SokVerktøyStyle = styled.div`
     justify-content: space-between;
 `;
 
-const TraadListeStyle = styled.ol`
+const StyledOl = styled.ol`
     > * {
         border-top: ${theme.border.skille};
+    }
+    &:focus {
+        ${theme.focus};
     }
 `;
 
@@ -70,13 +74,18 @@ const StyledCheckbox = styled(Checkbox)`
     margin-bottom: 0 !important;
 `;
 
+export const valgtMeldingKlasse = 'valgt_melding';
+
 function TraadListe(props: Props) {
-    const [erForsteRender, setErForsteRender] = useState(true);
     const inputRef = React.useRef<HTMLInputElement>();
     const paginering = usePaginering(props.traaderEtterSokOgFiltrering, 50, 'melding', props.valgtTraad);
+    const sokTittelId = useRef(guid());
+    const listeId = useRef(guid());
+    const traadListeRef = useRef<HTMLOListElement>(null);
 
     useOnMount(() => {
-        setErForsteRender(false);
+        const valgtMelding = traadListeRef.current?.getElementsByClassName(valgtMeldingKlasse)[0] as HTMLInputElement;
+        valgtMelding?.focus();
     });
 
     if (props.traader.length === 0) {
@@ -115,46 +124,52 @@ function TraadListe(props: Props) {
         !props.skjulVarsler && loggEvent('SkjulVarsler', 'Meldinger');
         props.setSkjulVarsler(!props.skjulVarsler);
     };
+
     return (
-        <PanelStyle>
+        <StyledNav aria-label="Velg melding">
             <SlaaSammenOppgaverKnapp traader={props.traader} />
-            <h3 className="sr-only">Søk i brukerens meldinger</h3>
-            <InputStyle>
-                <Input
-                    inputRef={
-                        ((ref: HTMLInputElement) => {
-                            inputRef.current = ref;
-                        }) as any
-                    }
-                    value={props.sokeord}
-                    onChange={onMeldingerSok}
-                    label={'Søk etter melding'}
-                    placeholder={'Søk etter melding'}
-                    className={'move-input-label'}
-                />
-            </InputStyle>
-            <StyledCheckbox label="Skjul varsler" checked={props.skjulVarsler} onChange={handleSkjulVarsler} />
-            <SokVerktøyStyle>
-                <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>
-                {visAlleMeldingerKnapp}
-            </SokVerktøyStyle>
-            <h3 className="sr-only">Meldingsliste - {soketreffTekst}</h3>
+            <article aria-describedby={sokTittelId.current}>
+                <h3 id={sokTittelId.current} className="sr-only">
+                    Filtrer meldinger
+                </h3>
+                <InputStyle>
+                    <Input
+                        inputRef={
+                            ((ref: HTMLInputElement) => {
+                                inputRef.current = ref;
+                            }) as any
+                        }
+                        value={props.sokeord}
+                        onChange={onMeldingerSok}
+                        label={'Søk etter melding'}
+                        placeholder={'Søk etter melding'}
+                        className={'move-input-label'}
+                    />
+                </InputStyle>
+                <StyledCheckbox label="Skjul varsler" checked={props.skjulVarsler} onChange={handleSkjulVarsler} />
+                <SokVerktøyStyle>
+                    <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>
+                    {visAlleMeldingerKnapp}
+                </SokVerktøyStyle>
+            </article>
+            <h3 className="sr-only" id={listeId.current}>
+                Meldingsliste - {soketreffTekst}
+            </h3>
             {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
-            <TraadListeStyle role="tablist">
+            <StyledOl aria-describedby={listeId.current} tabIndex={-1} ref={traadListeRef}>
                 {paginering.currentPage.map(traad => (
                     <TraadListeElement
-                        taFokusOnMount={erForsteRender && traad === props.valgtTraad}
                         traad={traad}
                         key={traad.traadId}
                         erValgt={traad === props.valgtTraad}
                         listeId="traadliste-meldinger"
                     />
                 ))}
-            </TraadListeStyle>
+            </StyledOl>
             {paginering.prevNextButtons && (
                 <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
             )}
-        </PanelStyle>
+        </StyledNav>
     );
 }
 

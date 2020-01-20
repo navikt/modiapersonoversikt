@@ -6,11 +6,10 @@ import { UnmountClosed } from 'react-collapse';
 import JournalforingPanel from './journalforing/JournalforingPanel';
 import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
-import { createRef, useCallback, useEffect } from 'react';
+import { createRef, useCallback, useEffect, useRef } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
 import { useFødselsnummer, usePrevious } from '../../../../../../utils/customHooks';
-import { meldingstittel, nyesteMelding } from '../../utils/meldingerUtils';
-import usePrinter, { Printer } from '../../../../../../utils/UsePrinter';
+import usePrinter from '../../../../../../utils/UsePrinter';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { LenkeKnapp } from '../../../../../../components/common-styled-components';
 import { apiBaseUri } from '../../../../../../api/config';
@@ -18,13 +17,14 @@ import PrintKnapp from '../../../../../../components/PrintKnapp';
 import MeldingerPrintMarkup from '../../../../../../utils/MeldingerPrintMarkup';
 import useFeatureToggle from '../../../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../../../components/featureToggle/toggleIDs';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     valgtTraad: Traad;
     visPrinter?: boolean;
 }
 
-const PanelStyle = styled.section`
+const StyledArticle = styled.article`
     ${theme.hvittPanel};
     padding: ${theme.margin.layout};
     display: flex;
@@ -53,7 +53,11 @@ enum VerktøyPanel {
     OPPGAVE,
     MERK
 }
-function Print({ props, printer }: { props: Props; printer: Printer }) {
+
+function Print(props: Props) {
+    const printer = usePrinter();
+    const PrinterWrapper = printer.printerWrapper;
+
     const GammelPrintKnapp = styled(LenkeKnapp.withComponent('a'))`
         text-decoration: none;
         color: #3e3832;
@@ -61,22 +65,36 @@ function Print({ props, printer }: { props: Props; printer: Printer }) {
     const fnr = useFødselsnummer();
     const meldingerPrintFT = useFeatureToggle(FeatureToggles.MeldingerPrint);
 
-    if (meldingerPrintFT.isOn && props.visPrinter) {
-        return <PrintKnapp onClick={() => printer?.triggerPrint()} />;
+    if (!props.visPrinter) {
+        return null;
     }
+
+    if (meldingerPrintFT.isOn) {
+        return (
+            <>
+                <PrintKnapp onClick={() => printer?.triggerPrint()} />
+                <PrinterWrapper>
+                    <MeldingerPrintMarkup valgtTraad={props.valgtTraad} />
+                </PrinterWrapper>
+            </>
+        );
+    }
+
     return (
         <GammelPrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
             <Normaltekst>Skriv ut</Normaltekst>
         </GammelPrintKnapp>
     );
 }
+
 function Verktoylinje(props: Props) {
-    const titleRef = createRef<HTMLHeadingElement>();
+    const ref = createRef<HTMLElement>();
     const [aktivtPanel, settAktivtPanel] = React.useState<VerktøyPanel | null>(null);
     const lukk = useCallback(() => {
         settAktivtPanel(null);
-        titleRef.current && titleRef.current.focus();
-    }, [settAktivtPanel, titleRef]);
+        ref.current && ref.current.focus();
+    }, [settAktivtPanel, ref]);
+    const tittelId = useRef(guid());
 
     const prevTraad = usePrevious(props.valgtTraad);
 
@@ -92,13 +110,9 @@ function Verktoylinje(props: Props) {
     const visJournalforing = aktivtPanel === VerktøyPanel.JOURNALFORING;
     const visOppgave = aktivtPanel === VerktøyPanel.OPPGAVE;
     const visMerk = aktivtPanel === VerktøyPanel.MERK;
-    const printer = usePrinter();
-    const PrinterWrapper = printer.printerWrapper;
+
     return (
-        <PanelStyle>
-            <h3 className="sr-only" ref={titleRef} tabIndex={-1}>
-                Verktøylinje - {meldingstittel(nyesteMelding(props.valgtTraad))}
-            </h3>
+        <StyledArticle aria-describedby={tittelId.current} aria-label="Verktøylinje" ref={ref} tabIndex={-1}>
             <KnapperPanelStyle>
                 <OppgaveknapperStyle>
                     <SvartLenkeKnapp
@@ -113,7 +127,7 @@ function Verktoylinje(props: Props) {
                     />
                     <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
                 </OppgaveknapperStyle>
-                <Print props={props} printer={printer} />
+                <Print {...props} />
             </KnapperPanelStyle>
             <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
                 <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />
@@ -124,10 +138,7 @@ function Verktoylinje(props: Props) {
             <UnmountClosed isOpened={visMerk}>
                 <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={lukk} />
             </UnmountClosed>
-            <PrinterWrapper>
-                <MeldingerPrintMarkup valgtTraad={props.valgtTraad} />
-            </PrinterWrapper>
-        </PanelStyle>
+        </StyledArticle>
     );
 }
 

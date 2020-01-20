@@ -16,14 +16,14 @@ import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
 import { datoVerbose } from '../../../../../utils/dateUtils';
 import { utbetalingerTest } from '../../dyplenkeTest/utils';
-import { useAppState, useOnMount, usePrevious } from '../../../../../utils/customHooks';
+import { useAppState, useOnMount, useOnUpdate, usePrevious } from '../../../../../utils/customHooks';
 import usePrinter from '../../../../../utils/UsePrinter';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 interface Props {
     utbetaling: UtbetalingInterface;
     ytelse: Ytelse;
-    valgt: boolean;
+    erValgtIUrl: boolean;
 }
 const UtbetalingStyle = styled.li`
     cursor: pointer;
@@ -62,13 +62,14 @@ function EnkelUtbetaling(props: Props) {
     const setYtelseIFokus = () => !erIFokus && dispatch(setNyYtelseIFokus(props.ytelse));
 
     useOnMount(() => {
-        if (props.valgt) {
+        if (props.erValgtIUrl) {
             utbetalingRef.current && utbetalingRef.current.focus();
+            ekspanderYtelse(true);
         }
     });
 
     const prevErIFokus = usePrevious(erIFokus);
-    useEffect(() => {
+    useOnUpdate(() => {
         const fikkFokus = erIFokus && !prevErIFokus;
         if (fikkFokus && utbetalingRef.current) {
             utbetalingRef.current.focus();

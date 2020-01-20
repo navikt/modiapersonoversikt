@@ -11,7 +11,7 @@ import { INFOTABS } from '../InfoTabEnum';
 import SakerOversikt from './SakerOversikt';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 
-const Style = styled.article`
+const Style = styled.div`
     @media (${theme.media.wideScreen}) {
         display: flex;
         justify-content: center;

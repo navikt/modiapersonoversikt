@@ -58,6 +58,7 @@ function SammensattUtbetaling(props: Props) {
     const PrinterWrapper = printer.printerWrapper;
     const dispatch = useDispatch();
     const ekspanderYtelse = (ytelse: Ytelse) => dispatch(setEkspanderYtelse(ytelse, true));
+
     useOnMount(() => {
         if (props.erValgtIUrl) {
             utbetalingRef.current && utbetalingRef.current.focus();

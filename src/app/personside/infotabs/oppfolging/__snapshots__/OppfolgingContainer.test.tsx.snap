@@ -208,13 +208,14 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   flex-basis: 75%;
 }
 
-<article
+<div
   className="c0"
 >
   <div
     className="c1"
   >
-    <div
+    <article
+      aria-describedby="Helt tilfeldig ID"
       className="c2"
     >
       <div
@@ -222,6 +223,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
       >
         <h2
           className="typo-undertittel"
+          id="Helt tilfeldig ID"
         >
           Oppfølging og ytelser vises for perioden:
         </h2>
@@ -368,12 +370,14 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           Søk
         </button>
       </div>
-    </div>
-    <div
+    </article>
+    <article
+      aria-describedby="Helt tilfeldig ID"
       className="c5"
     >
       <h2
         className="typo-undertittel"
+        id="Helt tilfeldig ID"
       >
         Arbeidsoppfølging
       </h2>
@@ -477,7 +481,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           </dd>
         </div>
       </dl>
-    </div>
+    </article>
   </div>
   <div
     className="c7"
@@ -910,5 +914,5 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
       </article>
     </div>
   </div>
-</article>
+</div>
 `;

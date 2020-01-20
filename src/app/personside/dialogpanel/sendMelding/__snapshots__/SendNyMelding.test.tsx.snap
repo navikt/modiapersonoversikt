@@ -210,10 +210,12 @@ exports[`viser send ny melding 1`] = `
 }
 
 <article
+  aria-describedby="Helt tilfeldig ID"
   className="c0"
 >
   <h2
     className="typo-undertittel c1"
+    id="Helt tilfeldig ID"
   >
     Send ny melding
   </h2>

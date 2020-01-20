@@ -1,80 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BesvarFler matcher snapshot 1`] = `
-.c20 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-}
-
-.c18 .snakkeboble-panel {
-  -webkit-flex-basis: 40rem;
-  -ms-flex-preferred-size: 40rem;
-  flex-basis: 40rem;
-}
-
-.c18 a {
-  word-break: break-word;
-}
-
-.c18 .snakkeboble {
-  margin: 0;
-}
-
-.c23 {
-  margin-right: 0.3rem !important;
-}
-
-.c22 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c21 {
-  font-weight: 600;
-}
-
-.c19 {
-  text-align: left;
-}
-
-.c19 em {
-  font-style: normal;
-  background-color: #eed28c;
-  border-radius: 0.625rem;
-  padding: 0 0.3125rem;
-}
-
-.c19 > *:not(:last-child) {
-  border-bottom: solid 0.0625rem #b7b1a9;
-  padding-bottom: 0.7rem;
-  margin-bottom: 0.5rem;
-}
-
-.c25 {
-  color: #0067c5;
-}
-
-.c24 .ekspanderbartPanel__hode,
-.c24 .ekspanderbartPanel__innhold {
-  padding: 0.3rem 0;
-}
-
-.c26 {
-  display: none;
-}
-
 .c9 {
   position: relative;
 }
@@ -109,6 +35,13 @@ exports[`BesvarFler matcher snapshot 1`] = `
 }
 
 .c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -118,7 +51,25 @@ exports[`BesvarFler matcher snapshot 1`] = `
   overflow-wrap: break-word;
 }
 
-.c14 {
+.c11 .order-first {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+.c11 .order-second {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.c11 .order-third {
+  -webkit-order: 3;
+  -ms-flex-order: 3;
+  order: 3;
+}
+
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -133,7 +84,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   margin-top: 0.2rem;
 }
 
-.c14 > *:not(:last-child) {
+.c13 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
@@ -174,10 +125,25 @@ exports[`BesvarFler matcher snapshot 1`] = `
   flex-grow: 1;
 }
 
-.c13 {
+.c14 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.c20 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
 }
 
 .c5 {
@@ -276,6 +242,50 @@ exports[`BesvarFler matcher snapshot 1`] = `
   width: 1.5625rem;
 }
 
+.c18 .snakkeboble-panel {
+  -webkit-flex-basis: 40rem;
+  -ms-flex-preferred-size: 40rem;
+  flex-basis: 40rem;
+}
+
+.c18 a {
+  word-break: break-word;
+}
+
+.c18 .snakkeboble {
+  margin: 0;
+}
+
+.c21 {
+  font-weight: 600;
+}
+
+.c19 {
+  text-align: left;
+}
+
+.c19 em {
+  font-style: normal;
+  background-color: #eed28c;
+  box-shadow: 0 0 0 0.2rem #eed28c;
+  border-radius: 0.625rem;
+}
+
+.c19 > *:not(:last-child) {
+  border-bottom: solid 0.0625rem #b7b1a9;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.c23 {
+  color: #0067c5;
+}
+
+.c22 .ekspanderbartPanel__hode,
+.c22 .ekspanderbartPanel__innhold {
+  padding: 0.3rem 0;
+}
+
 .c0 {
   background-color: #c6c2bf;
   width: 80vw;
@@ -364,7 +374,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: 1.25rem .5rem;
 }
 
-.c27 {
+.c24 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -377,7 +387,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: .5rem;
 }
 
-.c27 > * {
+.c24 > * {
   margin-left: 1rem;
 }
 
@@ -402,14 +412,8 @@ exports[`BesvarFler matcher snapshot 1`] = `
 }
 
 @media print {
-  .c24 {
+  .c22 {
     display: none;
-  }
-}
-
-@media print {
-  .c26 {
-    display: inline-block;
   }
 }
 
@@ -435,16 +439,13 @@ exports[`BesvarFler matcher snapshot 1`] = `
     >
       <li
         className="c4"
-        role="presentation"
       >
         <input
-          aria-label="Delsvar - Arbeid"
           checked={true}
-          className="sr-only test-meldinger-melding"
+          className="sr-only test-meldinger-melding valgt_melding  "
           id="Helt tilfeldig ID"
           name="traadliste-slaa-sammen"
           onChange={[Function]}
-          role="tab"
           type="radio"
           value="sg838exr"
         />
@@ -485,6 +486,13 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="c8"
             >
               <span
+                className="sr-only"
+              >
+                (
+                4
+                )
+              </span>
+              <span
                 className="c9"
               >
                 <svg
@@ -503,25 +511,19 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   </g>
                 </svg>
                 <p
+                  aria-hidden="true"
                   className="typo-undertekst c10"
                 >
                   4
-                   
-                  <span
-                    className="sr-only"
-                  >
-                    tekster
-                  </span>
                 </p>
               </span>
               <div
                 className="c11"
               >
                 <div
-                  className="c12"
+                  className="order-first c12"
                 >
                   <p
-                    aria-hidden={true}
                     className="typo-element order-second"
                   >
                     Delsvar - Arbeid
@@ -529,16 +531,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   <p
                     className="typo-normal order-first"
                   >
-                    13.08.2019 00:00
+                    27.07.2019 00:00
                   </p>
                 </div>
-                <p
-                  className="typo-normal c13"
-                >
-                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-                </p>
                 <div
-                  className="c14"
+                  className="order-third c13"
                 >
                   <div
                     className="etikett etikett--fokus"
@@ -559,6 +556,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     </span>
                   </div>
                 </div>
+                <p
+                  className="typo-normal order-second c14"
+                >
+                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                </p>
               </div>
             </div>
           </div>
@@ -573,16 +575,13 @@ exports[`BesvarFler matcher snapshot 1`] = `
       </li>
       <li
         className="c16"
-        role="presentation"
       >
         <input
-          aria-label="Delsvar - Arbeid"
           checked={false}
-          className="sr-only test-meldinger-melding"
+          className="sr-only test-meldinger-melding   "
           id="Helt tilfeldig ID"
           name="traadliste-slaa-sammen"
           onChange={[Function]}
-          role="tab"
           type="radio"
           value="123"
         />
@@ -623,6 +622,13 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="c8"
             >
               <span
+                className="sr-only"
+              >
+                (
+                4
+                )
+              </span>
+              <span
                 className="c9"
               >
                 <svg
@@ -641,25 +647,19 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   </g>
                 </svg>
                 <p
+                  aria-hidden="true"
                   className="typo-undertekst c10"
                 >
                   4
-                   
-                  <span
-                    className="sr-only"
-                  >
-                    tekster
-                  </span>
                 </p>
               </span>
               <div
                 className="c11"
               >
                 <div
-                  className="c12"
+                  className="order-first c12"
                 >
                   <p
-                    aria-hidden={true}
                     className="typo-element order-second"
                   >
                     Delsvar - Arbeid
@@ -667,16 +667,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   <p
                     className="typo-normal order-first"
                   >
-                    13.08.2019 00:00
+                    27.07.2019 00:00
                   </p>
                 </div>
-                <p
-                  className="typo-normal c13"
-                >
-                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-                </p>
                 <div
-                  className="c14"
+                  className="order-third c13"
                 >
                   <div
                     className="etikett etikett--fokus"
@@ -697,6 +692,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     </span>
                   </div>
                 </div>
+                <p
+                  className="typo-normal order-second c14"
+                >
+                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                </p>
               </div>
             </div>
           </div>
@@ -717,417 +717,435 @@ exports[`BesvarFler matcher snapshot 1`] = `
       <li
         className="snakkeboble_ikoner c18"
       >
-        <div
-          className="snakkeboble snakkeboble--hoyre"
+        <article
+          aria-describedby="Helt tilfeldig ID"
         >
-          <i
-            className="nav-ikon"
-          />
           <div
-            className="snakkeboble__snakkeboble-pil-container"
+            className="snakkeboble snakkeboble--hoyre"
           >
             <i
-              className="snakkeboble__snakkebole-pil"
+              className="nav-ikon"
             />
-          </div>
-          <div
-            className="panel snakkeboble-panel"
-          >
             <div
-              className="snakkeboble-panel__tekst"
+              className="snakkeboble__snakkeboble-pil-container"
+            >
+              <i
+                className="snakkeboble__snakkebole-pil"
+              />
+            </div>
+            <div
+              className="panel snakkeboble-panel"
             >
               <div
-                className="c19"
+                className="snakkeboble-panel__tekst"
               >
                 <div
-                  className=""
+                  className="c19"
                 >
                   <div
-                    className="c20"
+                    className=""
                   >
                     <div
-                      className="tekstomrade c21"
+                      className="c20"
                     >
-                      Samtalereferat oppmøte - Arbeid
-                    </div>
-                    <div
-                      className="etikett etikett--suksess"
-                    >
-                      <span
-                        className="typo-normal"
+                      <h4
+                        id="Helt tilfeldig ID"
                       >
-                        Lest
-                      </span>
+                        <span
+                          className="sr-only"
+                        >
+                          Melding 
+                          4
+                        </span>
+                        <div
+                          className="tekstomrade c21"
+                        >
+                          Samtalereferat oppmøte - Arbeid
+                        </div>
+                      </h4>
+                      <div
+                        className="etikett etikett--suksess"
+                      >
+                        <span
+                          className="typo-normal"
+                        >
+                          Lest
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                  <div
-                    className="tekstomrade"
-                  >
-                    07.07.2019 00:00
-                  </div>
-                  <div
-                    className="c22"
-                  >
-                    <p
-                      className="typo-normal c23"
+                    <div
+                      className="tekstomrade"
                     >
-                      Skrevet av:
-                    </p>
+                      07.07.2019 00:00
+                    </div>
                     <div
                       className="tekstomrade typo-normal"
                     >
-                      Sander Hansen (nzxo4q)
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="tekstomrade"
-                >
-                  Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
-                </div>
-                <div
-                  className="ekspanderbartPanel c24 ekspanderbartPanel--lukket"
-                >
-                  <button
-                    aria-expanded={false}
-                    className="ekspanderbartPanel__hode"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    type="button"
-                  >
-                    <div
-                      className="ekspanderbartPanel__flex-wrapper"
-                    >
-                      <p
-                        className="typo-etikett-liten c25"
-                      >
-                        Meldingen er journalført
-                      </p>
-                      <span
-                        className="ekspanderbartPanel__indikator"
-                      />
-                    </div>
-                  </button>
-                  <article
-                    className="ekspanderbartPanel__innhold"
-                  >
-                    Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
-                  </article>
-                </div>
-                <div
-                  className="c26"
-                >
-                  <p
-                    className="typo-element"
-                  >
-                    Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li
-        className="snakkeboble_ikoner c18"
-      >
-        <div
-          className="snakkeboble snakkeboble--venstre"
-        >
-          <i
-            className="bruker-ikon"
-          />
-          <div
-            className="snakkeboble__snakkeboble-pil-container"
-          >
-            <i
-              className="snakkeboble__snakkebole-pil"
-            />
-          </div>
-          <div
-            className="panel snakkeboble-panel"
-          >
-            <div
-              className="snakkeboble-panel__tekst"
-            >
-              <div
-                className="c19"
-              >
-                <div
-                  className=""
-                >
-                  <div
-                    className="c20"
-                  >
-                    <div
-                      className="tekstomrade c21"
-                    >
-                      Spørsmål fra bruker - Arbeid
+                      Skrevet av Sander Hansen (nzxo4q)
                     </div>
                   </div>
                   <div
                     className="tekstomrade"
-                  >
-                    16.07.2019 00:00
-                  </div>
-                </div>
-                <div
-                  className="tekstomrade"
-                >
-                  Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
-                </div>
-                <div
-                  className="ekspanderbartPanel c24 ekspanderbartPanel--lukket"
-                >
-                  <button
-                    aria-expanded={false}
-                    className="ekspanderbartPanel__hode"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    type="button"
-                  >
-                    <div
-                      className="ekspanderbartPanel__flex-wrapper"
-                    >
-                      <p
-                        className="typo-etikett-liten c25"
-                      >
-                        Meldingen er journalført
-                      </p>
-                      <span
-                        className="ekspanderbartPanel__indikator"
-                      />
-                    </div>
-                  </button>
-                  <article
-                    className="ekspanderbartPanel__innhold"
-                  >
-                    Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
-                  </article>
-                </div>
-                <div
-                  className="c26"
-                >
-                  <p
-                    className="typo-element"
-                  >
-                    Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li
-        className="snakkeboble_ikoner c18"
-      >
-        <div
-          className="snakkeboble snakkeboble--venstre"
-        >
-          <i
-            className="bruker-ikon"
-          />
-          <div
-            className="snakkeboble__snakkeboble-pil-container"
-          >
-            <i
-              className="snakkeboble__snakkebole-pil"
-            />
-          </div>
-          <div
-            className="panel snakkeboble-panel"
-          >
-            <div
-              className="snakkeboble-panel__tekst"
-            >
-              <div
-                className="c19"
-              >
-                <div
-                  className=""
-                >
-                  <div
-                    className="c20"
-                  >
-                    <div
-                      className="tekstomrade c21"
-                    >
-                      Spørsmål fra bruker - Arbeid
-                    </div>
-                  </div>
-                  <div
-                    className="tekstomrade"
-                  >
-                    12.07.2019 00:00
-                  </div>
-                </div>
-                <div
-                  className="tekstomrade"
-                >
-                  Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
-                </div>
-                <div
-                  className="ekspanderbartPanel c24 ekspanderbartPanel--lukket"
-                >
-                  <button
-                    aria-expanded={false}
-                    className="ekspanderbartPanel__hode"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    type="button"
-                  >
-                    <div
-                      className="ekspanderbartPanel__flex-wrapper"
-                    >
-                      <p
-                        className="typo-etikett-liten c25"
-                      >
-                        Meldingen er journalført
-                      </p>
-                      <span
-                        className="ekspanderbartPanel__indikator"
-                      />
-                    </div>
-                  </button>
-                  <article
-                    className="ekspanderbartPanel__innhold"
-                  >
-                    Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
-                  </article>
-                </div>
-                <div
-                  className="c26"
-                >
-                  <p
-                    className="typo-element"
-                  >
-                    Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li
-        className="snakkeboble_ikoner c18"
-      >
-        <div
-          className="snakkeboble snakkeboble--hoyre"
-        >
-          <i
-            className="nav-ikon"
-          />
-          <div
-            className="snakkeboble__snakkeboble-pil-container"
-          >
-            <i
-              className="snakkeboble__snakkebole-pil"
-            />
-          </div>
-          <div
-            className="panel snakkeboble-panel"
-          >
-            <div
-              className="snakkeboble-panel__tekst"
-            >
-              <div
-                className="c19"
-              >
-                <div
-                  className=""
-                >
-                  <div
-                    className="c20"
-                  >
-                    <div
-                      className="tekstomrade c21"
-                    >
-                      Delsvar - Arbeid
-                    </div>
-                    <div
-                      className="etikett etikett--info"
-                    >
-                      <span
-                        className="typo-normal"
-                      >
-                        Delsvar
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className="tekstomrade"
-                  >
-                    27.07.2019 00:00
-                  </div>
-                  <div
-                    className="c22"
                   >
                     <p
-                      className="typo-normal c23"
+                      className="typo-normal blokk-xs"
                     >
-                      Skrevet av:
+                      Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
                     </p>
+                  </div>
+                  <div
+                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                  >
+                    <button
+                      aria-expanded={false}
+                      className="ekspanderbartPanel__hode"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      type="button"
+                    >
+                      <div
+                        className="ekspanderbartPanel__flex-wrapper"
+                      >
+                        <p
+                          className="typo-etikett-liten c23"
+                        >
+                          Meldingen er journalført
+                        </p>
+                        <span
+                          className="ekspanderbartPanel__indikator"
+                        />
+                      </div>
+                    </button>
+                    <article
+                      className="ekspanderbartPanel__innhold"
+                    >
+                      Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </li>
+      <li
+        className="snakkeboble_ikoner c18"
+      >
+        <article
+          aria-describedby="Helt tilfeldig ID"
+        >
+          <div
+            className="snakkeboble snakkeboble--venstre"
+          >
+            <i
+              className="bruker-ikon"
+            />
+            <div
+              className="snakkeboble__snakkeboble-pil-container"
+            >
+              <i
+                className="snakkeboble__snakkebole-pil"
+              />
+            </div>
+            <div
+              className="panel snakkeboble-panel"
+            >
+              <div
+                className="snakkeboble-panel__tekst"
+              >
+                <div
+                  className="c19"
+                >
+                  <div
+                    className=""
+                  >
+                    <div
+                      className="c20"
+                    >
+                      <h4
+                        id="Helt tilfeldig ID"
+                      >
+                        <span
+                          className="sr-only"
+                        >
+                          Melding 
+                          3
+                        </span>
+                        <div
+                          className="tekstomrade c21"
+                        >
+                          Spørsmål fra bruker - Arbeid
+                        </div>
+                      </h4>
+                    </div>
+                    <div
+                      className="tekstomrade"
+                    >
+                      16.07.2019 00:00
+                    </div>
+                  </div>
+                  <div
+                    className="tekstomrade"
+                  >
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+                    </p>
+                  </div>
+                  <div
+                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                  >
+                    <button
+                      aria-expanded={false}
+                      className="ekspanderbartPanel__hode"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      type="button"
+                    >
+                      <div
+                        className="ekspanderbartPanel__flex-wrapper"
+                      >
+                        <p
+                          className="typo-etikett-liten c23"
+                        >
+                          Meldingen er journalført
+                        </p>
+                        <span
+                          className="ekspanderbartPanel__indikator"
+                        />
+                      </div>
+                    </button>
+                    <article
+                      className="ekspanderbartPanel__innhold"
+                    >
+                      Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </li>
+      <li
+        className="snakkeboble_ikoner c18"
+      >
+        <article
+          aria-describedby="Helt tilfeldig ID"
+        >
+          <div
+            className="snakkeboble snakkeboble--venstre"
+          >
+            <i
+              className="bruker-ikon"
+            />
+            <div
+              className="snakkeboble__snakkeboble-pil-container"
+            >
+              <i
+                className="snakkeboble__snakkebole-pil"
+              />
+            </div>
+            <div
+              className="panel snakkeboble-panel"
+            >
+              <div
+                className="snakkeboble-panel__tekst"
+              >
+                <div
+                  className="c19"
+                >
+                  <div
+                    className=""
+                  >
+                    <div
+                      className="c20"
+                    >
+                      <h4
+                        id="Helt tilfeldig ID"
+                      >
+                        <span
+                          className="sr-only"
+                        >
+                          Melding 
+                          2
+                        </span>
+                        <div
+                          className="tekstomrade c21"
+                        >
+                          Spørsmål fra bruker - Arbeid
+                        </div>
+                      </h4>
+                    </div>
+                    <div
+                      className="tekstomrade"
+                    >
+                      12.07.2019 00:00
+                    </div>
+                  </div>
+                  <div
+                    className="tekstomrade"
+                  >
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+                    </p>
+                  </div>
+                  <div
+                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                  >
+                    <button
+                      aria-expanded={false}
+                      className="ekspanderbartPanel__hode"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      type="button"
+                    >
+                      <div
+                        className="ekspanderbartPanel__flex-wrapper"
+                      >
+                        <p
+                          className="typo-etikett-liten c23"
+                        >
+                          Meldingen er journalført
+                        </p>
+                        <span
+                          className="ekspanderbartPanel__indikator"
+                        />
+                      </div>
+                    </button>
+                    <article
+                      className="ekspanderbartPanel__innhold"
+                    >
+                      Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </li>
+      <li
+        className="snakkeboble_ikoner c18"
+      >
+        <article
+          aria-describedby="Helt tilfeldig ID"
+        >
+          <div
+            className="snakkeboble snakkeboble--hoyre"
+          >
+            <i
+              className="nav-ikon"
+            />
+            <div
+              className="snakkeboble__snakkeboble-pil-container"
+            >
+              <i
+                className="snakkeboble__snakkebole-pil"
+              />
+            </div>
+            <div
+              className="panel snakkeboble-panel"
+            >
+              <div
+                className="snakkeboble-panel__tekst"
+              >
+                <div
+                  className="c19"
+                >
+                  <div
+                    className=""
+                  >
+                    <div
+                      className="c20"
+                    >
+                      <h4
+                        id="Helt tilfeldig ID"
+                      >
+                        <span
+                          className="sr-only"
+                        >
+                          Melding 
+                          1
+                        </span>
+                        <div
+                          className="tekstomrade c21"
+                        >
+                          Delsvar - Arbeid
+                        </div>
+                      </h4>
+                      <div
+                        className="etikett etikett--info"
+                      >
+                        <span
+                          className="typo-normal"
+                        >
+                          Delsvar
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      className="tekstomrade"
+                    >
+                      27.07.2019 00:00
+                    </div>
                     <div
                       className="tekstomrade typo-normal"
                     >
-                      Kristoffer Fredriksen (xy70r8)
+                      Skrevet av Kristoffer Fredriksen (xy70r8)
                     </div>
                   </div>
-                </div>
-                <div
-                  className="tekstomrade"
-                >
-                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-                </div>
-                <div
-                  className="ekspanderbartPanel c24 ekspanderbartPanel--lukket"
-                >
-                  <button
-                    aria-expanded={false}
-                    className="ekspanderbartPanel__hode"
-                    onClick={[Function]}
-                    onKeyDown={[Function]}
-                    type="button"
+                  <div
+                    className="tekstomrade"
                   >
-                    <div
-                      className="ekspanderbartPanel__flex-wrapper"
+                    <p
+                      className="typo-normal blokk-xs"
                     >
-                      <p
-                        className="typo-etikett-liten c25"
+                      Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                    </p>
+                  </div>
+                  <div
+                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                  >
+                    <button
+                      aria-expanded={false}
+                      className="ekspanderbartPanel__hode"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      type="button"
+                    >
+                      <div
+                        className="ekspanderbartPanel__flex-wrapper"
                       >
-                        Meldingen er journalført
-                      </p>
-                      <span
-                        className="ekspanderbartPanel__indikator"
-                      />
-                    </div>
-                  </button>
-                  <article
-                    className="ekspanderbartPanel__innhold"
-                  >
-                    Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
-                  </article>
-                </div>
-                <div
-                  className="c26"
-                >
-                  <p
-                    className="typo-element"
-                  >
-                    Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
-                  </p>
+                        <p
+                          className="typo-etikett-liten c23"
+                        >
+                          Meldingen er journalført
+                        </p>
+                        <span
+                          className="ekspanderbartPanel__indikator"
+                        />
+                      </div>
+                    </button>
+                    <article
+                      className="ekspanderbartPanel__innhold"
+                    >
+                      Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
+                    </article>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </article>
       </li>
     </ol>
   </div>
   <div
-    className="c27"
+    className="c24"
   >
     <button
       className="knapp knapp--hoved"

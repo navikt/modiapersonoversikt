@@ -9,6 +9,8 @@ import { getUnikSakstemaKey, hentDatoForSisteHendelse, useAgregerteSaker } from 
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     valgtSakstema?: Sakstema;
@@ -22,7 +24,7 @@ const SakstemaListeStyle = styled.ol`
     }
 `;
 
-const Wrapper = styled.div`
+const StyledNav = styled.nav`
     ${theme.hvittPanel};
     ol {
         list-style: none;
@@ -60,6 +62,7 @@ function GrupperteTema(props: { sakstema: Sakstema[]; valgtSakstema?: Sakstema }
 function SakstemaListe(props: Props) {
     const sakstemaResource = useRestResource(resources => resources.sakstema);
     const agregerteSaker = useAgregerteSaker();
+    const tittelId = useRef(guid());
 
     if (!sakstemaResource.data || !agregerteSaker) {
         return <LazySpinner />;
@@ -74,15 +77,15 @@ function SakstemaListe(props: Props) {
     const sortertSakstema = sakstema.sort(datoSynkende(sakstema => hentDatoForSisteHendelse(sakstema)));
 
     return (
-        <Wrapper>
+        <StyledNav aria-describedby={tittelId.current}>
             <TittelWrapper>
-                <Undertittel>Tema</Undertittel>
+                <Undertittel id={tittelId.current}>Tema</Undertittel>
                 <Normaltekst>({sortertSakstema.length} saker)</Normaltekst>
             </TittelWrapper>
             <nav aria-label="Velg sakstema">
                 <GrupperteTema sakstema={[agregerteSaker, ...sortertSakstema]} valgtSakstema={props.valgtSakstema} />
             </nav>
-        </Wrapper>
+        </StyledNav>
     );
 }
 

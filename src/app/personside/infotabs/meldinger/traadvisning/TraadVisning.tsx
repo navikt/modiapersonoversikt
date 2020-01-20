@@ -39,7 +39,12 @@ const KanBesvaresMeldingstyper = [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Melding
 function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
     const meldingskomponenter = traad.meldinger
         .sort(datoSynkende(melding => melding.opprettetDato))
-        .map(melding => <EnkeltMelding sokeord={sokeord} melding={melding} key={melding.id} />);
+        .map((melding, index) => {
+            const meldingnummer = traad.meldinger.length - index;
+            return (
+                <EnkeltMelding sokeord={sokeord} melding={melding} key={melding.id} meldingsNummer={meldingnummer} />
+            );
+        });
 
     return <ol aria-label="Dialog">{meldingskomponenter}</ol>;
 }
@@ -70,6 +75,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const handleNyMelding = () => {
         valgtTraad && dispatch(setValgtTraadDialogpanel(valgtTraad));
         dispatch(toggleDialogpanel(true));
+        loggEvent('Ny melding knapp', 'Meldinger');
     };
 
     if (dialogpanelTraad === valgtTraad) {
@@ -101,8 +107,8 @@ function TraadVisning(props: Props) {
     return (
         <VisningStyle>
             <Topplinje valgtTraad={props.valgtTraad} />
-            <h3 className="sr-only" aria-live="polite" aria-atomic="false">
-                Valgt melding - {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
+            <h3 className="sr-only" aria-live="polite">
+                {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
             </h3>
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>

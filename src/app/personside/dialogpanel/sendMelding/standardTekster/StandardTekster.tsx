@@ -1,12 +1,11 @@
-import React, { FormEvent, ReactNode, useEffect, useState } from 'react';
+import React, { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
 import { hasData, hasError, isPending } from '@nutgaard/use-fetch';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import styled from 'styled-components/macro';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
 import useFieldState, { FieldState } from '../../../../../utils/hooks/use-field-state';
 import { erGyldigValg, sokEtterTekster } from './sokUtils';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
-import StandardTekstVisning from './StandardTekstVisning';
+import StandardTekstValg from './velgTekst/StandardTekstValg';
 import * as StandardTeksterModels from './domain';
 import theme from '../../../../../styles/personOversiktTheme';
 import TagInput from '../../../../../components/tag-input/tag-input';
@@ -18,23 +17,27 @@ import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
-import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
+import LazySpinner from '../../../../../components/LazySpinner';
+import { guid } from 'nav-frontend-js-utils';
+import AriaNotification from '../../../../../components/AriaNotification';
+import { usePrevious } from '../../../../../utils/customHooks';
 
 interface Props {
     appendTekst(tekst: string): void;
 }
 
-const FormContainer = styled.form`
+const StyledForm = styled.form`
     height: 100%;
     display: flex;
     flex-direction: column;
 `;
-const Spinner = styled(NavFrontendSpinner)`
+
+const Spinner = styled(LazySpinner)`
     display: block;
     margin: 0 auto;
 `;
-const Sokefelt = styled.div`
+
+const SokefeltStyledNav = styled.nav`
     padding: 1rem;
     border-bottom: 1px solid ${theme.color.navGra20};
     background-color: #f5f5f5;
@@ -101,15 +104,14 @@ function velgTekst(
 }
 
 function StandardTekster(props: Props) {
-    const inputRef = React.useRef<HTMLInputElement>();
-    const svaksyntModus = useFeatureToggle(FeatureToggles.SaksDokumentIEgetVindu).isOn;
+    const sokRef = React.useRef<HTMLElement>(null);
     const standardTekster = useFetchWithLog<StandardTeksterModels.Tekster>(
         '/modiapersonoversikt-skrivestotte/skrivestotte',
         'Standardtekster'
     );
     const erKontaktSenter = useErKontaktsenter();
     const sokefelt = useFieldState(erKontaktSenter ? '#ks ' : '');
-    const debouncedSokefelt = useDebounce(sokefelt.input.value, svaksyntModus ? 600 : 250);
+    const debouncedSokefelt = useDebounce(sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() =>
         sokEtterTekster(standardTekster, debouncedSokefelt)
     );
@@ -118,6 +120,8 @@ function StandardTekster(props: Props) {
     const valgtTekst = filtrerteTekster.find(tekst => tekst.id === valgt.input.value);
     const personResource = useRestResource(resources => resources.personinformasjon);
     const autofullforData = useAutoFullførData();
+    const sokeFeltId = useRef(guid());
+    const [ariaNotification, setAriaNotification] = useState('');
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
     useDefaultValgtTekst(filtrerteTekster, valgt);
@@ -125,6 +129,21 @@ function StandardTekster(props: Props) {
     useEffect(() => {
         settFiltrerteTekster(sokEtterTekster(standardTekster, debouncedSokefelt));
     }, [settFiltrerteTekster, standardTekster, debouncedSokefelt]);
+
+    const prevDebouncedSokefelt = usePrevious(debouncedSokefelt);
+    useEffect(() => {
+        if (prevDebouncedSokefelt !== debouncedSokefelt) {
+            valgt.setValue(filtrerteTekster[0]?.id || '');
+        }
+    }, [filtrerteTekster, valgt, debouncedSokefelt, prevDebouncedSokefelt]);
+
+    useEffect(() => {
+        if (sokRef.current?.contains(document.activeElement)) {
+            const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
+            const ariaTekst = `${index + 1} ${valgtTekst?.overskrift}: ${valgtTekst?.innhold[valgtLocale.input.value]}`;
+            valgtTekst && setAriaNotification(ariaTekst);
+        }
+    }, [valgtLocale, valgtTekst, filtrerteTekster, valgt]);
 
     const velg = (offset: number) => () => {
         const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
@@ -135,8 +154,8 @@ function StandardTekster(props: Props) {
         }
     };
 
-    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], 'ForrigeStandardtekst', inputRef.current);
-    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', inputRef.current);
+    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], 'ForrigeStandardtekst', sokRef.current || undefined);
+    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', sokRef.current || undefined);
 
     let content: ReactNode = null;
     if (isPending(standardTekster)) {
@@ -145,7 +164,7 @@ function StandardTekster(props: Props) {
         content = <Feilmelding feil={{ feilmelding: 'Kunne ikke laste inn standardtekster' }} />;
     } else if (hasData(standardTekster)) {
         content = (
-            <StandardTekstVisning
+            <StandardTekstValg
                 tekster={filtrerteTekster}
                 sokefelt={sokefelt}
                 valgt={valgt}
@@ -161,19 +180,22 @@ function StandardTekster(props: Props) {
     }
 
     return (
-        <FormContainer onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
+        <StyledForm onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
             <h2 className="sr-only">Standardtekster</h2>
-            <Sokefelt>
+            <SokefeltStyledNav aria-describedby={sokeFeltId.current} ref={sokRef}>
                 <TagInput
                     {...sokefelt.input}
-                    inputRef={inputRef}
                     name="standardtekstsok"
                     label="Søk etter standardtekster"
                     autoFocus={true}
+                    id={sokeFeltId.current}
+                    // @ts-ignore
+                    autocomplete="off"
                 />
-            </Sokefelt>
+            </SokefeltStyledNav>
             {content}
-        </FormContainer>
+            <AriaNotification ariaLive={'assertive'} beskjed={ariaNotification} />
+        </StyledForm>
     );
 }
 

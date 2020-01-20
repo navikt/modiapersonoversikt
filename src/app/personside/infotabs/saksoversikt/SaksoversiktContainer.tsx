@@ -17,7 +17,7 @@ import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
 
 export const saksoversiktMediaTreshold = '65rem';
 
-const SaksoversiktArticle = styled.article`
+const SaksoversiktStyle = styled.div`
     ${scrollBarContainerStyle(saksoversiktMediaTreshold)};
     @media (min-width: ${saksoversiktMediaTreshold}) {
         height: 0; /* IE11 */
@@ -49,7 +49,7 @@ function SaksoversiktContainer() {
     } else {
         return (
             <ErrorBoundary boundaryName="Saksoversikt">
-                <SaksoversiktArticle aria-label="Brukerens saker">
+                <SaksoversiktStyle>
                     {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />}
                     <RestResourceConsumer<SakstemaResponse>
                         getResource={restResources => restResources.sakstema}
@@ -79,7 +79,7 @@ function SaksoversiktContainer() {
                             );
                         }}
                     </RestResourceConsumer>
-                </SaksoversiktArticle>
+                </SaksoversiktStyle>
             </ErrorBoundary>
         );
     }

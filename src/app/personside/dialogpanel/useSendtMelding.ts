@@ -6,7 +6,7 @@ import {
 } from '../infotabs/meldinger/utils/meldingerUtils';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
 
-export function useSentMelding(fritekst: string) {
+export function useSendtMelding(fritekst: string) {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
     const traader = traaderResource.data ? traaderResource.data : [];
     const sisteTraad = nyesteTraad(traader);

@@ -7,7 +7,7 @@ import TestProvider from '../../test/Testprovider';
 import { getTestStore } from '../../test/testStore';
 import { FeatureToggles } from './toggleIDs';
 
-const toggleId = FeatureToggles.Tooltip;
+const toggleId = FeatureToggles.SaksDokumentIEgetVindu;
 const testStore = getTestStore();
 
 function setToggleTo(value: boolean | undefined) {

@@ -12,6 +12,8 @@ import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisVarsel } from '../../../../redux/varsler/varslerReducer';
 import { loggError } from '../../../../utils/frontendLogger';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
 const Style = styled.li`
     ${theme.hvittPanel};
@@ -75,6 +77,7 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
     const dispatch = useDispatch();
     const setOpen = (open: boolean) => dispatch(toggleVisVarsel(varsel, open));
     const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende(melding => melding.utsendingsTidspunkt));
+    const tittelId = useRef(guid());
 
     const toggleOpen = () => setOpen(!open);
 
@@ -91,22 +94,26 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
 
     const varselTekst = getVarselTekst(varsel);
     return (
-        <Style aria-label={varselTekst}>
-            <HeaderStyle onClick={toggleOpen}>
-                <Normaltekst>{formaterDato(varsel.mottattTidspunkt)}</Normaltekst>
-                <Element>{varselTekst}</Element>
-                {kommunikasjonskanaler}
+        <Style>
+            <article aria-describedby={tittelId.current}>
+                <HeaderStyle onClick={toggleOpen}>
+                    <Normaltekst>{formaterDato(varsel.mottattTidspunkt)}</Normaltekst>
+                    <Element id={tittelId.current} tag="h4">
+                        {varselTekst}
+                    </Element>
+                    {kommunikasjonskanaler}
 
-                <VisMerChevron
-                    focusOnRelativeParent={true}
-                    onClick={toggleOpen}
-                    open={open}
-                    title={(open ? 'Skul' : 'Vis') + ' meldinger'}
-                />
-            </HeaderStyle>
-            <UnmountClosed isOpened={open}>
-                <VarselMeldinger sortertMeldingsliste={sortertMeldingsliste} />
-            </UnmountClosed>
+                    <VisMerChevron
+                        focusOnRelativeParent={true}
+                        onClick={toggleOpen}
+                        open={open}
+                        title={(open ? 'Skul' : 'Vis') + ' meldinger'}
+                    />
+                </HeaderStyle>
+                <UnmountClosed isOpened={open}>
+                    <VarselMeldinger sortertMeldingsliste={sortertMeldingsliste} />
+                </UnmountClosed>
+            </article>
         </Style>
     );
 }
