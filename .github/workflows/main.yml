@@ -57,6 +57,11 @@ jobs:
       - name: Build
         run: |
           npm run build
+      - name: Create image tag
+        run: |
+          echo ::set-env name=IMAGE_VERSION::$(git rev-list --count $GITHUB_SHA) 
+          echo ::set-env name=IMAGE::${IMAGE_NAME}:$(git rev-list --count $GITHUB_SHA)
+          echo "::debug::${IMAGE}"    
       - name: Publish Docker image
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
