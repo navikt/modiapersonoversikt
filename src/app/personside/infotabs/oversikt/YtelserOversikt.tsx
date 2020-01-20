@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ReactNode, useEffect } from 'react';
 import { getSykepengerIdDato, getUnikSykepengerKey, Sykepenger } from '../../../../models/ytelse/sykepenger';
 import { getUnikPleiepengerKey, Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
 import {
@@ -10,13 +11,12 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
-import useBrukersYtelser from '../ytelser/useBrukersYtelser';
+import useBrukersYtelserMarkup from '../ytelser/useBrukersYtelserMarkup';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { ytelserTest } from '../dyplenkeTest/utils';
 import { formaterDato } from '../../../../utils/stringFormatting';
-import { ReactNode, useEffect } from 'react';
 import { usePrevious } from '../../../../utils/customHooks';
 
 const YtelserStyle = styled.div`
@@ -30,7 +30,7 @@ interface Props {
 }
 
 function YtelserOversikt(props: Props) {
-    const { ytelser, pending, feilmeldinger } = useBrukersYtelser({
+    const { ytelser, pending, feilmeldinger } = useBrukersYtelserMarkup({
         renderPleiepenger: pleiepenger => (
             <PleiepengerKomponent pleiepenger={pleiepenger} key={getUnikPleiepengerKey(pleiepenger)} />
         ),

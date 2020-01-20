@@ -7,10 +7,16 @@ import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHid
 import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
 import { useOnMount } from '../../../../../utils/customHooks';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import styled from 'styled-components';
+import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;
 }
+
+const StyledArticle = styled.article`
+    ${theme.hvittPanel};
+`;
 
 function Pleiepenger(props: Props) {
     useOnMount(() => {
@@ -20,7 +26,7 @@ function Pleiepenger(props: Props) {
     const sortertePerioder = props.pleiepenger.perioder.sort(datoStigende(p => p.fom)).reverse();
 
     return (
-        <article>
+        <StyledArticle>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Pleiepengerettighet" />}
             <Oversikt pleiepenger={props.pleiepenger} />
             <ol>
@@ -28,7 +34,7 @@ function Pleiepenger(props: Props) {
                     <Pleiepengerperiode periodeNummer={sortertePerioder.length - index} key={index} periode={periode} />
                 ))}
             </ol>
-        </article>
+        </StyledArticle>
     );
 }
 

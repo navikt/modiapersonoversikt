@@ -20,6 +20,7 @@ interface Props {
 }
 
 const Wrapper = styled.article`
+    ${theme.hvittPanel};
     padding: ${theme.margin.layout};
 `;
 

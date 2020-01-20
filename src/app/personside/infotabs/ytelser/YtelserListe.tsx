@@ -1,4 +1,4 @@
-import useBrukersYtelser from './useBrukersYtelser';
+import useBrukersYtelserMarkup from './useBrukersYtelserMarkup';
 import { getPleiepengerIdDato, getUnikPleiepengerKey } from '../../../../models/ytelse/pleiepenger';
 import { getSykepengerIdDato, getUnikSykepengerKey } from '../../../../models/ytelse/sykepenger';
 import { getForeldepengerIdDato, getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
@@ -9,14 +9,11 @@ import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
-import { Ytelse } from './Ytelser';
-
-interface Props {
-    setValgtYtelse: (ytelse: Ytelse) => void;
-}
+import { useInfotabsDyplenker } from '../dyplenker';
+import useBrukersYtelser, { Ytelse } from './useBrukersYtelser';
 
 const Styling = styled.section`
     ${theme.hvittPanel};
@@ -29,14 +26,23 @@ const YtelserListeStyle = styled.ol`
     }
 `;
 
-function YtelseListe(props: Props) {
-    const { ytelser, pending, feilmeldinger } = useBrukersYtelser({
+function YtelseListe() {
+    let førstValgt: Ytelse | '';
+    const { ytelserSortert, pendingYtelser } = useBrukersYtelser();
+    const dypLinker = useInfotabsDyplenker();
+
+    if (dypLinker.ytelser.erQueryParamNull()) {
+        console.log('erQueryParamNull treff');
+        førstValgt = ytelserSortert[0];
+    }
+
+    const { ytelser, pending, feilmeldinger } = useBrukersYtelserMarkup({
         renderPleiepenger: pleiepenger => (
             <VisMerKnapp
                 key={getUnikPleiepengerKey(pleiepenger)}
                 ariaDescription="Vis pleiepenger"
-                valgt={false}
-                onClick={() => props.setValgtYtelse(pleiepenger)}
+                valgt={dypLinker.ytelser.erValgt(getUnikPleiepengerKey(pleiepenger)) || førstValgt === pleiepenger}
+                linkTo={dypLinker.ytelser.link(getUnikPleiepengerKey(pleiepenger))}
             >
                 <Undertittel>Pleiepenger sykt barn</Undertittel>
                 <Element>ID-dato</Element>
@@ -47,8 +53,8 @@ function YtelseListe(props: Props) {
             <VisMerKnapp
                 key={getUnikSykepengerKey(sykepenger)}
                 ariaDescription="Vis sykepenger"
-                valgt={false}
-                onClick={() => props.setValgtYtelse(sykepenger)}
+                valgt={dypLinker.ytelser.erValgt(getUnikSykepengerKey(sykepenger)) || førstValgt === sykepenger}
+                linkTo={dypLinker.ytelser.link(getUnikSykepengerKey(sykepenger))}
             >
                 <Undertittel>Sykepengerrettighet</Undertittel>
                 <Element>ID-dato</Element>
@@ -59,8 +65,10 @@ function YtelseListe(props: Props) {
             <VisMerKnapp
                 key={getUnikForeldrepengerKey(foreldrepenger)}
                 ariaDescription="Vis foreldrepenger"
-                valgt={false}
-                onClick={() => props.setValgtYtelse(foreldrepenger)}
+                valgt={
+                    dypLinker.ytelser.erValgt(getUnikForeldrepengerKey(foreldrepenger)) || førstValgt === foreldrepenger
+                }
+                linkTo={dypLinker.ytelser.link(getUnikForeldrepengerKey(foreldrepenger))}
             >
                 <Undertittel>Foreldrepenger</Undertittel>
                 <Element>ID-dato</Element>
@@ -68,12 +76,11 @@ function YtelseListe(props: Props) {
             </VisMerKnapp>
         )
     });
-
     return (
         <Styling>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />}
             {feilmeldinger}
-            {!pending && feilmeldinger.length === 0 && ytelser.length === 0 && (
+            {!pending && pendingYtelser && feilmeldinger.length === 0 && ytelser.length === 0 && (
                 <AlertStripeInfo>Ingen ytelser funnet for bruker</AlertStripeInfo>
             )}
             {pending && <CenteredLazySpinner />}

@@ -7,10 +7,16 @@ import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHid
 import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
 import { useOnMount } from '../../../../../utils/customHooks';
 import { loggEvent } from '../../../../../utils/frontendLogger';
+import styled from 'styled-components';
+import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
     foreldrepenger: Foreldrepengerettighet | null;
 }
+
+const StyledArticle = styled.article`
+    ${theme.hvittPanel};
+`;
 
 function Foreldrepenger({ foreldrepenger }: Props) {
     useOnMount(() => {
@@ -26,11 +32,11 @@ function Foreldrepenger({ foreldrepenger }: Props) {
     ));
 
     return (
-        <article>
+        <StyledArticle>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Foreldrepengerettighet" />}
             <Oversikt foreldrePenger={foreldrepenger} />
             <ol>{perioder}</ol>
-        </article>
+        </StyledArticle>
     );
 }
 

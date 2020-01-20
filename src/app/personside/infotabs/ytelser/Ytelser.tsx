@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { useState } from 'react';
+
 import YtelseListe from './YtelserListe';
 import { ScrollBar } from '../utils/InfoTabsScrollBar';
 import styled from 'styled-components';
-import YtelserContainer from './YtelserContainer';
-import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
-import { Foreldrepengerettighet } from '../../../../models/ytelse/foreldrepenger';
-import { Sykepenger } from '../../../../models/ytelse/sykepenger';
+import ValgtYtelse from './ValgtYtelse';
 
 const Styling = styled.section`
     flex-grow: 1; /* IE11 */
@@ -23,17 +20,14 @@ const Styling = styled.section`
     align-items: flex-start;
 `;
 
-export type Ytelse = Pleiepengerettighet | Foreldrepengerettighet | Sykepenger | undefined;
-
 function Ytelser() {
-    const [valgtYtelse, setValgtYtelse] = useState<Ytelse>(undefined);
     return (
         <Styling>
             <ScrollBar keepScrollId="ytelser">
-                <YtelseListe setValgtYtelse={setValgtYtelse} />
+                <YtelseListe />
             </ScrollBar>
             <ScrollBar keepScrollId="ytelser">
-                <YtelserContainer valgtYtelse={valgtYtelse} />
+                <ValgtYtelse />
             </ScrollBar>
         </Styling>
     );
