@@ -77,6 +77,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: Create image tag
+        run: |
+          echo ::set-env name=IMAGE_VERSION::$(git rev-list --count $GITHUB_SHA) 
+          echo ::set-env name=IMAGE::${IMAGE_NAME}:$(git rev-list --count $GITHUB_SHA)
+          echo "::debug::${IMAGE}"    
       - uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
