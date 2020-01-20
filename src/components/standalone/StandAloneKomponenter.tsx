@@ -136,8 +136,6 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
                     <BesvarFlere traader={getMockTraader(aremark.fødselsnummer).slice(0, 3)} lukkModal={() => null} />
                 </TestProvider>
             );
-        //case Komponenter.HurtigTasterHjelp:
-        //    return <HurtigTasterHjelpModal isOpenFraContainer={false} onRequestClose={() => (false)}/>;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }
