@@ -37,7 +37,7 @@ spec:
     paths:
       - kvPath: /credential/data/prod/isso-rp-user
         mountPath: /var/run/secrets/nais.io/isso-rp-user
-      - kvPath: /serviceuser/data/prod/modiapersonoversikt
+      - kvPath: /serviceuser/data/prod/srvmodiapersonoversikt
         mountPath: /var/run/secrets/nais.io/service_user
   env:
     - name: ISSO_HOST_URL
