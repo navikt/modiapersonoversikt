@@ -1,0 +1,52 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: modiapersonoversikt
+  namespace: default
+  cluster: prod-fss
+  labels:
+    team: personoversikt
+spec:
+  image: {{image}}
+  port: 8080
+  team: personoversikt
+  liveness:
+    path: /modiapersonoversikt/internal/isAlive
+    initialDelay: 20
+  readiness:
+    path: /modiapersonoversikt/internal/isReady
+    initialDelay: 20
+  prometheus:
+    enabled: true
+    path: /modiapersonoversikt/internal/metrics
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 3000m
+      memory: 1024Mi
+  ingresses:
+    - https://app.adeo.no/modiapersonoversikt
+  replicas:
+    min: 2
+    max: 4
+    cpuThresholdPercentage: 50
+  vault:
+    enabled: true
+    paths:
+      - kvPath: /credential/data/prod/isso-rp-user
+        mountPath: /var/run/secrets/nais.io/isso-rp-user
+      - kvPath: /serviceuser/data/prod/modiapersonoversikt
+        mountPath: /var/run/secrets/nais.io/service_user
+  env:
+    - name: ISSO_HOST_URL
+      value: "https://isso.adeo.no/isso/oauth2"
+    - name: ISSO_ISALIVE_URL
+      value: "https://isso.adeo.no/isso/isAlive.jsp"
+    - name: ISSO_ISSUER_URL
+      value: "https://isso.adeo.no:443/isso/oauth2"
+    - name: ISSO_JWKS_URL
+      value: "https://isso.adeo.no/isso/oauth2/connect/jwk_uri"
+    - name: OIDC_REDIRECT_URL
+      value: "https://app.adeo.no/veilarblogin/api/login"
