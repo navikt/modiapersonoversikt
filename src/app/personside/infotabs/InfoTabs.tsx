@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { useEffect, useRef } from 'react';
 import { INFOTABS } from './InfoTabEnum';
 import TabKnapper from './TabKnapper';
 import styled from 'styled-components/macro';
 import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
 import { usePaths } from '../../routes/routing';
-import { Route, RouteComponentProps, Switch } from 'react-router';
-import { withRouter } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router';
 import SaksoversiktContainer from './saksoversikt/SaksoversiktContainer';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import OppfolgingContainer from './oppfolging/OppfolgingContainer';
@@ -17,13 +17,12 @@ import { useFødselsnummer } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
-import { useEffect, useRef } from 'react';
 import { loggEvent } from '../../../utils/frontendLogger';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import Ytelser from './ytelser/Ytelser';
 import { guid } from 'nav-frontend-js-utils';
 import { capitalizeName } from '../../../utils/stringFormatting';
-
+import { useOpenTab } from './utils/useOpenTab';
 type Props = RouteComponentProps<{}>;
 
 const StyledArticle = styled.article`
@@ -33,35 +32,25 @@ const StyledArticle = styled.article`
     overflow-y: auto;
 `;
 
-export function getOpenTabFromRouterPath(currentPath: string): INFOTABS {
-    const infoTabs: INFOTABS[] = Object.keys(INFOTABS).map(key => INFOTABS[key]);
-    const openTab: INFOTABS | undefined = infoTabs.find((infoTab: string) =>
-        currentPath
-            .toUpperCase()
-            .split('/')
-            .includes(infoTab)
-    );
-    return openTab || INFOTABS.OVERSIKT;
-}
-
-function InfoTabs(props: Props) {
+function InfoTabs() {
     const fødselsnummer = useFødselsnummer();
     const paths = usePaths();
     const headerRef = useRef<HTMLHeadingElement>(null);
     const dyplenker = useInfotabsDyplenker();
     const dispatch = useDispatch();
     const articleId = useRef(guid());
+    const openTab = useOpenTab();
+    const history = useHistory();
+    const location = useLocation();
 
     const updateRouterPath = (newTab: INFOTABS) => {
         const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`;
-        const newPath = props.history.location.pathname !== path;
+        const newPath = history.location.pathname !== path;
         if (newPath) {
-            props.history.push(path);
+            history.push(path);
         }
         dispatch(toggleVisittkort(false));
     };
-
-    const openTab = getOpenTabFromRouterPath(props.history.location.pathname);
 
     useEffect(() => {
         const focusWithinTab = openTabRef.current?.contains(document.activeElement);
@@ -93,7 +82,7 @@ function InfoTabs(props: Props) {
                     >
                         {openTab} - Fane
                     </h2>
-                    <Switch location={props.location}>
+                    <Switch location={location}>
                         <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
                         <Route path={paths.oppfolging} component={OppfolgingContainer} />
                         <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
@@ -108,4 +97,4 @@ function InfoTabs(props: Props) {
     );
 }
 
-export default withRouter(InfoTabs);
+export default InfoTabs;

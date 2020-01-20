@@ -35,6 +35,13 @@ exports[`BesvarFler matcher snapshot 1`] = `
 }
 
 .c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -44,7 +51,25 @@ exports[`BesvarFler matcher snapshot 1`] = `
   overflow-wrap: break-word;
 }
 
-.c14 {
+.c11 .order-first {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+.c11 .order-second {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.c11 .order-third {
+  -webkit-order: 3;
+  -ms-flex-order: 3;
+  order: 3;
+}
+
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -59,7 +84,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   margin-top: 0.2rem;
 }
 
-.c14 > *:not(:last-child) {
+.c13 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
@@ -100,10 +125,25 @@ exports[`BesvarFler matcher snapshot 1`] = `
   flex-grow: 1;
 }
 
-.c13 {
+.c14 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.c20 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
 }
 
 .c5 {
@@ -202,21 +242,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
   width: 1.5625rem;
 }
 
-.c20 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-}
-
 .c18 .snakkeboble-panel {
   -webkit-flex-basis: 40rem;
   -ms-flex-preferred-size: 40rem;
@@ -242,8 +267,8 @@ exports[`BesvarFler matcher snapshot 1`] = `
 .c19 em {
   font-style: normal;
   background-color: #eed28c;
+  box-shadow: 0 0 0 0.2rem #eed28c;
   border-radius: 0.625rem;
-  padding: 0 0.3125rem;
 }
 
 .c19 > *:not(:last-child) {
@@ -259,10 +284,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
 .c22 .ekspanderbartPanel__hode,
 .c22 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
-}
-
-.c24 {
-  display: none;
 }
 
 .c0 {
@@ -353,7 +374,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: 1.25rem .5rem;
 }
 
-.c25 {
+.c24 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -366,7 +387,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: .5rem;
 }
 
-.c25 > * {
+.c24 > * {
   margin-left: 1rem;
 }
 
@@ -396,12 +417,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
   }
 }
 
-@media print {
-  .c24 {
-    display: inline-block;
-  }
-}
-
 <form
   className="c0"
   onSubmit={[Function]}
@@ -426,9 +441,8 @@ exports[`BesvarFler matcher snapshot 1`] = `
         className="c4"
       >
         <input
-          aria-label="Delsvar - Arbeid 27.07.2019 00:00 (4)"
           checked={true}
-          className="sr-only test-meldinger-melding"
+          className="sr-only test-meldinger-melding valgt_melding  "
           id="Helt tilfeldig ID"
           name="traadliste-slaa-sammen"
           onChange={[Function]}
@@ -472,6 +486,13 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="c8"
             >
               <span
+                className="sr-only"
+              >
+                (
+                4
+                )
+              </span>
+              <span
                 className="c9"
               >
                 <svg
@@ -500,10 +521,9 @@ exports[`BesvarFler matcher snapshot 1`] = `
                 className="c11"
               >
                 <div
-                  className="c12"
+                  className="order-first c12"
                 >
                   <p
-                    aria-hidden={true}
                     className="typo-element order-second"
                   >
                     Delsvar - Arbeid
@@ -514,13 +534,8 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     27.07.2019 00:00
                   </p>
                 </div>
-                <p
-                  className="typo-normal c13"
-                >
-                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-                </p>
                 <div
-                  className="c14"
+                  className="order-third c13"
                 >
                   <div
                     className="etikett etikett--fokus"
@@ -541,6 +556,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     </span>
                   </div>
                 </div>
+                <p
+                  className="typo-normal order-second c14"
+                >
+                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                </p>
               </div>
             </div>
           </div>
@@ -557,9 +577,8 @@ exports[`BesvarFler matcher snapshot 1`] = `
         className="c16"
       >
         <input
-          aria-label="Delsvar - Arbeid 27.07.2019 00:00 (4)"
           checked={false}
-          className="sr-only test-meldinger-melding"
+          className="sr-only test-meldinger-melding   "
           id="Helt tilfeldig ID"
           name="traadliste-slaa-sammen"
           onChange={[Function]}
@@ -603,6 +622,13 @@ exports[`BesvarFler matcher snapshot 1`] = `
               className="c8"
             >
               <span
+                className="sr-only"
+              >
+                (
+                4
+                )
+              </span>
+              <span
                 className="c9"
               >
                 <svg
@@ -631,10 +657,9 @@ exports[`BesvarFler matcher snapshot 1`] = `
                 className="c11"
               >
                 <div
-                  className="c12"
+                  className="order-first c12"
                 >
                   <p
-                    aria-hidden={true}
                     className="typo-element order-second"
                   >
                     Delsvar - Arbeid
@@ -645,13 +670,8 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     27.07.2019 00:00
                   </p>
                 </div>
-                <p
-                  className="typo-normal c13"
-                >
-                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-                </p>
                 <div
-                  className="c14"
+                  className="order-third c13"
                 >
                   <div
                     className="etikett etikett--fokus"
@@ -672,6 +692,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     </span>
                   </div>
                 </div>
+                <p
+                  className="typo-normal order-second c14"
+                >
+                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                </p>
               </div>
             </div>
           </div>
@@ -726,6 +751,12 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       <h4
                         id="Helt tilfeldig ID"
                       >
+                        <span
+                          className="sr-only"
+                        >
+                          Melding 
+                          4
+                        </span>
                         <div
                           className="tekstomrade c21"
                         >
@@ -756,7 +787,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   <div
                     className="tekstomrade"
                   >
-                    Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+                    </p>
                   </div>
                   <div
                     className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
@@ -786,15 +821,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     >
                       Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
                     </article>
-                  </div>
-                  <div
-                    className="c24"
-                  >
-                    <p
-                      className="typo-element"
-                    >
-                      Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
-                    </p>
                   </div>
                 </div>
               </div>
@@ -839,6 +865,12 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       <h4
                         id="Helt tilfeldig ID"
                       >
+                        <span
+                          className="sr-only"
+                        >
+                          Melding 
+                          3
+                        </span>
                         <div
                           className="tekstomrade c21"
                         >
@@ -855,7 +887,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   <div
                     className="tekstomrade"
                   >
-                    Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+                    </p>
                   </div>
                   <div
                     className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
@@ -885,15 +921,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     >
                       Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
                     </article>
-                  </div>
-                  <div
-                    className="c24"
-                  >
-                    <p
-                      className="typo-element"
-                    >
-                      Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
-                    </p>
                   </div>
                 </div>
               </div>
@@ -938,6 +965,12 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       <h4
                         id="Helt tilfeldig ID"
                       >
+                        <span
+                          className="sr-only"
+                        >
+                          Melding 
+                          2
+                        </span>
                         <div
                           className="tekstomrade c21"
                         >
@@ -954,7 +987,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   <div
                     className="tekstomrade"
                   >
-                    Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+                    </p>
                   </div>
                   <div
                     className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
@@ -984,15 +1021,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     >
                       Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
                     </article>
-                  </div>
-                  <div
-                    className="c24"
-                  >
-                    <p
-                      className="typo-element"
-                    >
-                      Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
-                    </p>
                   </div>
                 </div>
               </div>
@@ -1037,6 +1065,12 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       <h4
                         id="Helt tilfeldig ID"
                       >
+                        <span
+                          className="sr-only"
+                        >
+                          Melding 
+                          1
+                        </span>
                         <div
                           className="tekstomrade c21"
                         >
@@ -1067,7 +1101,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   <div
                     className="tekstomrade"
                   >
-                    Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                    <p
+                      className="typo-normal blokk-xs"
+                    >
+                      Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                    </p>
                   </div>
                   <div
                     className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
@@ -1098,15 +1136,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
                     </article>
                   </div>
-                  <div
-                    className="c24"
-                  >
-                    <p
-                      className="typo-element"
-                    >
-                      Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -1116,7 +1145,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
     </ol>
   </div>
   <div
-    className="c25"
+    className="c24"
   >
     <button
       className="knapp knapp--hoved"

@@ -60,7 +60,12 @@ function Ikon({ props }: { props: MeldingsikonProps }) {
             return <DokumentIkon />;
         default: {
             if (erUbesvartHenvendelseFraBruker(props.traad)) {
-                return <StyledBrevIkon alt="Ubesvart henvendelse" />;
+                return (
+                    <span>
+                        <StyledBrevIkon />
+                        <span className="sr-only">Ubesvart</span>
+                    </span>
+                );
             }
             if (erMonolog(props.traad)) {
                 return <MonologIkon />;

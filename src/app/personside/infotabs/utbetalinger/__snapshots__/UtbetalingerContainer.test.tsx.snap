@@ -787,7 +787,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         <div
           aria-live="polite"
           className="visually-hidden"
-          role="alert"
         >
           Det finnes 1 utbetalinger for valgt periode og filtrering
         </div>

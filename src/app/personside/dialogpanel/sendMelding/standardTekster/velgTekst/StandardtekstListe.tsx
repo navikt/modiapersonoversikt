@@ -43,7 +43,7 @@ function StandardtekstListe(props: Props) {
 
     const tekstElementer = props.tekster
         .slice(0, visAntall)
-        .map(tekst => (
+        .map((tekst, index) => (
             <TekstListeElement
                 locale={props.locale}
                 key={tekst.id}
@@ -51,6 +51,7 @@ function StandardtekstListe(props: Props) {
                 onChange={props.valgt.input.onChange}
                 valgt={tekst.id === props.valgt.input.value}
                 highlightRule={props.highlightRule}
+                index={index}
             />
         ));
 

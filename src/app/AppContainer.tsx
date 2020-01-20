@@ -16,8 +16,9 @@ import GlobalStyling from './GlobalStyling';
 import Decorator from './internarbeidsflatedecorator/Decorator';
 import Routing from './Routing';
 import styled from 'styled-components';
-import { useOnMount } from '../utils/customHooks';
+import { useAppState, useOnMount } from '../utils/customHooks';
 import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
+import VelgEnhet from './VelgEnhet';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -44,6 +45,25 @@ if (mockEnabled) {
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
 function App() {
+    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+
+    if (!valgtEnhet) {
+        /* valgt enhet utledes fra saksbehandlerinnstillinger-cookie i session-reducer. Mange kall mot backenden vil feile uten denne cookien. Legger derfor denne sjekken før resten av appen mountes for å motvirke feilede kall */
+        return <VelgEnhet />;
+    }
+
+    return (
+        <>
+            <LyttPåFnrIURLOgSettIRedux />
+            <HentGlobaleVerdier />
+            <ContentStyle>
+                <Routing />
+            </ContentStyle>
+        </>
+    );
+}
+
+function AppContainer() {
     useOnMount(() => {
         ModalWrapper.setAppElement('#root');
         settJobberIkkeMedSpørsmålOgSvar();
@@ -51,18 +71,14 @@ function App() {
 
     return (
         <>
-            <DemoBanner />
             <IeMacStyling />
             <GlobalStyling />
+            <DemoBanner />
             <Provider store={store}>
                 <BrowserRouter>
-                    <LyttPåFnrIURLOgSettIRedux />
-                    <HentGlobaleVerdier />
                     <AppStyle>
                         <Decorator />
-                        <ContentStyle>
-                            <Routing />
-                        </ContentStyle>
+                        <App />
                     </AppStyle>
                 </BrowserRouter>
             </Provider>
@@ -70,4 +86,4 @@ function App() {
     );
 }
 
-export default App;
+export default AppContainer;

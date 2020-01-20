@@ -20,6 +20,7 @@ import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { guid } from 'nav-frontend-js-utils';
 import AriaNotification from '../../../../../components/AriaNotification';
+import { usePrevious } from '../../../../../utils/customHooks';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -103,7 +104,7 @@ function velgTekst(
 }
 
 function StandardTekster(props: Props) {
-    const inputRef = React.useRef<HTMLInputElement>();
+    const sokRef = React.useRef<HTMLElement>(null);
     const standardTekster = useFetchWithLog<StandardTeksterModels.Tekster>(
         '/modiapersonoversikt-skrivestotte/skrivestotte',
         'Standardtekster'
@@ -120,7 +121,7 @@ function StandardTekster(props: Props) {
     const personResource = useRestResource(resources => resources.personinformasjon);
     const autofullforData = useAutoFullførData();
     const sokeFeltId = useRef(guid());
-    const [ariaSkrikVedHotkeyNavigering, setAriaSkrikVedHotkeyNavigering] = useState('');
+    const [ariaNotification, setAriaNotification] = useState('');
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
     useDefaultValgtTekst(filtrerteTekster, valgt);
@@ -129,18 +130,32 @@ function StandardTekster(props: Props) {
         settFiltrerteTekster(sokEtterTekster(standardTekster, debouncedSokefelt));
     }, [settFiltrerteTekster, standardTekster, debouncedSokefelt]);
 
+    const prevDebouncedSokefelt = usePrevious(debouncedSokefelt);
+    useEffect(() => {
+        if (prevDebouncedSokefelt !== debouncedSokefelt) {
+            valgt.setValue(filtrerteTekster[0]?.id || '');
+        }
+    }, [filtrerteTekster, valgt, debouncedSokefelt, prevDebouncedSokefelt]);
+
+    useEffect(() => {
+        if (sokRef.current?.contains(document.activeElement)) {
+            const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
+            const ariaTekst = `${index + 1} ${valgtTekst?.overskrift}: ${valgtTekst?.innhold[valgtLocale.input.value]}`;
+            valgtTekst && setAriaNotification(ariaTekst);
+        }
+    }, [valgtLocale, valgtTekst, filtrerteTekster, valgt]);
+
     const velg = (offset: number) => () => {
         const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
         if (index !== -1) {
             const nextIndex = cyclicClamp(index + offset, filtrerteTekster.length);
             const nextTekst = filtrerteTekster[nextIndex];
-            setAriaSkrikVedHotkeyNavigering(nextTekst.overskrift);
             valgt.setValue(nextTekst.id);
         }
     };
 
-    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], 'ForrigeStandardtekst', inputRef.current);
-    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', inputRef.current);
+    useHotkey('arrowup', velg(-1), [filtrerteTekster, valgt], 'ForrigeStandardtekst', sokRef.current || undefined);
+    useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', sokRef.current || undefined);
 
     let content: ReactNode = null;
     if (isPending(standardTekster)) {
@@ -167,10 +182,9 @@ function StandardTekster(props: Props) {
     return (
         <StyledForm onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
             <h2 className="sr-only">Standardtekster</h2>
-            <SokefeltStyledNav aria-describedby={sokeFeltId.current}>
+            <SokefeltStyledNav aria-describedby={sokeFeltId.current} ref={sokRef}>
                 <TagInput
                     {...sokefelt.input}
-                    inputRef={inputRef}
                     name="standardtekstsok"
                     label="Søk etter standardtekster"
                     autoFocus={true}
@@ -180,7 +194,7 @@ function StandardTekster(props: Props) {
                 />
             </SokefeltStyledNav>
             {content}
-            <AriaNotification ariaLive={'assertive'} beskjed={ariaSkrikVedHotkeyNavigering} />
+            <AriaNotification ariaLive={'assertive'} beskjed={ariaNotification} />
         </StyledForm>
     );
 }

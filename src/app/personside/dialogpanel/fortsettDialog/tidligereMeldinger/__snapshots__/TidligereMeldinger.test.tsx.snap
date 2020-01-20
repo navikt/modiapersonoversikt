@@ -50,159 +50,193 @@ exports[`viser fortsett dialog 1`] = `
     className="c0"
   >
     <li>
-      <article
-        aria-describedby="Helt tilfeldig ID"
+      <div
+        className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
       >
-        <div
-          className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
+        <button
+          aria-controls="Helt tilfeldig ID"
+          aria-expanded={true}
+          className="ekspanderbartPanel__hode"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          type="button"
         >
-          <button
-            aria-controls="Helt tilfeldig ID"
-            aria-expanded={true}
-            className="ekspanderbartPanel__hode"
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            type="button"
+          <div
+            className="ekspanderbartPanel__flex-wrapper"
           >
             <div
-              className="ekspanderbartPanel__flex-wrapper"
+              className="c2"
             >
-              <div
-                className="c2"
+              <span
+                className="sr-only"
               >
-                <h4
-                  className="typo-element"
-                  id="Helt tilfeldig ID"
-                >
-                  Samtalereferat oppmøte - Arbeid
-                </h4>
+                Melding 
+                3
+              </span>
+              <span
+                className="sr-only"
+              >
+                Åpen
+              </span>
+              <h4
+                className="typo-element"
+              >
+                Samtalereferat oppmøte - Arbeid
+              </h4>
+              <p
+                className="typo-undertekst"
+              >
+                30. juli 2019 00:00
+              </p>
+              <div
+                className="tekstomrade typo-normal"
+              >
                 <p
-                  className="typo-undertekst"
-                >
-                  30. juli 2019 00:00
-                </p>
-                <div
-                  className="tekstomrade typo-normal"
+                  className="typo-normal blokk-xs"
                 >
                   Skrevet av Sander Hansen (nzxo4q)
-                </div>
+                </p>
               </div>
-              <span
-                className="ekspanderbartPanel__indikator"
-              />
             </div>
-          </button>
-          <article
-            className="ekspanderbartPanel__innhold"
+            <span
+              className="ekspanderbartPanel__indikator"
+            />
+          </div>
+        </button>
+        <article
+          className="ekspanderbartPanel__innhold"
+        >
+          <div
+            className="tekstomrade c3"
           >
-            <div
-              className="tekstomrade c3"
+            <p
+              className="typo-normal blokk-xs"
             >
               Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
-            </div>
-          </article>
-        </div>
-      </article>
+            </p>
+          </div>
+        </article>
+      </div>
     </li>
     <li>
-      <article
-        aria-describedby="Helt tilfeldig ID"
+      <div
+        className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
       >
-        <div
-          className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
+        <button
+          aria-controls="Helt tilfeldig ID"
+          aria-expanded={true}
+          className="ekspanderbartPanel__hode"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          type="button"
         >
-          <button
-            aria-controls="Helt tilfeldig ID"
-            aria-expanded={true}
-            className="ekspanderbartPanel__hode"
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            type="button"
+          <div
+            className="ekspanderbartPanel__flex-wrapper"
           >
             <div
-              className="ekspanderbartPanel__flex-wrapper"
+              className="c2"
             >
-              <div
-                className="c2"
-              >
-                <h4
-                  className="typo-element"
-                  id="Helt tilfeldig ID"
-                >
-                  Spørsmål fra bruker - Arbeid
-                </h4>
-                <p
-                  className="typo-undertekst"
-                >
-                  10. aug. 2019 00:00
-                </p>
-              </div>
               <span
-                className="ekspanderbartPanel__indikator"
-              />
+                className="sr-only"
+              >
+                Melding 
+                2
+              </span>
+              <span
+                className="sr-only"
+              >
+                Åpen
+              </span>
+              <h4
+                className="typo-element"
+              >
+                Spørsmål fra bruker - Arbeid
+              </h4>
+              <p
+                className="typo-undertekst"
+              >
+                10. aug. 2019 00:00
+              </p>
             </div>
-          </button>
-          <article
-            className="ekspanderbartPanel__innhold"
+            <span
+              className="ekspanderbartPanel__indikator"
+            />
+          </div>
+        </button>
+        <article
+          className="ekspanderbartPanel__innhold"
+        >
+          <div
+            className="tekstomrade c3"
           >
-            <div
-              className="tekstomrade c3"
+            <p
+              className="typo-normal blokk-xs"
             >
               Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
-            </div>
-          </article>
-        </div>
-      </article>
+            </p>
+          </div>
+        </article>
+      </div>
     </li>
     <li>
-      <article
-        aria-describedby="Helt tilfeldig ID"
+      <div
+        className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
       >
-        <div
-          className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
+        <button
+          aria-controls="Helt tilfeldig ID"
+          aria-expanded={true}
+          className="ekspanderbartPanel__hode"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          type="button"
         >
-          <button
-            aria-controls="Helt tilfeldig ID"
-            aria-expanded={true}
-            className="ekspanderbartPanel__hode"
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            type="button"
+          <div
+            className="ekspanderbartPanel__flex-wrapper"
           >
             <div
-              className="ekspanderbartPanel__flex-wrapper"
+              className="c2"
             >
-              <div
-                className="c2"
-              >
-                <h4
-                  className="typo-element"
-                  id="Helt tilfeldig ID"
-                >
-                  Spørsmål fra bruker - Arbeid
-                </h4>
-                <p
-                  className="typo-undertekst"
-                >
-                  06. aug. 2019 00:00
-                </p>
-              </div>
               <span
-                className="ekspanderbartPanel__indikator"
-              />
+                className="sr-only"
+              >
+                Melding 
+                1
+              </span>
+              <span
+                className="sr-only"
+              >
+                Åpen
+              </span>
+              <h4
+                className="typo-element"
+              >
+                Spørsmål fra bruker - Arbeid
+              </h4>
+              <p
+                className="typo-undertekst"
+              >
+                06. aug. 2019 00:00
+              </p>
             </div>
-          </button>
-          <article
-            className="ekspanderbartPanel__innhold"
+            <span
+              className="ekspanderbartPanel__indikator"
+            />
+          </div>
+        </button>
+        <article
+          className="ekspanderbartPanel__innhold"
+        >
+          <div
+            className="tekstomrade c3"
           >
-            <div
-              className="tekstomrade c3"
+            <p
+              className="typo-normal blokk-xs"
             >
               Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
-            </div>
-          </article>
-        </div>
-      </article>
+            </p>
+          </div>
+        </article>
+      </div>
     </li>
   </ol>
   <ol
@@ -210,59 +244,73 @@ exports[`viser fortsett dialog 1`] = `
     className="c0"
   >
     <li>
-      <article
-        aria-describedby="Helt tilfeldig ID"
+      <div
+        className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
       >
-        <div
-          className="ekspanderbartPanel c1 ekspanderbartPanel--apen"
+        <button
+          aria-controls="Helt tilfeldig ID"
+          aria-expanded={true}
+          className="ekspanderbartPanel__hode"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          type="button"
         >
-          <button
-            aria-controls="Helt tilfeldig ID"
-            aria-expanded={true}
-            className="ekspanderbartPanel__hode"
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            type="button"
+          <div
+            className="ekspanderbartPanel__flex-wrapper"
           >
             <div
-              className="ekspanderbartPanel__flex-wrapper"
+              className="c2"
             >
-              <div
-                className="c2"
+              <span
+                className="sr-only"
               >
-                <h4
-                  className="typo-element"
-                  id="Helt tilfeldig ID"
-                >
-                  Delsvar - Arbeid
-                </h4>
+                Melding 
+                1
+              </span>
+              <span
+                className="sr-only"
+              >
+                Åpen
+              </span>
+              <h4
+                className="typo-element"
+              >
+                Delsvar - Arbeid
+              </h4>
+              <p
+                className="typo-undertekst"
+              >
+                13. aug. 2019 00:00
+              </p>
+              <div
+                className="tekstomrade typo-normal"
+              >
                 <p
-                  className="typo-undertekst"
-                >
-                  13. aug. 2019 00:00
-                </p>
-                <div
-                  className="tekstomrade typo-normal"
+                  className="typo-normal blokk-xs"
                 >
                   Skrevet av Kristoffer Fredriksen (xy70r8)
-                </div>
+                </p>
               </div>
-              <span
-                className="ekspanderbartPanel__indikator"
-              />
             </div>
-          </button>
-          <article
-            className="ekspanderbartPanel__innhold"
+            <span
+              className="ekspanderbartPanel__indikator"
+            />
+          </div>
+        </button>
+        <article
+          className="ekspanderbartPanel__innhold"
+        >
+          <div
+            className="tekstomrade c3"
           >
-            <div
-              className="tekstomrade c3"
+            <p
+              className="typo-normal blokk-xs"
             >
               Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-            </div>
-          </article>
-        </div>
-      </article>
+            </p>
+          </div>
+        </article>
+      </div>
     </li>
   </ol>
 </article>

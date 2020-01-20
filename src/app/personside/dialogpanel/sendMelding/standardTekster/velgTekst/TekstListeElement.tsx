@@ -1,6 +1,6 @@
 import * as StandardTekster from '../domain';
 import { Rule } from '../../../../../../components/tekstomrade/parser/domain';
-import Tekstomrade, { ParagraphRule } from '../../../../../../components/tekstomrade/tekstomrade';
+import Tekstomrade, { LinebreakRule, ParagraphRule } from '../../../../../../components/tekstomrade/tekstomrade';
 import React from 'react';
 import styled from 'styled-components';
 import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
@@ -32,6 +32,7 @@ interface Props {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     highlightRule: Rule;
     locale: string;
+    index: number;
 }
 
 function TekstListeElement(props: Props) {
@@ -46,13 +47,14 @@ function TekstListeElement(props: Props) {
                 checked={props.valgt}
             />
             <label htmlFor={props.tekst.id}>
+                <span className="sr-only">{props.index + 1}</span>
                 <Tekstomrade as="span" rules={[props.highlightRule]}>
                     {props.tekst.overskrift}
                 </Tekstomrade>
+                <Tekstomrade className="sr-only" rules={[LinebreakRule, ParagraphRule]}>
+                    {props.tekst && props.tekst.innhold[props.locale]}
+                </Tekstomrade>
             </label>
-            <article className="sr-only" aria-describedby={props.tekst.id}>
-                <Tekstomrade rules={[ParagraphRule]}>{props.tekst && props.tekst.innhold[props.locale]}</Tekstomrade>
-            </article>
         </StyledLi>
     );
 }
