@@ -2,8 +2,8 @@ name: Build, push, and deploy
 
 on: [push]
 
-env:  
-  IMAGE_NAME: docker.pkg.github.com/${{ github.repository }}/modiapersonoversikt
+env:
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/modiapersonoversikt:${{ github.sha }}
   CI: true
   TZ: Europe/Oslo
   ENV REACT_APP_MODIA_URL: "/modiabrukerdialog/rest"
@@ -21,20 +21,12 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Create image tag
-        run: |
-          echo ::set-env name=IMAGE_VERSION::$(git rev-list --count $GITHUB_SHA) 
-          echo ::set-env name=IMAGE::${IMAGE_NAME}:$(git rev-list --count $GITHUB_SHA)
-          echo "::debug::${IMAGE}"
       - name: Install dependencies
-        run: |          
-          npm ci
+        run: npm ci
       - name: Test
-        run: |        
-          npm run test
+        run: npm run test
       - name: Build
-        run: |
-          npm run build
+        run: npm run build
 
   build-and-push:
     name: Build and push Docker container
@@ -49,27 +41,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
-        run: |
-          npm ci
-      - name: Lint and Test
-        run: |        
-          npm run test
+        run: npm ci
+      - name: Test
+        run: npm run test
       - name: Build
-        run: |
-          npm run build
-      - name: Create image tag
-        run: |
-          echo ::set-env name=IMAGE_VERSION::$(git rev-list --count $GITHUB_SHA) 
-          echo ::set-env name=IMAGE::${IMAGE_NAME}:$(git rev-list --count $GITHUB_SHA)
-          echo "::debug::${IMAGE}"    
+        run: npm run build
       - name: Publish Docker image
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           docker build --tag ${IMAGE} .
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
-          docker push ${IMAGE}        
-          
+          docker push ${IMAGE}
   deploy-qa:
     name: Deploy to preprod
     needs: build-and-push
@@ -77,11 +60,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Create image tag
-        run: |
-          echo ::set-env name=IMAGE_VERSION::$(git rev-list --count $GITHUB_SHA) 
-          echo ::set-env name=IMAGE::${IMAGE_NAME}:$(git rev-list --count $GITHUB_SHA)
-          echo "::debug::${IMAGE}"    
       - uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
