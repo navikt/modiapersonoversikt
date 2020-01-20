@@ -4,9 +4,27 @@ import { paths, setNyBrukerIPath } from '../routes/routing';
 import { useHistory } from 'react-router';
 import { aremark } from '../../mock/person/aremark';
 import { moss } from '../../mock/person/moss';
+import { MOCKED_TRAADID_1 } from '../../mock/meldinger/meldinger-mock';
+import { useDispatch } from 'react-redux';
+import { useRestResource } from '../../rest/consumer/useRestResource';
 
 function StartbildeDevKnapper() {
     const history = useHistory();
+    const behandlingsId = MOCKED_TRAADID_1;
+    const dispatch = useDispatch();
+    const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
+
+    function handleLagOpgaveFraGOSYS() {
+        const oppgaveId = 'ABBA';
+        dispatch(
+            tildelteOppgaverResource.actions.setData([
+                { oppgaveId: oppgaveId, traadId: behandlingsId, fødselsnummer: aremark.fødselsnummer }
+            ])
+        ); //TODO: denne skal ligge i en eller annen mock-backend
+        document.location.replace(
+            `?oppgaveid=${oppgaveId}&behandlingsid=${behandlingsId}&sokFnr=${aremark.fødselsnummer}`
+        );
+    }
 
     return (
         <>
@@ -18,6 +36,9 @@ function StartbildeDevKnapper() {
             </KnappBase>
             <KnappBase onClick={() => history.push(paths.standaloneKomponenter)} type="hoved">
                 Snarvei til standalone-komponenter
+            </KnappBase>
+            <KnappBase onClick={handleLagOpgaveFraGOSYS} type="hoved">
+                Sett oppgave i URL
             </KnappBase>
         </>
     );
