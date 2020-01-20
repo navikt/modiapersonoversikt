@@ -23,7 +23,6 @@ import Ytelser from './ytelser/Ytelser';
 import { guid } from 'nav-frontend-js-utils';
 import { capitalizeName } from '../../../utils/stringFormatting';
 import { useOpenTab } from './utils/useOpenTab';
-type Props = RouteComponentProps<{}>;
 
 const StyledArticle = styled.article`
     display: flex;

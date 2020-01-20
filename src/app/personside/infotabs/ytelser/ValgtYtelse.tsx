@@ -29,7 +29,6 @@ function ValgtYtelse() {
     const dypLinker = useInfotabsDyplenker();
 
     if (dypLinker.ytelser.erQueryParamNull()) {
-        console.log('erQueryParamNull treff');
         førstValgt = ytelserSortert[0];
     }
 
