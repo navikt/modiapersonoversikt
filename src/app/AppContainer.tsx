@@ -17,7 +17,6 @@ import Decorator from './internarbeidsflatedecorator/Decorator';
 import Routing from './Routing';
 import styled from 'styled-components';
 import { useAppState, useOnMount } from '../utils/customHooks';
-import { settJobberIkkeMedSpørsmålOgSvar } from './personside/kontrollsporsmal/cookieUtils';
 import VelgEnhet from './VelgEnhet';
 
 const AppStyle = styled.div`
@@ -66,7 +65,6 @@ function App() {
 function AppContainer() {
     useOnMount(() => {
         ModalWrapper.setAppElement('#root');
-        settJobberIkkeMedSpørsmålOgSvar();
     });
 
     return (
