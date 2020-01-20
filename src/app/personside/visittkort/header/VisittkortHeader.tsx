@@ -12,8 +12,7 @@ import VisMerChevron from '../../../../components/VisMerChevron';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { hentNavn } from '../utils';
 import { useOnMount } from '../../../../utils/customHooks';
-import { useOpenTab } from '../../infotabs/utils/useOpenTab';
-import { INFOTABS } from '../../infotabs/InfoTabEnum';
+import { useJobberMedSTO } from '../../../../utils/hooks/useJobberMedSTO';
 
 interface Props {
     visittkortApent: boolean;
@@ -80,13 +79,14 @@ const ChevronStyling = styled.div`
 
 function VisittkortHeader(props: Props) {
     const navneLinjeRef = useRef<HTMLSpanElement>(null);
-    const openTab = useOpenTab();
+    const jobberMedSTO = useJobberMedSTO();
 
     useOnMount(() => {
         if (props.person.sikkerhetstiltak) {
             return;
         }
-        if (openTab === INFOTABS.MELDINGER) {
+        if (jobberMedSTO) {
+            // Fokus skal havne i meldingsliste
             return;
         }
         navneLinjeRef.current?.focus();
