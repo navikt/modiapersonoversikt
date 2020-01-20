@@ -131,6 +131,21 @@ exports[`BesvarFler matcher snapshot 1`] = `
   white-space: nowrap;
 }
 
+.c20 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+}
+
 .c5 {
   padding: .5rem;
   display: -webkit-box;
@@ -225,21 +240,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
 
 .c15 .nav-frontend-chevron {
   width: 1.5625rem;
-}
-
-.c20 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
 }
 
 .c18 .snakkeboble-panel {
@@ -442,7 +442,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
       >
         <input
           checked={true}
-          className="sr-only test-meldinger-melding"
+          className="sr-only test-meldinger-melding valgt_melding  "
           id="Helt tilfeldig ID"
           name="traadliste-slaa-sammen"
           onChange={[Function]}
@@ -578,7 +578,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
       >
         <input
           checked={false}
-          className="sr-only test-meldinger-melding"
+          className="sr-only test-meldinger-melding   "
           id="Helt tilfeldig ID"
           name="traadliste-slaa-sammen"
           onChange={[Function]}

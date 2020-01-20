@@ -17,7 +17,7 @@ import { useOnMount } from '../../../../../utils/customHooks';
 interface Props {
     traader: Traad[];
     traaderEtterSokOgFiltrering: Traad[];
-    valgtTraad?: Traad;
+    valgtTraad: Traad;
     sokeord: string;
     setSokeord: (newSokeord: string) => void;
     skjulVarsler: boolean;
@@ -74,6 +74,8 @@ const StyledCheckbox = styled(Checkbox)`
     margin-bottom: 0 !important;
 `;
 
+export const valgtMeldingKlasse = 'valgt_melding';
+
 function TraadListe(props: Props) {
     const inputRef = React.useRef<HTMLInputElement>();
     const paginering = usePaginering(props.traaderEtterSokOgFiltrering, 50, 'melding', props.valgtTraad);
@@ -82,8 +84,8 @@ function TraadListe(props: Props) {
     const traadListeRef = useRef<HTMLOListElement>(null);
 
     useOnMount(() => {
-        const firstInput = traadListeRef.current?.getElementsByTagName('input')[0];
-        firstInput?.focus();
+        const valgtMelding = traadListeRef.current?.getElementsByClassName(valgtMeldingKlasse)[0] as HTMLInputElement;
+        valgtMelding?.focus();
     });
 
     if (props.traader.length === 0) {

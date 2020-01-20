@@ -3,19 +3,19 @@ import { useEffect, useState } from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components/macro';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
-import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import TraadListe from './traadliste/TraadListe';
 import { huskForrigeValgtTraad, huskSokAction, setSkjulVarslerAction } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
 import { useAppState, usePrevious } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useHistory, withRouter } from 'react-router';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { filtrerBortVarsel, useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import DelayRender from '../../../../components/DelayRender';
 
 const meldingerMediaTreshold = pxToRem(850);
 
@@ -109,7 +109,7 @@ function useReloadOnEnhetChange() {
 }
 
 function MeldingerContainer() {
-    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger, undefined, true);
     const valgtTraad = useValgtTraadIUrl();
     const forrigeSok = useAppState(state => state.meldinger.forrigeSok);
     const [sokeord, setSokeord] = useState(forrigeSok);
@@ -125,36 +125,43 @@ function MeldingerContainer() {
     useHuskSokeord(sokeord);
     useReloadOnEnhetChange();
 
+    if (!traaderResource.data) {
+        return traaderResource.placeholder;
+    }
+
+    if (traaderFørSøk.length === 0) {
+        return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
+    }
+
+    if (!valgtTraad) {
+        return (
+            <DelayRender delay={300}>
+                <AlertStripeFeil>Kunne ikke finne en valgt tråd</AlertStripeFeil>
+            </DelayRender>
+        );
+    }
+
     return (
-        <RestResourceConsumer<Traad[]> getResource={restResources => restResources.tråderOgMeldinger}>
-            {data => {
-                if (traaderFørSøk.length === 0) {
-                    return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
-                }
-                return (
-                    <MeldingerStyle>
-                        <ScrollBar keepScrollId="meldinger-trådliste">
-                            <TraadListe
-                                sokeord={sokeord}
-                                setSokeord={setSokeord}
-                                traader={traaderFørSøk}
-                                traaderEtterSokOgFiltrering={traaderEtterSokOgFiltrering}
-                                valgtTraad={valgtTraad}
-                                skjulVarsler={skjulVarsler}
-                                setSkjulVarsler={setSkjulVarsler}
-                            />
-                        </ScrollBar>
-                        <ScrollBar keepScrollId="meldinger-trådvisning">
-                            {traaderEtterSokOgFiltrering.length === 0 ? (
-                                <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>
-                            ) : (
-                                <TraadVisningWrapper sokeord={sokeord} valgtTraad={valgtTraad} />
-                            )}
-                        </ScrollBar>
-                    </MeldingerStyle>
-                );
-            }}
-        </RestResourceConsumer>
+        <MeldingerStyle>
+            <ScrollBar keepScrollId="meldinger-trådliste">
+                <TraadListe
+                    sokeord={sokeord}
+                    setSokeord={setSokeord}
+                    traader={traaderFørSøk}
+                    traaderEtterSokOgFiltrering={traaderEtterSokOgFiltrering}
+                    valgtTraad={valgtTraad}
+                    skjulVarsler={skjulVarsler}
+                    setSkjulVarsler={setSkjulVarsler}
+                />
+            </ScrollBar>
+            <ScrollBar keepScrollId="meldinger-trådvisning">
+                {traaderEtterSokOgFiltrering.length === 0 ? (
+                    <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>
+                ) : (
+                    <TraadVisningWrapper sokeord={sokeord} valgtTraad={valgtTraad} />
+                )}
+            </ScrollBar>
+        </MeldingerStyle>
     );
 }
 

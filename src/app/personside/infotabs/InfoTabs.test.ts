@@ -1,5 +1,5 @@
 import { INFOTABS } from './InfoTabEnum';
-import { getOpenTabFromRouterPath } from './InfoTabs';
+import { getOpenTabFromRouterPath } from './utils/useOpenTab';
 
 test('henter riktig tab fra routerpath', () => {
     const path = 'http://localhost:7777/modiapersonoversikt/person/1000000000/' + INFOTABS.UTBETALING + '/';

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components/macro';
 import { Undertittel } from 'nav-frontend-typografi';
 import NavKontorContainer from './navkontor/NavKontorContainer';
@@ -9,19 +10,14 @@ import Mann from '../../../../svg/Mann.js';
 import Kvinne from '../../../../svg/Kvinne.js';
 import VisMerChevron from '../../../../components/VisMerChevron';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import ToolTip from '../../../../components/tooltip/ToolTip';
-import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 import { hentNavn } from '../utils';
+import { useOnMount } from '../../../../utils/customHooks';
+import { useJobberMedSTO } from '../../../../utils/hooks/useJobberMedSTO';
 
 interface Props {
     visittkortApent: boolean;
     person: Person;
     toggleVisittkort: (erApen?: boolean) => void;
-}
-
-interface State {
-    showTooltip: boolean;
 }
 
 const VisittkortHeaderDiv = styled.section`
@@ -81,71 +77,65 @@ const ChevronStyling = styled.div`
     justify-content: center;
 `;
 
-class VisittkortHeader extends React.PureComponent<Props, State> {
-    private navneLinjeRef = React.createRef<HTMLSpanElement>();
+function VisittkortHeader(props: Props) {
+    const navneLinjeRef = useRef<HTMLSpanElement>(null);
+    const jobberMedSTO = useJobberMedSTO();
 
-    constructor(props: Props) {
-        super(props);
-        this.state = { showTooltip: false };
-        this.toggleVisittkort = this.toggleVisittkort.bind(this);
-    }
-
-    componentDidMount() {
-        if (this.navneLinjeRef.current && !this.props.person.sikkerhetstiltak) {
-            this.navneLinjeRef.current.focus();
+    useOnMount(() => {
+        if (props.person.sikkerhetstiltak) {
+            return;
         }
-    }
+        if (jobberMedSTO) {
+            // Fokus skal havne i meldingsliste
+            return;
+        }
+        navneLinjeRef.current?.focus();
+    });
 
-    toggleVisittkort() {
-        this.setState({ showTooltip: true });
-        this.props.toggleVisittkort(!this.props.visittkortApent);
-    }
+    const toggleVisittkort = () => {
+        props.toggleVisittkort(!props.visittkortApent);
+    };
 
-    render() {
-        const { person, visittkortApent } = this.props;
-        const ikon = {
-            ikon: erMann(person) ? <Mann /> : <Kvinne />
-        };
-        const alder = erDød(person.personstatus) ? 'Død' : person.alder;
-        const kjønn = person.kjønn === 'M' ? 'Mann' : 'Kvinne';
-        return (
-            <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={this.toggleVisittkort}>
-                <VenstreFelt>
-                    <IkonDiv>{ikon.ikon}</IkonDiv>
-                    <GrunninfoDiv>
-                        <Undertittel tag="h1">
-                            <span ref={this.navneLinjeRef} tabIndex={-1} /* for at focus skal funke*/>
-                                {hentNavn(person.navn)} ({alder})
-                            </span>
-                        </Undertittel>
-                        <span className="visually-hidden">{kjønn}</span>
-                        <PersonStatus person={person} />
-                    </GrunninfoDiv>
-                </VenstreFelt>
+    const ikon = {
+        ikon: erMann(props.person) ? <Mann /> : <Kvinne />
+    };
 
-                <HøyreFelt>
-                    <EtiketterContainer />
-                    <NavKontorContainer />
-                </HøyreFelt>
-
-                <ChevronStyling>
-                    <VisMerChevron
-                        onClick={this.toggleVisittkort}
-                        open={visittkortApent}
-                        title={(visittkortApent ? 'Lukk' : 'Åpne') + ' visittkort (Alt + N)'}
-                        focusOnRelativeParent={true}
-                    >
-                        <span className="visually-hidden">
-                            {visittkortApent ? 'Lukk visittkort' : 'Ekspander visittkort'}
+    const alder = erDød(props.person.personstatus) ? 'Død' : props.person.alder;
+    const kjønn = props.person.kjønn === 'M' ? 'Mann' : 'Kvinne';
+    return (
+        <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={toggleVisittkort}>
+            <VenstreFelt>
+                <IkonDiv>{ikon.ikon}</IkonDiv>
+                <GrunninfoDiv>
+                    <Undertittel tag="h1">
+                        <span ref={navneLinjeRef} tabIndex={-1} /* for at focus skal funke*/>
+                            {hentNavn(props.person.navn)} ({alder})
                         </span>
-                    </VisMerChevron>
-                </ChevronStyling>
-                <IfFeatureToggleOn toggleID={FeatureToggles.Tooltip}>
-                    {this.state.showTooltip && <ToolTip>Hurtigtast åpne/lukke visittkort: Alt + N</ToolTip>}
-                </IfFeatureToggleOn>
-            </VisittkortHeaderDiv>
-        );
-    }
+                    </Undertittel>
+                    <span className="visually-hidden">{kjønn}</span>
+                    <PersonStatus person={props.person} />
+                </GrunninfoDiv>
+            </VenstreFelt>
+
+            <HøyreFelt>
+                <EtiketterContainer />
+                <NavKontorContainer />
+            </HøyreFelt>
+
+            <ChevronStyling>
+                <VisMerChevron
+                    onClick={toggleVisittkort}
+                    open={props.visittkortApent}
+                    title={(props.visittkortApent ? 'Lukk' : 'Åpne') + ' visittkort (Alt + N)'}
+                    focusOnRelativeParent={true}
+                >
+                    <span className="visually-hidden">
+                        {props.visittkortApent ? 'Lukk visittkort' : 'Ekspander visittkort'}
+                    </span>
+                </VisMerChevron>
+            </ChevronStyling>
+        </VisittkortHeaderDiv>
+    );
 }
 
 export default VisittkortHeader;
