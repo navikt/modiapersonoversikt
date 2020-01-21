@@ -4,7 +4,7 @@ import { FortsettDialogType } from './FortsettDialogContainer';
 import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
 import { FortsettDialogState } from './FortsettDialogTypes';
-import { jobberMedSpørsmålOgSvar } from '../../kontrollsporsmal/cookieUtils';
+import { useJobberMedSTO } from '../../../../utils/hooks/useJobberMedSTO';
 
 interface Props {
     formState: FortsettDialogState;
@@ -14,6 +14,7 @@ interface Props {
 }
 
 function VelgDialogType(props: Props) {
+    const jobberMedSTO = useJobberMedSTO();
     function lagRadio(label: string, type: FortsettDialogType) {
         return (
             <Radio
@@ -46,8 +47,8 @@ function VelgDialogType(props: Props) {
                 {svar}
                 {spørsmål}
                 {delvisSvar}
-                {!jobberMedSpørsmålOgSvar() && svarTelefon}
-                {!jobberMedSpørsmålOgSvar() && svarOppmote}
+                {!jobberMedSTO && svarTelefon}
+                {!jobberMedSTO && svarOppmote}
             </VelgDialogtypeStyle>
         );
     }

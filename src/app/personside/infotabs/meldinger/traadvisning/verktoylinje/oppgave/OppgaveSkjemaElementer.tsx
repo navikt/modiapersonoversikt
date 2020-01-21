@@ -41,7 +41,7 @@ function useForeslatteEnheter(form: OppgaveSkjemaForm) {
             .join('&');
 
         setPending(true);
-        loggEvent('Fetch', 'Oppgaveskjema', { type: 'Oppgavebehandlere' });
+        loggEvent('Fetch', 'LagOppgave-ForeslåtteEnheter');
         fetch(`${apiBaseUri}/enheter/oppgavebehandlere/foreslatte?${queryParams}`, credentials)
             .then(response => response.json())
             .then(setForeslatteEnheter)
@@ -61,16 +61,14 @@ function useForeslatteEnheter(form: OppgaveSkjemaForm) {
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
     const enhetliste: FetchResult<Array<Enhet>> = useFetchWithLog<Array<Enhet>>(
         `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
-        'Oppgaveskjema',
-        credentials,
-        'Enhetsliste'
+        'LagOppgave-Enheter',
+        credentials
     );
     const foreslatteEnheter = useForeslatteEnheter(props.form.state);
     const ansattliste: FetchResult<Array<Ansatt>> = useFetchWithLog<Array<Ansatt>>(
         `${apiBaseUri}/enheter/${props.form.state.valgtEnhet ? props.form.state.valgtEnhet.enhetId : '_'}/ansatte`,
-        'Oppgaveskjema',
-        credentials,
-        'Ansattliste'
+        'LagOppgave-Ansatte',
+        credentials
     );
     const valgtTema = props.form.state.valgtTema;
 

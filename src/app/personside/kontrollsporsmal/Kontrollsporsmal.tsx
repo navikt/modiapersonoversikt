@@ -4,12 +4,13 @@ import theme from '../../../styles/personOversiktTheme';
 import KontrollSpørsmålKnapper from './KontrollSpørsmålKnapper';
 import SpørsmålOgSvar from './SporsmalOgSvarContainer';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
-import { jobberMedSpørsmålOgSvar, kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
 import { useAppState, useFødselsnummer } from '../../../utils/customHooks';
 import LazySpinner from '../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useErKontaktsenter } from '../../../utils/enheterUtils';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
+import { kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
+import { useJobberMedSTO } from '../../../utils/hooks/useJobberMedSTO';
 
 const KontrollSporsmalStyling = styled.section`
     background-color: white;
@@ -49,13 +50,9 @@ function Kontrollsporsmal() {
     const fnr = useFødselsnummer();
     const personResource = useRestResource(resources => resources.personinformasjon, { returnOnPending: Placeholder });
     const erKontaktsenter = useErKontaktsenter();
+    const jobberMedSTO = useJobberMedSTO();
 
-    if (
-        !visKontrollSpørsmål ||
-        jobberMedSpørsmålOgSvar() ||
-        !erKontaktsenter ||
-        kontrollspørsmålHarBlittLukketForBruker(fnr)
-    ) {
+    if (!visKontrollSpørsmål || jobberMedSTO || !erKontaktsenter || kontrollspørsmålHarBlittLukketForBruker(fnr)) {
         return null;
     }
 
