@@ -50,7 +50,8 @@ enum Komponenter {
     Personsok,
     JournalforingPanel,
     TraadVisningDialogpanel,
-    BesvarFlere
+    BesvarFlere,
+    HurtigTasterHjelp
 }
 
 const Style = styled.div`
