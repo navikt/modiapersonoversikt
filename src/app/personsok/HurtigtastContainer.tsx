@@ -5,21 +5,15 @@ import HurtigTasterHjelpModal from '../../components/standalone/HurtigTasterHjel
 
 function HurtigtaskContainer() {
     const [apen, settApen] = useState(false);
+
     useEffect(() => {
-        const clickHandler = () => {
-            settApen(a => {
-                return !a;
-            });
-        };
+        const clickHandler = () => settApen(a => !a);
         const toggle = document.getElementById('hurtigtaster-button');
         if (toggle) {
             toggle.addEventListener('click', clickHandler);
+            return () => toggle.removeEventListener('click', clickHandler);
         }
-        return () => {
-            if (toggle) {
-                toggle.removeEventListener('click', clickHandler);
-            }
-        };
+        return () => null;
     }, [settApen]);
 
     useEffect(() => {
@@ -27,7 +21,7 @@ function HurtigtaskContainer() {
             loggEvent('Visning', 'hurtigtaster Hjelp');
         }
     }, [apen]);
-    console.log(apen);
+
     return <HurtigTasterHjelpModal apen={apen} lukkModal={() => settApen(false)} />;
 }
 

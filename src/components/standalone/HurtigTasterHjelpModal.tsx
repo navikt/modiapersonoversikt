@@ -2,16 +2,17 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import NavFrontendModal from 'nav-frontend-modal';
 import { StyledTable } from '../../utils/table/StyledTable';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { Innholdstittel } from 'nav-frontend-typografi';
 
 const Modal = styled(NavFrontendModal)`
     &.modal {
         max-height: 40rem;
+        min-width: 25rem;
     }
 `;
 
-const StyledNormalTekst = styled(Normaltekst)`
-    margin: 1rem 0 !important;
+const StyledInhouseTitle = styled(Innholdstittel)`
+    margin-bottom: 1rem !important;
 `;
 
 interface Props {
@@ -22,22 +23,21 @@ interface Props {
 function HurtigTasterHjelpModal(props: Props) {
     const tableHeaders = ['Tast', 'Beskrivelse'];
     const taster = [
-        { tast: 'Alt + B', beskrivelse: 'Personforvalter' },
-        { tast: 'Alt + L', beskrivelse: 'Kontrollsporsmal' },
-        { tast: 'Alt + M', beskrivelse: 'Gå til Meldinger' },
-        { tast: 'Alt + N', beskrivelse: 'Visitkort' },
-        { tast: 'Alt + O', beskrivelse: 'Oversikt' },
-        { tast: 'Alt + S', beskrivelse: 'Gå til Saker' },
-        { tast: 'Alt + T', beskrivelse: 'Gå til Oppfølging' },
-        { tast: 'Alt + U', beskrivelse: 'Utbetalinger' },
-        { tast: 'Alt + V', beskrivelse: 'Gå til Varsler' },
-        { tast: 'Alt + Y', beskrivelse: 'Gå til Ytelser' }
+        { tast: 'Alt + O', beskrivelse: 'Vis Oversikt' },
+        { tast: 'Alt + T', beskrivelse: 'Vis Oppfølging' },
+        { tast: 'Alt + M', beskrivelse: 'Vis Meldinger' },
+        { tast: 'Alt + U', beskrivelse: 'Vis Utbetalinger' },
+        { tast: 'Alt + S', beskrivelse: 'Vis Saker' },
+        { tast: 'Alt + Y', beskrivelse: 'Vis Ytelser' },
+        { tast: 'Alt + V', beskrivelse: 'Vis Varsler' },
+        { tast: 'Alt + L', beskrivelse: 'Lukk Kontrollsporsmal' },
+        { tast: 'Alt + N', beskrivelse: 'Åpne Visitkort' },
+        { tast: 'Alt + B', beskrivelse: 'Gå til Personforvalter' }
     ];
-    const tableRows = taster.map((hurtigtast, index) => [hurtigtast.tast, hurtigtast.beskrivelse]);
+    const tableRows = taster.map(hurtigtast => [hurtigtast.tast, hurtigtast.beskrivelse]);
     return (
-        <Modal contentLabel="HurtigTaster Tekst" isOpen={props.apen} onRequestClose={props.lukkModal}>
-            <Innholdstittel>Hurtigtaster i Modia </Innholdstittel>
-            <StyledNormalTekst>Hurtigtaster som brukes i kombinasjon med ALT-tasten</StyledNormalTekst>
+        <Modal contentLabel="Hurtigtast hjelp" isOpen={props.apen} onRequestClose={props.lukkModal}>
+            <StyledInhouseTitle>Hurtigtaster i Modia</StyledInhouseTitle>
             <StyledTable tittelRekke={tableHeaders} rows={tableRows} />
         </Modal>
     );

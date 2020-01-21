@@ -17,7 +17,7 @@ import { velgEnhetAction } from '../../redux/session/session';
 import { useQueryParams } from '../../utils/urlUtils';
 import styled from 'styled-components';
 import { loggEvent } from '../../utils/frontendLogger';
-import HurtigtaskContainer from '../personsok/HurtigtastContainer';
+import HurtigtastContainer from '../personsok/HurtigtastContainer';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 const etterSokefelt = `
@@ -127,7 +127,7 @@ function Decorator() {
                 <>
                     <InternflateDecorator {...config} />
                     <PersonsokContainer />
-                    <HurtigtaskContainer />
+                    <HurtigtastContainer />
                     <DecoratorEasterEgg />
                 </>
             )}
