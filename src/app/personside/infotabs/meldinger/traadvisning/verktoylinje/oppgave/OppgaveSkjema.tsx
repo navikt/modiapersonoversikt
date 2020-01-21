@@ -23,6 +23,8 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { getValidOppgaveSkjemaState, validerOppgaveSkjema } from './oppgaveSkjemaValidator';
 import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
 import { useAppState } from '../../../../../../../utils/customHooks';
+import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
+import { isFinishedPosting } from '../../../../../../../rest/utils/postResource';
 
 const AlertStyling = styled.div`
     > * {
@@ -62,6 +64,7 @@ function populerCacheMedTomAnsattliste() {
 function OppgaveSkjema(props: OppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
+    const plukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [submitting, setSubmitting] = useState(false);
     const [valgtTema, settValgtTema] = useState<GsakTema | undefined>(undefined);
@@ -151,6 +154,17 @@ function OppgaveSkjema(props: OppgaveProps) {
                 <Hovedknapp autoFocus={true} onClick={props.lukkPanel}>
                     Lukk
                 </Hovedknapp>
+            </AlertStyling>
+        );
+    }
+
+    const oppgaveFraGosys =
+        isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.fraGosys);
+    if (oppgaveFraGosys) {
+        //const oppgaveid = oppgaveFraGosys.oppgaveId;
+        return (
+            <AlertStyling>
+                <Hovedknapp>Avslutt fra GOSYS</Hovedknapp>
             </AlertStyling>
         );
     }
