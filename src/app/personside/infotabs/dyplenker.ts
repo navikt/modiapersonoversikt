@@ -6,6 +6,7 @@ import { Traad } from '../../../models/meldinger/meldinger';
 import { useMemo } from 'react';
 import { SakerRouting, useSakerRouting } from './saksoversikt/utils/saksoversiktRoutingUtils';
 import { useQueryParams } from '../../../utils/urlUtils';
+import { getUnikYtelseKey, Ytelse } from '../../../models/ytelse/ytelse-utils';
 
 export interface Dyplenker {
     utbetaling: {
@@ -20,10 +21,9 @@ export interface Dyplenker {
     };
     saker: SakerRouting;
     ytelser: {
-        link: (unikId: string) => string;
+        link: (ytelse: Ytelse) => string;
         route: string;
-        erValgt: (unikId: UnikYtelseKey) => boolean;
-        erQueryParamNull: () => boolean;
+        erValgt: (ytelse: Ytelse) => boolean;
     };
 }
 
@@ -37,7 +37,6 @@ type DyplenkeParams = {
 export type DyplenkerQueryParams = {
     ytelse?: string;
 };
-export type UnikYtelseKey = string;
 
 export function useInfotabsDyplenker(): Dyplenker {
     const params = useParams<DyplenkeParams>();
@@ -62,10 +61,9 @@ export function useInfotabsDyplenker(): Dyplenker {
             },
             saker: sakerRouting,
             ytelser: {
-                link: (unikId: string) => `${paths.ytelser}?ytelse=${unikId}`,
+                link: (ytelse: Ytelse) => `${paths.ytelser}?ytelse=${getUnikYtelseKey(ytelse)}`,
                 route: `${paths.ytelser}/:unikId?`,
-                erValgt: (unikId: UnikYtelseKey) => unikId === queryParams.ytelse,
-                erQueryParamNull: () => queryParams.ytelse === undefined || queryParams.ytelse === ''
+                erValgt: (ytelse: Ytelse) => getUnikYtelseKey(ytelse) === queryParams.ytelse
             }
         }),
         [paths, params, sakerRouting, queryParams]
