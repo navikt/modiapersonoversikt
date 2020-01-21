@@ -11,7 +11,7 @@ const Modal = styled(NavFrontendModal)`
     }
 `;
 
-const StyledInhouseTitle = styled(Innholdstittel)`
+const StyledInnholdstittel = styled(Innholdstittel)`
     margin-bottom: 1rem !important;
 `;
 
@@ -37,7 +37,7 @@ function HurtigTasterHjelpModal(props: Props) {
     const tableRows = taster.map(hurtigtast => [hurtigtast.tast, hurtigtast.beskrivelse]);
     return (
         <Modal contentLabel="Hurtigtast hjelp" isOpen={props.apen} onRequestClose={props.lukkModal}>
-            <StyledInhouseTitle>Hurtigtaster i Modia</StyledInhouseTitle>
+            <StyledInnholdstittel>Hurtigtaster i Modia</StyledInnholdstittel>
             <StyledTable tittelRekke={tableHeaders} rows={tableRows} />
         </Modal>
     );
