@@ -1,79 +1,51 @@
-import { useMemo } from 'react';
-import { getPleiepengerIdDato, Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
-import { getSykepengerIdDato, Sykepenger } from '../../../../models/ytelse/sykepenger';
-import { Foreldrepengerettighet, getForeldepengerIdDato } from '../../../../models/ytelse/foreldrepenger';
+import { ReactNode, useMemo } from 'react';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { datoSynkende } from '../../../../utils/dateUtils';
-export type Ytelse = Pleiepengerettighet | Foreldrepengerettighet | Sykepenger;
-
-interface YtelseMedDato {
-    idDato: string;
-    ytelse: Ytelse;
-}
+import { getYtelseIdDato, Ytelse } from '../../../../models/ytelse/ytelse-utils';
 
 interface Returns {
-    ytelserSortert: Ytelse[];
-    pendingYtelser: boolean;
+    ytelser: Ytelse[];
+    pending: boolean;
+    feilmeldinger: ReactNode[];
 }
 
 function useBrukersYtelser(): Returns {
-    const foreldrepengerResource = useRestResource(resources => resources.foreldrepenger, undefined, true);
-    const pleiepengerResource = useRestResource(resources => resources.pleiepenger, undefined, true);
-    const sykepengerResource = useRestResource(resources => resources.sykepenger, undefined, true);
-
-    const foreldrepenger: YtelseMedDato[] = useMemo(
-        () =>
-            foreldrepengerResource.data && foreldrepengerResource.data.foreldrepenger
-                ? foreldrepengerResource.data.foreldrepenger.map(foreldrepengerettighet => {
-                      const idDato = getForeldepengerIdDato(foreldrepengerettighet);
-                      return {
-                          idDato: idDato,
-                          ytelse: foreldrepengerettighet
-                      };
-                  })
-                : [],
-        [foreldrepengerResource]
+    const foreldrepengerResource = useRestResource(
+        resources => resources.foreldrepenger,
+        { returnOnError: 'Kunne ikke laste foreldrepenger' },
+        true
+    );
+    const pleiepengerResource = useRestResource(
+        resources => resources.pleiepenger,
+        { returnOnError: 'Kunne ikke laste pleiepenger' },
+        true
+    );
+    const sykepengerResource = useRestResource(
+        resources => resources.sykepenger,
+        { returnOnError: 'Kunne ikke laste sykepenger' },
+        true
     );
 
-    const pleiepenger: YtelseMedDato[] = useMemo(
-        () =>
-            pleiepengerResource.data && pleiepengerResource.data.pleiepenger
-                ? pleiepengerResource.data.pleiepenger.map(pleiepengerettighet => {
-                      const idDato = getPleiepengerIdDato(pleiepengerettighet);
-                      return {
-                          idDato: idDato,
-                          ytelse: pleiepengerettighet
-                      };
-                  })
-                : [],
-        [pleiepengerResource]
-    );
+    const pending = pleiepengerResource.isLoading || foreldrepengerResource.isLoading || sykepengerResource.isLoading;
 
-    const sykepenger: YtelseMedDato[] = useMemo(
-        () =>
-            sykepengerResource.data && sykepengerResource.data.sykepenger
-                ? sykepengerResource.data.sykepenger.map(sykepengerettighet => {
-                      const idDato = getSykepengerIdDato(sykepengerettighet);
-                      return {
-                          idDato: idDato,
-                          ytelse: sykepengerettighet
-                      };
-                  })
-                : [],
-        [sykepengerResource]
-    );
+    const foreldrepenger = foreldrepengerResource.data?.foreldrepenger || [];
+    const pleiepenger = pleiepengerResource.data?.pleiepenger || [];
+    const sykepenger = sykepengerResource.data?.sykepenger || [];
+    const ytelser = [...foreldrepenger, ...pleiepenger, ...sykepenger];
 
-    const pendingResourcer =
-        pleiepengerResource.isLoading || foreldrepengerResource.isLoading || sykepengerResource.isLoading;
-    const ytelserSortert = useMemo(
-        () =>
-            [...foreldrepenger, ...pleiepenger, ...sykepenger]
-                .sort(datoSynkende(rettighet => rettighet.idDato))
-                .map(rettighet => rettighet.ytelse),
-        [foreldrepenger, pleiepenger, sykepenger]
-    );
+    const ytelserSortert = ytelser.sort(datoSynkende(rettighet => getYtelseIdDato(rettighet)));
 
-    return { ytelserSortert, pendingYtelser: pendingResourcer };
+    const feilmeldinger = [
+        foreldrepengerResource.placeholder,
+        pleiepengerResource.placeholder,
+        sykepengerResource.placeholder
+    ].filter(it => it);
+
+    return useMemo(() => ({ ytelser: ytelserSortert, pending: pending, feilmeldinger: feilmeldinger }), [
+        ytelserSortert,
+        pending,
+        feilmeldinger
+    ]);
 }
 
 export default useBrukersYtelser;

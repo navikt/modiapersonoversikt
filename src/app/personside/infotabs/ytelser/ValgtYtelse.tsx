@@ -3,17 +3,16 @@ import styled from 'styled-components/macro';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import theme from '../../../../styles/personOversiktTheme';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import useBrukersYtelserMarkup from './useBrukersYtelserMarkup';
-import { getUnikPleiepengerKey } from '../../../../models/ytelse/pleiepenger';
-import { getUnikSykepengerKey } from '../../../../models/ytelse/sykepenger';
-import { getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
+import { isForeldrepenger, isPleiepenger, isSykepenger, Ytelse } from '../../../../models/ytelse/ytelse-utils';
+import Foreldrepenger from './foreldrepenger/ForeldrePenger';
 import Pleiepenger from './pleiepenger/Pleiepenger';
 import Sykepenger from './sykepenger/Sykepenger';
-import Foreldrepenger from './foreldrepenger/ForeldrePenger';
-import { useInfotabsDyplenker } from '../dyplenker';
-import useBrukersYtelser, { Ytelse } from './useBrukersYtelser';
+import { loggError } from '../../../../utils/frontendLogger';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+
+interface Props {
+    valgtYtelse?: Ytelse;
+}
 
 const Styling = styled.section`
     > * {
@@ -23,39 +22,29 @@ const Styling = styled.section`
     padding: ${theme.margin.layout};
 `;
 
-function ValgtYtelse() {
-    let førstValgt: Ytelse | '';
-    const { ytelserSortert, pendingYtelser } = useBrukersYtelser();
-    const dypLinker = useInfotabsDyplenker();
-
-    if (dypLinker.ytelser.erQueryParamNull()) {
-        førstValgt = ytelserSortert[0];
+function YtelseMarkup(props: { ytelse: Ytelse }) {
+    if (isForeldrepenger(props.ytelse)) {
+        return <Foreldrepenger foreldrepenger={props.ytelse} />;
     }
+    if (isPleiepenger(props.ytelse)) {
+        return <Pleiepenger pleiepenger={props.ytelse} />;
+    }
+    if (isSykepenger(props.ytelse)) {
+        return <Sykepenger sykepenger={props.ytelse} />;
+    }
+    loggError(new Error('Ytelse ikke håndtert, kunne ikke finne markup'));
+    return null;
+}
 
-    const { ytelser, pending, feilmeldinger } = useBrukersYtelserMarkup({
-        renderPleiepenger: pleiepenger =>
-            dypLinker.ytelser.erValgt(getUnikPleiepengerKey(pleiepenger)) || førstValgt === pleiepenger ? (
-                <Pleiepenger pleiepenger={pleiepenger} key={getUnikPleiepengerKey(pleiepenger)} />
-            ) : null,
-        renderSykepenger: sykepenger =>
-            dypLinker.ytelser.erValgt(getUnikSykepengerKey(sykepenger)) || førstValgt === sykepenger ? (
-                <Sykepenger sykepenger={sykepenger} key={getUnikSykepengerKey(sykepenger)} />
-            ) : null,
-        renderForeldrepenger: foreldrepenger =>
-            dypLinker.ytelser.erValgt(getUnikForeldrepengerKey(foreldrepenger)) || førstValgt === foreldrepenger ? (
-                <Foreldrepenger foreldrepenger={foreldrepenger} key={getUnikForeldrepengerKey(foreldrepenger)} />
-            ) : null
-    });
+function ValgtYtelse(props: Props) {
+    if (!props.valgtYtelse) {
+        return <AlertStripeInfo>Fant ingen ytelser for bruker</AlertStripeInfo>;
+    }
 
     return (
         <Styling>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />}
-            {ytelser}
-            {feilmeldinger}
-            {!pending && !pendingYtelser && feilmeldinger.length === 0 && ytelser.length === 0 && (
-                <AlertStripeInfo>Ingen ytelser funnet for bruker</AlertStripeInfo>
-            )}
-            {pending && <CenteredLazySpinner />}
+            {<YtelseMarkup ytelse={props.valgtYtelse} />}
         </Styling>
     );
 }
