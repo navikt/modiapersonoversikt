@@ -45,6 +45,10 @@ const SaksoversiktArticle = styled.article`
 function Innhold() {
     const state = useSaksoversiktValg();
 
+    useEffect(() => {
+        loggEvent('VisDokument', 'SakerFullscreen');
+    }, [state.saksdokument]);
+
     if (!state.sakstema) {
         return (
             <FillCenterAndFadeIn>
