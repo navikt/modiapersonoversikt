@@ -19,3 +19,10 @@ export interface MerkAvsluttUtenSvarRequest {
     eldsteMeldingTraadId?: string;
     eldsteMeldingOppgaveId?: string;
 }
+
+export interface AvsluttGosysOppgaveRequest {
+    fnr: string;
+    oppgaveid: string;
+    beskrivelse: string;
+    saksbehandlerValgtEnhet?: string;
+}
