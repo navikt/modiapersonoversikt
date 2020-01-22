@@ -120,11 +120,7 @@ function Verktoylinje(props: Props) {
                         open={visJournalforing}
                         tittel="Journalfør"
                     />
-                    <SvartLenkeKnapp
-                        onClick={togglePanel(VerktøyPanel.OPPGAVE)}
-                        open={visOppgave}
-                        tittel="Lag oppgave"
-                    />
+                    <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.OPPGAVE)} open={visOppgave} tittel="Oppgave" />
                     <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
                 </OppgaveknapperStyle>
                 <Print {...props} />
