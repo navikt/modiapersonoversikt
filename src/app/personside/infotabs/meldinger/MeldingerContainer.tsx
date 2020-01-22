@@ -17,7 +17,7 @@ import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import DelayRender from '../../../../components/DelayRender';
 
-const meldingerMediaTreshold = pxToRem(850);
+const meldingerMediaTreshold = pxToRem(800);
 
 const MeldingerStyle = styled.div`
     ${scrollBarContainerStyle(meldingerMediaTreshold)};

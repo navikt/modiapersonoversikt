@@ -25,12 +25,18 @@ const VisittkortHeaderDiv = styled.section`
     padding: ${theme.margin.layout};
     padding-right: 0;
     position: relative;
+    display: flex;
+    flex-wrap: nowrap;
     width: 100%;
+    cursor: pointer;
+`;
+
+const StyledContent = styled.div`
     display: flex;
     flex-flow: row wrap;
-    cursor: pointer;
-    > *:not(:last-child) {
+    > * {
         flex: 1 1;
+        min-width: 15rem;
     }
 `;
 
@@ -104,23 +110,25 @@ function VisittkortHeader(props: Props) {
     const kjønn = props.person.kjønn === 'M' ? 'Mann' : 'Kvinne';
     return (
         <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={toggleVisittkort}>
-            <VenstreFelt>
-                <IkonDiv>{ikon.ikon}</IkonDiv>
-                <GrunninfoDiv>
-                    <Undertittel tag="h1">
-                        <span ref={navneLinjeRef} tabIndex={-1} /* for at focus skal funke*/>
-                            {hentNavn(props.person.navn)} ({alder})
-                        </span>
-                    </Undertittel>
-                    <span className="visually-hidden">{kjønn}</span>
-                    <PersonStatus person={props.person} />
-                </GrunninfoDiv>
-            </VenstreFelt>
+            <StyledContent>
+                <VenstreFelt>
+                    <IkonDiv>{ikon.ikon}</IkonDiv>
+                    <GrunninfoDiv>
+                        <Undertittel tag="h1">
+                            <span ref={navneLinjeRef} tabIndex={-1} /* for at focus skal funke*/>
+                                {hentNavn(props.person.navn)} ({alder})
+                            </span>
+                        </Undertittel>
+                        <span className="visually-hidden">{kjønn}</span>
+                        <PersonStatus person={props.person} />
+                    </GrunninfoDiv>
+                </VenstreFelt>
 
-            <HøyreFelt>
-                <EtiketterContainer />
-                <NavKontorContainer />
-            </HøyreFelt>
+                <HøyreFelt>
+                    <EtiketterContainer />
+                    <NavKontorContainer />
+                </HøyreFelt>
+            </StyledContent>
 
             <ChevronStyling>
                 <VisMerChevron

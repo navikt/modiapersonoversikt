@@ -11,8 +11,10 @@ import { INFOTABS } from '../InfoTabEnum';
 import SakerOversikt from './SakerOversikt';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 
+const oversiktMediaThreshold = pxToRem(750);
+
 const Style = styled.div`
-    @media (${theme.media.wideScreen}) {
+    @media (min-width: ${oversiktMediaThreshold}) {
         display: flex;
         justify-content: center;
     }
@@ -27,7 +29,7 @@ const KolonneStyle = styled.div`
     > * {
         margin-bottom: ${theme.margin.layout};
     }
-    @media (${theme.media.wideScreen}) {
+    @media (min-width: ${oversiktMediaThreshold}) {
         &:not(:last-child) {
             margin-right: ${theme.margin.layout};
         }
