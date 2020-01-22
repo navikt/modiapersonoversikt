@@ -5,13 +5,14 @@ import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
 import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
 import Preview from './Preview';
-import { Meldingstype } from '../../../models/meldinger/meldinger';
+import { Meldingstype, Traad } from '../../../models/meldinger/meldinger';
 import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useSendtMelding } from './useSendtMelding';
 import GaaTilNesteOppgaveKnapp from './GaaTilNesteOppgaveKnapp';
+import TidligereMeldinger from './fortsettDialog/tidligereMeldinger/TidligereMeldinger';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -36,12 +37,19 @@ export const DialogpanelKvitteringStyling = styled.div`
 `;
 const SpinnerWrapper = styled(FillCenterAndFadeIn)`
     ${theme.hvittPanel};
+    box-shadow: none;
+    border: ${theme.border.skille};
     padding: 0.5rem;
 `;
 
 export function DialogpanelFeilmelding() {
     return <AlertStripeFeil>Det skjedde en feil ved sending av melding</AlertStripeFeil>;
 }
+
+const StyledVerktøylinje = styled(Verktoylinje)`
+    box-shadow: none;
+    border: ${theme.border.skille};
+`;
 
 function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     const sendtMelding = useSendtMelding(props.fritekst);
@@ -57,7 +65,7 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     if (!sendtMelding.traad) {
         return <AlertStripeInfo>Kunne ikke vise journalføring/merk/oppgave-panel</AlertStripeInfo>;
     }
-    return <Verktoylinje valgtTraad={sendtMelding.traad} />;
+    return <StyledVerktøylinje valgtTraad={sendtMelding.traad} />;
 }
 
 export function DialogpanelKvittering(props: {
@@ -65,12 +73,14 @@ export function DialogpanelKvittering(props: {
     fritekst: string;
     meldingstype: Meldingstype;
     lukk: () => void;
+    traad?: Traad;
 }) {
     const sendtMelding = useSendtMelding(props.fritekst);
     const opprettetDato = sendtMelding.melding ? sendtMelding.melding.opprettetDato : undefined;
     return (
         <DialogpanelKvitteringStyling>
             <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
+            {props.traad && <TidligereMeldinger traad={props.traad} />}
             <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
             <Preview
                 opprettetDato={opprettetDato}

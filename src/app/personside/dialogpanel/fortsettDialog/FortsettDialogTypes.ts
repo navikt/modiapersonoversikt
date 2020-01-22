@@ -1,5 +1,5 @@
 import { LeggTilbakeOppgaveRequest } from '../../../../models/oppgave';
-import { Meldingstype } from '../../../../models/meldinger/meldinger';
+import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import { FortsettDialogType } from './FortsettDialogContainer';
@@ -18,6 +18,7 @@ export type KvitteringsData = {
     fritekst: string;
     meldingstype: Meldingstype;
     temagruppe?: Temagruppe;
+    traad: Traad;
 };
 
 interface DialogStatusInterface {

@@ -123,9 +123,10 @@ function FortsettDialogContainer(props: Props) {
                 ...commonPayload,
                 erOppgaveTilknyttetAnsatt: true // TODO, denne bør ikke være nødvendig å sende med her
             };
-            const kvitteringsData = {
+            const kvitteringsData: KvitteringsData = {
                 fritekst: request.fritekst,
-                meldingstype: request.meldingstype
+                meldingstype: request.meldingstype,
+                traad: props.traad
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Send-Svar')
                 .then(() => {
@@ -149,9 +150,10 @@ function FortsettDialogContainer(props: Props) {
                 erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
                 sak: state.sak ? state.sak : undefined
             };
-            const kvitteringsData = {
+            const kvitteringsData: KvitteringsData = {
                 fritekst: request.fritekst,
-                meldingstype: request.meldingstype
+                meldingstype: request.meldingstype,
+                traad: props.traad
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
@@ -176,7 +178,8 @@ function FortsettDialogContainer(props: Props) {
                     const kvitteringsData: KvitteringsData = {
                         fritekst: request.fritekst,
                         meldingstype: Meldingstype.DELVIS_SVAR_SKRIFTLIG,
-                        temagruppe: request.temagruppe
+                        temagruppe: request.temagruppe,
+                        traad: props.traad
                     };
                     setDialogStatus({ type: DialogPanelStatus.DELSVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
