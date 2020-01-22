@@ -24,6 +24,8 @@ import { useInfotabsDyplenker } from '../../dyplenker';
 import DokumentLenke from './DokumentLenke';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     journalpost: Journalpost;
@@ -31,7 +33,7 @@ interface Props {
     valgtSakstema: Sakstema;
 }
 
-const ListeElementStyle = styled.li<{ valgt: boolean }>`
+const StyledArticle = styled.article<{ valgt: boolean }>`
     ${props =>
         props.valgt &&
         css`
@@ -114,10 +116,10 @@ function getDokumentIkon(harTilgang: boolean) {
 function JournalpostLiseElement(props: Props) {
     const vedleggLinkRef = React.createRef<HTMLUListElement>();
     const hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
-    const dokumentRef = React.createRef<HTMLLIElement>();
     const nyttVinduLinkRef = React.createRef<HTMLAnchorElement>();
     const bruker = useRestResource(resources => resources.personinformasjon);
     const dyplenker = useInfotabsDyplenker();
+    const tittelId = useRef(guid());
 
     const dokumentKanVises = (dokument: Enkeltdokument, journalpost: Journalpost) => {
         return dokument.kanVises && harTilgangTilJournalpost(journalpost);
@@ -182,32 +184,39 @@ function JournalpostLiseElement(props: Props) {
     const hovedDokument = journalpost.hoveddokument;
 
     return (
-        <ListeElementStyle ref={dokumentRef} valgt={dyplenker.saker.erValgtJournalpost(props.journalpost)}>
-            <IkonWrapper>{getDokumentIkon(harTilgangTilJournalpost(journalpost))}</IkonWrapper>
-            <InnholdWrapper>
-                <UUcustomOrder>
-                    <div ref={hoveddokumentLinkRef} className="order-second">
-                        <DokumentLenke
-                            key={hovedDokument.dokumentreferanse + journalpost.journalpostId}
-                            dokument={hovedDokument}
-                            valgtSakstema={props.valgtSakstema}
-                            kanVises={tilgangTilHoveddokument && dokumentKanVises(hovedDokument, journalpost)}
-                            journalPost={journalpost}
-                        />
-                    </div>
-                    <div className="order-first">
-                        <Normaltekst>{formaterDatoOgAvsender(brukersNavn, journalpost)}</Normaltekst>
-                    </div>
-                </UUcustomOrder>
-                {dokumentVedlegg}
-                {saksvisning}
-            </InnholdWrapper>
-            {erNyePersonoversikten() ? (
-                egetVinduLenke
-            ) : (
-                <IfFeatureToggleOn toggleID={FeatureToggles.SaksoversiktNyttVindu}>{egetVinduLenke}</IfFeatureToggleOn>
-            )}
-        </ListeElementStyle>
+        <li>
+            <StyledArticle
+                valgt={dyplenker.saker.erValgtJournalpost(props.journalpost)}
+                aria-labelledby={tittelId.current}
+            >
+                <IkonWrapper>{getDokumentIkon(harTilgangTilJournalpost(journalpost))}</IkonWrapper>
+                <InnholdWrapper>
+                    <UUcustomOrder id={tittelId.current}>
+                        <h4 ref={hoveddokumentLinkRef} className="order-second">
+                            <DokumentLenke
+                                key={hovedDokument.dokumentreferanse + journalpost.journalpostId}
+                                dokument={hovedDokument}
+                                valgtSakstema={props.valgtSakstema}
+                                kanVises={tilgangTilHoveddokument && dokumentKanVises(hovedDokument, journalpost)}
+                                journalPost={journalpost}
+                            />
+                        </h4>
+                        <div className="order-first">
+                            <Normaltekst>{formaterDatoOgAvsender(brukersNavn, journalpost)}</Normaltekst>
+                        </div>
+                    </UUcustomOrder>
+                    {dokumentVedlegg}
+                    {saksvisning}
+                </InnholdWrapper>
+                {erNyePersonoversikten() ? (
+                    egetVinduLenke
+                ) : (
+                    <IfFeatureToggleOn toggleID={FeatureToggles.SaksoversiktNyttVindu}>
+                        {egetVinduLenke}
+                    </IfFeatureToggleOn>
+                )}
+            </StyledArticle>
+        </li>
     );
 }
 
