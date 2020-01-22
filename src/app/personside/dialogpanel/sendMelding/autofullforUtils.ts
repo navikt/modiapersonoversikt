@@ -5,6 +5,7 @@ import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/stringFormatting';
 import { loggError, loggEvent } from '../../../../utils/frontendLogger';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import { mockEnabled } from '../../../../api/config';
 
 export type AutofullforData = {
     person?: PersonRespons;
