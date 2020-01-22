@@ -21,16 +21,23 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
 
     expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.YTELSER.toLowerCase());
 
-    infoTabs
-        .find('section')
-        .first()
+    const forventetMarkert = infoTabs
+        .find('VisMerKnapp')
+        .at(1)
+        .find('button')
         .html()
-        .includes('YtelserListe');
-    infoTabs
-        .find('section')
-        .first()
+        .includes('aria-selected="true"');
+
+    expect(forventetMarkert);
+
+    const ikkeMarkert = infoTabs
+        .find('VisMerKnapp')
+        .at(0)
+        .find('button')
         .html()
-        .includes('ValgtYtelse');
+        .includes('aria-selected="false"');
+
+    expect(ikkeMarkert);
 });
 
 function clickOnYtelse(infoTabs: ReactWrapper) {
