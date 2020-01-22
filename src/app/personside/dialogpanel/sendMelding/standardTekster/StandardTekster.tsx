@@ -86,7 +86,7 @@ function velgTekst(
         event.stopPropagation();
         if (erGyldigValg(tekst, locale)) {
             loggEvent('Velg tekst', 'Standardtekster');
-            const localeTekst = tekst.innhold[locale];
+            const localeTekst: string = tekst.innhold[locale]?.trim();
             if (autofullforData) {
                 const nokler = byggAutofullforMap(
                     locale,
