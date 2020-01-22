@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { loggEvent } from '../../utils/frontendLogger';
-import HurtigTasterHjelpModal from '../../components/standalone/HurtigTasterHjelpModal';
+import HurtigTasterHjelpModal from './HurtigTasterHjelpModal';
 
-function HurtigtastContainer() {
+function HurtigtastTipsContainer() {
     const [apen, settApen] = useState(false);
 
     useEffect(() => {
@@ -25,4 +25,4 @@ function HurtigtastContainer() {
     return <HurtigTasterHjelpModal apen={apen} lukkModal={() => settApen(false)} />;
 }
 
-export default HurtigtastContainer;
+export default HurtigtastTipsContainer;

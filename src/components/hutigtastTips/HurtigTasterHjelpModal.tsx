@@ -6,7 +6,7 @@ import { Innholdstittel } from 'nav-frontend-typografi';
 
 const Modal = styled(NavFrontendModal)`
     &.modal {
-        max-height: 40rem;
+        max-height: 70vh;
         min-width: 25rem;
     }
 `;
@@ -23,16 +23,18 @@ interface Props {
 function HurtigTasterHjelpModal(props: Props) {
     const tableHeaders = ['Tast', 'Beskrivelse'];
     const taster = [
-        { tast: 'Alt + O', beskrivelse: 'Vis Oversikt' },
-        { tast: 'Alt + T', beskrivelse: 'Vis Oppfølging' },
-        { tast: 'Alt + M', beskrivelse: 'Vis Meldinger' },
-        { tast: 'Alt + U', beskrivelse: 'Vis Utbetalinger' },
-        { tast: 'Alt + S', beskrivelse: 'Vis Saker' },
-        { tast: 'Alt + Y', beskrivelse: 'Vis Ytelser' },
-        { tast: 'Alt + V', beskrivelse: 'Vis Varsler' },
-        { tast: 'Alt + L', beskrivelse: 'Lukk Kontrollsporsmal' },
-        { tast: 'Alt + N', beskrivelse: 'Åpne Visitkort' },
-        { tast: 'Alt + B', beskrivelse: 'Gå til Personforvalter' }
+        { tast: 'Alt + O', beskrivelse: 'Vis oversikt' },
+        { tast: 'Alt + T', beskrivelse: 'Vis oppfølging' },
+        { tast: 'Alt + M', beskrivelse: 'Vis meldinger' },
+        { tast: 'Alt + U', beskrivelse: 'Vis utbetalinger' },
+        { tast: 'Alt + S', beskrivelse: 'Vis saker' },
+        { tast: 'Alt + Y', beskrivelse: 'Vis ytelser' },
+        { tast: 'Alt + V', beskrivelse: 'Vis varsler' },
+        { tast: 'Alt + L', beskrivelse: 'Lukk kontrollsporsmal' },
+        { tast: 'Alt + N', beskrivelse: 'Åpne/lukke visitkort' },
+        { tast: 'Alt + C', beskrivelse: 'Åpne samtalemaler' },
+        { tast: 'Alt + B', beskrivelse: 'Gå til personforvalter' },
+        { tast: 'Alt + G', beskrivelse: 'Gå til gosys' }
     ];
     const tableRows = taster.map(hurtigtast => [hurtigtast.tast, hurtigtast.beskrivelse]);
     return (
