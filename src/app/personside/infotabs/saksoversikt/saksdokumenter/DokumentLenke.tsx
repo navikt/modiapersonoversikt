@@ -57,7 +57,7 @@ function DokumentLenke(props: Props) {
             </Link>
             {svaksyntModus && (
                 <a href={saksdokumentUrl} download>
-                    Last ned dokument
+                    åpne i pdf
                 </a>
             )}
         </>
