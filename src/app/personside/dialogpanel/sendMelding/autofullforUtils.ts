@@ -105,8 +105,10 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
     const keys = Object.keys(autofullforMap);
     return tekst.replace(/\[(.*?)\]/g, (fullmatch, key) => {
         if (!keys.includes(key)) {
-            loggError(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
-            loggEvent('manglendeNokkel', 'autofullfør', { nøkkel: key });
+            if (!mockEnabled) {
+                loggError(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
+                loggEvent('manglendeNokkel', 'autofullfør', { nøkkel: key });
+            }
             return '[ukjent nøkkel]';
         }
         return autofullforMap[key] || '[fant ingen verdi]';
