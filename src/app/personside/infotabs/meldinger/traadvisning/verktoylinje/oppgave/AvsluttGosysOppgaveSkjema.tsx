@@ -7,7 +7,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { useAppState } from '../../../../../../../utils/customHooks';
 import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
 import { isFinishedPosting } from '../../../../../../../rest/utils/postResource';
-import { loggError } from '../../../../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../../../../utils/frontendLogger';
 import { Textarea } from 'nav-frontend-skjema';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
@@ -52,6 +52,7 @@ function AvsluttGosysOppgaveSkjema() {
                 .then(() => {
                     setSubmitting(false);
                     setAvsluttOppgaveSuksess(true);
+                    loggEvent('AvsluttGosysOppgaveFraUrl', 'AvsluttOppgaveskjema');
                 })
                 .then(() => {
                     dispatch(plukkOppgaveResource.actions.reset);
