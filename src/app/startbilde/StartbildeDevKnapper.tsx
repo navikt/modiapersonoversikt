@@ -15,7 +15,7 @@ function StartbildeDevKnapper() {
     const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
 
     function handleLagOpgaveFraGOSYS() {
-        const oppgaveId = 'ABBA';
+        const oppgaveId = 'A1B2C3';
         dispatch(
             tildelteOppgaverResource.actions.setData([
                 { oppgaveId: oppgaveId, traadId: behandlingsId, fødselsnummer: aremark.fødselsnummer }
