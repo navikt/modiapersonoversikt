@@ -94,18 +94,18 @@ function internalBuild(ruleMap: { [name: string]: Rule }, node: ASTNode, key: nu
 }
 
 function convertRuleFormat(rules: Array<Rule>) {
-    const block = rules.filter(rule => rule.scope === RuleScope.BLOCK);
-    const inline = rules.filter(rule => rule.scope === RuleScope.INLINE);
-    return { block, inline };
+    const blockRules = rules.filter(rule => rule.scope === RuleScope.BLOCK);
+    const inlineRules = rules.filter(rule => rule.scope === RuleScope.INLINE);
+    return { blockRules, inlineRules };
 }
 
 export function parse(content: string, rules: Array<Rule>): AST {
     const trimmed = content.trim().replace(/\r/g, '');
-    const { block, inline } = convertRuleFormat(rules);
+    const { blockRules, inlineRules } = convertRuleFormat(rules);
 
     const initalAST: AST = [trimmed];
-    const afterBlockRules: AST = initalAST.flatMap(node => nodeParser(node, block, false));
-    const afterInlineRules: AST = afterBlockRules.flatMap(node => nodeParser(node, inline));
+    const afterBlockRules: AST = initalAST.flatMap(node => nodeParser(node, blockRules, false));
+    const afterInlineRules: AST = afterBlockRules.flatMap(node => nodeParser(node, inlineRules));
 
     return afterInlineRules.flatMap(simplify);
 }
