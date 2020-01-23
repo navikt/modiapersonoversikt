@@ -12,6 +12,7 @@ import { Textarea } from 'nav-frontend-skjema';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { Element } from 'nav-frontend-typografi';
+import { useDispatch } from 'react-redux';
 
 const StyledAlert = styled.div`
     margin: 1rem 0rem;
@@ -24,7 +25,7 @@ const StyledAvsluttOppgavePanel = styled(EkspanderbartpanelBase)`
     }
     border: ${theme.border.skilleSvak};
     padding: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 2rem;
 `;
 
 function OppgaveFraGosys() {
@@ -34,6 +35,7 @@ function OppgaveFraGosys() {
     const [submitting, setSubmitting] = useState(false);
     const [avsluttOppgaveSuksess, setAvsluttOppgaveSuksess] = useState(false);
     const [error, setError] = useState(false);
+    const dispatch = useDispatch();
     const oppgaveFraGosys =
         isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.fraGosys);
 
@@ -50,6 +52,9 @@ function OppgaveFraGosys() {
                 .then(() => {
                     setSubmitting(false);
                     setAvsluttOppgaveSuksess(true);
+                })
+                .then(() => {
+                    dispatch(plukkOppgaveResource.actions.reset);
                 })
                 .catch(() => {
                     setError(true);
@@ -82,11 +87,12 @@ function OppgaveFraGosys() {
                         <Textarea
                             label={'Beskrivelse'}
                             value={gosysBeskrivelse}
+                            maxLength={0}
                             onChange={e =>
                                 setGosysBeskrivelse((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)
                             }
                         />
-                        <Hovedknapp onClick={() => handleOppgaveFraGosys} spinner={submitting}>
+                        <Hovedknapp onClick={() => handleOppgaveFraGosys()} spinner={submitting}>
                             Avslutt oppgave
                         </Hovedknapp>
                     </>
