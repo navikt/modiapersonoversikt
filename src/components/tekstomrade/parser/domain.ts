@@ -10,11 +10,6 @@ export type ASTNode =
 
 export type AST = Array<ASTNode>;
 
-export interface Rules {
-    block: Array<Rule>;
-    inline: Array<Rule>;
-}
-
 export enum RuleScope {
     BLOCK,
     INLINE

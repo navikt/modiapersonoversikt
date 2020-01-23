@@ -1,4 +1,4 @@
-import { AST, ASTNode, Rule, Rules, RuleScope } from './domain';
+import { AST, ASTNode, Rule, RuleScope } from './domain';
 import { match, RegexMatch, minBy } from './utils';
 import React from 'react';
 
@@ -93,7 +93,7 @@ function internalBuild(ruleMap: { [name: string]: Rule }, node: ASTNode, key: nu
     return React.createElement(element.type, { ...element.props, key }, children);
 }
 
-function convertRuleFormat(rules: Array<Rule>): Rules {
+function convertRuleFormat(rules: Array<Rule>) {
     const block = rules.filter(rule => rule.scope === RuleScope.BLOCK);
     const inline = rules.filter(rule => rule.scope === RuleScope.INLINE);
     return { block, inline };
