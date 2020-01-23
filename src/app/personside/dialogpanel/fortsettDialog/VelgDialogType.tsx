@@ -4,7 +4,7 @@ import { FortsettDialogType } from './FortsettDialogContainer';
 import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
 import { FortsettDialogState } from './FortsettDialogTypes';
-import { useJobberMedSTO } from '../../../../utils/hooks/useJobberMedSTO';
+import { useAppState } from '../../../../utils/customHooks';
 
 interface Props {
     formState: FortsettDialogState;
@@ -14,7 +14,7 @@ interface Props {
 }
 
 function VelgDialogType(props: Props) {
-    const jobberMedSTO = useJobberMedSTO();
+    const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
     function lagRadio(label: string, type: FortsettDialogType) {
         return (
             <Radio

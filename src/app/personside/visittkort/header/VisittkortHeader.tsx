@@ -11,8 +11,7 @@ import Kvinne from '../../../../svg/Kvinne.js';
 import VisMerChevron from '../../../../components/VisMerChevron';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { hentNavn } from '../utils';
-import { useOnMount } from '../../../../utils/customHooks';
-import { useJobberMedSTO } from '../../../../utils/hooks/useJobberMedSTO';
+import { useAppState, useOnMount } from '../../../../utils/customHooks';
 
 interface Props {
     visittkortApent: boolean;
@@ -85,7 +84,7 @@ const ChevronStyling = styled.div`
 
 function VisittkortHeader(props: Props) {
     const navneLinjeRef = useRef<HTMLSpanElement>(null);
-    const jobberMedSTO = useJobberMedSTO();
+    const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
 
     useOnMount(() => {
         if (props.person.sikkerhetstiltak) {

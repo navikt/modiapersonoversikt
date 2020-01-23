@@ -8,13 +8,21 @@ import { AsyncDispatch } from '../ThunkTypes';
 
 export enum actions {
     VELG_TEMAGRUPPE = 'VELG_TEMAGRUPPE',
-    VELG_ENHET = 'VELG_ENHET'
+    VELG_ENHET = 'VELG_ENHET',
+    SET_JOBBER_MED_STO = 'SET_JOBBER_MED_STO'
 }
 
 export function velgTemagruppeForPlukk(temagruppe: Temagruppe): VelgTemagruppeAction {
     return {
         temagruppe: temagruppe,
         type: actions.VELG_TEMAGRUPPE
+    };
+}
+
+export function setJobberMedSTO(jobberMedSTO: boolean): SetJobberMedSTOAction {
+    return {
+        jobberMedSTO: jobberMedSTO,
+        type: actions.SET_JOBBER_MED_STO
     };
 }
 
@@ -40,17 +48,24 @@ interface VelgEnhetAction extends Action {
     enhetId: string;
 }
 
+interface SetJobberMedSTOAction extends Action {
+    type: actions.SET_JOBBER_MED_STO;
+    jobberMedSTO: boolean;
+}
+
 export interface SessionState {
     temagruppeForPlukk?: Temagruppe;
     valgtEnhetId?: string;
+    jobberMedSTO: boolean;
 }
 
 export const SessionInitState: SessionState = {
     temagruppeForPlukk: getTemaFraCookie(),
-    valgtEnhetId: getSaksbehandlerEnhetFraCookieDeprecated()
+    valgtEnhetId: getSaksbehandlerEnhetFraCookieDeprecated(),
+    jobberMedSTO: false
 };
 
-type Actions = VelgTemagruppeAction | VelgEnhetAction;
+type Actions = VelgTemagruppeAction | VelgEnhetAction | SetJobberMedSTOAction;
 
 export default function reducer(state: SessionState = SessionInitState, action: Actions): SessionState {
     switch (action.type) {
@@ -64,6 +79,11 @@ export default function reducer(state: SessionState = SessionInitState, action: 
             return {
                 ...state,
                 valgtEnhetId: action.enhetId
+            };
+        case actions.SET_JOBBER_MED_STO:
+            return {
+                ...state,
+                jobberMedSTO: action.jobberMedSTO
             };
         default:
             return state;
