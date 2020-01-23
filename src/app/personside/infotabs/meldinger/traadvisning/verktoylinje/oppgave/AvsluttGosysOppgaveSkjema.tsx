@@ -28,7 +28,7 @@ const StyledAvsluttOppgavePanel = styled(EkspanderbartpanelBase)`
     margin-bottom: 2rem;
 `;
 
-function OppgaveFraGosys() {
+function AvsluttGosysOppgaveSkjema() {
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const plukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
     const [gosysBeskrivelse, setGosysBeskrivelse] = useState('Henvendelse lest og besvart i Modia.');
@@ -102,4 +102,4 @@ function OppgaveFraGosys() {
     );
 }
 
-export default OppgaveFraGosys;
+export default AvsluttGosysOppgaveSkjema;

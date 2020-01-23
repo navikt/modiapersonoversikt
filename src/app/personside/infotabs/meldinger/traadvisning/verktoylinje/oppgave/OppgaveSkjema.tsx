@@ -23,7 +23,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { getValidOppgaveSkjemaState, validerOppgaveSkjema } from './oppgaveSkjemaValidator';
 import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
 import { useAppState } from '../../../../../../../utils/customHooks';
-import OppgaveFraGosys from './OppgaveFraGosys';
+import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
 
 const AlertStyling = styled.div`
@@ -178,7 +178,7 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     return (
         <SkjemaStyle>
-            <OppgaveFraGosys />
+            <AvsluttGosysOppgaveSkjema />
             <form onSubmit={submitHandler}>
                 <Element>Opprett oppgave</Element>
                 <OppgaveSkjemaElementer {...props} form={formProps} />

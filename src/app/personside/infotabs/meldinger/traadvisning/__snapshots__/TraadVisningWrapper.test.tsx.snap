@@ -362,7 +362,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             <span
               className="typo-normal"
             >
-              Lag oppgave
+              Oppgave
             </span>
           </span>
           <i
@@ -456,6 +456,11 @@ exports[`Viser traad med verktøylinje 1`] = `
       <form
         onSubmit={[Function]}
       >
+        <p
+          className="typo-element"
+        >
+          Opprett oppgave
+        </p>
         <div
           className="skjemaelement"
         >

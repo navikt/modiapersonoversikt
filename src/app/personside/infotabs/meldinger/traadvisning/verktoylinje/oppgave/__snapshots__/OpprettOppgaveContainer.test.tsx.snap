@@ -107,6 +107,11 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   <form
     onSubmit={[Function]}
   >
+    <p
+      className="typo-element"
+    >
+      Opprett oppgave
+    </p>
     <div
       className="skjemaelement"
     >
