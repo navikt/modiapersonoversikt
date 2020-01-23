@@ -1,6 +1,6 @@
 import { erGyldigValg } from '../sokUtils';
 import { Systemtittel } from 'nav-frontend-typografi';
-import Tekstomrade, { Rules } from '../../../../../../components/tekstomrade/tekstomrade';
+import Tekstomrade, { defaultRules } from '../../../../../../components/tekstomrade/tekstomrade';
 import React, { useRef } from 'react';
 import * as StandardTekster from '../domain';
 import { FieldState } from '../../../../../../utils/hooks/use-field-state';
@@ -93,7 +93,7 @@ function StandardTekstPreview({ tekst, locale, sokefelt, highlightRule }: Props)
                 <Systemtittel tag="h4" className="blokk-xs">
                     {tekst && tekst.overskrift}
                 </Systemtittel>
-                <Tekstomrade rules={[highlightRule, ...Rules]} className="typo-normal blokk-m">
+                <Tekstomrade rules={[highlightRule, ...defaultRules]} className="typo-normal blokk-m">
                     {tekst && tekst.innhold[locale]}
                 </Tekstomrade>
             </article>

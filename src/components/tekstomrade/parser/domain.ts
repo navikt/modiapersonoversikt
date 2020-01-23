@@ -10,8 +10,19 @@ export type ASTNode =
 
 export type AST = Array<ASTNode>;
 
+export interface Rules {
+    block: Array<Rule>;
+    inline: Array<Rule>;
+}
+
+export enum RuleScope {
+    BLOCK,
+    INLINE
+}
+
 export type Rule = {
     name: string;
+    scope: RuleScope;
     regex: RegExp;
     parse(match: RegexMatch): ASTNode;
     react(node: ASTNode): ReactElementDescription;
