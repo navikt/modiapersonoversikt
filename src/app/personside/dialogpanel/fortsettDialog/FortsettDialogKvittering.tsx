@@ -19,6 +19,7 @@ export function SvarSendtKvittering(props: { kvitteringsData: KvitteringsData })
             tittel="Svar ble sendt"
             fritekst={props.kvitteringsData.fritekst}
             meldingstype={props.kvitteringsData.meldingstype}
+            traad={props.kvitteringsData.traad}
             lukk={() => {
                 dispatch(setIngenValgtTraadDialogpanel());
             }}
@@ -35,6 +36,7 @@ export function DelsvarRegistrertKvittering(props: { kvitteringsData: Kvittering
             )}`}
             fritekst={props.kvitteringsData.fritekst}
             meldingstype={Meldingstype.DELVIS_SVAR_SKRIFTLIG}
+            traad={props.kvitteringsData.traad}
             lukk={() => {
                 dispatch(setIngenValgtTraadDialogpanel());
             }}

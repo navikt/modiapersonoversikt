@@ -447,7 +447,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   margin-bottom: .5rem;
 }
 
-@media (min-width:35rem) {
+@media (min-width:46.875rem) {
   .c0 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -460,7 +460,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   }
 }
 
-@media (min-width:35rem) {
+@media (min-width:46.875rem) {
   .c1:not(:last-child) {
     margin-right: .5rem;
   }

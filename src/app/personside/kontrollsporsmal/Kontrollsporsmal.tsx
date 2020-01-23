@@ -10,7 +10,6 @@ import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useErKontaktsenter } from '../../../utils/enheterUtils';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
-import { useJobberMedSTO } from '../../../utils/hooks/useJobberMedSTO';
 
 const KontrollSporsmalStyling = styled.section`
     background-color: white;
@@ -50,7 +49,7 @@ function Kontrollsporsmal() {
     const fnr = useFødselsnummer();
     const personResource = useRestResource(resources => resources.personinformasjon, { returnOnPending: Placeholder });
     const erKontaktsenter = useErKontaktsenter();
-    const jobberMedSTO = useJobberMedSTO();
+    const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
 
     if (!visKontrollSpørsmål || jobberMedSTO || !erKontaktsenter || kontrollspørsmålHarBlittLukketForBruker(fnr)) {
         return null;
