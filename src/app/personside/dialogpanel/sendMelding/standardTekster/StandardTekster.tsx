@@ -21,6 +21,7 @@ import LazySpinner from '../../../../../components/LazySpinner';
 import { guid } from 'nav-frontend-js-utils';
 import AriaNotification from '../../../../../components/AriaNotification';
 import { usePrevious } from '../../../../../utils/customHooks';
+import { useTimer } from '../../../../../utils/hooks/useTimer';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -79,13 +80,14 @@ function velgTekst(
     settTekst: (tekst: string) => void,
     tekst: StandardTeksterModels.Tekst | undefined,
     locale: string,
+    timeSpent: number,
     autofullforData?: AutofullforData
 ) {
     return (event: FormEvent) => {
         event.preventDefault();
         event.stopPropagation();
         if (erGyldigValg(tekst, locale)) {
-            loggEvent('Velg tekst', 'Standardtekster');
+            loggEvent('Velg tekst', 'Standardtekster', undefined, { ms: timeSpent });
             const localeTekst: string = tekst.innhold[locale]?.trim();
             if (autofullforData) {
                 const nokler = byggAutofullforMap(
@@ -122,6 +124,7 @@ function StandardTekster(props: Props) {
     const autofullforData = useAutoFullførData();
     const sokeFeltId = useRef(guid());
     const [ariaNotification, setAriaNotification] = useState('');
+    const getSpentTime = useTimer();
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
     useDefaultValgtTekst(filtrerteTekster, valgt);
@@ -180,7 +183,15 @@ function StandardTekster(props: Props) {
     }
 
     return (
-        <StyledForm onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
+        <StyledForm
+            onSubmit={velgTekst(
+                props.appendTekst,
+                valgtTekst,
+                valgtLocale.input.value,
+                getSpentTime(),
+                autofullforData
+            )}
+        >
             <h2 className="sr-only">Standardtekster</h2>
             <SokefeltStyledNav aria-describedby={sokeFeltId.current} ref={sokRef}>
                 <TagInput
