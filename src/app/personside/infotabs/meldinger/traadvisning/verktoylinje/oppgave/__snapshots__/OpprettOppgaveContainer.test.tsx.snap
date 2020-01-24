@@ -318,7 +318,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
             aria-activedescendant={null}
             aria-autocomplete="list"
             aria-controls={null}
-            aria-label="Laster data"
+            aria-label="Velg ansatt"
             aria-labelledby="downshift-1-label"
             autoComplete="off"
             className="skjemaelement__input input--fullbredde"
@@ -335,39 +335,6 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
             role="alert"
           />
         </div>
-        <svg
-          aria-label="Laster innhold"
-          className="spinner c3 spinner--s"
-          focusable="false"
-          height={32}
-          kind="spinner"
-          preserveAspectRatio="xMidYMid"
-          viewBox="0 0 50 50"
-          width={32}
-        >
-          <title>
-            Venter...
-          </title>
-          <circle
-            cx="25"
-            cy="25"
-            fill="none"
-            r="20"
-            stroke="#bdbab7"
-            strokeWidth="5"
-            xmlns="http://www.w3.org/2000/svg"
-          />
-          <circle
-            cx="25"
-            cy="25"
-            fill="none"
-            r="20"
-            stroke="#7f756c"
-            strokeDasharray="50 155"
-            strokeLinecap="round"
-            strokeWidth="5"
-          />
-        </svg>
       </div>
     </div>
     <div

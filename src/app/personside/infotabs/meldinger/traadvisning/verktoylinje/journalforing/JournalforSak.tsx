@@ -10,9 +10,9 @@ import { apiBaseUri } from '../../../../../../../api/config';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { post } from '../../../../../../../api/api';
 import { loggError } from '../../../../../../../utils/frontendLogger';
-import { useDispatch, useSelector } from 'react-redux';
-import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
+import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
+import { useFødselsnummer } from '../../../../../../../utils/customHooks';
 
 export interface Props {
     sak: JournalforingsSak;
@@ -45,13 +45,11 @@ const SuksessStyling = styled.div`
 export function JournalforSak(props: Props) {
     const dispatch = useDispatch();
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
-    const { sak, tilbake, traad, lukkPanel } = props;
-    const { traadId } = traad;
-    const kategori = sakKategori(sak);
+    const kategori = sakKategori(props.sak);
+    const fnr = useFødselsnummer();
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [journalforingSuksess, setJournalforingSuksess] = useState(false);
-    const fnr = useSelector(fnrSelector);
 
     const journalfor = () => {
         if (submitting) {
@@ -59,25 +57,27 @@ export function JournalforSak(props: Props) {
         }
 
         setSubmitting(true);
-        post(`${apiBaseUri}/journalforing/${fnr}/${traadId}`, sak, 'Journalføring').then(
-            () => {
+        post(`${apiBaseUri}/journalforing/${fnr}/${props.traad.traadId}`, props.sak, 'Journalføring')
+            .then(() => {
                 setSubmitting(false);
                 setJournalforingSuksess(true);
                 dispatch(tråderResource.actions.reload);
-            },
-            error => {
+            })
+            .catch(error => {
                 setSubmitting(false);
                 setError('Kunne ikke gjennomføre journalføring');
-                loggError(error, `Kunne ikke gjennomføre journalføring`, { traadId: traadId, saksId: sak.saksId });
-            }
-        );
+                loggError(error, `Kunne ikke gjennomføre journalføring`, {
+                    traadId: props.traad.traadId,
+                    saksId: props.sak.saksId
+                });
+            });
     };
 
     if (journalforingSuksess) {
         return (
             <SuksessStyling>
                 <AlertStripeSuksess>Tråden ble journalført</AlertStripeSuksess>
-                <Hovedknapp autoFocus={true} onClick={lukkPanel}>
+                <Hovedknapp autoFocus={true} onClick={props.lukkPanel}>
                     Lukk
                 </Hovedknapp>
             </SuksessStyling>
@@ -89,10 +89,10 @@ export function JournalforSak(props: Props) {
             <Undertittel tag="h1">Journalføring</Undertittel>
             <Normaltekst className="blokk-xs">{kategori}</Normaltekst>
 
-            <Ingress className="blokk-xxxs">{sak.temaNavn}</Ingress>
+            <Ingress className="blokk-xxxs">{props.sak.temaNavn}</Ingress>
             <CustomStyledTable
                 tittelRekke={['Saksid', 'Opprettet', 'Fagsystem']}
-                rows={[[sak.saksIdVisning, sak.opprettetDatoFormatert, sak.fagsystemNavn]]}
+                rows={[[props.sak.saksIdVisning, props.sak.opprettetDatoFormatert, props.sak.fagsystemNavn]]}
                 className="blokk-m"
             />
             {error && <AlertStripeFeil className="blokk-xs">{error}</AlertStripeFeil>}
@@ -105,7 +105,7 @@ export function JournalforSak(props: Props) {
             >
                 Journalfør
             </Hovedknapp>
-            <Flatknapp htmlType="button" onClick={tilbake}>
+            <Flatknapp htmlType="button" onClick={props.tilbake}>
                 Tilbake
             </Flatknapp>
         </PanelLayout>

@@ -4,6 +4,7 @@ import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { AppState } from '../../redux/reducers';
 import { loggError, loggEvent } from '../../utils/frontendLogger';
 import { Timer } from '../../utils/timer';
+import { includeCredentials } from '../../api/config';
 
 const notFound = new Error();
 const forbidden = new Error();
@@ -106,7 +107,7 @@ export function fetchDataAndDispatchToRedux<T>(
         }
         dispatch({ type: reload ? actionNames.RELOADING : actionNames.STARTING, fetchUrl: uri });
         timer.startTimer();
-        return fetch(uri, { credentials: 'include' })
+        return fetch(uri, includeCredentials)
             .then(parseResponse)
             .then(dispatchDataTilRedux(dispatch, actionNames.FINISHED, uri))
             .catch(handterFeil(dispatch, actionNames, uri))

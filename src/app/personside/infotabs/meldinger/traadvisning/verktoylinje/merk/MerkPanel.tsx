@@ -19,7 +19,7 @@ import {
 } from '../../../utils/meldingerUtils';
 import { Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
-import { apiBaseUri } from '../../../../../../../api/config';
+import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import {
     MerkAvsluttUtenSvarRequest,
@@ -60,8 +60,6 @@ const AlertStyling = styled.div`
         margin-top: 1rem;
     }
 `;
-
-const credentials: RequestInit = { credentials: 'include' };
 
 const MERK_AVSLUTT_URL = `${apiBaseUri}/dialogmerking/avslutt`;
 const MERK_BISYS_URL = `${apiBaseUri}/dialogmerking/bidrag`;
@@ -118,7 +116,7 @@ function MerkPanel(props: Props) {
     const saksbehandlerKanSletteFetch: FetchResult<Boolean> = useFetchWithLog<Boolean>(
         MERK_SLETT_URL,
         'MerkPanel',
-        credentials,
+        includeCredentials,
         'KanSletteMelding'
     );
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
