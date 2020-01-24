@@ -13,6 +13,7 @@ import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useSendtMelding } from './useSendtMelding';
 import GaaTilNesteOppgaveKnapp from './GaaTilNesteOppgaveKnapp';
 import TidligereMeldinger from './fortsettDialog/tidligereMeldinger/TidligereMeldinger';
+import ErrorBoundary from '../../../components/ErrorBoundary';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -78,21 +79,27 @@ export function DialogpanelKvittering(props: {
     const sendtMelding = useSendtMelding(props.fritekst);
     const opprettetDato = sendtMelding.melding ? sendtMelding.melding.opprettetDato : undefined;
     return (
-        <DialogpanelKvitteringStyling>
-            <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
-            {props.traad && <TidligereMeldinger traad={props.traad} />}
-            <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
-            <Preview
-                opprettetDato={opprettetDato}
-                fritekst={sendtMelding.melding?.fritekst || props.fritekst}
-                tittel={meldingstypeTekst(props.meldingstype)}
-            />
-            <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
-            <KnappBase type="standard" onClick={props.lukk}>
-                Start ny dialog
-            </KnappBase>
-            <GaaTilNesteOppgaveKnapp lukk={props.lukk} />
-        </DialogpanelKvitteringStyling>
+        <ErrorBoundary boundaryName="DialogpanelKvittering">
+            <DialogpanelKvitteringStyling>
+                <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
+                {props.traad && (
+                    <ErrorBoundary boundaryName="Tidligere meldinger Dialogpanelkvittering">
+                        <TidligereMeldinger traad={props.traad} />
+                    </ErrorBoundary>
+                )}
+                <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
+                <Preview
+                    opprettetDato={opprettetDato}
+                    fritekst={sendtMelding.melding?.fritekst || props.fritekst}
+                    tittel={meldingstypeTekst(props.meldingstype)}
+                />
+                <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
+                <KnappBase type="standard" onClick={props.lukk}>
+                    Start ny dialog
+                </KnappBase>
+                <GaaTilNesteOppgaveKnapp lukk={props.lukk} />
+            </DialogpanelKvitteringStyling>
+        </ErrorBoundary>
     );
 }
 
