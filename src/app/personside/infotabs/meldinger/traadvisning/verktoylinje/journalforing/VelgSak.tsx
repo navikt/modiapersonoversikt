@@ -8,14 +8,12 @@ import TemaTable from './TemaTabell';
 import styled from 'styled-components/macro';
 import visibleIf from '../../../../../../../components/visibleIfHoc';
 import { Group, groupBy } from '../../../../../../../utils/groupArray';
-import { apiBaseUri } from '../../../../../../../api/config';
+import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 import Spinner from 'nav-frontend-spinner';
 import { useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
 import VisuallyHiddenAutoFokusHeader from '../../../../../../../components/VisuallyHiddenAutoFokusHeader';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
-
-const credentials: RequestInit = { credentials: 'include' };
 
 const Form = styled.form`
     display: flex;
@@ -106,13 +104,13 @@ function VelgSak(props: Props) {
     const gsakSaker: FetchResult<Array<JournalforingsSak>> = useFetchWithLog<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`,
         'VelgSak',
-        credentials,
+        includeCredentials,
         'GsakSaker'
     );
     const psakSaker: FetchResult<Array<JournalforingsSak>> = useFetchWithLog<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`,
         'VelgSak',
-        credentials,
+        includeCredentials,
         'PsakSaker'
     );
 

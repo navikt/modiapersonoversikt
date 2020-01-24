@@ -31,6 +31,8 @@ export function postConfig(body: object | string) {
     };
 }
 
+export const includeCredentials: RequestInit = { credentials: 'include' };
+
 export const apiBaseUri = getApiBaseUri();
 
 export const mockEnabled = getMockEnabled();
