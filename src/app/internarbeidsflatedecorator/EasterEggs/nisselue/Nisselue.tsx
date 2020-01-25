@@ -23,7 +23,7 @@ const Position = styled.div`
     position: absolute;
     left: 1.1rem;
     top: 0;
-    animation: ${dropDown} 1.5s backwards 1.5s;
+    animation: ${dropDown} 1.5s backwards;
 `;
 
 const StyledImg = styled.img<{ shake: boolean; clickable: boolean }>`
