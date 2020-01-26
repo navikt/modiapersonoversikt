@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { AsyncResult, FetchResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { JournalforingsSak, Kategorier, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
@@ -12,7 +12,6 @@ import { apiBaseUri, includeCredentials } from '../../../../../../../api/config'
 import Spinner from 'nav-frontend-spinner';
 import { useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
-import VisuallyHiddenAutoFokusHeader from '../../../../../../../components/VisuallyHiddenAutoFokusHeader';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 
 const Form = styled.form`
@@ -113,11 +112,21 @@ function VelgSak(props: Props) {
         includeCredentials,
         'PsakSaker'
     );
+    const formRef = useRef<HTMLFormElement>(null);
 
     const saker = getSaker(gsakSaker, psakSaker);
     const fordelteSaker = fordelSaker(saker);
 
-    if (isPending(gsakSaker) || isPending(psakSaker)) {
+    const pending = isPending(gsakSaker) || isPending(psakSaker);
+
+    useEffect(() => {
+        const input = formRef.current?.getElementsByTagName('input')[0];
+        if (input) {
+            input.focus();
+        }
+    }, [pending]);
+
+    if (pending) {
         return <Spinner type="XL" />;
     }
 
@@ -133,8 +142,8 @@ function VelgSak(props: Props) {
 
     return (
         <>
-            <VisuallyHiddenAutoFokusHeader tittel="Velg sak" />
-            <Form>
+            <h2 className="sr-only">Velg sak</h2>
+            <Form ref={formRef}>
                 <SakgruppeRadio label={SakKategori.FAG} {...valgtKategori} />
                 <SakgruppeRadio label={SakKategori.GEN} {...valgtKategori} />
             </Form>
