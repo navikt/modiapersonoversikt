@@ -156,6 +156,11 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-bottom: 0.24rem;
 }
 
+.c1:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -474,6 +479,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             className="selectContainer input--fullbredde"
           >
             <select
+              autoFocus={true}
               className="skjemaelement__input"
               disabled={false}
               id="Helt tilfeldig ID"
