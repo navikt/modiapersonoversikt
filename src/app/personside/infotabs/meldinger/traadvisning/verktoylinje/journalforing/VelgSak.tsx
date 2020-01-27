@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { AsyncResult, FetchResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { JournalforingsSak, Kategorier, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
-import { Radio } from 'nav-frontend-skjema';
+import { Radio, RadioProps } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import TemaTable from './TemaTabell';
 import styled from 'styled-components/macro';
@@ -36,16 +36,9 @@ const MiniRadio = styled(Radio)`
 
 const ConditionalFeilmelding = visibleIf(AlertStripeAdvarsel);
 
-function SakgruppeRadio(props: FieldState & { label: SakKategori }) {
-    return (
-        <MiniRadio
-            label={props.label}
-            name="journalforing-sakgruppe"
-            value={props.label}
-            onChange={props.input.onChange}
-            checked={props.input.value === props.label}
-        />
-    );
+function SakgruppeRadio(props: FieldState & RadioProps & { label: SakKategori }) {
+    const { input, ...rest } = props;
+    return <MiniRadio onChange={props.input.onChange} checked={props.input.value === props.label} {...rest} />;
 }
 
 interface Props {
@@ -112,19 +105,11 @@ function VelgSak(props: Props) {
         includeCredentials,
         'PsakSaker'
     );
-    const formRef = useRef<HTMLFormElement>(null);
 
     const saker = getSaker(gsakSaker, psakSaker);
     const fordelteSaker = fordelSaker(saker);
 
     const pending = isPending(gsakSaker) || isPending(psakSaker);
-
-    useEffect(() => {
-        const input = formRef.current?.getElementsByTagName('input')[0];
-        if (input) {
-            input.focus();
-        }
-    }, [pending]);
 
     if (pending) {
         return <Spinner type="XL" />;
@@ -143,9 +128,14 @@ function VelgSak(props: Props) {
     return (
         <>
             <h2 className="sr-only">Velg sak</h2>
-            <Form ref={formRef}>
-                <SakgruppeRadio label={SakKategori.FAG} {...valgtKategori} />
-                <SakgruppeRadio label={SakKategori.GEN} {...valgtKategori} />
+            <Form>
+                <SakgruppeRadio
+                    name="journalforing-sakgruppe"
+                    label={SakKategori.FAG}
+                    {...valgtKategori}
+                    autoFocus={true}
+                />
+                <SakgruppeRadio name="journalforing-sakgruppe" label={SakKategori.GEN} {...valgtKategori} />
             </Form>
             <div>
                 <ConditionalFeilmelding visible={hasError(gsakSaker)} className="blokk-xxxs">
