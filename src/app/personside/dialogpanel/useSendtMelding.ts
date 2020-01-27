@@ -31,6 +31,7 @@ export function useSendtMelding(fritekst: string) {
                 }
             } catch (e) {
                 loggError(e, 'Kunne ikke finne sendt melding', { traader: traaderResource.data });
+                throw e;
             }
         }
     }, [traaderResource, fritekst, traad, melding]);
