@@ -39,7 +39,6 @@ function useHandleQueryParams() {
             setNyBrukerIPath(history, queryParams.sokFnr);
         }
     });
-
     return { queryParams, sokFnr };
 }
 

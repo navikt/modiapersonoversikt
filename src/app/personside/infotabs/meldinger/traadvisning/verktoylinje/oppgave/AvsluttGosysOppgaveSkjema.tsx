@@ -31,7 +31,7 @@ const StyledAvsluttOppgavePanel = styled(EkspanderbartpanelBase)`
 function AvsluttGosysOppgaveSkjema() {
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const plukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
-    const [gosysBeskrivelse, setGosysBeskrivelse] = useState('Henvendelse lest og besvart i Modia.');
+    const [gosysBeskrivelse, setGosysBeskrivelse] = useState('Henvendelse lest og vurdert i Modia.');
     const [submitting, setSubmitting] = useState(false);
     const [avsluttOppgaveSuksess, setAvsluttOppgaveSuksess] = useState(false);
     const [error, setError] = useState(false);
@@ -40,7 +40,11 @@ function AvsluttGosysOppgaveSkjema() {
         isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.fraGosys);
 
     const handleOppgaveFraGosys = () => {
+        if (submitting) {
+            return;
+        }
         setSubmitting(true);
+
         if (oppgaveFraGosys) {
             const request = {
                 fnr: oppgaveFraGosys.fødselsnummer,
@@ -50,19 +54,23 @@ function AvsluttGosysOppgaveSkjema() {
             };
             post(`${apiBaseUri}/dialogmerking/avsluttgosysoppgave`, request, 'Avslutt-Oppgave-Fra-Gosys')
                 .then(() => {
-                    setSubmitting(false);
                     setAvsluttOppgaveSuksess(true);
                     loggEvent('AvsluttGosysOppgaveFraUrl', 'AvsluttOppgaveskjema');
-                })
-                .then(() => {
                     dispatch(plukkOppgaveResource.actions.reset);
                 })
                 .catch(() => {
                     setError(true);
                     loggError(new Error('AvslutteGosysOppgave'), 'Oppgave');
+                })
+                .finally(() => {
+                    setSubmitting(false);
                 });
         }
     };
+
+    if (!oppgaveFraGosys) {
+        return null;
+    }
 
     if (avsluttOppgaveSuksess) {
         return (
@@ -81,25 +89,21 @@ function AvsluttGosysOppgaveSkjema() {
     }
 
     return (
-        <>
-            {oppgaveFraGosys && (
-                <StyledAvsluttOppgavePanel apen={true} heading={<Element>Avslutt oppgave fra GOSYS</Element>}>
-                    <>
-                        <Textarea
-                            label={'Beskrivelse'}
-                            value={gosysBeskrivelse}
-                            maxLength={0}
-                            onChange={e =>
-                                setGosysBeskrivelse((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)
-                            }
-                        />
-                        <Hovedknapp onClick={() => handleOppgaveFraGosys()} spinner={submitting}>
-                            Avslutt oppgave
-                        </Hovedknapp>
-                    </>
-                </StyledAvsluttOppgavePanel>
-            )}
-        </>
+        <StyledAvsluttOppgavePanel apen={true} heading={<Element>Avslutt oppgave fra GOSYS</Element>}>
+            <>
+                <Textarea
+                    label={'Beskrivelse'}
+                    value={gosysBeskrivelse}
+                    maxLength={0}
+                    onChange={e =>
+                        setGosysBeskrivelse((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)
+                    }
+                />
+                <Hovedknapp onClick={() => handleOppgaveFraGosys()} spinner={submitting}>
+                    Avslutt oppgave
+                </Hovedknapp>
+            </>
+        </StyledAvsluttOppgavePanel>
     );
 }
 
