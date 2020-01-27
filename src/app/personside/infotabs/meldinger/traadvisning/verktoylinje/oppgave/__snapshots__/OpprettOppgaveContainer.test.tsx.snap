@@ -120,6 +120,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         className="selectContainer input--fullbredde"
       >
         <select
+          autoFocus={true}
           className="skjemaelement__input"
           disabled={false}
           id="Helt tilfeldig ID"

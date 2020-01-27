@@ -47,6 +47,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                     props.form.valideringsResultat.felter.valgtTema &&
                     props.form.valideringsResultat.felter.valgtTema.skjemafeil
                 }
+                autoFocus={true}
                 label={'Tema'}
                 onChange={event => props.form.actions.oppdaterStateVedValgtTema(hentValgtTema(props.gsakTema, event))}
                 value={(props.form.state.valgtTema && props.form.state.valgtTema.kode) || ''}
