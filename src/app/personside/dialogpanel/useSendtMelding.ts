@@ -3,6 +3,7 @@ import { erSammefritekstSomIMelding, nyesteMelding, nyesteTraad } from '../infot
 import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { useEffect, useMemo, useState } from 'react';
 import { Melding, Traad } from '../../../models/meldinger/meldinger';
+import { loggError } from '../../../utils/frontendLogger';
 
 export function useSendtMelding(fritekst: string) {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
@@ -18,14 +19,18 @@ export function useSendtMelding(fritekst: string) {
             return;
         }
         if (traaderResource.data) {
-            const sisteTraad = nyesteTraad(traaderResource.data);
-            const sisteMelding = nyesteMelding(sisteTraad);
-            const erRiktigMelding =
-                erSammefritekstSomIMelding(fritekst, sisteMelding) && erMaks10MinSiden(sisteMelding.opprettetDato);
-            //Sjekker om nyeste meldingen hentet ut er samme som ble sendt når det er vanskelig å få ut traadUd / behandlingsId fra backend
-            if (erRiktigMelding) {
-                setMelding(sisteMelding);
-                setTraad(sisteTraad);
+            try {
+                const sisteTraad = nyesteTraad(traaderResource.data);
+                const sisteMelding = nyesteMelding(sisteTraad);
+                const erRiktigMelding =
+                    erSammefritekstSomIMelding(fritekst, sisteMelding) && erMaks10MinSiden(sisteMelding.opprettetDato);
+                //Sjekker om nyeste meldingen hentet ut er samme som ble sendt når det er vanskelig å få ut traadUd / behandlingsId fra backend
+                if (erRiktigMelding) {
+                    setMelding(sisteMelding);
+                    setTraad(sisteTraad);
+                }
+            } catch (e) {
+                loggError(e, 'Kunne ikke finne sendt melding', { traader: traaderResource.data });
             }
         }
     }, [traaderResource, fritekst, traad, melding]);
