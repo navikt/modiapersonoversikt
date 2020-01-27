@@ -7,6 +7,7 @@ import { Input } from 'nav-frontend-skjema';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import EtikettGrå from '../../../../../../../components/EtikettGrå';
+import { isNumber } from 'util';
 
 const DropDownWrapper = styled.div`
     ul {
@@ -75,6 +76,7 @@ function SuggestionMarkup<Item>(props: { item: Item; helpers: ControllerStateAnd
 
 function AutoComplete<Item>(props: Props<Item>) {
     const [input, setInput] = useState('');
+    const [hightlightedItem, setHightlightedItem] = useState<Item | undefined>(undefined);
 
     const { value, itemToString } = props;
     useEffect(() => {
@@ -82,12 +84,6 @@ function AutoComplete<Item>(props: Props<Item>) {
             setInput(itemToString(value));
         }
     }, [itemToString, value]);
-
-    const handleStateChange = (changes: any) => {
-        if (changes.hasOwnProperty('selectedItem')) {
-            props.setValue(changes.selectedItem);
-        }
-    };
 
     const showItemBasedOnInput = (input: string | null) => (item: Item) => {
         if (!input || input === '') {
@@ -106,6 +102,17 @@ function AutoComplete<Item>(props: Props<Item>) {
     const itemNotInTopSuggestions = (item: Item) =>
         !filteredTopSuggetions.some(it => itemToString(it) === itemToString(item));
     const filteredSuggestions = props.suggestions.filter(showItemBasedOnInput(input)).filter(itemNotInTopSuggestions);
+
+    const handleStateChange = (changes: any) => {
+        if (changes.hasOwnProperty('selectedItem')) {
+            props.setValue(changes.selectedItem);
+        } else if (isNumber(changes.highlightedIndex)) {
+            const highlightedItem = [...filteredTopSuggetions, ...filteredSuggestions][changes.highlightedIndex];
+            highlightedItem && setHightlightedItem(highlightedItem);
+        } else if (changes.type === '__autocomplete_blur_input__' && !value) {
+            hightlightedItem && props.setValue(hightlightedItem);
+        }
+    };
 
     return (
         <Downshift

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser info om bruker i visittkort-header 1`] = `
-.c10 {
+.c11 {
   margin: 0.5rem 0 0 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -13,16 +13,16 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   justify-content: flex-end;
 }
 
-.c10 > * {
+.c11 > * {
   white-space: nowrap;
 }
 
-.c10 > *:first-child:after {
+.c11 > *:first-child:after {
   content: '/';
   margin: 0 0.2em;
 }
 
-.c10 > *:last-child {
+.c11 > *:last-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -34,7 +34,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin: 0;
 }
 
-.c5 {
+.c6 {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -44,41 +44,41 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   display: inline-flex;
 }
 
-.c5 li {
+.c6 li {
   white-space: nowrap;
 }
 
-.c5 li:not(:last-child):after {
+.c6 li:not(:last-child):after {
   content: '/';
   margin: 0 0.2em;
 }
 
-.c4 {
+.c5 {
   margin-right: 1em;
 }
 
-.c4 > *:not(:first-child)::before {
+.c5 > *:not(:first-child)::before {
   content: '–';
   margin: 0 0.5rem;
 }
 
-.c9 {
+.c10 {
   display: inline-block;
   -webkit-animation: hcoNTW 0.3s 1s 6 alternate;
   animation: hcoNTW 0.3s 1s 6 alternate;
 }
 
-.c9:focus {
+.c10:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c8 > * {
+.c9 > * {
   margin: 6px 0 0 6px;
   white-space: nowrap;
 }
 
-.c7 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -93,7 +93,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   align-items: center;
 }
 
-.c12 {
+.c13 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -101,17 +101,17 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   border-radius: 0.5em;
 }
 
-.c12:focus {
+.c13:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c12:focus {
+.c13:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c12:focus::after {
+.c13:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -127,7 +127,22 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   padding: .5rem;
   padding-right: 0;
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
   width: 100%;
+  cursor: pointer;
+}
+
+.c1 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -135,23 +150,22 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   -webkit-flex-flow: row wrap;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
-  cursor: pointer;
 }
 
-.c0 > *:not(:last-child) {
-  -webkit-flex: 1 1;
-  -ms-flex: 1 1;
-  flex: 1 1;
+.c1 > * {
+  -webkit-flex: 1 1 15rem;
+  -ms-flex: 1 1 15rem;
+  flex: 1 1 15rem;
 }
 
-.c1 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c6 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -167,19 +181,19 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   box-sizing: border-box;
 }
 
-.c2 {
+.c3 {
   -webkit-flex: 0 0 3.125rem;
   -ms-flex: 0 0 3.125rem;
   flex: 0 0 3.125rem;
   text-align: left;
 }
 
-.c2 svg {
+.c3 svg {
   height: 2.5rem;
   width: auto;
 }
 
-.c3 {
+.c4 {
   -webkit-flex: 1 1;
   -ms-flex: 1 1;
   flex: 1 1;
@@ -198,16 +212,16 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   word-break: break-word;
 }
 
-.c3 *:focus {
+.c4 *:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c3 > *:first-child {
+.c4 > *:first-child {
   margin-bottom: 0.2em !important;
 }
 
-.c11 {
+.c12 {
   padding: 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -229,109 +243,97 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   onClick={[Function]}
   role="region"
 >
-  <section
+  <div
     className="c1"
   >
-    <div
+    <section
       className="c2"
     >
-      <svg
-        alt="Mann"
-        aria-label="Mann"
-        height={64}
-        viewBox="0 0 64 64"
-        width={64}
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        className="c3"
       >
-        <path
-          d="M32 0a32 32 0 1 0 0 64 32 32 0 0 0 0-64zm0 8a3.9 3.9 0 1 1 0 7.7 3.9 3.9 0 0 1 0-7.8zm10 15.5v10.8c0 .9-.7 1.6-1.6 1.6-1 0-1.8-.7-1.8-1.6v-8.9c0-.4-.3-.8-.7-.8-.4 0-.7.3-.7.7v28.5a2.2 2.2 0 1 1-4.5 0v-18a.7.7 0 0 0-1.4 0v18a2.2 2.2 0 0 1-4.4 0V25.4a.7.7 0 0 0-1.5 0V34.3c0 .9-.8 1.6-1.8 1.6s-1.7-.7-1.7-1.6V23.5v-.7c0-3.4 3.6-5.8 7-6H35c3.4.2 7 2.6 7 6v.7z"
-          fill="#3385D1"
-        />
-      </svg>
-    </div>
-    <section
-      className="c3"
-    >
-      <h1
-        className="typo-undertittel"
-      >
-        <span
-          tabIndex={-1}
+        <svg
+          alt="Mann"
+          aria-label="Mann"
+          height={64}
+          viewBox="0 0 64 64"
+          width={64}
+          xmlns="http://www.w3.org/2000/svg"
         >
-          AREMARK TESTFAMILIEN
-           (
-          42
-          )
-        </span>
-      </h1>
-      <span
-        className="visually-hidden"
+          <path
+            d="M32 0a32 32 0 1 0 0 64 32 32 0 0 0 0-64zm0 8a3.9 3.9 0 1 1 0 7.7 3.9 3.9 0 0 1 0-7.8zm10 15.5v10.8c0 .9-.7 1.6-1.6 1.6-1 0-1.8-.7-1.8-1.6v-8.9c0-.4-.3-.8-.7-.8-.4 0-.7.3-.7.7v28.5a2.2 2.2 0 1 1-4.5 0v-18a.7.7 0 0 0-1.4 0v18a2.2 2.2 0 0 1-4.4 0V25.4a.7.7 0 0 0-1.5 0V34.3c0 .9-.8 1.6-1.8 1.6s-1.7-.7-1.7-1.6V23.5v-.7c0-3.4 3.6-5.8 7-6H35c3.4.2 7 2.6 7 6v.7z"
+            fill="#3385D1"
+          />
+        </svg>
+      </div>
+      <section
+        className="c4"
       >
-        Mann
-      </span>
-      <span
-        className="typo-normal"
-      >
-        <span
-          className="c4"
+        <h1
+          className="typo-undertittel"
         >
           <span
-            title="Fødselsnummer"
+            tabIndex={-1}
           >
-            10108000398
+            AREMARK TESTFAMILIEN
+             (
+            42
+            )
           </span>
-          <span>
-            Utvandret
-          </span>
-        </span>
-        <ul
-          className="c5"
+        </h1>
+        <span
+          className="visually-hidden"
         >
-          <li
-            title="Statsborgerskap"
+          Mann
+        </span>
+        <span
+          className="typo-normal"
+        >
+          <span
+            className="c5"
           >
-            Norge
-          </li>
-          <li
-            title="Sivilstand"
+            <span
+              title="Fødselsnummer"
+            >
+              10108000398
+            </span>
+            <span>
+              Utvandret
+            </span>
+          </span>
+          <ul
+            className="c6"
           >
-            Gift
-          </li>
-          <li
-            title="Barn under 21 år"
-          >
-            4
-             barn under 21 år
-          </li>
-        </ul>
-      </span>
+            <li
+              title="Statsborgerskap"
+            >
+              Norge
+            </li>
+            <li
+              title="Sivilstand"
+            >
+              Gift
+            </li>
+            <li
+              title="Barn under 21 år"
+            >
+              4
+               barn under 21 år
+            </li>
+          </ul>
+        </span>
+      </section>
     </section>
-  </section>
-  <div
-    className="c6"
-  >
     <div
       className="c7"
     >
-      <section
-        aria-label="etiketter"
+      <div
         className="c8"
-        role="region"
       >
-        <div
-          className="etikett etikett--advarsel"
-        >
-          <span
-            className="typo-normal"
-          >
-            Kode 7
-          </span>
-        </div>
-        <div
-          aria-live="assertive"
+        <section
+          aria-label="etiketter"
           className="c9"
-          role="alert"
-          tabIndex={-1}
+          role="region"
         >
           <div
             className="etikett etikett--advarsel"
@@ -339,64 +341,80 @@ exports[`viser info om bruker i visittkort-header 1`] = `
             <span
               className="typo-normal"
             >
-              Sikkerhetstiltak
+              Kode 7
             </span>
           </div>
-        </div>
-        <div
-          className="etikett etikett--fokus"
-        >
-          <span
-            className="typo-normal"
+          <div
+            aria-live="assertive"
+            className="c10"
+            role="alert"
+            tabIndex={-1}
           >
-            Vergemål
-          </span>
-        </div>
-        <div
-          className="etikett etikett--fokus"
-        >
-          <span
-            className="typo-normal"
+            <div
+              className="etikett etikett--advarsel"
+            >
+              <span
+                className="typo-normal"
+              >
+                Sikkerhetstiltak
+              </span>
+            </div>
+          </div>
+          <div
+            className="etikett etikett--fokus"
           >
-            Tolkehjelp
-          </span>
-        </div>
-        <div
-          className="etikett etikett--fokus"
-        >
-          <span
-            className="typo-normal"
+            <span
+              className="typo-normal"
+            >
+              Vergemål
+            </span>
+          </div>
+          <div
+            className="etikett etikett--fokus"
           >
-            Fullmakt
-          </span>
-        </div>
+            <span
+              className="typo-normal"
+            >
+              Tolkehjelp
+            </span>
+          </div>
+          <div
+            className="etikett etikett--fokus"
+          >
+            <span
+              className="typo-normal"
+            >
+              Fullmakt
+            </span>
+          </div>
+        </section>
+      </div>
+      <section
+        aria-label="Nav kontor"
+        className="c11"
+      >
+        <h2
+          className="typo-element"
+        >
+          NAV-kontor
+        </h2>
+        <p
+          className="typo-element"
+        >
+          0118
+           
+          NAV Aremark
+        </p>
       </section>
     </div>
-    <section
-      aria-label="Nav kontor"
-      className="c10"
-    >
-      <h2
-        className="typo-element"
-      >
-        NAV-kontor
-      </h2>
-      <p
-        className="typo-element"
-      >
-        0118
-         
-        NAV Aremark
-      </p>
-    </section>
   </div>
   <div
-    className="c11"
+    className="c12"
   >
     <button
       aria-expanded={false}
       aria-label="Åpne visittkort (Alt + N)"
-      className="c12"
+      className="c13"
       onClick={[Function]}
       title="Åpne visittkort (Alt + N)"
     >

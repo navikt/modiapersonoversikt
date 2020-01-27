@@ -81,7 +81,8 @@ function HentOppgaveKnapp() {
         setTomKø(false);
         dispatch(
             oppgaveResource.actions.post({}, response => {
-                if (response.length === 0) {
+                const antallOppgaverTildelt = response.length;
+                if (antallOppgaverTildelt === 0) {
                     setTomKø(true);
                     return;
                 }
@@ -90,8 +91,9 @@ function HentOppgaveKnapp() {
                 history.push(
                     `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
                 );
-                response.length > 1 && loggEvent('FlereOppgaverTildelt', 'HentOppgave');
-                loggEvent('Hent-Oppgave', 'HentOppgave');
+                antallOppgaverTildelt > 1 &&
+                    loggEvent('FlereOppgaverTildelt', 'HentOppgave', undefined, { antall: antallOppgaverTildelt });
+                loggEvent('Hent-Oppgave', 'HentOppgave', undefined, { antall: antallOppgaverTildelt });
             })
         );
     };

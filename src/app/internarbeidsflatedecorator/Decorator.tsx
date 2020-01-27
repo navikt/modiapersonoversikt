@@ -7,15 +7,29 @@ import { DecoratorProps } from './decoratorprops';
 import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
 import { useHistory } from 'react-router';
 import './personsokKnapp.less';
+import './hurtigtaster.less';
+import './decorator.less';
 import { useAppState, useFødselsnummer, useOnMount } from '../../utils/customHooks';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { velgEnhetAction } from '../../redux/session/session';
 import { useQueryParams } from '../../utils/urlUtils';
 import styled from 'styled-components';
+import { loggEvent } from '../../utils/frontendLogger';
+import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTipsContainer';
 import useHandleQueryParams from './useHandleQueryParams';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
+const etterSokefelt = `
+<div class="knapper_container">
+  <button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk" data-apne="Åpne avansert søk" data-lukke="Lukk avansert søk">
+    <span> A <span class="personsok-pil"></span></span>
+  </button>
+  <button class="hurtigtaster-button" id="hurtigtaster-button" aria-label="Åpne hurtigtaster" title="Åpne hurtigtaster" data-apne="Åpne hurtigtaster" data-lukke="Lukk hurtigtaster">
+    <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
+  </button>
+</div>
+`;
 
 const StyledNav = styled.nav`
     .dekorator .dekorator__container {
@@ -54,8 +68,7 @@ function lagConfig(
         },
         contextholder: true,
         markup: {
-            etterSokefelt:
-                '<button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk" data-apne="Åpne avansert søk" data-lukke="Lukk avansert søk"> <span> A <span class="personsok-pil"></span> </span> </button>'
+            etterSokefelt: etterSokefelt
         },
         autoSubmitOnMount: true
     };
@@ -106,6 +119,7 @@ function Decorator() {
                 <>
                     <InternflateDecorator {...config} />
                     <PersonsokContainer />
+                    <HurtigtastTipsContainer />
                     <DecoratorEasterEgg />
                 </>
             )}

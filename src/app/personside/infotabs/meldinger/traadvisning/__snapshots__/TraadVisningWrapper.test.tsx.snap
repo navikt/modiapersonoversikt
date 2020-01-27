@@ -156,6 +156,11 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-bottom: 0.24rem;
 }
 
+.c1:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -180,6 +185,7 @@ exports[`Viser traad med verktøylinje 1`] = `
 
 .c4 {
   color: #3e3832;
+  white-space: nowrap;
 }
 
 .c17 .snakkeboble-panel {
@@ -217,13 +223,17 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-bottom: 0.5rem;
 }
 
-.c22 {
+.c23 {
   color: #0067c5;
 }
 
-.c21 .ekspanderbartPanel__hode,
-.c21 .ekspanderbartPanel__innhold {
+.c22 .ekspanderbartPanel__hode,
+.c22 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
+}
+
+.c21 p {
+  margin-bottom: 0 !important;
 }
 
 .c16 {
@@ -312,7 +322,7 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c21 {
+  .c22 {
     display: none;
   }
 }
@@ -437,7 +447,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           <div
             className="typo-normal alertstripe__tekst"
           >
-            Tråden er allerede journalført
+            Tråden er journalført
           </div>
         </div>
         <button
@@ -474,6 +484,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             className="selectContainer input--fullbredde"
           >
             <select
+              autoFocus={true}
               className="skjemaelement__input"
               disabled={false}
               id="Helt tilfeldig ID"
@@ -672,7 +683,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                 aria-activedescendant={null}
                 aria-autocomplete="list"
                 aria-controls={null}
-                aria-label="Laster data"
+                aria-label="Velg ansatt"
                 aria-labelledby="downshift-1-label"
                 autoComplete="off"
                 className="skjemaelement__input input--fullbredde"
@@ -689,39 +700,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                 role="alert"
               />
             </div>
-            <svg
-              aria-label="Laster innhold"
-              className="spinner c13 spinner--s"
-              focusable="false"
-              height={32}
-              kind="spinner"
-              preserveAspectRatio="xMidYMid"
-              viewBox="0 0 50 50"
-              width={32}
-            >
-              <title>
-                Venter...
-              </title>
-              <circle
-                cx="25"
-                cy="25"
-                fill="none"
-                r="20"
-                stroke="#bdbab7"
-                strokeWidth="5"
-                xmlns="http://www.w3.org/2000/svg"
-              />
-              <circle
-                cx="25"
-                cy="25"
-                fill="none"
-                r="20"
-                stroke="#7f756c"
-                strokeDasharray="50 155"
-                strokeLinecap="round"
-                strokeWidth="5"
-              />
-            </svg>
           </div>
         </div>
         <div
@@ -1061,7 +1039,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       27.07.2019 00:00
                     </div>
                     <div
-                      className="tekstomrade typo-normal"
+                      className="tekstomrade typo-normal c21"
                     >
                       Skrevet av Kristoffer Fredriksen (xy70r8)
                     </div>
@@ -1076,7 +1054,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1089,7 +1067,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c22"
+                          className="typo-etikett-liten c23"
                         >
                           Meldingen er journalført
                         </p>
@@ -1176,7 +1154,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1189,7 +1167,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c22"
+                          className="typo-etikett-liten c23"
                         >
                           Meldingen er journalført
                         </p>
@@ -1276,7 +1254,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1289,7 +1267,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c22"
+                          className="typo-etikett-liten c23"
                         >
                           Meldingen er journalført
                         </p>
@@ -1375,7 +1353,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       07.07.2019 00:00
                     </div>
                     <div
-                      className="tekstomrade typo-normal"
+                      className="tekstomrade typo-normal c21"
                     >
                       Skrevet av Sander Hansen (nzxo4q)
                     </div>
@@ -1390,7 +1368,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1403,7 +1381,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c22"
+                          className="typo-etikett-liten c23"
                         >
                           Meldingen er journalført
                         </p>

@@ -3,7 +3,8 @@ import { useState } from 'react';
 
 export enum easterEggs {
     party = 'party',
-    nisse = 'nisse'
+    nisse = 'nisse',
+    klukk = 'klukk'
 }
 
 export function useListenForEasterEgg(defaultEasterEgg: string) {

@@ -131,15 +131,21 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
     return null;
 }
 
+const StyledTekstomrade = styled(Tekstomrade)`
+    p {
+        margin-bottom: 0 !important;
+    }
+`;
+
 export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }
     const avsender = `Skrevet av ${melding.skrevetAvTekst}`;
     return (
-        <Tekstomrade className={'typo-normal'} rules={rule && [rule]}>
+        <StyledTekstomrade className={'typo-normal'} rules={rule && [rule]}>
             {avsender}
-        </Tekstomrade>
+        </StyledTekstomrade>
     );
 }
 

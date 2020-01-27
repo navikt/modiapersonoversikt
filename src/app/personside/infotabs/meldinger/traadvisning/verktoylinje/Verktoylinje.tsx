@@ -22,6 +22,7 @@ import { guid } from 'nav-frontend-js-utils';
 interface Props {
     valgtTraad: Traad;
     visPrinter?: boolean;
+    className?: string;
 }
 
 const StyledArticle = styled.article`
@@ -30,6 +31,9 @@ const StyledArticle = styled.article`
     display: flex;
     flex-direction: column;
     margin-bottom: 0.24rem;
+    &:focus {
+        ${theme.focus};
+    }
 `;
 
 const KnapperPanelStyle = styled.div`
@@ -46,6 +50,7 @@ const OppgaveknapperStyle = styled.div`
 
 const SvartLenkeKnapp = styled(EkspanderKnapp)`
     color: #3e3832;
+    white-space: nowrap;
 `;
 
 enum VerktøyPanel {
@@ -112,7 +117,13 @@ function Verktoylinje(props: Props) {
     const visMerk = aktivtPanel === VerktøyPanel.MERK;
 
     return (
-        <StyledArticle aria-describedby={tittelId.current} aria-label="Verktøylinje" ref={ref} tabIndex={-1}>
+        <StyledArticle
+            className={props.className}
+            aria-describedby={tittelId.current}
+            aria-label="Verktøylinje"
+            ref={ref}
+            tabIndex={-1}
+        >
             <KnapperPanelStyle>
                 <OppgaveknapperStyle>
                     <SvartLenkeKnapp
