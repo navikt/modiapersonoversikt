@@ -131,11 +131,17 @@ function VelgSak(props: Props) {
             <Form>
                 <SakgruppeRadio
                     name="journalforing-sakgruppe"
+                    value={SakKategori.FAG}
                     label={SakKategori.FAG}
                     {...valgtKategori}
                     autoFocus={true}
                 />
-                <SakgruppeRadio name="journalforing-sakgruppe" label={SakKategori.GEN} {...valgtKategori} />
+                <SakgruppeRadio
+                    name="journalforing-sakgruppe"
+                    value={SakKategori.GEN}
+                    label={SakKategori.GEN}
+                    {...valgtKategori}
+                />
             </Form>
             <div>
                 <ConditionalFeilmelding visible={hasError(gsakSaker)} className="blokk-xxxs">
