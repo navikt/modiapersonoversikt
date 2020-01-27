@@ -76,8 +76,6 @@ export function DialogpanelKvittering(props: {
     lukk: () => void;
     traad?: Traad;
 }) {
-    const sendtMelding = useSendtMelding(props.fritekst);
-    const opprettetDato = sendtMelding.melding ? sendtMelding.melding.opprettetDato : undefined;
     return (
         <ErrorBoundary boundaryName="DialogpanelKvittering">
             <DialogpanelKvitteringStyling>
@@ -88,12 +86,12 @@ export function DialogpanelKvittering(props: {
                     </ErrorBoundary>
                 )}
                 <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
-                <Preview
-                    opprettetDato={opprettetDato}
-                    fritekst={sendtMelding.melding?.fritekst || props.fritekst}
-                    tittel={meldingstypeTekst(props.meldingstype)}
-                />
-                <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
+                <ErrorBoundary boundaryName="Sendt melding preview">
+                    <Preview fritekst={props.fritekst} tittel={meldingstypeTekst(props.meldingstype)} />
+                </ErrorBoundary>
+                <ErrorBoundary boundaryName="Sendt melding verktøylinje">
+                    <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
+                </ErrorBoundary>
                 <KnappBase type="standard" onClick={props.lukk}>
                     Start ny dialog
                 </KnappBase>
