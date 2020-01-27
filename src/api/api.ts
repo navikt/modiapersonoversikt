@@ -9,7 +9,8 @@ export function post(uri: string, body: object | string, loggLocation: string) {
         } else {
             return response.text().then(text => {
                 loggEvent('Post-failed', loggLocation);
-                loggError(Error(`Post failed in ${loggLocation} on: ${uri}`), text, { request: body });
+                loggError(Error(`Post failed in ${loggLocation} on: ${uri}`));
+                loggError(Error(`Post failed in ${loggLocation} on: ${uri}`), text, { request: JSON.stringify(body) });
                 return Promise.reject(text);
             });
         }
