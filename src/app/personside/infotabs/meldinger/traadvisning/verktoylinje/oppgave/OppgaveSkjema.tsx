@@ -64,6 +64,7 @@ function populerCacheMedTomAnsattliste() {
 }
 
 function OppgaveSkjema(props: OppgaveProps) {
+    const avsluttGosysOppgaveFT = useFeatureToggle(FeatureToggles.AvsluttGosysOppgave);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
@@ -177,7 +178,6 @@ function OppgaveSkjema(props: OppgaveProps) {
     }
 
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
-    const avsluttGosysOppgaveFT = useFeatureToggle(FeatureToggles.AvsluttGosysOppgave);
 
     return (
         <SkjemaStyle>
