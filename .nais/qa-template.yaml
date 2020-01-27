@@ -50,4 +50,9 @@ spec:
       value: "https://isso-q.adeo.no/isso/oauth2/connect/jwk_uri"
     - name: OIDC_REDIRECT_URL
       value: "https://app-{{ namespace }}.adeo.no/veilarblogin/api/login"
-
+    - name: VEILARBLOGIN_AAD_LOGIN_URL
+      value: "https://app-{{ namespace }}.adeo.no/veilarblogin/api/aad-login"
+    - name: AAD_DISCOVERY_URL
+      value: "https://login.microsoftonline.com/966ac572-f5b7-4bbe-aa88-c76419c0f851/v2.0/.well-known/openid-configuration"
+    - name: VEILARBLOGIN_AAD_CLIENT_ID
+      value: "2edd96a2-fb5a-4dfa-8f36-848ae306f9b1"
