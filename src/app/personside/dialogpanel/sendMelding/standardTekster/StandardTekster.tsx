@@ -130,12 +130,12 @@ function StandardTekster(props: Props) {
         settFiltrerteTekster(sokEtterTekster(standardTekster, debouncedSokefelt));
     }, [settFiltrerteTekster, standardTekster, debouncedSokefelt]);
 
-    const prevDebouncedSokefelt = usePrevious(debouncedSokefelt);
+    const prevFiltreteTekster = usePrevious(filtrerteTekster);
     useEffect(() => {
-        if (prevDebouncedSokefelt !== debouncedSokefelt) {
+        if (prevFiltreteTekster !== filtrerteTekster) {
             valgt.setValue(filtrerteTekster[0]?.id || '');
         }
-    }, [filtrerteTekster, valgt, debouncedSokefelt, prevDebouncedSokefelt]);
+    }, [filtrerteTekster, valgt, prevFiltreteTekster]);
 
     useEffect(() => {
         if (sokRef.current?.contains(document.activeElement)) {
