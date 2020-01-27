@@ -80,14 +80,14 @@ function velgTekst(
     settTekst: (tekst: string) => void,
     tekst: StandardTeksterModels.Tekst | undefined,
     locale: string,
-    timeSpent: number,
+    getTimeSpent: () => number,
     autofullforData?: AutofullforData
 ) {
     return (event: FormEvent) => {
         event.preventDefault();
         event.stopPropagation();
         if (erGyldigValg(tekst, locale)) {
-            loggEvent('Velg tekst', 'Standardtekster', undefined, { ms: timeSpent });
+            loggEvent('Velg tekst', 'Standardtekster', undefined, { ms: getTimeSpent() });
             const localeTekst: string = tekst.innhold[locale]?.trim();
             if (autofullforData) {
                 const nokler = byggAutofullforMap(
@@ -184,13 +184,7 @@ function StandardTekster(props: Props) {
 
     return (
         <StyledForm
-            onSubmit={velgTekst(
-                props.appendTekst,
-                valgtTekst,
-                valgtLocale.input.value,
-                getSpentTime(),
-                autofullforData
-            )}
+            onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, getSpentTime, autofullforData)}
         >
             <h2 className="sr-only">Standardtekster</h2>
             <SokefeltStyledNav aria-describedby={sokeFeltId.current} ref={sokRef}>
