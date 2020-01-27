@@ -2,7 +2,7 @@ import React from 'react';
 import { AsyncResult, FetchResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { JournalforingsSak, Kategorier, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
-import { Radio } from 'nav-frontend-skjema';
+import { Radio, RadioProps } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import TemaTable from './TemaTabell';
 import styled from 'styled-components/macro';
@@ -12,7 +12,6 @@ import { apiBaseUri, includeCredentials } from '../../../../../../../api/config'
 import Spinner from 'nav-frontend-spinner';
 import { useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
-import VisuallyHiddenAutoFokusHeader from '../../../../../../../components/VisuallyHiddenAutoFokusHeader';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 
 const Form = styled.form`
@@ -37,16 +36,9 @@ const MiniRadio = styled(Radio)`
 
 const ConditionalFeilmelding = visibleIf(AlertStripeAdvarsel);
 
-function SakgruppeRadio(props: FieldState & { label: SakKategori }) {
-    return (
-        <MiniRadio
-            label={props.label}
-            name="journalforing-sakgruppe"
-            value={props.label}
-            onChange={props.input.onChange}
-            checked={props.input.value === props.label}
-        />
-    );
+function SakgruppeRadio(props: FieldState & RadioProps & { label: SakKategori }) {
+    const { input, ...rest } = props;
+    return <MiniRadio onChange={props.input.onChange} checked={props.input.value === props.label} {...rest} />;
 }
 
 interface Props {
@@ -117,7 +109,9 @@ function VelgSak(props: Props) {
     const saker = getSaker(gsakSaker, psakSaker);
     const fordelteSaker = fordelSaker(saker);
 
-    if (isPending(gsakSaker) || isPending(psakSaker)) {
+    const pending = isPending(gsakSaker) || isPending(psakSaker);
+
+    if (pending) {
         return <Spinner type="XL" />;
     }
 
@@ -133,10 +127,15 @@ function VelgSak(props: Props) {
 
     return (
         <>
-            <VisuallyHiddenAutoFokusHeader tittel="Velg sak" />
+            <h2 className="sr-only">Velg sak</h2>
             <Form>
-                <SakgruppeRadio label={SakKategori.FAG} {...valgtKategori} />
-                <SakgruppeRadio label={SakKategori.GEN} {...valgtKategori} />
+                <SakgruppeRadio
+                    name="journalforing-sakgruppe"
+                    label={SakKategori.FAG}
+                    {...valgtKategori}
+                    autoFocus={true}
+                />
+                <SakgruppeRadio name="journalforing-sakgruppe" label={SakKategori.GEN} {...valgtKategori} />
             </Form>
             <div>
                 <ConditionalFeilmelding visible={hasError(gsakSaker)} className="blokk-xxxs">

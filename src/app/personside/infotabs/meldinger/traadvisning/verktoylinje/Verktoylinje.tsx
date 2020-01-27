@@ -31,6 +31,9 @@ const StyledArticle = styled.article`
     display: flex;
     flex-direction: column;
     margin-bottom: 0.24rem;
+    &:focus {
+        ${theme.focus};
+    }
 `;
 
 const KnapperPanelStyle = styled.div`

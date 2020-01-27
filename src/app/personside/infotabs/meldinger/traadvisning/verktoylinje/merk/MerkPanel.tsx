@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
@@ -36,6 +36,7 @@ import { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
+import { useFocusOnFirstInputOnMount } from '../../../../../../../utils/hooks/useFocusOnFirstInputOnMount';
 
 interface Props {
     lukkPanel: () => void;
@@ -131,6 +132,9 @@ function MerkPanel(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const valgtTraad = props.valgtTraad;
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+    const formRef = useRef<HTMLFormElement>(null);
+
+    useFocusOnFirstInputOnMount(formRef);
 
     const melding = eldsteMelding(valgtTraad);
 
@@ -237,7 +241,7 @@ function MerkPanel(props: Props) {
             radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT });
         }
         return (
-            <form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler} ref={formRef}>
                 <RadioPanelGruppe
                     radios={radioprops}
                     name={'merk'}
