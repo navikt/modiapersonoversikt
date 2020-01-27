@@ -25,6 +25,8 @@ import { ValideringsResultat } from '../../../../../../../utils/forms/FormValida
 import { useAppState } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
+import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
 
 const AlertStyling = styled.div`
     > * {
@@ -175,10 +177,11 @@ function OppgaveSkjema(props: OppgaveProps) {
     }
 
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
+    const avsluttGosysOppgaveFT = useFeatureToggle(FeatureToggles.AvsluttGosysOppgave);
 
     return (
         <SkjemaStyle>
-            <AvsluttGosysOppgaveSkjema />
+            {avsluttGosysOppgaveFT.isOn && <AvsluttGosysOppgaveSkjema />}
             <form onSubmit={submitHandler}>
                 <Element>Opprett oppgave</Element>
                 <OppgaveSkjemaElementer {...props} form={formProps} />
