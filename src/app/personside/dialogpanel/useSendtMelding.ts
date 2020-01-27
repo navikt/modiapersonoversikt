@@ -18,7 +18,7 @@ export function useSendtMelding(fritekst: string) {
         if (melding && traad) {
             return;
         }
-        if (traaderResource.data) {
+        if (traaderResource.data?.length) {
             try {
                 const sisteTraad = nyesteTraad(traaderResource.data);
                 const sisteMelding = nyesteMelding(sisteTraad);
@@ -30,7 +30,7 @@ export function useSendtMelding(fritekst: string) {
                     setTraad(sisteTraad);
                 }
             } catch (e) {
-                loggError(e, 'Kunne ikke finne sendt melding', { traader: traaderResource.data });
+                loggError(e, 'Kunne ikke finne sendt melding', { traader: JSON.stringify(traaderResource.data) });
                 throw e;
             }
         }
