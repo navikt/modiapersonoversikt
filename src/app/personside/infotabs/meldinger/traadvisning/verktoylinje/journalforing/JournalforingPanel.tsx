@@ -71,7 +71,7 @@ function JournalforingPanel(props: Props) {
         return (
             <Margin>
                 <AlertStripeInfo>
-                    {erJournalfort ? 'Tråden er allerede journalført' : 'Tråden kan ikke journalføres'}
+                    {erJournalfort ? 'Tråden er journalført' : 'Tråden kan ikke journalføres'}
                 </AlertStripeInfo>
                 <Hovedknapp onClick={props.lukkPanel}>Lukk</Hovedknapp>
             </Margin>
