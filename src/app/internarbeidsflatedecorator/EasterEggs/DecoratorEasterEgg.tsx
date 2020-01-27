@@ -6,6 +6,9 @@ import Partyhatt from './partyhatt/Partyhatt';
 import { easterEggs, useListenForEasterEgg } from './useListenForEasterEgg';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import moment from 'moment';
+import PaaskeEgg from './paskeegg/PaaskeEgg';
+import { erPaaske } from './paskeegg/erPaaske';
+import DelayRender from '../../../components/DelayRender';
 
 function useDefaultEasterEgg() {
     const erKontaktsenter = useErKontaktsenter();
@@ -25,6 +28,10 @@ function useDefaultEasterEgg() {
         return easterEggs.party;
     }
 
+    if (erPaaske()) {
+        return easterEggs.klukk;
+    }
+
     return '';
 }
 
@@ -38,6 +45,9 @@ function DecoratorEasterEgg() {
     if (easterEggs.party === easterEgg) {
         return <Partyhatt />;
     }
+    if (easterEggs.klukk === easterEgg) {
+        return <PaaskeEgg />;
+    }
 
     return null;
 }
@@ -45,7 +55,9 @@ function DecoratorEasterEgg() {
 function DecoratorEasterEggContainer() {
     return (
         <ErrorBoundary boundaryName="EasterEggs">
-            <DecoratorEasterEgg />
+            <DelayRender delay={1500}>
+                <DecoratorEasterEgg />
+            </DelayRender>
         </ErrorBoundary>
     );
 }
