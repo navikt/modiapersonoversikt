@@ -153,10 +153,9 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 }
 
 .c1 > * {
-  -webkit-flex: 1 1;
-  -ms-flex: 1 1;
-  flex: 1 1;
-  min-width: 15rem;
+  -webkit-flex: 1 1 15rem;
+  -ms-flex: 1 1 15rem;
+  flex: 1 1 15rem;
 }
 
 .c2 {

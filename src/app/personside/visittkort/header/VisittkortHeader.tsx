@@ -35,8 +35,7 @@ const StyledContent = styled.div`
     display: flex;
     flex-flow: row wrap;
     > * {
-        flex: 1 1;
-        min-width: 15rem;
+        flex: 1 1 15rem;
     }
 `;
 
