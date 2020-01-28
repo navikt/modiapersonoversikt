@@ -44,7 +44,6 @@ function AvsluttGosysOppgaveSkjema() {
             return;
         }
         setSubmitting(true);
-
         if (oppgaveFraGosys) {
             const request = {
                 fnr: oppgaveFraGosys.fødselsnummer,
@@ -68,10 +67,6 @@ function AvsluttGosysOppgaveSkjema() {
         }
     };
 
-    if (!oppgaveFraGosys) {
-        return null;
-    }
-
     if (avsluttOppgaveSuksess) {
         return (
             <StyledAlert>
@@ -88,21 +83,20 @@ function AvsluttGosysOppgaveSkjema() {
         );
     }
 
+    if (!oppgaveFraGosys) {
+        return null;
+    }
     return (
         <StyledAvsluttOppgavePanel apen={true} heading={<Element>Avslutt oppgave fra GOSYS</Element>}>
-            <>
-                <Textarea
-                    label={'Beskrivelse'}
-                    value={gosysBeskrivelse}
-                    maxLength={0}
-                    onChange={e =>
-                        setGosysBeskrivelse((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)
-                    }
-                />
-                <Hovedknapp onClick={() => handleOppgaveFraGosys()} spinner={submitting}>
-                    Avslutt oppgave
-                </Hovedknapp>
-            </>
+            <Textarea
+                label={'Beskrivelse'}
+                value={gosysBeskrivelse}
+                maxLength={0}
+                onChange={e => setGosysBeskrivelse((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)}
+            />
+            <Hovedknapp onClick={handleOppgaveFraGosys} spinner={submitting}>
+                Avslutt oppgave
+            </Hovedknapp>
         </StyledAvsluttOppgavePanel>
     );
 }
