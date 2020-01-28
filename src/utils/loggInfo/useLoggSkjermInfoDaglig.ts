@@ -3,7 +3,6 @@ import { detect } from 'detect-browser';
 import { roundToNearest100 } from '../math';
 import { runOnceDaily } from '../runOnceDaily';
 import { useAppState, useOnMount } from '../customHooks';
-import { erKontaktsenter } from '../enheterUtils';
 
 export function useLoggSkjermInfoDaglig() {
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
@@ -19,7 +18,6 @@ function loggInfo(enhet: string) {
     const tags = {
         screen: `${roundToNearest100(screen.width)} x ${roundToNearest100(screen.height)}`,
         window: `${roundToNearest100(window.innerWidth)} x ${roundToNearest100(window.innerHeight)}`,
-        erKontaktsenter: erKontaktsenter(enhet),
         browser: (browser && browser.name) || undefined
     };
 

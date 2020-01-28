@@ -6,6 +6,7 @@ import EtikettGrå from '../../../components/EtikettGrå';
 import { formatterDatoTid } from '../../../utils/dateUtils';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Tekstomrade from '../../../components/tekstomrade/tekstomrade';
+import { useSendtMelding } from './useSendtMelding';
 
 const PreviewStyle = styled.article`
     padding: 1rem;
@@ -21,12 +22,13 @@ const PreviewStyle = styled.article`
 interface Props {
     tittel: string;
     fritekst: string;
-    opprettetDato?: string;
 }
 
 function Preview(props: Props) {
-    const opprettetDato = props.opprettetDato ? (
-        <EtikettGrå>{formatterDatoTid(props.opprettetDato)}</EtikettGrå>
+    const sendtMelding = useSendtMelding(props.fritekst);
+
+    const opprettetDato = sendtMelding.melding ? (
+        <EtikettGrå>{formatterDatoTid(sendtMelding.melding.opprettetDato)}</EtikettGrå>
     ) : (
         <NavFrontendSpinner type="XXS" />
     );
@@ -35,7 +37,7 @@ function Preview(props: Props) {
         <PreviewStyle>
             <Normaltekst>{props.tittel}</Normaltekst>
             {opprettetDato}
-            <Tekstomrade>{props.fritekst}</Tekstomrade>
+            <Tekstomrade>{sendtMelding.melding?.fritekst || props.fritekst}</Tekstomrade>
         </PreviewStyle>
     );
 }

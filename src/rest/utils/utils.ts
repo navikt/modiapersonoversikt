@@ -80,7 +80,7 @@ function handterFeil(dispatch: Dispatch<Action>, actionNames: ActionTypes, fetch
             loggError(
                 new Error(`Kunne ikke fetche data på ${fetchUri}. Status ${error.status}: ${error.statusText}`),
                 undefined,
-                undefined,
+                { response: JSON.stringify(error) },
                 { type: 'Fetch-Failed' }
             );
             return;

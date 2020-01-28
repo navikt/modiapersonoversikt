@@ -18,6 +18,7 @@ import MeldingerPrintMarkup from '../../../../../../utils/MeldingerPrintMarkup';
 import useFeatureToggle from '../../../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../../../components/featureToggle/toggleIDs';
 import { guid } from 'nav-frontend-js-utils';
+import ErrorBoundary from '../../../../../../components/ErrorBoundary';
 
 interface Props {
     valgtTraad: Traad;
@@ -117,35 +118,41 @@ function Verktoylinje(props: Props) {
     const visMerk = aktivtPanel === VerktøyPanel.MERK;
 
     return (
-        <StyledArticle
-            className={props.className}
-            aria-describedby={tittelId.current}
-            aria-label="Verktøylinje"
-            ref={ref}
-            tabIndex={-1}
-        >
-            <KnapperPanelStyle>
-                <OppgaveknapperStyle>
-                    <SvartLenkeKnapp
-                        onClick={togglePanel(VerktøyPanel.JOURNALFORING)}
-                        open={visJournalforing}
-                        tittel="Journalfør"
-                    />
-                    <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.OPPGAVE)} open={visOppgave} tittel="Oppgave" />
-                    <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
-                </OppgaveknapperStyle>
-                <Print {...props} />
-            </KnapperPanelStyle>
-            <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
-                <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />
-            </UnmountClosed>
-            <UnmountClosed isOpened={visOppgave}>
-                <OpprettOppgaveContainer valgtTraad={props.valgtTraad} lukkPanel={lukk} />
-            </UnmountClosed>
-            <UnmountClosed isOpened={visMerk}>
-                <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={lukk} />
-            </UnmountClosed>
-        </StyledArticle>
+        <ErrorBoundary boundaryName="Verktøylinje">
+            <StyledArticle
+                className={props.className}
+                aria-describedby={tittelId.current}
+                aria-label="Verktøylinje"
+                ref={ref}
+                tabIndex={-1}
+            >
+                <KnapperPanelStyle>
+                    <OppgaveknapperStyle>
+                        <SvartLenkeKnapp
+                            onClick={togglePanel(VerktøyPanel.JOURNALFORING)}
+                            open={visJournalforing}
+                            tittel="Journalfør"
+                        />
+                        <SvartLenkeKnapp
+                            onClick={togglePanel(VerktøyPanel.OPPGAVE)}
+                            open={visOppgave}
+                            tittel="Oppgave"
+                        />
+                        <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
+                    </OppgaveknapperStyle>
+                    <Print {...props} />
+                </KnapperPanelStyle>
+                <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
+                    <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />
+                </UnmountClosed>
+                <UnmountClosed isOpened={visOppgave}>
+                    <OpprettOppgaveContainer valgtTraad={props.valgtTraad} lukkPanel={lukk} />
+                </UnmountClosed>
+                <UnmountClosed isOpened={visMerk}>
+                    <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={lukk} />
+                </UnmountClosed>
+            </StyledArticle>
+        </ErrorBoundary>
     );
 }
 
