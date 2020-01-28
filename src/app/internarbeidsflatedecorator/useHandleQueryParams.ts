@@ -10,23 +10,21 @@ import { usePostResource } from '../../rest/consumer/usePostResource';
 function useHandleQueryParams() {
     const history = useHistory();
     const queryParams = useQueryParams<{ sokFnr?: string; oppgaveid?: string; behandlingsid?: string }>();
-    const sokFnr = queryParams.sokFnr === '0' ? '' : queryParams.sokFnr;
+    const sokFnr = queryParams.sokFnr === '0' ? undefined : queryParams.sokFnr;
     const plukkOppgaverResource = usePostResource(resources => resources.plukkNyeOppgaver);
     const dispatch = useDispatch();
 
     useOnMount(() => {
-        if (queryParams.behandlingsid && queryParams.sokFnr) {
+        if (queryParams.behandlingsid && sokFnr) {
             history.push(
-                `${paths.personUri}/${queryParams.sokFnr}/${INFOTABS.MELDINGER.toLowerCase()}/${
-                    queryParams.behandlingsid
-                }`
+                `${paths.personUri}/${sokFnr}/${INFOTABS.MELDINGER.toLowerCase()}/${queryParams.behandlingsid}`
             );
             if (queryParams.oppgaveid) {
                 dispatch(
                     plukkOppgaverResource.actions.setResponse([
                         {
                             oppgaveId: queryParams.oppgaveid,
-                            fødselsnummer: queryParams.sokFnr,
+                            fødselsnummer: sokFnr,
                             traadId: queryParams.behandlingsid,
                             fraGosys: true
                         }
@@ -34,9 +32,9 @@ function useHandleQueryParams() {
                 );
                 loggEvent('Oppgave', 'FraGosys');
             }
-        } else if (queryParams.sokFnr) {
+        } else if (sokFnr) {
             loggEvent('Oppslag', 'Puzzle');
-            setNyBrukerIPath(history, queryParams.sokFnr);
+            setNyBrukerIPath(history, sokFnr);
         }
     });
     return { queryParams, sokFnr };
