@@ -30,7 +30,7 @@ function YtelserListeElement(props: Props) {
                     valgt={dypLenker.ytelser.erValgt(props.ytelse)}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
                 >
-                    <Undertittel>Pleiepenger sykt barn</Undertittel>
+                    <Undertittel tag={'h3'}>Pleiepenger sykt barn</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{formaterDato(getYtelseIdDato(props.ytelse))}</Normaltekst>
                     <Element>Barnets f.nr: </Element>
@@ -49,7 +49,7 @@ function YtelserListeElement(props: Props) {
                     valgt={dypLenker.ytelser.erValgt(props.ytelse)}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
                 >
-                    <Undertittel>Sykepengerrettighet</Undertittel>
+                    <Undertittel tag={'h3'}>Sykepengerrettighet</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{formaterDato(getYtelseIdDato(props.ytelse))}</Normaltekst>
                 </VisMerKnapp>
@@ -66,7 +66,7 @@ function YtelserListeElement(props: Props) {
                     valgt={dypLenker.ytelser.erValgt(props.ytelse)}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
                 >
-                    <Undertittel>Foreldrepenger</Undertittel>
+                    <Undertittel tag={'h3'}>Foreldrepenger</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{formaterDato(getForeldepengerIdDato(props.ytelse))}</Normaltekst>
                 </VisMerKnapp>

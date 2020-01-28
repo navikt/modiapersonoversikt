@@ -149,10 +149,6 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
-.c0 {
-  padding: .5rem;
-}
-
 .c0 > * {
   margin-bottom: 0.5rem;
 }
@@ -967,10 +963,6 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
-.c0 {
-  padding: .5rem;
-}
-
 .c0 > * {
   margin-bottom: 0.5rem;
 }
@@ -1597,10 +1589,6 @@ exports[`Om sykepenger matcher snapshot 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-}
-
-.c0 {
-  padding: .5rem;
 }
 
 .c0 > * {

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useRef } from 'react';
 import styled from 'styled-components/macro';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
-import theme from '../../../../styles/personOversiktTheme';
 import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import { isForeldrepenger, isPleiepenger, isSykepenger, Ytelse } from '../../../../models/ytelse/ytelse-utils';
 import Foreldrepenger from './foreldrepenger/ForeldrePenger';
@@ -24,7 +23,6 @@ const Styling = styled.section`
     > * {
         margin-bottom: 0.5rem;
     }
-    padding: ${theme.margin.layout};
 `;
 
 function YtelseMarkup(props: { ytelse: Ytelse }) {
