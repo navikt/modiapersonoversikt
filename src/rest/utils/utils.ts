@@ -60,7 +60,8 @@ function dispatchDataTilRedux<T>(dispatch: Dispatch<Action>, action: string, fet
     };
 }
 
-function handterFeil(dispatch: Dispatch<Action>, actionNames: ActionTypes, fetchUri: string) {
+function handterFeil(dispatch: Dispatch<Action>, resourceNavn: string, fetchUri: string) {
+    const actionNames = getActionTypes(resourceNavn);
     return (error: Error | Response) => {
         if (error === notFound) {
             dispatch({ type: actionNames.NOTFOUND });
@@ -81,12 +82,13 @@ function handterFeil(dispatch: Dispatch<Action>, actionNames: ActionTypes, fetch
                 new Error(`Kunne ikke fetche data på ${fetchUri}. Status ${error.status}: ${error.statusText}`),
                 undefined,
                 { response: JSON.stringify(error) },
-                { type: 'Fetch-Failed' }
+                { action: 'Fetch-Failed', location: resourceNavn }
             );
             return;
         }
         loggError(error, `Kunne ikke fetche data på ${fetchUri}. ${error.message}`, undefined, {
-            type: 'Fetch-Failed'
+            action: 'Fetch-Failed',
+            location: resourceNavn
         });
     };
 }
@@ -110,7 +112,7 @@ export function fetchDataAndDispatchToRedux<T>(
         return fetch(uri, includeCredentials)
             .then(parseResponse)
             .then(dispatchDataTilRedux(dispatch, actionNames.FINISHED, uri))
-            .catch(handterFeil(dispatch, actionNames, uri))
+            .catch(handterFeil(dispatch, resourceNavn, uri))
             .finally(() => loggEvent(reload ? 'Re-Fetch' : 'Fetch', resourceNavn, undefined, { ms: timer.getTime() }));
     };
 }
