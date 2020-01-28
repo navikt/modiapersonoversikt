@@ -109,7 +109,8 @@ function AutoComplete<Item>(props: Props<Item>) {
         } else if (isNumber(changes.highlightedIndex)) {
             const highlightedItem = [...filteredTopSuggetions, ...filteredSuggestions][changes.highlightedIndex];
             highlightedItem && setHightlightedItem(highlightedItem);
-        } else if (changes.type === '__autocomplete_blur_input__' && !value) {
+        } else if (changes.isOpen === false) {
+            // isOpen er kun false idet autocomplete blir lukket
             hightlightedItem && props.setValue(hightlightedItem);
         }
     };
