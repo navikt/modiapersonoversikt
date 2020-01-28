@@ -8,9 +8,15 @@ export function post(uri: string, body: object | string, loggLocation: string) {
             return parseResponse(response);
         } else {
             return response.text().then(text => {
-                loggEvent('Post-failed', loggLocation);
-                loggError(Error(`Post failed in ${loggLocation} on: ${uri}`));
-                loggError(Error(`Post failed in ${loggLocation} on: ${uri}`), text, { request: JSON.stringify(body) });
+                loggError(
+                    Error(`Post failed in ${loggLocation} on: ${uri}`),
+                    undefined,
+                    { request: JSON.stringify(body), response: text },
+                    {
+                        action: 'Post-Failed',
+                        location: loggLocation
+                    }
+                );
                 return Promise.reject(text);
             });
         }

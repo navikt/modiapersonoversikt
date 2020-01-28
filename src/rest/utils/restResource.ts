@@ -10,7 +10,7 @@ import {
 import { Action } from 'redux';
 import { AppState } from '../../redux/reducers';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
-import { loggEvent, loggInfo } from '../../utils/frontendLogger';
+import { loggInfo } from '../../utils/frontendLogger';
 
 export interface ActionTypes {
     STARTING: string;
@@ -204,13 +204,11 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
                     status: STATUS.NOT_FOUND
                 };
             case actionNames.FORBIDDEN:
-                loggEvent('Fetch-forbidden', resourceNavn);
                 return {
                     ...state,
                     status: STATUS.FORBIDDEN
                 };
             case actionNames.FAILED:
-                loggEvent('Fetch-Failed', resourceNavn);
                 /* Logging av feilen blir håndtert i handterFeil() i ./utils.ts, der har vi bedre tilgang på relevant informasjon */
                 return {
                     ...state,

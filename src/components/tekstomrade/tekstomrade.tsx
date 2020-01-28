@@ -1,9 +1,9 @@
 import React from 'react';
 import 'nav-frontend-skjema-style';
 import classNames from 'classnames';
-import { Rules } from './parser/rules';
 import { build, parse } from './parser/parser';
 import { Rule } from './parser/domain';
+import { LinebreakRule, LinkRule, ParagraphRule } from './parser/rules';
 
 export * from './parser/rules';
 
@@ -17,11 +17,12 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 const cls = (className?: string) => classNames('tekstomrade', className);
 
 // TODO Erstattes med nav-frontend-tekstomrade på sikt
+export const defaultRules = [LinkRule, LinebreakRule, ParagraphRule];
 class Tekstomrade extends React.Component<Props> {
     static defaultProps = {
         as: 'div',
         ingenFormattering: false,
-        rules: Rules,
+        rules: defaultRules,
         children: ''
     };
 

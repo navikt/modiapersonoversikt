@@ -8,12 +8,19 @@ Simple regex-rule-based parser, see [rules](./rules.ts)
 
 ```
 This *is* a paragraph.
+
 This is another.
+
 This has *highlighting*.
+
 This is _bold_.
+
 This has links www.google.com, *https://www.yahoo.com*, _http://www.bing.com_
+
 And here we combine them *_highlight bold_*, and reversed _*highlight bold*_, with links; _*www.google.com*_ *_https://yahoo.com_*
+
 The last paragraph
+spans multiple lines.
 ```
 
 **OUTPUT**
@@ -167,7 +174,12 @@ The last paragraph
   {
     "name": "Paragraph",
     "content": [
-      "The last paragraph"
+      "The last paragraph",
+      {
+        "name": "Linebreak",
+        "content": []
+      },
+      "spans multiple lines."
     ]
   }
 ]
