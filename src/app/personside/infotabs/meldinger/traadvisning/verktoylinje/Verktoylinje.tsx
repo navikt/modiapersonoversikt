@@ -136,7 +136,7 @@ function Verktoylinje(props: Props) {
                         <SvartLenkeKnapp
                             onClick={togglePanel(VerktøyPanel.OPPGAVE)}
                             open={visOppgave}
-                            tittel="Lag oppgave"
+                            tittel="Oppgave"
                         />
                         <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
                     </OppgaveknapperStyle>

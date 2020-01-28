@@ -536,6 +536,13 @@ function setupStandardteksterMock(mock: FetchMock) {
     );
 }
 
+function setupAvsluttOppgaveGosysMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialogmerking/avsluttgosysoppgave',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
+}
+
 const contentTypeMiddleware: Middleware = (requestArgs, response) => {
     if (response.headers) {
         return response;
@@ -619,4 +626,5 @@ export function setupMock() {
     setupSlaasammenMock(mock);
     setupVelgEnhetMock(mock);
     setUpSaksbehandlersEnheterMock(mock);
+    setupAvsluttOppgaveGosysMock(mock);
 }
