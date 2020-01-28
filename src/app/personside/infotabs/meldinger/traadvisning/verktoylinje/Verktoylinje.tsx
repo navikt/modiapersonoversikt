@@ -121,7 +121,7 @@ function Verktoylinje(props: Props) {
         <ErrorBoundary boundaryName="Verktøylinje">
             <StyledArticle
                 className={props.className}
-                aria-describedby={tittelId.current}
+                aria-labelledby={tittelId.current}
                 aria-label="Verktøylinje"
                 ref={ref}
                 tabIndex={-1}

@@ -62,7 +62,7 @@ function StandardtekstListe(props: Props) {
     );
 
     return (
-        <StyledNav aria-describedby={tittelId.current}>
+        <StyledNav aria-labelledby={tittelId.current}>
             <h3 className="sr-only" id={tittelId.current}>
                 Velg samtalemal
             </h3>

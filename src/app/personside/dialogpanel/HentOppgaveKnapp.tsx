@@ -112,7 +112,7 @@ function HentOppgaveKnapp() {
         </option>
     ));
     return (
-        <StyledArticle aria-describedby={tittelId.current}>
+        <StyledArticle aria-labelledby={tittelId.current}>
             <h2 className="sr-only" id={tittelId.current}>
                 Hent oppgave
             </h2>

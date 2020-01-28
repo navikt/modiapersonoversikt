@@ -20,7 +20,7 @@ const Style = styled.article`
 function YtelserInfoGruppe(props: Props) {
     const tittelId = useRef(guid());
     return (
-        <Style aria-describedby={tittelId.current}>
+        <Style aria-labelledby={tittelId.current}>
             <Ingress id={tittelId.current} tag="h3">
                 {props.tittel}
             </Ingress>
