@@ -168,9 +168,24 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
 <section
   className="c0"
 >
+  <h2
+    className="sr-only"
+    id="Helt tilfeldig ID"
+    tabIndex={-1}
+  >
+    Valgtytelse
+  </h2>
   <article
+    aria-labelledby="Helt tilfeldig ID"
     className="c1"
   >
+    <h2
+      className="sr-only"
+      id="Helt tilfeldig ID"
+      tabIndex={-1}
+    >
+      Foreldrepengerettighet
+    </h2>
     <div
       className="c2"
     >
@@ -979,9 +994,23 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
 <section
   className="c0"
 >
+  <h2
+    className="sr-only"
+    id="Helt tilfeldig ID"
+    tabIndex={-1}
+  >
+    Valgtytelse
+  </h2>
   <article
+    aria-labelledby="Helt tilfeldig ID"
     className="c1"
   >
+    <h2
+      className="sr-only"
+      id="Helt tilfeldig ID"
+    >
+      Pleiepenger
+    </h2>
     <div
       className="c2"
     >
@@ -1605,10 +1634,25 @@ exports[`Om sykepenger matcher snapshot 1`] = `
 <section
   className="c0"
 >
+  <h2
+    className="sr-only"
+    id="Helt tilfeldig ID"
+    tabIndex={-1}
+  >
+    Valgtytelse
+  </h2>
   <article
+    aria-labelledby="Helt tilfeldig ID"
     className="c1"
   >
+    <h2
+      className="sr-only"
+      id="Helt tilfeldig ID"
+    >
+      Sykepenger
+    </h2>
     <div
+      aria-label="Sykepenger"
       className="c2"
     >
       <div

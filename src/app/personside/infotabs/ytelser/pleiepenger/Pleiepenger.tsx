@@ -9,6 +9,8 @@ import { useOnMount } from '../../../../../utils/customHooks';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;
@@ -19,6 +21,7 @@ const StyledArticle = styled.article`
 `;
 
 function Pleiepenger(props: Props) {
+    const titleId = useRef(guid());
     useOnMount(() => {
         loggEvent('Visning', 'Pleiepenger');
     });
@@ -26,7 +29,10 @@ function Pleiepenger(props: Props) {
     const sortertePerioder = props.pleiepenger.perioder.sort(datoStigende(p => p.fom)).reverse();
 
     return (
-        <StyledArticle>
+        <StyledArticle aria-labelledby={titleId.current}>
+            <h2 className="sr-only" id={titleId.current}>
+                Pleiepenger
+            </h2>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Pleiepengerettighet" />}
             <Oversikt pleiepenger={props.pleiepenger} />
             <ol>

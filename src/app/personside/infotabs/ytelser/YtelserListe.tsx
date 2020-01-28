@@ -10,7 +10,7 @@ const Styling = styled.section`
     ${theme.hvittPanel};
 `;
 
-const YtelserListeStyle = styled.ol`
+const StyledOl = styled.ol`
     > *:not(:first-child) {
         border-top: ${theme.border.skille};
     }
@@ -18,6 +18,7 @@ const YtelserListeStyle = styled.ol`
 
 const TittelWrapper = styled.div`
     padding: ${pxToRem(15)};
+    border-bottom: ${theme.border.skille};
 `;
 
 interface Props {
@@ -32,8 +33,10 @@ function YtelseListe(props: Props) {
             <TittelWrapper>
                 <Undertittel>Ytelser</Undertittel>
             </TittelWrapper>
-            <YtelserListeStyle role="tablist">{ytelser}</YtelserListeStyle>
-            {props.pending && <CenteredLazySpinner />}
+            <nav aria-label="Velg ytelser">
+                <StyledOl role="tablist">{ytelser}</StyledOl>
+                {props.pending && <CenteredLazySpinner />}
+            </nav>
         </Styling>
     );
 }

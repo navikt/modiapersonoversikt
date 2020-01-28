@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components/macro';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import theme from '../../../../styles/personOversiktTheme';
@@ -9,6 +10,11 @@ import Pleiepenger from './pleiepenger/Pleiepenger';
 import Sykepenger from './sykepenger/Sykepenger';
 import { loggError } from '../../../../utils/frontendLogger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { guid } from 'nav-frontend-js-utils';
+import { useInfotabsDyplenker } from '../dyplenker';
+import useBrukersYtelser from './useBrukersYtelser';
+import { usePrevious } from '../../../../utils/customHooks';
+import { useEffect } from 'react';
 
 interface Props {
     valgtYtelse?: Ytelse;
@@ -37,14 +43,35 @@ function YtelseMarkup(props: { ytelse: Ytelse }) {
 }
 
 function ValgtYtelse(props: Props) {
+    const ytelser = useBrukersYtelser();
+    const tittelRef = useRef<HTMLHeadingElement>(null);
+    const dypLenker = useInfotabsDyplenker();
+    const valgtYtelse = ytelser.ytelser.find(ytelse => dypLenker.ytelser.erValgt(ytelse));
+    const prevYtelse = usePrevious(valgtYtelse);
+    useEffect(
+        function scrollToTopVedNyttSakstema() {
+            if (!valgtYtelse || !prevYtelse) {
+                return;
+            }
+            if (prevYtelse !== valgtYtelse) {
+                tittelRef.current && tittelRef.current.focus();
+            }
+        },
+        [valgtYtelse, prevYtelse, tittelRef]
+    );
+
+    const titleId = useRef(guid());
     if (!props.valgtYtelse) {
         return <AlertStripeInfo>Fant ingen ytelser for bruker</AlertStripeInfo>;
     }
 
     return (
         <Styling>
+            <h2 className="sr-only" id={titleId.current} ref={tittelRef} tabIndex={-1}>
+                Valgtytelse
+            </h2>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />}
-            {<YtelseMarkup ytelse={props.valgtYtelse} />}
+            <YtelseMarkup ytelse={props.valgtYtelse} />
         </Styling>
     );
 }

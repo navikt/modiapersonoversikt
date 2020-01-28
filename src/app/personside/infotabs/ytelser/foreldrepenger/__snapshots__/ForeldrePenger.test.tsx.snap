@@ -150,8 +150,16 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
 }
 
 <article
+  aria-labelledby="Helt tilfeldig ID"
   className="c0"
 >
+  <h2
+    className="sr-only"
+    id="Helt tilfeldig ID"
+    tabIndex={-1}
+  >
+    Foreldrepengerettighet
+  </h2>
   <div
     className="c1"
   >

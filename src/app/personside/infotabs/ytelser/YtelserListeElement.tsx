@@ -23,46 +23,52 @@ function YtelserListeElement(props: Props) {
 
     if (isPleiepenger(props.ytelse)) {
         return (
-            <VisMerKnapp
-                key={getUnikPleiepengerKey(props.ytelse)}
-                ariaDescription="Vis pleiepenger"
-                valgt={dypLenker.ytelser.erValgt(props.ytelse)}
-                linkTo={dypLenker.ytelser.link(props.ytelse)}
-            >
-                <Undertittel>Pleiepenger sykt barn</Undertittel>
-                <Element>ID-dato</Element>
-                <Normaltekst>{formaterDato(getYtelseIdDato(props.ytelse))}</Normaltekst>
-            </VisMerKnapp>
+            <li>
+                <VisMerKnapp
+                    key={getUnikPleiepengerKey(props.ytelse)}
+                    ariaDescription="Vis pleiepenger"
+                    valgt={dypLenker.ytelser.erValgt(props.ytelse)}
+                    linkTo={dypLenker.ytelser.link(props.ytelse)}
+                >
+                    <Undertittel>Pleiepenger sykt barn</Undertittel>
+                    <Element>ID-dato</Element>
+                    <Normaltekst>{formaterDato(getYtelseIdDato(props.ytelse))}</Normaltekst>
+                </VisMerKnapp>
+            </li>
         );
     }
 
     if (isSykepenger(props.ytelse)) {
         return (
-            <VisMerKnapp
-                key={getUnikSykepengerKey(props.ytelse)}
-                ariaDescription="Vis sykepenger"
-                valgt={dypLenker.ytelser.erValgt(props.ytelse)}
-                linkTo={dypLenker.ytelser.link(props.ytelse)}
-            >
-                <Undertittel>Sykepengerrettighet</Undertittel>
-                <Element>ID-dato</Element>
-                <Normaltekst>{formaterDato(getYtelseIdDato(props.ytelse))}</Normaltekst>
-            </VisMerKnapp>
+            <li>
+                <VisMerKnapp
+                    key={getUnikSykepengerKey(props.ytelse)}
+                    ariaDescription="Vis sykepenger"
+                    valgt={dypLenker.ytelser.erValgt(props.ytelse)}
+                    linkTo={dypLenker.ytelser.link(props.ytelse)}
+                >
+                    <Undertittel>Sykepengerrettighet</Undertittel>
+                    <Element>ID-dato</Element>
+                    <Normaltekst>{formaterDato(getYtelseIdDato(props.ytelse))}</Normaltekst>
+                </VisMerKnapp>
+            </li>
         );
     }
 
     if (isForeldrepenger(props.ytelse)) {
         return (
-            <VisMerKnapp
-                key={getUnikForeldrepengerKey(props.ytelse)}
-                ariaDescription="Vis foreldrepenger"
-                valgt={dypLenker.ytelser.erValgt(props.ytelse)}
-                linkTo={dypLenker.ytelser.link(props.ytelse)}
-            >
-                <Undertittel>Foreldrepenger</Undertittel>
-                <Element>ID-dato</Element>
-                <Normaltekst>{formaterDato(getForeldepengerIdDato(props.ytelse))}</Normaltekst>
-            </VisMerKnapp>
+            <li>
+                <VisMerKnapp
+                    key={getUnikForeldrepengerKey(props.ytelse)}
+                    ariaDescription="Vis foreldrepenger"
+                    valgt={dypLenker.ytelser.erValgt(props.ytelse)}
+                    linkTo={dypLenker.ytelser.link(props.ytelse)}
+                >
+                    <Undertittel>Foreldrepenger</Undertittel>
+                    <Element>ID-dato</Element>
+                    <Normaltekst>{formaterDato(getForeldepengerIdDato(props.ytelse))}</Normaltekst>
+                </VisMerKnapp>
+            </li>
         );
     }
 

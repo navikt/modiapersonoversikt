@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import YtelseListe from './YtelserListe';
 import { ScrollBar } from '../utils/InfoTabsScrollBar';
 import styled from 'styled-components';
 import ValgtYtelse from './ValgtYtelse';
 import useBrukersYtelser from './useBrukersYtelser';
 import { useInfotabsDyplenker } from '../dyplenker';
-import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 
 const Styling = styled.section`

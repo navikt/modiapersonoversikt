@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Om Ytelser matcher snapshot 1`] = `
-.c4 {
+.c5 {
   position: relative;
   padding: .5rem;
   display: -webkit-box;
@@ -15,22 +15,22 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   cursor: pointer;
 }
 
-.c4:hover {
+.c5:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c4:hover > button:last-child {
+.c5:hover > button:last-child {
   padding-left: 0.5rem;
 }
 
-.c4 > *:first-child {
+.c5 > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c5 {
+.c6 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -42,16 +42,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c5 .nav-frontend-chevron {
+.c6 .nav-frontend-chevron {
   width: 1.5625rem;
 }
 
-.c5:focus {
+.c6:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c5:focus::after {
+.c6:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -66,11 +66,15 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
-  padding: .5rem;
 }
 
-.c3 > *:not(:first-child) {
+.c4 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
+}
+
+.c3 {
+  padding: 0.9375rem;
+  border-bottom: solid 0.0625rem #78706a;
 }
 
 .c1 {
@@ -124,104 +128,123 @@ exports[`Om Ytelser matcher snapshot 1`] = `
       <section
         className="c2"
       >
-        <ol
+        <div
           className="c3"
-          role="tablist"
         >
-          <div
-            className="c4"
-            onClick={[Function]}
+          <h2
+            className="typo-undertittel"
           >
-            <div>
-              <h2
-                className="typo-undertittel"
-              >
-                Sykepengerrettighet
-              </h2>
-              <p
-                className="typo-element"
-              >
-                ID-dato
-              </p>
-              <p
-                className="typo-normal"
-              >
-                06.02.2019
-              </p>
-            </div>
-            <button
-              aria-label="Vis sykepenger"
-              aria-selected={false}
-              className="c5"
-            >
-              <i
-                className="nav-frontend-chevron chevronboks chevron--hoyre"
-              />
-            </button>
-          </div>
-          <div
+            Ytelser
+          </h2>
+        </div>
+        <nav
+          aria-label="Velg ytelser"
+        >
+          <ol
             className="c4"
-            onClick={[Function]}
+            role="tablist"
           >
-            <div>
-              <h2
-                className="typo-undertittel"
+            <li>
+              <div
+                className="c5"
+                onClick={[Function]}
               >
-                Pleiepenger sykt barn
-              </h2>
-              <p
-                className="typo-element"
+                <div>
+                  <h2
+                    className="typo-undertittel"
+                  >
+                    Sykepengerrettighet
+                  </h2>
+                  <p
+                    className="typo-element"
+                  >
+                    ID-dato
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    06.02.2019
+                  </p>
+                </div>
+                <button
+                  aria-label="Vis sykepenger"
+                  aria-selected={false}
+                  className="c6"
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+            <li>
+              <div
+                className="c5"
+                onClick={[Function]}
               >
-                ID-dato
-              </p>
-              <p
-                className="typo-normal"
+                <div>
+                  <h2
+                    className="typo-undertittel"
+                  >
+                    Pleiepenger sykt barn
+                  </h2>
+                  <p
+                    className="typo-element"
+                  >
+                    ID-dato
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    14.11.2018
+                  </p>
+                </div>
+                <button
+                  aria-label="Vis pleiepenger"
+                  aria-selected={false}
+                  className="c6"
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+            <li>
+              <div
+                className="c5"
+                onClick={[Function]}
               >
-                14.11.2018
-              </p>
-            </div>
-            <button
-              aria-label="Vis pleiepenger"
-              aria-selected={false}
-              className="c5"
-            >
-              <i
-                className="nav-frontend-chevron chevronboks chevron--hoyre"
-              />
-            </button>
-          </div>
-          <div
-            className="c4"
-            onClick={[Function]}
-          >
-            <div>
-              <h2
-                className="typo-undertittel"
-              >
-                Foreldrepenger
-              </h2>
-              <p
-                className="typo-element"
-              >
-                ID-dato
-              </p>
-              <p
-                className="typo-normal"
-              >
-                21.11.2017
-              </p>
-            </div>
-            <button
-              aria-label="Vis foreldrepenger"
-              aria-selected={false}
-              className="c5"
-            >
-              <i
-                className="nav-frontend-chevron chevronboks chevron--hoyre"
-              />
-            </button>
-          </div>
-        </ol>
+                <div>
+                  <h2
+                    className="typo-undertittel"
+                  >
+                    Foreldrepenger
+                  </h2>
+                  <p
+                    className="typo-element"
+                  >
+                    ID-dato
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    21.11.2017
+                  </p>
+                </div>
+                <button
+                  aria-label="Vis foreldrepenger"
+                  aria-selected={false}
+                  className="c6"
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+          </ol>
+        </nav>
       </section>
     </div>
     <div

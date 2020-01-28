@@ -9,6 +9,8 @@ import { useOnMount } from '../../../../../utils/customHooks';
 import { loggEvent } from '../../../../../utils/frontendLogger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     foreldrepenger: Foreldrepengerettighet | null;
@@ -19,6 +21,7 @@ const StyledArticle = styled.article`
 `;
 
 function Foreldrepenger({ foreldrepenger }: Props) {
+    const titleId = useRef(guid());
     useOnMount(() => {
         loggEvent('Visning', 'Foreldrepenger');
     });
@@ -32,7 +35,10 @@ function Foreldrepenger({ foreldrepenger }: Props) {
     ));
 
     return (
-        <StyledArticle>
+        <StyledArticle aria-labelledby={titleId.current}>
+            <h2 tabIndex={-1} className="sr-only" id={titleId.current}>
+                Foreldrepengerettighet
+            </h2>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Foreldrepengerettighet" />}
             <Oversikt foreldrePenger={foreldrepenger} />
             <ol>{perioder}</ol>
