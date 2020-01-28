@@ -73,10 +73,11 @@ function lagConfig(
     };
 }
 
-function useKlargjorContextholder(sokFnr?: string) {
+function useKlargjorContextholder() {
     const [klar, setKlar] = useState(false);
+    const queryParams = useQueryParams<{ sokFnr?: string }>();
     useOnMount(() => {
-        if (sokFnr === '0') {
+        if (queryParams.sokFnr === '0') {
             // Manuell nullstilling av bruker i context
             fetch('/modiacontextholder/api/context/aktivbruker', {
                 method: 'DELETE',
@@ -95,7 +96,6 @@ function Decorator() {
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
     const history = useHistory();
     const dispatch = useDispatch();
-    const queryParams = useQueryParams<{ sokFnr?: string }>();
 
     useHandleQueryParams();
 
@@ -103,7 +103,7 @@ function Decorator() {
         dispatch(velgEnhetAction(enhet));
     };
 
-    const contextErKlar = useKlargjorContextholder(queryParams.sokFnr);
+    const contextErKlar = useKlargjorContextholder();
 
     const config = useCallback(lagConfig, [gjeldendeFnr, valgtEnhet, history, handleSetEnhet])(
         gjeldendeFnr,
