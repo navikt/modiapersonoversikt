@@ -31,7 +31,7 @@ function Pleiepenger(props: Props) {
     return (
         <StyledArticle aria-labelledby={titleId.current}>
             <h2 className="sr-only" id={titleId.current}>
-                Pleiepenger
+                Pleiepengerrettighet
             </h2>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Pleiepengerettighet" />}
             <Oversikt pleiepenger={props.pleiepenger} />

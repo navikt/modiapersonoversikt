@@ -157,14 +157,6 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
   margin-bottom: 0.5rem;
 }
 
-.c0 .ekspanderbartPanel__innhold {
-  padding: 0;
-}
-
-.c0 .ekspanderbartPanel__hode:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
-}
-
 <section
   className="c0"
 >
@@ -173,7 +165,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
     id="Helt tilfeldig ID"
     tabIndex={-1}
   >
-    Valgtytelse
+    Valgt ytelse
   </h2>
   <article
     aria-labelledby="Helt tilfeldig ID"
@@ -983,14 +975,6 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
   margin-bottom: 0.5rem;
 }
 
-.c0 .ekspanderbartPanel__innhold {
-  padding: 0;
-}
-
-.c0 .ekspanderbartPanel__hode:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
-}
-
 <section
   className="c0"
 >
@@ -999,7 +983,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
     id="Helt tilfeldig ID"
     tabIndex={-1}
   >
-    Valgtytelse
+    Valgt ytelse
   </h2>
   <article
     aria-labelledby="Helt tilfeldig ID"
@@ -1009,7 +993,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
       className="sr-only"
       id="Helt tilfeldig ID"
     >
-      Pleiepenger
+      Pleiepengerrettighet
     </h2>
     <div
       className="c2"
@@ -1623,14 +1607,6 @@ exports[`Om sykepenger matcher snapshot 1`] = `
   margin-bottom: 0.5rem;
 }
 
-.c0 .ekspanderbartPanel__innhold {
-  padding: 0;
-}
-
-.c0 .ekspanderbartPanel__hode:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
-}
-
 <section
   className="c0"
 >
@@ -1639,7 +1615,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
     id="Helt tilfeldig ID"
     tabIndex={-1}
   >
-    Valgtytelse
+    Valgt ytelse
   </h2>
   <article
     aria-labelledby="Helt tilfeldig ID"
@@ -1649,10 +1625,9 @@ exports[`Om sykepenger matcher snapshot 1`] = `
       className="sr-only"
       id="Helt tilfeldig ID"
     >
-      Sykepenger
+      Sykepengerrettighet
     </h2>
     <div
-      aria-label="Sykepenger"
       className="c2"
     >
       <div

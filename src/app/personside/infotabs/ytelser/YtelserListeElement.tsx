@@ -33,6 +33,8 @@ function YtelserListeElement(props: Props) {
                     <Undertittel>Pleiepenger sykt barn</Undertittel>
                     <Element>ID-dato</Element>
                     <Normaltekst>{formaterDato(getYtelseIdDato(props.ytelse))}</Normaltekst>
+                    <Element>Barnets f.nr: </Element>
+                    <Normaltekst>{props.ytelse.barnet}</Normaltekst>
                 </VisMerKnapp>
             </li>
         );

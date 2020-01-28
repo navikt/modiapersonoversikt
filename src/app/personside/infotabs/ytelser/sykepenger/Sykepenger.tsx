@@ -56,14 +56,14 @@ function Sykepenger(props: Props) {
         <ErrorBoundary boundaryName="Sykepenger">
             <StyledArticle aria-labelledby={titleId.current}>
                 <h2 className="sr-only" id={titleId.current}>
-                    Sykepenger
+                    Sykepengerrettighet
                 </h2>
                 {erModiabrukerdialog() && (
                     <VisuallyHiddenAutoFokusHeader
                         tittel={'Sykepengerrettighet, ID-dato: ' + formaterDato(props.sykepenger.sykmeldtFom)}
                     />
                 )}
-                <OversiktStyling aria-label="Sykepenger">
+                <OversiktStyling>
                     <Flex>
                         <Sykepengertilfellet sykepenger={props.sykepenger} />
                         <Sykemelding sykmelding={aktuellSykmelding} />

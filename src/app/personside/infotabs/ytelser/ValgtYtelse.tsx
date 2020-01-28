@@ -24,7 +24,6 @@ const Styling = styled.section`
     > * {
         margin-bottom: 0.5rem;
     }
-    ${theme.resetEkspanderbartPanelStyling};
     padding: ${theme.margin.layout};
 `;
 
@@ -49,7 +48,7 @@ function ValgtYtelse(props: Props) {
     const valgtYtelse = ytelser.ytelser.find(ytelse => dypLenker.ytelser.erValgt(ytelse));
     const prevYtelse = usePrevious(valgtYtelse);
     useEffect(
-        function scrollToTopVedNyttSakstema() {
+        function focusVedNyYtelse() {
             if (!valgtYtelse || !prevYtelse) {
                 return;
             }
@@ -68,7 +67,7 @@ function ValgtYtelse(props: Props) {
     return (
         <Styling>
             <h2 className="sr-only" id={titleId.current} ref={tittelRef} tabIndex={-1}>
-                Valgtytelse
+                Valgt ytelse
             </h2>
             {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />}
             <YtelseMarkup ytelse={props.valgtYtelse} />

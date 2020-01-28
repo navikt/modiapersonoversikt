@@ -198,6 +198,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   >
                     14.11.2018
                   </p>
+                  <p
+                    className="typo-element"
+                  >
+                    Barnets f.nr: 
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    08031815240
+                  </p>
                 </div>
                 <button
                   aria-label="Vis pleiepenger"
