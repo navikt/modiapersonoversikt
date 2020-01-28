@@ -14,7 +14,10 @@ import {
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import styled from 'styled-components/macro';
-import Tekstomrade, { Rules, createDynamicHighligtingRule } from '../../../../../components/tekstomrade/tekstomrade';
+import Tekstomrade, {
+    defaultRules,
+    createDynamicHighligtingRule
+} from '../../../../../components/tekstomrade/tekstomrade';
 import theme from '../../../../../styles/personOversiktTheme';
 import './enkeltmelding.less';
 import Etikett from 'nav-frontend-etiketter';
@@ -174,7 +177,7 @@ function EnkeltMelding(props: Props) {
                             <Tekstomrade rules={[highlightRule]}>{datoTekst}</Tekstomrade>
                             <Avsender melding={props.melding} rule={highlightRule} />
                         </Topptekst>
-                        <Tekstomrade rules={[highlightRule, ...Rules]}>{props.melding.fritekst}</Tekstomrade>
+                        <Tekstomrade rules={[highlightRule, ...defaultRules]}>{props.melding.fritekst}</Tekstomrade>
                         <Journalforing melding={props.melding} />
                     </SnakkebobleWrapper>
                 </Snakkeboble>
