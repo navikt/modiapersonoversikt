@@ -427,7 +427,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     onScroll={[Function]}
   >
     <nav
-      aria-describedby="Helt tilfeldig ID"
+      aria-labelledby="Helt tilfeldig ID"
       className="c2"
     >
       <div

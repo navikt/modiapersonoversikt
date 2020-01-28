@@ -722,7 +722,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         className="snakkeboble_ikoner c18"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
         >
           <div
             className="snakkeboble snakkeboble--hoyre"
@@ -836,7 +836,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         className="snakkeboble_ikoner c18"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
         >
           <div
             className="snakkeboble snakkeboble--venstre"
@@ -936,7 +936,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         className="snakkeboble_ikoner c18"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
         >
           <div
             className="snakkeboble snakkeboble--venstre"
@@ -1036,7 +1036,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         className="snakkeboble_ikoner c18"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
         >
           <div
             className="snakkeboble snakkeboble--hoyre"
