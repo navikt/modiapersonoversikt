@@ -7,7 +7,7 @@ import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 
 const Form = styled.form`
-    margin-top: 6rem;
+    margin-top: 2rem;
     transform: scale(1.3);
     .skjemaelement {
         display: flex;
