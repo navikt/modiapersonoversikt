@@ -13,7 +13,8 @@ export function post(uri: string, body: object | string, loggLocation: string) {
                     undefined,
                     { request: JSON.stringify(body), response: text },
                     {
-                        type: 'Post-Failed'
+                        action: 'Post-Failed',
+                        location: loggLocation
                     }
                 );
                 return Promise.reject(text);
