@@ -40,7 +40,6 @@ const PlussStyle = styled.div`
     justify-content: center;
     align-items: center;
     margin-left: 0.5rem;
-    margin-right: -1rem;
     svg {
         height: 1.4rem;
         width: 1.4rem;
