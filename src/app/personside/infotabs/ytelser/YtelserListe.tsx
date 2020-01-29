@@ -24,10 +24,13 @@ const TittelWrapper = styled.div`
 interface Props {
     ytelser: Ytelse[];
     pending: boolean;
+    valgtYtelse: Ytelse;
 }
 
 function YtelseListe(props: Props) {
-    const ytelser = props.ytelser.map(ytelse => <YtelserListeElement ytelse={ytelse} />);
+    const ytelser = props.ytelser.map(ytelse => (
+        <YtelserListeElement ytelse={ytelse} erValgt={ytelse === props.valgtYtelse} />
+    ));
     return (
         <Styling>
             <TittelWrapper>

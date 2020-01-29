@@ -16,6 +16,7 @@ import { useInfotabsDyplenker } from '../dyplenker';
 
 interface Props {
     ytelse: Ytelse;
+    erValgt: boolean;
 }
 
 function YtelserListeElement(props: Props) {
@@ -27,7 +28,7 @@ function YtelserListeElement(props: Props) {
                 <VisMerKnapp
                     key={getUnikPleiepengerKey(props.ytelse)}
                     ariaDescription="Vis pleiepenger"
-                    valgt={dypLenker.ytelser.erValgt(props.ytelse)}
+                    valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
                 >
                     <Undertittel tag={'h3'}>Pleiepenger sykt barn</Undertittel>
@@ -46,7 +47,7 @@ function YtelserListeElement(props: Props) {
                 <VisMerKnapp
                     key={getUnikSykepengerKey(props.ytelse)}
                     ariaDescription="Vis sykepenger"
-                    valgt={dypLenker.ytelser.erValgt(props.ytelse)}
+                    valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
                 >
                     <Undertittel tag={'h3'}>Sykepengerrettighet</Undertittel>
@@ -63,7 +64,7 @@ function YtelserListeElement(props: Props) {
                 <VisMerKnapp
                     key={getUnikForeldrepengerKey(props.ytelse)}
                     ariaDescription="Vis foreldrepenger"
-                    valgt={dypLenker.ytelser.erValgt(props.ytelse)}
+                    valgt={props.erValgt}
                     linkTo={dypLenker.ytelser.link(props.ytelse)}
                 >
                     <Undertittel tag={'h3'}>Foreldrepenger</Undertittel>

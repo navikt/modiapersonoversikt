@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { useEffect } from 'react';
 import YtelseListe from './YtelserListe';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import styled from 'styled-components';
 import ValgtYtelse from './ValgtYtelse';
 import useBrukersYtelser from './useBrukersYtelser';
 import { useInfotabsDyplenker } from '../dyplenker';
-import { useHistory } from 'react-router';
+import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 
 export const ytelserMediaTreshold = '45rem';
 
@@ -35,27 +34,24 @@ const Styling = styled.section`
 `;
 
 function Ytelser() {
+    useKeepQueryParams();
     const ytelser = useBrukersYtelser();
     const dypLenker = useInfotabsDyplenker();
     const valgtYtelse = ytelser.ytelser.find(ytelse => dypLenker.ytelser.erValgt(ytelse));
-    const history = useHistory();
-
-    useEffect(() => {
-        if (!valgtYtelse) {
-            const førsteYtelse = ytelser.ytelser[0];
-            førsteYtelse && history.push(dypLenker.ytelser.link(førsteYtelse));
-        }
-    }, [ytelser.ytelser, dypLenker, history, valgtYtelse]);
 
     return (
         <Styling>
             {ytelser.feilmeldinger}
             <Layout>
                 <ScrollBar keepScrollId="ytelser-liste">
-                    <YtelseListe pending={ytelser.pending} ytelser={ytelser.ytelser} />
+                    <YtelseListe
+                        pending={ytelser.pending}
+                        ytelser={ytelser.ytelser}
+                        valgtYtelse={valgtYtelse || ytelser.ytelser[0]}
+                    />
                 </ScrollBar>
                 <ScrollBar keepScrollId="ytelser-valgt">
-                    <ValgtYtelse valgtYtelse={valgtYtelse} />
+                    <ValgtYtelse valgtYtelse={valgtYtelse || ytelser.ytelser[0]} />
                 </ScrollBar>
             </Layout>
         </Styling>
