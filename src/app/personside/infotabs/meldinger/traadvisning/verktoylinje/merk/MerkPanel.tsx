@@ -116,9 +116,8 @@ function MerkPanel(props: Props) {
     const dispatch = useDispatch();
     const saksbehandlerKanSletteFetch: FetchResult<Boolean> = useFetchWithLog<Boolean>(
         MERK_SLETT_URL,
-        'MerkPanel',
-        includeCredentials,
-        'KanSletteMelding'
+        'MerkPanel-KanSletteMelding',
+        includeCredentials
     );
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
 

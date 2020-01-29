@@ -15,13 +15,7 @@ function getFetchOkMessage(prevStatus: Status) {
     }
 }
 
-export function useFetchWithLog<TYPE>(
-    url: string,
-    loggerLocation: string,
-    options?: RequestInit,
-    loggerExtraTag?: string,
-    config?: Config
-) {
+export function useFetchWithLog<TYPE>(url: string, loggerLocation: string, options?: RequestInit, config?: Config) {
     const getTime = useTimer();
     const result = useFetch<TYPE>(url, options, config);
     const prevStatus = usePrevious(result.status);
@@ -35,16 +29,15 @@ export function useFetchWithLog<TYPE>(
         if (prevStatus !== Status.ERROR && result.status === Status.ERROR) {
             loggError(result.error, `Kunne ikke fetche data på ${url}. ${result.error.message}`, undefined, {
                 action: 'Fetch-Failed',
-                location: loggerLocation,
-                type: loggerExtraTag
+                location: loggerLocation
             });
             return;
         }
         if (prevStatus !== Status.OK && result.status === Status.OK) {
-            loggEvent(getFetchOkMessage(prevStatus), loggerLocation, { type: loggerExtraTag }, { ms: getTime() });
+            loggEvent(getFetchOkMessage(prevStatus), loggerLocation, undefined, { ms: getTime() });
             return;
         }
-    }, [result, url, prevStatus, loggerLocation, loggerExtraTag, getTime]);
+    }, [result, url, prevStatus, loggerLocation, getTime]);
 
     return result;
 }
