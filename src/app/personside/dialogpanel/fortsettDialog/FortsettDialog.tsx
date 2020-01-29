@@ -87,7 +87,7 @@ function FortsettDialog(props: Props) {
             />
             <Margin>
                 <UnmountClosed isOpened={brukerKanIkkeSvareInfo}>
-                    <AlertStripeInfo>Bruker kan ikke svare</AlertStripeInfo>
+                    <AlertStripeInfo>Gir varsel, bruker kan ikke svare</AlertStripeInfo>
                 </UnmountClosed>
                 <UnmountClosed isOpened={brukerKanSvareValg}>
                     <BrukerKanSvare
