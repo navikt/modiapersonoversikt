@@ -1,5 +1,5 @@
 import { PersonsokRequest } from '../../models/person/personsok';
-import { loggEvent } from '../../utils/frontendLogger';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 
 export function loggPersonsok(request: PersonsokRequest) {
     const fields = {

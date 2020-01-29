@@ -2,7 +2,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
-import { loggEvent } from '../../../utils/frontendLogger';
+import { loggEvent } from '../../../utils/logger/frontendLogger';
 import { AppState } from '../../../redux/reducers';
 import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
 

@@ -1,7 +1,7 @@
 import moment from 'moment';
 import 'moment/locale/nb';
 import navfaker from 'nav-faker';
-import { loggError } from './frontendLogger';
+import { loggError } from './logger/frontendLogger';
 
 const DATO_FORMAT = 'DD.MM.YYYY';
 const DATO_FORMAT_MANEDSNAVN = 'DD. MMM YYYY';

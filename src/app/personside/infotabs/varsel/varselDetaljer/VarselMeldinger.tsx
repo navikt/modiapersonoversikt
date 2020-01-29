@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import VarselMelding from './VarselMelding';
 import { useOnMount } from '../../../../../utils/customHooks';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 
 interface Props {
     sortertMeldingsliste: Varselmelding[];

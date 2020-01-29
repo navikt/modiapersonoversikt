@@ -12,7 +12,7 @@ import { usePostResource } from '../../rest/consumer/usePostResource';
 import { erGydligishFnr } from '../../utils/fnr-utils';
 import { useHistory } from 'react-router';
 import { paths } from '../routes/routing';
-import { loggInfo } from '../../utils/frontendLogger';
+import { loggInfo } from '../../utils/logger/frontendLogger';
 
 function Personoversikt() {
     const personResource = useRestResource(resources => resources.personinformasjon);

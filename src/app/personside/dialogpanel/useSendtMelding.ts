@@ -3,7 +3,7 @@ import { erSammefritekstSomIMelding, nyesteMelding, nyesteTraad } from '../infot
 import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { useEffect, useMemo, useState } from 'react';
 import { Melding, Traad } from '../../../models/meldinger/meldinger';
-import { loggError } from '../../../utils/frontendLogger';
+import { loggError } from '../../../utils/logger/frontendLogger';
 
 export function useSendtMelding(fritekst: string) {
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);

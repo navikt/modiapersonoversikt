@@ -13,7 +13,7 @@ import { formaterDato } from '../../../../../utils/stringFormatting';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
 import { useOnMount } from '../../../../../utils/customHooks';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 
 interface Props {
     sykepenger: ISykepenger;

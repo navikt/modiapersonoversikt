@@ -95,15 +95,13 @@ function VelgSak(props: Props) {
     const valgtKategori = useFieldState(SakKategori.FAG);
     const gsakSaker: FetchResult<Array<JournalforingsSak>> = useFetchWithLog<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`,
-        'VelgSak',
-        includeCredentials,
-        'GsakSaker'
+        'VelgSak-GsakSaker',
+        includeCredentials
     );
     const psakSaker: FetchResult<Array<JournalforingsSak>> = useFetchWithLog<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`,
-        'VelgSak',
-        includeCredentials,
-        'PsakSaker'
+        'VelgSak-PsakSaker',
+        includeCredentials
     );
 
     const saker = getSaker(gsakSaker, psakSaker);

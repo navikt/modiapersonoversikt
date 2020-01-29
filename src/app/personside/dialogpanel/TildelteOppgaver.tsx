@@ -4,7 +4,7 @@ import { useClickOutside } from '../../../utils/customHooks';
 import styled from 'styled-components/macro';
 import { Knapp } from 'nav-frontend-knapper';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import { loggError } from '../../../utils/frontendLogger';
+import { loggError } from '../../../utils/logger/frontendLogger';
 import theme from '../../../styles/personOversiktTheme';
 import { nyesteMelding } from '../infotabs/meldinger/utils/meldingerUtils';
 import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
