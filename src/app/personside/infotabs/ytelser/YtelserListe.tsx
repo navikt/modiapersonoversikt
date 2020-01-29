@@ -5,6 +5,8 @@ import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Ytelse } from '../../../../models/ytelse/ytelse-utils';
 import YtelserListeElement from './YtelserListeElement';
 import { Undertittel } from 'nav-frontend-typografi';
+import { guid } from 'nav-frontend-js-utils';
+import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
 
 const Styling = styled.section`
     ${theme.hvittPanel};
@@ -16,9 +18,15 @@ const StyledOl = styled.ol`
     }
 `;
 
+const HjelpetekstHoyreWrapper = styled.div`
+    margin-left: ${pxToRem(50)};
+    position: absolute;
+`;
+
 const TittelWrapper = styled.div`
     padding: ${pxToRem(15)};
     border-bottom: ${theme.border.skille};
+    display: flex;
 `;
 
 interface Props {
@@ -35,6 +43,11 @@ function YtelseListe(props: Props) {
         <Styling>
             <TittelWrapper>
                 <Undertittel>Ytelser</Undertittel>
+                <HjelpetekstHoyreWrapper>
+                    <HjelpetekstUnderHoyre id={guid()}>
+                        Viser ytelser fra Infotrygd(foreldrepenger, pleiepenger, sykepenger) siste 2 årene
+                    </HjelpetekstUnderHoyre>
+                </HjelpetekstHoyreWrapper>
             </TittelWrapper>
             <nav aria-label="Velg ytelser">
                 <StyledOl role="tablist">{ytelser}</StyledOl>
