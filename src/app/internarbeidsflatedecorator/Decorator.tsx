@@ -17,7 +17,7 @@ import { useQueryParams } from '../../utils/urlUtils';
 import styled from 'styled-components';
 import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTipsContainer';
 import useHandleGosysUrl from './useHandleGosysUrl';
-import { loggEvent } from '../../utils/frontendLogger';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 const etterSokefelt = `

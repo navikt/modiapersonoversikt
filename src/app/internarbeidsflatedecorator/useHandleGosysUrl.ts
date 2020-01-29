@@ -1,6 +1,6 @@
 import { useQueryParams } from '../../utils/urlUtils';
 import { useOnMount } from '../../utils/customHooks';
-import { loggEvent } from '../../utils/frontendLogger';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 import { useDispatch } from 'react-redux';
 import { usePostResource } from '../../rest/consumer/usePostResource';
 
