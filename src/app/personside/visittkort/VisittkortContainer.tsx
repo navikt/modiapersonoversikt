@@ -11,7 +11,7 @@ import styled from 'styled-components/macro';
 import theme from '../../../styles/personOversiktTheme';
 import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
 import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
-import { useLoggSkjermInfoDaglig } from '../../../utils/loggInfo/useLoggSkjermInfoDaglig';
+import { useLoggSkjermInfoDaglig } from '../../../utils/logger/loggInfo/useLoggSkjermInfoDaglig';
 import { useAppState } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';

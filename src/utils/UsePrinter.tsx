@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { PrinterMedHeader } from './PrinterMedHeader';
 import { erModiabrukerdialog } from './erNyPersonoversikt';
 import { createGlobalStyle } from 'styled-components';
-import { loggEvent } from './frontendLogger';
+import { loggEvent } from './logger/frontendLogger';
 
 const SkulAppVedPrint = createGlobalStyle`
     @media print {

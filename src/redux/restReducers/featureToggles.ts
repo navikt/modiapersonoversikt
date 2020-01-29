@@ -2,7 +2,7 @@ import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { FeatureToggleResponse } from '../../models/featureToggle';
 import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
 import { apiBaseUri, includeCredentials } from '../../api/config';
-import { loggError } from '../../utils/frontendLogger';
+import { loggError } from '../../utils/logger/frontendLogger';
 
 export default createRestResourceReducerAndActions<{ [name: string]: boolean }>('featureToggles', () => '');
 

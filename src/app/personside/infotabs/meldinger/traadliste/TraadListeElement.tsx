@@ -10,7 +10,7 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import TraadSammendrag from './TraadSammendrag';
 import { guid } from 'nav-frontend-js-utils';
 import { nyesteMelding } from '../utils/meldingerUtils';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { valgtMeldingKlasse } from './TraadListe';
 
 interface Props {

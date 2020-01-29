@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import { TableStyle } from './StyledTable';
 import theme, { pxToRem } from '../../styles/personOversiktTheme';
 import { TableProps, TableRow, TitleCell } from './Table';
-import { loggError } from '../frontendLogger';
+import { loggError } from '../logger/frontendLogger';
 import { default as React } from 'react';
 
 const Style = styled(TableStyle)`

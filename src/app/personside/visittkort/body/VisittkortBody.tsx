@@ -9,7 +9,7 @@ import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import LenkeBrukerprofilContainer from './lenkebrukerprofil/LenkeBrukerprofilContainer';
-import { loggEvent } from '../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import Fullmakter from './fullmakt/Fullmakt';
 

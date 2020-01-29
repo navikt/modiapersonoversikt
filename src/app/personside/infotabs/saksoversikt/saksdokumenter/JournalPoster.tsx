@@ -23,7 +23,7 @@ import { useAppState, usePrevious } from '../../../../../utils/customHooks';
 import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 import { useDispatch } from 'react-redux';
 import { oppdaterAvsenderfilter } from '../../../../../redux/saksoversikt/actions';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import { guid } from 'nav-frontend-js-utils';
 

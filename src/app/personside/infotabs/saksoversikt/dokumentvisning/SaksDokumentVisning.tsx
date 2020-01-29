@@ -1,6 +1,6 @@
 import { useOnMount } from '../../../../../utils/customHooks';
 import { default as React, useEffect, useState } from 'react';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { erIE11 } from '../../../../../utils/erNyPersonoversikt';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';

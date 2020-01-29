@@ -7,7 +7,7 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import DelUtbetaling from './DelUtbetaling';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { useDispatch } from 'react-redux';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/actions';

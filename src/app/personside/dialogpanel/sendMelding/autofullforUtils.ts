@@ -3,7 +3,7 @@ import { NavKontorResponse } from '../../../../models/navkontor';
 import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/stringFormatting';
-import { loggError, loggEvent } from '../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../utils/logger/frontendLogger';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { mockEnabled } from '../../../../api/config';
 

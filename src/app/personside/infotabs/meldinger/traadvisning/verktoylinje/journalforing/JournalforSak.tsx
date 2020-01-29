@@ -9,7 +9,7 @@ import { Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { post } from '../../../../../../../api/api';
-import { loggError } from '../../../../../../../utils/frontendLogger';
+import { loggError } from '../../../../../../../utils/logger/frontendLogger';
 import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { useFødselsnummer } from '../../../../../../../utils/customHooks';

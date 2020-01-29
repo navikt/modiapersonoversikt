@@ -1,8 +1,8 @@
 import { loggEvent } from '../frontendLogger';
 import { detect } from 'detect-browser';
-import { roundToNearest100 } from '../math';
-import { runOnceDaily } from '../runOnceDaily';
-import { useAppState, useOnMount } from '../customHooks';
+import { roundToNearest100 } from '../../math';
+import { runOnceDaily } from '../../runOnceDaily';
+import { useAppState, useOnMount } from '../../customHooks';
 
 export function useLoggSkjermInfoDaglig() {
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);

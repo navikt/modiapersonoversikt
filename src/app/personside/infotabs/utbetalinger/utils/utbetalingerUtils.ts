@@ -2,7 +2,7 @@ import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from '../../../../
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { Periode } from '../../../../../models/periode';
 import moment from 'moment';
-import { loggError } from '../../../../../utils/frontendLogger';
+import { loggError } from '../../../../../utils/logger/frontendLogger';
 import { UtbetalingFilterState, PeriodeValg } from '../../../../../redux/utbetalinger/types';
 import { datoVerbose } from '../../../../../utils/dateUtils';
 
