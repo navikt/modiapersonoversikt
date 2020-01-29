@@ -1,5 +1,5 @@
 import { erGyldigValg } from '../sokUtils';
-import { Systemtittel } from 'nav-frontend-typografi';
+import { Element, Systemtittel } from 'nav-frontend-typografi';
 import Tekstomrade, { defaultRules } from '../../../../../../components/tekstomrade/tekstomrade';
 import React, { useRef } from 'react';
 import * as StandardTekster from '../domain';
@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import { Knapp } from 'nav-frontend-knapper';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { guid } from 'nav-frontend-js-utils';
+import PlussIcon from '../../../../../../svg/PlussIcon';
 
 interface Props {
     tekst: StandardTekster.Tekst | undefined;
@@ -27,6 +28,25 @@ const Tag = styled(({ highlight, ...rest }) => <Knapp {...rest} />)`
     }
     &:hover {
         color: ${props => (props.highlight ? theme.color.lenke : '#ffffff')};
+        svg {
+            background-color: transparent;
+            stroke: currentColor;
+        }
+    }
+`;
+
+const PlussStyle = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5rem;
+    margin-right: -1rem;
+    svg {
+        height: 1.4rem;
+        width: 1.4rem;
+        border-radius: 50%;
+        background-color: currentColor;
+        stroke: white;
     }
 `;
 
@@ -63,15 +83,18 @@ function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; so
                     highlight={highlight}
                 >
                     {highlight ? <em>{tag}</em> : tag}
+                    <PlussStyle>
+                        <PlussIcon />
+                    </PlussStyle>
                     <span className="sr-only"> - klikk for å legge til tag i søkefelt</span>
                 </Tag>
             );
         });
     return (
         <section className="tags" aria-labelledby={tittelId.current}>
-            <h3 id={tittelId.current} className="sr-only">
+            <Element tag="h3" id={tittelId.current}>
                 Tags
-            </h3>
+            </Element>
             {tagElements}
         </section>
     );

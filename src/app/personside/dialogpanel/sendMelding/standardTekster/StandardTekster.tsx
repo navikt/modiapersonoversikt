@@ -22,6 +22,7 @@ import { guid } from 'nav-frontend-js-utils';
 import AriaNotification from '../../../../../components/AriaNotification';
 import { usePrevious } from '../../../../../utils/customHooks';
 import { useTimer } from '../../../../../utils/hooks/useTimer';
+import { HjelpetekstUnderVenstre } from 'nav-frontend-hjelpetekst';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -42,7 +43,11 @@ const SokefeltStyledNav = styled.nav`
     padding: 1rem;
     border-bottom: 1px solid ${theme.color.navGra20};
     background-color: #f5f5f5;
-
+    display: flex;
+    align-items: center;
+    > *:first-child {
+        flex-grow: 1;
+    }
     .skjemaelement {
         max-width: calc(100% - 3rem);
         margin: 0;
@@ -125,6 +130,7 @@ function StandardTekster(props: Props) {
     const sokeFeltId = useRef(guid());
     const [ariaNotification, setAriaNotification] = useState('');
     const getSpentTime = useTimer();
+    const hjelpetekstID = useRef(guid());
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
     useDefaultValgtTekst(filtrerteTekster, valgt);
@@ -197,6 +203,9 @@ function StandardTekster(props: Props) {
                     // @ts-ignore
                     autocomplete="off"
                 />
+                <HjelpetekstUnderVenstre id={hjelpetekstID.current}>
+                    Filtrer på tags ved å skrive "#eksempel" + mellomrom
+                </HjelpetekstUnderVenstre>
             </SokefeltStyledNav>
             {content}
             <AriaNotification ariaLive={'assertive'} beskjed={ariaNotification} />
