@@ -177,7 +177,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
       className="c3"
     >
       <article
-        aria-describedby="Helt tilfeldig ID"
+        aria-labelledby="Helt tilfeldig ID"
       >
         <div
           className="c4"
@@ -299,7 +299,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
       className="c3"
     >
       <article
-        aria-describedby="Helt tilfeldig ID"
+        aria-labelledby="Helt tilfeldig ID"
       >
         <div
           className="c4"

@@ -221,7 +221,7 @@ exports[`viser dialogpanel 1`] = `
   className="c0"
 >
   <article
-    aria-describedby="Helt tilfeldig ID"
+    aria-labelledby="Helt tilfeldig ID"
     className="c1"
   >
     <h2

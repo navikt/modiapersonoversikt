@@ -71,7 +71,7 @@ function InfoTabs() {
             <HandleInfotabsHotkeys />
             <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
             <ErrorBoundary boundaryName={'Open tab: ' + openTab}>
-                <StyledArticle ref={openTabRef} onScroll={storeCroll} aria-describedby={articleId.current}>
+                <StyledArticle ref={openTabRef} onScroll={storeCroll} aria-labelledby={articleId.current}>
                     <h2
                         id={articleId.current}
                         ref={headerRef}

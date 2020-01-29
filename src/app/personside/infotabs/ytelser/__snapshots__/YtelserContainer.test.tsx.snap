@@ -349,7 +349,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               className="c5"
             >
               <article
-                aria-describedby="Helt tilfeldig ID"
+                aria-labelledby="Helt tilfeldig ID"
                 className="c6"
               >
                 <h3
@@ -484,7 +484,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                 </dl>
               </article>
               <article
-                aria-describedby="Helt tilfeldig ID"
+                aria-labelledby="Helt tilfeldig ID"
                 className="c6"
               >
                 <h3
@@ -580,7 +580,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               </article>
             </div>
             <article
-              aria-describedby="Helt tilfeldig ID"
+              aria-labelledby="Helt tilfeldig ID"
               className="c6"
             >
               <h3
@@ -1060,7 +1060,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
             className="c14"
           >
             <article
-              aria-describedby="Helt tilfeldig ID"
+              aria-labelledby="Helt tilfeldig ID"
               className="c6"
             >
               <h3
@@ -1135,7 +1135,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               </dl>
             </article>
             <article
-              aria-describedby="Helt tilfeldig ID"
+              aria-labelledby="Helt tilfeldig ID"
               className="c6"
             >
               <h3
@@ -1565,7 +1565,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               className="c21"
             >
               <article
-                aria-describedby="Helt tilfeldig ID"
+                aria-labelledby="Helt tilfeldig ID"
                 className="c6"
               >
                 <h3
@@ -1676,7 +1676,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                 </dl>
               </article>
               <article
-                aria-describedby="Helt tilfeldig ID"
+                aria-labelledby="Helt tilfeldig ID"
                 className="c6"
               >
                 <h3
@@ -1740,7 +1740,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
               </article>
             </div>
             <article
-              aria-describedby="Helt tilfeldig ID"
+              aria-labelledby="Helt tilfeldig ID"
               className="c6"
             >
               <h3
@@ -1883,7 +1883,7 @@ exports[`Om YtelserContainer matcher snapshot 1`] = `
                 className="c22"
               >
                 <article
-                  aria-describedby="Helt tilfeldig ID"
+                  aria-labelledby="Helt tilfeldig ID"
                   className="c6"
                 >
                   <h3

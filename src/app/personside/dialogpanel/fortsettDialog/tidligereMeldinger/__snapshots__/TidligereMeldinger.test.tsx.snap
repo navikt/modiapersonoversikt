@@ -40,7 +40,7 @@ exports[`viser fortsett dialog 1`] = `
 }
 
 <article
-  aria-describedby="Helt tilfeldig ID"
+  aria-labelledby="Helt tilfeldig ID"
 >
   <h3
     className="sr-only"
