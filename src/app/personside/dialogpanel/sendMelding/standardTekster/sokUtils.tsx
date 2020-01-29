@@ -28,12 +28,18 @@ export function sokEtterTekster(
         .filter(it => it);
 
     const candidates: Candidate[] = tekster
-        .map(tekst => ({
-            weight: 0,
-            tekst: tekst,
-            tags: tekst.tags.map(tag => tag.toLowerCase()),
-            searchableText: `${tekst.overskrift} \u0000 ${Object.values(tekst.innhold).join('\u0000')}`.toLowerCase()
-        }))
+        .map(tekst => {
+            const tags = tekst.tags.map(tag => tag.toLowerCase());
+            const searchableText = `${tekst.overskrift} \u0000 ${Object.values(tekst.innhold).join(
+                '\u0000'
+            )} ${tags.join(' ')}`.toLowerCase();
+            return {
+                weight: 0,
+                tekst: tekst,
+                tags: tags,
+                searchableText: searchableText
+            };
+        })
         .filter(candidate => {
             return tags.every(tag => candidate.tags.includes(tag));
         })
@@ -42,14 +48,18 @@ export function sokEtterTekster(
         });
 
     const weightedCandidates: Candidate[] = candidates.map(candidate => {
-        const score = words.reduce((acc, word) => {
+        const wordScore = words.reduce((acc, word) => {
             const regexp = new RegExp(word, 'g');
             const matches = candidate.searchableText.match(regexp)?.length;
             return acc + (matches || 0);
         }, 0);
+        const tagScore = words.reduce((acc, word) => {
+            const score = candidate.tags.includes(word) ? 100 : 0;
+            return acc + score;
+        }, 0);
         return {
             ...candidate,
-            weight: score
+            weight: wordScore + tagScore
         };
     });
 
