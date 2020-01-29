@@ -11,3 +11,8 @@ export function erDnummer(fødselsnummer: string) {
     const dag = Number(fødselsnummer.substring(0, 2));
     return dag > 40 && dag <= 71;
 }
+
+export function erGydligishFnr(fnr: string) {
+    const numeric = !/\D/.test(fnr);
+    return fnr.length === 11 && numeric;
+}
