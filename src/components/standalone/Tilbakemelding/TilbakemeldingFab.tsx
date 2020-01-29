@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { useClickOutside } from '../../../utils/customHooks';
 import TilbakemeldingPopup from './TilbakemeldingPopup';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
-import { loggEvent } from '../../../utils/frontendLogger';
+import { loggEvent } from '../../../utils/logger/frontendLogger';
 import { apneIkon, lukkeIkon } from './TilbakemeldingIkoner';
 
 const localstoragePrefix = 'modiapersonoversikt__tilbakemelding__';

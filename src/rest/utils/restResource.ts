@@ -10,7 +10,7 @@ import {
 import { Action } from 'redux';
 import { AppState } from '../../redux/reducers';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
-import { loggInfo } from '../../utils/frontendLogger';
+import { loggInfo } from '../../utils/logger/frontendLogger';
 
 export interface ActionTypes {
     STARTING: string;

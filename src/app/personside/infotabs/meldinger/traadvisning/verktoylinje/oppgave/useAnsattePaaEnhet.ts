@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Ansatt, Enhet } from '../../../../../../../models/meldinger/oppgave';
-import { loggError, loggEvent } from '../../../../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 
 interface Returns {

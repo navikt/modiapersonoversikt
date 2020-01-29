@@ -1,5 +1,5 @@
 import { postConfig } from './config';
-import { loggError, loggEvent } from '../utils/frontendLogger';
+import { loggError, loggEvent } from '../utils/logger/frontendLogger';
 
 export function post(uri: string, body: object | string, loggLocation: string) {
     loggEvent('Post', loggLocation);

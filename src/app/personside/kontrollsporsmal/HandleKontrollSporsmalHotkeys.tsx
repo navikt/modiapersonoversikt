@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { loggEvent } from '../../../utils/frontendLogger';
+import { loggEvent } from '../../../utils/logger/frontendLogger';
 import { Action, Dispatch } from 'redux';
 import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { connect } from 'react-redux';

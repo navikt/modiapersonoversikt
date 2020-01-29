@@ -2,7 +2,7 @@ import { useHistory } from 'react-router';
 import { useQueryParams } from '../../utils/urlUtils';
 import { paths, setNyBrukerIPath } from '../routes/routing';
 import { useOnMount } from '../../utils/customHooks';
-import { loggEvent } from '../../utils/frontendLogger';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 import { INFOTABS } from '../personside/infotabs/InfoTabEnum';
 import { useDispatch } from 'react-redux';
 import { usePostResource } from '../../rest/consumer/usePostResource';

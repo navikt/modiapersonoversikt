@@ -5,7 +5,7 @@ import { isLoadedPerson } from './personinformasjon';
 import { NavKontorResponse } from '../../models/navkontor';
 import { Kodeverk } from '../../models/kodeverk';
 import { abortFetch } from '../../rest/utils/utils';
-import { loggError } from '../../utils/frontendLogger';
+import { loggError } from '../../utils/logger/frontendLogger';
 
 export function getUrl(geografiskTilknytning?: string, diskresjonsKode?: Kodeverk) {
     return `${apiBaseUri}/enheter?gt=${geografiskTilknytning || ''}${

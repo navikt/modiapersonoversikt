@@ -12,7 +12,7 @@ import { datoEllerNull } from '../../../../utils/stringFormatting';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { setYtelserEkspandert } from '../../../../redux/oppfolging/actions';
-import { loggEvent } from '../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../utils/logger/frontendLogger';
 
 interface Props {
     ytelser: OppfolgingsYtelse[];

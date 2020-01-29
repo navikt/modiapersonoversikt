@@ -12,7 +12,7 @@ import styled from 'styled-components/macro';
 import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
 import { guid } from 'nav-frontend-js-utils';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { loggEvent } from '../../utils/frontendLogger';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 import theme from '../../styles/personOversiktTheme';
 
 const rules = [

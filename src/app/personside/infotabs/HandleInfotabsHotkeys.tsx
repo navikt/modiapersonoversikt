@@ -1,6 +1,6 @@
 import { RouteComponentProps, withRouter } from 'react-router';
 import { useEffect } from 'react';
-import { loggEvent } from '../../../utils/frontendLogger';
+import { loggEvent } from '../../../utils/logger/frontendLogger';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../redux/reducers';
 import { usePaths } from '../../routes/routing';

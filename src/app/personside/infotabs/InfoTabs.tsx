@@ -18,7 +18,7 @@ import { useFødselsnummer } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
-import { loggEvent } from '../../../utils/frontendLogger';
+import { loggEvent } from '../../../utils/logger/frontendLogger';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import { capitalizeName } from '../../../utils/stringFormatting';
 import { guid } from 'nav-frontend-js-utils';

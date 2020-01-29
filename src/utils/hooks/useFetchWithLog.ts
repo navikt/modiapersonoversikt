@@ -1,6 +1,6 @@
 import useFetch, { Config, Status } from '@nutgaard/use-fetch';
 import { useEffect } from 'react';
-import { loggError, loggEvent } from '../frontendLogger';
+import { loggError, loggEvent } from '../logger/frontendLogger';
 import { usePrevious } from '../customHooks';
 import { useTimer } from './useTimer';
 

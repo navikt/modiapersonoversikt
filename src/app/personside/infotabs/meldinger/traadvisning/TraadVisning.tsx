@@ -13,7 +13,7 @@ import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, meldingstittel, nyesteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { useEffect } from 'react';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/UsePrinter';
 interface Props {
     valgtTraad: Traad;

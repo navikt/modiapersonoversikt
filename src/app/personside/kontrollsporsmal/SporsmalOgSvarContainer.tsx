@@ -9,7 +9,7 @@ import { PersonRespons } from '../../../models/person/person';
 import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
 import { kontaktInformasjonSpørsmål, personInformasjonSpørsmål, SpørsmålsExtractor } from './SporsmalExtractors';
 import { shuffle } from '../../../utils/list-utils';
-import { loggEvent } from '../../../utils/frontendLogger';
+import { loggEvent } from '../../../utils/logger/frontendLogger';
 import { hasData, RestResource } from '../../../rest/utils/restResource';
 
 interface StateProps {

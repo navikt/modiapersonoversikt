@@ -4,7 +4,7 @@ import useTildelteOppgaver from '../../../../utils/hooks/useTildelteOppgaver';
 import { useDispatch } from 'react-redux';
 import { useInfotabsDyplenker } from '../../infotabs/dyplenker';
 import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { loggError } from '../../../../utils/frontendLogger';
+import { loggError } from '../../../../utils/logger/frontendLogger';
 import { useHistory } from 'react-router';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 

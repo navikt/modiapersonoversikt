@@ -1,10 +1,10 @@
-import { isDevelopment, isTest } from './environment';
+import { isDevelopment, isTest } from '../environment';
 import md5 from 'md5';
 import { detect } from 'detect-browser';
-import { erNyePersonoversikten } from './erNyPersonoversikt';
+import { erNyePersonoversikten } from '../erNyPersonoversikt';
 import { useEffect } from 'react';
-import { useRestResource } from '../rest/consumer/useRestResource';
-import { erKontaktsenter } from './enheterUtils';
+import { useRestResource } from '../../rest/consumer/useRestResource';
+import { erKontaktsenter } from '../enheterUtils';
 
 let ident = 'ikke satt';
 let enhet = 'ikke valgt';

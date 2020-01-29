@@ -5,7 +5,7 @@ import Filter from './filter/Filter';
 import theme from '../../../../styles/personOversiktTheme';
 import styled, { css } from 'styled-components/macro';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
-import { loggEvent } from '../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';

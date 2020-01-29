@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { loggError } from '../utils/frontendLogger';
+import { loggError } from '../utils/logger/frontendLogger';
 
 interface Props {
     boundaryName?: string;
