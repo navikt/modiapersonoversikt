@@ -41,6 +41,7 @@ const Spinner = styled(LazySpinner)`
 
 const SokefeltStyledNav = styled.nav`
     padding: 1rem;
+    padding-right: 4rem;
     border-bottom: 1px solid ${theme.color.navGra20};
     background-color: #f5f5f5;
     display: flex;
