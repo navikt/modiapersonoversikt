@@ -6,7 +6,7 @@ import { datoStigende } from '../../../../../utils/dateUtils';
 import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
 import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
 import { useOnMount } from '../../../../../utils/customHooks';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useRef } from 'react';

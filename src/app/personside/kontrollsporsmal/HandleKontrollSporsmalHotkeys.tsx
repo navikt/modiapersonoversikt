@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { loggEvent } from '../../../utils/frontendLogger';
+import { loggEvent } from '../../../utils/logger/frontendLogger';
 import { Action, Dispatch } from 'redux';
 import { lukkKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { connect } from 'react-redux';
@@ -30,7 +30,7 @@ class HandleKontrollSporsmalHotkeys extends React.Component<DispatchProps> {
         const key = event.code ? event.code.replace('Key', '').toLowerCase() : event.key;
 
         if (key === 'l' && event.altKey) {
-            loggEvent('Hurtigtast', 'Kontrollsporsmal', { type: 'Alt + L' });
+            loggEvent('Hurtigtast', 'Lukk-kontrollsporsmal', { type: 'Alt + L' });
             this.props.lukkKontrollSpørsmål();
         }
     }

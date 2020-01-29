@@ -257,7 +257,7 @@ exports[`Viser Traadliste 1`] = `
   className="c0"
 >
   <article
-    aria-describedby="Helt tilfeldig ID"
+    aria-labelledby="Helt tilfeldig ID"
   >
     <h3
       className="sr-only"
@@ -331,7 +331,7 @@ exports[`Viser Traadliste 1`] = `
     Totalt 1 melding
   </h3>
   <ol
-    aria-describedby="Helt tilfeldig ID"
+    aria-labelledby="Helt tilfeldig ID"
     className="c4"
     tabIndex={-1}
   >

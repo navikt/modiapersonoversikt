@@ -18,10 +18,12 @@ import MeldingerPrintMarkup from '../../../../../../utils/MeldingerPrintMarkup';
 import useFeatureToggle from '../../../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../../../components/featureToggle/toggleIDs';
 import { guid } from 'nav-frontend-js-utils';
+import ErrorBoundary from '../../../../../../components/ErrorBoundary';
 
 interface Props {
     valgtTraad: Traad;
     visPrinter?: boolean;
+    className?: string;
 }
 
 const StyledArticle = styled.article`
@@ -30,6 +32,9 @@ const StyledArticle = styled.article`
     display: flex;
     flex-direction: column;
     margin-bottom: 0.24rem;
+    &:focus {
+        ${theme.focus};
+    }
 `;
 
 const KnapperPanelStyle = styled.div`
@@ -46,6 +51,7 @@ const OppgaveknapperStyle = styled.div`
 
 const SvartLenkeKnapp = styled(EkspanderKnapp)`
     color: #3e3832;
+    white-space: nowrap;
 `;
 
 enum VerktøyPanel {
@@ -112,33 +118,41 @@ function Verktoylinje(props: Props) {
     const visMerk = aktivtPanel === VerktøyPanel.MERK;
 
     return (
-        <StyledArticle aria-describedby={tittelId.current} aria-label="Verktøylinje" ref={ref} tabIndex={-1}>
-            <KnapperPanelStyle>
-                <OppgaveknapperStyle>
-                    <SvartLenkeKnapp
-                        onClick={togglePanel(VerktøyPanel.JOURNALFORING)}
-                        open={visJournalforing}
-                        tittel="Journalfør"
-                    />
-                    <SvartLenkeKnapp
-                        onClick={togglePanel(VerktøyPanel.OPPGAVE)}
-                        open={visOppgave}
-                        tittel="Lag oppgave"
-                    />
-                    <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
-                </OppgaveknapperStyle>
-                <Print {...props} />
-            </KnapperPanelStyle>
-            <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
-                <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />
-            </UnmountClosed>
-            <UnmountClosed isOpened={visOppgave}>
-                <OpprettOppgaveContainer valgtTraad={props.valgtTraad} lukkPanel={lukk} />
-            </UnmountClosed>
-            <UnmountClosed isOpened={visMerk}>
-                <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={lukk} />
-            </UnmountClosed>
-        </StyledArticle>
+        <ErrorBoundary boundaryName="Verktøylinje">
+            <StyledArticle
+                className={props.className}
+                aria-labelledby={tittelId.current}
+                aria-label="Verktøylinje"
+                ref={ref}
+                tabIndex={-1}
+            >
+                <KnapperPanelStyle>
+                    <OppgaveknapperStyle>
+                        <SvartLenkeKnapp
+                            onClick={togglePanel(VerktøyPanel.JOURNALFORING)}
+                            open={visJournalforing}
+                            tittel="Journalfør"
+                        />
+                        <SvartLenkeKnapp
+                            onClick={togglePanel(VerktøyPanel.OPPGAVE)}
+                            open={visOppgave}
+                            tittel="Oppgave"
+                        />
+                        <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
+                    </OppgaveknapperStyle>
+                    <Print {...props} />
+                </KnapperPanelStyle>
+                <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
+                    <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />
+                </UnmountClosed>
+                <UnmountClosed isOpened={visOppgave}>
+                    <OpprettOppgaveContainer valgtTraad={props.valgtTraad} lukkPanel={lukk} />
+                </UnmountClosed>
+                <UnmountClosed isOpened={visMerk}>
+                    <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={lukk} />
+                </UnmountClosed>
+            </StyledArticle>
+        </ErrorBoundary>
     );
 }
 

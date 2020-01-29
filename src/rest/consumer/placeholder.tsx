@@ -10,7 +10,7 @@ import {
 } from '../utils/restResource';
 import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
 import LazySpinner from '../../components/LazySpinner';
-import { loggError } from '../../utils/frontendLogger';
+import { loggError } from '../../utils/logger/frontendLogger';
 import DelayRender from '../../components/DelayRender';
 
 export interface RestResourcePlaceholderProps {

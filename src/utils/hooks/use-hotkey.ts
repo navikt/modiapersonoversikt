@@ -1,5 +1,5 @@
 import { DependencyList, useCallback, useEffect } from 'react';
-import { loggEvent } from '../frontendLogger';
+import { loggEvent } from '../logger/frontendLogger';
 
 type KeyDescription = { char: string; altKey?: boolean; ctrlKey?: boolean; metaKey?: boolean; shiftKey?: boolean };
 function toKeyDescription(value: string | KeyDescription): KeyDescription {

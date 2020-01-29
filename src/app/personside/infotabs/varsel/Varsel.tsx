@@ -11,7 +11,7 @@ import { formaterDato } from '../../../../utils/stringFormatting';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisVarsel } from '../../../../redux/varsler/varslerReducer';
-import { loggError } from '../../../../utils/frontendLogger';
+import { loggError } from '../../../../utils/logger/frontendLogger';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 
@@ -95,7 +95,7 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
     const varselTekst = getVarselTekst(varsel);
     return (
         <Style>
-            <article aria-describedby={tittelId.current}>
+            <article aria-labelledby={tittelId.current}>
                 <HeaderStyle onClick={toggleOpen}>
                     <Normaltekst>{formaterDato(varsel.mottattTidspunkt)}</Normaltekst>
                     <Element id={tittelId.current} tag="h4">

@@ -1,6 +1,6 @@
 import { erGyldigValg } from '../sokUtils';
 import { Systemtittel } from 'nav-frontend-typografi';
-import Tekstomrade, { Rules } from '../../../../../../components/tekstomrade/tekstomrade';
+import Tekstomrade, { defaultRules } from '../../../../../../components/tekstomrade/tekstomrade';
 import React, { useRef } from 'react';
 import * as StandardTekster from '../domain';
 import { FieldState } from '../../../../../../utils/hooks/use-field-state';
@@ -27,6 +27,10 @@ const Tag = styled(({ highlight, ...rest }) => <Knapp {...rest} />)`
     }
     &:hover {
         color: ${props => (props.highlight ? theme.color.lenke : '#ffffff')};
+        svg {
+            background-color: transparent;
+            stroke: currentColor;
+        }
     }
 `;
 
@@ -62,14 +66,14 @@ function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; so
                     onClick={() => sokefelt.setValue(`#${tag} ${sokefelt.input.value}`)}
                     highlight={highlight}
                 >
-                    {highlight ? <em>{tag}</em> : tag}
+                    {highlight ? <em>#{tag}</em> : `#${tag}`}
                     <span className="sr-only"> - klikk for å legge til tag i søkefelt</span>
                 </Tag>
             );
         });
     return (
-        <section className="tags" aria-describedby={tittelId.current}>
-            <h3 id={tittelId.current} className="sr-only">
+        <section className="tags" aria-labelledby={tittelId.current}>
+            <h3 className="sr-only" id={tittelId.current}>
                 Tags
             </h3>
             {tagElements}
@@ -86,14 +90,14 @@ function StandardTekstPreview({ tekst, locale, sokefelt, highlightRule }: Props)
 
     return (
         <PreviewStyle aria-hidden={'true'}>
-            <article aria-describedby={tittelId.current}>
+            <article aria-labelledby={tittelId.current}>
                 <h3 className="sr-only" id={tittelId.current}>
                     Forhåndsvisning
                 </h3>
                 <Systemtittel tag="h4" className="blokk-xs">
                     {tekst && tekst.overskrift}
                 </Systemtittel>
-                <Tekstomrade rules={[highlightRule, ...Rules]} className="typo-normal blokk-m">
+                <Tekstomrade rules={[highlightRule, ...defaultRules]} className="typo-normal blokk-m">
                     {tekst && tekst.innhold[locale]}
                 </Tekstomrade>
             </article>

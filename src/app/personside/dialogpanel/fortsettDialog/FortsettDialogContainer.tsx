@@ -15,7 +15,7 @@ import {
 } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { loggError, loggEvent } from '../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../utils/logger/frontendLogger';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import {
@@ -123,9 +123,10 @@ function FortsettDialogContainer(props: Props) {
                 ...commonPayload,
                 erOppgaveTilknyttetAnsatt: true // TODO, denne bør ikke være nødvendig å sende med her
             };
-            const kvitteringsData = {
+            const kvitteringsData: KvitteringsData = {
                 fritekst: request.fritekst,
-                meldingstype: request.meldingstype
+                meldingstype: request.meldingstype,
+                traad: props.traad
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Send-Svar')
                 .then(() => {
@@ -149,9 +150,10 @@ function FortsettDialogContainer(props: Props) {
                 erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
                 sak: state.sak ? state.sak : undefined
             };
-            const kvitteringsData = {
+            const kvitteringsData: KvitteringsData = {
                 fritekst: request.fritekst,
-                meldingstype: request.meldingstype
+                meldingstype: request.meldingstype,
+                traad: props.traad
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
@@ -176,7 +178,8 @@ function FortsettDialogContainer(props: Props) {
                     const kvitteringsData: KvitteringsData = {
                         fritekst: request.fritekst,
                         meldingstype: Meldingstype.DELVIS_SVAR_SKRIFTLIG,
-                        temagruppe: request.temagruppe
+                        temagruppe: request.temagruppe,
+                        traad: props.traad
                     };
                     setDialogStatus({ type: DialogPanelStatus.DELSVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
@@ -192,7 +195,7 @@ function FortsettDialogContainer(props: Props) {
     const temagruppe = meldingMedTemagruppe ? meldingMedTemagruppe.temagruppe : undefined;
 
     return (
-        <StyledArticle aria-describedby={tittelId.current}>
+        <StyledArticle aria-labelledby={tittelId.current}>
             <Undertittel id={tittelId.current}>Fortsett dialog</Undertittel>
             <FortsettDialog
                 handleAvbryt={handleAvbryt}

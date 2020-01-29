@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
@@ -19,7 +19,7 @@ import {
 } from '../../../utils/meldingerUtils';
 import { Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
-import { apiBaseUri } from '../../../../../../../api/config';
+import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import {
     MerkAvsluttUtenSvarRequest,
@@ -36,6 +36,7 @@ import { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
+import { useFocusOnFirstInputOnMount } from '../../../../../../../utils/hooks/useFocusOnFirstInputOnMount';
 
 interface Props {
     lukkPanel: () => void;
@@ -60,8 +61,6 @@ const AlertStyling = styled.div`
         margin-top: 1rem;
     }
 `;
-
-const credentials: RequestInit = { credentials: 'include' };
 
 const MERK_AVSLUTT_URL = `${apiBaseUri}/dialogmerking/avslutt`;
 const MERK_BISYS_URL = `${apiBaseUri}/dialogmerking/bidrag`;
@@ -117,9 +116,8 @@ function MerkPanel(props: Props) {
     const dispatch = useDispatch();
     const saksbehandlerKanSletteFetch: FetchResult<Boolean> = useFetchWithLog<Boolean>(
         MERK_SLETT_URL,
-        'MerkPanel',
-        credentials,
-        'KanSletteMelding'
+        'MerkPanel-KanSletteMelding',
+        includeCredentials
     );
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
 
@@ -133,6 +131,9 @@ function MerkPanel(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const valgtTraad = props.valgtTraad;
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+    const formRef = useRef<HTMLFormElement>(null);
+
+    useFocusOnFirstInputOnMount(formRef);
 
     const melding = eldsteMelding(valgtTraad);
 
@@ -239,7 +240,7 @@ function MerkPanel(props: Props) {
             radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT });
         }
         return (
-            <form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler} ref={formRef}>
                 <RadioPanelGruppe
                     radios={radioprops}
                     name={'merk'}

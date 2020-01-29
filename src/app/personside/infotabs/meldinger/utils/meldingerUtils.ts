@@ -179,11 +179,8 @@ function removeWhiteSpaces(text: string) {
     return text.replace(/\s+/g, '');
 }
 
-export function erSammefritekstSomNyesteMeldingITraad(fritekst: string, traad?: Traad): boolean {
-    if (traad === undefined) {
-        return false;
-    }
-    const fritekstFraNyesteMeldingITraad = removeWhiteSpaces(nyesteMelding(traad).fritekst.toLowerCase());
+export function erSammefritekstSomIMelding(fritekst: string, melding: Melding): boolean {
+    const fritekstFraNyesteMeldingITraad = removeWhiteSpaces(melding.fritekst.toLowerCase());
     const fritekstFraMelding = removeWhiteSpaces(fritekst.toLowerCase());
     return fritekstFraNyesteMeldingITraad.includes(fritekstFraMelding);
 }

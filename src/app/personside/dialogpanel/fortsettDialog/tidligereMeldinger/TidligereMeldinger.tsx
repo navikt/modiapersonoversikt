@@ -5,6 +5,7 @@ import styled from 'styled-components/macro';
 import EnkeltMelding from './EnkeltMelding';
 import theme from '../../../../../styles/personOversiktTheme';
 import { guid } from 'nav-frontend-js-utils';
+import ErrorBoundary from '../../../../../components/ErrorBoundary';
 
 interface Props {
     traad: Traad;
@@ -52,13 +53,15 @@ function TidligereMeldinger(props: Props) {
     const defaultApen = delsvar.length > 0 || traadUtenDelviseSvar.length === 1;
 
     return (
-        <article aria-describedby={tittelId.current}>
-            <h3 tabIndex={-1} className="sr-only" id={tittelId.current}>
-                Tidligere meldinger
-            </h3>
-            <Traadpanel traad={traadUtenDelviseSvar} tittel="Dialog" defaultApen={defaultApen} />
-            <Traadpanel traad={delsvar} tittel="Delsvar" defaultApen={defaultApen} />
-        </article>
+        <ErrorBoundary boundaryName="Tidligere meldinger">
+            <article aria-labelledby={tittelId.current}>
+                <h3 tabIndex={-1} className="sr-only" id={tittelId.current}>
+                    Tidligere meldinger
+                </h3>
+                <Traadpanel traad={traadUtenDelviseSvar} tittel="Dialog" defaultApen={defaultApen} />
+                <Traadpanel traad={delsvar} tittel="Delsvar" defaultApen={defaultApen} />
+            </article>
+        </ErrorBoundary>
     );
 }
 

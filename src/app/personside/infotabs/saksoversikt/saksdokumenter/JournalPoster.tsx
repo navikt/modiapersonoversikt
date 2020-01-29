@@ -17,14 +17,15 @@ import JournalpostLiseElement from './JournalpostLiseElement';
 import { sakerTest } from '../../dyplenkeTest/utils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListe from '../sakstemaliste/SakstemaListe';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { useAppState, usePrevious } from '../../../../../utils/customHooks';
 import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 import { useDispatch } from 'react-redux';
 import { oppdaterAvsenderfilter } from '../../../../../redux/saksoversikt/actions';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     valgtSakstema: Sakstema;
@@ -102,6 +103,7 @@ const TittelWrapperStyling = styled.div`
 `;
 
 function JournalpostGruppe({ gruppe, harTilgang, valgtSakstema }: JournalpostGruppeProps) {
+    const tittelId = useRef(guid());
     const journalposter = gruppe.array.map(journalpost => (
         <JournalpostLiseElement
             journalpost={journalpost}
@@ -114,9 +116,12 @@ function JournalpostGruppe({ gruppe, harTilgang, valgtSakstema }: JournalpostGru
     return (
         <ÅrsGruppeStyle>
             <KategoriSkille>
-                <Element tag={'h3'}>{gruppe.category}</Element>
+                <Element tag={'h3'} id={tittelId.current}>
+                    <span className="sr-only">Journalposter fra</span>
+                    {gruppe.category}
+                </Element>
             </KategoriSkille>
-            <ol>{journalposter}</ol>
+            <ol aria-labelledby={tittelId.current}>{journalposter}</ol>
         </ÅrsGruppeStyle>
     );
 }

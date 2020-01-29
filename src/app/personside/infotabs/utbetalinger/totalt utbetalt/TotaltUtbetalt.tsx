@@ -14,7 +14,7 @@ import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { FlexEnd } from '../../../../../components/common-styled-components';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import { Table } from '../../../../../utils/table/Table';

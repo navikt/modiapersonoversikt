@@ -1,9 +1,10 @@
-import { isDevelopment, isTest } from './environment';
+import { isDevelopment, isTest } from '../environment';
 import md5 from 'md5';
 import { detect } from 'detect-browser';
-import { erNyePersonoversikten } from './erNyPersonoversikt';
+import { erNyePersonoversikten } from '../erNyPersonoversikt';
 import { useEffect } from 'react';
-import { useRestResource } from '../rest/consumer/useRestResource';
+import { useRestResource } from '../../rest/consumer/useRestResource';
+import { erKontaktsenter } from '../enheterUtils';
 
 let ident = 'ikke satt';
 let enhet = 'ikke valgt';
@@ -42,7 +43,13 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
     const event = {
         table: 'modiapersonoversikt',
         fields: { ...fields, identHash: md5(ident) },
-        tags: { action: action, location: location, erNyePersonoversikten: erNyePersonoversikten(), ...extraTags }
+        tags: {
+            action: action,
+            location: location,
+            erNyePersonoversikten: erNyePersonoversikten(),
+            erKontaktsenter: erKontaktsenter(enhet),
+            ...extraTags
+        }
     };
     window['frontendlogger'].event(
         event.table,

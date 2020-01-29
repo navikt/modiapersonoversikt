@@ -9,10 +9,8 @@ import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { NedChevron, OppChevron } from 'nav-frontend-chevron';
 import { cache, createCacheKey } from '@nutgaard/use-fetch';
-import { apiBaseUri } from '../../../../api/config';
+import { apiBaseUri, includeCredentials } from '../../../../api/config';
 import { useClickOutside, useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
-
-const credentials: RequestInit = { credentials: 'include' };
 
 interface Props {
     valgtSak?: JournalforingsSak;
@@ -60,8 +58,8 @@ function usePreFetchJournalforingsSaker() {
     useOnMount(() => {
         const sammensattUrl = `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`;
         const pensjonUrl = `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`;
-        cache.fetch(createCacheKey(sammensattUrl, credentials), sammensattUrl, credentials);
-        cache.fetch(createCacheKey(pensjonUrl, credentials), sammensattUrl, credentials);
+        cache.fetch(createCacheKey(sammensattUrl, includeCredentials), sammensattUrl, includeCredentials);
+        cache.fetch(createCacheKey(pensjonUrl, includeCredentials), sammensattUrl, includeCredentials);
     });
 }
 

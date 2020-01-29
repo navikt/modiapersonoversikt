@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components/macro';
 import { useOnMount } from '../../../../utils/customHooks';
-import { loggEvent } from '../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../utils/logger/frontendLogger';
 
 const descend = keyframes`
     from {
@@ -46,8 +46,8 @@ const Glow = styled.div<{ xSpeed: number; ySpeed: number }>`
     border-radius: 50%;
     z-index: 10;
     box-shadow: 0 0 4px black;
-    animation: ${descend} ease-in 3s both -0.2s,
-        ${props => speed(props.xSpeed, props.ySpeed)} ease-out 3s forwards -0.2s;
+    animation: ${descend} ease-in 2s both -0.2s,
+        ${props => speed(props.xSpeed, props.ySpeed)} ease-out 2s forwards -0.2s;
 `;
 
 function Fireworks() {

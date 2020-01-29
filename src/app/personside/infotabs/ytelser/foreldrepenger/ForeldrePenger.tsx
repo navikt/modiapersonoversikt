@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
 import ForeldrepengePeriode from './ForeldrepengePeriode';
 import Oversikt from './Oversikt';
@@ -6,11 +7,10 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
 import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
 import { useOnMount } from '../../../../../utils/customHooks';
-import { loggEvent } from '../../../../../utils/frontendLogger';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
-import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 
 interface Props {
     foreldrepenger: Foreldrepengerettighet | null;

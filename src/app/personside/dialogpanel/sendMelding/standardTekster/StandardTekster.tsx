@@ -14,13 +14,15 @@ import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullførData } from '../autofullforUtils';
 import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { guid } from 'nav-frontend-js-utils';
 import AriaNotification from '../../../../../components/AriaNotification';
 import { usePrevious } from '../../../../../utils/customHooks';
+import { useTimer } from '../../../../../utils/hooks/useTimer';
+import { HjelpetekstUnderVenstre } from 'nav-frontend-hjelpetekst';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -41,7 +43,11 @@ const SokefeltStyledNav = styled.nav`
     padding: 1rem;
     border-bottom: 1px solid ${theme.color.navGra20};
     background-color: #f5f5f5;
-
+    display: flex;
+    align-items: center;
+    > *:first-child {
+        flex-grow: 1;
+    }
     .skjemaelement {
         max-width: calc(100% - 3rem);
         margin: 0;
@@ -79,14 +85,15 @@ function velgTekst(
     settTekst: (tekst: string) => void,
     tekst: StandardTeksterModels.Tekst | undefined,
     locale: string,
+    getTimeSpent: () => number,
     autofullforData?: AutofullforData
 ) {
     return (event: FormEvent) => {
         event.preventDefault();
         event.stopPropagation();
         if (erGyldigValg(tekst, locale)) {
-            loggEvent('Velg tekst', 'Standardtekster');
-            const localeTekst = tekst.innhold[locale];
+            loggEvent('Velg tekst', 'Standardtekster', undefined, { ms: getTimeSpent() });
+            const localeTekst: string = tekst.innhold[locale]?.trim();
             if (autofullforData) {
                 const nokler = byggAutofullforMap(
                     locale,
@@ -122,6 +129,8 @@ function StandardTekster(props: Props) {
     const autofullforData = useAutoFullførData();
     const sokeFeltId = useRef(guid());
     const [ariaNotification, setAriaNotification] = useState('');
+    const getSpentTime = useTimer();
+    const hjelpetekstID = useRef(guid());
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
     useDefaultValgtTekst(filtrerteTekster, valgt);
@@ -130,12 +139,12 @@ function StandardTekster(props: Props) {
         settFiltrerteTekster(sokEtterTekster(standardTekster, debouncedSokefelt));
     }, [settFiltrerteTekster, standardTekster, debouncedSokefelt]);
 
-    const prevDebouncedSokefelt = usePrevious(debouncedSokefelt);
+    const prevFiltreteTekster = usePrevious(filtrerteTekster);
     useEffect(() => {
-        if (prevDebouncedSokefelt !== debouncedSokefelt) {
+        if (prevFiltreteTekster !== filtrerteTekster) {
             valgt.setValue(filtrerteTekster[0]?.id || '');
         }
-    }, [filtrerteTekster, valgt, debouncedSokefelt, prevDebouncedSokefelt]);
+    }, [filtrerteTekster, valgt, prevFiltreteTekster]);
 
     useEffect(() => {
         if (sokRef.current?.contains(document.activeElement)) {
@@ -180,9 +189,11 @@ function StandardTekster(props: Props) {
     }
 
     return (
-        <StyledForm onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
+        <StyledForm
+            onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, getSpentTime, autofullforData)}
+        >
             <h2 className="sr-only">Standardtekster</h2>
-            <SokefeltStyledNav aria-describedby={sokeFeltId.current} ref={sokRef}>
+            <SokefeltStyledNav aria-labelledby={sokeFeltId.current} ref={sokRef}>
                 <TagInput
                     {...sokefelt.input}
                     name="standardtekstsok"
@@ -192,6 +203,9 @@ function StandardTekster(props: Props) {
                     // @ts-ignore
                     autocomplete="off"
                 />
+                <HjelpetekstUnderVenstre id={hjelpetekstID.current}>
+                    Filtrer på tags ved å skrive "#eksempel" + mellomrom
+                </HjelpetekstUnderVenstre>
             </SokefeltStyledNav>
             {content}
             <AriaNotification ariaLive={'assertive'} beskjed={ariaNotification} />

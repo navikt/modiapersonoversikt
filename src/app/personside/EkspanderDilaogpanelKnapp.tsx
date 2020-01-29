@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../styles/personOversiktTheme';
-import { loggEvent } from '../../utils/frontendLogger';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 
 const Style = styled.div`
     padding: 0.4rem;

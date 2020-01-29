@@ -1,5 +1,5 @@
 import { postConfig } from './config';
-import { loggError, loggEvent } from '../utils/frontendLogger';
+import { loggError, loggEvent } from '../utils/logger/frontendLogger';
 
 export function post(uri: string, body: object | string, loggLocation: string) {
     loggEvent('Post', loggLocation);
@@ -8,8 +8,15 @@ export function post(uri: string, body: object | string, loggLocation: string) {
             return parseResponse(response);
         } else {
             return response.text().then(text => {
-                loggEvent('Post-failed', loggLocation);
-                loggError(Error(`Post failed in ${loggLocation} on: ${uri}`), text, { request: body });
+                loggError(
+                    Error(`Post failed in ${loggLocation} on: ${uri}`),
+                    undefined,
+                    { request: JSON.stringify(body), response: text },
+                    {
+                        action: 'Post-Failed',
+                        location: loggLocation
+                    }
+                );
                 return Promise.reject(text);
             });
         }

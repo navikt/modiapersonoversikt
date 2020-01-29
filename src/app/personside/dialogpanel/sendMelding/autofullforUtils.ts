@@ -3,8 +3,9 @@ import { NavKontorResponse } from '../../../../models/navkontor';
 import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/stringFormatting';
-import { loggError, loggEvent } from '../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../utils/logger/frontendLogger';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import { mockEnabled } from '../../../../api/config';
 
 export type AutofullforData = {
     person?: PersonRespons;
@@ -104,8 +105,10 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
     const keys = Object.keys(autofullforMap);
     return tekst.replace(/\[(.*?)\]/g, (fullmatch, key) => {
         if (!keys.includes(key)) {
-            loggError(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
-            loggEvent('manglendeNokkel', 'autofullfør', { nøkkel: key });
+            if (!mockEnabled) {
+                loggError(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
+                loggEvent('manglendeNokkel', 'autofullfør', { nøkkel: key });
+            }
             return '[ukjent nøkkel]';
         }
         return autofullforMap[key] || '[fant ingen verdi]';

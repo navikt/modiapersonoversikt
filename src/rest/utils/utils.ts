@@ -2,8 +2,9 @@ import { Action, Dispatch } from 'redux';
 import { ActionTypes, FetchUriCreator, getActionTypes } from './restResource';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { AppState } from '../../redux/reducers';
-import { loggError, loggEvent } from '../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import { Timer } from '../../utils/timer';
+import { includeCredentials } from '../../api/config';
 
 const notFound = new Error();
 const forbidden = new Error();
@@ -59,7 +60,8 @@ function dispatchDataTilRedux<T>(dispatch: Dispatch<Action>, action: string, fet
     };
 }
 
-function handterFeil(dispatch: Dispatch<Action>, actionNames: ActionTypes, fetchUri: string) {
+function handterFeil(dispatch: Dispatch<Action>, resourceNavn: string, fetchUri: string) {
+    const actionNames = getActionTypes(resourceNavn);
     return (error: Error | Response) => {
         if (error === notFound) {
             dispatch({ type: actionNames.NOTFOUND });
@@ -79,13 +81,14 @@ function handterFeil(dispatch: Dispatch<Action>, actionNames: ActionTypes, fetch
             loggError(
                 new Error(`Kunne ikke fetche data på ${fetchUri}. Status ${error.status}: ${error.statusText}`),
                 undefined,
-                undefined,
-                { type: 'Fetch-Failed' }
+                { response: JSON.stringify(error) },
+                { action: 'Fetch-Failed', location: resourceNavn }
             );
             return;
         }
         loggError(error, `Kunne ikke fetche data på ${fetchUri}. ${error.message}`, undefined, {
-            type: 'Fetch-Failed'
+            action: 'Fetch-Failed',
+            location: resourceNavn
         });
     };
 }
@@ -106,10 +109,10 @@ export function fetchDataAndDispatchToRedux<T>(
         }
         dispatch({ type: reload ? actionNames.RELOADING : actionNames.STARTING, fetchUrl: uri });
         timer.startTimer();
-        return fetch(uri, { credentials: 'include' })
+        return fetch(uri, includeCredentials)
             .then(parseResponse)
             .then(dispatchDataTilRedux(dispatch, actionNames.FINISHED, uri))
-            .catch(handterFeil(dispatch, actionNames, uri))
+            .catch(handterFeil(dispatch, resourceNavn, uri))
             .finally(() => loggEvent(reload ? 'Re-Fetch' : 'Fetch', resourceNavn, undefined, { ms: timer.getTime() }));
     };
 }

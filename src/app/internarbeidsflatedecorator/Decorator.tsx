@@ -15,8 +15,9 @@ import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { velgEnhetAction } from '../../redux/session/session';
 import { useQueryParams } from '../../utils/urlUtils';
 import styled from 'styled-components';
-import { loggEvent } from '../../utils/frontendLogger';
-import HurtigtastContainer from '../personsok/HurtigtastContainer';
+import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTipsContainer';
+import useHandleGosysUrl from './useHandleGosysUrl';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 const etterSokefelt = `
@@ -37,8 +38,8 @@ const StyledNav = styled.nav`
 `;
 
 function lagConfig(
-    sokFnr: string | undefined | null,
     gjeldendeFnr: string | undefined | null,
+    sokFnr: string | undefined,
     enhet: string | undefined | null,
     history: History,
     settEnhet: (enhet: string) => void
@@ -74,10 +75,11 @@ function lagConfig(
     };
 }
 
-function useKlargjorContextholder(sokFnr?: string) {
+function useKlargjorContextholder() {
     const [klar, setKlar] = useState(false);
+    const queryParams = useQueryParams<{ sokFnr?: string }>();
     useOnMount(() => {
-        if (sokFnr === '0') {
+        if (queryParams.sokFnr === '0') {
             // Manuell nullstilling av bruker i context
             fetch('/modiacontextholder/api/context/aktivbruker', {
                 method: 'DELETE',
@@ -92,28 +94,29 @@ function useKlargjorContextholder(sokFnr?: string) {
 }
 
 function Decorator() {
-    const history = useHistory();
-    const queryParams = useQueryParams<{ sokFnr: string }>();
-    const sokFnr = queryParams.sokFnr === '0' ? '' : queryParams.sokFnr;
     const gjeldendeFnr = useFødselsnummer();
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+    const history = useHistory();
     const dispatch = useDispatch();
+    const queryParams = useQueryParams<{ sokFnr?: string }>();
+
+    useHandleGosysUrl();
+
+    useOnMount(() => {
+        if (queryParams.sokFnr) {
+            loggEvent('Oppslag', 'Puzzle');
+        }
+    });
 
     const handleSetEnhet = (enhet: string) => {
         dispatch(velgEnhetAction(enhet));
     };
 
-    useOnMount(() => {
-        if (sokFnr !== undefined) {
-            loggEvent('Oppslag', 'Puzzle');
-        }
-    });
+    const contextErKlar = useKlargjorContextholder();
 
-    const contextErKlar = useKlargjorContextholder(queryParams.sokFnr);
-
-    const config = useCallback(lagConfig, [sokFnr, gjeldendeFnr, valgtEnhet, history, handleSetEnhet])(
-        sokFnr,
+    const config = useCallback(lagConfig, [gjeldendeFnr, valgtEnhet, history, handleSetEnhet])(
         gjeldendeFnr,
+        queryParams.sokFnr,
         valgtEnhet,
         history,
         handleSetEnhet
@@ -125,7 +128,7 @@ function Decorator() {
                 <>
                     <InternflateDecorator {...config} />
                     <PersonsokContainer />
-                    <HurtigtastContainer />
+                    <HurtigtastTipsContainer />
                     <DecoratorEasterEgg />
                 </>
             )}

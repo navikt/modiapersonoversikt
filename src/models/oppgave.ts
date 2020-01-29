@@ -2,6 +2,7 @@ export interface Oppgave {
     oppgaveId: string;
     fødselsnummer: string;
     traadId: string;
+    fraGosys?: boolean;
 }
 
 interface LeggTilbakeOppgaveBaseRequest {

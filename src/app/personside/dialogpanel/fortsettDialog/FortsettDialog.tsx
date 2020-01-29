@@ -43,12 +43,14 @@ interface Props {
     erTilknyttetOppgave: boolean;
     fortsettDialogPanelState: FortsettDialogPanelState;
 }
+
 function Feilmelding(props: { status: DialogPanelStatus }) {
     if (props.status === DialogPanelStatus.ERROR) {
         return <DialogpanelFeilmelding />;
     }
     return null;
 }
+
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;
     const personinformasjon = useRestResource(resources => resources.personinformasjon).resource;
@@ -59,11 +61,8 @@ function FortsettDialog(props: Props) {
         : 'bruker';
 
     const erDelsvar = state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
-    const brukerKanIkkeSvareInfo = [
-        Meldingstype.SVAR_OPPMOTE,
-        Meldingstype.SVAR_TELEFON,
-        Meldingstype.SVAR_SKRIFTLIG
-    ].includes(state.dialogType);
+    const girIkkeVarsel = [Meldingstype.SVAR_OPPMOTE, Meldingstype.SVAR_TELEFON].includes(state.dialogType);
+    const girVarselKanIkkeSvare = Meldingstype.SVAR_SKRIFTLIG === state.dialogType;
     const brukerKanSvareValg = state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
     return (
         <FormStyle onSubmit={handleSubmit}>
@@ -86,8 +85,11 @@ function FortsettDialog(props: Props) {
                 erDelvisBesvart={erDelvisBesvart(props.traad)}
             />
             <Margin>
-                <UnmountClosed isOpened={brukerKanIkkeSvareInfo}>
-                    <AlertStripeInfo>Bruker kan ikke svare</AlertStripeInfo>
+                <UnmountClosed isOpened={girVarselKanIkkeSvare}>
+                    <AlertStripeInfo>Gir varsel, bruker kan ikke svare</AlertStripeInfo>
+                </UnmountClosed>
+                <UnmountClosed isOpened={girIkkeVarsel}>
+                    <AlertStripeInfo>Gir ikke varsel</AlertStripeInfo>
                 </UnmountClosed>
                 <UnmountClosed isOpened={brukerKanSvareValg}>
                     <BrukerKanSvare

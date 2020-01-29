@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
-import { loggError } from '../../../../utils/frontendLogger';
+import { loggError } from '../../../../utils/logger/frontendLogger';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { OpprettHenvendelseRequest, OpprettHenvendelseResponse, Traad } from '../../../../models/meldinger/meldinger';

@@ -10,7 +10,7 @@ import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 import { useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
 import LazySpinner from '../../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../../components/FillCenterAndFadeIn';
-import { loggEvent } from '../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import JournalPoster from './saksdokumenter/JournalPoster';
 import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
@@ -44,6 +44,10 @@ const SaksoversiktArticle = styled.article`
 
 function Innhold() {
     const state = useSaksoversiktValg();
+
+    useEffect(() => {
+        loggEvent('VisDokument', 'SakerFullscreen');
+    }, [state.saksdokument]);
 
     if (!state.sakstema) {
         return (

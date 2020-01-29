@@ -14,7 +14,10 @@ import {
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import styled from 'styled-components/macro';
-import Tekstomrade, { Rules, createDynamicHighligtingRule } from '../../../../../components/tekstomrade/tekstomrade';
+import Tekstomrade, {
+    defaultRules,
+    createDynamicHighligtingRule
+} from '../../../../../components/tekstomrade/tekstomrade';
 import theme from '../../../../../styles/personOversiktTheme';
 import './enkeltmelding.less';
 import Etikett from 'nav-frontend-etiketter';
@@ -131,15 +134,21 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
     return null;
 }
 
+const StyledTekstomrade = styled(Tekstomrade)`
+    p {
+        margin-bottom: 0 !important;
+    }
+`;
+
 export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }
     const avsender = `Skrevet av ${melding.skrevetAvTekst}`;
     return (
-        <Tekstomrade className={'typo-normal'} rules={rule && [rule]}>
+        <StyledTekstomrade className={'typo-normal'} rules={rule && [rule]}>
             {avsender}
-        </Tekstomrade>
+        </StyledTekstomrade>
     );
 }
 
@@ -154,7 +163,7 @@ function EnkeltMelding(props: Props) {
 
     return (
         <StyledLi className="snakkeboble_ikoner">
-            <article aria-describedby={tittelId.current}>
+            <article aria-labelledby={tittelId.current}>
                 <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                     <SnakkebobleWrapper>
                         <Topptekst>
@@ -168,7 +177,7 @@ function EnkeltMelding(props: Props) {
                             <Tekstomrade rules={[highlightRule]}>{datoTekst}</Tekstomrade>
                             <Avsender melding={props.melding} rule={highlightRule} />
                         </Topptekst>
-                        <Tekstomrade rules={[highlightRule, ...Rules]}>{props.melding.fritekst}</Tekstomrade>
+                        <Tekstomrade rules={[highlightRule, ...defaultRules]}>{props.melding.fritekst}</Tekstomrade>
                         <Journalforing melding={props.melding} />
                     </SnakkebobleWrapper>
                 </Snakkeboble>

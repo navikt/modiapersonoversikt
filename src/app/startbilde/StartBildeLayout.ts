@@ -2,15 +2,19 @@ import styled from 'styled-components/macro';
 import { theme } from '../../styles/personOversiktTheme';
 
 const StartBildeLayout = styled.div`
-    margin-top: 7em;
+    padding: 5rem;
     display: flex;
     flex-grow: 1;
-    flex-flow: column wrap;
+    flex-wrap: wrap;
+    flex-flow: column;
     align-items: center;
     ${theme.animation.fadeIn};
+    overflow: auto;
+    > button {
+        min-width: 25rem;
+    }
     > * {
-        margin-bottom: 2em;
-        min-width: 20em;
+        margin-bottom: 1.5rem;
     }
 `;
 

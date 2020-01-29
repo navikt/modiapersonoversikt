@@ -77,7 +77,7 @@ function SakstemaListe(props: Props) {
     const sortertSakstema = sakstema.sort(datoSynkende(sakstema => hentDatoForSisteHendelse(sakstema)));
 
     return (
-        <StyledNav aria-describedby={tittelId.current}>
+        <StyledNav aria-labelledby={tittelId.current}>
             <TittelWrapper>
                 <Undertittel id={tittelId.current}>Tema</Undertittel>
                 <Normaltekst>({sortertSakstema.length} saker)</Normaltekst>

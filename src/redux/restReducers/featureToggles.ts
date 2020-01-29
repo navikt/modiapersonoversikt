@@ -1,8 +1,8 @@
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { FeatureToggleResponse } from '../../models/featureToggle';
 import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
-import { apiBaseUri } from '../../api/config';
-import { loggError } from '../../utils/frontendLogger';
+import { apiBaseUri, includeCredentials } from '../../api/config';
+import { loggError } from '../../utils/logger/frontendLogger';
 
 export default createRestResourceReducerAndActions<{ [name: string]: boolean }>('featureToggles', () => '');
 
@@ -29,7 +29,7 @@ export async function fetchAllFeatureToggles() {
 
 function fetchFeatureToggle(toggleId: string): Promise<FeatureToggleResponse> {
     const uri = `${apiBaseUri}/featuretoggle/${toggleId}`;
-    return fetch(uri, { credentials: 'include' }).then(response => {
+    return fetch(uri, includeCredentials).then(response => {
         if (response.ok) {
             return response.json();
         } else {

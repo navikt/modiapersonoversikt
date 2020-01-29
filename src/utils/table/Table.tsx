@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */ // Bruker flex til å style tabell. Da trenger den eksplisitte roller for å funke med skjermleser
 import * as React from 'react';
 import { ReactNode } from 'react';
-import { loggError } from '../frontendLogger';
+import { loggError } from '../logger/frontendLogger';
 
 export type TitleCell = string | ReactNode;
 export type TitleRow = TitleCell[];

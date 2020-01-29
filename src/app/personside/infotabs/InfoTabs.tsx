@@ -17,7 +17,7 @@ import { useFødselsnummer } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
-import { loggEvent } from '../../../utils/frontendLogger';
+import { loggEvent } from '../../../utils/logger/frontendLogger';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import Ytelser from './ytelser/Ytelser';
 import { guid } from 'nav-frontend-js-utils';
@@ -71,7 +71,7 @@ function InfoTabs() {
             <HandleInfotabsHotkeys />
             <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
             <ErrorBoundary boundaryName={'Open tab: ' + openTab}>
-                <StyledArticle ref={openTabRef} onScroll={storeCroll} aria-describedby={articleId.current}>
+                <StyledArticle ref={openTabRef} onScroll={storeCroll} aria-labelledby={articleId.current}>
                     <h2
                         id={articleId.current}
                         ref={headerRef}

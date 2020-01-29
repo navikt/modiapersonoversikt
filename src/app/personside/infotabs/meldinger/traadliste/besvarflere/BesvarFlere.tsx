@@ -18,7 +18,7 @@ import { AppState } from '../../../../../../redux/reducers';
 import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../../../rest/utils/postResource';
 import { useOnMount } from '../../../../../../utils/customHooks';
 import { setValgtTraadDialogpanel } from '../../../../../../redux/oppgave/actions';
-import { loggError, loggEvent } from '../../../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../../../utils/logger/frontendLogger';
 import { useInfotabsDyplenker } from '../../../dyplenker';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Feilmelding } from '../../../../../../utils/Feilmelding';

@@ -7,7 +7,7 @@ import { StyledTable } from '../../../../utils/table/StyledTable';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { setSykefraværEkspandert } from '../../../../redux/oppfolging/actions';
-import { loggEvent } from '../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../utils/logger/frontendLogger';
 
 interface Props {
     syfoPunkter: SyfoPunkt[];

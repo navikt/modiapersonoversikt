@@ -1,6 +1,5 @@
-import React, { ChangeEvent, useEffect, useMemo, useState } from 'react';
-import { Select } from 'nav-frontend-skjema';
-import { Textarea } from 'nav-frontend-skjema';
+import React, { ChangeEvent, useEffect } from 'react';
+import { Select, Textarea } from 'nav-frontend-skjema';
 import {
     Ansatt,
     Enhet,
@@ -8,68 +7,24 @@ import {
     GsakTemaOppgavetype,
     GsakTemaUnderkategori
 } from '../../../../../../../models/meldinger/oppgave';
-import { OppgaveProps, OppgaveSkjemaForm, OppgaveSkjemaProps } from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import AutoComplete from './AutoComplete';
-import { hasData, isPending, isLoading } from '@nutgaard/use-async';
+import { hasData, isPending } from '@nutgaard/use-async';
 import { FetchResult } from '@nutgaard/use-fetch';
-import { apiBaseUri } from '../../../../../../../api/config';
-import { useFødselsnummer, usePrevious } from '../../../../../../../utils/customHooks';
-import { loggError, loggEvent } from '../../../../../../../utils/frontendLogger';
+import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
+import { usePrevious } from '../../../../../../../utils/customHooks';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
-
-const credentials: RequestInit = { credentials: 'include' };
-
-function useForeslatteEnheter(form: OppgaveSkjemaForm) {
-    const fnr = useFødselsnummer();
-    const [foreslatteEnheter, setForeslatteEnheter] = useState<Enhet[]>([]);
-    const [pending, setPending] = useState(false);
-
-    useEffect(() => {
-        if (!form.valgtTema || !form.valgtOppgavetype) {
-            return;
-        }
-
-        const request = {
-            fnr: fnr,
-            temakode: form.valgtTema.kode,
-            typekode: form.valgtOppgavetype.kode,
-            underkategori: form.valgtUnderkategori && form.valgtUnderkategori.kode
-        };
-        const queryParams = Object.entries(request)
-            .filter(entry => entry[1])
-            .map(entry => entry[0] + '=' + entry[1])
-            .join('&');
-
-        setPending(true);
-        loggEvent('Fetch', 'LagOppgave-ForeslåtteEnheter');
-        fetch(`${apiBaseUri}/enheter/oppgavebehandlere/foreslatte?${queryParams}`, credentials)
-            .then(response => response.json())
-            .then(setForeslatteEnheter)
-            .catch(e => loggError(e, 'Feil ved henting av foreslåtte enheter'))
-            .finally(() => setPending(false));
-    }, [form.valgtTema, form.valgtOppgavetype, form.valgtUnderkategori, fnr]);
-
-    return useMemo(
-        () => ({
-            pending,
-            foreslatteEnheter
-        }),
-        [pending, foreslatteEnheter]
-    );
-}
+import useForeslatteEnheter from './useForeslåtteEnheter';
+import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
     const enhetliste: FetchResult<Array<Enhet>> = useFetchWithLog<Array<Enhet>>(
         `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
         'LagOppgave-Enheter',
-        credentials
+        includeCredentials
     );
     const foreslatteEnheter = useForeslatteEnheter(props.form.state);
-    const ansattliste: FetchResult<Array<Ansatt>> = useFetchWithLog<Array<Ansatt>>(
-        `${apiBaseUri}/enheter/${props.form.state.valgtEnhet ? props.form.state.valgtEnhet.enhetId : '_'}/ansatte`,
-        'LagOppgave-Ansatte',
-        credentials
-    );
+    const ansattliste = useAnsattePaaEnhet(props.form.state.valgtEnhet);
     const valgtTema = props.form.state.valgtTema;
 
     const prevForeslatteEnheter = usePrevious(foreslatteEnheter);
@@ -92,6 +47,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                     props.form.valideringsResultat.felter.valgtTema &&
                     props.form.valideringsResultat.felter.valgtTema.skjemafeil
                 }
+                autoFocus={true}
                 label={'Tema'}
                 onChange={event => props.form.actions.oppdaterStateVedValgtTema(hentValgtTema(props.gsakTema, event))}
                 value={(props.form.state.valgtTema && props.form.state.valgtTema.kode) || ''}
@@ -140,8 +96,8 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 value={props.form.state.valgtAnsatt}
                 itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
                 label={'Velg ansatt'}
-                suggestions={hasData(ansattliste) ? ansattliste.data : []}
-                spinner={isLoading(ansattliste)}
+                suggestions={ansattliste.ansatte}
+                spinner={ansattliste.pending}
             />
             <Select
                 value={props.form.state.valgtPrioritet || ''}

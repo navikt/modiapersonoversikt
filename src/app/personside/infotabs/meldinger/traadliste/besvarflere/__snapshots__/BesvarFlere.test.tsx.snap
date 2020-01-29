@@ -277,13 +277,17 @@ exports[`BesvarFler matcher snapshot 1`] = `
   margin-bottom: 0.5rem;
 }
 
-.c23 {
+.c24 {
   color: #0067c5;
 }
 
-.c22 .ekspanderbartPanel__hode,
-.c22 .ekspanderbartPanel__innhold {
+.c23 .ekspanderbartPanel__hode,
+.c23 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
+}
+
+.c22 p {
+  margin-bottom: 0 !important;
 }
 
 .c0 {
@@ -374,7 +378,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: 1.25rem .5rem;
 }
 
-.c24 {
+.c25 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -387,7 +391,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
   padding: .5rem;
 }
 
-.c24 > * {
+.c25 > * {
   margin-left: 1rem;
 }
 
@@ -412,7 +416,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
 }
 
 @media print {
-  .c22 {
+  .c23 {
     display: none;
   }
 }
@@ -718,7 +722,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         className="snakkeboble_ikoner c18"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
         >
           <div
             className="snakkeboble snakkeboble--hoyre"
@@ -779,7 +783,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       07.07.2019 00:00
                     </div>
                     <div
-                      className="tekstomrade typo-normal"
+                      className="tekstomrade typo-normal c22"
                     >
                       Skrevet av Sander Hansen (nzxo4q)
                     </div>
@@ -794,7 +798,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c23 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -807,7 +811,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c23"
+                          className="typo-etikett-liten c24"
                         >
                           Meldingen er journalført
                         </p>
@@ -832,7 +836,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         className="snakkeboble_ikoner c18"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
         >
           <div
             className="snakkeboble snakkeboble--venstre"
@@ -894,7 +898,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c23 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -907,7 +911,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c23"
+                          className="typo-etikett-liten c24"
                         >
                           Meldingen er journalført
                         </p>
@@ -932,7 +936,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         className="snakkeboble_ikoner c18"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
         >
           <div
             className="snakkeboble snakkeboble--venstre"
@@ -994,7 +998,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c23 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1007,7 +1011,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c23"
+                          className="typo-etikett-liten c24"
                         >
                           Meldingen er journalført
                         </p>
@@ -1032,7 +1036,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         className="snakkeboble_ikoner c18"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
         >
           <div
             className="snakkeboble snakkeboble--hoyre"
@@ -1093,7 +1097,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       27.07.2019 00:00
                     </div>
                     <div
-                      className="tekstomrade typo-normal"
+                      className="tekstomrade typo-normal c22"
                     >
                       Skrevet av Kristoffer Fredriksen (xy70r8)
                     </div>
@@ -1108,7 +1112,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c23 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1121,7 +1125,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c23"
+                          className="typo-etikett-liten c24"
                         >
                           Meldingen er journalført
                         </p>
@@ -1145,7 +1149,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
     </ol>
   </div>
   <div
-    className="c24"
+    className="c25"
   >
     <button
       className="knapp knapp--hoved"

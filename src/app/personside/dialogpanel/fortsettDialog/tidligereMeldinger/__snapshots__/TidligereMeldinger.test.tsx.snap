@@ -1,12 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser fortsett dialog 1`] = `
+.c3 p {
+  margin-bottom: 0 !important;
+}
+
 .c2 {
   width: 100%;
   padding-right: 1rem;
 }
 
-.c3 {
+.c4 {
   padding: 1.5rem 1rem 1rem;
   overflow-wrap: break-word;
   padding-top: 0;
@@ -36,7 +40,7 @@ exports[`viser fortsett dialog 1`] = `
 }
 
 <article
-  aria-describedby="Helt tilfeldig ID"
+  aria-labelledby="Helt tilfeldig ID"
 >
   <h3
     className="sr-only"
@@ -89,7 +93,7 @@ exports[`viser fortsett dialog 1`] = `
                 30. juli 2019 00:00
               </p>
               <div
-                className="tekstomrade typo-normal"
+                className="tekstomrade typo-normal c3"
               >
                 <p
                   className="typo-normal blokk-xs"
@@ -107,7 +111,7 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="tekstomrade c3"
+            className="tekstomrade c4"
           >
             <p
               className="typo-normal blokk-xs"
@@ -167,7 +171,7 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="tekstomrade c3"
+            className="tekstomrade c4"
           >
             <p
               className="typo-normal blokk-xs"
@@ -227,7 +231,7 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="tekstomrade c3"
+            className="tekstomrade c4"
           >
             <p
               className="typo-normal blokk-xs"
@@ -283,7 +287,7 @@ exports[`viser fortsett dialog 1`] = `
                 13. aug. 2019 00:00
               </p>
               <div
-                className="tekstomrade typo-normal"
+                className="tekstomrade typo-normal c3"
               >
                 <p
                   className="typo-normal blokk-xs"
@@ -301,7 +305,7 @@ exports[`viser fortsett dialog 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="tekstomrade c3"
+            className="tekstomrade c4"
           >
             <p
               className="typo-normal blokk-xs"

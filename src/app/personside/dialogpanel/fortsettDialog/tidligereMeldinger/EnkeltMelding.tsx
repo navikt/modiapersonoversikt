@@ -10,7 +10,7 @@ import { meldingstittel } from '../../../infotabs/meldinger/utils/meldingerUtils
 import theme from '../../../../../styles/personOversiktTheme';
 import { Avsender } from '../../../infotabs/meldinger/traadvisning/Enkeltmelding';
 
-const EnkeltMeldingStyle = styled.div`
+const HeaderStyle = styled.div`
     width: 100%;
     padding-right: 1rem;
 `;
@@ -39,13 +39,13 @@ function EnkeltMelding(props: Props) {
     const [apen, setApen] = useState(props.defaultApen);
 
     const header = (
-        <EnkeltMeldingStyle>
+        <HeaderStyle>
             <span className="sr-only">Melding {props.meldingsNummer}</span>
             <span className="sr-only">{apen ? 'Åpen' : 'Lukket'}</span>
             <Element tag="h4">{meldingstittel(props.melding)}</Element>
             <Undertekst>{formatterDatoTidMedMaanedsnavn(props.melding.opprettetDato)}</Undertekst>
             <Avsender melding={props.melding} />
-        </EnkeltMeldingStyle>
+        </HeaderStyle>
     );
 
     return (

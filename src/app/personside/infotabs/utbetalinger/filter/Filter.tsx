@@ -16,7 +16,7 @@ import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 import { isValidDate } from '../../../../../utils/dateUtils';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 
 const FiltreringsPanel = styled.nav`
     ${theme.hvittPanel};

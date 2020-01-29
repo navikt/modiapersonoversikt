@@ -72,7 +72,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
   className="c0"
 >
   <article
-    aria-describedby="Helt tilfeldig ID"
+    aria-labelledby="Helt tilfeldig ID"
     className="c1"
   >
     <h3
@@ -147,7 +147,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
     </dl>
   </article>
   <article
-    aria-describedby="Helt tilfeldig ID"
+    aria-labelledby="Helt tilfeldig ID"
     className="c1"
   >
     <h3
