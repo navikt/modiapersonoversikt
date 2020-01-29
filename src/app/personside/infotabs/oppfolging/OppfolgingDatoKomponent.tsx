@@ -135,7 +135,7 @@ function OppfolgingDatoPanel(props: Props) {
     const headerId = useRef(guid());
 
     return (
-        <StyledArticle aria-describedby={headerId.current}>
+        <StyledArticle aria-labelledby={headerId.current}>
             <TittelWrapper>
                 <Undertittel id={headerId.current}>Oppfølging og ytelser vises for perioden:</Undertittel>
             </TittelWrapper>

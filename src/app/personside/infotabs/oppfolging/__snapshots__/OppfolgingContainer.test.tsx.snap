@@ -215,7 +215,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     className="c1"
   >
     <article
-      aria-describedby="Helt tilfeldig ID"
+      aria-labelledby="Helt tilfeldig ID"
       className="c2"
     >
       <div
@@ -372,7 +372,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
       </div>
     </article>
     <article
-      aria-describedby="Helt tilfeldig ID"
+      aria-labelledby="Helt tilfeldig ID"
       className="c5"
     >
       <h2

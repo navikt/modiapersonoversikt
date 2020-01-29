@@ -163,7 +163,7 @@ function EnkeltMelding(props: Props) {
 
     return (
         <StyledLi className="snakkeboble_ikoner">
-            <article aria-describedby={tittelId.current}>
+            <article aria-labelledby={tittelId.current}>
                 <Snakkeboble pilHoyre={fraNav} ikonClass={fraNav ? 'nav-ikon' : 'bruker-ikon'}>
                     <SnakkebobleWrapper>
                         <Topptekst>

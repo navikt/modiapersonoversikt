@@ -195,7 +195,7 @@ function FortsettDialogContainer(props: Props) {
     const temagruppe = meldingMedTemagruppe ? meldingMedTemagruppe.temagruppe : undefined;
 
     return (
-        <StyledArticle aria-describedby={tittelId.current}>
+        <StyledArticle aria-labelledby={tittelId.current}>
             <Undertittel id={tittelId.current}>Fortsett dialog</Undertittel>
             <FortsettDialog
                 handleAvbryt={handleAvbryt}

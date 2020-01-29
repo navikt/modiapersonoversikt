@@ -41,7 +41,7 @@ function VisOppfolgingDetaljer(props: Props) {
     };
 
     return (
-        <StyledArticle aria-describedby={headerId.current}>
+        <StyledArticle aria-labelledby={headerId.current}>
             <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
             <DescriptionList entries={descriptionListProps} />
         </StyledArticle>

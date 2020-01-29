@@ -107,7 +107,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
     className="c2"
   >
     <article
-      aria-describedby="Helt tilfeldig ID"
+      aria-labelledby="Helt tilfeldig ID"
       className="c3"
     >
       <h3

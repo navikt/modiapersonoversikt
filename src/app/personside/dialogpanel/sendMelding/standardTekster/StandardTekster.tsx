@@ -187,7 +187,7 @@ function StandardTekster(props: Props) {
             onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, getSpentTime, autofullforData)}
         >
             <h2 className="sr-only">Standardtekster</h2>
-            <SokefeltStyledNav aria-describedby={sokeFeltId.current} ref={sokRef}>
+            <SokefeltStyledNav aria-labelledby={sokeFeltId.current} ref={sokRef}>
                 <TagInput
                     {...sokefelt.input}
                     name="standardtekstsok"

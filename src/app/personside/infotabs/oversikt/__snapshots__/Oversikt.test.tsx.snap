@@ -473,7 +473,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
     className="c1"
   >
     <article
-      aria-describedby="Helt tilfeldig ID"
+      aria-labelledby="Helt tilfeldig ID"
       className="c2"
     >
       <div
@@ -543,7 +543,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
       </div>
     </article>
     <article
-      aria-describedby="Helt tilfeldig ID"
+      aria-labelledby="Helt tilfeldig ID"
       className="c2"
     >
       <div
@@ -682,7 +682,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
       </div>
     </article>
     <article
-      aria-describedby="Helt tilfeldig ID"
+      aria-labelledby="Helt tilfeldig ID"
       className="c2"
     >
       <div
@@ -859,7 +859,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
     className="c1"
   >
     <article
-      aria-describedby="Helt tilfeldig ID"
+      aria-labelledby="Helt tilfeldig ID"
       className="c2"
     >
       <div
@@ -999,7 +999,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
       </div>
     </article>
     <article
-      aria-describedby="Helt tilfeldig ID"
+      aria-labelledby="Helt tilfeldig ID"
       className="c2"
     >
       <div
@@ -1100,7 +1100,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
       </div>
     </article>
     <article
-      aria-describedby="Helt tilfeldig ID"
+      aria-labelledby="Helt tilfeldig ID"
       className="c2"
     >
       <div
@@ -1140,7 +1140,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             className="c26"
           >
             <article
-              aria-describedby="Helt tilfeldig ID"
+              aria-labelledby="Helt tilfeldig ID"
             >
               <div
                 className="c27"
@@ -1262,7 +1262,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             className="c26"
           >
             <article
-              aria-describedby="Helt tilfeldig ID"
+              aria-labelledby="Helt tilfeldig ID"
             >
               <div
                 className="c27"

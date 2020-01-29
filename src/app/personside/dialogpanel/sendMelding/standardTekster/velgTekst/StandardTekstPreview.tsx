@@ -68,7 +68,7 @@ function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; so
             );
         });
     return (
-        <section className="tags" aria-describedby={tittelId.current}>
+        <section className="tags" aria-labelledby={tittelId.current}>
             <h3 id={tittelId.current} className="sr-only">
                 Tags
             </h3>
@@ -86,7 +86,7 @@ function StandardTekstPreview({ tekst, locale, sokefelt, highlightRule }: Props)
 
     return (
         <PreviewStyle aria-hidden={'true'}>
-            <article aria-describedby={tittelId.current}>
+            <article aria-labelledby={tittelId.current}>
                 <h3 className="sr-only" id={tittelId.current}>
                     Forhåndsvisning
                 </h3>
