@@ -2,6 +2,18 @@ import useFetch, { Config, Status } from '@nutgaard/use-fetch';
 import { useEffect } from 'react';
 import { loggError, loggEvent } from '../frontendLogger';
 import { usePrevious } from '../customHooks';
+import { useTimer } from './useTimer';
+
+function getFetchOkMessage(prevStatus: Status) {
+    switch (prevStatus) {
+        case Status.PENDING:
+            return 'Fetch';
+        case Status.RELOADING:
+            return 'Re-Fetch';
+        default:
+            return 'Unhandeled-Case';
+    }
+}
 
 export function useFetchWithLog<TYPE>(
     url: string,
@@ -10,23 +22,29 @@ export function useFetchWithLog<TYPE>(
     loggerExtraTag?: string,
     config?: Config
 ) {
+    const getTime = useTimer();
     const result = useFetch<TYPE>(url, options, config);
     const prevStatus = usePrevious(result.status);
     useEffect(() => {
-        if (prevStatus !== Status.PENDING && result.status === Status.PENDING) {
-            loggEvent('Fetch', loggerLocation, { type: loggerExtraTag });
-        } else if (prevStatus !== Status.ERROR && result.status === Status.ERROR) {
-            if ([404, 403].includes(result.statusCode)) {
-                return;
-            }
-            loggEvent('Fetch-Failed', loggerLocation, { type: loggerExtraTag });
-            loggError(result.error, `Kunne ikke fetche data på ${url}. ${result.error.message}`, undefined, {
-                type: 'Fetch-Failed'
-            });
-        } else if (prevStatus !== Status.RELOADING && result.status === Status.RELOADING) {
-            loggEvent('Re-fetch', loggerLocation, { type: loggerExtraTag });
+        if (prevStatus === undefined) {
+            return;
         }
-    }, [result, url, prevStatus, loggerLocation, loggerExtraTag]);
+        if ([404, 403].includes(result.statusCode)) {
+            return;
+        }
+        if (prevStatus !== Status.ERROR && result.status === Status.ERROR) {
+            loggError(result.error, `Kunne ikke fetche data på ${url}. ${result.error.message}`, undefined, {
+                action: 'Fetch-Failed',
+                location: loggerLocation,
+                type: loggerExtraTag
+            });
+            return;
+        }
+        if (prevStatus !== Status.OK && result.status === Status.OK) {
+            loggEvent(getFetchOkMessage(prevStatus), loggerLocation, { type: loggerExtraTag }, { ms: getTime() });
+            return;
+        }
+    }, [result, url, prevStatus, loggerLocation, loggerExtraTag, getTime]);
 
     return result;
 }
