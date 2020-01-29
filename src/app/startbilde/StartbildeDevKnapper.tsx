@@ -11,6 +11,13 @@ import navfaker from 'nav-faker';
 import { Link } from 'react-router-dom';
 import { mockEnabled } from '../../api/config';
 
+function getRandomFnr() {
+    if (navfaker.random.vektetSjanse(0.3)) {
+        return 'ugyldigFnr';
+    }
+    return navfaker.personIdentifikator.fødselsnummer();
+}
+
 function StartbildeDevKnapper() {
     const history = useHistory();
     const behandlingsId = MOCKED_TRAADID_1;
@@ -19,7 +26,7 @@ function StartbildeDevKnapper() {
 
     function handleLagOpgaveFraGOSYS() {
         const oppgaveId = 'A1B2C3';
-        const fødselsnummer = navfaker.personIdentifikator.fødselsnummer();
+        const fødselsnummer = getRandomFnr();
         dispatch(
             tildelteOppgaverResource.actions.setData([
                 {
@@ -33,8 +40,7 @@ function StartbildeDevKnapper() {
     }
 
     function brukerFraPuzzle() {
-        const fødselsnummer = navfaker.personIdentifikator.fødselsnummer();
-        document.location.replace(`?sokFnr=${fødselsnummer}`);
+        document.location.replace(`?sokFnr=${getRandomFnr()}`);
     }
 
     return (
