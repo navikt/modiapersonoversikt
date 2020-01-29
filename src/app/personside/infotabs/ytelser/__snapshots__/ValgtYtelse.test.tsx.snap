@@ -181,7 +181,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
         className="c3"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
           className="c4"
         >
           <h3
@@ -292,7 +292,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
           </dl>
         </article>
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
           className="c4"
         >
           <h3
@@ -356,7 +356,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
         </article>
       </div>
       <article
-        aria-describedby="Helt tilfeldig ID"
+        aria-labelledby="Helt tilfeldig ID"
         className="c4"
       >
         <h3
@@ -499,7 +499,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
           className="c11"
         >
           <article
-            aria-describedby="Helt tilfeldig ID"
+            aria-labelledby="Helt tilfeldig ID"
             className="c4"
           >
             <h3
@@ -991,7 +991,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
       className="c2"
     >
       <article
-        aria-describedby="Helt tilfeldig ID"
+        aria-labelledby="Helt tilfeldig ID"
         className="c3"
       >
         <h3
@@ -1066,7 +1066,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
         </dl>
       </article>
       <article
-        aria-describedby="Helt tilfeldig ID"
+        aria-labelledby="Helt tilfeldig ID"
         className="c3"
       >
         <h3
@@ -1622,7 +1622,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
         className="c3"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
           className="c4"
         >
           <h3
@@ -1757,7 +1757,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
           </dl>
         </article>
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
           className="c4"
         >
           <h3
@@ -1853,7 +1853,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
         </article>
       </div>
       <article
-        aria-describedby="Helt tilfeldig ID"
+        aria-labelledby="Helt tilfeldig ID"
         className="c4"
       >
         <h3

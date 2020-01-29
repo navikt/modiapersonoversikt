@@ -7,13 +7,13 @@ import { isForeldrepenger, isPleiepenger, isSykepenger, Ytelse } from '../../../
 import Foreldrepenger from './foreldrepenger/ForeldrePenger';
 import Pleiepenger from './pleiepenger/Pleiepenger';
 import Sykepenger from './sykepenger/Sykepenger';
-import { loggError } from '../../../../utils/frontendLogger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { guid } from 'nav-frontend-js-utils';
 import { useInfotabsDyplenker } from '../dyplenker';
 import useBrukersYtelser from './useBrukersYtelser';
 import { usePrevious } from '../../../../utils/customHooks';
 import { useEffect } from 'react';
+import { loggError } from '../../../../utils/logger/frontendLogger';
 
 interface Props {
     valgtYtelse?: Ytelse;

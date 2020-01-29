@@ -1,7 +1,7 @@
 import { getPleiepengerIdDato, getUnikPleiepengerKey, Pleiepengerettighet } from './pleiepenger';
 import { Foreldrepengerettighet, getForeldepengerIdDato, getUnikForeldrepengerKey } from './foreldrepenger';
 import { getSykepengerIdDato, getUnikSykepengerKey, Sykepenger } from './sykepenger';
-import { loggError } from '../../utils/frontendLogger';
+import { loggError } from '../../utils/logger/frontendLogger';
 
 export type Ytelse = Pleiepengerettighet | Foreldrepengerettighet | Sykepenger;
 

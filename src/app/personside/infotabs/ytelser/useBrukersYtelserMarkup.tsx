@@ -4,7 +4,7 @@ import { Sykepenger } from '../../../../models/ytelse/sykepenger';
 import { Foreldrepengerettighet } from '../../../../models/ytelse/foreldrepenger';
 import { isForeldrepenger, isPleiepenger, isSykepenger } from '../../../../models/ytelse/ytelse-utils';
 import useBrukersYtelser from './useBrukersYtelser';
-import { loggError } from '../../../../utils/frontendLogger';
+import { loggError } from '../../../../utils/logger/frontendLogger';
 
 interface Props {
     renderPleiepenger: (pleiepenger: Pleiepengerettighet) => ReactNode;
