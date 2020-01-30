@@ -150,7 +150,7 @@ class TagInput extends React.Component<Props, State> {
                     onClick={() => this.remove(i)}
                     title="Remove tag"
                 >
-                    <span>{tag}</span>
+                    <span>#{tag}</span>
                     <span className="tag-input__tag-remove" aria-hidden={true} />
                 </Knapp>
             );
