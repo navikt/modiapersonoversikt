@@ -45,7 +45,7 @@ function YtelseListe(props: Props) {
                 <Undertittel>Ytelser</Undertittel>
                 <HjelpetekstHoyreWrapper>
                     <HjelpetekstUnderHoyre id={guid()}>
-                        Viser ytelser fra Infotrygd(foreldrepenger, pleiepenger, sykepenger) siste 2 årene
+                        Viser kun ytelser fra Infotrygd 2 år tilbake i tid (foreldrepenger, pleiepenger, sykepenger)
                     </HjelpetekstUnderHoyre>
                 </HjelpetekstHoyreWrapper>
             </TittelWrapper>

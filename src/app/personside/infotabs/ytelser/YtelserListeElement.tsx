@@ -24,7 +24,7 @@ function YtelserListeElement(props: Props) {
 
     if (isPleiepenger(props.ytelse)) {
         return (
-            <li>
+            <li key={getUnikPleiepengerKey(props.ytelse)}>
                 <VisMerKnapp
                     key={getUnikPleiepengerKey(props.ytelse)}
                     ariaDescription="Vis pleiepenger"
@@ -43,7 +43,7 @@ function YtelserListeElement(props: Props) {
 
     if (isSykepenger(props.ytelse)) {
         return (
-            <li>
+            <li key={getUnikSykepengerKey(props.ytelse)}>
                 <VisMerKnapp
                     key={getUnikSykepengerKey(props.ytelse)}
                     ariaDescription="Vis sykepenger"
@@ -60,7 +60,7 @@ function YtelserListeElement(props: Props) {
 
     if (isForeldrepenger(props.ytelse)) {
         return (
-            <li>
+            <li key={getUnikForeldrepengerKey(props.ytelse)}>
                 <VisMerKnapp
                     key={getUnikForeldrepengerKey(props.ytelse)}
                     ariaDescription="Vis foreldrepenger"
