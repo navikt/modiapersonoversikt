@@ -24,7 +24,8 @@ export function sokEtterTekster(
     const tags = queryTags.map(tag => tag.toLowerCase());
     const words = text
         .split(' ')
-        .map(word => word.toLowerCase())
+        .map(word => word.toLowerCase().replace('#', ''))
+        .concat(tags)
         .filter(it => it);
 
     const candidates: Candidate[] = tekster
