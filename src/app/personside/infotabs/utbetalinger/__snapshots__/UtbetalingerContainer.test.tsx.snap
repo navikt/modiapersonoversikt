@@ -463,6 +463,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   padding: 0.9375rem;
 }
 
+.c3 a:visited {
+  color: currentColor !important;
+}
+
 .c3 .lenkepanel {
   margin-bottom: 0;
 }
