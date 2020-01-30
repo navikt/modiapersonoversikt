@@ -15,7 +15,6 @@ import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullførData } from '../autofullforUtils';
 import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
-import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { guid } from 'nav-frontend-js-utils';
@@ -25,6 +24,7 @@ import { useTimer } from '../../../../../utils/hooks/useTimer';
 import { HjelpetekstUnderVenstre } from 'nav-frontend-hjelpetekst';
 
 interface Props {
+    sokefelt: FieldState;
     appendTekst(tekst: string): void;
 }
 
@@ -117,9 +117,7 @@ function StandardTekster(props: Props) {
         '/modiapersonoversikt-skrivestotte/skrivestotte',
         'Standardtekster'
     );
-    const erKontaktSenter = useErKontaktsenter();
-    const sokefelt = useFieldState(erKontaktSenter ? '#ks ' : '');
-    const debouncedSokefelt = useDebounce(sokefelt.input.value, 250);
+    const debouncedSokefelt = useDebounce(props.sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() =>
         sokEtterTekster(standardTekster, debouncedSokefelt)
     );
@@ -176,7 +174,7 @@ function StandardTekster(props: Props) {
         content = (
             <StandardTekstValg
                 tekster={filtrerteTekster}
-                sokefelt={sokefelt}
+                sokefelt={props.sokefelt}
                 valgt={valgt}
                 valgtLocale={valgtLocale}
                 valgtTekst={valgtTekst}
@@ -196,7 +194,7 @@ function StandardTekster(props: Props) {
             <h2 className="sr-only">Standardtekster</h2>
             <SokefeltStyledNav aria-labelledby={sokeFeltId.current} ref={sokRef}>
                 <TagInput
-                    {...sokefelt.input}
+                    {...props.sokefelt.input}
                     name="standardtekstsok"
                     label="Søk etter standardtekster"
                     autoFocus={true}
