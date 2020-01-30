@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import {
     Dokument as Enkeltdokument,
     Entitet,
@@ -15,16 +16,11 @@ import DokumentIkon from '../../../../../svg/DokumentIkon';
 import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import EtikettGrå from '../../../../../components/EtikettGrå';
-import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
-import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
-import { erNyePersonoversikten } from '../../../../../utils/erNyPersonoversikt';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import DokumentLenke from './DokumentLenke';
-import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
-import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
@@ -59,10 +55,6 @@ const IkonWrapper = styled.div`
         opacity: 0.5;
     }
     padding-right: 1rem;
-`;
-
-const StyledLink = styled.a`
-    white-space: nowrap;
 `;
 
 const UUcustomOrder = styled.div`
@@ -116,7 +108,6 @@ function getDokumentIkon(harTilgang: boolean) {
 function JournalpostLiseElement(props: Props) {
     const vedleggLinkRef = React.createRef<HTMLUListElement>();
     const hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
-    const nyttVinduLinkRef = React.createRef<HTMLAnchorElement>();
     const bruker = useRestResource(resources => resources.personinformasjon);
     const dyplenker = useInfotabsDyplenker();
     const tittelId = useRef(guid());
@@ -171,16 +162,6 @@ function JournalpostLiseElement(props: Props) {
 
     const tilgangTilHoveddokument = dokumentKanVises(journalpost.hoveddokument, journalpost);
 
-    const egetVinduLenke = !erSakerFullscreen() && tilgangTilHoveddokument && (
-        <StyledLink
-            ref={nyttVinduLinkRef}
-            href={dyplenker.saker.link(props.valgtSakstema, journalpost.hoveddokument, true)}
-            target={'_blank'}
-            className={'lenke typo-element'}
-        >
-            Åpne i fullscreen
-        </StyledLink>
-    );
     const hovedDokument = journalpost.hoveddokument;
 
     return (
@@ -208,13 +189,6 @@ function JournalpostLiseElement(props: Props) {
                     {dokumentVedlegg}
                     {saksvisning}
                 </InnholdWrapper>
-                {erNyePersonoversikten() ? (
-                    egetVinduLenke
-                ) : (
-                    <IfFeatureToggleOn toggleID={FeatureToggles.SaksoversiktNyttVindu}>
-                        {egetVinduLenke}
-                    </IfFeatureToggleOn>
-                )}
             </StyledArticle>
         </li>
     );

@@ -16,6 +16,9 @@ const CustomStyling = styled.div`
     a {
         padding: ${pxToRem(15)};
     }
+    a:visited {
+        color: currentColor !important;
+    }
     .lenkepanel {
         margin-bottom: 0;
     }
