@@ -5,6 +5,8 @@ import StandardTekster from './StandardTekster';
 import SvgIkon from './StandardTekstIkon';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
+import useFieldState from '../../../../../utils/hooks/use-field-state';
+import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -53,6 +55,8 @@ const Ikon = styled(SvgIkon)`
 
 function StandardTekstModal(props: Props) {
     const [isOpen, setOpen] = React.useState(false);
+    const erKontaktSenter = useErKontaktsenter();
+    const sokefelt = useFieldState(erKontaktSenter ? '#ks ' : '');
     useHotkey({ char: 'c', altKey: true }, () => setOpen(true), [setOpen], 'Standardtekster');
 
     return (
@@ -68,6 +72,7 @@ function StandardTekstModal(props: Props) {
                 className={'standardtekst__modal'}
             >
                 <StandardTekster
+                    sokefelt={sokefelt}
                     appendTekst={tekst => {
                         props.appendTekst(tekst);
                         setOpen(false);
