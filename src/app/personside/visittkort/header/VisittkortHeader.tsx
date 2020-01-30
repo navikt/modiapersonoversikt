@@ -5,13 +5,13 @@ import { Undertittel } from 'nav-frontend-typografi';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import { erDød, erMann, Person } from '../../../../models/person/person';
 import PersonStatus from './status/PersonStatus';
-import EtiketterContainer from './Etiketter/EtiketterContainer';
 import Mann from '../../../../svg/Mann.js';
 import Kvinne from '../../../../svg/Kvinne.js';
 import VisMerChevron from '../../../../components/VisMerChevron';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { hentNavn } from '../utils';
 import { useAppState, useOnMount } from '../../../../utils/customHooks';
+import Etiketter from './Etiketter/Etiketter';
 
 interface Props {
     visittkortApent: boolean;
@@ -124,7 +124,7 @@ function VisittkortHeader(props: Props) {
                 </VenstreFelt>
 
                 <HøyreFelt>
-                    <EtiketterContainer />
+                    <Etiketter person={props.person} />
                     <NavKontorContainer />
                 </HøyreFelt>
             </StyledContent>
