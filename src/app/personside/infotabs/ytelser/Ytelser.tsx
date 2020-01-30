@@ -37,21 +37,16 @@ function Ytelser() {
     useKeepQueryParams();
     const ytelser = useBrukersYtelser();
     const dypLenker = useInfotabsDyplenker();
-    const valgtYtelse = ytelser.ytelser.find(ytelse => dypLenker.ytelser.erValgt(ytelse));
-
+    const valgtYtelse = ytelser.ytelser.find(ytelse => dypLenker.ytelser.erValgt(ytelse)) || ytelser.ytelser[0];
     return (
         <Styling>
             {ytelser.feilmeldinger}
             <Layout>
                 <ScrollBar keepScrollId="ytelser-liste">
-                    <YtelseListe
-                        pending={ytelser.pending}
-                        ytelser={ytelser.ytelser}
-                        valgtYtelse={valgtYtelse || ytelser.ytelser[0]}
-                    />
+                    <YtelseListe pending={ytelser.pending} ytelser={ytelser.ytelser} valgtYtelse={valgtYtelse} />
                 </ScrollBar>
                 <ScrollBar keepScrollId="ytelser-valgt">
-                    <ValgtYtelse valgtYtelse={valgtYtelse || ytelser.ytelser[0]} />
+                    <ValgtYtelse valgtYtelse={valgtYtelse} />
                 </ScrollBar>
             </Layout>
         </Styling>
