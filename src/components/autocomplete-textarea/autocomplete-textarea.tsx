@@ -17,7 +17,7 @@ import theme from '../../styles/personOversiktTheme';
 import { useErKontaktsenter } from '../../utils/enheterUtils';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 
-const useRules = () => {
+function useRules() {
     const erKontaktsenter = useErKontaktsenter();
     const saksbehandlerResources = useRestResource(resources => resources.innloggetSaksbehandler);
     const saksbehanderEnhet = saksbehandlerResources.data?.enhetNavn;
@@ -31,7 +31,7 @@ const useRules = () => {
         },
         { regex: /^foet$/i, replacement: '[bruker.navn] ' }
     ];
-};
+}
 
 const HjelpetekstStyle = styled.div`
     position: absolute;
