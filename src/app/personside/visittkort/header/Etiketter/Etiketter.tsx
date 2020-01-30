@@ -17,6 +17,9 @@ interface Props {
 }
 
 const StyledEtikketter = styled.section`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     > * {
         margin: 6px 0 0 6px;
         white-space: nowrap;
