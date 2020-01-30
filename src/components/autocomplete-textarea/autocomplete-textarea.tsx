@@ -14,12 +14,24 @@ import { guid } from 'nav-frontend-js-utils';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/frontendLogger';
 import theme from '../../styles/personOversiktTheme';
+import { useErKontaktsenter } from '../../utils/enheterUtils';
+import { useRestResource } from '../../rest/consumer/useRestResource';
 
-const rules = [
-    { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
-    { regex: /^mvh$/i, replacement: 'Med vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter' },
-    { regex: /^foet$/i, replacement: '[bruker.navn] ' }
-];
+const useRules = () => {
+    const erKontaktsenter = useErKontaktsenter();
+    const saksbehandlerResources = useRestResource(resources => resources.innloggetSaksbehandler);
+    const saksbehanderEnhet = saksbehandlerResources.data?.enhetNavn;
+    return [
+        { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
+        {
+            regex: /^mvh$/i,
+            replacement: `Med vennlig hilsen\n[saksbehandler.fornavn]\n${
+                erKontaktsenter ? 'NAV Kontaktsenter' : saksbehanderEnhet
+            }`
+        },
+        { regex: /^foet$/i, replacement: '[bruker.navn] ' }
+    ];
+};
 
 const HjelpetekstStyle = styled.div`
     position: absolute;
@@ -103,6 +115,7 @@ function TegnIgjen(props: { maxLength?: number; text: string }) {
 
 function AutocompleteTextarea(props: TextareaProps) {
     const autofullførData = useAutoFullførData();
+    const rules = useRules();
     const onChange = props.onChange;
     const onKeyDown: React.KeyboardEventHandler = useCallback(
         (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -116,7 +129,6 @@ function AutocompleteTextarea(props: TextareaProps) {
                     const [start, end] = findWordBoundary(value, cursorPosition);
 
                     const word = value.substring(start, end).trim();
-
                     const replacement = rules.reduce((acc: string, { regex, replacement }) => {
                         if (acc.match(regex)) {
                             event.preventDefault();
@@ -139,7 +151,7 @@ function AutocompleteTextarea(props: TextareaProps) {
                 }
             }
         },
-        [autofullførData, onChange]
+        [autofullførData, onChange, rules]
     );
 
     return (
