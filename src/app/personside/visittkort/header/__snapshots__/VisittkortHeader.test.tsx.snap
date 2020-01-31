@@ -373,6 +373,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
                 <textarea
                   aria-hidden={true}
                   className="c7"
+                  tabIndex={-1}
                 >
                   10108000398
                 </textarea>
