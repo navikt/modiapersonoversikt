@@ -37,7 +37,8 @@ const StyledButton = styled.button`
 function CopyToClipboard(props: Props) {
     const copyRef = useRef<HTMLTextAreaElement>(null);
 
-    const copyToClipboard = () => {
+    const copyToClipboard = (event: React.MouseEvent) => {
+        event.stopPropagation();
         copyRef.current?.select();
         document.execCommand('copy');
     };
