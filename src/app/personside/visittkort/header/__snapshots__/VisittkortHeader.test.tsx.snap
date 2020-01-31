@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser info om bruker i visittkort-header 1`] = `
-.c10 {
+.c12 {
   margin: 0.5rem 0 0 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -13,16 +13,16 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   justify-content: flex-end;
 }
 
-.c10 > * {
+.c12 > * {
   white-space: nowrap;
 }
 
-.c10 > *:first-child:after {
+.c12 > *:first-child:after {
   content: '/';
   margin: 0 0.2em;
 }
 
-.c10 > *:last-child {
+.c12 > *:last-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -34,7 +34,55 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin: 0;
 }
 
+.c7 {
+  position: absolute;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
 .c6 {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 0.2rem;
+  -webkit-transition: -webkit-transform 0.2s;
+  -webkit-transition: transform 0.2s;
+  transition: transform 0.2s;
+}
+
+.c6:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c6 svg {
+  width: 1rem;
+  color: #005b82;
+  stroke-width: 1.4;
+}
+
+.c6:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c6:active {
+  opacity: 0.5;
+}
+
+.c6:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c8 {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -44,11 +92,11 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   display: inline-flex;
 }
 
-.c6 li {
+.c8 li {
   white-space: nowrap;
 }
 
-.c6 li:not(:last-child):after {
+.c8 li:not(:last-child):after {
   content: '/';
   margin: 0 0.2em;
 }
@@ -62,7 +110,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin: 0 0.5rem;
 }
 
-.c12 {
+.c14 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -70,17 +118,17 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   border-radius: 0.5em;
 }
 
-.c12:focus {
+.c14:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c12:focus {
+.c14:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c12:focus::after {
+.c14:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -91,18 +139,18 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   pointer-events: none;
 }
 
-.c9 {
+.c11 {
   display: inline-block;
   -webkit-animation: hcoNTW 0.3s 1s 6 alternate;
   animation: hcoNTW 0.3s 1s 6 alternate;
 }
 
-.c9:focus {
+.c11:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c8 {
+.c10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -117,7 +165,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   align-items: center;
 }
 
-.c8 > * {
+.c10 > * {
   margin: 6px 0 0 6px;
   white-space: nowrap;
 }
@@ -165,7 +213,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   display: flex;
 }
 
-.c7 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -221,7 +269,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin-bottom: 0.2em !important;
 }
 
-.c11 {
+.c13 {
   padding: 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -295,14 +343,47 @@ exports[`viser info om bruker i visittkort-header 1`] = `
             <span
               title="Fødselsnummer"
             >
-              10108000398
+              <span>
+                10108000398
+              </span>
+              <span>
+                <button
+                  className="c6"
+                  onClick={[Function]}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15.5 23.5h-14v-20h9l5 5zm-5-20v5h5m-8-5v-3h9l5 5v15h-6m1-20v5h5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeMiterlimit="10"
+                    />
+                  </svg>
+                  <span
+                    className="sr-only"
+                  >
+                    Kopier fødselsnummer
+                  </span>
+                </button>
+                <textarea
+                  aria-hidden={true}
+                  className="c7"
+                >
+                  10108000398
+                </textarea>
+              </span>
             </span>
             <span>
               Utvandret
             </span>
           </span>
           <ul
-            className="c6"
+            className="c8"
           >
             <li
               title="Statsborgerskap"
@@ -325,11 +406,11 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       </section>
     </section>
     <div
-      className="c7"
+      className="c9"
     >
       <section
         aria-label="etiketter"
-        className="c8"
+        className="c10"
         role="region"
       >
         <div
@@ -343,7 +424,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         </div>
         <div
           aria-live="assertive"
-          className="c9"
+          className="c11"
           role="alert"
           tabIndex={-1}
         >
@@ -387,7 +468,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       </section>
       <section
         aria-label="Nav kontor"
-        className="c10"
+        className="c12"
       >
         <h2
           className="typo-element"
@@ -405,12 +486,12 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     </div>
   </div>
   <div
-    className="c11"
+    className="c13"
   >
     <button
       aria-expanded={false}
       aria-label="Åpne visittkort (Alt + N)"
-      className="c12"
+      className="c14"
       onClick={[Function]}
       title="Åpne visittkort (Alt + N)"
     >
