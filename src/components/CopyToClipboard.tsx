@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import styled from 'styled-components';
 import theme from '../styles/personOversiktTheme';
 import CopyIcon from '../svg/copyIcon';
+import { loggEvent } from '../utils/logger/frontendLogger';
 
 interface Props {
     stringToCopy: string;
@@ -41,6 +42,7 @@ function CopyToClipboard(props: Props) {
         event.stopPropagation();
         copyRef.current?.select();
         document.execCommand('copy');
+        loggEvent('CopyToClipboard', 'CopyToClipboard');
     };
 
     return (
@@ -49,7 +51,7 @@ function CopyToClipboard(props: Props) {
                 <CopyIcon />
                 <span className="sr-only">{props.ariaLabel}</span>
             </StyledButton>
-            <HiddenTextarea aria-hidden={true} ref={copyRef}>
+            <HiddenTextarea tabIndex={-1} aria-hidden={true} ref={copyRef}>
                 {props.stringToCopy}
             </HiddenTextarea>
         </span>
