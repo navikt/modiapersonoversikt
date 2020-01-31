@@ -7,6 +7,7 @@ import { formaterDato } from '../../../../../utils/stringFormatting';
 import Statsborgerskap from './Statsborgerskap';
 import { Sivilstand } from './Sivilstand';
 import { AntallBarn } from './Antallbarn';
+import CopyToClipboard from '../../../../../components/CopyToClipboard';
 
 const PersonStatusListe = styled.ul`
     margin: 0;
@@ -54,7 +55,12 @@ function Utvandret({ person }: PersonProps) {
 }
 
 function Fødselsnummer({ person }: PersonProps) {
-    return <span title="Fødselsnummer">{person.fødselsnummer}</span>;
+    return (
+        <span title="Fødselsnummer">
+            <span>{person.fødselsnummer}</span>
+            <CopyToClipboard ariaLabel="Kopier fødselsnummer" stringToCopy={person.fødselsnummer} />
+        </span>
+    );
 }
 
 function PersonStatus({ person }: PersonProps) {
