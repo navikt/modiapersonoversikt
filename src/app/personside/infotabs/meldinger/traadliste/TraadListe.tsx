@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components/macro';
@@ -12,7 +12,6 @@ import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { guid } from 'nav-frontend-js-utils';
-import { useOnMount } from '../../../../../utils/customHooks';
 
 interface Props {
     traader: Traad[];
@@ -83,10 +82,10 @@ function TraadListe(props: Props) {
     const listeId = useRef(guid());
     const traadListeRef = useRef<HTMLOListElement>(null);
 
-    useOnMount(() => {
+    useEffect(() => {
         const valgtMelding = traadListeRef.current?.getElementsByClassName(valgtMeldingKlasse)[0] as HTMLInputElement;
         valgtMelding?.focus();
-    });
+    }, [props.valgtTraad]);
 
     if (props.traader.length === 0) {
         return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;

@@ -47,6 +47,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 }
 
 .c6 {
+  padding: 0 0 0 0.2rem;
   border: none;
   cursor: pointer;
   background-color: transparent;

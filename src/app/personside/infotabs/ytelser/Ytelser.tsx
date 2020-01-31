@@ -40,10 +40,14 @@ function Ytelser() {
     const valgtYtelse = ytelser.ytelser.find(ytelse => dypLenker.ytelser.erValgt(ytelse)) || ytelser.ytelser[0];
     return (
         <Styling>
-            {ytelser.feilmeldinger}
             <Layout>
                 <ScrollBar keepScrollId="ytelser-liste">
-                    <YtelseListe pending={ytelser.pending} ytelser={ytelser.ytelser} valgtYtelse={valgtYtelse} />
+                    <YtelseListe
+                        placeHolders={ytelser.placeholders}
+                        pending={ytelser.pending}
+                        ytelser={ytelser.ytelser}
+                        valgtYtelse={valgtYtelse}
+                    />
                 </ScrollBar>
                 <ScrollBar keepScrollId="ytelser-valgt">
                     <ValgtYtelse valgtYtelse={valgtYtelse} />

@@ -16,6 +16,7 @@ const HiddenTextarea = styled.textarea`
 `;
 
 const StyledButton = styled.button`
+    padding: 0 0 0 0.2rem;
     ${theme.resetButtonStyle};
     border-radius: 0.2rem;
     svg {
