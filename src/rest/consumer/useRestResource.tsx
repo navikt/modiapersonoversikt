@@ -4,7 +4,9 @@ import { useAppState, useOnMount } from '../../utils/customHooks';
 import {
     hasData,
     isFailed,
+    isForbidden,
     isLoading,
+    isNotFound,
     isNotStarted,
     isReloading,
     RestResource,
@@ -22,6 +24,7 @@ export type UseRestResource<T> = {
     isReloading: boolean;
     isNotStarted: boolean;
     isFailed: boolean;
+    hasError: boolean;
 };
 
 export function useRestResource<T>(
@@ -46,6 +49,7 @@ export function useRestResource<T>(
         isLoading: isLoading(resource),
         isReloading: isReloading(resource),
         isNotStarted: isNotStarted(resource),
-        isFailed: isFailed(resource)
+        isFailed: isFailed(resource),
+        hasError: isFailed(resource) || isForbidden(resource) || isNotFound(resource)
     };
 }

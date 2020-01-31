@@ -7,6 +7,7 @@ interface Returns {
     ytelser: Ytelse[];
     pending: boolean;
     placeholders: ReactNode[];
+    harFeil: boolean;
 }
 
 function useBrukersYtelser(): Returns {
@@ -51,13 +52,14 @@ function useBrukersYtelser(): Returns {
         foreldrepengerResource.placeholder,
         pleiepengerResource.placeholder,
         sykepengerResource.placeholder
-    ].filter(it => it);
+    ];
 
-    return useMemo(() => ({ ytelser: ytelserSortert, pending: pending, placeholders: placeholders }), [
-        ytelserSortert,
-        pending,
-        placeholders
-    ]);
+    const harFeil = foreldrepengerResource.hasError || pleiepengerResource.hasError || sykepengerResource.hasError;
+
+    return useMemo(
+        () => ({ ytelser: ytelserSortert, pending: pending, placeholders: placeholders, harFeil: harFeil }),
+        [ytelserSortert, harFeil, pending, placeholders]
+    );
 }
 
 export default useBrukersYtelser;
