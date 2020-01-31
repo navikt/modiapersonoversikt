@@ -29,12 +29,12 @@ export interface Dyplenker {
 
 type DyplenkeParams = {
     posteringsdato?: string;
-    traadId?: string;
     sakstemakey?: string;
     saksDokumentId?: string;
 };
 
 export type DyplenkerQueryParams = {
+    traadId?: string;
     ytelse?: string;
 };
 
@@ -55,9 +55,9 @@ export function useInfotabsDyplenker(): Dyplenker {
                 }
             },
             meldinger: {
-                link: (traad: Traad) => `${paths.meldinger}/${traad.traadId}`,
-                route: `${paths.meldinger}/:traadId?`,
-                erValgt: (traad: Traad) => traad.traadId === params.traadId
+                link: (traad: Traad) => `${paths.meldinger}?traadId=${traad.traadId}`,
+                route: `${paths.meldinger}`,
+                erValgt: (traad: Traad) => traad.traadId === queryParams.traadId
             },
             saker: sakerRouting,
             ytelser: {

@@ -4,7 +4,7 @@ import { Traad } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components/macro';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import TraadListe from './traadliste/TraadListe';
-import { huskForrigeValgtTraad, huskSokAction, setSkjulVarslerAction } from '../../../../redux/meldinger/actions';
+import { huskSokAction, setSkjulVarslerAction } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
 import { useAppState, usePrevious } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
@@ -16,6 +16,7 @@ import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import DelayRender from '../../../../components/DelayRender';
+import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 
 const meldingerMediaTreshold = pxToRem(800);
 
@@ -35,24 +36,6 @@ const MeldingerStyle = styled.div`
     position: relative;
 `;
 
-function useHuskValgtTraad() {
-    const dispatch = useDispatch();
-    const valgtTraad = useValgtTraadIUrl();
-    const forrigeValgteTraad = useAppState(state => state.meldinger.forrigeValgteTraad);
-    const meldingerResource = useRestResource(resources => resources.tråderOgMeldinger);
-    const forrigeTraadErFjernet =
-        meldingerResource.data && forrigeValgteTraad && !meldingerResource.data.includes(forrigeValgteTraad);
-
-    useEffect(() => {
-        if (forrigeTraadErFjernet) {
-            dispatch(huskForrigeValgtTraad(undefined));
-        }
-        valgtTraad && dispatch(huskForrigeValgtTraad(valgtTraad));
-    }, [dispatch, valgtTraad, forrigeTraadErFjernet]);
-
-    return forrigeValgteTraad;
-}
-
 function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[]) {
     const dyplenker = useInfotabsDyplenker();
     const valgtTraad = useValgtTraadIUrl();
@@ -67,19 +50,6 @@ function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[
             history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
         }
     }, [valgtTraad, traaderFørSøk, traaderEtterSok, history, dyplenker.meldinger]);
-}
-
-function useVelgTraadHvisIngenTraadErValgt(traaderEtterSok: Traad[]) {
-    const valgtTraad = useValgtTraadIUrl();
-    const forrigeValgteTraad = useHuskValgtTraad();
-    const history = useHistory();
-    const dyplenker = useInfotabsDyplenker();
-    useEffect(() => {
-        if (!valgtTraad) {
-            const redirectTo = forrigeValgteTraad || traaderEtterSok[0];
-            redirectTo && history.replace(dyplenker.meldinger.link(redirectTo));
-        }
-    });
 }
 
 function useHuskSokeord(sokeord: string) {
@@ -109,19 +79,21 @@ function useReloadOnEnhetChange() {
 }
 
 function MeldingerContainer() {
+    const dispatch = useDispatch();
     const traaderResource = useRestResource(resources => resources.tråderOgMeldinger, undefined, true);
-    const valgtTraad = useValgtTraadIUrl();
+    const skjulVarsler = useAppState(state => state.meldinger.skjulVarsler);
+    const setSkjulVarsler = (skjul: boolean) => dispatch(setSkjulVarslerAction(skjul));
     const forrigeSok = useAppState(state => state.meldinger.forrigeSok);
     const [sokeord, setSokeord] = useState(forrigeSok);
-    const skjulVarsler = useAppState(state => state.meldinger.skjulVarsler);
-    const dispatch = useDispatch();
-    const setSkjulVarsler = (skjul: boolean) => dispatch(setSkjulVarslerAction(skjul));
+
     const traaderFørSøk = traaderResource.data ? traaderResource.data : [];
     const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderFørSøk, sokeord).filter(traad =>
         skjulVarsler ? filtrerBortVarsel(traad) : true
     );
+    const valgtTraad = useValgtTraadIUrl() || traaderEtterSokOgFiltrering[0];
+
+    useKeepQueryParams();
     useSyncSøkMedVisning(traaderFørSøk, traaderEtterSokOgFiltrering);
-    useVelgTraadHvisIngenTraadErValgt(traaderEtterSokOgFiltrering);
     useHuskSokeord(sokeord);
     useReloadOnEnhetChange();
 
