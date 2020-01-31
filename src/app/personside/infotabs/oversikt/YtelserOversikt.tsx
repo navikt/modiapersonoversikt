@@ -1,23 +1,20 @@
 import * as React from 'react';
-import { getSykepengerIdDato, getUnikSykepengerKey, Sykepenger } from '../../../../models/ytelse/sykepenger';
-import { getUnikPleiepengerKey, Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
-import {
-    Foreldrepengerettighet,
-    getForeldepengerIdDato,
-    getUnikForeldrepengerKey
-} from '../../../../models/ytelse/foreldrepenger';
+import { ReactNode, useEffect } from 'react';
+import { getSykepengerIdDato, Sykepenger } from '../../../../models/ytelse/sykepenger';
+import { Pleiepengerettighet } from '../../../../models/ytelse/pleiepenger';
+import { Foreldrepengerettighet, getForeldepengerIdDato } from '../../../../models/ytelse/foreldrepenger';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
-import useBrukersYtelser from '../ytelser/useBrukersYtelser';
+import useBrukersYtelserMarkup from '../ytelser/useBrukersYtelserMarkup';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { ytelserTest } from '../dyplenkeTest/utils';
 import { formaterDato } from '../../../../utils/stringFormatting';
-import { ReactNode, useEffect } from 'react';
 import { usePrevious } from '../../../../utils/customHooks';
+import { getUnikYtelseKey } from '../../../../models/ytelse/ytelse-utils';
 
 const YtelserStyle = styled.div`
     > *:not(:first-child) {
@@ -30,23 +27,23 @@ interface Props {
 }
 
 function YtelserOversikt(props: Props) {
-    const { ytelser, pending, feilmeldinger } = useBrukersYtelser({
+    const { ytelserMarkup, pending, feilmeldinger } = useBrukersYtelserMarkup({
         renderPleiepenger: pleiepenger => (
-            <PleiepengerKomponent pleiepenger={pleiepenger} key={getUnikPleiepengerKey(pleiepenger)} />
+            <PleiepengerKomponent pleiepenger={pleiepenger} key={getUnikYtelseKey(pleiepenger)} />
         ),
         renderForeldrepenger: foreldrepenger => (
-            <ForeldrepengerKomponent foreldrepenger={foreldrepenger} key={getUnikForeldrepengerKey(foreldrepenger)} />
+            <ForeldrepengerKomponent foreldrepenger={foreldrepenger} key={getUnikYtelseKey(foreldrepenger)} />
         ),
         renderSykepenger: sykepenger => (
-            <SykepengerKomponent sykepenger={sykepenger} key={getUnikSykepengerKey(sykepenger)} />
+            <SykepengerKomponent sykepenger={sykepenger} key={getUnikYtelseKey(sykepenger)} />
         )
     });
 
-    const ytelserListe = ytelser.slice(0, 2);
+    const ytelserListe = ytelserMarkup.slice(0, 2);
 
-    const prevAntallYtelser = usePrevious(ytelser.length);
+    const prevAntallYtelser = usePrevious(ytelserMarkup.length);
     useEffect(() => {
-        const antallYtelser = ytelser.length;
+        const antallYtelser = ytelserMarkup.length;
         if (prevAntallYtelser !== antallYtelser) {
             props.setHeaderContent(
                 <Normaltekst>
@@ -54,13 +51,13 @@ function YtelserOversikt(props: Props) {
                 </Normaltekst>
             );
         }
-    }, [ytelser, ytelserListe, props, prevAntallYtelser]);
+    }, [ytelserMarkup, ytelserListe, props, prevAntallYtelser]);
 
     return (
         <YtelserStyle>
             {ytelserListe}
             {feilmeldinger}
-            {!pending && feilmeldinger.length === 0 && ytelser.length === 0 && (
+            {!pending && feilmeldinger.length === 0 && ytelserMarkup.length === 0 && (
                 <AlertStripeInfo>
                     Det finnes ikke foreldrepenger, sykepenger eller pleiepenger for brukeren
                 </AlertStripeInfo>
@@ -74,7 +71,7 @@ function PleiepengerKomponent(props: { pleiepenger: Pleiepengerettighet }) {
     const dyplenker = useInfotabsDyplenker();
     return (
         <VisMerKnapp
-            linkTo={dyplenker.ytelser.link(getUnikPleiepengerKey(props.pleiepenger))}
+            linkTo={dyplenker.ytelser.link(props.pleiepenger)}
             valgt={false}
             ariaDescription="Vis pleiepenger"
             className={ytelserTest.oversikt}
@@ -90,7 +87,7 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
 
     return (
         <VisMerKnapp
-            linkTo={dyplenker.ytelser.link(getUnikSykepengerKey(props.sykepenger))}
+            linkTo={dyplenker.ytelser.link(props.sykepenger)}
             valgt={false}
             ariaDescription="Vis sykepenger"
             className={ytelserTest.oversikt}
@@ -109,7 +106,7 @@ function ForeldrepengerKomponent(props: { foreldrepenger: Foreldrepengerettighet
     const dyplenker = useInfotabsDyplenker();
     return (
         <VisMerKnapp
-            linkTo={dyplenker.ytelser.link(getUnikForeldrepengerKey(props.foreldrepenger))}
+            linkTo={dyplenker.ytelser.link(props.foreldrepenger)}
             valgt={false}
             ariaDescription="Vis foreldrepenger"
             className={ytelserTest.oversikt}

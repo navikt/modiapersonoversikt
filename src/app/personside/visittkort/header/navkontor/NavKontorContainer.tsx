@@ -4,6 +4,7 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { NavKontorResponse } from '../../../../../models/navkontor';
 import { Bold } from '../../../../../components/common-styled-components';
 import RestResourceConsumer from '../../../../../rest/consumer/RestResourceConsumer';
+import LazySpinner from '../../../../../components/LazySpinner';
 
 const NavKontorSection = styled.section`
     margin: 0.5rem 0 0 0;
@@ -45,7 +46,7 @@ function NavKontorContainer() {
             <Element tag="h2">NAV-kontor</Element>
             <RestResourceConsumer<NavKontorResponse>
                 getResource={restResources => restResources.brukersNavKontor}
-                spinnerSize={'S'}
+                returnOnPending={<LazySpinner type="S" delay={1000} />}
                 returnOnError={onError}
                 returnOnNotFound={onNotFound}
             >

@@ -5,6 +5,8 @@ import { useParams } from 'react-router';
 import { Traad } from '../../../models/meldinger/meldinger';
 import { useMemo } from 'react';
 import { SakerRouting, useSakerRouting } from './saksoversikt/utils/saksoversiktRoutingUtils';
+import { useQueryParams } from '../../../utils/urlUtils';
+import { getUnikYtelseKey, Ytelse } from '../../../models/ytelse/ytelse-utils';
 
 export interface Dyplenker {
     utbetaling: {
@@ -19,9 +21,9 @@ export interface Dyplenker {
     };
     saker: SakerRouting;
     ytelser: {
-        link: (unikId: string) => string;
+        link: (ytelse: Ytelse) => string;
         route: string;
-        erValgt: (unikId: UnikYtelseKey) => boolean;
+        erValgt: (ytelse: Ytelse) => boolean;
     };
 }
 
@@ -30,12 +32,15 @@ type DyplenkeParams = {
     traadId?: string;
     sakstemakey?: string;
     saksDokumentId?: string;
-    unikId?: string;
 };
-export type UnikYtelseKey = string;
+
+export type DyplenkerQueryParams = {
+    ytelse?: string;
+};
 
 export function useInfotabsDyplenker(): Dyplenker {
     const params = useParams<DyplenkeParams>();
+    const queryParams = useQueryParams<DyplenkerQueryParams>();
     const paths = usePaths();
     const sakerRouting = useSakerRouting();
 
@@ -56,11 +61,11 @@ export function useInfotabsDyplenker(): Dyplenker {
             },
             saker: sakerRouting,
             ytelser: {
-                link: (unikId: string) => `${paths.ytelser}/${unikId}`,
+                link: (ytelse: Ytelse) => `${paths.ytelser}?ytelse=${getUnikYtelseKey(ytelse)}`,
                 route: `${paths.ytelser}/:unikId?`,
-                erValgt: (unikId: UnikYtelseKey) => unikId === params.unikId
+                erValgt: (ytelse: Ytelse) => getUnikYtelseKey(ytelse) === queryParams.ytelse
             }
         }),
-        [paths, params, sakerRouting]
+        [paths, params, sakerRouting, queryParams]
     );
 }

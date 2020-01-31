@@ -4,7 +4,6 @@ import { INFOTABS } from './InfoTabEnum';
 import TabKnapper from './TabKnapper';
 import styled from 'styled-components/macro';
 import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
-import YtelserContainer from './ytelser/YtelserContainer';
 import { usePaths } from '../../routes/routing';
 import { Route, Switch, useHistory, useLocation } from 'react-router';
 import SaksoversiktContainer from './saksoversikt/SaksoversiktContainer';
@@ -20,8 +19,9 @@ import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
 import { loggEvent } from '../../../utils/logger/frontendLogger';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
-import { capitalizeName } from '../../../utils/stringFormatting';
+import Ytelser from './ytelser/Ytelser';
 import { guid } from 'nav-frontend-js-utils';
+import { capitalizeName } from '../../../utils/stringFormatting';
 import { useOpenTab } from './utils/useOpenTab';
 
 const StyledArticle = styled.article`
@@ -86,7 +86,7 @@ function InfoTabs() {
                         <Route path={paths.oppfolging} component={OppfolgingContainer} />
                         <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
                         <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
-                        <Route path={dyplenker.ytelser.route} component={YtelserContainer} />
+                        <Route path={dyplenker.ytelser.route} component={Ytelser} />
                         <Route path={paths.varsler} component={VarslerContainer} />
                         <Route path={''} component={Oversikt} />
                     </Switch>

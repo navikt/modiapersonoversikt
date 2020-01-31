@@ -227,7 +227,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
             traader: traaderSomSkalSlaasSammen
         };
         const callback = (response: SlaaSammenResponse) => {
-            loggEvent('OppgaverSlåttSammen', 'BesvarFlere', { antall: request.traader.length });
+            loggEvent('OppgaverSlåttSammen', 'BesvarFlere', undefined, { antall: request.traader.length });
             dispatch(setTråderITråderResource(response.traader));
             dispatch(resetPlukkOppgave);
             dispatch(reloadTildelteOppgaver);
