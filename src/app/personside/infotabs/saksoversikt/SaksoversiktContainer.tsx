@@ -14,6 +14,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import JournalPoster from './saksdokumenter/JournalPoster';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
+import SakerFullscreenLenke from './SakerFullscreenLenke';
 
 export const saksoversiktMediaTreshold = '65rem';
 
@@ -63,6 +64,7 @@ function SaksoversiktContainer() {
                                 <>
                                     <ScrollBar keepScrollId="saker-sakstema">
                                         <ErrorBoundary boundaryName="Sakstemaliste">
+                                            <SakerFullscreenLenke {...state} />
                                             <SakstemaListe valgtSakstema={state.sakstema} />
                                         </ErrorBoundary>
                                     </ScrollBar>
