@@ -18,7 +18,12 @@ import theme from '../../styles/personOversiktTheme';
 const rules = [
     { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
     { regex: /^mvh$/i, replacement: 'Med vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter' },
-    { regex: /^foet$/i, replacement: '[bruker.navn] ' }
+    { regex: /^foet$/i, replacement: '[bruker.navn] ' },
+    {
+        regex: /^vint$/i,
+        replacement:
+            'Jeg har videreformidlet henvendelsen til ENHET som skal svare deg senest innen utgangen av DAG+DATO'
+    }
 ];
 
 const HjelpetekstStyle = styled.div`
@@ -43,6 +48,7 @@ function AutoTekstTips() {
                     <li>foet + mellomrom: Brukers fulle navn</li>
                     <li>mvh + mellomrom: Signatur</li>
                     <li>hei + mellomrom: Hei bruker</li>
+                    <li>vint + mellomrom: Videreformidle Internt</li>
                 </ul>
             </HjelpetekstUnderHoyre>
         </HjelpetekstStyle>
