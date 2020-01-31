@@ -29,8 +29,6 @@ export interface Dyplenker {
 
 type DyplenkeParams = {
     posteringsdato?: string;
-    sakstemakey?: string;
-    saksDokumentId?: string;
 };
 
 export type DyplenkerQueryParams = {
@@ -62,7 +60,7 @@ export function useInfotabsDyplenker(): Dyplenker {
             saker: sakerRouting,
             ytelser: {
                 link: (ytelse: Ytelse) => `${paths.ytelser}?ytelse=${getUnikYtelseKey(ytelse)}`,
-                route: `${paths.ytelser}/:unikId?`,
+                route: `${paths.ytelser}`,
                 erValgt: (ytelse: Ytelse) => getUnikYtelseKey(ytelse) === queryParams.ytelse
             }
         }),
