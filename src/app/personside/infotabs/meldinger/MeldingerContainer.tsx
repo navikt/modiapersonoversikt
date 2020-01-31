@@ -36,9 +36,8 @@ const MeldingerStyle = styled.div`
     position: relative;
 `;
 
-function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[]) {
+function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[], valgtTraad: Traad) {
     const dyplenker = useInfotabsDyplenker();
-    const valgtTraad = useValgtTraadIUrl();
     const history = useHistory();
 
     useEffect(() => {
@@ -93,7 +92,7 @@ function MeldingerContainer() {
     const valgtTraad = useValgtTraadIUrl() || traaderEtterSokOgFiltrering[0];
 
     useKeepQueryParams();
-    useSyncSøkMedVisning(traaderFørSøk, traaderEtterSokOgFiltrering);
+    useSyncSøkMedVisning(traaderFørSøk, traaderEtterSokOgFiltrering, valgtTraad);
     useHuskSokeord(sokeord);
     useReloadOnEnhetChange();
 
