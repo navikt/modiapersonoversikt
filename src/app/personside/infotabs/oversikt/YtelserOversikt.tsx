@@ -56,13 +56,12 @@ function YtelserOversikt(props: Props) {
     return (
         <YtelserStyle>
             {ytelserListe}
-            {feilmeldinger}
             {!pending && feilmeldinger.length === 0 && ytelserMarkup.length === 0 && (
                 <AlertStripeInfo>
                     Det finnes ikke foreldrepenger, sykepenger eller pleiepenger for brukeren
                 </AlertStripeInfo>
             )}
-            {pending && <CenteredLazySpinner padding={theme.margin.layout} />}
+            {pending ? <CenteredLazySpinner padding={theme.margin.layout} /> : feilmeldinger}
         </YtelserStyle>
     );
 }

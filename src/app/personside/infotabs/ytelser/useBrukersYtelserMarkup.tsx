@@ -38,7 +38,7 @@ function useBrukersYtelserMarkup(props: Props): Returns {
     return {
         ytelserMarkup: ytelserMarkup,
         pending: brukersYtelser.pending,
-        feilmeldinger: brukersYtelser.feilmeldinger
+        feilmeldinger: brukersYtelser.placeholders
     };
 }
 
