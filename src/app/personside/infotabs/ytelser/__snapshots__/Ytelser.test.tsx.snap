@@ -414,7 +414,6 @@ exports[`Om Ytelser matcher snapshot 1`] = `
         >
           <ol
             className="c6"
-            role="tablist"
           >
             <li>
               <div

@@ -52,7 +52,7 @@ function YtelseListe(props: Props) {
                 </HjelpetekstHoyreWrapper>
             </TittelWrapper>
             <nav aria-label="Velg ytelser">
-                <StyledOl role="tablist">{ytelser}</StyledOl>
+                <StyledOl>{ytelser}</StyledOl>
                 {props.pending ? <CenteredLazySpinner /> : props.placeHolders}
             </nav>
         </Styling>
