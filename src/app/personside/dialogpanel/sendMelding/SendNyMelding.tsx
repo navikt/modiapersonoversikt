@@ -96,7 +96,7 @@ function SendNyMelding(props: Props) {
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
     return (
-        <StyledArticle aria-describedby={tittelId.current}>
+        <StyledArticle aria-labelledby={tittelId.current}>
             <StyledUndertittel id={tittelId.current}>Send ny melding</StyledUndertittel>
             <FormStyle onSubmit={props.handleSubmit}>
                 <TekstFelt

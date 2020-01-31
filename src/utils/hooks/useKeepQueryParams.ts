@@ -22,7 +22,6 @@ export function useKeepQueryParams() {
         const storedQueryParams = queryParamsStore[path];
         if (!queryParams && storedQueryParams) {
             history.replace(storedQueryParams);
-            console.log('restored query-params: ' + storedQueryParams);
         }
     });
 

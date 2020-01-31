@@ -10,7 +10,7 @@ import TraadListeElement from './TraadListeElement';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
 import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { guid } from 'nav-frontend-js-utils';
 import { useOnMount } from '../../../../../utils/customHooks';
 
@@ -128,7 +128,7 @@ function TraadListe(props: Props) {
     return (
         <StyledNav aria-label="Velg melding">
             <SlaaSammenOppgaverKnapp traader={props.traader} />
-            <article aria-describedby={sokTittelId.current}>
+            <article aria-labelledby={sokTittelId.current}>
                 <h3 id={sokTittelId.current} className="sr-only">
                     Filtrer meldinger
                 </h3>
@@ -156,7 +156,7 @@ function TraadListe(props: Props) {
                 Meldingsliste - {soketreffTekst}
             </h3>
             {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
-            <StyledOl aria-describedby={listeId.current} tabIndex={-1} ref={traadListeRef}>
+            <StyledOl aria-labelledby={listeId.current} tabIndex={-1} ref={traadListeRef}>
                 {paginering.currentPage.map(traad => (
                     <TraadListeElement
                         traad={traad}

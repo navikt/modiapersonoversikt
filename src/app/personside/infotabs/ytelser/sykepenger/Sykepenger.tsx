@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Sykepenger as ISykepenger } from '../../../../../models/ytelse/sykepenger';
@@ -13,13 +14,15 @@ import { formaterDato } from '../../../../../utils/stringFormatting';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
 import { useOnMount } from '../../../../../utils/customHooks';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
+import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     sykepenger: ISykepenger;
 }
 
-const Wrapper = styled.article`
+const StyledArticle = styled.article`
+    ${theme.hvittPanel};
     padding: ${theme.margin.layout};
 `;
 
@@ -40,30 +43,36 @@ const Flex = styled.div`
     }
 `;
 
-function Sykepenger({ sykepenger }: Props) {
+function Sykepenger(props: Props) {
+    const titleId = useRef(guid());
     useOnMount(() => {
         loggEvent('Visning', 'Sykepenger');
     });
 
-    const aktuellSykmelding = sykepenger.sykmeldinger.sort(datoSynkende(sykmelding => sykmelding.sykmeldt.til))[0];
+    const aktuellSykmelding = props.sykepenger.sykmeldinger.sort(
+        datoSynkende(sykmelding => sykmelding.sykmeldt.til)
+    )[0];
     return (
         <ErrorBoundary boundaryName="Sykepenger">
-            <Wrapper>
+            <StyledArticle aria-labelledby={titleId.current}>
+                <h2 className="sr-only" id={titleId.current}>
+                    Sykepengerrettighet
+                </h2>
                 {erModiabrukerdialog() && (
                     <VisuallyHiddenAutoFokusHeader
-                        tittel={'Sykepengerrettighet, ID-dato: ' + formaterDato(sykepenger.sykmeldtFom)}
+                        tittel={'Sykepengerrettighet, ID-dato: ' + formaterDato(props.sykepenger.sykmeldtFom)}
                     />
                 )}
                 <OversiktStyling>
                     <Flex>
-                        <Sykepengertilfellet sykepenger={sykepenger} />
+                        <Sykepengertilfellet sykepenger={props.sykepenger} />
                         <Sykemelding sykmelding={aktuellSykmelding} />
                     </Flex>
-                    <Arbeidssituasjon sykepenger={sykepenger} />
+                    <Arbeidssituasjon sykepenger={props.sykepenger} />
                 </OversiktStyling>
-                <UtbetalingerPVentListe utbetalingerPåVent={sykepenger.utbetalingerPåVent} />
-                <KommendeUtbetalinger kommendeUtbetalinger={sykepenger.kommendeUtbetalinger} />
-            </Wrapper>
+                <UtbetalingerPVentListe utbetalingerPåVent={props.sykepenger.utbetalingerPåVent} />
+                <KommendeUtbetalinger kommendeUtbetalinger={props.sykepenger.kommendeUtbetalinger} />
+            </StyledArticle>
         </ErrorBoundary>
     );
 }

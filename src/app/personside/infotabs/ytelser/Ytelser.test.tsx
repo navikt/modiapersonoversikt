@@ -1,12 +1,12 @@
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../test/Testprovider';
 import * as React from 'react';
-import YtelserContainer from './YtelserContainer';
+import Ytelser from './Ytelser';
 
-test('Om YtelserContainer matcher snapshot', () => {
+test('Om Ytelser matcher snapshot', () => {
     const resultat = renderer.create(
         <TestProvider>
-            <YtelserContainer />
+            <Ytelser />
         </TestProvider>
     );
 

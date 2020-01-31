@@ -9,7 +9,7 @@ import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Bold, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { useDispatch } from 'react-redux';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';

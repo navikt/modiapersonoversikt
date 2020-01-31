@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
-.c5 {
+.c7 {
   position: relative;
   padding: .5rem;
   display: -webkit-box;
@@ -16,22 +16,22 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   background-color: #cce1f3;
 }
 
-.c5:hover {
+.c7:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c5:hover > button:last-child {
+.c7:hover > button:last-child {
   padding-left: 0.5rem;
 }
 
-.c5 > *:first-child {
+.c7 > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c10 {
+.c12 {
   position: relative;
   padding: .5rem;
   display: -webkit-box;
@@ -45,22 +45,22 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c10:hover {
+.c12:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c10:hover > button:last-child {
+.c12:hover > button:last-child {
   padding-left: 0.5rem;
 }
 
-.c10 > *:first-child {
+.c12 > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c9 {
+.c11 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -72,16 +72,16 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c9 .nav-frontend-chevron {
+.c11 .nav-frontend-chevron {
   width: 1.5625rem;
 }
 
-.c9:focus {
+.c11:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c9:focus::after {
+.c11:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -92,13 +92,13 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c8 svg {
+.c10 svg {
   height: 1.875rem;
   width: 1.875rem;
   opacity: 0.5;
 }
 
-.c7 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -108,19 +108,19 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c7 .order-first {
+.c9 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c7 .order-second {
+.c9 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c6 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -135,21 +135,21 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c4 > * {
+.c6 > * {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c2 {
+.c4 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
-.c2 ol {
+.c4 ol {
   list-style: none;
 }
 
-.c3 {
+.c5 {
   padding: 0.9375rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -161,7 +161,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   align-items: flex-end;
 }
 
-.c3 > *:not(:last-child) {
+.c5 > *:not(:last-child) {
   margin-right: 1rem;
 }
 
@@ -171,16 +171,16 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   padding: .5rem;
 }
 
-.c22 {
+.c24 {
   color: #645f5a;
   margin-top: 3px;
 }
 
-.c22 .typo-etikett-liten {
+.c24 .typo-etikett-liten {
   line-height: 1rem;
 }
 
-.c18 {
+.c20 {
   padding: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -192,7 +192,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   align-items: flex-start;
 }
 
-.c20 {
+.c22 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -200,25 +200,21 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   width: 0;
 }
 
-.c20 > *:not(:last-child) {
+.c22 > *:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
-.c19 {
+.c21 {
   padding-right: 1rem;
 }
 
-.c19 svg {
+.c21 svg {
   height: 1.875rem;
   width: 1.875rem;
   opacity: 0.5;
 }
 
-.c24 {
-  white-space: nowrap;
-}
-
-.c21 {
+.c23 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -228,28 +224,28 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c21 .order-first {
+.c23 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c21 .order-second {
+.c23 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c23 ul {
+.c25 ul {
   list-style: disc;
 }
 
-.c17 {
+.c19 {
   background-color: #cce1f3;
   padding: 0.2rem 0.9375rem;
 }
 
-.c11 {
+.c13 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
@@ -257,7 +253,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   margin-bottom: 2rem;
 }
 
-.c12 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -272,14 +268,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   padding: 0.9375rem;
 }
 
-.c12 > *:first-child {
+.c14 > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c12 > div {
+.c14 > div {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -293,11 +289,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c12 > div > * {
+.c14 > div > * {
   margin-bottom: 0.5rem;
 }
 
-.c12 > div:last-child {
+.c14 > div:last-child {
   -webkit-align-items: flex-end;
   -webkit-box-align: flex-end;
   -ms-flex-align: flex-end;
@@ -308,37 +304,37 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   flex-grow: 1;
 }
 
-.c15 {
+.c17 {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.c16 ol {
+.c18 ol {
   padding: 0;
   margin: 0;
 }
 
-.c16 ol > *:not(:first-child) {
+.c18 ol > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c14 {
+.c16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c14 > *:not(:last-child) {
+.c16 > *:not(:last-child) {
   padding-right: 1rem;
 }
 
-.c14 > * {
+.c16 > * {
   margin-bottom: 0;
 }
 
-.c13 {
+.c15 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -349,12 +345,35 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   align-items: center;
 }
 
-.c13 > *:last-child {
+.c15 > *:last-child {
   margin-left: 1rem;
 }
 
-.c13:focus {
+.c15:focus {
   outline: none;
+}
+
+.c3 {
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+  font-weight: 600;
+}
+
+.c3 a {
+  padding: 0.9375rem;
+}
+
+.c3 a:visited {
+  color: currentColor !important;
+}
+
+.c3 .lenkepanel {
+  margin-bottom: 0;
+}
+
+.c2 {
+  margin-bottom: .5rem;
 }
 
 .c0 {
@@ -426,12 +445,27 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     className="c1"
     onScroll={[Function]}
   >
+    <div
+      className="c2 c3"
+    >
+      <a
+        className="lenkepanel"
+        href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Åpne i fullscreen
+        <span
+          className="lenkepanel__indikator"
+        />
+      </a>
+    </div>
     <nav
-      aria-describedby="Helt tilfeldig ID"
-      className="c2"
+      aria-labelledby="Helt tilfeldig ID"
+      className="c4"
     >
       <div
-        className="c3"
+        className="c5"
       >
         <h2
           className="typo-undertittel"
@@ -451,22 +485,22 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
         aria-label="Velg sakstema"
       >
         <ol
-          className="c4"
+          className="c6"
         >
           <li
             className="test-sakstema-list"
           >
             <div
-              className="c5"
+              className="c7"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c6"
+                  className="c8"
                 >
                   <div>
                     <div
-                      className="c7"
+                      className="c9"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -481,14 +515,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </div>
                   </div>
                   <span
-                    className="c8"
+                    className="c10"
                   />
                 </div>
               </div>
               <button
                 aria-label="Vis Alle tema"
                 aria-selected={true}
-                className="c9"
+                className="c11"
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -500,16 +534,16 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             className="test-sakstema-list"
           >
             <div
-              className="c10"
+              className="c12"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c6"
+                  className="c8"
                 >
                   <div>
                     <div
-                      className="c7"
+                      className="c9"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -534,7 +568,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c8"
+                    className="c10"
                   >
                     <svg
                       contentScriptType="text/ecmascript"
@@ -558,7 +592,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <button
                 aria-label="Vis Sykepenger"
                 aria-selected={false}
-                className="c9"
+                className="c11"
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -570,16 +604,16 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             className="test-sakstema-list"
           >
             <div
-              className="c10"
+              className="c12"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c6"
+                  className="c8"
                 >
                   <div>
                     <div
-                      className="c7"
+                      className="c9"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -614,14 +648,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c8"
+                    className="c10"
                   />
                 </div>
               </div>
               <button
                 aria-label="Vis Arbeidsavklaringspenger"
                 aria-selected={false}
-                className="c9"
+                className="c11"
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -633,16 +667,16 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             className="test-sakstema-list"
           >
             <div
-              className="c10"
+              className="c12"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c6"
+                  className="c8"
                 >
                   <div>
                     <div
-                      className="c7"
+                      className="c9"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -657,14 +691,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </div>
                   </div>
                   <span
-                    className="c8"
+                    className="c10"
                   />
                 </div>
               </div>
               <button
                 aria-label="Vis Barnetrygd"
                 aria-selected={false}
-                className="c9"
+                className="c11"
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -676,16 +710,16 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             className="test-sakstema-list"
           >
             <div
-              className="c10"
+              className="c12"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c6"
+                  className="c8"
                 >
                   <div>
                     <div
-                      className="c7"
+                      className="c9"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -710,14 +744,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c8"
+                    className="c10"
                   />
                 </div>
               </div>
               <button
                 aria-label="Vis Tiltakspenger"
                 aria-selected={false}
-                className="c9"
+                className="c11"
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -729,16 +763,16 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             className="test-sakstema-list"
           >
             <div
-              className="c10"
+              className="c12"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c6"
+                  className="c8"
                 >
                   <div>
                     <div
-                      className="c7"
+                      className="c9"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -753,14 +787,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </div>
                   </div>
                   <span
-                    className="c8"
+                    className="c10"
                   />
                 </div>
               </div>
               <button
                 aria-label="Vis Generell"
                 aria-selected={false}
-                className="c9"
+                className="c11"
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -779,14 +813,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     <div>
       <article
         aria-label="Saksdokumenter for Alle tema"
-        className="c11"
+        className="c13"
       >
         <section
-          className="c12"
+          className="c14"
         >
           <div>
             <div
-              className="c13"
+              className="c15"
               tabIndex={-1}
             >
               <h2
@@ -804,7 +838,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </div>
             <form
               aria-label="Filter"
-              className="c14"
+              className="c16"
             >
               <div
                 className="skjemaelement skjemaelement--horisontal"
@@ -888,13 +922,13 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
         </section>
         <ol
           aria-label="Dokumenter gruppert på årstall"
-          className="c15"
+          className="c17"
         >
           <li
-            className="c16"
+            className="c18"
           >
             <div
-              className="c17"
+              className="c19"
             >
               <h3
                 className="typo-element"
@@ -914,10 +948,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       aria-label="Du har ikke tilgang til dette dokumentet"
@@ -937,10 +971,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -963,7 +997,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -979,10 +1013,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       aria-label="Du har ikke tilgang til dette dokumentet"
@@ -1002,10 +1036,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -1028,7 +1062,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c23"
+                      className="c25"
                     >
                       <p
                         className="typo-normal"
@@ -1062,7 +1096,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </ul>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -1078,10 +1112,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -1094,10 +1128,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -1124,7 +1158,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c23"
+                      className="c25"
                     >
                       <p
                         className="typo-normal"
@@ -1166,7 +1200,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </ul>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -1177,22 +1211,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </p>
                     </div>
                   </div>
-                  <a
-                    className="lenke typo-element c24"
-                    href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=q90p8dnw"
-                    target="_blank"
-                  >
-                    Åpne i fullscreen
-                  </a>
                 </article>
               </li>
             </ol>
           </li>
           <li
-            className="c16"
+            className="c18"
           >
             <div
-              className="c17"
+              className="c19"
             >
               <h3
                 className="typo-element"
@@ -1212,10 +1239,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -1228,10 +1255,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -1254,7 +1281,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c23"
+                      className="c25"
                     >
                       <p
                         className="typo-normal"
@@ -1292,7 +1319,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </ul>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -1308,10 +1335,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -1324,10 +1351,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -1354,7 +1381,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -1365,22 +1392,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </p>
                     </div>
                   </div>
-                  <a
-                    className="lenke typo-element c24"
-                    href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=nvqxc1ip"
-                    target="_blank"
-                  >
-                    Åpne i fullscreen
-                  </a>
                 </article>
               </li>
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -1393,10 +1413,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -1423,7 +1443,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c23"
+                      className="c25"
                     >
                       <p
                         className="typo-normal"
@@ -1443,7 +1463,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </ul>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -1454,22 +1474,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </p>
                     </div>
                   </div>
-                  <a
-                    className="lenke typo-element c24"
-                    href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=me3wv1le"
-                    target="_blank"
-                  >
-                    Åpne i fullscreen
-                  </a>
                 </article>
               </li>
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       aria-label="Du har ikke tilgang til dette dokumentet"
@@ -1489,10 +1502,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -1515,7 +1528,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c23"
+                      className="c25"
                     >
                       <p
                         className="typo-normal"
@@ -1539,7 +1552,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </ul>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -1555,10 +1568,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       aria-label="Du har ikke tilgang til dette dokumentet"
@@ -1578,10 +1591,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -1604,7 +1617,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -1620,10 +1633,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
             </ol>
           </li>
           <li
-            className="c16"
+            className="c18"
           >
             <div
-              className="c17"
+              className="c19"
             >
               <h3
                 className="typo-element"
@@ -1643,10 +1656,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -1659,10 +1672,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -1689,7 +1702,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -1700,22 +1713,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </p>
                     </div>
                   </div>
-                  <a
-                    className="lenke typo-element c24"
-                    href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=bjol9s20"
-                    target="_blank"
-                  >
-                    Åpne i fullscreen
-                  </a>
                 </article>
               </li>
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -1728,10 +1734,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -1758,7 +1764,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -1769,22 +1775,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </p>
                     </div>
                   </div>
-                  <a
-                    className="lenke typo-element c24"
-                    href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=113wxk3r"
-                    target="_blank"
-                  >
-                    Åpne i fullscreen
-                  </a>
                 </article>
               </li>
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -1797,10 +1796,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -1827,7 +1826,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -1838,22 +1837,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </p>
                     </div>
                   </div>
-                  <a
-                    className="lenke typo-element c24"
-                    href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=mt1cssx0"
-                    target="_blank"
-                  >
-                    Åpne i fullscreen
-                  </a>
                 </article>
               </li>
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       aria-label="Du har ikke tilgang til dette dokumentet"
@@ -1873,10 +1865,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -1899,7 +1891,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -1915,10 +1907,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -1931,10 +1923,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -1961,7 +1953,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -1972,22 +1964,15 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </p>
                     </div>
                   </div>
-                  <a
-                    className="lenke typo-element c24"
-                    href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=nnp1em30"
-                    target="_blank"
-                  >
-                    Åpne i fullscreen
-                  </a>
                 </article>
               </li>
               <li>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c18"
+                  className="c20"
                 >
                   <div
-                    className="c19"
+                    className="c21"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -2000,10 +1985,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                     </svg>
                   </div>
                   <div
-                    className="c20"
+                    className="c22"
                   >
                     <div
-                      className="c21"
+                      className="c23"
                       id="Helt tilfeldig ID"
                     >
                       <h4
@@ -2030,7 +2015,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c22"
+                      className="c24"
                     >
                       <p
                         className="typo-etikett-liten"
@@ -2041,13 +2026,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       </p>
                     </div>
                   </div>
-                  <a
-                    className="lenke typo-element c24"
-                    href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000&dokument=gplzp0ho"
-                    target="_blank"
-                  >
-                    Åpne i fullscreen
-                  </a>
                 </article>
               </li>
             </ol>

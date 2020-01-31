@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { StyledTable } from '../../utils/table/StyledTable';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { useOnMount } from '../../utils/customHooks';
-import { loggEvent } from '../../utils/frontendLogger';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 
 const StyledInnholdstittel = styled(Innholdstittel)`
     margin-bottom: 1rem !important;

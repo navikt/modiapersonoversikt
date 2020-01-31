@@ -1,7 +1,7 @@
 import { BaseUrl, BaseUrlsResponse } from '../../models/baseurls';
 import { apiBaseUri } from '../../api/config';
 import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
-import { loggError } from '../../utils/frontendLogger';
+import { loggError } from '../../utils/logger/frontendLogger';
 
 export function hentBaseUrl(baseUrlsResponse: BaseUrlsResponse, key: string) {
     const resultUrl = baseUrlsResponse.baseUrls.find((baseUrl: BaseUrl) => {

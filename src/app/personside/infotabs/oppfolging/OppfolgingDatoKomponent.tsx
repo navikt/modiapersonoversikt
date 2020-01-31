@@ -17,7 +17,7 @@ import { Feilmelding } from '../../../../utils/Feilmelding';
 import { formaterDato, formaterTilISO8601Date } from '../../../../utils/stringFormatting';
 import moment from 'moment';
 import { isValidDate } from '../../../../utils/dateUtils';
-import { loggEvent } from '../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 
@@ -135,7 +135,7 @@ function OppfolgingDatoPanel(props: Props) {
     const headerId = useRef(guid());
 
     return (
-        <StyledArticle aria-describedby={headerId.current}>
+        <StyledArticle aria-labelledby={headerId.current}>
             <TittelWrapper>
                 <Undertittel id={headerId.current}>Oppfølging og ytelser vises for perioden:</Undertittel>
             </TittelWrapper>

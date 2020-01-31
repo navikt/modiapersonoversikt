@@ -15,7 +15,7 @@ import {
 } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { loggError, loggEvent } from '../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../utils/logger/frontendLogger';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import {
@@ -195,7 +195,7 @@ function FortsettDialogContainer(props: Props) {
     const temagruppe = meldingMedTemagruppe ? meldingMedTemagruppe.temagruppe : undefined;
 
     return (
-        <StyledArticle aria-describedby={tittelId.current}>
+        <StyledArticle aria-labelledby={tittelId.current}>
             <Undertittel id={tittelId.current}>Fortsett dialog</Undertittel>
             <FortsettDialog
                 handleAvbryt={handleAvbryt}

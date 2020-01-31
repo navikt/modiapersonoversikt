@@ -14,16 +14,17 @@ import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullførData } from '../autofullforUtils';
 import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
-import { loggEvent } from '../../../../../utils/frontendLogger';
-import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { guid } from 'nav-frontend-js-utils';
 import AriaNotification from '../../../../../components/AriaNotification';
 import { usePrevious } from '../../../../../utils/customHooks';
 import { useTimer } from '../../../../../utils/hooks/useTimer';
+import { HjelpetekstUnderVenstre } from 'nav-frontend-hjelpetekst';
 
 interface Props {
+    sokefelt: FieldState;
     appendTekst(tekst: string): void;
 }
 
@@ -40,9 +41,14 @@ const Spinner = styled(LazySpinner)`
 
 const SokefeltStyledNav = styled.nav`
     padding: 1rem;
+    padding-right: 4rem;
     border-bottom: 1px solid ${theme.color.navGra20};
     background-color: #f5f5f5;
-
+    display: flex;
+    align-items: center;
+    > *:first-child {
+        flex-grow: 1;
+    }
     .skjemaelement {
         max-width: calc(100% - 3rem);
         margin: 0;
@@ -111,9 +117,7 @@ function StandardTekster(props: Props) {
         '/modiapersonoversikt-skrivestotte/skrivestotte',
         'Standardtekster'
     );
-    const erKontaktSenter = useErKontaktsenter();
-    const sokefelt = useFieldState(erKontaktSenter ? '#ks ' : '');
-    const debouncedSokefelt = useDebounce(sokefelt.input.value, 250);
+    const debouncedSokefelt = useDebounce(props.sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() =>
         sokEtterTekster(standardTekster, debouncedSokefelt)
     );
@@ -125,6 +129,7 @@ function StandardTekster(props: Props) {
     const sokeFeltId = useRef(guid());
     const [ariaNotification, setAriaNotification] = useState('');
     const getSpentTime = useTimer();
+    const hjelpetekstID = useRef(guid());
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
     useDefaultValgtTekst(filtrerteTekster, valgt);
@@ -169,7 +174,7 @@ function StandardTekster(props: Props) {
         content = (
             <StandardTekstValg
                 tekster={filtrerteTekster}
-                sokefelt={sokefelt}
+                sokefelt={props.sokefelt}
                 valgt={valgt}
                 valgtLocale={valgtLocale}
                 valgtTekst={valgtTekst}
@@ -187,9 +192,9 @@ function StandardTekster(props: Props) {
             onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, getSpentTime, autofullforData)}
         >
             <h2 className="sr-only">Standardtekster</h2>
-            <SokefeltStyledNav aria-describedby={sokeFeltId.current} ref={sokRef}>
+            <SokefeltStyledNav aria-labelledby={sokeFeltId.current} ref={sokRef}>
                 <TagInput
-                    {...sokefelt.input}
+                    {...props.sokefelt.input}
                     name="standardtekstsok"
                     label="Søk etter standardtekster"
                     autoFocus={true}
@@ -197,6 +202,9 @@ function StandardTekster(props: Props) {
                     // @ts-ignore
                     autocomplete="off"
                 />
+                <HjelpetekstUnderVenstre id={hjelpetekstID.current}>
+                    Filtrer på tags ved å skrive "#eksempel" + mellomrom
+                </HjelpetekstUnderVenstre>
             </SokefeltStyledNav>
             {content}
             <AriaNotification ariaLive={'assertive'} beskjed={ariaNotification} />

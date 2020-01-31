@@ -12,7 +12,7 @@ import styled from 'styled-components/macro';
 import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
 import { guid } from 'nav-frontend-js-utils';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { loggEvent } from '../../utils/frontendLogger';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 import theme from '../../styles/personOversiktTheme';
 import { useErKontaktsenter } from '../../utils/enheterUtils';
 import { useRestResource } from '../../rest/consumer/useRestResource';
@@ -20,7 +20,7 @@ import { useRestResource } from '../../rest/consumer/useRestResource';
 function useRules() {
     const erKontaktsenter = useErKontaktsenter();
     const saksbehandlerResources = useRestResource(resources => resources.innloggetSaksbehandler);
-    const saksbehanderEnhet = saksbehandlerResources.data?.enhetNavn;
+    const saksbehanderEnhet = saksbehandlerResources.data?.enhetNavn ?? '';
     return [
         { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
         {
@@ -29,7 +29,12 @@ function useRules() {
                 erKontaktsenter ? 'NAV Kontaktsenter' : saksbehanderEnhet
             }`
         },
-        { regex: /^foet$/i, replacement: '[bruker.navn] ' }
+        { regex: /^foet$/i, replacement: '[bruker.navn] ' },
+        {
+            regex: /^vint$/i,
+            replacement:
+                'Jeg har videreformidlet henvendelsen til ENHET som skal svare deg senest innen utgangen av DAG+DATO'
+        }
     ];
 }
 
@@ -55,6 +60,7 @@ function AutoTekstTips() {
                     <li>foet + mellomrom: Brukers fulle navn</li>
                     <li>mvh + mellomrom: Signatur</li>
                     <li>hei + mellomrom: Hei bruker</li>
+                    <li>vint + mellomrom: Videreformidle Internt</li>
                 </ul>
             </HjelpetekstUnderHoyre>
         </HjelpetekstStyle>

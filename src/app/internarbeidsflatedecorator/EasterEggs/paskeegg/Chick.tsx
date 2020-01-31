@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { keyframes } from 'styled-components/macro';
 import chickIcon from './chickIcon.svg';
 import { useOnMount } from '../../../../utils/customHooks';
-import { loggEvent } from '../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../utils/logger/frontendLogger';
 
 const run = keyframes`
   70% {

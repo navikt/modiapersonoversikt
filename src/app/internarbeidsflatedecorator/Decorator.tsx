@@ -16,7 +16,8 @@ import { velgEnhetAction } from '../../redux/session/session';
 import { useQueryParams } from '../../utils/urlUtils';
 import styled from 'styled-components';
 import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTipsContainer';
-import useHandleQueryParams from './useHandleQueryParams';
+import useHandleGosysUrl from './useHandleGosysUrl';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 const etterSokefelt = `
@@ -38,13 +39,14 @@ const StyledNav = styled.nav`
 
 function lagConfig(
     gjeldendeFnr: string | undefined | null,
+    sokFnr: string | undefined,
     enhet: string | undefined | null,
     history: History,
     settEnhet: (enhet: string) => void
 ): DecoratorProps {
     return {
         appname: 'Modia personoversikt',
-        fnr: gjeldendeFnr,
+        fnr: sokFnr || gjeldendeFnr,
         enhet,
         toggles: {
             visEnhet: false,
@@ -96,8 +98,15 @@ function Decorator() {
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
     const history = useHistory();
     const dispatch = useDispatch();
+    const queryParams = useQueryParams<{ sokFnr?: string }>();
 
-    useHandleQueryParams();
+    useHandleGosysUrl();
+
+    useOnMount(() => {
+        if (queryParams.sokFnr) {
+            loggEvent('Oppslag', 'Puzzle');
+        }
+    });
 
     const handleSetEnhet = (enhet: string) => {
         dispatch(velgEnhetAction(enhet));
@@ -107,6 +116,7 @@ function Decorator() {
 
     const config = useCallback(lagConfig, [gjeldendeFnr, valgtEnhet, history, handleSetEnhet])(
         gjeldendeFnr,
+        queryParams.sokFnr,
         valgtEnhet,
         history,
         handleSetEnhet

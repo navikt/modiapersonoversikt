@@ -21,10 +21,6 @@ interface Props {
 const Tag = styled(({ highlight, ...rest }) => <Knapp {...rest} />)`
     padding: 0.25rem 0.5rem;
     margin-right: 0.25rem;
-
-    em {
-        margin: 0 -0.3125rem;
-    }
     &:hover {
         color: ${props => (props.highlight ? theme.color.lenke : '#ffffff')};
     }
@@ -62,14 +58,14 @@ function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; so
                     onClick={() => sokefelt.setValue(`#${tag} ${sokefelt.input.value}`)}
                     highlight={highlight}
                 >
-                    {highlight ? <em>{tag}</em> : tag}
+                    {highlight ? <em>#{tag}</em> : `#${tag}`}
                     <span className="sr-only"> - klikk for å legge til tag i søkefelt</span>
                 </Tag>
             );
         });
     return (
-        <section className="tags" aria-describedby={tittelId.current}>
-            <h3 id={tittelId.current} className="sr-only">
+        <section className="tags" aria-labelledby={tittelId.current}>
+            <h3 className="sr-only" id={tittelId.current}>
                 Tags
             </h3>
             {tagElements}
@@ -86,7 +82,7 @@ function StandardTekstPreview({ tekst, locale, sokefelt, highlightRule }: Props)
 
     return (
         <PreviewStyle aria-hidden={'true'}>
-            <article aria-describedby={tittelId.current}>
+            <article aria-labelledby={tittelId.current}>
                 <h3 className="sr-only" id={tittelId.current}>
                     Forhåndsvisning
                 </h3>

@@ -2,7 +2,7 @@ import { Action, Dispatch } from 'redux';
 import { ActionTypes, FetchUriCreator, getActionTypes } from './restResource';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { AppState } from '../../redux/reducers';
-import { loggError, loggEvent } from '../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import { Timer } from '../../utils/timer';
 import { includeCredentials } from '../../api/config';
 

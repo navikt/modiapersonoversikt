@@ -6,7 +6,7 @@ import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../redux/utbetal
 import { AppState } from '../../../../redux/reducers';
 import { connect } from 'react-redux';
 import styled from 'styled-components/macro';
-import { loggEvent } from '../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../utils/logger/frontendLogger';
 
 interface OwnProps {
     children: React.ReactNode;

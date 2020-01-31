@@ -2,7 +2,7 @@ import { OppgaveSkjemaForm } from './oppgaveInterfaces';
 import { useFødselsnummer } from '../../../../../../../utils/customHooks';
 import { useEffect, useMemo, useState } from 'react';
 import { Enhet } from '../../../../../../../models/meldinger/oppgave';
-import { loggError, loggEvent } from '../../../../../../../utils/frontendLogger';
+import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 
 function useForeslatteEnheter(form: OppgaveSkjemaForm) {

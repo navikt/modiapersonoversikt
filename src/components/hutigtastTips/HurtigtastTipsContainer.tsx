@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { loggEvent } from '../../utils/frontendLogger';
+import { loggEvent } from '../../utils/logger/frontendLogger';
 import styled from 'styled-components';
 import NavFrontendModal from 'nav-frontend-modal';
 import HurtigtastHjelp from './HurtigtastHjelp';

@@ -332,8 +332,8 @@ exports[`Viser traad med verktøylinje 1`] = `
   role="tabpanel"
 >
   <article
-    aria-describedby="Helt tilfeldig ID"
     aria-label="Verktøylinje"
+    aria-labelledby="Helt tilfeldig ID"
     className="c1"
     tabIndex={-1}
   >
@@ -978,7 +978,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         className="snakkeboble_ikoner c17"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
         >
           <div
             className="snakkeboble snakkeboble--hoyre"
@@ -1092,7 +1092,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         className="snakkeboble_ikoner c17"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
         >
           <div
             className="snakkeboble snakkeboble--venstre"
@@ -1192,7 +1192,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         className="snakkeboble_ikoner c17"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
         >
           <div
             className="snakkeboble snakkeboble--venstre"
@@ -1292,7 +1292,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         className="snakkeboble_ikoner c17"
       >
         <article
-          aria-describedby="Helt tilfeldig ID"
+          aria-labelledby="Helt tilfeldig ID"
         >
           <div
             className="snakkeboble snakkeboble--hoyre"

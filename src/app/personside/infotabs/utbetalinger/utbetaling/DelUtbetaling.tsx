@@ -12,7 +12,7 @@ import { AnyAction, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
-import { loggEvent } from '../../../../../utils/frontendLogger';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 
 export interface OwnProps {
     ytelse: Ytelse;

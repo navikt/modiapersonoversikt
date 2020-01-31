@@ -78,7 +78,7 @@ function Oversiktskomponent(props: Props) {
 
     return (
         <ErrorBoundary boundaryName={'Oversikt ' + props.tittel}>
-            <PanelStyle aria-describedby={headerId.current}>
+            <PanelStyle aria-labelledby={headerId.current}>
                 <OverskriftStyle title={'Alt + ' + props.hurtigtast} onClick={handleClick}>
                     <StyledUndertittel tag="h3" id={headerId.current}>
                         {props.tittel}

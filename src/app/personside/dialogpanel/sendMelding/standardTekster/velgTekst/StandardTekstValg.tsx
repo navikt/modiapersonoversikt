@@ -67,8 +67,8 @@ const manglerAutoCompleteDataWarning = (
 );
 
 function StandardTekstValg({ valgt, valgtLocale, valgtTekst, sokefelt, tekster, harAutofullførData }: Props) {
-    const { text } = useMemo(() => parseTekst(sokefelt.input.value), [sokefelt.input.value]);
-    const highlightRule = useMemo(() => createDynamicHighligtingRule(text.split(' ')), [text]);
+    const { text, tags } = useMemo(() => parseTekst(sokefelt.input.value), [sokefelt.input.value]);
+    const highlightRule = useMemo(() => createDynamicHighligtingRule(text.split(' ').concat(tags)), [text, tags]);
 
     useAlwaysInViewport('.standardtekster__liste input:checked', [valgtTekst, tekster]);
 
