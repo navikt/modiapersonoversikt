@@ -7,6 +7,7 @@ import YtelserListeElement from './YtelserListeElement';
 import { Undertittel } from 'nav-frontend-typografi';
 import { guid } from 'nav-frontend-js-utils';
 import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
+import { ReactNode } from 'react';
 
 const Styling = styled.section`
     ${theme.hvittPanel};
@@ -33,6 +34,7 @@ interface Props {
     ytelser: Ytelse[];
     pending: boolean;
     valgtYtelse: Ytelse;
+    placeHolders: ReactNode[];
 }
 
 function YtelseListe(props: Props) {
@@ -51,7 +53,7 @@ function YtelseListe(props: Props) {
             </TittelWrapper>
             <nav aria-label="Velg ytelser">
                 <StyledOl role="tablist">{ytelser}</StyledOl>
-                {props.pending && <CenteredLazySpinner />}
+                {props.pending ? <CenteredLazySpinner /> : props.placeHolders}
             </nav>
         </Styling>
     );

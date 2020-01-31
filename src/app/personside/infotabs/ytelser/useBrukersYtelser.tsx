@@ -6,23 +6,35 @@ import { getYtelseIdDato, Ytelse } from '../../../../models/ytelse/ytelse-utils'
 interface Returns {
     ytelser: Ytelse[];
     pending: boolean;
-    feilmeldinger: ReactNode[];
+    placeholders: ReactNode[];
 }
 
 function useBrukersYtelser(): Returns {
     const foreldrepengerResource = useRestResource(
         resources => resources.foreldrepenger,
-        { returnOnError: 'Kunne ikke laste foreldrepenger' },
+        {
+            returnOnError: 'Kunne ikke laste foreldrepenger',
+            returnOnNotFound: 'Kunne finne foreldrepenger',
+            returnOnForbidden: 'Du har ikke tilgang til foreldrepenger'
+        },
         true
     );
     const pleiepengerResource = useRestResource(
         resources => resources.pleiepenger,
-        { returnOnError: 'Kunne ikke laste pleiepenger' },
+        {
+            returnOnError: 'Kunne ikke laste pleiepenger',
+            returnOnNotFound: 'Kunne finne pleiepenger',
+            returnOnForbidden: 'Du har ikke tilgang til pleiepenger'
+        },
         true
     );
     const sykepengerResource = useRestResource(
         resources => resources.sykepenger,
-        { returnOnError: 'Kunne ikke laste sykepenger' },
+        {
+            returnOnError: 'Kunne ikke laste sykepenger',
+            returnOnNotFound: 'Kunne finne sykepenger',
+            returnOnForbidden: 'Du har ikke tilgang til sykepenger'
+        },
         true
     );
 
@@ -35,16 +47,16 @@ function useBrukersYtelser(): Returns {
 
     const ytelserSortert = ytelser.sort(datoSynkende(rettighet => getYtelseIdDato(rettighet)));
 
-    const feilmeldinger = [
+    const placeholders = [
         foreldrepengerResource.placeholder,
         pleiepengerResource.placeholder,
         sykepengerResource.placeholder
     ].filter(it => it);
 
-    return useMemo(() => ({ ytelser: ytelserSortert, pending: pending, feilmeldinger: feilmeldinger }), [
+    return useMemo(() => ({ ytelser: ytelserSortert, pending: pending, placeholders: placeholders }), [
         ytelserSortert,
         pending,
-        feilmeldinger
+        placeholders
     ]);
 }
 
