@@ -69,7 +69,7 @@ jobs:
           PRINT_PAYLOAD: true
           CLUSTER: dev-fss
           RESOURCE: .nais/qa-template.yaml
-          VARS: .nais/${{ matrix.namespace }}.yaml
+          VARS: .nais/${{ matrix.namespace }}.json
       
   deploy-prod:
     name: Deploy to prod
