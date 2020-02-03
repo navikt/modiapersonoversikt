@@ -183,7 +183,6 @@ function MerkPanel(props: Props) {
         dispatch(reloadMeldinger);
         dispatch(reloadTildelteOppgaver);
         dispatch(resetPlukkOppgaveResource);
-        dispatch(setIngenValgtTraadDialogpanel());
     };
 
     function merkPost(url: string, object: any, name: string) {
@@ -191,6 +190,10 @@ function MerkPanel(props: Props) {
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
+
+                if (url !== MERK_BISYS_URL) {
+                    dispatch(setIngenValgtTraadDialogpanel());
+                }
                 callback();
             })
             .catch((error: Error) => {
