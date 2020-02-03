@@ -125,6 +125,7 @@ function MerkPanel(props: Props) {
     const reloadMeldinger = tråderResource.actions.reload;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
+    const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
 
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
@@ -185,16 +186,20 @@ function MerkPanel(props: Props) {
         dispatch(resetPlukkOppgaveResource);
     };
 
+    const resetDialogpanel = () => {
+        if (valgtTraad !== dialogpanelTraad || valgtOperasjon == MerkOperasjon.BISYS) {
+            return;
+        }
+        dispatch(setIngenValgtTraadDialogpanel());
+    };
+
     function merkPost(url: string, object: any, name: string) {
         post(url, object, 'MerkPanel-' + name)
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
-
-                if (url !== MERK_BISYS_URL) {
-                    dispatch(setIngenValgtTraadDialogpanel());
-                }
                 callback();
+                resetDialogpanel();
             })
             .catch((error: Error) => {
                 settResultat(Resultat.FEIL);
