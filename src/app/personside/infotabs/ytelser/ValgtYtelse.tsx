@@ -9,8 +9,6 @@ import Pleiepenger from './pleiepenger/Pleiepenger';
 import Sykepenger from './sykepenger/Sykepenger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { guid } from 'nav-frontend-js-utils';
-import { useInfotabsDyplenker } from '../dyplenker';
-import useBrukersYtelser from './useBrukersYtelser';
 import { usePrevious } from '../../../../utils/customHooks';
 import { useEffect } from 'react';
 import { loggError } from '../../../../utils/logger/frontendLogger';
@@ -40,21 +38,19 @@ function YtelseMarkup(props: { ytelse: Ytelse }) {
 }
 
 function ValgtYtelse(props: Props) {
-    const ytelser = useBrukersYtelser();
     const tittelRef = useRef<HTMLHeadingElement>(null);
-    const dypLenker = useInfotabsDyplenker();
-    const valgtYtelse = ytelser.ytelser.find(ytelse => dypLenker.ytelser.erValgt(ytelse));
-    const prevYtelse = usePrevious(valgtYtelse);
+    const prevYtelse = usePrevious(props.valgtYtelse);
+
     useEffect(
         function focusVedNyYtelse() {
-            if (!valgtYtelse || !prevYtelse) {
+            if (!props.valgtYtelse || !prevYtelse) {
                 return;
             }
-            if (prevYtelse !== valgtYtelse) {
+            if (prevYtelse !== props.valgtYtelse) {
                 tittelRef.current && tittelRef.current.focus();
             }
         },
-        [valgtYtelse, prevYtelse, tittelRef]
+        [props.valgtYtelse, prevYtelse, tittelRef]
     );
 
     const titleId = useRef(guid());
