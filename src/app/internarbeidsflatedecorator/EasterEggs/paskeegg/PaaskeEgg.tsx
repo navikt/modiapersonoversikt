@@ -25,7 +25,7 @@ const shake = keyframes`
 
 const Position = styled.div`
     position: absolute;
-    left: 3.3rem;
+    left: 3.2rem;
     top: 0.75rem;
 `;
 

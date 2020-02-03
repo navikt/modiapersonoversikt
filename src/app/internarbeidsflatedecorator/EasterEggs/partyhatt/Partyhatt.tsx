@@ -44,9 +44,9 @@ from {
 
 const Position = styled.div`
     position: absolute;
-    left: ${pxToRem(31)};
+    left: ${pxToRem(30)};
     top: ${pxToRem(-4)};
-    animation: ${spinUp} 0.5s both 2s;
+    animation: ${spinUp} 0.5s backwards 2s;
     transform-origin: bottom;
 `;
 

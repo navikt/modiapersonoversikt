@@ -17,7 +17,7 @@ function useDefaultEasterEgg() {
     }
 
     const today = moment();
-    const erJul = today.month() === 11 && 17 <= today.date() && today.date() <= 28;
+    const erJul = today.month() === 11 && 20 <= today.date() && today.date() <= 28;
     const erNyttårsaften = today.month() === 11 && today.date() === 31;
 
     if (erJul) {
