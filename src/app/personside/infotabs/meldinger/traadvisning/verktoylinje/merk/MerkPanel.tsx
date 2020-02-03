@@ -37,6 +37,7 @@ import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLo
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
 import { useFocusOnFirstInputOnMount } from '../../../../../../../utils/hooks/useFocusOnFirstInputOnMount';
+import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
 
 interface Props {
     lukkPanel: () => void;
@@ -182,6 +183,7 @@ function MerkPanel(props: Props) {
         dispatch(reloadMeldinger);
         dispatch(reloadTildelteOppgaver);
         dispatch(resetPlukkOppgaveResource);
+        dispatch(setIngenValgtTraadDialogpanel());
     };
 
     function merkPost(url: string, object: any, name: string) {
