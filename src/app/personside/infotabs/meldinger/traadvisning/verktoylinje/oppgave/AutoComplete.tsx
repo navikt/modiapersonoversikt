@@ -111,7 +111,7 @@ function AutoComplete<Item>(props: Props<Item>) {
             highlightedItem && setHightlightedItem(highlightedItem);
         } else if (changes.isOpen === false) {
             // isOpen er kun false idet autocomplete blir lukket
-            hightlightedItem && props.setValue(hightlightedItem);
+            hightlightedItem && changes.selectedItem && props.setValue(hightlightedItem);
         }
     };
 

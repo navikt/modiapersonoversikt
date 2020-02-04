@@ -27,7 +27,7 @@ interface Props {
 }
 
 function YtelserOversikt(props: Props) {
-    const { ytelserMarkup, pending, feilmeldinger } = useBrukersYtelserMarkup({
+    const { ytelserMarkup, pending, feilmeldinger, harFeil } = useBrukersYtelserMarkup({
         renderPleiepenger: pleiepenger => (
             <PleiepengerKomponent pleiepenger={pleiepenger} key={getUnikYtelseKey(pleiepenger)} />
         ),
@@ -56,7 +56,7 @@ function YtelserOversikt(props: Props) {
     return (
         <YtelserStyle>
             {ytelserListe}
-            {!pending && feilmeldinger.length === 0 && ytelserMarkup.length === 0 && (
+            {!pending && !harFeil && ytelserMarkup.length === 0 && (
                 <AlertStripeInfo>
                     Det finnes ikke foreldrepenger, sykepenger eller pleiepenger for brukeren
                 </AlertStripeInfo>
