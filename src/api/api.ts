@@ -11,7 +11,7 @@ export function post(uri: string, body: object | string, loggLocation: string) {
                 loggError(
                     Error(`Post failed in ${loggLocation} on: ${uri}`),
                     undefined,
-                    { request: JSON.stringify(body), response: text },
+                    {},
                     {
                         action: 'Post-Failed',
                         location: loggLocation
