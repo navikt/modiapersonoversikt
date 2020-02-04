@@ -187,7 +187,7 @@ function MerkPanel(props: Props) {
     };
 
     const resetDialogpanel = () => {
-        if (valgtTraad !== dialogpanelTraad || valgtOperasjon == MerkOperasjon.BISYS) {
+        if (valgtTraad !== dialogpanelTraad || valgtOperasjon === MerkOperasjon.BISYS) {
             return;
         }
         dispatch(setIngenValgtTraadDialogpanel());
