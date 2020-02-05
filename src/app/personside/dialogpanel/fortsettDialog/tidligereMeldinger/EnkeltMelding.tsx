@@ -49,11 +49,9 @@ function EnkeltMelding(props: Props) {
     );
 
     return (
-        <li>
-            <StyledEkspanderbartpanelBasePure heading={header} apen={apen} onClick={() => setApen(!apen)}>
-                <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
-            </StyledEkspanderbartpanelBasePure>
-        </li>
+        <StyledEkspanderbartpanelBasePure heading={header} apen={apen} onClick={() => setApen(!apen)}>
+            <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
+        </StyledEkspanderbartpanelBasePure>
     );
 }
 
