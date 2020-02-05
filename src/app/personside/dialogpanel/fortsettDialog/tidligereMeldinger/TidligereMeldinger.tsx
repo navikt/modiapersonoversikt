@@ -59,7 +59,13 @@ function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: bool
 
     if (flereMeldinger) {
         return (
-            <Ekspanderbartpanel apen={false} tittel={props.tittel} tag="undertittel" border={true}>
+            <Ekspanderbartpanel
+                renderContentWhenClosed={true}
+                apen={false}
+                tittel={props.tittel}
+                tag="undertittel"
+                border={true}
+            >
                 <StyledOl>{meldinger}</StyledOl>
             </Ekspanderbartpanel>
         );
