@@ -13,6 +13,9 @@ interface Props {
 }
 
 const StyledArticle = styled.article`
+    .ekspanderbartPanel__innhold {
+        padding: 0rem;
+    }
     margin-top: 0.7rem;
 `;
 
@@ -53,7 +56,7 @@ function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: bool
 
     if (flereMeldinger) {
         return (
-            <Ekspanderbartpanel apen={false} tittel={props.tittel} tag="undertittel">
+            <Ekspanderbartpanel apen={false} tittel={props.tittel} tag="undertittel" border={true}>
                 <StyledOl aria-label={props.tittel}>{meldinger}</StyledOl>
             </Ekspanderbartpanel>
         );
