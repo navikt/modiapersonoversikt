@@ -3,18 +3,27 @@ import { useRef } from 'react';
 import { Melding, Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components/macro';
 import EnkeltMelding from './EnkeltMelding';
-import theme from '../../../../../styles/personOversiktTheme';
+import { theme } from '../../../../../styles/personOversiktTheme';
 import { guid } from 'nav-frontend-js-utils';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 interface Props {
     traad: Traad;
 }
 
+const StyledArticle = styled.article`
+    margin-top: 0.7rem;
+`;
+
+const StyledLi = styled.li`
+    position: relative;
+    border-bottom: 1px solid ${theme.color.navGra20};
+`;
+
 const StyledOl = styled.ol`
-    margin-top: 1rem;
+    margin-top: 0.1rem;
     border: ${theme.border.skille};
-    border-radius: 0.25rem;
     > li:not(:last-child) {
         margin-bottom: 0.1rem;
     }
@@ -25,20 +34,32 @@ function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: bool
         return null;
     }
 
+    const flereMeldinger = props.traad.length > 1;
     const meldinger = props.traad.map((melding, index) => {
         const meldingnummer = props.traad.length - index;
+
         return (
-            <EnkeltMelding
-                key={melding.id}
-                melding={melding}
-                erEnkeltstaende={props.traad.length === 1}
-                defaultApen={props.defaultApen}
-                meldingsNummer={meldingnummer}
-            />
+            <StyledLi>
+                <EnkeltMelding
+                    key={melding.id}
+                    melding={melding}
+                    erEnkeltstaende={props.traad.length === 1}
+                    defaultApen={props.defaultApen && !flereMeldinger}
+                    meldingsNummer={meldingnummer}
+                />
+            </StyledLi>
         );
     });
 
-    return <StyledOl aria-label={props.tittel}>{meldinger}</StyledOl>;
+    if (flereMeldinger) {
+        return (
+            <Ekspanderbartpanel apen={false} tittel={props.tittel} tag="undertittel">
+                <StyledOl aria-label={props.tittel}>{meldinger}</StyledOl>
+            </Ekspanderbartpanel>
+        );
+    } else {
+        return <StyledOl aria-label={props.tittel}>{meldinger}</StyledOl>;
+    }
 }
 
 function TidligereMeldinger(props: Props) {
@@ -54,13 +75,13 @@ function TidligereMeldinger(props: Props) {
 
     return (
         <ErrorBoundary boundaryName="Tidligere meldinger">
-            <article aria-labelledby={tittelId.current}>
+            <StyledArticle aria-labelledby={tittelId.current}>
                 <h3 tabIndex={-1} className="sr-only" id={tittelId.current}>
                     Tidligere meldinger
                 </h3>
-                <Traadpanel traad={traadUtenDelviseSvar} tittel="Dialog" defaultApen={defaultApen} />
+                <Traadpanel traad={traadUtenDelviseSvar} tittel="Tidligere meldinger" defaultApen={defaultApen} />
                 <Traadpanel traad={delsvar} tittel="Delsvar" defaultApen={defaultApen} />
-            </article>
+            </StyledArticle>
         </ErrorBoundary>
     );
 }
