@@ -34,6 +34,10 @@ function useRules() {
             regex: /^vint$/i,
             replacement:
                 'Jeg har videreformidlet henvendelsen til ENHET som skal svare deg senest innen utgangen av DAG+DATO'
+        },
+        {
+            regex: /^AAP$/i,
+            replacement: 'arbeidsavklaringspenger'
         }
     ];
 }
@@ -61,6 +65,7 @@ function AutoTekstTips() {
                     <li>mvh + mellomrom: Signatur</li>
                     <li>hei + mellomrom: Hei bruker</li>
                     <li>vint + mellomrom: Videreformidle Internt</li>
+                    <li>AAP + mellomrom: arbeidsavklaringspenger</li>
                 </ul>
             </HjelpetekstUnderHoyre>
         </HjelpetekstStyle>
