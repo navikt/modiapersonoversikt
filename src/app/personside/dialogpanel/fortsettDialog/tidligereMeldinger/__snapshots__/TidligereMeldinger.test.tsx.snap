@@ -33,6 +33,10 @@ exports[`viser fortsett dialog 1`] = `
   margin-top: 0.7rem;
 }
 
+.c0 .ekspanderbartPanel__innhold {
+  padding: 0rem;
+}
+
 .c2 {
   position: relative;
   border-bottom: 1px solid #c6c2bf;
@@ -59,7 +63,7 @@ exports[`viser fortsett dialog 1`] = `
     Tidligere meldinger
   </h3>
   <div
-    className="ekspanderbartPanel ekspanderbartPanel--lukket"
+    className="ekspanderbartPanel ekspanderbartPanel--lukket ekspanderbartPanel--border"
   >
     <button
       aria-expanded={false}
