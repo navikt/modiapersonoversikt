@@ -37,30 +37,32 @@ exports[`viser fortsett dialog 1`] = `
   padding: 0rem;
 }
 
+.c0 > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
 .c2 {
   position: relative;
-  border-bottom: 1px solid #c6c2bf;
 }
 
 .c1 {
   margin-top: 0.1rem;
-  border: solid 0.0625rem #78706a;
+  border-radius: 0.25rem;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
 .c1 > li:not(:last-child) {
   margin-bottom: 0.1rem;
 }
 
+.c1 > li:not(:only-child) {
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
 <article
   className="c0"
 >
-  <h3
-    className="sr-only"
-    id="Helt tilfeldig ID"
-    tabIndex={-1}
-  >
-    Tidligere meldinger
-  </h3>
   <div
     className="ekspanderbartPanel ekspanderbartPanel--lukket ekspanderbartPanel--border"
   >
@@ -89,7 +91,6 @@ exports[`viser fortsett dialog 1`] = `
       className="ekspanderbartPanel__innhold"
     >
       <ol
-        aria-label="Tidligere meldinger"
         className="c1"
       >
         <li
