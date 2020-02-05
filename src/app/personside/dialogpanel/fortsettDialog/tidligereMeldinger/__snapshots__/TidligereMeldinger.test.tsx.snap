@@ -52,7 +52,6 @@ exports[`viser fortsett dialog 1`] = `
 }
 
 <article
-  aria-labelledby="Helt tilfeldig ID"
   className="c0"
 >
   <h3
