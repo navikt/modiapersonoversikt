@@ -78,7 +78,7 @@ function TidligereMeldinger(props: Props) {
 
     return (
         <ErrorBoundary boundaryName="Tidligere meldinger">
-            <StyledArticle aria-labelledby={tittelId.current}>
+            <StyledArticle>
                 <h3 tabIndex={-1} className="sr-only" id={tittelId.current}>
                     Tidligere meldinger
                 </h3>
