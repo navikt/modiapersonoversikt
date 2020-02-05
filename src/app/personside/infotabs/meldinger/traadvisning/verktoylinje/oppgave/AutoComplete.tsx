@@ -106,12 +106,13 @@ function AutoComplete<Item>(props: Props<Item>) {
     const handleStateChange = (changes: any) => {
         if (changes.hasOwnProperty('selectedItem')) {
             props.setValue(changes.selectedItem);
+            setHightlightedItem(undefined);
         } else if (isNumber(changes.highlightedIndex)) {
             const highlightedItem = [...filteredTopSuggetions, ...filteredSuggestions][changes.highlightedIndex];
             highlightedItem && setHightlightedItem(highlightedItem);
         } else if (changes.isOpen === false) {
             // isOpen er kun false idet autocomplete blir lukket
-            hightlightedItem && props.setValue(hightlightedItem);
+            hightlightedItem && changes.selectedItem && props.setValue(hightlightedItem);
         }
     };
 

@@ -21,7 +21,7 @@ const shake = keyframes`
 
 const Position = styled.div`
     position: absolute;
-    left: 1.1rem;
+    left: 1rem;
     top: 0;
     animation: ${dropDown} 1.5s backwards;
 `;

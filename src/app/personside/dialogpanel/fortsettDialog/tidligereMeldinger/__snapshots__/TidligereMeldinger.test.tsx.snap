@@ -62,9 +62,7 @@ exports[`viser fortsett dialog 1`] = `
   >
     Tidligere meldinger
   </h3>
-  <div
-    className="ekspanderbartPanel ekspanderbartPanel--lukket ekspanderbartPanel--border"
-  >
+  <div   className="ekspanderbartPanel ekspanderbartPanel--lukket ekspanderbartPanel--border"  >
     <button
       aria-expanded={false}
       className="ekspanderbartPanel__hode"

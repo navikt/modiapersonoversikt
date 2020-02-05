@@ -16,6 +16,7 @@ interface Returns {
     ytelserMarkup: ReactNode[];
     pending: boolean;
     feilmeldinger: ReactNode[];
+    harFeil: boolean;
 }
 
 function useBrukersYtelserMarkup(props: Props): Returns {
@@ -38,7 +39,8 @@ function useBrukersYtelserMarkup(props: Props): Returns {
     return {
         ytelserMarkup: ytelserMarkup,
         pending: brukersYtelser.pending,
-        feilmeldinger: brukersYtelser.placeholders
+        feilmeldinger: brukersYtelser.placeholders,
+        harFeil: brukersYtelser.harFeil
     };
 }
 
