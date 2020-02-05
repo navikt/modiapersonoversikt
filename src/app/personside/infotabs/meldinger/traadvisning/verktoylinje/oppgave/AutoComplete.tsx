@@ -139,7 +139,6 @@ function AutoComplete<Item>(props: Props<Item>) {
                             })}
                             label={props.label}
                             onFocus={helpers.openMenu}
-                            aria-label={props.spinner ? 'Laster data' : props.label}
                         />
                         {props.spinner && <StyledSpinner type={'S'} />}
                     </InputfeltWrapper>
@@ -148,13 +147,13 @@ function AutoComplete<Item>(props: Props<Item>) {
                             <ul>
                                 {filteredTopSuggetions.length > 0 && (
                                     <>
-                                        <li>
+                                        <li aria-hidden="true">
                                             <EtikettGrå>{props.topSuggestionsLabel || 'Anbefalte forslag'}</EtikettGrå>
                                         </li>
                                         {filteredTopSuggetions.map(item => (
                                             <SuggestionMarkup key={itemToString(item)} item={item} helpers={helpers} />
                                         ))}
-                                        <li>
+                                        <li aria-hidden="true">
                                             <EtikettGrå>{props.otherSuggestionsLabel || 'Andre forslag'}</EtikettGrå>
                                         </li>
                                     </>
