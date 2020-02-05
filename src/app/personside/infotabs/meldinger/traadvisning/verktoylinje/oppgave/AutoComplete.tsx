@@ -138,7 +138,6 @@ function AutoComplete<Item>(props: Props<Item>) {
                             })}
                             label={props.label}
                             onFocus={helpers.openMenu}
-                            aria-label={props.spinner ? 'Laster data' : props.label}
                         />
                         {props.spinner && <StyledSpinner type={'S'} />}
                     </InputfeltWrapper>
