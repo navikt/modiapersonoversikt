@@ -1,21 +1,16 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../redux/reducers';
 import { isFailedPosting, isFinishedPosting, isNotStartedPosting, isPosting } from '../../rest/utils/postResource';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import { AdresseCelle, BostedCelle, IdentCelle, NavnCelle } from './PersonsokResultatElementer';
-import { ClickableTable } from '../../utils/table/ClickableTable';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { setNyBrukerIPath } from '../routes/routing';
-import { RouteComponentProps, withRouter } from 'react-router';
-import { Systemtittel } from 'nav-frontend-typografi';
+import Sokeresultat from './Sokeresultat';
+import { usePostResource } from '../../rest/consumer/usePostResource';
 
-interface Props extends RouteComponentProps {
+interface Props {
     onClose: () => void;
 }
 
 function PersonsokResultat(props: Props) {
-    const personsokResource = useSelector((state: AppState) => state.restResources.personsok);
+    const personsokResource = usePostResource(resources => resources.personsok);
 
     if (isNotStartedPosting(personsokResource)) {
         return null;
@@ -33,32 +28,13 @@ function PersonsokResultat(props: Props) {
         return <AlertStripeAdvarsel>Noe gikk galt</AlertStripeAdvarsel>;
     }
 
-    const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
     const response = personsokResource.response;
 
     if (response.length === 0) {
         return <AlertStripeInfo>Søket ga ingen treff</AlertStripeInfo>;
     }
 
-    const tableEntries = response.map(linje => [
-        <IdentCelle ident={linje.ident} />,
-        <NavnCelle navn={linje.navn} status={linje.status} />,
-        <AdresseCelle response={linje} />,
-        <BostedCelle brukerinfo={linje.brukerinfo} />
-    ]);
-    const handlers = response.map(linje => () => {
-        props.onClose();
-        setNyBrukerIPath(props.history, linje.ident.ident);
-    });
-
-    return (
-        <section aria-label="Søkeresultat">
-            <Systemtittel tag={'h2'} className="sr-only">
-                Søkeresultat
-            </Systemtittel>
-            <ClickableTable tittelRekke={tittelRekke} rows={tableEntries} rowsOnClickHandlers={handlers} />
-        </section>
-    );
+    return <Sokeresultat onClose={props.onClose} response={response} />;
 }
 
-export default withRouter(PersonsokResultat);
+export default PersonsokResultat;
