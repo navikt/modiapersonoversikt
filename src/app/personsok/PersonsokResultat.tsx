@@ -8,6 +8,7 @@ import { ClickableTable } from '../../utils/table/ClickableTable';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { setNyBrukerIPath } from '../routes/routing';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { Systemtittel } from 'nav-frontend-typografi';
 
 interface Props extends RouteComponentProps {
     onClose: () => void;
@@ -50,7 +51,14 @@ function PersonsokResultat(props: Props) {
         setNyBrukerIPath(props.history, linje.ident.ident);
     });
 
-    return <ClickableTable tittelRekke={tittelRekke} rows={tableEntries} rowsOnClickHandlers={handlers} />;
+    return (
+        <section aria-label="Søkeresultat">
+            <Systemtittel tag={'h2'} className="sr-only">
+                Søkeresultat
+            </Systemtittel>
+            <ClickableTable tittelRekke={tittelRekke} rows={tableEntries} rowsOnClickHandlers={handlers} />
+        </section>
+    );
 }
 
 export default withRouter(PersonsokResultat);
