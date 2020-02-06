@@ -1,22 +1,37 @@
 import * as React from 'react';
-import { useRef } from 'react';
 import { Melding, Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components/macro';
 import EnkeltMelding from './EnkeltMelding';
-import theme from '../../../../../styles/personOversiktTheme';
-import { guid } from 'nav-frontend-js-utils';
+import { theme } from '../../../../../styles/personOversiktTheme';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 interface Props {
     traad: Traad;
 }
 
+const StyledArticle = styled.article`
+    .ekspanderbartPanel__innhold {
+        padding: 0rem;
+    }
+    > *:not(:last-child) {
+        margin-bottom: 0.5rem;
+    }
+    margin-top: 0.7rem;
+`;
+
+const StyledLi = styled.li`
+    position: relative;
+`;
+
 const StyledOl = styled.ol`
-    margin-top: 1rem;
-    border: ${theme.border.skille};
-    border-radius: 0.25rem;
+    margin-top: 0.1rem;
+    ${theme.hvittPanel}
     > li:not(:last-child) {
         margin-bottom: 0.1rem;
+    }
+    > li:not(:only-child) {
+        border-top: ${theme.border.skilleSvak};
     }
 `;
 
@@ -25,20 +40,38 @@ function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: bool
         return null;
     }
 
+    const flereMeldinger = props.traad.length > 1;
     const meldinger = props.traad.map((melding, index) => {
         const meldingnummer = props.traad.length - index;
+
         return (
-            <EnkeltMelding
-                key={melding.id}
-                melding={melding}
-                erEnkeltstaende={props.traad.length === 1}
-                defaultApen={props.defaultApen}
-                meldingsNummer={meldingnummer}
-            />
+            <StyledLi>
+                <EnkeltMelding
+                    key={melding.id}
+                    melding={melding}
+                    erEnkeltstaende={props.traad.length === 1}
+                    defaultApen={props.defaultApen && !flereMeldinger}
+                    meldingsNummer={meldingnummer}
+                />
+            </StyledLi>
         );
     });
 
-    return <StyledOl aria-label={props.tittel}>{meldinger}</StyledOl>;
+    if (flereMeldinger) {
+        return (
+            <Ekspanderbartpanel
+                renderContentWhenClosed={true}
+                apen={false}
+                tittel={props.tittel}
+                tag="undertittel"
+                border={true}
+            >
+                <StyledOl>{meldinger}</StyledOl>
+            </Ekspanderbartpanel>
+        );
+    } else {
+        return <StyledOl aria-label={props.tittel}>{meldinger}</StyledOl>;
+    }
 }
 
 function TidligereMeldinger(props: Props) {
@@ -48,19 +81,15 @@ function TidligereMeldinger(props: Props) {
     const delsvar = props.traad.meldinger.filter(
         melding => melding.meldingstype === Meldingstype.DELVIS_SVAR_SKRIFTLIG
     );
-    const tittelId = useRef(guid());
 
     const defaultApen = delsvar.length > 0 || traadUtenDelviseSvar.length === 1;
 
     return (
         <ErrorBoundary boundaryName="Tidligere meldinger">
-            <article aria-labelledby={tittelId.current}>
-                <h3 tabIndex={-1} className="sr-only" id={tittelId.current}>
-                    Tidligere meldinger
-                </h3>
-                <Traadpanel traad={traadUtenDelviseSvar} tittel="Dialog" defaultApen={defaultApen} />
+            <StyledArticle>
+                <Traadpanel traad={traadUtenDelviseSvar} tittel="Tidligere meldinger" defaultApen={defaultApen} />
                 <Traadpanel traad={delsvar} tittel="Delsvar" defaultApen={defaultApen} />
-            </article>
+            </StyledArticle>
         </ErrorBoundary>
     );
 }
