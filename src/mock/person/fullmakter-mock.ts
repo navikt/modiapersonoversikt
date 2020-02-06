@@ -15,6 +15,7 @@ function getMockFullmakt(faker: Faker.FakerStatic, navfaker: NavFaker): Fullmakt
     return {
         motpartsRolle: 'FULLMEKTIG',
         motpartsPersonident: navfaker.personIdentifikator.fødselsnummer(),
+        motpartsPersonNavn: navfaker.navn.fornavn(),
         omraade: getOmraade(faker),
         gyldigFraOgMed: moment(faker.date.past(1)).format(backendDatoformat),
         gyldigTilOgMed: moment(faker.date.future(2)).format(backendDatoformat)

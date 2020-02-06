@@ -191,6 +191,7 @@ export const aremark: Person = {
         {
             motpartsRolle: 'FULLMEKTIG',
             motpartsPersonident: '12345678',
+            motpartsPersonNavn: 'Navn Navensen',
             omraade: ['*'],
             gyldigFraOgMed: '2019-01-01',
             gyldigTilOgMed: '2022-12-12'

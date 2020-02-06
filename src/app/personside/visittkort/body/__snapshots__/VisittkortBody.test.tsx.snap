@@ -610,7 +610,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <h4
             className="typo-element"
           >
-            Fullmektig: 12345678
+            Fullmektig
+    : Navn Navensen(12345678)
           </h4>
         </div>
         <p
