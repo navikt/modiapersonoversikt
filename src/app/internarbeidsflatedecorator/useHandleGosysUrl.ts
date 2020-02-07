@@ -24,11 +24,11 @@ function useHandleGosysUrl() {
             dispatch(plukkOppgaverResource.actions.setResponse([oppgave]));
             loggEvent('Oppgave', 'FraGosys');
         } else if (queryParams.sokFnr && queryParams.behandlingsid) {
-            history.replace(
-                `${paths.personUri}/${queryParams.sokFnr}/${INFOTABS.MELDINGER.toLowerCase()}/${
-                    queryParams.behandlingsid
-                }`
-            );
+            const linkTilValgtHenvendelse = `${paths.personUri}/${
+                queryParams.sokFnr
+            }/${INFOTABS.MELDINGER.toLowerCase()}/${queryParams.behandlingsid}`;
+            history.replace(linkTilValgtHenvendelse);
+            loggEvent('Henvendelse', 'FraGosys');
         }
     });
 }
