@@ -9,6 +9,15 @@ env:
   REACT_APP_MODIA_URL: "/modiabrukerdialog/rest"
   REACT_APP_HODE_URL: "/internarbeidsflatedecorator"
 jobs:
+  test-ratelimit:
+    name: Testing ratelimit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check API rate limit
+        run: |
+          curl -s "https://api.github.com/rate_limit" -H "Authorization: token $GITHUB_TOKEN"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   build:
     name: Test and build
     runs-on: ubuntu-latest
