@@ -29,15 +29,15 @@ exports[`Viser oversikt med alt innhold 1`] = `
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c7 > *:not(:first-child) {
+.c6 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c6 {
+.c5 {
   text-align: right;
 }
 
-.c5 {
+.c4 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -53,12 +53,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0 1rem;
 }
 
-.c4 {
-  font-weight: bold !important;
-  font-size: 1.125rem !important;
-}
-
-.c31 {
+.c30 {
   padding: 0.7rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -66,28 +61,28 @@ exports[`Viser oversikt med alt innhold 1`] = `
   display: flex;
 }
 
-.c31 > *:first-child {
+.c30 > *:first-child {
   -webkit-flex: 0 0 20%;
   -ms-flex: 0 0 20%;
   flex: 0 0 20%;
 }
 
-.c31 > *:last-child {
+.c30 > *:last-child {
   max-width: 30rem;
 }
 
-.c30 {
+.c29 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c30 > *:not(:first-child) {
+.c29 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c29 {
+.c28 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -95,17 +90,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 0.5em;
 }
 
-.c29:focus {
+.c28:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c29:focus {
+.c28:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c29:focus::after {
+.c28:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -116,13 +111,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c26 {
+.c25 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
-.c27 {
+.c26 {
   position: relative;
   display: -ms-grid;
   display: grid;
@@ -136,44 +131,44 @@ exports[`Viser oversikt med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c27 > *:nth-child(1) {
+.c26 > *:nth-child(1) {
   -ms-grid-column: 1;
 }
 
-.c27 > *:nth-child(2) {
+.c26 > *:nth-child(2) {
   -ms-grid-column: 2;
 }
 
-.c27 > *:nth-child(3) {
+.c26 > *:nth-child(3) {
   -ms-grid-column: 3;
 }
 
-.c27 > *:nth-child(4) {
+.c26 > *:nth-child(4) {
   -ms-grid-column: 4;
 }
 
-.c27:hover {
+.c26:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c27 > * {
+.c26 > * {
   padding: 0.7rem;
 }
 
-.c28 li {
+.c27 li {
   display: inline-block;
 }
 
-.c28 li:not(:last-child):after {
+.c27 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
 
-.c25 > *:not(:first-child) {
+.c24 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c9 {
+.c8 {
   position: relative;
   padding: .5rem;
   display: -webkit-box;
@@ -187,22 +182,22 @@ exports[`Viser oversikt med alt innhold 1`] = `
   cursor: pointer;
 }
 
-.c9:hover {
+.c8:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c9:hover > button:last-child {
+.c8:hover > button:last-child {
   padding-left: 0.5rem;
 }
 
-.c9 > *:first-child {
+.c8 > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c11 {
+.c10 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -214,16 +209,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c11 .nav-frontend-chevron {
+.c10 .nav-frontend-chevron {
   width: 1.5625rem;
 }
 
-.c11:focus {
+.c10:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c11:focus::after {
+.c10:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -234,13 +229,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
   pointer-events: none;
 }
 
-.c15 svg {
+.c14 svg {
   height: 1.875rem;
   width: 1.875rem;
   opacity: 0.5;
 }
 
-.c14 {
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -250,19 +245,19 @@ exports[`Viser oversikt med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c14 .order-first {
+.c13 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c14 .order-second {
+.c13 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c13 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -277,29 +272,29 @@ exports[`Viser oversikt med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c24 > *:not(:first-child) {
+.c23 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c10 {
+.c9 {
   font-weight: 600;
 }
 
-.c8 > *:not(:first-child) {
+.c7 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c18 {
+.c17 {
   position: relative;
 }
 
-.c18 svg {
+.c17 svg {
   height: 1.5625rem;
   width: 1.5625rem;
   opacity: 0.4;
 }
 
-.c19 {
+.c18 {
   position: absolute;
   top: -0.1875rem;
   right: -0.5rem;
@@ -322,7 +317,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 50%;
 }
 
-.c20 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -339,25 +334,25 @@ exports[`Viser oversikt med alt innhold 1`] = `
   overflow-wrap: break-word;
 }
 
-.c20 .order-first {
+.c19 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c20 .order-second {
+.c19 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c20 .order-third {
+.c19 .order-third {
   -webkit-order: 3;
   -ms-flex-order: 3;
   order: 3;
 }
 
-.c22 {
+.c21 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -372,12 +367,12 @@ exports[`Viser oversikt med alt innhold 1`] = `
   margin-top: 0.2rem;
 }
 
-.c22 > *:not(:last-child) {
+.c21 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
 
-.c21 {
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -387,43 +382,43 @@ exports[`Viser oversikt med alt innhold 1`] = `
   flex-direction: column;
 }
 
-.c21 .order-first {
+.c20 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c21 .order-second {
+.c20 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c17 {
+.c16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c17 > *:last-child {
+.c16 > *:last-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c23 {
+.c22 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.c16 > *:not(:first-child) {
+.c15 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c12 > *:not(:first-child) {
+.c11 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
@@ -482,16 +477,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
         title="Alt + T"
       >
         <h3
-          className="typo-undertittel c4"
+          className="typo-undertittel"
           id="Helt tilfeldig ID"
         >
           Oppfølging
         </h3>
         <div
-          className="c5"
+          className="c4"
         />
         <a
-          className="lenke c6"
+          className="lenke c5"
           href="/modiapersonoversikt/person/10108000398/oppfølging/"
           onClick={[Function]}
         >
@@ -504,7 +499,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </a>
       </div>
       <div
-        className="c7"
+        className="c6"
       >
         <div
           className="alertstripe alertstripe--info"
@@ -552,16 +547,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
         title="Alt + U"
       >
         <h3
-          className="typo-undertittel c4"
+          className="typo-undertittel"
           id="Helt tilfeldig ID"
         >
           Utbetalinger
         </h3>
         <div
-          className="c5"
+          className="c4"
         />
         <a
-          className="lenke c6"
+          className="lenke c5"
           href="/modiapersonoversikt/person/10108000398/utbetaling/"
           onClick={[Function]}
         >
@@ -574,17 +569,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </a>
       </div>
       <div
-        className="c7"
+        className="c6"
       >
         <ol
           aria-label="Oversikt brukers utbetalinger"
-          className="c8"
+          className="c7"
         >
           <li
             className="test-utbetalinger-oversikt"
           >
             <div
-              className="c9"
+              className="c8"
               onClick={[Function]}
             >
               <div>
@@ -599,7 +594,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   className="typo-normal"
                 >
                   <span
-                    className="c10"
+                    className="c9"
                   >
                     Barnetrygd
                   </span>
@@ -621,7 +616,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-label="Vis utbetaling"
                 aria-selected={false}
-                className="c11"
+                className="c10"
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -633,7 +628,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             className="test-utbetalinger-oversikt"
           >
             <div
-              className="c9"
+              className="c8"
               onClick={[Function]}
             >
               <div>
@@ -648,7 +643,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   className="typo-normal"
                 >
                   <span
-                    className="c10"
+                    className="c9"
                   >
                     Diverse ytelser
                   </span>
@@ -670,7 +665,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-label="Vis utbetaling"
                 aria-selected={false}
-                className="c11"
+                className="c10"
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -691,16 +686,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
         title="Alt + S"
       >
         <h3
-          className="typo-undertittel c4"
+          className="typo-undertittel"
           id="Helt tilfeldig ID"
         >
           Saker
         </h3>
         <div
-          className="c5"
+          className="c4"
         />
         <a
-          className="lenke c6"
+          className="lenke c5"
           href="/modiapersonoversikt/person/10108000398/saker/"
           onClick={[Function]}
         >
@@ -713,25 +708,25 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </a>
       </div>
       <div
-        className="c7"
+        className="c6"
       >
         <ol
-          className="c12"
+          className="c11"
         >
           <li
             className="test-sakstema-list"
           >
             <div
-              className="c9"
+              className="c8"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c13"
+                  className="c12"
                 >
                   <div>
                     <div
-                      className="c14"
+                      className="c13"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -756,7 +751,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c15"
+                    className="c14"
                   >
                     <svg
                       contentScriptType="text/ecmascript"
@@ -780,7 +775,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-label="Vis Sykepenger"
                 aria-selected={false}
-                className="c11"
+                className="c10"
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -792,16 +787,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
             className="test-sakstema-list"
           >
             <div
-              className="c9"
+              className="c8"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c13"
+                  className="c12"
                 >
                   <div>
                     <div
-                      className="c14"
+                      className="c13"
                     >
                       <p
                         className="typo-element order-second test-saker-oversikt"
@@ -836,14 +831,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </p>
                   </div>
                   <span
-                    className="c15"
+                    className="c14"
                   />
                 </div>
               </div>
               <button
                 aria-label="Vis Arbeidsavklaringspenger"
                 aria-selected={false}
-                className="c11"
+                className="c10"
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -868,16 +863,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
         title="Alt + M"
       >
         <h3
-          className="typo-undertittel c4"
+          className="typo-undertittel"
           id="Helt tilfeldig ID"
         >
           Meldinger
         </h3>
         <div
-          className="c5"
+          className="c4"
         />
         <a
-          className="lenke c6"
+          className="lenke c5"
           href="/modiapersonoversikt/person/10108000398/meldinger/"
           onClick={[Function]}
         >
@@ -890,20 +885,20 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </a>
       </div>
       <div
-        className="c7"
+        className="c6"
       >
         <ol
           aria-label="Oversikt brukers meldinger"
-          className="c16"
+          className="c15"
         >
           <li>
             <div
-              className="test-meldinger-oversikt c9"
+              className="test-meldinger-oversikt c8"
               onClick={[Function]}
             >
               <div>
                 <div
-                  className="c17"
+                  className="c16"
                 >
                   <span
                     className="sr-only"
@@ -913,7 +908,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     )
                   </span>
                   <span
-                    className="c18"
+                    className="c17"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -932,16 +927,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </svg>
                     <p
                       aria-hidden="true"
-                      className="typo-undertekst c19"
+                      className="typo-undertekst c18"
                     >
                       4
                     </p>
                   </span>
                   <div
-                    className="c20"
+                    className="c19"
                   >
                     <div
-                      className="order-first c21"
+                      className="order-first c20"
                     >
                       <p
                         className="typo-element order-second"
@@ -955,7 +950,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </p>
                     </div>
                     <div
-                      className="order-third c22"
+                      className="order-third c21"
                     >
                       <div
                         className="etikett etikett--fokus"
@@ -977,7 +972,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </div>
                     </div>
                     <p
-                      className="typo-normal order-second c23"
+                      className="typo-normal order-second c22"
                     >
                       Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                     </p>
@@ -987,7 +982,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               <button
                 aria-label="Vis meldinger for Delsvar - Arbeid"
                 aria-selected={false}
-                className="c11"
+                className="c10"
               >
                 <i
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -1008,16 +1003,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
         title="Alt + Y"
       >
         <h3
-          className="typo-undertittel c4"
+          className="typo-undertittel"
           id="Helt tilfeldig ID"
         >
           Ytelser
         </h3>
         <div
-          className="c5"
+          className="c4"
         />
         <a
-          className="lenke c6"
+          className="lenke c5"
           href="/modiapersonoversikt/person/10108000398/ytelser/"
           onClick={[Function]}
         >
@@ -1030,13 +1025,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </a>
       </div>
       <div
-        className="c7"
+        className="c6"
       >
         <div
-          className="c24"
+          className="c23"
         >
           <div
-            className="test-ytelse-oversikt c9"
+            className="test-ytelse-oversikt c8"
             onClick={[Function]}
           >
             <div>
@@ -1062,7 +1057,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             <button
               aria-label="Vis sykepenger"
               aria-selected={false}
-              className="c11"
+              className="c10"
             >
               <i
                 className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -1070,7 +1065,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </button>
           </div>
           <div
-            className="test-ytelse-oversikt c9"
+            className="test-ytelse-oversikt c8"
             onClick={[Function]}
           >
             <div>
@@ -1089,7 +1084,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             <button
               aria-label="Vis pleiepenger"
               aria-selected={false}
-              className="c11"
+              className="c10"
             >
               <i
                 className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -1109,16 +1104,16 @@ exports[`Viser oversikt med alt innhold 1`] = `
         title="Alt + V"
       >
         <h3
-          className="typo-undertittel c4"
+          className="typo-undertittel"
           id="Helt tilfeldig ID"
         >
           Varsler
         </h3>
         <div
-          className="c5"
+          className="c4"
         />
         <a
-          className="lenke c6"
+          className="lenke c5"
           href="/modiapersonoversikt/person/10108000398/varsler/"
           onClick={[Function]}
         >
@@ -1131,19 +1126,19 @@ exports[`Viser oversikt med alt innhold 1`] = `
         </a>
       </div>
       <div
-        className="c7"
+        className="c6"
       >
         <ol
-          className="c25"
+          className="c24"
         >
           <li
-            className="c26"
+            className="c25"
           >
             <article
               aria-labelledby="Helt tilfeldig ID"
             >
               <div
-                className="c27"
+                className="c26"
                 onClick={[Function]}
               >
                 <p
@@ -1159,7 +1154,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 </h4>
                 <ul
                   aria-label="Kommunikasjonskanaler"
-                  className="c28"
+                  className="c27"
                 >
                   <li
                     className="typo-normal"
@@ -1175,7 +1170,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <button
                   aria-expanded={false}
                   aria-label="Vis meldinger"
-                  className="c29"
+                  className="c28"
                   onClick={[Function]}
                   title="Vis meldinger"
                 >
@@ -1186,11 +1181,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </div>
               <ol
                 aria-label="Meldinger"
-                className="c30"
+                className="c29"
               >
                 <li
                   aria-label="EPOST"
-                  className="c31"
+                  className="c30"
                 >
                   <div>
                     <p
@@ -1227,7 +1222,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 </li>
                 <li
                   aria-label="SMS"
-                  className="c31"
+                  className="c30"
                 >
                   <div>
                     <p
@@ -1259,13 +1254,13 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </article>
           </li>
           <li
-            className="c26"
+            className="c25"
           >
             <article
               aria-labelledby="Helt tilfeldig ID"
             >
               <div
-                className="c27"
+                className="c26"
                 onClick={[Function]}
               >
                 <p
@@ -1281,7 +1276,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 </h4>
                 <ul
                   aria-label="Kommunikasjonskanaler"
-                  className="c28"
+                  className="c27"
                 >
                   <li
                     className="typo-normal"
@@ -1292,7 +1287,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <button
                   aria-expanded={false}
                   aria-label="Vis meldinger"
-                  className="c29"
+                  className="c28"
                   onClick={[Function]}
                   title="Vis meldinger"
                 >
@@ -1303,11 +1298,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
               </div>
               <ol
                 aria-label="Meldinger"
-                className="c30"
+                className="c29"
               >
                 <li
                   aria-label="EPOST"
-                  className="c31"
+                  className="c30"
                 >
                   <div>
                     <p

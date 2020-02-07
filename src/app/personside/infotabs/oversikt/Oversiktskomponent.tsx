@@ -54,11 +54,6 @@ const CustomContent = styled.div`
     padding: 0 1rem;
 `;
 
-const StyledUndertittel = styled(Undertittel)`
-    font-weight: bold !important;
-    font-size: ${pxToRem(18)} !important;
-`;
-
 function Oversiktskomponent(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath.toLowerCase()}/`;
@@ -80,9 +75,9 @@ function Oversiktskomponent(props: Props) {
         <ErrorBoundary boundaryName={'Oversikt ' + props.tittel}>
             <PanelStyle aria-labelledby={headerId.current}>
                 <OverskriftStyle title={'Alt + ' + props.hurtigtast} onClick={handleClick}>
-                    <StyledUndertittel tag="h3" id={headerId.current}>
+                    <Undertittel tag="h3" id={headerId.current}>
                         {props.tittel}
-                    </StyledUndertittel>
+                    </Undertittel>
                     <CustomContent>{customContent}</CustomContent>
                     <StyledLink className="lenke" to={path}>
                         <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
