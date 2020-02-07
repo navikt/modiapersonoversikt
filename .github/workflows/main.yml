@@ -50,7 +50,7 @@ jobs:
         run: docker build --tag ${IMAGE} .
       - name: Docker login
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DOCKER_PAT }}
         run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
       - name: Docker push
         run: docker push ${IMAGE}
