@@ -46,13 +46,14 @@ jobs:
         run: npm run test
       - name: Build
         run: npm run build
-      - name: Publish Docker image
+      - name: Docker build
+        run: docker build --tag ${IMAGE} .
+      - name: Docker login
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          docker build --tag ${IMAGE} .
-          docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
-          docker push ${IMAGE}
+        run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+      - name: Docker push
+        run: docker push ${IMAGE}
   deploy-qa:
     name: Deploy to preprod
     needs: build-and-push
