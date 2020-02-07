@@ -30,12 +30,12 @@ function Sokeresultat(props: Props) {
     });
 
     return (
-        <section aria-label="Søkeresultat">
-            <span tabIndex={-1} ref={ref} className="sr-only" aria-live="assertive">
+        <article aria-label="Søkeresultat">
+            <span tabIndex={-1} ref={ref} className="sr-only">
                 Søket fant {props.response.length} treff
             </span>
             <ClickableTable tittelRekke={tittelRekke} rows={tableEntries} rowsOnClickHandlers={handlers} />
-        </section>
+        </article>
     );
 }
 
