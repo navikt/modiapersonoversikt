@@ -22,6 +22,8 @@ import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 
 const DatoVelgerWrapper = styled.div`
+    position: relative;
+    z-index: 50;
     > * {
         margin-bottom: 1rem;
     }
