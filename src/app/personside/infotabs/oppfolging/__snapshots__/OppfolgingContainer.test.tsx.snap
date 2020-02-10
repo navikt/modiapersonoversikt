@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
+.c4 {
+  position: relative;
+  z-index: 50;
+}
+
 .c4 > * {
   margin-bottom: 1rem;
 }
