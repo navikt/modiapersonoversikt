@@ -9,15 +9,6 @@ env:
   REACT_APP_MODIA_URL: "/modiabrukerdialog/rest"
   REACT_APP_HODE_URL: "/internarbeidsflatedecorator"
 jobs:
-  test-ratelimit:
-    name: Testing ratelimit
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check API rate limit
-        run: |
-          curl -s "https://api.github.com/rate_limit" -H "Authorization: token $GITHUB_TOKEN"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   build:
     name: Test and build
     runs-on: ubuntu-latest
@@ -55,14 +46,13 @@ jobs:
         run: npm run test
       - name: Build
         run: npm run build
-      - name: Docker build
-        run: docker build --tag ${IMAGE} .
-      - name: Docker login
+      - name: Publish Docker image
         env:
-          GITHUB_TOKEN: ${{ secrets.DOCKER_PAT }}
-        run: docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
-      - name: Docker push
-        run: docker push ${IMAGE}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          docker build --tag ${IMAGE} .
+          docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+          docker push ${IMAGE}
   deploy-qa:
     name: Deploy to preprod
     needs: build-and-push
