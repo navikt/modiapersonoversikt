@@ -38,6 +38,13 @@ function useRules() {
         {
             regex: /^AAP$/i,
             replacement: 'arbeidsavklaringspenger'
+        },
+        { regex: /^hi,?$/i, replacement: 'Hi, [bruker.fornavn]\n' },
+        {
+            regex: /^mvhen$/i,
+            replacement: `Best regards,\n[saksbehandler.fornavn]\n${
+                erKontaktsenter ? 'NAV Call and Service Centre' : saksbehanderEnhet
+            }`
         }
     ];
 }
