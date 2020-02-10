@@ -39,6 +39,11 @@ function StartbildeDevKnapper() {
         document.location.replace(`?oppgaveid=${oppgaveId}&behandlingsid=${behandlingsId}&sokFnr=${fødselsnummer}`);
     }
 
+    function handleLagHenvendelseFraGosys() {
+        const fnr = getRandomFnr();
+        document.location.replace(`?behandlingsid=${behandlingsId}&sokFnr=${fnr}`);
+    }
+
     function brukerFraPuzzle() {
         document.location.replace(`?sokFnr=${getRandomFnr()}`);
     }
@@ -61,6 +66,9 @@ function StartbildeDevKnapper() {
                         </KnappBase>
                         <KnappBase onClick={handleLagOpgaveFraGOSYS} type="hoved">
                             Oppgave fra gosys
+                        </KnappBase>
+                        <KnappBase onClick={handleLagHenvendelseFraGosys} type="hoved">
+                            Henvendelse fra gosys
                         </KnappBase>
                         <KnappBase onClick={brukerFraPuzzle} type="hoved">
                             Puzzleoppslag
