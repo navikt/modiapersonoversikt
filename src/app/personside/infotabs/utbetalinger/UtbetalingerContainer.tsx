@@ -33,8 +33,8 @@ const UtbetalingerStyle = styled.div`
 `;
 
 const FiltreringSection = styled.section`
-    min-width: 18rem;
-    flex-basis: 18rem;
+    min-width: 19.5rem;
+    flex-basis: 19.5rem;
 `;
 
 const UtbetalingerSection = styled.section`
