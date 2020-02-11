@@ -45,6 +45,12 @@ function useRules() {
             replacement: `Best regards,\n[saksbehandler.fornavn]\n${
                 erKontaktsenter ? 'NAV Call and Service Centre' : saksbehanderEnhet
             }`
+        },
+        {
+            regex: /^mvhnn$/i,
+            replacement: `Med vennleg helsing\n[saksbehandler.fornavn]\n${
+                erKontaktsenter ? 'NAV Kontaktsenter' : saksbehanderEnhet
+            }`
         }
     ];
 }
