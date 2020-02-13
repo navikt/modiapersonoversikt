@@ -37,7 +37,7 @@ function useRules() {
         },
         {
             regex: /^AAP$/i,
-            replacement: 'arbeidsavklaringspenger'
+            replacement: 'arbeidsavklaringspenger '
         }
     ];
 }
