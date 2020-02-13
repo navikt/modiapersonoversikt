@@ -762,7 +762,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                           4
                         </span>
                         <div
-                          className="tekstomrade c21"
+                          className="c21"
                         >
                           Samtalereferat oppmøte - Arbeid
                         </div>
@@ -777,22 +777,18 @@ exports[`BesvarFler matcher snapshot 1`] = `
                         </span>
                       </div>
                     </div>
-                    <div
-                      className="tekstomrade"
-                    >
+                    <div>
                       07.07.2019 00:00
                     </div>
                     <div
-                      className="tekstomrade typo-normal c22"
+                      className="typo-normal c22"
                     >
                       Skrevet av Sander Hansen (nzxo4q)
                     </div>
                   </div>
-                  <div
-                    className="tekstomrade"
-                  >
+                  <div>
                     <p
-                      className="typo-normal blokk-xs"
+                      className="typo-normal"
                     >
                       Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
                     </p>
@@ -876,23 +872,19 @@ exports[`BesvarFler matcher snapshot 1`] = `
                           3
                         </span>
                         <div
-                          className="tekstomrade c21"
+                          className="c21"
                         >
                           Spørsmål fra bruker - Arbeid
                         </div>
                       </h4>
                     </div>
-                    <div
-                      className="tekstomrade"
-                    >
+                    <div>
                       16.07.2019 00:00
                     </div>
                   </div>
-                  <div
-                    className="tekstomrade"
-                  >
+                  <div>
                     <p
-                      className="typo-normal blokk-xs"
+                      className="typo-normal"
                     >
                       Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
                     </p>
@@ -976,23 +968,19 @@ exports[`BesvarFler matcher snapshot 1`] = `
                           2
                         </span>
                         <div
-                          className="tekstomrade c21"
+                          className="c21"
                         >
                           Spørsmål fra bruker - Arbeid
                         </div>
                       </h4>
                     </div>
-                    <div
-                      className="tekstomrade"
-                    >
+                    <div>
                       12.07.2019 00:00
                     </div>
                   </div>
-                  <div
-                    className="tekstomrade"
-                  >
+                  <div>
                     <p
-                      className="typo-normal blokk-xs"
+                      className="typo-normal"
                     >
                       Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
                     </p>
@@ -1076,7 +1064,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                           1
                         </span>
                         <div
-                          className="tekstomrade c21"
+                          className="c21"
                         >
                           Delsvar - Arbeid
                         </div>
@@ -1091,22 +1079,18 @@ exports[`BesvarFler matcher snapshot 1`] = `
                         </span>
                       </div>
                     </div>
-                    <div
-                      className="tekstomrade"
-                    >
+                    <div>
                       27.07.2019 00:00
                     </div>
                     <div
-                      className="tekstomrade typo-normal c22"
+                      className="typo-normal c22"
                     >
                       Skrevet av Kristoffer Fredriksen (xy70r8)
                     </div>
                   </div>
-                  <div
-                    className="tekstomrade"
-                  >
+                  <div>
                     <p
-                      className="typo-normal blokk-xs"
+                      className="typo-normal"
                     >
                       Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                     </p>

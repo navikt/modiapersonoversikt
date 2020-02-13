@@ -1,10 +1,9 @@
-import { erGyldigValg } from '../sokUtils';
-import { Systemtittel } from 'nav-frontend-typografi';
-import Tekstomrade, { defaultRules } from '../../../../../../components/tekstomrade/tekstomrade';
 import React, { useRef } from 'react';
+import { Systemtittel } from 'nav-frontend-typografi';
+import Tekstomrade, { defaultRules, Rule } from 'nav-frontend-tekstomrade';
+import { erGyldigValg } from '../sokUtils';
 import * as StandardTekster from '../domain';
 import { FieldState } from '../../../../../../utils/hooks/use-field-state';
-import { Rule } from '../../../../../../components/tekstomrade/parser/domain';
 import { parseTekst } from '../../../../../../components/tag-input/tag-input';
 import styled from 'styled-components';
 import { Knapp } from 'nav-frontend-knapper';

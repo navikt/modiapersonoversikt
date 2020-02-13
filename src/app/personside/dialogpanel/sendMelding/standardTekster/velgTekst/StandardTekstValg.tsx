@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { createDynamicHighligtingRule } from '../../../../../../components/tekstomrade/tekstomrade';
+import { createDynamicHighlightingRule } from 'nav-frontend-tekstomrade';
 import { parseTekst } from '../../../../../../components/tag-input/tag-input';
 import { FieldState } from '../../../../../../utils/hooks/use-field-state';
 import * as StandardTekster from '../domain';
@@ -68,7 +68,7 @@ const manglerAutoCompleteDataWarning = (
 
 function StandardTekstValg({ valgt, valgtLocale, valgtTekst, sokefelt, tekster, harAutofullførData }: Props) {
     const { text, tags } = useMemo(() => parseTekst(sokefelt.input.value), [sokefelt.input.value]);
-    const highlightRule = useMemo(() => createDynamicHighligtingRule(text.split(' ').concat(tags)), [text, tags]);
+    const highlightRule = useMemo(() => createDynamicHighlightingRule(text.split(' ').concat(tags)), [text, tags]);
 
     useAlwaysInViewport('.standardtekster__liste input:checked', [valgtTekst, tekster]);
 

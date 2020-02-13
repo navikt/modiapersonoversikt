@@ -14,17 +14,13 @@ import {
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import styled from 'styled-components/macro';
-import Tekstomrade, {
-    defaultRules,
-    createDynamicHighligtingRule
-} from '../../../../../components/tekstomrade/tekstomrade';
-import theme from '../../../../../styles/personOversiktTheme';
-import './enkeltmelding.less';
+import Tekstomrade, { createDynamicHighlightingRule, defaultRules, Rule } from 'nav-frontend-tekstomrade';
 import Etikett from 'nav-frontend-etiketter';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
-import { SpaceBetween } from '../../../../../components/common-styled-components';
-import { Rule } from '../../../../../components/tekstomrade/parser/domain';
 import { guid } from 'nav-frontend-js-utils';
+import theme from '../../../../../styles/personOversiktTheme';
+import './enkeltmelding.less';
+import { SpaceBetween } from '../../../../../components/common-styled-components';
 
 interface Props {
     melding: Melding;
@@ -159,7 +155,7 @@ function EnkeltMelding(props: Props) {
     const datoTekst = props.melding.ferdigstiltDato
         ? formatterDatoTid(props.melding.ferdigstiltDato)
         : formatterDatoTid(props.melding.opprettetDato);
-    const highlightRule = createDynamicHighligtingRule(props.sokeord.split(' '));
+    const highlightRule = createDynamicHighlightingRule(props.sokeord.split(' '));
 
     return (
         <StyledLi className="snakkeboble_ikoner">
