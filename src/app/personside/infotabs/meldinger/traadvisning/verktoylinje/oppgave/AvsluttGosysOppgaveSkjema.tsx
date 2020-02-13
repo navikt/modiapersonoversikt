@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { AlertStripeAdvarsel, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { useAppState } from '../../../../../../../utils/customHooks';
+import { useAppState, useFocusOnMount } from '../../../../../../../utils/customHooks';
 import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
 import { isFinishedPosting } from '../../../../../../../rest/utils/postResource';
 import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 import { Textarea } from 'nav-frontend-skjema';
 import theme from '../../../../../../../styles/personOversiktTheme';
-import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { Element } from 'nav-frontend-typografi';
 import { useDispatch } from 'react-redux';
 
@@ -18,13 +17,9 @@ const StyledAlert = styled.div`
     margin: 1rem 0rem;
 `;
 
-const StyledAvsluttOppgavePanel = styled(EkspanderbartpanelBase)`
-    .ekspanderbartPanel__hode,
-    .ekspanderbartPanel__innhold {
-        padding: 0.5rem 0.5rem;
-    }
-    border: ${theme.border.skilleSvak};
-    padding: 0.5rem;
+const StyledArticle = styled.article`
+    border-bottom: ${theme.border.skille};
+    padding-bottom: 1rem;
     margin-bottom: 2rem;
 `;
 
@@ -38,6 +33,8 @@ function AvsluttGosysOppgaveSkjema() {
     const dispatch = useDispatch();
     const oppgaveFraGosys =
         isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.fraGosys);
+    const ref = useRef<HTMLElement>(null);
+    useFocusOnMount(ref);
 
     const handleOppgaveFraGosys = () => {
         if (submitting) {
@@ -87,7 +84,8 @@ function AvsluttGosysOppgaveSkjema() {
         return null;
     }
     return (
-        <StyledAvsluttOppgavePanel apen={true} heading={<Element>Avslutt oppgave fra GOSYS</Element>}>
+        <StyledArticle ref={ref}>
+            <Element>Avslutt oppgave</Element>
             <Textarea
                 label={'Beskrivelse'}
                 value={gosysBeskrivelse}
@@ -97,7 +95,7 @@ function AvsluttGosysOppgaveSkjema() {
             <Hovedknapp onClick={handleOppgaveFraGosys} spinner={submitting}>
                 Avslutt oppgave
             </Hovedknapp>
-        </StyledAvsluttOppgavePanel>
+        </StyledArticle>
     );
 }
 
