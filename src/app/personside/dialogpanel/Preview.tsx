@@ -5,7 +5,7 @@ import theme from '../../../styles/personOversiktTheme';
 import EtikettGrå from '../../../components/EtikettGrå';
 import { formatterDatoTid } from '../../../utils/dateUtils';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import Tekstomrade from '../../../components/tekstomrade/tekstomrade';
+import Tekstomrade from 'nav-frontend-tekstomrade';
 import { useSendtMelding } from './useSendtMelding';
 
 const PreviewStyle = styled.article`

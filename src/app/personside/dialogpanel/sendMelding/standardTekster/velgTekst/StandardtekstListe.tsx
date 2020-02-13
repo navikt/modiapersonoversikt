@@ -2,11 +2,11 @@ import * as React from 'react';
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Element } from 'nav-frontend-typografi';
+import { Rule } from 'nav-frontend-tekstomrade';
 import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
 import * as StandardTekster from '../domain';
 import TekstListeElement from './TekstListeElement';
 import { FieldState } from '../../../../../../utils/hooks/use-field-state';
-import { Rule } from '../../../../../../components/tekstomrade/parser/domain';
 import { LenkeKnapp } from '../../../../../../components/common-styled-components';
 import { guid } from 'nav-frontend-js-utils';
 

@@ -25,8 +25,6 @@ import { ValideringsResultat } from '../../../../../../../utils/forms/FormValida
 import { useAppState } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
-import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
 
 const AlertStyling = styled.div`
     > * {
@@ -64,7 +62,6 @@ function populerCacheMedTomAnsattliste() {
 }
 
 function OppgaveSkjema(props: OppgaveProps) {
-    const avsluttGosysOppgaveFT = useFeatureToggle(FeatureToggles.AvsluttGosysOppgave);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
@@ -181,7 +178,7 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     return (
         <SkjemaStyle>
-            {avsluttGosysOppgaveFT.isOn && <AvsluttGosysOppgaveSkjema />}
+            <AvsluttGosysOppgaveSkjema />
             <form onSubmit={submitHandler}>
                 <Element>Opprett oppgave</Element>
                 <OppgaveSkjemaElementer {...props} form={formProps} />

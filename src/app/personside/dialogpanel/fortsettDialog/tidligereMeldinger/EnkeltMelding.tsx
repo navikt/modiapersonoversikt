@@ -1,11 +1,11 @@
-import { Melding } from '../../../../../models/meldinger/meldinger';
-import { Element, Undertekst } from 'nav-frontend-typografi';
-import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
-import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import * as React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components/macro';
-import Tekstomrade from '../../../../../components/tekstomrade/tekstomrade';
+import Tekstomrade from 'nav-frontend-tekstomrade';
+import { Element, Undertekst } from 'nav-frontend-typografi';
+import { Melding } from '../../../../../models/meldinger/meldinger';
+import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
+import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import { meldingstittel } from '../../../infotabs/meldinger/utils/meldingerUtils';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Avsender } from '../../../infotabs/meldinger/traadvisning/Enkeltmelding';
