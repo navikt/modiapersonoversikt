@@ -118,7 +118,7 @@ function FortsettDialogContainer(props: Props) {
             const request = {
                 fnr: fnr,
                 oppgaveid: oppgaveFraGosys.oppgaveId,
-                beskrivelse: '',
+                beskrivelse: 'Lest og besvart i Modia',
                 saksbehandlerValgtEnhet: saksbehandlersEnhet
             };
             post(`${apiBaseUri}/dialogmerking/avsluttgosysoppgave`, request, 'Avslutt-Oppgave-Fra-Gosys')
@@ -126,7 +126,10 @@ function FortsettDialogContainer(props: Props) {
                     loggEvent('AvsluttGosysOppgaveFraUrl', 'AvsluttOppgaveskjema');
                 })
                 .catch(() => {
-                    loggError(new Error('AvslutteGosysOppgave'), 'Oppgave');
+                    setDialogStatus({ type: DialogPanelStatus.ERROR });
+                    const error = Error('Kunne ikke avslutte oppgave i GOSYS');
+                    console.error(error);
+                    loggError(error, 'Oppgave');
                 });
         };
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
