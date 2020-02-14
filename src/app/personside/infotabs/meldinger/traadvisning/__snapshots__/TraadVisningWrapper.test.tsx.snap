@@ -707,7 +707,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             className="skjemaelement__label"
             htmlFor="Helt tilfeldig ID"
           >
-            Velg prioritert
+            Velg prioritet
           </label>
           <div
             className="selectContainer input--fullbredde"
