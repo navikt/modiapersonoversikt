@@ -4,7 +4,7 @@ import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
 import { ForsettDialogRequest, Meldingstype, SendDelsvarRequest, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { useFødselsnummer } from '../../../../utils/customHooks';
+import { useAppState, useFødselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
@@ -31,6 +31,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { guid } from 'nav-frontend-js-utils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
+import { isFinishedPosting } from '../../../../rest/utils/postResource';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -59,12 +60,14 @@ function FortsettDialogContainer(props: Props) {
     const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
-    const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
+    const plukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
+    const resetPlukkOppgaveResource = plukkOppgaveResource.actions.reset;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const fnr = useFødselsnummer();
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
     });
+    const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const dispatch = useDispatch();
     const updateState = (change: Partial<FortsettDialogState>) =>
         setState({
@@ -91,6 +94,9 @@ function FortsettDialogContainer(props: Props) {
     }
     const oppgaveId = opprettHenvendelse.henvendelse.oppgaveId;
 
+    const oppgaveFraGosys =
+        isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.fraGosys);
+
     const handleAvbryt = () => dispatch(setIngenValgtTraadDialogpanel());
 
     const handleSubmit = (event: FormEvent) => {
@@ -105,6 +111,27 @@ function FortsettDialogContainer(props: Props) {
             dispatch(reloadMeldinger);
         };
 
+        const handleAvsluttOppgave = () => {
+            if (!oppgaveFraGosys) {
+                return;
+            }
+            const request = {
+                fnr: fnr,
+                oppgaveid: oppgaveFraGosys.oppgaveId,
+                beskrivelse: 'Lest og besvart i Modia',
+                saksbehandlerValgtEnhet: saksbehandlersEnhet
+            };
+            post(`${apiBaseUri}/dialogmerking/avsluttgosysoppgave`, request, 'Avslutt-Oppgave-Fra-Gosys')
+                .then(() => {
+                    loggEvent('AvsluttGosysOppgaveFraUrl', 'AvsluttOppgaveskjema');
+                })
+                .catch(() => {
+                    setDialogStatus({ type: DialogPanelStatus.ERROR });
+                    const error = Error('Kunne ikke avslutte oppgave i GOSYS');
+                    console.error(error);
+                    loggError(error, 'Oppgave');
+                });
+        };
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
         const commonPayload = {
             fritekst: state.tekst,
@@ -130,6 +157,7 @@ function FortsettDialogContainer(props: Props) {
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Send-Svar')
                 .then(() => {
+                    handleAvsluttOppgave();
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
@@ -157,6 +185,7 @@ function FortsettDialogContainer(props: Props) {
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
+                    handleAvsluttOppgave();
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
