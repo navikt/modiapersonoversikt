@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { LestStatus, Melding, Traad } from '../models/meldinger/meldinger';
+import { Melding, Traad } from '../models/meldinger/meldinger';
 import { useFødselsnummer } from './customHooks';
 import {
     eldsteMelding,
@@ -7,7 +7,7 @@ import {
     meldingstittel
 } from '../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
-import { datoStigende, formatterDatoMedMaanedsnavn } from './dateUtils';
+import { datoStigende, formatterDatoMedMaanedsnavn, formatterDatoTid } from './dateUtils';
 import styled from 'styled-components';
 import theme from '../styles/personOversiktTheme';
 import { formaterDato } from './stringFormatting';
@@ -55,12 +55,11 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
     const tittel = meldingstittel(melding);
     const temagruppe = melding.temagruppe && <Element>Temagruppe: {melding.temagruppe}</Element>;
 
-    const lest =
-        melding.status === LestStatus.Lest ? (
-            <Normaltekst>Lest av bruker</Normaltekst>
-        ) : (
-            <Normaltekst>Bruker har ikke lest</Normaltekst>
-        );
+    const lest = melding.lestDato ? (
+        <Normaltekst>Lest: {formatterDatoTid(melding.lestDato)}</Normaltekst>
+    ) : (
+        <Normaltekst>Ulest</Normaltekst>
+    );
 
     return (
         <StyledEnkeltMelding>
