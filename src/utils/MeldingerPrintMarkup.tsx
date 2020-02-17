@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Melding, Traad } from '../models/meldinger/meldinger';
+import { LestStatus, Melding, Traad } from '../models/meldinger/meldinger';
 import { useFødselsnummer } from './customHooks';
 import {
     eldsteMelding,
@@ -55,6 +55,13 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
     const tittel = meldingstittel(melding);
     const temagruppe = melding.temagruppe && <Element>Temagruppe: {melding.temagruppe}</Element>;
 
+    const lest =
+        melding.status === LestStatus.Lest ? (
+            <Normaltekst>Lest av bruker</Normaltekst>
+        ) : (
+            <Normaltekst>Bruker har ikke lest</Normaltekst>
+        );
+
     return (
         <StyledEnkeltMelding>
             <Ingress>{tittel}</Ingress>
@@ -71,6 +78,7 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
                     <Normaltekst>
                         Mottatt/Sendt: {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
                     </Normaltekst>
+                    {lest}
                 </div>
             </Flex>
             <StyledInnhold>
