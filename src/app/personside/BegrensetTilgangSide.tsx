@@ -24,7 +24,7 @@ function BegrensetTilgangSide({ person }: BegrensetTilgangProps) {
 }
 
 function visSikkerhetstiltak(sikkerhetstiltak?: Sikkerhetstiltak) {
-    if (sikkerhetstiltak == null) {
+    if (!sikkerhetstiltak) {
         return null;
     }
     return (
