@@ -3,7 +3,7 @@ import { Kodeverk, TilrettelagtKommunikasjonMapper } from '../../../../../models
 import EtikettBase from 'nav-frontend-etiketter';
 
 interface Props {
-    tilrettelagtKomunikasjonsListe?: Kodeverk[];
+    tilrettelagtKomunikasjonsListe: Kodeverk[];
 }
 
 function TilrettelagtKommunikasjonEtikett(props: { tilrettelagtKommunikasjon: Kodeverk }) {
