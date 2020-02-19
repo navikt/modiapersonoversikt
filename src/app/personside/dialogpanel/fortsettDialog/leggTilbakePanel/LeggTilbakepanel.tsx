@@ -164,7 +164,7 @@ function LeggTilbakepanel(props: Props) {
                             setTema={tema => updateState({ temagruppe: tema })}
                             valgtTema={state.temagruppe}
                             visFeilmelding={!LeggTilbakeValidator.tema(state) && state.visFeilmeldinger}
-                            temavalg={TemaPlukkbare.filter(tema => tema !== props.temagruppe)}
+                            temavalg={TemaPlukkbare}
                         />
                     </UnmountClosed>
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.AnnenÅrsak} />
