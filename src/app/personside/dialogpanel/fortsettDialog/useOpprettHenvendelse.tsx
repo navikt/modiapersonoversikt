@@ -36,9 +36,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
             .then(() => dispatch(reloadTildelteOppgaver))
             .catch(e => {
                 setError(true);
-                loggError(e, 'Kunne ikke opprette henvendelse for traadId: ' + traad.traadId, {
-                    traad: JSON.stringify(traad)
-                });
+                loggError(e, 'Kunne ikke opprette henvendelse for traadId: ' + traad.traadId, {});
             });
     });
 
