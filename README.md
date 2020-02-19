@@ -67,9 +67,7 @@ npm config set //repo.adeo.no/repository/npm-internal/:_authToken=
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot:
 
--   Daniel Winsvold, daniel.winsvold@nav.no
 -   Jan-Eirik B. Nævdal, jan.eirik.b.navdal@nav.no
--   Richard Borge, richard.borge@nav.no
 -   Nicklas Utgaard, nicklas.utgaard@nav.no
 -   Andreas Bergman, andreas.bergman@nav.no
 
