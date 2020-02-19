@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Kodeverk, KodeverkEtikett } from '../../../../../models/kodeverk';
+import { Kodeverk, TilrettelagtKommunikasjonMapper } from '../../../../../models/kodeverk';
 import EtikettBase from 'nav-frontend-etiketter';
 
 interface Props {
@@ -7,7 +7,14 @@ interface Props {
 }
 
 function TilrettelagtKommunikasjonEtikett(props: { tilrettelagtKommunikasjon: Kodeverk }) {
-    return <EtikettBase type={'fokus'}>{KodeverkEtikett[props.tilrettelagtKommunikasjon.beskrivelse]}</EtikettBase>;
+    if (!props.tilrettelagtKommunikasjon.type) {
+        return <EtikettBase type={'fokus'}>{props.tilrettelagtKommunikasjon.beskrivelse}</EtikettBase>;
+    }
+    return (
+        <EtikettBase type={'fokus'}>
+            {TilrettelagtKommunikasjonMapper[props.tilrettelagtKommunikasjon.type]}
+        </EtikettBase>
+    );
 }
 
 function TilrettelagtKommunikasjonsEtiketter(props: Props) {

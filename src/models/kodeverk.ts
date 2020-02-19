@@ -2,18 +2,18 @@ export interface KodeverkResponse {
     kodeverk: Kodeverk[];
 }
 
-export enum KodeverkEtikett {
-    TALESPRAk = 'Talespråktolk',
+export enum TilrettelagtKommunikasjonMapper {
+    TALESPRAK = 'Talespråktolk',
     TEGNSPRAK = 'Tegnspråktolk'
 }
 
-export enum KodeverkType {
-    TALESPRAk = 'TALESPRAK',
+export enum TilrettelagtKommunikasjonType {
+    TALESPRAK = 'TALESPRAK',
     TEGNSPRAK = 'TEGNSPRAK'
 }
 
 export interface Kodeverk {
-    type?: KodeverkType;
+    type?: TilrettelagtKommunikasjonType;
     kodeRef: string;
     beskrivelse: string;
 }

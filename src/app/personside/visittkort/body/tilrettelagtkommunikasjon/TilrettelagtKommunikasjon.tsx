@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import UtropstegnIkon from '../../../../../svg/Utropstegn';
-import { Kodeverk, KodeverkType } from '../../../../../models/kodeverk';
+import { Kodeverk, TilrettelagtKommunikasjonMapper } from '../../../../../models/kodeverk';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import VisittkortElement from '../VisittkortElement';
 
@@ -27,12 +27,15 @@ function TilrettelagtKommunikasjon({ tilrettelagtKommunikasjonsListe }: Tilrette
 }
 
 function tilrettelagtKommunikasjonfo(tilrettelagtKommunikasjon: Kodeverk) {
-    if (tilrettelagtKommunikasjon.type === KodeverkType.TEGNSPRAK) {
-        return <Normaltekst key={tilrettelagtKommunikasjon.kodeRef}>Tegnspråkstolk</Normaltekst>;
+    if (!tilrettelagtKommunikasjon.type) {
+        return (
+            <Normaltekst key={tilrettelagtKommunikasjon.kodeRef}>{tilrettelagtKommunikasjon.beskrivelse}</Normaltekst>
+        );
     }
     return (
         <Normaltekst key={tilrettelagtKommunikasjon.kodeRef}>
-            Språktolk: {tilrettelagtKommunikasjon.beskrivelse}
+            {TilrettelagtKommunikasjonMapper[tilrettelagtKommunikasjon.type]}: {tilrettelagtKommunikasjon.beskrivelse} (
+            {tilrettelagtKommunikasjon.kodeRef})
         </Normaltekst>
     );
 }
