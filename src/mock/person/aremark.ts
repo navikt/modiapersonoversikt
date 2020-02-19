@@ -1,7 +1,8 @@
-import { Diskresjonskoder, TilrettelagtKommunikasjonsTyper } from '../../konstanter';
+import { Diskresjonskoder } from '../../konstanter';
 import { BostatusTyper, Kjønn, Person, Relasjonstype, SivilstandTyper } from '../../models/person/person';
 import { SikkerhetstiltakTyper } from '../../models/sikkerhetstiltak';
 import { Personadresse } from '../../models/personadresse';
+import { KodeverkType } from '../../models/kodeverk';
 
 export const gateAdresseAremark: Personadresse = {
     endringsinfo: {
@@ -95,8 +96,14 @@ export const aremark: Person = {
     },
     tilrettelagtKomunikasjonsListe: [
         {
-            kodeRef: 'TOHJ',
-            beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
+            type: KodeverkType.TALESPRAk,
+            kodeRef: 'SV',
+            beskrivelse: 'Svensk'
+        },
+        {
+            type: KodeverkType.TEGNSPRAK,
+            kodeRef: 'NO',
+            beskrivelse: 'Norsk'
         }
     ],
     diskresjonskode: { kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE, beskrivelse: 'Sperret adresse, fortrolig' },

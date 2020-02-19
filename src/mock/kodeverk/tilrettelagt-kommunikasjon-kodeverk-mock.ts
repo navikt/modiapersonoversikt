@@ -1,11 +1,12 @@
-import { KodeverkResponse } from '../../models/kodeverk';
+import { KodeverkResponse, KodeverkType } from '../../models/kodeverk';
 
 const mockKodeverk = [
     {
-        value: 'Tolkehjelp',
-        kodeRef: 'TOHJ',
+        type: KodeverkType.TALESPRAk,
+        value: 'Svensk',
+        kodeRef: 'SV',
         kodeverkRef: null,
-        beskrivelse: 'Tolkehjelp',
+        beskrivelse: 'Svensk',
         gyldig: true
     },
     {
