@@ -22,6 +22,7 @@ import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTyp
 import { Temagruppe, TemaSamtalereferat } from '../../../../models/Temagrupper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { guid } from 'nav-frontend-js-utils';
+import ReflowBoundry from '../ReflowBoundry';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -97,66 +98,68 @@ function SendNyMelding(props: Props) {
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
-            <StyledUndertittel id={tittelId.current}>Send ny melding</StyledUndertittel>
-            <FormStyle onSubmit={props.handleSubmit}>
-                <TekstFelt
-                    tekst={state.tekst}
-                    navn={navn}
-                    tekstMaksLengde={tekstMaksLengde}
-                    updateTekst={tekst => updateState({ tekst })}
-                    feilmelding={
-                        !NyMeldingValidator.tekst(state) && state.visFeilmeldinger
-                            ? `Du må skrive en tekst på mellom 0 og ${tekstMaksLengde} tegn`
-                            : undefined
-                    }
-                />
-                <VelgDialogType formState={state} updateDialogType={dialogType => updateState({ dialogType })} />
-                <Margin>
-                    <UnmountClosed isOpened={erReferat} hasNestedCollapse={true}>
-                        {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
-                        <Temavelger
-                            setTema={tema => updateState({ tema: tema })}
-                            valgtTema={state.tema}
-                            visFeilmelding={!NyMeldingValidator.tema(state) && state.visFeilmeldinger}
-                            temavalg={TemaSamtalereferat}
-                        />
-                        <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
-                    </UnmountClosed>
-                    <UnmountClosed isOpened={erSpørsmål} hasNestedCollapse={true}>
-                        <DialogpanelVelgSak
-                            setValgtSak={sak => updateState({ sak })}
-                            visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
-                            valgtSak={state.sak}
-                        />
-                        <Oppgaveliste
-                            oppgaveliste={state.oppgaveListe}
-                            setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
-                        />
-                        <StyledAlertStripeInfo>Gir varsel, bruker kan svare</StyledAlertStripeInfo>
-                    </UnmountClosed>
-                </Margin>
-                <Feilmelding sendNyMeldingPanelState={props.sendNyMeldingPanelState.type} />
-                <KnappWrapper>
-                    <KnappBase
-                        type="hoved"
-                        spinner={props.sendNyMeldingPanelState.type === SendNyMeldingStatus.POSTING}
-                        htmlType="submit"
-                    >
-                        Del med {navn}
-                    </KnappBase>
-                    {props.formErEndret && (
-                        <KnappMedBekreftPopup
-                            htmlType="reset"
-                            type="flat"
-                            onBekreft={props.handleAvbryt}
-                            bekreftKnappTekst={'Ja, avbryt'}
-                            popUpTekst="Er du sikker på at du vil avbryte? Du mister da meldinger du har påbegynt."
+            <ReflowBoundry>
+                <StyledUndertittel id={tittelId.current}>Send ny melding</StyledUndertittel>
+                <FormStyle onSubmit={props.handleSubmit}>
+                    <TekstFelt
+                        tekst={state.tekst}
+                        navn={navn}
+                        tekstMaksLengde={tekstMaksLengde}
+                        updateTekst={tekst => updateState({ tekst })}
+                        feilmelding={
+                            !NyMeldingValidator.tekst(state) && state.visFeilmeldinger
+                                ? `Du må skrive en tekst på mellom 0 og ${tekstMaksLengde} tegn`
+                                : undefined
+                        }
+                    />
+                    <VelgDialogType formState={state} updateDialogType={dialogType => updateState({ dialogType })} />
+                    <Margin>
+                        <UnmountClosed isOpened={erReferat} hasNestedCollapse={true}>
+                            {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
+                            <Temavelger
+                                setTema={tema => updateState({ tema: tema })}
+                                valgtTema={state.tema}
+                                visFeilmelding={!NyMeldingValidator.tema(state) && state.visFeilmeldinger}
+                                temavalg={TemaSamtalereferat}
+                            />
+                            <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
+                        </UnmountClosed>
+                        <UnmountClosed isOpened={erSpørsmål} hasNestedCollapse={true}>
+                            <DialogpanelVelgSak
+                                setValgtSak={sak => updateState({ sak })}
+                                visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
+                                valgtSak={state.sak}
+                            />
+                            <Oppgaveliste
+                                oppgaveliste={state.oppgaveListe}
+                                setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
+                            />
+                            <StyledAlertStripeInfo>Gir varsel, bruker kan svare</StyledAlertStripeInfo>
+                        </UnmountClosed>
+                    </Margin>
+                    <Feilmelding sendNyMeldingPanelState={props.sendNyMeldingPanelState.type} />
+                    <KnappWrapper>
+                        <KnappBase
+                            type="hoved"
+                            spinner={props.sendNyMeldingPanelState.type === SendNyMeldingStatus.POSTING}
+                            htmlType="submit"
                         >
-                            Avbryt
-                        </KnappMedBekreftPopup>
-                    )}
-                </KnappWrapper>
-            </FormStyle>
+                            Del med {navn}
+                        </KnappBase>
+                        {props.formErEndret && (
+                            <KnappMedBekreftPopup
+                                htmlType="reset"
+                                type="flat"
+                                onBekreft={props.handleAvbryt}
+                                bekreftKnappTekst={'Ja, avbryt'}
+                                popUpTekst="Er du sikker på at du vil avbryte? Du mister da meldinger du har påbegynt."
+                            >
+                                Avbryt
+                            </KnappMedBekreftPopup>
+                        )}
+                    </KnappWrapper>
+                </FormStyle>
+            </ReflowBoundry>
         </StyledArticle>
     );
 }
