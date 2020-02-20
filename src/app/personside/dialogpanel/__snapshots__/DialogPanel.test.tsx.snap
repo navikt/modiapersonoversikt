@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser dialogpanel 1`] = `
-.c12 label {
+.c14 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -12,14 +12,14 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c14 {
+.c16 {
   background-color: white;
   border-radius: .25rem;
   border: 1px solid #78706a;
   position: relative;
 }
 
-.c15 {
+.c17 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -40,12 +40,12 @@ exports[`viser dialogpanel 1`] = `
   align-items: center;
 }
 
-.c15:focus {
+.c17:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c5 {
+.c7 {
   position: absolute;
   height: 2rem;
   width: 2rem;
@@ -59,56 +59,56 @@ exports[`viser dialogpanel 1`] = `
   transform: none;
 }
 
-.c5:after {
+.c7:after {
   background: none;
 }
 
-.c5:hover {
+.c7:hover {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
 }
 
-.c6 {
+.c8 {
   position: relative;
   top: 2px;
   width: 18px;
 }
 
-.c9 {
+.c11 {
   position: absolute;
   top: 2.8rem;
   left: -1rem;
 }
 
-.c9 ul {
+.c11 ul {
   list-style: circle;
   margin-top: 1rem;
 }
 
-.c9 ul li {
+.c11 ul li {
   margin-left: 1.5rem;
 }
 
-.c8 {
+.c10 {
   position: relative;
 }
 
-.c10 {
+.c12 {
   text-align: right;
   font-style: italic;
   color: #78706a;
 }
 
-.c4 {
+.c6 {
   position: relative;
 }
 
-.c4 textarea {
+.c6 textarea {
   min-height: 9rem;
 }
 
-.c4 label {
+.c6 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -119,12 +119,12 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c7 textarea,
-.c7 .textareamirror {
+.c9 textarea,
+.c9 .textareamirror {
   padding-left: 2.25rem;
 }
 
-.c3 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -138,15 +138,15 @@ exports[`viser dialogpanel 1`] = `
   align-items: stretch;
 }
 
-.c3 .skjemaelement {
+.c5 .skjemaelement {
   margin-bottom: 0;
 }
 
-.c3 > * {
+.c5 > * {
   margin-bottom: 1rem;
 }
 
-.c11 {
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -160,19 +160,19 @@ exports[`viser dialogpanel 1`] = `
   flex-wrap: wrap;
 }
 
-.c11 > * {
+.c13 > * {
   margin-top: 0.3rem;
 }
 
-.c11 > *:not(:last-child) {
+.c13 > *:not(:last-child) {
   margin-right: 1rem;
 }
 
-.c16 {
+.c18 {
   margin-top: 1rem;
 }
 
-.c16 label {
+.c18 label {
   position: absolute !important;
   height: 1px;
   width: 1px;
@@ -183,11 +183,21 @@ exports[`viser dialogpanel 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
+.c2 {
+  position: relative;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .c1 {
   padding: 1rem .5rem;
 }
 
-.c17 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -197,15 +207,15 @@ exports[`viser dialogpanel 1`] = `
   flex-direction: column;
 }
 
-.c17 > * {
+.c19 > * {
   margin-bottom: 0.7rem;
 }
 
-.c13 {
+.c15 {
   margin-top: 1rem;
 }
 
-.c2 {
+.c4 {
   margin-bottom: 1rem !important;
 }
 
@@ -224,276 +234,161 @@ exports[`viser dialogpanel 1`] = `
     aria-labelledby="Helt tilfeldig ID"
     className="c1"
   >
-    <h2
-      className="typo-undertittel c2"
-      id="Helt tilfeldig ID"
-    >
-      Send ny melding
-    </h2>
-    <form
-      className="c3"
-      onSubmit={[Function]}
+    <div
+      className="c2"
     >
       <div
-        className="c4"
+        className="c3"
       >
-        <button
-          className="knapp c5 knapp--hoved"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
+        <h2
+          className="typo-undertittel c4"
+          id="Helt tilfeldig ID"
         >
-          <svg
-            className="c6"
-            height="24px"
-            preserveAspectRatio="xMidYMid meet"
-            viewBox="0 0 24 24"
-            width="24px"
-            x="0px"
-            xmlns="http://www.w3.org/2000/svg"
-            y="0px"
-          >
-            <path
-              d="M20.854,6.146l-6-6C14.76,0.053,14.632,0,14.5,0h-11C3.224,0,3,0.224,3,0.5v23C3,23.776,3.224,24,3.5,24h17  c0.276,0,0.5-0.224,0.5-0.5v-17C21,6.367,20.947,6.24,20.854,6.146z M7.5,7H12c0.276,0,0.5,0.224,0.5,0.5S12.276,8,12,8H7.5  C7.224,8,7,7.776,7,7.5S7.224,7,7.5,7z M16.5,20h-9C7.224,20,7,19.776,7,19.5S7.224,19,7.5,19h9c0.276,0,0.5,0.224,0.5,0.5  S16.776,20,16.5,20z M16.5,17h-9C7.224,17,7,16.776,7,16.5S7.224,16,7.5,16h9c0.276,0,0.5,0.224,0.5,0.5S16.776,17,16.5,17z   M16.5,14h-9C7.224,14,7,13.776,7,13.5S7.224,13,7.5,13h9c0.276,0,0.5,0.224,0.5,0.5S16.776,14,16.5,14z M16.5,11h-9  C7.224,11,7,10.776,7,10.5S7.224,10,7.5,10h9c0.276,0,0.5,0.224,0.5,0.5S16.776,11,16.5,11z M14.5,6.5v-6l6,6H14.5z"
-              fill="currentColor"
-            />
-          </svg>
-          <span
-            className="sr-only"
-          >
-            Standardtekster
-          </span>
-        </button>
-        <div
-          className="c7"
+          Send ny melding
+        </h2>
+        <form
+          className="c5"
+          onSubmit={[Function]}
         >
           <div
-            className="c8"
+            className="c6"
           >
-            <div
-              className="skjemaelement textarea__container"
+            <button
+              className="knapp c7 knapp--hoved"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
             >
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
+              <svg
+                className="c8"
+                height="24px"
+                preserveAspectRatio="xMidYMid meet"
+                viewBox="0 0 24 24"
+                width="24px"
+                x="0px"
+                xmlns="http://www.w3.org/2000/svg"
+                y="0px"
               >
-                Melding
-              </label>
-              <div
-                className="textarea--medMeta__wrapper"
-              >
-                <textarea
-                  className="skjemaelement__input textarea--medMeta"
-                  id="Helt tilfeldig ID"
-                  onChange={[Function]}
-                  onKeyDown={[Function]}
-                  placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
-                  style={
-                    Object {
-                      "height": "30px",
-                    }
-                  }
-                  type="text"
-                  value=""
+                <path
+                  d="M20.854,6.146l-6-6C14.76,0.053,14.632,0,14.5,0h-11C3.224,0,3,0.224,3,0.5v23C3,23.776,3.224,24,3.5,24h17  c0.276,0,0.5-0.224,0.5-0.5v-17C21,6.367,20.947,6.24,20.854,6.146z M7.5,7H12c0.276,0,0.5,0.224,0.5,0.5S12.276,8,12,8H7.5  C7.224,8,7,7.776,7,7.5S7.224,7,7.5,7z M16.5,20h-9C7.224,20,7,19.776,7,19.5S7.224,19,7.5,19h9c0.276,0,0.5,0.224,0.5,0.5  S16.776,20,16.5,20z M16.5,17h-9C7.224,17,7,16.776,7,16.5S7.224,16,7.5,16h9c0.276,0,0.5,0.224,0.5,0.5S16.776,17,16.5,17z   M16.5,14h-9C7.224,14,7,13.776,7,13.5S7.224,13,7.5,13h9c0.276,0,0.5,0.224,0.5,0.5S16.776,14,16.5,14z M16.5,11h-9  C7.224,11,7,10.776,7,10.5S7.224,10,7.5,10h9c0.276,0,0.5,0.224,0.5,0.5S16.776,11,16.5,11z M14.5,6.5v-6l6,6H14.5z"
+                  fill="currentColor"
                 />
-              </div>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
-              <div
-                aria-hidden="true"
-                className="textareamirror"
-              />
-            </div>
+              </svg>
+              <span
+                className="sr-only"
+              >
+                Standardtekster
+              </span>
+            </button>
             <div
               className="c9"
             >
               <div
-                className="hjelpetekst"
+                className="c10"
               >
-                <button
-                  aria-label="Hjelptekst"
-                  aria-pressed={false}
-                  className="hjelpetekst__apneknapp"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onMouseDown={[Function]}
-                  onMouseEnter={[Function]}
-                  onMouseLeave={[Function]}
-                  onMouseUp={[Function]}
-                  title="Hjelptekst"
-                  type="button"
+                <div
+                  className="skjemaelement textarea__container"
                 >
-                  <span
-                    className="sr-only"
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
                   >
-                    Hjelptekst
-                  </span>
-                  <svg
-                    className="hjelpetekst__anchor"
-                    focusable="false"
-                    height={32}
-                    kind="help-circle"
-                    viewBox="0 0 18.22 18.22"
-                    width={32}
+                    Melding
+                  </label>
+                  <div
+                    className="textarea--medMeta__wrapper"
                   >
-                    <title>
-                      Hjelp
-                    </title>
-                    <path
-                      d="M9.11 1a8.11 8.11 0 1 0 8.11 8.11A8.12 8.12 0 0 0 9.11 1zm0 13.7a.89.89 0 1 1 .89-.9.89.89 0 0 1-.89.9zm.5-5.7v1.89a.5.5 0 0 1-1 0V8.5a.5.5 0 0 1 .5-.5 1.85 1.85 0 1 0-1.85-1.85.5.5 0 0 1-1 0A2.85 2.85 0 1 1 9.61 9z"
-                      fill="none"
+                    <textarea
+                      className="skjemaelement__input textarea--medMeta"
+                      id="Helt tilfeldig ID"
+                      onChange={[Function]}
+                      onKeyDown={[Function]}
+                      placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
+                      style={
+                        Object {
+                          "height": "30px",
+                        }
+                      }
+                      type="text"
+                      value=""
                     />
-                    <path
-                      d="M9.11 0a9.11 9.11 0 1 0 9.11 9.11A9.12 9.12 0 0 0 9.11 0zm0 17.22a8.11 8.11 0 1 1 8.11-8.11 8.12 8.12 0 0 1-8.11 8.11z"
-                      fill="#2968b2"
-                    />
-                    <path
-                      d="M9.11 3.3a2.85 2.85 0 0 0-2.85 2.85.5.5 0 0 0 1 0A1.85 1.85 0 1 1 9.11 8a.5.5 0 0 0-.5.5v2.35a.5.5 0 0 0 1 0V9a2.85 2.85 0 0 0-.5-5.65z"
-                      fill="#2968b2"
-                    />
-                    <circle
-                      cx="9.11"
-                      cy="13.8"
-                      fill="#2968b2"
-                      r=".89"
-                    />
-                  </svg>
-                </button>
+                  </div>
+                  <div
+                    aria-live="assertive"
+                    role="alert"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="textareamirror"
+                  />
+                </div>
+                <div
+                  className="c11"
+                >
+                  <div
+                    className="hjelpetekst"
+                  >
+                    <button
+                      aria-label="Hjelptekst"
+                      aria-pressed={false}
+                      className="hjelpetekst__apneknapp"
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onMouseDown={[Function]}
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                      onMouseUp={[Function]}
+                      title="Hjelptekst"
+                      type="button"
+                    >
+                      <span
+                        className="sr-only"
+                      >
+                        Hjelptekst
+                      </span>
+                      <svg
+                        className="hjelpetekst__anchor"
+                        focusable="false"
+                        height={32}
+                        kind="help-circle"
+                        viewBox="0 0 18.22 18.22"
+                        width={32}
+                      >
+                        <title>
+                          Hjelp
+                        </title>
+                        <path
+                          d="M9.11 1a8.11 8.11 0 1 0 8.11 8.11A8.12 8.12 0 0 0 9.11 1zm0 13.7a.89.89 0 1 1 .89-.9.89.89 0 0 1-.89.9zm.5-5.7v1.89a.5.5 0 0 1-1 0V8.5a.5.5 0 0 1 .5-.5 1.85 1.85 0 1 0-1.85-1.85.5.5 0 0 1-1 0A2.85 2.85 0 1 1 9.61 9z"
+                          fill="none"
+                        />
+                        <path
+                          d="M9.11 0a9.11 9.11 0 1 0 9.11 9.11A9.12 9.12 0 0 0 9.11 0zm0 17.22a8.11 8.11 0 1 1 8.11-8.11 8.12 8.12 0 0 1-8.11 8.11z"
+                          fill="#2968b2"
+                        />
+                        <path
+                          d="M9.11 3.3a2.85 2.85 0 0 0-2.85 2.85.5.5 0 0 0 1 0A1.85 1.85 0 1 1 9.11 8a.5.5 0 0 0-.5.5v2.35a.5.5 0 0 0 1 0V9a2.85 2.85 0 0 0-.5-5.65z"
+                          fill="#2968b2"
+                        />
+                        <circle
+                          cx="9.11"
+                          cy="13.8"
+                          fill="#2968b2"
+                          r=".89"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <p
+                  className="typo-normal c12"
+                  feil={false}
+                >
+                  Du har 
+                  5000
+                   tegn igjen
+                </p>
               </div>
-            </div>
-            <p
-              className="typo-normal c10"
-              feil={false}
-            >
-              Du har 
-              5000
-               tegn igjen
-            </p>
-          </div>
-        </div>
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
-      </div>
-      <div
-        className="c11"
-      >
-        <div
-          className="skjemaelement skjemaelement--horisontal"
-        >
-          <input
-            checked={true}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="dialogtype"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Referat telefon
-          </label>
-        </div>
-        <div
-          className="skjemaelement skjemaelement--horisontal"
-        >
-          <input
-            checked={false}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="dialogtype"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Referat oppmøte
-          </label>
-        </div>
-        <div
-          className="skjemaelement skjemaelement--horisontal"
-        >
-          <input
-            checked={false}
-            className="skjemaelement__input radioknapp"
-            id="Helt tilfeldig ID"
-            name="dialogtype"
-            onChange={[Function]}
-            type="radio"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Spørsmål
-          </label>
-        </div>
-      </div>
-      <div
-        className=""
-      >
-        <div
-          className=""
-        >
-          <div
-            className="skjemaelement c12"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Tema
-            </label>
-            <div
-              className="selectContainer input--fullbredde"
-            >
-              <select
-                className="skjemaelement__input"
-                disabled={false}
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                value=""
-              >
-                <option
-                  disabled={true}
-                  value=""
-                >
-                  Velg temagruppe
-                </option>
-                <option
-                  value="ARBD"
-                >
-                  Arbeid
-                </option>
-                <option
-                  value="FMLI"
-                >
-                  Familie
-                </option>
-                <option
-                  value="HJLPM"
-                >
-                  Hjelpemidler
-                </option>
-                <option
-                  value="PENS"
-                >
-                  Pensjon
-                </option>
-                <option
-                  value="OVRG"
-                >
-                  Øvrige henvendelser
-                </option>
-              </select>
             </div>
             <div
               aria-live="assertive"
@@ -501,157 +396,280 @@ exports[`viser dialogpanel 1`] = `
             />
           </div>
           <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
-        <div
-          className="alertstripe c13 alertstripe--info"
-        >
-          <span
-            aria-label="info"
-            className="alertstripe__ikon"
+            className="c13"
           >
-            <svg
-              focusable="false"
-              height="1.5em"
-              kind="info-sirkel-fyll"
-              viewBox="0 0 24 24"
-              width="1.5em"
+            <div
+              className="skjemaelement skjemaelement--horisontal"
             >
-              <g
-                fill="none"
+              <input
+                checked={true}
+                className="skjemaelement__input radioknapp"
+                id="Helt tilfeldig ID"
+                name="dialogtype"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
               >
-                <path
-                  d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                  fill="#669DB4"
-                />
-                <path
-                  d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-                  fill="#FFF"
-                />
-              </g>
-            </svg>
-          </span>
-          <div
-            className="typo-normal alertstripe__tekst"
-          >
-            Gir ikke varsel til bruker
+                Referat telefon
+              </label>
+            </div>
+            <div
+              className="skjemaelement skjemaelement--horisontal"
+            >
+              <input
+                checked={false}
+                className="skjemaelement__input radioknapp"
+                id="Helt tilfeldig ID"
+                name="dialogtype"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Referat oppmøte
+              </label>
+            </div>
+            <div
+              className="skjemaelement skjemaelement--horisontal"
+            >
+              <input
+                checked={false}
+                className="skjemaelement__input radioknapp"
+                id="Helt tilfeldig ID"
+                name="dialogtype"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Spørsmål
+              </label>
+            </div>
           </div>
-        </div>
-        <div
-          className=""
-        >
           <div
-            className="c14"
+            className=""
+          >
+            <div
+              className=""
+            >
+              <div
+                className="skjemaelement c14"
+              >
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Helt tilfeldig ID"
+                >
+                  Tema
+                </label>
+                <div
+                  className="selectContainer input--fullbredde"
+                >
+                  <select
+                    className="skjemaelement__input"
+                    disabled={false}
+                    id="Helt tilfeldig ID"
+                    onChange={[Function]}
+                    value=""
+                  >
+                    <option
+                      disabled={true}
+                      value=""
+                    >
+                      Velg temagruppe
+                    </option>
+                    <option
+                      value="ARBD"
+                    >
+                      Arbeid
+                    </option>
+                    <option
+                      value="FMLI"
+                    >
+                      Familie
+                    </option>
+                    <option
+                      value="HJLPM"
+                    >
+                      Hjelpemidler
+                    </option>
+                    <option
+                      value="PENS"
+                    >
+                      Pensjon
+                    </option>
+                    <option
+                      value="OVRG"
+                    >
+                      Øvrige henvendelser
+                    </option>
+                  </select>
+                </div>
+                <div
+                  aria-live="assertive"
+                  role="alert"
+                />
+              </div>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+            <div
+              className="alertstripe c15 alertstripe--info"
+            >
+              <span
+                aria-label="info"
+                className="alertstripe__ikon"
+              >
+                <svg
+                  focusable="false"
+                  height="1.5em"
+                  kind="info-sirkel-fyll"
+                  viewBox="0 0 24 24"
+                  width="1.5em"
+                >
+                  <g
+                    fill="none"
+                  >
+                    <path
+                      d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                      fill="#669DB4"
+                    />
+                    <path
+                      d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+                      fill="#FFF"
+                    />
+                  </g>
+                </svg>
+              </span>
+              <div
+                className="typo-normal alertstripe__tekst"
+              >
+                Gir ikke varsel til bruker
+              </div>
+            </div>
+            <div
+              className=""
+            >
+              <div
+                className="c16"
+              >
+                <button
+                  aria-expanded={false}
+                  className="c17"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  <p
+                    className="typo-normal"
+                  >
+                    Velg sak
+                  </p>
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--ned"
+                  />
+                </button>
+              </div>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+            <div
+              className="skjemaelement c18"
+            >
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Oppgaveliste
+              </label>
+              <div
+                className="selectContainer input--fullbredde"
+              >
+                <select
+                  className="skjemaelement__input"
+                  disabled={false}
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                  value="MinListe"
+                >
+                  <option
+                    value="MinListe"
+                  >
+                    Svar skal til min oppgaveliste
+                  </option>
+                  <option
+                    value="Enhetensliste"
+                  >
+                    Svar skal til 
+                    NAV Testmark
+                     sin oppgaveliste
+                  </option>
+                </select>
+              </div>
+              <div
+                aria-live="assertive"
+                role="alert"
+              />
+            </div>
+            <div
+              className="alertstripe c15 alertstripe--info"
+            >
+              <span
+                aria-label="info"
+                className="alertstripe__ikon"
+              >
+                <svg
+                  focusable="false"
+                  height="1.5em"
+                  kind="info-sirkel-fyll"
+                  viewBox="0 0 24 24"
+                  width="1.5em"
+                >
+                  <g
+                    fill="none"
+                  >
+                    <path
+                      d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                      fill="#669DB4"
+                    />
+                    <path
+                      d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+                      fill="#FFF"
+                    />
+                  </g>
+                </svg>
+              </span>
+              <div
+                className="typo-normal alertstripe__tekst"
+              >
+                Gir varsel, bruker kan svare
+              </div>
+            </div>
+          </div>
+          <div
+            className="c19"
           >
             <button
-              aria-expanded={false}
-              className="c15"
-              onClick={[Function]}
-              type="button"
+              className="knapp knapp--hoved"
+              disabled={false}
+              type="submit"
             >
-              <p
-                className="typo-normal"
-              >
-                Velg sak
-              </p>
-              <i
-                className="nav-frontend-chevron chevronboks chevron--ned"
-              />
+              Del med 
+              Aremark
             </button>
           </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
-        <div
-          className="skjemaelement c16"
-        >
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Oppgaveliste
-          </label>
-          <div
-            className="selectContainer input--fullbredde"
-          >
-            <select
-              className="skjemaelement__input"
-              disabled={false}
-              id="Helt tilfeldig ID"
-              onChange={[Function]}
-              value="MinListe"
-            >
-              <option
-                value="MinListe"
-              >
-                Svar skal til min oppgaveliste
-              </option>
-              <option
-                value="Enhetensliste"
-              >
-                Svar skal til 
-                NAV Testmark
-                 sin oppgaveliste
-              </option>
-            </select>
-          </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
-        </div>
-        <div
-          className="alertstripe c13 alertstripe--info"
-        >
-          <span
-            aria-label="info"
-            className="alertstripe__ikon"
-          >
-            <svg
-              focusable="false"
-              height="1.5em"
-              kind="info-sirkel-fyll"
-              viewBox="0 0 24 24"
-              width="1.5em"
-            >
-              <g
-                fill="none"
-              >
-                <path
-                  d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                  fill="#669DB4"
-                />
-                <path
-                  d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-                  fill="#FFF"
-                />
-              </g>
-            </svg>
-          </span>
-          <div
-            className="typo-normal alertstripe__tekst"
-          >
-            Gir varsel, bruker kan svare
-          </div>
-        </div>
+        </form>
       </div>
-      <div
-        className="c17"
-      >
-        <button
-          className="knapp knapp--hoved"
-          disabled={false}
-          type="submit"
-        >
-          Del med 
-          Aremark
-        </button>
-      </div>
-    </form>
+    </div>
   </article>
 </div>
 `;
