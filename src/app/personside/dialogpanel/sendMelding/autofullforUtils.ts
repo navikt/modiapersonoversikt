@@ -3,7 +3,7 @@ import { NavKontorResponse } from '../../../../models/navkontor';
 import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/stringFormatting';
-import { loggError, loggEvent } from '../../../../utils/logger/frontendLogger';
+import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { mockEnabled } from '../../../../api/config';
 
@@ -106,7 +106,7 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
     return tekst.replace(/\[(.*?)\]/g, (fullmatch, key) => {
         if (!keys.includes(key)) {
             if (!mockEnabled) {
-                loggError(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
+                loggWarning(new Error(`Standardtekster::autofullfor Fant ikke nøkkel: ${key}`));
                 loggEvent('manglendeNokkel', 'autofullfør', { nøkkel: key });
             }
             return '[ukjent nøkkel]';
