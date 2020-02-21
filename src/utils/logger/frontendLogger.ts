@@ -71,6 +71,31 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
         window['frontendlogger'].info(info);
     }
 }
+export function loggWarning(
+    error: Error,
+    message?: string,
+    ekstraFelter?: ValuePairs,
+    ekstraTagsLoggEvent?: ValuePairs
+) {
+    if (isTest()) {
+        return;
+    }
+    const browser = detect();
+    const info = {
+        message: `${message ? message + ': ' : ''} ${error.name} ${error.message}`,
+        url: document.URL,
+        error: error.stack,
+        browser: (browser && browser.name) || undefined,
+        saksbehandler: ident,
+        enhet: enhet,
+        ...ekstraFelter
+    };
+    console.warn(info);
+    if (uselogger()) {
+        loggEvent('Warning', 'Logger', ekstraTagsLoggEvent);
+        window['frontendlogger'].warn(info);
+    }
+}
 
 export function loggError(error: Error, message?: string, ekstraFelter?: ValuePairs, ekstraTagsLoggEvent?: ValuePairs) {
     if (isTest()) {

@@ -32,6 +32,7 @@ import { guid } from 'nav-frontend-js-utils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { isFinishedPosting } from '../../../../rest/utils/postResource';
+import ReflowBoundry from '../ReflowBoundry';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -225,25 +226,27 @@ function FortsettDialogContainer(props: Props) {
 
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
-            <Undertittel id={tittelId.current}>Fortsett dialog</Undertittel>
-            <FortsettDialog
-                handleAvbryt={handleAvbryt}
-                state={state}
-                updateState={updateState}
-                handleSubmit={handleSubmit}
-                traad={props.traad}
-                key={props.traad.traadId}
-                fortsettDialogPanelState={dialogStatus}
-                erTilknyttetOppgave={!!oppgaveId}
-            />
-            {oppgaveId && (
-                <LeggTilbakepanel
-                    oppgaveId={oppgaveId}
-                    status={dialogStatus}
-                    setDialogStatus={setDialogStatus}
-                    temagruppe={temagruppe}
+            <ReflowBoundry>
+                <Undertittel id={tittelId.current}>Fortsett dialog</Undertittel>
+                <FortsettDialog
+                    handleAvbryt={handleAvbryt}
+                    state={state}
+                    updateState={updateState}
+                    handleSubmit={handleSubmit}
+                    traad={props.traad}
+                    key={props.traad.traadId}
+                    fortsettDialogPanelState={dialogStatus}
+                    erTilknyttetOppgave={!!oppgaveId}
                 />
-            )}
+                {oppgaveId && (
+                    <LeggTilbakepanel
+                        oppgaveId={oppgaveId}
+                        status={dialogStatus}
+                        setDialogStatus={setDialogStatus}
+                        temagruppe={temagruppe}
+                    />
+                )}
+            </ReflowBoundry>
         </StyledArticle>
     );
 }
