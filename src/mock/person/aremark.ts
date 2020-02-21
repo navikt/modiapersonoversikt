@@ -94,7 +94,7 @@ export const aremark: Person = {
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN'
     },
-    tilrettelagtKomunikasjonsListe: [
+    tilrettelagtKomunikasjonsListeV2: [
         {
             type: TilrettelagtKommunikasjonType.TALESPRAK,
             kodeRef: 'SV',

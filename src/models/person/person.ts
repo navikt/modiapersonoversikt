@@ -21,7 +21,7 @@ export interface Person extends PersonRespons {
     alder: number;
     diskresjonskode?: Kodeverk;
     bankkonto: Bankkonto | null;
-    tilrettelagtKomunikasjonsListe: Kodeverk[];
+    tilrettelagtKomunikasjonsListeV2: Kodeverk[];
     statsborgerskap?: Kodeverk;
     folkeregistrertAdresse?: Personadresse;
     alternativAdresse?: Personadresse;
