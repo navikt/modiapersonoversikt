@@ -72,7 +72,7 @@ export const moss: Person = {
         mellomnavn: '',
         etternavn: 'TESTFAMILIEN'
     },
-    tilrettelagtKomunikasjonsListeV2: [],
+    tilrettelagtKomunikasjonsListe: [],
     diskresjonskode: undefined,
     statsborgerskap: { kodeRef: 'SVA', beskrivelse: 'Svalbard' },
     personstatus: {

@@ -32,7 +32,7 @@ function OneColumnLayout(person: Person) {
             <Fullmakter fullmakter={person.fullmakt} />
             <Familie person={person} />
             <NavKontorSeksjon />
-            <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListeV2} />
+            <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
             <VergemalContainer />
             <Sikkerhetstiltak person={person} />
             <LenkeBrukerprofilContainer person={person} />
@@ -50,7 +50,7 @@ function TwoColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 <NavKontorSeksjon />
-                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListeV2} />
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
                 <VergemalContainer />
                 <Sikkerhetstiltak person={person} />
                 <LenkeBrukerprofilContainer person={person} />
@@ -68,7 +68,7 @@ function ThreeColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 <Familie person={person} />
-                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListeV2} />
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
                 <VergemalContainer />
             </Kolonne>
             <Kolonne>

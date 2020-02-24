@@ -63,7 +63,7 @@ function genererPerson(fødselsnummer: string): Person {
         geografiskTilknytning: getGeografiskTilknytning(),
         alder: alder,
         navn: getMockNavn(fødselsnummer),
-        tilrettelagtKomunikasjonsListeV2: getTilrettelagtKommunikasjonsListe(),
+        tilrettelagtKomunikasjonsListe: getTilrettelagtKommunikasjonsListe(),
         diskresjonskode: navfaker.random.vektetSjanse(0.05) ? getDiskresjonskode() : undefined,
         statsborgerskap: getStatsborgerskap(),
         personstatus: getPersonstatus(alder),

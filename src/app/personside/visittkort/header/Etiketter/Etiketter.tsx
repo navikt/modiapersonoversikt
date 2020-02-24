@@ -36,7 +36,7 @@ function Etiketter({ person }: Props) {
                 <ReservertIKRREtikett />
                 <VergemålEtikettContainer />
                 <TilrettelagtKommunikasjonsEtiketter
-                    tilrettelagtKomunikasjonsListe={person.tilrettelagtKomunikasjonsListeV2}
+                    tilrettelagtKomunikasjonsListe={person.tilrettelagtKomunikasjonsListe}
                 />
                 <DoedsboEtikett doedsbo={person.kontaktinformasjonForDoedsbo} />
                 <FullmaktEtikett fullmakt={person.fullmakt} />
