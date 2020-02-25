@@ -25,8 +25,10 @@ function useRules() {
         { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
         {
             regex: /^mvh$/i,
-            replacement: `Med vennlig hilsen\n[saksbehandler.fornavn]\n${
-                erKontaktsenter ? 'NAV Kontaktsenter' : saksbehanderEnhet
+            replacement: `Med vennlig hilsen\n${
+                erKontaktsenter
+                    ? '[saksbehandler.fornavn]\nNAV Kontaktsenter'
+                    : '[saksbehandler.navn]\n' + saksbehanderEnhet
             }`
         },
         { regex: /^foet$/i, replacement: '[bruker.navn] ' },
