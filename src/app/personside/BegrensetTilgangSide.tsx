@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BegrensetTilgang } from '../../models/person/person';
+import { BegrensetTilgang, BegrensetTilgangTyper } from '../../models/person/person';
 import { Periode } from '../../models/periode';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -13,19 +13,27 @@ interface BegrensetTilgangProps {
 }
 
 function BegrensetTilgangSide({ person }: BegrensetTilgangProps) {
+    const erEgenAnsatt = BegrensetTilgangTyper[person.begrunnelse] === BegrensetTilgangTyper.EgenAnsatt;
     return (
         <FillCenterAndFadeIn>
             <AlertStripe type="advarsel">
                 <BegrensetTilgangBegrunnelse begrunnelseType={person.begrunnelse} />
-                {visSikkerhetstiltak(person.sikkerhetstiltak)}
+                {visSikkerhetstiltak(person.sikkerhetstiltak, erEgenAnsatt)}
             </AlertStripe>
         </FillCenterAndFadeIn>
     );
 }
 
-function visSikkerhetstiltak(sikkerhetstiltak?: Sikkerhetstiltak) {
+function visSikkerhetstiltak(sikkerhetstiltak?: Sikkerhetstiltak, erEgenAnsatt?: boolean) {
     if (!sikkerhetstiltak) {
         return null;
+    }
+    if (erEgenAnsatt) {
+        return (
+            <>
+                <Undertittel>Egen ansatt</Undertittel>
+            </>
+        );
     }
     return (
         <>
