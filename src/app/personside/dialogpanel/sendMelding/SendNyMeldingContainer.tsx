@@ -10,6 +10,7 @@ import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import { useDagpengerLogger } from '../dagpengerlogger/dagpengerlogger';
 
 const initialState: SendNyMeldingState = {
     tekst: '',
@@ -34,6 +35,7 @@ function SendNyMeldingContainer() {
         setSendNyMeldingStatus({ type: SendNyMeldingStatus.UNDER_ARBEID });
         setState(initialState);
     };
+    const dagpengerLogger = useDagpengerLogger();
 
     if (sendNyMeldingStatus.type === SendNyMeldingStatus.REFERAT_SENDT) {
         return <ReferatSendtKvittering request={sendNyMeldingStatus.request} lukk={lukkSendtKvittering} />;
@@ -74,6 +76,7 @@ function SendNyMeldingContainer() {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: request });
                 })
+                .then(() => dagpengerLogger(request))
                 .catch(() => {
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
                 });
