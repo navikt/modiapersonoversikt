@@ -90,7 +90,6 @@ class VisittkortBody extends React.PureComponent<VisittkortBodyProps> {
     componentDidMount() {
         this.handleResize();
         window.addEventListener('resize', this.handleResize);
-        loggEvent('Åpne', 'Visittkort');
     }
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleResize);
