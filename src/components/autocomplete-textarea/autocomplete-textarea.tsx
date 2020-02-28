@@ -32,7 +32,7 @@ function useRules(): Regler {
                 if (erKontaktsenter) {
                     return `${mvh}\n[saksbehandler.fornavn]\nNAV Kontaktsenter`;
                 }
-                return `[saksbehandler.navn]\n${saksbehanderEnhet}`;
+                return `${mvh}\n[saksbehandler.navn]\n${saksbehanderEnhet}`;
             }
         },
         { regex: /^foet$/i, replacement: () => '[bruker.navn] ' },
