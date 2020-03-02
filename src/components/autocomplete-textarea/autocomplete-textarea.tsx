@@ -17,27 +17,33 @@ import theme from '../../styles/personOversiktTheme';
 import { useErKontaktsenter } from '../../utils/enheterUtils';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 
-function useRules() {
+type Regler = Array<{ regex: RegExp; replacement: () => string }>;
+
+function useRules(): Regler {
     const erKontaktsenter = useErKontaktsenter();
     const saksbehandlerResources = useRestResource(resources => resources.innloggetSaksbehandler);
     const saksbehanderEnhet = saksbehandlerResources.data?.enhetNavn ?? '';
     return [
-        { regex: /^hei,?$/i, replacement: 'Hei, [bruker.fornavn]\n' },
+        { regex: /^hei,?$/i, replacement: () => 'Hei, [bruker.fornavn]\n' },
         {
             regex: /^mvh$/i,
-            replacement: `Med vennlig hilsen\n[saksbehandler.fornavn]\n${
-                erKontaktsenter ? 'NAV Kontaktsenter' : saksbehanderEnhet
-            }`
+            replacement: () => {
+                const mvh = 'Med vennlig hilsen';
+                if (erKontaktsenter) {
+                    return `${mvh}\n[saksbehandler.fornavn]\nNAV Kontaktsenter`;
+                }
+                return `${mvh}\n[saksbehandler.navn]\n${saksbehanderEnhet}`;
+            }
         },
-        { regex: /^foet$/i, replacement: '[bruker.navn] ' },
+        { regex: /^foet$/i, replacement: () => '[bruker.navn] ' },
         {
             regex: /^vint$/i,
-            replacement:
+            replacement: () =>
                 'Jeg har videreformidlet henvendelsen til ENHET som skal svare deg senest innen utgangen av DAG+DATO'
         },
         {
             regex: /^AAP$/i,
-            replacement: 'arbeidsavklaringspenger '
+            replacement: () => 'arbeidsavklaringspenger '
         }
     ];
 }
@@ -145,7 +151,7 @@ function AutocompleteTextarea(props: TextareaProps) {
                             event.preventDefault();
                             event.stopPropagation();
                             loggEvent('Autocomplete', 'Textarea', { type: acc.toLowerCase() });
-                            return replacement;
+                            return replacement();
                         }
                         return acc;
                     }, word);
