@@ -12,7 +12,6 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, meldingstittel, nyesteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
-import { useEffect } from 'react';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/UsePrinter';
 interface Props {
@@ -98,10 +97,6 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 }
 
 function TraadVisning(props: Props) {
-    useEffect(() => {
-        loggEvent('VisTraad', 'Meldinger');
-    }, [props.valgtTraad]);
-
     const sisteMelding = nyesteMelding(props.valgtTraad);
 
     return (

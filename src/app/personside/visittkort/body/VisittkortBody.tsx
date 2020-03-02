@@ -9,7 +9,6 @@ import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import LenkeBrukerprofilContainer from './lenkebrukerprofil/LenkeBrukerprofilContainer';
-import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import Fullmakter from './fullmakt/Fullmakt';
 
@@ -90,7 +89,6 @@ class VisittkortBody extends React.PureComponent<VisittkortBodyProps> {
     componentDidMount() {
         this.handleResize();
         window.addEventListener('resize', this.handleResize);
-        loggEvent('Åpne', 'Visittkort');
     }
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleResize);
