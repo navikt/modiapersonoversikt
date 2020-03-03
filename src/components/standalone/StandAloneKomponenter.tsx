@@ -38,6 +38,7 @@ import { getMockInnloggetSaksbehandler } from '../../mock/innloggetSaksbehandler
 import { usePostResource } from '../../rest/consumer/usePostResource';
 import { PostResource } from '../../rest/utils/postResource';
 import { OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 enum Komponenter {
     Visittkort,
@@ -149,14 +150,16 @@ function GjeldendeKomponent(props: {
         case Komponenter.OppgaveSkjermetPerson:
             return (
                 <TestProvider>
-                    <OppgaveSkjemaSkjermetPerson
-                        lukkPanel={() => null}
-                        gjeldendeBrukerFnr={aremark.fødselsnummer}
-                        gsakTema={[]}
-                        innloggetSaksbehandler={getMockInnloggetSaksbehandler()}
-                        opprettOppgave={() => null}
-                        opprettOppgaveResource={props.resource}
-                    />
+                    <Ekspanderbartpanel tittel={'Opprett oppgave'}>
+                        <OppgaveSkjemaSkjermetPerson
+                            lukkPanel={() => null}
+                            gjeldendeBrukerFnr={aremark.fødselsnummer}
+                            gsakTema={[]}
+                            innloggetSaksbehandler={getMockInnloggetSaksbehandler()}
+                            opprettOppgave={() => null}
+                            opprettOppgaveResource={props.resource}
+                        />
+                    </Ekspanderbartpanel>
                 </TestProvider>
             );
         default:
