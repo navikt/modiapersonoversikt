@@ -45,3 +45,15 @@ export interface OppgaveSkjemaProps {
     };
     valideringsResultat: ValideringsResultat<OppgaveSkjemaForm>;
 }
+
+export interface SkjermetPersonOppgaveSkjemaProps {
+    state: OppgaveSkjemaForm;
+    actions: {
+        oppdaterStateVedValgtTema(tema: GsakTema | undefined): void;
+        settValgtUnderkategori(underkategori: GsakTemaUnderkategori | undefined): void;
+        settValgtOppgavetype(oppgavetype: GsakTemaOppgavetype | undefined): void;
+        settValgtPrioritet(prioritet: string): void;
+        settBeskrivelse(beskrivelse: string): void;
+    };
+    valideringsResultat: ValideringsResultat<OppgaveSkjemaForm>;
+}

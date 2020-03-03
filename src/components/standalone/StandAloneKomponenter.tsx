@@ -33,6 +33,11 @@ import { statiskTraadMock } from '../../mock/meldinger/statiskTraadMock';
 import BesvarFlere from '../../app/personside/infotabs/meldinger/traadliste/besvarflere/BesvarFlere';
 import { getMockTraader } from '../../mock/meldinger/meldinger-mock';
 import StandardTekstModal from '../../app/personside/dialogpanel/sendMelding/standardTekster/StandardTekstModal';
+import OppgaveSkjemaSkjermetPerson from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/OppgaveSkjemaSkjermetPerson';
+import { getMockInnloggetSaksbehandler } from '../../mock/innloggetSaksbehandler-mock';
+import { usePostResource } from '../../rest/consumer/usePostResource';
+import { PostResource } from '../../rest/utils/postResource';
+import { OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 
 enum Komponenter {
     Visittkort,
@@ -51,7 +56,8 @@ enum Komponenter {
     JournalforingPanel,
     TraadVisningDialogpanel,
     BesvarFlere,
-    HurtigTasterHjelp
+    HurtigTasterHjelp,
+    OppgaveSkjermetPerson
 }
 
 const Style = styled.div`
@@ -80,7 +86,11 @@ const KomponentStyle = styled.div`
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
-function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
+function GjeldendeKomponent(props: {
+    valgtTab: Komponenter;
+    fnr: string;
+    resource: PostResource<OpprettOppgaveRequest>;
+}) {
     switch (props.valgtTab) {
         case Komponenter.Saksoversikt:
             return <SaksoversiktLamell fødselsnummer={props.fnr} />;
@@ -136,6 +146,19 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
                     <BesvarFlere traader={getMockTraader(aremark.fødselsnummer).slice(0, 3)} lukkModal={() => null} />
                 </TestProvider>
             );
+        case Komponenter.OppgaveSkjermetPerson:
+            return (
+                <TestProvider>
+                    <OppgaveSkjemaSkjermetPerson
+                        lukkPanel={() => null}
+                        gjeldendeBrukerFnr={aremark.fødselsnummer}
+                        gsakTema={[]}
+                        innloggetSaksbehandler={getMockInnloggetSaksbehandler()}
+                        opprettOppgave={() => null}
+                        opprettOppgaveResource={props.resource}
+                    />
+                </TestProvider>
+            );
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }
@@ -148,11 +171,13 @@ function StandAloneKomponenter(props: RouteComponentProps<{ fnr: string; compone
     const valgtTab = Komponenter[routeComponent] || Komponenter.Visittkort;
     const updatePath = (komponent: string) => props.history.push(`${paths.standaloneKomponenter}/${komponent}/${fnr}`);
     const tabs: TabProps[] = mapEnumToTabProps(Komponenter, valgtTab);
+    const oppgaveResource = usePostResource(resources => resources.opprettOppgave);
+
     return (
         <Style>
             <TabsPure kompakt={true} tabs={tabs} onChange={(event, index) => updatePath(Komponenter[index])} />
             <KomponentStyle>
-                <GjeldendeKomponent valgtTab={valgtTab} fnr={fnr} />
+                <GjeldendeKomponent valgtTab={valgtTab} fnr={fnr} resource={oppgaveResource} />
             </KomponentStyle>
         </Style>
     );
