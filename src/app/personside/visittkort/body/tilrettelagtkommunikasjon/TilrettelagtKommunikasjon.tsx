@@ -3,7 +3,11 @@ import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import UtropstegnIkon from '../../../../../svg/Utropstegn';
-import { Kodeverk, TilrettelagtKommunikasjonMapper } from '../../../../../models/kodeverk';
+import {
+    Kodeverk,
+    TilrettelagtKommunikasjonMapper,
+    TilrettelagtKommunikasjonType
+} from '../../../../../models/kodeverk';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import VisittkortElement from '../VisittkortElement';
 
@@ -32,12 +36,23 @@ function tilrettelagtKommunikasjonfo(tilrettelagtKommunikasjon: Kodeverk) {
             <Normaltekst key={tilrettelagtKommunikasjon.kodeRef}>{tilrettelagtKommunikasjon.beskrivelse}</Normaltekst>
         );
     }
-    return (
-        <Normaltekst key={tilrettelagtKommunikasjon.kodeRef}>
-            {TilrettelagtKommunikasjonMapper[tilrettelagtKommunikasjon.type]}: {tilrettelagtKommunikasjon.beskrivelse} (
-            {tilrettelagtKommunikasjon.kodeRef})
-        </Normaltekst>
-    );
+
+    const erTegnspraktolk = tilrettelagtKommunikasjon.type === TilrettelagtKommunikasjonType.TEGNSPRAK;
+    if (erTegnspraktolk) {
+        return (
+            <Normaltekst key={tilrettelagtKommunikasjon.kodeRef}>
+                {' '}
+                {TilrettelagtKommunikasjonMapper[tilrettelagtKommunikasjon.type]}
+            </Normaltekst>
+        );
+    } else {
+        return (
+            <Normaltekst key={tilrettelagtKommunikasjon.kodeRef}>
+                {TilrettelagtKommunikasjonMapper[tilrettelagtKommunikasjon.type]}:{' '}
+                {tilrettelagtKommunikasjon.beskrivelse} ({tilrettelagtKommunikasjon.kodeRef})
+            </Normaltekst>
+        );
+    }
 }
 
 export default TilrettelagtKommunikasjon;
