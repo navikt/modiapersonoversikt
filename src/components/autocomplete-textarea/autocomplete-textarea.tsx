@@ -44,6 +44,10 @@ function useRules(): Regler {
         {
             regex: /^AAP$/i,
             replacement: () => 'arbeidsavklaringspenger '
+        },
+        {
+            regex: /^sbt$/i,
+            replacement: () => 'saksbehandlingstid '
         }
     ];
 }
@@ -72,6 +76,7 @@ function AutoTekstTips() {
                     <li>hei + mellomrom: Hei bruker</li>
                     <li>vint + mellomrom: Videreformidle Internt</li>
                     <li>AAP + mellomrom: arbeidsavklaringspenger</li>
+                    <li>sbt + mellomrom: saksbehandlingstid</li>
                 </ul>
             </HjelpetekstUnderHoyre>
         </HjelpetekstStyle>
