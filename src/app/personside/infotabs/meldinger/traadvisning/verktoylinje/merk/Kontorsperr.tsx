@@ -9,6 +9,8 @@ import { MerkKontorsperrRequest } from '../../../../../../../models/meldinger/me
 import styled from 'styled-components/macro';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../../../../../redux/reducers';
 
 interface Props {
     valgtTraad: Traad;
@@ -23,9 +25,10 @@ const Style = styled.div`
     margin-top: 1rem;
 `;
 
-function getMerkKontrorsperretRequest(enhet: string, traad: Traad): MerkKontorsperrRequest {
+function getMerkKontrorsperretRequest(fnr: String, enhet: string, traad: Traad): MerkKontorsperrRequest {
     const meldingsidListe = traad.meldinger.map(melding => melding.id);
     return {
+        fnr: fnr,
         enhet: enhet,
         meldingsidListe: meldingsidListe
     };
@@ -33,6 +36,7 @@ function getMerkKontrorsperretRequest(enhet: string, traad: Traad): MerkKontorsp
 
 export function Kontorsperr(props: Props) {
     const [opprettOppgave, settOpprettOppgave] = useState(true);
+    const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const brukersKontor = useRestResource(resource => resource.brukersNavKontor);
     const brukersEnhetID = brukersKontor.data?.enhetId ? brukersKontor.data.enhetId : '';
     const valgtTraad = props.valgtTraad;
@@ -43,7 +47,7 @@ export function Kontorsperr(props: Props) {
         }
         props.merkPost(
             MERK_KONTORSPERRET_URL,
-            getMerkKontrorsperretRequest(brukersEnhetID, valgtTraad),
+            getMerkKontrorsperretRequest(valgtBrukersFnr, brukersEnhetID, valgtTraad),
             'Kontorsperring'
         );
     };
