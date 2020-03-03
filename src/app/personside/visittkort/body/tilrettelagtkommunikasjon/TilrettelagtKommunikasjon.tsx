@@ -41,7 +41,6 @@ function tilrettelagtKommunikasjonfo(tilrettelagtKommunikasjon: Kodeverk) {
     if (erTegnspraktolk) {
         return (
             <Normaltekst key={tilrettelagtKommunikasjon.kodeRef}>
-                {' '}
                 {TilrettelagtKommunikasjonMapper[tilrettelagtKommunikasjon.type]}
             </Normaltekst>
         );
