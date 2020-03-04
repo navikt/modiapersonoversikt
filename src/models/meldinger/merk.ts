@@ -9,7 +9,8 @@ export interface MerkRequestMedTraadId {
 }
 
 export interface MerkKontorsperrRequest {
-    fnr: string;
+    fnr: String;
+    enhet: string;
     meldingsidListe: string[];
 }
 
