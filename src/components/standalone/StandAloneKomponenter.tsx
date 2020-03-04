@@ -33,7 +33,7 @@ import { statiskTraadMock } from '../../mock/meldinger/statiskTraadMock';
 import BesvarFlere from '../../app/personside/infotabs/meldinger/traadliste/besvarflere/BesvarFlere';
 import { getMockTraader } from '../../mock/meldinger/meldinger-mock';
 import StandardTekstModal from '../../app/personside/dialogpanel/sendMelding/standardTekster/StandardTekstModal';
-import OppgaveSkjemaSkjermetPerson from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/OppgaveSkjemaSkjermetPerson';
+import OppgaveSkjemaSkjermetPerson from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/skjermetPerson/OppgaveSkjemaSkjermetPerson';
 import { getMockInnloggetSaksbehandler } from '../../mock/innloggetSaksbehandler-mock';
 import { usePostResource } from '../../rest/consumer/usePostResource';
 import { PostResource } from '../../rest/utils/postResource';

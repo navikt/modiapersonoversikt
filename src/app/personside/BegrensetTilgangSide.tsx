@@ -7,7 +7,7 @@ import VisPeriode from '../../components/person/VisPeriode';
 import { Sikkerhetstiltak } from '../../models/sikkerhetstiltak';
 import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
 import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
-import OppgaveSkjemaSkjermetPerson from './infotabs/meldinger/traadvisning/verktoylinje/oppgave/OppgaveSkjemaSkjermetPerson';
+import OppgaveSkjemaSkjermetPerson from './infotabs/meldinger/traadvisning/verktoylinje/oppgave/skjermetPerson/OppgaveSkjemaSkjermetPerson';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 import { useFødselsnummer } from '../../utils/customHooks';
 import { usePostResource } from '../../rest/consumer/usePostResource';
@@ -59,7 +59,7 @@ function OpprettOppgaveAvvistTilgang() {
     );
 }
 function BegrensetTilgangSide({ person }: BegrensetTilgangProps) {
-    const erEgenAnsatt = BegrensetTilgangTyper[person.begrunnelse] === BegrensetTilgangTyper.EgenAnsatt;
+    const erEgenAnsatt = person.begrunnelse === BegrensetTilgangTyper.EgenAnsatt;
     return (
         <FillCenterAndFadeIn>
             <Wrapper>

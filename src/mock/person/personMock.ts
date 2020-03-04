@@ -48,7 +48,7 @@ export function getPerson(fødselsnummer: string): PersonRespons {
 
 function getBegrensetInnsyn(): BegrensetTilgang {
     return {
-        begrunnelse: BegrensetTilgangTyper.EgenAnsatt,
+        begrunnelse: BegrensetTilgangTyper.Kode6,
         sikkerhetstiltak: getSikkerhetstiltak()
     };
 }

@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { Select, Textarea } from 'nav-frontend-skjema';
-import { GsakTema, GsakTemaOppgavetype, GsakTemaUnderkategori } from '../../../../../../../models/meldinger/oppgave';
-import { OppgaveProps, SkjermetPersonOppgaveSkjemaProps } from './oppgaveInterfaces';
+import { GsakTema, GsakTemaOppgavetype, GsakTemaUnderkategori } from '../../../../../../../../models/meldinger/oppgave';
+import { OppgaveProps, SkjermetPersonOppgaveSkjemaProps } from '../oppgaveInterfaces';
 
 export function OppgaveSkjemaElementerSkjermetPerson(props: OppgaveProps & { form: SkjermetPersonOppgaveSkjemaProps }) {
     const valgtTema = props.form.state.valgtTema;

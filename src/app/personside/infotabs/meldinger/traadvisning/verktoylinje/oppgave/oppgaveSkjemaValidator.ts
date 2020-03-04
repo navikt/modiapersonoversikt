@@ -43,6 +43,7 @@ const regler: Valideringsregel<OppgaveSkjemaForm>[] = [
 export function validerOppgaveSkjema(form: OppgaveSkjemaForm) {
     return new FormValidator(regler).valider(form);
 }
+
 export function getValidOppgaveSkjemaState() {
     return new FormValidator<OppgaveSkjemaForm>([]).valider(tomtSkjema);
 }

@@ -1,20 +1,21 @@
 import React, { FormEvent, useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
+import { LenkeKnapp } from '../../../../../../../../components/common-styled-components';
 import styled from 'styled-components';
 import { OppgaveSkjemaElementerSkjermetPerson } from './OppgaveSkjemaElementerSkjermetPerson';
-import { OppgaveProps, OppgaveSkjemaForm, SkjermetPersonOppgaveSkjemaProps } from './oppgaveInterfaces';
-import { GsakTema, GsakTemaOppgavetype, GsakTemaUnderkategori } from '../../../../../../../models/meldinger/oppgave';
-import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
-import { getValidOppgaveSkjemaState, validerOppgaveSkjema } from './oppgaveSkjemaValidator';
-import { post } from '../../../../../../../api/api';
-import { apiBaseUri } from '../../../../../../../api/config';
-import { Resultat } from '../utils/VisPostResultat';
+import { OppgaveProps, OppgaveSkjemaForm, SkjermetPersonOppgaveSkjemaProps } from '../oppgaveInterfaces';
+import { GsakTema, GsakTemaOppgavetype, GsakTemaUnderkategori } from '../../../../../../../../models/meldinger/oppgave';
+import { ValideringsResultat } from '../../../../../../../../utils/forms/FormValidator';
+import { getValidOppgaveSkjemaState } from '../oppgaveSkjemaValidator';
+import { post } from '../../../../../../../../api/api';
+import { apiBaseUri } from '../../../../../../../../api/config';
+import { Resultat } from '../../utils/VisPostResultat';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { lagOppgaveRequest } from './byggRequest';
+import { lagOppgaveRequest } from '../byggRequest';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../../../../../redux/reducers';
-import { useAppState } from '../../../../../../../utils/customHooks';
+import { AppState } from '../../../../../../../../redux/reducers';
+import { useAppState } from '../../../../../../../../utils/customHooks';
+import { validerOppgaveSkjemaSkjermetPerson } from './oppgaveSkjemaValidatorSkjermetPerson';
 
 const SkjemaStyle = styled.div`
     padding-top: 1rem;
@@ -90,7 +91,7 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
             return;
         }
 
-        const valideringsResultat = validerOppgaveSkjema(formState);
+        const valideringsResultat = validerOppgaveSkjemaSkjermetPerson(formState);
         if (valideringsResultat.formErGyldig) {
             setSubmitting(true);
             settValideringsresultat(getValidOppgaveSkjemaState());
