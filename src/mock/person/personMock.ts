@@ -38,7 +38,7 @@ export function getPerson(fødselsnummer: string): PersonRespons {
     } else {
         faker.seed(Number(fødselsnummer));
         navfaker.seed(fødselsnummer);
-        if (vektetSjanse(faker, 0.02)) {
+        if (vektetSjanse(faker, 1.0)) {
             return getBegrensetInnsyn();
         } else {
             return genererPerson(fødselsnummer);
@@ -48,7 +48,7 @@ export function getPerson(fødselsnummer: string): PersonRespons {
 
 function getBegrensetInnsyn(): BegrensetTilgang {
     return {
-        begrunnelse: BegrensetTilgangTyper.Kode6,
+        begrunnelse: BegrensetTilgangTyper.EgenAnsatt,
         sikkerhetstiltak: getSikkerhetstiltak()
     };
 }
