@@ -11,17 +11,14 @@ import { post } from '../../../../../../../api/api';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { Resultat } from '../utils/VisPostResultat';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { lagOppgaveRequest } from './byggRequest';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../../../../../redux/reducers';
+import { useAppState } from '../../../../../../../utils/customHooks';
 
 const SkjemaStyle = styled.div`
     padding-top: 1rem;
-    .inputPanelGruppe__inner {
-        display: flex;
-        > * {
-            flex-grow: 1;
-        }
-    }
     label {
-        font-weight: 600;
         margin-bottom: 0.1rem;
     }
     .skjemaelement {
@@ -43,6 +40,8 @@ const AlertStyling = styled.div`
     }
 `;
 function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
+    const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+    const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const [submitting, setSubmitting] = useState(false);
     const [valgtTema, settValgtTema] = useState<GsakTema | undefined>(undefined);
     const [valgtUnderkategori, settValgtUnderkategori] = useState<GsakTemaUnderkategori | undefined>(undefined);
@@ -53,6 +52,7 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
     const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<OppgaveSkjemaForm>>(
         getValidOppgaveSkjemaState()
     );
+
     function oppdaterStateVedValgtTema(tema: GsakTema | undefined) {
         settValgtTema(tema);
         if (!tema) {
@@ -63,31 +63,6 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
         const normalOppgaveprioritet = tema?.prioriteter.find(prioritet => prioritet.kode.includes('NORM'));
         settValgtPrioritet(normalOppgaveprioritet?.kode);
     }
-    const submitHandler = (event: FormEvent) => {
-        event.preventDefault();
-
-        if (submitting) {
-            return;
-        }
-
-        const valideringsResultat = validerOppgaveSkjema(formState);
-        if (valideringsResultat.formErGyldig) {
-            setSubmitting(true);
-            settValideringsresultat(getValidOppgaveSkjemaState());
-            post(`${apiBaseUri}/`, 'request', 'OpprettOppgaveSkjermetPerson')
-                .then(() => {
-                    settResultat(Resultat.VELLYKKET);
-                    setSubmitting(false);
-                    props.onSuccessCallback && props.onSuccessCallback();
-                })
-                .catch(() => {
-                    settResultat(Resultat.FEIL);
-                    setSubmitting(false);
-                });
-        } else {
-            settValideringsresultat(valideringsResultat);
-        }
-    };
 
     const formState: OppgaveSkjemaForm = {
         valgtTema,
@@ -106,6 +81,35 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
             settBeskrivelse
         },
         valideringsResultat: valideringsResultat
+    };
+
+    const submitHandler = (event: FormEvent) => {
+        event.preventDefault();
+
+        if (submitting) {
+            return;
+        }
+
+        const valideringsResultat = validerOppgaveSkjema(formState);
+        if (valideringsResultat.formErGyldig) {
+            setSubmitting(true);
+            settValideringsresultat(getValidOppgaveSkjemaState());
+
+            const request = lagOppgaveRequest(props, formProps, valgtBrukersFnr, saksbehandlersEnhet || '');
+
+            post(`${apiBaseUri}/`, request, 'OpprettOppgaveSkjermetPerson')
+                .then(() => {
+                    settResultat(Resultat.VELLYKKET);
+                    setSubmitting(false);
+                    props.onSuccessCallback && props.onSuccessCallback();
+                })
+                .catch(() => {
+                    settResultat(Resultat.FEIL);
+                    setSubmitting(false);
+                });
+        } else {
+            settValideringsresultat(valideringsResultat);
+        }
     };
 
     if (resultat) {

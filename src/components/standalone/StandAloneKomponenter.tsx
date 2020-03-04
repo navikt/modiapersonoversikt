@@ -39,6 +39,7 @@ import { usePostResource } from '../../rest/consumer/usePostResource';
 import { PostResource } from '../../rest/utils/postResource';
 import { OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { getMockGsakTema } from '../../mock/meldinger/oppgave-mock';
 
 enum Komponenter {
     Visittkort,
@@ -150,11 +151,11 @@ function GjeldendeKomponent(props: {
         case Komponenter.OppgaveSkjermetPerson:
             return (
                 <TestProvider>
-                    <Ekspanderbartpanel tittel={'Opprett oppgave'}>
+                    <Ekspanderbartpanel tittel={'Avvist tilgang - opprett oppgave for videre behandling'}>
                         <OppgaveSkjemaSkjermetPerson
                             lukkPanel={() => null}
                             gjeldendeBrukerFnr={aremark.fødselsnummer}
-                            gsakTema={[]}
+                            gsakTema={getMockGsakTema()}
                             innloggetSaksbehandler={getMockInnloggetSaksbehandler()}
                             opprettOppgave={() => null}
                             opprettOppgaveResource={props.resource}

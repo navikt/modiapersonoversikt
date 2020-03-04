@@ -1,13 +1,13 @@
 import { OpprettOppgaveRequest } from '../../../../../../../models/meldinger/oppgave';
 import { eldsteMelding } from '../../../utils/meldingerUtils';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
-import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaProps, SkjermetPersonOppgaveSkjemaProps } from './oppgaveInterfaces';
 import { formatterDatoTidNaa } from '../../../../../../../utils/dateUtils';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 
 export function lagOppgaveRequest(
     props: OppgaveProps,
-    form: OppgaveSkjemaProps,
+    form: OppgaveSkjemaProps | SkjermetPersonOppgaveSkjemaProps,
     fodselsnummer: string,
     saksbehandlerEnhet: string,
     valgtTraad?: Traad
