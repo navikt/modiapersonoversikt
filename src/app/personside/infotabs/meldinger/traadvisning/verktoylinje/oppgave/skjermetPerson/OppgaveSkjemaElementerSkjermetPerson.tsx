@@ -1,7 +1,8 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { Select, Textarea } from 'nav-frontend-skjema';
-import { GsakTema, GsakTemaOppgavetype, GsakTemaUnderkategori } from '../../../../../../../../models/meldinger/oppgave';
 import { OppgaveProps, SkjermetPersonOppgaveSkjemaProps } from '../oppgaveInterfaces';
+import { hentValgtOppgavetype, hentValgtTema, hentValgtUnderkategori } from '../oppgaveUtils';
+import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from '../SkjemaElementOptions';
 
 export function OppgaveSkjemaElementerSkjermetPerson(props: OppgaveProps & { form: SkjermetPersonOppgaveSkjemaProps }) {
     const valgtTema = props.form.state.valgtTema;
@@ -59,99 +60,4 @@ export function OppgaveSkjemaElementerSkjermetPerson(props: OppgaveProps & { for
             />
         </>
     );
-}
-
-function hentValgtTema(gsakTema: GsakTema[], event: ChangeEvent<HTMLSelectElement>): GsakTema | undefined {
-    return gsakTema.find(tema => tema.kode === event.target.value);
-}
-
-function hentValgtUnderkategori(
-    event: ChangeEvent<HTMLSelectElement>,
-    valgtTema?: GsakTema
-): GsakTemaUnderkategori | undefined {
-    return valgtTema && valgtTema.underkategorier.find(underkategori => underkategori.kode === event.target.value);
-}
-
-function hentValgtOppgavetype(
-    event: ChangeEvent<HTMLSelectElement>,
-    valgtTema?: GsakTema
-): GsakTemaOppgavetype | undefined {
-    return valgtTema && valgtTema.oppgavetyper.find(oppgavetype => oppgavetype.kode === event.target.value);
-}
-
-function TemaOptions(props: { gsakTema: GsakTema[] }) {
-    const options = [
-        <option value={''} key={''} disabled>
-            Velg tema
-        </option>,
-        props.gsakTema.map(gsakTema => (
-            <option value={`${gsakTema.kode}`} key={gsakTema.kode}>
-                {gsakTema.tekst}
-            </option>
-        ))
-    ];
-
-    return <>{options}</>;
-}
-
-function UnderkategoriOptions(props: { valgtGsakTema?: GsakTema }) {
-    const options = props.valgtGsakTema
-        ? [
-              <option value={''} key={''}>
-                  Ingen underkategori
-              </option>,
-              props.valgtGsakTema.underkategorier.map(underkategori => (
-                  <option value={`${underkategori.kode}`} key={underkategori.kode}>
-                      {underkategori.tekst}
-                  </option>
-              ))
-          ]
-        : [
-              <option value={''} key={''} disabled>
-                  Ingen tema valgt
-              </option>
-          ];
-
-    return <>{options}</>;
-}
-
-function OppgavetypeOptions(props: { valgtGsakTema?: GsakTema }) {
-    const options = props.valgtGsakTema
-        ? [
-              <option value={''} key={''} disabled>
-                  Velg oppgavetype
-              </option>,
-              props.valgtGsakTema.oppgavetyper.map(oppgavetype => (
-                  <option value={`${oppgavetype.kode}`} key={oppgavetype.kode}>
-                      {oppgavetype.tekst}
-                  </option>
-              ))
-          ]
-        : [
-              <option value={''} key={''} disabled>
-                  Ingen tema valgt
-              </option>
-          ];
-
-    return <>{options}</>;
-}
-
-function Prioriteter(props: { valgtGsakTeam?: GsakTema }) {
-    const options = props.valgtGsakTeam
-        ? [
-              <option value={''} key={''} disabled>
-                  Velg prioritet
-              </option>,
-              props.valgtGsakTeam.prioriteter.map(prioritet => (
-                  <option value={`${prioritet.kode}`} key={prioritet.kode}>
-                      {prioritet.tekst}
-                  </option>
-              ))
-          ]
-        : [
-              <option value={''} key={''} disabled>
-                  Ingen tema valgt
-              </option>
-          ];
-    return <>{options}</>;
 }

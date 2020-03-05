@@ -1,12 +1,6 @@
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Select, Textarea } from 'nav-frontend-skjema';
-import {
-    Ansatt,
-    Enhet,
-    GsakTema,
-    GsakTemaOppgavetype,
-    GsakTemaUnderkategori
-} from '../../../../../../../models/meldinger/oppgave';
+import { Ansatt, Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import AutoComplete from './AutoComplete';
 import { hasData, isPending } from '@nutgaard/use-async';
@@ -16,6 +10,8 @@ import { usePrevious } from '../../../../../../../utils/customHooks';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 import useForeslatteEnheter from './useForeslåtteEnheter';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
+import { hentValgtOppgavetype, hentValgtTema, hentValgtUnderkategori } from './oppgaveUtils';
+import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
 
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
     const enhetliste: FetchResult<Array<Enhet>> = useFetchWithLog<Array<Enhet>>(
@@ -120,99 +116,4 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
             />
         </>
     );
-}
-
-function hentValgtTema(gsakTema: GsakTema[], event: ChangeEvent<HTMLSelectElement>): GsakTema | undefined {
-    return gsakTema.find(tema => tema.kode === event.target.value);
-}
-
-function hentValgtUnderkategori(
-    event: ChangeEvent<HTMLSelectElement>,
-    valgtTema?: GsakTema
-): GsakTemaUnderkategori | undefined {
-    return valgtTema && valgtTema.underkategorier.find(underkategori => underkategori.kode === event.target.value);
-}
-
-function hentValgtOppgavetype(
-    event: ChangeEvent<HTMLSelectElement>,
-    valgtTema?: GsakTema
-): GsakTemaOppgavetype | undefined {
-    return valgtTema && valgtTema.oppgavetyper.find(oppgavetype => oppgavetype.kode === event.target.value);
-}
-
-function TemaOptions(props: { gsakTema: GsakTema[] }) {
-    const options = [
-        <option value={''} key={''} disabled>
-            Velg tema
-        </option>,
-        props.gsakTema.map(gsakTema => (
-            <option value={`${gsakTema.kode}`} key={gsakTema.kode}>
-                {gsakTema.tekst}
-            </option>
-        ))
-    ];
-
-    return <>{options}</>;
-}
-
-function UnderkategoriOptions(props: { valgtGsakTema?: GsakTema }) {
-    const options = props.valgtGsakTema
-        ? [
-              <option value={''} key={''}>
-                  Ingen underkategori
-              </option>,
-              props.valgtGsakTema.underkategorier.map(underkategori => (
-                  <option value={`${underkategori.kode}`} key={underkategori.kode}>
-                      {underkategori.tekst}
-                  </option>
-              ))
-          ]
-        : [
-              <option value={''} key={''} disabled>
-                  Ingen tema valgt
-              </option>
-          ];
-
-    return <>{options}</>;
-}
-
-function OppgavetypeOptions(props: { valgtGsakTema?: GsakTema }) {
-    const options = props.valgtGsakTema
-        ? [
-              <option value={''} key={''} disabled>
-                  Velg oppgavetype
-              </option>,
-              props.valgtGsakTema.oppgavetyper.map(oppgavetype => (
-                  <option value={`${oppgavetype.kode}`} key={oppgavetype.kode}>
-                      {oppgavetype.tekst}
-                  </option>
-              ))
-          ]
-        : [
-              <option value={''} key={''} disabled>
-                  Ingen tema valgt
-              </option>
-          ];
-
-    return <>{options}</>;
-}
-
-function Prioriteter(props: { valgtGsakTeam?: GsakTema }) {
-    const options = props.valgtGsakTeam
-        ? [
-              <option value={''} key={''} disabled>
-                  Velg prioritet
-              </option>,
-              props.valgtGsakTeam.prioriteter.map(prioritet => (
-                  <option value={`${prioritet.kode}`} key={prioritet.kode}>
-                      {prioritet.tekst}
-                  </option>
-              ))
-          ]
-        : [
-              <option value={''} key={''} disabled>
-                  Ingen tema valgt
-              </option>
-          ];
-    return <>{options}</>;
 }
