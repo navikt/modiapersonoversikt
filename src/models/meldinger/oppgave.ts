@@ -38,6 +38,18 @@ export interface OpprettOppgaveRequest {
     ansvarligEnhetId: string;
 }
 
+export interface OpprettSkjermetOppgaveRequest {
+    fnr: string;
+    dagerFrist: number;
+    ansvarligIdent?: string;
+    beskrivelse: string;
+    temaKode: string;
+    underkategoriKode?: string;
+    brukerid: string;
+    oppgaveTypeKode: string;
+    prioritetKode: string;
+}
+
 export interface Enhet {
     enhetId: string;
     enhetNavn: string;

@@ -11,7 +11,7 @@ import { post } from '../../../../../../../../api/api';
 import { apiBaseUri } from '../../../../../../../../api/config';
 import { Resultat } from '../../utils/VisPostResultat';
 import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { lagOppgaveRequest } from '../byggRequest';
+import { lagSkjermetOppgaveRequest } from '../byggRequest';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../../redux/reducers';
 import { useAppState } from '../../../../../../../../utils/customHooks';
@@ -96,8 +96,8 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
             setSubmitting(true);
             settValideringsresultat(getValidOppgaveSkjemaState());
 
-            const request = lagOppgaveRequest(props, formProps, valgtBrukersFnr, saksbehandlersEnhet || '');
-
+            const request = lagSkjermetOppgaveRequest(props, formProps, valgtBrukersFnr, saksbehandlersEnhet || '');
+            console.log(request);
             post(`${apiBaseUri}/`, request, 'OpprettOppgaveSkjermetPerson')
                 .then(() => {
                     settResultat(Resultat.VELLYKKET);

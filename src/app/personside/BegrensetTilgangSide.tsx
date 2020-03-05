@@ -16,6 +16,7 @@ import { opprettOppgaveActionCreator } from '../../redux/restReducers/meldinger/
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { useState } from 'react';
 
 interface BegrensetTilgangProps {
     person: BegrensetTilgang;
@@ -41,19 +42,29 @@ function OpprettOppgaveAvvistTilgang() {
     const dispatch = useDispatch();
     const opprettOppgave = (request: OpprettOppgaveRequest) => dispatch(opprettOppgaveActionCreator(request));
 
+    const [apen, setApen] = useState(false);
+
+    const lukk = () => {
+        setApen(!apen);
+    };
+
     if (!gsakTema || !innloggetSaksbehandler) {
         return <AlertStripeInfo>Kunne ikke vise opprett oppgave panel</AlertStripeInfo>;
     }
 
     return (
-        <Ekspanderbartpanel tittel={'Avvist tilgang - opprett oppgave for videre behandling'}>
+        <Ekspanderbartpanel
+            tittel={'Avvist tilgang - opprett oppgave for videre behandling'}
+            apen={apen}
+            onClick={() => setApen(!apen)}
+        >
             <OppgaveSkjemaSkjermetPerson
                 gsakTema={gsakTema}
                 gjeldendeBrukerFnr={fnr}
                 innloggetSaksbehandler={innloggetSaksbehandler}
                 opprettOppgaveResource={opprettOppgaveResource}
                 opprettOppgave={opprettOppgave}
-                lukkPanel={() => null}
+                lukkPanel={lukk}
             />
         </Ekspanderbartpanel>
     );
