@@ -120,14 +120,7 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
             ) : (
                 <AlertStripeFeil>Klarte ikke å opprette oppgave</AlertStripeFeil>
             );
-        return (
-            <AlertStyling>
-                {alert}
-                <Hovedknapp autoFocus={true} onClick={props.lukkPanel}>
-                    Lukk
-                </Hovedknapp>
-            </AlertStyling>
-        );
+        return <AlertStyling>{alert}</AlertStyling>;
     }
 
     return (
