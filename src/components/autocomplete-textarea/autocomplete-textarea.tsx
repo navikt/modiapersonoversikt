@@ -118,7 +118,7 @@ function AutoTekstTips() {
                     <li>nfp + mellomrom: NAV Familie- og pensjonsytelser</li>
                     <li>hi, + mellomrom: Hi, bruker (engelsk)</li>
                     <li>mvh/aap + nn + mellomrom: autofullfør på nynorsk</li>
-                    <li>mvh/aap + en + mellomgom: autofullfør på engelsk</li>
+                    <li>mvh/aap + en + mellomrom: autofullfør på engelsk</li>
                 </ul>
             </HjelpetekstUnderHoyre>
         </HjelpetekstStyle>
