@@ -40,6 +40,7 @@ export interface OpprettOppgaveRequest {
 
 export interface OpprettSkjermetOppgaveRequest {
     fnr: string;
+    valgtEnhetId: string;
     dagerFrist: number;
     ansvarligIdent?: string;
     beskrivelse: string;

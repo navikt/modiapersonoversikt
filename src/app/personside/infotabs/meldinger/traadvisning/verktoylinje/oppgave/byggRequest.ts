@@ -51,6 +51,7 @@ export function lagSkjermetOppgaveRequest(
     }
     return {
         fnr: fodselsnummer,
+        valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
         dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
         beskrivelse: lagBeskrivelse(form.state.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
         temaKode: temakode,
