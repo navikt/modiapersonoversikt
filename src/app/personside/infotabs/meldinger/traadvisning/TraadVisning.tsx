@@ -14,6 +14,7 @@ import { eldsteMelding, meldingstittel, nyesteMelding, saksbehandlerTekst } from
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/UsePrinter';
+import { useEffect } from 'react';
 interface Props {
     valgtTraad: Traad;
     sokeord: string;
@@ -98,7 +99,26 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 
 function TraadVisning(props: Props) {
     const sisteMelding = nyesteMelding(props.valgtTraad);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const handleNyMeldingHotkeys = (event: KeyboardEvent) => {
+            if (!event.altKey || event.repeat) {
+                return;
+            }
+            const key = event.code ? event.code.replace('Key', '').toLowerCase() : event.key;
+            if (key === 'd') {
+                const melding = eldsteMelding(props.valgtTraad);
+                if (KanBesvaresMeldingstyper.includes(melding.meldingstype)) {
+                    loggEvent('traadvisning', 'Hurtigtast', { type: 'Alt + D' });
+                    props.valgtTraad && dispatch(setValgtTraadDialogpanel(props.valgtTraad));
+                    dispatch(toggleDialogpanel(true));
+                }
+            }
+        };
 
+        window.addEventListener('keydown', handleNyMeldingHotkeys);
+        return () => window.removeEventListener('keydown', handleNyMeldingHotkeys);
+    }, [dispatch, props.valgtTraad]);
     return (
         <VisningStyle>
             <Topplinje valgtTraad={props.valgtTraad} />

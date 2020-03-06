@@ -27,7 +27,8 @@ function HurtigtastHjelp() {
         { tast: 'Alt + N', beskrivelse: 'Åpne/lukke visitkort' },
         { tast: 'Alt + C', beskrivelse: 'Åpne samtalemaler' },
         { tast: 'Alt + B', beskrivelse: 'Gå til personforvalter' },
-        { tast: 'Alt + G', beskrivelse: 'Gå til gosys' }
+        { tast: 'Alt + G', beskrivelse: 'Gå til gosys' },
+        { tast: 'Alt + D', beskrivelse: 'Ny Melding' }
     ];
     const tableRows = taster.map(hurtigtast => [hurtigtast.tast, hurtigtast.beskrivelse]);
     return (
