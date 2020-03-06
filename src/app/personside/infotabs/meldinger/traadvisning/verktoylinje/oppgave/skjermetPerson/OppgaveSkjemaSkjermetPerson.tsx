@@ -98,7 +98,7 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
 
             const request = lagSkjermetOppgaveRequest(props, formProps, valgtBrukersFnr, saksbehandlersEnhet || '');
             console.log(request);
-            post(`${apiBaseUri}/dialogoppgave/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
+            post(`${apiBaseUri}/`, request, 'OpprettOppgaveSkjermetPerson')
                 .then(() => {
                     settResultat(Resultat.VELLYKKET);
                     setSubmitting(false);
