@@ -101,8 +101,9 @@ export const aremark: Person = {
             beskrivelse: 'Svensk'
         },
         {
-            kodeRef: 'TOHJ',
-            beskrivelse: 'Tolkehjelp'
+            type: TilrettelagtKommunikasjonType.TEGNSPRAK,
+            kodeRef: 'NO',
+            beskrivelse: 'Norwegian'
         }
     ],
     diskresjonskode: { kodeRef: Diskresjonskoder.FORTROLIG_ADRESSE, beskrivelse: 'Sperret adresse, fortrolig' },

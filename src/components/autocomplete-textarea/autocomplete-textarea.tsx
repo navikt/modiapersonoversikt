@@ -42,12 +42,49 @@ function useRules(): Regler {
                 'Jeg har videreformidlet henvendelsen til ENHET som skal svare deg senest innen utgangen av DAG+DATO'
         },
         {
-            regex: /^AAP$/i,
+            regex: /^aap$/i,
             replacement: () => 'arbeidsavklaringspenger '
         },
         {
             regex: /^sbt$/i,
             replacement: () => 'saksbehandlingstid '
+        },
+        {
+            regex: /^nay$/i,
+            replacement: () => 'NAV Arbeid og ytelser '
+        },
+        {
+            regex: /^nfp$/i,
+            replacement: () => 'NAV Familie- og pensjonsytelser '
+        },
+        {
+            regex: /^aapen$/i,
+            replacement: () => 'work assessment allowance '
+        },
+        { regex: /^hi,?$/i, replacement: () => 'Hi, [bruker.fornavn] ' },
+        {
+            regex: /^mvhen$/i,
+            replacement: () => {
+                const bestregards = `Best regards`;
+                if (erKontaktsenter) {
+                    return `${bestregards}\n[saksbehandler.fornavn]\nNAV Call and Service Centre`;
+                }
+                return `${bestregards}\n[saksbehandler.navn]\n${saksbehanderEnhet}`;
+            }
+        },
+        {
+            regex: /^mvhnn$/i,
+            replacement: () => {
+                const mvh = 'Med vennleg helsing';
+                if (erKontaktsenter) {
+                    return `${mvh}\n[saksbehandler.fornavn]\nNAV Kontaktsenter`;
+                }
+                return `${mvh}\n[saksbehandler.navn]\n${saksbehanderEnhet}`;
+            }
+        },
+        {
+            regex: /^aapnn$/i,
+            replacement: () => 'arbeidsavklaringspengar '
         }
     ];
 }
@@ -77,6 +114,11 @@ function AutoTekstTips() {
                     <li>vint + mellomrom: Videreformidle Internt</li>
                     <li>AAP + mellomrom: arbeidsavklaringspenger</li>
                     <li>sbt + mellomrom: saksbehandlingstid</li>
+                    <li>nay + mellomrom: NAV Arbeid og ytelser</li>
+                    <li>nfp + mellomrom: NAV Familie- og pensjonsytelser</li>
+                    <li>hi, + mellomrom: Hi, bruker (engelsk)</li>
+                    <li>mvh/aap + nn + mellomrom: autofullfør på nynorsk</li>
+                    <li>mvh/aap + en + mellomrom: autofullfør på engelsk</li>
                 </ul>
             </HjelpetekstUnderHoyre>
         </HjelpetekstStyle>
