@@ -88,10 +88,13 @@ function visSikkerhetstiltak(sikkerhetstiltak?: Sikkerhetstiltak, erEgenAnsatt?:
     if (!sikkerhetstiltak) {
         return null;
     }
+
     if (erEgenAnsatt) {
         return (
             <>
                 <Undertittel>Egen ansatt</Undertittel>
+                {hentPeriode(sikkerhetstiltak.periode)}
+                <Normaltekst>{sikkerhetstiltak.sikkerhetstiltaksbeskrivelse}</Normaltekst>
             </>
         );
     }
