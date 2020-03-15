@@ -48,6 +48,23 @@ function useRules(): Regler {
         {
             regex: /^sbt$/i,
             replacement: () => 'saksbehandlingstid '
+        },
+        {
+            regex: /^korkonk$/i,
+            replacement: () =>
+                '[bruker.navn] informerer at arbeidsgiver er gått konkurs\n' +
+                '\n' +
+                'Hvis arbeidsgiveren din har gått konkurs, kan det hende du har rett til å få forskuttert lønnsgarantimidler i form av dagpenger www.nav.no/lonnsgaranti\n' +
+                '\n' +
+                'Da må du i så fall:\n' +
+                '- registrere deg som arbeidssøker senest dagen før konkursåpning på www.nav.no/jobbveiviser\n' +
+                '- sende meldekort hver 14 dag for å være registrert arbeidssøker, se informasjon på www.nav.no/sendemeldekort\n' +
+                '- fylle ut og levere søknad om dagpenger senest dagen før konkursåpning, www.nav.no/dagpenger\n' +
+                '- fylle ut og levere skjemaet Egenerklæring – overdragelse av lønnskrav (NAV 04-03.07).\n' +
+                '- legge ved arbeidsavtale\n' +
+                '- legge ved bekreftelse fra bostyrer/konkursforvalter vedrørende konkursåpning.\n' +
+                '\n' +
+                'På www.nav.no/jobbveiviser finner du også gode tips for å få jobben du ønsker deg.'
         }
     ];
 }
@@ -77,6 +94,7 @@ function AutoTekstTips() {
                     <li>vint + mellomrom: Videreformidle Internt</li>
                     <li>AAP + mellomrom: arbeidsavklaringspenger</li>
                     <li>sbt + mellomrom: saksbehandlingstid</li>
+                    <li>korkonk + mellomrom: standardtekst om konkurs grunnet korona</li>
                 </ul>
             </HjelpetekstUnderHoyre>
         </HjelpetekstStyle>
