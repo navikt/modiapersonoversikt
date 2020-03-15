@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { Textarea, TextareaProps } from 'nav-frontend-skjema';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import {
     autofullfor,
     AutofullforData,
@@ -8,6 +9,7 @@ import {
     useAutoFullførData
 } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
 import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
+import * as StandardTeksterModels from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
 import styled from 'styled-components/macro';
 import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
 import { guid } from 'nav-frontend-js-utils';
@@ -16,16 +18,32 @@ import { loggEvent } from '../../utils/logger/frontendLogger';
 import theme from '../../styles/personOversiktTheme';
 import { useErKontaktsenter } from '../../utils/enheterUtils';
 import { useRestResource } from '../../rest/consumer/useRestResource';
+import useFetch, { FetchResult, hasData } from '@nutgaard/use-fetch';
 
-type Regler = Array<{ regex: RegExp; replacement: () => string }>;
+interface InlineRegel {
+    type: 'internal';
+    regex: RegExp;
+    replacement: () => string;
+}
+
+interface ExternalRegel {
+    type: 'external';
+    regex: RegExp;
+    externalId: string;
+}
+
+type Regel = InlineRegel | ExternalRegel;
+
+type Regler = Array<Regel>;
 
 function useRules(): Regler {
     const erKontaktsenter = useErKontaktsenter();
     const saksbehandlerResources = useRestResource(resources => resources.innloggetSaksbehandler);
     const saksbehanderEnhet = saksbehandlerResources.data?.enhetNavn ?? '';
     return [
-        { regex: /^hei,?$/i, replacement: () => 'Hei, [bruker.fornavn]\n' },
+        { type: 'internal', regex: /^hei,?$/i, replacement: () => 'Hei, [bruker.fornavn]\n' },
         {
+            type: 'internal',
             regex: /^mvh$/i,
             replacement: () => {
                 const mvh = 'Med vennlig hilsen';
@@ -35,34 +53,41 @@ function useRules(): Regler {
                 return `${mvh}\n[saksbehandler.navn]\n${saksbehanderEnhet}`;
             }
         },
-        { regex: /^foet$/i, replacement: () => '[bruker.navn] ' },
+        { type: 'internal', regex: /^foet$/i, replacement: () => '[bruker.navn] ' },
         {
+            type: 'internal',
             regex: /^vint$/i,
             replacement: () =>
                 'Jeg har videreformidlet henvendelsen til ENHET som skal svare deg senest innen utgangen av DAG+DATO'
         },
         {
+            type: 'internal',
             regex: /^aap$/i,
             replacement: () => 'arbeidsavklaringspenger '
         },
         {
+            type: 'internal',
             regex: /^sbt$/i,
             replacement: () => 'saksbehandlingstid '
         },
         {
+            type: 'internal',
             regex: /^nay$/i,
             replacement: () => 'NAV Arbeid og ytelser '
         },
         {
+            type: 'internal',
             regex: /^nfp$/i,
             replacement: () => 'NAV Familie- og pensjonsytelser '
         },
         {
+            type: 'internal',
             regex: /^aapen$/i,
             replacement: () => 'work assessment allowance '
         },
-        { regex: /^hi,?$/i, replacement: () => 'Hi, [bruker.fornavn] ' },
+        { type: 'internal', regex: /^hi,?$/i, replacement: () => 'Hi, [bruker.fornavn] ' },
         {
+            type: 'internal',
             regex: /^mvhen$/i,
             replacement: () => {
                 const bestregards = `Best regards`;
@@ -73,6 +98,7 @@ function useRules(): Regler {
             }
         },
         {
+            type: 'internal',
             regex: /^mvhnn$/i,
             replacement: () => {
                 const mvh = 'Med vennleg helsing';
@@ -83,6 +109,7 @@ function useRules(): Regler {
             }
         },
         {
+            type: 'internal',
             regex: /^aapnn$/i,
             replacement: () => 'arbeidsavklaringspengar '
         }
@@ -179,6 +206,10 @@ function TegnIgjen(props: { maxLength?: number; text: string }) {
 
 function AutocompleteTextarea(props: TextareaProps) {
     const autofullførData = useAutoFullførData();
+    const [feilmelding, settFeilmelding] = useState<string>();
+    const standardtekster: FetchResult<StandardTeksterModels.Tekster> = useFetch<StandardTeksterModels.Tekster>(
+        '/modiapersonoversikt-skrivestotte/skrivestotte'
+    );
     const rules = useRules();
     const onChange = props.onChange;
     const onKeyDown: React.KeyboardEventHandler = useCallback(
@@ -193,12 +224,32 @@ function AutocompleteTextarea(props: TextareaProps) {
                     const [start, end] = findWordBoundary(value, cursorPosition);
 
                     const word = value.substring(start, end).trim();
-                    const replacement = rules.reduce((acc: string, { regex, replacement }) => {
-                        if (acc.match(regex)) {
+                    const replacement = rules.reduce((acc: string, rule) => {
+                        if (acc.match(rule.regex)) {
                             event.preventDefault();
                             event.stopPropagation();
                             loggEvent('Autocomplete', 'Textarea', { type: acc.toLowerCase() });
-                            return replacement();
+                            if (rule.type === 'internal') {
+                                settFeilmelding(undefined);
+                                return rule.replacement();
+                            } else {
+                                if (hasData(standardtekster)) {
+                                    const tekst: StandardTeksterModels.Tekst = standardtekster.data[rule.externalId];
+                                    if (tekst === undefined) {
+                                        settFeilmelding(`Ukjent tekst. Kontakt IT: ${rule.externalId}`);
+                                        return acc + ' ';
+                                    }
+                                    const innhold = tekst.innhold[Locale.nb_NO];
+                                    if (innhold === undefined) {
+                                        settFeilmelding(`Fant ikke tekst. Kontakt IT: ${rule.externalId}`);
+                                        return acc + ' ';
+                                    }
+                                    return innhold;
+                                } else {
+                                    settFeilmelding(`Tekster ikke lastet enda. Kontakt IT om problemet vedvarer. `);
+                                    return acc + ' ';
+                                }
+                            }
                         }
                         return acc;
                     }, word);
@@ -215,7 +266,7 @@ function AutocompleteTextarea(props: TextareaProps) {
                 }
             }
         },
-        [autofullførData, onChange, rules]
+        [autofullførData, onChange, rules, standardtekster]
     );
 
     return (
@@ -223,6 +274,7 @@ function AutocompleteTextarea(props: TextareaProps) {
             <Textarea onKeyDown={onKeyDown} {...props} maxLength={0} />
             <AutoTekstTips />
             <TegnIgjen maxLength={props.maxLength} text={props.value} />
+            {feilmelding && <AlertStripeFeil>{feilmelding}</AlertStripeFeil>}
         </Style>
     );
 }
