@@ -55,10 +55,9 @@ function useRules(): Regler {
         },
         { type: 'internal', regex: /^foet$/i, replacement: () => '[bruker.navn] ' },
         {
-            type: 'internal',
+            type: 'external',
             regex: /^vint$/i,
-            replacement: () =>
-                'Jeg har videreformidlet henvendelsen til ENHET som skal svare deg senest innen utgangen av DAG+DATO'
+            externalId: 'f31f5d09-4873-4f84-912d-0ff3636db1cd'
         },
         {
             type: 'internal',
@@ -112,6 +111,16 @@ function useRules(): Regler {
             type: 'internal',
             regex: /^aapnn$/i,
             replacement: () => 'arbeidsavklaringspengar '
+        },
+        {
+            type: 'external',
+            regex: /^korperm$/i,
+            externalId: 'af2e6816-391c-4b8b-b00e-27f116aa3de8'
+        },
+        {
+            type: 'external',
+            regex: /^korkonk$/i,
+            externalId: 'f15b6b9b-0cb6-4c46-8c37-0069e681ecdc'
         }
     ];
 }
@@ -146,6 +155,8 @@ function AutoTekstTips() {
                     <li>hi, + mellomrom: Hi, bruker (engelsk)</li>
                     <li>mvh/aap + nn + mellomrom: autofullfør på nynorsk</li>
                     <li>mvh/aap + en + mellomrom: autofullfør på engelsk</li>
+                    <li>korkonk + mellomrom: Informasjon ved konkurs</li>
+                    <li>korperm + mellomrom: Informasjon ved permittering</li>
                 </ul>
             </HjelpetekstUnderHoyre>
         </HjelpetekstStyle>
