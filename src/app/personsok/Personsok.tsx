@@ -8,6 +8,8 @@ import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/logger/frontendLogger';
+import { useCallback } from 'react';
+import useListener from '../../utils/hooks/use-listener';
 
 const StyledModalWrapper = styled(ModalWrapper)`
     &.modal {
@@ -21,22 +23,8 @@ const TittelStyle = styled(Innholdstittel)`
 
 function PersonsokContainer() {
     const [apen, settApen] = useState(false);
-    useEffect(() => {
-        const clickHandler = () => {
-            settApen(a => {
-                return !a;
-            });
-        };
-        const toggle = document.getElementById('toggle-personsok');
-        if (toggle) {
-            toggle.addEventListener('click', clickHandler);
-        }
-        return () => {
-            if (toggle) {
-                toggle.removeEventListener('click', clickHandler);
-            }
-        };
-    }, [settApen]);
+    const listener = useCallback(() => settApen(a => !a), [settApen]);
+    useListener('#toggle-personsok', 'click', listener, document.querySelector('dekorator'));
 
     useEffect(() => {
         if (apen) {
