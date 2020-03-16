@@ -8,7 +8,7 @@ export function IdentCelle(props: { ident: NorskIdent }) {
     return <Normaltekst>{props.ident.ident}</Normaltekst>;
 }
 
-export function NavnCelle(props: { navn: Navn; status: Kodeverk }) {
+export function NavnCelle(props: { navn: Navn; status?: Kodeverk }) {
     return <Normaltekst>{formatterNavn(props.navn, props.status)}</Normaltekst>;
 }
 
@@ -65,9 +65,9 @@ export function BostedCelle(props: { brukerinfo: Brukerinfo | null }) {
     }
 }
 
-function formatterNavn(navn: Navn, status: Kodeverk) {
+function formatterNavn(navn: Navn, status?: Kodeverk) {
     let personNavn = navn.etternavn + ', ' + navn.fornavn + formatNullableString(navn.mellomnavn, true);
-    if (status.beskrivelse === 'DØD') {
+    if (status?.beskrivelse === 'DØD') {
         personNavn += ' (død)';
     }
     return personNavn;
