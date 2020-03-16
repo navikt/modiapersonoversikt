@@ -12,7 +12,7 @@ jobs:
   build:
     name: Test and build
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/master'
+    if: github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/dev-q1' && github.ref != 'refs/heads/master'
     steps:
       - uses: actions/checkout@v1
       - uses: actions/cache@v1
@@ -30,7 +30,7 @@ jobs:
 
   build-and-push:
     name: Build and push Docker container
-    if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/dev-q1' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -53,14 +53,14 @@ jobs:
           echo ${GITHUB_TOKEN} | docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} --password-stdin
           docker build --tag ${IMAGE} .
           docker push ${IMAGE}
-  deploy-qa:
+  deploy-q1:
     name: Deploy to preprod
     needs: build-and-push
-    if: github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/dev-q1'
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        namespace: [q0, q1, q6]
+        namespace: [q1]
     steps:
       - uses: actions/checkout@v1
       - uses: nais/deploy/actions/deploy@v1
@@ -70,7 +70,24 @@ jobs:
           CLUSTER: dev-fss
           RESOURCE: .nais/qa-template.yaml
           VAR: namespace=${{matrix.namespace}}
-      
+  deploy-qa:
+    name: Deploy to preprod
+    needs: build-and-push
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        namespace: [q0, q6]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          PRINT_PAYLOAD: true
+          CLUSTER: dev-fss
+          RESOURCE: .nais/qa-template.yaml
+          VAR: namespace=${{matrix.namespace}}
+
   deploy-prod:
     name: Deploy to prod
     needs: build-and-push
