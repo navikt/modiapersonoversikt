@@ -7,7 +7,6 @@ import ModalWrapper from 'nav-frontend-modal';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import { loggEvent } from '../../utils/logger/frontendLogger';
 
 const StyledModalWrapper = styled(ModalWrapper)`
     &.modal {
@@ -37,12 +36,6 @@ function PersonsokContainer() {
             }
         };
     }, [settApen]);
-
-    useEffect(() => {
-        if (apen) {
-            loggEvent('Visning', 'Personsok');
-        }
-    }, [apen]);
 
     return (
         <StyledModalWrapper contentLabel="Avansert søk" onRequestClose={() => settApen(false)} isOpen={apen}>
