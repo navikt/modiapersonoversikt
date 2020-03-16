@@ -59,7 +59,6 @@ function InfoTabs() {
     }, [openTab, headerRef]);
 
     useEffect(() => {
-        loggEvent(openTab, 'Tabs');
         document.title = 'Modia personoversikt - ' + capitalizeName(openTab);
     }, [openTab]);
 
