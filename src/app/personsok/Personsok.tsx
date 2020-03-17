@@ -1,14 +1,11 @@
 import * as React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import PersonsokSkjema from './PersonsokSkjema';
 import PersonsokResultat from './PersonsokResultat';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import ModalWrapper from 'nav-frontend-modal';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import { loggEvent } from '../../utils/logger/frontendLogger';
 import useListener from '../../utils/hooks/use-listener';
 
 const StyledModalWrapper = styled(ModalWrapper)`
