@@ -4,7 +4,7 @@ import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
 import { ForsettDialogRequest, Meldingstype, SendDelsvarRequest, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { useAppState, useFødselsnummer } from '../../../../utils/customHooks';
+import { useFødselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
@@ -68,7 +68,6 @@ function FortsettDialogContainer(props: Props) {
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
     });
-    const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const dispatch = useDispatch();
     const updateState = (change: Partial<FortsettDialogState>) =>
         setState({
@@ -112,27 +111,6 @@ function FortsettDialogContainer(props: Props) {
             dispatch(reloadMeldinger);
         };
 
-        const handleAvsluttOppgave = () => {
-            if (!oppgaveFraGosys) {
-                return;
-            }
-            const request = {
-                fnr: fnr,
-                oppgaveid: oppgaveFraGosys.oppgaveId,
-                beskrivelse: 'Lest og besvart i Modia',
-                saksbehandlerValgtEnhet: saksbehandlersEnhet
-            };
-            post(`${apiBaseUri}/dialogmerking/avsluttgosysoppgave`, request, 'Avslutt-Oppgave-Fra-Gosys')
-                .then(() => {
-                    loggEvent('AvsluttGosysOppgaveFraUrl', 'AvsluttOppgaveskjema');
-                })
-                .catch(() => {
-                    setDialogStatus({ type: DialogPanelStatus.ERROR });
-                    const error = Error('Kunne ikke avslutte oppgave i GOSYS');
-                    console.error(error);
-                    loggError(error, 'Oppgave');
-                });
-        };
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
         const commonPayload = {
             fritekst: state.tekst,
@@ -157,9 +135,6 @@ function FortsettDialogContainer(props: Props) {
                 traad: props.traad
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Send-Svar')
-                .then(() => {
-                    handleAvsluttOppgave();
-                })
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
@@ -187,9 +162,6 @@ function FortsettDialogContainer(props: Props) {
                 traad: props.traad
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
-                .then(() => {
-                    handleAvsluttOppgave();
-                })
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
