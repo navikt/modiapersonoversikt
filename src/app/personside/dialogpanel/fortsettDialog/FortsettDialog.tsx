@@ -64,6 +64,7 @@ function FortsettDialog(props: Props) {
     const girIkkeVarsel = [Meldingstype.SVAR_OPPMOTE, Meldingstype.SVAR_TELEFON].includes(state.dialogType);
     const girVarselKanIkkeSvare = Meldingstype.SVAR_SKRIFTLIG === state.dialogType;
     const brukerKanSvareValg = state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
+    const delMedBrukerTekst = props.erTilknyttetOppgave ? `Del med ${navn} og avslutt oppgave` : `Del med ${navn}`;
     return (
         <FormStyle onSubmit={handleSubmit}>
             <TidligereMeldinger traad={props.traad} />
@@ -114,7 +115,7 @@ function FortsettDialog(props: Props) {
                     ? `Skriv delsvar og legg tilbake på ${
                           state.temagruppe ? temagruppeTekst(state.temagruppe).toLowerCase() : 'tema'
                       }`
-                    : `Del med ${navn}`}
+                    : delMedBrukerTekst}
             </SubmitKnapp>
             {!props.erTilknyttetOppgave && (
                 <StyledKnappMedBekreftPopup
