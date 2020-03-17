@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useCallback } from 'react';
 import PersonsokSkjema from './PersonsokSkjema';
 import PersonsokResultat from './PersonsokResultat';
 import { useState } from 'react';
@@ -8,7 +9,6 @@ import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/logger/frontendLogger';
-import { useCallback } from 'react';
 import useListener from '../../utils/hooks/use-listener';
 
 const StyledModalWrapper = styled(ModalWrapper)`
@@ -25,12 +25,6 @@ function PersonsokContainer() {
     const [apen, settApen] = useState(false);
     const listener = useCallback(() => settApen(a => !a), [settApen]);
     useListener('#toggle-personsok', 'click', listener, document.querySelector('dekorator'));
-
-    useEffect(() => {
-        if (apen) {
-            loggEvent('Visning', 'Personsok');
-        }
-    }, [apen]);
 
     return (
         <StyledModalWrapper contentLabel="Avansert søk" onRequestClose={() => settApen(false)} isOpen={apen}>

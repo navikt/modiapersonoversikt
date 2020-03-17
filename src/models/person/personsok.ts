@@ -7,7 +7,7 @@ export interface PersonsokResponse {
     bostedsadresse: string | null;
     kjonn: Kodeverk;
     navn: Navn;
-    status: Kodeverk;
+    status?: Kodeverk;
     ident: NorskIdent;
     brukerinfo: Brukerinfo | null;
 }

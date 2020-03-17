@@ -5,12 +5,10 @@ import Filter from './filter/Filter';
 import theme from '../../../../styles/personOversiktTheme';
 import styled, { css } from 'styled-components/macro';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
-import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import Arenalenke from './Arenalenke/Arenalenke';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import { useOnMount } from '../../../../utils/customHooks';
 import { erIE11, erModiabrukerdialog, erNyePersonoversikten } from '../../../../utils/erNyPersonoversikt';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
@@ -43,8 +41,6 @@ const UtbetalingerSection = styled.section`
 `;
 
 function UtbetalingerContainer() {
-    useOnMount(() => loggEvent('Sidevisning', 'Utbetalinger'));
-
     return (
         <ErrorBoundary boundaryName={'UtbetalingerContainer'}>
             <UtbetalingerStyle>
