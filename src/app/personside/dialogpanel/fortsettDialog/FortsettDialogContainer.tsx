@@ -159,6 +159,8 @@ function FortsettDialogContainer(props: Props) {
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Send-Svar')
                 .then(() => {
                     handleAvsluttOppgave();
+                })
+                .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
@@ -187,6 +189,8 @@ function FortsettDialogContainer(props: Props) {
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
                     handleAvsluttOppgave();
+                })
+                .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
