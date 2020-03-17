@@ -96,7 +96,7 @@ function FortsettDialogContainer(props: Props) {
     const oppgaveFraGosys =
         isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.fraGosys);
     const oppgaveIdFraGosys = oppgaveFraGosys && oppgaveFraGosys.oppgaveId;
-    const oppgaveId = opprettHenvendelse.henvendelse.oppgaveId || oppgaveIdFraGosys;
+    const oppgaveId = oppgaveIdFraGosys ? oppgaveIdFraGosys : opprettHenvendelse.henvendelse.oppgaveId;
 
     const handleAvbryt = () => dispatch(setIngenValgtTraadDialogpanel());
 
@@ -139,7 +139,7 @@ function FortsettDialogContainer(props: Props) {
             meldingstype: state.dialogType,
             traadId: props.traad.traadId,
             behandlingsId: opprettHenvendelse.henvendelse.behandlingsId,
-            oppgaveId: opprettHenvendelse.henvendelse.oppgaveId
+            oppgaveId: oppgaveId
         };
         if (
             FortsettDialogValidator.erGyldigSvarSkriftlig(state) ||
