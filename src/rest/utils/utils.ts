@@ -2,8 +2,7 @@ import { Action, Dispatch } from 'redux';
 import { ActionTypes, FetchUriCreator, getActionTypes } from './restResource';
 import { AsyncDispatch } from '../../redux/ThunkTypes';
 import { AppState } from '../../redux/reducers';
-import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
-import { Timer } from '../../utils/timer';
+import { loggError } from '../../utils/logger/frontendLogger';
 import { includeCredentials } from '../../api/config';
 
 const notFound = new Error();
@@ -93,8 +92,6 @@ function handterFeil(dispatch: Dispatch<Action>, resourceNavn: string, fetchUri:
     };
 }
 
-const timer = new Timer();
-
 export function fetchDataAndDispatchToRedux<T>(
     fetchUriCreator: FetchUriCreator,
     resourceNavn: string,
@@ -108,12 +105,10 @@ export function fetchDataAndDispatchToRedux<T>(
             return Promise.resolve();
         }
         dispatch({ type: reload ? actionNames.RELOADING : actionNames.STARTING, fetchUrl: uri });
-        timer.startTimer();
         return fetch(uri, includeCredentials)
             .then(parseResponse)
             .then(dispatchDataTilRedux(dispatch, actionNames.FINISHED, uri))
-            .catch(handterFeil(dispatch, resourceNavn, uri))
-            .finally(() => loggEvent(reload ? 'Re-Fetch' : 'Fetch', resourceNavn, undefined, { ms: timer.getTime() }));
+            .catch(handterFeil(dispatch, resourceNavn, uri));
     };
 }
 
