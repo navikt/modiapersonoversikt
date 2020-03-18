@@ -3,8 +3,6 @@ import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 
 export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleResponse {
     switch (toggleId) {
-        case FeatureToggles.SaksoversiktNyttVindu:
-            return true;
         case FeatureToggles.VisTilbakemelding:
             return true;
         case FeatureToggles.SaksDokumentIEgetVindu:
