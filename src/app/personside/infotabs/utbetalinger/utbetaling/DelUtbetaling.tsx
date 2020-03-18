@@ -12,7 +12,6 @@ import { AnyAction, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 
 export interface OwnProps {
     ytelse: Ytelse;
@@ -57,7 +56,6 @@ class DelUtbetaling extends React.PureComponent<Props> {
 
     toggleVisDetaljer() {
         this.props.ekspanderYtelse(!this.props.erEkspandert);
-        !this.props.erEkspandert && loggEvent('VisUtbetalingsDetaljer', 'Utbetalinger');
     }
 
     render() {

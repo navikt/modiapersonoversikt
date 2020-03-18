@@ -17,7 +17,6 @@ import { useFødselsnummer } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
-import { loggEvent } from '../../../utils/logger/frontendLogger';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import Ytelser from './ytelser/Ytelser';
 import { guid } from 'nav-frontend-js-utils';
@@ -59,7 +58,6 @@ function InfoTabs() {
     }, [openTab, headerRef]);
 
     useEffect(() => {
-        loggEvent(openTab, 'Tabs');
         document.title = 'Modia personoversikt - ' + capitalizeName(openTab);
     }, [openTab]);
 
