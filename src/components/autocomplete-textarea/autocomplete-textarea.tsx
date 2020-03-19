@@ -53,6 +53,13 @@ function useRules(): Regler {
                 return `${mvh}\n[saksbehandler.navn]\n${saksbehanderEnhet}`;
             }
         },
+        {
+            type: 'internal',
+            regex: /^mvhks$/i,
+            replacement: () => {
+                return `Med vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter`;
+            }
+        },
         { type: 'internal', regex: /^foet$/i, replacement: () => '[bruker.navn] ' },
         {
             type: 'external',
@@ -121,6 +128,16 @@ function useRules(): Regler {
             type: 'external',
             regex: /^korkonk$/i,
             externalId: 'f15b6b9b-0cb6-4c46-8c37-0069e681ecdc'
+        },
+        {
+            type: 'external',
+            regex: /^koroms$/i,
+            externalId: '056be54e-d93d-487c-a6c2-238c885bdfd8'
+        },
+        {
+            type: 'external',
+            regex: /^korosakt$/i,
+            externalId: '788b0492-a5e8-4883-a6af-6387ff1e46d6'
         }
     ];
 }
@@ -146,6 +163,7 @@ function AutoTekstTips() {
                 <ul>
                     <li>foet + mellomrom: Brukers fulle navn</li>
                     <li>mvh + mellomrom: Signatur</li>
+                    <li>mvhks + mellomrom: Signatur som fra KS</li>
                     <li>hei + mellomrom: Hei bruker</li>
                     <li>vint + mellomrom: Videreformidle Internt</li>
                     <li>AAP + mellomrom: arbeidsavklaringspenger</li>
@@ -157,6 +175,8 @@ function AutoTekstTips() {
                     <li>mvh/aap + en + mellomrom: autofullfør på engelsk</li>
                     <li>korkonk + mellomrom: Informasjon ved konkurs</li>
                     <li>korperm + mellomrom: Informasjon ved permittering</li>
+                    <li>koroms + mellomrom: OMS - Korona stengt bhg/skole</li>
+                    <li>korosakt + mellomrom: OS - Korona aktivitet STO</li>
                 </ul>
             </HjelpetekstUnderHoyre>
         </HjelpetekstStyle>
