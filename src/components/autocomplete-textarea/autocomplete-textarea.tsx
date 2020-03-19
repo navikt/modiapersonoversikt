@@ -30,6 +30,7 @@ interface ExternalRegel {
     type: 'external';
     regex: RegExp;
     externalId: string;
+    locale?: Locale;
 }
 
 type Regel = InlineRegel | ExternalRegel;
@@ -270,9 +271,12 @@ function AutocompleteTextarea(props: TextareaProps) {
                                         settFeilmelding(`Ukjent tekst. Kontakt IT: ${rule.externalId}`);
                                         return acc + ' ';
                                     }
-                                    const innhold = tekst.innhold[Locale.nb_NO];
+                                    const locale = rule.locale || Locale.nb_NO;
+                                    const innhold = tekst.innhold[locale];
                                     if (innhold === undefined) {
-                                        settFeilmelding(`Fant ikke tekst. Kontakt IT: ${rule.externalId}`);
+                                        settFeilmelding(
+                                            `Fant ikke tekst. Kontakt IT: ${rule.externalId}@${rule.locale}`
+                                        );
                                         return acc + ' ';
                                     }
                                     return innhold;
