@@ -127,6 +127,12 @@ function useRules(): Regler {
         },
         {
             type: 'external',
+            regex: /^korpermeng$/i,
+            externalId: 'af2e6816-391c-4b8b-b00e-27f116aa3de8',
+            locale: Locale.en_US
+        },
+        {
+            type: 'external',
             regex: /^korkonk$/i,
             externalId: 'f15b6b9b-0cb6-4c46-8c37-0069e681ecdc'
         },
