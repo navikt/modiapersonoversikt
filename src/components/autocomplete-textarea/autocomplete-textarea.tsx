@@ -19,6 +19,7 @@ import theme from '../../styles/personOversiktTheme';
 import { useErKontaktsenter } from '../../utils/enheterUtils';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 import useFetch, { FetchResult, hasData } from '@nutgaard/use-fetch';
+import { rapporterBruk } from '../../app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 
 interface InlineRegel {
     type: 'internal';
@@ -275,6 +276,8 @@ function AutocompleteTextarea(props: TextareaProps) {
                                         settFeilmelding(`Fant ikke tekst. Kontakt IT: ${rule.externalId}`);
                                         return acc + ' ';
                                     }
+
+                                    rapporterBruk(tekst);
                                     return innhold;
                                 } else {
                                     settFeilmelding(`Tekster ikke lastet enda. Kontakt IT om problemet vedvarer. `);
