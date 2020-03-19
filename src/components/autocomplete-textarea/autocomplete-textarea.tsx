@@ -53,6 +53,13 @@ function useRules(): Regler {
                 return `${mvh}\n[saksbehandler.navn]\n${saksbehanderEnhet}`;
             }
         },
+        {
+            type: 'internal',
+            regex: /^mvhks$/i,
+            replacement: () => {
+                return `Med vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter`;
+            }
+        },
         { type: 'internal', regex: /^foet$/i, replacement: () => '[bruker.navn] ' },
         {
             type: 'external',
@@ -156,6 +163,7 @@ function AutoTekstTips() {
                 <ul>
                     <li>foet + mellomrom: Brukers fulle navn</li>
                     <li>mvh + mellomrom: Signatur</li>
+                    <li>mvhks + mellomrom: Signatur som fra KS</li>
                     <li>hei + mellomrom: Hei bruker</li>
                     <li>vint + mellomrom: Videreformidle Internt</li>
                     <li>AAP + mellomrom: arbeidsavklaringspenger</li>
