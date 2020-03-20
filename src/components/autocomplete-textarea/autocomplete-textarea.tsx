@@ -30,6 +30,7 @@ interface ExternalRegel {
     type: 'external';
     regex: RegExp;
     externalId: string;
+    locale?: Locale;
 }
 
 type Regel = InlineRegel | ExternalRegel;
@@ -51,6 +52,13 @@ function useRules(): Regler {
                     return `${mvh}\n[saksbehandler.fornavn]\nNAV Kontaktsenter`;
                 }
                 return `${mvh}\n[saksbehandler.navn]\n${saksbehanderEnhet}`;
+            }
+        },
+        {
+            type: 'internal',
+            regex: /^mvhks$/i,
+            replacement: () => {
+                return `Med vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter`;
             }
         },
         { type: 'internal', regex: /^foet$/i, replacement: () => '[bruker.navn] ' },
@@ -119,8 +127,24 @@ function useRules(): Regler {
         },
         {
             type: 'external',
+            regex: /^korpermeng$/i,
+            externalId: 'af2e6816-391c-4b8b-b00e-27f116aa3de8',
+            locale: Locale.en_US
+        },
+        {
+            type: 'external',
             regex: /^korkonk$/i,
             externalId: 'f15b6b9b-0cb6-4c46-8c37-0069e681ecdc'
+        },
+        {
+            type: 'external',
+            regex: /^koroms$/i,
+            externalId: '056be54e-d93d-487c-a6c2-238c885bdfd8'
+        },
+        {
+            type: 'external',
+            regex: /^korosakt$/i,
+            externalId: '788b0492-a5e8-4883-a6af-6387ff1e46d6'
         }
     ];
 }
@@ -146,6 +170,7 @@ function AutoTekstTips() {
                 <ul>
                     <li>foet + mellomrom: Brukers fulle navn</li>
                     <li>mvh + mellomrom: Signatur</li>
+                    <li>mvhks + mellomrom: Signatur som fra KS</li>
                     <li>hei + mellomrom: Hei bruker</li>
                     <li>vint + mellomrom: Videreformidle Internt</li>
                     <li>AAP + mellomrom: arbeidsavklaringspenger</li>
@@ -157,6 +182,8 @@ function AutoTekstTips() {
                     <li>mvh/aap + en + mellomrom: autofullfør på engelsk</li>
                     <li>korkonk + mellomrom: Informasjon ved konkurs</li>
                     <li>korperm + mellomrom: Informasjon ved permittering</li>
+                    <li>koroms + mellomrom: OMS - Korona stengt bhg/skole</li>
+                    <li>korosakt + mellomrom: OS - Korona aktivitet STO</li>
                 </ul>
             </HjelpetekstUnderHoyre>
         </HjelpetekstStyle>
@@ -250,9 +277,12 @@ function AutocompleteTextarea(props: TextareaProps) {
                                         settFeilmelding(`Ukjent tekst. Kontakt IT: ${rule.externalId}`);
                                         return acc + ' ';
                                     }
-                                    const innhold = tekst.innhold[Locale.nb_NO];
+                                    const locale = rule.locale || Locale.nb_NO;
+                                    const innhold = tekst.innhold[locale];
                                     if (innhold === undefined) {
-                                        settFeilmelding(`Fant ikke tekst. Kontakt IT: ${rule.externalId}`);
+                                        settFeilmelding(
+                                            `Fant ikke tekst. Kontakt IT: ${rule.externalId}@${rule.locale}`
+                                        );
                                         return acc + ' ';
                                     }
                                     return innhold;

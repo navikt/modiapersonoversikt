@@ -26,7 +26,7 @@ function StartbildeDevKnapper() {
 
     function handleLagOpgaveFraGOSYS() {
         const oppgaveId = 'A1B2C3';
-        const fødselsnummer = getRandomFnr();
+        const fødselsnummer = '10108000398';
         dispatch(
             tildelteOppgaverResource.actions.setData([
                 {
