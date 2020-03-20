@@ -59,7 +59,7 @@ function usePreFetchJournalforingsSaker() {
         const sammensattUrl = `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`;
         const pensjonUrl = `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`;
         cache.fetch(createCacheKey(sammensattUrl, includeCredentials), sammensattUrl, includeCredentials);
-        cache.fetch(createCacheKey(pensjonUrl, includeCredentials), sammensattUrl, includeCredentials);
+        cache.fetch(createCacheKey(pensjonUrl, includeCredentials), pensjonUrl, includeCredentials);
     });
 }
 
