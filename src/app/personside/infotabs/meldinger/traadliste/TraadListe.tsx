@@ -12,6 +12,9 @@ import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { guid } from 'nav-frontend-js-utils';
+import usePrinter from '../../../../../utils/UsePrinter';
+import PrintKnapp from '../../../../../components/PrintKnapp';
+import MeldingerPrintMarkup from '../../../../../utils/MeldingerPrintMarkup';
 
 interface Props {
     traader: Traad[];
@@ -37,6 +40,12 @@ const SokVerktøyStyle = styled.div`
     justify-content: space-between;
 `;
 
+const StyledVerktøylinje = styled.div`
+    padding: ${theme.margin.layout} ${theme.margin.layout} 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;
 const StyledOl = styled.ol`
     > * {
         border-top: ${theme.border.skille};
@@ -75,6 +84,21 @@ const StyledCheckbox = styled(Checkbox)`
 
 export const valgtMeldingKlasse = 'valgt_melding';
 
+function PrintAlle({ traader }: { traader: Traad[] }) {
+    const printer = usePrinter();
+    const PrinterWrapper = printer.printerWrapper;
+
+    return (
+        <>
+            <PrintKnapp tittel={'Skriv ut alle meldinger'} onClick={() => printer?.triggerPrint()} />
+            <PrinterWrapper>
+                {traader.map(traad => (
+                    <MeldingerPrintMarkup valgtTraad={traad} />
+                ))}
+            </PrinterWrapper>
+        </>
+    );
+}
 function TraadListe(props: Props) {
     const inputRef = React.useRef<HTMLInputElement>();
     const paginering = usePaginering(props.traaderEtterSokOgFiltrering, 50, 'melding', props.valgtTraad);
@@ -145,7 +169,10 @@ function TraadListe(props: Props) {
                         className={'move-input-label'}
                     />
                 </InputStyle>
-                <StyledCheckbox label="Skjul varsler" checked={props.skjulVarsler} onChange={handleSkjulVarsler} />
+                <StyledVerktøylinje>
+                    <StyledCheckbox label="Skjul varsler" checked={props.skjulVarsler} onChange={handleSkjulVarsler} />
+                    <PrintAlle traader={props.traader} />
+                </StyledVerktøylinje>
                 <SokVerktøyStyle>
                     <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>
                     {visAlleMeldingerKnapp}

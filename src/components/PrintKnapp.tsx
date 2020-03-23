@@ -6,6 +6,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 interface Props {
     onClick: (event: React.MouseEvent) => void;
+    tittel?: String;
 }
 
 const PrintIkonStyle = styled.button`
@@ -33,10 +34,10 @@ const PrintIkonStyle = styled.button`
     }
 `;
 
-function PrintKnapp({ onClick }: Props) {
+function PrintKnapp({ onClick, tittel }: Props) {
     return (
         <PrintIkonStyle onClick={onClick} aria-label="Skriv ut">
-            <Normaltekst tag="span">Skriv ut</Normaltekst> <PrinterSVG />
+            <Normaltekst tag="span">{tittel ? tittel : 'Skriv ut'}</Normaltekst> <PrinterSVG />
         </PrintIkonStyle>
     );
 }
