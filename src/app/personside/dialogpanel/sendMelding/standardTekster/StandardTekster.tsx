@@ -3,7 +3,7 @@ import { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import styled from 'styled-components/macro';
 import { Feilmelding } from '../../../../../utils/Feilmelding';
 import useFieldState, { FieldState } from '../../../../../utils/hooks/use-field-state';
-import { erGyldigValg, sokEtterTekster } from './sokUtils';
+import { erGyldigValg, sokEtterTekster, rapporterBruk } from './sokUtils';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import StandardTekstValg from './velgTekst/StandardTekstValg';
 import * as StandardTeksterModels from './domain';
@@ -14,7 +14,6 @@ import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullførData } from '../autofullforUtils';
 import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { guid } from 'nav-frontend-js-utils';
@@ -93,7 +92,7 @@ function velgTekst(
         event.preventDefault();
         event.stopPropagation();
         if (erGyldigValg(tekst, locale)) {
-            loggEvent('Velg tekst', 'Standardtekster', undefined, { ms: getTimeSpent() });
+            rapporterBruk(tekst);
             const localeTekst: string = tekst.innhold[locale]?.trim();
             if (autofullforData) {
                 const nokler = byggAutofullforMap(
