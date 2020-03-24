@@ -40,7 +40,7 @@ const SokVerktøyStyle = styled.div`
     justify-content: space-between;
 `;
 
-const StyledVerktøylinje = styled.div`
+const SpaceBetween = styled.div`
     padding: ${theme.margin.layout} ${theme.margin.layout} 0 0;
     display: flex;
     flex-direction: row;
@@ -169,10 +169,10 @@ function TraadListe(props: Props) {
                         className={'move-input-label'}
                     />
                 </InputStyle>
-                <StyledVerktøylinje>
+                <SpaceBetween>
                     <StyledCheckbox label="Skjul varsler" checked={props.skjulVarsler} onChange={handleSkjulVarsler} />
                     <PrintAlle traader={props.traader} />
-                </StyledVerktøylinje>
+                </SpaceBetween>
                 <SokVerktøyStyle>
                     <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>
                     {visAlleMeldingerKnapp}
