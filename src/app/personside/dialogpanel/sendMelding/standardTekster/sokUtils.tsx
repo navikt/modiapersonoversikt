@@ -1,13 +1,16 @@
 import { FetchResult, hasData } from '@nutgaard/use-fetch';
 import { parseTekst } from '../../../../../components/tag-input/tag-input';
 import * as StandardTekster from './domain';
-import { Tekst } from './domain';
 
 interface Candidate {
     weight: number;
-    tekst: Tekst;
+    tekst: StandardTekster.Tekst;
     tags: string[];
     searchableText: string;
+}
+
+export function rapporterBruk(tekst: StandardTekster.Tekst): void {
+    fetch(`/modiapersonoversikt-skrivestotte/skrivestotte/statistikk/${tekst.id}`, { method: 'POST' });
 }
 
 export function sokEtterTekster(

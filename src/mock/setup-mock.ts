@@ -534,6 +534,11 @@ function setupStandardteksterMock(mock: FetchMock) {
         '/modiapersonoversikt-skrivestotte/skrivestotte',
         withDelayedResponse(randomDelay(), STATUS_OK, () => standardTekster)
     );
+
+    mock.post(
+        '/modiapersonoversikt-skrivestotte/skrivestotte/statistikk/:id',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => undefined)
+    );
 }
 
 function setupAvsluttOppgaveGosysMock(mock: FetchMock) {

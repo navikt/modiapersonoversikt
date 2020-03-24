@@ -1,13 +1,6 @@
 @import '~nav-frontend-core';
 
-.personsok-button,
-#toggle-personsok {
-    #hentPerson & {
-        margin: -3px 0 0 17px;
-    }
-    .personpanel & {
-        margin: -6px 0 0 17px;
-    }
+.dekorator .personsok-button {
     width: 44px;
     height: 44px;
     border-radius: 44px;
@@ -27,6 +20,7 @@
         background-color: #fff;
         display: inline-block;
         padding-top: 9px;
+        pointer-events: none;
     }
     &:hover span {
         background-color: @navBlaDarken20;
@@ -44,7 +38,7 @@
             border-top: none;
             border-left: 7px solid transparent;
             border-right: 7px solid transparent;
-            border-bottom: 7px solid @navMorkGra;
+            border-bottom: 7px solid currentColor;
         }
     }
     .personsok-pil {
@@ -55,6 +49,6 @@
         margin: 0 auto;
         border-left: 7px solid transparent;
         border-right: 7px solid transparent;
-        border-top: 7px solid @navMorkGra;
+        border-top: 7px solid currentColor;
     }
 }

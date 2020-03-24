@@ -11,6 +11,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
     valgtTraad: Traad;
@@ -23,6 +24,10 @@ const MERK_KONTORSPERRET_URL = `${apiBaseUri}/dialogmerking/kontorsperret`;
 
 const Style = styled.div`
     margin-top: 1rem;
+`;
+
+const Margin = styled.div`
+    margin: 1rem 0;
 `;
 
 function getMerkKontrorsperretRequest(fnr: String, enhet: string, traad: Traad): MerkKontorsperrRequest {
@@ -39,21 +44,27 @@ export function Kontorsperr(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const brukersKontor = useRestResource(resource => resource.brukersNavKontor);
     const brukersEnhetID = brukersKontor.data?.enhetId ? brukersKontor.data.enhetId : '';
-    const valgtTraad = props.valgtTraad;
+    const [error, setError] = useState(false);
 
     const kontorsperr = () => {
         if (!brukersEnhetID) {
+            setError(!error);
             return;
         }
         props.merkPost(
             MERK_KONTORSPERRET_URL,
-            getMerkKontrorsperretRequest(valgtBrukersFnr, brukersEnhetID, valgtTraad),
+            getMerkKontrorsperretRequest(valgtBrukersFnr, brukersEnhetID, props.valgtTraad),
             'Kontorsperring'
         );
     };
 
     return (
         <Style>
+            {error && (
+                <Margin>
+                    <AlertStripeAdvarsel>Kunne ikke finne brukers NAV enhet</AlertStripeAdvarsel>
+                </Margin>
+            )}
             <Checkbox
                 label={'Opprett oppgave'}
                 checked={opprettOppgave}
@@ -62,7 +73,7 @@ export function Kontorsperr(props: Props) {
             <UnmountClosed isOpened={opprettOppgave}>
                 <OpprettOppgaveContainer
                     lukkPanel={props.tilbake}
-                    valgtTraad={valgtTraad}
+                    valgtTraad={props.valgtTraad}
                     onSuccessCallback={kontorsperr}
                 />
             </UnmountClosed>

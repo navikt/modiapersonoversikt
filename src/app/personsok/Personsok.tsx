@@ -1,12 +1,12 @@
 import * as React from 'react';
+import { useCallback, useState } from 'react';
 import PersonsokSkjema from './PersonsokSkjema';
 import PersonsokResultat from './PersonsokResultat';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import ModalWrapper from 'nav-frontend-modal';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import { Innholdstittel } from 'nav-frontend-typografi';
+import useListener from '../../utils/hooks/use-listener';
 
 const StyledModalWrapper = styled(ModalWrapper)`
     &.modal {
@@ -20,22 +20,8 @@ const TittelStyle = styled(Innholdstittel)`
 
 function PersonsokContainer() {
     const [apen, settApen] = useState(false);
-    useEffect(() => {
-        const clickHandler = () => {
-            settApen(a => {
-                return !a;
-            });
-        };
-        const toggle = document.getElementById('toggle-personsok');
-        if (toggle) {
-            toggle.addEventListener('click', clickHandler);
-        }
-        return () => {
-            if (toggle) {
-                toggle.removeEventListener('click', clickHandler);
-            }
-        };
-    }, [settApen]);
+    const listener = useCallback(() => settApen(a => !a), [settApen]);
+    useListener('#toggle-personsok', 'click', listener, document.querySelector('dekorator'));
 
     return (
         <StyledModalWrapper contentLabel="Avansert søk" onRequestClose={() => settApen(false)} isOpen={apen}>
