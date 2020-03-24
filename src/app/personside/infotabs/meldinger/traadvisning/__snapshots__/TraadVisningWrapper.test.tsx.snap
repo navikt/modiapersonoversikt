@@ -11,7 +11,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-top: 1rem;
 }
 
-.c19 {
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -126,7 +126,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin: 0;
 }
 
-.c15 {
+.c16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -135,6 +135,10 @@ exports[`Viser traad med verktøylinje 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.c15 {
+  margin-bottom: 0.5rem;
 }
 
 .c6 {
@@ -188,55 +192,55 @@ exports[`Viser traad med verktøylinje 1`] = `
   white-space: nowrap;
 }
 
-.c17 .snakkeboble-panel {
+.c18 .snakkeboble-panel {
   -webkit-flex-basis: 40rem;
   -ms-flex-preferred-size: 40rem;
   flex-basis: 40rem;
 }
 
-.c17 a {
+.c18 a {
   word-break: break-word;
 }
 
-.c17 .snakkeboble {
+.c18 .snakkeboble {
   margin: 0;
 }
 
-.c20 {
+.c21 {
   font-weight: 600;
 }
 
-.c18 {
+.c19 {
   text-align: left;
 }
 
-.c18 em {
+.c19 em {
   font-style: normal;
   background-color: #eed28c;
   box-shadow: 0 0 0 0.2rem #eed28c;
   border-radius: 0.625rem;
 }
 
-.c18 > *:not(:last-child) {
+.c19 > *:not(:last-child) {
   border-bottom: solid 0.0625rem #b7b1a9;
   padding-bottom: 0.7rem;
   margin-bottom: 0.5rem;
 }
 
-.c23 {
+.c24 {
   color: #0067c5;
 }
 
-.c22 .ekspanderbartPanel__hode,
-.c22 .ekspanderbartPanel__innhold {
+.c23 .ekspanderbartPanel__hode,
+.c23 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
 }
 
-.c21 p {
+.c22 p {
   margin-bottom: 0 !important;
 }
 
-.c16 {
+.c17 {
   padding: .5rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -244,7 +248,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   flex-grow: 1;
 }
 
-.c16 > *:last-child {
+.c17 > *:last-child {
   margin-top: .5rem;
 }
 
@@ -302,19 +306,19 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c17 {
+  .c18 {
     page-break-inside: avoid;
     border: solid 0.0625rem #78706a;
     margin-bottom: 2rem;
   }
 
-  .c17 .snakkeboble__snakkeboble-pil-container,
-  .c17 .nav-ikon,
-  .c17 .bruker-ikon {
+  .c18 .snakkeboble__snakkeboble-pil-container,
+  .c18 .nav-ikon,
+  .c18 .bruker-ikon {
     display: none;
   }
 
-  .c17 .snakkeboble-panel {
+  .c18 .snakkeboble-panel {
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
@@ -322,7 +326,7 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c22 {
+  .c23 {
     display: none;
   }
 }
@@ -895,6 +899,29 @@ exports[`Viser traad med verktøylinje 1`] = `
                 Avslutt uten å svare bruker
               </span>
             </label>
+            <label
+              className="inputPanel radioPanel"
+              htmlFor="Helt tilfeldig ID"
+            >
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                disabled={false}
+                id="Helt tilfeldig ID"
+                name="merk"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="FERDIGSTILL"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Overstyrt ferdigstillelse av oppgave
+              </span>
+            </label>
           </div>
         </fieldset>
         <div
@@ -904,6 +931,44 @@ exports[`Viser traad med verktøylinje 1`] = `
       </div>
       <div
         className="c15"
+      >
+        <div
+          className="alertstripe alertstripe--info"
+        >
+          <span
+            aria-label="info"
+            className="alertstripe__ikon"
+          >
+            <svg
+              focusable="false"
+              height="1.5em"
+              kind="info-sirkel-fyll"
+              viewBox="0 0 24 24"
+              width="1.5em"
+            >
+              <g
+                fill="none"
+              >
+                <path
+                  d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                  fill="#669DB4"
+                />
+                <path
+                  d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+                  fill="#FFF"
+                />
+              </g>
+            </svg>
+          </span>
+          <div
+            className="typo-normal alertstripe__tekst"
+          >
+            Dersom oppgaven allerede er besvart og avsluttet kan man benytte overstyrt ferdigstillelse av oppgave
+          </div>
+        </div>
+      </div>
+      <div
+        className="c16"
       >
         <button
           className="knapp knapp--hoved"
@@ -923,7 +988,7 @@ exports[`Viser traad med verktøylinje 1`] = `
     </form>
   </article>
   <section
-    className="c16"
+    className="c17"
   >
     <div
       className="alertstripe alertstripe--info"
@@ -973,7 +1038,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       aria-label="Dialog"
     >
       <li
-        className="snakkeboble_ikoner c17"
+        className="snakkeboble_ikoner c18"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -998,13 +1063,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c18"
+                  className="c19"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c19"
+                      className="c20"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1016,7 +1081,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           4
                         </span>
                         <div
-                          className="c20"
+                          className="c21"
                         >
                           Delsvar - Arbeid
                         </div>
@@ -1035,7 +1100,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       27.07.2019 00:00
                     </div>
                     <div
-                      className="typo-normal c21"
+                      className="typo-normal c22"
                     >
                       Skrevet av Kristoffer Fredriksen (xy70r8)
                     </div>
@@ -1048,7 +1113,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c23 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1061,7 +1126,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c23"
+                          className="typo-etikett-liten c24"
                         >
                           Meldingen er journalført
                         </p>
@@ -1083,7 +1148,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c17"
+        className="snakkeboble_ikoner c18"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1108,13 +1173,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c18"
+                  className="c19"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c19"
+                      className="c20"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1126,7 +1191,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           3
                         </span>
                         <div
-                          className="c20"
+                          className="c21"
                         >
                           Spørsmål fra bruker - Arbeid
                         </div>
@@ -1144,7 +1209,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c23 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1157,7 +1222,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c23"
+                          className="typo-etikett-liten c24"
                         >
                           Meldingen er journalført
                         </p>
@@ -1179,7 +1244,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c17"
+        className="snakkeboble_ikoner c18"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1204,13 +1269,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c18"
+                  className="c19"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c19"
+                      className="c20"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1222,7 +1287,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           2
                         </span>
                         <div
-                          className="c20"
+                          className="c21"
                         >
                           Spørsmål fra bruker - Arbeid
                         </div>
@@ -1240,7 +1305,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c23 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1253,7 +1318,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c23"
+                          className="typo-etikett-liten c24"
                         >
                           Meldingen er journalført
                         </p>
@@ -1275,7 +1340,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c17"
+        className="snakkeboble_ikoner c18"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1300,13 +1365,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c18"
+                  className="c19"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c19"
+                      className="c20"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1318,7 +1383,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           1
                         </span>
                         <div
-                          className="c20"
+                          className="c21"
                         >
                           Samtalereferat oppmøte - Arbeid
                         </div>
@@ -1337,7 +1402,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       07.07.2019 00:00
                     </div>
                     <div
-                      className="typo-normal c21"
+                      className="typo-normal c22"
                     >
                       Skrevet av Sander Hansen (nzxo4q)
                     </div>
@@ -1350,7 +1415,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c23 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1363,7 +1428,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c23"
+                          className="typo-etikett-liten c24"
                         >
                           Meldingen er journalført
                         </p>
