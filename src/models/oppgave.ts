@@ -1,8 +1,8 @@
 export interface Oppgave {
     oppgaveId: string;
     fødselsnummer: string;
-    traadId: string;
     fraGosys?: boolean;
+    traadId?: string;
 }
 
 interface LeggTilbakeOppgaveBaseRequest {
@@ -16,6 +16,7 @@ interface LeggTilbakeOppgaveInnhabilRequest extends LeggTilbakeOppgaveBaseReques
 
 interface LeggTilbakeOppgaveFeilTemaRequest extends LeggTilbakeOppgaveBaseRequest {
     type: 'FeilTema';
+    traadId: string;
     temagruppe: string;
 }
 

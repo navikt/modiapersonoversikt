@@ -33,6 +33,18 @@ export const TemaPlukkbare = [
     Temagruppe.Uføretrygd,
     Temagruppe.Utland
 ];
+export const TemaLeggTilbake = [
+    Temagruppe.Arbeid,
+    Temagruppe.Familie,
+    Temagruppe.Hjelpemiddel,
+    Temagruppe.Bil,
+    Temagruppe.OrtopediskHjelpemiddel,
+    Temagruppe.Pensjon,
+    Temagruppe.PleiepengerSyktBarn,
+    Temagruppe.Uføretrygd,
+    Temagruppe.Utland,
+    Temagruppe.ØkonomiskSosial
+];
 
 export const TemaKommunaleTjenester = [Temagruppe.AndreSosiale, Temagruppe.ØkonomiskSosial];
 
