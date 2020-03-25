@@ -53,6 +53,7 @@ const Style = styled.div`
 
 interface Props {
     oppgaveId: string;
+    traadId: string;
     temagruppe?: Temagruppe | null;
     status: FortsettDialogPanelState;
     setDialogStatus: (status: FortsettDialogPanelState) => void;
@@ -130,6 +131,7 @@ function LeggTilbakepanel(props: Props) {
             const payload: LeggTilbakeOppgaveRequest = {
                 temagruppe: state.temagruppe,
                 oppgaveId: props.oppgaveId,
+                traadId: props.traadId,
                 type: 'FeilTema'
             };
             post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload, 'LeggTilbakeOppgave-FeilTema')
