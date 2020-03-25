@@ -5,8 +5,7 @@ import { History } from 'history';
 import { useDispatch } from 'react-redux';
 import { DecoratorProps, EnhetDisplay, FnrDisplay, RESET_VALUE } from './decoratorprops';
 import { fjernBrukerFraPath, paths, setNyBrukerIPath } from '../routes/routing';
-import { matchPath, useHistory, useLocation } from 'react-router';
-import { Location } from 'history';
+import { matchPath, useHistory } from 'react-router';
 import './personsokKnapp.less';
 import './hurtigtaster.less';
 import './decorator.less';
@@ -39,12 +38,11 @@ const StyledNav = styled.nav`
 `;
 
 function lagConfig(
-    location: Location<any>,
     enhet: string | undefined | null,
     history: History,
     settEnhet: (enhet: string) => void
 ): DecoratorProps {
-    const fnr = getFnrFraUrl(location);
+    const fnr = getFnrFraUrl();
     const fnrValue = fnr === '0' ? RESET_VALUE : fnr;
 
     return {
@@ -53,7 +51,7 @@ function lagConfig(
             value: fnrValue,
             display: FnrDisplay.SOKEFELT,
             onChange(fnr: string | null): void {
-                if (fnr === getFnrFraUrl(location)) {
+                if (fnr === getFnrFraUrl()) {
                     return;
                 }
                 if (fnr && fnr.length > 0) {
@@ -91,14 +89,14 @@ function useVenterPaRedux() {
     return klar;
 }
 
-function getFnrFraUrl(location: Location): string | null {
+function getFnrFraUrl(): string | null {
+    const location = window.location;
     const queryParams = parseQueryString<{ sokFnr?: string }>(location.search);
     const routematch = matchPath<{ fnr: string }>(location.pathname, `${paths.personUri}/:fnr`);
     return queryParams.sokFnr ?? routematch?.params.fnr ?? null;
 }
 
 function Decorator() {
-    const location = useLocation();
     const reduxErKlar = useVenterPaRedux();
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
     const history = useHistory();
@@ -117,12 +115,7 @@ function Decorator() {
         dispatch(velgEnhetAction(enhet));
     };
 
-    const config = useCallback(lagConfig, [location, valgtEnhet, history, handleSetEnhet])(
-        location,
-        valgtEnhet,
-        history,
-        handleSetEnhet
-    );
+    const config = useCallback(lagConfig, [valgtEnhet, history, handleSetEnhet])(valgtEnhet, history, handleSetEnhet);
 
     return (
         <StyledNav>
