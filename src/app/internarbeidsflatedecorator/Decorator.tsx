@@ -4,12 +4,12 @@ import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import { useDispatch } from 'react-redux';
 import { DecoratorProps, EnhetDisplay, FnrDisplay, RESET_VALUE } from './decoratorprops';
-import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
-import { useHistory } from 'react-router';
+import { fjernBrukerFraPath, paths, setNyBrukerIPath } from '../routes/routing';
+import { useHistory, useRouteMatch } from 'react-router';
 import './personsokKnapp.less';
 import './hurtigtaster.less';
 import './decorator.less';
-import { useAppState, useFødselsnummer, useOnMount } from '../../utils/customHooks';
+import { useAppState, useOnMount } from '../../utils/customHooks';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { velgEnhetAction } from '../../redux/session/session';
@@ -38,14 +38,12 @@ const StyledNav = styled.nav`
 `;
 
 function lagConfig(
-    gjeldendeFnr: string | undefined | null,
-    sokFnr: string | undefined,
+    fnr: string | null,
     enhet: string | undefined | null,
     history: History,
     settEnhet: (enhet: string) => void
 ): DecoratorProps {
-    const onsketFnr = sokFnr || gjeldendeFnr || null;
-    const fnrValue = sokFnr === '0' ? RESET_VALUE : onsketFnr;
+    const fnrValue = fnr === '0' ? RESET_VALUE : fnr;
 
     return {
         appname: 'Modia personoversikt',
@@ -53,7 +51,7 @@ function lagConfig(
             value: fnrValue,
             display: FnrDisplay.SOKEFELT,
             onChange(fnr: string | null): void {
-                if (fnr === gjeldendeFnr) {
+                if (fnr === fnrValue) {
                     return;
                 }
                 if (fnr && fnr.length > 0) {
@@ -91,8 +89,14 @@ function useVenterPaRedux() {
     return klar;
 }
 
+function useFnrFraUrl(): string | null {
+    const queryParams = useQueryParams<{ sokFnr?: string }>();
+    const routematch = useRouteMatch<{ fnr: string }>(`${paths.personUri}/:fnr`);
+    return queryParams.sokFnr ?? routematch?.params.fnr ?? null;
+}
+
 function Decorator() {
-    const gjeldendeFnr = useFødselsnummer();
+    const fnr = useFnrFraUrl();
     const reduxErKlar = useVenterPaRedux();
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
     const history = useHistory();
@@ -111,9 +115,8 @@ function Decorator() {
         dispatch(velgEnhetAction(enhet));
     };
 
-    const config = useCallback(lagConfig, [gjeldendeFnr, valgtEnhet, history, handleSetEnhet])(
-        gjeldendeFnr,
-        queryParams.sokFnr,
+    const config = useCallback(lagConfig, [fnr, valgtEnhet, history, handleSetEnhet])(
+        fnr,
         valgtEnhet,
         history,
         handleSetEnhet
