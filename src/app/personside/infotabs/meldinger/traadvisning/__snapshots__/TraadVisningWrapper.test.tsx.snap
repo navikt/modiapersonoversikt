@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser traad med verktøylinje 1`] = `
-.c8 {
+.c13 {
   position: relative;
   text-align: center;
   padding-top: 1rem;
 }
 
-.c9 > * {
+.c14 > * {
   margin-top: 1rem;
 }
 
-.c19 {
+.c24 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -66,52 +66,52 @@ exports[`Viser traad med verktøylinje 1`] = `
   border-color: #0067c5;
 }
 
-.c11 {
+.c16 {
   position: relative;
 }
 
-.c13 {
+.c18 {
   position: absolute !important;
   bottom: 0.4rem;
   right: 0.4rem;
 }
 
-.c12 {
+.c17 {
   position: relative;
 }
 
-.c12 .skjemaelement {
+.c17 .skjemaelement {
   margin-bottom: 0;
 }
 
-.c10 {
+.c15 {
   padding-top: 1rem;
 }
 
-.c10 .inputPanelGruppe__inner {
+.c15 .inputPanelGruppe__inner {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c10 .inputPanelGruppe__inner > * {
+.c15 .inputPanelGruppe__inner > * {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c10 label {
+.c15 label {
   font-weight: 600;
   margin-bottom: 0.1rem;
 }
 
-.c10 .skjemaelement {
+.c15 .skjemaelement {
   margin-bottom: 0.7rem;
 }
 
-.c14 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -122,11 +122,11 @@ exports[`Viser traad med verktøylinje 1`] = `
   justify-content: space-between;
 }
 
-.c14 button {
+.c19 button {
   margin: 0;
 }
 
-.c15 {
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -139,6 +139,62 @@ exports[`Viser traad med verktøylinje 1`] = `
 
 .c6 {
   margin-right: 0.5rem;
+}
+
+.c7 {
+  border: none;
+  background-color: transparent;
+  padding: 0.1rem 0.2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #0067c5;
+}
+
+.c7 svg {
+  margin-left: 0.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.c7:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c7:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c9 {
+  margin-bottom: 2rem;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 1rem 0rem;
+}
+
+.c12 > * {
+  margin-bottom: 1rem !important;
+}
+
+.c10 {
+  margin-bottom: 2rem;
+  border-bottom: solid 0.0625rem #78706a;
+  page-break-inside: avoid;
 }
 
 .c1 {
@@ -188,55 +244,55 @@ exports[`Viser traad med verktøylinje 1`] = `
   white-space: nowrap;
 }
 
-.c17 .snakkeboble-panel {
+.c22 .snakkeboble-panel {
   -webkit-flex-basis: 40rem;
   -ms-flex-preferred-size: 40rem;
   flex-basis: 40rem;
 }
 
-.c17 a {
+.c22 a {
   word-break: break-word;
 }
 
-.c17 .snakkeboble {
+.c22 .snakkeboble {
   margin: 0;
 }
 
-.c20 {
+.c25 {
   font-weight: 600;
 }
 
-.c18 {
+.c23 {
   text-align: left;
 }
 
-.c18 em {
+.c23 em {
   font-style: normal;
   background-color: #eed28c;
   box-shadow: 0 0 0 0.2rem #eed28c;
   border-radius: 0.625rem;
 }
 
-.c18 > *:not(:last-child) {
+.c23 > *:not(:last-child) {
   border-bottom: solid 0.0625rem #b7b1a9;
   padding-bottom: 0.7rem;
   margin-bottom: 0.5rem;
 }
 
-.c23 {
+.c28 {
   color: #0067c5;
 }
 
-.c22 .ekspanderbartPanel__hode,
-.c22 .ekspanderbartPanel__innhold {
+.c27 .ekspanderbartPanel__hode,
+.c27 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
 }
 
-.c21 p {
+.c26 p {
   margin-bottom: 0 !important;
 }
 
-.c16 {
+.c21 {
   padding: .5rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -244,7 +300,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   flex-grow: 1;
 }
 
-.c16 > *:last-child {
+.c21 > *:last-child {
   margin-top: .5rem;
 }
 
@@ -258,63 +314,32 @@ exports[`Viser traad med verktøylinje 1`] = `
   flex-direction: column;
 }
 
-.c7 {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #0067c5;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  color: #3e3832;
+@media print {
+  .c7 {
+    display: none;
+  }
 }
 
-.c7:after {
-  border-bottom: 1px #b7b1a9 solid;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.c7:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c7:hover {
-  opacity: 0.8;
-}
-
-.c7:hover:after {
-  content: '';
-  border-color: #0067c5;
+@media not print {
+  .c8 {
+    display: none;
+  }
 }
 
 @media print {
-  .c17 {
+  .c22 {
     page-break-inside: avoid;
     border: solid 0.0625rem #78706a;
     margin-bottom: 2rem;
   }
 
-  .c17 .snakkeboble__snakkeboble-pil-container,
-  .c17 .nav-ikon,
-  .c17 .bruker-ikon {
+  .c22 .snakkeboble__snakkeboble-pil-container,
+  .c22 .nav-ikon,
+  .c22 .bruker-ikon {
     display: none;
   }
 
-  .c17 .snakkeboble-panel {
+  .c22 .snakkeboble-panel {
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
@@ -322,7 +347,7 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c22 {
+  .c27 {
     display: none;
   }
 }
@@ -398,23 +423,384 @@ exports[`Viser traad med verktøylinje 1`] = `
           />
         </button>
       </div>
-      <a
-        className="-a c7"
-        download={true}
-        href="/dialog/10108000398/sg838exr/print"
+      <button
+        aria-label="Skriv ut"
+        className="c7"
+        onClick={[Function]}
       >
-        <p
+        <span
           className="typo-normal"
         >
           Skriv ut
-        </p>
-      </a>
+        </span>
+         
+        <svg
+          viewBox="0 0 17 16"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+        >
+          <path
+            d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
+            fill="#0067C5"
+            fillRule="evenodd"
+          />
+          <path
+            d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
+            fill="#0067C5"
+          />
+        </svg>
+      </button>
+      <div
+        className="c8"
+      >
+        <div
+          className="c9"
+        >
+          <p
+            className="typo-normal"
+          >
+            <p
+              className="typo-element"
+            >
+              Henvendelsen er avsluttet uten å svare bruker
+               
+               
+            </p>
+          </p>
+          <p
+            className="typo-normal"
+          />
+          <p
+            className="typo-normal"
+          />
+        </div>
+        <div
+          className="c10"
+        >
+          <p
+            className="typo-ingress"
+          >
+            Samtalereferat oppmøte - Arbeid
+          </p>
+          <div
+            className="c11"
+          >
+            <div>
+              <p
+                className="typo-element"
+              >
+                Kanal: NAV_NO
+              </p>
+              <p
+                className="typo-element"
+              >
+                Type: 
+                SAMTALEREFERAT_OPPMOTE
+              </p>
+              <p
+                className="typo-element"
+              >
+                Temagruppe: 
+                ARBD
+              </p>
+              <p
+                className="typo-element"
+              >
+                 Journalført: 
+                11.07.2019
+                 
+              </p>
+              <p
+                className="typo-element"
+              >
+                Journalført med team: 
+              </p>
+            </div>
+            <div>
+              <p
+                className="typo-element"
+              >
+                Fødselsnummer: 
+                10108000398
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Mottatt/Sendt: 
+                07.07.2019
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Lest: 
+                12.07.2019 00:00
+              </p>
+            </div>
+          </div>
+          <div
+            className="c12"
+          >
+            <p
+              className="typo-element"
+            >
+              Innhold:
+            </p>
+            <div>
+              <p
+                className="typo-normal"
+              >
+                Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c10"
+        >
+          <p
+            className="typo-ingress"
+          >
+            Spørsmål fra bruker - Arbeid
+          </p>
+          <div
+            className="c11"
+          >
+            <div>
+              <p
+                className="typo-element"
+              >
+                Kanal: NAV_NO
+              </p>
+              <p
+                className="typo-element"
+              >
+                Type: 
+                SPORSMAL_SKRIFTLIG
+              </p>
+              <p
+                className="typo-element"
+              >
+                Temagruppe: 
+                ARBD
+              </p>
+              <p
+                className="typo-element"
+              >
+                 Journalført: 
+                12.08.2019
+                 
+              </p>
+              <p
+                className="typo-element"
+              >
+                Journalført med team: 
+              </p>
+            </div>
+            <div>
+              <p
+                className="typo-element"
+              >
+                Fødselsnummer: 
+                10108000398
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Mottatt/Sendt: 
+                12.07.2019
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Lest: 
+                11.08.2019 00:00
+              </p>
+            </div>
+          </div>
+          <div
+            className="c12"
+          >
+            <p
+              className="typo-element"
+            >
+              Innhold:
+            </p>
+            <div>
+              <p
+                className="typo-normal"
+              >
+                Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c10"
+        >
+          <p
+            className="typo-ingress"
+          >
+            Spørsmål fra bruker - Arbeid
+          </p>
+          <div
+            className="c11"
+          >
+            <div>
+              <p
+                className="typo-element"
+              >
+                Kanal: NAV_NO
+              </p>
+              <p
+                className="typo-element"
+              >
+                Type: 
+                SPORSMAL_SKRIFTLIG
+              </p>
+              <p
+                className="typo-element"
+              >
+                Temagruppe: 
+                ARBD
+              </p>
+              <p
+                className="typo-element"
+              >
+                 Journalført: 
+                21.07.2019
+                 
+              </p>
+              <p
+                className="typo-element"
+              >
+                Journalført med team: 
+              </p>
+            </div>
+            <div>
+              <p
+                className="typo-element"
+              >
+                Fødselsnummer: 
+                10108000398
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Mottatt/Sendt: 
+                16.07.2019
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Lest: 
+                14.07.2019 00:00
+              </p>
+            </div>
+          </div>
+          <div
+            className="c12"
+          >
+            <p
+              className="typo-element"
+            >
+              Innhold:
+            </p>
+            <div>
+              <p
+                className="typo-normal"
+              >
+                Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c10"
+        >
+          <p
+            className="typo-ingress"
+          >
+            Delsvar - Arbeid
+          </p>
+          <div
+            className="c11"
+          >
+            <div>
+              <p
+                className="typo-element"
+              >
+                Kanal: NAV_NO
+              </p>
+              <p
+                className="typo-element"
+              >
+                Type: 
+                DELVIS_SVAR_SKRIFTLIG
+              </p>
+              <p
+                className="typo-element"
+              >
+                Temagruppe: 
+                ARBD
+              </p>
+              <p
+                className="typo-element"
+              >
+                 Journalført: 
+                30.07.2019
+                 
+              </p>
+              <p
+                className="typo-element"
+              >
+                Journalført med team: 
+              </p>
+            </div>
+            <div>
+              <p
+                className="typo-element"
+              >
+                Fødselsnummer: 
+                10108000398
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Mottatt/Sendt: 
+                27.07.2019
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Lest: 
+                23.07.2019 00:00
+              </p>
+            </div>
+          </div>
+          <div
+            className="c12"
+          >
+            <p
+              className="typo-element"
+            >
+              Innhold:
+            </p>
+            <div>
+              <p
+                className="typo-normal"
+              >
+                Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <section
-      className="c8"
+      className="c13"
     >
       <div
-        className="c9"
+        className="c14"
       >
         <div
           className="alertstripe alertstripe--info"
@@ -461,7 +847,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       </div>
     </section>
     <div
-      className="c10"
+      className="c15"
     >
       <form
         onSubmit={[Function]}
@@ -588,11 +974,11 @@ exports[`Viser traad med verktøylinje 1`] = `
           aria-haspopup="listbox"
           aria-labelledby="downshift-0-label"
           aria-owns={null}
-          className="c11"
+          className="c16"
           role="combobox"
         >
           <div
-            className="c12"
+            className="c17"
           >
             <div
               className="skjemaelement"
@@ -625,7 +1011,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             </div>
             <svg
               aria-label="Laster innhold"
-              className="spinner c13 spinner--s"
+              className="spinner c18 spinner--s"
               focusable="false"
               height={32}
               kind="spinner"
@@ -663,11 +1049,11 @@ exports[`Viser traad med verktøylinje 1`] = `
           aria-haspopup="listbox"
           aria-labelledby="downshift-1-label"
           aria-owns={null}
-          className="c11"
+          className="c16"
           role="combobox"
         >
           <div
-            className="c12"
+            className="c17"
           >
             <div
               className="skjemaelement"
@@ -767,7 +1153,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           />
         </div>
         <div
-          className="c14"
+          className="c19"
         >
           <button
             className="knapp knapp--hoved"
@@ -903,7 +1289,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         />
       </div>
       <div
-        className="c15"
+        className="c20"
       >
         <button
           className="knapp knapp--hoved"
@@ -923,7 +1309,7 @@ exports[`Viser traad med verktøylinje 1`] = `
     </form>
   </article>
   <section
-    className="c16"
+    className="c21"
   >
     <div
       className="alertstripe alertstripe--info"
@@ -973,7 +1359,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       aria-label="Dialog"
     >
       <li
-        className="snakkeboble_ikoner c17"
+        className="snakkeboble_ikoner c22"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -998,13 +1384,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c18"
+                  className="c23"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c19"
+                      className="c24"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1016,7 +1402,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           4
                         </span>
                         <div
-                          className="c20"
+                          className="c25"
                         >
                           Delsvar - Arbeid
                         </div>
@@ -1035,7 +1421,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       27.07.2019 00:00
                     </div>
                     <div
-                      className="typo-normal c21"
+                      className="typo-normal c26"
                     >
                       Skrevet av Kristoffer Fredriksen (xy70r8)
                     </div>
@@ -1048,7 +1434,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c27 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1061,7 +1447,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c23"
+                          className="typo-etikett-liten c28"
                         >
                           Meldingen er journalført
                         </p>
@@ -1083,7 +1469,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c17"
+        className="snakkeboble_ikoner c22"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1108,13 +1494,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c18"
+                  className="c23"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c19"
+                      className="c24"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1126,7 +1512,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           3
                         </span>
                         <div
-                          className="c20"
+                          className="c25"
                         >
                           Spørsmål fra bruker - Arbeid
                         </div>
@@ -1144,7 +1530,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c27 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1157,7 +1543,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c23"
+                          className="typo-etikett-liten c28"
                         >
                           Meldingen er journalført
                         </p>
@@ -1179,7 +1565,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c17"
+        className="snakkeboble_ikoner c22"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1204,13 +1590,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c18"
+                  className="c23"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c19"
+                      className="c24"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1222,7 +1608,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           2
                         </span>
                         <div
-                          className="c20"
+                          className="c25"
                         >
                           Spørsmål fra bruker - Arbeid
                         </div>
@@ -1240,7 +1626,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c27 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1253,7 +1639,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c23"
+                          className="typo-etikett-liten c28"
                         >
                           Meldingen er journalført
                         </p>
@@ -1275,7 +1661,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c17"
+        className="snakkeboble_ikoner c22"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1300,13 +1686,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c18"
+                  className="c23"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c19"
+                      className="c24"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1318,7 +1704,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           1
                         </span>
                         <div
-                          className="c20"
+                          className="c25"
                         >
                           Samtalereferat oppmøte - Arbeid
                         </div>
@@ -1337,7 +1723,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       07.07.2019 00:00
                     </div>
                     <div
-                      className="typo-normal c21"
+                      className="typo-normal c26"
                     >
                       Skrevet av Sander Hansen (nzxo4q)
                     </div>
@@ -1350,7 +1736,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c27 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1363,7 +1749,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c23"
+                          className="typo-etikett-liten c28"
                         >
                           Meldingen er journalført
                         </p>
