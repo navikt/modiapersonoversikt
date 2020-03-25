@@ -9,7 +9,7 @@ import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { LeggTilbakeOppgaveRequest } from '../../../../../models/oppgave';
-import { Temagruppe, TemaPlukkbare } from '../../../../../models/Temagrupper';
+import { Temagruppe, TemaLeggTilbake } from '../../../../../models/Temagrupper';
 import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
@@ -53,6 +53,7 @@ const Style = styled.div`
 
 interface Props {
     oppgaveId: string;
+    traadId: string;
     temagruppe?: Temagruppe | null;
     status: FortsettDialogPanelState;
     setDialogStatus: (status: FortsettDialogPanelState) => void;
@@ -130,6 +131,7 @@ function LeggTilbakepanel(props: Props) {
             const payload: LeggTilbakeOppgaveRequest = {
                 temagruppe: state.temagruppe,
                 oppgaveId: props.oppgaveId,
+                traadId: props.traadId,
                 type: 'FeilTema'
             };
             post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload, 'LeggTilbakeOppgave-FeilTema')
@@ -164,7 +166,7 @@ function LeggTilbakepanel(props: Props) {
                             setTema={tema => updateState({ temagruppe: tema })}
                             valgtTema={state.temagruppe}
                             visFeilmelding={!LeggTilbakeValidator.tema(state) && state.visFeilmeldinger}
-                            temavalg={TemaPlukkbare}
+                            temavalg={TemaLeggTilbake}
                         />
                     </UnmountClosed>
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.AnnenÅrsak} />

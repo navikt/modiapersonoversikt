@@ -217,6 +217,7 @@ function FortsettDialogContainer(props: Props) {
                 {oppgaveId && (
                     <LeggTilbakepanel
                         oppgaveId={oppgaveId}
+                        traadId={props.traad.traadId}
                         status={dialogStatus}
                         setDialogStatus={setDialogStatus}
                         temagruppe={temagruppe}
