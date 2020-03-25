@@ -9,7 +9,7 @@ import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { LeggTilbakeOppgaveRequest } from '../../../../../models/oppgave';
-import { Temagruppe, TemaLeggTilbake } from '../../../../../models/Temagrupper';
+import { Temagruppe, TemaPlukkbare } from '../../../../../models/Temagrupper';
 import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
@@ -166,7 +166,7 @@ function LeggTilbakepanel(props: Props) {
                             setTema={tema => updateState({ temagruppe: tema })}
                             valgtTema={state.temagruppe}
                             visFeilmelding={!LeggTilbakeValidator.tema(state) && state.visFeilmeldinger}
-                            temavalg={TemaLeggTilbake}
+                            temavalg={TemaPlukkbare}
                         />
                     </UnmountClosed>
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.AnnenÅrsak} />
