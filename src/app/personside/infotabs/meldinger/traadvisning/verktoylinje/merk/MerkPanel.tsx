@@ -97,9 +97,9 @@ function visFerdigstillUtenSvar(meldingstype: Meldingstype, valgtTraad: Traad) {
     );
 }
 
-function kanTvungenFerdigstillelse(valgtTraad: Traad, tildelteOppgave: Oppgave[]) {
-    const tildeltePåBruker = tildelteOppgave.find(it => it.traadId === valgtTraad.traadId);
-    return (erBehandlet(valgtTraad) && tildeltePåBruker) || true;
+function visTvungenFerdigstillelse(valgtTraad: Traad, tildelteOppgaver: Oppgave[]) {
+    const oppgavenTildeltBruker = tildelteOppgaver.find(it => it.traadId === valgtTraad.traadId);
+    return (erBehandlet(valgtTraad) && oppgavenTildeltBruker) || true;
 }
 
 function getMerkAvsluttRequest(fnr: string, traad: Traad, valgtEnhet: string): MerkAvsluttUtenSvarRequest {
@@ -163,7 +163,7 @@ function MerkPanel(props: Props) {
     const disableStandardvalg = !visStandardvalg(valgtTraad);
     const disableBidrag = !(!erKommunaleTjenester(melding.temagruppe) && visStandardvalg(valgtTraad));
     const disableFerdigstillUtenSvar = !visFerdigstillUtenSvar(melding.meldingstype, valgtTraad);
-    const disableTvungenFerdigstill = !kanTvungenFerdigstillelse(valgtTraad, tildelteOppgaver.paaBruker);
+    const disableTvungenFerdigstill = !visTvungenFerdigstillelse(valgtTraad, tildelteOppgaver.paaBruker);
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
