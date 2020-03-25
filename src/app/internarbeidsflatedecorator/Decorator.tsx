@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import { useDispatch } from 'react-redux';
@@ -81,8 +81,19 @@ function lagConfig(
     };
 }
 
+// TODO Jupp, dette er en superhack pga fnr i redux-state ikke blir satt tidlig nok.
+// gjeldendeBruker.fnr burde fjernes fra state og hentes fra url slik at man har en single-point-of truth.
+function useVenterPaRedux() {
+    const [klar, setKlar] = useState(false);
+    useOnMount(() => {
+        setKlar(true);
+    });
+    return klar;
+}
+
 function Decorator() {
     const gjeldendeFnr = useFødselsnummer();
+    const reduxErKlar = useVenterPaRedux();
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -110,10 +121,14 @@ function Decorator() {
 
     return (
         <StyledNav>
-            <InternflateDecorator {...config} />
-            <PersonsokContainer />
-            <HurtigtastTipsContainer />
-            <DecoratorEasterEgg />
+            {reduxErKlar && (
+                <>
+                    <InternflateDecorator {...config} />
+                    <PersonsokContainer />
+                    <HurtigtastTipsContainer />
+                    <DecoratorEasterEgg />
+                </>
+            )}
         </StyledNav>
     );
 }
