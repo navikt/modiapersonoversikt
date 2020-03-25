@@ -7,18 +7,6 @@ import { SaksbehandlerRoller } from '../utils/RollerUtils';
 export function getMockVeilederRoller(): VeilederRoller {
     let roller = [];
 
-    if (vektetSjanse(faker, 0.8)) {
-        roller.push(SaksbehandlerRoller.EndreNavn);
-    }
-
-    if (vektetSjanse(faker, 0.8)) {
-        roller.push(SaksbehandlerRoller.EndreKontonummer);
-    }
-
-    if (vektetSjanse(faker, 0.8)) {
-        roller.push(SaksbehandlerRoller.EndreKontaktAdresse);
-    }
-
     if (vektetSjanse(faker, 0.9)) {
         roller.push(SaksbehandlerRoller.HentOppgave);
     }
