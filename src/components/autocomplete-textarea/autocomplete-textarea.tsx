@@ -146,6 +146,11 @@ function useRules(): Regler {
             type: 'external',
             regex: /^korosakt$/i,
             externalId: '788b0492-a5e8-4883-a6af-6387ff1e46d6'
+        },
+        {
+            type: 'external',
+            regex: /^sykperm$/i,
+            externalId: '747920d1-e34a-4079-a780-ad9f78812c6e'
         }
     ];
 }
@@ -185,6 +190,7 @@ function AutoTekstTips() {
                     <li>korperm + mellomrom: Informasjon ved permittering</li>
                     <li>koroms + mellomrom: OMS - Korona stengt bhg/skole</li>
                     <li>korosakt + mellomrom: OS - Korona aktivitet STO</li>
+                    <li>sykperm + mellomrom: Sykmeldt og permittert</li>
                 </ul>
             </HjelpetekstUnderHoyre>
         </HjelpetekstStyle>
