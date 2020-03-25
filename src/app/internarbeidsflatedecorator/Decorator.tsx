@@ -93,10 +93,12 @@ function useVenterPaRedux() {
 function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null } {
     const location = window.location;
     const queryParams = parseQueryString<{ sokFnr?: string }>(location.search);
-    const routematch = matchPath<{ fnr: string }>(location.pathname, `${paths.personUri}/:fnr`);
+    const sakerUriMatch = matchPath<{ fnr: string }>(location.pathname, `${paths.sakerFullscreen}/:fnr`);
+    const saksdokumentUriMatch = matchPath<{ fnr: string }>(location.pathname, `${paths.saksdokumentEgetVindu}/:fnr`);
+    const personUriMatch = matchPath<{ fnr: string }>(location.pathname, `${paths.personUri}/:fnr`);
     return {
         sokFnr: queryParams.sokFnr ?? null,
-        pathFnr: routematch?.params.fnr ?? null
+        pathFnr: sakerUriMatch?.params.fnr ?? saksdokumentUriMatch?.params.fnr ?? personUriMatch?.params.fnr ?? null
     };
 }
 
