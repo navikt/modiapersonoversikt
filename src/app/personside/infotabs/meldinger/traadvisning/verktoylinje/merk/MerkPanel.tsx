@@ -24,7 +24,8 @@ import { post } from '../../../../../../../api/api';
 import {
     MerkAvsluttUtenSvarRequest,
     MerkRequestMedBehandlingskjede,
-    MerkRequestMedTraadId
+    MerkRequestMedTraadId,
+    MerkTvungenFerdigstillRequest
 } from '../../../../../../../models/meldinger/merk';
 import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Resultat } from '../utils/VisPostResultat';
@@ -74,6 +75,7 @@ const MERK_AVSLUTT_URL = `${apiBaseUri}/dialogmerking/avslutt`;
 const MERK_BISYS_URL = `${apiBaseUri}/dialogmerking/bidrag`;
 const MERK_FEILSENDT_URL = `${apiBaseUri}/dialogmerking/feilsendt`;
 const MERK_SLETT_URL = `${apiBaseUri}/dialogmerking/slett`;
+const MERK_TVUNGEN_FERDIGSTILL_URL = `${apiBaseUri}/dialogmerking/tvungenferdigstill`;
 
 function lagBehandlingskjede(traad: Traad) {
     return traad.meldinger.filter(melding => !erMeldingFeilsendt(melding)).map(melding => melding.id);
@@ -108,6 +110,15 @@ function getMerkAvsluttRequest(fnr: string, traad: Traad, valgtEnhet: string): M
         saksbehandlerValgtEnhet: valgtEnhet,
         eldsteMeldingOppgaveId: eldsteMelding(traad).oppgaveId,
         eldsteMeldingTraadId: traad.traadId
+    };
+}
+function getTvungenFerdigstillRequest(fnr: string, traad: Traad, valgtEnhet: string): MerkTvungenFerdigstillRequest {
+    return {
+        fnr: fnr,
+        saksbehandlerValgtEnhet: valgtEnhet,
+        eldsteMeldingOppgaveId: eldsteMelding(traad).oppgaveId,
+        eldsteMeldingTraadId: traad.traadId,
+        beskrivelse: 'Tvungen ferdigstillelse i Modia'
     };
 }
 
@@ -193,8 +204,8 @@ function MerkPanel(props: Props) {
                 break;
             case MerkOperasjon.FERDIGSTILL:
                 merkPost(
-                    MERK_AVSLUTT_URL,
-                    getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad, valgtEnhet || ''),
+                    MERK_TVUNGEN_FERDIGSTILL_URL,
+                    getTvungenFerdigstillRequest(valgtBrukersFnr, valgtTraad, valgtEnhet || ''),
                     'TvungenAvslutting'
                 );
                 break;
