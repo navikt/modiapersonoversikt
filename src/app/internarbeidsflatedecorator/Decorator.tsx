@@ -42,8 +42,9 @@ function lagConfig(
     history: History,
     settEnhet: (enhet: string) => void
 ): DecoratorProps {
-    const fnr = getFnrFraUrl();
-    const fnrValue = fnr === '0' ? RESET_VALUE : fnr;
+    const { sokFnr, pathFnr } = getFnrFraUrl();
+    const onsketFnr = sokFnr || pathFnr;
+    const fnrValue = onsketFnr === '0' ? RESET_VALUE : onsketFnr;
 
     return {
         appname: 'Modia personoversikt',
@@ -51,7 +52,7 @@ function lagConfig(
             value: fnrValue,
             display: FnrDisplay.SOKEFELT,
             onChange(fnr: string | null): void {
-                if (fnr === getFnrFraUrl()) {
+                if (fnr === getFnrFraUrl().pathFnr) {
                     return;
                 }
                 if (fnr && fnr.length > 0) {
@@ -89,11 +90,14 @@ function useVenterPaRedux() {
     return klar;
 }
 
-function getFnrFraUrl(): string | null {
+function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null } {
     const location = window.location;
     const queryParams = parseQueryString<{ sokFnr?: string }>(location.search);
     const routematch = matchPath<{ fnr: string }>(location.pathname, `${paths.personUri}/:fnr`);
-    return queryParams.sokFnr ?? routematch?.params.fnr ?? null;
+    return {
+        sokFnr: queryParams.sokFnr ?? null,
+        pathFnr: routematch?.params.fnr ?? null
+    };
 }
 
 function Decorator() {
