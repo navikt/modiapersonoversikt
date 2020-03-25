@@ -5,7 +5,8 @@ import { History } from 'history';
 import { useDispatch } from 'react-redux';
 import { DecoratorProps, EnhetDisplay, FnrDisplay, RESET_VALUE } from './decoratorprops';
 import { fjernBrukerFraPath, paths, setNyBrukerIPath } from '../routes/routing';
-import { useHistory, useRouteMatch } from 'react-router';
+import { matchPath, useHistory, useLocation } from 'react-router';
+import { Location } from 'history';
 import './personsokKnapp.less';
 import './hurtigtaster.less';
 import './decorator.less';
@@ -13,7 +14,7 @@ import { useAppState, useOnMount } from '../../utils/customHooks';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { velgEnhetAction } from '../../redux/session/session';
-import { useQueryParams } from '../../utils/urlUtils';
+import { parseQueryString, useQueryParams } from '../../utils/urlUtils';
 import styled from 'styled-components';
 import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTipsContainer';
 import useHandleGosysUrl from './useHandleGosysUrl';
@@ -38,11 +39,12 @@ const StyledNav = styled.nav`
 `;
 
 function lagConfig(
-    fnr: string | null,
+    location: Location<any>,
     enhet: string | undefined | null,
     history: History,
     settEnhet: (enhet: string) => void
 ): DecoratorProps {
+    const fnr = getFnrFraUrl(location);
     const fnrValue = fnr === '0' ? RESET_VALUE : fnr;
 
     return {
@@ -51,7 +53,7 @@ function lagConfig(
             value: fnrValue,
             display: FnrDisplay.SOKEFELT,
             onChange(fnr: string | null): void {
-                if (fnr === fnrValue) {
+                if (fnr === getFnrFraUrl(location)) {
                     return;
                 }
                 if (fnr && fnr.length > 0) {
@@ -89,14 +91,14 @@ function useVenterPaRedux() {
     return klar;
 }
 
-function useFnrFraUrl(): string | null {
-    const queryParams = useQueryParams<{ sokFnr?: string }>();
-    const routematch = useRouteMatch<{ fnr: string }>(`${paths.personUri}/:fnr`);
+function getFnrFraUrl(location: Location): string | null {
+    const queryParams = parseQueryString<{ sokFnr?: string }>(location.search);
+    const routematch = matchPath<{ fnr: string }>(location.pathname, `${paths.personUri}/:fnr`);
     return queryParams.sokFnr ?? routematch?.params.fnr ?? null;
 }
 
 function Decorator() {
-    const fnr = useFnrFraUrl();
+    const location = useLocation();
     const reduxErKlar = useVenterPaRedux();
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
     const history = useHistory();
@@ -115,8 +117,8 @@ function Decorator() {
         dispatch(velgEnhetAction(enhet));
     };
 
-    const config = useCallback(lagConfig, [fnr, valgtEnhet, history, handleSetEnhet])(
-        fnr,
+    const config = useCallback(lagConfig, [location, valgtEnhet, history, handleSetEnhet])(
+        location,
         valgtEnhet,
         history,
         handleSetEnhet

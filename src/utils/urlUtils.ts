@@ -1,15 +1,19 @@
 import { useMemo } from 'react';
 import { useLocation } from 'react-router';
 
-export function useQueryParams<Type>(): Type {
+export function parseQueryString<TYPE>(queryParams: string): TYPE {
+    const entries = queryParams
+        .replace('?', '')
+        .split('&')
+        .map(it => it.split('='));
+    return entries.reduce((acc, entry) => ({ ...acc, [entry[0]]: entry[1] }), {} as TYPE);
+}
+
+export function useQueryParams<TYPE>(): TYPE {
     const search = useLocation().search;
 
     return useMemo(() => {
-        const entries = search
-            .replace('?', '')
-            .split('&')
-            .map(it => it.split('='));
-        return entries.reduce((acc, entry) => ({ ...acc, [entry[0]]: entry[1] }), {} as Type);
+        return parseQueryString<TYPE>(search);
     }, [search]);
 }
 
