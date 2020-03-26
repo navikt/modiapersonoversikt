@@ -1281,6 +1281,29 @@ exports[`Viser traad med verktøylinje 1`] = `
                 Avslutt uten å svare bruker
               </span>
             </label>
+            <label
+              className="inputPanel radioPanel inputPanel--disabled"
+              htmlFor="Helt tilfeldig ID"
+            >
+              <input
+                aria-checked={false}
+                checked={false}
+                className="inputPanel__field"
+                disabled={true}
+                id="Helt tilfeldig ID"
+                name="merk"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="radio"
+                value="FERDIGSTILL"
+              />
+              <span
+                className="inputPanel__label"
+              >
+                Overstyrt ferdigstillelse av oppgave
+              </span>
+            </label>
           </div>
         </fieldset>
         <div

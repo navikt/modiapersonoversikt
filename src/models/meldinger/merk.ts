@@ -21,6 +21,14 @@ export interface MerkAvsluttUtenSvarRequest {
     eldsteMeldingOppgaveId?: string;
 }
 
+export interface MerkTvungenFerdigstillRequest {
+    fnr: string;
+    saksbehandlerValgtEnhet?: string;
+    eldsteMeldingTraadId?: string;
+    eldsteMeldingOppgaveId?: string;
+    beskrivelse: string;
+}
+
 export interface AvsluttGosysOppgaveRequest {
     fnr: string;
     oppgaveid: string;
