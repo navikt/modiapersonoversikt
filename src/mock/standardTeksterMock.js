@@ -1,8 +1,30 @@
 const standardTeksterMock = {
+    'a02a8c14-8c71-4261-9778-8b155ce88721': {
+        id: 'a02a8c14-8c71-4261-9778-8b155ce88721',
+        overskrift: 'Endre kontonummer - dødsbo',
+        tags: ['dødsbo', 'kontonummer', 'kontoendring', 'NØP'],
+        vekttall: 105,
+        innhold: {
+            nb_NO:
+                'Hei [bruker.fornavn]\r\nVi ber om at du sender skriftlig kontoendring til NAV Økonomi Pensjon, postboks 6600 Etterstad, 0607 Oslo, sammen med en kopi av skifteattesten.\r\nDersom det finnes flere arvinger i skifteattesten, må du legge ved fullmakt fra disse.\r\n'
+        }
+    },
+
+    'b2e93ec9-feba-41e9-a7c7-d54193191430': {
+        id: 'b2e93ec9-feba-41e9-a7c7-d54193191430',
+        overskrift: 'Endre kontonummer',
+        tags: ['kontonummer', 'kontoendring'],
+        vekttall: 101,
+        innhold: {
+            nb_NO:
+                'Hei [bruker.fornavn]\r\nDu kan selv endre kontonummeret ditt på Ditt NAV. Du finner mer informasjon om dette på nav.no: https://www.nav.no/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Slik+registrerer+og+endrer+du+kontonummer+hos+NAV.\r\n\r\n'
+        }
+    },
     'tester-alle-nokler': {
         id: 'tester-alle-nokler',
         overskrift: 'Test av autofullføring',
         tags: ['test', 'autofullfør'],
+        vekttall: 100,
         innhold: {
             nb_NO:
                 'Dette er en test av alle nøklene som støttes.\n\nbruker.fnr: [bruker.fnr]\nbruker.fornavn: [bruker.fornavn]\nbruker.etternavn: [bruker.etternavn]\nbruker.navn: [bruker.navn]\nbruker.navkontor: [bruker.navkontor]\nbruker.subjekt: [bruker.subjekt]\nbruker.objekt: [bruker.objekt]\nsaksbehandler.fornavn: [saksbehandler.fornavn]\nsaksbehandler.etternavn: [saksbehandler.etternavn]\nsaksbehandler.navn: [saksbehandler.navn]\nsaksbehandler.enhet: [saksbehandler.enhet]'
@@ -12,6 +34,7 @@ const standardTeksterMock = {
         id: '1f557a80-5dea-4cda-947a-d2bf2cb367dd',
         overskrift: 'Registrere midlertidig adresse',
         tags: ['midlertidig', 'adresse', 'tilleggsadresse', 'NØP'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nDu kan selv registrere en midlertidig adresse på Ditt NAV. Når du sletter denne adressen, vil vi igjen benytte adressen som er registrert i Folkeregisteret.\r\n\r\nDu kan lese mer om dette på nav.no: https://www.nav.no/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/vil-du-ha-post-fra-nav-til-en-annen-adresse.'
@@ -21,24 +44,17 @@ const standardTeksterMock = {
         id: '8bb26dc3-75ff-432d-a714-3ec48dcc0e6d',
         overskrift: 'Utbetaling av barnepensjon',
         tags: ['pensjon', 'barnepensjon', 'utbetaling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nBarnepensjonen utbetales innen den 20. hver måned. I mai og desember blir den utbetalt litt tidligere.\r\n\r\nDu kan sjekke utbetalingsstatus i Dine utbetalinger på Ditt NAV.\r\n\r\nBarnepensjon utbetales til og med den måneden barnet fyller 18, 20 og 21 år dersom barnet oppfyller vilkårene for ytelsen.\r\n\r\nBarnepensjon er skattepliktig, men det trekkes ikke skatt av beløpet med mindre du har lagt inn frivillig skattetrekk.\r\n'
-        }
-    },
-    'b2e93ec9-feba-41e9-a7c7-d54193191430': {
-        id: 'b2e93ec9-feba-41e9-a7c7-d54193191430',
-        overskrift: 'Endre kontonummer',
-        tags: ['kontonummer', 'kontoendring'],
-        innhold: {
-            nb_NO:
-                'Hei [bruker.fornavn]\r\nDu kan selv endre kontonummeret ditt på Ditt NAV. Du finner mer informasjon om dette på nav.no: https://www.nav.no/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Slik+registrerer+og+endrer+du+kontonummer+hos+NAV.\r\n\r\n'
         }
     },
     'e92211b8-06cf-49a6-b725-eddb755ed9b5': {
         id: 'e92211b8-06cf-49a6-b725-eddb755ed9b5',
         overskrift: 'Overføring til utenlandsk konto - gebyr',
         tags: ['utbetalingsgebyr', 'gebyr', 'utbetaling', 'overføring', 'utland', 'NØP'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nOverføring til utenlandsk konto er et alternativ til norsk kontonummer. Omkostningene ved overføring til utenlandsk bank (per i dag ca. 22 kroner) trekkes fra den månedlige utbetalingen. Dette tilsvarer merkostnaden det er for NAV å sende utbetalingen til utlandet sammenlignet med en overføring til en norsk konto.\r\n\r\nAndre gebyrer som bankene eventuelt tar har NAV ingen oversikt over, og det må du undersøke med banken din.\r\n\r\nUtbetaling til norsk konto er den enkleste og raskeste måten å overføre utbetalingen på, og du vil da slippe gebyret for overføring til en utenlandsk konto. Du kan selv avtale med en norsk bank om faste overføringsoppdrag til en utenlandsk konto, eller benytte VISA-kort for uttak fra en norsk konto i utlandet.\r\n'
@@ -48,6 +64,7 @@ const standardTeksterMock = {
         id: 'e243aa12-1574-4e82-adf6-44024f439f96',
         overskrift: 'Utbetalng til utlandet - utenlandssjekk',
         tags: ['utenlandssjekk', 'sjekk', 'utbetaling', 'NØP'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nNår det gjelder ønsket ditt om å motta utbetalingen på utenlandssjekk, opplyser bankforbindelsen vår i Norge at dette er et produkt som fases ut og vil forsvinne helt. Vi kan derfor dessverre ikke tilby dette lenger.\r\n\r\nOverføring til utenlandsk konto er et alternativ til norsk kontonummer. Omkostningene ved overføring til utenlandsk bank (per i dag ca. 22 kroner) trekkes fra den månedlige utbetalingen. Dette tilsvarer merkostnaden det er for NAV å sende utbetalingen til utlandet sammenlignet med en overføring til en norsk konto.\r\n\r\nUtbetaling til norsk konto er den enkleste og raskeste måten å overføre utbetalingen på, og du vil da slippe gebyret for overføring til en utenlandsk konto. Du kan selv avtale med en norsk bank om faste overføringsoppdrag til en utenlandsk konto, eller benytte VISA-kort for uttak fra en norsk konto i utlandet.\r\n'
@@ -57,6 +74,7 @@ const standardTeksterMock = {
         id: 'e7703470-44eb-466d-a3e6-07f7fb944f68',
         overskrift: 'Skattetrekk på barnepensjon',
         tags: ['barnepensjon', 'skatt', 'skattetrekk', 'NØP'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nBarnepensjon er skattepliktig, men ikke trekkpliktig. For å få skattetrekk må du melde inn et ønske om frivillig trekk.  Dette gjør du via Ditt NAV på nav.no, eller per post til NAV Pensjon, postboks 6600 Etterstad, 0607 Oslo.'
@@ -66,6 +84,7 @@ const standardTeksterMock = {
         id: '5186d176-488a-4205-9538-4de000f375a8',
         overskrift: 'Bekreftelse på kontonummer',
         tags: ['Kontonummer', 'NØP'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nVi bekrefter med dette at kontonummeret ditt (KONTONUMMER) er registrert i systemet vårt.\r\nDu kan endre kontonummeret på Ditt NAV. Det kan du lese mer om på nav.no: https://www.nav.no/no/NAV+og+samfunn/Kontakt+NAV/Kontakt+oss/Slik+registrerer+og+endrer+du+kontonummer+hos+NAV.\r\n'
@@ -75,6 +94,7 @@ const standardTeksterMock = {
         id: '599f2a2a-bad4-4278-9f53-8c8045e164ef',
         overskrift: 'Tilbakebetaling fra NAV',
         tags: ['trekk', 'kreditortrekk', 'tilbakebetaling', 'NØP'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nVi mottok dokumentet om endring/stans av trekk etter at vi hadde utbetalt for denne måneden. Vi utbetaler nå differansen.'
@@ -84,6 +104,7 @@ const standardTeksterMock = {
         id: '63c33692-08e8-45af-990d-e6a773cbcbb1',
         overskrift: 'Frivillig skattetrekk',
         tags: ['skat', 'skattetrekk', 'tilleggstrekk', 'NØP'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nVi har registrert tilleggstrekk for skatt med (X)  prosent  (X KRONER).  Trekket vil gjelde fra neste måned.\r\n'
@@ -93,6 +114,7 @@ const standardTeksterMock = {
         id: 'de52f3c3-52cb-4e8e-ba38-9cab81454998',
         overskrift: 'Adresseendring',
         tags: ['adresse', 'adresseendring', 'folkeregisteret', 'NØP'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nNAV benytter den adressen som til enhver tid er registrert i Folkeregisteret. Du kan endre adressen selv på www.skatteetaten.no.'
@@ -102,24 +124,17 @@ const standardTeksterMock = {
         id: '82a35786-9dd3-4d2a-8a01-b9041e9968fd',
         overskrift: 'Navneendring',
         tags: ['navneendring', 'folkeregisteret', 'NØP'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nNAV har ikke mulighet til å foreta navneendring, men benytter det navnet som er registrert i Folkeregisteret. På skattetaten.no finner du mer informasjon om hvordan du kan melde navneendring.\r\n\r\nBrukere bosatt i utlandet og/eller med D-nummer kan sende melding til Skatt nord Hammerfest, postboks 6310, 9293 Hammerfest, Norway.\r\n\r\nNAV oppdaterer daglig registrene våre med endringer som er registrert i Folkeregisteret.\r\n'
-        }
-    },
-    'a02a8c14-8c71-4261-9778-8b155ce88721': {
-        id: 'a02a8c14-8c71-4261-9778-8b155ce88721',
-        overskrift: 'Endre kontonummer - dødsbo',
-        tags: ['dødsbo', 'kontonummer', 'kontoendring', 'NØP'],
-        innhold: {
-            nb_NO:
-                'Hei [bruker.fornavn]\r\nVi ber om at du sender skriftlig kontoendring til NAV Økonomi Pensjon, postboks 6600 Etterstad, 0607 Oslo, sammen med en kopi av skifteattesten.\r\nDersom det finnes flere arvinger i skifteattesten, må du legge ved fullmakt fra disse.\r\n'
         }
     },
     'f98f0e95-3e2d-43ae-8266-4e9bdbcdb2b0': {
         id: 'f98f0e95-3e2d-43ae-8266-4e9bdbcdb2b0',
         overskrift: 'NAV har redusert innrapportert beløp til skatteetaten',
         tags: ['NØS', 'feilutbetaling', 'tilbakebetaling', 'innberetning'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nVi viser til vedtaket om tilbakekreving den «dato». Du har betalt tilbake hele beløpet som var feilutbetalt. NAV har derfor redusert beløpet vi har innrapportert til Skatteetaten for (ytelse) for (år) tilsvarende beløpet du har tilbakebetalt.'
@@ -129,6 +144,7 @@ const standardTeksterMock = {
         id: 'a5986eb4-989c-43df-bc79-23505e35ab65',
         overskrift: 'NAV kan ikke behandle innsendt melding om endring av kontoopplysninger',
         tags: ['nøs', 'kontonummer', 'manglende', 'signatur'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nNAV har mottatt melding om endring av\r\nutbetalingsopplysninger fra deg. Meldingen mangler gyldig\r\nsignatur/kontonummer. Du kan registrere og endre\r\nkontonummer og adresse på Ditt NAV, under Dine saker.\r\n'
@@ -138,6 +154,7 @@ const standardTeksterMock = {
         id: 'e12b8aff-6033-4415-8c4b-dbbeaa12db11',
         overskrift: 'Generell - Bruker.navn ',
         tags: ['ks', 'etternavn'],
+        vekttall: 0,
         innhold: {
             nb_NO: '[bruker.navn]'
         }
@@ -146,6 +163,7 @@ const standardTeksterMock = {
         id: '1c923d77-4137-4fc0-a541-d1f5ce378da8',
         overskrift: 'Etterlyser sykepenger for periode-mangler dokumentasjon',
         tags: ['sykepenger', 'dokumentasjon', 'etterlyser'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterlyser sykepenger for perioden FRADATO-TILDATO. Jeg har informert om at NAV mangler DOKUMENTASJON som er nødvendig for at sykepengene skal bli utbetalt. Jeg har bedt om at DOKUMENTASJON leveres så fort som mulig.',
@@ -157,6 +175,7 @@ const standardTeksterMock = {
         id: 'c134eba5-91bd-474b-a378-a059ecbd0d9a',
         overskrift: 'Generell - Bruker.fornavn',
         tags: ['ks', ''],
+        vekttall: 0,
         innhold: {
             nb_NO: '[bruker.fornavn]'
         }
@@ -165,6 +184,7 @@ const standardTeksterMock = {
         id: '60c91878-3bc8-4faa-9f90-04a57ebe11f6',
         overskrift: 'Generell - Mer informasjon (STO)',
         tags: ['ringe', 'informasjon', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi har forsøkt å ringe deg fordi vi trenger mer informasjon om hva henvendelse din gjelder.\r\n\r\nKan du ringe oss tilbake på 55 55 33 33 / 55 55 33 34.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\nNAV Kontaktsenter\r\n',
@@ -176,6 +196,7 @@ const standardTeksterMock = {
         id: '409488bd-b902-49af-98dc-2f2835ccb94b',
         overskrift: 'Ønsker kontakt med saksbehandler',
         tags: ['kontakt', 'saksbehandler'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker kontakt med saksbehandleren sin angående (TEKST). Jeg har gitt beskjed til saksbehandleren og opplyst om at svar kan ventes innen to virkedager.'
@@ -185,6 +206,7 @@ const standardTeksterMock = {
         id: '82fad1d1-4635-47d0-8c46-168671a5f151',
         overskrift: 'Status i sak',
         tags: ['status', 'saksbehandling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] lurer på status i sak om (YTELSE). Jeg har opplyst at (STATUS) og at behandlingstiden er på (ANTALL) uker. Jeg informerte også om at det er mulig å følge med på Ditt NAV for status framover.',
@@ -196,6 +218,7 @@ const standardTeksterMock = {
         id: '7b153660-6824-451c-a35f-88283d078071',
         overskrift: 'Skriv til bruker, aktivitetsplan endring',
         tags: ['skrivtilbruker', 'aktivitetsplan', 'endring'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nNAV har mottatt opplysninger fra (FRITEKST: BRUKER, TILTAKSARRANGØR, BEHANDLER, FASTLEGE, ARBEIDSGIVER, ANDRE). Disse opplysningene betyr at vi må endre aktivitetsplanen din. Vi ønsker derfor et møte med deg.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n'
@@ -205,6 +228,7 @@ const standardTeksterMock = {
         id: '87872ed8-d901-47f6-bd15-7c0d02ab1514',
         overskrift: 'Skriv til bruker, aktivitetsplan oppfølging',
         tags: ['skrivtilbruker', 'aktivitetsplan', 'oppfølging'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu er i gang med å gjennomføre aktivitetene vi ble enige om i aktivitetsplanen din. Vi ønsker et møte med deg for å høre hvordan det går.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]'
@@ -214,6 +238,7 @@ const standardTeksterMock = {
         id: '1ab4440e-51c7-49c4-aebb-600123863ead',
         overskrift: 'Skriv til bruker, arbeidsevnevurdering',
         tags: ['skrivtilbruker', 'arbeidsevnevurdering'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu er innkalt til en samtale med NAV (DATO og KLOKKESLETT og STED). På dette møtet skal vi snakke om mulighetene du har for å komme i arbeid. Noen av temaene på møtet er hva du har jobbet med før, kompetansen din og hvilke yrker du mener vil være riktig for deg. Vi skal også snakke om kravene og forventningene du vil møte i arbeidslivet. Denne gjennomgangen kaller vi en arbeidsevnevurdering, som vi bruker når vi skal utarbeide en plan for hvordan du skal komme i arbeid.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n'
@@ -223,6 +248,7 @@ const standardTeksterMock = {
         id: '4304661b-8158-4e7b-9784-7043c96be2b0',
         overskrift: 'Skriv til bruker, påminnelse om CV',
         tags: ['skrivtilbruker', 'påminnelse', 'CV'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.navn]\r\nJeg ser at CVen din ikke er fullstendig utfylt. Vi ber om at du oppdaterer følgende: (fritekst)\r\nSlik lager du en god CV:\r\nhttps://www.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Jobbsokertips/Slik+lager+du+en+god+CV\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n'
@@ -232,6 +258,7 @@ const standardTeksterMock = {
         id: 'bdbf3454-52ad-471c-8692-38cb41442de5',
         overskrift: 'Skriv til bruker, ung arbeidssøker',
         tags: ['skrivtilbruker', 'ung_arbeidssøker', 'ungdom'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.navn]\r\nVisste du at NAV har en egen nettside for deg som er ung og på jobbjakt? Her finner du blant annet interessetester og yrkesvalgprogrammer.\r\nLes mer her: https://www.nav.no/no/Person/Arbeid/Ungdom\r\nFølg gjerne NAV Jobblyst på Facebook, hvor du kan få både gode tips og veiledning.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n'
@@ -241,6 +268,7 @@ const standardTeksterMock = {
         id: '5339c45e-3217-4c7f-852c-a1f576b87615',
         overskrift: 'Skriv til bruker, kompetanseord',
         tags: ['skrivtilbruker', 'kompetanseord'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.navn]\r\nJeg ser at CVen din mangler en god oversikt over kompetanseord. Når du legger inn kompetanseord som beskriver ferdighetene dine , får både du og NAV et bedre bilde av den kompetansen du har, noe som er nødvendig for at vi skal kunne gi deg riktig bistand.\r\nArbeidsgivere kan finne profilen på nav.no hvis de søker etter kompetanseord du har lagt inn, og dermed ta kontakt med deg om jobbmuligheter.\r\nLes mer om kompetanseord her: https://www.nav.no/no/Lokalt/Rogaland/Nyttig+a+vite/Kompetanseordbrosjyre.385419.cms\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n'
@@ -250,6 +278,7 @@ const standardTeksterMock = {
         id: '98ea9085-296b-4b08-baa9-1bbddb6cee14',
         overskrift: 'Skriv til bruker, arbeidsevne',
         tags: ['skrivtilbruker', 'arbeidsevne'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.navn]\r\nJeg viser til informasjonen vår om egenvurdering og møte (DATO og KLOKKESLETT og STED). Jeg håper du er i gang med å reflektere over mulighetene dine  for arbeid.\r\nDu kan lese mer om egenvurdering og vurdering av arbeidsevne her: https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+%C3%A5+komme+i+jobb/Oppfolging+fra+NAV/Arbeidsevnevurdering\r\nHar du spørsmål knyttet til egenvurderingen, kan du svare på denne meldingen.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n'
@@ -259,6 +288,7 @@ const standardTeksterMock = {
         id: 'ac700051-5e26-4d19-8a7e-48cb9b989e7f',
         overskrift: 'Mal for oppfølgingsreferat',
         tags: ['oppfølgingsreferat', 'oppfølgingssamtale'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'I dette møtet skal vi snakke om: (FRITEKST- FORVENTNINGSAVKLARING)\r\nEr det andre ting du ønsker å ta opp? (AVKLARINGSPUNKTER)\r\nDette har vi snakket om: (KORT OPPSUMMERING – ER BRUKEREN ENIG?)\r\nVi har avtalt hva du skal gjøre og hva NAV skal gjøre til neste oppfølging: (ANSVARSFORDELING)\r\nNeste oppfølgingspunkt er: (DATO OG KANAL)\r\n'
@@ -268,6 +298,7 @@ const standardTeksterMock = {
         id: 'be7463be-1a48-4bff-8280-4fa35856352f',
         overskrift: 'Skriv til bruker, aktivitetsplan',
         tags: ['skrivtilbruker', 'aktivitetsplan'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu er innkalt til en samtale med NAV (DATO og KLOKKESLETT og STED). På dette møtet skal vi lage en aktivitetsplan, som beskriver hva du og NAV skal gjøre for at du skal komme i arbeid. Med aktivitet mener vi for eksempel jobbsøking, arbeidstrening, opplæring og behandling. Du kan forberede deg til møtet ved å lese om tiltak for å komme i jobb her: https://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+%C3%A5+komme+i+jobb/Tiltak+for+a+komme+i+jobb\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n'
@@ -277,6 +308,7 @@ const standardTeksterMock = {
         id: '3b5dc66d-82dd-46a0-99be-363a0e1fe81e',
         overskrift: 'Skriv til bruker, aktivitetsplan gjennomført',
         tags: ['skrivtilbruker', 'aktivitetsplan', 'gjennomført'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu har snart gjennomført de avtalte aktivitetene som er oppført i aktivitetsplanen din. Vi vil derfor ha et møte med deg for å vurdere om du har nådd målene dine eller om vi må endre planen.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]'
@@ -286,6 +318,7 @@ const standardTeksterMock = {
         id: 'ba00dc42-9b19-449c-a9e3-572334fdb2dd',
         overskrift: 'Jobbønsker',
         tags: ['jobbønske'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'et jobbønske skal stemme med CVen din og etterspørselen i arbeidsmarkedet. Kan du øke sjansene dine for arbeid ved å utvide jobbønskene dine? Les mer her: https://www.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Arbeidsledig+-+hva+na'
@@ -295,6 +328,7 @@ const standardTeksterMock = {
         id: 'dae358d7-bfaf-49ad-aa86-12332c5b4bb6',
         overskrift: 'Tiltak',
         tags: ['tiltak'],
+        vekttall: 0,
         innhold: {
             nb_NO: 'med tiltak menes aktivitet som vil øke sjansene dine for å komme i arbeid.'
         }
@@ -303,6 +337,7 @@ const standardTeksterMock = {
         id: 'ec48a782-7755-4b4c-a2b7-b128a0c3585d',
         overskrift: 'Egenvurdering',
         tags: ['egenvurdering'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Egenvurdering er del av arbeidsevnevurdering i NAV. Egenvurderingen er en forberedelse til møtet med en veileder i NAV om mulighetene dine  for å komme i arbeid.\r\nLes mer her: https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/skjemaveileder/vedlegg?key=236217\r\n\r\n'
@@ -312,6 +347,7 @@ const standardTeksterMock = {
         id: 'bb54f936-15e0-4ce1-b80c-1f6fbab5b98b',
         overskrift: 'Levert dokumentasjon',
         tags: ['dokumentasjon', 'levering', 'levert_dokument', 'oppmøte'],
+        vekttall: 0,
         innhold: {
             nb_NO: '[bruker.navn] har levert (DOKUMENTASJON). Jeg har opplyst om at (TEKST).'
         }
@@ -320,6 +356,7 @@ const standardTeksterMock = {
         id: 'f2d70221-b113-40a7-bf82-cb9dc186ab62',
         overskrift: 'Levert manuelt korrigert meldekort',
         tags: ['meldekort', 'manuelt_meldekort', 'oppmøte'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har levert manuelt korrigert meldekort. NAV har mottatt meldekortet og sender det videre til behandling. Jeg har opplyst om at behandlingstiden er på (ANTALL) dager'
@@ -329,6 +366,7 @@ const standardTeksterMock = {
         id: '3499e351-9d11-4cce-8737-4c01490b4469',
         overskrift: 'Levert søknad om sykepenger',
         tags: ['sykepenger', 'søknad', 'oppmøte'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har levert søknad om sykepenger (del D) for perioden (FRADATO-TILDATO). NAV har mottatt søknaden og sender den videre for behandling. Jeg har opplyst om at behandlingstiden er på (ANTALL) uker.'
@@ -338,6 +376,7 @@ const standardTeksterMock = {
         id: '335f42d7-dff8-4980-92f2-c148cf2db560',
         overskrift: 'Etterlyser sykepenger - midlertidig stanset',
         tags: ['sykepenger', 'stans', 'aktivitet'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterlyser sykepenger for perioden (FRADATO-TILDATO). Jeg har opplyst om at sykepengene er midlertidig stanset på grunn av manglende aktivitet, og at hovedregelen for sykepenger ut over 8 uker, er at man deltar i arbeidsrelatert aktivitet. For de som har et arbeid, vil arbeidsrelatert aktivitet være å delta i eget ellet annet arbeid på arbeidsplassen,  helt eller delvis. Aktivitetskravet gjelder for alle sykmeldte, både de med og de uten arbeidsgiver. Hvis du ikke har en arbeidsgiver, er det NAV-kontoret ditt som skal følge deg opp.'
@@ -347,6 +386,7 @@ const standardTeksterMock = {
         id: '181e7542-b676-4515-b830-fed873e6f900',
         overskrift: 'Søknadsskjema på nav.no - Hjelpemidler',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'søknad', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu finner søknadsskjema på www.nav.no. Du bør ta kontakt med kommunen du bor i for å få hjelp med å søke. Hjelpemiddelsentralen kan også hjelpe deg med å fylle ut søknadsskjemaet.\r\n'
@@ -356,6 +396,7 @@ const standardTeksterMock = {
         id: '8a4a5491-1a60-4818-b2da-3ee4234b9222',
         overskrift: 'Utsette utlevering ',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'utsette', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDet er mulig å utsette utleveringen av hjelpemidler. Ta kontakt med hjelpemiddelsentralen på forhånd, så avtaler vi leveringstidspunkt.\r\n'
@@ -365,6 +406,7 @@ const standardTeksterMock = {
         id: 'b34768c3-77e5-413e-b7c8-db2171d74887',
         overskrift: 'Reparasjon av hjelpemiddel',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'reparasjon', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nJa, i enkelte tilfeller. I utgangspunktet er det kommunen som er ansvarlig for å hjelpe deg mens hjelpemiddelet er til reparasjon.\r\n'
@@ -374,6 +416,7 @@ const standardTeksterMock = {
         id: 'a558eae7-daf9-47a8-a19f-a72678615975',
         overskrift: 'Krykker',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu får krykker hvis du har et varig behov for det. Hvis du trenger krykker fordi du har brukket benet eller lignende, må du skaffe deg krykker selv. Du kan også kontakte kommunen du bor i.\r\n'
@@ -383,6 +426,7 @@ const standardTeksterMock = {
         id: '564729df-6e71-4e7e-8313-6dec730bdfa1',
         overskrift: 'For vurdering av behov kontakt kommunen',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'vurdere_behov', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu bør kontakte kommunen for å få hjelpe til å vurdere behovet ditt for hjelpemidler. Hvis du og kommunens ansatte har behov for hjelp fra hjelpemiddelsentralen for å finne frem til riktig hjelpemiddel, finner dere henvisningsskjema på www.nav.no.\r\n'
@@ -392,6 +436,7 @@ const standardTeksterMock = {
         id: 'ea2c0fca-1558-4191-b46c-9ae9317bd284',
         overskrift: 'For reparasjon av hjelpemiddel kontakt kommunen',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'reparasjon', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu kontakter kommunen for å få hjelp til å reparere hjelpemiddelet ditt.\r\n'
@@ -401,6 +446,7 @@ const standardTeksterMock = {
         id: '1e8b2e85-3c80-4b2d-86a5-f8e56a513f8b',
         overskrift: 'Dødsbo og bil',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'bil'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDødsboet må innbetale det beløpet som ikke er nedskrevet til NAV. Hvis NAV har gitt lån til bilen, skal bilen innleveres til oss. Du kan ta direkte kontakt med det bilsenteret brukeren tilhørte for å få gjeldsoppgjør på bilen. Du finner kontaktinfo på https://www.nav.no/no/Person/Hjelpemidler/Tjenester+og+produkter/Hjelpemidler/Kontakt+hjelpemiddelsentralen\r\n'
@@ -410,6 +456,7 @@ const standardTeksterMock = {
         id: 'b127ff04-39d6-4c56-a4a4-7b2bf1abb2b1',
         overskrift: 'Årsavgift og bil',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'bil', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nNAV betaler årsavgiften når du får stønad til kassebil med heis eller rampe. Det året bilen blir innlevert er det den som var eier ved årsskiftet som må betale årsavgiften.\r\n'
@@ -419,6 +466,7 @@ const standardTeksterMock = {
         id: 'f4bf5e21-63d5-4d65-86a4-645314e7bb5e',
         overskrift: 'Kontakt NAV om bil ',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'bil', 'spesialutstyr', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu finner informasjon om dette på https://www.nav.no/no/Person/Hjelpemidler/Tjenester+og+produkter/Bil+og+transport/Kontakt+NAV\r\n'
@@ -428,6 +476,7 @@ const standardTeksterMock = {
         id: '64ddbeff-14e2-4cd0-bcdf-a34d5e183d1c',
         overskrift: 'Støtte til reise ved reparasjon av bil',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'bil', 'reparasjon'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nNAV har ingen biler til utlån mens bilen din er til reparasjon. Hvis du bruker bil til og fra arbeid, kan du søke om å få støtte til arbeids- og utdanningsreiser den perioden du er uten bil. Du finner informasjon om dette på https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/Skjemaer/Arbeid%2C+helse+og+sykdom/Arbeids-+og+utdanningsreiser\r\n'
@@ -437,6 +486,7 @@ const standardTeksterMock = {
         id: '37471956-a8cd-48ea-8b01-f00f2b1c55df',
         overskrift: 'Bilforsikring',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'bil', 'forsikring', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nHvis du har fått tilskudd til bil velger du selv hvilken type forsikring du vil ha på bilen. Har du fått lån til en kassebil med heis eller rampe, må denne være fullkaskoforsikret med salgspant og gjeldsbrev til NAV. Det må den være fra den dagen du får bilen utlevert fra bilforhandler og til den dagen bilen blir levert tilbake. Den som bygger om bilen er ansvarlig for at bilen er forsikret mens den er under ombygging.\r\n'
@@ -446,6 +496,7 @@ const standardTeksterMock = {
         id: '4157225b-21b4-42a3-85fb-b43601f04c29',
         overskrift: 'Innlevering av kassebil',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'bil', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nNAV gjenbruker kassebiler med heis eller rampe som er mindre enn fem år gamle og som har kort kjørelengde. Disse skal derfor alltid innleveres. Du kan kjøpe ut biler som er eldre enn fem år. Ta kontakt med bilsenteret for å avtale dette på https://www.nav.no/no/Person/Hjelpemidler/Tjenester+og+produkter/Relatert+informasjon/Regionale+bilsentre.358771.cms\r\n'
@@ -455,6 +506,7 @@ const standardTeksterMock = {
         id: '04113d0a-1900-4b24-839f-1683b32cb16a',
         overskrift: 'Søke innkreving av bidrag',
         tags: ['bidrag', 'innkreving'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nVi ber om at du sender oss et brev eller tar kontakt med oss på telefon 55 55 33 33 for å informere om at du også søker innkreving av bidrag.\r\n'
@@ -464,6 +516,7 @@ const standardTeksterMock = {
         id: '8a68d403-bdbe-4873-932e-2a0e638fabf9',
         overskrift: 'Samværsavtale overholdes ikke',
         tags: ['bidrag', 'samvær'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDersom en av partene hevder at avtalen eller offentlig fastsatt samvær eller rettsforlik ikke blir overholdt, må den som setter fram påstanden, klart bevise at dette er tilfelle. Bevisene må komme fra nøytralt hold. I praksis vil det si fra offentlige eller private instanser som barnehage, skole og lignende. Et eksempel kan være der bidragsmottakeren legger fram dokumentasjon fra barnehagen eller skolen om at det er hun/han som kjører og henter barnet i barnehagen eller på skolen når  barnet i henhold til samværsavtalen/-avgjørelsen skulle vært hos den bidragspliktige. NAV Forvaltning må i alle tilfeller vurdere de opplysningene/bevisene som bidragsmottakeren legger fram.\r\n'
@@ -473,6 +526,7 @@ const standardTeksterMock = {
         id: 'd4b1b5f2-7aca-40a2-9860-e1d88e4e0950',
         overskrift: 'Endring i samvær',
         tags: ['bidrag', 'samvær'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nEr det endret samvær eller endringer i inntekt må du søke om endring på eget skjema. Skjemaet finner du på www.nav.no.\r\n'
@@ -482,6 +536,7 @@ const standardTeksterMock = {
         id: 'feac03c7-11bf-4349-aa25-e50d3c0264b0',
         overskrift: 'Innkreving av bidrag – trekk i lønn',
         tags: ['bidrag', 'trekk'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nHvis den bidragspliktige ikke innbetaler på giroen som NAV Innkreving sender, vil vi tidligst sette i gang lønnstrekk etter fire måneder.\r\n'
@@ -491,6 +546,7 @@ const standardTeksterMock = {
         id: '1abe8a60-1ed0-4a47-8d14-59591e599040',
         overskrift: 'Klage på vedtak om bidrag',
         tags: ['bidrag', 'klage'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nEr du uenig i vedtaket må du klage. Klagefristen går fram av vedtaket ditt. Vi anbefaler at du sender klagen skriftlig, enten som et vanlig brev eller benytt klageskjema på www.nav.no.\r\n'
@@ -500,6 +556,7 @@ const standardTeksterMock = {
         id: '7b2d3476-bd03-45fa-ab0c-36ff9a5df418',
         overskrift: 'Virkningstidspunkt for fastsettelse av bidrag',
         tags: ['bidrag'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nHovedregelen er at bidraget blir fastsatt fra den måneden du oppfyller vilkårene og NAV mottok søknaden, maksimalt tre år tilbake i tid.  Er det snakk om endring av bidraget er hovedregelen at bidraget endres fra måneden etter at du sendte søknad om endring til NAV. For mer informasjon om virkningstidspunktet som er fastsatt i saken din, må du ta kontakt med NAV på telefon 55 55 33 33.\r\n'
@@ -509,6 +566,7 @@ const standardTeksterMock = {
         id: '9d6d3c6b-79f4-424a-8032-4ed160fd416f',
         overskrift: 'Utgifter til underhold av barn - underholdskostnad',
         tags: ['bidrag'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nUtgiftene varierer med alderen til barnet. Foruten barnetrygd inngår\r\n- forbruksutgifter\r\n- boutgifter\r\n- tilsynsutgifter\r\n\r\nUtgiftene er fastsatt med utgangspunkt i Statens institutt for forbruksforsknings standardbudsjett. Dette budsjettet omfatter de viktigste forbruksområdene, og er ment å gi uttrykk for et nøkternt og rimelig forbruksnivå. Varene som danner grunnlag for beregningene, holder enkel god kvalitet og lav pris. Det er dessuten et langtidsbudsjett slik at det er lagt inn noe ekstra hver måned for å dekke mer sjeldne og større utgifter.\r\n'
@@ -518,6 +576,7 @@ const standardTeksterMock = {
         id: 'c88e38e2-fdf0-4dea-b228-b5a30a2b0ac4',
         overskrift: 'Den bidragspliktige deler bolig',
         tags: ['bidrag'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDersom den bidragspliktige deler bolig med annen voksen vil det bli tatt hensyn til i beregningen. Hva det har å si konkret når det gjelder størrelsen på bidraget må beregnes i hver enkelt sak. Du kan gjøre dette selv ved å bruke bidragskalkulatoren på nav.no\r\n'
@@ -527,6 +586,7 @@ const standardTeksterMock = {
         id: '6b8f168d-fa8a-4767-b002-03f98bdc7108',
         overskrift: 'Økonomisk rådgivning',
         tags: ['Bidrag', 'Utland', 'Gjeld'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Vi vil også gjøre deg oppmerksom på NAVs økonomirådstelefon 800 45353 som kan gi økonomisk rådgivning, og hjelp til selvhjelp om det å komme i gang med å finne løsninger på betalingsproblemer.\r\n\r\nNummeret er gratis å ringe til fra fasttelefon. Hvis du ringer fra mobil vil du få tilbud om å bli ringt opp med én gang du kommer igjennom til tjenesten. Åpningstidene til 800gjeld er kl. 09.00-15.00.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -536,6 +596,7 @@ const standardTeksterMock = {
         id: '0491d450-4f4b-4cb0-9fdd-f080eac14051',
         overskrift: 'Familievernkontor',
         tags: ['Bidrag', 'Utland', 'Bufetat'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Vi kan dessverre ikke hjelpe deg med å gjenopprette kontakt med barna, eller gi deg veiledning med hensyn til konfliktsituasjonen mellom deg og barnas mor eller far. Vi vil råde deg til å ta kontakt med familievernkontoret der du bor. Du kan finne nærmeste kontor på www.bufetat.no/familievernkontor.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -545,6 +606,7 @@ const standardTeksterMock = {
         id: '334343e4-17f9-4384-8af9-0cdc2262a350',
         overskrift: 'Underholdsbidrag og bidragsforskudd',
         tags: ['Bidrag', 'Utland', 'Barnevern'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hvis barnet er plassert utenfor hjemmet, får du ikke underholdsbidrag og bidragsforskudd etter hovedregelen måneden etter plasseringen.\r\n\r\nDen forelderen barnet ikke bor fast hos betaler underholdsbidrag.\r\n\r\nNAV utbetaler bidragsforskudd hver måned hvis det ikke er betalt bidrag, eller hvis bidraget er fastsatt til et lavere beløp enn det som kan gis i forskudd. Forskuddsmottakeren har plikt til å gi alle opplysninger som kan ha betydning for retten til bidragsforskudd. Bidragsmottakeren mister retten til bidragsforskudd hvis barnet er plassert i fosterhjem eller kommunal eller statlig institusjon. NAV kan kreve tilbake bidragsforskudd som er feilutbetalt.\r\n\r\nMer informasjon om underholdsbidrag/bidragsforskudd finner du på https://www.nav.no/no/Person/Familie/Barnebidrag\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -554,6 +616,7 @@ const standardTeksterMock = {
         id: '5dc6d8fa-da13-4e0d-ae56-35f2a47542b5',
         overskrift: 'Medlemskap - unntak fra norsk trygd',
         tags: ['Medlemskap', 'Utland', 'Unntak'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått informasjon om at NAV har registrert unntak fra norsk trygd i perioden fra DATO til DATO. Perioder med unntak blir elektronisk overført til Skatteetaten hver 14. dag. [bruker.fornavn] blir bedt om å kontakte Skatteetaten for å få avgiften refundert.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -563,6 +626,7 @@ const standardTeksterMock = {
         id: 'e278b806-10c2-41f9-89dd-220d5f97d29f',
         overskrift: 'Medlemskap ved arbeid innenfor EØS',
         tags: ['Medlemskap', 'Utland', 'EØS'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått generell informasjon om medlemskap i folketrygden ved arbeid innenfor EØS-området. [bruker.fornavn] er veiledet til søknadsskjemaet på nav.no.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -572,6 +636,7 @@ const standardTeksterMock = {
         id: '437c4828-14dc-4f24-b407-53e3c39137ef',
         overskrift: 'Medlemsskap - Støtte fra Lånekassen',
         tags: ['Medlemskap', 'Utland', 'Student'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått generell informasjon om medlemskap i folketrygden ved studier i utlandet. Videre er [bruker.fornavn] informert om at ved støtte fra Lånekassen til utenlandsstudiene vil HAN/HUN fortsatt være medlem i folketrygden under studiene.\r\n\r\nDersom [bruker.fornavn] får avslag fra Lånekassen må HUN/HAN søke om medlemskap i folketrygden. [bruker.fornavn] er veiledet til søknadsskjemaet på nav.no.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -581,6 +646,7 @@ const standardTeksterMock = {
         id: '38791ebf-7726-4f83-9086-44030f896ed6',
         overskrift: 'Medlemsskap - Opphold i utlandet',
         tags: ['Medlemskap', 'Utland', '12mnd'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått generell informasjon om medlemskap i folketrygden ved opphold i utlandet. Videre er [bruker.fornavn] informert om at så lenge utenlandsoppholdet varer kortere enn 12 måneder vil HAN/HUN fortsatt være medlem i folketrygden.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -590,6 +656,7 @@ const standardTeksterMock = {
         id: '3d49b600-67c3-40e2-b272-4bb9c18e3662',
         overskrift: 'Fjerne betalingsanmerkning –  innkreving av bidrag',
         tags: ['bidrag', 'innkreving', 'gjeld'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nFor å bli kvitt en betalingsanmerkning må du betale gjelden din til NAV. Hvis du betaler bidrag må du i tillegg lage avtale med NAV Innkreving for betaling av framtidige bidrag.\r\n'
@@ -599,6 +666,7 @@ const standardTeksterMock = {
         id: 'f3204322-6f3a-499c-b375-0c5b9e5acf15',
         overskrift: 'Søke om endring av bidragstrekk',
         tags: ['bidrag', 'innkreving'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nFyll ut Opplysningsblankett om økonomi for innkreving på https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/skjemaveileder/vedlegg?key=248707&veiledertype=privatperson. Opplysningsskjemaet sender du til NAV Innkreving med dokumentasjon på husstandens samlede inntekter og utgifter. En veiledning ligger i opplysningsskjemaet.\r\n'
@@ -608,6 +676,7 @@ const standardTeksterMock = {
         id: '1f47ab06-d00b-4d31-a782-7548c9f6306d',
         overskrift: 'Betalingsfrist barnebidrag',
         tags: ['bidrag', 'innkreving', 'giro'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu har plikt å betale innen fristen, selv om du ikke har mottatt giro en måned. Du kan bruke KID fra tidligere giro eller ta kontakt med NAV Innkreving på telefonnummer 21 05 11 00.\r\n'
@@ -617,6 +686,7 @@ const standardTeksterMock = {
         id: '1d2064a6-530b-4ebf-a4f0-c1e79145f7c0',
         overskrift: 'Betaling av bidrag med eFaktura og Avtalegiro',
         tags: ['bidrag', 'innkreving', 'giro', 'efaktura'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu kan bruke eFaktura til å betale et hvilket som helst krav til NAV innkreving. Du kan bruke Avtalegiro i barnebidragssaker. Les mer om hvordan du bruker eFaktura og avtalegiro på giroen eller på https://www.nav.no/no/Person/Flere+tema/Innkreving+og+innbetaling/eFaktura+og+avtalegiro.406407.cms\r\n'
@@ -626,6 +696,7 @@ const standardTeksterMock = {
         id: '85f5851c-44d3-4172-bd34-e9f468e6fa98',
         overskrift: 'Forfallsdato innkreving av bidrag',
         tags: ['bidrag', 'innkreving', 'forfallsdato'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nBidrag har forfallsdato den 25. hver måned. Forfallsdatoen kan ikke endres.\r\n'
@@ -635,6 +706,7 @@ const standardTeksterMock = {
         id: '42e295ff-1f12-4ad5-88e9-40e2a41464fd',
         overskrift: 'Innbetaling uten KID',
         tags: ['bidrag', 'innkreving', 'efaktura', 'kidnummer'],
+        vekttall: 0,
         innhold: {
             nb_NO: 'Hei [bruker.fornavn]\r\nMerk innbetalingen med fødselsnummeret ditt (11 siffer).\r\n'
         }
@@ -643,6 +715,7 @@ const standardTeksterMock = {
         id: 'db0ee50a-d055-4101-9be7-4fa98bf70051',
         overskrift: 'Motregning i skatt',
         tags: ['bidrag', 'innkreving', 'gjeld', 'skatt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nFår du penger til gode på skatten, kan NAV Innkreving kreve å få disse pengene til å dekke gjeld du har til NAV. Dette kalles skattemotregning.\r\nNAV Innkreving sender varsel om skattemotregning i alle saker hvor det er gjeld. Dette skjer selv om du har inngått avtale om avdragsordning eller betalingsutsettelse, eller om NAV har besluttet trekk i saken.\r\nDu kan klage når skatteoppkreveren har gjort motregningen. Klagefristen er én måned fra du mottar brevet fra skatteoppkreveren med melding om at du har blitt motregnet. Du kan ikke klage på forhåndsvarselet.\r\n'
@@ -652,6 +725,7 @@ const standardTeksterMock = {
         id: 'adac5932-92e7-4eb1-a1a9-5a3b92137365',
         overskrift: 'Bidrag - klage på vedtak',
         tags: ['bidrag', 'innkreving'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nSelv om du har klaget på vedtaket eller søkt om endring må du betale. Dette gir ikke automatisk betalingsutsettelse. Vedtaket gjelder fram til NAV gjør et nytt vedtak.\r\n'
@@ -661,6 +735,7 @@ const standardTeksterMock = {
         id: 'f8b88798-eba6-4d1d-b2d2-fe3365e96528',
         overskrift: 'Bidrag - klage på vedtak',
         tags: ['bidrag', 'innkreving'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nSelv om du har klaget på vedtaket eller søkt om endring må du betale. Dette gir ikke automatisk betalingsutsettelse. Vedtaket gjelder fram til NAV gjør et nytt vedtak.\r\n'
@@ -670,6 +745,7 @@ const standardTeksterMock = {
         id: '1d4ad3f1-9135-4713-ac94-edc85b63107c',
         overskrift: 'Oppsettende virkning/stans i innkreving',
         tags: ['bidrag', 'innkreving'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu kan søke om oppsettende virkning til NAV-enheten som gjorde vedtaket om bidrag. Dersom NAV Innkreving benytter tvangstiltak, vil du også kunne kreve at vi tar stilling til innsigelsen din.\r\n'
@@ -679,6 +755,7 @@ const standardTeksterMock = {
         id: 'efee8e52-4471-4c04-badb-8e6c06246489',
         overskrift: 'Saksbehandlingstid oppsettende virkning ',
         tags: ['bidrag', 'innkreving', 'behandlingstid'],
+        vekttall: 0,
         innhold: {
             nb_NO: 'Hei [bruker.fornavn]\r\nVanlig saksbehandlingstid er fire til seks uker.\r\n'
         }
@@ -687,6 +764,7 @@ const standardTeksterMock = {
         id: '16993f2a-78b4-4f09-bb84-3f4039d61dda',
         overskrift: 'Saksbehandlingstid bidragssak',
         tags: ['bidrag', 'behandlingstid'],
+        vekttall: 0,
         innhold: {
             nb_NO: 'Hei [bruker.fornavn]\r\nBehandlingstiden på bidragssaker er på [ANTALL] måneder.\r\n'
         }
@@ -695,6 +773,7 @@ const standardTeksterMock = {
         id: 'ac42fdf0-1040-406d-98b7-655c40198e9b',
         overskrift: 'Privat bidragsavtale',
         tags: ['bidrag', 'beregning', 'privat_avtale'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nPrivat oppgjør eller privat avtale betyr at bidragsmottageren og den bidragspliktige selv blir enige om størrelsen på bidraget og hvordan dette gjøres opp dere imellom. På nav.no kan dere lese mer om privat avtale, og bruke bidragskalkulatoren dersom dere ønsker hjelp til å fastsette beløpet.\r\n'
@@ -704,6 +783,7 @@ const standardTeksterMock = {
         id: '8c86b19d-2d4c-41b7-9682-ba7119c9de53',
         overskrift: 'Barnets underholdskostnad',
         tags: ['bidrag', 'beregning'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nBidraget blir beregnet med utgangspunkt i hva det koster å forsørge barnet (underholdskostnad). Underholdskostnaden består av forbruksutgifter, boutgifter og eventuelle tilsynsutgifter. Utgiftene varierer med alderen til barnet. Varene som danner grunnlag for beregningene, holder enkel god kvalitet og lav pris. Det er dessuten et langtidsbudsjett slik at det er lagt inn noe ekstra hver måned for å dekke mer sjeldne og større utgifter.\r\n'
@@ -713,6 +793,7 @@ const standardTeksterMock = {
         id: '390f940c-b060-4fa2-9385-a496c5377ea7',
         overskrift: 'Klage på vedtak og oppsettende virkning',
         tags: ['bidrag', 'klage'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nHovedregelen er at bidraget løper til tross for at det er sendt inn en klage. Det er mulig å søke om å fryse bidraget, det heter oppsettende virkning.\r\n'
@@ -722,6 +803,7 @@ const standardTeksterMock = {
         id: '9b7f9bf5-4065-4353-ad07-97532a42581f',
         overskrift: 'Reiseutgifter – samvær ',
         tags: ['bidrag'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDeling av reiseutgifter i forbindelse med samvær mellom samværsforelderen og barnet er et forhold mellom foreldrene, og er ikke med i bidragsberegningen. Dersom dere ikke blir enige om hvordan dere skal dele reiseutgiftene, kan dere ta saken videre til fylkesmannen og/eller retten.\r\n'
@@ -731,6 +813,7 @@ const standardTeksterMock = {
         id: '7d89caf9-f7a0-439f-aa11-8df42b36f24d',
         overskrift: 'Inngå samværsavtale - familievernkontor',
         tags: ['bidrag', 'samvær'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nNAV anbefaler at du tar kontakt med familievernkontoret i kommunen for å avtale meglingstime. Dersom dette ikke fører til noen endring, er det mulig å ta saken videre til domstolen for å få en avgjørelse der. Dere må søke NAV hvis det blir en endring i samværsavtalen som får betydning for størrelsen på bidraget.\r\n'
@@ -740,6 +823,7 @@ const standardTeksterMock = {
         id: '4fda8d4c-42af-4ddf-b9aa-6111ae747c2d',
         overskrift: 'Flytte til utlandet - AAP - Innenfor EØS',
         tags: ['AAP', 'Utland', 'Eksport'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker å flytte til utlandet, og vil vite om det er mulig å beholde arbeidsavklaringspengene etter flyttingen.\r\n\r\n[bruker.fornavn] kan bare ta med seg arbeidsavklaringspengene innenfor EØS-området. HAN/HUN kan ikke ta med seg arbeidsavklaringspenger ved flytting utenfor EØS-området.\r\n\r\nHvis [bruker.fornavn] skal flytte til et EØS-land, må [saksbehandler.enhet] vurdere om [bruker.fornavn] kan ta med seg arbeidsavklaringspengene til det aktuelle landet.\r\n\r\nFor at [saksbehandler.enhet] skal kunne vurdere videre rett til arbeidsavklaringspenger, må [bruker.fornavn] fylle ut egenvurderingsskjemaet på nytt, dette finnes under skjemaveilederen på nav.no. I tillegg vil [bruker.fornavn] få tilsendt et eget spørreskjema som må besvares og returneres til [saksbehandler.enhet].\r\n\r\n[saksbehandler.enhet] vil vurdere saken når alle nødvendige opplysninger foreligger. [bruker.navn] må oppholde seg i Norge og fortsette med de avtalte aktivitetene inntil det kommer et endelig svar i posten.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -749,6 +833,7 @@ const standardTeksterMock = {
         id: '96d12dab-ca9d-4178-ac98-f5430e8c57ce',
         overskrift: 'Flytte til utlandet - AAP - Utenfor EØS',
         tags: ['AAP', 'Utland', 'Eksport'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker å flytte til utlandet, og vil vite om det er mulig å beholde arbeidsavklaringspengene etter flyttingen.\r\n\r\n[bruker.fornavn] kan bare ta med seg arbeidsavklaringspengene innenfor EØS-området. Det aktuelle landet er ikke innenfor EØS-området, og [bruker.fornavn] har derfor fått beskjed om at HAN/HUN ikke kan ta med seg arbeidsavklaringspengene hvis flyttingen gjennomføres.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -758,6 +843,7 @@ const standardTeksterMock = {
         id: '634438b4-dbab-4cea-ba6d-fc86f33f3b0f',
         overskrift: 'Vedtak om arbeidsavklaringspenger etter flytting til utlandet',
         tags: ['AAP', 'Utland', 'Eksport'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[saksbehandler.enhet] har kommet frem til at [bruker.navn] vil ha rett til arbeidsavklaringspenger etter flyttingen sin til utlandet. Godkjenningen er tatt på bakgrunn av mottatte opplysninger og tilgjengelige saksdokumenter.\r\n\r\nEtter flyttingen skal ikke [bruker.fornavn] lenger ha kontakt med det nåværende NAV-kontoret, men vil i stedet få en fast saksbehandler hos [saksbehandler.enhet], som vil ha ansvaret for oppfølgingen så lenge [bruker.fornavn] mottar arbeidsavklaringspenger. Denne overføringen vil først gjennomføres når NAV har mottatt bekreftelse på flyttingen.\r\n\r\nEtter at [bruker.fornavn] har flyttet vil [saksbehandler.enhet] ta kontakt for å utarbeide en aktivitetsplan. Aktivitetsplanen skal beskrive hva som skal til for at [bruker.fornavn] skal komme i arbeid.\r\n\r\nDet er viktig at [bruker.fornavn] gjør følgende når flyttingen er gjennomført:\r\n- Melde flyttingen til myndighetene i bostedslandet\r\n- Gi NAV skriftlig beskjed om ny bostedsadresse (dette kan også oppdateres på Ditt NAV)\r\n- {FYLL INN ANDRE AKTIVITETER}\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -767,6 +853,7 @@ const standardTeksterMock = {
         id: '9129a552-fc0b-46ac-bee9-3c95be2a91f0',
         overskrift: 'Rett til å søke uføretrygd - Bosatt i EØS',
         tags: ['AAP', 'Utland', 'Uføre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[saksbehandler.enhet] har kommet til at [bruker.navn] bør søke om uføretrygd på grunn av varig nedsatt arbeidsevne.\r\n\r\nSiden [bruker.fornavn] er bosatt i et EØS-land, og skal ha uføretrygd fra et annet EØS-land, må [bruker.fornavn] kontakte trygdemyndighetene i bostedslandet, og få deres hjelp til å sende uføresøknaden til NAV. [bruker.fornavn] må kontakte {AKTUELLE MYNDIGHETER}. De sender så søknaden videre til NAV. Søknadsblankettene heter E 204, E 205 og E 207.\r\n\r\n[bruker.fornavn] er gjort oppmerksom på at vi kan innvilge arbeidsavklaringspenger i inntil åtte måneder mens vi behandler uføresøknaden. Dette kan [bruker.fornavn] kun få, hvis vi mottar dokumentasjon på at [bruker.fornavn] har søkt om uføretrygd via myndighetene i bostedslandet. Dokumentasjonen skal helst være at [saksbehandler.enhet] har mottatt søknaden fra myndighetene i bostedslandet. Det kan også være en bekreftelse på at myndighetene i bostedslandet behandler søknaden.\r\n\r\n[bruker.fornavn] har fått beskjed om at NAV må ha mottatt dokumentasjon på ovennevnte søknad snarest, og senest innen {OPPGI FRIST}.\r\n\r\nHvis NAV ikke mottar søknad om uføretrygd innen den oppgitte fristen, vil vi stanse arbeidsavklaringspengene.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -776,6 +863,7 @@ const standardTeksterMock = {
         id: 'c4b5b1ff-eaf3-4c1b-ac83-034de3ee3749',
         overskrift: 'Medlemskap - ikke registrert unntak fra norsk trygd',
         tags: ['Medlemskap', 'Utland', 'Unntak'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått informasjon om at NAV ikke har registrert unntak fra norsk trygd i perioden fra DATO til DATO. Normalt blir unntak fra norsk trygd registrert i løpet av to uker etter at vi har mottatt unntaket. Når perioden er registrert overføres dette elektronisk til Skatteetaten. [bruker.fornavn] blir bedt om å kontakte Skatteetaten for å få avgiften refundert.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -785,6 +873,7 @@ const standardTeksterMock = {
         id: 'c7e661da-4593-45ac-9f14-11536c367f77',
         overskrift: 'Medlemskap ved arbeid i utlandet',
         tags: ['Medlemskap', 'Utland', 'Arbeid'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått generell informasjon om medlemskap i folketrygden ved arbeid i utlandet. [bruker.fornavn] er veiledet til søknadsskjemaet på nav.no.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -794,6 +883,7 @@ const standardTeksterMock = {
         id: 'c3b0f5a5-28de-45a0-8ac5-aac8f936a099',
         overskrift: 'Purrer på sak',
         tags: ['Medlemskap', 'Utland', 'Purring'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] purrer på saken. [bruker.fornavn] blir informert om at saken vil bli prioritert.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -803,6 +893,7 @@ const standardTeksterMock = {
         id: '1f02bde7-bc32-45fd-8275-fb0edbe4b1f5',
         overskrift: 'Levert søknad',
         tags: ['søknad', 'levering', 'levert_søknad', 'oppmøte'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har levert søknad om (YTELSE). NAV har mottatt søknaden og sender den videre til behandling. Jeg har opplyst om at behandlingstiden er på (ANTALL) uker og at det er mulig å følge med på Ditt NAV for status framover.'
@@ -812,6 +903,7 @@ const standardTeksterMock = {
         id: '65db5eea-d889-4de6-96e2-2db122c9473b',
         overskrift: 'Generell veiledning',
         tags: ['veiledning', 'generell', 'veiledning'],
+        vekttall: 0,
         innhold: {
             nb_NO: '[bruker.navn] har fått generell veiledning om (YTELSE). Jeg har opplyst om at (TEKST).'
         }
@@ -820,6 +912,7 @@ const standardTeksterMock = {
         id: 'fb402527-711a-4ae0-9433-90f002eb03b8',
         overskrift: 'Veiledning i hvordan søke',
         tags: ['veiledning', 'søknad'],
+        vekttall: 0,
         innhold: {
             nb_NO: '[bruker.navn] har fått veiledning i hvordan søke om (YTELSE). Jeg har opplyst om at (TEKST).'
         }
@@ -828,6 +921,7 @@ const standardTeksterMock = {
         id: '7a09aa4e-cdc2-416c-866c-e7e66b7b009c',
         overskrift: 'Bistand til å søke',
         tags: ['veiledning', 'bistand', 'søknad'],
+        vekttall: 0,
         innhold: {
             nb_NO: '[bruker.navn] har fått bistand til å søke om (YTELSE). Jeg har opplyst om at (TEKST).'
         }
@@ -836,6 +930,7 @@ const standardTeksterMock = {
         id: '94382099-8125-4228-8b00-c760644fbd9f',
         overskrift: 'Generell bistand',
         tags: ['veiledning', 'bistand'],
+        vekttall: 0,
         innhold: {
             nb_NO: '[bruker.navn] har fått bistand til å (TEKST). Jeg har opplyst om at (TEKST).'
         }
@@ -844,6 +939,7 @@ const standardTeksterMock = {
         id: '1ae55bc4-a9d2-47f6-83b0-04b90fda3d9d',
         overskrift: 'Registrere seg som arbeidssøker',
         tags: ['veiledning', 'jobbsøkertips'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått bistand til å registrere seg som arbeidssøker. Jeg har opplyst om at det er viktig å gå gjennom disse punktene:\r\n\r\n- Les Arbeidsledig - hva nå? https://www.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Arbeidsledig+-+hva+na\r\n\r\n- Det er viktig å registrere en god CV på nav.no, og husk å legge inn gode kompetanseord.\r\n- Les: Slik lager du en god CV https://www.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Jobbsokertips/Slik+lager+du+en+god+CV\r\n\r\n- Gå gjennom Jobbsøkertips https://www.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Jobbsokertips/Slik+lager+du+en+god+CV\r\n\r\nFor mer informasjon, se www.nav.no eller kontakt NAV på telefon 55 55 33 33\r\n\r\n'
@@ -853,6 +949,7 @@ const standardTeksterMock = {
         id: '862ef507-5ec2-4270-b60d-f3a5ffc93555',
         overskrift: 'Endre skattetrekk',
         tags: ['veiledning', 'skatt', 'skattetrekk'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått veiledning i hvordan endre skattetrekk. Jeg har opplyst om at Skatteetaten må kontaktes for endring av skattetrekket.'
@@ -862,6 +959,7 @@ const standardTeksterMock = {
         id: 'e9f27c02-4d28-46fd-a99f-61030c174e16',
         overskrift: 'Endre kontonummer - samtalereferat',
         tags: ['veiledning', 'kontonummer'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått veiledning i hvordan endre kontonummer. Jeg har opplyst om at kontonummer enkelt kan endres ved å logge inn på Ditt NAV eller ved å fylle ut skjema Melding om nytt bankkontonummer https://www.nav.no/no/Person/Skjemaer-for-privatpersoner/skjemaveileder/vedlegg?key=250914 og sende det til NAV.'
@@ -871,6 +969,7 @@ const standardTeksterMock = {
         id: '2e5d2633-4707-4b64-80a3-e8dec0ca27cd',
         overskrift: 'Registrere seg på nav.no/meldekort',
         tags: ['veiledning', 'bistand', 'registrering', 'arbeidssøker'],
+        vekttall: 0,
         innhold: {
             nb_NO: '[bruker.navn] har fått bistand til å registrere seg på nav.no og generell veiledning om meldekort.'
         }
@@ -879,6 +978,7 @@ const standardTeksterMock = {
         id: 'eaeef89e-1801-49fd-86ca-88d240574fd3',
         overskrift: 'Ved reise til utlandet',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'reparasjon', 'utlandet', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nSkal du til utlandet, må du alltid informere hjelpemiddelsentralen om dette før du reiser. Det er mulig å få reparert hjelpemidler i utlandet etter avtale med oss. Vi tar ofte service på utstyr før avreise, og/eller sender med slitedeler.\r\n'
@@ -888,6 +988,7 @@ const standardTeksterMock = {
         id: 'f08abffb-2fd2-422d-a814-9ee6d118ea54',
         overskrift: 'Informasjon om vilkår for bil og søknad',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'bil', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu finner informasjon om vilkårene for å få støtte til bil, og søknadsskjema på https://www.nav.no/no/Person/Hjelpemidler/Tjenester+og+produkter/Bil+og+transport.\r\n\r\nHvis du har spørsmål kan du kontakte oss på telefon 55 55 33 35.\r\n'
@@ -897,6 +998,7 @@ const standardTeksterMock = {
         id: 'a5edd423-df8e-4d3e-aa95-dd8674228de4',
         overskrift: 'Stønad til tilskudd til bil',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'bil', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu kan få ny stønad til tilskudd til bil til arbeid og utdanning hvis bilen er brukt i minst åtte år. Du kan få ny stønad til kassebil med heis eller rampe til arbeid og utdanning når den gamle bilen er minst åtte år og har gått 150 000 kilometer. Hvis du har fått stønaden til bruk i dagliglivet, må bilen være minst elleve år. Du kan søke om ny stønad tre måneder før brukstiden har gått ut.\r\n'
@@ -906,6 +1008,7 @@ const standardTeksterMock = {
         id: '66f696b0-e332-432b-9d66-0db6a683330e',
         overskrift: 'Bygge om bil',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'bil', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu vil få beskjed av NAV om hvem som skal bygge om bilen din når dette er avklart.\r\n'
@@ -915,6 +1018,7 @@ const standardTeksterMock = {
         id: '18497d6e-6d23-4c08-aa4b-595afed8332e',
         overskrift: 'Utlevering av bil',
         tags: ['hjelpemiddelsentralen', 'hjelpemidler', 'bil', 'hms'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu kan hente bilen når alle gjeldsdokumentene i saken er underskrevet og returnert til bilsenteret. Pant i bilen må også være registrert i Brønnøysundregisteret. Hvis du er umyndig, må Fylkesmannen ha godkjent gjeldsdokumentene før du får utlevert bilen.\r\n'
@@ -924,6 +1028,7 @@ const standardTeksterMock = {
         id: '33473458-f204-41b8-99b4-151d5147b5fe',
         overskrift: 'Tidspunkt for utbetaling av bidrag',
         tags: ['bidrag', 'innkreving', 'utbetaling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDu vil få utbetalt bidraget når innbetalingen fra den bidragspliktige er klargjort hos NAV Innkreving. Dette tar som regel tre virkedager.\r\nHvis vi ikke har kontonummeret til bidragsmottakeren, vil utbetalingen ta lengre tid.\r\nBidragspliktig må betale den 25. hver måned.\r\n'
@@ -933,6 +1038,7 @@ const standardTeksterMock = {
         id: '8f2089dc-1ccd-4d8c-a66e-9b68cdf6ece6',
         overskrift: 'Tidspunkt for utbetaling av forskudd',
         tags: ['bidrag', 'innkreving', 'utbetaling', 'forskudd'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nNår du oppfyller vilkårene for forskudd vil du normalt ha pengene på konto innen den 10. hver måned.\r\n'
@@ -942,6 +1048,7 @@ const standardTeksterMock = {
         id: '69672ced-eae9-484b-bcf3-1bc87276289c',
         overskrift: 'Ileggelse av gebyr',
         tags: ['bidrag', 'innkreving', 'fastsettelsesgebyr'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nFordi du er blitt ilagt dette i vedtaket om bidrag (se mer om dette i vedtaket).\r\n'
@@ -951,6 +1058,7 @@ const standardTeksterMock = {
         id: '032cee68-464f-4fc2-af84-4d25f57160e1',
         overskrift: 'Gebyr for fastsettelse av bidrag',
         tags: ['bidrag', 'innkreving', 'fastsettelsesgebyr'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nNei, men dere må betale et gebyr hvis NAV skal fastsette bidraget. Dersom dere har avtalt bidrag privat, koster det ikke noe å ha innkreving gjennom NAV.\r\n'
@@ -960,6 +1068,7 @@ const standardTeksterMock = {
         id: '9e6e30f9-e5a8-4ca3-b49c-a1ced20357ff',
         overskrift: 'Oversikt utbetaling av bidrag',
         tags: ['bidrag', 'innkreving', 'utbetaling'],
+        vekttall: 0,
         innhold: {
             nb_NO: 'Hei [bruker.fornavn]\r\nDu finner en oversikt over utbetalinger ved å logge på Ditt NAV\r\n'
         }
@@ -968,6 +1077,7 @@ const standardTeksterMock = {
         id: 'c452f600-94bb-485c-af45-3b9a1217ce2f',
         overskrift: 'Begrunnelse for betalingsanmerkning',
         tags: ['bidrag', 'innkreving', 'trekk'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nDet er fordi NAV Innkreving har et tvangstiltak mot deg. Det kan for eksempel være trekk i lønn eller ytelse. NAV Innkreving kan bare ta utleggstrekk i lønn eller andre ytelser i saker der du ikke betaler frivillig. Vi kan også ta utleggspant i formuesgoder (bankkonto, eiendom, bil, motorsykkel og så videre). Når vi tar utleggstrekk eller utleggspant vil du få en  betalingsanmerkning.\r\n'
@@ -977,6 +1087,7 @@ const standardTeksterMock = {
         id: 'eca5ba82-54df-463b-b0bf-3173fe46d0a5',
         overskrift: 'CV',
         tags: ['CV'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'CV er en oversikt over arbeidserfaringen og utdanningen din, språk, kurs, sertifikater, verv og lignende. Den skal også inneholde en kort egenbeskrivelse av interessene dine og kompetansen din. CVen skal alltid være oppdatert og fullstendig med riktige kontaktopplysninger, som e-postadresse og telefonnummer.'
@@ -986,6 +1097,7 @@ const standardTeksterMock = {
         id: 'cba6055b-db0d-49cb-be11-58f4af68fec8',
         overskrift: 'Yrkesmål',
         tags: ['yrkesmål'],
+        vekttall: 0,
         innhold: {
             nb_NO: 'yrkesmål er det konkrete yrket som er målet for aktivitetsplanen din.'
         }
@@ -994,6 +1106,7 @@ const standardTeksterMock = {
         id: '1dfc678d-4ff6-4de4-8f46-e07cd4b219e4',
         overskrift: 'Aktivitetsplan',
         tags: ['aktivitetsplan'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'aktivitetsplanen viser alle de aktivitetene du og NAV skal gjennomføre for å nå det målet du og NAV har avtalt.'
@@ -1003,6 +1116,7 @@ const standardTeksterMock = {
         id: 'baa6cf60-5de9-4530-93c9-f904167296a2',
         overskrift: 'Kompetanseord',
         tags: ['kompetanseord'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'kompetanseord eller nøkkelkvalifikasjoner er ord som utdyper den formelle kompetansen din. Kompetanseord er viktig for at arbeidsgivere skal finne profilen din. Les mer om kompetanseord her: https://www.nav.no/no/Lokalt/Rogaland/Nyttig+a+vite/Kompetanseordbrosjyre.385419.cms'
@@ -1012,6 +1126,7 @@ const standardTeksterMock = {
         id: 'ede30dcf-8dbe-4fd7-acb4-a256cad95db7',
         overskrift: 'Ditt NAV',
         tags: ['dittnav'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Her på Ditt NAV kan du ha digital dialog med NAV i en sikker kanal, levere meldekort, se utbetalingsoversikt, få tilgang til digitale søknader, se status i saken din og innsyn i dokumenter.'
@@ -1021,6 +1136,7 @@ const standardTeksterMock = {
         id: 'fc716678-aa73-4002-a84b-64b3089dd9c3',
         overskrift: 'Utbetalinger',
         tags: ['utbetalinger'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Du kan se utbetalingene dine  fra NAV de siste tre månedene ved å logge deg inn på Ditt NAV. Ytelser fra kommunen vises ikke i denne tjenesten'
@@ -1030,6 +1146,7 @@ const standardTeksterMock = {
         id: '6f5fc0e4-7d41-4c1e-907b-7f92b876f8f2',
         overskrift: 'Karriereveiledning',
         tags: ['karriereveiledning'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Karriereveiledning:\r\nhttps://www.nav.no/Karriereveiledning.378415.cms\r\n\r\nSenter for jobbmestring:\r\nhttps://www.nav.no/no/Person/Arbeid/Oppfolging+og+tiltak+for+%C3%A5+komme+i+jobb/Relatert+informasjon/Senter+for+jobbmestring.346074.cms\r\n\r\nOm Akademia – ønsker du å få hjelp av en veileder?\r\nhttps://www.nav.no/no/Person/Arbeid/Test+deg+for+jobb+og+utdanning/Relatert+informasjon/Om+Akademia+-+%C3%98nsker+du+%C3%A5+f%C3%A5+hjelp+av+en+veileder%3F.347276.cms\r\n'
@@ -1039,6 +1156,7 @@ const standardTeksterMock = {
         id: '7bff0fc0-17aa-42c4-88a0-7ec0ac90a8af',
         overskrift: 'NAV-kontor Generell henvendelse om tiltak',
         tags: ['tiltak'],
+        vekttall: 0,
         innhold: {
             nb_NO: 'Hei [bruker.navn]\r\n\r\nNAV [bruker.navkontor] har mottatt henvendelsen din om (tiltak).\r\n'
         }
@@ -1047,6 +1165,7 @@ const standardTeksterMock = {
         id: '925f8958-77fc-4113-8ce6-1b7e99109031',
         overskrift: 'NAV-kontor Kvittering – ikke tildelt tiltak',
         tags: ['tiltak', 'klage', 'kvittering'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.navn]\r\n\r\nNAV [bruker.navkontor] har mottatt henvendelsen din om at du ikke er tildelt et tiltak fra NAV.\r\n\r\nDu oppgir i henvendelsen din at du ønsker (tiltak).\r\n\r\nDu vil få en skriftlig begrunnelse fra oss i posten om årsaken til at du ikke kan få det tiltaket du ønsker. Vanlig saksbehandlingstid er tre uker.\r\n\r\nHvis du er uenig i begrunnelsen vår, har du rett til å klage. Klagefristen er seks uker fra du har mottatt den skriftlige begrunnelsen vår. Du finner mer informasjon om retten til å klage på tiltak på www.nav.no.\r\n\r\nhttps://www.nav.no/no/Person/Skjemaer-for-privatpersoner/Klage%20p%C3%A5%20vedtak\r\n'
@@ -1056,6 +1175,7 @@ const standardTeksterMock = {
         id: 'b34a237b-827c-4af1-a983-83b6aa290e1b',
         overskrift: 'Klage på tiltak',
         tags: ['tiltak', 'klage'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.navn]\r\n\r\nNAV [bruker.navkontor] har mottatt klagen din på vedtaket om at du ikke har fått (tiltak).\r\n\r\nNår du klager skal NAV-kontoret som har gjort vedtaket vurdere saken din på nytt.\r\nDersom vedtaket ikke blir endret, blir klagen sendt videre til behandling hos NAV Klageinstans. Du vil få kopi av oversendelsesbrevet fra NAV-kontoret til NAV Klageinstans, med mulighet for å uttale deg om NAV-kontorets begrunnelse.\r\n\r\nI spesielle tilfeller kan du få en forlenget klagefrist, og vi kan også behandle klagen selv om klagefristen er utløpt.\r\n'
@@ -1065,6 +1185,7 @@ const standardTeksterMock = {
         id: '0ac7effe-9bfc-4c34-8868-b6faffceeb2e',
         overskrift: 'Pensjon - Gjenlevendepensjon - Ujevn inntekt',
         tags: ['', 'ks', 'pensjon', 'gjenlevende', 'inntekt', 'endring', 'ujevn', 'inntekt', 'tilkallingsvikar'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] opplyser om ny inntekt, og lurer på om det har betydning for gjenlevendepensjonen.\r\n\r\nJeg informerer om at\r\n- pensjonen utbetales nå i forhold til en forventet inntekt på xx kroner i løpet av det neste året.\r\n- hvis ny inntekt vil avvike med mer enn 10 % fra nevnte inntekt, må du sende inn dokumentasjon på inntekten.\r\n- det er månedsinntekt x 12 som er utgangspunktet når vi beregner ny inntekt.\r\n- Som tilkallingsvikar må du sende lønnsslipper dersom månedsinntekt x 12 avviker med mer enn 10% i forhold til det som er satt som forventet inntekt\r\n\r\nDu kan lese mer om gjenlevendepensjon og arbeid på www.nav.no/ytelsergjenlevende',
@@ -1078,6 +1199,7 @@ const standardTeksterMock = {
         id: '3082e88c-f745-48fa-8da6-ede38323c350',
         overskrift: 'Pensjon - Gjenlevendepensjon - Inntekt - Selvstendig næringsdrivende',
         tags: ['ks', 'pensjon', 'gjenlevende', 'inntekt', 'endring', 'selvstendig', 'næringsdrivende'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] opplyser om ny inntekt, og lurer på om det har betydning for gjenlevendepensjonen.\r\n\r\nJeg informerer om at\r\n- pensjonen utbetales nå i forhold til en forventet inntekt på XX kroner i løpet av det neste året.\r\n- hvis ny inntekt vil avvike med mer enn 10 % fra nevnte inntekt, må du sende inn dokumentasjon på inntekten.\r\n- det er månedsinntekt x 12 som er utgangspunktet når vi beregner ny inntekt.\r\n- selvstendig næringsdrivende, ny etablering eller endring i drift: Dokumentasjon fra regnskapsfører, kemner eller andre som kan si noe om forventet inntekt.\r\n\r\nDu kan lese mer om gjenlevendepensjon og arbeid på www.nav.no/ytelsergjenlevende\r\n',
@@ -1091,6 +1213,7 @@ const standardTeksterMock = {
         id: 'ae2b26e3-920e-40c4-ac00-8e1c3464571e',
         overskrift: 'Etterlyser sykepenger - opplyst om utbetalingsdato',
         tags: ['sykepenger', 'utbetaling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterlyser sykepenger for perioden (FRADATO-TILDATO). Jeg har sjekket at nødvendig dokumentasjon foreligger og opplyst om at sykepengene blir utbetalt innen den 25. i måneden.'
@@ -1100,6 +1223,7 @@ const standardTeksterMock = {
         id: '229d20b6-11c4-4162-a743-7c9f6ebe8efd',
         overskrift: 'Du må registrere adressen din',
         tags: ['NØS', 'adresse', 'retur'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nDu har ingen registrert adresse hos NAV fordi du ikke har registrert bostedsadressen eller postadressen din i folkeregisteret.\r\n\r\nNAV får oversendt disse opplysningene fra folkeregisteret.\r\n\r\nFor at NAV skal kunne utbetale penger og sende post til deg, må du registrere adressen din i folkeregisteret.\r\n\r\nDu finner informasjon på http://www.skatteetaten.no om hvordan du gjør dette.',
@@ -1111,6 +1235,7 @@ const standardTeksterMock = {
         id: '8cf8b2b4-5d90-4ee1-9eec-2743c2ed4ea1',
         overskrift: 'Arbeid - Dagpenger – Meldekort',
         tags: ['ks', 'arbeid', 'dagpenger', 'meldekort', 'utfylling', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] får dagpenger og har spørsmål om utfylling av meldekort\r\n\r\nDu har fått informasjon om at du skal fylle ut meldekortet slik:\r\n- BESKRIVELSE\r\n\r\nDu finner mer informasjon om hvordan fylle ut meldekortet på www.nav.no/meldekortdagpenger\r\n',
@@ -1124,6 +1249,7 @@ const standardTeksterMock = {
         id: '3845983e-3517-4cab-ac99-e299211a5d7e',
         overskrift: 'Du må oppdatere utbetalingsopplysningene dine',
         tags: ['nøs', 'kontonummer', 'retur'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nHar du glemt å oppdatere bankkontonummeret ditt hos NAV?\r\n\r\nVi har forsøkt å utbetale penger til deg, men vi mangler korrekt kontonummer.\r\n\r\nDu kan endre ditt kontonummer på nav.no under Din profil. Her ser du kontonummeret som er registrert. Du endrer dette enkelt ved å trykke Rediger kontonummer.\r\n\r\nVi vil utbetale pengene til deg når du har registrert nytt kontonummer.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.enhet]\r\n',
@@ -1137,6 +1263,7 @@ const standardTeksterMock = {
         id: '1f1e45c8-fe08-45ed-8a39-50ee3d76c2d4',
         overskrift: 'Generell - språk - nynorsk ',
         tags: ['generell', 'språk', 'bokmål', 'nynorsk', 'målform', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Takk for tilbakemeldingen din. Vi beklager at vi i dag ikke oppfyller lovens krav til målform. Vi jobber med å forbedre oss på dette området.',
@@ -1148,6 +1275,7 @@ const standardTeksterMock = {
         id: '8678e065-e14c-4ad9-a2e0-babed1a7add4',
         overskrift: 'Aktivitetsplan',
         tags: ['Aktivitetsplan'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'aktivitetsplanen hjelper deg med å holde oversikt over jobbene du har søkt på. I planen kan du blant annet legge inn lenke til stillingsannonser, beskrivelse av stillingene, og kontaktperson hos arbeidsgiveren. For å holde oversikt over hvor du er i søkeprosessen, kan du merke stillingen med for eksempel «Innkalt til intervju.\r\nLes mer her:\r\nhttps://www.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Jobbsokertips/Bruk+aktivitetsplanen+din'
@@ -1157,6 +1285,7 @@ const standardTeksterMock = {
         id: '20abd4e6-18b8-483e-ace5-f61b46d76798',
         overskrift: 'Uføretrygd - Status i sak',
         tags: ['ks', 'uføretrygd', 'uføre', 'status', 'i', 'sak'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterlyser vedtaket for søknad om uføretrygd.\r\n\r\nDu har fått informasjon om at\r\n- vi har mottatt din søknad om uføretrygd\r\n- du kan selv se når vi mottok søknaden din på Ditt NAV / Din uføretrygd / Saksoversikt. Der kan du også følge med når det skjer noe nytt i saken din.\r\n- du mottar YTELSE til DATO\r\n- du kan selv se saksbehandlingstiden i ditt fylke på www.nav.no/saksbehandlingstider'
@@ -1166,6 +1295,7 @@ const standardTeksterMock = {
         id: '1de16d0e-4344-4788-92c5-01f7061cc434',
         overskrift: 'Uføretrygd - Status i sak (BTN)',
         tags: ['ks', 'sto', 'btn', 'uføretrygd', 'uføre', 'status', 'i', 'sak'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi gjør oppmerksom på at denne tjenesten kun kan brukes til å sende inn beskjeder til NAV, og at vi ikke svarer på spørsmål om regelverk eller status i sak her.\r\n\r\nDu kan selv se når vi mottok søknaden din på Ditt NAV / Din uføretrygd / Saksoversikt. Der kan du også følge med når det skjer noe nytt i saken din. I noen tilfeller kan det ta litt tid fra vi har mottatt et dokument til det vises i Ditt NAV / Din uføretrygd / Saksoversikt.\r\n\r\nDu kan se saksbehandlingstiden i ditt fylke på http://www.nav.no/saksbehandlingstider\r\n\r\nDersom du ikke finner svar på spørsmålet ditt ved å sjekke status i saken på Ditt NAV / Din uføretrygd / Saksoversikt, ber vi deg ringe oss, så hjelper vi deg gjerne. Du finner kontaktinformasjon på http://www.nav.no/ringnav\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -1175,6 +1305,7 @@ const standardTeksterMock = {
         id: '317f6749-7bd3-4129-8cb6-89c2691ca976',
         overskrift: 'Signatur',
         tags: ['signatur', ''],
+        vekttall: 0,
         innhold: {
             nb_NO: 'Med vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n',
             nn_NO: 'Med venleg helsing\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n',
@@ -1185,6 +1316,7 @@ const standardTeksterMock = {
         id: 'dbf0fcac-f3a1-4b4f-88e5-bb8f17f02e2b',
         overskrift: 'Du ønsker ikke skattereduksjon i desember',
         tags: ['NØS', 'halvskatt', 'desember', 'skatt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nDu har tatt kontakt med NAV fordi du ikke ønsker skattereduksjon i desember på din ytelse. Vi må registrere dette manuelt som et ekstra skattetrekk. Du må derfor oppgi til oss hvor mye ekstra skatt du ønsker å bli trukket i desember. Du må oppgi det ekstra skattetrekket som et beløp  eller som en prosent.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n'
@@ -1194,6 +1326,7 @@ const standardTeksterMock = {
         id: '1f971bf3-528f-411a-ac95-0c57249764f3',
         overskrift: 'Sosiale tjenester - Bekreftelse ytelser',
         tags: ['ks', 'bekreftelse', 'ytelser', 'generell', 'sosial'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker bekreftelse på at man ikke mottar statlig og/eller kommunale ytelser fra NAV.\r\n\r\nBekreftelsen gjelder for PERIODE.\r\n\r\nDu har fått informasjon om at:\r\n- din forespørsel er videreformidlet til aktuelt NAV-kontor.\r\n- du får tilsendt bekreftelse per post til din folkeregistrerte adresse.',
@@ -1205,6 +1338,7 @@ const standardTeksterMock = {
         id: '37a010aa-df66-4fa2-a1d5-1e4cf8371539',
         overskrift: 'Pensjon - Inngått samboerskap',
         tags: ['ks', 'pensjon', 'afp', 'alderspensjon', 'samboer', 'flyttet', 'sammen', 'lykke'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] melder fra om samboerforhold.\r\n\r\nDu opplyser at du og NAVN ETTERNAVN FØDSELSNUMMER har flyttet sammen /flytter sammen DATO.\r\n\r\nDu har fått informasjon om at:\r\n- samboerforhold kan ha betydning for beregning av grunnpensjon og minsteytelse\r\n- omregning av pensjon vil skje når man har bodd sammen 12 av de siste 18 månedene dersom samboer har inntekt over 2G, eller har pensjon/uføretrygd fra folketrygden\r\n- dersom du bor sammen med en du har vært gift med tidligere, eller har/har hatt barn sammen med skal omregning skje fra måneden etter at dere flytter sammen\r\n- jeg sender beskjed til pensjonsavdelingen vår slik at du får vurdert omregning av pensjon'
@@ -1214,6 +1348,7 @@ const standardTeksterMock = {
         id: '881d19f5-034e-4172-8eb6-fcd59fa32201',
         overskrift: 'Skriv til bruker, ny arbeidssøker',
         tags: ['skrivtilbruker', 'ny_arbeidssøker', 'kompetanseord'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.navn]\r\nDu er nå registrert som arbeidssøker hos NAV. For at vi i NAV skal kunne hjelpe deg på best mulig måte er det viktig at du tar i bruk aktivitetsplanen. Her kan du blant annet legge inn stillinger som du søker på og ha direkte dialog med veilederen om oppfølging som handler om arbeid. Du må også holde CV-en din oppdatert (legg inn riktige jobbønsker og kompetanseord)\r\nLes mer om Arbeidsledig – hva nå?: https://www.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Arbeidsledig+-+hva+na\r\nJobbsøkertips:\r\nhttps://www.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Jobbsokertips\r\n\r\nHva forventer NAV av deg?\r\nVi forventer at du selv aktivt forsøker å skaffe deg jobb. Du må derfor søke jobber. Dersom du ikke finner ledige stillinger innenfor det du ønsker å arbeide med, må du utvide jobbsøket ditt. Er det andre områder du kan bruke kompetansen din på? Ikke la deg begrense av geografi eller bransje.\r\n\r\nFor å lykkes med jobbjakten er det best å komme i gang raskest mulig – orienter deg i arbeidsmarkedet, benytt nettverket ditt, tenk utradisjonelt.  Lag en god CV, skriv målrettede jobbsøknader og ta kontakt med interessante arbeidsgivere. Du må også sende meldekort hver 14. dag og være tilgjengelig for kontakt med NAV. Lykke til!\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n'
@@ -1223,6 +1358,7 @@ const standardTeksterMock = {
         id: '8c9b65e4-2a84-42fe-a150-81cf346da53e',
         overskrift: 'Aktivitetsplikt - aktivitetsplan',
         tags: ['AAP', 'Utland', 'TLF'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'I forbindelse med servicen vår til [bruker.navn] er det avtalt en telefonsamtale den {ANGI DAG OG TIDSPUNKT}.\r\n\r\nDet er aktivitetsplikt på arbeidsavklaringspenger, hvor målet er å beholde eller skaffe arbeid. Derfor skal vi, sammen med [bruker.fornavn], legge opp en aktivitetsplan. Før samtalen gjennomføres er det viktig at [bruker.fornavn] tenker gjennom følgende punkter:\r\n- Nåværende situasjon\r\n- Mål for aktivitet fremover\r\n\r\nMuligheter for å komme tilbake i arbeid:\r\n- Hos nåværende arbeidsgiver\r\n- Yrkesbakgrunn og kompetanse\r\n- Heltid eller deltid\r\n- Arbeidsmuligheter på hjemstedet og andre steder\r\n\r\n[bruker.fornavn] er informert om at aktiviteten hovedsakelig skal foregår i bostedslandet.\r\n\r\nVi tar kontakt med [bruker.fornavn] på telefonnummer {ANGI TELEFONNUMMER TIL BRUKER, ELLER HENVIS TIL GJELDENDE KONTAKTOPPLYSNINGER}.\r\n\r\n[saksbehandler.enhet]\r\n'
@@ -1242,6 +1378,7 @@ const standardTeksterMock = {
             'fosterfamilie',
             ''
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om foreldrepenger ved adopsjon av fosterbarn.\r\n\r\nDu har fått informasjon om at:\r\n- du finner informasjon om rett til foreldrepenger på www.nav.no/foreldrepenger\r\n- du kan få innvilget foreldrepenger for fosterbarn enten ved omsorgsovertakelse med sikte på adopsjon, eller ved innvilget\r\nadopsjonsbevilgning.\r\n- det er greit å være oppmerksom på at siden det gjelder et fosterbarn som du allerede har omsorg for, blir det ofte vanskelig å vurdere når det er omsorgsovertakelse med sikte på adopsjon. NAV ber derfor om at du/dere søker så snart adopsjonsprosessen er påbegynt.\r\n\r\nDu har også fått informasjon om at:\r\n- du må søke senest 3 måneder etter omsorgsovertakelse med sikte på adopsjon. Søk derfor i god tid, se saksbehandlingstider på www.nav.no/saksbehandlingstider\r\n- du finner søknadskjemaet på www.nav.no/skjemaforeldrepenger\r\n- du som søker kan følge status på behandling av søknaden på www.nav.no/dittnav',
@@ -1255,6 +1392,7 @@ const standardTeksterMock = {
         id: '75ebeb7f-0c0f-4ef0-b1ea-852587e96d0e',
         overskrift: 'Pensjon - AFP offentlig - Endre inntekt (BTN)',
         tags: ['', 'ks', 'sto', 'pensjon', 'AFP', 'offentlig', 'inntektsendring', 'før', '65', 'år'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nTakk for at du skriver til oss.\r\n\r\nSiden du er under 65 år og får din AFP fra NAV, må du selv melde fra til oss når du endrer arbeidsinntekt.\r\n\r\nMeldingen må være registrert hos NAV senest måneden før endring.\r\n\r\nDette trenger NAV for å endre din utbetaling:\r\n◾fra hvilken dato du endrer inntekt\r\n◾hva som er din totale arbeidsinntekt hittil i år og til og med siste måned før endring, samt ny inntekt etter endring.\r\n◾Dersom du startet uttaket av AFP året før må du opplyse om feriepenger opptjent før oppstart av AFP.\r\n\r\nSe www.nav.no/afpoffentlig-endring for mer informasjon om inntektsendring.\r\n\r\nDu kan sende melding til oss via denne tjenesten her, eller per post til:\r\n\r\nNAV Familie- og Pensjonsytelser\r\nPb 6600 Etterstad 0607 OSLO\r\n\r\nØnsker deg en fin dag.\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter Pensjon'
@@ -1264,6 +1402,7 @@ const standardTeksterMock = {
         id: 'ca917609-4a36-444c-acd1-883cbd1770d2',
         overskrift: 'Pensjon - Felles - Ny offentlig pensjonsavtale (BTN)',
         tags: ['ks', 'btn', 'offentlig', 'pensjonsavtale'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nSpørsmålet om den nye offentlige pensjonsavtalen må du stille til din pensjonsordning (Statens pensjonskasse, KLP e.l.) eller til din fagforening da de er de rette til å svare på dette.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -1283,6 +1422,7 @@ const standardTeksterMock = {
             'søknad',
             ''
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] trenger utskrift av sin utbetalingsmelding på grunn av søknad om lån.\r\n\r\nUtbetalingsmeldingen er sendt i posten og kan forventes mottatt innen 10 arbeidsdager.'
@@ -1292,6 +1432,7 @@ const standardTeksterMock = {
         id: '36f1a57d-ef05-4060-8a9d-c1e65ebb4589',
         overskrift: 'Pensjon - Alderspensjon - Status i sak',
         tags: ['ks', 'pensjon', 'alderspensjon', 'status'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om status for sin søknad om alderspensjon.\r\n\r\nDu har fått informasjon om at\r\n- all nødvendig dokumentasjon er mottatt\r\n- saksbehandlingstiden er MÅNEDER\r\n\r\nDu har også fått informasjon om at du kan følge med på saksbehandlingstiden påwww.nav.no/saksbehandlingstider',
@@ -1305,6 +1446,7 @@ const standardTeksterMock = {
         id: '50ac11ab-50aa-473f-ad22-856d033e68b8',
         overskrift: 'Pensjon - Gjenlevendepensjon - Ujevn inntekt (BTN) ',
         tags: ['ks', 'btn', 'pensjon', 'gjenlevende', 'inntekt', 'endring'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nI dag er det registrert at årsinntekten din tilsvarer ca. XXX kr.\r\n\r\nHvis inntekten din øker med minst 10 % fra den inntekten vi forventer at du har, skal pensjonen din omregnes.\r\n\r\nDu må melde i fra om hva du tror inntekten vil bli de kommende 12 månedene. Er du tilkallingsvikar må du sende lønnsslipper dersom månedsinntekt x 12 avviker med mer enn 10% i forhold til det som er satt som forventet inntekt, jfr. det siste vedtaket du har fått, eller beløp etter siste regulering av pensjonen.\r\n\r\nNødvendig dokumentasjon må sendes til\r\nNAV Familie og pensjonsytelser\r\nPostboks 6600 Etterstad\r\n0607 OSLO\r\n\r\nDu kan lese mer om gjenlevendepensjon og arbeid på www.nav.no/ytelsergjenlevende\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1318,6 +1460,7 @@ const standardTeksterMock = {
         id: '662273fa-2ff3-4450-977c-048b91a14b15',
         overskrift: 'Pensjon - Gjenlevendepensjon - Giftet seg/ fått barn med samboer',
         tags: ['ks', 'pensjon', 'gjenlevende', 'giftet', 'seg', 'fått', 'barn', 'med', 'samboer'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] melder fra om ekteskap/ nytt barn.\r\n\r\nDu opplyser at du den DATO giftet deg med NAVN ETTERNAVN FØDSELSNUMMER\r\n\r\nDu har fått informasjon om at:\r\n- inngåelse av ekteskap /barn med samboer fører til opphør av gjenlevendepensjon fra måneden etter ekteskapsinngåelsen / barnet er født\r\n- jeg sender beskjed til pensjonsavdelingen vår slik at du får vurdert omregning av pensjon\r\n- les mer om dette på www.nav.no/gjenlevende'
@@ -1327,6 +1470,7 @@ const standardTeksterMock = {
         id: 'c3367b7d-02b4-4928-9dc0-6713f72fb86d',
         overskrift: 'Pensjon - Gjenlevendepensjon - Overgang til AAP eller dagpenger',
         tags: ['', 'ks', 'gjenlevende', 'pensjon', 'dagpenger', 'AAP'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] spør om gjenlevende pensjon ved overgang til arbeidsavklarlingspenger (AAP) / dagpenger.\r\n\r\n\r\nJeg informerer om at:\r\n\r\n- ved overgang til AAP / dagpenger må du gi skriftlig beskjed om hva du forventer å ha i lønn i tillegg til AAP eller dagpenger.\r\n\r\n- dersom du har inntekt som selvstendig næringsdrivende må du opplyse hvordan situasjonen din påvirker næringsinntekten og hva du regner med å ha i inntekt fra virksomheten fremover.\r\n\r\n- gjenlevendepensjonen kan endres hvis ny inntekt avviker med minst 10% fra den forventede inntekten vi i dag har registrert i saken din.\r\n\r\n- du sender beskjed om endringer og nye opplysninger til oss ved å logge deg inn på nav.no // Ditt NAV – Din Innboks.\r\n\r\nAlternativt kan du sende brev til:\r\nNAV familie- og pensjonsytelser Oslo 2\r\nPostboks 6600 Etterstad\r\n0607 OSLO\r\n\r\nJeg sender melding til pensjonsavdelingen om at det er endring i inntekten din, slik at de kan vurdere om pensjonen må endres midlertidig inntil dokumentasjon fra deg er mottatt og vurdert.'
@@ -1336,6 +1480,7 @@ const standardTeksterMock = {
         id: 'b6d3a191-9407-4f68-ad7b-14bc289e6a9c',
         overskrift: 'Pensjon - Gjenlevendepensjon - Lavere inntekt (BTN)',
         tags: ['ks', 'btn', 'pensjon', 'gjenlevende', 'lavere', 'inntekt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nI dag har vi redusert pensjonen din i forhold til en forventet årlig inntekt på XX kr.\r\n\r\nVed reduksjon av inntekt, må det legges ved opplysninger om årsaken til inntektsreduksjonen. Som hovedregel forventes det at man opprettholder tidligere inntektsnivå. Hvis inntektsreduksjonen skyldes helsemessige årsaker, så må det vedlegges bekreftelse fra lege. Dersom det er nedbemanning, så må det vedlegges bekreftelse fra arbeidsgiver.\r\n\r\nHvis du skal sende dokumentasjon til oss, bruker du følgende adresse: NAV Familie og pensjonsytelser Postboks 6600 Etterstad 0607 OSLO.\r\n\r\nDersom du har flere spørsmål om dette kan du ringe NAV Kontaktsenter pensjon på telefon 55 55 33 34.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1349,6 +1494,7 @@ const standardTeksterMock = {
         id: 'e0fe726c-0153-4ff9-8280-f6c49048c7c8',
         overskrift: 'Pensjon - Gjenlevendepensjon - Ung gjenlevende',
         tags: ['ks', 'pensjon', 'gjenlevende', 'barn', 'barnepensjon', 'ung', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.fornavn] opplyser at ektefellen er død og har spørsmål om rettigheter som gjenlevende ektefelle.\r\n\r\n[bruker.fornavn] er i jobb og har barn som er i barnehage/SFO.\r\n\r\nJeg har opplyst at så snart dødsdato er registrert i folkeregisteret, vil vi sende informasjonsbrev om rettigheter og hvordan søke.\r\n\r\nStønader som det kan søkes om er:\r\n- Gjenlevendepensjon, utvidet barnetrygd og stønad til barnetilsyn: www.nav.no/gjenlevendeytelser\r\n- For barna kan det søkes om barnepensjon: www.nav.no/barnepensjon',
@@ -1362,6 +1508,7 @@ const standardTeksterMock = {
         id: '6c6c9fdf-8ea2-4b6e-8b1c-9d9e0bc03e64',
         overskrift: 'Pensjon - Gjenlevendepensjon - Inngått samboerskap',
         tags: ['ks', 'pensjon', 'gjenlevende', 'samboer', 'flyttet', 'sammen', 'lykke'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] melder fra om samboerforhold.\r\n\r\nDu opplyser at du og NAVN ETTERNAVN FØDSELSNUMMER har flyttet sammen /flytter sammen DATO.\r\n\r\nDu har fått informasjon om at:\r\n- samboerforhold kan ha betydning for beregning av grunnpensjon og minsteytelse\r\n- omregning av pensjon vil skje når man har bodd sammen 12 av de siste 18 månedene dersom samboer har inntekt over 2G, eller har pensjon/uføretrygd fra folketrygden\r\n- dersom du bor sammen med en du har vært gift med tidligere, eller har/har hatt barn sammen med opphører gjenlevendepensjonen fra måneden etter at dere flytter sammen\r\n- jeg sender beskjed til pensjonsavdelingen vår slik at du får vurdert omregning av pensjon\r\n- les mer om dette på www.nav.no/gjenlevende'
@@ -1371,6 +1518,7 @@ const standardTeksterMock = {
         id: 'fae9ca44-1cd8-4546-845a-8dae4d48ae9b',
         overskrift: 'Pensjon - Gjenlevendepensjon - Særalder',
         tags: ['', 'ks', 'pensjon', 'særalder', 'gjenlevnde', 'gjenlevendepensjon'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Du har fått informasjon om at:\r\n\r\nDersom du har endring i inntekten og dette skyldes at du slutter i arbeid på grunn av særaldersgrense, kan du ha rett til omregnet gjenlevendepensjon. Du må sende inn dokumentasjon til oss som viser hva slags pensjon du skal få fra pensjonsordningen din. Videre må du skrive til oss hva du forventer i arbeidsinntekt fremover.\r\n\r\nDu sender dokumentasjonen pr post til oss. Husk å merke dokumentene med ditt fødselsnummer.\r\n\r\nAdressen vår er:\r\nNAV familie- og pensjonsytelser Oslo 2\r\nPostboks 6600 Etterstad\r\n0607 OSLO\r\n',
@@ -1392,6 +1540,7 @@ const standardTeksterMock = {
             'utbetaling',
             'DinPensjon'
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.fornavn] etterlyser grunnstønad / hjelpestønad da dette ikke ser ut til å være utbetalt i henhold til informasjon på Din Pensjon.\r\n\r\nJeg informerer om at:\r\n- grunnstønaden/hjelpestønaden er utbetalt/blir utbetalt, men opplysningene vil ikke vises i Din pensjon\r\n- Din pensjon gir kun informasjon om pensjonsytelser, og grunnstønad/hjelpestønaden er ikke en del av dette\r\n- du finner opplysninger om alle utbetalinger fra NAV når du logger inn på Ditt NAV/utbetalinger, se www.nav.no/utbetalinger',
@@ -1405,6 +1554,7 @@ const standardTeksterMock = {
         id: 'fb276b8f-4b9c-4062-9fbd-adb68463efd7',
         overskrift: 'Pensjon - Alderspensjon - Endre uttaksgrad (BTN)',
         tags: ['ks', 'sto', 'pensjon', 'alderspensjon'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu finner informasjon om endring av uttaksgrad på www.nav.no/alderspensjon-endre\r\n\r\nDenne tjenesten er kun for å sende beskjeder som kan ha betydning for saken din og ikke for informasjon om endring av grad.\r\n\r\nHvis du ikke finner det du leter etter kan du kontakte oss på telefon, se http://www.nav.no/ringnav\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1418,6 +1568,7 @@ const standardTeksterMock = {
         id: '03f4c744-23c2-44cd-a5ce-2137057d53c9',
         overskrift: 'Pensjon - Alderspensjon - Søknad (BTN)',
         tags: ['ks', 'pensjon', 'btn', 'alderspensjon', 'søknad'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu finner informasjon om søknad på www.nav.no/alderspensjon-søk\r\n\r\nDenne tjenesten er kun for å sende beskjeder som kan ha betydning for saken din og ikke for informasjon om søkeprosess.\r\n\r\nHvis du ikke finner det du leter etter kan du kontakte oss på telefon, se http://www.nav.no/ringnav\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1431,6 +1582,7 @@ const standardTeksterMock = {
         id: '2a1cd69b-43cf-4f4a-b435-4dee7a1fb9b9',
         overskrift: 'Pensjon - Gjenlevendepensjon - Fast inntekt ',
         tags: ['ks', 'gjenlevende', 'pensjon', 'inntekt', 'lønn', 'jobb', 'arbeid', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] opplyser om ny inntekt, og lurer på om det har betydning for gjenlevendepensjonen.\r\n\r\nJeg informerer om at:\r\n\r\n◾pensjonen utbetales nå i forhold til en forventet inntekt på xx kroner i løpet av det neste året.\r\n◾hvis ny inntekt vil avvike med mer enn 10 % fra nevnte inntekt, må du sende inn dokumentasjon på inntekten.\r\n◾det er månedsinntekt x 12 som er utgangspunktet når vi beregner ny inntekt.\r\n◾ved ny fast inntekt må du sende inn arbeidskontrakt/arbeidsavtale  som viser hva den nye lønnen skal være, og fra hvilken dato dette gjelder. Dokumentasjonen må vise både gammel og ny lønn.\r\n\r\nDu kan lese mer om gjenlevendepensjon og arbeid på https://www.nav.no/no/Person/Pensjon/Andre+pensjonsordninger/Relatert+informasjon/kombiner-arbeid-med-gjenlevendepensjon',
@@ -1444,6 +1596,7 @@ const standardTeksterMock = {
         id: 'c782ac7f-7520-4717-a80e-3fa949d302dd',
         overskrift: 'Pensjon - Alderspensjon - Regulering under opptjening (BTN)',
         tags: ['ks', 'btn', 'alderspensjon', 'opptjening', 'regulering'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nAlderspensjon under opptjening blir regulert i takt med den gjennomsnittlige lønnsveksten i samfunnet.\r\n\r\n- Er du født før 1954, tjener du opp alderspensjon i form av pensjonspoeng. Verdien av pensjonspoengene avhenger av størrelsen på grunnbeløpet i folketrygdens grunnbeløp, som blir regulert hvert år i takt med lønnsveksten i samfunnet.\r\n- Er du født i 1963 eller senere, tjener du opp pensjon i form av en pensjonsbeholdning. Denne pensjonsbeholdningen blir regulert én gang i året i takt med lønnsveksten i samfunnet. Hvis lønnsveksten er tre prosent, blir et beløp tilsvarende tre prosent av pensjonsbeholdningen lagt til pensjonsbeholdningen din.\r\n- Er du født i perioden 1954-1962, tjener du opp alderspensjon etter en kombinasjon av disse to prinsippene.\r\n\r\nPå selvbetjeningsløsningen Din pensjon på nav.no kan du se hvordan pensjonsbeholdningen din har blitt regulert.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1457,6 +1610,7 @@ const standardTeksterMock = {
         id: '6f79362c-b757-428b-957c-622d065d434d',
         overskrift: 'Pensjon - Gjenlevendepensjon - Fast inntekt (BTN) ',
         tags: ['ks', 'btn', 'pensjon', 'gjenlevende', 'inntekt', 'endring', 'fast'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nI dag er det registrert at årsinntekten din tilsvarer ca. XXX kr.\r\n\r\nHvis inntekten din øker med minst 10 % fra den inntekten vi forventer at du har, skal pensjonen din omregnes.\r\n\r\nDu må melde i fra om hva du tror inntekten vil bli de kommende 12 månedene. Ved ny fast inntekt må du sende inn arbeidskontrakt/arbeidsavtale e.l. som viser hva den nye lønnen skal være, og fra hvilken dato dette gjelder. Lønnsslippene må vise både gammel og ny lønn.\r\n\r\nNødvendig dokumentasjon må sendes til:\r\n\r\nNAV Familie og pensjonsytelser\r\nPostboks 6600 Etterstad\r\n0607 OSLO\r\n\r\nDu kan lese mer om gjenlevendepensjon og arbeid på http://www.nav.no/ytelsergjenlevende\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1470,6 +1624,7 @@ const standardTeksterMock = {
         id: '1af10264-f3fe-4e79-96aa-754bf5b25813',
         overskrift: 'Pensjon - Alderspensjon - Utbetaling (BTN)',
         tags: ['ks', 'btn', 'alderspensjon', 'utbetaling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nAlderspensjonen utbetales innen den 20. hver måned. I mai og desember er utbetalingen tidligere. Du kan sjekke utbetalingene i Din pensjon.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1483,6 +1638,7 @@ const standardTeksterMock = {
         id: 'd8b203e8-8992-4a30-ad1b-64d1ca139206',
         overskrift: 'Pensjon - Alderspensjon - Vedtak (BTN)',
         tags: ['ks', 'btn', 'pensjon', 'alderspensjon', 'send', 'beskjed', 'vedtak'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu finner vedtaket på både alderspensjon og AFP privat ved å logge inn med BankID, Buypass eller Commfides på http://www.nav.no/dinpensjon\r\n\r\nDenne tjenesten er kun for å sende beskjeder som kan ha betydning for saken din, ikke for å sjekke status i saken din.\r\n\r\nHvis du ikke finner det du leter etter kan du kontakte oss på telefon, se http://www.nav.no/kontakt\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1496,6 +1652,7 @@ const standardTeksterMock = {
         id: 'a3159664-3d73-43aa-bdc6-1dba19675661',
         overskrift: 'Pensjon - Gjenlevendepensjon - Selvstendig næringsdrivende (BTN)',
         tags: ['ks', 'btn', 'pensjon', 'gjenlevende', 'inntekt', 'endring', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nI dag er det registrert at årsinntekten din tilsvarer ca. XXX kr.\r\n\r\nHvis inntekten din øker med minst 10 %  fra den inntekten vi forventer at du har, skal pensjonen din omregnes.\r\n\r\nDu må melde i fra om hva du tror inntekten vil bli de kommende 12 månedene.\r\n\r\nSom selvstendig næringsdrivende, ny etablering eller endring i drift må du sende dokumentasjon fra regnskapsfører, kemner eller andre som kan si noe om forventet inntekt.\r\n\r\nNødvendig dokumentasjon må sendes til\r\n\r\nNAV Familie og pensjonsytelser\r\nPostboks 6600 Etterstad\r\n0607 OSLO\r\n\r\nDu kan lese mer om gjenlevendepensjon og arbeid på http://www.nav.no/ytelsergjenlevende\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1509,6 +1666,7 @@ const standardTeksterMock = {
         id: '75036bf9-0cbb-47e6-a97e-57e724da955a',
         overskrift: 'Pensjon - Gjenlevendepensjon - Lavere inntekt ',
         tags: ['ks', 'pensjon', 'gjenlevendepensjon', 'inntektsreduksjon'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] spør om gjenlevendepensjonen blir endret hvis inntekten blir lavere.\r\n\r\nJeg informerer om at:\r\n\r\n◾endring i inntekt må dokumenteres, og dokumentasjon må sendes til\r\nNAV Familie og pensjonsytelser\r\nPostboks 6600 Etterstad\r\n0607 OSLO\r\n\r\n◾ved reduksjon av inntekt, så må det legges ved opplysninger om årsaken til inntektsreduksjonen.\r\n◾som hovedregel forventes det at den gjenlevende opprettholder tidligere inntektsnivå.\r\n◾hvis inntektsreduksjonen skyldes helsemessige årsaker, så må det vedlegges bekreftelse fra lege.\r\n◾dersom det er nedbemanning, så må det vedlegges bekreftelse fra arbeidsgiver.',
@@ -1522,6 +1680,7 @@ const standardTeksterMock = {
         id: 'ac4230b5-6610-4ad7-8a25-ee64e5153784',
         overskrift: 'Pensjon - Felles - Videreformidle henvendelse - (BTN)',
         tags: ['ks', 'btn', 'sbtn', 'pensjon', 'videreformidle', 'videresende'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg videreformidler din henvendelse til NAV Familie- og pensjonsytelser.\r\n\r\nDu får tilbakemelding når de har behandlet saken din.\r\n\r\nØnsker deg en fin dag.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1535,6 +1694,7 @@ const standardTeksterMock = {
         id: '5e2e9802-affd-435c-9e19-0bde5580f1cd',
         overskrift: 'Pensjon - Felles - Timebestilling (BTN)',
         tags: ['ks', 'pensjon', 'btn', 'timebestilling', 'nav-kontor', 'afp', 'offentlig', 'åpningstider'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nNAV-kontoret gir ikke lenger veiledning på spørsmål om pensjon.\r\n\r\nInformasjon om alderspensjon / AFP offentlig / gjenlevendeytelser finner du på:\r\n\r\n- www.nav.no/alderspensjon\r\n- www.nav.no/afpoffentlig\r\n- www.nav.no/gjenlevendeytelser\r\n\r\nVed å logge inn på Ditt NAV kan du også selv beregne alderspensjon /AFP, se under Din pensjon.\r\n\r\nPå telefonnummer 55 55 33 34 får du snakke med NAV sine spesialister på pensjon.\r\n\r\nHusk at det er en fordel at du logger inn på www.nav.no/dinpensjon før du ringer.\r\n\r\nÅpningstiden på telefon er mandag til fredag fra kl. 08:00 til 15:30.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -1544,6 +1704,7 @@ const standardTeksterMock = {
         id: 'ee242457-20d7-491b-b73f-e96a107afb14',
         overskrift: 'Pensjon - Felles - Nye opplysninger (BTN) ',
         tags: ['ks', 'btn', 'nye', 'opplysninger', 'videresende', 'videreformidle'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg har videreformidlet henvendelsen din til NAV Familie og pensjonsytelser, slik at opplysningene blir vurdert i den videre behandlingen av saken. Du får tilbakemelding så snart de har fått behandlet saken din.\r\n\r\nØnsker deg en fin dag.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1567,6 +1728,7 @@ const standardTeksterMock = {
             'digital',
             'fullmakt'
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nHvis du ønsker at andre skal hjelpe deg med å få utbetalingsopplysninger, kan du gi digital fullmakt i Din Pensjon. Den personen som har fullmakt kan da logge seg inn på vegne av deg for å se på blant annet utbetalingsopplysninger. Fullmakt gis ved å logge deg inn på Din pensjon. Du må selv logge deg inn for å gi fullmakten til andre.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1590,6 +1752,7 @@ const standardTeksterMock = {
             'utbetaling',
             'DinPensjon'
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu finner informasjon om alle utbetalinger fra NAV i nettjenesten Ditt NAV - utbetalinger. Menyvalget Din Pensjon vil kun vise informasjon om pensjonsytelser, og ikke grunnstønad/hjelpestønad.\r\n\r\nI menyvalget Utbetalinger, i Ditt NAV, kan du ca. 10 dager før utbetalingsdagen se hva som vil bli utbetalt inneværende måned.\r\n\r\nDu kan lese mer om utbetaling på http://www.nav.no/utbetalinger\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1603,6 +1766,7 @@ const standardTeksterMock = {
         id: '1a17c840-2a69-4d46-af8f-3b90f9c4ba8c',
         overskrift: 'Pensjon - Felles - Leveattest - Utland',
         tags: ['ks', 'pensjon', 'leveattest', 'april'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] spør om leveattesten er sendt ut.\r\n\r\nJeg informerer om at leveattesten ble sendt ut i starten av april.\r\n\r\nDu kan lese om leveattest på www.nav.no/leveattest.',
@@ -1616,6 +1780,7 @@ const standardTeksterMock = {
         id: 'c3dee0f7-c30f-4ee7-85d8-4352fed29adf',
         overskrift: 'Pensjon - Alderspensjon - Beregning - Født 1943-53 (BTN)',
         tags: ['ks', 'btn', 'alderspensjon', 'grunnpensjon', 'tilleggspensjon', 'pensjonstillegg'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nFor deg som er født i perioden 1943-1953 består alderspensjonen fra folketrygden av grunnpensjon, tilleggspensjon og/eller pensjonstillegg. Les mer om dette på nav.no, www.nav.no/Beregning+av+alderspensjon.263699.cms?kap=3\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1629,6 +1794,7 @@ const standardTeksterMock = {
         id: 'b65e0de0-ebcc-41c4-9b6b-1abf72eedf0a',
         overskrift: 'Pensjon - Alderspensjon - Uføretrygd',
         tags: ['ks', 'pensjon', 'alderspensjon', 'overgang', 'uføretrygd'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om man må søke alderspensjon, eller om overgangen fra uføretrygd til alderspensjon går automatisk.\r\n\r\nDu har fått informasjon om:\r\n◾ved 100% uføretrygd går denne automatisk over til alderspensjon fra måneden etter at du fyller 67 år. Du trenger derfor ikke å søke om dette.\r\n◾ved gradert uføretrygd vil denne omregnes til nærmeste mulige grad for alderspensjon. Det betyr at du må søke 100% alderspensjon dersom du ønsker å få full pensjon.\r\n\r\nDu kan finne mer informasjon på www.nav.no/alderspensjon-søk'
@@ -1638,6 +1804,7 @@ const standardTeksterMock = {
         id: 'd3491aff-d668-499e-9742-9dcc37c715e1',
         overskrift: 'Arbeidssøker Aktivitetsplan',
         tags: ['arbeidssøker', 'aktivitetsplan'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '- at du kan bruke aktivitetsplan til å registrere jobber du har søkt på, arbeidsgivere som er kontaktet og tilbakemeldinger fra arbeidsgivere. Se her: https://www.nav.no/no/Person/Arbeid/Arbeidsledig+og+jobbsoker/Jobbsokertips/Bruk+aktivitetsplanen+din\r\n',
@@ -1651,6 +1818,7 @@ const standardTeksterMock = {
         id: '021de901-14e8-4743-a86d-4947ba637cca',
         overskrift: 'Pensjon - Felles - Utbetalingsmelding - Utskrift (BTN)',
         tags: ['ks', 'pensjon', 'btn', 'utbetalingsmelding', 'utbetalingsslipp', 'utbetaling', 'utskrift', 'slipp'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.navn].\r\n\r\nDu finner informasjon om utbetalingsmelding i posten her: https://www.nav.no/no/Person/Innhold+til+Person-forside/Nyheter/pensjonister-og-uf%C3%B8re-kan-f%C3%A5-utbetalingsmelding-i-posten\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -1660,6 +1828,7 @@ const standardTeksterMock = {
         id: '70d3a401-cb49-40c6-811e-157309d27c42',
         overskrift: 'Pensjon - Felles - Utbetalingsmelding - Utskrift',
         tags: ['ks', 'pensjon', 'utbetalingsmelding', 'utbetalingsslipp', 'utbetaling', 'utskrift', 'slipp'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker å få utbetalingsmelding i posten.\r\n\r\nDu er informert om at:\r\n\r\n- du må reservere deg mot digital post ved å kontakte DIFI enten via www.idporten.no eller på telefon 800 30 300 (+47 24 05 56 03 fra utlandet).\r\n\r\nDu finner mer informasjon her:\r\nwww.nav.no/no/Person/Innhold+til+Person-forside/Nyheter/pensjonister-og-uf%C3%B8re-kan-f%C3%A5-utbetalingsmelding-i-posten'
@@ -1669,6 +1838,7 @@ const standardTeksterMock = {
         id: 'db16f009-2fcb-4d10-838d-e464d177ba41',
         overskrift: 'Uføretrygd - Innvilget uføretrygd',
         tags: ['ks', 'uføretrygd', 'uføre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er innvilget uføretrygd.\r\n\r\nFølgende gjelder:\r\n- Du skal sende inn meldekort som inneholder dager før du ble innvilget uføretrygd.\r\n- Honnørkort kommer i posten sammen med innvilgelsesvedtaket.\r\n\r\nJeg informerer om innhold i vedtak.'
@@ -1678,6 +1848,7 @@ const standardTeksterMock = {
         id: 'd3176a3d-33c4-413b-bfad-299c0dcf0fab',
         overskrift: 'Pensjon - Alderspensjon - Etterbetaling (BTN)',
         tags: ['ks', 'pensjon', 'alderspensjon', 'btn', 'etterbetale'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nUtbetalingen du har fått er etterbetaling av pensjon for mai måned som følge av at pensjonene er regulert fra 1.mai.\r\nPensjonen for juni måned kommer innen den 20. juni, og da med oppregulert beløp.\r\n\r\nDu kan se mer om dette her på nav.no: www.nav.no/no/Person/Pensjon/Alderspensjon/Nyheter/utbetaling-av-pensjon-uf%C3%B8re-eller-overgangsst%C3%B8nad\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -1687,6 +1858,7 @@ const standardTeksterMock = {
         id: '1b99f6a9-b4db-4132-8058-a840be134075',
         overskrift: 'Uføretrygd - Sivilstand (BTN)',
         tags: ['', 'ks', 'btn', 'uføretrygd', 'uføre', 'giftemål', 'skilsmisse', 'separasjon', 'folkeregistreret'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\n- Du kan selv melde fra om samboerskap og evt. opphør av samboerskap via Ditt NAV - Din Uføretrygd - Din profil - Familieforhold (husk å trykke "lagre")\r\n- Dersom du er gift kommer ikke alternativ om samboer opp under familieforhold via Ditt NAV\r\n- Ved endring i sivilstand giftemål/skilsmisse/separasjon får NAV automatisk dette meldt fra Folkeregisteret\r\n- Husk at du har plikt til å melde fra om endret sivilstand til Folkeregisteret. Mer informasjon finner du på www.skattetaten.no\r\n- Når vi har mottatt informasjon, vil vi gjennomgå din uføresak for å se om endring har betydning.\r\n\r\nLes mer på: https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Relatert+informasjon/du-har-plikt-til-%C3%A5-gi-nav-riktige-opplysninger\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -1706,6 +1878,7 @@ const standardTeksterMock = {
             'skatteetaten',
             'familieforhold'
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker å melde fra om endring sivilstand.\r\n\r\nFølgende gjelder:\r\n- Du kan selv melde fra om samboerskap og evt. opphør av samboerskap via Ditt NAV - Din Uføretrygd - Din profil - Familieforhold (husk å trykke "lagre").\r\n- Dersom du er gift kommer ikke alternativ om samboer opp under familieforhold via Ditt NAV\r\n- Ved endring i sivilstand giftemål/skilsmisse/separasjon får NAV automatisk dette meldt fra Folkeregisteret\r\n- Husk at du har plikt til å melde fra om endret sivilstand til Folkeregisteret. Mer informasjon finner du på www.skattetaten.no\r\n- Når vi har mottatt informasjon, vil vi gjennomgå din uføresak for å se om endring har betydning.\r\n\r\nLes mer på: https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Relatert+informasjon/du-har-plikt-til-%C3%A5-gi-nav-riktige-opplysninger'
@@ -1715,6 +1888,7 @@ const standardTeksterMock = {
         id: '31020c72-be1d-4ead-a2fe-1f83444ceac3',
         overskrift: 'Pensjon - Supplerende stønad - Bestilling av time ',
         tags: ['ks', 'pensjon', 'supplerende', 'revurdering', 'time', 'møte', 'timeavtale', 'bruker'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har supplerende stønad og har behov for timeavtale for å søke om ny stønadsperiode.\r\n\r\n[bruker.navn] kan kontaktes på (telefonnummer).\r\n[bruker.navn] har gitt muntlig fullmakt til at [fullmektig.navn] kan motta timebestilling på [telefonnummer].\r\n\r\nDet er behov for tolk på [språk].\r\n\r\nHenvendelsen er sendt til NAV-kontoret for besvarelse innen (dag) den (dato).'
@@ -1724,6 +1898,7 @@ const standardTeksterMock = {
         id: '0a275414-6577-427c-bf1f-9b5575bd3f60',
         overskrift: 'Uføretrygd - Bekreftelse (BTN)',
         tags: ['ks', 'btn', 'uføretrygd', 'uføre', 'bekreftelse'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg har sjekket at du er innvilget XX % uføretrygd.\r\n\r\nDu vil motta en stemplet bekreftelsen til din folkeregistrerte adresse innen 5 arbeidsdager.\r\n\r\nELLER Du finner bekreftelsen inne på www.nav.no/dinuforetrygd og kan selv hente den ut der.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -1733,6 +1908,7 @@ const standardTeksterMock = {
         id: 'c144bf03-04f6-4d25-9c95-8ea997fb8645',
         overskrift: 'Uføretrygd - Søknad',
         tags: ['ks', 'uføre', 'uføretrygd', 'søknad'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker å søke om uføretrygd.\r\n\r\nDu er informert om at:\r\n- ved varig nedsatt inntektsevne på grunn av sykdom eller skade, kan du ha rett til uføretrygd.\r\n- før du søker bør det være avklart med NAV at arbeidsevnen din er varig redusert\r\n- veilederen din vil informere deg når det er riktig tidspunkt å søke om uføretrygd. Du kan finne mer informasjon på www.nav.no/uføretrygd\r\n- du kan ikke sende inn elektronisk søknad om uføretrygd, hvis din arbeidsevnevurdering ikke konkluderer med status «varig tilpasset innsats».\r\n- fra nå av kan du enklere ha god dialog direkte med veileder i den nye tjenesten Digital Aktivitetsplan: www.nav.no/aktivitetsplan. Her kan du sende beskjed direkte til veileder, gi opplysninger, stille spørsmål, og føre opp forslag til egen aktivitet/ behandling/ oppfølging.'
@@ -1742,6 +1918,7 @@ const standardTeksterMock = {
         id: '6ce32cfc-5b9f-44fb-b141-557f51e41ecf',
         overskrift: 'Pensjon - Supplerende stønad - Bestilling av time pårørende ringer',
         tags: ['ks', 'pensjon', 'supplerende', 'revurdering', 'time', 'møte', 'timeavtale', 'pårørende'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'NAVN ETTERNAVN ringer på vegne av [bruker.navn]. Det ønskes timeavtale i forbindelse med søknad om ny stønadsperiode.\r\n\r\nTidspunkt for timeavtale  kan avtales med [navn.etternavn] på TELEFONNUMMER].\r\n\r\nDet er behov for tolk på SPRÅK.\r\nELLER Det er ikke behov for tolk.\r\n\r\nHenvendelsen er sendt til lokalt NAV-kontor for besvarelse innen (dag) den (dato).'
@@ -1751,6 +1928,7 @@ const standardTeksterMock = {
         id: 'aa0dd420-12bf-4dd5-829d-9220ab4219eb',
         overskrift: 'Sosiale tjenester - Bostøtte - Rettigheter (BTN)',
         tags: ['ks', 'btn', 'bostøtte', 'husbanken', 'sosial'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nHvis du har lave inntekter og høye boutgifter, kan du ha rett på bostøtte fra Husbanken. Du kan lese om bostøtte på www.husbanken.no/bostotte\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -1764,6 +1942,7 @@ const standardTeksterMock = {
         id: '41c7d07c-4475-4bfc-9981-aa8d08b43bf6',
         overskrift: 'Arbeid – Dagpenger – Status i sak',
         tags: ['ks', 'arbeid', 'dagpenger', 'søknad', 'status', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om status i sak på innsendt søknad om dagpenger.\r\n\r\nDu har fått informasjon om at\r\n- normal saksbehandlingstid er 21 dager fra vi har mottatt en komplett søknad om dagpenger.\r\n- du finner saksbehandlingstiden i ditt fylke på www.nav.no/saksbehandlingstider\r\n- du kan følge med på status i din sak og lese vedtaket ditt på www.nav.no/dittnav\r\n',
@@ -1777,6 +1956,7 @@ const standardTeksterMock = {
         id: 'af4e9bd3-0bd8-4cab-b8b9-3044821fab8c',
         overskrift: 'Arbeid - Dagpenger - Utbetaling meldekort redusert',
         tags: ['ks', 'arbeid', 'dagpenger', 'utbetaling', 'redusert'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterlyser utbetaling av dagpenger.\r\n\r\nDu har fått informasjon om at:\r\n- meldekort for PERIODE er sendt inn for sent.\r\n- for sen innsending har ført til reduksjon av utbetalingen.\r\n\r\nDu kan lese mer om viktigheten av å levere meldekortet til rett tid på www.nav.no/meldekort',
@@ -1790,6 +1970,7 @@ const standardTeksterMock = {
         id: '7cf6a99b-4f36-4538-94e1-015206e76e11',
         overskrift: 'Arbeid - Arbeidssøker - Stillingssøk',
         tags: ['ks', 'jobbsøkere', 'oppfølging', 'jobbsøkertips', 'jobbe'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker tips til hvordan man finner ledige jobber.\r\n\r\nHar informert om at du kan:\r\n- sjekke ut www.nav.no/jobbportaler for å få oversikten over ledige stillinger.\r\n- registrere CV-en din hos flere aktører for å øke sjansen for å få jobb.\r\n- bruke nettverket ditt, mange får jobb gjennom familie, venner og bekjente.\r\n- følg bedrifter du vil jobbe i på sosiale medier, mange bedrifter velger å legge ut stillinger der.\r\n- sende en åpen søknad der du vil jobbe, det kan du gjøre selv om de ikke har noen utlyste stillinger.\r\n\r\nPå www.nav.no/jobbveiviser finner du flere gode tips for å få jobben du ønsker deg.',
@@ -1803,6 +1984,7 @@ const standardTeksterMock = {
         id: '25fa6692-9675-42ca-a2ec-a9d2549a0df4',
         overskrift: 'Arbeid – Dagpenger – Stans på grunn av oppstart i jobb',
         tags: ['ks', 'arbeid', 'dagpenger', 'jobb', 'stans', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] starter i ny jobb fra DATO.\r\n\r\nDu har fått informasjon om at dine dagpenger stanses fra den dato du starter i jobb.\r\n',
@@ -1828,6 +2010,7 @@ const standardTeksterMock = {
             'skole',
             ''
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] viser til mottatt brev om manglende dokumentasjon til innsendt søknad om dagpenger.\r\n\r\nDu har fått informasjon om at:\r\n- dokumentasjonen er nødvendig for behandling av søknaden\r\n- du må sende inn det som bes om i det mottatte brevet\r\n- om du ikke får sendt det innen frist må du ta kontakt\r\n- du finner informasjon om nødvendig dokumentasjon til søknad om dagpenger på www.nav.no/dagpengervedlegg\r\n',
@@ -1841,6 +2024,7 @@ const standardTeksterMock = {
         id: '377caa37-91f2-429b-a163-d544d9e198ed',
         overskrift: 'Arbeid - Dagpenger - Sagt opp jobben selv',
         tags: ['ks', 'arbeid', 'dagpenger', 'sagt', 'opp', 'selv'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ble arbeidsledig DATO og har spørsmål om registrering som arbeidssøker og dagpenger. Du opplyser å ha sagt opp jobben selv.\r\n\r\nDu må vanligvis vente i 12 uker før du får utbetalt dagpenger, når du selv har ansvaret for at du er blitt arbeidsledig.\r\n\r\nDette gjelder hvis du har sluttet eller sagt opp arbeidet uten rimelig grunn, eller er avskjediget eller oppsagt fra stillingen din på grunn av forhold som du selv er skyld i.\r\n\r\nDet er viktig å være klar over at den forlengede ventetiden først begynner å løpe når du søker om dagpenger, og samtidig opprettholder meldeplikten med å sende meldekort i hele perioden.\r\n\r\nJeg har bedt  [bruker.fornavn] sette seg inn i følgende informasjon på nav.no:\r\n- http://www.nav.no/arbeidssøker',
@@ -1854,6 +2038,7 @@ const standardTeksterMock = {
         id: '6f8c5d89-8e0f-4133-9c2f-b41ba0cde24b',
         overskrift: 'Pensjon - Alderspensjon - Gjenlevenderett søknad',
         tags: ['ks', 'pensjon', 'gjenlevenderett', 'etterlattepensjon', 'etterlatterett'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om gjenlevenderett i alderspensjon og viser til mottatt brev om dette.\r\n\r\nDu er informert om at:\r\n- retten til gjenlevendetillegg i alderspensjon blir vanligvis behandlet når det har gått 30 dager regnet fra datoen på brevet du har mottatt.\r\n- det er ikke nødvendig å sende inn søknadsskjema ettersom du nå har vært i kontakt med oss.\r\n- dersom det viser seg at NAV trenger mer informasjon for å behandle saken blir du kontaktet.'
@@ -1863,6 +2048,7 @@ const standardTeksterMock = {
         id: 'd22f3d0b-6ecf-4058-bad6-0545151b945e',
         overskrift: 'Helse - Sykepenger - Ferdigbehandlet før hovedkjøring',
         tags: ['ks', 'helse', 'sykepenger', 'utbetaling', 'inntektsopplysninger', 'delD', 'dokumentasjon'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] tar kontakt angående utbetaling av sykepenger.\r\n\r\nJeg har informert om at:\r\n- sykepengene for denne måneden er klar til utbetaling\r\n- du finner oversikt over utbetalingsdatoene på www.nav.no/utbetalingsdato\r\n',
@@ -1876,6 +2062,7 @@ const standardTeksterMock = {
         id: 'bbdae235-efbb-4b02-9e25-315744ffa410',
         overskrift: 'Helse - Sykefraværsoppfølging - Aktivitetskravet',
         tags: ['ks', 'helse', 'sykepenger', 'aktivitetskravet'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] tar kontakt om forhåndsvarsel om stans av sykepenger.\r\n\r\nDu har fått informasjon om at:\r\n- det er krav til at du er i arbeidsrettet aktivitet når du har vært sykmeldt i 8 uker, og NAV har nå vurdert aktivitetsplikten\r\n- det er mulig å få unntak for å være i arbeidsrettet aktivitet hvis det er medisinske grunner til at du ikke kan være i jobb, eller arbeidsplassen ikke kan tilrettelegge for deg. Du får dette varselet siden vi ikke kan se at du er delvis i jobb eller oppfyller vilkår for unntak\r\n- dersom du starter å jobbe noe, vil aktivitetskravet være oppfylt, og du bør snakke med din arbeidsgiver om mulighet for tilrettelegging slik at du kan være i noe i arbeid\r\n- dersom du ikke kan være i arbeidsrettet aktivitet må du innhente nye opplysninger innen fristen som er oppgitt i varselet. Hvilke opplysninger NAV trenger for å vurdere saken din fremgår i forhåndsvarselet\r\n\r\nDu finner mer informasjon på Ditt NAV / Ditt sykefravær.',
@@ -1889,6 +2076,7 @@ const standardTeksterMock = {
         id: 'b864866a-5745-4014-b4f6-6ef903d9fbef',
         overskrift: 'Helse - Sykepenger - Utenlandsopphold ',
         tags: ['ks', 'helse', 'sykepenger', 'utenlandsopphold', 'utenlandsreise', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] mottar sykepenger, og gir beskjed om utenlandsopphold i perioden DATO.\r\n\r\nJeg har informert om at:\r\n- du som hovedregel må oppholde deg i Norge når du mottar sykepenger\r\n- du kan søke om å beholde sykepengene under utenlandsopphold (søknadsskjema 08-09.07)\r\n- du må i tillegg opplyse om utenlandsoppholdet på del D av sykmeldingsblanketten/søknaden om sykepenger\r\n\r\nDu finner mer informasjon og søknadsskjema på www.nav.no/sykepengerutenlandsopphold',
@@ -1902,6 +2090,7 @@ const standardTeksterMock = {
         id: '1081cc03-75fa-4618-a738-c645f9ad60b5',
         overskrift: 'Familie - Barnetrygd - Særfradrag',
         tags: ['ks', 'familie', 'barnetrygd', 'særfradrag', 'skattemelding'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er mottaker av utvidet barnetrygd, men ser på skattemeldingen at det ikke er ført opp særfradrag.\r\n\r\nJeg bekrefter at det er innvilget utvidet barnetrygd. Jeg sender kopi av vedtak sammen med følgebrev i posten til [bruker.fornavn].\r\n\r\nDette må legges ved skattemeldingen.',
@@ -1926,6 +2115,7 @@ const standardTeksterMock = {
             'mat',
             'klær'
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] lurer på hva bidraget dekker.\r\n\r\nDu har fått informasjon om at bidraget skal dekke:\r\n- forbruksutgifter\r\n- boutgifter\r\n- tilsynsutgifter\r\n\r\nDet gis samværsfradrag som følge av samvær mellom bidragspliktig og barnet.\r\n\r\nDu finner mer informasjon på www.nav.no/bidrag-beregning og www.nav.no/samvær',
@@ -1954,6 +2144,7 @@ const standardTeksterMock = {
             'omsorgspenger',
             ''
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om avslaget på YTELSE på grunn av manglende dokumentasjon.\r\n\r\nDu har fått informasjon om at:\r\n- du trenger ikke sende klage\r\n- saken vil gjenopptas dersom vi mottar etterspurt dokumentasjon innen klagefristen\r\n- foreldrepenger, engangsstønad eller svangerskapspenger må du ettersende dokumentasjonen i posten med en førsteside\r\n- andre familieytelser: Du kan ettersende dokumentasjonen elektronisk eller per post\r\n\r\nEttersending per post: www.nav.no/førsteside\r\nElektronisk ettersendelse: www.nav.no/ettersendelse',
@@ -1967,6 +2158,7 @@ const standardTeksterMock = {
         id: '44000291-343d-4736-b039-4a8a944d2a5e',
         overskrift: 'Familie - Felles - Melding om samboer',
         tags: ['ks', 'familie', 'melding', 'samboer'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ringer for å opplyse om at hun/han har fått/skal få ny samboer. [bruker.fornavn] mottar utvidet barnetrygd/overgangsstønad/bidragsforskudd.\r\n\r\n[bruker.fornavn] opplyser om at:\r\n- ny samboer heter:\r\n- ny samboer er født:\r\n- ny adresse:\r\n- flyttedato:\r\n- ny samboer er (ikke) forelder til barna\r\n\r\nDet er gitt informasjon om at:\r\n- overgangsstønad faller bort i det man får ny samboer.\r\n- utvidet barnetrygd opphører når man har hatt samboer i 12 av de siste 18 månedene, med mindre de inngår ekteskap eller får felles barn.\r\n- utvidet barnetrygd faller vekk hvis du flytter sammen med den andre forelderen.\r\n- Dette kan påvirke satsen for bidragsforskudd.\r\n\r\nJeg ber [bruker.fornavn] bekrefte opplysningene skriftlig med:\r\n- Samboer sitt navn og fødselsnummer\r\n- Ny adresse\r\n- Flyttedato\r\n\r\nDette kan sendes til NAV på www.nav.no/beskjedtilnav\r\nI tillegg informerer jeg aktuelle avdelinger om ny sivilstand.',
@@ -1980,6 +2172,7 @@ const standardTeksterMock = {
         id: '7bd9e316-efe7-4f66-99c4-76d2ef9f941b',
         overskrift: 'Familie - Barnebidrag - Etter 18 år',
         tags: ['ks', 'familie', 'bidrag', '18', 'år', 'privat', 'avtale'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] lurer på hvordan man går frem for å søke om bidrag etter fylte 18 år.\r\n\r\nDu har fått informasjon om at:\r\n- barn som går på videregående skole eller tilsvarende, kan ha rett på bidrag utover fylte 18 år.\r\n- barnet søker selv når det er fylt 18 år.\r\n- før fylte 18 år er det bidragsmottaker som søker på vegne av barnet.\r\n\r\nDu har også fått informasjon om privat avtale og at denne kan innkreves gebyrfritt fra NAV, se www.nav.no/privatavtale\r\n\r\nDu kan finne mer informasjon på www.nav.no/skjemabarnebidrag',
@@ -1993,6 +2186,7 @@ const standardTeksterMock = {
         id: 'd5ed4bc2-9783-497a-b7ee-d67857eb6b17',
         overskrift: 'Familie - Enslig forsørger - Endret aktivitet',
         tags: ['ks', 'familie', 'enslig', 'forsørger', 'overgangsstønad'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ringer vedrørende endret aktivitet.\r\n\r\nDu har fått informasjon om:\r\n- At du ikke trenger å sende ny søknad dersom aktiviteten endres i løpet av stønadsperioden.\r\n- Du må melde fra skriftlig, f.eks. via "Send beskjed til NAV", og sende inn nødvendig dokumentasjon for den nye aktiviteten.\r\n- Ny aktivitet vurderes konkret av saksbehandler.\r\n\r\nwww.nav.no/beskjedtilnav\r\nwww.nav.no/vedleggenslig',
@@ -2006,6 +2200,7 @@ const standardTeksterMock = {
         id: 'c70c2329-f8cd-4753-bad5-51efd00328ce',
         overskrift: 'Familie - Enslig forsørger - Forlenget periode',
         tags: ['ks', 'familie', 'enslig', 'forsørger', 'endring', 'periode', 'forlengelse'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ringer vedrørende spørsmål om utvidet periode med overgangsstønad.\r\n\r\nDu har fått informasjon om:\r\n- den ordinære stønadsperioden er på inntil 3 år, frem til det yngste barnet fyller 8 år.\r\n- får du et nytt barn i stønadsperioden, kan perioden forlenges inntil du får barnehageplass for det nye barnet. Det er krav at det søkes barnehageplass.\r\n- dersom du er under hensiktsmessig og nødvendig utdanning, kan perioden forlenges med inntil 2 år.\r\n- perioden kan forlenges med inntil 6 måneder hvis man kan dokumentere ett konkret tilbud om arbeid, skole eller tilsynsplass som man har takket ja til.  Kan også fås mens man er arbeidssøker i opptil 6 måneder.\r\n- perioden kan forlenges med opptil 9 måneder ut skoleåret.\r\n- perioden kan innvilges frem til barnet fyller 18 år dersom man har omsorg for særlig tilsynskrevende barn.\r\n- perioden kan forlenges i 2 år eller frem til barnet er 10 år ved forbigående sykdom hos mottaker eller barn.\r\n\r\nDet må sendes inn krav om dette på ordinært søknadsskjema for å få det vurdert. Noter i feltet for fritekst på søknadsskjemaet hvorfor du søker om forlenget periode.\r\n\r\nMer informasjon finner du på www.nav.no/overgangsstønad.',
@@ -2019,6 +2214,7 @@ const standardTeksterMock = {
         id: '62afc328-8522-4ec7-b816-7033ca4b739e',
         overskrift: 'Familie - Enslig forsørger - Endret inntekt',
         tags: ['ks', 'familie', 'enslig', 'forsørger', 'endret', 'inntekt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ringer vedrørende endring i inntekt.\r\n\r\nDu har fått informasjon om:\r\n- Hvis inntekten endres mer enn 10 prosent, skal overgangsstønaden beregnes på nytt.\r\n- Dersom du får høyere inntekt må du snarest mulig melde fra, samt sende inn kopi av ny arbeidsavtale.\r\n- Dersom du får lavere inntekt kan du søke om høyere overgangsstønad.\r\n\r\nDu kan melde fra via www.nav.no/beskjedtilnav eller på ordinært søknadsskjema.',
@@ -2032,6 +2228,7 @@ const standardTeksterMock = {
         id: 'a2554440-5caa-4526-ba94-bad07a13edf9',
         overskrift: 'Arbeid og helse - Felles - Aktivitetsplan ',
         tags: ['ks', 'arbeid', 'aktivitetsplan', 'oppfølging', 'nav', 'kontor'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ringer om TEMA\r\n\r\nNår det gjelder TEMA tar du direkte kontakt med din oppfølger gjennom din aktivitetsplan. Informasjon om aktivitetsplan finner du på www.nav.no/aktivitetsplan',
@@ -2045,6 +2242,7 @@ const standardTeksterMock = {
         id: '0b0931ba-420d-4f7a-85d8-a2cd3224ee01',
         overskrift: 'Arbeid og Helse - Felles - Videreformidle til Arbeid og Ytelser (BTN)',
         tags: ['ks', 'btn', 'videreformidle', 'beskjed', 'nav', 'arbeid', 'og', 'ytelser'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg videreformidler din beskjed til NAV Arbeid og Ytelser.\r\nDu får tilbakemelding når de har behandlet henvendelsen din.\r\n\r\nØnsker deg en fin dag.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -2068,6 +2266,7 @@ const standardTeksterMock = {
             'aktivitetsplan',
             '11-03.07'
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] opplyser at du reiser til utlandet den DATO og til og med den DATO.\r\n\r\nDu får informasjon om at du må:\r\n- sende skriftlig søknad om å beholde arbeidsavklaringspenger under opphold i utlandet på søknadskjema 11-03.07.\r\n- søke senest før avreise.\r\n- avtale fravær/ferie fra aktivitet med oppfølger i din digitale aktivitetsplan.\r\n\r\nFeriefravær fører til redusert utbetaling. I noen tilfeller kan du likevel beholde arbeidsavklaringspenger selv om du tar fri eller skal reise bort.\r\n\r\nDersom du får godkjent utenlandsoppholdet skal du ikke krysse for fravær og vil få utbetalt arbeidsavklaringspenger.\r\n\r\nDu finner informasjon om meldekort her; http://www.nav.no/meldekort',
@@ -2081,6 +2280,7 @@ const standardTeksterMock = {
         id: '014ade0f-0e76-4099-acb6-aa600b651c3a',
         overskrift: 'Arbeid - Dagpenger - Avspasere ventetid',
         tags: ['ks', 'arbeid', 'dagpenger', 'ventetid', 'ventetiden', '3', 'egenandelsdager', '15', 'virkedager'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått innvilget dagpenger og etterlyser utbetaling.\r\n\r\nNår du får innvilget dagpenger er det tre egenandelsdager som du ikke får utbetalt dagpenger for. Dette kalles ventetid. Ventetiden begynner å løpe fra den datoen du får innvilget dagpenger.\r\n\r\nAlle vilkår for rett til dagpenger må være oppfylt i ventedagene. Det betyr at ventedager ikke kan opparbeides under sykdom, ferie eller dersom ordinære arbeidssøkere har arbeidet mer enn 50 prosent av sin vanlige ukentlige arbeidstid. Lørdag og søndag regnes ikke som ventedager selv om du vanligvis arbeidet disse dagene.\r\n\r\nDu må bli ferdig med ventedagene i løpet av de første 15 virkedagene etter at du har fått innvilget dagpenger. Hvis ikke blir dagpengene dine stanset slik som nå.\r\n\r\nDu kan lese mer om ventetid på www.nav.no/dagpenger-ventetid',
@@ -2094,6 +2294,7 @@ const standardTeksterMock = {
         id: 'ebdf1f26-3977-4029-b8b1-e96b24bdcf59',
         overskrift: 'Arbeid - Dagpenger - Ferie',
         tags: ['ks', 'arbeid', 'dagpenger', 'ferie', 'ferietid', 'sydentur'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] opplyser at du tar ferie fra DATO og til og med DATO.\r\n\r\nDu må ta kontakt med din oppfølger i din digitale aktivitetsplan før ferien starter og gi beskjed om hvilken periode ferien avvikles.\r\n\r\nDu har som hovedregel ikke rett til dagpenger de dagene du har ferie, fordi det er et krav at du skal være reell arbeidssøker når du mottar dagpenger. Du må krysse av for ferie på spørsmål fire på meldekortet. Feriefravær fører som hovedregel til redusert utbetaling.\r\n\r\nHvis du har mottatt dagpenger i mer enn 52 uker, kan du ta ferie i inntil 4 uker med rett til dagpenger. Du vil motta en melding om dette på Ditt NAV dersom dette gjelder deg.\r\n\r\nFerien kan også avvikles i utlandet. Du må uansett stå registrert som arbeidssøker og sende inn elektroniske meldekort til rett tid for hele perioden. Du må krysse av de dagene du har ferie på meldekortet, selv om du har rett til dagpenger.\r\n\r\nEtter avviklet ferie, må du straks sjekke om du fortsatt er aktiv arbeidssøker på Ditt NAV,  Hvis vedtaket ditt er stanset, må du søke om gjenopptak av dagpenger.\r\n\r\nDu finner informasjon om meldekort her; http://www.nav.no/meldekort',
@@ -2118,6 +2319,7 @@ const standardTeksterMock = {
             'sms-varsel',
             ''
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] tar kontakt angående utbetaling av sykepenger.\r\n\r\nJeg har informert at:\r\n- elektronisk søknad om sykepenger for perioden DATO er klar til innsending fra DATO\r\n- du vil motta varsel på SMS når du kan sende den\r\n\r\nDu kan finne nyttig informasjon på følgende nettsider:\r\n- www.nav.no/saksbehandlingstider\r\n- www.nav.no/utbetalingsdato\r\n- www.nav.no/digitalsykmelding\r\n- www.nav.no/sykmeldingsfilmer',
@@ -2142,6 +2344,7 @@ const standardTeksterMock = {
             'aktiivtetsplan',
             '11-03.07'
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] opplyser om ferie fra DATO og til og med DATO\r\n\r\nFravær/ferie fra aktivitet skal avtales med din oppfølger i aktivitetsplanen, se www.nav.no/aktivitetsplan\r\n\r\n- Hvis du reiser til utlandet må du søke om dette på forhånd på skjema 11-03.07.\r\n- Du må krysse av for feriefravær på spørsmål fire på meldekortet.\r\n\r\nFravær/ferie fører normalt til redusert utbetaling, men ved godkjent fravær/ferie kan du likevel beholde arbeidsavklaringspenger selv om du tar fri eller skal reise bort.\r\n\r\nDersom du får godkjent ferie, skal du ikke krysse for fravær og du vil få utbetalt arbeidsavklaringspenger. Husk at dette må du avklare med din oppfølger før fravær/ferie.\r\n\r\nDu finner informasjon om meldekort her; http://www.nav.no/meldekort',
@@ -2155,6 +2358,7 @@ const standardTeksterMock = {
         id: '7918010f-5be1-4062-b162-439d232ab4e4',
         overskrift: 'Helse - Sykepenger - Ferdigbehandlet etterbetaling',
         tags: ['ks', 'helse', 'sykepenger', 'utbetaling', 'ferdigbehandlet', 'etterbetaling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] tar kontakt angående utbetaling av sykepenger.\r\n\r\nJeg har informert om at:\r\n- sykepengene er klar til utbetaling, og vil være på konto i løpet av 3-5 dager\r\n- du kan følge med på Ditt NAV / Dine utbetalinger',
@@ -2168,6 +2372,7 @@ const standardTeksterMock = {
         id: '018f6297-1127-414c-a3e1-db69c375e619',
         overskrift: 'Sosiale tjenester - Startlån (BTN)',
         tags: ['ks', 'btn', 'sosial', 'husbanken'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDersom du har behov for hjelp til å komme inn på boligmarkedet eller å kunne bli boende i boligen din, kan du søke om startlån fra husbanken.\r\n\r\nLes mer om startlån på: www.husbanken.no/startlaan\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -2181,6 +2386,7 @@ const standardTeksterMock = {
         id: '8f972a24-2a2c-4627-8e3d-253085a49fd6',
         overskrift: 'Arbeid - Arbeidssøker - Intervju',
         tags: ['ks', 'jobbsøkere', 'oppfølging', 'jobbsøkertips', 'jobbe', 'nervøs'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker tips til hvordan gjennomføre jobbintervju på en best mulig måte.\r\n\r\nHar informert om at du kan:\r\n- sjekke ut gode tips på www.nav.no/jobbaktivitet for intervjuer\r\n- trene på muntlig videreformidling av dine kvalifikasjoner og relevante erfaringer\r\n- ringe personen du sist var på intervju hos og be om tilbakemeldinger på din innsats, slik at du kan bli enda bedre til neste intervju\r\n\r\nPå www.nav.no/jobbveiviser finner du flere gode tips for å få jobben du ønsker deg.',
@@ -2194,6 +2400,7 @@ const standardTeksterMock = {
         id: '88af4dc0-53d6-44cc-9b89-7525cb9e009b',
         overskrift: 'Arbeid - Arbeidssøker - Hull i CV',
         tags: ['ks', 'jobbsøkere', 'oppfølging', 'jobbsøkertips', 'jobbe', 'hjemmeværende', 'curriculum', 'vitae'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] opplyser at jobbjakten er vanskelig på grunn av manglende arbeidserfaring OG/ELLER hull i CV.\r\n\r\nHar informert om at du kan:\r\n- sjekke ut gode tips på www.nav.no/jobbaktivitet\r\n- kartlegge erfaringer du har som er relevant å ta med i jobbsøknaden\r\n- bruke eksempler på hva du har fått til i jobbsøknadene og tren på intervjusituasjoner.\r\n\r\nPå www.nav.no/jobbveiviser finner du også gode tips for å få jobben du ønsker deg.',
@@ -2207,6 +2414,7 @@ const standardTeksterMock = {
         id: '3720265a-cc0f-45c0-9b82-eabcba13b3b0',
         overskrift: 'Arbeid - Arbeidssøker - Kom i gang',
         tags: ['ks', 'jobbsøkere', 'oppfølging', 'jobbsøkertips', 'jobbe'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om hvordan man kommer i gang med jobbsøkingen\r\n\r\n- Bruk www.nav.no/jobbveiviser for å bli en bedre jobbsøker\r\n- Tenk gjennom hvilke erfaringer du har som kan være relevant å ta med i jobbsøknaden din, og kom med eksempler\r\n- Bruk nettverket ditt, mange får jobb gjennom familie, venner og bekjente\r\n- Send en åpen søknad der du vil jobbe, det kan du gjøre selv om de ikke har noen utlyste stillinger',
@@ -2220,6 +2428,7 @@ const standardTeksterMock = {
         id: '461994aa-9d41-457a-965e-ee6032d8cedc',
         overskrift: 'Arbeid - Arbeidssøker - Registrering',
         tags: ['ks', 'jobbsøkere', 'oppfølging', 'jobbsøkertips', 'jobbe'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker oppfølging fra NAV som jobbsøker.\r\n\r\nDu er informert om at:\r\n- Først må du registrere deg som arbeidssøker på www.nav.no/jobbveiviser\r\n- Meldekort skal sendes hver 14 dag for å være registrert arbeidssøker, se informasjon på www.nav.no/meldekort\r\n- Ønsker du som er registrert arbeidssøker å sende beskjed til din oppfølger kan du benytte www.nav.no/aktivitetsplan\r\n\r\nPå www.nav.no/jobbveiviser finner du også gode tips for å få jobben du ønsker deg.',
@@ -2233,6 +2442,7 @@ const standardTeksterMock = {
         id: 'ecb62a10-a874-4fcf-8e28-4946482bf93c',
         overskrift: 'Familie - Barnebidrag - Forhåndsvarsel ny sak',
         tags: ['ks', 'familie', 'bidrag', 'forhåndsvarsel', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om forhåndsvarsel på bidrag.\r\n\r\nDu har fått informasjon om å:\r\n- sende inn svar til forhåndsvarsel fra NAV (skjema NAV 54-00.04 for bidragsmottaker/skjema NAV 54-00.07 for bidragspliktig).\r\n- legge ved kopi av samværsavtale/avtale om delt bosted.\r\n- sjekke skjemaveilederen til søknaden for å se om andre vedlegg er aktuelle i din situasjon.\r\n\r\nSaksbehandlingstiden står i forhåndsvarselet fra NAV.\r\n\r\nDen andre parten vil få kopi av det du sender inn til NAV. Når saken er ferdig får begge parter vedtaket.\r\n\r\nDu kan finne mer informasjon på nav.no:\r\n- Søknadsskjema: www.nav.no/skjemabarnebidrag\r\n- Saksbehandlingstid: www.nav.no/saksbehandlingstider',
@@ -2246,6 +2456,7 @@ const standardTeksterMock = {
         id: 'cba473d7-8834-4f49-b1bf-d18fee9f850b',
         overskrift: 'Familie - Felles - Melding om samboer (BTN)',
         tags: ['ks', 'btn', 'familie', 'melding', 'samboer'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\nJeg videreformidler melding om samboer til aktuelle avdelinger hos oss, da dette kan påvirke utbetalingene dine.\r\n\r\nI forbindelse med meldingen din har vi behov for mer informasjon fra deg:\r\n· Navn og fødselsnummer på ny samboer\r\n· Ny adresse\r\n· Flyttedato\r\n· Har dere felles barn?\r\n\r\nBer om at du ettersender forespurte opplysninger her på Ditt NAV.\r\n\r\nTil orientering vil samboer medføre at:\r\n- Overgangsstønaden og stønad til barnetilsyn opphører fra måneden etter at dere flytter sammen.\r\n- Utvidet barnetrygd kan mottas i opptil 12 måneder, med mindre dere inngår ekteskap eller får felles barn.\r\n- Utvidet barnetrygd faller vekk hvis du flytter sammen med den andre forelderen.\r\n- Satsen for bidragsforskudd kan påvirkes.\r\n\r\nDu vil få brev fra oss når det er gjort endringer i utbetalingene dine.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -2259,6 +2470,7 @@ const standardTeksterMock = {
         id: '704e3dba-c2ec-4460-ad34-029f5195001e',
         overskrift: 'Familie - Barnebidrag - Status i sak (BTN)',
         tags: ['ks', 'btn', 'barnebidrag', 'status', 'i', 'sak'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDenne tjenesten er kun for å sende beskjeder som kan ha betydning for saken din, ikke for å sjekke status.\r\n\r\nDu får brev som bekrefter mottatt søknad eller klage om bidrag, samt få tilsendt kopi av opplysninger som sendes inn av motparten. Du kan følge med på saksbehandlingstiden vår på www.nav.no/saksbehandlingstider\r\n\r\nHvis du har utfyllende spørsmål om status i sak eller videre saksgang er du velkommen til å kontakte oss på telefon, se www.nav.no/ringnav\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -2272,6 +2484,7 @@ const standardTeksterMock = {
         id: '7e6a8a46-2597-4fa3-a15d-3d56a1df5f84',
         overskrift: 'Familie - Barnebidrag - NAVI (BTN)',
         tags: ['ks', 'btn', 'barnebidrag', 'penger', 'innkreving', 'navi'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDenne tjenesten kan ikke brukes til å ta i mot beskjeder som gjelder NAV Innkreving.\r\n\r\nFra 01.04.18 er NAV Innkreving en del av Skatteetaten. Dersom du har spørsmål om utbetaling eller innkreving kan du kontakte NAV Innkreving direkte på telefonnummer 21 05 11 00.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -2285,6 +2498,7 @@ const standardTeksterMock = {
         id: '3e9f6628-c247-42d7-9109-361265e4736a',
         overskrift: 'Familie - Barnetrygd - Utvidet',
         tags: ['ks', 'familie', 'barnetrygd', 'utvidet', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] skal søke om utvidet barnetrygd.\r\n\r\nDu har fått informasjon om:\r\n- at barnet må være folkeregistret på samme adresse som deg. Dette gjøres via Folkeregisteret.\r\n- at du søker på skjema NAV 33-00.09 Krav om utvidet barnetrygd.\r\n- er du gift, må du legge ved kopi av separasjonsbevilgning/skilsmissebevilgning.\r\n- er du samboer med felles barn under 16 år, må du legge ved meklingsattest og erklæring av samlivsbrudd.\r\n- har du inngått avtale om delt bosted, må den legges ved søknaden.\r\n- å sjekke skjemaveilederen til søknaden for å se om andre vedlegg er aktuelle i din situasjon.\r\n\r\nNår saken er ferdig sender vi vedtak til deg.\r\n\r\nDu må gi beskjed til NAV hvis du får:\r\n- Ny samboer\r\n- Nytt barn\r\n- Avtale om delt bostad\r\n- Barnet flytter\r\n- Reiser/flytter utenlands\r\n\r\nDu kan finne mer informasjon på nav.no:\r\n- Utvidet barnetrygd: www.nav.no/barnetrygd\r\n- Søknadsskjema: www.nav.no/skjemautvidetbarnetrygd\r\n- Saksbehandlingstid: www.nav.no/saksbehandlingstider',
@@ -2298,6 +2512,7 @@ const standardTeksterMock = {
         id: 'e56e76d0-16db-4f90-88fd-2c3bafe1b7b6',
         overskrift: 'Farskap - Bestilling av time',
         tags: ['ks', 'familie', 'farskap', 'timebestilling', 'erklære'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker å gi opplysninger i forbindelse med farskapssak.\r\n\r\n[bruker.fornavn] opplyser om at han/hun:\r\n- har fått brev med saksnummer:\r\n- barnet er født:\r\n- ønsker å erklære farskap/be om DNA-prøve\r\n\r\nDu er informert om at NAV kontoret vil kalle deg inn til time, du vil få tilbakemelding innen DAG+DATO\r\n\r\nMer informasjon finner du på www.nav.no/farskap',
@@ -2311,6 +2526,7 @@ const standardTeksterMock = {
         id: '0723dd77-1cde-4634-a6e9-60befbe3f022',
         overskrift: 'Familie - Foreldrepenger - Adopsjon - Utlandet',
         tags: ['ks', 'familie', 'foreldrepenger', 'adopsjon', 'adoptere', 'permisjon'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om foreldrepenger ved adopsjon fra utlandet.\r\n\r\nDu har fått informasjon om at:\r\n- du finner informasjon om rett til foreldrepenger på www.nav.no/foreldrepenger\r\n- du kan velge om du vil søke om foreldrepenger fra omsorgsovertakelse i utlandet med sikte på adopsjon, eller når barnet er kommet til Norge.\r\n\r\net er greit å være oppmerksom på at hvis dere oppholder dere lenge i utlandet før adopsjonen er offisielt innvilget, så kan dette ha betydning for opptjening av rett til foreldrepenger. For å ha rett til foreldrepenger, må dere ha pensjonsgivende inntekt i 6 av 10 måneder før permisjonsrett.\r\n\r\nDu har også fått informasjon om at:\r\n- det er viktig å søke i god tid før permisjonsstart, se saksbehandlingstider på www.nav.no/saksbehandlingstider\r\n- du finner søknadskjemaet på www.nav.no/skjemaforeldrepenge\r\n- du som søker kan følge status på behandling av søknaden på www.nav.no/dittnav',
@@ -2324,6 +2540,7 @@ const standardTeksterMock = {
         id: '4a579c2c-27c6-4d1b-b773-8980dea2ec00',
         overskrift: 'Familie - Forelderpenger- Beregning Selvstendig næringsdrivende og arbeidstaker',
         tags: ['ks', 'beregning', 'selvstendig', 'næringsdrivende', 'arbeidstaker', 'foreldrepenge'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om beregning av foreldrepenger når en er selvstendig næringsdrivende og arbeidstaker i forkant av permisjonsstart.\r\n\r\nDu har fått informasjon om:\r\n- Hovedregelen på beregning av foreldrepenger når du er selvstendig næringsdrivende og arbeidstaker i forkant av permisjonsstart er at da skal NAV ta med både din arbeidstaker- og selvstendig næringsinntekt.\r\n- Arbeidstaker-inntekten blir som hovedregel basert på den inntekten du har ved permisjonsstart.\r\n- Selvstendig næringsinntekten din blir som hovedregel basert på gjennomsnittet av din pensjonsgivende inntekt de 3 siste ferdiglignet årene.\r\n\r\nHusk at denne blir justert etter valg av dekningsgrad (80% eller 100% lønnsnivå), og at NAV ikke betaler over 6G.\r\n\r\nDu har også fått informasjon om at du kan lese mer på nav.no:\r\nwww.nav.no/beregningforeldrepenger\r\n\r\nGrunnbeløp:\r\nwww.nav.no/grunnbeløp',
@@ -2337,6 +2554,7 @@ const standardTeksterMock = {
         id: 'fb4f4900-156d-45bf-8939-856811ec04d7',
         overskrift: 'Familie - Pleiepenger - Sykt barn - Videreformidle henvendelse (BTN)',
         tags: ['ks', 'btn', 'sto', 'familie', 'pleiepenger', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg har videreformidlet spørsmålet ditt til våre veiledere som svarer på pleiepenger. De vil svare deg i løpet av én arbeidsdag.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter\r\n',
@@ -2350,6 +2568,7 @@ const standardTeksterMock = {
         id: 'dd2354e0-e22f-41f2-8574-780c55009f32',
         overskrift: 'Familie - Pleiepenger - Ved fødsel',
         tags: ['ks', 'foreldrepenger', 'pleiepenger', 'ved', 'fødsel'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] opplyser at barnet er innlagt på helseinstitusjon og har spørsmål om foreldrepenger.\r\n\r\nDu har fått informasjon om:\r\n\r\n- Når barnet du mottar foreldrepenger for er innlagt i helseinstitusjon, er det mulig å utsette foreldrepengene.\r\n- Hvis du mottar pleiepenger mens barnet er innlagt på helseinstitusjon, vil foreldrepengeperioden bli forskjøvet uten at du må søke utsettelse av foreldrepenger. Du får tilsendt nytt vedtak på foreldrepenger med oppdatert maksdato.\r\n- Som regel får man bare innvilget pleiepenger når barnet er innlagt i helseinstitusjon, da foreldrepenger er rett ytelse når barnet er hjemme. Dette gjelder både ved fødsel og senere i stønadsperioden.\r\n\r\nSøknadsprosess:\r\n- Du og sykehuset/helseinstitusjonen der barnet er innlagt søker om pleiepenger for deg.\r\n- NAV må ha inntektsopplysninger for pleiepenger fra din arbeidsgiver\r\n- Dersom du kommer hjem fra sykehus tidligere enn innvilget periode med pleiepenger, må du varsle NAV. Du får kun utsatt foreldrepengene mens barnet er innlagt.\r\n- Hvis du ikke har rett på pleiepenger, men likevel ønsker å søke utsettelse av foreldrepenger i perioden barnet er innlagt, må du sende søknad om utsettelse, med dokumentasjon på perioden barnet var innlagt.\r\n\r\nDu kan lese om pleiepenger her: www.nav.no/pleiepenger',
@@ -2363,6 +2582,7 @@ const standardTeksterMock = {
         id: 'b7287d86-2d1a-4477-928e-aed8f61e8429',
         overskrift: 'Familie - Sykdom i familie - Enslig forsørger',
         tags: ['ks', 'familie', 'omsorgsdager', 'enslig', 'forsørger', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er blitt enslig forsørger og har spørsmål om sin rett til omsorgspenger.\r\n\r\nDu har fått informasjon om:\r\n- Den av foreldrene som er alene om omsorgen for barnet får alle omsorgsdagene, det betyr at den andre av foreldrene ikke har omsorgspenger lengre.\r\n- Har du 1-2 barn vil du da ha 20 dager (10 vanlige + 10 fordi du er enslig).\r\n- Har du 3 eller flere barn vil du ha 30 dager (15 vanlige + 15 fordi du er enslig).\r\n- Du får ikke et eget vedtak på at du mottar dager som enslig forsørger.\r\n- Har du kronisk sykt/funksjonshemmet barn, kan du søke om 20 dager per sykt barn som enslig forsørger (10 vanlige for sykt barn + 10 fordi du er enslig).\r\n- Retten til utvidet omsorgspenger som enslig forsørger opphører når du får nytt barn med ny samboer/ektefelle.\r\n\r\nInformasjon om overføring av disse dagene:\r\n- Til barnets andre foreldre: Du kan søke til NAV om å få overført noen av dine dager til barnets andre foreldre. Da søker du på et fritekstskriv og legge ved samværsavtalen.  Dagene vil da fordeles på bakgrunn av samværsavtalen.\r\n- Til ny samboer/ektefelle uten felles barn: Du kan søke til NAV om å få overført inntil 10 dager til ny samboer/ektefelle. Da må samboerforholdet har vart i mer enn 12 måneder. Du søker på fritekstskriv til NAV.\r\n\r\nDu må gi beskjed til NAV hvis en får:\r\n- Nytt barn\r\n- Avtale om delt bostad\r\n- Barnet flytter\r\n- Endring i samvær (når en har søkt om overføring).\r\n- Reiser utenlands\r\n\r\nDu finner mer informasjon på www.nav.no/omsorgspenger',
@@ -2376,6 +2596,7 @@ const standardTeksterMock = {
         id: '556fd15e-bcce-4b9c-90e0-9c42b0070897',
         overskrift: 'Familie - Foreldrepenger - Beregning - Selvstendig næringsdrivende',
         tags: ['ks', 'beregning', 'selvstendig', 'næringsdrivende', 'foreldrepenger'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om beregning av foreldrepenger når en er selvstendig næringsdrivende i forkant av permisjonsstart.\r\n\r\nDu har fått informasjon om:\r\n- Hovedregelen på beregning av foreldrepenger når du er selvstendig næringsdrivende i forkant av permisjonsstart, er at da skal NAVse på gjennomsnittet av de siste tre ferdiglignet årene (pensjonsgivende inntekt).\r\n\r\nHusk at denne blir justert etter valg av dekningsgrad (80% eller 100% lønnsnivå), og at NAV ikke betaler over 6G.\r\n\r\nDu har også fått informasjon om at du kan lese mer på nav.no:\r\nwww.nav.no/beregningforeldrepenger\r\n\r\nGrunnbeløp:\r\nhttps://www.nav.no/grunnbeløp',
@@ -2389,6 +2610,7 @@ const standardTeksterMock = {
         id: '40f2e556-879a-4b0f-a996-1b6bc96bac10',
         overskrift: 'Familie - Foreldrepenger - Rettigheter mor',
         tags: ['ks', 'foreldrepenger', 'rettigheter'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] venter barn og har spørsmål om foreldrepenger.\r\n\r\nDu har fått informasjon om:\r\n- vilkårene for foreldrepenger.\r\n- når mor/far skal søke, og henvisning til elektronisk søknadsskjema.\r\n- å følge statusen i saken ved å logge inn på Ditt NAV.\r\n- oppdatert saksbehandlingstid på nav.no.\r\n\r\nDu har også fått informasjon om at du kan lese mer på nav.no:\r\n- www.nav.no/foreldrepenger\r\n- www.nav.no/foreldrepengertilfar\r\n- www.nav.no/venterdubarn\r\n- www.nav.no/saksbehandlingstider',
@@ -2402,6 +2624,7 @@ const standardTeksterMock = {
         id: '03f764d8-226a-45a4-891f-a5561cdd5582',
         overskrift: 'Familie - Kontantstøtte - Generell informasjon',
         tags: ['ks', 'kontantstøtte'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om kontantstøtte.\r\n\r\nDu har fått informasjon om at:\r\n- du kan få kontantstøtte for barn mellom 13 og 23 måneder.\r\n- barnet ikke må ha heltids barnehageplass i en barnehage med offentlig driftstilskudd.\r\n- du kan søke om kontantstøtte når barnet er ett år gammelt.\r\n- satsen på kontantstøtte avhenger av hvor mange timer barnet har plass i barnehage.\r\n- når barnet får barnehageplass må du enten ringe inn til NAV eller sende en melding på www.nav.no/beskjedtilnav for å gi beskjed om dette.\r\n\r\nDu kan finne mer informasjon på:\r\n- www.nav.no/kontantstøtte\r\n- www.nav.no/satser',
@@ -2415,6 +2638,7 @@ const standardTeksterMock = {
         id: '0f97df79-a086-4d90-a18e-fdf0eceeaa3d',
         overskrift: 'Familie - Kontantstøtte - EØS-borgere',
         tags: ['ks', 'familie', 'kontantstøtte', 'eøs'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om kontantstøtte for EØS-borgere.\r\n\r\nDu har fått informasjon om at du kan ha rett til kontantstøtte når:\r\n- du bor i Norge sammen med familien din\r\n- du er statsborger i et EØS-land og arbeider i Norge, mens familien din bor i et annet EØS-land\r\n- du er utsendt arbeidstaker fra et EØS-land til Norge\r\n\r\nSammen med søknaden om kontantstøtte må du legge ved:\r\n- fødselsattest hvis barnet ikke er folkeregistret i Norge.\r\n- ID-nummer fra hjemlandet for deg, barnet og den andre forelderen\r\n- dokumentasjon på arbeidsforholdet ditt (kopi av arbeidsavtale).\r\n- bekreftelse på at du har vært medlem av en trygdeordning i et annet EØS-land, hvis du ikke har 5 års medlemskap i den norske folketrygden\r\n\r\nDu kan finne mer informasjon på https://www.nav.no/no/Person/Familie/Barnetrygd+og+kontantstotte/Relatert+informasjon/barnetrygd-og-kontantst%C3%B8tte-til-utenlandske-arbeidstakere-i-norge'
@@ -2424,6 +2648,7 @@ const standardTeksterMock = {
         id: '96e596f7-ca39-4851-9ffb-f5ff186a55eb',
         overskrift: 'Familie - Kontantstøtte - Vilkår',
         tags: ['ks', 'familie', 'kontantstøtte', 'vilkår', 'medlemskap', '5', 'år', 'trygdedekning'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om kontantstøtte og vilkåret om 5 års medlemskap i folketrygden.\r\n\r\nDu har fått informasjon om at:\r\n- dette gjelder begge foreldre der barnet bor sammen med begge eller dersom det er avtale om delt bosted.\r\n- perioder med trygdedekning i et annet EØS-land regnes også med.\r\n- du må selv innhente dokumentasjon fra de aktuelle EØS-landene som har registrert dine trygdeperioder og legge dette ved søknaden din.\r\n\r\nDu kan finne mer informasjon på www.nav.no/kontantstøtte',
@@ -2435,6 +2660,7 @@ const standardTeksterMock = {
         id: 'fb39c9c6-504a-49c2-b243-e3682b4bace0',
         overskrift: 'Uføretrygd - Honnørkort ',
         tags: ['ks', 'uføretrygd', 'uføre', 'honnørkort', 'honnørrabattkort', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker å bestille nytt honnørkort på grunn av at det gamle er (MISTET/ØDELAGT/I GAMMELT FORMAT).\r\n\r\nJeg har informert om at:\r\n- jeg har sjekket at du har innvilget uføretrygd på XX %\r\n- jeg sender deg nytt honnørkort til din folkeregistrerte adresse.\r\n- du vil motta nytt kort innen 5 arbeidsdager.\r\n- når du mottar det nye kortet må du makulere det gamle kortet.\r\n\r\nDu kan lese mer om honnørkort på www.nav.no/honnørkort',
@@ -2448,6 +2674,7 @@ const standardTeksterMock = {
         id: 'cd6743cf-0115-4850-94b1-415609bd77d5',
         overskrift: 'Familie - Kontantstøtte - Status i sak',
         tags: ['ks', 'familie', 'kontantstøtte', 'søknad', 'status', 'saksbehandling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om status for sin søknad om kontantstøtte.\r\n\r\nDu har fått informasjon om at:\r\n- NAV har mottatt din søknad og dokumentasjon\r\n- saksbehandlingstiden er MÅNEDER\r\n\r\nDu har også fått informasjon om at du kan følge med på saksbehandlingstiden på www.nav.no/saksbehandlingstider og sjekke status i din sak under Dine saker.',
@@ -2461,6 +2688,7 @@ const standardTeksterMock = {
         id: 'b0fe211d-3e94-4685-aaf4-daf15f794189',
         overskrift: ' Pensjon - Alderspensjon - E207',
         tags: ['ks', 'pensjon', 'utland', 'E207', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker å søke alderspensjon fra LAND.\r\n\r\nDu har fått informasjon om at:\r\n- du må fylle ut blankett E 207. Jeg sender dette skjemaet til deg via post i dag.\r\n- øverst på side 1 skriver du det norske fødselsnummeret ditt (det er ingen rubrikk for dette, men skriv det øverst på skjemaet slik at vi sikrer at dokumentet kommer inn i din sak).\r\n- på skjemaet, side 1,  fyller du ut feltene 1-5.\r\n- på side 2 fyller du inn hvor du har bodd, studert og jobbet etter at du ble 16 år. Se i fotnotene som følger skjemaet for forklaring til de ulike feltene.\r\n- du sender skjemaet i retur til oss. Adressen er: NAV Familie- og pensjonsytelser, Postboks 6600 Etterstad, 0607 Oslo.\r\n- NAV videresender søknaden din til utlandet.\r\n- du må søke på vanlig måte når du skal ta ut alderspensjon fra NAV via www.nav.no/dinpensjon'
@@ -2470,6 +2698,7 @@ const standardTeksterMock = {
         id: 'cd1b123a-f4b2-45d3-955f-e26b17d3345a',
         overskrift: 'Pensjon - Felles - Beregning ikke mulig (BTN)',
         tags: ['ks', 'btn', 'pensjon', 'beregning', 'ikke', 'mulig', 'manuel'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDet er dessverre ikke mulig for deg å bruke Din pensjon for å gjøre ønsket beregning.\r\n\r\nVi ber deg derfor kontakte oss på telefon 55 55 33 34 slik at vi kan hjelpe deg. Vår åpningstid er mandag - fredag kl 08.00-15.30.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -2479,6 +2708,7 @@ const standardTeksterMock = {
         id: 'e00cb8c7-2987-4751-bfef-eb03bc4ea7e2',
         overskrift: 'Familie - Sykdom i familie - Fordeling omsorgsdager',
         tags: ['ks', 'familie', 'omsorgspenger', 'enslig', 'forsørger', 'fordeling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om overføring og fordeling av omsorgsdager.\r\n\r\nDu har fått informasjon om at omsorgsdager kan overføres:\r\n- til den andre forelderen i henhold til samværsavtale\r\n- til ny samboer/ektefelle, uten felles barn, som har vart i mer enn 12 måneder\r\n\r\nDu må gi beskjed til NAV ved disse tilfellene:\r\n- nytt barn\r\n- avtale om delt bostad\r\n- barnet flytter\r\n- endring i samvær (når en har søkt om overføring)\r\n- utenlandsreiser\r\n\r\nDu kan finne mer informasjon og søknadsskjema på www.nav.no/omsorgsdager',
@@ -2492,6 +2722,7 @@ const standardTeksterMock = {
         id: 'd4fc822c-8b4f-486c-8dd3-5b1be26a8bab',
         overskrift: 'Familie - Pleiepenger - Kronisk sykt barn - Søknad ',
         tags: ['ks', 'familie', 'omsorgspenger', 'syktbarn', 'søknad', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] skal søke om utvidet rett til omsorgspenger på grunn av kronisk sykt eller funksjonshemmet barn.\r\n\r\nDu har fått informasjon om at:\r\n- man kan få 10 dager per foreldre, per kronisk sykt/funksjonshemmet barn. 20 dager hvis du er enslig forsørger.\r\n- dette søkes om på skjema NAV 09-06.05 sammen med vedlegg aktuelt for din situasjon\r\n- disse utvidete omsorgsdagene forskutteres vanligvis av arbeidsgiver, og arbeidsgiver søker om refusjon til NAV.\r\n\r\nNår saken er ferdig vil det sendes ut et vedtak i posten til deg.\r\n\r\nDu kan finne mer informasjon på www.nav.no/omsorgsdager og sjekke saksbehandlingstid i ditt fylke her www.nav.no/saksbehandlingstider',
@@ -2505,6 +2736,7 @@ const standardTeksterMock = {
         id: 'e92285fd-8000-4822-afcb-d809ca554b74',
         overskrift: 'Familie - Sykdom i familie - Omsorgsdager',
         tags: ['ks', 'familie', 'sykdomifamilien', 'omsorgspenger', 'enslig', 'forsørger', 'rett'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er vorte einsleg forsytar og spør om sin rett til omsorgsdagar.\r\n\r\nDu har fått informasjon om at:\r\n- den av føresatte som er aleine om omsorgen for barnet har automatisk alle omsorgsdagane.\r\n- viss du har 1-2 barn har du 20 omsorgsdagar.\r\n- viss du har 3 eller fleire barn har du 30 omsorgsdagar.\r\n- du ikkje får eiga vedtak på at du får dagar som einsleg forsytar.\r\n- viss du har eit kronisk sjukt eller funksjonshemma barn, kan du søkje om 20 ekstra dagar per sjukt barn som einsleg forsytar.\r\n\r\nDu er også informert om at retten til utvida omsorgspengar som einsleg forsytar opphøyrer viss du får nytt barn med ny sambuar/ektefelle.\r\n\r\nDu finn meir informasjon på www.nav.no/omsorgsdager',
@@ -2516,6 +2748,7 @@ const standardTeksterMock = {
         id: 'afdc95be-8cc6-4dbc-99bc-edb3ed9b00ab',
         overskrift: 'Familie - Kontantstøtte - Avslag',
         tags: ['ks', 'familie', 'kontantstøtte', 'avslag', 'feil'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '(HVIS AVSLAG GRUNNET OPPHOLDSTID)\r\n[bruker.navn] ringer angående avslag på kontantstøtte, og mener at dette er feil da barnet er mindre enn XX timer i barnehagen. Jeg informerer om at det er barnehagens åpningstid som avgjør hvilken sats man mottar, selv om man benytter seg av færre timer enn åpningstiden tilsier.\r\n\r\nDu mener at vedtaket er feil og ønsker en ny vurdering. Informert om at klage kan sendes skriftlig til oss gjennom Ditt NAV, og man bør da bør sende inn bekreftelse fra barnehageansvarlig i kommunen om antall timer man har disponibelt.\r\n\r\n(HVIS AVSLAG GRUNNET FEIL KRYSS OM BOTID)\r\n[bruker.navn] ringer angående avslag på kontantstøtte, og forklarer at begge foreldrene har bodd i Norge i mer enn fem år. Jeg ser at de har krysset «nei» i felt 1.2/2/4.4 angående den andre forelderens/din/barnets botid og det er derfor fattet avslag.\r\n\r\nDu har fått informasjon om at du kan sende inn en bekreftelse på at det er krysset feil, og at du skulle krysset ja. Da vil en saksbehandler vurdere søknaden ut fra disse nye opplysningene, se www.nav.no/beskjedtilnav\r\n\r\nDu kan finne mer informasjon på www.nav.no/kontantstøtte',
@@ -2529,6 +2762,7 @@ const standardTeksterMock = {
         id: '8985f170-197e-4779-8e77-34594dd653d7',
         overskrift: 'Familie - Foreldrepenger - Nye regler',
         tags: ['ks', 'beregning', 'arbeidstaker', 'inntektsopplysninger', 'arbeidsgiver'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har søkt om foreldrepenger/fedrekvote og fått brev om at arbeidsgiver må sende oppdaterte inntektsopplysninger.\r\n\r\nJeg informerer om at det er nye beregningsregler og ny rutine for innsending av inntektsopplysninger fra 01.01.19. Arbeidsgiver må sende digital inntektsmelding tidligst 4 uker før permisjonen skal starte/før permisjonen skulle ha startet.',
@@ -2542,6 +2776,7 @@ const standardTeksterMock = {
         id: 'aa6d9bd4-5806-4532-9194-91376bb3d97d',
         overskrift: 'Uføretrygd - Utbetalingsdato (BTN)',
         tags: ['ks', 'sto', 'uføre', 'uføretrygd', 'utbetaling', 'utbetalingsdato', '20', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nUføretrygd utbetales innen den 20. hver måned. I mai og desember er utbetalingen tidligere. Du kan sjekke  utbetalingsdatoer i Ditt NAV / Uføretrygd / Utbetalinger\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter\r\n',
@@ -2555,6 +2790,7 @@ const standardTeksterMock = {
         id: 'f43a4db3-a397-4e55-8196-41c291f65d60',
         overskrift: 'Uføretrygd - Honnørkort  (BTN)',
         tags: ['ks', 'sto', 'uføretrygd', 'uføre', 'honnørkort', 'honnørabattkort', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJa, du kan få nytt kort hvis du har (MISTET/ØDELAGT/GAMMELT FORMAT PÅ) honnørkortet.\r\n\r\nJeg har sjekket at du er innvilget XX % uføretrygd. Du vil motta nytt honnørkort til din folkeregistrerte adresse innen 5 arbeidsdager. Når du mottar det nye kortet må du makulere det gamle kortet.\r\n\r\nDu kan lese mer om honnørkort på www.nav.no/honnørkort\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -2568,6 +2804,7 @@ const standardTeksterMock = {
         id: 'b3fe8af8-f274-4bf2-982a-22cdf93bb5f5',
         overskrift: 'Prioritering av sak',
         tags: ['ka', 'prioritering', 'av', 'sak'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei,\r\nVi har mottatt din henvendelse om prioritering av saken din.\r\n\r\nVi har forståelse for at du ønsker å få en rask behandling av saken din, men har dessverre ikke anledning til å prioritere enkeltsaker foran andre i køen. Vi beklager den lange saksbehandlingstiden og viser til vårt brev av < DATO>  der vi skriver at saken vil bli behandlet innen 4 mnd.\r\n\r\nMed vennlig hilsen\r\nNavn\r\nNAV Klageinstans\r\n'
@@ -2577,6 +2814,7 @@ const standardTeksterMock = {
         id: 'c28daebf-252c-428b-a2ff-965f6b4207dc',
         overskrift: 'Uføretrygd - Etteroppgjør ikke gjennomført (BTN)',
         tags: ['ks', 'btn', 'uføretrygd', 'uføre', 'etteroppgjør'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\n- Etteroppgjøret for uføretrygd har de to siste årene blitt gjennomført fra oktober påfølgende år.\r\n- I år er etteroppgjøret forsinket og vil tidligst bli klart i løpet av november.\r\n- Vi kan ikke si noe om utfallet i din sak før etteroppgjøret faktisk er gjennomført.\r\n- Du vil motta varsel via SMS og e-post når ditt etteroppgjør er klart på Ditt NAV // Din uføretrygd // Innboks. Påse at din kontaktinformasjon er oppdatert.\r\n\r\nLes mer på www.nav.no/etteroppgjør\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -2586,6 +2824,7 @@ const standardTeksterMock = {
         id: '1c9ea0ed-6769-4fd8-a2ae-c48e1aaade41',
         overskrift: 'Uføretrygd - Etteroppgjør ikke gjennomført',
         tags: ['ks', 'uføre', 'uføretrygd', 'etteroppgjør'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterspør etteroppgjør uføretrygd.\r\n\r\nFølgende gjelder:\r\n- Etteroppgjøret for uføretrygd har de to siste årene blitt gjennomført fra oktober påfølgende år. I år er etteroppgjøret forsinket og vil tidligst bli klart i løpet av november.\r\n- Vi kan ikke si noe om utfallet i din sak før etteroppgjøret faktisk er gjennomført.\r\n- Du vil motta varsel via SMS og e-post når ditt etteroppgjør er klart på Ditt NAV // Din uføretrygd // Innboks. Påse at din kontaktinformasjon er oppdatert.\r\n\r\nLes mer på www.nav.no/etteroppgjør'
@@ -2595,6 +2834,7 @@ const standardTeksterMock = {
         id: '807892da-5856-4e5c-9899-b706bea3dd65',
         overskrift: 'Pensjon - Felles - Utbetaling - Januar',
         tags: ['ks', 'pensjon', 'utbetaling', 'januar', 'regulering'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om utbetaling for januar.\r\n\r\nDu har fått informasjon om brutto pensjon og skattetrekk, og at beløpet forventes å være uendret frem til reguleringen i juni.',
@@ -2606,6 +2846,7 @@ const standardTeksterMock = {
         id: '7c89cd61-8f2b-41dc-b743-0712bc24d4ec',
         overskrift: 'Internasjonalt - E104 annet EØS land',
         tags: ['ks', 'internasjonalt', 'medlemskap', 'e104', 'trygdemyndighet', 'EØS-land', 'medlemskapsbekreftelse'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått beskjed fra trygdemyndighet i annet EØS-land om å få en medlemskapsbekreftelse/E-104 fra NAV.\r\n\r\nDu ble informert om:\r\n- det skal i utgangspunktet ikke være nødvendig å innhente bekreftelse fra NAV vedrørende medlemskap\r\n\r\nNår trygdemyndighetene i annet EØS-land ber om en bekreftelse på medlemskap i norsk folketrygd så skal man først forsøke å sende følgende dokumentasjon til aktuell trygdemyndighet:\r\n- arbeidskontrakt og lønnsslipper fra norsk arbeidsgiver\r\n- skatteoppgjør fra Norge\r\n- flyttemelding om utvandring fra dette landet, dersom du ikke lenger er bosatt der\r\n\r\nDersom dette ikke er tilstrekkelig, skal den aktuelle trygdemyndighet selv sende forespørsel direkte til NAV om E104.',
@@ -2617,6 +2858,7 @@ const standardTeksterMock = {
         id: '9a0f4215-b7c8-4eff-875a-81585da3c361',
         overskrift: 'Arbeid - Arbeidssøker - U30 - hjelp med jobbsøking',
         tags: ['ks', 'jobbsøkere', 'jobblyst', 'facebook', 'youtube', 'oppfølging', 'jobbsøkertips', 'jobbe'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker hjelp med jobbsøkingen.\r\n\r\nHar informert om at du kan:\r\n- sjekke ut www.nav.no/jobbportaler for å få oversikt over ledige stillinger.\r\n- registrere CV-en din hos flere aktører for å øke sjansen for å få jobb.\r\n- tenke over hvilke erfaringer du har som er relevant å ta med i jobbsøknaden din. Det trenger ikke alltid å være arbeidsrelaterte kvalifikasjoner som gjør deg spesielt kvalifisert til jobben du søker på.\r\n- bruke nettverket ditt, mange får jobb gjennom familie, venner og bekjente.\r\n- følge bedrifter du vil jobbe i på sosiale medier, mange bedrifter velger å legge ut stillinger der.\r\n- sende en åpen søknad der du vil jobbe, det kan du gjøre selv om de ikke har noen utlyste stillinger.\r\n\r\nFlere tips og råd finner du på www.nav.no/ung og ved å søke opp NAV Jobblyst på Facebook, Snapchat eller Youtube.',
@@ -2630,6 +2872,7 @@ const standardTeksterMock = {
         id: 'd0f39db1-d5eb-49be-9669-1457da1c9b4a',
         overskrift: 'Arbeid - Arbeidssøker - U30 - jobbsøkertips',
         tags: ['ks', 'jobbsøkere', 'jobblyst', 'oppfølging', 'jobbsøkertips', 'jobbe'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Du har fått jobbsøkartips som du finn her: www.nav.no/jobbaktivitet\r\n\r\nDu finn og meir informasjon om jobbsøk i desse kanalane:\r\n- www.nav.no/ung\r\n- www.facebook.com/navjobblyst\r\n- www.youtube.com/navjobblyst\r\n- Snapchat: navjobblyst'
@@ -2639,6 +2882,7 @@ const standardTeksterMock = {
         id: 'f585d23a-5d8e-458e-80a9-69037fd26bc5',
         overskrift: 'Uføretrygd - Etterbetaling ung ufør - Status i sak',
         tags: ['ks', 'uføretrygd', 'uføre', 'tidligere', 'ytelse', 'beregning', 'særregler'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.fornavn] etterspør etterbetaling av ung ufør mot tidligere ytelse.\r\n\r\nFølgende gjelder:\r\n- Hvis du får innvilget uføretrygd med ung ufør beregning, kan du ha rett til å få vurdert etterbetaling etter særreglene for ung ufør i tidligere mottatte ytelser fra NAV\r\n\r\nTidligere ytelser kan være:\r\n- Arbeidsavklaringspenger(AAP)\r\n- Tidsbegrenset ufør (TU)\r\n- Rehabiliteringspenger (RP)\r\n- Attføringspenger (YA)\r\n\r\nDet er ingen fastsatt saksbehandlingstid, da vi behandler alle saker fortløpende. Du får tilbakemelding så snart NAV Arbeid og ytelser har behandlet saken din.',
@@ -2652,6 +2896,7 @@ const standardTeksterMock = {
         id: 'f2918cf2-56bc-4a77-b776-4a212147420e',
         overskrift: 'Uføretrygd - Bekreftelse',
         tags: ['ks', 'uføretrygd', 'uføre', 'inntekt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker bekreftelse på at man mottar uføretrygd (ENGELSK/NORSK/FRANSK/SPANSK/TYSK).\r\n\r\nFølgende gjelder:\r\n- jeg har sjekket at du har innvilget uføretrygd på XX %.\r\n- jeg sender en stemplet bekreftelsen til din folkeregistrerte adresse. ELLER – du finner bekreftelsen inne på Ditt NAV/Din Uføretrygd/Innboks og kan selv hente den ut der.',
@@ -2665,6 +2910,7 @@ const standardTeksterMock = {
         id: '06ffd5bf-2187-4d02-b1e2-ab93eed696a4',
         overskrift: 'Internasjonalt - E104 Skatteetaten',
         tags: ['ks', 'internasjonalt', 'medlemskap', 'e104', 'skatteetaten', 'medlemskapsbekreftelse'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått beskjed fra Skatteetaten om å kontakte NAV for å få en bekreftelse på at medlemskapet er opphørt.\r\n\r\nDu ble informert om:\r\n- NAV kan ikke bekrefte at du er medlem i et annet land\r\n- Du må sende dokumentasjon fra landet du har arbeidet i til Skatteetaten og så må de vurdere disse opplysningene selv.',
@@ -2676,6 +2922,7 @@ const standardTeksterMock = {
         id: '76f5e3b9-3710-4625-af8a-9f8a8944f194',
         overskrift: 'Internasjonalt - E104 HELFO',
         tags: ['ks', 'internasjonalt', 'medlemskap', 'e104', 'helfo', 'medlemskapsbekreftelse'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått beskjed fra HELFO om å kontakte NAV for å få en bekreftelse på medlemskap.\r\n\r\nDu ble informert om:\r\n- HELFO skal selv innhente den informasjonen de trenger for å vurdere om Norge er kompetent stat.\r\n- Dersom de er i tvil, og har behov for en bekreftelse/vurdering av medlemskapet, skal de kontakte NAV Medlemskap og avgift.',
@@ -2687,6 +2934,7 @@ const standardTeksterMock = {
         id: '9e397c8b-7d22-46a5-a33c-ef212f803986',
         overskrift: 'Pensjon - AFP offentlig - Etteroppgjør',
         tags: ['ks', 'pensjon', 'etteroppgjør', 'avtalefestet', 'afp', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om etteroppgjør for avtalefestet pensjon (AFP).\r\n\r\nDu har fått informasjon om å sende dokumentasjon på inntekt som skal holdes utenfor etteroppgjøret. Bruk gjerne skjema 62-03.01 som du finner på www.nav.no/pensjon for å gi tilbakemelding.\r\n\r\nMerk dokumentasjonen med:\r\n- ditt fødsel- og personnummer\r\n- ditt telefonnummer\r\n- AFP Etteroppgjør 2017\r\n\r\nDette sendes til:\r\nNAV Familie- og pensjonsytelser\r\nPostboks 6600 Etterstad\r\n0607 OSLO\r\n\r\n\r\nDu har også fått informasjon om at du kan lese mer på www.nav.no/etteroppgjørafp',
@@ -2700,6 +2948,7 @@ const standardTeksterMock = {
         id: '4bfb6fdf-b1f4-42ae-b1c5-1db9947d5413',
         overskrift: 'Pensjon - AFP offentlig - Etteroppgjør (BTN)',
         tags: ['ks', 'btn', 'pensjon', 'etteroppgjør', 'afp', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu må sende inn dokumentasjon på inntekt som skal holdes utenfor etteroppgjøret på avtalefestet pensjon (AFP).\r\n\r\nBruk gjerne skjema 62-03.01 som du finner på www.nav.no/pensjon for å gi tilbakemelding.\r\n\r\nMerk dokumentasjonen med:\r\n- ditt fødsel- og personnummer\r\n- ditt telefonnummer\r\n- AFP Etteroppgjør 2017\r\n\r\nDette sendes til:\r\nNAV Familie- og pensjonsytelser\r\nPostboks 6600 Etterstad\r\n0607 OSLO\r\n\r\nDu kan lese mer på www.nav.no/etteroppgjørafp\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -2713,6 +2962,7 @@ const standardTeksterMock = {
         id: 'c45bbc12-0536-4511-8540-c71bfd346a59',
         overskrift: 'Uføretrygd - Etteroppgjør - erstatning',
         tags: ['ks', 'uføre', 'uføretrygd', 'etteroppgjør', 'erstatning'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om etteroppgjør.\r\n\r\nFølgende gjelder:\r\n- NAV foretar et etteroppgjør/kontroll av uføretrygden for 2017 når opplysninger om skattefastsetting foreligger fra Skatteetaten\r\n- Pensjonsgivende inntekt over inntektsgrensen din fører til reduksjon i uføretrygden din\r\n- I år vil etteroppgjøret omhandle barnetillegget, for de som mottar dette\r\n- Personinntekt blir lagt til grunn ved beregning av barnetillegg\r\n- Du ligger an til å skylde BELØP\r\n\r\nDu har/kan ha mottatt en av følgende erstatning i 2017:\r\n\r\n- Skadeerstatningsloven § 3-1\r\n- Yrkesskadeforsikringsloven § 13\r\n- Pasientskadeloven § 4, 1. ledd eller voldsoffererstatning\r\n\r\nDu må selv dokumentere at erstatningen er utmålt etter en av paragrafene over. Kopi av vedtak av erstatning kan sendes inn med førsteside for innsending. Førsteside for innsending kan du skrive ut fra www.nav.no/førsteside\r\n\r\nNår vi har mottatt dokumentasjon fra deg vil vi foreta ett nytt etteroppgjør der vi vurderer om inntekt registrert i skattefastsetting skal holdes utenfor. Du vil motta ett nytt vedtak når vi har foretatt ett nytt etteroppgjør.\r\n\r\nLes mer om etteroppgjøret på www.nav.no/etteroppgjør',
@@ -2726,6 +2976,7 @@ const standardTeksterMock = {
         id: 'da0551fe-4eda-4ce8-9ed7-2e5e0e09c05d',
         overskrift: 'Uføretrygd - Etteroppgjør - Etterslep',
         tags: ['ks', 'uføre', 'uføretrygd', 'etteroppgjør', 'etterslep'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om etteroppgjør.\r\n\r\nFølgende gjelder:\r\n- NAV foretar et etteroppgjør/kontroll av uføretrygden for 2017 når opplysninger om skattefastsetting foreligger fra Skatteetaten\r\n- Pensjonsgivende inntekt over inntektsgrensen din fører til reduksjon i uføretrygden din\r\n- I år vil etteroppgjøret omhandle barnetillegget, for de som mottar dette\r\n- Personinntekt blir lagt til grunn ved beregning av barnetillegg\r\n- Du ligger an til å skylde BELØP\r\n- Du ble innvilget/endret uføregrad i 2017\r\n\r\nEtterslepsinntekter kan være:\r\n- Feriepenger som er opptjent før du fikk innvilget/endret grad uføretrygd\r\n- Bonus eller lignende fra virksomhetens overskudd som utbetales påfølgende år\r\n- Inntekter fra salg av produksjonsmidler i forbindelse med opphør av virksomhet\r\n- Produksjonstillegg og andre overføringer til gårdbrukere\r\n\r\nHar du mottatt etterslepsinntekter i 2017 må dette dokumenteres.\r\n\r\nDokumentasjon kan sendes inn med førsteside for innsending. Førsteside for innsending kan du skrive ut her: www.nav.no/førsteside\r\n\r\nNår vi har mottatt dokumentasjon fra deg vil vi foreta ett nytt etteroppgjør der vi vurderer om inntekt registrert i skattefastsetting skal holdes utenfor. Du vil motta ett nytt vedtak når vi har foretatt ett nytt etteroppgjør.\r\n\r\nDu finner mer informasjon på www.nav.no/etteroppgjør',
@@ -2739,6 +2990,7 @@ const standardTeksterMock = {
         id: '012f071d-7b42-4357-8ef6-caa865f3f180',
         overskrift: 'Uføretrygd - Etteroppgjør - høy inntekt',
         tags: ['ks', 'uføre', 'uføretrygd', 'etteroppgjør', 'høy', 'inntekt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om etteroppgjør.\r\n\r\nFølgende gjelder:\r\n- NAV foretar et etteroppgjør/kontroll av uføretrygden for 2017 når opplysninger om skattefastsetting foreligger fra Skatteetaten.\r\n- Pensjonsgivende inntekt over inntektsgrensen din fører til reduksjon i uføretrygden din.\r\n- I år vil etteroppgjøret omhandle barnetillegget, for de som mottar dette.\r\n- Personinntekt blir lagt til grunn ved beregning av barnetillegg.\r\n- Du ligger an til å skylde BELØP.\r\n\r\nVi har mottatt informasjon om følgende inntekt fra Skatteetaten\r\n- Pensjonsgivende inntekt BELØP\r\n- Personinntekt BELØP\r\n- Personinntekt på annen forelder BELØP\r\n\r\nHvis Skatteetaten endrer din pensjonsgivende inntekt vil NAV automatisk gjennomføre et nytt etteroppgjør. Du trenger ikke å sende inn dokumentasjon til NAV.\r\n\r\nHvis inntekt fra pensjonsytelser(utenom NAV) eller annen foreldres inntekt blir endret vil vi gjennomføre et nytt manuelt etteroppgjør. Gi beskjed til NAV når endringen er gjennomført.\r\n\r\nDu trenger ikke å sende inn dokumentasjon til NAV. Vi ser på oppdatert informasjon fra Skatteetaten.\r\n\r\nLes mer på www.nav.no/etteroppgjør og om å jobbe ved siden av uføretrygd på www.nav.no/uføre-jobb',
@@ -2752,6 +3004,7 @@ const standardTeksterMock = {
         id: '30491cb9-ceb6-4f48-9840-6e705f1a9c1f',
         overskrift: 'Uføretrygd - Etteroppgjør - Etterbetaling',
         tags: ['ks', 'uføre', 'uføretrygd', 'etteroppgjør', 'etterbetaling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om etteroppgjør.\r\n\r\nFølgende gjelder:\r\n- NAV foretar et etteroppgjør/kontroll av uføretrygden for 2017 når opplysninger om skattefastsetting foreligger fra Skatteetaten\r\n- Pensjonsgivende inntekt over inntektsgrensen din fører til reduksjon i uføretrygden din\r\n- I år vil etteroppgjøret omhandle barnetillegget, for de som mottar dette • Personinntekt blir lagt til grunn ved beregning av barnetillegg\r\n- Du ligger an til å få tilbake BELØP\r\n- Du vil motta etterbetaling innen syv arbeidsdager fra vedtaksdato\r\n- Det trekkes skatt etter standardsats på etterbetaling for tidligere år\r\n- Etterbetalingen motregnes automatisk mot feilutbetalings- eller bidragsgjeld hos NAVI\r\n- Det godskrives ikke renter på etterbetaling\r\n\r\nLes mer om etteroppgjøret på www.nav.no/etteroppgjør',
@@ -2765,6 +3018,7 @@ const standardTeksterMock = {
         id: 'f7cf51c3-0e50-450a-99b3-ee2fbec381be',
         overskrift: 'Generell - Brutt samtale - Ringt tilbake ',
         tags: ['ks', 'generell', 'brutt', 'samtale', 'brudd', 'avbrutt', 'ringt', 'tilbake'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Du har ringt oss, men samtalen ble dessverre brutt.\r\n\r\nJeg har forsøkt å ringe deg tilbake, men fikk ikke svar.\r\n\r\nTa gjerne kontakt med oss på telefon igjen om du fortsatt ønsker å snakke med oss.',
@@ -2776,6 +3030,7 @@ const standardTeksterMock = {
         id: '7e0994e2-3cf1-45ed-b00a-d95d32f3241a',
         overskrift: 'Pensjon - Felles - Utbetaling - Juni',
         tags: ['ks', 'pensjon', 'prosent', 'tabelltrekk', 'skatt', 'skattekort', 'g-regulering', 'regulering', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått informasjon om:\r\n\r\n- nytt beløp som gjelder fra 1. mai\r\n- etterbetaling for mai månad ble utbetalt ca. 14.juni\r\n- beløpet som forventes å være fast utbetaling fremover\r\n\r\nDu kan sjekke utbetalinger på www.nav.no/utbetaling fremover',
@@ -2789,6 +3044,7 @@ const standardTeksterMock = {
         id: '39db7a0d-9b1b-42b3-8c9c-f32d48c1e6a2',
         overskrift: 'Pensjon - Felles - Fullmakt ',
         tags: ['ks', 'pensjon', 'utbetalingsmelding', 'utbetalingsslipp', 'utbetaling', 'fullmakt', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] spør om det er mulig å gi tilgang til at andre kan se utbetalingene.\r\n\r\nJeg informerer om at det er mulig å gi andre fullmakt til å se utbetalingene.\r\n\r\nSlik gjør du det:\r\n- gå på www.nav.no, logg inn på Ditt NAV og klikk på Din pensjon, i venstremenyen velger du Din profil og fullmakter.\r\n- her kan du registrere fødselsnummer og etternavn på den personen som skal få fullmakt.\r\n- du kan velge mellom begrenset fullmakt eller fullstendig fullmakt.\r\n- ved fullmakt i Din pensjon vil utbetalingsopplysningene være tilgjengelig fra og med utbetalingsdatoen.',
@@ -2802,6 +3058,7 @@ const standardTeksterMock = {
         id: '3233809b-8cb4-4a16-81e8-a026f631714e',
         overskrift: 'Pensjon - Felles - Gifter seg',
         tags: ['ks', 'pensjon', 'afp', 'alderspensjon', 'gift', 'grand', 'canaria', 'palmesus'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] melder fra om ekteskap.\r\n\r\nDu opplyser at du har giftet deg DATO med NAVN ETTERNAVN FØDSELSNUMMER\r\n\r\nDu har fått informasjon om at:\r\n- inngåelse av ekteskap fører til omregning av pensjon fra måneden etter ekteskapsinngåelsen\r\n- omregning skal skje dersom ektefellen har inntekt over 2G, eller har pensjon / uføretrygd fra folketrygden\r\n- dersom du har gjenlevenderett i alderspensjonen vil denne falle bort, slik at pensjonen din beregnes kun etter din egen opptjening\r\n- jeg sender beskjed til pensjonsavdelingen vår slik at du får vurdert omregning av pensjon\r\n- du har også fått informasjon om forsørgertillegg (gjelder dersom ektefelle har inntekt under 1G)',
@@ -2813,6 +3070,7 @@ const standardTeksterMock = {
         id: '24bc4b90-0ba3-4768-a560-fe2a7f6d684a',
         overskrift: 'Pensjon - Alderspensjon - Selvbetjening',
         tags: ['ks', 'pensjon', 'alderspensjon', 'beregning', 'kalkulator'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om beregning av pensjon.\r\n\r\nDu har fått informasjon om at:\r\n- du logger deg inn på Ditt NAV / Din pensjon og beregner pensjonen selv på pensjonskalkulatoren.\r\n- når du er innlogget får du også oversikt over opptjeningen du har hatt i forhold til folketrygd.\r\n- les også gjennom forbeholdene som ligger som informasjon når du er ferdig med beregningen.\r\n\r\nVi gjør oppmerksom på www.nav.no/alderspensjon-tidspunkt og bloggen www.deterdinpensjon kan være gode kilder til informasjon.\r\n\r\nDersom du har tjenestepensjon bør du snakke med din tjenestepensjonsordning om hva du har rett til av pensjon derfra.'
@@ -2822,6 +3080,7 @@ const standardTeksterMock = {
         id: 'c68dd9d6-e393-4085-8681-1aba57caa6ea',
         overskrift: 'Generell - Etterlyser vedtak - Under behandling ',
         tags: ['ks', 'generell', 'vedtak'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterlyser vedtaket for søknad om YTELSE.\r\n\r\nDu har fått informasjon om at:\r\n- vi mottok søknaden DATO\r\n-du kan følge med på www.nav.no/saksbehandlingstider\r\n\r\nVed lang saksbehandlingstid vil det kunne ta litt tid fra søknaden er mottatt til den blir registrert. Det er først når søknaden er registrert at du vil se den på Ditt NAV.',
@@ -2835,6 +3094,7 @@ const standardTeksterMock = {
         id: '0a4bb92e-f603-4ed4-873d-225774d472f1',
         overskrift: 'Pensjon - Felles - Omsorgsopptjening',
         tags: ['ks', 'pensjon', 'omsorgsopptjening', 'egenerklæring'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] spør om egenerklæring for omsorgsarbeid og viser til tilsendt brev om dette.\r\n\r\nJeg informerer om at egenerklæring kan sendes inn elektronisk her ved å svare på disse spørsmålene i ny henvendelse til oss her via Ditt NAV:\r\n\r\nJeg erklærer at jeg har i året 2017 utført pleie- og omsorgsarbeid for (NAVN PÅ PERSONEN DU UTFØRER OMSORG FOR)\r\n\r\nJeg bekrefter at arbeidet har utgjort minst 22 timer pr. uke inkludert reisetid.\r\nReisetiden er bare medregnet med opptil 30 minutter pr. besøk.\r\nArbeidet har vart i (sett kryss):\r\n___ minst 6 måneder\r\n___ under 6 måneder\r\n\r\nHvis omsorgsforholdet har opphørt i løpet av året:\r\nOppgi dato for opphøret: (DATO)\r\nOppgi årsaken til opphøret: (ÅRSAK)\r\n\r\nDu kan lese mer om omsorgsopptjening her på nav.no:\r\nhttps://www.nav.no/no/Person/Pensjon/Omsorgsopptjening\r\n\r\nØnsker deg en fin dag.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\nNAV Kontaktsenter pensjon'
@@ -2844,6 +3104,7 @@ const standardTeksterMock = {
         id: 'af0aa126-7488-4f87-a4c2-0db71c5ccb32',
         overskrift: 'Generell - Feilutbetaling - Varsel ',
         tags: ['ks', 'feilutbetaling', 'varsel', 'uttalelse', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått varsel om feilutbetaling.\r\n\r\nDu har fått informasjon om:\r\n- rett til å uttale deg innen gitt frist\r\n- at du kan levere uttalelsen elektronisk på www.nav.no/beskjedtilnav',
@@ -2857,6 +3118,7 @@ const standardTeksterMock = {
         id: '5cdc2c89-9e07-4877-85da-574149f2ad98',
         overskrift: 'Generell - Endre kontonummer',
         tags: ['ks', 'generell', 'kontonummer', 'bank'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått veiledning i hvordan man endrer kontonummer.\r\n\r\nDu har fått informasjon om:\r\n- å endre kontonummeret selv på nav.no. Logg inn på Ditt NAV og velg Din profil\r\n- at kontonummeret blir endret på alle utbetalingene fra NAV\r\n- hvis du ikke har tilgang til Ditt NAV på nav.no, kan du benytte skjema NAV 95-20.00 på www.nav.no/skjemaer\r\n\r\nDu har også fått informasjon om at du kan lese mer på www.nav.no/kontonummer',
@@ -2870,6 +3132,7 @@ const standardTeksterMock = {
         id: 'd02ca9ef-aa37-467b-bf20-f9c8b48ab468',
         overskrift: 'Pensjon - Felles - Omsorgsopptjening (BTN)',
         tags: ['', 'ks', 'btn', 'pensjon', 'omsorgsopptjening', 'egenerklæring'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu kan svare på egenerklæringen via nettjenesten her.\r\nDu må svare på følgende spørsmål:\r\n\r\nJeg erklærer at jeg har i året 2017 utført pleie- og omsorgsarbeid for (NAVN PÅ PERSONEN DU UTFØRER OMSORG FOR)\r\n\r\nArbeidet har utgjort minst 22 timer pr. uke inkludert reisetid.\r\nReisetiden er bare medregnet med opptil 30 minutter pr. besøk.\r\nArbeidet har vart i (sett kryss):\r\n___ minst 6 måneder\r\n___ under 6 måneder\r\n\r\nHvis omsorgsforholdet har opphørt i løpet av året:\r\nOppgi dato for opphøret: (DATO)\r\nOppgi årsaken til opphøret: (ÅRSAK)\r\n\r\nDu kan lese mer om omsorgsopptjening her: https://www.nav.no/no/Person/Pensjon/Omsorgsopptjening\r\n\r\nØnsker deg en fin dag.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\nNAV Kontaktsenter pensjon'
@@ -2879,6 +3142,7 @@ const standardTeksterMock = {
         id: '35416d70-2e9c-49d7-933a-14bc7816822e',
         overskrift: 'Uføretrygd - Inntekt gradert UT',
         tags: ['ks', 'uføretrygd', 'uføre', 'inntekt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om inntekt i kombinasjon med uføretrygd.\r\n\r\nJeg har informert om at:\r\n- du kan ha en årsinntekt på inntil INNTEKTSGRENSE i år, før uføretrygden din justeres.\r\n- hvis du får barnetillegg kan all endring i inntekt ha betydning.\r\n- hvis du har en årsinntekt over KRONER skal du ikke ha utbetalt uføretrygd. Vi vil da kreve tilbake, det som allerede evt er utbetalt, ved etteroppgjøret påfølgende år.\r\n- du skal selv melde fra om endring i Inntektsplanleggeren i Ditt NAV // Din uføretrygd.\r\n- når du registrerer annen forventet inntekt via Inntektsplanleggeren, som gir ny beregning, vil det dannes ett nytt brev i din innboks.\r\n- endringen vil gjelde fra påfølgende måned.\r\n\r\nDu kan lese mer om å jobbe ved siden av uføretrygd på www.nav.no/uføre-jobb\r\nDu kan lese mer om etteroppgjør av uføretrygd på www.nav.no/uføre-etteroppgjør'
@@ -2888,6 +3152,7 @@ const standardTeksterMock = {
         id: '887ad2bd-4ed8-4c50-9c5f-0ae9feda4f62',
         overskrift: 'Uføretrygd - Inntekt gradert UT (BTN)',
         tags: ['ks', 'sto', 'uføretrygd', 'uføre', 'forventet', 'inntekt', 'inntektsplanleggeren'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nFølgende gjelder:\r\n- du kan ha en årsinntekt på inntil INNTEKTSGRENSE i år, før uføretrygden din justeres.\r\n- hvis du får barnetillegg kan all endring i inntekt ha betydning.\r\n- hvis du har en årsinntekt over KRONER skal du ikke ha utbetalt uføretrygd. Vi vil da kreve tilbake, det som allerede evt er utbetalt, ved etteroppgjøret påfølgende år.\r\n- du skal selv melde fra om endring i Inntektsplanleggeren i Ditt NAV // Din uføretrygd.\r\n- når du registrerer annen forventet inntekt via Inntektsplanleggeren, som gir ny beregning, vil det dannes ett nytt brev i din innboks.\r\n- endringen vil gjelde fra påfølgende måned.\r\n\r\nTrenger du veiledning til hvordan dette gjøres, kan du ta kontakt med oss på telefon 55553333, tastevalg uføre.\r\n\r\nDu kan lese mer om å jobbe ved siden av uføretrygd på www.nav.no/uføre-jobb\r\nDu kan lese mer om etteroppgjør av uføretrygd på www.nav.no/uføre-etteroppgjør\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\nNAV Kontaktsenter'
@@ -2897,6 +3162,7 @@ const standardTeksterMock = {
         id: '32cf4600-1f6d-4fc7-ba91-ec8690a0ce1d',
         overskrift: 'Pensjon - Alderspensjon - Beregning',
         tags: ['ks', 'pensjon', 'alderspensjon', 'beregning'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om beregning av pensjon.\r\n\r\nDu har fått informasjon om at:\r\n- du har fått beregnet alderspensjon/AFP fra (TIDSPUNKT)\r\n- beregningen er tilgjengelig på nav.no // Ditt NAV // Din pensjon, der du også kan lese om forbehold for beregningen.\r\n\r\nVi gjør oppmerksom på www.nav.no/alderspensjon-tidspunkt og bloggen www.deterdinpensjon.no kan være gode kilder til informasjon.\r\n\r\nDersom du har tjenestepensjon bør du snakke med din tjenestepensjonsordning om hva du har rett til av pensjon derfra.'
@@ -2906,6 +3172,7 @@ const standardTeksterMock = {
         id: 'bd121fb6-8c3b-4c45-b23d-ef494c256553',
         overskrift: 'Pensjon - AFP privat - Uføretrygd - Beregning',
         tags: ['ks', 'pensjon', 'afp', 'privat', 'beregning', 'uføretrygd', '62'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har gradert uføretrygd, har ikke fylt 62 år og ønsker å få beregnet AFP privat sektor fra måneden etter fylte 62 år.\r\n\r\nDu er informert om at:\r\n- Dersom du mottar uføretrygd fra folketrygden etter at du fyller 62 år, mister du retten til AFP privat for alltid\r\n- Du må si fra deg uføretrygden senest innen utgangen av måneden du fyller 62 år dersom du ønsker å starte uttak av AFP privat.\r\n\r\nDu har bedt om beregning av 100% alderspensjon, eller det høyeste mulige prosentvise uttaket du fyller vilkårene for, sammen med AFP privat fra måneden etter fylte 62 år.\r\n\r\nNAV Pensjon trenger disse opplysningene for å kunne beregne din pensjon:\r\n- Antall år utenfor Norge\r\n- Sivil status\r\n- Ektefelle/Partner/Samboer har egen pensjon\r\n- Ektefelle/Partner/Samboer har egen inntekt over 2G\r\n- Telefonnummer\r\n\r\nDenne forespørselen er nå sendt til NAV Familie- og Pensjonsytelser for behandling. Du får svar innen 4-6 uker\r\n\r\nVi gjør oppmerksom på www.nav.no/alderspensjon-tidspunkt og bloggen www.deterdinpensjon.no kan være gode kilder til informasjon.\r\n\r\nDersom du har tjenestepensjon bør du snakke med din tjenestepensjonsordning om hva du har rett til av pensjon derfra.'
@@ -2924,6 +3191,7 @@ const standardTeksterMock = {
             'søknad',
             'dokumentasjon'
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] tar kontakt angående utbetaling av sykepenger.\r\n\r\nJeg har informert om at saken ikke er ferdigbehandlet.\r\n\r\nDette er foreløpig ikke registrert:\r\n- Søknad for perioden DATO\r\n- Søknaden kan sendes inn fra DATO, og du får varsel på SMS når den er klar for innsending\r\n- Inntektsmelding\r\n- Sykmelding for perioden DATO\r\n\r\nDersom det er arbeidsgiveren din som skal sende det, må du kontakte dem for å undersøke om/når det er sendt. Du finner oversikt over saksbehandlingstidene på www.nav.no/saksbehandlingstider\r\n\r\nDu finner adressen du sender dokumentasjonen til på www.nav.no/sykepenger-adresser',
@@ -2937,6 +3205,7 @@ const standardTeksterMock = {
         id: '7441e8ef-1ac2-4205-bd59-e2fb14ef9ef3',
         overskrift: 'Uføretrygd - Inntekt legge inn selv (BTN)',
         tags: ['ks', 'sto', 'uføretrygd', 'uføre', 'forventet', 'inntekt', 'inntektsplanleggeren'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nFølgende gjelder:\r\n- du skal selv melde fra om endring i Inntektsplanleggeren i Ditt NAV // Din uføretrygd.\r\n- når du registrerer annen forventet inntekt via Inntektsplanleggeren, som gir ny beregning, vil det dannes ett nytt brev i din innboks.\r\n- Endring vil gjelde fra påfølgende mnd.\r\n\r\nTrenger du veiledning til hvordan dette gjøres, kan du ta kontakt med oss på telefon 55553333, tastevalg uføre.\r\n\r\nDu kan lese mer om å jobbe ved siden av uføretrygd på www.nav.no/uføre-jobb\r\nDu kan lese mer om etteroppgjør av uføretrygd på www.nav.no/uføre-etteroppgjør\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\nNAV Kontaktsenter'
@@ -2946,6 +3215,7 @@ const standardTeksterMock = {
         id: 'e6299231-571a-4327-a496-59ef70791c33',
         overskrift: 'Uføretrygd - Inntekt legge inn selv',
         tags: ['ks', 'uføretrygd', 'uføre', 'inntekt', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker å endre inntekt i tillegg til uføretrygd.\r\n\r\nFølgende gjelder:\r\n- Du korrigerer selv forventet inntekt i Inntektsplanleggeren din. Denne finner du på Ditt NAV // Din Uføretrygd // Inntektsplanlegger.\r\n- Når du registrerer annen forventet inntekt via Inntektsplanleggeren, som gir ny beregning, vil det dannes et nytt brev i din innboks.\r\n- Endring vil gjelde fra påfølgende mnd.\r\n\r\nDu kan lese mer om å jobbe ved siden av uføretrygd på www.nav.no/uføre-jobb\r\nDu kan lese mer om etteroppgjør av uføretrygd på www.nav.no/uføre-etteroppgjør'
@@ -2955,6 +3225,7 @@ const standardTeksterMock = {
         id: 'c268e5f8-3f6d-491a-89b8-1ca0bc22b10f',
         overskrift: 'Uføretrygd - Simulering',
         tags: ['ks', 'uføre', 'uføretrygd', 'simulering'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått en simulering av uføretrygd.\r\n\r\nDu er informert om at:\r\n- serviceberegning av uføretrygd gir en indikasjon på hva du kan forvente å få utbetalt i uføretrygd før skatt\r\n- det er ikke et endelig resultat av hva utbetalingen kan bli dersom uføretrygd innvilges\r\n- rettigheter som ung ufør eller med barnetillegg vil ikke tas med i beregningen\r\n- serviceberegningen er ikke juridisk bindende\r\n- kalkulatoren gjør følgende beregning i fremtidig uføretrygd: månedsbeløp kr BELØP (før skatt).\r\n\r\nFølgende er lagt inn i kalkulatoren:\r\n- antatt uføretidspunkt:\r\n- virkningstidspunkt:\r\n- uføregrad:\r\n- sivilstatus:\r\n- antall år i utlandet etter fylte 16 år:\r\n\r\nDu kan finne mer informasjon på www.nav.no/beregneuføretrygd',
@@ -2968,6 +3239,7 @@ const standardTeksterMock = {
         id: 'beff160f-7896-49b1-9f03-e79a6ac911e3',
         overskrift: 'Familie - Enslig forsørger - Endret inntekt (BTN)',
         tags: ['ks', 'btn', 'barnebidrag', 'lønnsendring', '10%', 'ny', 'overgangsstønad'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn] og takk for at du melder fra om inntekt.\r\n\r\nHvis endringen i inntekt er mer enn 10 prosent enn det vi har beregnet skal overgangsstønaden beregnes på nytt. Jeg oversender meldingen din til saksbehandler for videre vurdering.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -2977,6 +3249,7 @@ const standardTeksterMock = {
         id: '2b59852f-9b93-4ba9-af61-e3539bef4e76',
         overskrift: 'Arbeid og Helse - Felles - Aktivitetsplan (BTN)',
         tags: ['ks', 'btn', 'arbeid', 'aktivitetsplan', 'oppfølging', 'veileder'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.navn]\r\n\r\nJeg ber deg om å benytte din aktivitetsplan for å sende denne meldingen.\r\nNår du benytter aktivitetsplan, vil du ha direkte dialog med din oppfølger.\r\nHer kan du sende beskjeder, gi opplysninger, stille spørsmål, gjøre avtaler og føre opp forslag til egen aktivitet/ behandling/oppfølging.\r\n\r\nDu finner mer informasjon om dette her på www.nav.no/aktivitetsplan\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -2988,6 +3261,7 @@ const standardTeksterMock = {
         id: '0540be54-d4e9-455c-a65d-a5411d2399a9',
         overskrift: 'Familie - Barnetrygd - Manglende utbetaling',
         tags: ['ks', 'familie', 'barnetrygd', 'flyttet'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ringer angående manglende utbetaling av barnetrygd.\r\n\r\nJeg ser at [bruker.navn] nylig har flyttet, og forklarer at dette kan medføre forsinkelse i utbetaling. Jeg ber saksbehandler på barnetrygd om å aktivere barnetrygden, utbetaling vil normalt være på konto i løpet av en uke.\r\n\r\nELLER\r\nJeg ser at [bruker.navn] nylig har fått opphør av kontantstøtte, og forklarer at dette kan medføre en forsinkelse i utbetaling av barnetrygd. Jeg ser at økonomiavdelingen har reaktivert utbetaling av barnetrygd, og at den vil være på konto innen 3 dager.\r\n\r\nELLER\r\nJeg har informert om at det i noen tilfeller ikke innvilges barnetrygd automatisk, og at dette i seg selv ikke er en rettighet. I slike tilfeller må man sende søknad på skjema NAV 33-00.07 Krav om ordinær barnetrygd.\r\n\r\nDu kan finne mer informasjon på:\r\n- www.nav.no/barnetrygd\r\n- www.nav.no/skjemabarnetrygd\r\n- www.nav.no/saksbehandlingstider',
@@ -3001,6 +3275,7 @@ const standardTeksterMock = {
         id: 'a3260182-4549-48c6-af52-cd7eab28dab5',
         overskrift: 'Signatur NØS',
         tags: ['NØS', 'signatur'],
+        vekttall: 0,
         innhold: {
             nb_NO: 'Med vennlig hilsen\r\n[saksbehandler.navn]\r\nNAV Økonomi stønad'
         }
@@ -3009,6 +3284,7 @@ const standardTeksterMock = {
         id: 'fd0c337d-e8bd-4eb9-83d9-4626fca9fd52',
         overskrift: 'Pensjon - Alderspensjon med gjenlevenderett (BTN)',
         tags: ['ks', 'BTN', 'gjenlevende', 'rett', 'enslig', 'enke', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.fornavn]\r\n\r\nGjenlevende ektefelle vil i første omgang bli regnet om til enslig pensjonist. Det vil si at gjenlevende ektefelle får 100% av grunnpensjonen i stedet for 90 %.\r\n\r\nVidere kan det være rett til tilleggspensjon fra avdødes opptjening. Denne blir da beregnet med 55 % av begges tilleggspensjon, hvis dette gir høyere ytelse enn det gjenlevende ektefelle allerede har.\r\n\r\nAlderspensjon med gjenlevenderett følger samme regelverk for levealdersjustering og regulering som før.\r\n\r\nDu kan lese mere om dette på www.nav.no/pensjongjenlevendeektefelle\r\n\r\nHa en fin dag.\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -3018,6 +3294,7 @@ const standardTeksterMock = {
         id: '5754dac9-4cdb-4a3a-8082-e229245b6cfc',
         overskrift: 'Pensjon - Alderspensjon - Gjenlevenderett ',
         tags: ['ks', 'pensjon', 'gjenlevenderett', 'etterlattepensjon', 'etterlatterett'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] spør hva ektefellen vil få i pensjon hvis/når han dør.\r\n\r\nJeg informerer om at\r\n-ektefellen først og fremst vil få pensjon som enslig pensjonist ved at grunnpensjonen blir omregnet til 100% pensjon\r\n-videre kan det være rett til tilleggspensjon fra avdødes opptjening. Denne blir da beregnet med 55 % av begges tilleggspensjon, hvis dette gir høyere ytelse enn det hun allerede har\r\n\r\nDu kan lese mer om dette på www.nav.no/pensjongjenlevendeektefelle',
@@ -3031,6 +3308,7 @@ const standardTeksterMock = {
         id: '7a06f083-5f42-45a5-8590-17012ee90731',
         overskrift: 'Familie - Foreldrepenger - Beregning - Frilanser',
         tags: ['ks', 'beregning', 'frilanser', 'foreldrepenger'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er frilanser og har spørsmål om beregning av foreldrepenger.\r\n\r\nDu har fått informasjon om at:\r\n- Foreldrepenger skal regnes ut på samme måte som for arbeidstakere. Det vil si at det skal regnes ut fra inntekten du har hatt i de tre siste kalendermånedene før foreldrepengeperioden din starter.\r\n- Grunnlaget for foreldrepengene blir justert etter valg av dekningsgrad (80% eller 100% lønnsnivå), og vil aldri settes til mer enn seks ganger grunnbeløpet.\r\n\r\nDu har også fått informasjon om at du kan lese mer på nav.no:\r\nwww.nav.no/foreldrepenger\r\nwww.nav.no/grunnbeløp'
@@ -3040,6 +3318,7 @@ const standardTeksterMock = {
         id: '07889385-af2f-4de9-b96b-d7569a1bde91',
         overskrift: 'Generell - Undersøke og ringe tilbake',
         tags: ['ks', 'generell', 'oppgave', 'kontakt', 'bruker', 'undersøke', 'ringe', 'tilbake', 'sjekke'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] tar kontakt med spørsmål om TEMA\r\n\r\nDu har fått informasjon om at:\r\n- jeg må undersøke saken og vil ringe deg tilbake så snart som mulig og senest innen to arbeidsdager\r\n- dersom jeg ikke får tak i deg på telefon vil jeg gi deg en skriftlig tilbakemelding som du finner i din innboks',
@@ -3053,6 +3332,7 @@ const standardTeksterMock = {
         id: '309f51db-0e96-400c-9cd4-fb77ffe6c005',
         overskrift: 'Generell - Skatt - Frivillig skattetrekk mangler',
         tags: ['ks', 'skatt', 'frivillig', 'skattetrekk', 'mangler'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterlyser frivillig skattetrekk på utbetalingen.\r\n\r\nDu har fått informasjon om at:\r\n- frivillig skattetrekk er registrert\r\n- vi mottok informasjon om trekket for sent til at vi fikk oppdatert trekket denne måneden\r\n- trekket vil gjelde fra neste måned\r\n',
@@ -3066,6 +3346,7 @@ const standardTeksterMock = {
         id: 'e29b2e9e-ee89-4761-b225-ad1661adf5f0',
         overskrift: 'Generell - Skatt - Endring - Før terminslutt',
         tags: ['ks', 'skatt', 'skattetrekk', 'før', 'terminslutt', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om skattetrekk for YTELSE.\r\n\r\nDu har fått informasjon om at:\r\n- det dessverre er benyttet feil skattetrekk\r\n- NAV vil endre skattetrekket slik at det blir riktig fra neste utbetaling\r\n- du vil få tilbakebetalt for mye trukket skatt for siste utbetaling\r\n- det kan ta inntil 10 arbeidsdager før du har utbetalingen på konto\r\n- du må følge med på Dine utbetalinger på nav.no\r\n\r\nDu har også fått informasjon om at du kan lese mer på www.nav.no/skatt',
@@ -3079,6 +3360,7 @@ const standardTeksterMock = {
         id: 'deb9b1b3-a6f3-4c78-a140-06c05ee280be',
         overskrift: 'Generell - Skattekort - Nytt skattekort mangler (BTN)',
         tags: ['ks', 'btn', 'skatt', 'nytt', 'skattekort', 'mangler', 'endring', '', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi mottok informasjon om nytt skattekort for sent til at vi fikk korrigert trekket denne måneden.\r\nDet nye skattetrekket vil gjelde fra og med MÅNED.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3092,6 +3374,7 @@ const standardTeksterMock = {
         id: '2f728c4d-fe6e-47f7-ac28-b666bde0bc9b',
         overskrift: 'Generell - Frivillig skattetrekk - Pensjon (BTN)',
         tags: ['', 'ks', 'btn', 'skatt', 'frivillig', 'skattetrekk', 'pensjon'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu registrerer frivillig skattetrekk slik som fremgangsmåten her viser: www.nav.no/frivillig-skattetrekk\r\n- frivillig skattetrekk vil trekkes uavhengig av om det er skattefri måned eller eventuelt halv skatt, og gjelder ut inneværende kalenderår.\r\n\r\nDu kan sjekke hvor mye som trekkes i skatt i Utbetalingsoversikt på www.nav.no/utbetaling\r\n\r\nDersom du skal søke om lavere skattetrekk kontakter du Skatteetaten på www.skatteetaten.no\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3105,6 +3388,7 @@ const standardTeksterMock = {
         id: '4eb8deb3-304e-41ba-90d9-012bde8b4fcb',
         overskrift: 'Generell - Frivillig skattetrekk (BTN)',
         tags: ['ks', 'btn', 'frivillig', 'ekstra'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nTakk for beskjeden om frivillig skattetrekk. Vi registrerer dette, og trekket vil gjelde fra neste måned.\r\n\r\nFrivillig skattetrekk vil trekkes uavhengig av om det er skattefri måned eller eventuelt halv skatt, og gjelder ut inneværende kalenderår.\r\n\r\nDu kan sjekke hvor mye som trekkes i skatt i Utbetalingsoversikt på www.nav.no/utbetaling\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3118,6 +3402,7 @@ const standardTeksterMock = {
         id: '2458c8c2-5b9f-4f4c-a868-5fc71f098ef6',
         overskrift: 'Generell - Videreformidle - Ferie og høytider  (BTN)',
         tags: ['ks', 'generell', 'btn', 'ferie', 'videresende', 'videreformidle', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg har videreformidlet henvendelsen din til ENHET/VEILEDER.\r\nDu vil normalt få svar senest i løpet av DAG+DATO. I forbindelse med ferie og høytider kan det ta lengre tid før du får svar.\r\n\r\nHvis din henvendelse haster, ber vi deg ringe oss på 55 55 33 33.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3131,6 +3416,7 @@ const standardTeksterMock = {
         id: '4c6fa605-c59a-418d-885e-7fc27638ba0f',
         overskrift: 'Generell - Videreformidle henvendelse - Ventet lenge (BTN) ',
         tags: ['ks', 'generell', 'btn', 'rød', 'oppgave', 'ventetid'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nBeklager at det har tatt så lang tid å få svar fra oss.\r\nJeg har videreformidlet henvendelsen din til ENHET, og du får svar fra oss innen utgangen av DAG+DATO.\r\nBeklager at du må vente enda en stund for svar på henvendelsen din.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3144,6 +3430,7 @@ const standardTeksterMock = {
         id: '05934dd4-9db1-45e5-aa7c-c1ef27af34cf',
         overskrift: 'Generell - Utbetalingsinformasjon (BTN)',
         tags: ['ks', 'generell', 'btn', 'utbetaling', 'ditt', 'nav', 'utbetalingsslipp', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu sjekker dine utbetalinger på www.nav.no/utbetaling\r\nFor å se detaljer om dine utbetalinger og eventuelle trekk trykker du på den aktuelle utbetalingen eller der det står "mer informasjon".\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3157,6 +3444,7 @@ const standardTeksterMock = {
         id: '5a951e8a-06af-46e6-b921-0ba75be88614',
         overskrift: 'Generell - Ta imot fullmakt (BTN)',
         tags: ['ks', 'fullmakt', 'btn', 'mottak', 'gyldig'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nTakk for opplysningene om fullmakt.\r\n\r\nFor at fullmakten din skal være gyldig må vi ha følgende informasjon:\r\n- navn på personen som skal ha fullmakt\r\n- om fullmakten skal gjelde for en begrenset periode\r\n- om fullmakten gjelder begrenset informasjon, for eksempel YTELSE/OPPFØLGINGSSAK\r\n\r\nNAVNPÅFULLMEKTIG kan kontakte NAV på telefon. Jeg gjør deg oppmerksom på at det er bare du som kan stille spørsmål eller gi opplysninger gjennom denne tjenesten.\r\n\r\nDu kan finne mer informasjon om fullmakt på www.nav.no/taushetspliktogsamtykke\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3170,6 +3458,7 @@ const standardTeksterMock = {
         id: 'fbb00d19-aee6-4f80-a26f-0f2639a3d58c',
         overskrift: 'Generell - Utbetalingsdato ',
         tags: ['ks', 'generell', 'btn', 'utbetaling', '25', 'siste', 'arbeidsdag'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu finner informasjon om utbetalingsdato på http://www.nav.no/utbetaling\r\n\r\nHusk at utbetalingen din kan komme også på ettermiddag- og kveldstid på utbetalingsdatoen.\r\n\r\nDu må logge inn på Ditt NAV for å sjekke utbetalingen.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3183,6 +3472,7 @@ const standardTeksterMock = {
         id: 'a9dc3e8c-db8d-4dcb-b5b3-412b11c7e285',
         overskrift: 'Generell - Utenlandsreise - Beholde stønad ',
         tags: ['ks', 'generell', 'utlandet', 'reise', 'ferie', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] mottar YTELSE og skal reise til utlandet.\r\n\r\nDu har fått informasjon om:\r\n- vilkårene for å beholde stønaden under oppholdet.\r\n\r\nDu kan lese mer om ferie i utlandet her: http://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+utlandet/Opphold+i+utlandet+og+folketrygden/turist-i-utlandet#chapter-1\r\n\r\nDu finner ulike søknadskjema for å beholde stønaden din her: www.nav.no/reiseutlandet',
@@ -3196,6 +3486,7 @@ const standardTeksterMock = {
         id: '7c0f1d4b-c724-48be-8e9d-b5da8983d120',
         overskrift: 'Generell - Skattekort - Nytt skattekort mangler ',
         tags: ['ks', 'skatt', 'nytt', 'skattekort', 'mangler'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om hvorfor NAV ikke har benyttet nytt skattekort.\r\n\r\nDu har fått informasjon om at:\r\n- nytt skattekort ble mottatt etter utbetalingen for MÅNED\r\n- skattekortet vil gjelde fra og med MÅNED\r\n',
@@ -3209,6 +3500,7 @@ const standardTeksterMock = {
         id: '0c8eabf5-dbe2-4692-9e35-b063241ba4dd',
         overskrift: 'Generell - Skatt - Etter terminslutt',
         tags: ['ks', 'skatt', 'etter', 'terminslutt', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om skattetrekk for YTELSE.\r\n\r\nDu har fått informasjon om at:\r\n\r\n- NAV vil endre skattetrekket slik at det blir riktig fra neste utbetaling\r\n- eventuelt for mye trukket skatt vil bli utbetalt ved neste års skatteoppgjør\r\n- du kan søke om nytt skattekort på http://www.skatteetaten.no, slik at Skatteetaten endrer og tar hensyn til for mye trukket skatt\r\n- du kan lese mer på http://www.nav.no/skatt',
@@ -3222,6 +3514,7 @@ const standardTeksterMock = {
         id: 'b4572000-773d-4f69-a1c6-265d091d179e',
         overskrift: 'Generell - Årsoppgave (BTN)',
         tags: ['ks', 'btn', 'årsoppgave', 'skatt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.navn]\r\n\r\nDu vil motta årsoppgaven innen 1.februar, og du får sms og/eller e-post når din årsoppgave er klar.\r\n\r\nDu finner årsoppgaven ved å logge deg inn på Ditt NAV, Dine saker.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3235,6 +3528,7 @@ const standardTeksterMock = {
         id: 'c0626603-d3d3-46a3-9f7e-36102da4fc0c',
         overskrift: 'Generell - Årsoppgave',
         tags: ['ks', 'etterlyser', 'årsoppgave', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterlyser årsoppgaven.\r\n\r\nDu har fått informasjon om at:\r\n- Du vil motta årsoppgaven innen 1.februar\r\n- Du får sms og/eller e-post når din årsoppgave er klar\r\n- Du finner årsoppgaven ved å logge deg inn på Ditt NAV, Dine saker\r\n- Dersom du ikke er digital bruker vil du få årsoppgaven i posten innen 1.februar\r\n',
@@ -3264,6 +3558,7 @@ const standardTeksterMock = {
             'ringe',
             ''
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nSpørsmålet om TEMA må du stille til ETAT, da de er de rette til å svare på dette.\r\n\r\nSETT-INN-LENKE\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter\r\n',
@@ -3277,6 +3572,7 @@ const standardTeksterMock = {
         id: '4fb4260b-6eb1-486b-88e4-98188f49a157',
         overskrift: 'Generell - Signatur.fornavn (BTN) ',
         tags: ['ks', 'generell', 'btn', 'signatur'],
+        vekttall: 0,
         innhold: {
             nb_NO: 'Med vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
             nn_NO: 'Med venleg helsing\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3287,6 +3583,7 @@ const standardTeksterMock = {
         id: 'f84c08d8-b303-418d-b48d-6f30ce71fe15',
         overskrift: 'Generell - Etterlyser vedtak - Ferdig behandlet ',
         tags: ['ks', 'generell', 'vedtak', 'din', 'sak', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterlyser vedtak om YTELSE.\r\n\r\nDu har fått informasjon om at:\r\n- vi har behandlet søknaden din den DATO\r\n- du kan lese vedtaket i Ditt NAV på www.nav.no',
@@ -3300,6 +3597,7 @@ const standardTeksterMock = {
         id: '7beea0c8-7bb2-4ccf-939e-c6d4b604df38',
         overskrift: 'Generell - Betalings-/gjeldsproblemer (BTN)',
         tags: ['ks', 'generell', 'btn', 'sosial', 'gjeld', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nHvis du har betalings- eller gjeldsproblemer, kan du lese om økonomisk rådgivning på www.nav.no/økonomiskrådgivning\r\n\r\nDu kan også få økonomisk rådgivning fra oss på 55 55 33 39 eller chatte med oss på www.nav.no/chatøkonomi\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter\r\n',
@@ -3313,6 +3611,7 @@ const standardTeksterMock = {
         id: '1100c9af-b723-4ed6-a730-bcc8974379dc',
         overskrift: 'Generell - Avlysning - Frivillig møte ',
         tags: ['ks', 'generell', 'møte', 'avlyse', 'frivillig', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er innkalt til avtale med sin veileder den DATO OG KLOKKESLETT, men kan ikke møte på grunn av ÅRSAK, og ber om nytt møtetidspunkt.\r\n\r\nDu har fått informasjon om at du blir kontaktet innen utgangen av DAG+DATO',
@@ -3326,6 +3625,7 @@ const standardTeksterMock = {
         id: '3d3d763a-8e38-4bc3-bfcf-e8a5bbfc2b3b',
         overskrift: 'Generell - Videreformidle (BTN)',
         tags: ['ks', 'generell', 'btn', 'sende', 'videre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg har sendt meldingen din til ENHET/VEILEDER, som skal svare deg senest innen utgangen av DAG+DATO\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter\r\n',
@@ -3339,6 +3639,7 @@ const standardTeksterMock = {
         id: '7905dd93-ff4a-475a-9373-caea824cdcae',
         overskrift: 'Pensjon - Alderspensjon - E207 (BTN)',
         tags: ['ks', 'btn', 'pensjon', 'utland', 'E207'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nNår du skal søke pensjon fra LAND må du gjøre følgende:\r\n- Du må fylle ut blankett E-207. Jeg sender dette skjemaet til deg via post i dag.\r\n- Øverst på side 1 skriver du fødselsnummeret ditt (det er ingen rubrikk for dette, men skriv det slik at det er lett synlig på toppen slik at vi sikrer at dokumentet kommer til din sak).\r\n- På skjemaet, side 1, fyller du ut felt 1-5.\r\n- På side 2 fyller du inn hvor du har bodd, studert og jobbet etter at du ble 16 år. Se i fotnotene som følge skjemaet for forklaring til de ulike feltene.\r\n- Du sender skjemaet i retur til oss. Adressen er: NAV familie- og pensjonsytelser, Postboks 6600 Etterstad, 0607 Oslo.\r\n- NAV videresender søknaden din til utlandet\r\n- Du må søke på vanlig måte når du skal ta ut alderspensjon fra NAV. Da kan du søke elektronisk via Din pensjon.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3350,6 +3651,7 @@ const standardTeksterMock = {
         id: '41e5d0cc-6db5-42b0-8eba-11de2fce1008',
         overskrift: 'Pensjon - Felles - Utbetaling (BTN)',
         tags: ['ks', 'pensjon', 'utbetaling', 'hele', 'året'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.navn]\r\n\r\nDu sjekker detaljer på utbetalingen din her på Ditt NAV - utbetalinger. Trykk på aktuell måned for å se detaljer.\r\n\r\nVi har benyttet skattetrekket som vi har fått overført fra skatteetaten. Dersom du mener skattetrekket er feil må du endre skattekortet selv på www.skatteetaten.no\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3361,6 +3663,7 @@ const standardTeksterMock = {
         id: '6d853f75-f2bd-4e3f-a1b5-c4e327764b31',
         overskrift: 'Taushetsplikt - Muntlig samtykke - Gjeldende ut dagen ',
         tags: ['ks', 'taushetsplikt', 'muntlig', 'samtykke', 'ut', 'dagen'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] kontakter NAV og ønsker å gi muntlig samtykke om utlevering av opplysninger i egen sak til (NAVN). Samtykket gjelder ut dagen i dag (DATO) og kun for de forhold det er samtykket til.\r\n\r\n[bruker.navn] er identifisert på følgende måte:\r\n- (FREMGANGSMÅTE FOR SIKKER IDENTIFISERING)\r\n\r\nDet er gitt muntlig samtykke til (FULLT NAVN).\r\n\r\nDet ble ringt fra (TELEFONNUMMER) når samtykket ble gitt.\r\n\r\nSamtykket gjelder følgende opplysninger:\r\n- (OPPLYSNINGER DET ER GITT SAMTYKKE TIL Å UTLEVERE)\r\n\r\nDu har fått informasjon om:\r\n- Samtykket gjelder ut dagen i dag.\r\n- Dersom du ønsker å oppnevne en fullmektig må du sende oss skjema NAV 95-15.36 eller sende oss melding via ditt NAV. En slik melding må inneholde: navn på fullmektig, for hvilken periode og for hvilken informasjon fullmakten gjelder.',
@@ -3374,6 +3677,7 @@ const standardTeksterMock = {
         id: 'a25a7dff-7ff0-4bdd-931c-ff61dbafcba0',
         overskrift: 'Pensjon - Alderspensjon - Ny opptjening - Nytt poengår (BTN)',
         tags: ['ks', 'btn', 'pensjon', 'alderspensjon', 'omregning', 'ny', 'inntekt', '2018'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nInntekten for siste år som er fastsatt av Skatteetaten blir tillagt pensjonen fra 1. januar året etter fastsettelsen. Det betyr at inntekt i 2018 blir tillagt pensjonen fra 1.januar 2020.\r\n\r\nDu får tilsendt vedtak på omregning av din alderspensjon ved årsskiftet, hvis fastsettelsen gir høyere pensjon, og du mottar 100% alderspensjon.\r\n\r\nDersom du tar ut gradert alderspensjon må du søke om øket pensjon, eller du kan vente til du endrer uttaksgraden. Ved endring av uttaksgrad vil nyere inntekt som ikke før har blitt tatt hensyn til bli medregnet i pensjonen din. Du søker endring via nettjenesten vår. Se under Din pensjon, endre pensjon.\r\n\r\nDu kan lese mer om dette i Folketrygdloven kap 19 og 20:\r\nhttps://www.nav.no/rettskildene/lov/L19970228-19_P19-13#L19970228-19_P19-13\r\nhttps://www.nav.no/rettskildene-intern/lov/L19970228-19_P20-17#L19970228-19_P20-17\r\n\r\nHvis du har flere spørsmål om dette kan du ringe på telefon 55 55 33 34.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -3383,6 +3687,7 @@ const standardTeksterMock = {
         id: '1c822139-5549-4b71-baf4-2701af6aa714',
         overskrift: 'Pensjon - Alderspensjon - Ny opptjening - Nytt poengår',
         tags: ['ks', 'pensjon', 'alderspensjon', 'omregning', 'ny', 'inntekt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] spør om inntekten for siste år har noe å si for pensjonen.\r\n\r\nJeg informerer om at:\r\n- inntekten for siste år som er ferdig fastsatt blir tillagt pensjonen fra 1. januar året etter at fastsettelsen. Det betyr at inntekt i 2018 blir tillagt pensjonen fra 1. januar 2020.\r\n- du får tilsendt vedtak på omregning av din alderspensjon ved årsskiftet, hvis siste fastsettelse gir høyere pensjon.\r\n- omregningen skjer automatisk dersom du tar ut 100% alderspensjon.\r\n- mottar du gradert alderspensjon må du søke via Din pensjon /endre pensjon for å få med siste inntektsår. Dersom du ikke søker blir inntekten medregnet når du senere endrer uttaksgrad.\r\n\r\nMer informasjon om dette finner du i Folketrygdloven kapittel 19 og 20:\r\nhttps://www.nav.no/rettskildene/lov/L19970228-19_P19-13#L19970228-19_P19-13\r\nhttps://www.nav.no/rettskildene-intern/lov/L19970228-19_P20-17#L19970228-19_P20-17'
@@ -3392,6 +3697,7 @@ const standardTeksterMock = {
         id: 'ce755fd3-f532-4b12-8cde-f2a70c42a42a',
         overskrift: 'Teknisk brukerstøtte - Registrering som arbeidssøker',
         tags: ['ks', 'brukertøtte', 'arbeidssøker', 'larbs', 'tbs'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.fornavn] tar kontakt angående registrering som arbeidssøker.\r\n\r\nDu opplyser at du får melding om at du er registrert som sykmeldt i våre systemer. Sender derfor melding til ditt NAV kontor slik at de får hjulpet deg.\r\n\r\nDu kan forvente tilbakemelding innen 2 virkedager.\r\n\r\n'
@@ -3401,6 +3707,7 @@ const standardTeksterMock = {
         id: 'e15f7080-2695-4d59-a6e3-7c5b0d9ff9be',
         overskrift: 'Pensjon - AFP privat - Uføretrygd - Beregning (BTN)',
         tags: ['ks', 'pensjon', 'btn', 'afp', 'privat', 'uføretrygd', '62'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nTakk for at du skriver til oss.\r\n\r\nDu har gradert uføretrygd, har ikke fylt 62 år og ønsker en beregning av AFP i privat sektor og alderspensjon fra måneden etter fylte 62 år.\r\n\r\nDet er viktig at du setter deg inn i reglene for uttak av AFP privat når du har gradert uføretrygd, og da spesielt disse to punktene:\r\n- Dersom du mottar uføretrygd fra folketrygden etter fylte 62 år, mister du retten til AFP privat for alltid.\r\n- Du må si fra deg uføretrygden senest innen utgangen av måneden du fyller 62 år dersom du ønsker å starte uttak av AFP privat.\r\n\r\nFør du bestemmer deg for din fremtidige utbetaling av pensjon, må du få oversikt over om du fyller vilkårene for uttak av alderspensjon og AFP privat fra 62 år.\r\n\r\nDu har behov for beregning av 100% alderspensjon, eller det høyeste mulige prosentvise uttaket du fyller vilkårene for, sammen med AFP privat fra måneden etter fylte 62 år. Du må også vite hva din alderspensjon (uten AFP privat) vil bli ved 67 år hvis du venter med uttak fordi du har utbetalt uføretrygd etter at du har fylt 62 år.\r\n\r\nBeregningen av alderspensjon og AFP privat fra 62 år må gjøres manuelt av saksbehandler. Behandlingstiden er 4-6 uker. Du må ta kontakt med oss på telefon 55 55 33 34 slik at vi får nødvendig informasjon fra deg.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter pensjon'
@@ -3410,6 +3717,7 @@ const standardTeksterMock = {
         id: 'aa9e2c0a-cda6-464e-9e2f-34c0de2730c6',
         overskrift: 'Generell - Skatt - Frivillig skattetrekk - Pensjon',
         tags: ['ks', 'generell', 'skatt', 'skattetrekk', 'ekstra', 'frivillig', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om ekstra skattetrekk.\r\n\r\nDu har fått informasjon om at:\r\n- du kan registrere frivillig skattetrekk via Ditt NAV: www.nav.no/frivillig-skattetrekk\r\n- frivillig skattetrekk vil trekkes uavhengig av om det er skattefri måned eller eventuelt halv skatt, og gjelder ut inneværende kalenderår\r\n- du kan også endre skattekortet ditt på www.skatteetaten.no\r\n',
@@ -3423,6 +3731,7 @@ const standardTeksterMock = {
         id: '559565ef-a446-4ccf-a6d7-ba4d63173b14',
         overskrift: 'Pensjon - AFP offentlig - Endring av inntekt',
         tags: ['ks', 'pensjon', 'endring', 'inntekt', 'AFP', 'offentlig', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] gir beskjed om at vedkommende har endret sin arbeidsinntekt fra [DATO] og har fra før gradert offentlig AFP fra SPK og er under 65 år.\r\n\r\nDu er informert om at:\r\n\r\n- du må sende skriftlig melding til NAV om din totale arbeidsinntekt hittil i år og til og med siste måned før endring, samt ny inntekt etter endringen.\r\n- dersom du startet uttak av AFP i fjor, må du opplyse om feriepenger opptjent før oppstart av AFP\r\n- endringen kan tidligst skje måneden etter at NAV mottar melding om endring.\r\n\r\nSe www.nav.no/afpoffentlig-endring for mer informasjon om inntektsendring.\r\n\r\nOpplysninger om inntekt sendes skriftlig til nav via www.nav.no/beskjedtilnav med tema pensjon.\r\n\r\nAlternativt kan du sende det per post til NAV Familie- og pensjonsytelser, Postboks 6600 Etterstad, 0607 Oslo.'
@@ -3432,6 +3741,7 @@ const standardTeksterMock = {
         id: '31dfcd16-34b7-48d9-8348-8c89542fb531',
         overskrift: 'Uføretrygd - Simulering (BTN)',
         tags: ['ks', 'sto', 'uføretrygd', 'uføre', 'forventet', 'inntekt', 'inntektsplanleggeren'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått en simulering av uføretrygd.\r\n\r\nDu er informert om at:\r\n- serviceberegning av uføretrygd gir en indikasjon på hva du kan forvente å få utbetalt i uføretrygd før skatt\r\n- det er ikke et endelig resultat av hva utbetalingen kan bli dersom uføretrygd innvilges\r\n- rettigheter som ung ufør eller med barnetillegg vil ikke tas med i beregningen\r\n- serviceberegningen er ikke juridisk bindende\r\n- kalkulatoren gjør følgende beregning i fremtidig uføretrygd: månedsbeløp kr BELØP (før skatt)\r\n\r\nFølgende er lagt inn i kalkulatoren:\r\n- antatt uføretidspunkt:\r\n- virkningstidspunkt:\r\n- uføregrad:\r\n- sivilstatus:\r\n- antall år i utlandet etter fylte 16 år:\r\n\r\nDu kan finne mer informasjon på www.nav.no/beregneuføretrygd'
@@ -3441,6 +3751,7 @@ const standardTeksterMock = {
         id: '0325b2ae-67ee-41eb-992c-3ff4cce3dfaf',
         overskrift: 'Taushetsplikt - Muntlig samtykke - Gitt i pågående samtale',
         tags: ['ks', 'taushetsplikt', 'muntlig', 'samtykke', 'pågående', 'samtale'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] kontakter NAV og ønsker å gi muntlig samtykke om utlevering av opplysninger i egen sak. Samtykket gjelder kun for aktuell samtale og de forhold det er samtykket til.\r\n\r\n[bruker.navn] er identifisert på følgende måte:\r\n- (FREMGANGSMÅTE FOR SIKKER IDENTIFISERING)\r\n\r\nDet er gitt muntlig samtykke til (FULLT NAVN).\r\nDet ble ringt fra (TELEFONNUMMER) når samtykket ble gitt.\r\n\r\nSamtykket gjelder følgende opplysninger:\r\n- (OPPLYSNINGER DET ER GITT SAMTYKKE TIL Å UTLEVERE)\r\n\r\nDu har fått informasjon om:\r\n- Samtykket gjelder kun for denne henvendelsen.\r\n- Dersom du ønsker å oppnevne en fullmektig må du sende oss skjema NAV 95-15.36 eller sende oss melding via ditt NAV. En slik melding må inneholde: navn på fullmektig, for hvilken periode og for hvilken informasjon fullmakten gjelder.\r\n',
@@ -3454,6 +3765,7 @@ const standardTeksterMock = {
         id: '7a0004cc-6f1f-4b64-a452-d027a3bad648',
         overskrift: 'Tilbakebetaling av skatt',
         tags: ['nøs', 'skatt', 'tilbakebetaling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei\r\n\r\nDu har tatt kontakt med NAV fordi du ønsker at vi skal korrigere skattetrekket ditt for utbetalinger i (måned). Jeg har nå korrigert skattetrekket ditt, og du vil få tilbakebetalt xxxx kroner i løpet av få dager.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\nNAV Økonomi stønad\r\n'
@@ -3463,6 +3775,7 @@ const standardTeksterMock = {
         id: '4926dc0a-1a3b-49a4-94db-d4b8fe45feb6',
         overskrift: 'Uføretrygd - Barnetillegg fellsbarn (BTN)',
         tags: ['ks', 'uføretrygd', 'uføre', '0,4G', '1G'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nFølgende gjelder:\r\n- du kan ha rett til barnetillegg hvis du er uføretrygdet og forsørger egne barn eller fosterbarn som er under 18 år.\r\n- du kan tidligst få barnetillegg fra måneden etter at barnet er født. Barnetillegget opphører senest fra og med måneden etter at barnet har fylt 18 år\r\n-har du ikke full trygdetid vil barnetillegget bli redusert ut fra trygdetiden din.\r\n-hvis et barn har egen årlig inntekt over 1 G regnes barnet som selvforsørget. Du har da ikke rett til barnetillegg for dette barnet.\r\n-for hvert barn kan det gis inntil 0,4 G (folketrygdens grunnbeløp) i barnetillegg per år.\r\n-barnetillegget er behovsprøvd. Det vil si at all endring i inntekt kan ha betydning for størrelsen på barnetillegget\r\n-barnetillegget reduseres når den samlede inntekten til begge foreldrene er høyere enn fribeløpet på 4,6 G (folketrygdens grunnbeløp). Fribeløpet øker med 0,4 G for hvert ekstra barn.\r\n-den samlede inntekten i familien har betydning for barnetillegget.\r\n\r\nHvis inntekten din eller den andre forelders inntekt endrer seg, eller du ønsker å se hvilken betydning endring i inntekt har- skal du benytte inntektsplanlegger. Den finner du på Ditt NAV // Din uføretrygd.\r\n- når du registrerer annen forventet inntekt via Inntektsplanleggeren, som gir ny beregning, vil det dannes ett nytt brev i din innboks.\r\n- endring vil gjelde fra påfølgende måned.\r\n\r\nTrenger du veiledning til hvordan dette gjøres, kan du ta kontakt med oss på telefon 55553333, tastevalg uføre.\r\n\r\nDu kan lese mer, og finner søknad om barnetillegg til uføretrygden på www.nav.no/uføre-barn\r\nDu kan lese mer om å jobbe ved siden av uføretrygd på www.nav.no/uføre-jobb\r\nDu kan lese mer om etteroppgjør av uføretrygd på www.nav.no/uføre-etteroppgjør\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -3472,6 +3785,7 @@ const standardTeksterMock = {
         id: '2fdcb4db-3851-4af0-9e64-31be98af9f21',
         overskrift: 'Uføretrygd - Barnetillegg særkullsbarn (BTN)',
         tags: ['ks', 'uføretrygd', 'uføre', 'barn'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nFølgende gjelder:\r\n- du kan ha rett til barnetillegg hvis du er uføretrygdet og forsørger egne barn eller fosterbarn som er under 18 år.\r\n- du kan tidligst få barnetillegg fra måneden etter at barnet er født. Barnetillegget opphører senest fra og med måneden etter at barnet har fylt 18 år.\r\n-har du ikke full trygdetid vil barnetillegget bli redusert ut fra trygdetiden din.\r\n-hvis et barn har egen årlig inntekt over 1 G regnes barnet som selvforsørget. Du har da ikke rett til barnetillegg for dette barnet.\r\n-for hvert barn kan det gis inntil 0,4 G (folketrygdens grunnbeløp) i barnetillegg per år.\r\n-barnetillegget er behovsprøvd. Det vil si at all endring i inntekt kan ha betydning for størrelsen på barnetillegget\r\n-barnetillegget reduseres når inntekten din er høyere enn fribeløpet på 3,1 G. Fribeløpet øker med 0,4 G for hvert ekstra barn.\r\n-det er kun din inntekt som har betydning for barnetillegget.\r\n\r\nHvis inntekten din endrer seg, eller du ønsker å se hvilken betydning endring i inntekt har- skal du benytte inntektsplanlegger. Den finner du på Ditt NAV // Din uføretrygd.\r\n- når du registrerer annen forventet inntekt via Inntektsplanleggeren, som gir ny beregning, vil det dannes ett nytt brev i din innboks.\r\n- endring vil gjelde fra påfølgende måned.\r\n\r\nTrenger du veiledning til hvordan dette gjøres, kan du ta kontakt med oss på telefon 55553333, tastevalg uføre.\r\n\r\nDu kan lese mer, og finner søknad om barnetillegg til uføretrygden på www.nav.no/uføre-barn\r\nDu kan lese mer om å jobbe ved siden av uføretrygd på www.nav.no/uføre-jobb\r\nDu kan lese mer om etteroppgjør av uføretrygd på www.nav.no/uføre-etteroppgjør\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -3481,6 +3795,7 @@ const standardTeksterMock = {
         id: 'd20a2307-ab73-4590-880b-13b8c561645e',
         overskrift: 'Uføretrygd - Utbetaling, skatt og trekk',
         tags: ['ks', 'uføretrygd', 'uføre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om utbetaling.\r\n\r\n- Jeg informerer om skattetrekk og kreditortrekk.\r\n- Jeg henviser til kreditor for spørsmål om endring i trekk.\r\n\r\n[bruker.navn] etterspør første utbetaling uføretrygd.\r\n\r\n- Jeg informerer om at vi venter på svar, fra tjenestepensjonsordning, på forespørsel vi sendte elektronisk til de XX. De har seks ukers svarfrist.\r\n- Jeg informerer om at du kan purre på de hvis du ønsker. Når vi mottar svar, vil vi utbetale uføretrygd.\r\n\r\n[bruker.navn] er innvilget uføretrygd fra mai.\r\n\r\nVi har trukket XX % skatt. Du ønsker at vi benytter tabell og tilbakefører for mye trukket skatt.'
@@ -3490,6 +3805,7 @@ const standardTeksterMock = {
         id: '3141ab38-5318-4c06-b36b-659b25bb3f2a',
         overskrift: 'Uføretrygd - Legge inn inntekt for bruker (BTN)',
         tags: ['ks', 'uføretrygd', 'uføre', 'kroner', 'øre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nFølgende gjelder:\r\n-hvis inntekten din endrer seg, eller du ønsker å se hvilken betydning endring i inntekt har- skal du benytte inntektsplanlegger. Den finner du på Ditt NAV // Din uføretrygd.\r\n- når du registrerer annen forventet inntekt via Inntektsplanleggeren, som gir ny beregning, vil det dannes ett nytt brev i din innboks.- endring vil gjelde fra påfølgende måned.\r\n\r\nTrenger du veiledning til hvordan dette gjøres, kan du ta kontakt med oss på telefon 55553333, tastevalg uføre.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -3499,6 +3815,7 @@ const standardTeksterMock = {
         id: '3b2dfdee-43ac-4dad-80d1-a80cd32e893a',
         overskrift: 'Uføretrygd - Legge inn inntekt for bruker',
         tags: ['ks', 'uføretrygd', 'uføre', 'kroner', 'øre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] jobber i tillegg til uføretrygden og trenger bistand til å legge inn inntekt i inntektsplanleggeren.\r\n\r\nFølgende gjelder:\r\n- jeg legger inn XX kroner.\r\n- jeg ser at brev vedrørende endring dannes og ligger i Innboks.\r\n- jeg informerer om endring som vil gjelde fra neste måned'
@@ -3508,6 +3825,7 @@ const standardTeksterMock = {
         id: '4f298718-4703-41a9-b89e-d66bd052c49c',
         overskrift: 'Uføretrygd - Honnørkort i retur (BTN)',
         tags: ['ks', 'uføretrygd', 'uføre', 'ny', 'adresse', 'markulere'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDitt honnørkort har kommet i retur.\r\n\r\nDa jeg ikke finner ny adresse eller får svar på telefon, makulerer jeg honnørkort.\r\n\r\nDu må alltid melde flytting til Folkeregisteret, informere Posten og merke postkassen din godt.\r\n\r\nTa kontakt på nytt hvis vi skal sende nytt honnørkort.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -3517,6 +3835,7 @@ const standardTeksterMock = {
         id: '2a7d083b-de35-4bbd-809d-0c7dbdff899c',
         overskrift: 'Uføretrygd - Barnetillegg fellesbarn',
         tags: ['ks', 'uføretrygd', 'uføre', '0,4G', '1G'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om barnetillegg til uføretrygden.\r\n\r\nFølgende gjelder:\r\n- du kan ha rett til barnetillegg hvis du er uføretrygdet og forsørger egne barn eller fosterbarn som er under 18 år.\r\n- du kan tidligst få barnetillegg fra måneden etter at barnet er født. Barnetillegget opphører senest fra og med måneden etter at barnet har fylt 18 år.\r\n-har du ikke full trygdetid vil barnetillegget bli redusert ut fra trygdetiden din.\r\n-hvis et barn har egen årlig inntekt over 1 G regnes barnet som selvforsørget. Du har da ikke rett til barnetillegg for dette barnet.\r\n-for hvert barn kan det gis inntil 0,4 G (folketrygdens grunnbeløp) i barnetillegg per år.\r\n-barnetillegget er behovsprøvd. Det vil si at all endring i inntekt kan ha betydning for størrelsen på barnetillegget.\r\n-barnetillegget reduseres når den samlede inntekten til begge foreldrene er høyere enn fribeløpet på 4,6 G (folketrygdens grunnbeløp). Fribeløpet øker med 0,4 G for hvert ekstra barn.\r\n-den samlede inntekten i familien har betydning for barnetillegget.\r\n\r\nHvis inntekten din eller den andre forelders inntekt endrer seg, eller du ønsker å se hvilken betydning endring i inntekt har- skal du benytte inntektsplanlegger. Den finner du på Ditt NAV // Din uføretrygd.\r\n- når du registrerer annen forventet inntekt via Inntektsplanleggeren, som gir ny beregning, vil det dannes ett nytt brev i din innboks.\r\n- endring vil gjelde fra påfølgende måned.\r\n\r\nDu kan lese mer, og finner søknad om barnetillegg til uføretrygden på www.nav.no/uføre-barn\r\nDu kan lese mer om å jobbe ved siden av uføretrygd på www.nav.no/uføre-jobb\r\nDu kan lese mer om etteroppgjør av uføretrygd på www.nav.no/uføre-etteroppgjør'
@@ -3526,6 +3845,7 @@ const standardTeksterMock = {
         id: 'd68f9d97-17ea-4e7f-ad2b-bb42771e6fb4',
         overskrift: 'Uføretrygd - Honnørkort i retur',
         tags: ['ks', 'uføretrygd', 'uføre', 'ny', 'adresse', 'markulere'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] sitt honnørkort har kommet i retur.\r\n\r\nDa jeg ikke finner ny adresse eller får svar på telefon, makulerer jeg honnørkort.\r\n\r\n[bruker.navn] sitt honnørkort har kommet i retur.Jeg ser bruker har endret adresse. Honnørkort sendes til ny adresse.\r\n\r\n[bruker.navn] sitt honnørkort har kommet i retur.\r\n\r\nJeg ringer og avtaler ny utsendelse til bruker. Jeg minner om følgende: Du må alltid melde flytting til Folkeregisteret, informere Posten og merke postkassen din godt.'
@@ -3535,6 +3855,7 @@ const standardTeksterMock = {
         id: '61f1c358-1408-4481-83ce-05dc777e8b52',
         overskrift: 'Uføretrygd - Papirsøknad (BTN)',
         tags: ['ks', 'uføretrygd', 'uføre', '12-06.05'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nFølgende gjelder:\r\n- Søker du uføretrygd og har bodd i utlandet eller har barn under 18 år, må du sende søknaden i posten.\r\n- Søknad om uføretrygd NAV 12-06.05 finner du på www.nav.no/uføretrygd-papirsøknad\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -3544,6 +3865,7 @@ const standardTeksterMock = {
         id: '405bd6d9-8f2b-4d35-81bd-40d48ce816a1',
         overskrift: 'Uføretrygd - Særkullsbarn',
         tags: ['ks', 'uføretrygd', 'uføre', 'barn'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om barnetillegg til uføretrygden.\r\n\r\nFølgende gjelder:\r\n- du kan ha rett til barnetillegg hvis du er uføretrygdet og forsørger egne barn eller fosterbarn som er under 18 år.\r\n- du kan tidligst få barnetillegg fra måneden etter at barnet er født. Barnetillegget opphører senest fra og med måneden etter at barnet har fylt 18 år.\r\n-har du ikke full trygdetid vil barnetillegget bli redusert ut fra trygdetiden din.\r\n-hvis et barn har egen årlig inntekt over 1 G regnes barnet som selvforsørget. Du har da ikke rett til barnetillegg for dette barnet.\r\n-for hvert barn kan det gis inntil 0,4 G (folketrygdens grunnbeløp) i barnetillegg per år.\r\n-barnetillegget er behovsprøvd. Det vil si at all endring i inntekt kan ha betydning for størrelsen på barnetillegget\r\n-barnetillegget reduseres når inntekten din er høyere enn fribeløpet på 3,1 G. Fribeløpet øker med 0,4 G for hvert ekstra barn.\r\n-det er kun din inntekt som har betydning for barnetillegget.\r\n\r\nHvis inntekten din endrer seg, eller du ønsker å se hvilken betydning endring i inntekt har- skal du benytte inntektsplanlegger. Den finner du på Ditt NAV // Din uføretrygd.\r\n\r\n- når du registrerer annen forventet inntekt via Inntektsplanleggeren, som gir ny beregning, vil det dannes ett nytt brev i din innboks.\r\n- endring vil gjelde fra påfølgende måned.\r\n\r\nDu kan lese mer, og finner søknad om barnetillegg til uføretrygden på www.nav.no/uføre-barn\r\n\r\nDu kan lese mer om å jobbe ved siden av uføretrygd på www.nav.no/uføre-jobb\r\n\r\nDu kan lese mer om etteroppgjør av uføretrygd på www.nav.no/uføre-etteroppgjør'
@@ -3553,6 +3875,7 @@ const standardTeksterMock = {
         id: '4c18a446-0d6c-436f-a1b1-9b7a5c80f706',
         overskrift: 'Uføretrygd - Papirsøknad',
         tags: ['ks', 'uføretrygd', 'uføre', '12-06.05'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] får ikke til å benytte den elektroniske søknaden om uføretrygd.\r\n\r\nFølgende gjelder:\r\n- Søker du uføretrygd og har bodd i utlandet eller har barn under 18 år, må du sende søknaden i posten.\r\n- Søknad om uføretrygd NAV 12-06.05 finner du på www.nav.no/uføretrygd-papirsøknad'
@@ -3562,6 +3885,7 @@ const standardTeksterMock = {
         id: '0ca090f4-4310-473b-baf1-d38732b98a40',
         overskrift: 'Uføretrygd - Inntekt 100% UT (BTN)',
         tags: ['', 'ks', 'sto', 'uføretrygd', 'uføre', 'forventet', 'inntekt', 'inntektsplanleggeren'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nFølgende gjelder:\r\n- i 2019 er inntektsgrensen din 0,4G. Pr. idag utgjør dette 39 943 kroner.\r\n- hvis du får barnetillegg kan all endring i inntekt ha betydning.\r\n- hvis du har en årsinntekt over KRONER skal du ikke ha utbetalt uføretrygd. Vi vil da kreve tilbake, det som allerede evt er utbetalt, ved etteroppgjøret påfølgende år.\r\n- du skal selv melde fra om endring i Inntektsplanleggeren i Ditt NAV // Din uføretrygd.\r\n- når du registrerer annen forventet inntekt via Inntektsplanleggeren, som gir ny beregning, vil det dannes ett nytt brev i din innboks.\r\n- endringen vil gjelde fra påfølgende måned.\r\n\r\nTrenger du veiledning til hvordan dette gjøres, kan du ta kontakt med oss på telefon 55553333, tastevalg uføre.\r\n\r\nDu kan lese mer om å jobbe ved siden av uføretrygd på www.nav.no/uføre-jobb\r\nDu kan lese mer om etteroppgjør av uføretrygd på www.nav.no/uføre-etteroppgjør\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.navn]\r\nNAV Kontaktsenter'
@@ -3571,6 +3895,7 @@ const standardTeksterMock = {
         id: '5e1fb3be-f3c9-4cb6-982a-7d3e0cf41a8e',
         overskrift: 'Uføretrygd - Inntekt 100% UT',
         tags: ['ks', 'uføretrygd', 'uføre', 'inntekt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om inntekt i kombinasjon med uføretrygd.\r\n\r\nJeg har informert om at:\r\n- i 2019 er inntektsgrensen din 0,4G. Pr. i dag utgjør dette 39 943 kroner.\r\n- hvis du får barnetillegg kan all endring i inntekt ha betydning.\r\n- hvis du har en årsinntekt over KRONER skal du ikke ha utbetalt uføretrygd. Vi vil da kreve tilbake, det som allerede evt er utbetalt, ved etteroppgjøret påfølgende år.\r\n- du skal selv melde fra om endring i Inntektsplanleggeren i Ditt NAV // Din uføretrygd.\r\n- når du registrerer annen forventet inntekt via Inntektsplanleggeren, som gir ny beregning, vil det dannes ett nytt brev i din innboks.\r\n- endring vil gjelde fra påfølgende måned.\r\n\r\nDu kan lese mer om å jobbe ved siden av uføretrygd på www.nav.no/uføre-jobb\r\nDu kan lese mer om etteroppgjør av uføretrygd på www.nav.no/uføre-etteroppgjør'
@@ -3580,6 +3905,7 @@ const standardTeksterMock = {
         id: '2f81bf8e-b107-46bc-97ed-5eaf87e0c496',
         overskrift: 'Sosiale tjenester - Trenger bosted i nødsituasjon (BTN)',
         tags: ['ks', 'btn', 'sosial', 'bolig', 'midlertidig', 'nødsituasjon', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nHvis du er i en nødsituasjon og ikke har noe sted å bo, kan du lese om midlertidig botilbud på www.nav.no/botilbud\r\n\r\nFor veiledning om midlertidig botilbud kan du kontakte oss på 55 55 33 33, tastevalg 1 Sosiale tjenester.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3593,6 +3919,7 @@ const standardTeksterMock = {
         id: '1d150a14-e056-495a-a860-d7a35bd671df',
         overskrift: 'Sosiale tjenester - Kvalifiseringsprogrammet (BTN)',
         tags: ['ks', 'btn', 'kvp', 'arbeid', 'oppfølging', 'sosial', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu kan lese om Kvalifiseringsprogrammet på www.nav.no/kvp\r\n\r\nFor veiledning kan du kontakte oss på 55 55 33 33, tastevalg 1 Sosiale tjenester.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3606,6 +3933,7 @@ const standardTeksterMock = {
         id: '047602fe-03ac-4bb8-899d-1a4e9d282fe8',
         overskrift: 'Sosiale tjenester - Nødvendig livsopphold (BTN)',
         tags: ['ks', 'btn', 'sosial', 'økonomisk', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nHvis du ikke har penger til nødvendige utgifter, kan du lese om økonomisk sosialhjelp på www.nav.no/sosialhjelp\r\n\r\nFor veiledning om økonomisk sosialhjelp kan du kontakte oss på 55 55 33 33, tastevalg 1 Sosiale tjenester.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3619,6 +3947,7 @@ const standardTeksterMock = {
         id: '57ec62e7-d110-47fa-af87-69f4ea0d023d',
         overskrift: 'Sosiale tjenester - Tannbehandling (BTN)',
         tags: ['ks', 'btn', 'sosial', 'tann', 'tenner', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDe fleste må betale utgiftene til tannbehandling selv, men det finnes unntak dersom man har visse sykdommer, tilstander og skader. Tannlegen din vurderer om man har krav på støtte fra Helse Norge, se informasjon på http://www.helsenorge.no/betaling-for-helsetjenester/hvem-betaler-tannlegeregningen-din\r\n\r\nNAV kan i særlige tilfeller dekke utgifter til nødvendig tannbehandling i form av økonomisk sosialhjelp. Det er den økonomiske situasjonen din som er grunnlaget for vurderingen. Du kan lese om økonomisk sosialhjelp på www.nav.no/sosialhjelp\r\n\r\nFor veiledning om økonomisk sosialhjelp kan du kontakte oss på 55 55 33 33, tastevalg 1 Sosiale tjenester.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3632,6 +3961,7 @@ const standardTeksterMock = {
         id: 'bbab7075-18ce-48c8-b8f8-d8e4129345d1',
         overskrift: 'Sosiale tjenester - Sosiale tjenester (BTN)',
         tags: ['ks', 'btn', 'sosial', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi kan dessverre ikke svare deg på henvendelser som gjelder sosiale tjenester i denne kanalen. Du kan se om du finner svar på spørsmålet ditt på www.nav.no/sosialetjenester\r\n\r\nHvis du ikke finner svar her, kan vi hjelpe deg på telefon 55 55 33 33, tastevalg 1.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3645,6 +3975,7 @@ const standardTeksterMock = {
         id: '1604a557-ef09-4638-84ee-2f01b8aa8391',
         overskrift: 'Sosiale tjenester - klage (BTN)',
         tags: ['ks', 'btn', 'sosial', 'klage'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi kan dessverre ikke svare deg på henvendelser som gjelder sosiale tjenester i denne kanalen. Dette gjelder også klage på vedtak etter Lov om sosiale tjenester i NAV. Klage må fremsettes skriftlig til ditt NAV-kontor. Den må være underskrevet med signatur, samt informasjon om vedtak det klages på og endringer som er ønskelige.\r\n\r\nDu kan se om du finner svar på spørsmålet ditt på www.nav.no/sosialetjenester\r\n\r\nHvis du ikke finner svar her, kan vi hjelpe deg på telefon 55 55 33 33, tastevalg 1.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3658,6 +3989,7 @@ const standardTeksterMock = {
         id: '1ded761e-381b-4080-a3a5-2d45ee819e14',
         overskrift: 'Pensjon - AFP offentlig - Slutte i jobb - 100 prosent AFP (BTN)',
         tags: ['ks', 'btn', 'pensjon', 'AFP', 'offentlig', 'opphør', 'jobb', 'før', '65', 'år'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nTakk for at du skriver til oss.\r\n\r\nSiden du er under 65 år og får din AFP fra NAV må du selv melde fra til oss når du slutter i arbeid og ikke lenger har inntekt. Meldingen må være registrert hos NAV senest måneden før du slutter i arbeid.\r\n\r\nNAV Pensjon må vite fra hvilken dato du slutter helt i jobb for å endre din utbetaling av AFP.\r\nDenne beskjeden kan du sende elektronisk slik du har gjort ved denne henvendelsen.\r\n\r\nSe www.nav.no/afpoffentlig-endring for mer informasjon om inntektsendring.\r\n\r\nDu kan sende opplysninger, som beskrevet over, elektronisk eller som vanlig post til vår adresse:\r\nNAV Familie- og Pensjonsytelser\r\nPb 6600 Etterstad\r\n0607 OSLO\r\n\r\nInformasjon om etteroppgjør:\r\nI etteroppgjør av AFP i offentlig sektor bruker NAV inntektsopplysninger fra Skatteetaten til å sammenligne den faktiske inntekten du har hatt i løpet av kalenderåret med det du har oppgitt som forventet inntekt.\r\n\r\nDette gjelder også når du slutter i jobb. All inntekt du har tjent opp frem til du sluttet i jobb, inkludert utbetalte feriepenger opptjent i år, feriepenger opptjent i fjor og dersom du har tjent mer enn den informasjonen du har gitt NAV, vil avregnes i etteroppgjøret.\r\nDersom du ønsker å lese mer om etteroppgjør kan du se www.nav.no/afp-etteroppgjør\r\n\r\nSe også www.nav.no/afpoffentlig-endring for mer informasjon om inntektsendring.\r\n\r\nØnsker deg en fin dag.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -3667,6 +3999,7 @@ const standardTeksterMock = {
         id: '01fa02fb-6663-4b3d-82c3-2ea4f9776e4f',
         overskrift: 'Pensjon - AFP offentlig - Slutte i jobb - gradert AFP (BTN)',
         tags: ['ks', 'btn', 'pensjon', 'AFP', 'offentlig', 'opphør', 'jobb', 'før', '65', 'år'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nTakk for at du skriver til oss.\r\n\r\nSiden du er under 65 år og får din AFP fra NAV må du selv melde fra til oss når du slutter i arbeid og ikke lenger har inntekt. Meldingen må være registrert hos NAV senest måneden før du slutter i arbeid.\r\n\r\nNAV Pensjon må vite fra hvilken dato du slutter helt i jobb for å endre din utbetaling av AFP.\r\nDenne beskjeden kan du sende elektronisk slik du har gjort ved denne henvendelsen.\r\n\r\nSe www.nav.no/afpoffentlig-endring for mer informasjon om inntektsendring.\r\n\r\nDu kan sende opplysninger, som beskrevet over, elektronisk eller som vanlig post til vår adresse:\r\nNAV Familie- og Pensjonsytelser\r\nPb 6600 Etterstad\r\n0607 OSLO\r\n\r\nInformasjon om etteroppgjør:\r\nI etteroppgjør av AFP i offentlig sektor bruker NAV inntektsopplysninger fra Skatteetaten til å sammenligne den faktiske inntekten du har hatt i løpet av kalenderåret med det du har oppgitt som forventet inntekt.\r\n\r\nDette gjelder også når du slutter i jobb. All inntekt du har tjent opp frem til du sluttet i jobb, inkludert utbetalte feriepenger opptjent i år, feriepenger opptjent i fjor og dersom du har tjent mer enn den informasjonen du har gitt NAV, vil avregnes i etteroppgjøret.\r\nDersom du ønsker å lese mer om etteroppgjør kan du se www.nav.no/afp-etteroppgjør\r\n\r\nSe også www.nav.no/afpoffentlig-endring for mer informasjon om inntektsendring.\r\n\r\nØnsker deg en fin dag.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -3676,6 +4009,7 @@ const standardTeksterMock = {
         id: 'b712ba6f-3493-4b54-bd89-44633e25ea12',
         overskrift: 'Pensjon - AFP offentlig - Slutte i jobb - gradert AFP',
         tags: ['ks', 'btn', 'pensjon', 'AFP', 'offentlig', 'opphør', 'jobb', 'før', '65', 'år'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er under 65 år og har gradert AFP i offentlig sektor og skal slutte i arbeid og ha utbetaling av full AFP fra (dato).\r\n\r\nDu ønsker å informere NAV om inntekten din frem til dagen du sluttet i jobb for å beregne en mest mulig korrekt AFP resten av året.\r\n\r\nJeg informerer om at:\r\n- du må informere NAV om din totale inntekt (utenom pensjonen) i året du slutter. Disse opplysningene må også inkludere ferepenger som utbetales dette året.\r\n- dersom du får utbetalt feriepenger i året etter du har sluttet i jobb, må du gi beskjed til NAV om dette beløpet. All inntekt over toleransebeløpet på 15 000,- kroner vil redusere AFP.\r\n- dersom du tok ut AFP i året før du sluttet i jobb, må du gi opplysninger til NAV om opptjent feriepengegrunnlag måneden før første vedtak.\r\n\r\nDu må gi NAV disse opplysningene senest måneden før ønsket endring.\r\n\r\nInntektsopplysninger kan sendes digitalt eller skriftlig til:\r\nNAV Familie- og Pensjonsytelser\r\nPostboks 6600 Etterstad\r\n0607 Oslo\r\n\r\nInformasjon om etteroppgjør:\r\nI etteroppgjør av AFP i offentlig sektor bruker NAV inntektsopplysninger fra Skatteetaten til å sammenlikne den faktiske inntekten du har hatt i løpet av kalenderåret med det du har oppgitt som forventet inntekt.\r\n\r\nNAV får kun opplysninger om inntekten din i det enkelte skattefastsettingsår, og ikke når de er opptjent. Derfor kan du få varsel om tilbakekreving i etteroppgjøret selv om du har oppgitt riktig forventet inntekt underveis i inntektsåret.\r\n\r\nDette gjelder også når du slutter i jobb. All inntekt du har tjent opp frem til du sluttet i jobb, inkludert utbetalte feriepenger opptjent i år, feriepenger opptjent i fjor og dersom du har tjent mer enn den informasjonen du har gitt NAV, vil avregnes i etteroppgjøret.\r\nDersom du ønsker å lese mer om etteroppgjør kan du se www.nav.no/afp-etteroppgjør\r\n\r\nSe også www.nav.no/afpoffentlig-endring for mer informasjon om inntektsendring.'
@@ -3685,6 +4019,7 @@ const standardTeksterMock = {
         id: '12de843d-8e99-4be3-b40f-3cd4ceb64101',
         overskrift: 'Arbeid - Dagpenger - Utbetaling vedtak stanset',
         tags: ['ks', 'arbeid', 'dagpenger', 'utbetaling', 'vedtak', 'stanset'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterlyser utbetaling av dagpenger.\r\n\r\nDu har fått informasjon om at:\r\n- meldekort for PERIODE er sendt inn for sent.\r\n- for sen innsending har ført til stans av utbetalingen.\r\n\r\nDu kan lese mer om viktigheten av å levere meldekortet til rett tid på http://www.nav.no/meldekort\r\n\r\nHvis du fortsatt er arbeidssøker må du:\r\n- registrere deg på nytt på http://www.nav.no/arbeidssøker\r\n- søke gjenopptak av dagpenger på http://www.nav.no/gjenopptak\r\n\r\nFra 1. juli er det endringer i regelverket for dagpenger. Den viktigste endringen for deg er at du tidligst kan få gjenopptak fra den dagen du søker.'
@@ -3694,6 +4029,7 @@ const standardTeksterMock = {
         id: 'fd954b35-2975-4c6c-b5d8-fff46d24a818',
         overskrift: 'Pensjon - Alderspensjon - Søknad',
         tags: ['ks', 'pensjon', 'alderspensjon', 'søknad', 'søke', 'endre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] vurderer å starte / endre uttak av alderspensjon.\r\n\r\nDu har fått informasjon om at:\r\n- du søker via selvbetjeningsløsningen vår\r\n- logg inn på Ditt NAV // Din pensjon\r\n- velg søk pensjon /endre pensjon\r\n- søknaden må være mottatt hos NAV senest måneden før du ønsker uttak eller endring av alderspensjon\r\n- elektronisk søknad blir i de aller fleste tilfellene behandlet automatisk og du får svar i løpet av noen få sekunder\r\n- dersom saken må behandles manuelt kan det ta litt lenger tid før du får svar\r\n\r\nStanser du uttaket må du selv passe på å søke/ melde fra når du igjen ønsker å ta ut alderspensjon. Dette gjelder også ved 67 år. Alderspensjonen settes ikke automatisk i gang ved 67 år, eller hvis du slutter i jobb.\r\n\r\nDu finner saksbehandlingstider på nav.no: www.nav.no/saksbehandlingstider'
@@ -3703,6 +4039,7 @@ const standardTeksterMock = {
         id: 'aad8059a-c61d-4c40-8f0f-e064144df785',
         overskrift: 'Pensjon - AFP offentlig - Slutte i jobb - 100 prosent AFP',
         tags: ['ks', 'btn', 'pensjon', 'AFP', 'offentlig', 'opphør', 'jobb', 'før', '65', 'år'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er under 65 år og har gradert AFP i offentlig sektor og skal slutte i arbeid og ha utbetaling av full AFP fra (dato).\r\n\r\nBeskjeden videreformidles til NAV Pensjon for behandling og du vil få svar når de har behandlet saken din.\r\n\r\nInformasjon om etteroppgjør:\r\nI etteroppgjør av AFP i offentlig sektor bruker NAV inntektsopplysninger fra Skatteetaten til å sammenligne den faktiske inntekten du har hatt i løpet av kalenderåret med det du har oppgitt som forventet inntekt.\r\n\r\nNAV får kun opplysninger om inntekten din i det enkelte skattefastsettingsår, og ikke når de er opptjent. Derfor kan du få varsel om tilbakekreving i etteroppgjøret selv om du har oppgitt riktig forventet inntekt underveis i inntektsåret.\r\n\r\nDette gjelder også når du slutter i jobb. All inntekt du har tjent opp frem til du sluttet i jobb, inkludert utbetalte feriepenger opptjent i år, feriepenger opptjent i fjor og dersom du har tjent mer enn den informasjonen du har gitt NAV, vil avregnes i etteroppgjøret.\r\n\r\nDersom du ønsker å lese mer om etteroppgjør kan du se www.nav.no/afp-etteroppgjør\r\n\r\nSe også www.nav.no/afpoffentlig-endring for mer informasjon om inntektsendring.'
@@ -3726,6 +4063,7 @@ const standardTeksterMock = {
             'juli',
             'august'
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått informasjon om:\r\n\r\n- nytt beløp som gjelder fra folketrygden fra 1.mai.\r\n- utbetalingen i juni er øket til nytt månedsbeløp etter reguleringen\r\n- etterbetaling for mai måned ble utbetalt sammen med pensjonen i juni\r\n- i juli kommer etterbetalingen fra Statens pensjonskasse\r\n- fra august kommer normal utbetaling\r\n\r\nDu kan sjekke utbetalinger fremover på www.nav.no/utbetaling',
@@ -3737,6 +4075,7 @@ const standardTeksterMock = {
         id: '8e46153d-d3d4-417a-9274-e604bda44ff3',
         overskrift: 'Generell - Ønsker kontakt med veileder - Utgått frist',
         tags: ['ks', 'generell', 'kontakt', 'frist'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] venter på å bli kontaktet av sin veileder.\r\n\r\nFristen som var på DAG+DATO har gått ut.\r\n\r\nVi beklager at du ikke er blitt kontaktet, og gir NAV-kontoret beskjed om at du må kontaktes så snart som mulig.',
@@ -3750,6 +4089,7 @@ const standardTeksterMock = {
         id: '89c8927a-030e-4942-9ba7-bb96473d4c4a',
         overskrift: 'Generell - Ønsker kontakt med veileder - Første gang',
         tags: ['ks', 'generell', 'kontakt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker kontakt med sin veileder. Henvendelsen gjelder SETT-INN-TEMA.\r\n\r\nDu har fått informasjon om at:\r\n- beskjeden er sendt til NAV-kontoret\r\n- du blir kontaktet innen utgangen av DAG+DATO',
@@ -3763,6 +4103,7 @@ const standardTeksterMock = {
         id: '8599436c-e049-40e9-a292-13951e7d3fd7',
         overskrift: 'Generell - Varsel - Ikke mottatt brev (BTN)',
         tags: ['ks', 'generell', 'btn', 'varsel', 'brev', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi beklager at det er sendt en uriktig melding til deg om at du har fått et brev fra oss. NAV har ikke sendt deg et brev.\r\n\r\nÅrsaken kan være at du tidligere har registrert din e-postadresse eller ditt mobilnummer på en annen person. Dette kan ha skjedd hvis du har hjulpet en annen med innlogging i en offentlig nettjeneste og i den forbindelse har brukt din egen kontaktinformasjon.\r\n\r\nHvis du vet at du er registrert med din kontaktinformasjon på andre, bør du informere personen om at NAV har sendt ny informasjon. Ønsker du ikke å ha registrert din kontaktinformasjon på personen, må personen selv oppdatere kontaktinformasjon på www.nav.no/dittnav\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3776,6 +4117,7 @@ const standardTeksterMock = {
         id: 'eeda8d41-86c9-48fe-80e3-99812228d84f',
         overskrift: 'Generell - Videreformidle - Internt (BTN)',
         tags: ['ks', 'generell', 'btn', 'videresende', 'videreformidle', 'forwarded', 'office', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg har videreformidlet henvendelsen til ENHET som skal svare deg senest innen utgangen av DAG+DATO\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3789,6 +4131,7 @@ const standardTeksterMock = {
         id: 'e35b68ee-31b6-4362-88ed-b9da9ec398d2',
         overskrift: 'Generell - Endre kontonummer (BTN)',
         tags: ['ks', 'btn', 'kontonummer', 'endring', 'bank'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu endrer selv kontonummeret i Din Profil på www.nav.no/DittNAV\r\nLes mer på www.nav.no/kontonummer\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3802,6 +4145,7 @@ const standardTeksterMock = {
         id: 'a62fce10-e12e-4b82-9b5c-b640552d44e9',
         overskrift: 'Generell - Skjermdeling',
         tags: ['ks', 'generell', 'skjermdeling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Det ble gjennomført skjermdeling i samtalen med [bruker.navn].\r\nGjennom ditt samtykke kunne NAV se din skjerm og hjelpe deg med TEMA.\r\n\r\nIngenting ble lagret når skjermdelingen ble avsluttet.\r\nSkjermdeling tilbys kun av noen ansatte i NAV.',
@@ -3815,6 +4159,7 @@ const standardTeksterMock = {
         id: 'baf3f4a3-b36f-4786-b32a-09492238df43',
         overskrift: 'Pensjon - AFP offentlig - Ferietrekk junilønn (BTN)',
         tags: ['ks', 'pensjon', 'AFP', 'offentlig', 'ferietrekk', 'junilønn', 'endring', 'inntekt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nTakk for at du skriver til oss.\r\n\r\nDersom det kun gjelder innmelding av feriepenger så sender du inn lønnslippen i juni hvor ferietrekket framkommer. Meldingen må være registrert hos NAV senest måneden før endring.\r\n\r\nDette trenger NAV for å endre din utbetaling:- Fra hvilke dato du endrer inntekt\r\n- Din totale arbeidsinntekt hittil i år, til og med siste måned før endring, samt ny inntekt etter endring.\r\n- Dersom du startet uttaket av AFP i fjor, må du opplyse om feriepenger opptjent før oppstart av AFP.\r\n\r\nDersom meldingen om inntekt kun gjelder innmelding av feriepenger så sender du inn lønnslippen i juni hvor ferietrekket framkommer.\r\n\r\nSe www.nav.no/afpoffentlig-endring for mer informasjon om inntektsendring.\r\n\r\nDu kan sende meldinig til oss via denne tjenesten her eller per post til:\r\nNAV Familie- og pensjonsytelser\r\nPB. 6600 Etterstad\r\n0607 Oslo\r\n\r\nØnsker deg en fin dag.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -3824,6 +4169,7 @@ const standardTeksterMock = {
         id: 'ec22576f-968d-4a35-9ea3-67b576c10655',
         overskrift: 'Familie - Foreldrepenger - Engangsstønad - Søknad ',
         tags: ['ks', 'foreldrepenger', 'engangsstønad', 'mor'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] venter barn og skal søke om engangsstønad.\r\n\r\nDu har fått informasjon om å:\r\n- søke til rett tid, tidligst i svangerskapsuke 22.\r\n- sende søknad om engangsstønad på www.nav.no/skjemaengangsstønad\r\n- legge ved terminbekreftelse fra jordmor eller lege som er datert i 22. svangerskapsuke eller senere.\r\n- følge status i saken din ved å logge inn på Ditt NAV.\r\n- se oppdatert saksbehandlingstid på nav.no.\r\n- far har ikke rett til fedrekvote, men kan ha rett på foreldrepenger på eget grunnlag.\r\n\r\nDu har også fått informasjon om at du kan lese mer på nav.no:\r\n- www.nav.no/engangsstønad\r\n- www.nav.no/foreldrepengertilfar\r\n- www.nav.no/saksbehandlingstider',
@@ -3837,6 +4183,7 @@ const standardTeksterMock = {
         id: 'ad0f0ea9-b48f-4fc3-907c-8584a7246b9d',
         overskrift: 'Familie - Foreldrepenger - Utsettelse pga. ferie',
         tags: ['ks', 'familie', 'foreldrepenger', 'ferie', 'inntekt', 'utsettelser'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] opplyser at foreldrepengene skal utsettes med lovbestemt ferie i perioden DATO-DATO.\r\n\r\nDu er informert om at:\r\n- mor og far kan søke om utsettelse av stønadsperioden på grunn av lovbestemt ferie, det vil si 4 uker + 1 dag pr. kalenderår. Dere kan også utsette med overført ferie/forskuddsferie\r\n- du må sende søknad om utsettelse i forkant av ferien på www.nav.no/skjemaforeldrepenger\r\n- jeg oversender denne informasjonen til avdelingen som behandler søknaden din\r\n\r\nDu har også fått informasjon om at du kan lese mer på www.nav.no/foreldrepenger'
@@ -3846,6 +4193,7 @@ const standardTeksterMock = {
         id: '20a56184-6337-4cf6-882a-d267b7af2558',
         overskrift: 'Familie - Foreldrepenger - Far/mor er syk ',
         tags: ['ks', 'foreldrepenger', 'funksjonsbeskrivelse', 'syk', 'legeerklæring', 'mor', 'far'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om sykdom i foreldrepengeperioden.\r\n\r\nDu har fått informasjon om at:\r\n- Forelderen som er syk, må være for syk til å kunne ta seg av barnet.\r\n- Forelderen som er frisk kan søke om å overta foreldrepengene.\r\n- Eller den forelderen som er syk kan søke om å utsette foreldrepengene i perioden han/hun ikke er i stand til å ta seg av barnet.\r\n\r\nI begge søknader, må det legges ved en legeerklæring med funksjonsbeskrivelse fra lege hvor det fremgår:\r\n\r\n1 - en detaljert beskrivelse på hvordan sykdommen/skaden påvirker evnen til å ta seg av barnet\r\n2 - i hvilken grad den som er syk er avhengig av hjelp (%)\r\n3 - forventet varighet av sykdom/skaden (konkret fra og til-dato)\r\n\r\nDersom den som er syk kan ha rett på sykepenger, må det søkes om sykepenger på vanlig måte se www.nav.no/sykepenger-arbeidstaker\r\n\r\nHvis mor er syk, kan far velge å søke om å ta ut fedrekvoten i perioden mor er syk. Da trenger han ikke legge ved legeerklæring, med mindre han søker om uttak av fedrekvote i de 6 første ukene etter fødsel. Det kan likevel hende at sykepengeavdelingen vil innhente opplysninger fra mor, for å avklare retten til sykepenger i perioden far har fedrekvote.\r\n\r\nMors foreldrepenger stanses automatisk i perioden far har fedrekvote, og hun har denne perioden til gode.',
@@ -3859,6 +4207,7 @@ const standardTeksterMock = {
         id: 'bc15386d-9994-4281-901b-b30afb02060b',
         overskrift: 'Familie - Enslig forsørger - Rettigheter ',
         tags: ['ks', 'familie', 'ensligforsørger', 'rettigheter', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er blitt enslig forsørger og har spørsmål om sine rettigheter.\r\n\r\nDu har fått informasjon om at du kan søke om:\r\n- Utvidet barnetrygd\r\n- Overgangsstønad og stønad til barnetilsyn\r\n- Tilleggsstønad\r\n- Bidrag/bidragsforskudd\r\n\r\nSjekk skjemaveilederen til søknaden for å se hvilke vedlegg som må legges ved søknaden.\r\n\r\nDu må gi beskjed til NAV hvis du får:\r\n- Ny samboer\r\n- Nytt barn\r\n- Endring i samvær\r\n- Avtale om delt bostad\r\n- Barnet flytter\r\n- Reiser utenlands\r\n- Økning i inntekt\r\n\r\nDu kan finne mer informasjon på nav.no:\r\n- Enslig forsørger: www.nav.no/stønadenslig\r\n- Samlivsbrudd: www.nav.no/samlivsbrudd',
@@ -3872,6 +4221,7 @@ const standardTeksterMock = {
         id: 'ea0267a1-9f8e-44f4-9593-179b94e5e341',
         overskrift: 'Familie - Foreldrepenger - Søknad mor ',
         tags: ['ks', 'foreldrepenger', 'søknad', 'mor', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] venter barn og skal søke om foreldrepenger.\r\n\r\nDu har fått informasjon om å:\r\n- sende søknad om foreldrepenger på www.nav.no/skjemaforeldrepenger tidligst 6 uker før oppstart\r\n- be arbeidsgiver sende digital inntektsmelding, tidligst fire uker før oppstart\r\n- hvis du ikke er arbeidstaker, legge ved terminbekreftelse fra jordmor eller lege som er datert i 22. svangerskapsuke eller senere.\r\n- følge status i din sak ved å logge inn på Ditt NAV.\r\n- far søker seks uker før hans fedrekvote skal starte, men senest før mors siste dag med foreldrepenger. Hvis han starter med en utsettelse, søker han tidligst 6 uker før utsettelsen skal starte.\r\n\r\nDu har også fått informasjon om at du kan lese mer på nav.no:\r\n- www.nav.no/foreldrepenger\r\n- www.nav.no/saksbehandlingstider'
@@ -3881,6 +4231,7 @@ const standardTeksterMock = {
         id: '8f6a9122-7c7a-4769-9ab5-004c85a69622',
         overskrift: 'Familie - Foreldrepenger - Gradert uttak ',
         tags: ['ks', 'familie', 'foreldrepenger', 'gradert', 'uttak', 'gradering', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om gradert uttak av foreldrepenger.\r\n\r\nDu har fått informasjon om:\r\n- at graderte foreldrepenger utgjør differansen mellom deltidsarbeid og en 100 prosent stilling. Du kan kun gradere foreldrepengene mot arbeid.\r\n- foreldrepengene reduseres i forhold til hvor mye du arbeider, slik at foreldrepengene fordeles utover et lengre tidsrom.\r\n- det samlede beløpet du får utbetalt, er det samme som om du velger fullt uttak av foreldrepenger.\r\n- hele perioden kan tas ut gradert med unntak av tre uker før og seks uker etter fødsel.\r\n- du kan kun ha gradert avtale hos én arbeidsgiver av gangen.\r\n- du søker om gradert uttak i digital søknad og opplyser hvor mange prosent du skal jobbe. Dette må være skriftlig avtalt med arbeidsgiver i forkant.\r\n- du må søke om gradert uttak før du begynner i delvis arbeid. Søker du for sent, kan du miste stønadsdager.\r\n\r\nDu har også fått informasjon om at du kan lese mer på www.nav.no/foreldrepenger'
@@ -3890,6 +4241,7 @@ const standardTeksterMock = {
         id: 'cc26025a-49ac-44c3-af3d-0e18499d3119',
         overskrift: 'Generell - Videreformidle - Ferie og høytider',
         tags: ['ks', 'generell', 'sende', 'oppgave', 'jul', 'påske', 'sommer'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om YTELSE/SAK.\r\n\r\nDu har fått informasjon om:\r\n- jeg har videreformidlet henvendelsen din til ENHET/VEILEDER.\r\n- du vil normalt få svar senest i løpet av DAG+DATO. I forbindelse med ferie og høytider kan det ta lengre tid før du får svar.',
@@ -3903,6 +4255,7 @@ const standardTeksterMock = {
         id: '1fac03f1-6193-436f-ac40-8a1d1847da48',
         overskrift: 'Generell - Journalføring',
         tags: ['ks', 'generell', 'btn', 'journalføring'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nTakk for opplysninger i sak om TEMA, opplysningene legges til saksmappen din for videre vurdering.\r\n\r\nDu får tilbakemelding når saken er avgjort.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3914,6 +4267,7 @@ const standardTeksterMock = {
         id: '7970bde0-4b8d-499e-ba83-f34e4d2e1b27',
         overskrift: 'Pensjon - Felles - Ring oss (BTN)',
         tags: ['ks', 'btn', 'pensjon', 'ring', 'oss'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi gjør oppmerksom på at denne tjenesten kun kan brukes til å sende inn beskjeder til NAV, og at vi ikke svarer på spørsmål om regelverk eller status i sak her.\r\n\r\nDersom du ikke finner svar på spørsmålet ditt på www.nav.no eller Ditt NAV/Din pensjon, ber vi deg ringe oss på telefon 55 55 33 34.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter Pensjon\r\n'
@@ -3938,6 +4292,7 @@ const standardTeksterMock = {
             'kontoret',
             'ringe'
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg ringte deg fordi vi trenger å vite hva du ønsker et møte med NAV om.\r\n\r\nDerfor er det fint om du kan ringe oss tilbake på 55 55 33 33 / 55 55 33 34.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3951,6 +4306,7 @@ const standardTeksterMock = {
         id: 'f6bb66be-7818-4708-878d-d399766e47d6',
         overskrift: 'Generell - Henvise brukeren til oppmøte ved NAV-kontor (BTN)',
         tags: ['ks', 'generell', 'btn', 'sto', 'henvise', 'oppmøte', 'NAV-kontor', 'ringe'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nTakk for din henvendelse. For at NAV skal kunne bistå deg best i akkurat denne saken ber vi deg om å møte opp ved ditt NAV-kontor for å få hjelp med TEMA. Åpningstidene ved ditt NAV-kontor finner du på www.nav.no/kontaktnav - Finn ditt NAV-kontor.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -3964,6 +4320,7 @@ const standardTeksterMock = {
         id: 'd30596b1-dfe0-415a-87fa-597647ff29a9',
         overskrift: 'Generell - Henvise brukeren til oppmøte ved NAV-kontor',
         tags: ['ks', 'generell', 'henvise', 'oppmøte', 'NAV-kontor', 'ringe'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] tar kontakt angående TEMA.\r\n\r\nJeg har informert om at [bruker.fornavn] må møte opp på NAV-kontoret for å få hjelp med TEMA.',
@@ -3993,6 +4350,7 @@ const standardTeksterMock = {
             'uføretrygd',
             'ringe'
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nFor å kunne svare på denne henvendelsen ber vi deg ringe oss. Du finner kontaktinformasjon på www.nav.no/ringnav\r\n\r\nDu finner også informasjon om YTELSE/TEMA på SETT-INN-LENKER-TIL-RELEVANTE-SIDER-OG-KAPITLER/AVSNITT\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4006,6 +4364,7 @@ const standardTeksterMock = {
         id: 'beee5507-bd09-401e-9b15-edade7c225f6',
         overskrift: 'Generell - Sende opplysninger via Beskjed til NAV',
         tags: ['ks', 'generell', 'skriftlig', 'beskjed', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått beskjed om at innsendelse av nye saksopplysninger kan gjøres via www.nav.no/beskjedtilnav',
@@ -4019,6 +4378,7 @@ const standardTeksterMock = {
         id: '838f0707-740c-49b9-bc17-56727ec2a763',
         overskrift: 'Generell - Mal - Skriftlig svar (BTN)',
         tags: ['ks', 'btn', 'mal', 'signatur', 'hei', 'bruker', 'innledning'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\n\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4031,6 +4391,7 @@ const standardTeksterMock = {
         id: 'cc7e88f3-3fe1-447c-a015-46a73963a354',
         overskrift: 'Generell - Mal - Samtalereferat',
         tags: ['ks', 'mal', 'samtalereferat'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om TEKST\r\n\r\nDu har fått informasjon om\r\n- Forklaring i punkter\r\n\r\nDu kan finne mer informasjon på nav.no\r\n- Lenke til aktuell side på nav.no\r\n',
@@ -4044,6 +4405,7 @@ const standardTeksterMock = {
         id: '7a8034f6-b297-4446-b5e1-5b09ed6c48f9',
         overskrift: 'Generell - Innsyn - Avklare (BTN)',
         tags: ['ks', 'generell', 'btn', 'innsyn', 'avklare'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg viser til din henvendelse om innsyn. Jeg ringte deg fordi vi trenger å vite hvilke dokumenter du ønsker innsyn i.\r\n\r\nDu kan ringe oss tilbake på 55 55 33 33.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4057,6 +4419,7 @@ const standardTeksterMock = {
         id: '8835656b-7ad8-413a-895d-e0d2902047af',
         overskrift: 'Familie - Svangerskapspenger - Gravid',
         tags: ['ks', 'familie', 'svangerskapspenger', 'gravid', 'lege', 'jordmor', 'egen', 'helse', 'foster'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er gravid og har spørsmål om svangerskapspenger.\r\n\r\nDu har fått informasjon om:\r\n- Lege eller jordmor må alltid gjøre en vurdering av risikoen for at fosteret kan bli skadet hvis du fortsetter å jobbe. Hvis du ikke kan jobbe på grunn av din egen helse, søker du i stedet om sykepenger.\r\n- Som arbeidstaker søker du om svangerskapspenger på Arbeidstilsynets skjema "Omplassering/ tilrettelegging pga. graviditet". Lege eller jordmor fyller ut del 1 av skjemaet,\r\n- Du tar så med skjema til arbeidsgiver, som skal fylle ut del 2. Hvis arbeidsgiver ikke kan tilrettelegge, eller bare tilrettelegge delvis, kan du ha rett på svangerskapspenger.\r\n- Du tar bilde av skjemaet, eller skanner det\r\n- Du søker ved å logge deg inn med BankID fra banken din eller en annen elektronisk id (se lenke nedenfor).\r\n\r\nSpørsmålene i søknaden er tilpasset din situasjon og du får veiledning og informasjon underveis. Du vil bli bedt om å laste opp skjemaet fra Arbeidstilsynet i løpet av søknaden.\r\n- Be arbeidsgiveren din fylle ut digital inntektmelding.\r\n\r\nSelvstendig næringsdrivende eller frilanser:\r\n- På kontroll eller legetime fyller jordmor eller legen din ut punkt 5 og 6 av "krav om svangerskapspenger til selvstendig næringsdrivende og frilanser"\r\n- Du tar bilde av skjemaet, eller skanner det\r\n- Du søker ved å logge deg inn med BankID fra banken din eller annen elektronisk id (se link nedenfor).\r\n\r\nSpørsmålene i søknaden er tilpasset din situasjon og du får veiledning og informasjon underveis. Du vil bli bedt om å laste opp skjemaet i løpet av søknaden.\r\n\r\nDu kan lese mer om svangerskapspenger, søknadsprosess og finne søknadsskjemaene her:\r\n- Søknadsprosess\r\nhttps://familie.nav.no/om-svangerskapspenger#slik-soker-du-\r\n- Rettigheter\r\nwww.nav.no/svangerskapspenger\r\nwww.nav.no/saksbehandlingstider',
@@ -4068,6 +4431,7 @@ const standardTeksterMock = {
         id: '9d223a75-11c5-45bf-be53-32cc631bab12',
         overskrift: 'Generell - Beskjed fra andre - Fullmakt/verge (BTN)',
         tags: ['ks', 'generell', 'fullmakt', 'verge', 'btn', 'spørsmål', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi har forsøkt å ringe deg. Du kan dessverre ikke benytte denne tjenesten til å skrive beskjeder på vegne av NAVN. Dette gjelder også hvis du har fullmakt i saken, eller er verge for vedkommende. Årsaken er at innloggingen til «Ditt NAV» er personlig, og den kan ikke deles med andre. Hvis du er verge eller har fullmakt i saken kan du kontakte oss på telefon, vår kontaktinformasjon finner du på www.nav.no/ringnav\r\n\r\nLes mer her om NAV sin taushetsplikt: https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Relatert+informasjon/taushetsplikt-og-samtykke\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter\r\n',
@@ -4081,6 +4445,7 @@ const standardTeksterMock = {
         id: 'c2212a83-1ca8-46b1-8dba-827e0ecdd055',
         overskrift: 'Generell - Allerede fått svar på beskjeden (BTN)',
         tags: ['ks', 'generell', 'spørsmål', 'btn', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg ser du allerede har fått svar på meldingen din.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4094,6 +4459,7 @@ const standardTeksterMock = {
         id: 'e86626f7-28a3-4053-aed5-2e41fc79428a',
         overskrift: 'Generell - Flere meldinger - Fått svar (BTN)',
         tags: ['ks', 'generell', 'btn', 'meldinger', 'fått', 'svar', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei,  [bruker.fornavn]\r\n\r\nJeg ser at du allerede har fått svar på meldingene dine, se vårt svar av DATO.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter\r\n',
@@ -4107,6 +4473,7 @@ const standardTeksterMock = {
         id: '35d01601-6558-42e5-847a-723f89195302',
         overskrift: 'Generell - Innsyn - Videreformidlet (BTN)',
         tags: ['ks', 'generell', 'innsyn', 'btn', 'videreformidlet'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg har videreformidlet henvendelsen din om innsyn til enheten som behandler saken.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4118,6 +4485,7 @@ const standardTeksterMock = {
         id: '4e03c9df-d7d4-4c0c-a129-3392bd7d07af',
         overskrift: 'Generell - Klage på vedtak',
         tags: ['ks', 'generell', 'klage'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker å klage på vedtaket om YTELSE.\r\n\r\nDu har fått informasjon om at:\r\n- du må sende skriftlig klage innen den frist som er oppgitt i vedtaket.\r\n- skjemaet for å klage finnes på www.nav.no/klage\r\n- klagen også kan sendes inn via Ditt NAV innen oppgitt klagefrist. Hvis du sender klagen din via Ditt NAV, må du huske å forklare hvilket vedtak det er du klager på, og hva du er uenig i (begrunne klagen).',
@@ -4131,6 +4499,7 @@ const standardTeksterMock = {
         id: '2a643fe9-6edb-4112-81e8-14786163a6ab',
         overskrift: 'Generell - Innsyn - Personopplysninger',
         tags: ['ks', 'generell', 'innsyn', 'personopplysninger'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker innsyn i personopplysninger NAV har om:\r\n\r\n(FJERN DET SOM IKKE PASSER)\r\n\r\nFødselsnummer\r\nSivilstatus\r\nTjenestepensjonsforhold\r\nKontonummer\r\nSkattekort\r\nInntekt\r\nFormue\r\nAdresser - Dine Personopplysninger\r\nFullmakt\r\nVerneplikt\r\nHjelpemiddelbehov – Dine saker\r\nStatsborgerskap\r\nBarnehageplass\r\nArbeidsforhold\r\nPerioder uten arbeid\r\nUtdanning\r\nCV – Ditt NAV\r\nOpphold i utlandet – Personalia, evt. Dine Saker\r\nBarnefordeling\r\nSykehistorikk – Ditt Sykefravær\r\nLegeerklæring\r\nDiagnose – Ditt Sykefravær\r\nInstitusjon\r\n(listen er ikke uttømmende)',
@@ -4144,6 +4513,7 @@ const standardTeksterMock = {
         id: 'c5d6b6ba-617a-4ae2-89ef-e4f80af0cce5',
         overskrift: 'Generell - Klage på vedtak (BTN)',
         tags: ['ks', 'generell', 'btn', 'klage', 'vedtak'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi bekrefter med dette at vi har mottatt din klage på vedtaket om YTELSE. Klagen er videreformidlet til den enheten som har fattet vedtaket, for videre behandling.\r\n\r\nEventuell dokumentasjon som underbygger din påstand/synspunkt kan ettersendes i posten.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4157,6 +4527,7 @@ const standardTeksterMock = {
         id: '50b3f482-2454-498d-a08a-c55d6ee5e807',
         overskrift: 'Generell - Innsyn - Partsinnsyn',
         tags: ['ks', 'generell', 'innsyn', 'partsinnsyn', 'saksinnsyn'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker innsyn i følgende dokument i sin sak om YTELSE\r\n\r\nDu har fått informasjon om at\r\n\r\n- din forespørsel er videreformidlet til ENHET\r\n\r\n- du får tilsendt dokumentene innen 30 dager fra i dag',
@@ -4170,6 +4541,7 @@ const standardTeksterMock = {
         id: '2343eb27-9d2f-4ad0-9368-54cdd500b6a2',
         overskrift: 'Familie - Pleiepenger - Sykt barn - Første kontakt',
         tags: ['ks', 'familie', 'pleiepenger', 'syktbarn'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om vilkår for pleiepenger.\r\n\r\nDu har fått informasjon om at:\r\n- Hvis man har omsorg for barn som har behov for kontinuerlig pleie og tilsyn på grunn av sykdom, skade eller lyte kan det foreligge rett til pleiepenger.\r\n- Man må ha vært i arbeid eller hatt likestilt ytelse de siste 4 uker og tape arbeidsinntekt som omregnet til årsinntekt utgjør halve grunnbeløpet i folketrygden.\r\n\r\nSykehuslege må skrive legeerklæring på søknadsskjema for de første 8 uker av pleiepengeperioden.\r\n\r\nEtter 8 uker må det søkes på nytt, da kan lege i spesialisthelsetjeneste eller sykehuslege skrive legeerklæring.\r\n\r\nNoen kan søke digitalt på www.pleiepengersoknad.nav.no men dersom du ikke kan søke digitalt må første del av søknaden (NAVs eksemplar) sendes i Posten til NAV med vedlagt førsteside for innsending.\r\n\r\nMer informasjon om pleiepenger: www.nav.no/pleiepenger\r\nSaksbehandlingstider finner du på www.nav.no/saksbehandlingstider',
@@ -4181,6 +4553,7 @@ const standardTeksterMock = {
         id: 'abb9b0ad-f64d-491a-846d-5e4339083b33',
         overskrift: 'Pensjon - Felles - Leveattest - Returneres',
         tags: ['ks', 'leveattest', 'pensjon', 'utland'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] spør om leveattesten skal returneres til NAV\r\n\r\nJeg informerer om at\r\n\r\n- Leveattest må returneres til NAV per post.\r\n\r\nDersom original leveattest ikke er mottatt av NAV innen utgangen av mai vil utbetalingen stanses.\r\n\r\nDu kan lese om leveattest på http://www.nav.no/leveattest',
@@ -4194,6 +4567,7 @@ const standardTeksterMock = {
         id: 'f31bad3e-ed30-47c3-a679-f45f8e0cce89',
         overskrift: 'Pensjon - Felles - Leveattest - Utland (BTN)',
         tags: ['ks', 'btn', 'leveattest', 'pensjon', 'utland', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nLeveattester blir brukt i kontrollarbeidet med pensjonsmottakere bosatt i utlandet. Hvis du skal sende inn leveattest, vil du motta leveattestskjema og et informasjonsbrev i posten.\r\n\r\nDu må returnere leveattesten til NAV per post. Hvis original leveattest ikke er mottatt innen utgangen av mai vil utbetalingen stanses.\r\n\r\nDu finner du skjema på http://www.nav.no/skjemaleveattest\r\n\r\nDu kan lese mer om leveattest på http://www.nav.no/leveattest\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4207,6 +4581,7 @@ const standardTeksterMock = {
         id: '2762ee94-83bb-43df-865a-3e7cddf94e44',
         overskrift: 'Pensjon - Alderspensjon - Beregning (BTN)',
         tags: ['ks', 'pensjon', 'alderspensjon', 'btn', 'beregne', 'beregninger', 'pensjonsberegning', 'kalkulator'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu finner informasjon om alderspensjon på:\r\n(TA BORT LENKENE SOM IKKE PASSER I KONTRET SVAR)\r\nwww.nav.no/alderspensjon-1953\r\nwww.nav.no/alderspensjon-1954\r\nwww.nav.no/alderspensjon-1963\r\n\r\nDu kan selv beregne pensjonen din på www.nav.no/dinpensjon\r\n\r\nVed beregning av pensjon frem i tid, kan du vurdere hvilken inntekt du ønsker å legge inn. Pensjonskalkulatoren beregner automatisk med inntekt fra siste kjente ligning.\r\n\r\nLegg merke til informasjonen om innhenting av opplysninger fra andre pensjonsordninger.. På grunn av endringer i samordningsloven og ny offenlig tjenestepensjon vil innhentingen fra andre ordninger ikke alltid være mulig. Du kan likevel fortsett og fullføre beregningen med å trykke "Gå videre" på feltet om innhenting fra andre ordninger. Alternativt kan du i starten av beregningen ta bort avkryssingen der du samtykker til innhenting fra andre pensjonsordninger.\r\n\r\nDenne tjenesten er kun for å sende beskjeder som kan ha betydning for saken din, ikke for å sjekke status i saken din.\r\n\r\nVi gjør oppmerksom på at www.nav.no/alderspensjon-tidspunkt og bloggen www.deterdinpensjon.no kan være gode kilder til informasjon.\r\n\r\nDersom du har tjenestepensjon bør du snakke med din tjenestepensjonsordning om hva du har rett til av pensjon derfra.\r\n\r\nHvis du trenger hjelp til å bruke kalkulator, eller ikke finner det du leter etter kan du kontakte oss på telefon, se www.nav.no/kontakt\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -4216,6 +4591,7 @@ const standardTeksterMock = {
         id: 'e98f8488-242a-4e06-a9b4-e66763f9ea21',
         overskrift: 'Pensjon - Alderspensjon - Veiledning (BTN)',
         tags: ['ks', 'pensjon', 'btn', 'alderspensjon', 'pensjonsveiledning', 'rådgivning', 'hvalønnerseg'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi kan ikke gi konkret svar på hva som lønner seg for deg med tanke på uttak av pensjon.\r\n\r\nAnbefaler deg å bruke pensjonskalkulatoren her på www.nav.no/dinpensjon for å gjøre ulike beregninger for å se hva pensjonen blir ut fra ulike uttakstidspunkt. Sjekk også rettigheter hos andre pensjonsordninger hvis du har det.\r\n\r\nLegg merke til informasjon om innhenting av opplysninger fra andre pensjonsordninger. På grunn av endringer i samordningsloven og ny offentlig tjenestepensjon vil innhenting fra andre ordninger ikke alltid være mulig. Du kan likevel fortsette og fullføre beregningen med å trykke "Gå videre" på feltet om innhenting fra andre ordninger. Alternativt kan du i starten av beregningen ta bort avkryssingen der du samtykker til innhenting fra andre pensjonsordninger.\r\n\r\nVi gjør oppmerksom på www.nav.no/alderspensjon-tidspunkt og bloggen www.deterdinpensjon kan være gode kilder til informasjon.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -4225,6 +4601,7 @@ const standardTeksterMock = {
         id: '873210e2-faa8-4daa-87df-d928000f818f',
         overskrift: 'Pensjon - Felles - Ny samboer (BTN)',
         tags: ['ks', 'btn', 'pensjon', 'samboer', 'melding', 'beregning'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg videreformidler melding om samboer til aktuelle avdelinger hos oss, da dette kan påvirke utbetalingene dine.\r\n\r\nI forbindelse med meldingen din har vi behov for mer informasjon fra deg:\r\n· Navn og fødselsnummer på ny samboer\r\n· Ny adresse\r\n· Flyttedato\r\n· Har dere felles barn?\r\nVi ber om at du ettersender forespurte opplysninger her på Ditt NAV.\r\n\r\nTil orientering vil samboerforhold medføre at:\r\n- grunnpensjon og minsteytelse endres\r\n- omregning av pensjon vil skje når man har bodd sammen 12 av de siste 18 månedene dersom samboer har inntekt over 2G, eller har pensjon/uføretrygd fra folketrygden\r\n- dersom du bor sammen med en du har vært gift med tidligere, eller har/har hatt barn sammen med skal omregning skje fra måneden etter at dere flytter sammen\r\n- ved ekteskapsinngåelse skal pensjonen omregnes fra måneden etter giftermålet\r\n\r\nSe mer om regulering av pensjon i forbindelse med samboerskap og lignende på www.nav.no/alderspensjon-beregning\r\n\r\nDu vil få brev fra oss når det er gjort endringer i utbetalingene dine.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -4234,6 +4611,7 @@ const standardTeksterMock = {
         id: '9cc0eecd-b2a2-454a-b471-184541753314',
         overskrift: 'Pensjon - Felles - Leveattest mottatt og godkjent (BTN)',
         tags: ['ks', 'pensjon', 'leveattest', 'btn', 'mottatt', 'godkjent'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nJeg bekrefter at leveattesten din for (ÅR) er mottatt og godkjent.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4247,6 +4625,7 @@ const standardTeksterMock = {
         id: '993aae74-17c8-4d32-90d2-a8f88e869906',
         overskrift: 'Pensjon - Felles - Leveattest mottatt og godkjent ',
         tags: ['ks', 'leveattest', 'pensjon', 'utland'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] spør om leveattesten er mottatt\r\n\r\nJeg bekrefter at leveattesten din for (ÅR) er mottatt og godkjent\r\n\r\nDu kan lese om leveattest på www.nav.no/leveattest\r\n',
@@ -4260,6 +4639,7 @@ const standardTeksterMock = {
         id: 'f8e74ffb-e22e-49d1-b341-b07e4bc75f53',
         overskrift: 'Arbeid - Dagpenger – Søknad',
         tags: ['ks', 'arbeid', 'dagpenger', 'søknad', 'utfylling', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker å søke om dagpenger. Du har registrert deg som arbeidssøker og sender meldekort hver 14. dag.\r\n\r\nJeg har informert om at:\r\n- når du har registrert deg som arbeidssøker, så må du levere søknad om dagpenger første dag du er arbeidsledig, for ikke å tape dager med dagpenger, se www.nav.no/dagpenger\r\n- dersom du selv har ansvaret for at du er blitt arbeidsledig, må du vanligvis vente 12 uker før du får utbetalt dagpenger. Det er viktig å være klar over at den forlengede ventetiden først begynner å løpe når du har søkt og fått innvilget dagpenger.\r\n- du må se hvilken dokumentasjon som må legges ved søknaden på www.nav.no/dagpengervedlegg\r\n- du må fortsette og sende meldekort hver 14. dag for å opprettholde din status som arbeidssøker.\r\n- når du registrerer deg på nav.no, vil du få tilgang til din aktivitetsplan. Ved oppfølging fra NAV, må du bruke denne planen.\r\n- du har dialog med veilederen din gjennom aktivitetsplanen din.\r\n- du finner informasjon om registrering og meldekort på  www.nav.no/registrering og www.nav.no/meldekort'
@@ -4269,6 +4649,7 @@ const standardTeksterMock = {
         id: '3e6fe687-4dea-4227-a596-64cc0af84e19',
         overskrift: 'Arbeid - Dagpenger - Konkurs',
         tags: ['ks', 'arbeid', 'dagpenger', 'konkurs'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] informerer at arbeidsgiver er gått konkurs\r\n\r\nHvis arbeidsgiveren din har gått konkurs, kan det hende du har rett til å få forskuttert lønnsgarantimidler i form av dagpenger www.nav.no/lonnsgaranti\r\n\r\nDa må du i så fall:\r\n- registrere deg som arbeidssøker senest dagen før konkursåpning på www.nav.no/jobbveiviser\r\n- sende meldekort hver 14 dag for å være registrert arbeidssøker, se informasjon på  www.nav.no/meldekort\r\n- fylle ut og levere søknad om dagpenger senest dagen før konkursåpning, www.nav.no/dagpenger\r\n- fylle ut og levere skjemaet Egenerklæring – overdragelse av lønnskrav (NAV 04-03.07).\r\n- legge ved arbeidsavtale\r\n- legge ved bekreftelse fra bostyrer/konkursforvalter vedrørende konkursåpning.\r\n\r\nPå www.nav.no/jobbveiviser finner du også gode tips for å få jobben du ønsker deg.'
@@ -4278,6 +4659,7 @@ const standardTeksterMock = {
         id: '270d047f-b8aa-4045-a58b-51dbb1c1bbee',
         overskrift: 'Arbeid - Dagpenger - Permittert',
         tags: ['ks', 'arbeid', 'dagpenger', 'permitert', 'søknad', 'varsel'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått permitteringsvarsel fra (DATO).\r\n\r\nJeg har informert om at:\r\n- når du har registrert deg som arbeidssøker, så må du levere søknad om dagpenger tidligst en uke før lønnsplikten er ferdig, eller senest dagen etter siste utbetaling av lønnsplikten se www.nav.no/dagpenger\r\n- du kan tidligst få dagpenger fra den dagen du søker\r\n- du må se hvilken dokumentasjon som må legges ved søknaden under punktet "permittert" se www.nav.no/dagpengervedlegg\r\n- du må fortsette å sende inn meldekort hver 14 dag for å opprettholde din status som arbeidssøker\r\n\r\nDu finner informasjon om registrering og meldekort på www.nav.no/registrering og www.nav.no/meldekort'
@@ -4287,6 +4669,7 @@ const standardTeksterMock = {
         id: 'adbdb62c-5a8d-45b9-8af5-40e7d5e17ba1',
         overskrift: 'Generell – Tapt anrop fra NAV – Kontakt bruker avsluttet',
         tags: ['ks', 'generell', 'tapt', 'ubesvart', 'anrop', 'kontakt', 'bruker', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er ringt opp igjen av veilederen sin, men fikk ikke tatt telefonen.\r\n\r\nDu har fått informasjon om at\r\n- veileder ikke er tilgjengelig for samtale akkurat nå\r\n- du blir kontaktet innen utgangen av DAG+DATO',
@@ -4300,6 +4683,7 @@ const standardTeksterMock = {
         id: 'd2aaca6a-dbaf-451c-93b0-18c47af65fc5',
         overskrift: 'Generell - Ønsker møte med veileder',
         tags: ['ks', 'generell', 'møte'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker et møte med sin veileder ved NAV-kontoret om TEMA-BETYDNINGFORSAK\r\n\r\nDu har fått informasjon om at\r\n- veilederen har fått beskjed om at du ønsker et møte\r\n- veilederen vurderer om det er nødvendig med et møte og gir deg en tilbakemelding innen utgangen av DAG+DATO',
@@ -4313,6 +4697,7 @@ const standardTeksterMock = {
         id: '056bfb59-e0a7-4131-93f8-866fb1913b88',
         overskrift: 'Generell - Forlenget frist dokumentasjon',
         tags: ['ks', 'generell', 'frist', 'dokumentasjon', 'søknad'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker forlenget frist for å sende inn dokumentasjon til søknaden om YTELSE.\r\n\r\nDu har fått forlenget fristen for å sende inn dokumentasjonen med 14 dager, det vil si innen utgangen av DAG+DATO',
@@ -4326,6 +4711,7 @@ const standardTeksterMock = {
         id: 'e262eca5-13d8-4665-a23c-5202edf74258',
         overskrift: 'Generell - Inntektsopplysninger - Mottatt ',
         tags: ['ks', 'generell', 'inntektsopplysninger'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] spør om arbeidsgiveren har levert inntektsopplysninger.\r\n\r\nDu har fått beskjed om at vi har fått inntektsopplysningene.\r\n',
@@ -4339,6 +4725,7 @@ const standardTeksterMock = {
         id: 'a68b8c5f-934a-43cf-bfa5-d2e178c646fa',
         overskrift: 'Generell - Avlysning Obligatorisk møte',
         tags: ['ks', 'generell', 'møte', 'obligatorisk', 'oppfølgingsmøte', 'oppfølging', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er innkalt til avtale med sin veileder den DATO OG KLOKKESLETT, men kan ikke møte på grunn av ÅRSAK, og ber om nytt møtetidspunkt.\r\n\r\nDu har fått informasjon om at\r\n- NAV-kontoret vurderer om årsaken til forfallet er gyldig\r\n- ved behov for nytt møte vil NAV-kontoret kontakte deg\r\n\r\n',
@@ -4352,6 +4739,7 @@ const standardTeksterMock = {
         id: '6f7c01f9-5dc0-4b75-9c0d-0219fe25ed3e',
         overskrift: 'Generell - Tapt anrop fra NAV',
         tags: ['ks', 'generell', 'anrop', 'ubesvart', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er blitt kontaktet av NAV, men fikk ikke tatt telefonen.\r\n\r\nDu har fått informasjon om at:\r\n- jeg kan dessverre ikke se hvem som har forsøkt å kontakte deg\r\n- hvis det er noen hos oss som ønsker å gi eller innhente informasjon, blir du kontaktet igjen',
@@ -4365,6 +4753,7 @@ const standardTeksterMock = {
         id: 'd5511769-dfff-478a-acfe-29dfa14c1cfa',
         overskrift: 'Sikkerhet - Brukeren ønsker logg',
         tags: ['ks', 'sikkerhet', 'snoking', 'logg', 'oppslag', 'mistanke'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ønsker oversikt over hvilke avdelinger i NAV som har gjort oppslag på seg i våre systemer.\r\n\r\nDu har fått informasjon om at:\r\n\r\n- din forespørsel er videreformidlet til Sikkerhetsseksjonen.\r\n\r\n- du får tilsendt oversikt for de siste tre månedene.\r\n\r\n- det vil normalt ta 1 til 2 uker før du får svar. Dersom du har sikker digital postkasse vil tilbakemeldingen komme i denne.\r\n\r\nNAV har ikke lov til å sjekke dine opplysninger uten tjenstlig behov. Det betyr at dersom du har sendt en søknad til NAV eller har en løpende sak, kan avdelinger ha gjort oppslag på deg i systemene. Hvis loggen gir deg konkrete mistanker om ulovlige oppslag, tar du kontakt med oss på telefon 55 55 33 33.\r\n',
@@ -4378,6 +4767,7 @@ const standardTeksterMock = {
         id: '19f51f76-0ae7-4d48-8fe7-52888b4d59ca',
         overskrift: 'Generell - Nye opplysninger i sak (BTN)',
         tags: ['ks', 'generell', 'btn', 'opplysninger', 'sak', 'søknad', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi har mottatt de nye opplysningene.\r\n\r\nJeg har videreformidlet meldingen til enheten som behandler saken din.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4391,6 +4781,7 @@ const standardTeksterMock = {
         id: '67857773-4a56-40b9-a955-d8b1b77955c4',
         overskrift: 'Generell - Status i sak - Utbetaling ',
         tags: ['ks', 'generell', 'sak', 'behandlingstid', 'utbetaling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Du har også fått informasjon om at du kan følge med på:\r\n- www.nav.no/saksbehandlingstider\r\n- www.nav.no/dineutbetalinger\r\n',
@@ -4404,6 +4795,7 @@ const standardTeksterMock = {
         id: 'd1171489-b617-4291-8648-2d067df5db0d',
         overskrift: 'Generell - Saksbehandlingstid utgått ',
         tags: ['ks', 'generell', 'saksbehandlingstid', 'frist', 'utgått'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] spør om status i saken om YTELSE.\r\n\r\nDu har fått informasjon om at:\r\n- saksbehandlingstiden er gått ut\r\n- vi etterlyser svar hos avdelingen som behandler saken din',
@@ -4417,6 +4809,7 @@ const standardTeksterMock = {
         id: 'b2df9d01-9845-4dd3-869a-08518630d790',
         overskrift: 'Generell - Status i sak (BTN) ',
         tags: ['ks', 'generell', 'btn', 'beskjed', 'til', 'nav', 'saksbehandlingstid', 'dokument', 'ringe'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDu kan se når vi mottok søknaden din på Ditt NAV / Dine saker. Der kan du også følge med når det skjer noe nytt i saken din. I noen tilfeller kan det ta litt tid fra vi har mottatt et dokument til det vises i Ditt NAV/Dine saker. Du kan se saksbehandlingstiden i ditt fylke på www.nav.no/saksbehandlingstider\r\n\r\nDersom du ikke finner svar på spørsmålet ditt ved å sjekke status i saken på Ditt NAV / Dine saker, ber vi deg ringe oss, så hjelper vi deg gjerne. Du finner kontaktinformasjon på www.nav.no/ringnav\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4430,6 +4823,7 @@ const standardTeksterMock = {
         id: 'b2a98cef-da7a-4f73-9d64-1fcae8374bd7',
         overskrift: 'Generell - Saksbehandlingstid (BTN)',
         tags: ['ks', 'generell', 'utbetaling', 'btn', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDin søknad om YTELSE er under behandling.\r\n\r\nDu kan se saksbehandlingstiden i ditt fylke på www.nav.no/saksbehandlingstider\r\n\r\nHvis du har sendt søknaden i posten, må du regne med inntil 10 dager postgang.\r\n\r\nHar saksbehandlingstiden passert og du fortsatt ikke har mottatt svar fra oss, kan du kontakte oss på telefon, se www.nav.no/ringnav\r\n\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter\r\n',
@@ -4443,6 +4837,7 @@ const standardTeksterMock = {
         id: '5c87a604-231a-4fcc-8f48-3844c5030424',
         overskrift: 'Sikkerhet - Trakassering (BTN)',
         tags: ['ks', 'sikkerhet', 'btn', 'trakassering', 'ufint', 'språk'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Henvendelser med ufin språkbruk eller usaklige angrep mot NAV eller ansatte i NAV vil ikke bli besvart.\r\n\r\nDu er selv ansvarlig for at henvendelser ligger innenfor norsk lov. Henvendelser som inneholder trusler, sjikane, trakassering og ærekrenkelser vil bli anmeldt til Politiet.\r\n\r\nNAV Kontaktsenter',
@@ -4456,6 +4851,7 @@ const standardTeksterMock = {
         id: 'f2f68f22-9dd0-4fbc-8d28-e60fb9f9b270',
         overskrift: 'Generell - Serviceklage',
         tags: ['ks', 'generell', 'btn', 'service', 'klage', 'klager', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi bekrefter at vi har mottatt din serviceklage.\r\n\r\nJeg har videreformidlet klagen, og du kan forvente et svar innen tre uker.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter\r\n',
@@ -4469,6 +4865,7 @@ const standardTeksterMock = {
         id: '253ad73c-df75-4e97-849c-7c0e2ee8739c',
         overskrift: 'Generell – Skatt – Etterbetaling for tidligere år - pensjon og uføreytelse',
         tags: ['ks', 'skatt', 'etterbetaling', 'prosenttrekk', 'skattetrekk', 'pensjon', 'uføre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om skattetrekk på etterbetaling av YTELSE for ÅRSTALL.\r\n\r\nDu har fått informasjon om at:\r\n- det er trukket skatt på din etterbetaling fra tidligere år\r\n- skattetrekket er trukket i tråd med satser fastsatt av Skatteetaten\r\n- du finner mer informasjon om skatt på etterbetaling på www.skatteetaten.no\r\n\r\nHvis etterbetalingen gjør at du har betalt for mye i skatt i år, vil du få tilbakebetalt dette av Skatteetaten ved neste skatteoppgjør.',
@@ -4482,6 +4879,7 @@ const standardTeksterMock = {
         id: '449637cf-a73e-4d3b-88cb-67c97d041b53',
         overskrift: 'Generell – Skatt – Etterbetaling av ytelse – Inneværende år',
         tags: ['ks', 'skatt', 'etterbetaling', 'ytelse', 'tabeltrekk', 'skattetrekk', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om skattetrekk på etterbetaling av YTELSE for inneværende år.\r\n\r\nDu har fått informasjon om at:\r\n- det er trukket skatt på din etterbetaling\r\n- skattetrekket er trukket etter prosentandel av årets skattekort\r\n\r\nHvis etterbetalingen gjør at du har betalt for mye i skatt i år, vil du få tilbakebetalt dette av Skatteetaten ved neste skatteoppgjør.',
@@ -4495,6 +4893,7 @@ const standardTeksterMock = {
         id: '313fc572-b971-498d-84d7-3d864f1358f7',
         overskrift: 'Generell - Skatt - Manglende skattekort',
         tags: ['ks', 'skatt', 'manglende', 'skattekort', 'mangler', '', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om skattetrekk for YTELSE.\r\n\r\nDu har fått informasjon om at:\r\n- vi har trukket 50 % skatt på YTELSE, fordi vi ikke har mottatt et skattekort på deg for inneværende år\r\n- du må bestille et skattekort på www.skatteetaten.no\r\n- det nye skattekortet vil bli overført elektronisk fra Skatteetaten til NAV, og vil gjelde fra neste utbetaling\r\n\r\nDu har også fått informasjon om at du kan lese mer på http://www.nav.no/skatt\r\n',
@@ -4508,6 +4907,7 @@ const standardTeksterMock = {
         id: 'c44afbb6-7dec-421a-98ad-283c9c2706f6',
         overskrift: 'Taushetsplikt - Verge/fullmektig tar kontakt via Beskjed til NAV (BTN)',
         tags: ['ks', 'taushetsplikt', 'btn', 'verge', 'kontakt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi har forsøkt å ringe deg fordi vi ser av henvendelsen nedenfor at en annen har logget seg inn på din profil. Andre kan ikke benytte denne tjenesten til å skrive beskjeder på vegne av deg. Dette gjelder også hvis du har fullmektig eller verge. Årsaken er at innloggingen til «Ditt NAV» er personlig, og den kan ikke deles med andre.\r\n\r\nVerge eller fullmektig kan kontakte oss på telefon. Vår kontaktinformasjon finner du på http://www.nav.no/ringnav\r\n\r\nLes mer her om NAV sin taushetsplikt: https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Relatert+informasjon/taushetsplikt-og-samtykke\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4521,6 +4921,7 @@ const standardTeksterMock = {
         id: '3f71d941-7117-4848-90bd-33578a3962c9',
         overskrift: 'Generell - Henvise videre - NAV Innkreving',
         tags: ['ks', 'generell', 'henvise', 'bidrag', 'barnebidrag', 'innkreving', 'NAVI'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om UTBETALING/INNBETALING/GJELD.\r\n\r\nInformasjon om innbetaling finnes på www.nav.no/innkreving\r\n\r\nAndre spørsmål om innkreving av bidrag besvares av NAV Innkreving på telefonnummer 21 05 11 00.',
@@ -4534,6 +4935,7 @@ const standardTeksterMock = {
         id: '61f6efe5-0634-4e3b-8158-e90f3eaede5a',
         overskrift: 'Taushetsplikt - Fritak fra taushetsplikten (BTN)',
         tags: ['ks', 'btn', 'fritak', 'taushetsplikt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nDin melding om fritak fra taushetsplikten er nå registrert hos oss.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4547,6 +4949,7 @@ const standardTeksterMock = {
         id: '388341d0-c52d-4e9c-8ebd-0aec5ae20b1e',
         overskrift: 'Generell - Utbetaling - Manglende adresse',
         tags: ['ks', 'generell', 'utbetaling', 'manglende', 'adresse'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterspør utbetaling av YTELSE for MÅNED\r\n\r\nDu har fått informasjon om at:\r\n- utbetalingen din er midlertidig stanset da du ikke har registrert en postadresse.\r\n- du må registrere riktig adresse hos Folkeregisteret, eller logge deg inn på Ditt NAV og oppdatere profilen din med en midlertidig adresse. Vær oppmerksom på at midlertidig adresse må oppdateres hver 12.måned.\r\n- når riktig adresse er registrert settes utbetalingen i gang igjen.',
@@ -4560,6 +4963,7 @@ const standardTeksterMock = {
         id: '8ffda3a1-59bb-413f-9076-7a13a01b659b',
         overskrift: 'Fullmakt - Ikke registrert',
         tags: ['ks', 'fullmakt', 'ikke', 'registrert', 'fullmaktskjema'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'NAVN ringer på vegne av deg uten at vi har mottatt fullmakt fra deg.\r\n\r\nHvis du ønsker at vedkommende skal kunne ringe på vegne av deg, må du ordne en fullmakt i saken din.\r\n\r\nFor at fullmakten din skal være gyldig må vi ha følgende informasjon:\r\n- navn på personen som skal ha fullmakt\r\n- om fullmakten skal gjelde for en begrenset periode\r\n- om fullmakten gjelder begrenset informasjon, for eksempel YTELSE/OPPFØLGINGSSAK\r\n\r\nFullmaktskjema finner du på www.nav.no/fullmakt\r\nDu kan også sende inn elektronisk fullmakt via www.nav.no/beskjedtilnav',
@@ -4573,6 +4977,7 @@ const standardTeksterMock = {
         id: '192887d8-d144-4e5a-adb4-0a38c6a82803',
         overskrift: 'Uføretrygd - Ring oss (BTN)',
         tags: ['ks', 'btn', 'uføre', 'uføretrygd', 'ring', 'oss'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nVi gjør oppmerksom på at denne tjenesten kun kan brukes til å sende inn beskjeder til NAV, og at vi ikke svarer på spørsmål om regelverk eller status i sak her.\r\n\r\nDersom du ikke finner svar på spørsmålet ditt på www.nav.no eller Ditt NAV / Din uføretrygd, ber vi deg ringe oss på telefon 55553333, tastevalg uføre.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter'
@@ -4582,6 +4987,7 @@ const standardTeksterMock = {
         id: '854a550c-44c5-4bf0-94bd-1eebc43aebe6',
         overskrift: 'Generell - Skatt - Etterbetaling for tidligere år - pensjon og uføreytelse BTN',
         tags: ['ks', 'btn', 'skatt', 'etterbetaling', 'prosenttrekk', 'skattetrekk', 'pensjon', 'uføre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nPå etterbetalinger av pensjon og uføretrygd for tidligere år trekker NAV 44% skatt i tråd med satser fastsatt av Skatteetaten. Dette for å unngå at du blir skyldig skatt som følge av etterbetaling.\r\n\r\nHvis skattetrekket på etterbetalingen gjør at du har betalt for mye i skatt i år, vil du få tilbakebetalt dette av Skatteetaten ved neste skatteoppgjør. Du finner mer informasjon om skatt på etterbetaling på www.skatteetaten.no\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4595,6 +5001,7 @@ const standardTeksterMock = {
         id: '82751577-bdd6-4846-a0eb-dcf444bd6e19',
         overskrift: 'Generell - Skatt - Etterbetaling for tidligere år - øvrige ytelser BTN',
         tags: ['ks', 'btn', 'skatt', 'etterbetaling', 'prosenttrekk', 'skattetrekk', 'pensjon', 'uføre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nPå etterbetalinger av YTELSE for foregående år skal det trekkes skatt etter prosentsatsen på gjeldende skattekort. Ved en feil har NAV dessverre trukket 44 % skatt på din etterbetaling. Vi vil tilbakebetale differansen mellom 44 % og prosentsatsen som ditt skattekort viser for trekkoden «Lønn fra NAV» på etterbetalingen.\r\n\r\nDu finner mer informasjon om skatt på etterbetaling på www.skatteetaten.no\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4608,6 +5015,7 @@ const standardTeksterMock = {
         id: 'ac429a93-76c4-4617-8a70-3d315b1b9e07',
         overskrift: 'Generell - Skatt - Etterbetaling for tidligere år - øvrige ytelser',
         tags: ['ks', 'skatt', 'etterbetaling', 'prosenttrekk', 'skattetrekk', 'pensjon', 'uføre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om skattetrekk på etterbetaling for YTELSE for ÅRSTALL.\r\n\r\nDu har fått informasjon om at:\r\n- det på etterbetalinger for foregående år trekkes skatt etter prosentsatsen på gjeldende skattekort\r\n- ved en feil har NAV dessverre trukket 44% skatt på din etterbetaling\r\n- vi vil tilbakebetale differansen mellom 44% og prosentsatsen som ditt skattekort viser for trekkoden "Lønn fra NAV" på etterbetalingen\r\n- du finner mer informasjon om skatt på etterbetaling på www.skatteetaten.no',
@@ -4632,6 +5040,7 @@ const standardTeksterMock = {
             'fra',
             'NAV'
         ],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått brev om endring i uføretrygd på grunn av automatisk innmeldt inntekt.\r\n\r\nFølgende gjelder:\r\n- Vi har sendt ut brev som følge av innrapportert inntekt via a-ordningen.\r\n- Du er innvilget/har endret uføregrad.\r\n- Vi har fanget opp utbetalinger som kommer fra NAV, som er utbetalt etter virkningstidspunktet på uføretrygd.\r\n- Jeg ber behandlende enhet vurdere om denne inntekten skal holdes utenfor.'
@@ -4641,6 +5050,7 @@ const standardTeksterMock = {
         id: '22d8bf7f-808d-465a-99ca-2de741390387',
         overskrift: 'Generell - Skatt - Feil skatt på overgangsstønad (BTN)',
         tags: ['ks', 'btn', 'skatt', 'skattetetrekk', 'overgangsstønad'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.navn]\r\n\r\nTakk for tilbakemelding om skatt på overgangsstønad. NAV har dessverre benyttet feil del av skattekortet ditt.\r\n\r\nJeg sender beskjeden din videre til økonomiavdelingen vår for videre behandling, og ber dem etterbetale for mye trukket skatt.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4654,6 +5064,7 @@ const standardTeksterMock = {
         id: '583e165b-93dc-49e4-bdba-cfdea11fd377',
         overskrift: 'Generell - Skatt - Feil skatt på overgangsstønad',
         tags: ['ks', 'skatt', 'skattetetrekk', 'overgangsstønad'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] tar kontakt angående skattetrekk på overgangsstønad.\r\n\r\n[bruker.subjekt] har fått informasjon om at:\r\n- NAV dessverre har benyttet feil del av skattekortet.\r\n\r\n[bruker.navn] ønsker å bli trukket etter TABELL/PROSENT fremover og ønsker å få etterbetalt det som er trukket for mye i skatt.\r\n\r\nJeg ber økonomiavdelingen korrigere skattetrekk for fremtidige utbetalinger og etterbetale for mye trukket skatt.',
@@ -4667,6 +5078,7 @@ const standardTeksterMock = {
         id: 'd87d495e-85e7-43ed-a22f-4f36e351ce42',
         overskrift: 'Uføretrygd - Automatisk vedtak og varsel - Etterslep',
         tags: ['ks', 'uføretrygd', 'uføre', 'BPEN090', 'inntekt', 'innmeldt', 'inntektsplanlegger', 'etterslep'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått brev om endring i uføretrygd på grunn av automatisk innmeldt inntekt.\r\n\r\nFølgende gjelder:\r\n- Vi har sendt ut brev som følge av innrapportert inntekt via a-ordningen.\r\n\r\nEtterslepsinntekter kan være:\r\n- Feriepenger som er opptjent før du fikk innvilget/endret grad uføretrygd\r\n- Bonus eller lignende fra virksomhetens overskudd som utbetales påfølgende år\r\n- Inntekter fra salg av produksjonsmidler i forbindelse med opphør av virksomhet\r\n- Produksjonstillegg og andre overføringer til gårdbrukere\r\n\r\nHar du mottatt etterslepsinntekter må dette dokumenteres.\r\n-Dokumentasjon kan sendes inn med førsteside for innsending.\r\n-Førsteside for innsending kan du skrive ut fra www.nav.no/førsteside\r\n-Når vi har mottatt dokumentasjon fra deg vil vi vurdere om innmeldt inntekt skal holdes utenfor.'
@@ -4676,6 +5088,7 @@ const standardTeksterMock = {
         id: 'a580b89f-9229-4f5f-b578-9538c23198f2',
         overskrift: 'Generell - Skattekort - endre fra prosent til tabell - Pensjon BTN',
         tags: ['ks', 'btn', 'skatt', 'skattetrekk', 'endre', 'prosent', 'tabell', 'pensjon', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nFordi skattekortet ditt ikke har et tabelltrekk på trekkoden «Pensjon fra NAV» kan ikke NAV trekke etter tabell på din pensjon. Hvis du ønsker et tabelltrekk på pensjonsutbetalingen din må du bestille et nytt skattekort på www.skatteetaten.no\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4689,6 +5102,7 @@ const standardTeksterMock = {
         id: 'e70034ae-13a4-439d-982a-b02014e0c43e',
         overskrift: 'Generell - Skattekort - endre fra prosent til tabell - Pensjon',
         tags: ['ks', 'skatt', 'skattekort', 'endre', 'prosent', 'tabell', 'pensjon', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.fornavn] har spørsmål om skattetrekk på YTELSE.\r\n\r\nDu har fått informasjon om at:\r\n- fordi skattekortet ditt ikke har et tabelltrekk på trekkoden «Pensjon fra NAV» kan ikke NAV trekke etter tabell på din pensjon.\r\n- hvis du ønsker et tabelltrekk på pensjonsutbetalingen din må du bestille et nytt skattekort på www.skatteetaten.no\r\n',
@@ -4702,6 +5116,7 @@ const standardTeksterMock = {
         id: '3b1fdea0-6f0b-4056-a0e2-414dd98aa5d6',
         overskrift: 'Generell - Skatt - Årsoppgave - mener opplysninger er feil (BTN)',
         tags: ['ks', 'btn', 'skatt', 'årsoppgave', 'feil'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.navn]\r\n\r\nDin årsoppgave fra NAV inneholder alle rapporteringspliktige utbetalinger og trekk som NAV har rapportert til Skatteetaten for foregående inntektsår.\r\n\r\nNAV rapporterer i henhold til skatteetatens regler og kodeverk, og noen ytelser rapporteres under samme beskrivelse.\r\nDu vil finne mer informasjon om årsoppgaver på www.nav.no/årsoppgave\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4715,6 +5130,7 @@ const standardTeksterMock = {
         id: '9cdad975-abe3-4af3-baa1-3ad33621c779',
         overskrift: 'Fullmakt - Ugyldig identifiseringen',
         tags: ['ks', 'taushetsplikt', 'fullmakt', 'ugyldig', 'identifisering'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] kunne ikke svare på spørsmålene for sikker identifisering.\r\n\r\nDu har fått informasjon om at:\r\n- vi ikke kan utlevere taushetsbelagt informasjon før vi er sikre på at vi snakker med riktig person.\r\n- vi skriver referat fra samtalen som blir synlig på www.nav.no/dittnav',
@@ -4728,6 +5144,7 @@ const standardTeksterMock = {
         id: 'b5909cf4-fc6d-4e3c-b08c-2322f60beafd',
         overskrift: 'Klageinstans - Mottatt klagevedtak',
         tags: ['ks', 'anke'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.fornavn] ringer NAV Klageinstans angående klagevedtak datert DATO.\r\n\r\nJeg har gitt deg følgende informasjon:\r\n- er du uenig i vedtaket, har du anledning til å anke innen oppgitt frist\r\n- anken må være skriftlig\r\n- informasjon om skjema og saksgang finner du på www.nav.no/klage\r\n- alternativt kan anken sendes inn elektronisk på www.nav.no/beskjedtilnav\r\n\r\nØnsker du å vedlegge dokumentasjon er det kun mulig når anken sendes per post.\r\n\r\nFor informasjon om saksbehandlingstider se www.nav.no/saksbehandlingstider',
@@ -4739,6 +5156,7 @@ const standardTeksterMock = {
         id: '71c6db1b-f04e-42a5-bcc1-34cbd968c009',
         overskrift: 'Klageinstans - Ettersendelse',
         tags: ['ks', 'dokumentasjon', 'klagesak'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.fornavn] viser til klagesak STØNAD og skal ettersende dokumentasjon i saken.\r\n\r\nDu blir informert om at ettersendelse av dokumentasjon og uttalelser, kan gjøres så lenge saken er under behandling.\r\n\r\nDokumenter innsendes på følgende måte:\r\n-gå til www.nav.no/klage\r\n-trykk på lenken for "klage på vedtak"\r\n-velg tema (stønad)\r\n-tast inn fødsels - og personnummer og NAV- enhet som i dette tilfellet er (NAV enhet).\r\n-trykk neste og last ned førstesiden.\r\n\r\nMerknadene/opplysningene skal sendes til adressen som står øverst til venstre på førstesiden.\r\n\r\nØnsker du å sende inn en uttalelse elektronisk, kan det gjøres på www.nav.no/beskjedtilnav',
@@ -4750,6 +5168,7 @@ const standardTeksterMock = {
         id: '9e09f75f-4386-40bb-9010-c0ce732d573d',
         overskrift: 'Generell - Skattekort - Endre fra prosent til tabell - Uføre (BTN)',
         tags: ['ks', 'btn', 'skatt', 'skattekort', 'endre', 'endring', 'prosent', 'tabell', 'uføre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nFordi skattekortet ditt ikke har et tabelltrekk på trekkoden «Uføretrygd utbetalt fra NAV» har vi trukket etter prosentdelen av ditt tabellkort.\r\n\r\nVi har sendt en beskjed til NAV Økonomi Pensjon om at du ønsker trekk etter tabell, og at du ønsker for mye trukket skatt tilbakebetalt.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter\r\n',
@@ -4763,6 +5182,7 @@ const standardTeksterMock = {
         id: 'a4fba09d-1464-40ec-8141-60dc197bfc7c',
         overskrift: 'Uføretrygd - Automatisk vedtak og varsel - Høy inntekt',
         tags: ['ks', 'uføretrygd', 'uføre', 'BPEN090', 'inntekt', 'innmeldt', 'inntektsplanlegger', 'høy', 'inntekt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått brev om endring i uføretrygd på grunn av automatisk innmeldt inntekt.\r\n\r\nFølgende gjelder:\r\n- Vi har sendt brev som følge av innrapportert inntekt via a-ordningen.\r\n- Hvis du mener vi har lagt uriktig inntekt til grunn, kan du selv endre denne.\r\n- Du korrigerer selv forventet inntekt i Inntektsplanleggeren din. Denne finner du på Ditt NAV // Din Uføretrygd // Inntektsplanlegger.\r\n- Når du registrerer annen forventet inntekt via Inntektsplanleggeren, som gir ny beregning, vil det dannes et nytt brev i din innboks.',
@@ -4776,6 +5196,7 @@ const standardTeksterMock = {
         id: '4f3b6ec8-6a80-4391-b1a5-3d4ca4fe9125',
         overskrift: 'Generell - Skatt - Endret utbetaling pga endring i skattekort',
         tags: ['ks', 'skatt', 'skattekort', 'endret'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om endret utbetaling for MÅNED.\r\n\r\nDu har fått informasjon om at det er endringer i skattetrekket som er årsak til at utbetalingsbeløpet for MÅNED er annerledes enn tidligere.\r\n\r\n- vi har benyttet skattetrekket som vi har fått overført fra Skatteetaten\r\n- dersom du mener skattetrekket er feil, må du endre skattekortet ditt på www.skatteetaten.no\r\n',
@@ -4789,6 +5210,7 @@ const standardTeksterMock = {
         id: '4fcca147-21fd-4d42-8ccc-a470c0eb285a',
         overskrift: 'Generell - Skatt - Pensjon',
         tags: ['ks', 'skattefri', 'skatt', 'utbetaling', 'pensjon'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om skattefri måned.\r\n\r\nDu har fått informasjon om at:\r\n- du betaler skatt på pensjonen alle måneder unntatt desember\r\n\r\nSe mer om utbetaling og skatt her: www.nav.no/utbetaling',
@@ -4802,6 +5224,7 @@ const standardTeksterMock = {
         id: '7dce76ad-e6e9-42c6-abb7-be68c14dd5a7',
         overskrift: 'Generell - Brutt samtale',
         tags: ['ks', 'generell', 'brutt', 'samtale', 'brudd', 'avbrutt'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Du har ringt oss, men samtalen ble dessverre brutt\r\n\r\nTa gjerne kontakt med oss på telefon igjen om du fortsatt ønsker å snakke med oss.',
@@ -4815,6 +5238,7 @@ const standardTeksterMock = {
         id: '56771b6f-b172-421f-ae4a-bc0d4041e372',
         overskrift: 'Generell - Skattekort - Endre fra prosent til tabell - Uføre',
         tags: ['ks', 'skatt', 'skattetrekk', 'endre', 'endring', 'prosent', 'tabell', 'uføre'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om skattetrekk på uføretrygd.\r\n\r\nDu har fått informasjon om:\r\n- fordi skattekortet ditt ikke har et tabelltrekk på trekkoden «Uføretrygd utbetalt fra NAV» har vi trukket etter prosentdelen av ditt tabellkort.\r\n- vi har sendt en beskjed til NAV Økonomi Pensjon om at du ønsker trekk etter tabell, og at du ønsker for mye trukket skatt tilbakebetalt.\r\n',
@@ -4828,6 +5252,7 @@ const standardTeksterMock = {
         id: 'e9d9537c-3a6e-48cf-b3b5-fee38f0ba7f2',
         overskrift: 'Klageinstans - Status og saksgang',
         tags: ['ks', 'anke', 'stønad', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.fornavn] ringer NAV Klageinstans i forbindelse med oversendelse av klagesak YTELSE og har spørsmål om status og videre saksgang.\r\n\r\nJeg har gitt følgende informasjon til (navn):\r\n- Saken vil bli behandlet innen oppgitt behandlingstid, se www.nav.no/saksbehandlingstider\r\n- Har du nye opplysninger du mener vil være av betydning for saken, har du anledning til å sende inn dette.\r\n\r\nDokumenter innsendes på følgende måte:\r\n-gå til www.nav.no/klage\r\n-trykk på lenken for "klage på vedtak"\r\n-velg tema (stønad)\r\n-tast inn fødsels - og personnummer og NAV- enhet som i dette tilfellet er (NAV enhet).\r\n-trykk neste og last ned førstesiden.\r\n\r\nMerknadene/opplysningene skal sendes til adressen som står øverst til venstre på førstesiden.\r\n\r\nØnsker du å sende inn en uttalelse elektronisk, kan det gjøres på www.nav.no/beskjedtilnav\r\n\r\nYtterligere informasjon om klagerettigheter og saksgang finner du på www.nav.no/klage',
@@ -4839,6 +5264,7 @@ const standardTeksterMock = {
         id: '1652a4af-0fcd-4035-af05-21db75a63692',
         overskrift: 'Generell - Inntektsopplysninger mangler',
         tags: ['ks', 'generell', 'inntektsopplysninger'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] spør om arbeidsgiveren har levert inntektsopplysninger.\r\n\r\nDu har fått beskjed om at NAV ikke har fått registrert inntektsopplysningene ennå.',
@@ -4852,6 +5278,7 @@ const standardTeksterMock = {
         id: '5824f652-a390-41de-8a73-99b7171726a9',
         overskrift: 'Arbeid - Dagpenger - Gjenopptak arbeid seks uker',
         tags: ['ks', 'arbeid', 'dagpenger', 'gjenopptak', 'arbeid', 'seks', 'uker'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] lurer på hvorfor det ikke er blitt utbetalt dagpenger.\r\n\r\nJeg har informert [bruker.fornavn] om at:\r\n- det ikke er blitt utbetalt dagpenger på grunn av arbeid over 50 % i tre meldekortperioder\r\n- Dagpengene er automatisk stanset og du må søke om gjenopptak om du fremdeles fyller vilkår for dagpenger.\r\n\r\nFra 1. juli er det endringer i regelverket for dagpenger. Den viktigste endringen for deg er at du tidligst kan få gjenopptak fra den dagen du søker.\r\n\r\nInformasjon om vilkår for dagpenger og gjenopptak:\r\nwww.nav.no/gjenopptak\r\nwww.nav.no/dagpenger',
@@ -4863,6 +5290,7 @@ const standardTeksterMock = {
         id: 'bf62eee7-f1cc-43d0-8549-bbecdb5c2f24',
         overskrift: 'Familie - Kontantstøtte - Barnehageplass ',
         tags: ['ks', 'sto', 'familie', 'kontantstøtte', 'barnehageplass', 'barnehage', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] mottar kontantstøtte og ringer for å opplyse om barnehageplass.\r\n\r\n- Det gjelder barnet født:\r\n- Barnet har fått barnehageplass fra dato:\r\n- Fulltidsplass, barnet har fått 100 % plass.\r\n- Deltidsplass, barnet er tildelt ANTALL timer.\r\n- Navnet på barnehagen:\r\n\r\nJeg oversender denne informasjonen til avdeling for kontantstøtte og du vil få et vedtak som bekrefter endringen i kontantstøtten.\r\n\r\nFor mer informasjon se nav.no:\r\n- www.nav.no/kontantstøtte\r\n- www.nav.no/satser',
@@ -4876,6 +5304,7 @@ const standardTeksterMock = {
         id: '8fa4876e-bf15-47bd-a965-1a6b2822e5d7',
         overskrift: 'Familie - Barnetrygd - Polen primær (BTN)',
         tags: ['ks', 'familie', 'barnetrygd', 'polen', 'btn'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.navn]\r\n\r\nTakk for opplysninger om økt barnetrygd i Polen fra 1. juli. Du vil ha rett på barnetrygd fra Norge ut juli, og vil derfor få din siste utbetaling fra NAV 31. juli. Du får et opphørsbrev fra oss i august, deretter vil du kun motta barnetrygd fra Polen.\r\n\r\nDersom du likevel ønsker at NAV skal stanse barnetrygden allerede fra 1. juli, kan du be særskilt om det. Vennligst gi en bekreftelse her på Ditt Nav dersom du ønsker stans i barnetrygd, selv om NAV har vurdert at du skal få ut juli.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4887,6 +5316,7 @@ const standardTeksterMock = {
         id: 'd7b075bb-828a-4d5d-ba07-7d740df8205d',
         overskrift: 'Familie - Barnetrygd - Polen sekundær',
         tags: ['ks', 'familie', 'barnetrygd', 'polen', 'sekundær'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ringer for å be om stans i norsk barnetrygd da [bruker.subjekt] vil få høyere utbetaling fra Polen fra 1. juli.\r\n\r\nJeg informerer om at NAV vil automatisk opphøre denne barnetrygden fra 1. august, og at [bruker.subjekt] vil få et opphørsbrev i midten av august.\r\n\r\nDersom [bruker.navn] likevel ikke ønsker å få utbetalt barnetrygd i juli, selv om NAV mener at [bruker.subjekt] har rett på det, kan [bruker.navn] be skriftlig om opphør gjennom Ditt NAV.',
@@ -4898,6 +5328,7 @@ const standardTeksterMock = {
         id: '5453650f-d406-4b60-bbea-db10bb9cf4aa',
         overskrift: 'Familie - Barnetrygd - Polen primær',
         tags: ['ks', 'familie', 'barnetrygd', 'polen', 'primær'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ringer om satsendring i Polen fra 1. juli. [bruker.subjekt] mottar sin fulle barnetrygd fra Norge, og lurer på hvordan det blir fremover.\r\n\r\nJeg informerer generelt om når Norge skal utbetale barnetrygd i sin helhet, og at [bruker.navn] må melde fra dersom det er endring i arbeidsforhold eller bosted. Hvis det ikke er endringer kan [bruker.subjekt] søke om å få overskytende barnetrygd utbetalt fra Polen.',
@@ -4909,6 +5340,7 @@ const standardTeksterMock = {
         id: 'e051177f-f1aa-42c9-918d-dde01ea6cd07',
         overskrift: 'Familie - Barnebidrag - Generell veiledning',
         tags: ['ks', 'familie', 'bidrag'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] ringer med generelle spørsmål om barnebidrag.\r\n\r\nJeg har informert om:\r\n- Muligheten til å inngå privat avtale. Bidragsveilederen på wwww.nav.no/bidragsveileder kan veilede på beløp, og de kan søke NAV om innkreving av den private avtalen. Forslag til privat avtale ligger tilgjengelig på www.nav.no/skjemabarnebidrag\r\n- [bruker.navn] kan søke om at NAV fastsetter bidraget mot et fastsettelsesgebyr.\r\n- Hvis NAV skal kreve inn bidraget er det mulig å søke om bidragsforskudd, avhengig av inntekt og bosituasjon.\r\n\r\nSider på nav.no som kan være aktuelle:\r\n- www.nav.no/barnebidrag\r\n- www.nav.no/skjemabarnebidrag\r\n- www.nav.no/bidragsveileder\r\n- www.nav.no/bidragsforskudd\r\n- www.nav.no/saksbehandlingstider',
@@ -4920,6 +5352,7 @@ const standardTeksterMock = {
         id: 'a2bb68f3-4250-41ec-8f6e-1229f8fda62c',
         overskrift: 'Familie - Kontantstøtte - Barnehageplass (BTN) - Videreformidle ',
         tags: ['ks', 'btn', 'familie', 'barnehage', 'kontantstøtte', 'barnehageplass'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nTakk for at du melder i fra om barnehageplass. Jeg oversender opplysningene til avdelingen som behandler kontantstøtte.\r\n\r\nKontantstøtten utbetales til og med den måneden vilkårene faller bort. Du vil få brev om opphør.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4933,6 +5366,7 @@ const standardTeksterMock = {
         id: 'e061587d-ceea-43b1-a980-b5410f1ad646',
         overskrift: 'Familie - Kontantstøtte - Barnehageplass (BTN) ',
         tags: ['ks', 'btn', 'barnehage', 'kontantstøtte', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei, [bruker.fornavn]\r\n\r\nTakk for at du melder i fra om barnehageplass.\r\n\r\nVi trenger noen flere opplysninger fra deg:\r\n- navn og fødselsdato på barnet ditt\r\n- navn på barnehage\r\n- fra hvilken dato har barnet fått barnehageplass\r\n- har barnet fulltidsplass eller deltidsplass? Hvis deltidsplass, hvor mange timer per uke?\r\n\r\nDu kan sende opplysningene i en ny melding til oss.\r\n\r\nKontantstøtten utbetales til og med den måneden vilkårene faller bort. Ved overgang mellom de ulike satsene på kontantstøtte, vil ny sats utbetales fra måneden etter endring i oppholdstid.\r\n\r\nMens vi venter på svar fra deg gir jeg beskjed til vår avdeling for kontantstøtte. Du vil få brev om opphør.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4946,6 +5380,7 @@ const standardTeksterMock = {
         id: 'b1a16a82-f426-4074-922c-567a337df1bb',
         overskrift: 'Familie - Barnetrygd - Manglende vedtak',
         tags: ['ks', 'familie', 'barnetrygd', 'barn', 'født'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] etterlyser barnetrygd for barn født.\r\n\r\nJeg har informert om at barnetrygd ikke alltid innvilges automatisk, og at [bruker.navn] bør sende inn søknad.\r\n\r\nMer informasjon finnes på:\r\n- www.nav.no/barnetrygd\r\n- www.nav.no/skjemabarnetrygd\r\n- www.nav.no/saksbehandlingstider',
@@ -4957,6 +5392,7 @@ const standardTeksterMock = {
         id: '9b751eb4-ff5c-499f-91d1-dec0ee2b4309',
         overskrift: 'Familie - Barnetrygd - Polen sekundær (BTN)',
         tags: ['ks', 'familie', 'barnetrygd', 'polen', 'sekundær'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 'Hei [bruker.navn]\r\n\r\nTakk for opplysninger om økt barnetrygd i Polen fra 1. juli. Du vil ha rett på barnetrygd fra Norge ut juli, og vil derfor få din siste utbetaling fra NAV 31. juli. Du får et opphørsbrev fra oss i august, deretter vil du kun motta barnetrygd fra Polen.\r\n\r\nDersom du likevel ønsker at NAV skal stanse barnetrygden allerede fra 1. juli, kan du be særskilt om det. Vennligst gi en bekreftelse her på Ditt Nav dersom du ønsker stans i barnetrygd, selv om NAV har vurdert at du skal få ut juli.\r\n\r\nMed vennlig hilsen\r\n[saksbehandler.fornavn]\r\nNAV Kontaktsenter',
@@ -4968,6 +5404,7 @@ const standardTeksterMock = {
         id: '14417ac4-e937-446c-80d2-21ddc40f4d7a',
         overskrift: 'Familie - Barnebidrag - Saksgang innkreving',
         tags: ['ks', 'familie', 'navi', 'nettbank', 'barn', 'barna'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om innkreving av barnebidrag gjennom NAV Innkreving.\r\n\r\nBarnebidrag blir overført så snart NAV har mottatt innbetaling fra bidragspliktig. Utbetalingen vil du finne i nettbanken og avsender vil være Skatteetaten.\r\n\r\nI nettbanken står det at utbetalingen gjelder bidrag, aktuell periode og barn(a) utbetalingen gjelder.\r\n\r\nNAV Innkreving utbetaler innvilget bidragsforskudd hvis bidragspliktig ikke betaler, eller når barnebidraget er lavere enn forskuddet.\r\n\r\nJeg har informert om saksprosessen hos NAV:\r\n- Vi utbetaler innvilget forskudd mens vi behandler søknad om fastsettelse av bidrag\r\n- Partene må ikke overføre privat mens NAV behandler søknaden, da vedtaket kan ha tilbakevirkende kraft\r\n\r\nDu kan finne mer informasjon på www.nav.no/bidrag-utbetaling',
@@ -4979,6 +5416,7 @@ const standardTeksterMock = {
         id: '7381b8f7-379c-4c73-987a-622726a8e0c2',
         overskrift: 'Arbeid - Felles - Meldekort ',
         tags: ['ks', 'meldekort', 'dagpenger', 'tiltakspenger', 'aap', 'utfylling'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] mottar YTELSE og har spørsmål om hvordan meldekortet skal fylles ut.\r\n\r\nJeg har vist [bruker.fornavn] informasjon på www.nav.no/meldekort',
@@ -4992,6 +5430,7 @@ const standardTeksterMock = {
         id: 'c394a702-6a08-42b4-808d-10d46a84e65b',
         overskrift: 'Familie - Foreldrepenger - Beregning frilanser og arbeidstaker',
         tags: ['ks', 'beregning', 'frilanser', 'arbeidstaker', 'foreldrepenger'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er både arbeidstaker og frilanser og har spørsmål om beregning av foreldrepenger.\r\n\r\nDu har fått informasjon om:\r\n- Inntektene som frilanser og arbeidstaker beregnes hver for seg og legges sammen til ett beløp.\r\n- Grunnlaget for foreldrepengene vil maksimalt beregnes til seks ganger grunnbeløpet.\r\n- Hvis du har en samlet inntekt over seks ganger grunnbeløpet, er det inntekten din som arbeidstaker som legges i bunnen av beregningen.\r\n\r\nDu har også fått informasjon om at du kan lese mer på nav.no:\r\nwww.nav.no/foreldrepenger\r\nwww.nav.no/grunnbeløp',
@@ -5003,6 +5442,7 @@ const standardTeksterMock = {
         id: '9914be56-25c6-430e-ab81-17b3285a4f93',
         overskrift: 'Familie - Foreldrepenger - Utsettelse - Fleksibelt uttak ',
         tags: ['ks', 'familie', 'foreldrepenger', 'utsettelse', 'utsette'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om utsettelse av foreldrepenger på grunn av arbeid eller ferie.\r\n\r\nDu har fått informasjon om at:\r\n- du kan søke om utsettelse av foreldrepengene på grunn av 100 % arbeid eller ferie\r\n-  100 % arbeid eller lovbestemt ferie må være skriftlig avtalt med arbeidsgiver\r\n- du må søke om utsettelse av foreldrepengeperioden i forkant av eventuelt arbeid eller ferie\r\n- foreldrepengeperioden må tas ut innen barnet blir tre år, eller innen det startes på ny foreldrepermisjon for nytt barn.\r\n\r\nDu finner søknadsskjema og mer informasjon på www.nav.no/foreldrepenger',
@@ -5014,6 +5454,7 @@ const standardTeksterMock = {
         id: '4f2393cc-4599-4e5a-9758-ee0856fbf645',
         overskrift: 'Familie - Foreldrepenger - Ikke ferdigbehandlet',
         tags: ['ks', 'familie', 'foreldrepenger', 'venter', 'ikke', 'ferdig', 'purring'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] tar kontakt angående søknad om foreldrepenger.\r\n\r\nVi mottok søknaden DATO\r\n\r\nJeg har informert om at saken ligger til behandling og at følgende dokumentasjon ikke er mottatt:\r\n- inntektsmelding\r\n- søknad om uttak/ utsettelse for perioden FRA DATO TIL DATO\r\n- du kan ettersende dokumentasjon digitalt under Dine foreldrepenger på Ditt NAV. Du kommer direkte hit ved å trykke på "Ettersend vedlegge" på https://familie.nav.no/hva-soker-du\r\n- du kan følge status i sak på Dine foreldrepenger\r\n- du finner saksbehandlingstider for ditt fylke på www.nav.no/saksbehandlingstider\r\n\r\nI noen tilfeller vil det kunne ta litt tid fra søknaden er mottatt til den blir synlig for deg på Dine foreldrepenger. Det er først når den er synlig der, at du kan ettersende dokumentasjon digitalt.',
@@ -5027,6 +5468,7 @@ const standardTeksterMock = {
         id: '436da949-f64a-4a39-a75f-3a7dd9e8c1ff',
         overskrift: 'Familie - Foreldrepenger - Bare far har rett ',
         tags: ['ks', 'foreldrepenger', 'far', 'foreldrepengertilfar'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om sin rett til foreldrepenger.\r\n\r\nNår bare far har rett på foreldrepenger, eller mor har valgt engangsstønad, kan han få inntil 40 uker med 100% dekningsgrad, eller inntil 50 uker med 80%.\r\n\r\nFar kan tidligst starte med foreldrepenger 6 uker etter fødselen. Er mor for syk til å ta seg av barnet før dette, kan far også ta ut foreldrepenger de 6 første ukene. Det stilles krav til mors aktivitet (se under), både når far har permisjon, og i perioder han vil utsette permisjonen.\r\n\r\nHvis mor ikke fyller aktivitetskravet 6 uker etter fødselen, mister far foreldrepenger. For å få benyttet alle 40/50 ukene han har rett til, må han starte perioden med foreldrepenger 6 uker etter fødselen. Hvis mor fyller aktivitetskravet på et senere tidspunkt, men før barnet er 46/56 uker, kan han ta ut de ukene/dagene som gjenstår.\r\n\r\nVi anbefaler at far sender søknad etter at barnet er født.\r\n\r\nHer finner du søknaden med informasjon om vedlegg, samt mer informasjon om reglene på www.nav.no/foreldrepenger\r\n\r\nLegg ved søknaden:\r\n- arbeidsgiver sender inntektsmelding 4 uker før perioden med uttak eller utsettelse begynner\r\n- dokumentasjon på mors aktivitet\r\n\r\nForeldrepenger far og aktivitetskrav til mor:\r\n- jobbe i minst 75% stilling (jobber hun under 75%, kan far få like mye permisjon som hun jobber)\r\n- studere på fulltid\r\n- jobbe og studere som til sammen utgjør fulltid\r\n- være syk og helt avhengig av hjelp til å ta seg av barnet\r\n- være innlagt i helseinstitusjon\r\n- delta i introduksjonsprogrammet for nyankomne innvandrere etter introduksjonsloven kapittel 2.\r\n- delta i kvalifiseringsprogrammet',
@@ -5038,6 +5480,7 @@ const standardTeksterMock = {
         id: '14f77f6d-a240-4706-a1fa-94e2b4452677',
         overskrift: 'Familie - Foreldrepenger - Beregning arbeidstaker',
         tags: ['ks', 'beregning', 'arbeidstaker', 'foreldrepenger'],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] er arbeidstaker og har spørsmål om beregning av foreldrepenger.\r\n\r\nDu har fått informasjon om:\r\n- Foreldrepengene regnes som hovedregel ut fra inntekt i de tre siste kalendermånedene før foreldrepengeperioden din starter\r\n- Dette gjelder både hvis du er fast ansatt eller har skiftende arbeidsperioder eller inntekter.\r\n- Foreldrepengene beregnes maksimalt til seks ganger grunnbeløpet i folketrygden.\r\n- Hvis arbeidsforholdet ditt har vart under tre måneder, skal foreldrepenger regnes ut fra inntekten du har hatt i den perioden du har vært i jobb. Inntekten din regnes om til en månedsinntekt.\r\n- Hvis du har hatt ferie eller korte perioder med tilfeldig ulønnet permisjon i perioden du har hatt inntekt, fastsettes inntekten din til det du vanligvis ville hatt hvis du hadde vært i jobb.\r\n\r\nDu kan lese mer på nav.no:\r\nwww.nav.no/foreldrepenger\r\nhttps://familie.nav.no/om-foreldrepenger/nye-beregningsregler\r\nwww.nav.no/grunnbeløp',
@@ -5049,6 +5492,7 @@ const standardTeksterMock = {
         id: 'aadfb936-878b-43c9-b6e0-1b86cf19b2d3',
         overskrift: 'Familie - Foreldrepenger - Mor er ufør',
         tags: ['ks', 'familie', 'foreldrepenger', 'permisjon', 'funksjonsvurdering', 'skader', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har fått informasjon om at:\r\nNår mor mottar uføretrygd, kan far få foreldrepenger i 15 uker med høy sats eller 19 uker ved lav sats (10 uker ved fødsel før 1.juli, 15 uker ved fødsel i perioden 1. juli – 31. desember 2018), uten at det stilles krav til mors aktivitet. Forutsetningen er at far har rett på foreldrepenger.\r\n\r\nDisse ukene kan deles opp, og far kan ta de når som helst innenfor stønadsperioden, uten å søke utsettelse. Stønadsperioden går fra barnet er 6 uker til barnet blir 46 uker ved 100 prosent dekning, eller 56 uker ved 80 prosent dekning.\r\n\r\nDersom mor er avhengig av hjelp for å ta seg av barnet eller fyller aktivitetskravet, kan far få permisjon i inntil 40 uker med høy sats eller inntil 50 uker med lav sats. Hvis mor er syk, kan far også starte uttaket allerede ved fødsel.\r\n\r\nFor å benytte alle ukene, må far starte uttaket senest 15 eller 19 uker før stønadsperioden er utløpt.\r\n\r\nFar må:\r\n- søke om foreldrepenger, og krysse av for at mor mottar uføretrygd\r\n- be arbeidsgiver sende elektronisk inntektsmelding\r\n- sende funksjonsvurdering fra lege på mors sykdom/skade, dersom far skal ha foreldrepenger utover 15 eller 19 uker.\r\n\r\nFunksjonsvurderingen må besvare:\r\n- hvordan sykdommen eller skade påvirker hennes evne til å ta seg av barnet- i hvilken grad hun er avhengig av hjelp\r\n- hvor lenge sykdommen eller skaden sannsynligvis kommer til å vare\r\n\r\nDu finner mer informasjon på www.nav.no/foreldrepengertilfar',
@@ -5060,6 +5504,7 @@ const standardTeksterMock = {
         id: '31b20673-6daf-4729-a320-fe736bd200ca',
         overskrift: 'Familie - Foreldrepenger - Fedrekvote - Søknad ',
         tags: ['ks', 'fedrekvote', 'familie', 'far', 'foreldrepenger', 'pappaperm', ''],
+        vekttall: 0,
         innhold: {
             nb_NO:
                 '[bruker.navn] har spørsmål om fedrekvote.\r\n\r\nFar har fått informasjon om å:\r\n- søke om fedrekvoten innen mor sin siste dag med foreldrepenger.\r\n- hvis mor har maksdato i 2019 og far ikke starter fedrekvoten før 2019, kan han tidligst søke 6 uker før mors maksdato, eller 6 uker før uttak dersom han starter uttaket før mors maksdato.\r\n- hvis du ikke skal ta fedrekvoten direkte etter mors foreldrepengeperiode må du søke om utsettelse, senest før mors maksdato.\r\n- mors maksdato er DATO\r\n\r\nDu finner søknadsskjema og mer informasjon på www.nav.no/foreldrepenger og www.nav.no/frister',
