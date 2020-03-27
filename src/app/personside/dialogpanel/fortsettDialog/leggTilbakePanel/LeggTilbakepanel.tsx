@@ -9,13 +9,15 @@ import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { LeggTilbakeOppgaveRequest } from '../../../../../models/oppgave';
-import { Temagruppe, TemaPlukkbare } from '../../../../../models/Temagrupper';
+import { Temagruppe, TemaPlukkbare, TemaLeggTilbake } from '../../../../../models/Temagrupper';
 import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { DialogPanelStatus, FortsettDialogPanelState } from '../FortsettDialogTypes';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../rest/consumer/usePostResource';
+import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -64,6 +66,15 @@ function LeggTilbakeFeilmelding(props: { status: FortsettDialogPanelState }) {
         return <AlertStripeFeil>Det skjedde en feil ved tilbakelegging av oppgave</AlertStripeFeil>;
     }
     return null;
+}
+function HentGyldigTemaListe() {
+    const sosialFT = useFeatureToggle(FeatureToggles.Sosial);
+
+    if (sosialFT.isOn) {
+        return TemaLeggTilbake;
+    } else {
+        return TemaPlukkbare;
+    }
 }
 
 function LeggTilbakepanel(props: Props) {
@@ -166,7 +177,7 @@ function LeggTilbakepanel(props: Props) {
                             setTema={tema => updateState({ temagruppe: tema })}
                             valgtTema={state.temagruppe}
                             visFeilmelding={!LeggTilbakeValidator.tema(state) && state.visFeilmeldinger}
-                            temavalg={TemaPlukkbare}
+                            temavalg={HentGyldigTemaListe()}
                         />
                     </UnmountClosed>
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.AnnenÅrsak} />
