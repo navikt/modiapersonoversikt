@@ -35,6 +35,7 @@ export type Tekst = {
     innhold: {
         [key in Locale]?: string;
     };
+    vekttall: number;
 };
 
 export type Tekster = {

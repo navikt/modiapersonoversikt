@@ -331,43 +331,6 @@ function setupLeggTilbakeOppgaveMock(mock: FetchMock) {
     );
 }
 
-function endreNavnMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/brukerprofil/:fodselsnummer/navn',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
-function endreNavKontaktinformasjonMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/brukerprofil/:fodselsnummer/telefonnummer',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
-function setupEndreAdresseMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/brukerprofil/:fodselsnummer/adresse',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
-function setupEndreKontonummerMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/brukerprofil/:fodselsnummer/kontonummer',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
-function endreTilrettelagtKommunikasjonnMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/brukerprofil/:fodselsnummer/tilrettelagtkommunikasjon',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => {
-            return {};
-        })
-    );
-}
-
 function setupSendReferatMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendreferat',
@@ -595,15 +558,10 @@ export function setupMock() {
     setupVergemalMock(mock);
     setupBaseUrlsMock(mock);
     setupFeatureToggleMock(mock);
-    endreNavnMock(mock);
     setupVeilederRollerMock(mock);
     setupRetningsnummerKodeverkMock(mock);
-    setupEndreKontonummerMock(mock);
     setupTilrettelagtKommunikasjonKodeverkMock(mock);
     setupPostnummerKodeverk(mock);
-    endreNavKontaktinformasjonMock(mock);
-    setupEndreAdresseMock(mock);
-    endreTilrettelagtKommunikasjonnMock(mock);
     setupWsControlAndMock(mock);
     setupLandKodeverk(mock);
     setupValutaKodeverk(mock);
