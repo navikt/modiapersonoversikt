@@ -101,7 +101,7 @@ function visFerdigstillUtenSvar(meldingstype: Meldingstype, valgtTraad: Traad) {
 
 function visTvungenFerdigstillelse(valgtTraad: Traad, tildelteOppgaver: Oppgave[]) {
     const oppgavenTildeltBruker = tildelteOppgaver.find(it => it.traadId === valgtTraad.traadId);
-    return (erBehandlet(valgtTraad) && oppgavenTildeltBruker) || false;
+    return erBehandlet(valgtTraad) && oppgavenTildeltBruker;
 }
 
 function getMerkAvsluttRequest(fnr: string, traad: Traad, valgtEnhet: string): MerkAvsluttUtenSvarRequest {
