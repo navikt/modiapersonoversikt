@@ -9,7 +9,7 @@ import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { LeggTilbakeOppgaveRequest } from '../../../../../models/oppgave';
-import { Temagruppe, TemaPlukkbare, TemaLeggTilbake } from '../../../../../models/Temagrupper';
+import { Temagruppe, TemaLeggTilbake, TemaPlukkbare } from '../../../../../models/Temagrupper';
 import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
@@ -18,6 +18,8 @@ import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../rest/consumer/usePostResource';
 import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
+import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
+import { Diskresjonskoder } from '../../../../../konstanter';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -68,12 +70,17 @@ function LeggTilbakeFeilmelding(props: { status: FortsettDialogPanelState }) {
     return null;
 }
 function useGyldigTemagruppeListe() {
+    const personinformasjon = useRestResource(resources => resources.personinformasjon).resource;
     const sosialFT = useFeatureToggle(FeatureToggles.Sosial);
 
-    if (sosialFT.isOn) {
-        return TemaLeggTilbake;
+    const temagrupper = sosialFT.isOn ? TemaLeggTilbake : TemaPlukkbare;
+    const bevarOksos =
+        isLoadedPerson(personinformasjon) &&
+        personinformasjon.data.diskresjonskode?.kodeRef !== Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE;
+    if (bevarOksos) {
+        return temagrupper;
     } else {
-        return TemaPlukkbare;
+        return temagrupper.filter(temagruppe => temagruppe !== Temagruppe.ØkonomiskSosial);
     }
 }
 
