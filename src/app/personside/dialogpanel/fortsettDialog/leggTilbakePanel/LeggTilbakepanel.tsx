@@ -67,7 +67,7 @@ function LeggTilbakeFeilmelding(props: { status: FortsettDialogPanelState }) {
     }
     return null;
 }
-function HentGyldigTemaListe() {
+function useGyldigTemagruppeListe() {
     const sosialFT = useFeatureToggle(FeatureToggles.Sosial);
 
     if (sosialFT.isOn) {
@@ -89,6 +89,7 @@ function LeggTilbakepanel(props: Props) {
     const dispatch = useDispatch();
     const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
+    const gyldigTemagruppeListe = useGyldigTemagruppeListe();
     const leggerTilbake = props.status.type === DialogPanelStatus.POSTING;
 
     function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak }) {
@@ -177,7 +178,7 @@ function LeggTilbakepanel(props: Props) {
                             setTema={tema => updateState({ temagruppe: tema })}
                             valgtTema={state.temagruppe}
                             visFeilmelding={!LeggTilbakeValidator.tema(state) && state.visFeilmeldinger}
-                            temavalg={HentGyldigTemaListe()}
+                            temavalg={gyldigTemagruppeListe}
                         />
                     </UnmountClosed>
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.AnnenÅrsak} />
