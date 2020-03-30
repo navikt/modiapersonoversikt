@@ -196,6 +196,7 @@ function AutoTekstTips() {
                     <li>koroms + mellomrom: OMS - Korona stengt bhg/skole</li>
                     <li>korosakt + mellomrom: OS - Korona aktivitet STO</li>
                     <li>sykperm + mellomrom: Sykmeldt og permittert</li>
+                    <li>forskuddsøk + mellomrom: Søke om forskudd</li>
                 </ul>
             </HjelpetekstUnderHoyre>
         </HjelpetekstStyle>
