@@ -151,6 +151,11 @@ function useRules(): Regler {
             type: 'external',
             regex: /^sykperm$/i,
             externalId: '747920d1-e34a-4079-a780-ad9f78812c6e'
+        },
+        {
+            type: 'external',
+            regex: /^forskuddsøk$/i,
+            externalId: '6c6a3604-d47a-4cb3-bd7b-a354e98de48c'
         }
     ];
 }
