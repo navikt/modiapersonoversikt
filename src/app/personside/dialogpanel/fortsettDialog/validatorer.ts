@@ -2,6 +2,7 @@ import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { FortsettDialogState } from './FortsettDialogTypes';
+import { Temagruppe } from '../../../../models/Temagrupper';
 
 export class FortsettDialogValidator {
     public static tekst(state: FortsettDialogState) {
@@ -17,6 +18,9 @@ export class FortsettDialogValidator {
         return state.dialogType === Meldingstype.SVAR_SKRIFTLIG && this.tekst(state);
     }
     public static erGyldigSpørsmålSkriftlig(state: FortsettDialogState, traad: Traad) {
+        if (state.temagruppe === Temagruppe.ØkonomiskSosial) {
+            return state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE && this.tekst(state);
+        }
         return (
             state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE &&
             this.tekst(state) &&
