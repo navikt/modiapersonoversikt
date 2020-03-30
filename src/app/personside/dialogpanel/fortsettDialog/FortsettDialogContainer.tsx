@@ -145,7 +145,7 @@ function FortsettDialogContainer(props: Props) {
                 });
         } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
             const erJournalfort = erEldsteMeldingJournalfort(props.traad);
-            const erOksos = props.traad.meldinger[0].temagruppe == Temagruppe.ØkonomiskSosial;
+            const erOksos = props.traad.meldinger[0].temagruppe === Temagruppe.ØkonomiskSosial;
             if (!state.sak && !erJournalfort && !erOksos) {
                 const error = Error(
                     'For å opprette spørsmål må meldingen være journalført, sak må være valgt, eller være på temagruppen OKSOS'
