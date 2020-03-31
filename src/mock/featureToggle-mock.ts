@@ -9,6 +9,8 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return true;
         case FeatureToggles.SvaksyntModus:
             return false;
+        case FeatureToggles.Sosial:
+            return true;
         default:
             return Math.random() > 0.5;
     }

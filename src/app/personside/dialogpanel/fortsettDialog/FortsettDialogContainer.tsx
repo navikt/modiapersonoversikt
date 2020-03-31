@@ -33,6 +33,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { isFinishedPosting } from '../../../../rest/utils/postResource';
 import ReflowBoundry from '../ReflowBoundry';
+import { Temagruppe } from '../../../../models/Temagrupper';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -144,8 +145,11 @@ function FortsettDialogContainer(props: Props) {
                 });
         } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
             const erJournalfort = erEldsteMeldingJournalfort(props.traad);
-            if (!state.sak && !erJournalfort) {
-                const error = Error('For å opprette spørsmål må meldingen være journalført eller sak må være valgt');
+            const erOksos = props.traad.meldinger[0].temagruppe === Temagruppe.ØkonomiskSosial;
+            if (!state.sak && !erJournalfort && !erOksos) {
+                const error = Error(
+                    'For å opprette spørsmål må meldingen være journalført, sak må være valgt, eller være på temagruppen OKSOS'
+                );
                 console.error(error);
                 loggError(error);
                 return;
