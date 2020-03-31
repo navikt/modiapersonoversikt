@@ -52,7 +52,7 @@ const InputfeltWrapper = styled.div`
 interface Props<Item> {
     setValue: (value: Item) => void;
     value?: Item;
-    itemToString: (item: Item) => string;
+    itemToString: (item: Item | null) => string;
     label: string;
     suggestions: Item[];
     topSuggestions?: Item[];
