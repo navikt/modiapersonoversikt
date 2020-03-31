@@ -122,7 +122,7 @@ function AutoComplete<Item>(props: Props<Item>) {
             selectedItem={value || null}
             onInputValueChange={i => setInput(i)}
             onStateChange={handleStateChange}
-            itemToString={item => (item ? item.value : '')}
+            itemToString={(item: Item | null) => (item ? itemToString(item) : '')}
         >
             {helpers => (
                 <Style {...helpers.getRootProps()}>
