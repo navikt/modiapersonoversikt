@@ -20,6 +20,7 @@ import { FeatureToggles } from '../../../../../components/featureToggle/toggleID
 import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 import { Diskresjonskoder } from '../../../../../konstanter';
+import { isNotFound } from '../../../../../rest/utils/restResource';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -71,17 +72,20 @@ function LeggTilbakeFeilmelding(props: { status: FortsettDialogPanelState }) {
 }
 function useGyldigTemagruppeListe() {
     const personinformasjon = useRestResource(resources => resources.personinformasjon).resource;
+    const kontorinformasjon = useRestResource(resources => resources.brukersNavKontor).resource;
     const sosialFT = useFeatureToggle(FeatureToggles.Sosial);
 
     const temagrupper = sosialFT.isOn ? TemaLeggTilbake : TemaPlukkbare;
-    const bevarOksos =
+
+    const manglerNavKontor = isNotFound(kontorinformasjon);
+    const erKode6 =
         isLoadedPerson(personinformasjon) &&
-        personinformasjon.data.diskresjonskode?.kodeRef !== Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE;
-    if (bevarOksos) {
-        return temagrupper;
-    } else {
+        personinformasjon.data.diskresjonskode?.kodeRef === Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE;
+
+    if (manglerNavKontor || erKode6) {
         return temagrupper.filter(temagruppe => temagruppe !== Temagruppe.ØkonomiskSosial);
     }
+    return temagrupper;
 }
 
 function LeggTilbakepanel(props: Props) {
