@@ -94,7 +94,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                     props.form.actions.settValgtAnsatt(ansatt);
                 }}
                 value={props.form.state.valgtAnsatt}
-                itemToString={ansatt => `${ansatt?.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
+                itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
                 label={'Velg ansatt'}
                 suggestions={ansattliste.ansatte}
                 spinner={ansattliste.pending}
