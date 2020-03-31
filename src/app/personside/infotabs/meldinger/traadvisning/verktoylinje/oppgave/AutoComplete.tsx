@@ -52,7 +52,7 @@ const InputfeltWrapper = styled.div`
 interface Props<Item> {
     setValue: (value: Item) => void;
     value?: Item;
-    itemToString: (item: Item | null) => string;
+    itemToString: (item: Item) => string;
     label: string;
     suggestions: Item[];
     topSuggestions?: Item[];
@@ -122,7 +122,7 @@ function AutoComplete<Item>(props: Props<Item>) {
             selectedItem={value || null}
             onInputValueChange={i => setInput(i)}
             onStateChange={handleStateChange}
-            itemToString={(item: Item) => (item ? itemToString(item) : '')}
+            itemToString={item => (item ? item.value : '')}
         >
             {helpers => (
                 <Style {...helpers.getRootProps()}>
