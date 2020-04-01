@@ -3,8 +3,9 @@ import { useFødselsnummer } from '../../../../../../../utils/customHooks';
 import { useEffect, useMemo, useState } from 'react';
 import { Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
-import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
+import { includeCredentials } from '../../../../../../../api/config';
 
+const superHackyBaseApi = '/modiapersonoversikt-api/rest';
 function useForeslatteEnheter(form: OppgaveSkjemaForm) {
     const fnr = useFødselsnummer();
     const [foreslatteEnheter, setForeslatteEnheter] = useState<Enhet[]>([]);
@@ -28,7 +29,7 @@ function useForeslatteEnheter(form: OppgaveSkjemaForm) {
 
         setPending(true);
         loggEvent('Fetch', 'LagOppgave-ForeslåtteEnheter');
-        fetch(`${apiBaseUri}/enheter/oppgavebehandlere/foreslatte?${queryParams}`, includeCredentials)
+        fetch(`${superHackyBaseApi}/enheter/oppgavebehandlere/foreslatte?${queryParams}`, includeCredentials)
             .then(response => response.json())
             .then(setForeslatteEnheter)
             .catch(e => loggError(e, 'Feil ved henting av foreslåtte enheter'))
