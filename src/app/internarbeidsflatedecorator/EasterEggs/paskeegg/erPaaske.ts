@@ -7,8 +7,6 @@ export function erPaaske() {
     const year = date.year();
 
     switch (year) {
-        case 2020:
-            return day >= 5 && day <= 13 && month === 3;
         case 2021:
             return (day >= 28 && month === 2) || (day <= 5 && month === 3);
         case 2022:
