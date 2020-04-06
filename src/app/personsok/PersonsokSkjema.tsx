@@ -11,78 +11,11 @@ import {
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { loggPersonsok } from './loggPersonsok';
 import { apiBaseUri, postConfig } from '../../api/config';
-import { fetchToJson } from '../../utils/fetchToJson';
-import { loggError, loggWarning } from '../../utils/logger/frontendLogger';
+import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
+import { PersonSokFormState, PersonsokSkjemaProps, lagRequest } from './personsokUtils';
 
-export type PersonSokFormState = {
-    fornavn: string;
-    etternavn: string;
-    gatenavn: string;
-    husnummer: string;
-    husbokstav: string;
-    postnummer: string;
-    kontonummer: string;
-    kommunenummer: string;
-    fodselsdatoFra?: string;
-    fodselsdatoTil?: string;
-    alderFra: string;
-    alderTil: string;
-    kjonn: string;
-};
-
-export interface PersonsokSkjemaProps {
-    state: PersonSokFormState;
-    actions: {
-        settFornavn(fornavn: string): void;
-        settEtternavn(etternavn: string): void;
-        settGatenavn(gatenavn: string): void;
-        settHusnummer(husnummer: string): void;
-        settHusbokstav(husbokstav: string): void;
-        settPostnummer(postnummer: string): void;
-        settKontonummer(kontonummer: string): void;
-        settKommunenummer(kommunenummer: string): void;
-        settFodselsdatoFra(fodselsdatoFra: string | undefined): void;
-        settFodselsdatoTil(fodselsdatoTil: string | undefined): void;
-        settAlderFra(alderFra: string): void;
-        settAlderTil(alderTil: string): void;
-        settKjonn(kjonn: string): void;
-    };
-    valideringsResultat: ValideringsResultat<PersonSokFormState>;
-}
-
-function stringToNumber(input: string): number | undefined {
-    if (input.length === 0) {
-        return undefined;
-    }
-    return parseInt(input);
-}
-
-function emptyString(input: string): string | undefined {
-    if (input.length === 0) {
-        return undefined;
-    }
-    return input;
-}
-
-function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
-    return {
-        fornavn: emptyString(form.state.fornavn),
-        etternavn: emptyString(form.state.etternavn),
-        gatenavn: emptyString(form.state.gatenavn),
-        husnummer: stringToNumber(form.state.husnummer),
-        husbokstav: emptyString(form.state.husbokstav),
-        postnummer: emptyString(form.state.postnummer),
-        kontonummer: emptyString(form.state.kontonummer),
-        kommunenummer: emptyString(form.state.kommunenummer),
-        fodselsdatoFra: form.state.fodselsdatoFra,
-        fodselsdatoTil: form.state.fodselsdatoTil,
-        alderFra: stringToNumber(form.state.alderFra),
-        alderTil: stringToNumber(form.state.alderTil),
-        kjonn: emptyString(form.state.kjonn)
-    };
-}
 interface Props {
-    setResponse: (response: PersonsokResponse) => void;
+    setResponse: (response: FetchResponse<PersonsokResponse>) => void;
 }
 
 function PersonsokSkjema(props: Props) {
@@ -149,14 +82,9 @@ function PersonsokSkjema(props: Props) {
             settValideringsresultat(getValidPersonSokState());
             const request: PersonsokRequest = lagRequest(formState);
             const uri = `${apiBaseUri}/personsok`;
-            fetchToJson<PersonsokResponse>(uri, postConfig(request))
-                .then(personsokResponse => props.setResponse(personsokResponse))
-                .catch(error => {
-                    if ([400].includes(error.statusCode)) {
-                        loggWarning(new Error('Søket fikk over 200 treff'));
-                    }
-                    loggError(new Error('Noe gikk galt'));
-                });
+            fetchToJson<PersonsokResponse>(uri, postConfig(request)).then(response => {
+                props.setResponse(response);
+            });
             loggPersonsok(request);
         } else {
             settValideringsresultat(valideringsResultat);

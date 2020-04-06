@@ -8,6 +8,7 @@ import theme from '../../styles/personOversiktTheme';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import useListener from '../../utils/hooks/use-listener';
 import { PersonsokResponse } from '../../models/person/personsok';
+import { FetchResponse } from '../../utils/fetchToJson';
 
 const StyledModalWrapper = styled(ModalWrapper)`
     &.modal {
@@ -23,7 +24,8 @@ function PersonsokContainer() {
     const [apen, settApen] = useState(false);
     const listener = useCallback(() => settApen(a => !a), [settApen]);
     useListener('#toggle-personsok', 'click', listener, document.querySelector('dekorator'));
-    const [response, setResponse] = useState<PersonsokResponse | undefined>(undefined);
+    const [response, setResponse] = useState<FetchResponse<PersonsokResponse> | undefined>(undefined);
+
     return (
         <StyledModalWrapper contentLabel="Avansert søk" onRequestClose={() => settApen(false)} isOpen={apen}>
             <TittelStyle>Avansert Søk</TittelStyle>

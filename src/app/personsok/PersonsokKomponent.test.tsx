@@ -8,8 +8,8 @@ test('viser personsøk-komponent', () => {
     const personsokKomponent = renderer.create(
         <TestProvider>
             <>
-                <PersonsokSkjema />
-                <PersonsokResultat onClose={() => {}} />
+                <PersonsokSkjema setResponse={() => {}} />
+                <PersonsokResultat response={undefined} onClose={() => {}} />
             </>
         </TestProvider>
     );

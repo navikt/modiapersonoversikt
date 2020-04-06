@@ -5,10 +5,11 @@ import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper'
 import Sokeresultat from './Sokeresultat';
 import { usePostResource } from '../../rest/consumer/usePostResource';
 import { PersonsokResponse } from '../../models/person/personsok';
+import { FetchResponse } from '../../utils/fetchToJson';
 
 interface Props {
     onClose: () => void;
-    response?: PersonsokResponse;
+    response?: FetchResponse<PersonsokResponse>;
 }
 
 function PersonsokResultat(props: Props) {

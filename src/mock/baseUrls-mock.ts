@@ -10,6 +10,10 @@ export function mockBaseUrls(): BaseUrlsResponse {
             {
                 key: 'personforvalter',
                 url: 'https://person-forvalter.nais.preprod.local/'
+            },
+            {
+                key: 'drek',
+                url: 'https://drek.nais.preprod.local/'
             }
         ]
     };

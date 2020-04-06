@@ -267,7 +267,9 @@ function setupGeografiskTilknytningMock(mock: FetchMock) {
 function setupPersonsokMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/personsok',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => mockPersonsokResponse(mockStaticPersonsokRequest()))
+        withDelayedResponse(randomDelay(), STATUS_BAD_REQUEST, () =>
+            mockPersonsokResponse(mockStaticPersonsokRequest())
+        )
     );
 }
 

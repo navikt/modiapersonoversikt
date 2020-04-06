@@ -22,7 +22,7 @@ class PersonsokStandAloneKomponent extends React.PureComponent {
                 <Provider store={store}>
                     <>
                         <PersonsokSkjema setResponse={() => null} />
-                        <PersonsokResultat onClose={() => {}} />
+                        <PersonsokResultat response={undefined} onClose={() => {}} />
                     </>
                 </Provider>
             </ErrorBoundary>

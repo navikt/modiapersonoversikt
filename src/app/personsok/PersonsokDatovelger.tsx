@@ -3,10 +3,10 @@ import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import styled from 'styled-components/macro';
 import { useRef, useState } from 'react';
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
-import { PersonsokSkjemaProps } from './PersonsokSkjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { pxToRem } from '../../styles/personOversiktTheme';
 import useBoundingRect from '../../utils/hooks/use-bounding-rect';
+import { PersonsokSkjemaProps } from './personsokUtils';
 
 const DatovelgerStyle = styled.div<{ top: number; left: number }>`
     margin-right: 0.5em;

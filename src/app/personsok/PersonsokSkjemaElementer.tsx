@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { PersonsokSkjemaProps } from './PersonsokSkjema';
 import styled from 'styled-components/macro';
 import { Input } from 'nav-frontend-skjema';
 import { ChangeEvent } from 'react';
@@ -11,6 +10,7 @@ import theme from '../../styles/personOversiktTheme';
 import { Systemtittel } from 'nav-frontend-typografi';
 import LenkeDrek from './LenkeDrek';
 import PersonsokDatovelger from './PersonsokDatovelger';
+import { PersonsokSkjemaProps } from './personsokUtils';
 
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
