@@ -108,7 +108,7 @@ export function ascendingDateComparator(a: Date | string, b: Date | string) {
     const dateA = moment(a);
     const dateB = moment(b);
     if (!dateA.isValid() || !dateB.isValid()) {
-        loggError(Error('Invalid date in date comparator'));
+        loggError(Error('Invalid date in date comparator'), undefined, { datoA: a, datoB: b });
     }
     return +dateA - +dateB;
 }

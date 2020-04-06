@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
-import { PersonsokRequest } from '../../models/person/personsok';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../redux/reducers';
+import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 import PersonsokSkjemaElementer from './PersonsokSkjemaElementer';
 import { ValideringsResultat } from '../../utils/forms/FormValidator';
 import {
@@ -12,6 +10,9 @@ import {
 } from './personsokValidator';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { loggPersonsok } from './loggPersonsok';
+import { apiBaseUri, postConfig } from '../../api/config';
+import { fetchToJson } from '../../utils/fetchToJson';
+import { loggError, loggWarning } from '../../utils/logger/frontendLogger';
 
 export type PersonSokFormState = {
     fornavn: string;
@@ -80,10 +81,11 @@ function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
         kjonn: emptyString(form.state.kjonn)
     };
 }
+interface Props {
+    setResponse: (response: PersonsokResponse) => void;
+}
 
-function PersonsokSkjema() {
-    const dispatch = useDispatch();
-    const personsokResource = useSelector((state: AppState) => state.restResources.personsok);
+function PersonsokSkjema(props: Props) {
     const [fornavn, settFornavn] = useState<string>('');
     const [etternavn, settEtternavn] = useState<string>('');
     const [gatenavn, settGatenavn] = useState<string>('');
@@ -101,7 +103,6 @@ function PersonsokSkjema() {
         getValidPersonSokState()
     );
     const [minimumsKriterierOppfylt, setMinimumsKriterierOppfylt] = useState<boolean>(true);
-
     const formState: PersonsokSkjemaProps = {
         state: {
             fornavn,
@@ -147,8 +148,16 @@ function PersonsokSkjema() {
         if (valideringsResultat.formErGyldig) {
             settValideringsresultat(getValidPersonSokState());
             const request: PersonsokRequest = lagRequest(formState);
+            const uri = `${apiBaseUri}/personsok`;
+            fetchToJson<PersonsokResponse>(uri, postConfig(request))
+                .then(personsokResponse => props.setResponse(personsokResponse))
+                .catch(error => {
+                    if ([400].includes(error.statusCode)) {
+                        loggWarning(new Error('Søket fikk over 200 treff'));
+                    }
+                    loggError(new Error('Noe gikk galt'));
+                });
             loggPersonsok(request);
-            dispatch(personsokResource.actions.post(request));
         } else {
             settValideringsresultat(valideringsResultat);
         }

@@ -4,9 +4,11 @@ import NavFrontendSpinner from 'nav-frontend-spinner';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Sokeresultat from './Sokeresultat';
 import { usePostResource } from '../../rest/consumer/usePostResource';
+import { PersonsokResponse } from '../../models/person/personsok';
 
 interface Props {
     onClose: () => void;
+    response?: PersonsokResponse;
 }
 
 function PersonsokResultat(props: Props) {
