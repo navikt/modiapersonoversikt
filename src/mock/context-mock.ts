@@ -61,7 +61,7 @@ export function setupWsControlAndMock(mock: FetchMock) {
 
     mock.get('/modiacontextholder/api/decorator', me);
 
-    mock.get('/aktoerregister/api/v1/identer', args => {
+    mock.get('https://app-q0.adeo.no/aktoerregister/api/v1/identer', args => {
         const fnr = (args.init!.headers! as Record<string, string>)['Nav-Personidenter'];
         return {
             [fnr]: {
