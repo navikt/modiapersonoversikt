@@ -11,7 +11,16 @@ export const enheter = [
     { enhetId: '0602', navn: 'NAV Drammer' }
 ];
 
+class VoidWebSocket {
+    addEventListener() {}
+    removeEventListener() {}
+    send() {}
+    close() {}
+}
+
 export function setupWsControlAndMock(mock: FetchMock) {
+    (window as any).WebSocket = VoidWebSocket;
+
     mock.post('/modiacontextholder/api/context', ({ body }) => {
         if (body.eventType === 'NY_AKTIV_ENHET') {
             context.aktivEnhet = body.verdi;
