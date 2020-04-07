@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { RestEndepunkter } from '../../redux/restReducers/restReducers';
 import { useAppState, useOnMount } from '../../utils/customHooks';
 import {
@@ -14,6 +14,7 @@ import {
 } from '../utils/restResource';
 import Placeholder, { RestResourcePlaceholderProps } from './placeholder';
 import { useDispatch } from 'react-redux';
+import { guid } from 'nav-frontend-js-utils';
 
 export type UseRestResource<T> = {
     resource: RestResource<T>;
@@ -34,6 +35,7 @@ export function useRestResource<T>(
 ): UseRestResource<T> {
     const resource = useAppState(state => selector(state.restResources));
     const dispatch = useDispatch();
+    const placeholderKey = useRef(placeholderProps?.placeholderKey ?? guid());
 
     useOnMount(() => {
         if (isNotStarted(resource) && autoFetch) {
@@ -44,7 +46,9 @@ export function useRestResource<T>(
     return {
         resource: resource,
         data: hasData(resource) ? resource.data : undefined,
-        placeholder: <Placeholder restResource={resource} placeholderProps={placeholderProps} />,
+        placeholder: (
+            <Placeholder restResource={resource} placeholderProps={placeholderProps} key={placeholderKey.current} />
+        ),
         actions: resource.actions,
         isLoading: isLoading(resource),
         isReloading: isReloading(resource),
