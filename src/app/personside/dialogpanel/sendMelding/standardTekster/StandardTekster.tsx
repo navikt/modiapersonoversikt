@@ -198,8 +198,7 @@ function StandardTekster(props: Props) {
                     label="Søk etter standardtekster"
                     autoFocus={true}
                     id={sokeFeltId.current}
-                    // @ts-ignore
-                    autocomplete="off"
+                    autoComplete="off"
                 />
                 <HjelpetekstUnderVenstre id={hjelpetekstID.current}>
                     Filtrer på tags ved å skrive "#eksempel" + mellomrom
