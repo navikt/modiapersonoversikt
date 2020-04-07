@@ -68,10 +68,3 @@ export function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
         kjonn: emptyString(form.state.kjonn)
     };
 }
-
-export enum PersonsokTypes {
-    NOT_STARTED,
-    POSTING,
-    ERROR,
-    FINISHED
-}

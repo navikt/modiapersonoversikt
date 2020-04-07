@@ -84,9 +84,7 @@ function PersonsokSkjema(props: Props) {
             settValideringsresultat(getValidPersonSokState());
 
             const request: PersonsokRequest = lagRequest(formState);
-            const uri = `${apiBaseUri}/personsok`;
-
-            fetchToJson<PersonsokResponse[]>(uri, postConfig(request))
+            fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok`, postConfig(request))
                 .then(response => {
                     props.setPosting(false);
                     props.setResponse(response);

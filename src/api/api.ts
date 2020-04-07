@@ -23,7 +23,7 @@ export function post(uri: string, body: object | string, loggLocation: string) {
     });
 }
 
-export function parseResponse(response: Response): Promise<object> {
+function parseResponse(response: Response): Promise<object> {
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.indexOf('application/json') !== -1) {
         return response.json();
