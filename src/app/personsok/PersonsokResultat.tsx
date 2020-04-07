@@ -1,43 +1,40 @@
 import * as React from 'react';
-import { isFailedPosting, isFinishedPosting, isNotStartedPosting, isPosting } from '../../rest/utils/postResource';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Sokeresultat from './Sokeresultat';
-import { usePostResource } from '../../rest/consumer/usePostResource';
 import { PersonsokResponse } from '../../models/person/personsok';
-import { FetchResponse } from '../../utils/fetchToJson';
+import { FetchResponse, hasError } from '../../utils/fetchToJson';
 
 interface Props {
     onClose: () => void;
-    response?: FetchResponse<PersonsokResponse>;
+    response?: FetchResponse<PersonsokResponse[]>;
+    posting: boolean;
 }
 
 function PersonsokResultat(props: Props) {
-    const personsokResource = usePostResource(resources => resources.personsok);
-
-    if (isNotStartedPosting(personsokResource)) {
+    if (!props.response) {
         return null;
     }
 
-    if (isPosting(personsokResource)) {
+    if (props.posting) {
         return <NavFrontendSpinner />;
     }
 
-    if (isFailedPosting(personsokResource)) {
-        return <AlertStripeAdvarsel>{personsokResource.error}</AlertStripeAdvarsel>;
+    if (props.response.status === 400) {
+        return <AlertStripeAdvarsel>Søket gav mer enn 200 treff. Forsøk å begrense søket</AlertStripeAdvarsel>;
     }
 
-    if (!isFinishedPosting(personsokResource)) {
+    if (hasError(props.response)) {
         return <AlertStripeAdvarsel>Noe gikk galt</AlertStripeAdvarsel>;
     }
 
-    const response = personsokResource.response;
+    const data = props.response.data;
 
-    if (response.length === 0) {
+    if (data.length === 0) {
         return <AlertStripeInfo>Søket ga ingen treff</AlertStripeInfo>;
     }
 
-    return <Sokeresultat onClose={props.onClose} response={response} />;
+    return <Sokeresultat onClose={props.onClose} response={data} />;
 }
 
 export default PersonsokResultat;

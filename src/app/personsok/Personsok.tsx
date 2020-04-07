@@ -24,13 +24,13 @@ function PersonsokContainer() {
     const [apen, settApen] = useState(false);
     const listener = useCallback(() => settApen(a => !a), [settApen]);
     useListener('#toggle-personsok', 'click', listener, document.querySelector('dekorator'));
-    const [response, setResponse] = useState<FetchResponse<PersonsokResponse> | undefined>(undefined);
-
+    const [response, setResponse] = useState<FetchResponse<PersonsokResponse[]> | undefined>(undefined);
+    const [posting, setPosting] = useState(false);
     return (
         <StyledModalWrapper contentLabel="Avansert søk" onRequestClose={() => settApen(false)} isOpen={apen}>
             <TittelStyle>Avansert Søk</TittelStyle>
-            <PersonsokSkjema setResponse={setResponse} />
-            <PersonsokResultat response={response} onClose={() => settApen(false)} />
+            <PersonsokSkjema setPosting={setPosting} setResponse={setResponse} />
+            <PersonsokResultat posting={posting} response={response} onClose={() => settApen(false)} />
         </StyledModalWrapper>
     );
 }

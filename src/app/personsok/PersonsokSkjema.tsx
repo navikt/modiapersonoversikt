@@ -9,13 +9,14 @@ import {
     validerPersonsokSkjema
 } from './personsokValidator';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { loggPersonsok } from './loggPersonsok';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
 import { PersonSokFormState, PersonsokSkjemaProps, lagRequest } from './personsokUtils';
+import { loggError } from '../../utils/logger/frontendLogger';
 
 interface Props {
-    setResponse: (response: FetchResponse<PersonsokResponse>) => void;
+    setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
+    setPosting: (posting: boolean) => void;
 }
 
 function PersonsokSkjema(props: Props) {
@@ -79,13 +80,20 @@ function PersonsokSkjema(props: Props) {
         setMinimumsKriterierOppfylt(true);
         const valideringsResultat = validerPersonsokSkjema(formState.state);
         if (valideringsResultat.formErGyldig) {
+            props.setPosting(true);
             settValideringsresultat(getValidPersonSokState());
+
             const request: PersonsokRequest = lagRequest(formState);
             const uri = `${apiBaseUri}/personsok`;
-            fetchToJson<PersonsokResponse>(uri, postConfig(request)).then(response => {
-                props.setResponse(response);
-            });
-            loggPersonsok(request);
+
+            fetchToJson<PersonsokResponse[]>(uri, postConfig(request))
+                .then(response => {
+                    props.setPosting(false);
+                    props.setResponse(response);
+                })
+                .catch(() => {
+                    loggError(Error('Noe gikk galt - Personsøk'));
+                });
         } else {
             settValideringsresultat(valideringsResultat);
         }

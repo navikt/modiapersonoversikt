@@ -21,8 +21,8 @@ class PersonsokStandAloneKomponent extends React.PureComponent {
             <ErrorBoundary boundaryName="Personsøk">
                 <Provider store={store}>
                     <>
-                        <PersonsokSkjema setResponse={() => null} />
-                        <PersonsokResultat response={undefined} onClose={() => {}} />
+                        <PersonsokSkjema setPosting={() => null} setResponse={() => null} />
+                        <PersonsokResultat posting={false} response={undefined} onClose={() => {}} />
                     </>
                 </Provider>
             </ErrorBoundary>
