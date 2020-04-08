@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
-import { PersonsokRequest } from '../../models/person/personsok';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../redux/reducers';
+import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 import PersonsokSkjemaElementer from './PersonsokSkjemaElementer';
 import { ValideringsResultat } from '../../utils/forms/FormValidator';
 import {
@@ -11,79 +9,17 @@ import {
     validerPersonsokSkjema
 } from './personsokValidator';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { loggPersonsok } from './loggPersonsok';
+import { apiBaseUri, postConfig } from '../../api/config';
+import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
+import { PersonSokFormState, PersonsokSkjemaProps, lagRequest } from './personsokUtils';
+import { loggError } from '../../utils/logger/frontendLogger';
 
-export type PersonSokFormState = {
-    fornavn: string;
-    etternavn: string;
-    gatenavn: string;
-    husnummer: string;
-    husbokstav: string;
-    postnummer: string;
-    kontonummer: string;
-    kommunenummer: string;
-    fodselsdatoFra?: string;
-    fodselsdatoTil?: string;
-    alderFra: string;
-    alderTil: string;
-    kjonn: string;
-};
-
-export interface PersonsokSkjemaProps {
-    state: PersonSokFormState;
-    actions: {
-        settFornavn(fornavn: string): void;
-        settEtternavn(etternavn: string): void;
-        settGatenavn(gatenavn: string): void;
-        settHusnummer(husnummer: string): void;
-        settHusbokstav(husbokstav: string): void;
-        settPostnummer(postnummer: string): void;
-        settKontonummer(kontonummer: string): void;
-        settKommunenummer(kommunenummer: string): void;
-        settFodselsdatoFra(fodselsdatoFra: string | undefined): void;
-        settFodselsdatoTil(fodselsdatoTil: string | undefined): void;
-        settAlderFra(alderFra: string): void;
-        settAlderTil(alderTil: string): void;
-        settKjonn(kjonn: string): void;
-    };
-    valideringsResultat: ValideringsResultat<PersonSokFormState>;
+interface Props {
+    setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
+    setPosting: (posting: boolean) => void;
 }
 
-function stringToNumber(input: string): number | undefined {
-    if (input.length === 0) {
-        return undefined;
-    }
-    return parseInt(input);
-}
-
-function emptyString(input: string): string | undefined {
-    if (input.length === 0) {
-        return undefined;
-    }
-    return input;
-}
-
-function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
-    return {
-        fornavn: emptyString(form.state.fornavn),
-        etternavn: emptyString(form.state.etternavn),
-        gatenavn: emptyString(form.state.gatenavn),
-        husnummer: stringToNumber(form.state.husnummer),
-        husbokstav: emptyString(form.state.husbokstav),
-        postnummer: emptyString(form.state.postnummer),
-        kontonummer: emptyString(form.state.kontonummer),
-        kommunenummer: emptyString(form.state.kommunenummer),
-        fodselsdatoFra: form.state.fodselsdatoFra,
-        fodselsdatoTil: form.state.fodselsdatoTil,
-        alderFra: stringToNumber(form.state.alderFra),
-        alderTil: stringToNumber(form.state.alderTil),
-        kjonn: emptyString(form.state.kjonn)
-    };
-}
-
-function PersonsokSkjema() {
-    const dispatch = useDispatch();
-    const personsokResource = useSelector((state: AppState) => state.restResources.personsok);
+function PersonsokSkjema(props: Props) {
     const [fornavn, settFornavn] = useState<string>('');
     const [etternavn, settEtternavn] = useState<string>('');
     const [gatenavn, settGatenavn] = useState<string>('');
@@ -101,7 +37,6 @@ function PersonsokSkjema() {
         getValidPersonSokState()
     );
     const [minimumsKriterierOppfylt, setMinimumsKriterierOppfylt] = useState<boolean>(true);
-
     const formState: PersonsokSkjemaProps = {
         state: {
             fornavn,
@@ -145,10 +80,18 @@ function PersonsokSkjema() {
         setMinimumsKriterierOppfylt(true);
         const valideringsResultat = validerPersonsokSkjema(formState.state);
         if (valideringsResultat.formErGyldig) {
+            props.setPosting(true);
             settValideringsresultat(getValidPersonSokState());
+
             const request: PersonsokRequest = lagRequest(formState);
-            loggPersonsok(request);
-            dispatch(personsokResource.actions.post(request));
+            fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok`, postConfig(request))
+                .then(response => {
+                    props.setPosting(false);
+                    props.setResponse(response);
+                })
+                .catch(() => {
+                    loggError(Error('Noe gikk galt - Personsøk'));
+                });
         } else {
             settValideringsresultat(valideringsResultat);
         }
