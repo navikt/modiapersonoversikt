@@ -26,8 +26,12 @@ function PersonsokContainer() {
     useListener('#toggle-personsok', 'click', listener, document.querySelector('dekorator'));
     const [response, setResponse] = useState<FetchResponse<PersonsokResponse[]> | undefined>(undefined);
     const [posting, setPosting] = useState(false);
+    const handleOnClose = () => {
+        settApen(false);
+        setResponse(undefined);
+    };
     return (
-        <StyledModalWrapper contentLabel="Avansert søk" onRequestClose={() => settApen(false)} isOpen={apen}>
+        <StyledModalWrapper contentLabel="Avansert søk" onRequestClose={handleOnClose} isOpen={apen}>
             <TittelStyle>Avansert Søk</TittelStyle>
             <PersonsokSkjema setPosting={setPosting} setResponse={setResponse} />
             <PersonsokResultat posting={posting} response={response} onClose={() => settApen(false)} />
