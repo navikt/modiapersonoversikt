@@ -7,7 +7,7 @@ interface StyleProps {
     direction?: 'left' | 'right' | 'up' | 'down';
 }
 
-const KnappWrapper = styled.button<StyleProps>`
+export const KnappWrapper = styled.button<StyleProps>`
     width: ${props => props.width || '10%'};
     height: ${props => props.width || '10%'};
     border: none;
@@ -17,7 +17,8 @@ const KnappWrapper = styled.button<StyleProps>`
     background-color: transparent;
     &:hover {
         background-color: #3e3832;
-        svg {
+        svg,
+        g {
             stroke: white;
         }
     }
@@ -27,7 +28,8 @@ const KnappWrapper = styled.button<StyleProps>`
     &:focus {
         ${theme.focus}
     }
-    svg {
+    svg,
+    g {
         stroke: #3e3832;
         stroke-width: 0.4;
         fill: none;
