@@ -10,7 +10,7 @@ enum Typekeys {
     HENT_INNSTILLINGER_ERROR = 'innstillinger/HENT_INNSTILLINGER_ERROR'
 }
 
-interface SaksbehandlerInnstillinger {
+export interface SaksbehandlerInnstillinger {
     sistLagret: string;
     innstillinger: Innstillinger;
 }
