@@ -432,22 +432,12 @@ exports[`Viser Traadliste 1`] = `
           className="c6"
         >
           <p
-            className="typo-normal"
+            className="typo-element"
           >
-            <p
-              className="typo-element"
-            >
-              Henvendelsen er avsluttet uten å svare bruker
-               
-               
-            </p>
+            Henvendelsen er avsluttet uten å svare bruker
+             
+             
           </p>
-          <p
-            className="typo-normal"
-          />
-          <p
-            className="typo-normal"
-          />
         </div>
         <div
           className="c7"
