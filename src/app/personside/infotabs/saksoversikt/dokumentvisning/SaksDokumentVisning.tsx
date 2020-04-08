@@ -6,10 +6,16 @@ import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper'
 import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import { mockSaksdokument, mockSaksdokumentUrl } from '../../../../../mock/saksoversikt/dokument-mock';
+import styled from 'styled-components';
 
 interface Props {
     url: string;
 }
+const ErrorStyle = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
 function DokumentVisning(props: Props) {
     const [errMsg, setErrMsg] = useState('');
@@ -33,7 +39,9 @@ function DokumentVisning(props: Props) {
 
     return (
         <ObjectHttpFeilHandtering type="application/pdf" url={url} width="100%" height="100%" onError={onError}>
-            <AlertStripeAdvarsel>{errMsg}</AlertStripeAdvarsel>
+            <ErrorStyle>
+                <AlertStripeAdvarsel>{errMsg}</AlertStripeAdvarsel>
+            </ErrorStyle>
         </ObjectHttpFeilHandtering>
     );
 }
