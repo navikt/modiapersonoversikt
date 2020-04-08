@@ -1,14 +1,14 @@
-export interface OkStatus<T> {
+interface OkStatus<T> {
     status: number;
     data: T;
 }
-export interface ErrorStatus {
+interface ErrorStatus {
     status: number;
     message: string;
 }
 export type FetchResponse<T> = OkStatus<T> | ErrorStatus;
 export function hasData<T>(data: FetchResponse<T>): data is OkStatus<T> {
-    return data.status >= 200 && data.status < 300;
+    return [200, 201, 202, 203].includes(data.status);
 }
 
 export function hasError<T>(data: FetchResponse<T>): data is ErrorStatus {

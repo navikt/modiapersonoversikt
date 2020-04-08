@@ -25,7 +25,7 @@ function PersonsokResultat(props: Props) {
     }
 
     if (hasError(props.response)) {
-        return <AlertStripeAdvarsel>Noe gikk galt</AlertStripeAdvarsel>;
+        return <AlertStripeAdvarsel>Feil fra søketjeneste: {props.response.message}</AlertStripeAdvarsel>;
     }
 
     const data = props.response.data;
