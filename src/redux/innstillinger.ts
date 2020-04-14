@@ -121,7 +121,7 @@ export const sliceSelector = (state: AppState) => state.innstillinger;
 export function getInnstilling(appState: AppState, key: InnstillingerKeys, defaultValue: string): string {
     const state = sliceSelector(appState);
     if (isOk(state)) {
-        return state.data.innstillinger[key];
+        return state.data.innstillinger[key] || defaultValue;
     } else {
         return defaultValue;
     }
