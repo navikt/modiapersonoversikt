@@ -12,6 +12,7 @@ import { useAppState } from '../../../../../utils/customHooks';
 
 interface Props {
     appendTekst(tekst: string): void;
+    defaultSokefeltValue: string;
 }
 
 const Modal = styled(NavFrontendModal)`
@@ -56,7 +57,7 @@ const Ikon = styled(SvgIkon)`
     width: 18px;
 `;
 
-function StandardTekstModal(props: Props & { defaultSokefeltValue: string }) {
+function StandardTekstModal(props: Props) {
     const [isOpen, setOpen] = React.useState(false);
     const sokefelt = useFieldState(props.defaultSokefeltValue);
     useHotkey({ char: 'c', altKey: true }, () => setOpen(true), [setOpen], 'Standardtekster');
@@ -85,7 +86,7 @@ function StandardTekstModal(props: Props & { defaultSokefeltValue: string }) {
     );
 }
 
-function StandardTekstModalLoader(props: Props) {
+function StandardTekstModalLoader(props: Omit<Props, 'defaultSokefeltValue'>) {
     const erKontaktSenter = useErKontaktsenter();
     const defaultTagsStandardtekster = useAppState(appstate =>
         getInnstilling(appstate, 'defaultTagsStandardtekster', 'na')

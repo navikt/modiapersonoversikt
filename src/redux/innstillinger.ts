@@ -3,6 +3,7 @@ import { STATUS } from '../rest/utils/utils';
 import { assertUnreachable } from '../utils/assertUnreachable';
 import { ThunkAction } from 'redux-thunk';
 import { AppState } from './reducers';
+import { postConfig } from '../api/config';
 
 enum Typekeys {
     HENT_INNSTILLINGER_REQUEST = 'innstillinger/HENT_INNSTILLINGER_REQUEST',
@@ -102,11 +103,10 @@ export function oppdaterInnstillinger(
 ): ThunkAction<Promise<SaksbehandlerInnstillinger>, AppState, null, Actions> {
     return async dispatch => {
         try {
-            const response = await fetch('/modiapersonoversikt-innstillinger/api/innstillinger', {
-                method: 'POST',
-                body: JSON.stringify(innstillinger),
-                credentials: 'include'
-            });
+            const response = await fetch(
+                '/modiapersonoversikt-innstillinger/api/innstillinger',
+                postConfig(innstillinger)
+            );
             const data = await response.json();
             dispatch({ type: Typekeys.HENT_INNSTILLINGER_OK, data });
             return data;
