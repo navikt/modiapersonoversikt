@@ -15,7 +15,7 @@ export interface SaksbehandlerInnstillinger {
     innstillinger: Innstillinger;
 }
 export interface Innstillinger {
-    defaultTagsStandardtekster: string;
+    [key: string]: string;
 }
 export type InnstillingerKeys = keyof Innstillinger;
 
@@ -82,8 +82,15 @@ export function fetchInnstillinger(): ThunkAction<void, AppState, void, Actions>
 
             dispatch({ type: Typekeys.HENT_INNSTILLINGER_REQUEST });
             const response = await fetch('/modiapersonoversikt-innstillinger/api/innstillinger');
-            const data = await response.json();
-            dispatch({ type: Typekeys.HENT_INNSTILLINGER_OK, data });
+            if (!response.ok) {
+                dispatch({
+                    type: Typekeys.HENT_INNSTILLINGER_ERROR,
+                    data: { error: response.statusText, httpStatusCode: response.status }
+                });
+            } else {
+                const data = await response.json();
+                dispatch({ type: Typekeys.HENT_INNSTILLINGER_OK, data });
+            }
         } catch (error) {
             dispatch({ type: Typekeys.HENT_INNSTILLINGER_ERROR, data: error });
         }
@@ -104,7 +111,7 @@ export function oppdaterInnstillinger(
             dispatch({ type: Typekeys.HENT_INNSTILLINGER_OK, data });
             return data;
         } catch (error) {
-            dispatch({ type: Typekeys.HENT_INNSTILLINGER_ERROR, data: error });
+            dispatch({ type: Typekeys.HENT_INNSTILLINGER_ERROR, data: { error } });
             return Promise.reject(error);
         }
     };

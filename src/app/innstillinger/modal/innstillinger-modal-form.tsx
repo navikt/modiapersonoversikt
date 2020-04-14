@@ -31,7 +31,7 @@ const Label = styled.span`
     }
 `;
 
-const initialState: Innstillinger = {
+const defaultInnstillinger: Innstillinger = {
     defaultTagsStandardtekster: 'na'
 };
 const useFormState = useFormstateFactory<Innstillinger>({
@@ -48,12 +48,11 @@ const AutomatiskeTagsLabel = (
     </Label>
 );
 
-function getFormState(innstillinger: Partial<Innstillinger>): Innstillinger {
-    const val = {
-        ...initialState,
+function getFormState(innstillinger: Innstillinger): Innstillinger {
+    return {
+        ...defaultInnstillinger,
         ...innstillinger
     };
-    return val;
 }
 
 interface Props extends ReturnType<typeof mapDispatchToProps> {
