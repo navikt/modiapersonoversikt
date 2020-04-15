@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     Varsel as VarselModell,
     Varseltype,
-    UnifiedVarsel,
+    UnifiedVarsel as UnifiedVarselModell,
     DittNavEvent,
     isDittNavEvent
 } from '../../../../models/varsel';
@@ -98,7 +98,7 @@ function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
     );
 }
 
-function VarselVarsel({ varsel }: { varsel: VarselModell }) {
+function Varsel({ varsel }: { varsel: VarselModell }) {
     const open = useAppState(state => state.varsler.aapneVarsler).includes(varsel);
     const dispatch = useDispatch();
     const setOpen = (open: boolean) => dispatch(toggleVisVarsel(varsel, open));
@@ -144,11 +144,11 @@ function VarselVarsel({ varsel }: { varsel: VarselModell }) {
     );
 }
 
-function Varsel({ varsel }: { varsel: UnifiedVarsel }) {
+function UnifiedVarsel({ varsel }: { varsel: UnifiedVarselModell }) {
     if (isDittNavEvent(varsel)) {
         return <DittNavEventVarsel varsel={varsel} />;
     }
-    return <VarselVarsel varsel={varsel} />;
+    return <Varsel varsel={varsel} />;
 }
 
-export default React.memo(Varsel);
+export default React.memo(UnifiedVarsel);
