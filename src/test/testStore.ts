@@ -15,7 +15,7 @@ import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
 import { getStaticMockSaksoversikt } from '../mock/saksoversikt/saksoversikt-mock';
-import { statiskVarselMock } from '../mock/varsler/statiskVarselMock';
+import { statiskDittnavEventVarselMock, statiskVarselMock } from '../mock/varsler/statiskVarselMock';
 import setGjeldendeBrukerIRedux from '../redux/gjeldendeBruker/actions';
 import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
@@ -80,6 +80,12 @@ export function setupFetchCache() {
         } as RequestInit);
 
     cache.putResolved(createCacheKey(`${apiBaseUri}/varsler/${aremark.fødselsnummer}`), statiskVarselMock);
-    cache.putResolved(createCacheKey(`/dittnav-eventer-modia/fetch/oppgave/all`, fnrheader(aremark.fødselsnummer)), []);
-    cache.putResolved(createCacheKey(`/dittnav-eventer-modia/fetch/beskjed/all`, fnrheader(aremark.fødselsnummer)), []);
+    cache.putResolved(
+        createCacheKey(`/dittnav-eventer-modia/fetch/oppgave/all`, fnrheader(aremark.fødselsnummer)),
+        statiskDittnavEventVarselMock
+    );
+    cache.putResolved(
+        createCacheKey(`/dittnav-eventer-modia/fetch/beskjed/all`, fnrheader(aremark.fødselsnummer)),
+        statiskDittnavEventVarselMock
+    );
 }

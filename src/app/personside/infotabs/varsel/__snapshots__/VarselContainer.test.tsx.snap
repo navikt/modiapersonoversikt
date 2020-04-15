@@ -382,6 +382,70 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
         </ol>
       </article>
     </li>
+    <li
+      className="c3"
+    >
+      <article
+        aria-labelledby="Helt tilfeldig ID"
+      >
+        <div
+          className="c4"
+        >
+          <p
+            className="typo-normal"
+          >
+            01.03.2018
+          </p>
+          <h4
+            className="typo-element"
+            id="Helt tilfeldig ID"
+          >
+            Tekst her
+          </h4>
+          <ul
+            aria-label="Kommunikasjonskanaler"
+            className="c5"
+          >
+            <li>
+              DITT_NAV 
+              
+            </li>
+          </ul>
+        </div>
+      </article>
+    </li>
+    <li
+      className="c3"
+    >
+      <article
+        aria-labelledby="Helt tilfeldig ID"
+      >
+        <div
+          className="c4"
+        >
+          <p
+            className="typo-normal"
+          >
+            01.03.2018
+          </p>
+          <h4
+            className="typo-element"
+            id="Helt tilfeldig ID"
+          >
+            Tekst her
+          </h4>
+          <ul
+            aria-label="Kommunikasjonskanaler"
+            className="c5"
+          >
+            <li>
+              DITT_NAV 
+              
+            </li>
+          </ul>
+        </div>
+      </article>
+    </li>
   </ol>
 </div>
 `;
