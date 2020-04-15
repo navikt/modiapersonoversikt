@@ -1,6 +1,7 @@
 import { applyMiddleware, createStore, Dispatch, Store } from 'redux';
-import reducers, { AppState } from '../redux/reducers';
 import thunkMiddleware from 'redux-thunk';
+import { cache, createCacheKey } from '@nutgaard/use-fetch';
+import reducers, { AppState } from '../redux/reducers';
 import { aremark } from '../mock/person/aremark';
 import { getPerson } from '../mock/person/personMock';
 import { getMockNavKontor } from '../mock/navkontor-mock';
@@ -26,6 +27,7 @@ import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
 import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUtbetalingRespons';
 import { SaksbehandlerRoller } from '../utils/RollerUtils';
+import { apiBaseUri } from '../api/config';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -62,5 +64,22 @@ export function getTestStore(): Store<AppState> {
     dispatch(restResources.pleiepenger.actions.setData({ pleiepenger: [pleiepengerTestData] }));
     dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));
     dispatch(restResources.sykepenger.actions.setData({ sykepenger: [statiskSykepengerMock] }));
+
+    setupFetchCache();
+
     return testStore;
+}
+
+export function setupFetchCache() {
+    const fnrheader = (fnr: string) =>
+        ({
+            credentials: 'include',
+            headers: {
+                fodselsnummer: fnr
+            }
+        } as RequestInit);
+
+    cache.putResolved(createCacheKey(`${apiBaseUri}/varsler/${aremark.fødselsnummer}`), statiskVarselMock);
+    cache.putResolved(createCacheKey(`/dittnav-eventer-modia/fetch/oppgave/all`, fnrheader(aremark.fødselsnummer)), []);
+    cache.putResolved(createCacheKey(`/dittnav-eventer-modia/fetch/beskjed/all`, fnrheader(aremark.fødselsnummer)), []);
 }

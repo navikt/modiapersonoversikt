@@ -112,10 +112,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   margin-right: 0.5em;
 }
 
-.c0 {
-  padding: .5rem;
-}
-
 .c1 {
   border-radius: 0.25rem;
   background-color: white;
@@ -145,6 +141,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 
 .c2 > * {
   margin-top: 0.5rem;
+}
+
+.c0 {
+  padding: .5rem;
 }
 
 <div
