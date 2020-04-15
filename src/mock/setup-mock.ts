@@ -38,6 +38,7 @@ import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
 import Cookies from 'js-cookie';
 import { saksbehandlerCookieNavnPrefix } from '../redux/session/saksbehandlersEnhetCookieUtils';
 import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
+import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinger-mock';
 import { failurerateMiddleware } from './utils/failureMiddleware';
 
 const STATUS_OK = () => 200;
@@ -590,4 +591,5 @@ export function setupMock() {
     setupVelgEnhetMock(mock);
     setUpSaksbehandlersEnheterMock(mock);
     setupAvsluttOppgaveGosysMock(mock);
+    setupSaksbehandlerInnstillingerMock(mock);
 }

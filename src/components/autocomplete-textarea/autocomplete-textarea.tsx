@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useCallback, useState } from 'react';
 import { Textarea, TextareaProps } from 'nav-frontend-skjema';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import classNames from 'classnames';
 import {
     autofullfor,
     AutofullforData,
@@ -13,9 +14,8 @@ import * as StandardTeksterModels from '../../app/personside/dialogpanel/sendMel
 import styled from 'styled-components/macro';
 import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
 import { guid } from 'nav-frontend-js-utils';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/logger/frontendLogger';
-import theme from '../../styles/personOversiktTheme';
 import { useErKontaktsenter } from '../../utils/enheterUtils';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 import useFetch, { FetchResult, hasData } from '@nutgaard/use-fetch';
@@ -237,21 +237,14 @@ function autoFullfør(autofullførData: AutofullforData, parsedText: string) {
     return fullfortTekst;
 }
 
-const TegnIgjenStyle = styled(Normaltekst)<{ feil: boolean }>`
-    text-align: right;
-    font-style: italic;
-    color: ${props => (props.feil ? theme.color.redError : theme.color.navGra60)};
-`;
-
-function TegnIgjen(props: { maxLength?: number; text: string }) {
-    if (!props.maxLength) {
-        return null;
-    }
-
+const tellerTekstCls = (remaining: number) => classNames('teller-tekst', { 'teller-tekst--overflow': remaining < 0 });
+function noAriaTellerTekst(antallTegn: number, maxLength: number) {
+    const difference = maxLength - antallTegn;
     return (
-        <TegnIgjenStyle feil={props.text.length > props.maxLength}>
-            Du har {props.maxLength - props.text.length} tegn igjen
-        </TegnIgjenStyle>
+        <span className={tellerTekstCls(difference)}>
+            {difference >= 0 && `Du har ${difference} tegn igjen`}
+            {difference < 0 && `Du har ${Math.abs(difference)} tegn for mye`}
+        </span>
     );
 }
 
@@ -327,9 +320,8 @@ function AutocompleteTextarea(props: TextareaProps) {
 
     return (
         <Style>
-            <Textarea onKeyDown={onKeyDown} {...props} maxLength={0} />
+            <Textarea onKeyDown={onKeyDown} {...props} maxLength={props.maxLength} tellerTekst={noAriaTellerTekst} />
             <AutoTekstTips />
-            <TegnIgjen maxLength={props.maxLength} text={props.value} />
             {feilmelding && <AlertStripeFeil>{feilmelding}</AlertStripeFeil>}
         </Style>
     );

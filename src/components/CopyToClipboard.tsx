@@ -52,9 +52,7 @@ function CopyToClipboard(props: Props) {
                 <CopyIcon />
                 <span className="sr-only">{props.ariaLabel}</span>
             </StyledButton>
-            <HiddenTextarea tabIndex={-1} aria-hidden={true} ref={copyRef}>
-                {props.stringToCopy}
-            </HiddenTextarea>
+            <HiddenTextarea tabIndex={-1} aria-hidden={true} ref={copyRef} value={props.stringToCopy} readOnly />
         </span>
     );
 }

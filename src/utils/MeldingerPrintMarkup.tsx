@@ -106,9 +106,9 @@ export function MeldingerPrintMarkup(props: Props) {
     return (
         <StyledTraad>
             <Topptekst>
-                <Normaltekst>{ferdigstiltUtenSvar}</Normaltekst>
-                <Normaltekst>{feilsendt}</Normaltekst>
-                <Normaltekst>{kontorsperre}</Normaltekst>
+                {ferdigstiltUtenSvar}
+                {feilsendt}
+                {kontorsperre}
             </Topptekst>
             {enkeltmeldinger}
         </StyledTraad>

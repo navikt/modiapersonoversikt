@@ -39,7 +39,7 @@ type Props = Omit<NavFrontendInputProps, 'value' | 'name' | 'inputRef'> & {
     value: string;
     name: string;
     onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
-    inputRef: RefHack<HTMLInputElement>;
+    inputRef?: RefHack<HTMLInputElement>;
 };
 interface State {
     focusWithin: boolean;
