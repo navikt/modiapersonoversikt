@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { Varsel as VarselModell, Varseltype } from '../../../../models/varsel';
+import {
+    Varsel as VarselModell,
+    Varseltype,
+    UnifiedVarsel,
+    DittNavEvent,
+    isDittNavEvent
+} from '../../../../models/varsel';
 import { datoSynkende } from '../../../../utils/dateUtils';
 import VarselMeldinger from './varselDetaljer/VarselMeldinger';
 import styled from 'styled-components/macro';
@@ -72,7 +78,27 @@ function getVarselTekst(varsel: VarselModell) {
     return varselTekst;
 }
 
-function Varsel({ varsel }: { varsel: VarselModell }) {
+function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
+    const tittelId = useRef(guid());
+    const aktiv = varsel.aktiv ? '' : '(Inaktivt)';
+    return (
+        <Style>
+            <article aria-labelledby={tittelId.current}>
+                <HeaderStyle>
+                    <Normaltekst>{formaterDato(varsel.sistOppdatert)}</Normaltekst>
+                    <Element id={tittelId.current} tag="h4">
+                        {varsel.tekst}
+                    </Element>
+                    <Kommaliste aria-label="Kommunikasjonskanaler">
+                        <li>DITT_NAV {aktiv}</li>
+                    </Kommaliste>
+                </HeaderStyle>
+            </article>
+        </Style>
+    );
+}
+
+function VarselVarsel({ varsel }: { varsel: VarselModell }) {
     const open = useAppState(state => state.varsler.aapneVarsler).includes(varsel);
     const dispatch = useDispatch();
     const setOpen = (open: boolean) => dispatch(toggleVisVarsel(varsel, open));
@@ -116,6 +142,13 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
             </article>
         </Style>
     );
+}
+
+function Varsel({ varsel }: { varsel: UnifiedVarsel }) {
+    if (isDittNavEvent(varsel)) {
+        return <DittNavEventVarsel varsel={varsel} />;
+    }
+    return <VarselVarsel varsel={varsel} />;
 }
 
 export default React.memo(Varsel);
