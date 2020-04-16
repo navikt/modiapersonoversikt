@@ -6,6 +6,8 @@ import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../api/config';
 import LazySpinner from '../../../../components/LazySpinner';
 import { datoSynkende } from '../../../../utils/dateUtils';
+import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 function lagFetchOptions(fnr: string): RequestInit {
     return {
@@ -32,17 +34,28 @@ type VarselLoaderProps<P> = P & { component: VarslerRenderer<P> };
 
 function VarslerLoader<P>(props: VarselLoaderProps<P>) {
     const fnr = useGjeldendeBruker();
-    const options = React.useMemo(() => lagFetchOptions(fnr), [fnr]);
+    const visDittnavEventVarsler = useFeatureToggle(FeatureToggles.DittNavEventVarsler).isOn;
 
-    const beskjeder = useFetch<DittNavBeskjed[]>('/dittnav-eventer-modia/fetch/beskjed/all', options);
-    const oppgaver = useFetch<DittNavOppgave[]>('/dittnav-eventer-modia/fetch/oppgave/all', options);
+    const options = React.useMemo(() => lagFetchOptions(fnr), [fnr]);
+    const beskjeder = useFetch<DittNavBeskjed[]>('/dittnav-eventer-modia/fetch/beskjed/all', options, {
+        lazy: !visDittnavEventVarsler
+    });
+    const oppgaver = useFetch<DittNavOppgave[]>('/dittnav-eventer-modia/fetch/oppgave/all', options, {
+        lazy: !visDittnavEventVarsler
+    });
     const varsler = useFetch<Varsel[]>(`${apiBaseUri}/varsler/${fnr}`);
 
-    const ressurser = { beskjeder, oppgaver, varsler };
-    const venterPaRessurser: boolean = Object.values(ressurser).some(ressurs => isPending(ressurs));
-    const ressurserMedFeil: Array<string> = Object.entries(ressurser)
-        .filter(([_, ressurs]) => hasError(ressurs))
-        .map(([navn]) => navn);
+    const alleRessuser = [
+        { navn: 'beskjeder', ressurs: beskjeder, vis: visDittnavEventVarsler },
+        { navn: 'oppgaver', ressurs: oppgaver, vis: visDittnavEventVarsler },
+        { navn: 'varsler', ressurs: varsler, vis: true }
+    ];
+    const ressurser = alleRessuser.filter(ressurs => ressurs.vis === true);
+
+    const venterPaRessurser: boolean = ressurser.some(config => isPending(config.ressurs));
+    const ressurserMedFeil: Array<string> = ressurser
+        .filter(config => hasError(config.ressurs))
+        .map(config => config.navn);
 
     if (venterPaRessurser) {
         return <LazySpinner type="M" />;
