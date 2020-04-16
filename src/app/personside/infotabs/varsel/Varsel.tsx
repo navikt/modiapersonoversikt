@@ -80,7 +80,7 @@ function getVarselTekst(varsel: VarselModell) {
 
 function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
     const tittelId = useRef(guid());
-    const aktiv = varsel.aktiv ? '' : '(Inaktivt)';
+    const aktiv = varsel.aktiv ? '' : '(Inaktiv)';
     return (
         <Style>
             <article aria-labelledby={tittelId.current}>
@@ -90,7 +90,7 @@ function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
                         {varsel.tekst}
                     </Element>
                     <Kommaliste aria-label="Kommunikasjonskanaler">
-                        <li>DITT_NAV {aktiv}</li>
+                        <Normaltekst tag="li">NOTIFIKASJON {aktiv}</Normaltekst>
                     </Kommaliste>
                 </HeaderStyle>
             </article>

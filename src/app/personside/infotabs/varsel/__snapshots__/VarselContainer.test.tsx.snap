@@ -406,8 +406,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             aria-label="Kommunikasjonskanaler"
             className="c5"
           >
-            <li>
-              DITT_NAV 
+            <li
+              className="typo-normal"
+            >
+              NOTIFIKASJON 
               
             </li>
           </ul>
@@ -438,8 +440,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             aria-label="Kommunikasjonskanaler"
             className="c5"
           >
-            <li>
-              DITT_NAV 
+            <li
+              className="typo-normal"
+            >
+              NOTIFIKASJON 
               
             </li>
           </ul>
