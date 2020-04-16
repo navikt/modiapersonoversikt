@@ -42,8 +42,7 @@ const AutomatiskeTagsLabel = (
     <Label>
         <b>Automatiske tags</b>
         <HjelpetekstUnderHoyre id="AutomatiskeTagsLabel">
-            Vil legge til henholdsvis #sto og #samtalereferat automatisk når man bruker standardtekstene-søket (alt +
-            c).
+            Vil legge til henholdsvis #sto og #samref automatisk når man bruker standardtekstene-søket (alt + c).
         </HjelpetekstUnderHoyre>
     </Label>
 );
@@ -84,7 +83,7 @@ function InnstillingerModalForm(props: Props) {
                 <Select label={AutomatiskeTagsLabel} {...state.fields.defaultTagsStandardtekster.input}>
                     <option value="na">Ikke valgt</option>
                     <option value="sto">Skriv til oss (#sto)</option>
-                    <option value="samtalereferat">Samtalereferat (#samtalereferat)</option>
+                    <option value="samref">Samtalereferat (#samref)</option>
                 </Select>
             </ModalContent>
             {innsendingFeilet && (
