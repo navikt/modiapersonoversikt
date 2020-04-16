@@ -112,10 +112,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   margin-right: 0.5em;
 }
 
-.c0 {
-  padding: .5rem;
-}
-
 .c1 {
   border-radius: 0.25rem;
   background-color: white;
@@ -145,6 +141,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 
 .c2 > * {
   margin-top: 0.5rem;
+}
+
+.c0 {
+  padding: .5rem;
 }
 
 <div
@@ -380,6 +380,70 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </div>
           </li>
         </ol>
+      </article>
+    </li>
+    <li
+      className="c3"
+    >
+      <article
+        aria-labelledby="Helt tilfeldig ID"
+      >
+        <div
+          className="c4"
+        >
+          <p
+            className="typo-normal"
+          >
+            01.03.2018
+          </p>
+          <h4
+            className="typo-element"
+            id="Helt tilfeldig ID"
+          >
+            Tekst her
+          </h4>
+          <ul
+            aria-label="Kommunikasjonskanaler"
+            className="c5"
+          >
+            <li>
+              DITT_NAV 
+              
+            </li>
+          </ul>
+        </div>
+      </article>
+    </li>
+    <li
+      className="c3"
+    >
+      <article
+        aria-labelledby="Helt tilfeldig ID"
+      >
+        <div
+          className="c4"
+        >
+          <p
+            className="typo-normal"
+          >
+            01.03.2018
+          </p>
+          <h4
+            className="typo-element"
+            id="Helt tilfeldig ID"
+          >
+            Tekst her
+          </h4>
+          <ul
+            aria-label="Kommunikasjonskanaler"
+            className="c5"
+          >
+            <li>
+              DITT_NAV 
+              
+            </li>
+          </ul>
+        </div>
       </article>
     </li>
   </ol>

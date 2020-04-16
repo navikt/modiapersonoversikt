@@ -1,19 +1,39 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
-import { Varsel, Varselmelding, Varseltype } from '../../models/varsel';
+import { DittNavEvent, Varsel, Varselmelding, Varseltype } from '../../models/varsel';
 import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
 import moment from 'moment';
 import { aremark } from '../person/aremark';
 import { statiskVarselMock } from './statiskVarselMock';
 
-export function getMockVarsler(fødselsnummer: string): Varsel[] {
-    faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'varsel');
-    if (fødselsnummer === aremark.fødselsnummer) {
+export function getMockVarsler(fnr: string): Varsel[] {
+    faker.seed(Number(fnr));
+    navfaker.seed(fnr + 'varsel');
+    if (fnr === aremark.fødselsnummer) {
         return statiskVarselMock;
     }
 
     return fyllRandomListe(getVarsel, 10, true);
+}
+
+export function getDittNavVarsler(fnr: string): DittNavEvent[] {
+    return new Array(5).fill(0).map(() => genererDittNavEventVarsel(fnr));
+}
+
+function genererDittNavEventVarsel(fnr: string): DittNavEvent {
+    const tidspunkt = faker.date.recent(90);
+    return {
+        fodselsnummer: fnr,
+        grupperingsId: faker.random.uuid(),
+        eventId: faker.random.uuid(),
+        eventTidspunkt: moment(tidspunkt).format(backendDatoformat),
+        produsent: faker.random.alphaNumeric(),
+        sikkerhetsnivaa: navfaker.random.arrayElement([3, 4]),
+        sistOppdatert: moment(tidspunkt).format(backendDatoformat),
+        tekst: faker.lorem.sentence(5 + faker.random.number(5)),
+        link: faker.lorem.sentence(5 + faker.random.number(5)),
+        aktiv: faker.random.boolean()
+    };
 }
 
 function getVarsel(): Varsel {

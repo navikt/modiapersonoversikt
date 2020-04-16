@@ -1,8 +1,17 @@
 import faker from 'faker/locale/nb_NO';
+import navfaker from 'nav-faker';
+import Cookies from 'js-cookie';
+import FetchMock, {
+    HandlerArgument,
+    Middleware,
+    MiddlewareUtils,
+    MockHandler,
+    ResponseUtils
+} from 'yet-another-fetch-mock';
+import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
-import FetchMock, { HandlerArgument, Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { getMockKontaktinformasjon } from './person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import { mockGeneratorMedEnhetId, mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
@@ -16,15 +25,13 @@ import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
 import { mockVergemal } from './person/vergemal/vergemalMock';
 import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
-import navfaker from 'nav-faker';
 import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { mockFeatureToggle } from './featureToggle-mock';
 import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
-import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
-import { getMockVarsler } from './varsler/varsel-mock';
+import { getDittNavVarsler, getMockVarsler } from './varsler/varsel-mock';
 import { getMockSlaaSammen } from './meldinger/meldinger-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
@@ -35,7 +42,6 @@ import standardTekster from './standardTeksterMock.js';
 import { mockTilgangTilSlett } from './meldinger/merk-mock';
 import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
 import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
-import Cookies from 'js-cookie';
 import { saksbehandlerCookieNavnPrefix } from '../redux/session/saksbehandlersEnhetCookieUtils';
 import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
 import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinger-mock';
@@ -185,6 +191,18 @@ function setupVarselMock(mock: FetchMock) {
             mockGeneratorMedFødselsnummer(fodselsnummer => getMockVarsler(fodselsnummer))
         )
     );
+
+    const dittnaveventHandler: MockHandler = ({ init }) => {
+        const headers: any = init?.headers;
+        const fnr = headers.fodselsnummer;
+        if (!erGyldigFødselsnummer(fnr)) {
+            return Promise.resolve({ status: 400 });
+        }
+        return Promise.resolve({ status: 200, body: JSON.stringify(getDittNavVarsler(fnr)) });
+    };
+
+    mock.get('/dittnav-eventer-modia/fetch/beskjed/all', ResponseUtils.delayed(randomDelay(), dittnaveventHandler));
+    mock.get('/dittnav-eventer-modia/fetch/oppgave/all', ResponseUtils.delayed(randomDelay(), dittnaveventHandler));
 }
 
 function setupMeldingerMock(mock: FetchMock) {

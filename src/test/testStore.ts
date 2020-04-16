@@ -1,6 +1,7 @@
 import { applyMiddleware, createStore, Dispatch, Store } from 'redux';
-import reducers, { AppState } from '../redux/reducers';
 import thunkMiddleware from 'redux-thunk';
+import { cache, createCacheKey } from '@nutgaard/use-fetch';
+import reducers, { AppState } from '../redux/reducers';
 import { aremark } from '../mock/person/aremark';
 import { getPerson } from '../mock/person/personMock';
 import { getMockNavKontor } from '../mock/navkontor-mock';
@@ -14,7 +15,7 @@ import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
 import { getStaticMockSaksoversikt } from '../mock/saksoversikt/saksoversikt-mock';
-import { statiskVarselMock } from '../mock/varsler/statiskVarselMock';
+import { statiskDittnavEventVarselMock, statiskVarselMock } from '../mock/varsler/statiskVarselMock';
 import setGjeldendeBrukerIRedux from '../redux/gjeldendeBruker/actions';
 import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
@@ -26,6 +27,7 @@ import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
 import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUtbetalingRespons';
 import { SaksbehandlerRoller } from '../utils/RollerUtils';
+import { apiBaseUri } from '../api/config';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -62,5 +64,28 @@ export function getTestStore(): Store<AppState> {
     dispatch(restResources.pleiepenger.actions.setData({ pleiepenger: [pleiepengerTestData] }));
     dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));
     dispatch(restResources.sykepenger.actions.setData({ sykepenger: [statiskSykepengerMock] }));
+
+    setupFetchCache();
+
     return testStore;
+}
+
+export function setupFetchCache() {
+    const fnrheader = (fnr: string) =>
+        ({
+            credentials: 'include',
+            headers: {
+                fodselsnummer: fnr
+            }
+        } as RequestInit);
+
+    cache.putResolved(createCacheKey(`${apiBaseUri}/varsler/${aremark.fødselsnummer}`), statiskVarselMock);
+    cache.putResolved(
+        createCacheKey(`/dittnav-eventer-modia/fetch/oppgave/all`, fnrheader(aremark.fødselsnummer)),
+        statiskDittnavEventVarselMock
+    );
+    cache.putResolved(
+        createCacheKey(`/dittnav-eventer-modia/fetch/beskjed/all`, fnrheader(aremark.fødselsnummer)),
+        statiskDittnavEventVarselMock
+    );
 }
