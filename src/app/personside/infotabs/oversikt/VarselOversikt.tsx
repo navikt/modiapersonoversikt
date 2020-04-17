@@ -1,15 +1,12 @@
 import * as React from 'react';
-import { Varsel as VarselModell } from '../../../../models/varsel';
-import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import { datoSynkende } from '../../../../utils/dateUtils';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import Varsel from '../varsel/Varsel';
-import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ReactNode } from 'react';
 import { useOnMount } from '../../../../utils/customHooks';
 import { Normaltekst } from 'nav-frontend-typografi';
+import VarslerLoader, { VarslerRendererProps } from '../varsel/varsel-loader';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -22,23 +19,15 @@ interface Props {
 }
 
 function VarselOversikt(props: Props) {
-    return (
-        <RestResourceConsumer<VarselModell[]>
-            getResource={restResources => restResources.brukersVarsler}
-            returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
-        >
-            {data => <VarselVisning varsler={data} {...props} />}
-        </RestResourceConsumer>
-    );
+    return <VarslerLoader component={VarselVisning} {...props} />;
 }
 
-function VarselVisning(props: { varsler: VarselModell[] } & Props) {
-    const sortertPåDato = props.varsler.sort(datoSynkende(varsel => varsel.mottattTidspunkt)).slice(0, 2);
-
+function VarselVisning(props: VarslerRendererProps & Props) {
+    const forsteVarsler = props.varsler.slice(0, 2);
     useOnMount(() => {
         props.setHeaderContent(
             <Normaltekst>
-                {sortertPåDato.length} / {props.varsler.length}
+                {forsteVarsler.length} / {props.varsler.length}
             </Normaltekst>
         );
     });
@@ -49,7 +38,7 @@ function VarselVisning(props: { varsler: VarselModell[] } & Props) {
 
     return (
         <ListStyle>
-            {sortertPåDato.map((varsel, index) => (
+            {forsteVarsler.map((varsel, index) => (
                 <Varsel key={index} varsel={varsel} />
             ))}
         </ListStyle>

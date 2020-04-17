@@ -1,14 +1,24 @@
 import * as React from 'react';
-import { Varsel } from '../../../../models/varsel';
+import styled from 'styled-components/macro';
 import Varsler from './Varsler';
-import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
+import theme from '../../../../styles/personOversiktTheme';
+import VarslerLoader, { VarslerRendererProps } from './varsel-loader';
+
+const Style = styled.div`
+    padding: ${theme.margin.layout};
+`;
+
+function VarselLamellRenderer(props: VarslerRendererProps) {
+    return (
+        <Style>
+            {props.feilmelding}
+            <Varsler varsler={props.varsler} />
+        </Style>
+    );
+}
 
 function VarslerContainer() {
-    return (
-        <RestResourceConsumer<Varsel[]> getResource={restResources => restResources.brukersVarsler}>
-            {data => <Varsler varsler={data} />}
-        </RestResourceConsumer>
-    );
+    return <VarslerLoader component={VarselLamellRenderer} />;
 }
 
 export default VarslerContainer;
