@@ -203,5 +203,19 @@ export const aremark: Person = {
             gyldigFraOgMed: '2019-01-01',
             gyldigTilOgMed: '2022-12-12'
         }
+    ],
+    telefonnummer: [
+        {
+            identifikator: '99887766',
+            sistEndret: '2014-06-21T18:44:39+02:00',
+            sistEndretAv: '10108000398',
+            retningsnummer: { kodeRef: '+47', beskrivelse: 'Altmulig rart' }
+        },
+        {
+            identifikator: '99887767',
+            sistEndret: '2014-05-21T18:44:39+02:00',
+            sistEndretAv: 'Z123456',
+            retningsnummer: null
+        }
     ]
 };
