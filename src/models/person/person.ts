@@ -1,6 +1,6 @@
 import { Endringsinfo, Personadresse } from '../personadresse';
 import { Sikkerhetstiltak } from '../sikkerhetstiltak';
-import { NavKontaktinformasjon } from './NAVKontaktinformasjon';
+import { NavKontaktinformasjon, Telefon } from './NAVKontaktinformasjon';
 import { Kodeverk } from '../kodeverk';
 import { Doedsbo } from './doedsbo';
 import { Fullmakt } from './fullmakter';
@@ -32,6 +32,7 @@ export interface Person extends PersonRespons {
     kontaktinformasjon: NavKontaktinformasjon;
     kontaktinformasjonForDoedsbo?: Doedsbo[];
     fullmakt?: Fullmakt[];
+    telefonnummer?: Array<Telefon>;
 }
 
 export interface Navn {

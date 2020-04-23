@@ -130,6 +130,12 @@ export const moss: Person = {
             identifikator: '99887766',
             retningsnummer: { kodeRef: '+47', beskrivelse: 'Norge' },
             sistEndretAv: '10108000398'
+        },
+        jobbTelefon: {
+            sistEndret: '2014-06-21T18:44:39+02:00',
+            identifikator: '99887766',
+            retningsnummer: null,
+            sistEndretAv: 'Z999999'
         }
     }
 };

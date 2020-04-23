@@ -436,9 +436,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-normal"
         >
           +47 998 87 766
-           (
-          Mobil
-          )
+           
+          
         </p>
         <div
           className="c6"
@@ -450,6 +449,25 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             21.06.2014
              
             av bruker
+          </p>
+        </div>
+        <p
+          className="typo-normal"
+        >
+           998 87 767
+           
+          
+        </p>
+        <div
+          className="c6"
+        >
+          <p
+            className="typo-etikett-liten"
+          >
+            Endret 
+            21.05.2014
+             
+            av NAV
           </p>
         </div>
       </div>
