@@ -1,14 +1,14 @@
 import React, { useRef } from 'react';
 import { Systemtittel } from 'nav-frontend-typografi';
 import Tekstomrade, { defaultRules, Rule } from 'nav-frontend-tekstomrade';
+import styled from 'styled-components';
+import { Knapp } from 'nav-frontend-knapper';
+import { parseTekst } from '@navikt/tag-input';
+import { guid } from 'nav-frontend-js-utils';
 import { erGyldigValg } from '../sokUtils';
 import * as StandardTekster from '../domain';
 import { FieldState } from '../../../../../../utils/hooks/use-field-state';
-import { parseTekst } from '../../../../../../components/tag-input/tag-input';
-import styled from 'styled-components';
-import { Knapp } from 'nav-frontend-knapper';
 import theme from '../../../../../../styles/personOversiktTheme';
-import { guid } from 'nav-frontend-js-utils';
 
 interface Props {
     tekst: StandardTekster.Tekst | undefined;
