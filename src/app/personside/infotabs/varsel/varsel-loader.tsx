@@ -34,15 +34,12 @@ type VarselLoaderProps<P> = P & { component: VarslerRenderer<P> };
 
 function VarslerLoader<P>(props: VarselLoaderProps<P>) {
     const fnr = useGjeldendeBruker();
-    const visDittnavEventVarsler = useFeatureToggle(FeatureToggles.DittNavEventVarsler).isOn;
+    const visDittnavEventVarsler = useFeatureToggle(FeatureToggles.DittNavEventVarsler).isOn ?? false;
 
     const options = React.useMemo(() => lagFetchOptions(fnr), [fnr]);
-    const beskjeder = useFetch<DittNavBeskjed[]>('/dittnav-eventer-modia/fetch/beskjed/all', options, {
-        lazy: !visDittnavEventVarsler
-    });
-    const oppgaver = useFetch<DittNavOppgave[]>('/dittnav-eventer-modia/fetch/oppgave/all', options, {
-        lazy: !visDittnavEventVarsler
-    });
+    const config = React.useMemo(() => ({ lazy: !visDittnavEventVarsler }), [visDittnavEventVarsler]);
+    const beskjeder = useFetch<DittNavBeskjed[]>('/dittnav-eventer-modia/fetch/beskjed/all', options, config);
+    const oppgaver = useFetch<DittNavOppgave[]>('/dittnav-eventer-modia/fetch/oppgave/all', options, config);
     const varsler = useFetch<Varsel[]>(`${apiBaseUri}/varsler/${fnr}`);
 
     const alleRessuser = [
