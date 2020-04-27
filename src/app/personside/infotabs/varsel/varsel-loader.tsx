@@ -8,14 +8,17 @@ import LazySpinner from '../../../../components/LazySpinner';
 import { datoSynkende } from '../../../../utils/dateUtils';
 import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
+import freeze from '../../../../utils/freeze';
 
 function lagFetchOptions(fnr: string): RequestInit {
-    return {
+    // freeze blir brukt for å forhindre at adrum.js legger til ekstra header-felter
+    // Da det fører til at ajax-kallene blir kjørt dobbelt
+    return freeze({
         credentials: 'include',
         headers: {
             fodselsnummer: fnr
         }
-    };
+    });
 }
 
 function datoExtractor(varsel: UnifiedVarsel) {
