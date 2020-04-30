@@ -1,6 +1,7 @@
-import FetchMock, { JSONObject, MockHandler } from 'yet-another-fetch-mock';
+import FetchMock, { JSONObject, MockHandler, ResponseUtils } from 'yet-another-fetch-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { Draft, DraftContext } from '../app/personside/dialogpanel/use-draft';
+import { randomDelay } from './setup-mock';
 
 const innloggetSaksbehandler = getMockInnloggetSaksbehandler();
 const storage = window.localStorage;
@@ -45,7 +46,7 @@ const findDrafts: MockHandler = ({ queryParams }) => {
         matchContext(draft.context, context, exact)
     );
 
-    return matchedDrafts;
+    return ResponseUtils.jsonPromise(matchedDrafts);
 };
 
 const updateDraft: MockHandler = ({ body }) => {
@@ -60,7 +61,7 @@ const updateDraft: MockHandler = ({ body }) => {
     drafts.push(newDraft);
     storage.setItem(storageKey, JSON.stringify(drafts));
 
-    return newDraft;
+    return ResponseUtils.jsonPromise(newDraft);
 };
 
 const deleteDraft: MockHandler = ({ body }) => {
@@ -68,12 +69,12 @@ const deleteDraft: MockHandler = ({ body }) => {
     drafts = drafts.filter((draft: Draft) => !matchContext(draft.context, context, true));
     storage.setItem(storageKey, JSON.stringify(drafts));
 
-    return Promise.resolve({ status: 200 });
+    return ResponseUtils.jsonPromise({ status: 200 });
 };
 
 export function setupDraftMock(mock: FetchMock) {
     // console.log(findDrafts, updateDraft, deleteDraft);
-    mock.get('/modiapersonoversikt-draft/api/draft', findDrafts);
-    mock.post('/modiapersonoversikt-draft/api/draft', updateDraft);
-    mock.delete('/modiapersonoversikt-draft/api/draft', deleteDraft);
+    mock.get('/modiapersonoversikt-draft/api/draft', ResponseUtils.delayed(2 * randomDelay(), findDrafts));
+    mock.post('/modiapersonoversikt-draft/api/draft', ResponseUtils.delayed(2 * randomDelay(), updateDraft));
+    mock.delete('/modiapersonoversikt-draft/api/draft', ResponseUtils.delayed(2 * randomDelay(), deleteDraft));
 }

@@ -54,7 +54,7 @@ const STATUS_BAD_REQUEST = () => 400;
 const oppgaveBackendMock = new OppgaverBackendMock();
 const meldingerBackendMock = new MeldingerBackendMock(oppgaveBackendMock);
 
-function randomDelay() {
+export function randomDelay() {
     if (navfaker.random.vektetSjanse(0.05)) {
         return faker.random.number(5000);
     }
