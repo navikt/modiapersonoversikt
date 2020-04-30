@@ -46,6 +46,7 @@ import { saksbehandlerCookieNavnPrefix } from '../redux/session/saksbehandlersEn
 import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
 import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinger-mock';
 import { failurerateMiddleware } from './utils/failureMiddleware';
+import { setupDraftMock } from './draft-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -610,4 +611,5 @@ export function setupMock() {
     setUpSaksbehandlersEnheterMock(mock);
     setupAvsluttOppgaveGosysMock(mock);
     setupSaksbehandlerInnstillingerMock(mock);
+    setupDraftMock(mock);
 }
