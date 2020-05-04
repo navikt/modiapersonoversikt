@@ -9,8 +9,6 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return true;
         case FeatureToggles.SvaksyntModus:
             return false;
-        case FeatureToggles.Sosial:
-            return true;
         case FeatureToggles.InnstillingerPanel:
             return true;
         case FeatureToggles.DittNavEventVarsler:
