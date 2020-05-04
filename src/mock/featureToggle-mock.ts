@@ -11,8 +11,6 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return false;
         case FeatureToggles.InnstillingerPanel:
             return true;
-        case FeatureToggles.DittNavEventVarsler:
-            return true;
         default:
             return Math.random() > 0.5;
     }
