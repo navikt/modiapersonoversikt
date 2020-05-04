@@ -5,12 +5,6 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
     switch (toggleId) {
         case FeatureToggles.VisTilbakemelding:
             return true;
-        case FeatureToggles.SaksDokumentIEgetVindu:
-            return true;
-        case FeatureToggles.SvaksyntModus:
-            return false;
-        case FeatureToggles.InnstillingerPanel:
-            return true;
         default:
             return Math.random() > 0.5;
     }
