@@ -4,22 +4,14 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Flatknapp } from 'nav-frontend-knapper';
 import { ReactComponent as SvgCog } from './../../svg/cog.svg';
 import InnstillingerModal from './modal/innstillinger-modal';
-import useInnstillingerToggle from './use-innstillinger-toggle';
 import { fetchInnstillinger } from '../../redux/innstillinger';
 
 function StartbildeInnstillinger() {
     const dispatch = useDispatch();
-    const isEnabled = useInnstillingerToggle();
     React.useEffect(() => {
-        if (isEnabled) {
-            dispatch(fetchInnstillinger());
-        }
-    }, [dispatch, isEnabled]);
+        dispatch(fetchInnstillinger());
+    }, [dispatch]);
     const [isOpen, setOpen] = React.useState(false);
-
-    if (!isEnabled) {
-        return null;
-    }
 
     return (
         <>

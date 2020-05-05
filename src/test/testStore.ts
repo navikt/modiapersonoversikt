@@ -20,7 +20,6 @@ import setGjeldendeBrukerIRedux from '../redux/gjeldendeBruker/actions';
 import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from '../mock/innloggetSaksbehandler-mock';
-import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 import { pleiepengerTestData } from '../app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
 import { statiskForeldrepengeMock } from '../mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
@@ -57,7 +56,7 @@ export function getTestStore(): Store<AppState> {
     dispatch(restResources.oppgaveGsakTema.actions.setData(getMockGsakTema()));
     dispatch(
         restResources.featureToggles.actions.setData({
-            [FeatureToggles.SaksDokumentIEgetVindu]: false
+            toggleId: false
         })
     );
     dispatch(restResources.tråderOgMeldinger.actions.setData([statiskTraadMock]));

@@ -6,8 +6,6 @@ import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../api/config';
 import LazySpinner from '../../../../components/LazySpinner';
 import { datoSynkende } from '../../../../utils/dateUtils';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 import freeze from '../../../../utils/freeze';
 
 function lagFetchOptions(fnr: string): RequestInit {
@@ -37,20 +35,17 @@ type VarselLoaderProps<P> = P & { component: VarslerRenderer<P> };
 
 function VarslerLoader<P>(props: VarselLoaderProps<P>) {
     const fnr = useGjeldendeBruker();
-    const visDittnavEventVarsler = useFeatureToggle(FeatureToggles.DittNavEventVarsler).isOn ?? false;
 
     const options = React.useMemo(() => lagFetchOptions(fnr), [fnr]);
-    const config = React.useMemo(() => ({ lazy: !visDittnavEventVarsler }), [visDittnavEventVarsler]);
-    const beskjeder = useFetch<DittNavBeskjed[]>('/dittnav-eventer-modia/fetch/beskjed/all', options, config);
-    const oppgaver = useFetch<DittNavOppgave[]>('/dittnav-eventer-modia/fetch/oppgave/all', options, config);
+    const beskjeder = useFetch<DittNavBeskjed[]>('/dittnav-eventer-modia/fetch/beskjed/all', options);
+    const oppgaver = useFetch<DittNavOppgave[]>('/dittnav-eventer-modia/fetch/oppgave/all', options);
     const varsler = useFetch<Varsel[]>(`${apiBaseUri}/varsler/${fnr}`);
 
-    const alleRessuser = [
-        { navn: 'beskjeder', ressurs: beskjeder, vis: visDittnavEventVarsler },
-        { navn: 'oppgaver', ressurs: oppgaver, vis: visDittnavEventVarsler },
-        { navn: 'varsler', ressurs: varsler, vis: true }
+    const ressurser = [
+        { navn: 'beskjeder', ressurs: beskjeder },
+        { navn: 'oppgaver', ressurs: oppgaver },
+        { navn: 'varsler', ressurs: varsler }
     ];
-    const ressurser = alleRessuser.filter(ressurs => ressurs.vis === true);
 
     const venterPaRessurser: boolean = ressurser.some(config => isPending(config.ressurs));
     const ressurserMedFeil: Array<string> = ressurser
