@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import debounce from 'lodash.debounce';
 import { loggError } from '../../../utils/logger/frontendLogger';
+import useFeatureToggle from '../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
 
 export interface DraftContext {
     [key: string]: string;
@@ -19,8 +21,13 @@ interface DraftSystem {
 }
 
 function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
+    const enabled = useFeatureToggle(FeatureToggles.BrukKladd).isOn ?? false;
     const update = useCallback(
         debounce((content: string) => {
+            if (!enabled) {
+                return;
+            }
+
             fetch('/modiapersonoversikt-draft/api/draft', {
                 method: 'POST',
                 headers: {
@@ -31,10 +38,13 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
                 loggError(error, 'Feil ved oppdatering av draft', { context });
             });
         }, 500),
-        [context]
+        [context, enabled]
     );
 
     const remove = useCallback(() => {
+        if (!enabled) {
+            return;
+        }
         fetch('/modiapersonoversikt-draft/api/draft', {
             method: 'DELETE',
             headers: {
@@ -44,9 +54,12 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
         }).catch((error: Error) => {
             loggError(error, 'Feil ved sletting av draft', { context });
         });
-    }, [context]);
+    }, [context, enabled]);
 
     useEffect(() => {
+        if (!enabled) {
+            return;
+        }
         const queryParams = Object.entries(context)
             .map(([key, value]) => `${key}=${value}`)
             .join('&');
@@ -67,7 +80,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             .catch((error: Error) => {
                 loggError(error, 'Feil ved uthenting av draft', { context });
             });
-    }, [context, ifPresent]);
+    }, [context, ifPresent, enabled]);
 
     return useMemo(
         () => ({
