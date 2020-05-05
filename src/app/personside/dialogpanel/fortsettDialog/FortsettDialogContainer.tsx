@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useRef, useState, useCallback, useMemo } from 'react';
 import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
 import { ForsettDialogRequest, Meldingstype, SendDelsvarRequest, Traad } from '../../../../models/meldinger/meldinger';
@@ -34,6 +34,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import { isFinishedPosting } from '../../../../rest/utils/postResource';
 import ReflowBoundry from '../ReflowBoundry';
 import { Temagruppe } from '../../../../models/Temagrupper';
+import useDraft, { Draft } from '../use-draft';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -59,23 +60,33 @@ function FortsettDialogContainer(props: Props) {
         sak: undefined,
         oppgaveListe: OppgavelisteValg.MinListe
     };
+
+    const fnr = useFødselsnummer();
     const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
+    const draftLoader = useCallback((draft: Draft) => setState(current => ({ ...current, tekst: draft.content })), [
+        setState
+    ]);
+    const draftContext = useMemo(() => ({ fnr }), [fnr]);
+    const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
     const plukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
     const resetPlukkOppgaveResource = plukkOppgaveResource.actions.reset;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
-    const fnr = useFødselsnummer();
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
     });
     const dispatch = useDispatch();
-    const updateState = (change: Partial<FortsettDialogState>) =>
-        setState({
-            ...state,
-            visFeilmeldinger: false,
-            ...change
-        });
+    const updateState = useCallback(
+        (change: Partial<FortsettDialogState>) =>
+            setState(currentState => {
+                if (change.tekst !== undefined) {
+                    updateDraft(change.tekst);
+                }
+                return { ...currentState, visFeilmeldinger: false, ...change };
+            }),
+        [setState, updateDraft]
+    );
     const getDuration = useTimer();
 
     const opprettHenvendelse = useOpprettHenvendelse(props.traad);
@@ -98,7 +109,10 @@ function FortsettDialogContainer(props: Props) {
     const oppgaveIdFraGosys = oppgaveFraGosys && oppgaveFraGosys.oppgaveId;
     const oppgaveId = oppgaveIdFraGosys ? oppgaveIdFraGosys : opprettHenvendelse.henvendelse.oppgaveId;
 
-    const handleAvbryt = () => dispatch(setIngenValgtTraadDialogpanel());
+    const handleAvbryt = () => {
+        removeDraft();
+        dispatch(setIngenValgtTraadDialogpanel());
+    };
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
@@ -106,6 +120,7 @@ function FortsettDialogContainer(props: Props) {
             return;
         }
         const callback = () => {
+            removeDraft();
             loggEvent('TidsbrukMillisekunder', 'FortsettDialog', undefined, { ms: getDuration() });
             dispatch(resetPlukkOppgaveResource);
             dispatch(reloadTildelteOppgaver);
