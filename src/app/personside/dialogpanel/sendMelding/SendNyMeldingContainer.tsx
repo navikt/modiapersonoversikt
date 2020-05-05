@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useCallback, useMemo, useState } from 'react';
 import SendNyMelding, { SendNyMeldingState, OppgavelisteValg } from './SendNyMelding';
 import { NyMeldingValidator } from './validatorer';
 import { Meldingstype, SendReferatRequest, SendSpørsmålRequest } from '../../../../models/meldinger/meldinger';
@@ -10,6 +10,7 @@ import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import useDraft, { Draft } from '../use-draft';
 
 const initialState: SendNyMeldingState = {
     tekst: '',
@@ -21,12 +22,28 @@ const initialState: SendNyMeldingState = {
 };
 
 function SendNyMeldingContainer() {
-    const [state, setState] = useState<SendNyMeldingState>(initialState);
-    const updateState = (change: Partial<SendNyMeldingState>) =>
-        setState(currentState => ({ ...currentState, visFeilmeldinger: false, ...change }));
-    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
     const dispatch = useDispatch();
     const fnr = useFødselsnummer();
+    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
+
+    const [state, setState] = useState<SendNyMeldingState>(initialState);
+
+    const draftLoader = useCallback((draft: Draft) => setState(current => ({ ...current, tekst: draft.content })), [
+        setState
+    ]);
+    const draftContext = useMemo(() => ({ fnr }), [fnr]);
+    const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
+    const updateState = useCallback(
+        (change: Partial<SendNyMeldingState>) =>
+            setState(currentState => {
+                if (change.tekst !== undefined) {
+                    updateDraft(change.tekst);
+                }
+                return { ...currentState, visFeilmeldinger: false, ...change };
+            }),
+        [setState, updateDraft]
+    );
+
     const [sendNyMeldingStatus, setSendNyMeldingStatus] = useState<SendNyMeldingPanelState>({
         type: SendNyMeldingStatus.UNDER_ARBEID
     });
@@ -44,6 +61,7 @@ function SendNyMeldingContainer() {
     }
 
     const handleAvbryt = () => {
+        removeDraft();
         setState(initialState);
         setSendNyMeldingStatus({ type: SendNyMeldingStatus.UNDER_ARBEID });
     };
@@ -54,6 +72,7 @@ function SendNyMeldingContainer() {
             return;
         }
         const callback = () => {
+            removeDraft();
             updateState(initialState);
             dispatch(reloadMeldinger);
         };

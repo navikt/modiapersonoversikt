@@ -180,6 +180,19 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   line-height: 1rem;
 }
 
+.c26 {
+  margin-left: 0.5rem;
+}
+
+.c26 svg {
+  position: relative;
+  top: 2px;
+}
+
+.c26:hover {
+  color: #005b82;
+}
+
 .c20 {
   padding: .5rem;
   display: -webkit-box;
@@ -1138,13 +1151,31 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="order-second"
                       >
                         <a
-                          aria-disabled={false}
                           className="lenke typo-element"
                           href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Inntektsopplysninger
+                        </a>
+                        <a
+                          className="lenke typo-element c26"
+                          download={true}
+                          href="/detteeretmockdokument/"
+                          title="Last ned"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            height={20}
+                            width={20}
+                          >
+                            download.svg
+                          </svg>
+                          <span
+                            className="sr-only"
+                          >
+                            Last ned pdf
+                          </span>
                         </a>
                       </h4>
                       <div
@@ -1170,7 +1201,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <ul>
                         <li>
                           <a
-                            aria-disabled={true}
                             className="lenke typo-element"
                             href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
                             onClick={[Function]}
@@ -1178,16 +1208,53 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           >
                             A-inntekt (Skjermet)
                           </a>
+                          <a
+                            className="lenke typo-element c26"
+                            download={true}
+                            href="/detteeretmockdokument/"
+                            title="Last ned"
+                          >
+                            <svg
+                              aria-hidden={true}
+                              height={20}
+                              width={20}
+                            >
+                              download.svg
+                            </svg>
+                            <span
+                              className="sr-only"
+                            >
+                              Last ned pdf
+                            </span>
+                          </a>
                         </li>
                         <li>
                           <a
-                            aria-disabled={false}
                             className="lenke typo-element"
                             href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
                             onClick={[Function]}
                             target="_blank"
                           >
                             Referat fra samtale på telefon
+                          </a>
+                          <a
+                            className="lenke typo-element c26"
+                            download={true}
+                            href="/detteeretmockdokument/"
+                            title="Last ned"
+                          >
+                            <svg
+                              aria-hidden={true}
+                              height={20}
+                              width={20}
+                            >
+                              download.svg
+                            </svg>
+                            <span
+                              className="sr-only"
+                            >
+                              Last ned pdf
+                            </span>
                           </a>
                         </li>
                         <li>
@@ -1293,13 +1360,31 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <ul>
                         <li>
                           <a
-                            aria-disabled={false}
                             className="lenke typo-element"
                             href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
                             onClick={[Function]}
                             target="_blank"
                           >
                             Spørsmål via nav.no
+                          </a>
+                          <a
+                            className="lenke typo-element c26"
+                            download={true}
+                            href="/detteeretmockdokument/"
+                            title="Last ned"
+                          >
+                            <svg
+                              aria-hidden={true}
+                              height={20}
+                              width={20}
+                            >
+                              download.svg
+                            </svg>
+                            <span
+                              className="sr-only"
+                            >
+                              Last ned pdf
+                            </span>
                           </a>
                         </li>
                         <li>
@@ -1361,13 +1446,31 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="order-second"
                       >
                         <a
-                          aria-disabled={false}
                           className="lenke typo-element"
                           href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Spørsmål via nav.no
+                        </a>
+                        <a
+                          className="lenke typo-element c26"
+                          download={true}
+                          href="/detteeretmockdokument/"
+                          title="Last ned"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            height={20}
+                            width={20}
+                          >
+                            download.svg
+                          </svg>
+                          <span
+                            className="sr-only"
+                          >
+                            Last ned pdf
+                          </span>
                         </a>
                       </h4>
                       <div
@@ -1423,13 +1526,31 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="order-second"
                       >
                         <a
-                          aria-disabled={false}
                           className="lenke typo-element"
                           href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Automatisk vedtak/nyfødt barn
+                        </a>
+                        <a
+                          className="lenke typo-element c26"
+                          download={true}
+                          href="/detteeretmockdokument/"
+                          title="Last ned"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            height={20}
+                            width={20}
+                          >
+                            download.svg
+                          </svg>
+                          <span
+                            className="sr-only"
+                          >
+                            Last ned pdf
+                          </span>
                         </a>
                       </h4>
                       <div
@@ -1540,13 +1661,31 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <ul>
                         <li>
                           <a
-                            aria-disabled={false}
                             className="lenke typo-element"
                             href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
                             onClick={[Function]}
                             target="_blank"
                           >
                             A-inntekt
+                          </a>
+                          <a
+                            className="lenke typo-element c26"
+                            download={true}
+                            href="/detteeretmockdokument/"
+                            title="Last ned"
+                          >
+                            <svg
+                              aria-hidden={true}
+                              height={20}
+                              width={20}
+                            >
+                              download.svg
+                            </svg>
+                            <span
+                              className="sr-only"
+                            >
+                              Last ned pdf
+                            </span>
                           </a>
                         </li>
                       </ul>
@@ -1682,13 +1821,31 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="order-second"
                       >
                         <a
-                          aria-disabled={false}
                           className="lenke typo-element"
                           href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Vurdering feilutbetaling/revurdering
+                        </a>
+                        <a
+                          className="lenke typo-element c26"
+                          download={true}
+                          href="/detteeretmockdokument/"
+                          title="Last ned"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            height={20}
+                            width={20}
+                          >
+                            download.svg
+                          </svg>
+                          <span
+                            className="sr-only"
+                          >
+                            Last ned pdf
+                          </span>
                         </a>
                       </h4>
                       <div
@@ -1744,13 +1901,31 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="order-second"
                       >
                         <a
-                          aria-disabled={false}
                           className="lenke typo-element"
                           href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Spørsmål via nav.no
+                        </a>
+                        <a
+                          className="lenke typo-element c26"
+                          download={true}
+                          href="/detteeretmockdokument/"
+                          title="Last ned"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            height={20}
+                            width={20}
+                          >
+                            download.svg
+                          </svg>
+                          <span
+                            className="sr-only"
+                          >
+                            Last ned pdf
+                          </span>
                         </a>
                       </h4>
                       <div
@@ -1806,13 +1981,31 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="order-second"
                       >
                         <a
-                          aria-disabled={false}
                           className="lenke typo-element"
                           href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Innhenting av opplysninger
+                        </a>
+                        <a
+                          className="lenke typo-element c26"
+                          download={true}
+                          href="/detteeretmockdokument/"
+                          title="Last ned"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            height={20}
+                            width={20}
+                          >
+                            download.svg
+                          </svg>
+                          <span
+                            className="sr-only"
+                          >
+                            Last ned pdf
+                          </span>
                         </a>
                       </h4>
                       <div
@@ -1933,13 +2126,31 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="order-second"
                       >
                         <a
-                          aria-disabled={false}
                           className="lenke typo-element"
                           href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Referat fra samtale på telefon
+                        </a>
+                        <a
+                          className="lenke typo-element c26"
+                          download={true}
+                          href="/detteeretmockdokument/"
+                          title="Last ned"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            height={20}
+                            width={20}
+                          >
+                            download.svg
+                          </svg>
+                          <span
+                            className="sr-only"
+                          >
+                            Last ned pdf
+                          </span>
                         </a>
                       </h4>
                       <div
@@ -1995,13 +2206,31 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="order-second"
                       >
                         <a
-                          aria-disabled={false}
                           className="lenke typo-element"
                           href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
                           onClick={[Function]}
                           target="_blank"
                         >
                           A-inntekt
+                        </a>
+                        <a
+                          className="lenke typo-element c26"
+                          download={true}
+                          href="/detteeretmockdokument/"
+                          title="Last ned"
+                        >
+                          <svg
+                            aria-hidden={true}
+                            height={20}
+                            width={20}
+                          >
+                            download.svg
+                          </svg>
+                          <span
+                            className="sr-only"
+                          >
+                            Last ned pdf
+                          </span>
                         </a>
                       </h4>
                       <div

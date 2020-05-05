@@ -9,15 +9,13 @@ import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { LeggTilbakeOppgaveRequest } from '../../../../../models/oppgave';
-import { Temagruppe, TemaLeggTilbake, TemaPlukkbare } from '../../../../../models/Temagrupper';
+import { Temagruppe, TemaLeggTilbake } from '../../../../../models/Temagrupper';
 import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { DialogPanelStatus, FortsettDialogPanelState } from '../FortsettDialogTypes';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../rest/consumer/usePostResource';
-import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
-import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 import { Diskresjonskoder } from '../../../../../konstanter';
 import { isNotFound } from '../../../../../rest/utils/restResource';
@@ -73,9 +71,6 @@ function LeggTilbakeFeilmelding(props: { status: FortsettDialogPanelState }) {
 function useGyldigTemagruppeListe() {
     const personinformasjon = useRestResource(resources => resources.personinformasjon).resource;
     const kontorinformasjon = useRestResource(resources => resources.brukersNavKontor).resource;
-    const sosialFT = useFeatureToggle(FeatureToggles.Sosial);
-
-    const temagrupper = sosialFT.isOn ? TemaLeggTilbake : TemaPlukkbare;
 
     const manglerNavKontor = isNotFound(kontorinformasjon);
     const erKode6 =
@@ -83,9 +78,9 @@ function useGyldigTemagruppeListe() {
         personinformasjon.data.diskresjonskode?.kodeRef === Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE;
 
     if (manglerNavKontor || erKode6) {
-        return temagrupper.filter(temagruppe => temagruppe !== Temagruppe.ØkonomiskSosial);
+        return TemaLeggTilbake.filter(temagruppe => temagruppe !== Temagruppe.ØkonomiskSosial);
     }
-    return temagrupper;
+    return TemaLeggTilbake;
 }
 
 function LeggTilbakepanel(props: Props) {
