@@ -64,13 +64,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             .map(([key, value]) => `${key}=${value}`)
             .join('&');
 
-        fetch(`/modiapersonoversikt-draft/api/draft?exact=true&${queryParams}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(context)
-        })
+        fetch(`/modiapersonoversikt-draft/api/draft?exact=true&${queryParams}`)
             .then(resp => resp.json())
             .then((json: Array<Draft>) => {
                 if (json.length > 0) {
