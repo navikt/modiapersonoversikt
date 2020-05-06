@@ -98,10 +98,10 @@ function LeggTilbakepanel(props: Props) {
     const gyldigTemagruppeListe = useGyldigTemagruppeListe();
     const leggerTilbake = props.status.type === DialogPanelStatus.POSTING;
 
-    function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak }) {
+    function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak; label?: string }) {
         return (
             <Radio
-                label={props.årsak}
+                label={props.label ?? props.årsak}
                 checked={props.årsak === state.årsak}
                 onChange={() => updateState({ årsak: props.årsak })}
                 name="årsak"
@@ -176,7 +176,7 @@ function LeggTilbakepanel(props: Props) {
                     }
                 >
                     <legend className="sr-only">Velg årsak</legend>
-                    <ÅrsakRadio årsak={LeggTilbakeÅrsak.Innhabil} />
+                    <ÅrsakRadio årsak={LeggTilbakeÅrsak.Innhabil} label="Inhabil" />
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.FeilTemagruppe} />
                     <UnmountClosed isOpened={state.årsak === LeggTilbakeÅrsak.FeilTemagruppe} hasNestedCollapse={true}>
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
