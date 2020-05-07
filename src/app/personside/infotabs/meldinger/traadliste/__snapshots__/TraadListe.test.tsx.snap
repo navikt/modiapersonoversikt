@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser Traadliste 1`] = `
-.c9 {
+.c16 {
   position: relative;
 }
 
-.c9 svg {
+.c16 svg {
   height: 1.5625rem;
   width: 1.5625rem;
   opacity: 0.4;
 }
 
-.c10 {
+.c17 {
   position: absolute;
   top: -0.1875rem;
   right: -0.5rem;
@@ -34,7 +34,7 @@ exports[`Viser Traadliste 1`] = `
   border-radius: 50%;
 }
 
-.c11 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -51,25 +51,25 @@ exports[`Viser Traadliste 1`] = `
   overflow-wrap: break-word;
 }
 
-.c11 .order-first {
+.c18 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c11 .order-second {
+.c18 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c11 .order-third {
+.c18 .order-third {
   -webkit-order: 3;
   -ms-flex-order: 3;
   order: 3;
 }
 
-.c13 {
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -84,12 +84,12 @@ exports[`Viser Traadliste 1`] = `
   margin-top: 0.2rem;
 }
 
-.c13 > *:not(:last-child) {
+.c20 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
 
-.c12 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -99,39 +99,39 @@ exports[`Viser Traadliste 1`] = `
   flex-direction: column;
 }
 
-.c12 .order-first {
+.c19 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c12 .order-second {
+.c19 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c8 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c8 > *:last-child {
+.c15 > *:last-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c14 {
+.c21 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.c6 {
+.c13 {
   padding: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -140,24 +140,24 @@ exports[`Viser Traadliste 1`] = `
   cursor: pointer;
 }
 
-.c7 {
+.c14 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c5 {
+.c12 {
   background-color: #cce1f3;
 }
 
-.c5:focus-within {
+.c12:focus-within {
   position: relative;
   outline: none;
   box-shadow: none;
 }
 
-.c5:focus-within::after {
+.c12:focus-within::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -168,30 +168,86 @@ exports[`Viser Traadliste 1`] = `
   pointer-events: none;
 }
 
-.c5 .hover-animation {
+.c12 .hover-animation {
   -webkit-transition: -webkit-transform 0.3s;
   -webkit-transition: transform 0.3s;
   transition: transform 0.3s;
 }
 
-.c5:hover {
+.c12:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c5:hover .hover-animation {
+.c12:hover .hover-animation {
   -webkit-transform: translateX(0.5rem);
   -ms-transform: translateX(0.5rem);
   transform: translateX(0.5rem);
 }
 
-.c15 {
+.c22 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
 }
 
-.c15 .nav-frontend-chevron {
+.c22 .nav-frontend-chevron {
   width: 1.5625rem;
+}
+
+.c4 {
+  border: none;
+  background-color: transparent;
+  padding: 0.1rem 0.2rem;
+  border-radius: .35rem;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #0067c5;
+}
+
+.c4 svg {
+  margin-left: 0.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.c4:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c4:hover {
+  opacity: 0.8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c6 {
+  margin-bottom: 2rem;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 1rem 0rem;
+}
+
+.c9 > * {
+  margin-bottom: 1rem !important;
+}
+
+.c7 {
+  margin-bottom: 2rem;
+  border-bottom: solid 0.0625rem #78706a;
+  page-break-inside: avoid;
 }
 
 .c0 {
@@ -204,7 +260,7 @@ exports[`Viser Traadliste 1`] = `
   list-style: none;
 }
 
-.c3 {
+.c10 {
   padding: 0 .5rem .5rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -219,11 +275,26 @@ exports[`Viser Traadliste 1`] = `
   justify-content: space-between;
 }
 
-.c4 > * {
+.c2 {
+  padding: .5rem .5rem 0 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c11 > * {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c4:focus {
+.c11:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
@@ -247,9 +318,21 @@ exports[`Viser Traadliste 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c2 {
+.c3 {
   padding: .5rem;
   margin-bottom: 0 !important;
+}
+
+@media print {
+  .c4 {
+    display: none;
+  }
+}
+
+@media not print {
+  .c5 {
+    display: none;
+  }
 }
 
 <nav
@@ -292,28 +375,394 @@ exports[`Viser Traadliste 1`] = `
       </div>
     </div>
     <div
-      className="skjemaelement skjemaelement--horisontal c2"
+      className="c2"
     >
-      <input
-        checked={false}
-        className="skjemaelement__input checkboks"
-        id="Helt tilfeldig ID"
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <label
-        className="skjemaelement__label"
-        htmlFor="Helt tilfeldig ID"
-      >
-        Skjul varsler
-      </label>
       <div
-        aria-live="assertive"
-        role="alert"
-      />
+        className="skjemaelement skjemaelement--horisontal c3"
+      >
+        <input
+          checked={false}
+          className="skjemaelement__input checkboks"
+          id="Helt tilfeldig ID"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <label
+          className="skjemaelement__label"
+          htmlFor="Helt tilfeldig ID"
+        >
+          Skjul varsler
+        </label>
+        <div
+          aria-live="assertive"
+          role="alert"
+        />
+      </div>
+      <button
+        aria-label="Skriv ut"
+        className="c4"
+        onClick={[Function]}
+      >
+        <span
+          className="typo-normal"
+        >
+          Skriv ut alle meldinger
+        </span>
+         
+        <svg
+          viewBox="0 0 17 16"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+        >
+          <path
+            d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
+            fill="#0067C5"
+            fillRule="evenodd"
+          />
+          <path
+            d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
+            fill="#0067C5"
+          />
+        </svg>
+      </button>
+      <div
+        className="c5"
+      >
+        <div
+          className="c6"
+        >
+          <p
+            className="typo-element"
+          >
+            Henvendelsen er avsluttet uten å svare bruker
+             
+             
+          </p>
+        </div>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-ingress"
+          >
+            Samtalereferat oppmøte - Arbeid
+          </p>
+          <div
+            className="c8"
+          >
+            <div>
+              <p
+                className="typo-element"
+              >
+                Kanal: NAV_NO
+              </p>
+              <p
+                className="typo-element"
+              >
+                Type: 
+                SAMTALEREFERAT_OPPMOTE
+              </p>
+              <p
+                className="typo-element"
+              >
+                Temagruppe: 
+                ARBD
+              </p>
+              <p
+                className="typo-element"
+              >
+                 Journalført: 
+                11.07.2019
+                 
+              </p>
+              <p
+                className="typo-element"
+              >
+                Journalført med team: 
+              </p>
+            </div>
+            <div>
+              <p
+                className="typo-element"
+              >
+                Fødselsnummer: 
+                10108000398
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Mottatt/Sendt: 
+                07.07.2019
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Lest: 
+                12.07.2019 00:00
+              </p>
+            </div>
+          </div>
+          <div
+            className="c9"
+          >
+            <p
+              className="typo-element"
+            >
+              Innhold:
+            </p>
+            <div>
+              <p
+                className="typo-normal"
+              >
+                Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-ingress"
+          >
+            Spørsmål fra bruker - Arbeid
+          </p>
+          <div
+            className="c8"
+          >
+            <div>
+              <p
+                className="typo-element"
+              >
+                Kanal: NAV_NO
+              </p>
+              <p
+                className="typo-element"
+              >
+                Type: 
+                SPORSMAL_SKRIFTLIG
+              </p>
+              <p
+                className="typo-element"
+              >
+                Temagruppe: 
+                ARBD
+              </p>
+              <p
+                className="typo-element"
+              >
+                 Journalført: 
+                12.08.2019
+                 
+              </p>
+              <p
+                className="typo-element"
+              >
+                Journalført med team: 
+              </p>
+            </div>
+            <div>
+              <p
+                className="typo-element"
+              >
+                Fødselsnummer: 
+                10108000398
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Mottatt/Sendt: 
+                12.07.2019
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Lest: 
+                11.08.2019 00:00
+              </p>
+            </div>
+          </div>
+          <div
+            className="c9"
+          >
+            <p
+              className="typo-element"
+            >
+              Innhold:
+            </p>
+            <div>
+              <p
+                className="typo-normal"
+              >
+                Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-ingress"
+          >
+            Spørsmål fra bruker - Arbeid
+          </p>
+          <div
+            className="c8"
+          >
+            <div>
+              <p
+                className="typo-element"
+              >
+                Kanal: NAV_NO
+              </p>
+              <p
+                className="typo-element"
+              >
+                Type: 
+                SPORSMAL_SKRIFTLIG
+              </p>
+              <p
+                className="typo-element"
+              >
+                Temagruppe: 
+                ARBD
+              </p>
+              <p
+                className="typo-element"
+              >
+                 Journalført: 
+                21.07.2019
+                 
+              </p>
+              <p
+                className="typo-element"
+              >
+                Journalført med team: 
+              </p>
+            </div>
+            <div>
+              <p
+                className="typo-element"
+              >
+                Fødselsnummer: 
+                10108000398
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Mottatt/Sendt: 
+                16.07.2019
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Lest: 
+                14.07.2019 00:00
+              </p>
+            </div>
+          </div>
+          <div
+            className="c9"
+          >
+            <p
+              className="typo-element"
+            >
+              Innhold:
+            </p>
+            <div>
+              <p
+                className="typo-normal"
+              >
+                Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-ingress"
+          >
+            Delsvar - Arbeid
+          </p>
+          <div
+            className="c8"
+          >
+            <div>
+              <p
+                className="typo-element"
+              >
+                Kanal: NAV_NO
+              </p>
+              <p
+                className="typo-element"
+              >
+                Type: 
+                DELVIS_SVAR_SKRIFTLIG
+              </p>
+              <p
+                className="typo-element"
+              >
+                Temagruppe: 
+                ARBD
+              </p>
+              <p
+                className="typo-element"
+              >
+                 Journalført: 
+                30.07.2019
+                 
+              </p>
+              <p
+                className="typo-element"
+              >
+                Journalført med team: 
+              </p>
+            </div>
+            <div>
+              <p
+                className="typo-element"
+              >
+                Fødselsnummer: 
+                10108000398
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Mottatt/Sendt: 
+                27.07.2019
+              </p>
+              <p
+                className="typo-normal"
+              >
+                Lest: 
+                23.07.2019 00:00
+              </p>
+            </div>
+          </div>
+          <div
+            className="c9"
+          >
+            <p
+              className="typo-element"
+            >
+              Innhold:
+            </p>
+            <div>
+              <p
+                className="typo-normal"
+              >
+                Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div
-      className="c3"
+      className="c10"
     >
       <p
         aria-live="assertive"
@@ -332,11 +781,11 @@ exports[`Viser Traadliste 1`] = `
   </h3>
   <ol
     aria-labelledby="Helt tilfeldig ID"
-    className="c4"
+    className="c11"
     tabIndex={-1}
   >
     <li
-      className="c5"
+      className="c12"
     >
       <input
         checked={true}
@@ -348,14 +797,14 @@ exports[`Viser Traadliste 1`] = `
         value="sg838exr"
       />
       <label
-        className="c6"
+        className="c13"
         htmlFor="Helt tilfeldig ID"
       >
         <div
-          className="c7"
+          className="c14"
         >
           <div
-            className="c8"
+            className="c15"
           >
             <span
               className="sr-only"
@@ -365,7 +814,7 @@ exports[`Viser Traadliste 1`] = `
               )
             </span>
             <span
-              className="c9"
+              className="c16"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -384,16 +833,16 @@ exports[`Viser Traadliste 1`] = `
               </svg>
               <p
                 aria-hidden="true"
-                className="typo-undertekst c10"
+                className="typo-undertekst c17"
               >
                 4
               </p>
             </span>
             <div
-              className="c11"
+              className="c18"
             >
               <div
-                className="order-first c12"
+                className="order-first c19"
               >
                 <p
                   className="typo-element order-second"
@@ -407,7 +856,7 @@ exports[`Viser Traadliste 1`] = `
                 </p>
               </div>
               <div
-                className="order-third c13"
+                className="order-third c20"
               >
                 <div
                   className="etikett etikett--fokus"
@@ -429,7 +878,7 @@ exports[`Viser Traadliste 1`] = `
                 </div>
               </div>
               <p
-                className="typo-normal order-second c14"
+                className="typo-normal order-second c21"
               >
                 Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
               </p>
@@ -437,7 +886,7 @@ exports[`Viser Traadliste 1`] = `
           </div>
         </div>
         <div
-          className="hover-animation c15"
+          className="hover-animation c22"
         >
           <i
             className="nav-frontend-chevron chevronboks chevron--hoyre"

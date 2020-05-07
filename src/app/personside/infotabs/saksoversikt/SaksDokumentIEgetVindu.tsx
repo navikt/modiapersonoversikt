@@ -16,6 +16,7 @@ const Sentring = styled.div`
     justify-content: center;
     align-items: center;
     height: 100%;
+    margin: 0 auto;
 `;
 
 function SaksDokumentEgetVindu(props: Props) {

@@ -543,7 +543,7 @@ exports[`viser personsøk-komponent 1`] = `
     </section>
     <a
       className="lenke"
-      href="?fornavn=&etternavn=&foedselsdato=&kjoenn="
+      href="https://drek.nais.preprod.local/?fornavn=&etternavn=&foedselsdato=&kjoenn="
       rel="noopener noreferrer"
       target="_blank"
     >

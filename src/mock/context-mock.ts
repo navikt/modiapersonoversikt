@@ -11,7 +11,16 @@ export const enheter = [
     { enhetId: '0602', navn: 'NAV Drammer' }
 ];
 
+class VoidWebSocket {
+    addEventListener() {}
+    removeEventListener() {}
+    send() {}
+    close() {}
+}
+
 export function setupWsControlAndMock(mock: FetchMock) {
+    (window as any).WebSocket = VoidWebSocket;
+
     mock.post('/modiacontextholder/api/context', ({ body }) => {
         if (body.eventType === 'NY_AKTIV_ENHET') {
             context.aktivEnhet = body.verdi;
@@ -52,7 +61,7 @@ export function setupWsControlAndMock(mock: FetchMock) {
 
     mock.get('/modiacontextholder/api/decorator', me);
 
-    mock.get('/aktoerregister/api/v1/identer', args => {
+    mock.get('https://app-q0.adeo.no/aktoerregister/api/v1/identer', args => {
         const fnr = (args.init!.headers! as Record<string, string>)['Nav-Personidenter'];
         return {
             [fnr]: {

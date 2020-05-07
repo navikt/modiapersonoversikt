@@ -9,13 +9,16 @@ import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { LeggTilbakeOppgaveRequest } from '../../../../../models/oppgave';
-import { Temagruppe, TemaPlukkbare } from '../../../../../models/Temagrupper';
+import { Temagruppe, TemaLeggTilbake } from '../../../../../models/Temagrupper';
 import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { DialogPanelStatus, FortsettDialogPanelState } from '../FortsettDialogTypes';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../rest/consumer/usePostResource';
+import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
+import { Diskresjonskoder } from '../../../../../konstanter';
+import { isNotFound } from '../../../../../rest/utils/restResource';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -53,6 +56,7 @@ const Style = styled.div`
 
 interface Props {
     oppgaveId: string;
+    traadId: string;
     temagruppe?: Temagruppe | null;
     status: FortsettDialogPanelState;
     setDialogStatus: (status: FortsettDialogPanelState) => void;
@@ -63,6 +67,20 @@ function LeggTilbakeFeilmelding(props: { status: FortsettDialogPanelState }) {
         return <AlertStripeFeil>Det skjedde en feil ved tilbakelegging av oppgave</AlertStripeFeil>;
     }
     return null;
+}
+function useGyldigTemagruppeListe() {
+    const personinformasjon = useRestResource(resources => resources.personinformasjon).resource;
+    const kontorinformasjon = useRestResource(resources => resources.brukersNavKontor).resource;
+
+    const manglerNavKontor = isNotFound(kontorinformasjon);
+    const erKode6 =
+        isLoadedPerson(personinformasjon) &&
+        personinformasjon.data.diskresjonskode?.kodeRef === Diskresjonskoder.STRENGT_FORTROLIG_ADRESSE;
+
+    if (manglerNavKontor || erKode6) {
+        return TemaLeggTilbake.filter(temagruppe => temagruppe !== Temagruppe.ØkonomiskSosial);
+    }
+    return TemaLeggTilbake;
 }
 
 function LeggTilbakepanel(props: Props) {
@@ -77,12 +95,13 @@ function LeggTilbakepanel(props: Props) {
     const dispatch = useDispatch();
     const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
+    const gyldigTemagruppeListe = useGyldigTemagruppeListe();
     const leggerTilbake = props.status.type === DialogPanelStatus.POSTING;
 
-    function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak }) {
+    function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak; label?: string }) {
         return (
             <Radio
-                label={props.årsak}
+                label={props.label ?? props.årsak}
                 checked={props.årsak === state.årsak}
                 onChange={() => updateState({ årsak: props.årsak })}
                 name="årsak"
@@ -130,6 +149,7 @@ function LeggTilbakepanel(props: Props) {
             const payload: LeggTilbakeOppgaveRequest = {
                 temagruppe: state.temagruppe,
                 oppgaveId: props.oppgaveId,
+                traadId: props.traadId,
                 type: 'FeilTema'
             };
             post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload, 'LeggTilbakeOppgave-FeilTema')
@@ -156,7 +176,7 @@ function LeggTilbakepanel(props: Props) {
                     }
                 >
                     <legend className="sr-only">Velg årsak</legend>
-                    <ÅrsakRadio årsak={LeggTilbakeÅrsak.Innhabil} />
+                    <ÅrsakRadio årsak={LeggTilbakeÅrsak.Innhabil} label="Inhabil" />
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.FeilTemagruppe} />
                     <UnmountClosed isOpened={state.årsak === LeggTilbakeÅrsak.FeilTemagruppe} hasNestedCollapse={true}>
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
@@ -164,7 +184,7 @@ function LeggTilbakepanel(props: Props) {
                             setTema={tema => updateState({ temagruppe: tema })}
                             valgtTema={state.temagruppe}
                             visFeilmelding={!LeggTilbakeValidator.tema(state) && state.visFeilmeldinger}
-                            temavalg={TemaPlukkbare}
+                            temavalg={gyldigTemagruppeListe}
                         />
                     </UnmountClosed>
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.AnnenÅrsak} />

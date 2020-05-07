@@ -53,6 +53,7 @@ jobs:
           echo ${GITHUB_TOKEN} | docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} --password-stdin
           docker build --tag ${IMAGE} .
           docker push ${IMAGE}
+
   deploy-qa:
     name: Deploy to preprod
     needs: build-and-push
@@ -70,7 +71,7 @@ jobs:
           CLUSTER: dev-fss
           RESOURCE: .nais/qa-template.yaml
           VAR: namespace=${{matrix.namespace}}
-      
+
   deploy-prod:
     name: Deploy to prod
     needs: build-and-push

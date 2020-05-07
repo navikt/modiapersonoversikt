@@ -3,17 +3,17 @@ import { useCallback, useState } from 'react';
 import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import { useDispatch } from 'react-redux';
-import { DecoratorProps } from './decoratorprops';
-import { fjernBrukerFraPath, setNyBrukerIPath } from '../routes/routing';
-import { useHistory } from 'react-router';
+import { DecoratorProps, EnhetDisplay, FnrDisplay, RESET_VALUE } from './decoratorprops';
+import { fjernBrukerFraPath, paths, setNyBrukerIPath } from '../routes/routing';
+import { matchPath, useHistory } from 'react-router';
 import './personsokKnapp.less';
 import './hurtigtaster.less';
 import './decorator.less';
-import { useAppState, useFødselsnummer, useOnMount } from '../../utils/customHooks';
+import { useAppState, useOnMount } from '../../utils/customHooks';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { velgEnhetAction } from '../../redux/session/session';
-import { useQueryParams } from '../../utils/urlUtils';
+import { parseQueryString, useQueryParams } from '../../utils/urlUtils';
 import styled from 'styled-components';
 import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTipsContainer';
 import useHandleGosysUrl from './useHandleGosysUrl';
@@ -22,10 +22,10 @@ import { loggEvent } from '../../utils/logger/frontendLogger';
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 const etterSokefelt = `
 <div class="knapper_container">
-  <button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk" data-apne="Åpne avansert søk" data-lukke="Lukk avansert søk">
+  <button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk">
     <span> A <span class="personsok-pil"></span></span>
   </button>
-  <button class="hurtigtaster-button" id="hurtigtaster-button" aria-label="Åpne hurtigtaster" title="Åpne hurtigtaster" data-apne="Åpne hurtigtaster" data-lukke="Lukk hurtigtaster">
+  <button class="hurtigtaster-button" id="hurtigtaster-button" aria-label="Åpne hurtigtaster" title="Åpne hurtigtaster">
     <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
   </button>
 </div>
@@ -38,63 +38,72 @@ const StyledNav = styled.nav`
 `;
 
 function lagConfig(
-    gjeldendeFnr: string | undefined | null,
-    sokFnr: string | undefined,
     enhet: string | undefined | null,
     history: History,
     settEnhet: (enhet: string) => void
 ): DecoratorProps {
+    const { sokFnr, pathFnr } = getFnrFraUrl();
+    const onsketFnr = sokFnr || pathFnr;
+    const fnrValue = onsketFnr === '0' ? RESET_VALUE : onsketFnr;
+
     return {
         appname: 'Modia personoversikt',
-        fnr: sokFnr || gjeldendeFnr,
-        enhet,
+        fnr: {
+            value: fnrValue,
+            display: FnrDisplay.SOKEFELT,
+            onChange(fnr: string | null): void {
+                if (fnr === getFnrFraUrl().pathFnr) {
+                    return;
+                }
+                if (fnr && fnr.length > 0) {
+                    setNyBrukerIPath(history, fnr);
+                } else {
+                    fjernBrukerFraPath(history);
+                }
+            }
+        },
+        enhet: {
+            initialValue: enhet || null,
+            display: EnhetDisplay.ENHET_VALG,
+            onChange(enhet: string | null): void {
+                if (enhet) {
+                    settEnhet(enhet);
+                }
+            }
+        },
         toggles: {
-            visEnhet: false,
-            visEnhetVelger: true,
-            visSokefelt: true,
-            visVeilder: true
+            visVeileder: true
         },
-        onSok(fnr: string | null): void {
-            if (fnr === gjeldendeFnr) {
-                return;
-            }
-            if (fnr && fnr.length > 0) {
-                setNyBrukerIPath(history, fnr);
-            } else {
-                fjernBrukerFraPath(history);
-            }
-        },
-        onEnhetChange(enhet: string): void {
-            settEnhet(enhet);
-        },
-        contextholder: true,
         markup: {
             etterSokefelt: etterSokefelt
-        },
-        autoSubmitOnMount: true
+        }
     };
 }
 
-function useKlargjorContextholder() {
+// TODO Jupp, dette er en superhack pga fnr i redux-state ikke blir satt tidlig nok.
+// gjeldendeBruker.fnr burde fjernes fra state og hentes fra url slik at man har en single-point-of truth.
+function useVenterPaRedux() {
     const [klar, setKlar] = useState(false);
-    const queryParams = useQueryParams<{ sokFnr?: string }>();
     useOnMount(() => {
-        if (queryParams.sokFnr === '0') {
-            // Manuell nullstilling av bruker i context
-            fetch('/modiacontextholder/api/context/aktivbruker', {
-                method: 'DELETE',
-                credentials: 'include'
-            }).then(() => setKlar(true));
-        } else {
-            setKlar(true);
-        }
+        setKlar(true);
     });
-
     return klar;
 }
 
+function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null } {
+    const location = window.location;
+    const queryParams = parseQueryString<{ sokFnr?: string }>(location.search);
+    const sakerUriMatch = matchPath<{ fnr: string }>(location.pathname, `${paths.sakerFullscreen}/:fnr`);
+    const saksdokumentUriMatch = matchPath<{ fnr: string }>(location.pathname, `${paths.saksdokumentEgetVindu}/:fnr`);
+    const personUriMatch = matchPath<{ fnr: string }>(location.pathname, `${paths.personUri}/:fnr`);
+    return {
+        sokFnr: queryParams.sokFnr ?? null,
+        pathFnr: sakerUriMatch?.params.fnr ?? saksdokumentUriMatch?.params.fnr ?? personUriMatch?.params.fnr ?? null
+    };
+}
+
 function Decorator() {
-    const gjeldendeFnr = useFødselsnummer();
+    const reduxErKlar = useVenterPaRedux();
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -112,19 +121,11 @@ function Decorator() {
         dispatch(velgEnhetAction(enhet));
     };
 
-    const contextErKlar = useKlargjorContextholder();
-
-    const config = useCallback(lagConfig, [gjeldendeFnr, valgtEnhet, history, handleSetEnhet])(
-        gjeldendeFnr,
-        queryParams.sokFnr,
-        valgtEnhet,
-        history,
-        handleSetEnhet
-    );
+    const config = useCallback(lagConfig, [valgtEnhet, history, handleSetEnhet])(valgtEnhet, history, handleSetEnhet);
 
     return (
         <StyledNav>
-            {contextErKlar && (
+            {reduxErKlar && (
                 <>
                     <InternflateDecorator {...config} />
                     <PersonsokContainer />

@@ -23,7 +23,6 @@ import { useAppState, usePrevious } from '../../../../../utils/customHooks';
 import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 import { useDispatch } from 'react-redux';
 import { oppdaterAvsenderfilter } from '../../../../../redux/saksoversikt/actions';
-import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import { guid } from 'nav-frontend-js-utils';
 
@@ -195,13 +194,8 @@ function JournalPoster(props: Props) {
     const paginering = usePaginering(filtrerteJournalposter, 50, 'journalpost');
     const dispatch = useDispatch();
     const handleOppdaterAvsenderFilter = (filter: Partial<DokumentAvsenderFilter>) => {
-        loggEvent('EndreFilter', 'Saker');
         dispatch(oppdaterAvsenderfilter(filter));
     };
-
-    useEffect(() => {
-        loggEvent('VisSakstema', 'Saker');
-    }, [props.valgtSakstema]);
 
     const prevSakstema = usePrevious(props.valgtSakstema);
     useEffect(

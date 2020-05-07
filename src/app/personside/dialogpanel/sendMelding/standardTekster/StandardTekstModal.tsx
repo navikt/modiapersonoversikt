@@ -7,9 +7,12 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import useFieldState from '../../../../../utils/hooks/use-field-state';
 import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
+import { getInnstilling } from '../../../../../redux/innstillinger';
+import { useAppState } from '../../../../../utils/customHooks';
 
 interface Props {
     appendTekst(tekst: string): void;
+    defaultSokefeltValue: string;
 }
 
 const Modal = styled(NavFrontendModal)`
@@ -56,8 +59,7 @@ const Ikon = styled(SvgIkon)`
 
 function StandardTekstModal(props: Props) {
     const [isOpen, setOpen] = React.useState(false);
-    const erKontaktSenter = useErKontaktsenter();
-    const sokefelt = useFieldState(erKontaktSenter ? '#ks ' : '');
+    const sokefelt = useFieldState(props.defaultSokefeltValue);
     useHotkey({ char: 'c', altKey: true }, () => setOpen(true), [setOpen], 'Standardtekster');
 
     return (
@@ -84,4 +86,17 @@ function StandardTekstModal(props: Props) {
     );
 }
 
-export default StandardTekstModal;
+function StandardTekstModalLoader(props: Omit<Props, 'defaultSokefeltValue'>) {
+    const erKontaktSenter = useErKontaktsenter();
+    const defaultTagsStandardtekster = useAppState(appstate =>
+        getInnstilling(appstate, 'defaultTagsStandardtekster', 'na')
+    );
+    const sokefeltValue = [
+        erKontaktSenter ? '#ks ' : '',
+        defaultTagsStandardtekster !== 'na' ? `#${defaultTagsStandardtekster} ` : ''
+    ].join('');
+
+    return <StandardTekstModal key={defaultTagsStandardtekster} defaultSokefeltValue={sokefeltValue} {...props} />;
+}
+
+export default StandardTekstModalLoader;

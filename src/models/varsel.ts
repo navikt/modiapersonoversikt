@@ -1,8 +1,33 @@
+export interface DittNavEvent {
+    fodselsnummer: string;
+    grupperingsId: string;
+    eventId: string;
+    eventTidspunkt: string;
+    produsent: string;
+    sikkerhetsnivaa: number;
+    sistOppdatert: string;
+    tekst: string;
+    link: string;
+    aktiv: boolean;
+}
+export interface DittNavBeskjed extends DittNavEvent {
+    uid: string;
+    synligFremTil?: string;
+}
+
+export interface DittNavOppgave extends DittNavEvent {}
+
 export interface Varsel {
     varselType: string;
     mottattTidspunkt: string;
     erRevarsling: boolean;
     meldingListe: Varselmelding[];
+}
+
+export type UnifiedVarsel = Varsel | DittNavEvent;
+
+export function isDittNavEvent(varsel: UnifiedVarsel): varsel is DittNavEvent {
+    return varsel.hasOwnProperty('eventId');
 }
 
 export interface Varselmelding {
@@ -65,6 +90,7 @@ export enum Varseltype {
     'SyfoSykepengesoknad' = 'Sykepengesøknad',
     'UR_StoppPrint' = 'Utbetalingsmelding',
     'NySykmelding' = 'Ny sykmelding',
+    'NySykmeldingUtenLenke' = 'Ny sykmelding',
     'SyfoplanOpprettetSyk' = 'Oppfølgingsplan påbegynt av leder',
     'SyfoplangodkjenningSyk' = 'Oppfølgingsplan venter godkjenning',
     'SyfoSvarMotebehov' = 'Avventer svar om behov for dialogmøte',

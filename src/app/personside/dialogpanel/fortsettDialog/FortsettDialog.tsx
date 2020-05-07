@@ -64,6 +64,8 @@ function FortsettDialog(props: Props) {
     const girIkkeVarsel = [Meldingstype.SVAR_OPPMOTE, Meldingstype.SVAR_TELEFON].includes(state.dialogType);
     const girVarselKanIkkeSvare = Meldingstype.SVAR_SKRIFTLIG === state.dialogType;
     const brukerKanSvareValg = state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
+    const delMedBrukerTekst = props.erTilknyttetOppgave ? `Del med ${navn} og avslutt oppgave` : `Del med ${navn}`;
+    const erOksosTraad = props.traad.meldinger.some(it => it.temagruppe === 'OKSOS');
     return (
         <FormStyle onSubmit={handleSubmit}>
             <TidligereMeldinger traad={props.traad} />
@@ -83,6 +85,7 @@ function FortsettDialog(props: Props) {
                 updateDialogType={dialogType => updateState({ dialogType: dialogType })}
                 erTilknyttetOppgave={props.erTilknyttetOppgave}
                 erDelvisBesvart={erDelvisBesvart(props.traad)}
+                erOksosTraad={erOksosTraad}
             />
             <Margin>
                 <UnmountClosed isOpened={girVarselKanIkkeSvare}>
@@ -95,7 +98,7 @@ function FortsettDialog(props: Props) {
                     <BrukerKanSvare
                         formState={state}
                         updateFormState={updateState}
-                        visVelgSak={!erEldsteMeldingJournalfort(props.traad)}
+                        visVelgSak={!erEldsteMeldingJournalfort(props.traad) && !erOksosTraad}
                     />
                 </UnmountClosed>
                 <UnmountClosed isOpened={erDelsvar} hasNestedCollapse={true}>
@@ -114,7 +117,7 @@ function FortsettDialog(props: Props) {
                     ? `Skriv delsvar og legg tilbake på ${
                           state.temagruppe ? temagruppeTekst(state.temagruppe).toLowerCase() : 'tema'
                       }`
-                    : `Del med ${navn}`}
+                    : delMedBrukerTekst}
             </SubmitKnapp>
             {!props.erTilknyttetOppgave && (
                 <StyledKnappMedBekreftPopup

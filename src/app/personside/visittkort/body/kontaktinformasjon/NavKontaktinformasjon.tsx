@@ -5,7 +5,11 @@ import {
     NavKontaktinformasjon as NavKontaktinformasjonInterface,
     Telefon as TelefonInterface
 } from '../../../../../models/person/NAVKontaktinformasjon';
-import { formaterHustelefonnummer, formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
+import {
+    formaterHustelefonnummer,
+    formaterMobiltelefonnummer,
+    formaterTelefonnummer
+} from '../../../../../utils/telefon-utils';
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { endretAvTekst } from '../../../../../utils/endretAvUtil';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -27,7 +31,7 @@ function Telefon({ telefon, nummerFormaterer, beskrivelse }: TelefonProps) {
     return (
         <>
             <Normaltekst>
-                {`${retningsnummmer} ${formatertNummer}`} ({beskrivelse})
+                {`${retningsnummmer} ${formatertNummer}`} {beskrivelse}
             </Normaltekst>
             <EtikettGrå>
                 Endret {formatertDato} {endretAv}
@@ -36,8 +40,21 @@ function Telefon({ telefon, nummerFormaterer, beskrivelse }: TelefonProps) {
     );
 }
 
-export default function NavKontaktinformasjon(props: { navKontaktinformasjon: NavKontaktinformasjonInterface }) {
+interface Props {
+    navKontaktinformasjon: NavKontaktinformasjonInterface;
+    telefonnummer?: Array<TelefonInterface>;
+}
+
+export default function NavKontaktinformasjon(props: Props) {
     const { navKontaktinformasjon } = props;
+
+    if (props.telefonnummer && props.telefonnummer.length > 0) {
+        const telefonNummer = props.telefonnummer.map(telefon => (
+            <Telefon telefon={telefon} nummerFormaterer={formaterTelefonnummer} beskrivelse="" />
+        ));
+
+        return <VisittkortElement beskrivelse="Telefon til bruk for NAV">{telefonNummer}</VisittkortElement>;
+    }
     if (!navKontaktinformasjon.hjemTelefon && !navKontaktinformasjon.jobbTelefon && !navKontaktinformasjon.mobil) {
         return null;
     }
@@ -47,17 +64,17 @@ export default function NavKontaktinformasjon(props: { navKontaktinformasjon: Na
             <Telefon
                 nummerFormaterer={formaterMobiltelefonnummer}
                 telefon={navKontaktinformasjon.mobil}
-                beskrivelse={'Mobil'}
+                beskrivelse={'(Mobil)'}
             />
             <Telefon
                 nummerFormaterer={formaterHustelefonnummer}
                 telefon={navKontaktinformasjon.hjemTelefon}
-                beskrivelse={'Hjem'}
+                beskrivelse={'(Hjem)'}
             />
             <Telefon
                 nummerFormaterer={formaterHustelefonnummer}
                 telefon={navKontaktinformasjon.jobbTelefon}
-                beskrivelse={'Jobb'}
+                beskrivelse={'(Jobb)'}
             />
         </VisittkortElement>
     );

@@ -8,15 +8,10 @@ import MerkPanel from './merk/MerkPanel';
 import OpprettOppgaveContainer from './oppgave/OpprettOppgaveContainer';
 import { createRef, useCallback, useEffect, useRef } from 'react';
 import EkspanderKnapp from '../../../../../../components/EkspanderKnapp';
-import { useFødselsnummer, usePrevious } from '../../../../../../utils/customHooks';
+import { usePrevious } from '../../../../../../utils/customHooks';
 import usePrinter from '../../../../../../utils/UsePrinter';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { LenkeKnapp } from '../../../../../../components/common-styled-components';
-import { apiBaseUri } from '../../../../../../api/config';
 import PrintKnapp from '../../../../../../components/PrintKnapp';
 import MeldingerPrintMarkup from '../../../../../../utils/MeldingerPrintMarkup';
-import useFeatureToggle from '../../../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../../../components/featureToggle/toggleIDs';
 import { guid } from 'nav-frontend-js-utils';
 import ErrorBoundary from '../../../../../../components/ErrorBoundary';
 
@@ -63,33 +58,17 @@ enum VerktøyPanel {
 function Print(props: Props) {
     const printer = usePrinter();
     const PrinterWrapper = printer.printerWrapper;
-
-    const GammelPrintKnapp = styled(LenkeKnapp.withComponent('a'))`
-        text-decoration: none;
-        color: #3e3832;
-    `;
-    const fnr = useFødselsnummer();
-    const meldingerPrintFT = useFeatureToggle(FeatureToggles.MeldingerPrint);
-
     if (!props.visPrinter) {
         return null;
     }
 
-    if (meldingerPrintFT.isOn) {
-        return (
-            <>
-                <PrintKnapp onClick={() => printer?.triggerPrint()} />
-                <PrinterWrapper>
-                    <MeldingerPrintMarkup valgtTraad={props.valgtTraad} />
-                </PrinterWrapper>
-            </>
-        );
-    }
-
     return (
-        <GammelPrintKnapp href={`${apiBaseUri}/dialog/${fnr}/${props.valgtTraad.traadId}/print`} download>
-            <Normaltekst>Skriv ut</Normaltekst>
-        </GammelPrintKnapp>
+        <>
+            <PrintKnapp onClick={() => printer?.triggerPrint()} />
+            <PrinterWrapper>
+                <MeldingerPrintMarkup valgtTraad={props.valgtTraad} />
+            </PrinterWrapper>
+        </>
     );
 }
 

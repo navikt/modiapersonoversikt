@@ -14,6 +14,7 @@ import { loggError } from '../../utils/logger/frontendLogger';
 import DelayRender from '../../components/DelayRender';
 
 export interface RestResourcePlaceholderProps {
+    placeholderKey?: string;
     returnOnError?: JSX.Element | string;
     returnOnPending?: JSX.Element | string;
     returnOnNotFound?: JSX.Element | string;

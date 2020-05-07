@@ -24,9 +24,10 @@ import { post } from '../../../../../../../api/api';
 import {
     MerkAvsluttUtenSvarRequest,
     MerkRequestMedBehandlingskjede,
-    MerkRequestMedTraadId
+    MerkRequestMedTraadId,
+    MerkTvungenFerdigstillRequest
 } from '../../../../../../../models/meldinger/merk';
-import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
 import { useAppState } from '../../../../../../../utils/customHooks';
@@ -38,6 +39,8 @@ import { useRestResource } from '../../../../../../../rest/consumer/useRestResou
 import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
 import { useFocusOnFirstInputOnMount } from '../../../../../../../utils/hooks/useFocusOnFirstInputOnMount';
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
+import useTildelteOppgaver from '../../../../../../../utils/hooks/useTildelteOppgaver';
+import { Oppgave } from '../../../../../../../models/oppgave';
 
 interface Props {
     lukkPanel: () => void;
@@ -49,7 +52,8 @@ enum MerkOperasjon {
     BISYS = 'BISYS',
     KONTORSPERRET = 'KONTORSPERRET',
     AVSLUTT = 'AVSLUTT',
-    SLETT = 'SLETT'
+    SLETT = 'SLETT',
+    FERDIGSTILL = 'FERDIGSTILL'
 }
 
 const KnappStyle = styled.div`
@@ -63,10 +67,15 @@ const AlertStyling = styled.div`
     }
 `;
 
+const InfoStyling = styled.div`
+    margin-bottom: 0.5rem;
+`;
+
 const MERK_AVSLUTT_URL = `${apiBaseUri}/dialogmerking/avslutt`;
 const MERK_BISYS_URL = `${apiBaseUri}/dialogmerking/bidrag`;
 const MERK_FEILSENDT_URL = `${apiBaseUri}/dialogmerking/feilsendt`;
 const MERK_SLETT_URL = `${apiBaseUri}/dialogmerking/slett`;
+const MERK_TVUNGEN_FERDIGSTILL_URL = `${apiBaseUri}/dialogmerking/tvungenferdigstill`;
 
 function lagBehandlingskjede(traad: Traad) {
     return traad.meldinger.filter(melding => !erMeldingFeilsendt(melding)).map(melding => melding.id);
@@ -90,12 +99,26 @@ function visFerdigstillUtenSvar(meldingstype: Meldingstype, valgtTraad: Traad) {
     );
 }
 
+function visTvungenFerdigstillelse(valgtTraad: Traad, tildelteOppgaver: Oppgave[]) {
+    const oppgavenTildeltBruker = tildelteOppgaver.find(it => it.traadId === valgtTraad.traadId);
+    return erBehandlet(valgtTraad) && oppgavenTildeltBruker;
+}
+
 function getMerkAvsluttRequest(fnr: string, traad: Traad, valgtEnhet: string): MerkAvsluttUtenSvarRequest {
     return {
         fnr: fnr,
         saksbehandlerValgtEnhet: valgtEnhet,
         eldsteMeldingOppgaveId: eldsteMelding(traad).oppgaveId,
         eldsteMeldingTraadId: traad.traadId
+    };
+}
+function getTvungenFerdigstillRequest(fnr: string, traad: Traad, valgtEnhet: string): MerkTvungenFerdigstillRequest {
+    return {
+        fnr: fnr,
+        saksbehandlerValgtEnhet: valgtEnhet,
+        eldsteMeldingOppgaveId: eldsteMelding(traad).oppgaveId,
+        eldsteMeldingTraadId: traad.traadId,
+        beskrivelse: 'Tvungen ferdigstillelse i Modia'
     };
 }
 
@@ -126,6 +149,7 @@ function MerkPanel(props: Props) {
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
+    const tildelteOppgaver = useTildelteOppgaver();
 
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
@@ -150,6 +174,7 @@ function MerkPanel(props: Props) {
     const disableStandardvalg = !visStandardvalg(valgtTraad);
     const disableBidrag = !(!erKommunaleTjenester(melding.temagruppe) && visStandardvalg(valgtTraad));
     const disableFerdigstillUtenSvar = !visFerdigstillUtenSvar(melding.meldingstype, valgtTraad);
+    const disableTvungenFerdigstill = !visTvungenFerdigstillelse(valgtTraad, tildelteOppgaver.paaBruker);
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
@@ -176,6 +201,13 @@ function MerkPanel(props: Props) {
                 break;
             case MerkOperasjon.SLETT:
                 merkPost(MERK_SLETT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Sletting');
+                break;
+            case MerkOperasjon.FERDIGSTILL:
+                merkPost(
+                    MERK_TVUNGEN_FERDIGSTILL_URL,
+                    getTvungenFerdigstillRequest(valgtBrukersFnr, valgtTraad, valgtEnhet || ''),
+                    'TvungenAvslutting'
+                );
                 break;
         }
     };
@@ -244,6 +276,11 @@ function MerkPanel(props: Props) {
                 label: 'Avslutt uten å svare bruker',
                 value: MerkOperasjon.AVSLUTT,
                 disabled: disableFerdigstillUtenSvar
+            },
+            {
+                label: 'Overstyrt ferdigstillelse av oppgave',
+                value: MerkOperasjon.FERDIGSTILL,
+                disabled: disableTvungenFerdigstill
             }
         ];
         if (visSletting) {
@@ -258,6 +295,14 @@ function MerkPanel(props: Props) {
                     legend={''}
                     onChange={(_, value) => settValgtOperasjon(MerkOperasjon[value])}
                 />
+                {!disableTvungenFerdigstill && (
+                    <InfoStyling>
+                        <AlertStripeInfo>
+                            Dersom oppgaven allerede er besvart og avsluttet kan man benytte overstyrt ferdigstillelse
+                            av oppgave
+                        </AlertStripeInfo>
+                    </InfoStyling>
+                )}
                 <KnappStyle>
                     <Hovedknapp htmlType="submit" spinner={submitting} autoDisableVedSpinner>
                         Merk

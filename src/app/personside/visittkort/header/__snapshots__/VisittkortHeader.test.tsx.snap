@@ -374,10 +374,10 @@ exports[`viser info om bruker i visittkort-header 1`] = `
                 <textarea
                   aria-hidden={true}
                   className="c7"
+                  readOnly={true}
                   tabIndex={-1}
-                >
-                  10108000398
-                </textarea>
+                  value="10108000398"
+                />
               </span>
             </span>
             <span>
@@ -464,7 +464,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
           <span
             className="typo-normal"
           >
-            Tolkehjelp
+            Tegnspråktolk
           </span>
         </div>
         <div

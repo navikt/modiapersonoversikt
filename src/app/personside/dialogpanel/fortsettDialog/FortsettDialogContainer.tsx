@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useRef, useState, useCallback, useMemo } from 'react';
 import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
 import { ForsettDialogRequest, Meldingstype, SendDelsvarRequest, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { useAppState, useFødselsnummer } from '../../../../utils/customHooks';
+import { useFødselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
@@ -33,6 +33,8 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { isFinishedPosting } from '../../../../rest/utils/postResource';
 import ReflowBoundry from '../ReflowBoundry';
+import { Temagruppe } from '../../../../models/Temagrupper';
+import useDraft, { Draft } from '../use-draft';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -58,24 +60,33 @@ function FortsettDialogContainer(props: Props) {
         sak: undefined,
         oppgaveListe: OppgavelisteValg.MinListe
     };
+
+    const fnr = useFødselsnummer();
     const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
+    const draftLoader = useCallback((draft: Draft) => setState(current => ({ ...current, tekst: draft.content })), [
+        setState
+    ]);
+    const draftContext = useMemo(() => ({ fnr }), [fnr]);
+    const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
     const plukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
     const resetPlukkOppgaveResource = plukkOppgaveResource.actions.reset;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
-    const fnr = useFødselsnummer();
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
     });
-    const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const dispatch = useDispatch();
-    const updateState = (change: Partial<FortsettDialogState>) =>
-        setState({
-            ...state,
-            visFeilmeldinger: false,
-            ...change
-        });
+    const updateState = useCallback(
+        (change: Partial<FortsettDialogState>) =>
+            setState(currentState => {
+                if (change.tekst !== undefined) {
+                    updateDraft(change.tekst);
+                }
+                return { ...currentState, visFeilmeldinger: false, ...change };
+            }),
+        [setState, updateDraft]
+    );
     const getDuration = useTimer();
 
     const opprettHenvendelse = useOpprettHenvendelse(props.traad);
@@ -93,12 +104,15 @@ function FortsettDialogContainer(props: Props) {
     if (opprettHenvendelse.success === false) {
         return opprettHenvendelse.placeholder;
     }
-    const oppgaveId = opprettHenvendelse.henvendelse.oppgaveId;
-
     const oppgaveFraGosys =
         isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.fraGosys);
+    const oppgaveIdFraGosys = oppgaveFraGosys && oppgaveFraGosys.oppgaveId;
+    const oppgaveId = oppgaveIdFraGosys ? oppgaveIdFraGosys : opprettHenvendelse.henvendelse.oppgaveId;
 
-    const handleAvbryt = () => dispatch(setIngenValgtTraadDialogpanel());
+    const handleAvbryt = () => {
+        removeDraft();
+        dispatch(setIngenValgtTraadDialogpanel());
+    };
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
@@ -106,33 +120,13 @@ function FortsettDialogContainer(props: Props) {
             return;
         }
         const callback = () => {
+            removeDraft();
             loggEvent('TidsbrukMillisekunder', 'FortsettDialog', undefined, { ms: getDuration() });
             dispatch(resetPlukkOppgaveResource);
             dispatch(reloadTildelteOppgaver);
             dispatch(reloadMeldinger);
         };
 
-        const handleAvsluttOppgave = () => {
-            if (!oppgaveFraGosys) {
-                return;
-            }
-            const request = {
-                fnr: fnr,
-                oppgaveid: oppgaveFraGosys.oppgaveId,
-                beskrivelse: 'Lest og besvart i Modia',
-                saksbehandlerValgtEnhet: saksbehandlersEnhet
-            };
-            post(`${apiBaseUri}/dialogmerking/avsluttgosysoppgave`, request, 'Avslutt-Oppgave-Fra-Gosys')
-                .then(() => {
-                    loggEvent('AvsluttGosysOppgaveFraUrl', 'AvsluttOppgaveskjema');
-                })
-                .catch(() => {
-                    setDialogStatus({ type: DialogPanelStatus.ERROR });
-                    const error = Error('Kunne ikke avslutte oppgave i GOSYS');
-                    console.error(error);
-                    loggError(error, 'Oppgave');
-                });
-        };
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
         const commonPayload = {
             fritekst: state.tekst,
@@ -158,7 +152,6 @@ function FortsettDialogContainer(props: Props) {
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Send-Svar')
                 .then(() => {
-                    handleAvsluttOppgave();
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
@@ -167,8 +160,11 @@ function FortsettDialogContainer(props: Props) {
                 });
         } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
             const erJournalfort = erEldsteMeldingJournalfort(props.traad);
-            if (!state.sak && !erJournalfort) {
-                const error = Error('For å opprette spørsmål må meldingen være journalført eller sak må være valgt');
+            const erOksos = props.traad.meldinger[0].temagruppe === Temagruppe.ØkonomiskSosial;
+            if (!state.sak && !erJournalfort && !erOksos) {
+                const error = Error(
+                    'For å opprette spørsmål må meldingen være journalført, sak må være valgt, eller være på temagruppen OKSOS'
+                );
                 console.error(error);
                 loggError(error);
                 return;
@@ -186,7 +182,6 @@ function FortsettDialogContainer(props: Props) {
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
-                    handleAvsluttOppgave();
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
@@ -241,6 +236,7 @@ function FortsettDialogContainer(props: Props) {
                 {oppgaveId && (
                     <LeggTilbakepanel
                         oppgaveId={oppgaveId}
+                        traadId={props.traad.traadId}
                         status={dialogStatus}
                         setDialogStatus={setDialogStatus}
                         temagruppe={temagruppe}

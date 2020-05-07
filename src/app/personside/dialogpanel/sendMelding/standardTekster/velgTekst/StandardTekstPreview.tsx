@@ -47,7 +47,7 @@ function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; so
         .filter(tag => tag.length > 0)
         .filter((tag, index, list) => list.indexOf(tag) === index)
         .map(tag => {
-            const highlight = tags.includes(tag);
+            const highlight = tags.includes(tag.toLowerCase());
             return (
                 <Tag
                     mini

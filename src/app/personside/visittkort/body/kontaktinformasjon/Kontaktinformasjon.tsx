@@ -19,7 +19,10 @@ export default function Kontaktinformasjon({ person }: Props) {
             <Adresse person={person} />
             <Epost />
             <Telefon />
-            <NavKontaktinformasjon navKontaktinformasjon={person.kontaktinformasjon} />
+            <NavKontaktinformasjon
+                navKontaktinformasjon={person.kontaktinformasjon}
+                telefonnummer={person.telefonnummer}
+            />
             <Bankkonto person={person} />
         </VisittkortGruppe>
     );

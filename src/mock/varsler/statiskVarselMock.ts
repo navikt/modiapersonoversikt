@@ -1,4 +1,4 @@
-import { Kanal, Varsel } from '../../models/varsel';
+import { DittNavEvent, Kanal, Varsel } from '../../models/varsel';
 
 export const statiskVarselMock: Varsel[] = [
     {
@@ -44,5 +44,20 @@ export const statiskVarselMock: Varsel[] = [
                 erRevarsel: true
             }
         ]
+    }
+];
+
+export const statiskDittnavEventVarselMock: DittNavEvent[] = [
+    {
+        fodselsnummer: '',
+        grupperingsId: '',
+        eventId: '',
+        eventTidspunkt: '',
+        produsent: '',
+        sikkerhetsnivaa: 4,
+        sistOppdatert: '2018-03-01',
+        tekst: 'Tekst her',
+        link: '',
+        aktiv: true
     }
 ];

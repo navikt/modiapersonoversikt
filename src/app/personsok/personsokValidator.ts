@@ -1,7 +1,7 @@
 import FormValidator, { Valideringsregel } from '../../utils/forms/FormValidator';
 import { removeWhitespaceAndDot, validerKontonummer } from './kontonummer/kontonummerUtils';
-import { PersonSokFormState } from './PersonsokSkjema';
 import { erTall, erTomStreng } from '../../utils/string-utils';
+import { PersonSokFormState } from './personsokUtils';
 
 const tomtSkjema: PersonSokFormState = {
     fornavn: '',

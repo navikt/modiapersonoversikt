@@ -98,7 +98,8 @@ export function kanTraadJournalfores(traad: Traad): boolean {
         !erFeilsendt(traad) &&
         !erJournalfort(nyesteMeldingITraad) &&
         erBehandlet(traad) &&
-        !erDelsvar(nyesteMeldingITraad)
+        !erDelsvar(nyesteMeldingITraad) &&
+        !erKommunaleTjenester(nyesteMeldingITraad.temagruppe)
     );
 }
 

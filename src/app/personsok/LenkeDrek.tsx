@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { PersonSokFormState } from './PersonsokSkjema';
 import { hasData, RestResource } from '../../rest/utils/restResource';
 import { BaseUrlsResponse } from '../../models/baseurls';
 import { hentBaseUrl } from '../../redux/restReducers/baseurls';
@@ -7,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import { formaterDato } from '../../utils/stringFormatting';
 import { Normaltekst } from 'nav-frontend-typografi';
+import { PersonSokFormState } from './personsokUtils';
 
 function hentDrekUrl(baseUrlResource: RestResource<BaseUrlsResponse>) {
     return hasData(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'drek') : '';
