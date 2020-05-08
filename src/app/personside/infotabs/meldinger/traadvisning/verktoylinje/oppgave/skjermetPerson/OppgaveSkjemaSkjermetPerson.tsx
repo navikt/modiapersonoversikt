@@ -2,9 +2,8 @@ import React, { FormEvent, useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../../components/common-styled-components';
 import styled from 'styled-components';
-import { OppgaveSkjemaElementerSkjermetPerson } from './OppgaveSkjemaElementerSkjermetPerson';
-import { OppgaveProps, OppgaveSkjemaForm, SkjermetPersonOppgaveSkjemaProps } from '../oppgaveInterfaces';
-import { GsakTema, GsakTemaOppgavetype, GsakTemaUnderkategori } from '../../../../../../../../models/meldinger/oppgave';
+import { OppgaveProps, OppgaveSkjemaForm } from '../oppgaveInterfaces';
+
 import { ValideringsResultat } from '../../../../../../../../utils/forms/FormValidator';
 import { getValidOppgaveSkjemaState } from '../oppgaveSkjemaValidator';
 import { post } from '../../../../../../../../api/api';
@@ -15,7 +14,10 @@ import { lagSkjermetOppgaveRequest } from '../byggRequest';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../../redux/reducers';
 import { useAppState } from '../../../../../../../../utils/customHooks';
-import { validerOppgaveSkjemaSkjermetPerson } from './oppgaveSkjemaValidatorSkjermetPerson';
+import { required } from './oppgaveSkjemaValidatorSkjermetPerson';
+import useFormstate from '@nutgaard/use-formstate';
+import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from '../SkjemaElementOptions';
+import { Select, Textarea } from 'nav-frontend-skjema';
 
 const SkjemaStyle = styled.div`
     padding-top: 1rem;
@@ -40,49 +42,32 @@ const AlertStyling = styled.div`
         margin-top: 1rem;
     }
 `;
+const validator = useFormstate({
+    tema: required('Du må velge tema'),
+    oppgavetype: required('Du må velge oppgavetype'),
+    prioritet: required('Du må velge prioritet'),
+    beskrivelse: required('Du må skrive beskrivelse'),
+    underkategori: required('Du må velge underkategori')
+});
+
 function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const [submitting, setSubmitting] = useState(false);
-    const [valgtTema, settValgtTema] = useState<GsakTema | undefined>(undefined);
-    const [valgtUnderkategori, settValgtUnderkategori] = useState<GsakTemaUnderkategori | undefined>(undefined);
-    const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
-    const [valgtPrioritet, settValgtPrioritet] = useState<string | undefined>(undefined);
-    const [beskrivelse, settBeskrivelse] = useState('');
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<OppgaveSkjemaForm>>(
         getValidOppgaveSkjemaState()
     );
 
-    function oppdaterStateVedValgtTema(tema: GsakTema | undefined) {
-        settValgtTema(tema);
-        if (!tema) {
-            settValgtUnderkategori(undefined);
-            settValgtOppgavetype(undefined);
-        }
-
-        const normalOppgaveprioritet = tema?.prioriteter.find(prioritet => prioritet.kode.includes('NORM'));
-        settValgtPrioritet(normalOppgaveprioritet?.kode);
-    }
-
-    const formState: OppgaveSkjemaForm = {
-        valgtTema,
-        valgtUnderkategori,
-        valgtOppgavetype,
-        valgtPrioritet,
-        beskrivelse
+    const initalValues = {
+        tema: '',
+        underkategori: '',
+        oppgavetype: '',
+        prioritet: '',
+        beskrivelse: ''
     };
-    const formProps: SkjermetPersonOppgaveSkjemaProps = {
-        state: formState,
-        actions: {
-            oppdaterStateVedValgtTema,
-            settValgtUnderkategori,
-            settValgtOppgavetype,
-            settValgtPrioritet,
-            settBeskrivelse
-        },
-        valideringsResultat: valideringsResultat
-    };
+
+    const state = validator(initalValues);
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault();
@@ -91,12 +76,11 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
             return;
         }
 
-        const valideringsResultat = validerOppgaveSkjemaSkjermetPerson(formState);
-        if (valideringsResultat.formErGyldig) {
+        if (!state.errors) {
             setSubmitting(true);
             settValideringsresultat(getValidOppgaveSkjemaState());
 
-            const request = lagSkjermetOppgaveRequest(props, formProps, valgtBrukersFnr, saksbehandlersEnhet || '');
+            const request = lagSkjermetOppgaveRequest(props, state.fields, valgtBrukersFnr, saksbehandlersEnhet || '');
             post(`${apiBaseUri}/dialogoppgave/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
                 .then(() => {
                     settResultat(Resultat.VELLYKKET);
@@ -125,7 +109,19 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
     return (
         <SkjemaStyle>
             <form onSubmit={submitHandler}>
-                <OppgaveSkjemaElementerSkjermetPerson {...props} form={formProps} />
+                <Select autoFocus={true} label={'Tema'} {...state.fields.tema}>
+                    <TemaOptions gsakTema={props.gsakTema} />
+                </Select>
+                <Select label={'Gjelder'} {...state.fields.underkategori}>
+                    <UnderkategoriOptions valgtGsakTema={state.fields.tema.input} />
+                </Select>
+                <Select label={'Type oppgave'} {...state.fields.oppgavetype}>
+                    <OppgavetypeOptions valgtGsakTema={state.fields.tema.input} />
+                </Select>
+                <Select label={'Velg prioritet'} {...state.fields.prioritet}>
+                    <Prioriteter valgtGsakTeam={state.fields.tema.input} />
+                </Select>
+                <Textarea maxLength={0} label={'Beskrivelse'} {...state.fields.beskrivelse.input} />
                 <KnappStyle>
                     <Hovedknapp htmlType="submit" spinner={submitting}>
                         Opprett Oppgave

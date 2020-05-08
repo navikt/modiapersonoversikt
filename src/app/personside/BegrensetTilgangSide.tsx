@@ -53,11 +53,7 @@ function OpprettOppgaveAvvistTilgang() {
     }
 
     return (
-        <Ekspanderbartpanel
-            tittel={'Avvist tilgang - opprett oppgave for videre behandling'}
-            apen={apen}
-            onClick={() => setApen(!apen)}
-        >
+        <Ekspanderbartpanel tittel={'Opprett oppgave'} apen={apen} onClick={() => setApen(!apen)}>
             <OppgaveSkjemaSkjermetPerson
                 gsakTema={gsakTema}
                 gjeldendeBrukerFnr={fnr}
@@ -94,7 +90,6 @@ function visSikkerhetstiltak(sikkerhetstiltak?: Sikkerhetstiltak, erEgenAnsatt?:
             <>
                 <Undertittel>Egen ansatt</Undertittel>
                 {hentPeriode(sikkerhetstiltak.periode)}
-                <Normaltekst>{sikkerhetstiltak.sikkerhetstiltaksbeskrivelse}</Normaltekst>
             </>
         );
     }
