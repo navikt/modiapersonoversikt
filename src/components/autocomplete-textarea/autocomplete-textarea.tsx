@@ -69,6 +69,12 @@ function useRules(): Regler {
             externalId: 'f31f5d09-4873-4f84-912d-0ff3636db1cd'
         },
         {
+            type: 'external',
+            regex: /^vinten$/i,
+            externalId: 'f31f5d09-4873-4f84-912d-0ff3636db1cd',
+            locale: Locale.en_US
+        },
+        {
             type: 'internal',
             regex: /^aap$/i,
             replacement: () => 'arbeidsavklaringspenger '
@@ -184,6 +190,7 @@ function AutoTekstTips() {
                     <li>mvhks + mellomrom: Signatur som fra KS</li>
                     <li>hei + mellomrom: Hei bruker</li>
                     <li>vint + mellomrom: Videreformidle Internt</li>
+                    <li>vinten + mellomrom: Videreformidle Internt (engelsk)</li>
                     <li>AAP + mellomrom: arbeidsavklaringspenger</li>
                     <li>sbt + mellomrom: saksbehandlingstid</li>
                     <li>nay + mellomrom: NAV Arbeid og ytelser</li>
