@@ -32,6 +32,14 @@ export interface OppgaveSkjemaForm {
     valgtAnsatt?: Ansatt;
 }
 
+export interface SkjermetOppgaveSkjemaForm {
+    tema?: GsakTema;
+    oppgavetype?: GsakTemaOppgavetype;
+    beskrivelse: string;
+    prioritet?: string;
+    underkategori?: GsakTemaUnderkategori;
+}
+
 export interface OppgaveSkjemaProps {
     state: OppgaveSkjemaForm;
     actions: {

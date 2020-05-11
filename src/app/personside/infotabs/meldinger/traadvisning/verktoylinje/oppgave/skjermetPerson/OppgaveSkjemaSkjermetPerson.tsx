@@ -1,11 +1,8 @@
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../../components/common-styled-components';
 import styled from 'styled-components';
-import { OppgaveProps, OppgaveSkjemaForm } from '../oppgaveInterfaces';
-
-import { ValideringsResultat } from '../../../../../../../../utils/forms/FormValidator';
-import { getValidOppgaveSkjemaState } from '../oppgaveSkjemaValidator';
+import { OppgaveProps, SkjermetOppgaveSkjemaForm } from '../oppgaveInterfaces';
 import { post } from '../../../../../../../../api/api';
 import { apiBaseUri } from '../../../../../../../../api/config';
 import { Resultat } from '../../utils/VisPostResultat';
@@ -18,7 +15,6 @@ import { required } from './oppgaveSkjemaValidatorSkjermetPerson';
 import useFormstate, { Values } from '@nutgaard/use-formstate';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from '../SkjemaElementOptions';
 import { Select, Textarea } from 'nav-frontend-skjema';
-import { any } from 'prop-types';
 
 const SkjemaStyle = styled.div`
     padding-top: 1rem;
@@ -43,7 +39,7 @@ const AlertStyling = styled.div`
         margin-top: 1rem;
     }
 `;
-const validator = useFormstate({
+const validator = useFormstate<SkjermetOppgaveSkjemaForm>({
     tema: required('Du må velge tema'),
     oppgavetype: required('Du må velge oppgavetype'),
     prioritet: required('Du må velge prioritet'),
@@ -54,11 +50,7 @@ const validator = useFormstate({
 function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
-    const [submitting, setSubmitting] = useState(false);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
-    const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<OppgaveSkjemaForm>>(
-        getValidOppgaveSkjemaState()
-    );
 
     const initalValues = {
         tema: '',
@@ -70,28 +62,15 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
 
     const state = validator(initalValues);
 
-    function submitHandler<S>(values: Values<S>): Promise<any> {
-        if (submitting) {
-            return;
-        }
-
-        if (state.errors) {
-            return null;
-        }
-
-        setSubmitting(true);
-        settValideringsresultat(getValidOppgaveSkjemaState());
-
+    function submitHandler<S>(values: Values<SkjermetOppgaveSkjemaForm>): Promise<any> {
         const request = lagSkjermetOppgaveRequest(props, values, valgtBrukersFnr, saksbehandlersEnhet || '');
         return post(`${apiBaseUri}/dialogoppgave/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
-                setSubmitting(false);
                 props.onSuccessCallback && props.onSuccessCallback();
             })
             .catch(() => {
                 settResultat(Resultat.FEIL);
-                setSubmitting(false);
             });
     }
 
@@ -105,26 +84,25 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
         return <AlertStyling>{alert}</AlertStyling>;
     }
 
+    const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.tema?.input.value);
     return (
         <SkjemaStyle>
             <form onSubmit={state.onSubmit(submitHandler)}>
-                <Select autoFocus={true} label={'Tema'} {...state.fields.tema.input}>
+                <Select autoFocus={true} label={'Tema'} {...state.fields.tema?.input}>
                     <TemaOptions gsakTema={props.gsakTema} />
                 </Select>
-                <Select label={'Gjelder'} {...state.fields.underkategori.input}>
-                    <UnderkategoriOptions valgtGsakTema={} />
+                <Select label={'Gjelder'} {...state.fields.underkategori?.input}>
+                    <UnderkategoriOptions valgtGsakTema={valgtTema} />
                 </Select>
-                <Select label={'Type oppgave'} {...state.fields.oppgavetype.input}>
-                    <OppgavetypeOptions valgtGsakTema={} />
+                <Select label={'Type oppgave'} {...state.fields.oppgavetype?.input}>
+                    <OppgavetypeOptions valgtGsakTema={valgtTema} />
                 </Select>
-                <Select label={'Velg prioritet'} {...state.fields.prioritet.input}>
-                    <Prioriteter valgtGsakTeam={} />
+                <Select label={'Velg prioritet'} {...state.fields.prioritet?.input}>
+                    <Prioriteter valgtGsakTeam={valgtTema} />
                 </Select>
                 <Textarea maxLength={0} label={'Beskrivelse'} {...state.fields.beskrivelse.input} />
                 <KnappStyle>
-                    <Hovedknapp htmlType="submit" spinner={submitting}>
-                        Opprett Oppgave
-                    </Hovedknapp>
+                    <Hovedknapp htmlType="submit">Opprett Oppgave</Hovedknapp>
                     <LenkeKnapp type="button" onClick={props.lukkPanel}>
                         Avbryt
                     </LenkeKnapp>

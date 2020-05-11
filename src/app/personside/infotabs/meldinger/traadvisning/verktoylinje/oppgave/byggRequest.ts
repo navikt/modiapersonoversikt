@@ -1,9 +1,15 @@
 import { OpprettOppgaveRequest, OpprettSkjermetOppgaveRequest } from '../../../../../../../models/meldinger/oppgave';
 import { eldsteMelding } from '../../../utils/meldingerUtils';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
-import { OppgaveProps, OppgaveSkjemaProps, SkjermetPersonOppgaveSkjemaProps } from './oppgaveInterfaces';
+import {
+    OppgaveProps,
+    OppgaveSkjemaProps,
+    SkjermetOppgaveSkjemaForm,
+    SkjermetPersonOppgaveSkjemaProps
+} from './oppgaveInterfaces';
 import { formatterDatoTidNaa } from '../../../../../../../utils/dateUtils';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
+import { Mapped, Values } from '@nutgaard/use-formstate';
 
 export function lagOppgaveRequest(
     props: OppgaveProps,
@@ -38,26 +44,24 @@ export function lagOppgaveRequest(
 
 export function lagSkjermetOppgaveRequest(
     props: OppgaveProps,
-    form: OppgaveSkjemaProps | SkjermetPersonOppgaveSkjemaProps,
+    form: Mapped<Values<SkjermetOppgaveSkjemaForm>, string>,
     fodselsnummer: string,
     saksbehandlerEnhet: string
 ): OpprettSkjermetOppgaveRequest {
-    const valgtTema = form.state.valgtTema;
-    const temakode = valgtTema ? valgtTema.kode : 'UKJENT';
-    const valgtOppgavetype = form.state.valgtOppgavetype;
+    const temakode = form.tema ? form.tema : 'UKJENT';
 
-    if (!form.state.valgtPrioritet) {
+    if (!form.prioritet) {
         throw Error('Valgt prioritet er ikke valgt');
     }
     return {
         fnr: fodselsnummer,
-        dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
-        beskrivelse: lagBeskrivelse(form.state.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
+        //dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
+        beskrivelse: lagBeskrivelse(form.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
         temaKode: temakode,
-        underkategoriKode: form.state.valgtUnderkategori && form.state.valgtUnderkategori.kode,
+        underkategoriKode: form.underkategori && form.underkategori,
         brukerid: props.gjeldendeBrukerFnr,
-        oppgaveTypeKode: valgtOppgavetype ? valgtOppgavetype.kode : 'UKJENT',
-        prioritetKode: form.state.valgtPrioritet
+        oppgaveTypeKode: form.oppgavetype ? form.oppgavetype : 'UKJENT',
+        prioritetKode: form.prioritet
     };
 }
 
