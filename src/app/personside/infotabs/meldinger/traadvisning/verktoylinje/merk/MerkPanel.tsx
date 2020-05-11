@@ -33,7 +33,6 @@ import { Kontorsperr } from './Kontorsperr';
 import { useAppState } from '../../../../../../../utils/customHooks';
 import { hasData, isPending } from '@nutgaard/use-async';
 import { FetchResult } from '@nutgaard/use-fetch';
-import { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
@@ -268,7 +267,7 @@ function MerkPanel(props: Props) {
             />
         );
     } else {
-        const radioprops: RadioProps[] = [
+        const radioprops = [
             { label: 'Feilsendt post', value: MerkOperasjon.FEILSENDT, disabled: disableStandardvalg },
             { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag },
             { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: disableStandardvalg },
@@ -284,7 +283,7 @@ function MerkPanel(props: Props) {
             }
         ];
         if (visSletting) {
-            radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT });
+            radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT, disabled: false });
         }
         return (
             <form onSubmit={submitHandler} ref={formRef}>
