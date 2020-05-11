@@ -15,9 +15,10 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../../redux/reducers';
 import { useAppState } from '../../../../../../../../utils/customHooks';
 import { required } from './oppgaveSkjemaValidatorSkjermetPerson';
-import useFormstate from '@nutgaard/use-formstate';
+import useFormstate, { Values } from '@nutgaard/use-formstate';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from '../SkjemaElementOptions';
 import { Select, Textarea } from 'nav-frontend-skjema';
+import { any } from 'prop-types';
 
 const SkjemaStyle = styled.div`
     padding-top: 1rem;
@@ -69,32 +70,30 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
 
     const state = validator(initalValues);
 
-    const submitHandler = (event: FormEvent) => {
-        event.preventDefault();
-
+    function submitHandler<S>(values: Values<S>): Promise<any> {
         if (submitting) {
             return;
         }
 
-        if (!state.errors) {
-            setSubmitting(true);
-            settValideringsresultat(getValidOppgaveSkjemaState());
-
-            const request = lagSkjermetOppgaveRequest(props, state.fields, valgtBrukersFnr, saksbehandlersEnhet || '');
-            post(`${apiBaseUri}/dialogoppgave/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
-                .then(() => {
-                    settResultat(Resultat.VELLYKKET);
-                    setSubmitting(false);
-                    props.onSuccessCallback && props.onSuccessCallback();
-                })
-                .catch(() => {
-                    settResultat(Resultat.FEIL);
-                    setSubmitting(false);
-                });
-        } else {
-            settValideringsresultat(valideringsResultat);
+        if (state.errors) {
+            return null;
         }
-    };
+
+        setSubmitting(true);
+        settValideringsresultat(getValidOppgaveSkjemaState());
+
+        const request = lagSkjermetOppgaveRequest(props, values, valgtBrukersFnr, saksbehandlersEnhet || '');
+        return post(`${apiBaseUri}/dialogoppgave/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
+            .then(() => {
+                settResultat(Resultat.VELLYKKET);
+                setSubmitting(false);
+                props.onSuccessCallback && props.onSuccessCallback();
+            })
+            .catch(() => {
+                settResultat(Resultat.FEIL);
+                setSubmitting(false);
+            });
+    }
 
     if (resultat) {
         const alert =
@@ -108,18 +107,18 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
 
     return (
         <SkjemaStyle>
-            <form onSubmit={submitHandler}>
-                <Select autoFocus={true} label={'Tema'} {...state.fields.tema}>
+            <form onSubmit={state.onSubmit(submitHandler)}>
+                <Select autoFocus={true} label={'Tema'} {...state.fields.tema.input}>
                     <TemaOptions gsakTema={props.gsakTema} />
                 </Select>
-                <Select label={'Gjelder'} {...state.fields.underkategori}>
-                    <UnderkategoriOptions valgtGsakTema={state.fields.tema.input} />
+                <Select label={'Gjelder'} {...state.fields.underkategori.input}>
+                    <UnderkategoriOptions valgtGsakTema={} />
                 </Select>
-                <Select label={'Type oppgave'} {...state.fields.oppgavetype}>
-                    <OppgavetypeOptions valgtGsakTema={state.fields.tema.input} />
+                <Select label={'Type oppgave'} {...state.fields.oppgavetype.input}>
+                    <OppgavetypeOptions valgtGsakTema={} />
                 </Select>
-                <Select label={'Velg prioritet'} {...state.fields.prioritet}>
-                    <Prioriteter valgtGsakTeam={state.fields.tema.input} />
+                <Select label={'Velg prioritet'} {...state.fields.prioritet.input}>
+                    <Prioriteter valgtGsakTeam={} />
                 </Select>
                 <Textarea maxLength={0} label={'Beskrivelse'} {...state.fields.beskrivelse.input} />
                 <KnappStyle>
