@@ -203,7 +203,7 @@ function LeggTilbakepanel(props: Props) {
                                 value={state.tekst}
                                 onChange={e =>
                                     updateState({
-                                        tekst: (e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value
+                                        tekst: e.currentTarget.value
                                     })
                                 }
                             />

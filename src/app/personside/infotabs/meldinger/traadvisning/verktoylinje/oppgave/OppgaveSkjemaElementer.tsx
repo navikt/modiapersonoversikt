@@ -112,11 +112,7 @@ export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkje
                 maxLength={0}
                 value={props.form.state.beskrivelse}
                 label={'Beskrivelse'}
-                onChange={e =>
-                    props.form.actions.settBeskrivelse(
-                        (e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value
-                    )
-                }
+                onChange={e => props.form.actions.settBeskrivelse(e.currentTarget.value)}
             />
         </>
     );

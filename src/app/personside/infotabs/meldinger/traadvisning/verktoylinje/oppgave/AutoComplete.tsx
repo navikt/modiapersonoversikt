@@ -5,7 +5,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { Input } from 'nav-frontend-skjema';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import { SkjemaelementFeil } from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
+import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import EtikettGrå from '../../../../../../../components/EtikettGrå';
 import { isNumber } from 'util';
 
@@ -59,7 +59,7 @@ interface Props<Item> {
     topSuggestionsLabel?: string;
     otherSuggestionsLabel?: string;
     spinner?: boolean;
-    feil?: SkjemaelementFeil;
+    feil?: SkjemaelementFeilmelding;
 }
 
 function SuggestionMarkup<Item>(props: { item: Item; helpers: ControllerStateAndHelpers<Item> }) {
