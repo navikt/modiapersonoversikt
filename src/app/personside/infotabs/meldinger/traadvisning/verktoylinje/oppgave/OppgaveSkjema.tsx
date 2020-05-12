@@ -25,6 +25,14 @@ import { ValideringsResultat } from '../../../../../../../utils/forms/FormValida
 import { useAppState } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
+import useFormstate, { Values } from '@nutgaard/use-formstate';
+import { required } from './skjermetPerson/oppgaveSkjemaValidatorSkjermetPerson';
+import { Select, Textarea } from 'nav-frontend-skjema';
+import { hentValgtOppgavetype, hentValgtTema, hentValgtUnderkategori } from './oppgaveUtils';
+import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
+import AutoComplete from './AutoComplete';
+import { hasData, isPending } from '@nutgaard/use-async';
+import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 
 const AlertStyling = styled.div`
     > * {
@@ -61,90 +69,46 @@ function populerCacheMedTomAnsattliste() {
     cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
 }
 
+const validator = useFormstate<OppgaveSkjemaForm>({
+    valgtTema: required('Du må velge tema'),
+    valgtOppgavetype: required('Du må velge oppgavetype'),
+    beskrivelse: required('Du må skrive beskrivelse'),
+    valgtPrioritet: required('Du må velge prioritet'),
+    valgtUnderkategori: required('Du må velge underkategori'),
+    valgtEnhet: required('Du må velge enhet'),
+    valgtAnsatt: required('Du må velge ansatt')
+});
+
 function OppgaveSkjema(props: OppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
-    const [submitting, setSubmitting] = useState(false);
-    const [valgtTema, settValgtTema] = useState<GsakTema | undefined>(undefined);
-    const [valgtUnderkategori, settValgtUnderkategori] = useState<GsakTemaUnderkategori | undefined>(undefined);
-    const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
-    const [valgtEnhet, settValgtEnhet] = useState<Enhet | undefined>(undefined);
-    const [valgtAnsatt, settValgtAnsatt] = useState<Ansatt | undefined>(undefined);
-    const [valgtPrioritet, settValgtPrioritet] = useState<string | undefined>(undefined);
-    const [beskrivelse, settBeskrivelse] = useState('');
-    const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<OppgaveSkjemaForm>>(
-        getValidOppgaveSkjemaState()
-    );
+
     populerCacheMedTomAnsattliste();
 
-    function oppdaterStateVedValgtTema(tema: GsakTema | undefined) {
-        settValgtTema(tema);
-        if (!tema) {
-            settValgtUnderkategori(undefined);
-            settValgtOppgavetype(undefined);
-        }
+    const initialValues = {
+        valgtTema: '',
+        valgtOppgavetype: '',
+        beskrivelse: '',
+        valgtPrioritet: '',
+        valgtUnderkategori: '',
+        valgtEnhet: '',
+        valgtAnsatt: ''
+    };
 
-        const normalOppgaveprioritet = tema?.prioriteter.find(prioritet => prioritet.kode.includes('NORM'));
-        settValgtPrioritet(normalOppgaveprioritet?.kode);
+    const state = validator(initialValues);
+
+    function submitHandler<S>(values: Values<OppgaveSkjemaForm>): Promise<any> {
+        const request = lagOppgaveRequest(props, values, valgtBrukersFnr, saksbehandlersEnhet || '', props.valgtTraad);
+        return post(`${apiBaseUri}/dialogoppgave/opprett`, request, 'OpprettOppgave')
+            .then(() => {
+                settResultat(Resultat.VELLYKKET);
+                props.onSuccessCallback && props.onSuccessCallback();
+            })
+            .catch((error: Error) => {
+                settResultat(Resultat.FEIL);
+            });
     }
-
-    const formState: OppgaveSkjemaForm = {
-        valgtTema,
-        valgtUnderkategori,
-        valgtOppgavetype,
-        valgtEnhet,
-        valgtAnsatt,
-        valgtPrioritet,
-        beskrivelse
-    };
-    const formProps: OppgaveSkjemaProps = {
-        state: formState,
-        actions: {
-            oppdaterStateVedValgtTema,
-            settValgtUnderkategori,
-            settValgtOppgavetype,
-            settValgtEnhet,
-            settValgtAnsatt,
-            settValgtPrioritet,
-            settBeskrivelse
-        },
-        valideringsResultat: valideringsResultat
-    };
-
-    const submitHandler = (event: FormEvent) => {
-        event.preventDefault();
-
-        if (submitting) {
-            return;
-        }
-
-        const valideringsResultat = validerOppgaveSkjema(formState);
-
-        if (valideringsResultat.formErGyldig) {
-            setSubmitting(true);
-            settValideringsresultat(getValidOppgaveSkjemaState());
-            const request = lagOppgaveRequest(
-                props,
-                formProps,
-                valgtBrukersFnr,
-                saksbehandlersEnhet || '',
-                props.valgtTraad
-            );
-            post(`${apiBaseUri}/dialogoppgave/opprett`, request, 'OpprettOppgave')
-                .then(() => {
-                    settResultat(Resultat.VELLYKKET);
-                    setSubmitting(false);
-                    props.onSuccessCallback && props.onSuccessCallback();
-                })
-                .catch((error: Error) => {
-                    settResultat(Resultat.FEIL);
-                    setSubmitting(false);
-                });
-        } else {
-            settValideringsresultat(valideringsResultat);
-        }
-    };
 
     if (props.valgtTraad && !erBehandlet(props.valgtTraad)) {
         return (
@@ -175,17 +139,44 @@ function OppgaveSkjema(props: OppgaveProps) {
     }
 
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
+    const ansattliste = useAnsattePaaEnhet(state.fields.valgtEnhet?.input.value);
+    const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.tema?.input.value);
 
     return (
         <SkjemaStyle>
             <AvsluttGosysOppgaveSkjema />
-            <form onSubmit={submitHandler}>
+            <form onSubmit={state.onSubmit(submitHandler)}>
                 <Element>Opprett oppgave</Element>
-                <OppgaveSkjemaElementer {...props} form={formProps} />
+                <Select autoFocus={true} label={'Tema'} {...state.fields.valgtTema?.input}>
+                    <TemaOptions gsakTema={props.gsakTema} />
+                </Select>
+                <Select label={'Gjelder'} {...state.fields.valgtUnderkategori?.input}>
+                    <UnderkategoriOptions valgtGsakTema={valgtTema} />
+                </Select>
+                <Select label={'Type oppgave'} {...state.fields.valgtOppgavetype?.input}>
+                    <OppgavetypeOptions valgtGsakTema={valgtTema} />
+                </Select>
+                <AutoComplete<Enhet>
+                    itemToString={enhet => `${enhet.enhetId} ${enhet.enhetNavn}`}
+                    label={'Velg enhet'}
+                    suggestions={hasData(enhetliste) ? enhetliste.data : []}
+                    topSuggestions={foreslatteEnheter.foreslatteEnheter}
+                    topSuggestionsLabel="Foreslåtte enheter"
+                    otherSuggestionsLabel="Andre enheter"
+                    spinner={isPending(enhetliste) || foreslatteEnheter.pending}
+                />
+                <AutoComplete<Ansatt>
+                    itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
+                    label={'Velg ansatt'}
+                    suggestions={ansattliste.ansatte}
+                    {...state.fields.valgtAnsatt?.input}
+                />
+                <Select label={'Velg prioritet'} {...state.fields.valgtPrioritet?.input}>
+                    <Prioriteter valgtGsakTeam={valgtTema} />
+                </Select>
+                <Textarea maxLength={0} label={'Beskrivelse'} {...state.fields.beskrivelse.input} />
                 <KnappStyle>
-                    <Hovedknapp htmlType="submit" spinner={submitting}>
-                        {knappetekst}
-                    </Hovedknapp>
+                    <Hovedknapp htmlType="submit">{knappetekst}</Hovedknapp>
                     <LenkeKnapp type="button" onClick={props.lukkPanel}>
                         Avbryt
                     </LenkeKnapp>

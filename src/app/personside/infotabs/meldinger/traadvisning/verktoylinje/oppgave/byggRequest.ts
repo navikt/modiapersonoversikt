@@ -1,28 +1,19 @@
 import { OpprettOppgaveRequest, OpprettSkjermetOppgaveRequest } from '../../../../../../../models/meldinger/oppgave';
 import { eldsteMelding } from '../../../utils/meldingerUtils';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
-import {
-    OppgaveProps,
-    OppgaveSkjemaProps,
-    SkjermetOppgaveSkjemaForm,
-    SkjermetPersonOppgaveSkjemaProps
-} from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaForm, SkjermetOppgaveSkjemaForm } from './oppgaveInterfaces';
 import { formatterDatoTidNaa } from '../../../../../../../utils/dateUtils';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { Mapped, Values } from '@nutgaard/use-formstate';
 
 export function lagOppgaveRequest(
     props: OppgaveProps,
-    form: OppgaveSkjemaProps | SkjermetPersonOppgaveSkjemaProps,
+    form: Mapped<Values<OppgaveSkjemaForm>, string>,
     fodselsnummer: string,
     saksbehandlerEnhet: string,
     valgtTraad?: Traad
 ): OpprettOppgaveRequest {
-    const valgtTema = form.state.valgtTema;
-    const temakode = valgtTema ? valgtTema.kode : 'UKJENT';
-    const valgtOppgavetype = form.state.valgtOppgavetype;
-
-    if (!form.state.valgtPrioritet) {
+    if (!form.valgtPrioritet) {
         throw Error('Valgt prioritet er ikke valgt');
     }
 
@@ -30,15 +21,15 @@ export function lagOppgaveRequest(
         fnr: fodselsnummer,
         valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
         behandlingskjedeId: valgtTraad ? eldsteMelding(valgtTraad).id : 'UKJENT',
-        dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
-        ansvarligIdent: form.state.valgtAnsatt && form.state.valgtAnsatt.ident,
-        beskrivelse: lagBeskrivelse(form.state.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
-        temaKode: temakode,
-        underkategoriKode: form.state.valgtUnderkategori && form.state.valgtUnderkategori.kode,
+        //dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
+        ansvarligIdent: form.valgtAnsatt && form.valgtAnsatt,
+        beskrivelse: lagBeskrivelse(form.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
+        temaKode: form.valgtTema ? form.valgtTema : 'UKJENT',
+        underkategoriKode: form.valgtUnderkategori && form.valgtUnderkategori,
         brukerid: props.gjeldendeBrukerFnr,
-        oppgaveTypeKode: valgtOppgavetype ? valgtOppgavetype.kode : 'UKJENT',
-        prioritetKode: form.state.valgtPrioritet,
-        ansvarligEnhetId: form.state.valgtEnhet!.enhetId
+        oppgaveTypeKode: form.valgtOppgavetype ? form.valgtOppgavetype : 'UKJENT',
+        prioritetKode: form.valgtPrioritet,
+        ansvarligEnhetId: form.valgtEnhet ? form.valgtEnhet : 'UKJENT'
     };
 }
 

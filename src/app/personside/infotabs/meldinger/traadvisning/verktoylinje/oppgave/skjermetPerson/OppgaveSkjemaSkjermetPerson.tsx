@@ -52,7 +52,7 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
 
-    const initalValues = {
+    const initialValues = {
         tema: '',
         underkategori: '',
         oppgavetype: '',
@@ -60,7 +60,7 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
         beskrivelse: ''
     };
 
-    const state = validator(initalValues);
+    const state = validator(initialValues);
 
     function submitHandler<S>(values: Values<SkjermetOppgaveSkjemaForm>): Promise<any> {
         const request = lagSkjermetOppgaveRequest(props, values, valgtBrukersFnr, saksbehandlersEnhet || '');

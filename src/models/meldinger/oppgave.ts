@@ -27,7 +27,7 @@ export interface OpprettOppgaveRequest {
     fnr: string;
     valgtEnhetId: string;
     behandlingskjedeId: string;
-    dagerFrist: number;
+    dagerFrist?: number;
     ansvarligIdent?: string;
     beskrivelse: string;
     temaKode: string;
