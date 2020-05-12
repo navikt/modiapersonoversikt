@@ -6,7 +6,7 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
         case FeatureToggles.VisTilbakemelding:
             return true;
         case FeatureToggles.BrukKladd:
-            return false;
+            return true;
         default:
             return Math.random() > 0.5;
     }
