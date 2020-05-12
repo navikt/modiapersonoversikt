@@ -116,8 +116,6 @@ function AutoComplete<Item>(props: Props<Item>) {
         }
     };
 
-    // @ts-ignore
-    // @ts-ignore
     return (
         <Downshift
             inputValue={input}
