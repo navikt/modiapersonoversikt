@@ -318,6 +318,7 @@ function AutocompleteTextarea(props: TextareaProps) {
 
                     event.currentTarget.selectionEnd = cursorPosition + (fullfortTekst.length - word.length);
 
+                    // @ts-ignore
                     onChange(event);
                 }
             }

@@ -18,7 +18,7 @@ import {
     harDelsvar
 } from '../../../utils/meldingerUtils';
 import { Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
-import { RadioPanelGruppe } from 'nav-frontend-skjema';
+import { RadioPanelGruppe, RadioProps } from 'nav-frontend-skjema';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import {
@@ -33,7 +33,6 @@ import { Kontorsperr } from './Kontorsperr';
 import { useAppState } from '../../../../../../../utils/customHooks';
 import { hasData, isPending } from '@nutgaard/use-async';
 import { FetchResult } from '@nutgaard/use-fetch';
-import { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
@@ -269,22 +268,34 @@ function MerkPanel(props: Props) {
         );
     } else {
         const radioprops: RadioProps[] = [
-            { label: 'Feilsendt post', value: MerkOperasjon.FEILSENDT, disabled: disableStandardvalg },
-            { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag },
-            { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: disableStandardvalg },
+            {
+                label: 'Feilsendt post',
+                value: MerkOperasjon.FEILSENDT,
+                disabled: disableStandardvalg,
+                name: 'MerkPanel'
+            },
+            { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag, name: 'MerkPanel' },
+            {
+                label: 'Kontorsperret',
+                value: MerkOperasjon.KONTORSPERRET,
+                disabled: disableStandardvalg,
+                name: 'MerkPanel'
+            },
             {
                 label: 'Avslutt uten å svare bruker',
                 value: MerkOperasjon.AVSLUTT,
-                disabled: disableFerdigstillUtenSvar
+                disabled: disableFerdigstillUtenSvar,
+                name: 'MerkPanel'
             },
             {
                 label: 'Overstyrt ferdigstillelse av oppgave',
                 value: MerkOperasjon.FERDIGSTILL,
-                disabled: disableTvungenFerdigstill
+                disabled: disableTvungenFerdigstill,
+                name: 'MerkPanel'
             }
         ];
         if (visSletting) {
-            radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT });
+            radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT, name: 'MerkPanel' });
         }
         return (
             <form onSubmit={submitHandler} ref={formRef}>

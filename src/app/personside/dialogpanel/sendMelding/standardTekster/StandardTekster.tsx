@@ -1,7 +1,6 @@
 import React, { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
 import { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import styled from 'styled-components/macro';
-import { Feilmelding } from '../../../../../utils/Feilmelding';
 import useFieldState, { FieldState } from '../../../../../utils/hooks/use-field-state';
 import { erGyldigValg, sokEtterTekster, rapporterBruk } from './sokUtils';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
@@ -21,6 +20,7 @@ import AriaNotification from '../../../../../components/AriaNotification';
 import { usePrevious } from '../../../../../utils/customHooks';
 import { useTimer } from '../../../../../utils/hooks/useTimer';
 import { HjelpetekstUnderVenstre } from 'nav-frontend-hjelpetekst';
+import { Feilmelding } from '../../../../../utils/Feilmelding';
 
 interface Props {
     sokefelt: FieldState;
@@ -168,7 +168,7 @@ function StandardTekster(props: Props) {
     if (isPending(standardTekster)) {
         content = <Spinner type="XL" />;
     } else if (hasError(standardTekster)) {
-        content = <Feilmelding feil={{ feilmelding: 'Kunne ikke laste inn standardtekster' }} />;
+        content = <Feilmelding feil={'Kunne ikke laste inn standardtekster'} />;
     } else if (hasData(standardTekster)) {
         content = (
             <StandardTekstValg

@@ -29,30 +29,20 @@ function onDatoChange(props: Props, dato: Partial<Periode>) {
 
 function getDatoFeilmelding(fra: Date, til: Date) {
     if (fra > til) {
-        return <Feilmelding feil={{ feilmelding: 'Fra-dato kan ikke være senere enn til-dato' }} />;
+        return <Feilmelding feil={'Fra-dato kan ikke være senere enn til-dato'} />;
     }
     if (til > new Date()) {
-        return <Feilmelding feil={{ feilmelding: 'Du kan ikke velge dato frem i tid' }} />;
+        return <Feilmelding feil={'Du kan ikke velge dato frem i tid'} />;
     }
     if (fra < tidligsteTilgjengeligeDatoUtbetalingerRestkonto) {
         return (
             <Feilmelding
-                feil={{
-                    feilmelding: `Du kan ikke velge en dato før ${formaterDato(
-                        tidligsteTilgjengeligeDatoUtbetalingerRestkonto
-                    )}`
-                }}
+                feil={`Du kan ikke velge en dato før ${formaterDato(tidligsteTilgjengeligeDatoUtbetalingerRestkonto)}`}
             />
         );
     }
     if (!isValidDate(fra) || !isValidDate(til)) {
-        return (
-            <Feilmelding
-                feil={{
-                    feilmelding: 'Du må velge gyldige datoer'
-                }}
-            />
-        );
+        return <Feilmelding feil={'Du må velge gyldige datoer'} />;
     }
     return null;
 }

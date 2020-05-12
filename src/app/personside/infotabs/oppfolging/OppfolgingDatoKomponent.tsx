@@ -67,22 +67,16 @@ const senesteDato = () =>
 
 function getDatoFeilmelding(fra: Date, til: Date) {
     if (fra > til) {
-        return <Feilmelding feil={{ feilmelding: 'Fra-dato kan ikke være senere enn til-dato' }} />;
+        return <Feilmelding feil={'Fra-dato kan ikke være senere enn til-dato'} />;
     }
     if (til > senesteDato()) {
-        return <Feilmelding feil={{ feilmelding: 'Du kan ikke velge dato etter ' + formaterDato(senesteDato()) }} />;
+        return <Feilmelding feil={'Du kan ikke velge dato etter ' + formaterDato(senesteDato())} />;
     }
     if (fra < tidligsteDato()) {
-        return (
-            <Feilmelding
-                feil={{
-                    feilmelding: 'Du kan ikke velge en dato før ' + formaterDato(tidligsteDato())
-                }}
-            />
-        );
+        return <Feilmelding feil={'Du kan ikke velge en dato før ' + formaterDato(tidligsteDato())} />;
     }
     if (!isValidDate(fra) || !isValidDate(til)) {
-        return <Feilmelding feil={{ feilmelding: 'Du må velge gyldige datoer' }} />;
+        return <Feilmelding feil={'Du må velge gyldige datoer'} />;
     }
     return null;
 }

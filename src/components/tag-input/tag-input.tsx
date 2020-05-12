@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { NavFrontendInputProps } from 'nav-frontend-skjema';
+import { InputProps } from 'nav-frontend-skjema';
 import 'nav-frontend-skjema-style';
 import { guid } from 'nav-frontend-js-utils';
 import classNames from 'classnames';
@@ -35,7 +35,7 @@ export function parseTekst(query: string): { tags: string[]; text: string } {
 
 // For å samle å kunne bruke RefObject<T> og MutableRefObject<T> om hverandre
 type RefHack<T> = { current: T | undefined | null };
-type Props = Omit<NavFrontendInputProps, 'value' | 'name' | 'inputRef'> & {
+type Props = Omit<InputProps, 'value' | 'name' | 'inputRef'> & {
     value: string;
     name: string;
     onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
@@ -180,7 +180,7 @@ class TagInput extends React.Component<Props, State> {
                     />
                 </div>
                 <div role="alert" aria-live="assertive">
-                    {feil && <div className="skjemaelement__feilmelding">{feil.feilmelding}</div>}
+                    {feil && <div className="skjemaelement__feilmelding">{feil}</div>}
                 </div>
             </div>
         );

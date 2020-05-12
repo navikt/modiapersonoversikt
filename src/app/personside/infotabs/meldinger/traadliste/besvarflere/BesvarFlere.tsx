@@ -21,11 +21,11 @@ import { setValgtTraadDialogpanel } from '../../../../../../redux/oppgave/action
 import { loggError, loggEvent } from '../../../../../../utils/logger/frontendLogger';
 import { useInfotabsDyplenker } from '../../../dyplenker';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { Feilmelding } from '../../../../../../utils/Feilmelding';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { runIfEventIsNotInsideRef } from '../../../../../../utils/reactRefUtils';
 import { useRestResource } from '../../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../../rest/consumer/usePostResource';
+import { Feilmelding } from '../../../../../../utils/Feilmelding';
 
 interface Props {
     traader: Traad[];
@@ -268,7 +268,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
                 <Meldingsvisning traad={traadSomSkalVises} />
             </TraadStyle>
             <KnappWrapper>
-                {feilmelding && <Feilmelding feil={{ feilmelding: feilmelding }} />}
+                {feilmelding && <Feilmelding feil={feilmelding} />}
                 <KnappBase type={'hoved'} spinner={isPosting(slaaSammenResource)}>
                     Slå sammen {valgteTraader.length > 1 ? `${valgteTraader.length} ` : 'oppgaver'}
                 </KnappBase>

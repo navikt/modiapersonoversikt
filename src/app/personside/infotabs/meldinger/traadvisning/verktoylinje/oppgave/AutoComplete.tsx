@@ -116,6 +116,8 @@ function AutoComplete<Item>(props: Props<Item>) {
         }
     };
 
+    // @ts-ignore
+    // @ts-ignore
     return (
         <Downshift
             inputValue={input}
@@ -138,6 +140,7 @@ function AutoComplete<Item>(props: Props<Item>) {
                                 }
                             })}
                             label={props.label}
+                            // @ts-ignore
                             onFocus={helpers.openMenu}
                         />
                         {props.spinner && <StyledSpinner type={'S'} />}
