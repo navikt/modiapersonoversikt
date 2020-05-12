@@ -628,9 +628,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                 Velg periode
               </legend>
               <div
-                className="skjemaelement skjemaelement--horisontal"
+                className="skjemaelement"
               >
                 <input
+                  aria-invalid={false}
                   checked={true}
                   className="skjemaelement__input radioknapp"
                   id="Helt tilfeldig ID"
@@ -646,9 +647,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                 </label>
               </div>
               <div
-                className="skjemaelement skjemaelement--horisontal"
+                className="skjemaelement"
               >
                 <input
+                  aria-invalid={false}
                   checked={false}
                   className="skjemaelement__input radioknapp"
                   id="Helt tilfeldig ID"
@@ -664,9 +666,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                 </label>
               </div>
               <div
-                className="skjemaelement skjemaelement--horisontal"
+                className="skjemaelement"
               >
                 <input
+                  aria-invalid={false}
                   checked={false}
                   className="skjemaelement__input radioknapp"
                   id="Helt tilfeldig ID"
@@ -682,9 +685,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                 </label>
               </div>
               <div
-                className="skjemaelement skjemaelement--horisontal"
+                className="skjemaelement"
               >
                 <input
+                  aria-invalid={false}
                   checked={false}
                   className="skjemaelement__input radioknapp"
                   id="Helt tilfeldig ID"
@@ -722,9 +726,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
               Utbetaling til
             </p>
             <div
-              className="skjemaelement skjemaelement--horisontal"
+              className="skjemaelement"
             >
               <input
+                aria-invalid={false}
                 checked={true}
                 className="skjemaelement__input checkboks"
                 id="Helt tilfeldig ID"
@@ -737,10 +742,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
               >
                 Bruker
               </label>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
             </div>
           </form>
           <form
@@ -752,9 +753,10 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
               Velg ytelse
             </p>
             <div
-              className="skjemaelement skjemaelement--horisontal"
+              className="skjemaelement"
             >
               <input
+                aria-invalid={false}
                 checked={true}
                 className="skjemaelement__input checkboks"
                 id="Helt tilfeldig ID"
@@ -767,10 +769,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
               >
                 Sykepenger
               </label>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
             </div>
           </form>
         </div>

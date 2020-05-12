@@ -129,15 +129,12 @@ exports[`viser personsøk-komponent 1`] = `
               Fornavn (Fonetisk søk)
             </label>
             <input
+              aria-invalid={false}
               className="skjemaelement__input input--xl"
               id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
             />
           </div>
           <div
@@ -150,15 +147,12 @@ exports[`viser personsøk-komponent 1`] = `
               Etternavn (Fonetisk søk)
             </label>
             <input
+              aria-invalid={false}
               className="skjemaelement__input input--xl"
               id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
             />
           </div>
         </div>
@@ -175,15 +169,12 @@ exports[`viser personsøk-komponent 1`] = `
               Gatenavn
             </label>
             <input
+              aria-invalid={false}
               className="skjemaelement__input input--l"
               id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
             />
           </div>
           <div
@@ -196,15 +187,12 @@ exports[`viser personsøk-komponent 1`] = `
               Husnummer
             </label>
             <input
+              aria-invalid={false}
               className="skjemaelement__input input--m"
               id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
             />
           </div>
           <div
@@ -217,15 +205,12 @@ exports[`viser personsøk-komponent 1`] = `
               Husbokstav
             </label>
             <input
+              aria-invalid={false}
               className="skjemaelement__input input--m"
               id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
             />
           </div>
         </div>
@@ -239,15 +224,12 @@ exports[`viser personsøk-komponent 1`] = `
             Postnummer
           </label>
           <input
+            aria-invalid={false}
             className="skjemaelement__input input--m"
             id="Helt tilfeldig ID"
             onChange={[Function]}
             type="text"
             value=""
-          />
-          <div
-            aria-live="assertive"
-            role="alert"
           />
         </div>
         <div
@@ -260,15 +242,12 @@ exports[`viser personsøk-komponent 1`] = `
             Kontonummer (Norske nummer)
           </label>
           <input
+            aria-invalid={false}
             className="skjemaelement__input input--l"
             id="Helt tilfeldig ID"
             onChange={[Function]}
             type="text"
             value=""
-          />
-          <div
-            aria-live="assertive"
-            role="alert"
           />
         </div>
       </section>
@@ -290,15 +269,12 @@ exports[`viser personsøk-komponent 1`] = `
             Bosted
           </label>
           <input
+            aria-invalid={false}
             className="skjemaelement__input input--m"
             id="Helt tilfeldig ID"
             onChange={[Function]}
             type="text"
             value=""
-          />
-          <div
-            aria-live="assertive"
-            role="alert"
           />
         </div>
         <div
@@ -466,15 +442,12 @@ exports[`viser personsøk-komponent 1`] = `
               Alder fra
             </label>
             <input
+              aria-invalid={false}
               className="skjemaelement__input input--m"
               id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
             />
           </div>
           <div
@@ -487,15 +460,12 @@ exports[`viser personsøk-komponent 1`] = `
               Alder til
             </label>
             <input
+              aria-invalid={false}
               className="skjemaelement__input input--m"
               id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
-            />
-            <div
-              aria-live="assertive"
-              role="alert"
             />
           </div>
         </div>
@@ -512,6 +482,7 @@ exports[`viser personsøk-komponent 1`] = `
             className="selectContainer input--fullbredde"
           >
             <select
+              aria-invalid={false}
               className="skjemaelement__input"
               disabled={false}
               id="Helt tilfeldig ID"
@@ -534,10 +505,6 @@ exports[`viser personsøk-komponent 1`] = `
               </option>
             </select>
           </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
         </div>
       </section>
     </section>

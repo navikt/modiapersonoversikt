@@ -244,8 +244,9 @@ exports[`viser dialogpanel 1`] = `
           className="c5"
           onSubmit={[Function]}
         >
-          <div
-            className="c6"
+          <fieldset
+            aria-invalid={false}
+            className="skjemagruppe c6"
           >
             <button
               className="knapp c7 knapp--hoved"
@@ -293,6 +294,8 @@ exports[`viser dialogpanel 1`] = `
                     className="textarea--medMeta__wrapper"
                   >
                     <textarea
+                      aria-describedby="Helt tilfeldig ID"
+                      aria-invalid={false}
                       className="skjemaelement__input textarea--medMeta"
                       id="Helt tilfeldig ID"
                       onChange={[Function]}
@@ -308,6 +311,7 @@ exports[`viser dialogpanel 1`] = `
                     />
                     <p
                       className="textarea--medMeta__teller"
+                      id="Helt tilfeldig ID"
                     >
                       <span
                         className="teller-tekst"
@@ -316,10 +320,6 @@ exports[`viser dialogpanel 1`] = `
                       </span>
                     </p>
                   </div>
-                  <div
-                    aria-live="assertive"
-                    role="alert"
-                  />
                   <div
                     aria-hidden="true"
                     className="textareamirror"
@@ -386,17 +386,18 @@ exports[`viser dialogpanel 1`] = `
               </div>
             </div>
             <div
-              aria-live="assertive"
-              role="alert"
+              aria-live="polite"
+              id="Helt tilfeldig ID"
             />
-          </div>
+          </fieldset>
           <div
             className="c12"
           >
             <div
-              className="skjemaelement skjemaelement--horisontal"
+              className="skjemaelement"
             >
               <input
+                aria-invalid={false}
                 checked={true}
                 className="skjemaelement__input radioknapp"
                 id="Helt tilfeldig ID"
@@ -412,9 +413,10 @@ exports[`viser dialogpanel 1`] = `
               </label>
             </div>
             <div
-              className="skjemaelement skjemaelement--horisontal"
+              className="skjemaelement"
             >
               <input
+                aria-invalid={false}
                 checked={false}
                 className="skjemaelement__input radioknapp"
                 id="Helt tilfeldig ID"
@@ -430,9 +432,10 @@ exports[`viser dialogpanel 1`] = `
               </label>
             </div>
             <div
-              className="skjemaelement skjemaelement--horisontal"
+              className="skjemaelement"
             >
               <input
+                aria-invalid={false}
                 checked={false}
                 className="skjemaelement__input radioknapp"
                 id="Helt tilfeldig ID"
@@ -451,8 +454,9 @@ exports[`viser dialogpanel 1`] = `
           <div
             className=""
           >
-            <div
-              className=""
+            <fieldset
+              aria-invalid={false}
+              className="skjemagruppe"
             >
               <div
                 className="skjemaelement c13"
@@ -467,6 +471,7 @@ exports[`viser dialogpanel 1`] = `
                   className="selectContainer input--fullbredde"
                 >
                   <select
+                    aria-invalid={false}
                     className="skjemaelement__input"
                     disabled={false}
                     id="Helt tilfeldig ID"
@@ -506,16 +511,12 @@ exports[`viser dialogpanel 1`] = `
                     </option>
                   </select>
                 </div>
-                <div
-                  aria-live="assertive"
-                  role="alert"
-                />
               </div>
               <div
-                aria-live="assertive"
-                role="alert"
+                aria-live="polite"
+                id="Helt tilfeldig ID"
               />
-            </div>
+            </fieldset>
             <div
               className="alertstripe c14 alertstripe--info"
             >
@@ -550,8 +551,9 @@ exports[`viser dialogpanel 1`] = `
                 Gir ikke varsel til bruker
               </div>
             </div>
-            <div
-              className=""
+            <fieldset
+              aria-invalid={false}
+              className="skjemagruppe"
             >
               <div
                 className="c15"
@@ -573,10 +575,10 @@ exports[`viser dialogpanel 1`] = `
                 </button>
               </div>
               <div
-                aria-live="assertive"
-                role="alert"
+                aria-live="polite"
+                id="Helt tilfeldig ID"
               />
-            </div>
+            </fieldset>
             <div
               className="skjemaelement c17"
             >
@@ -590,6 +592,7 @@ exports[`viser dialogpanel 1`] = `
                 className="selectContainer input--fullbredde"
               >
                 <select
+                  aria-invalid={false}
                   className="skjemaelement__input"
                   disabled={false}
                   id="Helt tilfeldig ID"
@@ -610,10 +613,6 @@ exports[`viser dialogpanel 1`] = `
                   </option>
                 </select>
               </div>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
             </div>
             <div
               className="alertstripe c14 alertstripe--info"
