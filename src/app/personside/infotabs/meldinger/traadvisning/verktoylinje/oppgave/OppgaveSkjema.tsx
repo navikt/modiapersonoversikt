@@ -1,38 +1,30 @@
-import React, { FormEvent, useState } from 'react';
-import {
-    Ansatt,
-    Enhet,
-    GsakTema,
-    GsakTemaOppgavetype,
-    GsakTemaUnderkategori
-} from '../../../../../../../models/meldinger/oppgave';
-import { OppgaveSkjemaElementer } from './OppgaveSkjemaElementer';
+import React, { useEffect, useState } from 'react';
+import { Ansatt, Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { lagOppgaveRequest } from './byggRequest';
-import { OppgaveProps, OppgaveSkjemaForm, OppgaveSkjemaProps } from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
 import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
-import { cache, createCacheKey } from '@nutgaard/use-fetch';
-import { apiBaseUri } from '../../../../../../../api/config';
+import { cache, createCacheKey, FetchResult } from '@nutgaard/use-fetch';
+import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { Resultat } from '../utils/VisPostResultat';
 import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { erBehandlet } from '../../../utils/meldingerUtils';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { getValidOppgaveSkjemaState, validerOppgaveSkjema } from './oppgaveSkjemaValidator';
-import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
-import { useAppState } from '../../../../../../../utils/customHooks';
+import { useAppState, usePrevious } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
 import useFormstate, { Values } from '@nutgaard/use-formstate';
 import { required } from './skjermetPerson/oppgaveSkjemaValidatorSkjermetPerson';
 import { Select, Textarea } from 'nav-frontend-skjema';
-import { hentValgtOppgavetype, hentValgtTema, hentValgtUnderkategori } from './oppgaveUtils';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
 import AutoComplete from './AutoComplete';
 import { hasData, isPending } from '@nutgaard/use-async';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
+import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
+import useForeslatteEnheter from './useForeslåtteEnheter';
 
 const AlertStyling = styled.div`
     > * {
@@ -140,7 +132,18 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
     const ansattliste = useAnsattePaaEnhet(state.fields.valgtEnhet?.input.value);
-    const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.tema?.input.value);
+    const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
+
+    const enhetliste: FetchResult<Array<Enhet>> = useFetchWithLog<Array<Enhet>>(
+        `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
+        'LagOppgave-Enheter',
+        includeCredentials
+    );
+    const foreslatteEnheter = useForeslatteEnheter(
+        state.fields.valgtTema?.input.value,
+        state.fields.valgtOppgavetype?.input.value,
+        state.fields.valgtUnderkategori?.input.value
+    );
 
     return (
         <SkjemaStyle>
@@ -163,7 +166,7 @@ function OppgaveSkjema(props: OppgaveProps) {
                     topSuggestions={foreslatteEnheter.foreslatteEnheter}
                     topSuggestionsLabel="Foreslåtte enheter"
                     otherSuggestionsLabel="Andre enheter"
-                    spinner={isPending(enhetliste) || foreslatteEnheter.pending}
+                    {...state.fields.valgtEnhet?.input}
                 />
                 <AutoComplete<Ansatt>
                     itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}

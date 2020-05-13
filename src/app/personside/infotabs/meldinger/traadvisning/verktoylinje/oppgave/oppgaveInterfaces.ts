@@ -9,7 +9,6 @@ import {
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { PostResource } from '../../../../../../../rest/utils/postResource';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
-import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
 
 export interface OppgaveProps {
     gsakTema: GsakTema[];
@@ -38,30 +37,4 @@ export interface SkjermetOppgaveSkjemaForm {
     beskrivelse: string;
     prioritet?: string;
     underkategori?: GsakTemaUnderkategori;
-}
-
-export interface OppgaveSkjemaProps {
-    state: OppgaveSkjemaForm;
-    actions: {
-        oppdaterStateVedValgtTema(tema: GsakTema | undefined): void;
-        settValgtUnderkategori(underkategori: GsakTemaUnderkategori | undefined): void;
-        settValgtOppgavetype(oppgavetype: GsakTemaOppgavetype | undefined): void;
-        settValgtPrioritet(prioritet: string): void;
-        settBeskrivelse(beskrivelse: string): void;
-        settValgtEnhet(enhet: Enhet | undefined): void;
-        settValgtAnsatt(ansatt: Ansatt | undefined): void;
-    };
-    valideringsResultat: ValideringsResultat<OppgaveSkjemaForm>;
-}
-
-export interface SkjermetPersonOppgaveSkjemaProps {
-    state: OppgaveSkjemaForm;
-    actions: {
-        oppdaterStateVedValgtTema(tema: GsakTema | undefined): void;
-        settValgtUnderkategori(underkategori: GsakTemaUnderkategori | undefined): void;
-        settValgtOppgavetype(oppgavetype: GsakTemaOppgavetype | undefined): void;
-        settValgtPrioritet(prioritet: string): void;
-        settBeskrivelse(beskrivelse: string): void;
-    };
-    valideringsResultat: ValideringsResultat<OppgaveSkjemaForm>;
 }

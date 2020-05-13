@@ -1,5 +1,5 @@
-import { ValideringsResultat } from '../../utils/forms/FormValidator';
 import { PersonsokRequest } from '../../models/person/personsok';
+import { Mapped, Values } from '@nutgaard/use-formstate';
 
 export type PersonSokFormState = {
     fornavn: string;
@@ -34,7 +34,6 @@ export interface PersonsokSkjemaProps {
         settAlderTil(alderTil: string): void;
         settKjonn(kjonn: string): void;
     };
-    valideringsResultat: ValideringsResultat<PersonSokFormState>;
 }
 
 export function stringToNumber(input: string): number | undefined {
@@ -51,20 +50,20 @@ export function emptyString(input: string): string | undefined {
     return input;
 }
 
-export function lagRequest(form: PersonsokSkjemaProps): PersonsokRequest {
+export function lagRequest(form: Mapped<Values<PersonSokFormState>, string>): PersonsokRequest {
     return {
-        fornavn: emptyString(form.state.fornavn),
-        etternavn: emptyString(form.state.etternavn),
-        gatenavn: emptyString(form.state.gatenavn),
-        husnummer: stringToNumber(form.state.husnummer),
-        husbokstav: emptyString(form.state.husbokstav),
-        postnummer: emptyString(form.state.postnummer),
-        kontonummer: emptyString(form.state.kontonummer),
-        kommunenummer: emptyString(form.state.kommunenummer),
-        fodselsdatoFra: form.state.fodselsdatoFra,
-        fodselsdatoTil: form.state.fodselsdatoTil,
-        alderFra: stringToNumber(form.state.alderFra),
-        alderTil: stringToNumber(form.state.alderTil),
-        kjonn: emptyString(form.state.kjonn)
+        fornavn: emptyString(form.fornavn),
+        etternavn: emptyString(form.etternavn),
+        gatenavn: emptyString(form.gatenavn),
+        husnummer: stringToNumber(form.husnummer),
+        husbokstav: emptyString(form.husbokstav),
+        postnummer: emptyString(form.postnummer),
+        kontonummer: emptyString(form.kontonummer),
+        kommunenummer: emptyString(form.kommunenummer),
+        fodselsdatoFra: form.fodselsdatoFra,
+        fodselsdatoTil: form.fodselsdatoTil,
+        alderFra: stringToNumber(form.alderFra),
+        alderTil: stringToNumber(form.alderTil),
+        kjonn: emptyString(form.kjonn)
     };
 }
