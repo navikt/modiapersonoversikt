@@ -4,10 +4,10 @@ import { formaterDato, formaterTilISO8601Date } from '../../../../../utils/strin
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import moment from 'moment';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
-import { Feilmelding } from '../../../../../utils/Feilmelding';
 import { tidligsteTilgjengeligeDatoUtbetalingerRestkonto } from '../../../../../redux/restReducers/utbetalinger';
 import { Periode } from '../../../../../models/periode';
 import { isValidDate } from '../../../../../utils/dateUtils';
+import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 
 interface Props {
     filter: UtbetalingFilterState;
@@ -29,20 +29,20 @@ function onDatoChange(props: Props, dato: Partial<Periode>) {
 
 function getDatoFeilmelding(fra: Date, til: Date) {
     if (fra > til) {
-        return <Feilmelding feil={'Fra-dato kan ikke være senere enn til-dato'} />;
+        return <SkjemaelementFeilmelding>Fra-dato kan ikke være senere enn til-dato</SkjemaelementFeilmelding>;
     }
     if (til > new Date()) {
-        return <Feilmelding feil={'Du kan ikke velge dato frem i tid'} />;
+        return <SkjemaelementFeilmelding>Du kan ikke velge dato frem i tid</SkjemaelementFeilmelding>;
     }
     if (fra < tidligsteTilgjengeligeDatoUtbetalingerRestkonto) {
         return (
-            <Feilmelding
-                feil={`Du kan ikke velge en dato før ${formaterDato(tidligsteTilgjengeligeDatoUtbetalingerRestkonto)}`}
-            />
+            <SkjemaelementFeilmelding>
+                `Du kan ikke velge en dato før ${formaterDato(tidligsteTilgjengeligeDatoUtbetalingerRestkonto)}`
+            </SkjemaelementFeilmelding>
         );
     }
     if (!isValidDate(fra) || !isValidDate(til)) {
-        return <Feilmelding feil={'Du må velge gyldige datoer'} />;
+        return <SkjemaelementFeilmelding>Du må velge gyldige datoer</SkjemaelementFeilmelding>;
     }
     return null;
 }

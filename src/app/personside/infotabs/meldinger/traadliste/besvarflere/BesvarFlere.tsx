@@ -9,7 +9,7 @@ import {
 import TraadListeElement from '../TraadListeElement';
 import styled from 'styled-components/macro';
 import theme from '../../../../../../styles/personOversiktTheme';
-import { Checkbox } from 'nav-frontend-skjema';
+import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import EnkeltMelding from '../../traadvisning/Enkeltmelding';
 import { Ingress } from 'nav-frontend-typografi';
 import KnappBase, { Hovedknapp } from 'nav-frontend-knapper';
@@ -25,7 +25,6 @@ import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { runIfEventIsNotInsideRef } from '../../../../../../utils/reactRefUtils';
 import { useRestResource } from '../../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../../rest/consumer/usePostResource';
-import { Feilmelding } from '../../../../../../utils/Feilmelding';
 
 interface Props {
     traader: Traad[];
@@ -268,7 +267,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
                 <Meldingsvisning traad={traadSomSkalVises} />
             </TraadStyle>
             <KnappWrapper>
-                {feilmelding && <Feilmelding feil={feilmelding} />}
+                {feilmelding && <SkjemaelementFeilmelding>{feilmelding}</SkjemaelementFeilmelding>}
                 <KnappBase type={'hoved'} spinner={isPosting(slaaSammenResource)}>
                     Slå sammen {valgteTraader.length > 1 ? `${valgteTraader.length} ` : 'oppgaver'}
                 </KnappBase>
