@@ -271,31 +271,27 @@ function MerkPanel(props: Props) {
             {
                 label: 'Feilsendt post',
                 value: MerkOperasjon.FEILSENDT,
-                disabled: disableStandardvalg,
-                name: 'MerkPanel'
+                disabled: disableStandardvalg
             },
-            { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag, name: 'MerkPanel' },
+            { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag },
             {
                 label: 'Kontorsperret',
                 value: MerkOperasjon.KONTORSPERRET,
-                disabled: disableStandardvalg,
-                name: 'MerkPanel'
+                disabled: disableStandardvalg
             },
             {
                 label: 'Avslutt uten å svare bruker',
                 value: MerkOperasjon.AVSLUTT,
-                disabled: disableFerdigstillUtenSvar,
-                name: 'MerkPanel'
+                disabled: disableFerdigstillUtenSvar
             },
             {
                 label: 'Overstyrt ferdigstillelse av oppgave',
                 value: MerkOperasjon.FERDIGSTILL,
-                disabled: disableTvungenFerdigstill,
-                name: 'MerkPanel'
+                disabled: disableTvungenFerdigstill
             }
         ];
         if (visSletting) {
-            radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT, name: 'MerkPanel' });
+            radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT });
         }
         return (
             <form onSubmit={submitHandler} ref={formRef}>
