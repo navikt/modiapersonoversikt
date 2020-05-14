@@ -1,4 +1,5 @@
 import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
+import tilgangskontrollReducer from './tilgangskontroll';
 import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
 import hentOppgaverReducer from './hentOppgaver';
@@ -52,9 +53,11 @@ import slaaSammen from './meldinger/slaaSammen';
 import utbetalingerOversikt from './utbetalingerOversikt';
 import saksbehandlersEnheter from './saksbehandlersEnheter';
 import { SaksbehandlersEnheter } from '../../models/saksbehandlersEnheter';
+import { TilgangDTO } from './tilgangskontroll';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
+    tilgangskontroll: RestResource<TilgangDTO>;
     saksbehandlersEnheter: RestResource<SaksbehandlersEnheter>;
     personinformasjon: RestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
@@ -89,6 +92,7 @@ export interface RestEndepunkter {
 export default combineResettableReducers<RestEndepunkter>(
     {
         innloggetSaksbehandler: innloggetSaksbehandlerReducer,
+        tilgangskontroll: tilgangskontrollReducer,
         saksbehandlersEnheter: saksbehandlersEnheter,
         personinformasjon: personinformasjonReducer,
         brukersNavKontor: navkontorReducer,
