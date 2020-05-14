@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Downshift, { ControllerStateAndHelpers } from 'downshift';
 import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../../../styles/personOversiktTheme';
-import { Input } from 'nav-frontend-skjema';
+import { Input, InputProps } from 'nav-frontend-skjema';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import EtikettGrå from '../../../../../../../components/EtikettGrå';
@@ -124,49 +124,63 @@ function AutoComplete<Item>(props: Props<Item>) {
             onStateChange={handleStateChange}
             itemToString={(item: Item | null) => (item ? itemToString(item) : '')}
         >
-            {helpers => (
-                <Style {...helpers.getRootProps()}>
-                    <InputfeltWrapper>
-                        <Input
-                            feil={props.feil}
-                            // @ts-ignore
-                            {...helpers.getInputProps({
-                                onChange: e => {
-                                    if (e.target.value === '') {
-                                        helpers.clearSelection();
-                                    }
-                                }
-                            })}
-                            label={props.label}
-                            // @ts-ignore
-                            onFocus={helpers.openMenu}
-                        />
-                        {props.spinner && <StyledSpinner type={'S'} />}
-                    </InputfeltWrapper>
-                    {helpers.isOpen ? (
-                        <DropDownWrapper>
-                            <ul>
-                                {filteredTopSuggetions.length > 0 && (
-                                    <>
-                                        <li aria-hidden="true">
-                                            <EtikettGrå>{props.topSuggestionsLabel || 'Anbefalte forslag'}</EtikettGrå>
-                                        </li>
-                                        {filteredTopSuggetions.map(item => (
-                                            <SuggestionMarkup key={itemToString(item)} item={item} helpers={helpers} />
-                                        ))}
-                                        <li aria-hidden="true">
-                                            <EtikettGrå>{props.otherSuggestionsLabel || 'Andre forslag'}</EtikettGrå>
-                                        </li>
-                                    </>
-                                )}
-                                {filteredSuggestions.map(item => (
-                                    <SuggestionMarkup key={helpers.itemToString(item)} item={item} helpers={helpers} />
-                                ))}
-                            </ul>
-                        </DropDownWrapper>
-                    ) : null}
-                </Style>
-            )}
+            {(helpers: ControllerStateAndHelpers<Item>) => {
+                const inputProps: Partial<InputProps> = helpers.getInputProps({
+                    onChange: (e: ChangeEvent<HTMLInputElement>) => {
+                        if (e.target.value === '') {
+                            helpers.clearSelection();
+                        }
+                    }
+                });
+
+                return (
+                    <Style {...helpers.getRootProps()}>
+                        <InputfeltWrapper>
+                            <Input
+                                {...inputProps}
+                                feil={props.feil}
+                                label={props.label}
+                                onFocus={() => helpers.openMenu()}
+                            />
+                            {props.spinner && <StyledSpinner type={'S'} />}
+                        </InputfeltWrapper>
+                        {helpers.isOpen ? (
+                            <DropDownWrapper>
+                                <ul>
+                                    {filteredTopSuggetions.length > 0 && (
+                                        <>
+                                            <li aria-hidden="true">
+                                                <EtikettGrå>
+                                                    {props.topSuggestionsLabel || 'Anbefalte forslag'}
+                                                </EtikettGrå>
+                                            </li>
+                                            {filteredTopSuggetions.map(item => (
+                                                <SuggestionMarkup
+                                                    key={itemToString(item)}
+                                                    item={item}
+                                                    helpers={helpers}
+                                                />
+                                            ))}
+                                            <li aria-hidden="true">
+                                                <EtikettGrå>
+                                                    {props.otherSuggestionsLabel || 'Andre forslag'}
+                                                </EtikettGrå>
+                                            </li>
+                                        </>
+                                    )}
+                                    {filteredSuggestions.map(item => (
+                                        <SuggestionMarkup
+                                            key={helpers.itemToString(item)}
+                                            item={item}
+                                            helpers={helpers}
+                                        />
+                                    ))}
+                                </ul>
+                            </DropDownWrapper>
+                        ) : null}
+                    </Style>
+                );
+            }}
         </Downshift>
     );
 }
