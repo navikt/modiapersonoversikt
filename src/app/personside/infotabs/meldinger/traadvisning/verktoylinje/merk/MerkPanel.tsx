@@ -18,7 +18,7 @@ import {
     harDelsvar
 } from '../../../utils/meldingerUtils';
 import { Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
-import { RadioPanelGruppe, RadioProps } from 'nav-frontend-skjema';
+import { RadioPanelGruppe, RadioPanelProps } from 'nav-frontend-skjema';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import {
@@ -267,7 +267,7 @@ function MerkPanel(props: Props) {
             />
         );
     } else {
-        const radioprops: RadioProps[] = [
+        const radioprops: RadioPanelProps[] = [
             {
                 label: 'Feilsendt post',
                 value: MerkOperasjon.FEILSENDT,
