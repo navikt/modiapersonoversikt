@@ -1,25 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser oppgavecontainer med alt innhold 1`] = `
-.c1 {
-  position: relative;
-}
-
-.c3 {
-  position: absolute !important;
-  bottom: 0.4rem;
-  right: 0.4rem;
-}
-
-.c2 {
-  position: relative;
-}
-
-.c2 .skjemaelement {
-  margin-bottom: 0;
-}
-
-.c5 {
+.c4 {
   position: relative;
   border: none;
   padding: 0;
@@ -37,7 +19,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   color: #0067c5;
 }
 
-.c5:after {
+.c4:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -45,18 +27,30 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   width: 100%;
 }
 
-.c5:focus {
+.c4:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c5:hover {
+.c4:hover {
   opacity: 0.8;
 }
 
-.c5:hover:after {
+.c4:hover:after {
   content: '';
   border-color: #0067c5;
+}
+
+.c1 {
+  position: relative;
+}
+
+.c2 {
+  position: relative;
+}
+
+.c2 .skjemaelement {
+  margin-bottom: 0;
 }
 
 .c0 {
@@ -86,7 +80,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   margin-bottom: 0.7rem;
 }
 
-.c4 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -97,7 +91,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
   justify-content: space-between;
 }
 
-.c4 button {
+.c3 button {
   margin: 0;
 }
 
@@ -117,7 +111,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Helt tilfeldig ID"
+        htmlFor="valgtTema"
       >
         Tema
       </label>
@@ -129,7 +123,9 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           autoFocus={true}
           className="skjemaelement__input"
           disabled={false}
-          id="Helt tilfeldig ID"
+          id="valgtTema"
+          name="valgtTema"
+          onBlur={[Function]}
           onChange={[Function]}
           value=""
         >
@@ -162,7 +158,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Helt tilfeldig ID"
+        htmlFor="valgtUnderkategori"
       >
         Gjelder
       </label>
@@ -173,7 +169,9 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           aria-invalid={false}
           className="skjemaelement__input"
           disabled={false}
-          id="Helt tilfeldig ID"
+          id="valgtUnderkategori"
+          name="valgtUnderkategori"
+          onBlur={[Function]}
           onChange={[Function]}
           value=""
         >
@@ -191,7 +189,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Helt tilfeldig ID"
+        htmlFor="valgtOppgavetype"
       >
         Type oppgave
       </label>
@@ -202,7 +200,9 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           aria-invalid={false}
           className="skjemaelement__input"
           disabled={false}
-          id="Helt tilfeldig ID"
+          id="valgtOppgavetype"
+          name="valgtOppgavetype"
+          onBlur={[Function]}
           onChange={[Function]}
           value=""
         >
@@ -252,39 +252,6 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
             value=""
           />
         </div>
-        <svg
-          aria-label="Laster innhold"
-          className="spinner c3 spinner--s"
-          focusable="false"
-          height={32}
-          kind="spinner"
-          preserveAspectRatio="xMidYMid"
-          viewBox="0 0 50 50"
-          width={32}
-        >
-          <title>
-            Venter...
-          </title>
-          <circle
-            cx="25"
-            cy="25"
-            fill="none"
-            r="20"
-            stroke="#bdbab7"
-            strokeWidth="5"
-            xmlns="http://www.w3.org/2000/svg"
-          />
-          <circle
-            cx="25"
-            cy="25"
-            fill="none"
-            r="20"
-            stroke="#7f756c"
-            strokeDasharray="50 155"
-            strokeLinecap="round"
-            strokeWidth="5"
-          />
-        </svg>
       </div>
     </div>
     <div
@@ -331,7 +298,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Helt tilfeldig ID"
+        htmlFor="valgtPrioritet"
       >
         Velg prioritet
       </label>
@@ -342,7 +309,9 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           aria-invalid={false}
           className="skjemaelement__input"
           disabled={false}
-          id="Helt tilfeldig ID"
+          id="valgtPrioritet"
+          name="valgtPrioritet"
+          onBlur={[Function]}
           onChange={[Function]}
           value=""
         >
@@ -360,7 +329,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
     >
       <label
         className="skjemaelement__label"
-        htmlFor="Helt tilfeldig ID"
+        htmlFor="beskrivelse"
       >
         Beskrivelse
       </label>
@@ -371,7 +340,9 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           aria-describedby="Helt tilfeldig ID"
           aria-invalid={false}
           className="skjemaelement__input textarea--medMeta"
-          id="Helt tilfeldig ID"
+          id="beskrivelse"
+          name="beskrivelse"
+          onBlur={[Function]}
           onChange={[Function]}
           style={
             Object {
@@ -388,7 +359,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
       />
     </div>
     <div
-      className="c4"
+      className="c3"
     >
       <button
         className="knapp knapp--hoved"
@@ -398,7 +369,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         Opprett oppgave
       </button>
       <button
-        className="c5"
+        className="c4"
         onClick={[Function]}
         type="button"
       >

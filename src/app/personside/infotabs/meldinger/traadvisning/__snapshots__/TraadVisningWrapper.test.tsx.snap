@@ -11,7 +11,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-top: 1rem;
 }
 
-.c24 {
+.c23 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -70,12 +70,6 @@ exports[`Viser traad med verktøylinje 1`] = `
   position: relative;
 }
 
-.c18 {
-  position: absolute !important;
-  bottom: 0.4rem;
-  right: 0.4rem;
-}
-
 .c17 {
   position: relative;
 }
@@ -111,7 +105,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-bottom: 0.7rem;
 }
 
-.c19 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -122,11 +116,11 @@ exports[`Viser traad med verktøylinje 1`] = `
   justify-content: space-between;
 }
 
-.c19 button {
+.c18 button {
   margin: 0;
 }
 
-.c20 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -244,55 +238,55 @@ exports[`Viser traad med verktøylinje 1`] = `
   white-space: nowrap;
 }
 
-.c22 .snakkeboble-panel {
+.c21 .snakkeboble-panel {
   -webkit-flex-basis: 40rem;
   -ms-flex-preferred-size: 40rem;
   flex-basis: 40rem;
 }
 
-.c22 a {
+.c21 a {
   word-break: break-word;
 }
 
-.c22 .snakkeboble {
+.c21 .snakkeboble {
   margin: 0;
 }
 
-.c25 {
+.c24 {
   font-weight: 600;
 }
 
-.c23 {
+.c22 {
   text-align: left;
 }
 
-.c23 em {
+.c22 em {
   font-style: normal;
   background-color: #eed28c;
   box-shadow: 0 0 0 0.2rem #eed28c;
   border-radius: 0.625rem;
 }
 
-.c23 > *:not(:last-child) {
+.c22 > *:not(:last-child) {
   border-bottom: solid 0.0625rem #b7b1a9;
   padding-bottom: 0.7rem;
   margin-bottom: 0.5rem;
 }
 
-.c28 {
+.c27 {
   color: #0067c5;
 }
 
-.c27 .ekspanderbartPanel__hode,
-.c27 .ekspanderbartPanel__innhold {
+.c26 .ekspanderbartPanel__hode,
+.c26 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
 }
 
-.c26 p {
+.c25 p {
   margin-bottom: 0 !important;
 }
 
-.c21 {
+.c20 {
   padding: .5rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -300,7 +294,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   flex-grow: 1;
 }
 
-.c21 > *:last-child {
+.c20 > *:last-child {
   margin-top: .5rem;
 }
 
@@ -327,19 +321,19 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c22 {
+  .c21 {
     page-break-inside: avoid;
     border: solid 0.0625rem #78706a;
     margin-bottom: 2rem;
   }
 
-  .c22 .snakkeboble__snakkeboble-pil-container,
-  .c22 .nav-ikon,
-  .c22 .bruker-ikon {
+  .c21 .snakkeboble__snakkeboble-pil-container,
+  .c21 .nav-ikon,
+  .c21 .bruker-ikon {
     display: none;
   }
 
-  .c22 .snakkeboble-panel {
+  .c21 .snakkeboble-panel {
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
@@ -347,7 +341,7 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c27 {
+  .c26 {
     display: none;
   }
 }
@@ -852,7 +846,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
+            htmlFor="valgtTema"
           >
             Tema
           </label>
@@ -864,7 +858,9 @@ exports[`Viser traad med verktøylinje 1`] = `
               autoFocus={true}
               className="skjemaelement__input"
               disabled={false}
-              id="Helt tilfeldig ID"
+              id="valgtTema"
+              name="valgtTema"
+              onBlur={[Function]}
               onChange={[Function]}
               value=""
             >
@@ -897,7 +893,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
+            htmlFor="valgtUnderkategori"
           >
             Gjelder
           </label>
@@ -908,7 +904,9 @@ exports[`Viser traad med verktøylinje 1`] = `
               aria-invalid={false}
               className="skjemaelement__input"
               disabled={false}
-              id="Helt tilfeldig ID"
+              id="valgtUnderkategori"
+              name="valgtUnderkategori"
+              onBlur={[Function]}
               onChange={[Function]}
               value=""
             >
@@ -926,7 +924,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
+            htmlFor="valgtOppgavetype"
           >
             Type oppgave
           </label>
@@ -937,7 +935,9 @@ exports[`Viser traad med verktøylinje 1`] = `
               aria-invalid={false}
               className="skjemaelement__input"
               disabled={false}
-              id="Helt tilfeldig ID"
+              id="valgtOppgavetype"
+              name="valgtOppgavetype"
+              onBlur={[Function]}
               onChange={[Function]}
               value=""
             >
@@ -987,39 +987,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                 value=""
               />
             </div>
-            <svg
-              aria-label="Laster innhold"
-              className="spinner c18 spinner--s"
-              focusable="false"
-              height={32}
-              kind="spinner"
-              preserveAspectRatio="xMidYMid"
-              viewBox="0 0 50 50"
-              width={32}
-            >
-              <title>
-                Venter...
-              </title>
-              <circle
-                cx="25"
-                cy="25"
-                fill="none"
-                r="20"
-                stroke="#bdbab7"
-                strokeWidth="5"
-                xmlns="http://www.w3.org/2000/svg"
-              />
-              <circle
-                cx="25"
-                cy="25"
-                fill="none"
-                r="20"
-                stroke="#7f756c"
-                strokeDasharray="50 155"
-                strokeLinecap="round"
-                strokeWidth="5"
-              />
-            </svg>
           </div>
         </div>
         <div
@@ -1066,7 +1033,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
+            htmlFor="valgtPrioritet"
           >
             Velg prioritet
           </label>
@@ -1077,7 +1044,9 @@ exports[`Viser traad med verktøylinje 1`] = `
               aria-invalid={false}
               className="skjemaelement__input"
               disabled={false}
-              id="Helt tilfeldig ID"
+              id="valgtPrioritet"
+              name="valgtPrioritet"
+              onBlur={[Function]}
               onChange={[Function]}
               value=""
             >
@@ -1095,7 +1064,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
+            htmlFor="beskrivelse"
           >
             Beskrivelse
           </label>
@@ -1106,7 +1075,9 @@ exports[`Viser traad med verktøylinje 1`] = `
               aria-describedby="Helt tilfeldig ID"
               aria-invalid={false}
               className="skjemaelement__input textarea--medMeta"
-              id="Helt tilfeldig ID"
+              id="beskrivelse"
+              name="beskrivelse"
+              onBlur={[Function]}
               onChange={[Function]}
               style={
                 Object {
@@ -1123,7 +1094,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           />
         </div>
         <div
-          className="c19"
+          className="c18"
         >
           <button
             className="knapp knapp--hoved"
@@ -1285,7 +1256,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         />
       </fieldset>
       <div
-        className="c20"
+        className="c19"
       >
         <button
           className="knapp knapp--hoved"
@@ -1305,7 +1276,7 @@ exports[`Viser traad med verktøylinje 1`] = `
     </form>
   </article>
   <section
-    className="c21"
+    className="c20"
   >
     <div
       className="alertstripe alertstripe--info"
@@ -1355,7 +1326,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       aria-label="Dialog"
     >
       <li
-        className="snakkeboble_ikoner c22"
+        className="snakkeboble_ikoner c21"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1380,13 +1351,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c23"
+                  className="c22"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c24"
+                      className="c23"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1398,7 +1369,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           4
                         </span>
                         <div
-                          className="c25"
+                          className="c24"
                         >
                           Delsvar - Arbeid
                         </div>
@@ -1417,7 +1388,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       27.07.2019 00:00
                     </div>
                     <div
-                      className="typo-normal c26"
+                      className="typo-normal c25"
                     >
                       Skrevet av Kristoffer Fredriksen (xy70r8)
                     </div>
@@ -1430,7 +1401,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c27 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1443,7 +1414,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c28"
+                          className="typo-etikett-liten c27"
                         >
                           Meldingen er journalført
                         </p>
@@ -1465,7 +1436,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c22"
+        className="snakkeboble_ikoner c21"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1490,13 +1461,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c23"
+                  className="c22"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c24"
+                      className="c23"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1508,7 +1479,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           3
                         </span>
                         <div
-                          className="c25"
+                          className="c24"
                         >
                           Spørsmål fra bruker - Arbeid
                         </div>
@@ -1526,7 +1497,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c27 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1539,7 +1510,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c28"
+                          className="typo-etikett-liten c27"
                         >
                           Meldingen er journalført
                         </p>
@@ -1561,7 +1532,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c22"
+        className="snakkeboble_ikoner c21"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1586,13 +1557,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c23"
+                  className="c22"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c24"
+                      className="c23"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1604,7 +1575,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           2
                         </span>
                         <div
-                          className="c25"
+                          className="c24"
                         >
                           Spørsmål fra bruker - Arbeid
                         </div>
@@ -1622,7 +1593,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c27 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1635,7 +1606,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c28"
+                          className="typo-etikett-liten c27"
                         >
                           Meldingen er journalført
                         </p>
@@ -1657,7 +1628,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c22"
+        className="snakkeboble_ikoner c21"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1682,13 +1653,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c23"
+                  className="c22"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c24"
+                      className="c23"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1700,7 +1671,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           1
                         </span>
                         <div
-                          className="c25"
+                          className="c24"
                         >
                           Samtalereferat oppmøte - Arbeid
                         </div>
@@ -1719,7 +1690,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       07.07.2019 00:00
                     </div>
                     <div
-                      className="typo-normal c26"
+                      className="typo-normal c25"
                     >
                       Skrevet av Sander Hansen (nzxo4q)
                     </div>
@@ -1732,7 +1703,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c27 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-expanded={false}
@@ -1745,7 +1716,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                         className="ekspanderbartPanel__flex-wrapper"
                       >
                         <p
-                          className="typo-etikett-liten c28"
+                          className="typo-etikett-liten c27"
                         >
                           Meldingen er journalført
                         </p>
