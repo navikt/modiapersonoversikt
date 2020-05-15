@@ -18,7 +18,7 @@ import {
     harDelsvar
 } from '../../../utils/meldingerUtils';
 import { Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
-import { RadioPanelGruppe } from 'nav-frontend-skjema';
+import { RadioPanelGruppe, RadioPanelProps } from 'nav-frontend-skjema';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import {
@@ -267,10 +267,18 @@ function MerkPanel(props: Props) {
             />
         );
     } else {
-        const radioprops = [
-            { label: 'Feilsendt post', value: MerkOperasjon.FEILSENDT, disabled: disableStandardvalg },
+        const radioprops: RadioPanelProps[] = [
+            {
+                label: 'Feilsendt post',
+                value: MerkOperasjon.FEILSENDT,
+                disabled: disableStandardvalg
+            },
             { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag },
-            { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: disableStandardvalg },
+            {
+                label: 'Kontorsperret',
+                value: MerkOperasjon.KONTORSPERRET,
+                disabled: disableStandardvalg
+            },
             {
                 label: 'Avslutt uten å svare bruker',
                 value: MerkOperasjon.AVSLUTT,
@@ -283,7 +291,7 @@ function MerkPanel(props: Props) {
             }
         ];
         if (visSletting) {
-            radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT, disabled: false });
+            radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT });
         }
         return (
             <form onSubmit={submitHandler} ref={formRef}>

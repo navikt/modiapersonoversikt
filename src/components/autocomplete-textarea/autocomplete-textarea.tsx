@@ -69,6 +69,12 @@ function useRules(): Regler {
             externalId: 'f31f5d09-4873-4f84-912d-0ff3636db1cd'
         },
         {
+            type: 'external',
+            regex: /^vinten$/i,
+            externalId: 'f31f5d09-4873-4f84-912d-0ff3636db1cd',
+            locale: Locale.en_US
+        },
+        {
             type: 'internal',
             regex: /^aap$/i,
             replacement: () => 'arbeidsavklaringspenger '
@@ -184,6 +190,7 @@ function AutoTekstTips() {
                     <li>mvhks + mellomrom: Signatur som fra KS</li>
                     <li>hei + mellomrom: Hei bruker</li>
                     <li>vint + mellomrom: Videreformidle Internt</li>
+                    <li>vinten + mellomrom: Videreformidle Internt (engelsk)</li>
                     <li>AAP + mellomrom: arbeidsavklaringspenger</li>
                     <li>sbt + mellomrom: saksbehandlingstid</li>
                     <li>nay + mellomrom: NAV Arbeid og ytelser</li>
@@ -246,6 +253,14 @@ function noAriaTellerTekst(antallTegn: number, maxLength: number) {
             {difference < 0 && `Du har ${Math.abs(difference)} tegn for mye`}
         </span>
     );
+}
+
+function asChangeEvent<T>(event: React.KeyboardEvent<T>): React.ChangeEvent<T> {
+    if (event.target && event.target === event.currentTarget) {
+        return event as any;
+    } else {
+        throw new Error('Not equals at all');
+    }
 }
 
 function AutocompleteTextarea(props: TextareaProps) {
@@ -311,7 +326,7 @@ function AutocompleteTextarea(props: TextareaProps) {
 
                     event.currentTarget.selectionEnd = cursorPosition + (fullfortTekst.length - word.length);
 
-                    onChange(event);
+                    onChange(asChangeEvent(event));
                 }
             }
         },
