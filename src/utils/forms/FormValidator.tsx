@@ -1,4 +1,6 @@
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import React from 'react';
+
 export interface Valideringsregel<T> {
     felt: keyof T;
     feilmelding: SkjemaelementFeilmelding;
@@ -83,7 +85,7 @@ export default class FormValidator<T> {
             }
             const skjemafeil = this.getSkjemafeil(felt[key].feilmeldinger);
 
-            felt[key].skjemafeil = skjemafeil?.feilmeldinger;
+            felt[key].skjemafeil = skjemafeil;
         }
         return felt;
     }
@@ -92,6 +94,6 @@ export default class FormValidator<T> {
         if (feilmeldinger.length === 0) {
             return undefined;
         }
-        return { feilmeldinger };
+        return <>{feilmeldinger}</>;
     }
 }
