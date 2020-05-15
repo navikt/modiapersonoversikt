@@ -19,6 +19,7 @@ import { usePostResource } from '../../../../../rest/consumer/usePostResource';
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 import { Diskresjonskoder } from '../../../../../konstanter';
 import { isNotFound } from '../../../../../rest/utils/restResource';
+import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -170,9 +171,11 @@ function LeggTilbakepanel(props: Props) {
             <Style>
                 <StyledSkjemaGruppe
                     feil={
-                        !LeggTilbakeValidator.aarsak(state) && state.visFeilmeldinger
-                            ? { feilmelding: 'Velg årsak' }
-                            : undefined
+                        !LeggTilbakeValidator.aarsak(state) && state.visFeilmeldinger ? (
+                            <SkjemaelementFeilmelding>Velg årsak</SkjemaelementFeilmelding>
+                        ) : (
+                            undefined
+                        )
                     }
                 >
                     <legend className="sr-only">Velg årsak</legend>

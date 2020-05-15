@@ -5,6 +5,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import StandardTekstModal from './standardTekster/StandardTekstModal';
 import AutocompleteTextarea from '../../../../components/autocomplete-textarea/autocomplete-textarea';
 import { useRef } from 'react';
+import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 
 const StyledSkjemagruppe = styled(SkjemaGruppe)`
     position: relative;
@@ -49,7 +50,11 @@ function TekstFelt(props: Props) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     return (
-        <StyledSkjemagruppe feil={props.feilmelding ? { feilmelding: props.feilmelding } : undefined}>
+        <StyledSkjemagruppe
+            feil={
+                props.feilmelding ? <SkjemaelementFeilmelding>{props.feilmelding}</SkjemaelementFeilmelding> : undefined
+            }
+        >
             <StandardTekstModal appendTekst={appendTekst(props.tekst, props.updateTekst, textareaRef.current)} />
             <TextareaWrapper>
                 <AutocompleteTextarea
