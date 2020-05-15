@@ -6,7 +6,7 @@ import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
 import { PersonSokFormState, lagRequest } from './personsokUtils';
 import { loggError } from '../../utils/logger/frontendLogger';
 import useFormstate, { Values } from '@nutgaard/use-formstate';
-import { required } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/skjermetPerson/oppgaveSkjemaValidatorSkjermetPerson';
+import { required } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
 import PersonsokDatovelger from './PersonsokDatovelger';

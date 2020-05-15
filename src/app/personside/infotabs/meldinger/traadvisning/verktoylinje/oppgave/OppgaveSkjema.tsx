@@ -13,15 +13,15 @@ import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-fronte
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { erBehandlet } from '../../../utils/meldingerUtils';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { useAppState, usePrevious } from '../../../../../../../utils/customHooks';
+import { useAppState } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
 import useFormstate, { Values } from '@nutgaard/use-formstate';
-import { required } from './skjermetPerson/oppgaveSkjemaValidatorSkjermetPerson';
+import { required } from './validering';
 import { Select, Textarea } from 'nav-frontend-skjema';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
 import AutoComplete from './AutoComplete';
-import { hasData, isPending } from '@nutgaard/use-async';
+import { hasData } from '@nutgaard/use-async';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 import useForeslatteEnheter from './useForeslåtteEnheter';
@@ -74,10 +74,6 @@ const validator = useFormstate<OppgaveSkjemaForm>({
 function OppgaveSkjema(props: OppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
-    const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
-
-    populerCacheMedTomAnsattliste();
-
     const initialValues = {
         valgtTema: '',
         valgtOppgavetype: '',
@@ -87,8 +83,22 @@ function OppgaveSkjema(props: OppgaveProps) {
         valgtEnhet: '',
         valgtAnsatt: ''
     };
-
+    const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const state = validator(initialValues);
+    const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
+
+    const ansattliste = useAnsattePaaEnhet(state.fields.valgtEnhet?.input.value);
+    const enhetliste: FetchResult<Array<Enhet>> = useFetchWithLog<Array<Enhet>>(
+        `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
+        'LagOppgave-Enheter',
+        includeCredentials
+    );
+    const foreslatteEnheter = useForeslatteEnheter(
+        state.fields.valgtTema?.input.value,
+        state.fields.valgtOppgavetype?.input.value,
+        state.fields.valgtUnderkategori?.input.value
+    );
+    populerCacheMedTomAnsattliste();
 
     function submitHandler<S>(values: Values<OppgaveSkjemaForm>): Promise<any> {
         const request = lagOppgaveRequest(props, values, valgtBrukersFnr, saksbehandlersEnhet || '', props.valgtTraad);
@@ -131,19 +141,6 @@ function OppgaveSkjema(props: OppgaveProps) {
     }
 
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
-    const ansattliste = useAnsattePaaEnhet(state.fields.valgtEnhet?.input.value);
-    const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
-
-    const enhetliste: FetchResult<Array<Enhet>> = useFetchWithLog<Array<Enhet>>(
-        `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
-        'LagOppgave-Enheter',
-        includeCredentials
-    );
-    const foreslatteEnheter = useForeslatteEnheter(
-        state.fields.valgtTema?.input.value,
-        state.fields.valgtOppgavetype?.input.value,
-        state.fields.valgtUnderkategori?.input.value
-    );
 
     return (
         <SkjemaStyle>
