@@ -3,7 +3,7 @@ import React from 'react';
 
 export interface Valideringsregel<T> {
     felt: keyof T;
-    feilmelding: SkjemaelementFeilmelding;
+    feilmelding: string;
     validator: (input: T) => boolean;
 }
 
@@ -14,7 +14,7 @@ export interface ValideringsResultat<T> {
 
 export interface FeltValidering {
     erGyldig: boolean;
-    feilmeldinger: SkjemaelementFeilmelding[];
+    feilmeldinger: string[];
     skjemafeil: SkjemaelementFeilmelding | undefined;
 }
 
@@ -90,10 +90,10 @@ export default class FormValidator<T> {
         return felt;
     }
 
-    private getSkjemafeil(feilmeldinger: SkjemaelementFeilmelding[]) {
+    private getSkjemafeil(feilmeldinger: string[]): SkjemaelementFeilmelding | undefined {
         if (feilmeldinger.length === 0) {
             return undefined;
         }
-        return <>{feilmeldinger}</>;
+        return <SkjemaelementFeilmelding>{feilmeldinger.join('. ')}</SkjemaelementFeilmelding>;
     }
 }

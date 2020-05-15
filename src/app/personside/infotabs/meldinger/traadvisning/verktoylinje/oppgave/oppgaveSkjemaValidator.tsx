@@ -1,8 +1,6 @@
 import { OppgaveSkjemaForm } from './oppgaveInterfaces';
 import FormValidator, { Valideringsregel } from '../../../../../../../utils/forms/FormValidator';
 import { erTomStreng } from '../../../../../../../utils/string-utils';
-import React from 'react';
-import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 
 const tomtSkjema: OppgaveSkjemaForm = {
     valgtTema: undefined,
@@ -17,27 +15,27 @@ const tomtSkjema: OppgaveSkjemaForm = {
 const regler: Valideringsregel<OppgaveSkjemaForm>[] = [
     {
         felt: 'valgtTema',
-        feilmelding: <SkjemaelementFeilmelding>Du må velge tema</SkjemaelementFeilmelding>,
+        feilmelding: 'Du må velge tema',
         validator: (form: OppgaveSkjemaForm) => !!form.valgtTema
     },
     {
         felt: 'valgtOppgavetype',
-        feilmelding: <SkjemaelementFeilmelding>Du må velge oppgavetype</SkjemaelementFeilmelding>,
+        feilmelding: 'Du må velge oppgavetype',
         validator: (form: OppgaveSkjemaForm) => !!form.valgtOppgavetype
     },
     {
         felt: 'beskrivelse',
-        feilmelding: <SkjemaelementFeilmelding>Du må skrive beskrivelse</SkjemaelementFeilmelding>,
+        feilmelding: 'Du må skrive beskrivelse',
         validator: (form: OppgaveSkjemaForm) => !erTomStreng(form.beskrivelse)
     },
     {
         felt: 'valgtEnhet',
-        feilmelding: <SkjemaelementFeilmelding>Du må velge enhet</SkjemaelementFeilmelding>,
+        feilmelding: 'Du må velge enhet',
         validator: (form: OppgaveSkjemaForm) => !!form.valgtEnhet
     },
     {
         felt: 'valgtPrioritet',
-        feilmelding: <SkjemaelementFeilmelding>Du må velge prioritet</SkjemaelementFeilmelding>,
+        feilmelding: 'Du må velge prioritet',
         validator: (form: OppgaveSkjemaForm) => !!form.valgtPrioritet
     }
 ];
