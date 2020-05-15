@@ -361,6 +361,7 @@ exports[`Viser Traadliste 1`] = `
           Søk etter melding
         </label>
         <input
+          aria-invalid={false}
           className="skjemaelement__input input--fullbredde"
           id="Helt tilfeldig ID"
           onChange={[Function]}
@@ -368,19 +369,16 @@ exports[`Viser Traadliste 1`] = `
           type="text"
           value=""
         />
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
       </div>
     </div>
     <div
       className="c2"
     >
       <div
-        className="skjemaelement skjemaelement--horisontal c3"
+        className="skjemaelement c3"
       >
         <input
+          aria-invalid={false}
           checked={false}
           className="skjemaelement__input checkboks"
           id="Helt tilfeldig ID"
@@ -393,10 +391,6 @@ exports[`Viser Traadliste 1`] = `
         >
           Skjul varsler
         </label>
-        <div
-          aria-live="assertive"
-          role="alert"
-        />
       </div>
       <button
         aria-label="Skriv ut"

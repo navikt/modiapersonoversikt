@@ -860,6 +860,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             className="selectContainer input--fullbredde"
           >
             <select
+              aria-invalid={false}
               autoFocus={true}
               className="skjemaelement__input"
               disabled={false}
@@ -890,10 +891,6 @@ exports[`Viser traad med verktøylinje 1`] = `
               </option>
             </select>
           </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
         </div>
         <div
           className="skjemaelement"
@@ -908,6 +905,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             className="selectContainer input--fullbredde"
           >
             <select
+              aria-invalid={false}
               className="skjemaelement__input"
               disabled={false}
               id="Helt tilfeldig ID"
@@ -922,10 +920,6 @@ exports[`Viser traad med verktøylinje 1`] = `
               </option>
             </select>
           </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
         </div>
         <div
           className="skjemaelement"
@@ -940,6 +934,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             className="selectContainer input--fullbredde"
           >
             <select
+              aria-invalid={false}
               className="skjemaelement__input"
               disabled={false}
               id="Helt tilfeldig ID"
@@ -954,10 +949,6 @@ exports[`Viser traad med verktøylinje 1`] = `
               </option>
             </select>
           </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
         </div>
         <div
           aria-expanded={false}
@@ -983,6 +974,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                 aria-activedescendant={null}
                 aria-autocomplete="list"
                 aria-controls={null}
+                aria-invalid={false}
                 aria-labelledby="downshift-0-label"
                 autoComplete="off"
                 className="skjemaelement__input input--fullbredde"
@@ -993,10 +985,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                 onKeyDown={[Function]}
                 type="text"
                 value=""
-              />
-              <div
-                aria-live="assertive"
-                role="alert"
               />
             </div>
             <svg
@@ -1058,6 +1046,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                 aria-activedescendant={null}
                 aria-autocomplete="list"
                 aria-controls={null}
+                aria-invalid={false}
                 aria-labelledby="downshift-1-label"
                 autoComplete="off"
                 className="skjemaelement__input input--fullbredde"
@@ -1068,10 +1057,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                 onKeyDown={[Function]}
                 type="text"
                 value=""
-              />
-              <div
-                aria-live="assertive"
-                role="alert"
               />
             </div>
           </div>
@@ -1089,6 +1074,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             className="selectContainer input--fullbredde"
           >
             <select
+              aria-invalid={false}
               className="skjemaelement__input"
               disabled={false}
               id="Helt tilfeldig ID"
@@ -1103,10 +1089,6 @@ exports[`Viser traad med verktøylinje 1`] = `
               </option>
             </select>
           </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
         </div>
         <div
           className="skjemaelement textarea__container"
@@ -1121,6 +1103,8 @@ exports[`Viser traad med verktøylinje 1`] = `
             className="textarea--medMeta__wrapper"
           >
             <textarea
+              aria-describedby="Helt tilfeldig ID"
+              aria-invalid={false}
               className="skjemaelement__input textarea--medMeta"
               id="Helt tilfeldig ID"
               onChange={[Function]}
@@ -1133,10 +1117,6 @@ exports[`Viser traad med verktøylinje 1`] = `
               value=""
             />
           </div>
-          <div
-            aria-live="assertive"
-            role="alert"
-          />
           <div
             aria-hidden="true"
             className="textareamirror"
@@ -1165,142 +1145,145 @@ exports[`Viser traad med verktøylinje 1`] = `
     <form
       onSubmit={[Function]}
     >
-      <div
-        className="inputPanelGruppe"
+      <fieldset
+        aria-invalid={false}
+        className="skjemagruppe inputPanelGruppe"
       >
-        <fieldset
-          className="skjema__fieldset"
-        >
-          <legend
-            className="skjema__legend"
-          >
-            
-          </legend>
-          <div
-            className="inputPanelGruppe__inner"
-          >
-            <label
-              className="inputPanel radioPanel inputPanel--disabled"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                checked={false}
-                className="inputPanel__field"
-                disabled={true}
-                id="Helt tilfeldig ID"
-                name="merk"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="FEILSENDT"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Feilsendt post
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel inputPanel--disabled"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                checked={false}
-                className="inputPanel__field"
-                disabled={true}
-                id="Helt tilfeldig ID"
-                name="merk"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="BISYS"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Kopiert inn i Bisys
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel inputPanel--disabled"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                checked={false}
-                className="inputPanel__field"
-                disabled={true}
-                id="Helt tilfeldig ID"
-                name="merk"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="KONTORSPERRET"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Kontorsperret
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel inputPanel--disabled"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                checked={false}
-                className="inputPanel__field"
-                disabled={true}
-                id="Helt tilfeldig ID"
-                name="merk"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="AVSLUTT"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Avslutt uten å svare bruker
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel inputPanel--disabled"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                checked={false}
-                className="inputPanel__field"
-                disabled={true}
-                id="Helt tilfeldig ID"
-                name="merk"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="FERDIGSTILL"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Overstyrt ferdigstillelse av oppgave
-              </span>
-            </label>
-          </div>
-        </fieldset>
+        
         <div
-          aria-live="assertive"
-          role="alert"
+          className="inputPanelGruppe__inner"
+        >
+          <label
+            className="inputPanel radioPanel inputPanel--disabled"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={false}
+              aria-errormessage="Helt tilfeldig ID"
+              aria-invalid={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={true}
+              id="Helt tilfeldig ID"
+              name="merk"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="FEILSENDT"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Feilsendt post
+            </span>
+          </label>
+          <label
+            className="inputPanel radioPanel inputPanel--disabled"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={false}
+              aria-errormessage="Helt tilfeldig ID"
+              aria-invalid={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={true}
+              id="Helt tilfeldig ID"
+              name="merk"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="BISYS"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Kopiert inn i Bisys
+            </span>
+          </label>
+          <label
+            className="inputPanel radioPanel inputPanel--disabled"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={false}
+              aria-errormessage="Helt tilfeldig ID"
+              aria-invalid={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={true}
+              id="Helt tilfeldig ID"
+              name="merk"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="KONTORSPERRET"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Kontorsperret
+            </span>
+          </label>
+          <label
+            className="inputPanel radioPanel inputPanel--disabled"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={false}
+              aria-errormessage="Helt tilfeldig ID"
+              aria-invalid={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={true}
+              id="Helt tilfeldig ID"
+              name="merk"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="AVSLUTT"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Avslutt uten å svare bruker
+            </span>
+          </label>
+          <label
+            className="inputPanel radioPanel inputPanel--disabled"
+            htmlFor="Helt tilfeldig ID"
+          >
+            <input
+              aria-checked={false}
+              aria-errormessage="Helt tilfeldig ID"
+              aria-invalid={false}
+              checked={false}
+              className="inputPanel__field"
+              disabled={true}
+              id="Helt tilfeldig ID"
+              name="merk"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="FERDIGSTILL"
+            />
+            <span
+              className="inputPanel__label"
+            >
+              Overstyrt ferdigstillelse av oppgave
+            </span>
+          </label>
+        </div>
+        <div
+          aria-live="polite"
+          id="Helt tilfeldig ID"
         />
-      </div>
+      </fieldset>
       <div
         className="c20"
       >

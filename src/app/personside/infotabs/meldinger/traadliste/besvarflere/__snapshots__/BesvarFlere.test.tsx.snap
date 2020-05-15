@@ -461,9 +461,10 @@ exports[`BesvarFler matcher snapshot 1`] = `
             className="c6"
           >
             <div
-              className="skjemaelement skjemaelement--horisontal"
+              className="skjemaelement"
             >
               <input
+                aria-invalid={false}
                 aria-label="Velg tråd"
                 checked={false}
                 className="skjemaelement__input checkboks"
@@ -477,10 +478,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
               >
                 
               </label>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
             </div>
           </div>
           <div
@@ -597,9 +594,10 @@ exports[`BesvarFler matcher snapshot 1`] = `
             className="c6"
           >
             <div
-              className="skjemaelement skjemaelement--horisontal"
+              className="skjemaelement"
             >
               <input
+                aria-invalid={false}
                 aria-label="Velg tråd"
                 checked={false}
                 className="skjemaelement__input checkboks"
@@ -613,10 +611,6 @@ exports[`BesvarFler matcher snapshot 1`] = `
               >
                 
               </label>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
             </div>
           </div>
           <div

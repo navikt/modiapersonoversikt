@@ -41,6 +41,9 @@ const KnappWrapper = styled.div`
     margin-top: 0.5rem;
 `;
 
+const RadioWrapper = styled.div`
+    margin-bottom: 0.5rem;
+`;
 const FieldSet = styled.fieldset`
     border: none;
     margin: 0;
@@ -98,20 +101,22 @@ function Filtrering() {
         const label = PeriodeValg[key];
         const checked = filter.periode.radioValg === label;
         return (
-            <Radio
-                key={label}
-                label={label}
-                checked={checked}
-                onChange={() =>
-                    updateFilter({
-                        periode: {
-                            ...filter.periode,
-                            radioValg: PeriodeValg[key]
-                        }
-                    })
-                }
-                name="FiltreringsvalgGruppe"
-            />
+            <RadioWrapper>
+                <Radio
+                    key={label}
+                    label={label}
+                    checked={checked}
+                    onChange={() =>
+                        updateFilter({
+                            periode: {
+                                ...filter.periode,
+                                radioValg: PeriodeValg[key]
+                            }
+                        })
+                    }
+                    name="FiltreringsvalgGruppe"
+                />
+            </RadioWrapper>
         );
     });
 
