@@ -2,6 +2,8 @@ import FormValidator, { Valideringsregel } from '../../utils/forms/FormValidator
 import { removeWhitespaceAndDot, validerKontonummer } from './kontonummer/kontonummerUtils';
 import { erTall, erTomStreng } from '../../utils/string-utils';
 import { PersonSokFormState } from './personsokUtils';
+import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import React from 'react';
 
 const tomtSkjema: PersonSokFormState = {
     fornavn: '',
@@ -22,7 +24,7 @@ const tomtSkjema: PersonSokFormState = {
 const regler: Valideringsregel<PersonSokFormState>[] = [
     {
         felt: 'gatenavn',
-        feilmelding: 'Gatenavn må være satt hvis husnummer er satt',
+        feilmelding: <SkjemaelementFeilmelding>Gatenavn må være satt hvis husnummer er satt</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) => {
             if (erTomStreng(form.husnummer)) {
                 return true;
@@ -33,7 +35,7 @@ const regler: Valideringsregel<PersonSokFormState>[] = [
     },
     {
         felt: 'gatenavn',
-        feilmelding: 'Gatenavn må være satt hvis husbokstav er satt',
+        feilmelding: <SkjemaelementFeilmelding>Gatenavn må være satt hvis husbokstav er satt</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) => {
             if (erTomStreng(form.husbokstav)) {
                 return true;
@@ -44,7 +46,7 @@ const regler: Valideringsregel<PersonSokFormState>[] = [
     },
     {
         felt: 'gatenavn',
-        feilmelding: 'Gatenavn må være satt hvis postnummer er satt',
+        feilmelding: <SkjemaelementFeilmelding>Gatenavn må være satt hvis postnummer er satt</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) => {
             if (erTomStreng(form.postnummer)) {
                 return true;
@@ -55,49 +57,49 @@ const regler: Valideringsregel<PersonSokFormState>[] = [
     },
     {
         felt: 'husnummer',
-        feilmelding: 'Husnummer må være tall',
+        feilmelding: <SkjemaelementFeilmelding>Husnummer må være tall</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) => erTomStreng(form.husnummer) || erTall(form.husnummer)
     },
     {
         felt: 'postnummer',
-        feilmelding: 'Postnummer må være tall',
+        feilmelding: <SkjemaelementFeilmelding>'Postnummer må være tall</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) => erTomStreng(form.postnummer) || erTall(form.postnummer)
     },
     {
         felt: 'kommunenummer',
-        feilmelding: 'Bosted må være 4 siffer',
+        feilmelding: <SkjemaelementFeilmelding>Bosted må være 4 siffer</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) => erTomStreng(form.kommunenummer) || form.kommunenummer.length === 4
     },
     {
         felt: 'kommunenummer',
-        feilmelding: 'Bosted må være tall',
+        feilmelding: <SkjemaelementFeilmelding>Bosted må være tall</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) => erTomStreng(form.kommunenummer) || erTall(form.kommunenummer)
     },
     {
         felt: 'kontonummer',
-        feilmelding: 'Kontonummer må være elleve siffer',
+        feilmelding: <SkjemaelementFeilmelding>Kontonummer må være elleve siffer</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) =>
             erTomStreng(form.kontonummer) || removeWhitespaceAndDot(form.kontonummer).length === 11
     },
     {
         felt: 'kontonummer',
-        feilmelding: 'Kontonummer må være gyldig',
+        feilmelding: <SkjemaelementFeilmelding>Kontonummer må være gyldig</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) =>
             erTomStreng(form.kontonummer) || validerKontonummer(removeWhitespaceAndDot(form.kontonummer))
     },
     {
         felt: 'alderFra',
-        feilmelding: 'Alder fra må være tall',
+        feilmelding: <SkjemaelementFeilmelding>Alder fra må være tall</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) => erTomStreng(form.alderFra) || erTall(form.alderFra)
     },
     {
         felt: 'alderTil',
-        feilmelding: 'Alder til må være tall',
+        feilmelding: <SkjemaelementFeilmelding>Alder til må være tall</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) => erTomStreng(form.alderTil) || erTall(form.alderTil)
     },
     {
         felt: 'alderFra',
-        feilmelding: 'Alder fra må være før alder til',
+        feilmelding: <SkjemaelementFeilmelding>Alder fra må være før alder til</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) => {
             if (erTomStreng(form.alderTil)) {
                 return true;
@@ -108,7 +110,7 @@ const regler: Valideringsregel<PersonSokFormState>[] = [
     },
     {
         felt: 'alderTil',
-        feilmelding: 'Alder til må være før alder fra',
+        feilmelding: <SkjemaelementFeilmelding>Alder til må være før alder fra</SkjemaelementFeilmelding>,
         validator: (form: PersonSokFormState) => {
             if (erTomStreng(form.alderFra)) {
                 return true;

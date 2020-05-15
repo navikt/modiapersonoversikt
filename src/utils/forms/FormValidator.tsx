@@ -1,8 +1,7 @@
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
-
 export interface Valideringsregel<T> {
     felt: keyof T;
-    feilmelding: string;
+    feilmelding: SkjemaelementFeilmelding;
     validator: (input: T) => boolean;
 }
 
@@ -13,7 +12,7 @@ export interface ValideringsResultat<T> {
 
 export interface FeltValidering {
     erGyldig: boolean;
-    feilmeldinger: string[];
+    feilmeldinger: SkjemaelementFeilmelding[];
     skjemafeil: SkjemaelementFeilmelding | undefined;
 }
 
@@ -84,19 +83,15 @@ export default class FormValidator<T> {
             }
             const skjemafeil = this.getSkjemafeil(felt[key].feilmeldinger);
 
-            // @ts-ignore
-            felt[key].skjemafeil = skjemafeil;
+            felt[key].skjemafeil = skjemafeil?.feilmeldinger;
         }
         return felt;
     }
 
-    private getSkjemafeil(feilmeldinger: string[]) {
+    private getSkjemafeil(feilmeldinger: SkjemaelementFeilmelding[]) {
         if (feilmeldinger.length === 0) {
             return undefined;
         }
-
-        return {
-            feilmelding: feilmeldinger.join('. ')
-        };
+        return { feilmeldinger };
     }
 }
