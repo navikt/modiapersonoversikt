@@ -11,6 +11,7 @@ import { NedChevron, OppChevron } from 'nav-frontend-chevron';
 import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import { apiBaseUri, includeCredentials } from '../../../../api/config';
 import { useClickOutside, useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
+import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 
 interface Props {
     valgtSak?: JournalforingsSak;
@@ -79,7 +80,11 @@ function DialogpanelVelgSak(props: Props) {
     const tittel = props.valgtSak ? getTittel(props.valgtSak) : 'Velg sak';
 
     return (
-        <SkjemaGruppe feil={props.visFeilmelding ? { feilmelding: 'Du må velge en sak' } : undefined}>
+        <SkjemaGruppe
+            feil={
+                props.visFeilmelding ? <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding> : undefined
+            }
+        >
             <Style ref={ref}>
                 <Knapp ref={knappRef} type="button" onClick={() => setVisSaker(!visSaker)} aria-expanded={visSaker}>
                     <Normaltekst>{tittel}</Normaltekst>
