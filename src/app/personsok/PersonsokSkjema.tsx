@@ -57,7 +57,7 @@ const validator = useFormstate<PersonSokFormState>({
     fodselsdatoTil: required('Du må velge fodselsdatoTil'),
     alderFra: required('Du må velge alderFra'),
     alderTil: required('Du må velge alderTil'),
-    kjonn: required('Du må velge kjonn')
+    kjonn: required('Du må velge kjønn')
 });
 
 function PersonsokSkjema(props: Props) {
