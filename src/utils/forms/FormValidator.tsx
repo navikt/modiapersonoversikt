@@ -15,7 +15,7 @@ export interface ValideringsResultat<T> {
 export interface FeltValidering {
     erGyldig: boolean;
     feilmeldinger: string[];
-    skjemafeil: SkjemaelementFeilmelding | undefined;
+    skjemafeil: SkjemaelementFeilmelding | undefined | null;
 }
 
 type FormValidering<T> = { [P in keyof T]: FeltValidering };
@@ -41,7 +41,7 @@ export default class FormValidator<T> {
                 result[regel.felt] = {
                     erGyldig: true,
                     feilmeldinger: [],
-                    skjemafeil: undefined
+                    skjemafeil: null
                 };
             }
 
@@ -72,7 +72,7 @@ export default class FormValidator<T> {
             result[key] = {
                 erGyldig: true,
                 feilmeldinger: [],
-                skjemafeil: undefined
+                skjemafeil: null
             };
         }
         return result;
@@ -90,10 +90,11 @@ export default class FormValidator<T> {
         return felt;
     }
 
-    private getSkjemafeil(feilmeldinger: string[]): SkjemaelementFeilmelding | undefined {
+    private getSkjemafeil(feilmeldinger: string[]): SkjemaelementFeilmelding | null | undefined {
         if (feilmeldinger.length === 0) {
             return undefined;
         }
+        // @ts-ignore
         return <SkjemaelementFeilmelding>{feilmeldinger.join('. ')}</SkjemaelementFeilmelding>;
     }
 }
