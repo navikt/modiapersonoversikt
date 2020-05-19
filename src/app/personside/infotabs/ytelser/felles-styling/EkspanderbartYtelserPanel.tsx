@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
+import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import styled from 'styled-components/macro';
 import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
@@ -56,16 +56,16 @@ function EkspanderbartYtelserPanel(props: Props) {
 
     return (
         <CustomStyling>
-            <EkspanderbartpanelBasePure
+            <EkspanderbartpanelBase
                 className={ytelserTest.ytelse}
                 apen={props.open}
                 /* TODO position:sticky på tittel */
                 onClick={() => props.setOpen(!props.open)}
-                heading={tittel}
-                ariaTittel={props.tittel}
+                tittel={tittel}
+                aria-label={props.tittel}
             >
                 {props.children}
-            </EkspanderbartpanelBasePure>
+            </EkspanderbartpanelBase>
         </CustomStyling>
     );
 }
