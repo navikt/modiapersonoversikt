@@ -13,6 +13,7 @@ import { erGydligishFnr } from '../../utils/fnr-utils';
 import { useHistory } from 'react-router';
 import { paths } from '../routes/routing';
 import { loggInfo } from '../../utils/logger/frontendLogger';
+import useTokenRefresher from '../../utils/hooks/use-token-refresher';
 
 function Personoversikt() {
     const personResource = useRestResource(resources => resources.personinformasjon);
@@ -20,6 +21,7 @@ function Personoversikt() {
     const dispatch = useDispatch();
     const fnr = useFødselsnummer();
     const history = useHistory();
+    useTokenRefresher(fnr);
 
     useOnMount(() => {
         const harHentetOppgave = isFinishedPosting(oppgaveResource);
