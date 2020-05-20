@@ -4,6 +4,7 @@ import { Temagruppe, temagruppeTekst } from '../../../../models/Temagrupper';
 import { Select, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
+import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 
 interface Props {
     setTema: (tema?: Temagruppe) => void;
@@ -32,7 +33,15 @@ function Temavelger(props: Props) {
         props.setTema(tema);
     };
     return (
-        <SkjemaGruppe feil={props.visFeilmelding ? { feilmelding: 'Du må velge temagruppe' } : undefined}>
+        <SkjemaGruppe
+            feil={
+                props.visFeilmelding ? (
+                    <SkjemaelementFeilmelding>Du må velge temagruppe</SkjemaelementFeilmelding>
+                ) : (
+                    undefined
+                )
+            }
+        >
             <StyledSelect
                 // @ts-ignore
                 selectRef={ref => (selectRef = ref)}
