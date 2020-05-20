@@ -17,6 +17,8 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useState } from 'react';
+import IfFeatureToggleOn from '../../components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 interface BegrensetTilgangProps {
     person: BegrensetTilgang;
@@ -74,7 +76,9 @@ function BegrensetTilgangSide({ person }: BegrensetTilgangProps) {
                     <BegrensetTilgangBegrunnelse begrunnelseType={person.begrunnelse} />
                     {visSikkerhetstiltak(person.sikkerhetstiltak, erEgenAnsatt)}
                 </AlertStripe>
-                <OpprettOppgaveAvvistTilgang />
+                <IfFeatureToggleOn toggleID={FeatureToggles.SkjermetPerson}>
+                    <OpprettOppgaveAvvistTilgang />
+                </IfFeatureToggleOn>
             </Wrapper>
         </FillCenterAndFadeIn>
     );
