@@ -195,9 +195,11 @@ function LeggTilbakepanel(props: Props) {
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                         <StyledSkjemaGruppe
                             feil={
-                                !LeggTilbakeValidator.tekst(state) && state.visFeilmeldinger
-                                    ? { feilmelding: 'Du må skrive en årsak' }
-                                    : undefined
+                                !LeggTilbakeValidator.tekst(state) && state.visFeilmeldinger ? (
+                                    <SkjemaelementFeilmelding>Du må skrive en årsak</SkjemaelementFeilmelding>
+                                ) : (
+                                    undefined
+                                )
                             }
                         >
                             <Textarea
