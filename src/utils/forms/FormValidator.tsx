@@ -1,5 +1,5 @@
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
-
+import * as React from 'react';
 export interface Valideringsregel<T> {
     felt: keyof T;
     feilmelding: string;
@@ -95,8 +95,6 @@ export default class FormValidator<T> {
             return undefined;
         }
 
-        return {
-            feilmelding: feilmeldinger.join('. ')
-        };
+        return <SkjemaelementFeilmelding>{feilmeldinger.join('. ')}</SkjemaelementFeilmelding>;
     }
 }
