@@ -56,6 +56,7 @@ enum MerkOperasjon {
 }
 
 const KnappStyle = styled.div`
+    margin-top: 0.5rem;
     display: flex;
     justify-content: space-between;
 `;

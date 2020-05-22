@@ -492,11 +492,14 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     className="c7"
   >
     <div
-      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
+      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket ekspanderbartPanel--border"
     >
       <button
+        aria-controls="Helt tilfeldig ID"
         aria-expanded={false}
+        aria-label="Sykefraværsoppfølging"
         className="ekspanderbartPanel__hode"
+        id="Helt tilfeldig ID"
         onClick={[Function]}
         onKeyDown={[Function]}
         type="button"
@@ -504,128 +507,140 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
         <div
           className="ekspanderbartPanel__flex-wrapper"
         >
-          <div
-            className="c8"
+          <span
+            className="ekspanderbartPanel__tittel"
           >
-            <h2
-              className="typo-undertittel"
+            <div
+              className="c8"
             >
-              Sykefraværsoppfølging
-            </h2>
-          </div>
+              <h2
+                className="typo-undertittel"
+              >
+                Sykefraværsoppfølging
+              </h2>
+            </div>
+          </span>
           <span
             className="ekspanderbartPanel__indikator"
           />
         </div>
       </button>
-      <article
-        aria-label="Sykefraværsoppfølging"
-        className="ekspanderbartPanel__innhold"
+      <div
+        aria-labelledby="Helt tilfeldig ID"
+        id="Helt tilfeldig ID"
+        role="region"
       >
         <div
-          className="typo-normal c9"
+          className="ekspanderbartPanel__innhold"
         >
-          <table
-            role="table"
+          <div
+            className="typo-normal c9"
           >
-            <thead
-              role="rowgroup"
+            <table
+              role="table"
             >
-              <tr
-                role="row"
+              <thead
+                role="rowgroup"
               >
-                <th
-                  role="columnheader"
+                <tr
+                  role="row"
                 >
-                  Innen
-                </th>
-                <th
-                  role="columnheader"
-                >
-                  Hendelse
-                </th>
-                <th
-                  role="columnheader"
-                >
-                  Status
-                </th>
-              </tr>
-            </thead>
-            <tbody
-              role="rowgroup"
-            >
-              <tr
-                role="row"
+                  <th
+                    role="columnheader"
+                  >
+                    Innen
+                  </th>
+                  <th
+                    role="columnheader"
+                  >
+                    Hendelse
+                  </th>
+                  <th
+                    role="columnheader"
+                  >
+                    Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                role="rowgroup"
               >
-                <td
-                  role="cell"
+                <tr
+                  role="row"
                 >
-                  10.04.2019
-                </td>
-                <td
-                  role="cell"
+                  <td
+                    role="cell"
+                  >
+                    10.04.2019
+                  </td>
+                  <td
+                    role="cell"
+                  >
+                    vel expedita dolore excepturi est alias
+                  </td>
+                  <td
+                    role="cell"
+                  >
+                    Ferdig behandlet
+                  </td>
+                </tr>
+                <tr
+                  role="row"
                 >
-                  vel expedita dolore excepturi est alias
-                </td>
-                <td
-                  role="cell"
+                  <td
+                    role="cell"
+                  >
+                    12.02.2019
+                  </td>
+                  <td
+                    role="cell"
+                  >
+                    illo repellendus ad iste neque maxime
+                  </td>
+                  <td
+                    role="cell"
+                  >
+                    Ferdig behandlet
+                  </td>
+                </tr>
+                <tr
+                  role="row"
                 >
-                  Ferdig behandlet
-                </td>
-              </tr>
-              <tr
-                role="row"
-              >
-                <td
-                  role="cell"
-                >
-                  12.02.2019
-                </td>
-                <td
-                  role="cell"
-                >
-                  illo repellendus ad iste neque maxime
-                </td>
-                <td
-                  role="cell"
-                >
-                  Ferdig behandlet
-                </td>
-              </tr>
-              <tr
-                role="row"
-              >
-                <td
-                  role="cell"
-                >
-                  27.01.2019
-                </td>
-                <td
-                  role="cell"
-                >
-                  nostrum sunt quia mollitia impedit sint
-                </td>
-                <td
-                  role="cell"
-                >
-                  Ferdig behandlet
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  <td
+                    role="cell"
+                  >
+                    27.01.2019
+                  </td>
+                  <td
+                    role="cell"
+                  >
+                    nostrum sunt quia mollitia impedit sint
+                  </td>
+                  <td
+                    role="cell"
+                  >
+                    Ferdig behandlet
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </article>
+      </div>
     </div>
   </div>
   <div
     className="c7"
   >
     <div
-      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket"
+      className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket ekspanderbartPanel--border"
     >
       <button
+        aria-controls="Helt tilfeldig ID"
         aria-expanded={false}
+        aria-label="Ytelser"
         className="ekspanderbartPanel__hode"
+        id="Helt tilfeldig ID"
         onClick={[Function]}
         onKeyDown={[Function]}
         type="button"
@@ -633,290 +648,299 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
         <div
           className="ekspanderbartPanel__flex-wrapper"
         >
-          <div
-            className="c8"
+          <span
+            className="ekspanderbartPanel__tittel"
           >
-            <h2
-              className="typo-undertittel"
+            <div
+              className="c8"
             >
-              Ytelser
-            </h2>
-          </div>
+              <h2
+                className="typo-undertittel"
+              >
+                Ytelser
+              </h2>
+            </div>
+          </span>
           <span
             className="ekspanderbartPanel__indikator"
           />
         </div>
       </button>
-      <article
-        aria-label="Ytelser"
-        className="ekspanderbartPanel__innhold"
+      <div
+        aria-labelledby="Helt tilfeldig ID"
+        id="Helt tilfeldig ID"
+        role="region"
       >
-        <ol
-          className="c10"
+        <div
+          className="ekspanderbartPanel__innhold"
         >
-          <li>
-            <h2
-              className="typo-undertittel"
-            >
-              Dagpenger
-            </h2>
-            <div
-              className="c11"
-            >
-              <dl
-                className="c6"
+          <ol
+            className="c10"
+          >
+            <li>
+              <h2
+                className="typo-undertittel"
               >
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Status
-                  </dt>
-                  <dd
-                    className="typo-element"
-                  >
-                    Avsluttet
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Dato søknad mottatt
-                  </dt>
-                  <dd
-                    className="typo-element"
-                  >
-                    28.04.2019
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Dato fra
-                  </dt>
-                  <dd
-                    className="typo-element"
-                  >
-                    14.04.2019
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Dato til
-                  </dt>
-                  <dd
-                    className="typo-element"
-                  >
-                    01.05.2019
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Bortfall: Dager igjen
-                  </dt>
-                  <dd
-                    className="typo-element"
-                  >
-                    46
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Bortfall: Uker igjen
-                  </dt>
-                  <dd
-                    className="typo-element"
-                  >
-                    8
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Dager igjen
-                  </dt>
-                  <dd
-                    className="typo-element"
-                  >
-                    28
-                  </dd>
-                </div>
-                <div>
-                  <dt
-                    className="typo-normal"
-                  >
-                    Uker igjen
-                  </dt>
-                  <dd
-                    className="typo-element"
-                  >
-                    10
-                  </dd>
-                </div>
-              </dl>
-              <section>
-                <h2
-                  className="typo-undertittel visually-hidden"
+                Dagpenger
+              </h2>
+              <div
+                className="c11"
+              >
+                <dl
+                  className="c6"
                 >
-                  Vedtak
-                </h2>
-                <div
-                  className="typo-normal c9"
-                >
-                  <table
-                    role="table"
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Status
+                    </dt>
+                    <dd
+                      className="typo-element"
+                    >
+                      Avsluttet
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Dato søknad mottatt
+                    </dt>
+                    <dd
+                      className="typo-element"
+                    >
+                      28.04.2019
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Dato fra
+                    </dt>
+                    <dd
+                      className="typo-element"
+                    >
+                      14.04.2019
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Dato til
+                    </dt>
+                    <dd
+                      className="typo-element"
+                    >
+                      01.05.2019
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Bortfall: Dager igjen
+                    </dt>
+                    <dd
+                      className="typo-element"
+                    >
+                      46
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Bortfall: Uker igjen
+                    </dt>
+                    <dd
+                      className="typo-element"
+                    >
+                      8
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Dager igjen
+                    </dt>
+                    <dd
+                      className="typo-element"
+                    >
+                      28
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="typo-normal"
+                    >
+                      Uker igjen
+                    </dt>
+                    <dd
+                      className="typo-element"
+                    >
+                      10
+                    </dd>
+                  </div>
+                </dl>
+                <section>
+                  <h2
+                    className="typo-undertittel visually-hidden"
                   >
-                    <thead
-                      role="rowgroup"
+                    Vedtak
+                  </h2>
+                  <div
+                    className="typo-normal c9"
+                  >
+                    <table
+                      role="table"
                     >
-                      <tr
-                        role="row"
+                      <thead
+                        role="rowgroup"
                       >
-                        <th
-                          role="columnheader"
+                        <tr
+                          role="row"
                         >
-                          Vedtak
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Status
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Aktivitetsfase
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody
-                      role="rowgroup"
-                    >
-                      <tr
-                        role="row"
-                      >
-                        <td
-                          role="cell"
-                        >
-                          <div
-                            className="c12"
+                          <th
+                            role="columnheader"
                           >
-                            <h4
-                              className="typo-element second"
-                            >
-                              Ordinære dagpenger
-                            </h4>
-                            <div
-                              className="c13"
-                            >
-                              <p
-                                className="typo-etikett-liten first"
-                              >
-                                27.04.2019 - 01.05.2019
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          Iverksatt
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          Ikke spesif. aktivitetsfase
-                        </td>
-                      </tr>
-                      <tr
-                        role="row"
-                      >
-                        <td
-                          role="cell"
-                        >
-                          <div
-                            className="c12"
+                            Vedtak
+                          </th>
+                          <th
+                            role="columnheader"
                           >
-                            <h4
-                              className="typo-element second"
-                            >
-                              Ordinære dagpenger
-                            </h4>
-                            <div
-                              className="c13"
-                            >
-                              <p
-                                className="typo-etikett-liten first"
-                              >
-                                10.04.2019 - 19.04.2019
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          Avsluttet
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          Ikke spesif. aktivitetsfase
-                        </td>
-                      </tr>
-                      <tr
-                        role="row"
-                      >
-                        <td
-                          role="cell"
-                        >
-                          <div
-                            className="c12"
+                            Status
+                          </th>
+                          <th
+                            role="columnheader"
                           >
-                            <h4
-                              className="typo-element second"
-                            >
-                              Ordinære dagpenger
-                            </h4>
+                            Aktivitetsfase
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        role="rowgroup"
+                      >
+                        <tr
+                          role="row"
+                        >
+                          <td
+                            role="cell"
+                          >
                             <div
-                              className="c13"
+                              className="c12"
                             >
-                              <p
-                                className="typo-etikett-liten first"
+                              <h4
+                                className="typo-element second"
                               >
-                                04.04.2019 - 24.04.2019
-                              </p>
+                                Ordinære dagpenger
+                              </h4>
+                              <div
+                                className="c13"
+                              >
+                                <p
+                                  className="typo-etikett-liten first"
+                                >
+                                  27.04.2019 - 01.05.2019
+                                </p>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                        <td
-                          role="cell"
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            Iverksatt
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            Ikke spesif. aktivitetsfase
+                          </td>
+                        </tr>
+                        <tr
+                          role="row"
                         >
-                          Avsluttet
-                        </td>
-                        <td
-                          role="cell"
+                          <td
+                            role="cell"
+                          >
+                            <div
+                              className="c12"
+                            >
+                              <h4
+                                className="typo-element second"
+                              >
+                                Ordinære dagpenger
+                              </h4>
+                              <div
+                                className="c13"
+                              >
+                                <p
+                                  className="typo-etikett-liten first"
+                                >
+                                  10.04.2019 - 19.04.2019
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            Avsluttet
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            Ikke spesif. aktivitetsfase
+                          </td>
+                        </tr>
+                        <tr
+                          role="row"
                         >
-                          Ikke spesif. aktivitetsfase
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-            </div>
-          </li>
-        </ol>
-      </article>
+                          <td
+                            role="cell"
+                          >
+                            <div
+                              className="c12"
+                            >
+                              <h4
+                                className="typo-element second"
+                              >
+                                Ordinære dagpenger
+                              </h4>
+                              <div
+                                className="c13"
+                              >
+                                <p
+                                  className="typo-etikett-liten first"
+                                >
+                                  04.04.2019 - 24.04.2019
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            Avsluttet
+                          </td>
+                          <td
+                            role="cell"
+                          >
+                            Ikke spesif. aktivitetsfase
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
     </div>
   </div>
 </div>
