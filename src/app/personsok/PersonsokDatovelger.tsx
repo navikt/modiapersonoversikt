@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
+import Datovelger, { Props as OriginalProps } from 'nav-datovelger/dist/datovelger/Datovelger';
 import styled from 'styled-components/macro';
-import { useRef } from 'react';
+import { ChangeEvent, useRef } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { pxToRem } from '../../styles/personOversiktTheme';
 import useBoundingRect from '../../utils/hooks/use-bounding-rect';
@@ -31,6 +31,27 @@ function beregnDropdownCoordinate(clientRect: ClientRect) {
         left: clientRect.left + clientRect.width
     };
 }
+type OriginalOnChange = OriginalProps['onChange'];
+interface Props extends Omit<OriginalProps, 'onChange'> {
+    onChange(event: ChangeEvent<HTMLInputElement>): void;
+}
+
+function transformProps(props: Props): OriginalProps {
+    const onChange: OriginalOnChange = value => {
+        const target = { name: props.input.name, value } as HTMLInputElement;
+        const event = { target, currentTarget: target } as ChangeEvent<HTMLInputElement>;
+        props.onChange(event);
+    };
+    return {
+        ...props,
+        onChange
+    };
+}
+
+function CustomDatovelger(props: Props) {
+    const originalProps: OriginalProps = transformProps(props);
+    return <Datovelger {...originalProps} />;
+}
 
 function PersonsokDatovelger(props: { form: Mapped<Values<PersonSokFormState>, FieldState> }) {
     const fraRef = useRef(React.createRef<HTMLDivElement>()).current;
@@ -46,22 +67,22 @@ function PersonsokDatovelger(props: { form: Mapped<Values<PersonSokFormState>, F
                 <DatolabelStyle className="skjemaelement__label" htmlFor="personsok-datovelger-fra">
                     <Normaltekst>Fødselsdato fra</Normaltekst>
                 </DatolabelStyle>
-                <Datovelger
+                <CustomDatovelger
                     input={{ id: 'personsok-datovelger-fra', name: 'Fødselsdato fra dato' }}
                     visÅrVelger={true}
                     id="personsok-datovelger-fra"
-                    {...props.form.fodselsdatoFra?.input}
+                    {...props.form.fodselsdatoFra.input}
                 />
             </DatovelgerStyle>
             <DatovelgerStyle ref={tilRef} top={dropdownTilCoordinate.top} left={dropdownTilCoordinate.left}>
                 <DatolabelStyle className="skjemaelement__label" htmlFor="personsok-datovelger-til">
                     <Normaltekst>Fødselsdato til</Normaltekst>
                 </DatolabelStyle>
-                <Datovelger
+                <CustomDatovelger
                     input={{ id: 'personsok-datovelger-til', name: 'Fødselsdato til dato' }}
                     visÅrVelger={true}
                     id="personsok-datovelger-til"
-                    {...props.form.fodselsdatoTil?.input}
+                    {...props.form.fodselsdatoTil.input}
                 />
             </DatovelgerStyle>
         </>
