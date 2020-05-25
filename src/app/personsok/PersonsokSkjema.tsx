@@ -6,7 +6,12 @@ import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
 import { PersonSokFormState, lagRequest } from './personsokUtils';
 import { loggError } from '../../utils/logger/frontendLogger';
 import useFormstate, { Values } from '@nutgaard/use-formstate';
-import { required } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
+import {
+    required,
+    requiredBosted,
+    requiredNumber,
+    requiredKontonummer
+} from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
 import PersonsokDatovelger from './PersonsokDatovelger';
@@ -48,15 +53,15 @@ const validator = useFormstate<PersonSokFormState>({
     fornavn: required('Du må velge fornavn'),
     etternavn: required('Du må velge etternavn'),
     gatenavn: required('Du må velge gatenavn'),
-    husnummer: required('Du må velge husnummer'),
+    husnummer: requiredNumber('Husnummer må være tall'),
     husbokstav: required('Du må velge husbokstav'),
-    postnummer: required('Du må velge postnummer'),
-    kontonummer: required('Du må velge kontonummer'),
-    kommunenummer: required('Du må velge kommunenummer'),
-    fodselsdatoFra: required('Du må velge fodselsdatoFra'),
-    fodselsdatoTil: required('Du må velge fodselsdatoTil'),
-    alderFra: required('Du må velge alderFra'),
-    alderTil: required('Du må velge alderTil'),
+    postnummer: requiredNumber('Postnummer må være tall'),
+    kontonummer: requiredKontonummer('Du må velge kontonummer'),
+    kommunenummer: requiredBosted('Bosted må være tall med 4 siffer'),
+    fodselsdatoFra: required('Du må velge fra-fødselsdato'),
+    fodselsdatoTil: required('Du må velge til-fødselsdato'),
+    alderFra: requiredNumber('Alder må være tall'),
+    alderTil: requiredNumber('Alder må være tall'),
     kjonn: required('Du må velge kjønn')
 });
 
@@ -94,7 +99,7 @@ function PersonsokSkjema(props: Props) {
     const drekProps: DrekProps = {
         fornavn: state.fields.fornavn.input.value,
         etternavn: state.fields.etternavn.input.value,
-        fodselsdatoFra: state.fields.fodselsdatoFra?.input.value,
+        fodselsdatoFra: state.fields.fodselsdatoFra.input.value,
         kjonn: state.fields.kjonn.input.value
     };
 

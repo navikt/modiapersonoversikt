@@ -10,31 +10,12 @@ export type PersonSokFormState = {
     postnummer: string;
     kontonummer: string;
     kommunenummer: string;
-    fodselsdatoFra?: string;
-    fodselsdatoTil?: string;
+    fodselsdatoFra: string;
+    fodselsdatoTil: string;
     alderFra: string;
     alderTil: string;
     kjonn: string;
 };
-
-export interface PersonsokSkjemaProps {
-    state: PersonSokFormState;
-    actions: {
-        settFornavn(fornavn: string): void;
-        settEtternavn(etternavn: string): void;
-        settGatenavn(gatenavn: string): void;
-        settHusnummer(husnummer: string): void;
-        settHusbokstav(husbokstav: string): void;
-        settPostnummer(postnummer: string): void;
-        settKontonummer(kontonummer: string): void;
-        settKommunenummer(kommunenummer: string): void;
-        settFodselsdatoFra(fodselsdatoFra: string | undefined): void;
-        settFodselsdatoTil(fodselsdatoTil: string | undefined): void;
-        settAlderFra(alderFra: string): void;
-        settAlderTil(alderTil: string): void;
-        settKjonn(kjonn: string): void;
-    };
-}
 
 export function stringToNumber(input: string): number | undefined {
     if (input.length === 0) {
