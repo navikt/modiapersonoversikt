@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Input } from 'nav-frontend-skjema';
+import { Input, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import { useHistory } from 'react-router';
 import { setNyBrukerIPath } from '../routes/routing';
 import styled from 'styled-components/macro';
@@ -44,7 +44,7 @@ function PersonSokInput() {
         <div>
             <Form onSubmit={handleSok}>
                 <Input
-                    feil={feilmelding ? { feilmelding: feilmelding } : undefined}
+                    feil={feilmelding ? <SkjemaelementFeilmelding>{feilmelding}</SkjemaelementFeilmelding> : undefined}
                     placeholder="Personsøk"
                     label="Personsøk"
                     onChange={e => setInput(e.target.value)}
