@@ -51,7 +51,7 @@ const InputfeltWrapper = styled.div`
 `;
 
 interface Props<Item> {
-    value?: Item;
+    value?: string;
     itemToString: (item: Item) => string;
     label: string;
     suggestions: Item[];
@@ -61,6 +61,7 @@ interface Props<Item> {
     spinner?: boolean;
     feil?: SkjemaelementFeilmelding;
     onChange: (event: ChangeEvent<Element>) => void | undefined;
+    itemValue?: Item;
 }
 
 function SuggestionMarkup<Item>(props: { item: Item; helpers: ControllerStateAndHelpers<Item> }) {
@@ -79,19 +80,19 @@ function AutoComplete<Item>(props: Props<Item>) {
     const [input, setInput] = useState('');
     const [hightlightedItem, setHightlightedItem] = useState<Item | undefined>(undefined);
 
-    const { value, itemToString } = props;
+    const { itemToString, itemValue } = props;
 
     useEffect(() => {
-        if (value) {
-            setInput(itemToString(value));
+        if (itemValue) {
+            setInput(itemToString(itemValue));
         }
-    }, [itemToString, value]);
+    }, [itemToString, itemValue]);
 
     const showItemBasedOnInput = (input: string | null) => (item: Item) => {
         if (!input || input === '') {
             return true;
         }
-        if (value && input === itemToString(value)) {
+        if (itemValue && input === itemToString(itemValue)) {
             // Denne sjekken sørger for at man får opp alle alternativer når man kommer tilbake til et felt som allerede er satt.
             return true;
         }
@@ -125,11 +126,10 @@ function AutoComplete<Item>(props: Props<Item>) {
     return (
         <Downshift
             inputValue={input}
-            selectedItem={value || null}
+            selectedItem={itemValue || null}
             onInputValueChange={i => setInput(i)}
             onStateChange={handleStateChange}
             itemToString={(item: Item | null) => (item ? itemToString(item) : '')}
-            ref={inputRef.current}
         >
             {(helpers: ControllerStateAndHelpers<Item>) => {
                 const inputProps: Partial<InputProps> = helpers.getInputProps({
@@ -148,6 +148,7 @@ function AutoComplete<Item>(props: Props<Item>) {
                                 feil={props.feil}
                                 label={props.label}
                                 onFocus={() => helpers.openMenu()}
+                                ref={inputRef.current}
                             />
                             {props.spinner && <StyledSpinner type={'S'} />}
                         </InputfeltWrapper>

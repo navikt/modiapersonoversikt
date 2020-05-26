@@ -83,7 +83,9 @@ function OppgaveSkjema(props: OppgaveProps) {
         valgtEnhet: '',
         valgtAnsatt: ''
     };
+
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
+
     const state = validator(initialValues);
     const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
 
@@ -168,14 +170,14 @@ function OppgaveSkjema(props: OppgaveProps) {
                     topSuggestions={foreslatteEnheter.foreslatteEnheter}
                     topSuggestionsLabel="Foreslåtte enheter"
                     otherSuggestionsLabel="Andre enheter"
-                    value={valgtEnhet}
-                    {...state.fields.valgtEnhet.input}
+                    itemValue={valgtEnhet}
+                    {...state.fields.valgtEnhet?.input}
                 />
                 <AutoComplete<Ansatt>
                     itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
                     label={'Velg ansatt'}
                     suggestions={ansattliste.ansatte}
-                    value={valgtAnsatt}
+                    itemValue={valgtAnsatt}
                     {...state.fields.valgtAnsatt?.input}
                 />
                 <Select label={'Velg prioritet'} {...state.fields.valgtPrioritet?.input}>

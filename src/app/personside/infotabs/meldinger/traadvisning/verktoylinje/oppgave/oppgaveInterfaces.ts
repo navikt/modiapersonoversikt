@@ -28,7 +28,7 @@ export interface OppgaveSkjemaForm {
     valgtPrioritet?: string;
     valgtUnderkategori?: GsakTemaUnderkategori;
     valgtEnhet: Enhet;
-    valgtAnsatt?: Ansatt;
+    valgtAnsatt: Ansatt;
 }
 
 export interface SkjermetOppgaveSkjemaForm {
