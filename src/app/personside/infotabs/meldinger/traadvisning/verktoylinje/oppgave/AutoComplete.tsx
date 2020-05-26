@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import Downshift, { ControllerStateAndHelpers } from 'downshift';
 import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -8,6 +8,7 @@ import NavFrontendSpinner from 'nav-frontend-spinner';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import EtikettGrå from '../../../../../../../components/EtikettGrå';
 import { isNumber } from 'util';
+import { guid } from 'nav-frontend-js-utils';
 
 const DropDownWrapper = styled.div`
     ul {
@@ -50,7 +51,6 @@ const InputfeltWrapper = styled.div`
 `;
 
 interface Props<Item> {
-    setValue: (value: Item) => void;
     value?: Item;
     itemToString: (item: Item) => string;
     label: string;
@@ -60,6 +60,7 @@ interface Props<Item> {
     otherSuggestionsLabel?: string;
     spinner?: boolean;
     feil?: SkjemaelementFeilmelding;
+    onChange: (event: ChangeEvent<Element>) => void | undefined;
 }
 
 function SuggestionMarkup<Item>(props: { item: Item; helpers: ControllerStateAndHelpers<Item> }) {
@@ -79,6 +80,7 @@ function AutoComplete<Item>(props: Props<Item>) {
     const [hightlightedItem, setHightlightedItem] = useState<Item | undefined>(undefined);
 
     const { value, itemToString } = props;
+
     useEffect(() => {
         if (value) {
             setInput(itemToString(value));
@@ -103,16 +105,20 @@ function AutoComplete<Item>(props: Props<Item>) {
         !filteredTopSuggetions.some(it => itemToString(it) === itemToString(item));
     const filteredSuggestions = props.suggestions.filter(showItemBasedOnInput(input)).filter(itemNotInTopSuggestions);
 
+    const inputRef = useRef(guid());
+    const setValue = (item: Item) =>
+        props.onChange(({ target: inputRef, currentTarget: inputRef } as unknown) as ChangeEvent<HTMLInputElement>);
+
     const handleStateChange = (changes: any) => {
         if (changes.hasOwnProperty('selectedItem')) {
-            props.setValue(changes.selectedItem);
+            setValue(changes.selectedItem);
             setHightlightedItem(undefined);
         } else if (isNumber(changes.highlightedIndex)) {
             const highlightedItem = [...filteredTopSuggetions, ...filteredSuggestions][changes.highlightedIndex];
             highlightedItem && setHightlightedItem(highlightedItem);
         } else if (changes.isOpen === false) {
             // isOpen er kun false idet autocomplete blir lukket
-            hightlightedItem && changes.selectedItem && props.setValue(hightlightedItem);
+            hightlightedItem && changes.selectedItem && setValue(hightlightedItem);
         }
     };
 
@@ -123,6 +129,7 @@ function AutoComplete<Item>(props: Props<Item>) {
             onInputValueChange={i => setInput(i)}
             onStateChange={handleStateChange}
             itemToString={(item: Item | null) => (item ? itemToString(item) : '')}
+            ref={inputRef.current}
         >
             {(helpers: ControllerStateAndHelpers<Item>) => {
                 const inputProps: Partial<InputProps> = helpers.getInputProps({

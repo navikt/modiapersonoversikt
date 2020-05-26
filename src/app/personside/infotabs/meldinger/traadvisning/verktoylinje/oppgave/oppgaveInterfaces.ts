@@ -27,7 +27,7 @@ export interface OppgaveSkjemaForm {
     beskrivelse: string;
     valgtPrioritet?: string;
     valgtUnderkategori?: GsakTemaUnderkategori;
-    valgtEnhet?: Enhet;
+    valgtEnhet: Enhet;
     valgtAnsatt?: Ansatt;
 }
 

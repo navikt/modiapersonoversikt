@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Ansatt, Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { lagOppgaveRequest } from './byggRequest';
 import { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
@@ -142,6 +142,11 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
 
+    const valgtAnsatt = ansattliste.ansatte.find(ansatt => ansatt.ident === state.fields.valgtAnsatt?.input.value);
+    const valgtEnhet = hasData(enhetliste)
+        ? enhetliste.data.find(enhet => enhet.enhetId === state.fields.valgtEnhet?.input.value)
+        : undefined;
+
     return (
         <SkjemaStyle>
             <AvsluttGosysOppgaveSkjema />
@@ -163,12 +168,14 @@ function OppgaveSkjema(props: OppgaveProps) {
                     topSuggestions={foreslatteEnheter.foreslatteEnheter}
                     topSuggestionsLabel="Foreslåtte enheter"
                     otherSuggestionsLabel="Andre enheter"
-                    {...state.fields.valgtEnhet?.input}
+                    value={valgtEnhet}
+                    {...state.fields.valgtEnhet.input}
                 />
                 <AutoComplete<Ansatt>
                     itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
                     label={'Velg ansatt'}
                     suggestions={ansattliste.ansatte}
+                    value={valgtAnsatt}
                     {...state.fields.valgtAnsatt?.input}
                 />
                 <Select label={'Velg prioritet'} {...state.fields.valgtPrioritet?.input}>
