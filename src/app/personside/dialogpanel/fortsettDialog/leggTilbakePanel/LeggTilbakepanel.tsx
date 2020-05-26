@@ -19,6 +19,8 @@ import { usePostResource } from '../../../../../rest/consumer/usePostResource';
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 import { Diskresjonskoder } from '../../../../../konstanter';
 import { isNotFound } from '../../../../../rest/utils/restResource';
+import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -166,13 +168,15 @@ function LeggTilbakepanel(props: Props) {
     };
 
     return (
-        <StyledEkspanderbartpanel tittel="Legg tilbake" border={true} tittelProps="normaltekst">
+        <StyledEkspanderbartpanel tittel={<Normaltekst>Legg tilbake</Normaltekst>} border={true}>
             <Style>
                 <StyledSkjemaGruppe
                     feil={
-                        !LeggTilbakeValidator.aarsak(state) && state.visFeilmeldinger
-                            ? { feilmelding: 'Velg årsak' }
-                            : undefined
+                        !LeggTilbakeValidator.aarsak(state) && state.visFeilmeldinger ? (
+                            <SkjemaelementFeilmelding>Velg årsak</SkjemaelementFeilmelding>
+                        ) : (
+                            undefined
+                        )
                     }
                 >
                     <legend className="sr-only">Velg årsak</legend>
@@ -192,9 +196,11 @@ function LeggTilbakepanel(props: Props) {
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                         <StyledSkjemaGruppe
                             feil={
-                                !LeggTilbakeValidator.tekst(state) && state.visFeilmeldinger
-                                    ? { feilmelding: 'Du må skrive en årsak' }
-                                    : undefined
+                                !LeggTilbakeValidator.tekst(state) && state.visFeilmeldinger ? (
+                                    <SkjemaelementFeilmelding>Du må skrive en årsak</SkjemaelementFeilmelding>
+                                ) : (
+                                    undefined
+                                )
                             }
                         >
                             <Textarea
@@ -203,7 +209,7 @@ function LeggTilbakepanel(props: Props) {
                                 value={state.tekst}
                                 onChange={e =>
                                     updateState({
-                                        tekst: (e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value
+                                        tekst: e.currentTarget.value
                                     })
                                 }
                             />

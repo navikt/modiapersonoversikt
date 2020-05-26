@@ -18,7 +18,7 @@ import {
     harDelsvar
 } from '../../../utils/meldingerUtils';
 import { Meldingstype, Traad } from '../../../../../../../models/meldinger/meldinger';
-import { RadioPanelGruppe } from 'nav-frontend-skjema';
+import { RadioPanelGruppe, RadioPanelProps } from 'nav-frontend-skjema';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import {
@@ -33,7 +33,6 @@ import { Kontorsperr } from './Kontorsperr';
 import { useAppState } from '../../../../../../../utils/customHooks';
 import { hasData, isPending } from '@nutgaard/use-async';
 import { FetchResult } from '@nutgaard/use-fetch';
-import { RadioProps } from 'nav-frontend-skjema/lib/radio-panel-gruppe';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
@@ -57,6 +56,7 @@ enum MerkOperasjon {
 }
 
 const KnappStyle = styled.div`
+    margin-top: 0.5rem;
     display: flex;
     justify-content: space-between;
 `;
@@ -268,10 +268,18 @@ function MerkPanel(props: Props) {
             />
         );
     } else {
-        const radioprops: RadioProps[] = [
-            { label: 'Feilsendt post', value: MerkOperasjon.FEILSENDT, disabled: disableStandardvalg },
+        const radioprops: RadioPanelProps[] = [
+            {
+                label: 'Feilsendt post',
+                value: MerkOperasjon.FEILSENDT,
+                disabled: disableStandardvalg
+            },
             { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag },
-            { label: 'Kontorsperret', value: MerkOperasjon.KONTORSPERRET, disabled: disableStandardvalg },
+            {
+                label: 'Kontorsperret',
+                value: MerkOperasjon.KONTORSPERRET,
+                disabled: disableStandardvalg
+            },
             {
                 label: 'Avslutt uten å svare bruker',
                 value: MerkOperasjon.AVSLUTT,

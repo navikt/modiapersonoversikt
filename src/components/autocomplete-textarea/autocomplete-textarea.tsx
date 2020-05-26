@@ -255,6 +255,14 @@ function noAriaTellerTekst(antallTegn: number, maxLength: number) {
     );
 }
 
+function asChangeEvent<T>(event: React.KeyboardEvent<T>): React.ChangeEvent<T> {
+    if (event.target && event.target === event.currentTarget) {
+        return event as any;
+    } else {
+        throw new Error('Not equals at all');
+    }
+}
+
 function AutocompleteTextarea(props: TextareaProps) {
     const autofullførData = useAutoFullførData();
     const [feilmelding, settFeilmelding] = useState<string>();
@@ -318,7 +326,7 @@ function AutocompleteTextarea(props: TextareaProps) {
 
                     event.currentTarget.selectionEnd = cursorPosition + (fullfortTekst.length - word.length);
 
-                    onChange(event);
+                    onChange(asChangeEvent(event));
                 }
             }
         },

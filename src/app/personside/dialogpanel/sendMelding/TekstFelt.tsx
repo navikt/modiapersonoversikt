@@ -5,6 +5,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import StandardTekstModal from './standardTekster/StandardTekstModal';
 import AutocompleteTextarea from '../../../../components/autocomplete-textarea/autocomplete-textarea';
 import { useRef } from 'react';
+import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 
 const StyledSkjemagruppe = styled(SkjemaGruppe)`
     position: relative;
@@ -49,16 +50,18 @@ function TekstFelt(props: Props) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     return (
-        <StyledSkjemagruppe feil={props.feilmelding ? { feilmelding: props.feilmelding } : undefined}>
+        <StyledSkjemagruppe
+            feil={
+                props.feilmelding ? <SkjemaelementFeilmelding>{props.feilmelding}</SkjemaelementFeilmelding> : undefined
+            }
+        >
             <StandardTekstModal appendTekst={appendTekst(props.tekst, props.updateTekst, textareaRef.current)} />
             <TextareaWrapper>
                 <AutocompleteTextarea
                     value={props.tekst}
                     // @ts-ignore
                     textareaRef={ref => (textareaRef.current = ref)}
-                    onChange={e =>
-                        props.updateTekst((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)
-                    }
+                    onChange={e => props.updateTekst(e.currentTarget.value)}
                     label={'Melding'}
                     maxLength={props.tekstMaksLengde}
                     placeholder={`Alt du skriver i denne boksen blir synlig for ${props.navn} når du trykker "Del med ${props.navn}"`}

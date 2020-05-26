@@ -19,6 +19,7 @@ import { loggEvent } from '../../../utils/logger/frontendLogger';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { RestResourcePlaceholderProps } from '../../../rest/consumer/placeholder';
 import { guid } from 'nav-frontend-js-utils';
+import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 
 const StyledArticle = styled.article`
     text-align: center;
@@ -123,7 +124,13 @@ function HentOppgaveKnapp() {
                     label="Hent oppgave fra temagruppe"
                     value={valgtTemaGruppe || ''}
                     onChange={onTemagruppeChange}
-                    feil={temaGruppeFeilmelding ? { feilmelding: 'Du må velge temagruppe' } : undefined}
+                    feil={
+                        temaGruppeFeilmelding ? (
+                            <SkjemaelementFeilmelding>Du må velge temagruppe</SkjemaelementFeilmelding>
+                        ) : (
+                            undefined
+                        )
+                    }
                 >
                     <option disabled={true} value={''}>
                         Velg temagruppe

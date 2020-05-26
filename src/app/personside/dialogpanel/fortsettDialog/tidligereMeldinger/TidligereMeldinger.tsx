@@ -5,6 +5,7 @@ import EnkeltMelding from './EnkeltMelding';
 import { theme } from '../../../../../styles/personOversiktTheme';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { Undertittel } from 'nav-frontend-typografi';
 
 interface Props {
     traad: Traad;
@@ -62,8 +63,7 @@ function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: bool
             <Ekspanderbartpanel
                 renderContentWhenClosed={true}
                 apen={false}
-                tittel={props.tittel}
-                tag="undertittel"
+                tittel={<Undertittel>{props.tittel}</Undertittel>}
                 border={true}
             >
                 <StyledOl>{meldinger}</StyledOl>

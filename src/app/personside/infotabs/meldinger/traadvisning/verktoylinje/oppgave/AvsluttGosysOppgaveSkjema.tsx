@@ -90,7 +90,7 @@ function AvsluttGosysOppgaveSkjema() {
                 label={'Beskrivelse'}
                 value={gosysBeskrivelse}
                 maxLength={0}
-                onChange={e => setGosysBeskrivelse((e as React.KeyboardEvent<HTMLTextAreaElement>).currentTarget.value)}
+                onChange={e => setGosysBeskrivelse(e.currentTarget.value)}
             />
             <Hovedknapp onClick={handleOppgaveFraGosys} spinner={submitting}>
                 Avslutt oppgave

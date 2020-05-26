@@ -233,8 +233,9 @@ exports[`viser send ny melding 1`] = `
         className="c4"
         onSubmit={[Function]}
       >
-        <div
-          className="c5"
+        <fieldset
+          aria-invalid={false}
+          className="skjemagruppe c5"
         >
           <button
             className="knapp c6 knapp--hoved"
@@ -282,6 +283,8 @@ exports[`viser send ny melding 1`] = `
                   className="textarea--medMeta__wrapper"
                 >
                   <textarea
+                    aria-describedby="Helt tilfeldig ID"
+                    aria-invalid={false}
                     className="skjemaelement__input textarea--medMeta"
                     id="Helt tilfeldig ID"
                     onChange={[Function]}
@@ -297,6 +300,7 @@ exports[`viser send ny melding 1`] = `
                   />
                   <p
                     className="textarea--medMeta__teller"
+                    id="Helt tilfeldig ID"
                   >
                     <span
                       className="teller-tekst"
@@ -305,10 +309,6 @@ exports[`viser send ny melding 1`] = `
                     </span>
                   </p>
                 </div>
-                <div
-                  aria-live="assertive"
-                  role="alert"
-                />
                 <div
                   aria-hidden="true"
                   className="textareamirror"
@@ -375,17 +375,18 @@ exports[`viser send ny melding 1`] = `
             </div>
           </div>
           <div
-            aria-live="assertive"
-            role="alert"
+            aria-live="polite"
+            id="Helt tilfeldig ID"
           />
-        </div>
+        </fieldset>
         <div
           className="c11"
         >
           <div
-            className="skjemaelement skjemaelement--horisontal"
+            className="skjemaelement"
           >
             <input
+              aria-invalid={false}
               checked={true}
               className="skjemaelement__input radioknapp"
               id="Helt tilfeldig ID"
@@ -401,9 +402,10 @@ exports[`viser send ny melding 1`] = `
             </label>
           </div>
           <div
-            className="skjemaelement skjemaelement--horisontal"
+            className="skjemaelement"
           >
             <input
+              aria-invalid={false}
               checked={false}
               className="skjemaelement__input radioknapp"
               id="Helt tilfeldig ID"
@@ -419,9 +421,10 @@ exports[`viser send ny melding 1`] = `
             </label>
           </div>
           <div
-            className="skjemaelement skjemaelement--horisontal"
+            className="skjemaelement"
           >
             <input
+              aria-invalid={false}
               checked={false}
               className="skjemaelement__input radioknapp"
               id="Helt tilfeldig ID"
@@ -440,8 +443,9 @@ exports[`viser send ny melding 1`] = `
         <div
           className=""
         >
-          <div
-            className=""
+          <fieldset
+            aria-invalid={false}
+            className="skjemagruppe"
           >
             <div
               className="skjemaelement c12"
@@ -456,6 +460,7 @@ exports[`viser send ny melding 1`] = `
                 className="selectContainer input--fullbredde"
               >
                 <select
+                  aria-invalid={false}
                   className="skjemaelement__input"
                   disabled={false}
                   id="Helt tilfeldig ID"
@@ -495,16 +500,12 @@ exports[`viser send ny melding 1`] = `
                   </option>
                 </select>
               </div>
-              <div
-                aria-live="assertive"
-                role="alert"
-              />
             </div>
             <div
-              aria-live="assertive"
-              role="alert"
+              aria-live="polite"
+              id="Helt tilfeldig ID"
             />
-          </div>
+          </fieldset>
           <div
             className="alertstripe c13 alertstripe--info"
           >
@@ -539,8 +540,9 @@ exports[`viser send ny melding 1`] = `
               Gir ikke varsel til bruker
             </div>
           </div>
-          <div
-            className=""
+          <fieldset
+            aria-invalid={false}
+            className="skjemagruppe"
           >
             <div
               className="c14"
@@ -562,10 +564,10 @@ exports[`viser send ny melding 1`] = `
               </button>
             </div>
             <div
-              aria-live="assertive"
-              role="alert"
+              aria-live="polite"
+              id="Helt tilfeldig ID"
             />
-          </div>
+          </fieldset>
           <div
             className="skjemaelement c16"
           >
@@ -579,6 +581,7 @@ exports[`viser send ny melding 1`] = `
               className="selectContainer input--fullbredde"
             >
               <select
+                aria-invalid={false}
                 className="skjemaelement__input"
                 disabled={false}
                 id="Helt tilfeldig ID"
@@ -599,10 +602,6 @@ exports[`viser send ny melding 1`] = `
                 </option>
               </select>
             </div>
-            <div
-              aria-live="assertive"
-              role="alert"
-            />
           </div>
           <div
             className="alertstripe c13 alertstripe--info"

@@ -854,9 +854,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               className="c16"
             >
               <div
-                className="skjemaelement skjemaelement--horisontal"
+                className="skjemaelement"
               >
                 <input
+                  aria-invalid={false}
                   checked={true}
                   className="skjemaelement__input checkboks"
                   id="Helt tilfeldig ID"
@@ -869,15 +870,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 >
                   Bruker
                 </label>
-                <div
-                  aria-live="assertive"
-                  role="alert"
-                />
               </div>
               <div
-                className="skjemaelement skjemaelement--horisontal"
+                className="skjemaelement"
               >
                 <input
+                  aria-invalid={false}
                   checked={true}
                   className="skjemaelement__input checkboks"
                   id="Helt tilfeldig ID"
@@ -890,15 +888,12 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 >
                   NAV
                 </label>
-                <div
-                  aria-live="assertive"
-                  role="alert"
-                />
               </div>
               <div
-                className="skjemaelement skjemaelement--horisontal"
+                className="skjemaelement"
               >
                 <input
+                  aria-invalid={false}
                   checked={true}
                   className="skjemaelement__input checkboks"
                   id="Helt tilfeldig ID"
@@ -911,10 +906,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                 >
                   Andre
                 </label>
-                <div
-                  aria-live="assertive"
-                  role="alert"
-                />
               </div>
             </form>
           </div>
