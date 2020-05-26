@@ -20,6 +20,7 @@ import { isLoadedPerson } from '../../../../../redux/restReducers/personinformas
 import { Diskresjonskoder } from '../../../../../konstanter';
 import { isNotFound } from '../../../../../rest/utils/restResource';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -167,7 +168,7 @@ function LeggTilbakepanel(props: Props) {
     };
 
     return (
-        <StyledEkspanderbartpanel tittel="Legg tilbake" border={true} tittelProps="normaltekst">
+        <StyledEkspanderbartpanel tittel={<Normaltekst>Legg tilbake</Normaltekst>} border={true}>
             <Style>
                 <StyledSkjemaGruppe
                     feil={
@@ -195,9 +196,11 @@ function LeggTilbakepanel(props: Props) {
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                         <StyledSkjemaGruppe
                             feil={
-                                !LeggTilbakeValidator.tekst(state) && state.visFeilmeldinger
-                                    ? { feilmelding: 'Du må skrive en årsak' }
-                                    : undefined
+                                !LeggTilbakeValidator.tekst(state) && state.visFeilmeldinger ? (
+                                    <SkjemaelementFeilmelding>Du må skrive en årsak</SkjemaelementFeilmelding>
+                                ) : (
+                                    undefined
+                                )
                             }
                         >
                             <Textarea
