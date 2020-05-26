@@ -5,10 +5,10 @@ import Tekstomrade from 'nav-frontend-tekstomrade';
 import { Element, Undertekst } from 'nav-frontend-typografi';
 import { Melding } from '../../../../../models/meldinger/meldinger';
 import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
-import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
 import { meldingstittel } from '../../../infotabs/meldinger/utils/meldingerUtils';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Avsender } from '../../../infotabs/meldinger/traadvisning/Enkeltmelding';
+import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 
 const HeaderStyle = styled.div`
     width: 100%;
@@ -21,7 +21,7 @@ const StyledTekstomrade = styled(Tekstomrade)`
     padding-top: 0;
 `;
 
-const StyledEkspanderbartpanelBasePure = styled(EkspanderbartpanelBasePure)`
+const StyledEkspanderbartpanelBase = styled(EkspanderbartpanelBase)`
     ${theme.resetEkspanderbartPanelStyling};
     .ekspanderbartPanel__hode:focus {
         ${theme.focusInset};
@@ -49,9 +49,9 @@ function EnkeltMelding(props: Props) {
     );
 
     return (
-        <StyledEkspanderbartpanelBasePure heading={header} apen={apen} onClick={() => setApen(!apen)}>
+        <StyledEkspanderbartpanelBase tittel={header} apen={apen} onClick={() => setApen(!apen)}>
             <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
-        </StyledEkspanderbartpanelBasePure>
+        </StyledEkspanderbartpanelBase>
     );
 }
 

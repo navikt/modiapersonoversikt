@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import SaksTabell from './SaksTabell';
 import styled from 'styled-components/macro';
-import { EkspanderbartpanelBasePure } from 'nav-frontend-ekspanderbartpanel';
+import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 
-const MiniEkspanderbartpanelBasePure = styled(EkspanderbartpanelBasePure)`
+const MiniEkspanderbartpanelBase = styled(EkspanderbartpanelBase)`
     .ekspanderbartPanel {
         position: relative;
     }
@@ -28,15 +28,15 @@ function TemaTable({
     const apenByDefault = (valgtSak && saker.some(sak => sak.saksId === valgtSak.saksId)) || false;
     const [apen, settApen] = useState(apenByDefault);
     return (
-        <MiniEkspanderbartpanelBasePure
-            heading={<Element tag="h4">{tema}</Element>}
+        <MiniEkspanderbartpanelBase
+            tittel={<Element tag="h4">{tema}</Element>}
             apen={apen}
             onClick={() => settApen(!apen)}
             className="blokk-xxxs"
             border
         >
             <SaksTabell saker={saker} velgSak={velgSak} />
-        </MiniEkspanderbartpanelBasePure>
+        </MiniEkspanderbartpanelBase>
     );
 }
 

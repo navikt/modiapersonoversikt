@@ -105,9 +105,10 @@ function Journalforing({ melding }: { melding: Melding }) {
 
     return (
         <StyledJournalforingPanel
-            heading={<JournalforingLabel>Meldingen er journalført</JournalforingLabel>}
+            tittel={<JournalforingLabel>Meldingen er journalført</JournalforingLabel>}
             apen={open}
             onClick={() => setOpen(!open)}
+            border={false}
         >
             {journalfortMelding(melding)}
         </StyledJournalforingPanel>
