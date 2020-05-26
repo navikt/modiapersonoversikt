@@ -49,7 +49,7 @@ function EnkeltMelding(props: Props) {
     );
 
     return (
-        <StyledEkspanderbartpanelBase tittel={header} apen={apen} onClick={() => setApen(!apen)}>
+        <StyledEkspanderbartpanelBase tittel={header} apen={apen} onClick={() => setApen(!apen)} border={false}>
             <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
         </StyledEkspanderbartpanelBase>
     );
