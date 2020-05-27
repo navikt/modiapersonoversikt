@@ -13,13 +13,13 @@ import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
 import { reloadOppfolingActionCreator } from '../../../../redux/restReducers/oppfolging';
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
-import { Feilmelding } from '../../../../utils/Feilmelding';
 import { formaterDato, formaterTilISO8601Date } from '../../../../utils/stringFormatting';
 import moment from 'moment';
 import { isValidDate } from '../../../../utils/dateUtils';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
+import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 
 const DatoVelgerWrapper = styled.div`
     position: relative;
@@ -67,22 +67,24 @@ const senesteDato = () =>
 
 function getDatoFeilmelding(fra: Date, til: Date) {
     if (fra > til) {
-        return <Feilmelding feil={{ feilmelding: 'Fra-dato kan ikke være senere enn til-dato' }} />;
+        return <SkjemaelementFeilmelding>Fra-dato kan ikke være senere enn til-dato</SkjemaelementFeilmelding>;
     }
     if (til > senesteDato()) {
-        return <Feilmelding feil={{ feilmelding: 'Du kan ikke velge dato etter ' + formaterDato(senesteDato()) }} />;
+        return (
+            <SkjemaelementFeilmelding>
+                Du kan ikke velge dato etter {formaterDato(senesteDato())}
+            </SkjemaelementFeilmelding>
+        );
     }
     if (fra < tidligsteDato()) {
         return (
-            <Feilmelding
-                feil={{
-                    feilmelding: 'Du kan ikke velge en dato før ' + formaterDato(tidligsteDato())
-                }}
-            />
+            <SkjemaelementFeilmelding>
+                Du kan ikke velge en dato før {formaterDato(tidligsteDato())}
+            </SkjemaelementFeilmelding>
         );
     }
     if (!isValidDate(fra) || !isValidDate(til)) {
-        return <Feilmelding feil={{ feilmelding: 'Du må velge gyldige datoer' }} />;
+        return <SkjemaelementFeilmelding>Du må velge gyldige datoer</SkjemaelementFeilmelding>;
     }
     return null;
 }

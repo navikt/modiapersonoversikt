@@ -6,7 +6,7 @@ env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/modiapersonoversikt:${{ github.sha }}
   CI: true
   TZ: Europe/Oslo
-  REACT_APP_MODIA_URL: "/modiabrukerdialog/rest"
+  REACT_APP_MODIA_URL: "/modiapersonoversikt-api/rest"
   REACT_APP_HODE_URL: "/internarbeidsflatedecorator"
 jobs:
   build:
