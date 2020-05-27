@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../../components/common-styled-components';
 import styled from 'styled-components';
-import { OppgaveProps, SkjermetOppgaveSkjemaForm } from '../oppgaveInterfaces';
+import { OppgaveProps, SkjermetOppgaveSkjemaRequest } from '../oppgaveInterfaces';
 import { post } from '../../../../../../../../api/api';
 import { apiBaseUri } from '../../../../../../../../api/config';
 import { Resultat } from '../../utils/VisPostResultat';
@@ -39,7 +39,7 @@ const AlertStyling = styled.div`
         margin-top: 1rem;
     }
 `;
-const validator = useFormstate<SkjermetOppgaveSkjemaForm>({
+const validator = useFormstate<SkjermetOppgaveSkjemaRequest>({
     tema: required('Du må velge tema'),
     oppgavetype: required('Du må velge oppgavetype'),
     prioritet: required('Du må velge prioritet'),
@@ -62,7 +62,7 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
 
     const state = validator(initialValues);
 
-    function submitHandler<S>(values: Values<SkjermetOppgaveSkjemaForm>): Promise<any> {
+    function submitHandler<S>(values: Values<SkjermetOppgaveSkjemaRequest>): Promise<any> {
         const request = lagSkjermetOppgaveRequest(props, values, valgtBrukersFnr, saksbehandlersEnhet || '');
         return post(`${apiBaseUri}/dialogoppgave/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
             .then(() => {

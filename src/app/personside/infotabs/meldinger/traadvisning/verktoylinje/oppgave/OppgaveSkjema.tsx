@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Ansatt, Enhet } from '../../../../../../../models/meldinger/oppgave';
+import { Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { lagOppgaveRequest } from './byggRequest';
 import { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
 import styled from 'styled-components/macro';
@@ -16,7 +16,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { useAppState } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
-import useFormstate, { Values } from '@nutgaard/use-formstate';
+import useFormstate from '@nutgaard/use-formstate';
 import { required } from './validering';
 import { Select, Textarea } from 'nav-frontend-skjema';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
@@ -100,8 +100,15 @@ function OppgaveSkjema(props: OppgaveProps) {
     );
     populerCacheMedTomAnsattliste();
 
-    function submitHandler<S>(values: Values<OppgaveSkjemaForm>): Promise<any> {
-        const request = lagOppgaveRequest(props, values, valgtBrukersFnr, saksbehandlersEnhet || '', props.valgtTraad);
+    function submitHandler<S>(values: OppgaveSkjemaForm): Promise<any> {
+        const request = lagOppgaveRequest(
+            props,
+            values,
+            valgtBrukersFnr,
+            saksbehandlersEnhet || '',
+            props.gsakTema,
+            props.valgtTraad
+        );
         return post(`${apiBaseUri}/dialogoppgave/opprett`, request, 'OpprettOppgave')
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
@@ -142,11 +149,6 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
 
-    const valgtAnsatt = ansattliste.ansatte.find(ansatt => ansatt.ident === state.fields.valgtAnsatt?.input.value);
-    const valgtEnhet = hasData(enhetliste)
-        ? enhetliste.data.find(enhet => enhet.enhetId === state.fields.valgtEnhet?.input.value)
-        : undefined;
-
     return (
         <SkjemaStyle>
             <AvsluttGosysOppgaveSkjema />
@@ -161,21 +163,23 @@ function OppgaveSkjema(props: OppgaveProps) {
                 <Select label={'Type oppgave'} {...state.fields.valgtOppgavetype?.input}>
                     <OppgavetypeOptions valgtGsakTema={valgtTema} />
                 </Select>
-                <AutoComplete<Enhet>
-                    itemToString={enhet => `${enhet.enhetId} ${enhet.enhetNavn}`}
+                <AutoComplete
                     label={'Velg enhet'}
-                    suggestions={hasData(enhetliste) ? enhetliste.data : []}
-                    topSuggestions={foreslatteEnheter.foreslatteEnheter}
+                    suggestions={
+                        hasData(enhetliste) ? enhetliste.data.map(enhet => `${enhet.enhetId} ${enhet.enhetNavn}`) : []
+                    }
+                    topSuggestions={foreslatteEnheter.foreslatteEnheter.map(
+                        enhet => `${enhet.enhetId} ${enhet.enhetNavn}`
+                    )}
                     topSuggestionsLabel="Foreslåtte enheter"
                     otherSuggestionsLabel="Andre enheter"
-                    value={valgtEnhet}
                     {...state.fields.valgtEnhet.input}
                 />
-                <AutoComplete<Ansatt>
-                    itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
+                <AutoComplete
                     label={'Velg ansatt'}
-                    suggestions={ansattliste.ansatte}
-                    value={valgtAnsatt}
+                    suggestions={ansattliste.ansatte.map(
+                        ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`
+                    )}
                     {...state.fields.valgtAnsatt?.input}
                 />
                 <Select label={'Velg prioritet'} {...state.fields.valgtPrioritet?.input}>
