@@ -1,11 +1,18 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, {
+    ChangeEvent,
+    ChangeEventHandler,
+    FocusEventHandler,
+    FocusEvent,
+    useEffect,
+    useRef,
+    useState
+} from 'react';
 import Downshift, { ControllerStateAndHelpers } from 'downshift';
 import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { Input, InputProps } from 'nav-frontend-skjema';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import EtikettGrå from '../../../../../../../components/EtikettGrå';
 import { isNumber } from 'util';
 
@@ -50,16 +57,19 @@ const InputfeltWrapper = styled.div`
 `;
 
 interface Props {
-    value?: string;
+    input: {
+        name: string;
+        value: string;
+        onChange: ChangeEventHandler;
+        onBlur: FocusEventHandler;
+    };
     label: string;
-    name: string;
     suggestions: string[];
     topSuggestions?: string[];
     topSuggestionsLabel?: string;
     otherSuggestionsLabel?: string;
     spinner?: boolean;
-    feil?: SkjemaelementFeilmelding;
-    onChange: (event: ChangeEvent<Element>) => void | undefined;
+    feil?: string;
 }
 
 function SuggestionMarkup<Item>(props: { item: Item; helpers: ControllerStateAndHelpers<Item> }) {
@@ -79,7 +89,7 @@ function AutoComplete(props: Props) {
     const [input, setInput] = useState('');
     const [hightlightedItem, setHightlightedItem] = useState<string | undefined>(undefined);
 
-    const { value } = props;
+    const { value } = props.input;
 
     useEffect(() => {
         if (value) {
@@ -103,7 +113,9 @@ function AutoComplete(props: Props) {
     const filteredSuggestions = props.suggestions.filter(showItemBasedOnInput(input)).filter(itemNotInTopSuggestions);
 
     const setValue = (item: string) =>
-        props.onChange({ target: inputRef.current, currentTarget: inputRef.current } as ChangeEvent<HTMLInputElement>);
+        props.input.onChange({ target: inputRef.current, currentTarget: inputRef.current } as ChangeEvent<
+            HTMLInputElement
+        >);
 
     const handleStateChange = (changes: any) => {
         if (changes.hasOwnProperty('selectedItem')) {
@@ -132,6 +144,9 @@ function AutoComplete(props: Props) {
                         if (e.target.value === '') {
                             helpers.clearSelection();
                         }
+                    },
+                    onBlur: (e: FocusEvent<HTMLInputElement>) => {
+                        props.input.onBlur(e);
                     }
                 });
 
@@ -143,7 +158,7 @@ function AutoComplete(props: Props) {
                                 inputRef={el => {
                                     inputRef.current = el || undefined;
                                 }}
-                                name={props.name}
+                                name={props.input.name}
                                 feil={props.feil}
                                 label={props.label}
                                 onFocus={() => helpers.openMenu()}
