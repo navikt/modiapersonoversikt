@@ -1,6 +1,4 @@
 import {
-    Ansatt,
-    Enhet,
     GsakTema,
     GsakTemaOppgavetype,
     GsakTemaUnderkategori,
@@ -22,16 +20,24 @@ export interface OppgaveProps {
 }
 
 export interface OppgaveSkjemaForm {
-    valgtTema?: GsakTema;
-    valgtOppgavetype?: GsakTemaOppgavetype;
+    valgtTema: string;
+    valgtOppgavetype: string;
     beskrivelse: string;
-    valgtPrioritet?: string;
-    valgtUnderkategori?: GsakTemaUnderkategori;
-    valgtEnhet: Enhet;
-    valgtAnsatt?: Ansatt;
+    valgtPrioritet: string;
+    valgtUnderkategori: string;
+    valgtEnhet: string;
+    valgtAnsatt: string;
 }
 
 export interface SkjermetOppgaveSkjemaForm {
+    tema: string;
+    oppgavetype: string;
+    beskrivelse: string;
+    prioritet: string;
+    underkategori: string;
+}
+
+export interface SkjermetOppgaveSkjemaRequest {
     tema?: GsakTema;
     oppgavetype?: GsakTemaOppgavetype;
     beskrivelse: string;

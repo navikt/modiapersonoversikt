@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Ansatt, Enhet } from '../../../../../../../models/meldinger/oppgave';
+import { Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { lagOppgaveRequest } from './byggRequest';
 import { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
 import styled from 'styled-components/macro';
@@ -16,7 +16,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { useAppState } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
-import useFormstate, { Values } from '@nutgaard/use-formstate';
+import useFormstate from '@nutgaard/use-formstate';
 import { required } from './validering';
 import { Select, Textarea } from 'nav-frontend-skjema';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
@@ -25,6 +25,7 @@ import { hasData } from '@nutgaard/use-async';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 import useForeslatteEnheter from './useForeslåtteEnheter';
+import { FieldState } from '@nutgaard/use-formstate/dist/types/domain';
 
 const AlertStyling = styled.div`
     > * {
@@ -61,6 +62,10 @@ function populerCacheMedTomAnsattliste() {
     cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
 }
 
+function feilmelding(field: FieldState): string | undefined {
+    return field.touched ? field.error : undefined;
+}
+
 const validator = useFormstate<OppgaveSkjemaForm>({
     valgtTema: required('Du må velge tema'),
     valgtOppgavetype: required('Du må velge oppgavetype'),
@@ -85,6 +90,8 @@ function OppgaveSkjema(props: OppgaveProps) {
     };
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const state = validator(initialValues);
+    console.log('state', state);
+
     const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
 
     const ansattliste = useAnsattePaaEnhet(state.fields.valgtEnhet?.input.value);
@@ -100,8 +107,15 @@ function OppgaveSkjema(props: OppgaveProps) {
     );
     populerCacheMedTomAnsattliste();
 
-    function submitHandler<S>(values: Values<OppgaveSkjemaForm>): Promise<any> {
-        const request = lagOppgaveRequest(props, values, valgtBrukersFnr, saksbehandlersEnhet || '', props.valgtTraad);
+    function submitHandler<S>(values: OppgaveSkjemaForm): Promise<any> {
+        const request = lagOppgaveRequest(
+            props,
+            values,
+            valgtBrukersFnr,
+            saksbehandlersEnhet || '',
+            props.gsakTema,
+            props.valgtTraad
+        );
         return post(`${apiBaseUri}/dialogoppgave/opprett`, request, 'OpprettOppgave')
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
@@ -142,48 +156,71 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
 
-    const valgtAnsatt = ansattliste.ansatte.find(ansatt => ansatt.ident === state.fields.valgtAnsatt?.input.value);
-    const valgtEnhet = hasData(enhetliste)
-        ? enhetliste.data.find(enhet => enhet.enhetId === state.fields.valgtEnhet?.input.value)
-        : undefined;
-
     return (
         <SkjemaStyle>
             <AvsluttGosysOppgaveSkjema />
             <form onSubmit={state.onSubmit(submitHandler)}>
                 <Element>Opprett oppgave</Element>
-                <Select autoFocus={true} label={'Tema'} {...state.fields.valgtTema?.input}>
+                <Select
+                    autoFocus={true}
+                    label={'Tema'}
+                    {...state.fields.valgtTema.input}
+                    feil={feilmelding(state.fields.valgtTema)}
+                >
                     <TemaOptions gsakTema={props.gsakTema} />
                 </Select>
-                <Select label={'Gjelder'} {...state.fields.valgtUnderkategori?.input}>
+                <Select
+                    label={'Gjelder'}
+                    {...state.fields.valgtUnderkategori.input}
+                    feil={feilmelding(state.fields.valgtUnderkategori)}
+                >
                     <UnderkategoriOptions valgtGsakTema={valgtTema} />
                 </Select>
-                <Select label={'Type oppgave'} {...state.fields.valgtOppgavetype?.input}>
+                <Select
+                    label={'Type oppgave'}
+                    {...state.fields.valgtOppgavetype.input}
+                    feil={feilmelding(state.fields.valgtOppgavetype)}
+                >
                     <OppgavetypeOptions valgtGsakTema={valgtTema} />
                 </Select>
-                <AutoComplete<Enhet>
-                    itemToString={enhet => `${enhet.enhetId} ${enhet.enhetNavn}`}
+                <AutoComplete
                     label={'Velg enhet'}
-                    suggestions={hasData(enhetliste) ? enhetliste.data : []}
-                    topSuggestions={foreslatteEnheter.foreslatteEnheter}
+                    suggestions={
+                        hasData(enhetliste) ? enhetliste.data.map(enhet => `${enhet.enhetId} ${enhet.enhetNavn}`) : []
+                    }
+                    topSuggestions={foreslatteEnheter.foreslatteEnheter.map(
+                        enhet => `${enhet.enhetId} ${enhet.enhetNavn}`
+                    )}
                     topSuggestionsLabel="Foreslåtte enheter"
                     otherSuggestionsLabel="Andre enheter"
-                    value={valgtEnhet}
-                    {...state.fields.valgtEnhet.input}
+                    input={state.fields.valgtEnhet.input}
+                    feil={feilmelding(state.fields.valgtEnhet)}
                 />
-                <AutoComplete<Ansatt>
-                    itemToString={ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`}
+                <AutoComplete
                     label={'Velg ansatt'}
-                    suggestions={ansattliste.ansatte}
-                    value={valgtAnsatt}
-                    {...state.fields.valgtAnsatt?.input}
+                    suggestions={ansattliste.ansatte.map(
+                        ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`
+                    )}
+                    input={state.fields.valgtAnsatt.input}
+                    feil={feilmelding(state.fields.valgtAnsatt)}
                 />
-                <Select label={'Velg prioritet'} {...state.fields.valgtPrioritet?.input}>
+                <Select
+                    label={'Velg prioritet'}
+                    {...state.fields.valgtPrioritet?.input}
+                    feil={feilmelding(state.fields.valgtPrioritet)}
+                >
                     <Prioriteter valgtGsakTeam={valgtTema} />
                 </Select>
-                <Textarea maxLength={0} label={'Beskrivelse'} {...state.fields.beskrivelse.input} />
+                <Textarea
+                    maxLength={0}
+                    label={'Beskrivelse'}
+                    {...state.fields.beskrivelse.input}
+                    feil={feilmelding(state.fields.beskrivelse)}
+                />
                 <KnappStyle>
-                    <Hovedknapp htmlType="submit">{knappetekst}</Hovedknapp>
+                    <Hovedknapp htmlType="submit" spinner={state.submitting}>
+                        {knappetekst}
+                    </Hovedknapp>
                     <LenkeKnapp type="button" onClick={props.lukkPanel}>
                         Avbryt
                     </LenkeKnapp>
