@@ -1,20 +1,22 @@
-import { GsakTema, GsakTemaOppgavetype, GsakTemaUnderkategori } from '../../../../../../../models/meldinger/oppgave';
-import { ChangeEvent } from 'react';
+import { GsakTema } from '../../../../../../../models/meldinger/oppgave';
+import { ChangeEvent, useEffect } from 'react';
+import { Formstate } from '@nutgaard/use-formstate';
+import { OppgaveSkjemaForm, SkjermetOppgaveSkjemaForm } from './oppgaveInterfaces';
 
-export function hentValgtTema(gsakTema: GsakTema[], event: ChangeEvent<HTMLSelectElement>): GsakTema | undefined {
-    return gsakTema.find(tema => tema.kode === event.target.value);
+export function useNormalPrioritet(
+    state: Formstate<OppgaveSkjemaForm | SkjermetOppgaveSkjemaForm>,
+    valgtTema?: GsakTema
+) {
+    const prioritetFieldName = state.fields.valgtPrioritet.input.name;
+    const prioritetOnChange = state.fields.valgtPrioritet.input.onChange;
+    useEffect(() => {
+        const normalOppgaveprioritet = valgtTema?.prioriteter.find(prioritet => prioritet.kode.includes('NORM'));
+        if (normalOppgaveprioritet) {
+            prioritetOnChange(changeEvent(prioritetFieldName, normalOppgaveprioritet.kode));
+        }
+    }, [valgtTema, prioritetFieldName, prioritetOnChange]);
 }
 
-export function hentValgtUnderkategori(
-    event: ChangeEvent<HTMLSelectElement>,
-    valgtTema?: GsakTema
-): GsakTemaUnderkategori | undefined {
-    return valgtTema && valgtTema.underkategorier.find(underkategori => underkategori.kode === event.target.value);
-}
-
-export function hentValgtOppgavetype(
-    event: ChangeEvent<HTMLSelectElement>,
-    valgtTema?: GsakTema
-): GsakTemaOppgavetype | undefined {
-    return valgtTema && valgtTema.oppgavetyper.find(oppgavetype => oppgavetype.kode === event.target.value);
+export function changeEvent(name: string, value: string): ChangeEvent {
+    return ({ target: { name: name, value: value } } as unknown) as ChangeEvent;
 }

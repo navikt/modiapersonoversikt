@@ -477,6 +477,13 @@ function opprettOppgaveMock(mock: FetchMock) {
     );
 }
 
+function opprettSkjermetOppgaveMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialogoppgave/opprettskjermetoppgave',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+    );
+}
+
 function merkAvsluttMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialogmerking/avslutt',
@@ -595,6 +602,7 @@ export function setupMock() {
     setupYtelserOgKontrakter(mock);
     setupVarselMock(mock);
     opprettOppgaveMock(mock);
+    opprettSkjermetOppgaveMock(mock);
     setupSendReferatMock(mock);
     setupSendSpørsmålMock(mock);
     setupSendSvarMock(mock);

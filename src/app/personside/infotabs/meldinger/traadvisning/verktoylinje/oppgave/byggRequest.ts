@@ -5,7 +5,7 @@ import {
 } from '../../../../../../../models/meldinger/oppgave';
 import { eldsteMelding } from '../../../utils/meldingerUtils';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
-import { OppgaveProps, OppgaveSkjemaForm, SkjermetOppgaveSkjemaRequest } from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaForm, SkjermetOppgaveSkjemaForm } from './oppgaveInterfaces';
 import { formatterDatoTidNaa } from '../../../../../../../utils/dateUtils';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { Mapped, Values } from '@nutgaard/use-formstate';
@@ -65,23 +65,23 @@ export function lagOppgaveRequest(
 
 export function lagSkjermetOppgaveRequest(
     props: OppgaveProps,
-    form: Mapped<Values<SkjermetOppgaveSkjemaRequest>, string>,
+    form: Mapped<Values<SkjermetOppgaveSkjemaForm>, string>,
     fodselsnummer: string,
     saksbehandlerEnhet: string
 ): OpprettSkjermetOppgaveRequest {
-    const temakode = form.tema ? form.tema : 'UKJENT';
+    const temakode = form.valgtTema ? form.valgtTema : 'UKJENT';
 
-    if (!form.prioritet) {
+    if (!form.valgtPrioritet) {
         throw Error('Valgt prioritet er ikke valgt');
     }
     return {
         fnr: fodselsnummer,
         beskrivelse: lagBeskrivelse(form.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
         temaKode: temakode,
-        underkategoriKode: form.underkategori && form.underkategori,
+        underkategoriKode: form.valgtUnderkategori && form.valgtUnderkategori,
         brukerid: props.gjeldendeBrukerFnr,
-        oppgaveTypeKode: form.oppgavetype ? form.oppgavetype : 'UKJENT',
-        prioritetKode: form.prioritet
+        oppgaveTypeKode: form.valgtOppgavetype ? form.valgtOppgavetype : 'UKJENT',
+        prioritetKode: form.valgtPrioritet
     };
 }
 

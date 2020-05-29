@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import { Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { lagOppgaveRequest } from './byggRequest';
 import { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
@@ -25,6 +25,7 @@ import { hasData } from '@nutgaard/use-async';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 import useForeslatteEnheter from './useForeslåtteEnheter';
+import { useNormalPrioritet } from './oppgaveUtils';
 
 const AlertStyling = styled.div`
     > * {
@@ -60,9 +61,6 @@ const KnappStyle = styled.div`
 function populerCacheMedTomAnsattliste() {
     cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
 }
-function changeEvent(name: string, value: string): ChangeEvent {
-    return ({ target: { name: value, value: value } } as unknown) as ChangeEvent;
-}
 
 const validator = useFormstate<OppgaveSkjemaForm>({
     valgtTema: required('Du må velge tema'),
@@ -90,15 +88,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     const state = validator(initialValues);
 
     const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
-
-    const normalOppgaveprioritet = valgtTema?.prioriteter.find(prioritet => prioritet.kode.includes('NORM'));
-    useEffect(() => {
-        if (normalOppgaveprioritet) {
-            state.fields.valgtPrioritet.input.onChange(
-                changeEvent(state.fields.valgtPrioritet.input.name, normalOppgaveprioritet.kode)
-            );
-        }
-    }, [state.fields.valgtPrioritet, valgtTema, normalOppgaveprioritet]);
+    useNormalPrioritet(state, valgtTema);
 
     const ansattliste = useAnsattePaaEnhet(state.fields.valgtEnhet?.input.value);
     const enhetliste: FetchResult<Array<Enhet>> = useFetchWithLog<Array<Enhet>>(

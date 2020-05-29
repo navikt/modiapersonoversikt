@@ -30,17 +30,17 @@ export interface OppgaveSkjemaForm {
 }
 
 export interface SkjermetOppgaveSkjemaForm {
-    tema: string;
-    oppgavetype: string;
+    valgtTema: string;
+    valgtOppgavetype: string;
     beskrivelse: string;
-    prioritet: string;
-    underkategori: string;
+    valgtPrioritet: string;
+    valgtUnderkategori: string;
 }
 
 export interface SkjermetOppgaveSkjemaRequest {
-    tema?: GsakTema;
-    oppgavetype?: GsakTemaOppgavetype;
+    valgtTema?: GsakTema;
+    valgtOppgavetype?: GsakTemaOppgavetype;
     beskrivelse: string;
-    prioritet?: string;
-    underkategori?: GsakTemaUnderkategori;
+    valgtPrioritet?: string;
+    valgtUnderkategori?: GsakTemaUnderkategori;
 }

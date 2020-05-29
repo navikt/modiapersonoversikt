@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../../../../../../components/common-styled-components';
 import styled from 'styled-components';
-import { OppgaveProps, SkjermetOppgaveSkjemaForm, SkjermetOppgaveSkjemaRequest } from '../oppgaveInterfaces';
+import { OppgaveProps, SkjermetOppgaveSkjemaForm } from '../oppgaveInterfaces';
 import { post } from '../../../../../../../../api/api';
 import { apiBaseUri } from '../../../../../../../../api/config';
 import { Resultat } from '../../utils/VisPostResultat';
@@ -15,6 +15,7 @@ import { feilmelding, required } from '../validering';
 import useFormstate, { Values } from '@nutgaard/use-formstate';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from '../SkjemaElementOptions';
 import { Select, Textarea } from 'nav-frontend-skjema';
+import { useNormalPrioritet } from '../oppgaveUtils';
 
 const SkjemaStyle = styled.div`
     padding-top: 1rem;
@@ -40,11 +41,11 @@ const AlertStyling = styled.div`
     }
 `;
 const validator = useFormstate<SkjermetOppgaveSkjemaForm>({
-    tema: required('Du må velge tema'),
-    oppgavetype: required('Du må velge oppgavetype'),
-    prioritet: required('Du må velge prioritet'),
+    valgtTema: required('Du må velge tema'),
+    valgtOppgavetype: required('Du må velge oppgavetype'),
+    valgtPrioritet: required('Du må velge prioritet'),
     beskrivelse: required('Du må skrive beskrivelse'),
-    underkategori: required('Du må velge underkategori')
+    valgtUnderkategori: required('Du må velge underkategori')
 });
 
 function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
@@ -53,16 +54,19 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
 
     const initialValues = {
-        tema: '',
-        underkategori: '',
-        oppgavetype: '',
-        prioritet: '',
+        valgtTema: '',
+        valgtUnderkategori: '',
+        valgtOppgavetype: '',
+        valgtPrioritet: '',
         beskrivelse: ''
     };
 
     const state = validator(initialValues);
 
-    function submitHandler<S>(values: Values<SkjermetOppgaveSkjemaRequest>): Promise<any> {
+    const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
+    useNormalPrioritet(state, valgtTema);
+
+    function submitHandler<S>(values: Values<SkjermetOppgaveSkjemaForm>): Promise<any> {
         const request = lagSkjermetOppgaveRequest(props, values, valgtBrukersFnr, saksbehandlersEnhet || '');
         return post(`${apiBaseUri}/dialogoppgave/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
             .then(() => {
@@ -84,36 +88,35 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
         return <AlertStyling>{alert}</AlertStyling>;
     }
 
-    const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.tema?.input.value);
     return (
         <SkjemaStyle>
             <form onSubmit={state.onSubmit(submitHandler)}>
                 <Select
                     autoFocus={true}
                     label={'Tema'}
-                    {...state.fields.tema?.input}
-                    feil={feilmelding(state.fields.tema)}
+                    {...state.fields.valgtTema?.input}
+                    feil={feilmelding(state.fields.valgtTema)}
                 >
                     <TemaOptions gsakTema={props.gsakTema} />
                 </Select>
                 <Select
                     label={'Gjelder'}
-                    {...state.fields.underkategori?.input}
-                    feil={feilmelding(state.fields.underkategori)}
+                    {...state.fields.valgtUnderkategori?.input}
+                    feil={feilmelding(state.fields.valgtUnderkategori)}
                 >
                     <UnderkategoriOptions valgtGsakTema={valgtTema} />
                 </Select>
                 <Select
                     label={'Type oppgave'}
-                    {...state.fields.oppgavetype?.input}
-                    feil={feilmelding(state.fields.oppgavetype)}
+                    {...state.fields.valgtOppgavetype?.input}
+                    feil={feilmelding(state.fields.valgtOppgavetype)}
                 >
                     <OppgavetypeOptions valgtGsakTema={valgtTema} />
                 </Select>
                 <Select
                     label={'Velg prioritet'}
-                    {...state.fields.prioritet?.input}
-                    feil={feilmelding(state.fields.prioritet)}
+                    {...state.fields.valgtPrioritet?.input}
+                    feil={feilmelding(state.fields.valgtPrioritet)}
                 >
                     <Prioriteter valgtGsakTeam={valgtTema} />
                 </Select>
