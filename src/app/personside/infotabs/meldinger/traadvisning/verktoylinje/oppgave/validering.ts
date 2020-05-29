@@ -1,6 +1,6 @@
-import { Validator } from '@nutgaard/use-formstate';
+import { FieldState, Validator } from '@nutgaard/use-formstate';
 import { erTall } from '../../../../../../../utils/string-utils';
-import { removeWhitespaceAndDot } from '../../../../../../personsok/kontonummer/kontonummerUtils';
+import { removeWhitespaceAndDot, validerKontonummer } from '../../../../../../personsok/kontonummer/kontonummerUtils';
 
 export function required(message: string): Validator<any> {
     return (value: string) => {
@@ -11,9 +11,9 @@ export function required(message: string): Validator<any> {
     };
 }
 
-export function requiredNumber(message: string): Validator<any> {
+export function requiredToBeNumber(message: string): Validator<any> {
     return (value: string) => {
-        if (!erTall(value) || !value) {
+        if (!erTall(value)) {
             return message;
         }
         return undefined;
@@ -22,7 +22,7 @@ export function requiredNumber(message: string): Validator<any> {
 
 export function requiredBosted(message: string): Validator<any> {
     return (value: string) => {
-        if (!erTall(value) || !value || value.length !== 4) {
+        if (!erTall(value) && value.length !== 4) {
             return message;
         }
         return undefined;
@@ -31,9 +31,19 @@ export function requiredBosted(message: string): Validator<any> {
 
 export function requiredKontonummer(message: string): Validator<any> {
     return (value: string) => {
-        if (!erTall(value) || !value || removeWhitespaceAndDot(value).length !== 11) {
+        if (!erTall(value) || validerKontonummer(removeWhitespaceAndDot(value))) {
             return message;
         }
         return undefined;
     };
+}
+
+export function notRequired(): Validator<any> {
+    return (value: string) => {
+        return undefined;
+    };
+}
+
+export function feilmelding(field: FieldState): string | undefined {
+    return field.touched ? field.error : undefined;
 }

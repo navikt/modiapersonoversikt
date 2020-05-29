@@ -7,6 +7,9 @@ import { pxToRem } from '../../styles/personOversiktTheme';
 import useBoundingRect from '../../utils/hooks/use-bounding-rect';
 import { PersonSokFormState } from './personsokUtils';
 import { FieldState, Mapped, Values } from '@nutgaard/use-formstate';
+import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import { isValidDate } from '../../utils/dateUtils';
+import moment from 'moment';
 
 const DatovelgerStyle = styled.div<{ top: number; left: number }>`
     margin-right: 0.5em;
@@ -52,6 +55,18 @@ function CustomDatovelger(props: Props) {
     const originalProps: OriginalProps = transformProps(props);
     return <Datovelger {...originalProps} />;
 }
+function getDatoFeilmelding(fra: Date, til: Date) {
+    if (fra > til) {
+        return <SkjemaelementFeilmelding>Fra-dato kan ikke være senere enn til-dato</SkjemaelementFeilmelding>;
+    }
+    if (til > new Date()) {
+        return <SkjemaelementFeilmelding>Du kan ikke velge dato frem i tid</SkjemaelementFeilmelding>;
+    }
+    if (!isValidDate(fra) || !isValidDate(til)) {
+        return <SkjemaelementFeilmelding>Du må velge gyldige datoer</SkjemaelementFeilmelding>;
+    }
+    return null;
+}
 
 function PersonsokDatovelger(props: { form: Mapped<Values<PersonSokFormState>, FieldState> }) {
     const fraRef = useRef(React.createRef<HTMLDivElement>()).current;
@@ -60,6 +75,10 @@ function PersonsokDatovelger(props: { form: Mapped<Values<PersonSokFormState>, F
     const datovelgerTilRect = useBoundingRect(tilRef);
     const dropdownFraCoordinate = beregnDropdownCoordinate(datovelgerFraRect);
     const dropdownTilCoordinate = beregnDropdownCoordinate(datovelgerTilRect);
+    const periodeFeilmelding = getDatoFeilmelding(
+        moment(props.form.fodselsdatoFra.input.value).toDate(),
+        moment(props.form.fodselsdatoTil.input.value).toDate()
+    );
 
     return (
         <>
@@ -85,6 +104,7 @@ function PersonsokDatovelger(props: { form: Mapped<Values<PersonSokFormState>, F
                     {...props.form.fodselsdatoTil.input}
                 />
             </DatovelgerStyle>
+            {periodeFeilmelding}
         </>
     );
 }

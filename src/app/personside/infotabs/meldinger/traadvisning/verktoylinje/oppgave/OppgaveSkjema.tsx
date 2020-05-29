@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, ChangeEvent } from 'react';
 import { Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { lagOppgaveRequest } from './byggRequest';
 import { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
@@ -17,7 +17,7 @@ import { useAppState } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
 import useFormstate from '@nutgaard/use-formstate';
-import { required } from './validering';
+import { feilmelding, notRequired, required } from './validering';
 import { Select, Textarea } from 'nav-frontend-skjema';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
 import AutoComplete from './AutoComplete';
@@ -25,7 +25,6 @@ import { hasData } from '@nutgaard/use-async';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 import useForeslatteEnheter from './useForeslåtteEnheter';
-import { FieldState } from '@nutgaard/use-formstate/dist/types/domain';
 
 const AlertStyling = styled.div`
     > * {
@@ -61,9 +60,8 @@ const KnappStyle = styled.div`
 function populerCacheMedTomAnsattliste() {
     cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
 }
-
-function feilmelding(field: FieldState): string | undefined {
-    return field.touched ? field.error : undefined;
+function changeEvent(name: string, value: string): ChangeEvent {
+    return ({ target: { name: value, value: value } } as unknown) as ChangeEvent;
 }
 
 const validator = useFormstate<OppgaveSkjemaForm>({
@@ -73,7 +71,7 @@ const validator = useFormstate<OppgaveSkjemaForm>({
     valgtPrioritet: required('Du må velge prioritet'),
     valgtUnderkategori: required('Du må velge underkategori'),
     valgtEnhet: required('Du må velge enhet'),
-    valgtAnsatt: required('Du må velge ansatt')
+    valgtAnsatt: notRequired()
 });
 
 function OppgaveSkjema(props: OppgaveProps) {
@@ -90,9 +88,17 @@ function OppgaveSkjema(props: OppgaveProps) {
     };
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const state = validator(initialValues);
-    console.log('state', state);
 
     const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
+
+    const normalOppgaveprioritet = valgtTema?.prioriteter.find(prioritet => prioritet.kode.includes('NORM'));
+    useEffect(() => {
+        if (normalOppgaveprioritet) {
+            state.fields.valgtPrioritet.input.onChange(
+                changeEvent(state.fields.valgtPrioritet.input.name, normalOppgaveprioritet.kode)
+            );
+        }
+    }, [state.fields.valgtPrioritet, valgtTema, normalOppgaveprioritet]);
 
     const ansattliste = useAnsattePaaEnhet(state.fields.valgtEnhet?.input.value);
     const enhetliste: FetchResult<Array<Enhet>> = useFetchWithLog<Array<Enhet>>(
@@ -155,7 +161,6 @@ function OppgaveSkjema(props: OppgaveProps) {
     }
 
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
-
     return (
         <SkjemaStyle>
             <AvsluttGosysOppgaveSkjema />
@@ -202,7 +207,6 @@ function OppgaveSkjema(props: OppgaveProps) {
                         ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`
                     )}
                     input={state.fields.valgtAnsatt.input}
-                    feil={feilmelding(state.fields.valgtAnsatt)}
                 />
                 <Select
                     label={'Velg prioritet'}

@@ -7,10 +7,11 @@ import { PersonSokFormState, lagRequest } from './personsokUtils';
 import { loggError } from '../../utils/logger/frontendLogger';
 import useFormstate, { Values } from '@nutgaard/use-formstate';
 import {
-    required,
     requiredBosted,
-    requiredNumber,
-    requiredKontonummer
+    requiredToBeNumber,
+    requiredKontonummer,
+    notRequired,
+    feilmelding
 } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
@@ -49,20 +50,21 @@ const InputLinje = styled.div`
         padding-right: 0.5em;
     }
 `;
+
 const validator = useFormstate<PersonSokFormState>({
-    fornavn: required('Du må velge fornavn'),
-    etternavn: required('Du må velge etternavn'),
-    gatenavn: required('Du må velge gatenavn'),
-    husnummer: requiredNumber('Husnummer må være tall'),
-    husbokstav: required('Du må velge husbokstav'),
-    postnummer: requiredNumber('Postnummer må være tall'),
-    kontonummer: requiredKontonummer('Du må velge kontonummer'),
+    fornavn: notRequired(),
+    etternavn: notRequired(),
+    gatenavn: notRequired(),
+    husnummer: requiredToBeNumber('Husnummer må være tall'),
+    husbokstav: notRequired(),
+    postnummer: requiredToBeNumber('Postnummer må være tall'),
+    kontonummer: requiredKontonummer('Kontonummer må være gyldig'),
     kommunenummer: requiredBosted('Bosted må være tall med 4 siffer'),
-    fodselsdatoFra: required('Du må velge fra-fødselsdato'),
-    fodselsdatoTil: required('Du må velge til-fødselsdato'),
-    alderFra: requiredNumber('Alder må være tall'),
-    alderTil: requiredNumber('Alder må være tall'),
-    kjonn: required('Du må velge kjønn')
+    fodselsdatoFra: notRequired(),
+    fodselsdatoTil: notRequired(),
+    alderFra: requiredToBeNumber('Alder må være tall'),
+    alderTil: requiredToBeNumber('Alder må være tall'),
+    kjonn: notRequired()
 });
 
 function PersonsokSkjema(props: Props) {
@@ -115,26 +117,66 @@ function PersonsokSkjema(props: Props) {
                     <section aria-label={'Søkekriterier'}>
                         <Systemtittel tag={'h2'}>Søkekriterier</Systemtittel>
                         <InputLinje>
-                            <Input bredde={'XL'} label={'Fornavn (Fonetisk søk)'} {...state.fields.fornavn.input} />
-                            <Input bredde={'XL'} label={'Etternavn (Fonetisk søk)'} {...state.fields.etternavn.input} />
+                            <Input
+                                bredde={'XL'}
+                                label={'Fornavn (Fonetisk søk)'}
+                                {...state.fields.fornavn.input}
+                                feil={feilmelding(state.fields.fornavn)}
+                            />
+                            <Input
+                                bredde={'XL'}
+                                label={'Etternavn (Fonetisk søk)'}
+                                {...state.fields.etternavn.input}
+                                feil={feilmelding(state.fields.etternavn)}
+                            />
                         </InputLinje>
                         <InputLinje>
                             <Input bredde={'L'} label={'Gatenavn'} {...state.fields.gatenavn.input} />
-                            <Input bredde={'M'} label={'Husnummer'} {...state.fields.husnummer.input} />
+                            <Input
+                                bredde={'M'}
+                                label={'Husnummer'}
+                                {...state.fields.husnummer.input}
+                                feil={feilmelding(state.fields.husnummer)}
+                            />
                             <Input bredde={'M'} label={'Husbokstav'} {...state.fields.husbokstav.input} />
                         </InputLinje>
-                        <Input bredde={'M'} label={'Postnummer'} {...state.fields.postnummer.input} />
-                        <Input bredde={'L'} label={'Kontonummer (Norske nummer)'} {...state.fields.kontonummer.input} />
+                        <Input
+                            bredde={'M'}
+                            label={'Postnummer'}
+                            {...state.fields.postnummer.input}
+                            feil={feilmelding(state.fields.postnummer)}
+                        />
+                        <Input
+                            bredde={'L'}
+                            label={'Kontonummer (Norske nummer)'}
+                            {...state.fields.kontonummer.input}
+                            feil={feilmelding(state.fields.kontonummer)}
+                        />
                     </section>
                     <section aria-label={'Begrens søket'}>
                         <Systemtittel tag={'h2'}>Begrens søket</Systemtittel>
-                        <Input bredde={'M'} label={'Bosted'} {...state.fields.kommunenummer.input} />
+                        <Input
+                            bredde={'M'}
+                            label={'Bosted'}
+                            {...state.fields.kommunenummer.input}
+                            feil={feilmelding(state.fields.kommunenummer)}
+                        />
                         <InputLinje>
                             <PersonsokDatovelger form={state.fields} />
                         </InputLinje>
                         <InputLinje>
-                            <Input bredde={'M'} label={'Alder fra'} {...state.fields.alderFra.input} />
-                            <Input bredde={'M'} label={'Alder til'} {...state.fields.alderTil.input} />
+                            <Input
+                                bredde={'M'}
+                                label={'Alder fra'}
+                                {...state.fields.alderFra.input}
+                                feil={feilmelding(state.fields.alderFra)}
+                            />
+                            <Input
+                                bredde={'M'}
+                                label={'Alder til'}
+                                {...state.fields.alderTil.input}
+                                feil={feilmelding(state.fields.alderTil)}
+                            />
                         </InputLinje>
                         <Select label={'Kjønn'} {...state.fields.kjonn.input}>
                             <option value={''} key={''}>
