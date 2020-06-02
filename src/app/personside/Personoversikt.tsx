@@ -1,8 +1,5 @@
 import * as React from 'react';
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
-import { useRestResource } from '../../rest/consumer/useRestResource';
-import { erPersonResponsAvTypeBegrensetTilgang } from '../../models/person/person';
-import BegrensetTilgangSide from './BegrensetTilgangSide';
 import MainLayout from './MainLayout';
 import { useFødselsnummer, useOnMount } from '../../utils/customHooks';
 import { isFinishedPosting } from '../../rest/utils/postResource';
@@ -13,10 +10,21 @@ import { erGydligishFnr } from '../../utils/fnr-utils';
 import { useHistory } from 'react-router';
 import { paths } from '../routes/routing';
 import { loggInfo } from '../../utils/logger/frontendLogger';
+import RestResourceConsumer from '../../rest/consumer/RestResourceConsumer';
+import { TilgangDTO } from '../../redux/restReducers/tilgangskontroll';
+import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner';
+import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
+import AlertStripe from 'nav-frontend-alertstriper';
+import BegrensetTilgangSide from './BegrensetTilgangSide';
 import useTokenRefresher from '../../utils/hooks/use-token-refresher';
 
+const onError = (
+    <FillCenterAndFadeIn>
+        <AlertStripe type="advarsel">Beklager. Det skjedde en feil ved sjekking av tilgang til bruker.</AlertStripe>
+    </FillCenterAndFadeIn>
+);
+
 function Personoversikt() {
-    const personResource = useRestResource(resources => resources.personinformasjon);
     const oppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
     const dispatch = useDispatch();
     const fnr = useFødselsnummer();
@@ -39,18 +47,24 @@ function Personoversikt() {
         }
     });
 
-    const content =
-        personResource.data && erPersonResponsAvTypeBegrensetTilgang(personResource.data) ? (
-            <BegrensetTilgangSide person={personResource.data} />
-        ) : (
-            <MainLayout />
-        );
-
     return (
-        <>
-            <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
-            {content}
-        </>
+        <RestResourceConsumer<TilgangDTO>
+            getResource={resources => resources.tilgangskontroll}
+            returnOnPending={BigCenteredLazySpinner}
+            returnOnError={onError}
+        >
+            {data => {
+                if (!data.harTilgang) {
+                    return <BegrensetTilgangSide tilgangsData={data} />;
+                }
+                return (
+                    <>
+                        <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
+                        <MainLayout />
+                    </>
+                );
+            }}
+        </RestResourceConsumer>
     );
 }
 
