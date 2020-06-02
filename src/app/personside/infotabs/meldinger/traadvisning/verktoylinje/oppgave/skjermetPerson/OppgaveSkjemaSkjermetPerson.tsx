@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { LenkeKnapp } from '../../../../../../../../components/common-styled-components';
+import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import styled from 'styled-components';
 import { OppgaveProps, SkjermetOppgaveSkjemaForm } from '../oppgaveInterfaces';
 import { post } from '../../../../../../../../api/api';
@@ -90,32 +89,37 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
 
     return (
         <SkjemaStyle>
-            <form onSubmit={state.onSubmit(submitHandler)}>
+            <form
+                onSubmit={state.onSubmit(submitHandler)}
+                onReset={() => {
+                    state.reinitialize(initialValues);
+                }}
+            >
                 <Select
                     autoFocus={true}
                     label={'Tema'}
-                    {...state.fields.valgtTema?.input}
+                    {...state.fields.valgtTema.input}
                     feil={feilmelding(state.fields.valgtTema)}
                 >
                     <TemaOptions gsakTema={props.gsakTema} />
                 </Select>
                 <Select
                     label={'Gjelder'}
-                    {...state.fields.valgtUnderkategori?.input}
+                    {...state.fields.valgtUnderkategori.input}
                     feil={feilmelding(state.fields.valgtUnderkategori)}
                 >
                     <UnderkategoriOptions valgtGsakTema={valgtTema} />
                 </Select>
                 <Select
                     label={'Type oppgave'}
-                    {...state.fields.valgtOppgavetype?.input}
+                    {...state.fields.valgtOppgavetype.input}
                     feil={feilmelding(state.fields.valgtOppgavetype)}
                 >
                     <OppgavetypeOptions valgtGsakTema={valgtTema} />
                 </Select>
                 <Select
                     label={'Velg prioritet'}
-                    {...state.fields.valgtPrioritet?.input}
+                    {...state.fields.valgtPrioritet.input}
                     feil={feilmelding(state.fields.valgtPrioritet)}
                 >
                     <Prioriteter valgtGsakTeam={valgtTema} />
@@ -128,9 +132,7 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
                 />
                 <KnappStyle>
                     <Hovedknapp htmlType="submit">Opprett Oppgave</Hovedknapp>
-                    <LenkeKnapp type="button" onClick={props.lukkPanel}>
-                        Avbryt
-                    </LenkeKnapp>
+                    <Flatknapp htmlType="reset">Nullstill</Flatknapp>
                 </KnappStyle>
             </form>
         </SkjemaStyle>

@@ -444,19 +444,6 @@ exports[`viser personsøk-komponent 1`] = `
               </div>
             </div>
           </div>
-          <div
-            aria-live="polite"
-          >
-            <div
-              className="skjemaelement__feilmelding"
-            >
-              <p
-                className="typo-feilmelding"
-              >
-                Du må velge gyldige datoer
-              </p>
-            </div>
-          </div>
         </div>
         <div
           className="c2"

@@ -1,9 +1,4 @@
-import {
-    GsakTema,
-    GsakTemaOppgavetype,
-    GsakTemaUnderkategori,
-    OpprettOppgaveRequest
-} from '../../../../../../../models/meldinger/oppgave';
+import { GsakTema, OpprettOppgaveRequest } from '../../../../../../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { PostResource } from '../../../../../../../rest/utils/postResource';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
@@ -35,12 +30,4 @@ export interface SkjermetOppgaveSkjemaForm {
     beskrivelse: string;
     valgtPrioritet: string;
     valgtUnderkategori: string;
-}
-
-export interface SkjermetOppgaveSkjemaRequest {
-    valgtTema?: GsakTema;
-    valgtOppgavetype?: GsakTemaOppgavetype;
-    beskrivelse: string;
-    valgtPrioritet?: string;
-    valgtUnderkategori?: GsakTemaUnderkategori;
 }

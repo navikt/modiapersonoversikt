@@ -11,7 +11,9 @@ import {
     requiredToBeNumber,
     requiredKontonummer,
     notRequired,
-    feilmelding
+    feilmelding,
+    minimumRequired,
+    requiredGatenavn
 } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
@@ -52,9 +54,9 @@ const InputLinje = styled.div`
 `;
 
 const validator = useFormstate<PersonSokFormState>({
-    fornavn: notRequired(),
+    fornavn: minimumRequired(' '),
     etternavn: notRequired(),
-    gatenavn: notRequired(),
+    gatenavn: requiredGatenavn(),
     husnummer: requiredToBeNumber('Husnummer må være tall'),
     husbokstav: notRequired(),
     postnummer: requiredToBeNumber('Postnummer må være tall'),
@@ -84,6 +86,11 @@ function PersonsokSkjema(props: Props) {
         kjonn: ''
     };
     const state = validator(initialValues);
+    const minimumsKravOppfylt =
+        state.submittoken &&
+        (!state.fields.gatenavn.input.value ||
+            !state.fields.kontonummer.input.value ||
+            !state.fields.fornavn.input.value);
 
     function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
@@ -131,7 +138,12 @@ function PersonsokSkjema(props: Props) {
                             />
                         </InputLinje>
                         <InputLinje>
-                            <Input bredde={'L'} label={'Gatenavn'} {...state.fields.gatenavn.input} />
+                            <Input
+                                bredde={'L'}
+                                label={'Gatenavn'}
+                                {...state.fields.gatenavn.input}
+                                feil={feilmelding(state.fields.gatenavn)}
+                            />
                             <Input
                                 bredde={'M'}
                                 label={'Husnummer'}
@@ -197,9 +209,11 @@ function PersonsokSkjema(props: Props) {
                     <LenkeKnapp type="reset">Nullstill</LenkeKnapp>
                 </KnappStyle>
             </FormStyle>
-            <AlertStripeInfo>
-                <span role="alert">Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk</span>
-            </AlertStripeInfo>
+            {minimumsKravOppfylt && (
+                <AlertStripeInfo>
+                    <span role="alert">Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk</span>
+                </AlertStripeInfo>
+            )}
         </form>
     );
 }
