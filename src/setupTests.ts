@@ -7,7 +7,6 @@ import 'jest-styled-components';
 configure({ adapter: new EnzymeReactAdapter() });
 
 const globalAny: any = global;
-globalAny._apiBaseUri = '';
 globalAny._mockEnabled = 'true';
 
 // Mocker funksjoner som returnerer dynamisk data

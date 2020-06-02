@@ -10,12 +10,8 @@ saksbehandlere oversikt over brukeres forhold til NAV.
 Opprett filen `.env` med følgende innhold:
 
 ```shell
-# URL til backend
-REACT_APP_MODIA_URL=https://modiabackend.nav
 # For å styre om applikasjonen skal bruke mock
 REACT_APP_MOCK_ENABLED=true
-# URL til navigasjonsmenyen
-REACT_APP_HODE_URL=https://navikt.github.io/internarbeidsflatedecorator
 # Port som nginx skal lytte på når den kjører i docker-containeren. Kan ikke være 80 på Heroku.
 PORT=3000
 ```

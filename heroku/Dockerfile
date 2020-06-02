@@ -2,6 +2,8 @@ FROM node:10.3.0-alpine as nodebuilder
 
 ADD / /source
 WORKDIR /source
+# Use development-settings while running on heroky
+RUN mv .env.development .env
 RUN npm ci
 RUN npm run build
 
