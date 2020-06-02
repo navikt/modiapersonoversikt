@@ -1,8 +1,9 @@
 import { Fullmakt } from '../../models/person/fullmakter';
 import moment from 'moment';
 
-import { backendDatoformat, fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
+import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import NavFaker from 'nav-faker/dist/navfaker';
+import { backendDatoformat } from '../../utils/dateUtils';
 
 export function getMockFullmakter(faker: Faker.FakerStatic, navfaker: NavFaker): Fullmakt[] | undefined {
     if (vektetSjanse(faker, 0.5)) {

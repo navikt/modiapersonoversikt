@@ -13,9 +13,10 @@ import {
     YtelsePeriode,
     Ytelseskomponent
 } from '../../models/utbetalinger';
-import { backendDatoformat, fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
+import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { getBedriftsNavn, getMockNavn } from '../person/personMock';
 import { aremark } from '../person/aremark';
+import { backendDatoformat } from '../../utils/dateUtils';
 
 export function getMockUtbetalinger(fødselsnummer: string, startDato: string, sluttDato: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));

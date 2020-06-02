@@ -3,6 +3,9 @@ import 'moment/locale/nb';
 import navfaker from 'nav-faker';
 import { loggError } from './logger/frontendLogger';
 
+export const backendDatoformat: string = 'YYYY-MM-DD';
+export const backendDatoTidformat: string = 'YYYY-MM-DD HH:mm';
+
 const DATO_FORMAT = 'DD.MM.YYYY';
 const DATO_FORMAT_MANEDSNAVN = 'DD. MMM YYYY';
 const DATO_TID_FORMAT = 'DD.MM.YYYY HH:mm';

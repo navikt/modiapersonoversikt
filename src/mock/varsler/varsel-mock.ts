@@ -1,10 +1,11 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import { DittNavEvent, Varsel, Varselmelding, Varseltype } from '../../models/varsel';
-import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
+import { fyllRandomListe } from '../utils/mock-utils';
 import moment from 'moment';
 import { aremark } from '../person/aremark';
 import { statiskVarselMock } from './statiskVarselMock';
+import { backendDatoformat } from '../../utils/dateUtils';
 
 export function getMockVarsler(fnr: string): Varsel[] {
     faker.seed(Number(fnr));

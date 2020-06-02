@@ -7,10 +7,10 @@ import {
     getOldestDate,
     datoStigende,
     datoSynkende,
-    erMaks10MinSiden
+    erMaks10MinSiden,
+    backendDatoformat
 } from './dateUtils';
 import moment from 'moment';
-import { backendDatoformat } from '../mock/utils/mock-utils';
 
 Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
 

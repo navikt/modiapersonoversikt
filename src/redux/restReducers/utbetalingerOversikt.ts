@@ -4,7 +4,7 @@ import { createRestResourceReducerAndActions } from '../../rest/utils/restResour
 import { AppState } from '../reducers';
 import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalingerUtils';
 import moment from 'moment';
-import { backendDatoformat } from '../../mock/utils/mock-utils';
+import { backendDatoformat } from '../../utils/dateUtils';
 
 export function getUtbetalingerFetchUri(state: AppState) {
     const fodselsnummer = state.gjeldendeBruker.fødselsnummer;

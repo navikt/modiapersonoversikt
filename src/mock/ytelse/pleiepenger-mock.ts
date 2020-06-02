@@ -10,10 +10,11 @@ import {
     PleiepengerResponse,
     Vedtak
 } from '../../models/ytelse/pleiepenger';
-import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
+import { fyllRandomListe } from '../utils/mock-utils';
 import { aremark } from '../person/aremark';
 import { moss } from '../person/moss';
 import { pleiepengerTestData } from '../../app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
+import { backendDatoformat } from '../../utils/dateUtils';
 
 export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse {
     if (fødselsnummer === aremark.fødselsnummer) {
