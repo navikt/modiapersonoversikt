@@ -1,13 +1,3 @@
-declare var _mockEnabled: string;
-
-function getMockEnabled(): boolean {
-    if (typeof _mockEnabled === 'undefined') {
-        return false;
-    } else {
-        return _mockEnabled === 'true';
-    }
-}
-
 export function postConfig(body: object | string) {
     return {
         body: JSON.stringify(body),
@@ -25,5 +15,3 @@ export function postConfig(body: object | string) {
 export const includeCredentials: RequestInit = { credentials: 'include' };
 
 export const apiBaseUri = '/modiapersonoversikt-api/rest';
-
-export const mockEnabled = getMockEnabled();

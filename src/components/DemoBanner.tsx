@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { mockEnabled } from '../api/config';
 import styled from 'styled-components/macro';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 
@@ -19,8 +18,9 @@ const DemoStyle = styled.div`
     pointer-events: none;
 `;
 
+const isDemo = process.env.REACT_APP_MOCK_ENABLED === 'true';
 function DemoBanner() {
-    if (!mockEnabled) {
+    if (!isDemo) {
         return null;
     }
 

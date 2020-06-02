@@ -2,9 +2,7 @@ import * as React from 'react';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
-import { setupMock } from '../mock/setup-mock';
 import reducers from '../redux/reducers';
-import { mockEnabled } from '../api/config';
 import ModalWrapper from 'nav-frontend-modal';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import DemoBanner from '../components/DemoBanner';
@@ -36,10 +34,6 @@ const ContentStyle = styled.div`
     flex-grow: 1;
     display: flex;
 `;
-
-if (mockEnabled) {
-    setupMock();
-}
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 

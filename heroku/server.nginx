@@ -1,8 +1,7 @@
 access_log off;
 
 server {
-
-   listen      %DOCKER_PORT%;
+   listen      '${PORT}';
    server_name localhost;
 
    location = /isAlive {

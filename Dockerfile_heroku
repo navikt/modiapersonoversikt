@@ -1,0 +1,27 @@
+FROM node:10.3.0-alpine as nodebuilder
+
+COPY /package.json /source/package.json
+COPY /package-lock.json /source/package-lock.json
+
+WORKDIR /source
+RUN npm ci
+
+COPY /tsconfig.json /source/tsconfig.json
+COPY /craco.config.js /source/craco.config.js
+COPY /.env.development /source/.env
+COPY /.eslintrc.js /source/.eslintrc.js
+COPY /src /source/src
+COPY /public /source/public
+RUN npm run build
+
+FROM nginx:1.18.0-alpine
+RUN apk update && apk add bash
+
+COPY --from=nodebuilder /source/build /usr/share/nginx/html/modiapersonoversikt
+COPY heroku/server.nginx /etc/nginx/conf.d/server.template
+COPY heroku/run.sh /run.sh
+
+SHELL ["/bin/bash", "-c"]
+RUN chmod +x /run.sh
+
+CMD /run.sh

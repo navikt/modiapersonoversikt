@@ -1,10 +1,5 @@
-import { apiBaseUri, mockEnabled } from '../../../../../api/config';
-import { mockSaksdokumentUrl } from '../../../../../mock/saksoversikt/dokument-mock';
+import { apiBaseUri } from '../../../../../api/config';
 
 export function getSaksdokumentUrl(fnr: string, journalpostId: string, dokumentreferanse: string) {
-    if (mockEnabled) {
-        return mockSaksdokumentUrl;
-    } else {
-        return apiBaseUri + '/saker/' + fnr + '/dokument/' + journalpostId + '/' + dokumentreferanse;
-    }
+    return apiBaseUri + '/saker/' + fnr + '/dokument/' + journalpostId + '/' + dokumentreferanse;
 }
