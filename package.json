@@ -19,14 +19,12 @@
         "start": "craco start",
         "build": "craco build",
         "test": "craco test",
-        "test-bail": "craco test --watchAll=false --bail",
-        "eject": "react-scripts eject",
-        "build-library": "tsc -p ./tsconfig.library.json"
+        "test-bail": "craco test --watchAll=false --bail"
     },
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged",
-            "pre-push": "npm run test-bail && npm run build-library"
+            "pre-push": "npm run test-bail"
         }
     },
     "lint-staged": {
