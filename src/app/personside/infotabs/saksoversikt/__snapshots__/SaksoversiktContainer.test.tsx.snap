@@ -1143,7 +1143,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/q90p8dnw"
                           onClick={[Function]}
                           target="_blank"
                         >
@@ -1152,7 +1152,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <a
                           className="lenke typo-element c26"
                           download={true}
-                          href="/detteeretmockdokument/"
+                          href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/q90p8dnw"
                           title="Last ned"
                         >
                           <svg
@@ -1193,7 +1193,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <li>
                           <a
                             className="lenke typo-element"
-                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/fbp2nc3l"
                             onClick={[Function]}
                             target="_blank"
                           >
@@ -1202,7 +1202,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <a
                             className="lenke typo-element c26"
                             download={true}
-                            href="/detteeretmockdokument/"
+                            href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/fbp2nc3l"
                             title="Last ned"
                           >
                             <svg
@@ -1222,7 +1222,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <li>
                           <a
                             className="lenke typo-element"
-                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/x2njhynn"
                             onClick={[Function]}
                             target="_blank"
                           >
@@ -1231,7 +1231,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <a
                             className="lenke typo-element c26"
                             download={true}
-                            href="/detteeretmockdokument/"
+                            href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/x2njhynn"
                             title="Last ned"
                           >
                             <svg
@@ -1352,7 +1352,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <li>
                           <a
                             className="lenke typo-element"
-                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/lidtmy7n/428dwf43"
                             onClick={[Function]}
                             target="_blank"
                           >
@@ -1361,7 +1361,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <a
                             className="lenke typo-element c26"
                             download={true}
-                            href="/detteeretmockdokument/"
+                            href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/lidtmy7n/428dwf43"
                             title="Last ned"
                           >
                             <svg
@@ -1438,7 +1438,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/fg1w15sz/nvqxc1ip"
                           onClick={[Function]}
                           target="_blank"
                         >
@@ -1447,7 +1447,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <a
                           className="lenke typo-element c26"
                           download={true}
-                          href="/detteeretmockdokument/"
+                          href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/fg1w15sz/nvqxc1ip"
                           title="Last ned"
                         >
                           <svg
@@ -1518,7 +1518,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/o5z5pcse/me3wv1le"
                           onClick={[Function]}
                           target="_blank"
                         >
@@ -1527,7 +1527,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <a
                           className="lenke typo-element c26"
                           download={true}
-                          href="/detteeretmockdokument/"
+                          href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/o5z5pcse/me3wv1le"
                           title="Last ned"
                         >
                           <svg
@@ -1653,7 +1653,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <li>
                           <a
                             className="lenke typo-element"
-                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/h6p0iy3l/k51y90us"
                             onClick={[Function]}
                             target="_blank"
                           >
@@ -1662,7 +1662,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <a
                             className="lenke typo-element c26"
                             download={true}
-                            href="/detteeretmockdokument/"
+                            href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/h6p0iy3l/k51y90us"
                             title="Last ned"
                           >
                             <svg
@@ -1813,7 +1813,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/fhtkfp66/bjol9s20"
                           onClick={[Function]}
                           target="_blank"
                         >
@@ -1822,7 +1822,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <a
                           className="lenke typo-element c26"
                           download={true}
-                          href="/detteeretmockdokument/"
+                          href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/fhtkfp66/bjol9s20"
                           title="Last ned"
                         >
                           <svg
@@ -1893,7 +1893,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/s9765sz0/113wxk3r"
                           onClick={[Function]}
                           target="_blank"
                         >
@@ -1902,7 +1902,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <a
                           className="lenke typo-element c26"
                           download={true}
-                          href="/detteeretmockdokument/"
+                          href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/s9765sz0/113wxk3r"
                           title="Last ned"
                         >
                           <svg
@@ -1973,7 +1973,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/aamyoz7n/mt1cssx0"
                           onClick={[Function]}
                           target="_blank"
                         >
@@ -1982,7 +1982,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <a
                           className="lenke typo-element c26"
                           download={true}
-                          href="/detteeretmockdokument/"
+                          href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/aamyoz7n/mt1cssx0"
                           title="Last ned"
                         >
                           <svg
@@ -2118,7 +2118,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/cmlub095/nnp1em30"
                           onClick={[Function]}
                           target="_blank"
                         >
@@ -2127,7 +2127,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <a
                           className="lenke typo-element c26"
                           download={true}
-                          href="/detteeretmockdokument/"
+                          href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/cmlub095/nnp1em30"
                           title="Last ned"
                         >
                           <svg
@@ -2198,7 +2198,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/ai9t2h2n/gplzp0ho"
                           onClick={[Function]}
                           target="_blank"
                         >
@@ -2207,7 +2207,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <a
                           className="lenke typo-element c26"
                           download={true}
-                          href="/detteeretmockdokument/"
+                          href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/ai9t2h2n/gplzp0ho"
                           title="Last ned"
                         >
                           <svg
