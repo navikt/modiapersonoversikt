@@ -45,7 +45,6 @@
         "downshift": "^5.0.5",
         "faker": "^4.1.0",
         "fetch-mock": "^6.5.0",
-        "fnr-generator": "^2.1.4",
         "history": "^4.7.2",
         "js-cookie": "^2.2.0",
         "lodash.debounce": "^4.0.8",
