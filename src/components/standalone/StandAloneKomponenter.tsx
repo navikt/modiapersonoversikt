@@ -44,8 +44,7 @@ enum Komponenter {
     Personsok,
     JournalforingPanel,
     TraadVisningDialogpanel,
-    BesvarFlere,
-    HurtigTasterHjelp
+    BesvarFlere
 }
 
 const Style = styled.div`
@@ -101,7 +100,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Personsok:
             return <PersonsokStandAloneKomponent />;
         case Komponenter.JournalforingPanel:
-            return <JournalforingPanel lukkPanel={() => null} traad={{ traadId: 'mockId', meldinger: [] }} />;
+            return <JournalforingPanel lukkPanel={() => null} traad={statiskTraadMock} />;
         case Komponenter.TraadVisningDialogpanel:
             return <TidligereMeldinger traad={statiskTraadMock} />;
         case Komponenter.Standardtekster:
