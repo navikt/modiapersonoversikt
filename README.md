@@ -1,20 +1,22 @@
-# Modiapersonoversikt [![Build Status](https://travis-ci.org/navikt/modiapersonoversikt.svg?branch=master)](https://travis-ci.org/navikt/modiapersonoversikt) [![Maintainability](https://api.codeclimate.com/v1/badges/bc150401e4210a34fc4f/maintainability)](https://codeclimate.com/github/navikt/modiapersonoversikt/maintainability)[![Test Coverage](https://api.codeclimate.com/v1/badges/bc150401e4210a34fc4f/test_coverage)](https://codeclimate.com/github/navikt/modiapersonoversikt/test_coverage) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+# Modiapersonoversikt
+
+![](https://github.com/navikt/modiapersonoversikt/workflows/Build%2C%20push%2C%20and%20deploy/badge.svg?branch=dev)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Modiapersonoversikt er en intern arbeidsflate som gir veiledere og
 saksbehandlere oversikt over brukeres forhold til NAV.
 
 ## Komme i gang
 
-### Konfiguere miljøvariabler
+### Miljøvariabler
 
-Opprett filen `.env` med følgende innhold:
+Endring av miljøvariabler for lokal utvikling skal gjøres i `.env.development`.
 
-```shell
-# For å styre om applikasjonen skal bruke mock
-REACT_APP_MOCK_ENABLED=true
-# Port som nginx skal lytte på når den kjører i docker-containeren. Kan ikke være 80 på Heroku.
-PORT=3000
-```
+-   `PORT` kommer fra create-react-app og styrer hvilken port devserveren starter på. Default: 3000
+-   `REACT_APP_MOCK_ENABLED` styrer hvorvidt fetch-mock skal være aktivert
+-   `REACT_APP_HODE_URL` styrer hvor dekoratøren hentes fra
+
+**NB** Det skal ikke være nødvendig med endringer i disse filene for å få startet appen.
 
 ### Starte appen lokalt
 
@@ -27,7 +29,7 @@ npm run start
 
 ```console
 docker build -t personoversikt .
-docker run --env-file .env --name personoversikt -d -p 8080:80 personoversikt
+docker run --env-file .env.development --name personoversikt -d -p 8080:80 personoversikt
 ```
 
 ## Dokumentasjon
@@ -40,25 +42,6 @@ Dokumentasjonen vår innes i `doc/architecture/decisions`
 
 Du kan, men du må ikke, bruke et verktøy for å generere markdown filer som ADRs. F.eks: [adr-tools](https://github.com/npryce/adr-tools)
 
-## Publisere npm-pakke
-
-Modiapersonoversikt kan publiseres som en npm-modul og dras inn i modiabrukerdialog
-
-### Førstegangsoppsett for lokal npm publish (publish-local.sh)
-
-Adduser kjøres med egen AD-bruker(liten forbokstav)+passord+epostadresse
-Auth-token legges ikke i kildekontroll, få full config fra en annen i teamet
-
-```console
-npm install
-npm adduser
-npm config set //repo.adeo.no/repository/npm-internal/:_authToken=
-
-./publish-local.sh
-```
-
----
-
 ## Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot:
@@ -66,8 +49,8 @@ Spørsmål knyttet til koden eller prosjektet kan rettes mot:
 -   Jan-Eirik B. Nævdal, jan.eirik.b.navdal@nav.no
 -   Nicklas Utgaard, nicklas.utgaard@nav.no
 -   Andreas Bergman, andreas.bergman@nav.no
+-   Ankur Tade, ankur.tade@nav.no
 
 ### For NAV-ansatte
 
-Interne henvendelser kan sendes via Slack i kanalen #personoversikt-intern.
-Eksterne henvendelser kan sendes via Slack i kanalen #team-personoversikt.
+Henvendelser kan sendes via Slack i kanalen #team-personoversikt.
