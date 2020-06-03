@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { useRef } from 'react';
 import styled from 'styled-components/macro';
-import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
-import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import { isForeldrepenger, isPleiepenger, isSykepenger, Ytelse } from '../../../../models/ytelse/ytelse-utils';
 import Foreldrepenger from './foreldrepenger/ForeldrePenger';
 import Pleiepenger from './pleiepenger/Pleiepenger';
@@ -63,7 +61,6 @@ function ValgtYtelse(props: Props) {
             <h2 className="sr-only" id={titleId.current} ref={tittelRef} tabIndex={-1}>
                 Valgt ytelse
             </h2>
-            {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Ytelser" />}
             <YtelseMarkup ytelse={props.valgtYtelse} />
         </Styling>
     );

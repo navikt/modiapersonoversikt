@@ -4,8 +4,6 @@ import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepen
 import ForeldrepengePeriode from './ForeldrepengePeriode';
 import Oversikt from './Oversikt';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
-import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
 import { useOnMount } from '../../../../../utils/customHooks';
 import styled from 'styled-components';
 import theme from '../../../../../styles/personOversiktTheme';
@@ -39,7 +37,6 @@ function Foreldrepenger({ foreldrepenger }: Props) {
             <h2 tabIndex={-1} className="sr-only" id={titleId.current}>
                 Foreldrepengerettighet
             </h2>
-            {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Foreldrepengerettighet" />}
             <Oversikt foreldrePenger={foreldrepenger} />
             <ol>{perioder}</ol>
         </StyledArticle>

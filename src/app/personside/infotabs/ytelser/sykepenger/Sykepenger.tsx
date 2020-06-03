@@ -9,10 +9,7 @@ import Arbeidssituasjon from '../arbeidsforhold/Arbeidssituasjon';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVent';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
-import { formaterDato } from '../../../../../utils/stringFormatting';
 import { datoSynkende } from '../../../../../utils/dateUtils';
-import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
 import { useOnMount } from '../../../../../utils/customHooks';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { guid } from 'nav-frontend-js-utils';
@@ -58,11 +55,6 @@ function Sykepenger(props: Props) {
                 <h2 className="sr-only" id={titleId.current}>
                     Sykepengerrettighet
                 </h2>
-                {erModiabrukerdialog() && (
-                    <VisuallyHiddenAutoFokusHeader
-                        tittel={'Sykepengerrettighet, ID-dato: ' + formaterDato(props.sykepenger.sykmeldtFom)}
-                    />
-                )}
                 <OversiktStyling>
                     <Flex>
                         <Sykepengertilfellet sykepenger={props.sykepenger} />

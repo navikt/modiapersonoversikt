@@ -824,7 +824,13 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
               <div
                 className="typo-normal alertstripe__tekst"
               >
-                For detaljer om utførte utbetalinger, se Utbetalingsoversikten.
+                For detaljer om utførte utbetalinger 
+                <a
+                  href="/modiapersonoversikt/person/10108000398/utbetaling"
+                  onClick={[Function]}
+                >
+                  se Utbetalingsoversikten.
+                </a>
               </div>
             </div>
           </section>
@@ -2276,7 +2282,13 @@ exports[`Om sykepenger matcher snapshot 1`] = `
         <div
           className="typo-normal alertstripe__tekst"
         >
-          For detaljer om utførte utbetalinger, se Utbetalingsoversikten.
+          For detaljer om utførte utbetalinger 
+          <a
+            href="/modiapersonoversikt/person/10108000398/utbetaling"
+            onClick={[Function]}
+          >
+            se Utbetalingsoversikten.
+          </a>
         </div>
       </div>
     </section>

@@ -9,8 +9,6 @@ import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components/macro';
 import theme from '../../../styles/personOversiktTheme';
-import { erNyePersonoversikten } from '../../../utils/erNyPersonoversikt';
-import HandleVisittkortHotkeysGamlemodia from './HandleVisittkortHotkeysGamlemodia';
 import { useLoggSkjermInfoDaglig } from '../../../utils/logger/loggInfo/useLoggSkjermInfoDaglig';
 import { useAppState } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
@@ -55,19 +53,13 @@ function VisittkortContainer() {
     }
 
     const person = personResource.data as Person;
-
-    const visittkortHotkeys = erNyePersonoversikten() ? (
-        <HandleVisittkortHotkeys />
-    ) : (
-        <HandleVisittkortHotkeysGamlemodia />
-    );
     return (
         <ErrorBoundary>
             <AriaNotification
                 beskjed={`Visittkortet ble ${erApnet ? 'åpnet' : 'lukket'}`}
                 dontShowOnFirstRender={true}
             />
-            {visittkortHotkeys}
+            <HandleVisittkortHotkeys />
             <article role="region" aria-label="Visittkort" aria-expanded={erApnet}>
                 <VisittkortHeader person={person} toggleVisittkort={toggle} visittkortApent={erApnet} />
                 <VisittkortBodyWrapper className="hook-for-spesialstyling-i-gamlemodia-visittkortbodywrapper">

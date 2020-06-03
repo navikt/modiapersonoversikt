@@ -3,10 +3,8 @@ import { SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
-import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import SakstemaListe from './sakstemaliste/SakstemaListe';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
@@ -51,7 +49,6 @@ function SaksoversiktContainer() {
         return (
             <ErrorBoundary boundaryName="Saksoversikt">
                 <SaksoversiktStyle>
-                    {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Brukerens saker" />}
                     <RestResourceConsumer<SakstemaResponse>
                         getResource={restResources => restResources.sakstema}
                         returnOnPending={BigCenteredLazySpinner}
