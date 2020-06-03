@@ -1,6 +1,5 @@
 import moment from 'moment';
 import 'moment/locale/nb';
-import navfaker from 'nav-faker';
 import { loggError } from './logger/frontendLogger';
 
 export const backendDatoformat: string = 'YYYY-MM-DD';
@@ -93,10 +92,6 @@ export function erMaks10MinSiden(date: string | Date) {
 export function erMaksEttÅrFramITid(date: Date) {
     const ettÅrFramITid = moment().add(1, 'years');
     return moment(date).isSameOrBefore(ettÅrFramITid);
-}
-
-export function getAlderFromFødselsnummer(fødselsnummer: string) {
-    return moment().diff(navfaker.personIdentifikator.getFødselsdato(fødselsnummer), 'years');
 }
 
 export function getOldestDate<T extends string | Date>(date1: T, date2: T): T {
