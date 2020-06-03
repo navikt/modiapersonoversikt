@@ -1,23 +1,27 @@
 import * as React from 'react';
-import { BegrensetTilgangTyper } from '../../models/person/person';
+import { IkkeTilgangArsak } from '../../redux/restReducers/tilgangskontroll';
+import { assertUnreachable } from '../../utils/assertUnreachable';
 
 interface Props {
-    begrunnelseType: BegrensetTilgangTyper;
+    begrunnelseType: IkkeTilgangArsak;
 }
 
-function BegrensetTilgangBegrunnelse({ begrunnelseType }: Props) {
-    switch (begrunnelseType) {
-        case BegrensetTilgangTyper.Kode6:
+function BegrensetTilgangBegrunnelse(props: Props) {
+    switch (props.begrunnelseType) {
+        case IkkeTilgangArsak.Kode6:
             return <>Bruker har diskresjonskode 6, du har ikke tilgang til å se informasjon om bruker.</>;
-        case BegrensetTilgangTyper.Kode7:
+        case IkkeTilgangArsak.Kode7:
             return <>Bruker har diskresjonskode 7, du har ikke tilgang til å se informasjon om bruker.</>;
-        case BegrensetTilgangTyper.EgenAnsatt:
+        case IkkeTilgangArsak.EgenAnsatt:
             return <>Bruker er egen ansatt, du har ikke tilgang til å se informasjon om bruker.</>;
-        case BegrensetTilgangTyper.Geografi:
+        case IkkeTilgangArsak.Geografi:
             return <>Ikke geografisk tilgang til bruker, du har ikke tilgang til å se informasjon om bruker.</>;
-        case BegrensetTilgangTyper.DefaultFraBackEnd:
+        case IkkeTilgangArsak.AdRoller:
+            return <>Ikke tilgang til modiapersonoversikt.</>;
+        case IkkeTilgangArsak.Ukjent:
             return <>Ukjent sikkerhetsbegrensing</>;
         default:
+            assertUnreachable(props.begrunnelseType);
             return <>Feil sikkerhetsbegrensing</>;
     }
 }

@@ -47,6 +47,7 @@ import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
 import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinger-mock';
 import { failurerateMiddleware } from './utils/failureMiddleware';
 import { setupDraftMock } from './draft-mock';
+import tilgangskontrollMock from './tilgangskontroll-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -73,6 +74,17 @@ function setupInnloggetSaksbehandlerMock(mock: FetchMock) {
 
 function setUpSaksbehandlersEnheterMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/hode/enheter', withDelayedResponse(randomDelay(), STATUS_OK, getSaksBehandlersEnheterMock));
+}
+
+function setupTilgangskontroll(mock: FetchMock) {
+    mock.get(
+        '/modiapersonoversikt-api/rest/tilgang/:fodselsnummer?',
+        withDelayedResponse(
+            randomDelay(),
+            () => (Math.random() > 0.98 ? 400 : 200),
+            mockGeneratorMedFødselsnummer(tilgangskontrollMock)
+        )
+    );
 }
 
 function setupPersonMock(mock: FetchMock) {
@@ -568,6 +580,7 @@ export function setupMock() {
 
     setupInnloggetSaksbehandlerMock(mock);
     setupPersonMock(mock);
+    setupTilgangskontroll(mock);
     setupEgenAnsattMock(mock);
     setupKontaktinformasjonMock(mock);
     setupGeografiskTilknytningMock(mock);

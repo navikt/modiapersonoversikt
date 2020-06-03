@@ -1,12 +1,8 @@
 import * as React from 'react';
-import { BegrensetTilgang, BegrensetTilgangTyper } from '../../models/person/person';
-import { Periode } from '../../models/periode';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
-import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import VisPeriode from '../../components/person/VisPeriode';
-import { Sikkerhetstiltak } from '../../models/sikkerhetstiltak';
+import AlertStripe from 'nav-frontend-alertstriper';
 import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
-import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
+import { HarIkkeTilgang } from '../../redux/restReducers/tilgangskontroll';
 import OppgaveSkjemaSkjermetPerson from './infotabs/meldinger/traadvisning/verktoylinje/oppgave/skjermetPerson/OppgaveSkjemaSkjermetPerson';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 import { useFødselsnummer } from '../../utils/customHooks';
@@ -21,7 +17,7 @@ import IfFeatureToggleOn from '../../components/featureToggle/IfFeatureToggleOn'
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 interface BegrensetTilgangProps {
-    person: BegrensetTilgang;
+    tilgangsData: HarIkkeTilgang;
 }
 
 const Wrapper = styled.div`
@@ -51,7 +47,7 @@ function OpprettOppgaveAvvistTilgang() {
     };
 
     if (!gsakTema || !innloggetSaksbehandler) {
-        return <AlertStripeInfo>Kunne ikke vise opprett oppgave panel</AlertStripeInfo>;
+        return <AlertStripe type={'info'}>Kunne ikke vise opprett oppgave panel</AlertStripe>;
     }
 
     return (
@@ -67,50 +63,19 @@ function OpprettOppgaveAvvistTilgang() {
         </Ekspanderbartpanel>
     );
 }
-function BegrensetTilgangSide({ person }: BegrensetTilgangProps) {
-    const erEgenAnsatt = person.begrunnelse === BegrensetTilgangTyper.EgenAnsatt;
+function BegrensetTilgangSide(props: BegrensetTilgangProps) {
     return (
         <FillCenterAndFadeIn>
+            <AlertStripe type="advarsel">
+                <BegrensetTilgangBegrunnelse begrunnelseType={props.tilgangsData.ikkeTilgangArsak} />
+            </AlertStripe>
             <Wrapper>
-                <AlertStripe type="advarsel">
-                    <BegrensetTilgangBegrunnelse begrunnelseType={person.begrunnelse} />
-                    {visSikkerhetstiltak(person.sikkerhetstiltak, erEgenAnsatt)}
-                </AlertStripe>
                 <IfFeatureToggleOn toggleID={FeatureToggles.SkjermetPerson}>
                     <OpprettOppgaveAvvistTilgang />
                 </IfFeatureToggleOn>
             </Wrapper>
         </FillCenterAndFadeIn>
     );
-}
-
-function visSikkerhetstiltak(sikkerhetstiltak?: Sikkerhetstiltak, erEgenAnsatt?: boolean) {
-    if (!sikkerhetstiltak) {
-        return null;
-    }
-
-    if (erEgenAnsatt) {
-        return (
-            <>
-                <Undertittel>Egen ansatt</Undertittel>
-                {hentPeriode(sikkerhetstiltak.periode)}
-            </>
-        );
-    }
-    return (
-        <>
-            <Undertittel>Sikkerhetstiltak</Undertittel>
-            {hentPeriode(sikkerhetstiltak.periode)}
-            <Normaltekst>{sikkerhetstiltak.sikkerhetstiltaksbeskrivelse}</Normaltekst>
-        </>
-    );
-}
-
-function hentPeriode(periode?: Periode) {
-    if (periode != null) {
-        return <VisPeriode periode={periode} />;
-    }
-    return null;
 }
 
 export default BegrensetTilgangSide;
