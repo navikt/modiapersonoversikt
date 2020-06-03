@@ -23,10 +23,10 @@ jobs:
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: npm ci
-      - name: Switch to dev build
-        run: mv .env.development .env.production.local
-      - name: Make gh-pages compliant
-        run: mv public/gh-pages-404-redirect.html public/404.html
+      - name: Switch to gh-dev build
+        run: |
+          echo 'REACT_APP_USE_HASH_ROUTER=true' >> .env.development
+          mv .env.development .env.production.local
       - name: Build
         run: npm run build
       - name: Deploy
