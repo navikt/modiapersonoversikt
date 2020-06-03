@@ -1,3 +1,5 @@
+name: Publish GithubPages
+
 on:
   push:
     branches:
