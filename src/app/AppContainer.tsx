@@ -16,6 +16,7 @@ import Routing from './Routing';
 import styled from 'styled-components';
 import { useAppState, useOnMount } from '../utils/customHooks';
 import VelgEnhet from './VelgEnhet';
+import { ReactNode } from 'react';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -56,7 +57,13 @@ function App() {
     );
 }
 
-const Router: React.ComponentType = process.env.REACT_APP_USE_HASH_ROUTER === 'true' ? HashRouter : BrowserRouter;
+function Router(props: { children?: ReactNode }) {
+    if (process.env.REACT_APP_USE_HASH_ROUTER === 'true') {
+        return <HashRouter>{props.children}</HashRouter>;
+    }
+    return <BrowserRouter basename={process.env.PUBLIC_URL}>{props.children}</BrowserRouter>;
+}
+
 function AppContainer() {
     useOnMount(() => {
         ModalWrapper.setAppElement('#root');

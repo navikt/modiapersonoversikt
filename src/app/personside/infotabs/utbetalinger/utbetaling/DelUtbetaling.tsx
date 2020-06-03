@@ -80,7 +80,7 @@ class DelUtbetaling extends React.PureComponent<Props> {
             >
                 <article aria-expanded={this.props.erEkspandert} aria-label={'Delutbetaling ' + ytelse.type}>
                     <DetaljerCollapse open={this.props.erEkspandert} toggle={this.toggleVisDetaljer} header={header}>
-                        <UtbetalingsDetaljer ytelse={ytelse} {...this.props} />
+                        <UtbetalingsDetaljer {...this.props} />
                     </DetaljerCollapse>
                 </article>
             </DelUtbetalingStyle>

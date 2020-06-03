@@ -18,6 +18,7 @@ import styled from 'styled-components';
 import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTipsContainer';
 import useHandleGosysUrl from './useHandleGosysUrl';
 import { loggEvent } from '../../utils/logger/frontendLogger';
+import { removePrefix } from '../../utils/string-utils';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 const etterSokefelt = `
@@ -90,12 +91,20 @@ function useVenterPaRedux() {
     return klar;
 }
 
+function getPathnameFromUrl(): string {
+    const { pathname, hash } = window.location;
+    return removePrefix(pathname + hash, process.env.PUBLIC_URL, '/#', '#');
+}
+
 function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null } {
     const location = window.location;
+    const pathname = getPathnameFromUrl();
+
     const queryParams = parseQueryString<{ sokFnr?: string }>(location.search);
-    const sakerUriMatch = matchPath<{ fnr: string }>(location.pathname, `${paths.sakerFullscreen}/:fnr`);
-    const saksdokumentUriMatch = matchPath<{ fnr: string }>(location.pathname, `${paths.saksdokumentEgetVindu}/:fnr`);
-    const personUriMatch = matchPath<{ fnr: string }>(location.pathname, `${paths.personUri}/:fnr`);
+    const sakerUriMatch = matchPath<{ fnr: string }>(pathname, `${paths.sakerFullscreen}/:fnr`);
+    const saksdokumentUriMatch = matchPath<{ fnr: string }>(pathname, `${paths.saksdokumentEgetVindu}/:fnr`);
+    const personUriMatch = matchPath<{ fnr: string }>(pathname, `${paths.personUri}/:fnr`);
+
     return {
         sokFnr: queryParams.sokFnr ?? null,
         pathFnr: sakerUriMatch?.params.fnr ?? saksdokumentUriMatch?.params.fnr ?? personUriMatch?.params.fnr ?? null

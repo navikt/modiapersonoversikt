@@ -19,3 +19,12 @@ export function erTall(input: string) {
 export function sorterAlfabetisk(a: string, b: string) {
     return a > b ? 1 : -1;
 }
+
+export function removePrefix(base: string, ...prefixes: string[]): string {
+    return prefixes.reduce((current, prefix) => {
+        if (current.startsWith(prefix)) {
+            return current.slice(prefix.length);
+        }
+        return current;
+    }, base);
+}
