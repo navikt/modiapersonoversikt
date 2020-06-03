@@ -2,6 +2,7 @@ import { FieldState, Validator, Values } from '@nutgaard/use-formstate';
 import { erTall } from '../../../../../../../utils/string-utils';
 import { removeWhitespaceAndDot, validerKontonummer } from '../../../../../../personsok/kontonummer/kontonummerUtils';
 import { PersonSokFormState } from '../../../../../../personsok/personsokUtils';
+import moment from 'moment';
 
 export function required(message: string): Validator<any> {
     return (value: string) => {
@@ -74,6 +75,20 @@ export function minimumRequired(message: string): Validator<any> {
     return (value: string, values: Values<PersonSokFormState>) => {
         if (!values.kontonummer && !values.gatenavn && !values.fornavn) {
             return message;
+        }
+        return undefined;
+    };
+}
+
+export function requiredDato(): Validator<any> {
+    return (value: string, values: Values<PersonSokFormState>) => {
+        const fra = moment(values.fodselsdatoFra).toDate();
+        const til = moment(values.fodselsdatoTil).toDate();
+        if (fra > til) {
+            return 'Fra-dato kan ikke være senere enn til-dato';
+        }
+        if (til > new Date()) {
+            return 'Du kan ikke velge dato frem i tid';
         }
         return undefined;
     };

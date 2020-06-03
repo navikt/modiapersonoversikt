@@ -13,7 +13,8 @@ import {
     notRequired,
     feilmelding,
     minimumRequired,
-    requiredGatenavn
+    requiredGatenavn,
+    requiredDato
 } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
@@ -62,8 +63,8 @@ const validator = useFormstate<PersonSokFormState>({
     postnummer: requiredToBeNumber('Postnummer må være tall'),
     kontonummer: requiredKontonummer('Kontonummer må være gyldig'),
     kommunenummer: requiredBosted('Bosted må være tall med 4 siffer'),
-    fodselsdatoFra: notRequired(),
-    fodselsdatoTil: notRequired(),
+    fodselsdatoFra: requiredDato(),
+    fodselsdatoTil: requiredDato(),
     alderFra: requiredToBeNumber('Alder må være tall'),
     alderTil: requiredToBeNumber('Alder må være tall'),
     kjonn: notRequired()
