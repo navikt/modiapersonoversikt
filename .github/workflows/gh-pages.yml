@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+      - master
+      - fix/OPP-1174-cleanup
+env:
+  CI: true
+  TZ: Europe/Oslo
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          build_dir: build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
