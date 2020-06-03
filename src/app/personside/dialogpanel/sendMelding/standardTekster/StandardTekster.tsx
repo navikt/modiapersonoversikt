@@ -1,5 +1,5 @@
 import React, { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
-import { hasData, hasError, isPending } from '@nutgaard/use-fetch';
+import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import styled from 'styled-components/macro';
 import useFieldState, { FieldState } from '../../../../../utils/hooks/use-field-state';
 import { erGyldigValg, sokEtterTekster, rapporterBruk } from './sokUtils';
@@ -12,13 +12,11 @@ import { captitalize } from '../../../../../utils/stringFormatting';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullførData } from '../autofullforUtils';
-import { useFetchWithLog } from '../../../../../utils/hooks/useFetchWithLog';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { guid } from 'nav-frontend-js-utils';
 import AriaNotification from '../../../../../components/AriaNotification';
 import { usePrevious } from '../../../../../utils/customHooks';
-import { useTimer } from '../../../../../utils/hooks/useTimer';
 import { HjelpetekstUnderVenstre } from 'nav-frontend-hjelpetekst';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 
@@ -85,7 +83,6 @@ function velgTekst(
     settTekst: (tekst: string) => void,
     tekst: StandardTeksterModels.Tekst | undefined,
     locale: string,
-    getTimeSpent: () => number,
     autofullforData?: AutofullforData
 ) {
     return (event: FormEvent) => {
@@ -112,10 +109,7 @@ function velgTekst(
 
 function StandardTekster(props: Props) {
     const sokRef = React.useRef<HTMLElement>(null);
-    const standardTekster = useFetchWithLog<StandardTeksterModels.Tekster>(
-        '/modiapersonoversikt-skrivestotte/skrivestotte',
-        'Standardtekster'
-    );
+    const standardTekster = useFetch<StandardTeksterModels.Tekster>('/modiapersonoversikt-skrivestotte/skrivestotte');
     const debouncedSokefelt = useDebounce(props.sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() =>
         sokEtterTekster(standardTekster, debouncedSokefelt)
@@ -127,7 +121,6 @@ function StandardTekster(props: Props) {
     const autofullforData = useAutoFullførData();
     const sokeFeltId = useRef(guid());
     const [ariaNotification, setAriaNotification] = useState('');
-    const getSpentTime = useTimer();
     const hjelpetekstID = useRef(guid());
 
     useDefaultValgtLocale(valgtTekst, valgtLocale);
@@ -187,9 +180,7 @@ function StandardTekster(props: Props) {
     }
 
     return (
-        <StyledForm
-            onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, getSpentTime, autofullforData)}
-        >
+        <StyledForm onSubmit={velgTekst(props.appendTekst, valgtTekst, valgtLocale.input.value, autofullforData)}>
             <h2 className="sr-only">Standardtekster</h2>
             <SokefeltStyledNav aria-labelledby={sokeFeltId.current} ref={sokRef}>
                 <TagInput
