@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser personsøk-komponent 1`] = `
-.c3 {
+.c5 {
   margin-right: 0.5em;
   margin-bottom: 1em;
   line-height: 1.375rem;
 }
 
-.c3 .nav-datovelger__kalenderPortal {
+.c5 .nav-datovelger__kalenderPortal {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -16,11 +16,28 @@ exports[`viser personsøk-komponent 1`] = `
   transform: translateX(-85%);
 }
 
-.c4 {
+.c6 {
   margin-bottom: 0.5em;
 }
 
-.c6 {
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c8 {
   position: relative;
   border: none;
   padding: 0;
@@ -38,7 +55,7 @@ exports[`viser personsøk-komponent 1`] = `
   color: #0067c5;
 }
 
-.c6:after {
+.c8:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -46,16 +63,16 @@ exports[`viser personsøk-komponent 1`] = `
   width: 100%;
 }
 
-.c6:focus {
+.c8:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c6:hover {
+.c8:hover {
   opacity: 0.8;
 }
 
-.c6:hover:after {
+.c8:hover:after {
   content: '';
   border-color: #0067c5;
 }
@@ -75,7 +92,7 @@ exports[`viser personsøk-komponent 1`] = `
   margin-right: 10rem;
 }
 
-.c5 {
+.c7 {
   padding-top: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -299,150 +316,159 @@ exports[`viser personsøk-komponent 1`] = `
           <div
             className="c3"
           >
-            <label
-              className="skjemaelement__label c4"
-              htmlFor="fodselsdatoFra"
-            >
-              <p
-                className="typo-normal"
-              >
-                Fødselsdato fra
-              </p>
-            </label>
             <div
-              onBlur={[Function]}
-              onKeyDown={[Function]}
+              className="c4"
             >
               <div
-                className="nav-datovelger"
+                className="c5"
               >
-                <div
-                  className="nav-datovelger__inputContainer"
+                <label
+                  className="skjemaelement__label c6"
+                  htmlFor="fodselsdatoFra"
                 >
-                  <input
-                    aria-invalid={false}
-                    autoComplete="off"
-                    autoCorrect="off"
-                    className="nav-datovelger__input"
-                    id="fodselsdatoFra"
-                    maxLength={10}
-                    name="fodselsdatoFra"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-                    type="text"
-                    value=""
-                  />
-                  <button
-                    aria-expanded={false}
-                    aria-label="Kalender"
-                    className="nav-datovelger__kalenderknapp"
-                    onClick={[Function]}
-                    role="button"
-                    type="button"
+                  <p
+                    className="typo-normal"
                   >
-                    <svg
-                      aria-hidden="true"
-                      height={16}
-                      role="presentation"
-                      viewBox="0 0 18 18"
-                      width={16}
+                    Fødselsdato fra
+                  </p>
+                </label>
+                <div
+                  onBlur={[Function]}
+                  onKeyDown={[Function]}
+                >
+                  <div
+                    className="nav-datovelger"
+                  >
+                    <div
+                      className="nav-datovelger__inputContainer"
                     >
-                      <title>
-                        Kalenderikon
-                      </title>
-                      <g
-                        fill="none"
-                        fillRule="evenodd"
-                        stroke="#0067C5"
+                      <input
+                        aria-invalid={false}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        className="nav-datovelger__input"
+                        id="fodselsdatoFra"
+                        maxLength={10}
+                        name="fodselsdatoFra"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                        type="text"
+                        value=""
+                      />
+                      <button
+                        aria-expanded={false}
+                        aria-label="Kalender"
+                        className="nav-datovelger__kalenderknapp"
+                        onClick={[Function]}
+                        role="button"
+                        type="button"
                       >
-                        <path
-                          d="M4 2.667H1.333v14h15.334v-14H14"
-                        />
-                        <path
-                          d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                        />
-                      </g>
-                    </svg>
-                  </button>
+                        <svg
+                          aria-hidden="true"
+                          height={16}
+                          role="presentation"
+                          viewBox="0 0 18 18"
+                          width={16}
+                        >
+                          <title>
+                            Kalenderikon
+                          </title>
+                          <g
+                            fill="none"
+                            fillRule="evenodd"
+                            stroke="#0067C5"
+                          >
+                            <path
+                              d="M4 2.667H1.333v14h15.334v-14H14"
+                            />
+                            <path
+                              d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                            />
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="c5"
+              >
+                <label
+                  className="skjemaelement__label c6"
+                  htmlFor="fodselsdatoTil"
+                >
+                  <p
+                    className="typo-normal"
+                  >
+                    Fødselsdato til
+                  </p>
+                </label>
+                <div
+                  onBlur={[Function]}
+                  onKeyDown={[Function]}
+                >
+                  <div
+                    className="nav-datovelger"
+                  >
+                    <div
+                      className="nav-datovelger__inputContainer"
+                    >
+                      <input
+                        aria-invalid={false}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        className="nav-datovelger__input"
+                        id="fodselsdatoTil"
+                        maxLength={10}
+                        name="fodselsdatoTil"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                        type="text"
+                        value=""
+                      />
+                      <button
+                        aria-expanded={false}
+                        aria-label="Kalender"
+                        className="nav-datovelger__kalenderknapp"
+                        onClick={[Function]}
+                        role="button"
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          height={16}
+                          role="presentation"
+                          viewBox="0 0 18 18"
+                          width={16}
+                        >
+                          <title>
+                            Kalenderikon
+                          </title>
+                          <g
+                            fill="none"
+                            fillRule="evenodd"
+                            stroke="#0067C5"
+                          >
+                            <path
+                              d="M4 2.667H1.333v14h15.334v-14H14"
+                            />
+                            <path
+                              d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                            />
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div
-            className="c3"
-          >
-            <label
-              className="skjemaelement__label c4"
-              htmlFor="fodselsdatoTil"
-            >
-              <p
-                className="typo-normal"
-              >
-                Fødselsdato til
-              </p>
-            </label>
-            <div
-              onBlur={[Function]}
-              onKeyDown={[Function]}
-            >
-              <div
-                className="nav-datovelger"
-              >
-                <div
-                  className="nav-datovelger__inputContainer"
-                >
-                  <input
-                    aria-invalid={false}
-                    autoComplete="off"
-                    autoCorrect="off"
-                    className="nav-datovelger__input"
-                    id="fodselsdatoTil"
-                    maxLength={10}
-                    name="fodselsdatoTil"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-                    type="text"
-                    value=""
-                  />
-                  <button
-                    aria-expanded={false}
-                    aria-label="Kalender"
-                    className="nav-datovelger__kalenderknapp"
-                    onClick={[Function]}
-                    role="button"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      height={16}
-                      role="presentation"
-                      viewBox="0 0 18 18"
-                      width={16}
-                    >
-                      <title>
-                        Kalenderikon
-                      </title>
-                      <g
-                        fill="none"
-                        fillRule="evenodd"
-                        stroke="#0067C5"
-                      >
-                        <path
-                          d="M4 2.667H1.333v14h15.334v-14H14"
-                        />
-                        <path
-                          d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                        />
-                      </g>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
+            <div />
           </div>
         </div>
         <div
@@ -544,7 +570,7 @@ exports[`viser personsøk-komponent 1`] = `
       </p>
     </a>
     <div
-      className="c5"
+      className="c7"
     >
       <button
         className="knapp knapp--hoved"
@@ -554,7 +580,7 @@ exports[`viser personsøk-komponent 1`] = `
         Søk
       </button>
       <button
-        className="c6"
+        className="c8"
         type="reset"
       >
         Nullstill
