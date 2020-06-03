@@ -8,7 +8,7 @@ import { SakerRouting, useSakerRouting } from './saksoversikt/utils/saksoversikt
 import { useQueryParams } from '../../../utils/urlUtils';
 import { getUnikYtelseKey, Ytelse } from '../../../models/ytelse/ytelse-utils';
 
-export interface Dyplenker {
+interface Dyplenker {
     utbetaling: {
         link: (utbetaling: Utbetaling) => string;
         route: string;
@@ -31,7 +31,7 @@ type DyplenkeParams = {
     posteringsdato?: string;
 };
 
-export type DyplenkerQueryParams = {
+type DyplenkerQueryParams = {
     traadId?: string;
     ytelse?: string;
 };

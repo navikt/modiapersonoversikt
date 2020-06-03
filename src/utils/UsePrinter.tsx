@@ -19,7 +19,7 @@ export interface Printer {
     triggerPrint: () => void;
 }
 
-export function usePrinter(): Printer {
+function usePrinter(): Printer {
     const [print, setPrint] = useState(false);
 
     const triggerPrint = () => {

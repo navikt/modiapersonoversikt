@@ -15,7 +15,7 @@ export function removeWhitespaceAndDot(kontonummer: string): string {
     return kontonummer.toString().replace(/[. ]/g, '');
 }
 
-export function mod11FraTallMedKontrollsiffer(kontonummer: string) {
+function mod11FraTallMedKontrollsiffer(kontonummer: string) {
     let controlNumber: number = 2,
         sumForMod: number = 0;
 

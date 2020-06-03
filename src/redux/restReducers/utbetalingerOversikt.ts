@@ -6,7 +6,7 @@ import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infot
 import moment from 'moment';
 import { backendDatoformat } from '../../utils/dateUtils';
 
-export function getUtbetalingerFetchUri(state: AppState) {
+function getUtbetalingerFetchUri(state: AppState) {
     const fodselsnummer = state.gjeldendeBruker.fødselsnummer;
 
     const datoer = getUtbetalingerForSiste30DagerDatoer();

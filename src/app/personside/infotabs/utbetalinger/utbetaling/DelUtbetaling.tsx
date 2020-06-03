@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
 
-export interface OwnProps {
+interface OwnProps {
     ytelse: Ytelse;
     konto: string | undefined;
     melding: string | undefined;

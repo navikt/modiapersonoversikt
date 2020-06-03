@@ -50,7 +50,7 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
     });
 }
 
-export function getMockTraad(): Traad {
+function getMockTraad(): Traad {
     const temagruppe = navfaker.random.arrayElement([...TemaPlukkbare, null, Temagruppe.InnholdSlettet]);
     const meldinger = Array(navfaker.random.integer(4, 1))
         .fill(null)

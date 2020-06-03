@@ -29,7 +29,7 @@ export function toggleVisVarsel(varsel: Varsel, vis: boolean): ToggleVisAction {
 
 type Actions = ToggleVisAction;
 
-export function varslerReducer(state: VarslerState = initialState, action: Actions): VarslerState {
+function varslerReducer(state: VarslerState = initialState, action: Actions): VarslerState {
     switch (action.type) {
         case actionKeys.TOGGLE_VIS_VARSEL:
             const aapneVarsler = action.vis

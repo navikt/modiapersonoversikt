@@ -187,11 +187,11 @@ export function getMorOgFar(familierelasjoner: Familierelasjon[]) {
     return foreldre;
 }
 
-export function getMor(familierelasjoner: Familierelasjon[]) {
+function getMor(familierelasjoner: Familierelasjon[]) {
     return finnRelasjon(familierelasjoner, Relasjonstype.Mor);
 }
 
-export function getFar(familierelasjoner: Familierelasjon[]) {
+function getFar(familierelasjoner: Familierelasjon[]) {
     return finnRelasjon(familierelasjoner, Relasjonstype.Far);
 }
 
@@ -201,8 +201,4 @@ function finnRelasjon(familierelasjoner: Familierelasjon[], relasjonstype: Relas
 
 export function erPersonResponsAvTypePerson(person: PersonRespons): person is Person {
     return 'navn' in person;
-}
-
-export function erPersonResponsAvTypeBegrensetTilgang(person: PersonRespons): person is BegrensetTilgang {
-    return 'begrunnelse' in person;
 }

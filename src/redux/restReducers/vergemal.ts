@@ -3,7 +3,7 @@ import { createRestResourceReducerAndActions } from '../../rest/utils/restResour
 import { AppState } from '../reducers';
 import { Vergemal } from '../../models/vergemal/vergemal';
 
-export function getVergemal(state: AppState) {
+function getVergemal(state: AppState) {
     const fnr = state.gjeldendeBruker.fødselsnummer;
     return `${apiBaseUri}/person/${fnr}/vergemal`;
 }

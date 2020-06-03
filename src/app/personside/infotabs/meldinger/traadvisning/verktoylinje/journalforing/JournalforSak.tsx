@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { useFødselsnummer } from '../../../../../../../utils/customHooks';
 
-export interface Props {
+interface Props {
     sak: JournalforingsSak;
     traad: Traad;
     tilbake: () => void;

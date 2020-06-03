@@ -15,7 +15,7 @@ function getAlder(relasjon: Familierelasjon) {
     }
 }
 
-export function getAlderTekst(relasjon: Familierelasjon) {
+function getAlderTekst(relasjon: Familierelasjon) {
     if (erDød(relasjon.tilPerson.personstatus)) {
         return '(Død)';
     }

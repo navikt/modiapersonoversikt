@@ -16,7 +16,7 @@ import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
 import SakerFullscreenLenke from './SakerFullscreenLenke';
 
-export const saksoversiktMediaTreshold = '65rem';
+const saksoversiktMediaTreshold = '65rem';
 
 const SaksoversiktStyle = styled.div`
     ${scrollBarContainerStyle(saksoversiktMediaTreshold)};

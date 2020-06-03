@@ -9,7 +9,7 @@ const TittelOgIkonDiv = styled.div`
     align-items: center;
 `;
 
-export const IkonDiv = styled.div`
+const IkonDiv = styled.div`
     position: absolute;
     left: -${theme.margin.px50};
     width: ${theme.margin.px50};

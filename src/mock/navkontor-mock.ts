@@ -4,7 +4,7 @@ import { ApningsTid, NavKontorResponse, PublikumsMottak } from '../models/navkon
 import { tilfeldigGateadresse } from './person/adresseMock';
 import { Gateadresse } from '../models/personadresse';
 
-export const geografiskTilknytningAremark = '0118';
+const geografiskTilknytningAremark = '0118';
 const apentFra = { time: '9', minutt: '0', sekund: '0' };
 const apentTil = { time: '14', minutt: '30', sekund: '0' };
 
