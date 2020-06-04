@@ -114,7 +114,10 @@ function SendNyMeldingContainer() {
                 })
                 .catch(error => {
                     callback();
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR, fritekst: error });
+                    setSendNyMeldingStatus({
+                        type: SendNyMeldingStatus.ERROR,
+                        fritekst: JSON.parse(error.toString()).detaljer.feilMelding
+                    });
                     updateState({ visFeilmeldinger: true });
                 });
         } else {
