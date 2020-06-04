@@ -5,7 +5,7 @@ import { NyMeldingValidator } from './validatorer';
 import { Meldingstype, SendReferatRequest, SendSpørsmålRequest } from '../../../../models/meldinger/meldinger';
 import { useFødselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
-import { ReferatSendtKvittering, SporsmalSendtKvittering } from './SendNyMeldingKvittering';
+import { ReferatSendtKvittering, SporsmalSendtFeilet, SporsmalSendtKvittering } from './SendNyMeldingKvittering';
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
@@ -60,6 +60,10 @@ function SendNyMeldingContainer() {
         return <SporsmalSendtKvittering fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
     }
 
+    if (sendNyMeldingStatus.type === SendNyMeldingStatus.ERROR) {
+        return <SporsmalSendtFeilet fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
+    }
+
     const handleAvbryt = () => {
         removeDraft();
         setState(initialState);
@@ -94,7 +98,7 @@ function SendNyMeldingContainer() {
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: request });
                 })
                 .catch(() => {
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR, fritekst: request.fritekst });
                 });
         } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
@@ -108,8 +112,10 @@ function SendNyMeldingContainer() {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: request.fritekst });
                 })
-                .catch(() => {
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
+                .catch(error => {
+                    callback();
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR, fritekst: error });
+                    updateState({ visFeilmeldinger: true });
                 });
         } else {
             updateState({ visFeilmeldinger: true });

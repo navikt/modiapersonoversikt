@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Meldingstype, SendReferatRequest } from '../../../../models/meldinger/meldinger';
 import { DialogpanelKvittering } from '../fellesStyling';
 import { meldingstypeTekst } from '../../infotabs/meldinger/utils/meldingstekster';
+import { SendNyMeldingStatus } from './SendNyMeldingTypes';
 
 export function ReferatSendtKvittering(props: { request: SendReferatRequest; lukk: () => void }) {
     const tittel = `${meldingstypeTekst(props.request.meldingstype)} sendt til bruker`;
@@ -22,6 +23,18 @@ export function SporsmalSendtKvittering(props: { fritekst: string; lukk: () => v
             fritekst={props.fritekst}
             meldingstype={Meldingstype.SPORSMAL_MODIA_UTGAAENDE}
             lukk={props.lukk}
+        />
+    );
+}
+
+export function SporsmalSendtFeilet(props: { fritekst: string; lukk: () => void }) {
+    return (
+        <DialogpanelKvittering
+            tittel="Spørsmål ble sendt men feil i baksystem"
+            fritekst={props.fritekst}
+            meldingstype={Meldingstype.SPORSMAL_MODIA_UTGAAENDE}
+            lukk={props.lukk}
+            meldingstatus={SendNyMeldingStatus.ERROR}
         />
     );
 }

@@ -13,7 +13,7 @@ interface SendNyMeldingStatusInterface {
 }
 
 interface UnderArbeid extends SendNyMeldingStatusInterface {
-    type: SendNyMeldingStatus.UNDER_ARBEID | SendNyMeldingStatus.POSTING | SendNyMeldingStatus.ERROR;
+    type: SendNyMeldingStatus.UNDER_ARBEID | SendNyMeldingStatus.POSTING;
 }
 
 interface ReferatSendtSuccess extends SendNyMeldingStatusInterface {
@@ -26,4 +26,9 @@ interface SporsmalSendtSuccess extends SendNyMeldingStatusInterface {
     fritekst: string;
 }
 
-export type SendNyMeldingPanelState = UnderArbeid | ReferatSendtSuccess | SporsmalSendtSuccess;
+interface SporsmalSendtError extends SendNyMeldingStatusInterface {
+    type: SendNyMeldingStatus.ERROR;
+    fritekst: string;
+}
+
+export type SendNyMeldingPanelState = UnderArbeid | ReferatSendtSuccess | SporsmalSendtSuccess | SporsmalSendtError;
