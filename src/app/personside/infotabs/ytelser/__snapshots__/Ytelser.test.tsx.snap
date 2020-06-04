@@ -744,7 +744,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   </div>
                 </dl>
                 <div
-                  className="typo-normal c16"
+                  className="c16 typo-normal"
                 >
                   <table
                     role="table"
@@ -953,7 +953,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               Utbetalinger på vent
             </h4>
             <div
-              className="typo-normal c16"
+              className="c16 typo-normal"
             >
               <table
                 role="table"
@@ -1035,7 +1035,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               Utbetalinger
             </h4>
             <div
-              className="typo-normal c16"
+              className="c16 typo-normal"
             >
               <table
                 role="table"
@@ -1215,7 +1215,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               >
                 For detaljer om utførte utbetalinger 
                 <a
-                  href="/modiapersonoversikt/person/10108000398/utbetaling"
+                  href="/person/10108000398/utbetaling"
                   onClick={[Function]}
                 >
                   se Utbetalingsoversikten.

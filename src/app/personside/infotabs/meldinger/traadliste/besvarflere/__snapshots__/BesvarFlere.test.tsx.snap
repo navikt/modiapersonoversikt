@@ -522,7 +522,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                 className="c11"
               >
                 <div
-                  className="order-first c12"
+                  className="c12 order-first"
                 >
                   <p
                     className="typo-element order-second"
@@ -536,7 +536,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   </p>
                 </div>
                 <div
-                  className="order-third c13"
+                  className="c13 order-third"
                 >
                   <div
                     className="etikett etikett--fokus"
@@ -558,7 +558,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   </div>
                 </div>
                 <p
-                  className="typo-normal order-second c14"
+                  className="typo-normal c14 order-second"
                 >
                   Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                 </p>
@@ -566,7 +566,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
             </div>
           </div>
           <div
-            className="hover-animation c15"
+            className="c15 hover-animation"
           >
             <i
               className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -655,7 +655,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                 className="c11"
               >
                 <div
-                  className="order-first c12"
+                  className="c12 order-first"
                 >
                   <p
                     className="typo-element order-second"
@@ -669,7 +669,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   </p>
                 </div>
                 <div
-                  className="order-third c13"
+                  className="c13 order-third"
                 >
                   <div
                     className="etikett etikett--fokus"
@@ -691,7 +691,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   </div>
                 </div>
                 <p
-                  className="typo-normal order-second c14"
+                  className="typo-normal c14 order-second"
                 >
                   Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                 </p>
@@ -699,7 +699,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
             </div>
           </div>
           <div
-            className="hover-animation c15"
+            className="c15 hover-animation"
           >
             <i
               className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -713,7 +713,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
       role="tabpanel"
     >
       <li
-        className="snakkeboble_ikoner c18"
+        className="c18 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -775,7 +775,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       07.07.2019 00:00
                     </div>
                     <div
-                      className="typo-normal c22"
+                      className="c22 typo-normal"
                     >
                       Skrevet av Sander Hansen (nzxo4q)
                     </div>
@@ -835,7 +835,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c18"
+        className="c18 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -943,7 +943,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c18"
+        className="c18 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1051,7 +1051,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c18"
+        className="c18 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1113,7 +1113,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                       27.07.2019 00:00
                     </div>
                     <div
-                      className="typo-normal c22"
+                      className="c22 typo-normal"
                     >
                       Skrevet av Kristoffer Fredriksen (xy70r8)
                     </div>

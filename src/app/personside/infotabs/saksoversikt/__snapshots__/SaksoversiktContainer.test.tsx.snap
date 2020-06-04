@@ -366,26 +366,26 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   outline: none;
 }
 
-.c3 {
+.c2 {
   border-radius: 0.25rem;
   background-color: white;
   box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   font-weight: 600;
 }
 
-.c3 a {
+.c2 a {
   padding: 0.9375rem;
 }
 
-.c3 a:visited {
+.c2 a:visited {
   color: currentColor !important;
 }
 
-.c3 .lenkepanel {
+.c2 .lenkepanel {
   margin-bottom: 0;
 }
 
-.c2 {
+.c3 {
   margin-bottom: .5rem;
 }
 
@@ -463,7 +463,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     >
       <a
         className="lenkepanel"
-        href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000"
+        href="/saker/10108000398?sakstema=ALLE1545606000"
         rel="noopener noreferrer"
         target="_blank"
       >
@@ -1143,14 +1143,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/q90p8dnw"
+                          href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/q90p8dnw"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Inntektsopplysninger
                         </a>
                         <a
-                          className="lenke typo-element c26"
+                          className="c26 lenke typo-element"
                           download={true}
                           href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/q90p8dnw"
                           title="Last ned"
@@ -1193,14 +1193,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <li>
                           <a
                             className="lenke typo-element"
-                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/fbp2nc3l"
+                            href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/fbp2nc3l"
                             onClick={[Function]}
                             target="_blank"
                           >
                             A-inntekt (Skjermet)
                           </a>
                           <a
-                            className="lenke typo-element c26"
+                            className="c26 lenke typo-element"
                             download={true}
                             href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/fbp2nc3l"
                             title="Last ned"
@@ -1222,14 +1222,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <li>
                           <a
                             className="lenke typo-element"
-                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/x2njhynn"
+                            href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/x2njhynn"
                             onClick={[Function]}
                             target="_blank"
                           >
                             Referat fra samtale på telefon
                           </a>
                           <a
-                            className="lenke typo-element c26"
+                            className="c26 lenke typo-element"
                             download={true}
                             href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/x2njhynn"
                             title="Last ned"
@@ -1352,14 +1352,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <li>
                           <a
                             className="lenke typo-element"
-                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/lidtmy7n/428dwf43"
+                            href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/lidtmy7n/428dwf43"
                             onClick={[Function]}
                             target="_blank"
                           >
                             Spørsmål via nav.no
                           </a>
                           <a
-                            className="lenke typo-element c26"
+                            className="c26 lenke typo-element"
                             download={true}
                             href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/lidtmy7n/428dwf43"
                             title="Last ned"
@@ -1438,14 +1438,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/fg1w15sz/nvqxc1ip"
+                          href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/fg1w15sz/nvqxc1ip"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Spørsmål via nav.no
                         </a>
                         <a
-                          className="lenke typo-element c26"
+                          className="c26 lenke typo-element"
                           download={true}
                           href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/fg1w15sz/nvqxc1ip"
                           title="Last ned"
@@ -1518,14 +1518,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/o5z5pcse/me3wv1le"
+                          href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/o5z5pcse/me3wv1le"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Automatisk vedtak/nyfødt barn
                         </a>
                         <a
-                          className="lenke typo-element c26"
+                          className="c26 lenke typo-element"
                           download={true}
                           href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/o5z5pcse/me3wv1le"
                           title="Last ned"
@@ -1653,14 +1653,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         <li>
                           <a
                             className="lenke typo-element"
-                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/h6p0iy3l/k51y90us"
+                            href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/h6p0iy3l/k51y90us"
                             onClick={[Function]}
                             target="_blank"
                           >
                             A-inntekt
                           </a>
                           <a
-                            className="lenke typo-element c26"
+                            className="c26 lenke typo-element"
                             download={true}
                             href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/h6p0iy3l/k51y90us"
                             title="Last ned"
@@ -1813,14 +1813,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/fhtkfp66/bjol9s20"
+                          href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/fhtkfp66/bjol9s20"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Vurdering feilutbetaling/revurdering
                         </a>
                         <a
-                          className="lenke typo-element c26"
+                          className="c26 lenke typo-element"
                           download={true}
                           href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/fhtkfp66/bjol9s20"
                           title="Last ned"
@@ -1893,14 +1893,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/s9765sz0/113wxk3r"
+                          href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/s9765sz0/113wxk3r"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Spørsmål via nav.no
                         </a>
                         <a
-                          className="lenke typo-element c26"
+                          className="c26 lenke typo-element"
                           download={true}
                           href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/s9765sz0/113wxk3r"
                           title="Last ned"
@@ -1973,14 +1973,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/aamyoz7n/mt1cssx0"
+                          href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/aamyoz7n/mt1cssx0"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Innhenting av opplysninger
                         </a>
                         <a
-                          className="lenke typo-element c26"
+                          className="c26 lenke typo-element"
                           download={true}
                           href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/aamyoz7n/mt1cssx0"
                           title="Last ned"
@@ -2118,14 +2118,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/cmlub095/nnp1em30"
+                          href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/cmlub095/nnp1em30"
                           onClick={[Function]}
                           target="_blank"
                         >
                           Referat fra samtale på telefon
                         </a>
                         <a
-                          className="lenke typo-element c26"
+                          className="c26 lenke typo-element"
                           download={true}
                           href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/cmlub095/nnp1em30"
                           title="Last ned"
@@ -2198,14 +2198,14 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       >
                         <a
                           className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/ai9t2h2n/gplzp0ho"
+                          href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/ai9t2h2n/gplzp0ho"
                           onClick={[Function]}
                           target="_blank"
                         >
                           A-inntekt
                         </a>
                         <a
-                          className="lenke typo-element c26"
+                          className="c26 lenke typo-element"
                           download={true}
                           href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/ai9t2h2n/gplzp0ho"
                           title="Last ned"

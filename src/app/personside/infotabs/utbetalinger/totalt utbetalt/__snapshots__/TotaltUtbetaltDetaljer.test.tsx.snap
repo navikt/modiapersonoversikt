@@ -67,6 +67,10 @@ Array [
   }
 }
 
+@media print {
+
+}
+
 <div
     className="c0"
   >
