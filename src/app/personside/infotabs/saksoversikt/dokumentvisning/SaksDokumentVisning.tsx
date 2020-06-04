@@ -5,12 +5,13 @@ import { erIE11 } from '../../../../../utils/erNyPersonoversikt';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
-import { mockSaksdokument, mockSaksdokumentUrl } from '../../../../../mock/saksoversikt/dokument-mock';
 import styled from 'styled-components';
+import { getMockableUrl } from './mockable-dokument-url';
 
 interface Props {
     url: string;
 }
+
 const ErrorStyle = styled.div`
     display: flex;
     justify-content: center;
@@ -34,8 +35,7 @@ function DokumentVisning(props: Props) {
     if (erIE11()) {
         return <AlertStripeInfo>Kan ikke vise dokumenter i Internet Explorer. Prøv chrome</AlertStripeInfo>;
     }
-
-    const url = props.url === mockSaksdokumentUrl ? mockSaksdokument() : props.url;
+    const url = getMockableUrl(props.url);
 
     return (
         <ObjectHttpFeilHandtering type="application/pdf" url={url} width="100%" height="100%" onError={onError}>

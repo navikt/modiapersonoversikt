@@ -3,8 +3,6 @@ import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 import Pleiepengerperiode from './Pleiepengerperiode';
 import Oversikt from './Oversikt';
 import { datoStigende } from '../../../../../utils/dateUtils';
-import VisuallyHiddenAutoFokusHeader from '../../../../../components/VisuallyHiddenAutoFokusHeader';
-import { erModiabrukerdialog } from '../../../../../utils/erNyPersonoversikt';
 import { useOnMount } from '../../../../../utils/customHooks';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import styled from 'styled-components';
@@ -33,7 +31,6 @@ function Pleiepenger(props: Props) {
             <h2 className="sr-only" id={titleId.current}>
                 Pleiepengerrettighet
             </h2>
-            {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Pleiepengerettighet" />}
             <Oversikt pleiepenger={props.pleiepenger} />
             <ol>
                 {sortertePerioder.map((periode, index) => (

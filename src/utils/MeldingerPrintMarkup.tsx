@@ -87,7 +87,8 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
         </StyledEnkeltMelding>
     );
 }
-export function MeldingerPrintMarkup(props: Props) {
+
+function MeldingerPrintMarkup(props: Props) {
     const melding = eldsteMelding(props.valgtTraad);
 
     const ferdigstiltUtenSvar = melding.erFerdigstiltUtenSvar && (

@@ -40,15 +40,6 @@ export function useClickOutside<T extends HTMLElement>(ref: RefObject<T>, callba
     }, [handler]);
 }
 
-export function useFocusOutside<T extends HTMLElement>(ref: RefObject<T>, callback: EventListener) {
-    const handler: EventListener = useCallback(runIfEventIsNotInsideRef(ref, callback), [ref, callback]);
-
-    useEffect(() => {
-        document.addEventListener('focusin', handler);
-        return () => document.removeEventListener('focusin', handler);
-    }, [handler]);
-}
-
 export function usePrevious<T>(value: T) {
     const ref = useRef<T>();
     useEffect(() => {

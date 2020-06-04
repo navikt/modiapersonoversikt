@@ -2,8 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Element } from 'nav-frontend-typografi';
 import { UnifiedVarsel } from '../../../../models/varsel';
-import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
-import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
 import theme from '../../../../styles/personOversiktTheme';
 import Varsel from './Varsel';
 
@@ -41,7 +39,6 @@ const ListStyle = styled.ol`
 function Varsler(props: Props) {
     return (
         <>
-            {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Varsler" />}
             <HeaderStyle>
                 <Element>Dato</Element>
                 <Element>Type</Element>

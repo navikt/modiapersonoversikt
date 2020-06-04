@@ -534,7 +534,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
           className="ekspanderbartPanel__innhold"
         >
           <div
-            className="typo-normal c9"
+            className="c9 typo-normal"
           >
             <table
               role="table"
@@ -793,7 +793,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                     Vedtak
                   </h2>
                   <div
-                    className="typo-normal c9"
+                    className="c9 typo-normal"
                   >
                     <table
                       role="table"

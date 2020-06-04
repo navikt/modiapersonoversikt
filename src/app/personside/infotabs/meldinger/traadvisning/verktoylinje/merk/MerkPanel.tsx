@@ -32,8 +32,7 @@ import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
 import { useAppState } from '../../../../../../../utils/customHooks';
 import { hasData, isPending } from '@nutgaard/use-async';
-import { FetchResult } from '@nutgaard/use-fetch';
-import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
+import useFetch, { FetchResult } from '@nutgaard/use-fetch';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
 import { useFocusOnFirstInputOnMount } from '../../../../../../../utils/hooks/useFocusOnFirstInputOnMount';
@@ -138,11 +137,7 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
-    const saksbehandlerKanSletteFetch: FetchResult<Boolean> = useFetchWithLog<Boolean>(
-        MERK_SLETT_URL,
-        'MerkPanel-KanSletteMelding',
-        includeCredentials
-    );
+    const saksbehandlerKanSletteFetch: FetchResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, includeCredentials);
     const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
 
     const reloadMeldinger = tråderResource.actions.reload;

@@ -12,12 +12,13 @@ import {
     Gradering
 } from '../../models/ytelse/sykepenger';
 import { getPeriode } from '../person/periodeMock';
-import { backendDatoformat, fyllRandomListe } from '../utils/mock-utils';
+import { fyllRandomListe } from '../utils/mock-utils';
 import { getKommendeUtbetaling, getUtbetalingPåVent } from './ytelse-utbetalinger-mock';
 import { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
 import { aremark } from '../person/aremark';
 import { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
 import { statiskSykepengerMock } from './statiskSykepengerMock';
+import { backendDatoformat } from '../../utils/dateUtils';
 
 export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResponse {
     faker.seed(Number(fødselsnummer));

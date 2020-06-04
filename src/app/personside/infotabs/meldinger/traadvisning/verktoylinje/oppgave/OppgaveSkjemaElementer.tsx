@@ -10,17 +10,15 @@ import {
 import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
 import AutoComplete from './AutoComplete';
 import { hasData, isPending } from '@nutgaard/use-async';
-import { FetchResult } from '@nutgaard/use-fetch';
+import useFetch, { FetchResult } from '@nutgaard/use-fetch';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 import { usePrevious } from '../../../../../../../utils/customHooks';
-import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 import useForeslatteEnheter from './useForeslåtteEnheter';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 
 export function OppgaveSkjemaElementer(props: OppgaveProps & { form: OppgaveSkjemaProps }) {
-    const enhetliste: FetchResult<Array<Enhet>> = useFetchWithLog<Array<Enhet>>(
+    const enhetliste: FetchResult<Array<Enhet>> = useFetch<Array<Enhet>>(
         `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
-        'LagOppgave-Enheter',
         includeCredentials
     );
     const foreslatteEnheter = useForeslatteEnheter(props.form.state);

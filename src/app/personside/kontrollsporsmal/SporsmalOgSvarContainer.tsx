@@ -22,7 +22,7 @@ interface DispatchProps {
     setSpørsmål: (spørsmål: Spørsmål[]) => void;
 }
 
-export type Props = StateProps & DispatchProps;
+type Props = StateProps & DispatchProps;
 
 class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
     componentDidMount() {

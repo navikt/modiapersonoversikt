@@ -486,8 +486,8 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c4"
         />
         <a
-          className="lenke c5"
-          href="/modiapersonoversikt/person/10108000398/oppfølging/"
+          className="c5 lenke"
+          href="/person/10108000398/oppfølging/"
           onClick={[Function]}
         >
           <p
@@ -556,8 +556,8 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c4"
         />
         <a
-          className="lenke c5"
-          href="/modiapersonoversikt/person/10108000398/utbetaling/"
+          className="c5 lenke"
+          href="/person/10108000398/utbetaling/"
           onClick={[Function]}
         >
           <p
@@ -695,8 +695,8 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c4"
         />
         <a
-          className="lenke c5"
-          href="/modiapersonoversikt/person/10108000398/saker/"
+          className="c5 lenke"
+          href="/person/10108000398/saker/"
           onClick={[Function]}
         >
           <p
@@ -872,8 +872,8 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c4"
         />
         <a
-          className="lenke c5"
-          href="/modiapersonoversikt/person/10108000398/meldinger/"
+          className="c5 lenke"
+          href="/person/10108000398/meldinger/"
           onClick={[Function]}
         >
           <p
@@ -893,7 +893,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
         >
           <li>
             <div
-              className="test-meldinger-oversikt c8"
+              className="c8 test-meldinger-oversikt"
               onClick={[Function]}
             >
               <div>
@@ -936,7 +936,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     className="c19"
                   >
                     <div
-                      className="order-first c20"
+                      className="c20 order-first"
                     >
                       <p
                         className="typo-element order-second"
@@ -950,7 +950,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </p>
                     </div>
                     <div
-                      className="order-third c21"
+                      className="c21 order-third"
                     >
                       <div
                         className="etikett etikett--fokus"
@@ -972,7 +972,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </div>
                     </div>
                     <p
-                      className="typo-normal order-second c22"
+                      className="typo-normal c22 order-second"
                     >
                       Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                     </p>
@@ -1012,8 +1012,8 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c4"
         />
         <a
-          className="lenke c5"
-          href="/modiapersonoversikt/person/10108000398/ytelser/"
+          className="c5 lenke"
+          href="/person/10108000398/ytelser/"
           onClick={[Function]}
         >
           <p
@@ -1031,7 +1031,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c23"
         >
           <div
-            className="test-ytelse-oversikt c8"
+            className="c8 test-ytelse-oversikt"
             onClick={[Function]}
           >
             <div>
@@ -1065,7 +1065,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             </button>
           </div>
           <div
-            className="test-ytelse-oversikt c8"
+            className="c8 test-ytelse-oversikt"
             onClick={[Function]}
           >
             <div>
@@ -1113,8 +1113,8 @@ exports[`Viser oversikt med alt innhold 1`] = `
           className="c4"
         />
         <a
-          className="lenke c5"
-          href="/modiapersonoversikt/person/10108000398/varsler/"
+          className="c5 lenke"
+          href="/person/10108000398/varsler/"
           onClick={[Function]}
         >
           <p

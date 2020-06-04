@@ -6,7 +6,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import useUrlNyPersonforvalter from './useUrlNyPersonforvalter';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 
-export const NyBrukerprofilStyling = styled.div`
+const NyBrukerprofilStyling = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;

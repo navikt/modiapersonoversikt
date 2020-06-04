@@ -19,14 +19,12 @@
         "start": "craco start",
         "build": "craco build",
         "test": "craco test",
-        "test-bail": "craco test --watchAll=false --bail",
-        "eject": "react-scripts eject",
-        "build-library": "tsc -p ./tsconfig.library.json"
+        "test-bail": "craco test --watchAll=false --bail"
     },
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged",
-            "pre-push": "npm run test-bail && npm run build-library"
+            "pre-push": "npm run test-bail"
         }
     },
     "lint-staged": {
@@ -47,7 +45,6 @@
         "downshift": "^5.0.5",
         "faker": "^4.1.0",
         "fetch-mock": "^6.5.0",
-        "fnr-generator": "^2.1.4",
         "history": "^4.7.2",
         "js-cookie": "^2.2.0",
         "lodash.debounce": "^4.0.8",
@@ -103,11 +100,11 @@
         "react-redux": "^7.1.0",
         "react-router": "^5.1.2",
         "react-router-dom": "^5.1.2",
-        "react-scripts": "^3.3.0",
+        "react-scripts": "^3.4.0",
         "redux": "^4.0.1",
         "redux-devtools-extension": "^2.13.7",
         "redux-thunk": "^2.3.0",
-        "styled-components": "^4.2.0",
+        "styled-components": "^5.1.1",
         "yet-another-fetch-mock": "^3.2.0"
     },
     "devDependencies": {
@@ -133,18 +130,18 @@
         "@types/react-router": "5.1.2",
         "@types/react-router-dom": "^5.1.0",
         "@types/react-test-renderer": "^16.8.2",
-        "@types/styled-components": "4.1.10",
+        "@types/styled-components": "5.1.0",
         "enzyme": "^3.10.0",
         "enzyme-adapter-react-16": "^1.14.0",
         "eslint-config-prettier": "^4.3.0",
         "husky": "^2.2.0",
         "jest-enzyme": "^7.0.2",
         "jest-fetch-mock": "^2.1.2",
-        "jest-styled-components": "^6.3.1",
+        "jest-styled-components": "^7.0.2",
         "lint-staged": "^8.1.5",
         "prettier": "^1.19.1",
         "react-test-renderer": "^16.8.6",
-        "typescript": "^3.7.3",
+        "typescript": "^3.8.0",
         "@testing-library/react-hooks": "^2.0.1"
     },
     "browserslist": {
