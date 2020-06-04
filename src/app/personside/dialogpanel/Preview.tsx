@@ -31,10 +31,8 @@ function Preview(props: Props) {
 
     const opprettetDato = sendtMelding.melding ? (
         <EtikettGrå>{formatterDatoTid(sendtMelding.melding.opprettetDato)}</EtikettGrå>
-    ) : props.meldingstatus && props.meldingstatus === SendNyMeldingStatus.ERROR ? (
-        <div />
     ) : (
-        <NavFrontendSpinner type="XXS" />
+        props.meldingstatus && props.meldingstatus !== SendNyMeldingStatus.ERROR && <NavFrontendSpinner type="XXS" />
     );
 
     return (

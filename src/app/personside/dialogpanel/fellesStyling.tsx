@@ -71,7 +71,7 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
 }
 
 function VarselTilBrukerOmStatus(props: { meldingstatus?: SendNyMeldingStatus; tittle: string }) {
-    if (props.meldingstatus && props.meldingstatus == SendNyMeldingStatus.ERROR) return <DialogpanelFeilmelding />;
+    if (props.meldingstatus && props.meldingstatus === SendNyMeldingStatus.ERROR) return <DialogpanelFeilmelding />;
     else return <AlertStripeSuksess>{props.tittle}</AlertStripeSuksess>;
 }
 
@@ -100,13 +100,11 @@ export function DialogpanelKvittering(props: {
                         meldingstatus={props.meldingstatus}
                     />
                 </ErrorBoundary>
-                <ErrorBoundary boundaryName="Sendt melding verktøylinje">
-                    {props.meldingstatus && props.meldingstatus === SendNyMeldingStatus.ERROR ? (
-                        <div />
-                    ) : (
+                {props.meldingstatus && props.meldingstatus !== SendNyMeldingStatus.ERROR && (
+                    <ErrorBoundary boundaryName="Sendt melding verktøylinje">
                         <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
-                    )}
-                </ErrorBoundary>
+                    </ErrorBoundary>
+                )}
                 <KnappBase type="standard" onClick={props.lukk}>
                     Start ny dialog
                 </KnappBase>
