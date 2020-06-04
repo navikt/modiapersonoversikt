@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Element } from 'nav-frontend-typografi';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { paths } from '../../../../routes/routing';
@@ -43,6 +43,7 @@ function getUrlSaksdokumentEgetVindu(fødselsnummer: string, journalpostId: stri
 }
 
 function DokumentLenke(props: Props) {
+    const pathname = useLocation().pathname;
     const fødselsnummer = useFødselsnummer();
     const dyplenker = useInfotabsDyplenker();
 
@@ -50,7 +51,7 @@ function DokumentLenke(props: Props) {
         return <Element>{dokumentTekst(props.dokument)}</Element>;
     }
 
-    const apneDokumentINyttVindu = !erSakerFullscreen();
+    const apneDokumentINyttVindu = !erSakerFullscreen(pathname);
     const journalpostId = props.journalPost.journalpostId;
     const dokumentReferanse = props.dokument.dokumentreferanse;
     const url = apneDokumentINyttVindu

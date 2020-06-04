@@ -9,7 +9,7 @@ import { useFocusOnMount, useFødselsnummer } from '../../../../../utils/customH
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import { SaksoversiktValg } from '../utils/useSaksoversiktValg';
 import { useInfotabsDyplenker } from '../../dyplenker';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { TilbakePil } from '../../../../../components/common-styled-components';
 import DokumentVisning from './SaksDokumentVisning';
@@ -51,7 +51,8 @@ const HeaderStyle = styled.div`
 
 function DokumentOgVedlegg(props: SaksoversiktValg) {
     const ref = React.createRef<HTMLDivElement>();
-    const fullscreen = erSakerFullscreen();
+    const location = useLocation();
+    const fullscreen = erSakerFullscreen(location.pathname);
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
     const fødselsnummer = useFødselsnummer();

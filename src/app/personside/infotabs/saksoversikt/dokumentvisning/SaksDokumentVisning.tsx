@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router';
 import { useOnMount } from '../../../../../utils/customHooks';
 import { default as React, useEffect, useState } from 'react';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
@@ -19,12 +20,13 @@ const ErrorStyle = styled.div`
 `;
 
 function DokumentVisning(props: Props) {
+    const pathname = useLocation().pathname;
     const [errMsg, setErrMsg] = useState('');
     const onError = (statusKode: number) => setErrMsg(feilmelding(statusKode));
 
     useEffect(() => {
-        loggEvent('VisSaksdokument', 'Saker', { standalone: erSakerFullscreen() });
-    }, [props.url]);
+        loggEvent('VisSaksdokument', 'Saker', { standalone: erSakerFullscreen(pathname) });
+    }, [props.url, pathname]);
 
     useOnMount(() => {
         if (erIE11()) {
