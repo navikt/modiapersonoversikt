@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - fix/OPP-1174-cleanup
 env:
   CI: true
   TZ: Europe/Oslo
