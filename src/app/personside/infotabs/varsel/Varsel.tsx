@@ -20,9 +20,10 @@ import { toggleVisVarsel } from '../../../../redux/varsler/varslerReducer';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
+import Panel from 'nav-frontend-paneler';
 
-const Style = styled.li`
-    ${theme.hvittPanel};
+const StyledPanel = styled(Panel)`
+    padding: 0rem;
 `;
 
 const HeaderStyle = styled.div`
@@ -82,19 +83,21 @@ function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
     const tittelId = useRef(guid());
     const aktiv = varsel.aktiv ? '' : '(Inaktiv)';
     return (
-        <Style>
-            <article aria-labelledby={tittelId.current}>
-                <HeaderStyle>
-                    <Normaltekst>{formaterDato(varsel.sistOppdatert)}</Normaltekst>
-                    <Element id={tittelId.current} tag="h4">
-                        {varsel.tekst}
-                    </Element>
-                    <Kommaliste aria-label="Kommunikasjonskanaler">
-                        <Normaltekst tag="li">NOTIFIKASJON {aktiv}</Normaltekst>
-                    </Kommaliste>
-                </HeaderStyle>
-            </article>
-        </Style>
+        <li>
+            <StyledPanel>
+                <article aria-labelledby={tittelId.current}>
+                    <HeaderStyle>
+                        <Normaltekst>{formaterDato(varsel.sistOppdatert)}</Normaltekst>
+                        <Element id={tittelId.current} tag="h4">
+                            {varsel.tekst}
+                        </Element>
+                        <Kommaliste aria-label="Kommunikasjonskanaler">
+                            <Normaltekst tag="li">NOTIFIKASJON {aktiv}</Normaltekst>
+                        </Kommaliste>
+                    </HeaderStyle>
+                </article>
+            </StyledPanel>
+        </li>
     );
 }
 
@@ -120,27 +123,29 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
 
     const varselTekst = getVarselTekst(varsel);
     return (
-        <Style>
-            <article aria-labelledby={tittelId.current}>
-                <HeaderStyle onClick={toggleOpen}>
-                    <Normaltekst>{formaterDato(varsel.mottattTidspunkt)}</Normaltekst>
-                    <Element id={tittelId.current} tag="h4">
-                        {varselTekst}
-                    </Element>
-                    {kommunikasjonskanaler}
+        <li>
+            <StyledPanel>
+                <article aria-labelledby={tittelId.current}>
+                    <HeaderStyle onClick={toggleOpen}>
+                        <Normaltekst>{formaterDato(varsel.mottattTidspunkt)}</Normaltekst>
+                        <Element id={tittelId.current} tag="h4">
+                            {varselTekst}
+                        </Element>
+                        {kommunikasjonskanaler}
 
-                    <VisMerChevron
-                        focusOnRelativeParent={true}
-                        onClick={toggleOpen}
-                        open={open}
-                        title={(open ? 'Skul' : 'Vis') + ' meldinger'}
-                    />
-                </HeaderStyle>
-                <UnmountClosed isOpened={open}>
-                    <VarselMeldinger sortertMeldingsliste={sortertMeldingsliste} />
-                </UnmountClosed>
-            </article>
-        </Style>
+                        <VisMerChevron
+                            focusOnRelativeParent={true}
+                            onClick={toggleOpen}
+                            open={open}
+                            title={(open ? 'Skul' : 'Vis') + ' meldinger'}
+                        />
+                    </HeaderStyle>
+                    <UnmountClosed isOpened={open}>
+                        <VarselMeldinger sortertMeldingsliste={sortertMeldingsliste} />
+                    </UnmountClosed>
+                </article>
+            </StyledPanel>
+        </li>
     );
 }
 
