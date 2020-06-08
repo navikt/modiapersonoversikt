@@ -36,7 +36,7 @@ export function getSikkerhetstiltak() {
     if (vektetSjanse(faker, 0.05)) {
         return toAnsatte;
     }
-    if (vektetSjanse(faker, 1.0)) {
+    if (vektetSjanse(faker, 0.05)) {
         return egenAnsatt;
     }
     return undefined;
