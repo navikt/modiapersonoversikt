@@ -405,9 +405,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c5 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   padding: 0.9375rem;
 }
 
@@ -607,190 +604,192 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
     <section
       className="c4"
     >
-      <nav
-        aria-label="Filtrering utbetalinger"
-        className="c5"
-        onClick={[Function]}
-      >
-        <h2
-          className="typo-undertittel"
-        >
-          Filtrering
-        </h2>
+      <nav>
         <div
-          className="c6"
+          aria-label="Filtrering utbetalinger"
+          className="panel c5"
+          onClick={[Function]}
         >
-          <form
-            className="c7"
+          <h2
+            className="typo-undertittel"
           >
-            <fieldset
-              className="c8"
+            Filtrering
+          </h2>
+          <div
+            className="c6"
+          >
+            <form
+              className="c7"
             >
-              <legend
+              <fieldset
+                className="c8"
+              >
+                <legend
+                  className="typo-element"
+                >
+                  Velg periode
+                </legend>
+                <div
+                  className="c9"
+                >
+                  <div
+                    className="skjemaelement"
+                  >
+                    <input
+                      aria-invalid={false}
+                      checked={true}
+                      className="skjemaelement__input radioknapp"
+                      id="Helt tilfeldig ID"
+                      name="FiltreringsvalgGruppe"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    <label
+                      className="skjemaelement__label"
+                      htmlFor="Helt tilfeldig ID"
+                    >
+                      Siste 30 dager
+                    </label>
+                  </div>
+                </div>
+                <div
+                  className="c9"
+                >
+                  <div
+                    className="skjemaelement"
+                  >
+                    <input
+                      aria-invalid={false}
+                      checked={false}
+                      className="skjemaelement__input radioknapp"
+                      id="Helt tilfeldig ID"
+                      name="FiltreringsvalgGruppe"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    <label
+                      className="skjemaelement__label"
+                      htmlFor="Helt tilfeldig ID"
+                    >
+                      Inneværende år
+                    </label>
+                  </div>
+                </div>
+                <div
+                  className="c9"
+                >
+                  <div
+                    className="skjemaelement"
+                  >
+                    <input
+                      aria-invalid={false}
+                      checked={false}
+                      className="skjemaelement__input radioknapp"
+                      id="Helt tilfeldig ID"
+                      name="FiltreringsvalgGruppe"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    <label
+                      className="skjemaelement__label"
+                      htmlFor="Helt tilfeldig ID"
+                    >
+                      I fjor
+                    </label>
+                  </div>
+                </div>
+                <div
+                  className="c9"
+                >
+                  <div
+                    className="skjemaelement"
+                  >
+                    <input
+                      aria-invalid={false}
+                      checked={false}
+                      className="skjemaelement__input radioknapp"
+                      id="Helt tilfeldig ID"
+                      name="FiltreringsvalgGruppe"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    <label
+                      className="skjemaelement__label"
+                      htmlFor="Helt tilfeldig ID"
+                    >
+                      Egendefinert
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+              <div
+                className="c10"
+              >
+                <button
+                  className="knapp knapp--standard"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Hent utbetalinger
+                </button>
+              </div>
+            </form>
+            <form
+              className="c7"
+            >
+              <p
                 className="typo-element"
               >
-                Velg periode
-              </legend>
+                Utbetaling til
+              </p>
               <div
-                className="c9"
+                className="skjemaelement"
               >
-                <div
-                  className="skjemaelement"
+                <input
+                  aria-invalid={false}
+                  checked={true}
+                  className="skjemaelement__input checkboks"
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Helt tilfeldig ID"
                 >
-                  <input
-                    aria-invalid={false}
-                    checked={true}
-                    className="skjemaelement__input radioknapp"
-                    id="Helt tilfeldig ID"
-                    name="FiltreringsvalgGruppe"
-                    onChange={[Function]}
-                    type="radio"
-                  />
-                  <label
-                    className="skjemaelement__label"
-                    htmlFor="Helt tilfeldig ID"
-                  >
-                    Siste 30 dager
-                  </label>
-                </div>
+                  Bruker
+                </label>
               </div>
+            </form>
+            <form
+              className="c7"
+            >
+              <p
+                className="typo-element"
+              >
+                Velg ytelse
+              </p>
               <div
-                className="c9"
+                className="skjemaelement"
               >
-                <div
-                  className="skjemaelement"
+                <input
+                  aria-invalid={false}
+                  checked={true}
+                  className="skjemaelement__input checkboks"
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Helt tilfeldig ID"
                 >
-                  <input
-                    aria-invalid={false}
-                    checked={false}
-                    className="skjemaelement__input radioknapp"
-                    id="Helt tilfeldig ID"
-                    name="FiltreringsvalgGruppe"
-                    onChange={[Function]}
-                    type="radio"
-                  />
-                  <label
-                    className="skjemaelement__label"
-                    htmlFor="Helt tilfeldig ID"
-                  >
-                    Inneværende år
-                  </label>
-                </div>
+                  Sykepenger
+                </label>
               </div>
-              <div
-                className="c9"
-              >
-                <div
-                  className="skjemaelement"
-                >
-                  <input
-                    aria-invalid={false}
-                    checked={false}
-                    className="skjemaelement__input radioknapp"
-                    id="Helt tilfeldig ID"
-                    name="FiltreringsvalgGruppe"
-                    onChange={[Function]}
-                    type="radio"
-                  />
-                  <label
-                    className="skjemaelement__label"
-                    htmlFor="Helt tilfeldig ID"
-                  >
-                    I fjor
-                  </label>
-                </div>
-              </div>
-              <div
-                className="c9"
-              >
-                <div
-                  className="skjemaelement"
-                >
-                  <input
-                    aria-invalid={false}
-                    checked={false}
-                    className="skjemaelement__input radioknapp"
-                    id="Helt tilfeldig ID"
-                    name="FiltreringsvalgGruppe"
-                    onChange={[Function]}
-                    type="radio"
-                  />
-                  <label
-                    className="skjemaelement__label"
-                    htmlFor="Helt tilfeldig ID"
-                  >
-                    Egendefinert
-                  </label>
-                </div>
-              </div>
-            </fieldset>
-            <div
-              className="c10"
-            >
-              <button
-                className="knapp knapp--standard"
-                disabled={false}
-                onClick={[Function]}
-                type="button"
-              >
-                Hent utbetalinger
-              </button>
-            </div>
-          </form>
-          <form
-            className="c7"
-          >
-            <p
-              className="typo-element"
-            >
-              Utbetaling til
-            </p>
-            <div
-              className="skjemaelement"
-            >
-              <input
-                aria-invalid={false}
-                checked={true}
-                className="skjemaelement__input checkboks"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                type="checkbox"
-              />
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Bruker
-              </label>
-            </div>
-          </form>
-          <form
-            className="c7"
-          >
-            <p
-              className="typo-element"
-            >
-              Velg ytelse
-            </p>
-            <div
-              className="skjemaelement"
-            >
-              <input
-                aria-invalid={false}
-                checked={true}
-                className="skjemaelement__input checkboks"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                type="checkbox"
-              />
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Sykepenger
-              </label>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </nav>
     </section>
