@@ -8,16 +8,16 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { smilies } from './TilbakemeldingIkoner';
 import { useFocusOnMount } from '../../../utils/customHooks';
 import { LenkeKnapp } from '../../common-styled-components';
+import Panel from 'nav-frontend-paneler';
 
-const TilbakemeldingPopupContainer = styled.div`
-    ${theme.hvittPanel}
+const TilbakemeldingPopupContainer = styled(Panel)`
     width: ${pxToRem(350)};
     position: fixed;
     right: ${pxToRem(25)};
     bottom: ${pxToRem(100)};
     z-index: 998;
     padding: ${pxToRem(20)};
-    
+
     &:focus {
         ${theme.focus}
     }
