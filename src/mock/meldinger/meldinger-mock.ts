@@ -9,7 +9,7 @@ import {
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import moment from 'moment';
-import { backendDatoTidformat, fyllRandomListe } from '../utils/mock-utils';
+import { fyllRandomListe } from '../utils/mock-utils';
 import {
     erMeldingstypeSamtalereferat,
     erVarselMelding,
@@ -19,6 +19,7 @@ import {
 import { Temagruppe, TemaPlukkbare } from '../../models/Temagrupper';
 import standardTeksterMock from '../standardTeksterMock';
 import { autofullfor, AutofullforMap } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
+import { backendDatoTidformat } from '../../utils/dateUtils';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)
 export const MOCKED_TRAADID_1 = '123';
@@ -49,7 +50,7 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
     });
 }
 
-export function getMockTraad(): Traad {
+function getMockTraad(): Traad {
     const temagruppe = navfaker.random.arrayElement([...TemaPlukkbare, null, Temagruppe.InnholdSlettet]);
     const meldinger = Array(navfaker.random.integer(4, 1))
         .fill(null)

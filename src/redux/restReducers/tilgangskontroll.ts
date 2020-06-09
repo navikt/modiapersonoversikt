@@ -19,7 +19,7 @@ export enum IkkeTilgangArsak {
     Ukjent = 'UNKNOWN'
 }
 
-export function getTilgangskontrollUrl(state: AppState): string {
+function getTilgangskontrollUrl(state: AppState): string {
     const fnr = state.gjeldendeBruker.fødselsnummer;
     if (fnr) {
         return `/modiapersonoversikt-api/rest/tilgang/${fnr}`;

@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 set -e
- _shutdown_() {
+
+_shutdown_() {
   # https://github.com/kubernetes/contrib/issues/1140
   # https://github.com/kubernetes/kubernetes/issues/43576
   # https://github.com/kubernetes/kubernetes/issues/64510
@@ -11,6 +12,14 @@ set -e
   wait "$pid"
 }
 trap _shutdown_ SIGTERM
- nginx -g "daemon off;" &
+
+envsubst '$PORT' < /etc/nginx/conf.d/server.template > /etc/nginx/conf.d/default.conf
+echo "---------------------------"
+echo "---------------------------"
+cat /etc/nginx/conf.d/default.conf
+echo "---------------------------"
+
+nginx -g "daemon off;" &
 pid=$!
 wait "$pid"
+

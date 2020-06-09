@@ -142,8 +142,8 @@ exports[`viser info om bruker i visittkort-header 1`] = `
 
 .c11 {
   display: inline-block;
-  -webkit-animation: hcoNTW 0.3s 1s 6 alternate;
-  animation: hcoNTW 0.3s 1s 6 alternate;
+  -webkit-animation: cKnfBw 0.3s 1s 6 alternate;
+  animation: cKnfBw 0.3s 1s 6 alternate;
 }
 
 .c11:focus {

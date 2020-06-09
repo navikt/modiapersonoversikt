@@ -1,10 +1,10 @@
 import { Action } from 'redux';
 
-export interface VisittkortAction extends Action {
+interface VisittkortAction extends Action {
     erApen?: boolean;
 }
 
-export interface DialogpanelAction extends Action {
+interface DialogpanelAction extends Action {
     erApen?: boolean;
 }
 
@@ -22,7 +22,7 @@ export interface UIState {
     };
 }
 
-export const initialUIState: UIState = {
+const initialUIState: UIState = {
     visittkort: {
         apent: false
     },

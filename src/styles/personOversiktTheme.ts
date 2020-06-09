@@ -14,7 +14,7 @@ const hover = css`
     box-shadow: inset 0 0 0 0.1rem #0067c5, 0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
 `;
 
-export const navFarger = {
+const navFarger = {
     navLysGra: '#e9e7e7',
     navGra20: '#c6c2bf',
     navGra40: '#b7b1a9',

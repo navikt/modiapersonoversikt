@@ -12,7 +12,7 @@ interface MobiltelefonVisningProps {
     kontaktinformasjon: KRRKontaktinformasjon;
 }
 
-export function MobiltelefonVisning({ kontaktinformasjon }: MobiltelefonVisningProps) {
+function MobiltelefonVisning({ kontaktinformasjon }: MobiltelefonVisningProps) {
     if ('true' === kontaktinformasjon.reservasjon) {
         return (
             <>

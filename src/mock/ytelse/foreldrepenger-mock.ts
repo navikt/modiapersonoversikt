@@ -9,12 +9,13 @@ import {
     Foreldrepengerettighet
 } from '../../models/ytelse/foreldrepenger';
 import { getPeriode } from '../person/periodeMock';
-import { backendDatoformat, fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
+import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { getKommendeUtbetaling } from './ytelse-utbetalinger-mock';
 import { KommendeUtbetaling } from '../../models/ytelse/ytelse-utbetalinger';
 import { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
 import { aremark } from '../person/aremark';
 import { statiskForeldrepengeMock } from './statiskForeldrepengeMock';
+import { backendDatoformat } from '../../utils/dateUtils';
 
 export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerResponse {
     if (fødselsnummer === aremark.fødselsnummer) {

@@ -1,6 +1,7 @@
 import { Periode } from '../../models/periode';
-import { backendDatoformat, getSistOppdatert } from '../utils/mock-utils';
+import { getSistOppdatert } from '../utils/mock-utils';
 import moment from 'moment';
+import { backendDatoformat } from '../../utils/dateUtils';
 
 export function getPeriode(): Periode {
     return {

@@ -1,14 +1,6 @@
 import styled from 'styled-components/macro';
 import theme from '../styles/personOversiktTheme';
 
-export const AlignTextRight = styled.div`
-    text-align: right;
-`;
-
-export const AlignTextCenter = styled.div`
-    text-align: center;
-`;
-
 export const SpaceBetween = styled.div`
     display: flex;
     justify-content: space-between;
@@ -18,11 +10,6 @@ export const SpaceBetween = styled.div`
 export const FlexEnd = styled.div`
     display: flex;
     justify-content: flex-end;
-`;
-
-export const FlexCenter = styled.div`
-    display: flex;
-    justify-content: center;
 `;
 
 export const Uppercase = styled.span`
@@ -47,10 +34,6 @@ export const BulletPoint = styled.div<{ showBulletPoint: boolean; color: string 
         transition: 0.3s;
         ${props => !props.showBulletPoint && 'opacity: 0'}
     }
-`;
-
-export const GråttPanel = styled.div`
-    ${theme.gråttPanel};
 `;
 
 export const LenkeKnapp = styled.button<{ underline?: boolean }>`

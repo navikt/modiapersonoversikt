@@ -8,13 +8,13 @@ import {
     PersonRespons,
     SivilstandTyper
 } from '../../../models/person/person';
-import { fødselsnummerTilDato } from 'nav-faker/dist/personidentifikator/helpers/fodselsdato-beregner';
 import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
 import { formaterDato } from '../../../utils/stringFormatting';
 import { shuffle } from '../../../utils/list-utils';
 import { Svar } from '../../../redux/kontrollSporsmal/types';
 import moment from 'moment';
 import { formatertKontonummerString } from '../../../utils/FormatertKontonummer';
+import { getFodselsdatoFraFnr } from '../../../utils/fnr-utils';
 
 export interface SpørsmålsExtractor<T> {
     spørsmål: string;
@@ -84,7 +84,7 @@ function hentFødselsdato(barn: Familierelasjon): string {
 }
 
 function utledFødselsdato(fnr: string): string {
-    return formaterDato(fødselsnummerTilDato(fnr));
+    return formaterDato(getFodselsdatoFraFnr(fnr));
 }
 
 function ettTilfeldigBarn(barn: Familierelasjon[]): Familierelasjon {

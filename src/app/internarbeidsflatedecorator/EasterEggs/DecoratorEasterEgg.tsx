@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useErKontaktsenter } from '../../../utils/enheterUtils';
 import Nisselue from './nisselue/Nisselue';
-import { mockEnabled } from '../../../api/config';
 import Partyhatt from './partyhatt/Partyhatt';
 import { easterEggs, useListenForEasterEgg } from './useListenForEasterEgg';
 import ErrorBoundary from '../../../components/ErrorBoundary';
@@ -12,7 +11,7 @@ import DelayRender from '../../../components/DelayRender';
 
 function useDefaultEasterEgg() {
     const erKontaktsenter = useErKontaktsenter();
-    if (!erKontaktsenter && !mockEnabled) {
+    if (!erKontaktsenter) {
         return '';
     }
 

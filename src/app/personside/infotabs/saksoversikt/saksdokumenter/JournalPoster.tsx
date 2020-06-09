@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useLocation } from 'react-router';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
@@ -186,6 +187,7 @@ const PrevNextButtonsStyling = styled.div`
 `;
 
 function JournalPoster(props: Props) {
+    const pathname = useLocation().pathname;
     const tittelRef = React.createRef<HTMLDivElement>();
     const avsenderFilter = useAppState(state => state.saksoversikt.avsenderFilter);
     const filtrerteJournalposter = props.valgtSakstema.dokumentMetadata
@@ -231,7 +233,7 @@ function JournalPoster(props: Props) {
     );
 
     const tittel = <Undertittel className={sakerTest.dokument}>{props.valgtSakstema.temanavn}</Undertittel>;
-    const valgtSakstemaTittel = erSakerFullscreen() ? (
+    const valgtSakstemaTittel = erSakerFullscreen(pathname) ? (
         <DropDownMenu header={tittel}>
             <SakstemaListe valgtSakstema={props.valgtSakstema} />
         </DropDownMenu>

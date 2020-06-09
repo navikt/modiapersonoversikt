@@ -18,8 +18,8 @@ exports[`viser fortsett dialog 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-animation: fYGRJE 0.3s ease-out;
-  animation: fYGRJE 0.3s ease-out;
+  -webkit-animation: kPnuJk 0.3s ease-out;
+  animation: kPnuJk 0.3s ease-out;
 }
 
 .c0 > * {

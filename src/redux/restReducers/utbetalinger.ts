@@ -13,7 +13,7 @@ export const tidligsteTilgjengeligeDatoUtbetalingerRestkonto = moment()
     .startOf('year')
     .toDate();
 
-export function getUtbetalingerFetchUri(state: AppState) {
+function getUtbetalingerFetchUri(state: AppState) {
     const fodselsnummer = state.gjeldendeBruker.fødselsnummer;
 
     const utbetalingerFilter = state.utbetalinger.filter;

@@ -1,7 +1,6 @@
 import { isDevelopment, isTest } from '../environment';
 import md5 from 'md5';
 import { detect } from 'detect-browser';
-import { erNyePersonoversikten } from '../erNyPersonoversikt';
 import { useEffect } from 'react';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 import { erKontaktsenter } from '../enheterUtils';
@@ -46,7 +45,6 @@ export function loggEvent(action: string, location: string, extraTags?: ValuePai
         tags: {
             action: action,
             location: location,
-            erNyePersonoversikten: erNyePersonoversikten(),
             erKontaktsenter: erKontaktsenter(enhet),
             ...extraTags
         }

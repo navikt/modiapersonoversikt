@@ -15,7 +15,7 @@ interface OwnProps {
 
 type Props = StateProps & OwnProps;
 
-export interface StateProps {
+interface StateProps {
     åpen: boolean;
 }
 

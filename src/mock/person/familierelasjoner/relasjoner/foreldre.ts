@@ -5,9 +5,8 @@ import navfaker from 'nav-faker';
 
 import { tilfeldigFodselsnummer } from '../../../utils/fnr-utils';
 import { getPersonstatus } from '../../personMock';
-import { lagNavn } from '../../../utils/person-utils';
+import { lagNavn, getAlderFromFødselsnummer } from '../../../utils/person-utils';
 import { Familierelasjon, Kjønn, Relasjonstype } from '../../../../models/person/person';
-import { getAlderFromFødselsnummer } from '../../../../utils/dateUtils';
 
 export function lagForeldre(barnetsAlder: Moment): Familierelasjon[] {
     let foreldre = [];

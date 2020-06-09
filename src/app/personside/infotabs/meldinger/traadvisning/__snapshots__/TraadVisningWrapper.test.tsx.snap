@@ -26,7 +26,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   align-items: flex-start;
 }
 
-.c5 {
+.c4 {
   position: relative;
   border: none;
   padding: 0;
@@ -44,7 +44,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   color: #0067c5;
 }
 
-.c5:after {
+.c4:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -52,16 +52,16 @@ exports[`Viser traad med verktøylinje 1`] = `
   width: 100%;
 }
 
-.c5:focus {
+.c4:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c5:hover {
+.c4:hover {
   opacity: 0.8;
 }
 
-.c5:hover:after {
+.c4:hover:after {
   content: '';
   border-color: #0067c5;
 }
@@ -240,7 +240,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-right: 1.5rem;
 }
 
-.c4 {
+.c5 {
   color: #3e3832;
   white-space: nowrap;
 }
@@ -1104,7 +1104,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             className="textarea--medMeta__wrapper"
           >
             <textarea
-              aria-describedby="Helt tilfeldig ID"
+              aria-describedby=""
               aria-invalid={false}
               className="skjemaelement__input textarea--medMeta"
               id="Helt tilfeldig ID"
@@ -1114,7 +1114,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                   "height": "30px",
                 }
               }
-              type="text"
               value=""
             />
           </div>
@@ -1134,7 +1133,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             Opprett oppgave
           </button>
           <button
-            className="c5"
+            className="c4"
             onClick={[Function]}
             type="button"
           >
@@ -1296,7 +1295,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           Merk
         </button>
         <button
-          className="c5"
+          className="c4"
           onClick={[Function]}
           type="button"
         >
@@ -1356,7 +1355,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       aria-label="Dialog"
     >
       <li
-        className="snakkeboble_ikoner c22"
+        className="c22 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1418,7 +1417,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       27.07.2019 00:00
                     </div>
                     <div
-                      className="typo-normal c26"
+                      className="c26 typo-normal"
                     >
                       Skrevet av Kristoffer Fredriksen (xy70r8)
                     </div>
@@ -1478,7 +1477,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c22"
+        className="c22 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1586,7 +1585,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c22"
+        className="c22 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1694,7 +1693,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="snakkeboble_ikoner c22"
+        className="c22 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1756,7 +1755,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       07.07.2019 00:00
                     </div>
                     <div
-                      className="typo-normal c26"
+                      className="c26 typo-normal"
                     >
                       Skrevet av Sander Hansen (nzxo4q)
                     </div>
