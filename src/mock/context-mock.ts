@@ -33,8 +33,9 @@ export function setupWsControlAndMock(mock: FetchMock) {
         }
     });
 
-    mock.delete('/modiacontextholder/api/context/aktivenhet', () => {
+    mock.delete('/modiacontextholder/api/context', () => {
         context.aktivBruker = null;
+        context.aktivEnhet = null;
         return {};
     });
 
@@ -42,10 +43,17 @@ export function setupWsControlAndMock(mock: FetchMock) {
         aktivEnhet: context.aktivEnhet,
         aktivBruker: null
     }));
+
+    mock.delete('/modiacontextholder/api/context/aktivbruker', () => {
+        context.aktivBruker = null;
+        return {};
+    });
+
     mock.get('/modiacontextholder/api/context/aktivbruker', () => ({
         aktivEnhet: null,
         aktivBruker: context.aktivBruker
     }));
+
     mock.get('/modiacontextholder/api/context', () => ({
         aktivEnhet: context.aktivEnhet,
         aktivBruker: context.aktivBruker
