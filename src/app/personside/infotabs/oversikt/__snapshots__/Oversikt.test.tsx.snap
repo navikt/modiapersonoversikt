@@ -2,7 +2,7 @@
 
 exports[`Viser oversikt med alt innhold 1`] = `
 .c2 {
-  padding-bottom: 0.3rem;
+  padding: 0rem 0rem 0.3rem 0rem;
 }
 
 .c3 {
