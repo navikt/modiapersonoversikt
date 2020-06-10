@@ -70,8 +70,8 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     return <StyledVerktøylinje valgtTraad={sendtMelding.traad} />;
 }
 
-function VarselTilBrukerOmStatus(props: { meldingstatus?: SendNyMeldingStatus; tittle: string }) {
-    if (props.meldingstatus && props.meldingstatus === SendNyMeldingStatus.ERROR) return <DialogpanelFeilmelding />;
+function VarselTilBrukerOmStatus(props: { meldingstatus: SendNyMeldingStatus; tittle: string }) {
+    if (props.meldingstatus === SendNyMeldingStatus.ERROR) return <DialogpanelFeilmelding />;
     else return <AlertStripeSuksess>{props.tittle}</AlertStripeSuksess>;
 }
 
