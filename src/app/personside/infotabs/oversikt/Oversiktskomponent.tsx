@@ -10,6 +10,7 @@ import { paths } from '../../../routes/routing';
 import { INFOTABS } from '../InfoTabEnum';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { guid } from 'nav-frontend-js-utils';
+import Panel from 'nav-frontend-paneler';
 
 interface Props {
     component: React.ComponentType<{ setHeaderContent: (content: ReactNode) => void }>;
@@ -18,8 +19,7 @@ interface Props {
     hurtigtast: string;
 }
 
-const PanelStyle = styled.article`
-    ${theme.hvittPanel};
+const StyledPanel = styled(Panel)`
     padding-bottom: 0.3rem;
 `;
 
@@ -73,20 +73,22 @@ function Oversiktskomponent(props: Props) {
 
     return (
         <ErrorBoundary boundaryName={'Oversikt ' + props.tittel}>
-            <PanelStyle aria-labelledby={headerId.current}>
-                <OverskriftStyle title={'Alt + ' + props.hurtigtast} onClick={handleClick}>
-                    <Undertittel tag="h3" id={headerId.current}>
-                        {props.tittel}
-                    </Undertittel>
-                    <CustomContent>{customContent}</CustomContent>
-                    <StyledLink className="lenke" to={path}>
-                        <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
-                    </StyledLink>
-                </OverskriftStyle>
-                <MainStyle>
-                    <Component setHeaderContent={setCustomContent} />
-                </MainStyle>
-            </PanelStyle>
+            <article>
+                <StyledPanel aria-labelledby={headerId.current}>
+                    <OverskriftStyle title={'Alt + ' + props.hurtigtast} onClick={handleClick}>
+                        <Undertittel tag="h3" id={headerId.current}>
+                            {props.tittel}
+                        </Undertittel>
+                        <CustomContent>{customContent}</CustomContent>
+                        <StyledLink className="lenke" to={path}>
+                            <Normaltekst>Gå til {props.tittel.toLowerCase()}</Normaltekst>
+                        </StyledLink>
+                    </OverskriftStyle>
+                    <MainStyle>
+                        <Component setHeaderContent={setCustomContent} />
+                    </MainStyle>
+                </StyledPanel>
+            </article>
         </ErrorBoundary>
     );
 }

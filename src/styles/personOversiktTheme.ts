@@ -62,11 +62,6 @@ export const theme = {
         box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);
         padding: ${pxToRem(20)};
     `,
-    hvittPanel: css`
-        border-radius: ${pxToRem(4)};
-        background-color: white;
-        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
-    `,
     media: {
         smallScreen: 'max-width: 35rem',
         wideScreen: 'min-width: 35rem',

@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { DetaljertOppfolging, Saksbehandler } from '../../../../models/oppfolging';
 import styled from 'styled-components/macro';
-import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
+import { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import DescriptionList from '../../../../components/DescriptionList';
 import { datoEllerNull } from '../../../../utils/stringFormatting';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
+import Panel from 'nav-frontend-paneler';
 
-const StyledArticle = styled.article`
-    ${theme.hvittPanel};
+const StyledPanel = styled(Panel)`
     padding: ${pxToRem(15)};
     > *:first-child {
         margin-bottom: 1rem;
@@ -41,10 +41,12 @@ function VisOppfolgingDetaljer(props: Props) {
     };
 
     return (
-        <StyledArticle aria-labelledby={headerId.current}>
-            <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
-            <DescriptionList entries={descriptionListProps} />
-        </StyledArticle>
+        <StyledPanel aria-labelledby={headerId.current}>
+            <article>
+                <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
+                <DescriptionList entries={descriptionListProps} />
+            </article>
+        </StyledPanel>
     );
 }
 

@@ -14,6 +14,7 @@ import PrintKnapp from '../../../../../../components/PrintKnapp';
 import MeldingerPrintMarkup from '../../../../../../utils/MeldingerPrintMarkup';
 import { guid } from 'nav-frontend-js-utils';
 import ErrorBoundary from '../../../../../../components/ErrorBoundary';
+import Panel from 'nav-frontend-paneler';
 
 interface Props {
     valgtTraad: Traad;
@@ -21,8 +22,7 @@ interface Props {
     className?: string;
 }
 
-const StyledArticle = styled.article`
-    ${theme.hvittPanel};
+const StyledPanel = styled(Panel)`
     padding: ${theme.margin.layout};
     display: flex;
     flex-direction: column;
@@ -98,39 +98,35 @@ function Verktoylinje(props: Props) {
 
     return (
         <ErrorBoundary boundaryName="Verktøylinje">
-            <StyledArticle
-                className={props.className}
-                aria-labelledby={tittelId.current}
-                aria-label="Verktøylinje"
-                ref={ref}
-                tabIndex={-1}
-            >
-                <KnapperPanelStyle>
-                    <OppgaveknapperStyle>
-                        <SvartLenkeKnapp
-                            onClick={togglePanel(VerktøyPanel.JOURNALFORING)}
-                            open={visJournalforing}
-                            tittel="Journalfør"
-                        />
-                        <SvartLenkeKnapp
-                            onClick={togglePanel(VerktøyPanel.OPPGAVE)}
-                            open={visOppgave}
-                            tittel="Oppgave"
-                        />
-                        <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
-                    </OppgaveknapperStyle>
-                    <Print {...props} />
-                </KnapperPanelStyle>
-                <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
-                    <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />
-                </UnmountClosed>
-                <UnmountClosed isOpened={visOppgave}>
-                    <OpprettOppgaveContainer valgtTraad={props.valgtTraad} lukkPanel={lukk} />
-                </UnmountClosed>
-                <UnmountClosed isOpened={visMerk}>
-                    <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={lukk} />
-                </UnmountClosed>
-            </StyledArticle>
+            <article aria-labelledby={tittelId.current} aria-label="Verktøylinje">
+                <StyledPanel className={props.className} ref={() => ref} tabIndex={-1}>
+                    <KnapperPanelStyle>
+                        <OppgaveknapperStyle>
+                            <SvartLenkeKnapp
+                                onClick={togglePanel(VerktøyPanel.JOURNALFORING)}
+                                open={visJournalforing}
+                                tittel="Journalfør"
+                            />
+                            <SvartLenkeKnapp
+                                onClick={togglePanel(VerktøyPanel.OPPGAVE)}
+                                open={visOppgave}
+                                tittel="Oppgave"
+                            />
+                            <SvartLenkeKnapp onClick={togglePanel(VerktøyPanel.MERK)} open={visMerk} tittel="Merk" />
+                        </OppgaveknapperStyle>
+                        <Print {...props} />
+                    </KnapperPanelStyle>
+                    <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
+                        <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />
+                    </UnmountClosed>
+                    <UnmountClosed isOpened={visOppgave}>
+                        <OpprettOppgaveContainer valgtTraad={props.valgtTraad} lukkPanel={lukk} />
+                    </UnmountClosed>
+                    <UnmountClosed isOpened={visMerk}>
+                        <MerkPanel valgtTraad={props.valgtTraad} lukkPanel={lukk} />
+                    </UnmountClosed>
+                </StyledPanel>
+            </article>
         </ErrorBoundary>
     );
 }

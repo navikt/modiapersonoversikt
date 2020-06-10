@@ -11,9 +11,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
 }
 
 .c2 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   padding: 0.9375rem;
 }
 
@@ -47,9 +44,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
 }
 
 .c5 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   padding: 0.9375rem;
 }
 
@@ -83,12 +77,6 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
 
 .c8 > *:not(:last-child) {
   margin-right: 2rem;
-}
-
-.c7 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
 }
 
 .c7 .ekspanderbartPanel__hode {
@@ -219,277 +207,281 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   <div
     className="c1"
   >
-    <article
+    <div
       aria-labelledby="Helt tilfeldig ID"
-      className="c2"
+      className="panel c2"
     >
-      <div
-        className="c3"
-      >
+      <article>
+        <div
+          className="c3"
+        >
+          <h2
+            className="typo-undertittel"
+            id="Helt tilfeldig ID"
+          >
+            Oppfølging og ytelser vises for perioden:
+          </h2>
+        </div>
+        <div
+          className="c4"
+        >
+          <label
+            htmlFor="oppfolging-datovelger-fra"
+          >
+            Fra:
+          </label>
+          <div
+            onBlur={[Function]}
+            onKeyDown={[Function]}
+          >
+            <div
+              className="nav-datovelger"
+            >
+              <div
+                className="nav-datovelger__inputContainer"
+              >
+                <input
+                  aria-invalid={true}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  className="nav-datovelger__input"
+                  id="oppfolging-datovelger-fra"
+                  maxLength={10}
+                  name="Fra dato"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                  type="text"
+                  value="01.11.1969"
+                />
+                <button
+                  aria-expanded={false}
+                  aria-label="Kalender"
+                  className="nav-datovelger__kalenderknapp"
+                  onClick={[Function]}
+                  role="button"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    height={16}
+                    role="presentation"
+                    viewBox="0 0 18 18"
+                    width={16}
+                  >
+                    <title>
+                      Kalenderikon
+                    </title>
+                    <g
+                      fill="none"
+                      fillRule="evenodd"
+                      stroke="#0067C5"
+                    >
+                      <path
+                        d="M4 2.667H1.333v14h15.334v-14H14"
+                      />
+                      <path
+                        d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                      />
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <label
+            htmlFor="oppfolging-datovelger-til"
+          >
+            Til:
+          </label>
+          <div
+            onBlur={[Function]}
+            onKeyDown={[Function]}
+          >
+            <div
+              className="nav-datovelger"
+            >
+              <div
+                className="nav-datovelger__inputContainer"
+              >
+                <input
+                  aria-invalid={true}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  className="nav-datovelger__input"
+                  id="oppfolging-datovelger-til"
+                  maxLength={10}
+                  name="Til dato"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                  type="text"
+                  value="01.02.1970"
+                />
+                <button
+                  aria-expanded={false}
+                  aria-label="Kalender"
+                  className="nav-datovelger__kalenderknapp"
+                  onClick={[Function]}
+                  role="button"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    height={16}
+                    role="presentation"
+                    viewBox="0 0 18 18"
+                    width={16}
+                  >
+                    <title>
+                      Kalenderikon
+                    </title>
+                    <g
+                      fill="none"
+                      fillRule="evenodd"
+                      stroke="#0067C5"
+                    >
+                      <path
+                        d="M4 2.667H1.333v14h15.334v-14H14"
+                      />
+                      <path
+                        d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                      />
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <button
+            className="knapp knapp--standard"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Søk
+          </button>
+        </div>
+      </article>
+    </div>
+    <div
+      aria-labelledby="Helt tilfeldig ID"
+      className="panel c5"
+    >
+      <article>
         <h2
           className="typo-undertittel"
           id="Helt tilfeldig ID"
         >
-          Oppfølging og ytelser vises for perioden:
+          Arbeidsoppfølging
         </h2>
-      </div>
-      <div
-        className="c4"
-      >
-        <label
-          htmlFor="oppfolging-datovelger-fra"
+        <dl
+          className="c6"
         >
-          Fra:
-        </label>
-        <div
-          onBlur={[Function]}
-          onKeyDown={[Function]}
-        >
-          <div
-            className="nav-datovelger"
-          >
-            <div
-              className="nav-datovelger__inputContainer"
+          <div>
+            <dt
+              className="typo-normal"
             >
-              <input
-                aria-invalid={true}
-                autoComplete="off"
-                autoCorrect="off"
-                className="nav-datovelger__input"
-                id="oppfolging-datovelger-fra"
-                maxLength={10}
-                name="Fra dato"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onKeyDown={[Function]}
-                pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-                type="text"
-                value="01.11.1969"
-              />
-              <button
-                aria-expanded={false}
-                aria-label="Kalender"
-                className="nav-datovelger__kalenderknapp"
-                onClick={[Function]}
-                role="button"
-                type="button"
-              >
-                <svg
-                  aria-hidden="true"
-                  height={16}
-                  role="presentation"
-                  viewBox="0 0 18 18"
-                  width={16}
-                >
-                  <title>
-                    Kalenderikon
-                  </title>
-                  <g
-                    fill="none"
-                    fillRule="evenodd"
-                    stroke="#0067C5"
-                  >
-                    <path
-                      d="M4 2.667H1.333v14h15.334v-14H14"
-                    />
-                    <path
-                      d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                    />
-                  </g>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <label
-          htmlFor="oppfolging-datovelger-til"
-        >
-          Til:
-        </label>
-        <div
-          onBlur={[Function]}
-          onKeyDown={[Function]}
-        >
-          <div
-            className="nav-datovelger"
-          >
-            <div
-              className="nav-datovelger__inputContainer"
+              Er under oppfølging
+            </dt>
+            <dd
+              className="typo-element"
             >
-              <input
-                aria-invalid={true}
-                autoComplete="off"
-                autoCorrect="off"
-                className="nav-datovelger__input"
-                id="oppfolging-datovelger-til"
-                maxLength={10}
-                name="Til dato"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onKeyDown={[Function]}
-                pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-                type="text"
-                value="01.02.1970"
-              />
-              <button
-                aria-expanded={false}
-                aria-label="Kalender"
-                className="nav-datovelger__kalenderknapp"
-                onClick={[Function]}
-                role="button"
-                type="button"
-              >
-                <svg
-                  aria-hidden="true"
-                  height={16}
-                  role="presentation"
-                  viewBox="0 0 18 18"
-                  width={16}
-                >
-                  <title>
-                    Kalenderikon
-                  </title>
-                  <g
-                    fill="none"
-                    fillRule="evenodd"
-                    stroke="#0067C5"
-                  >
-                    <path
-                      d="M4 2.667H1.333v14h15.334v-14H14"
-                    />
-                    <path
-                      d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                    />
-                  </g>
-                </svg>
-              </button>
-            </div>
+              Nei
+            </dd>
           </div>
-        </div>
-        <button
-          className="knapp knapp--standard"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
-        >
-          Søk
-        </button>
-      </div>
-    </article>
-    <article
-      aria-labelledby="Helt tilfeldig ID"
-      className="c5"
-    >
-      <h2
-        className="typo-undertittel"
-        id="Helt tilfeldig ID"
-      >
-        Arbeidsoppfølging
-      </h2>
-      <dl
-        className="c6"
-      >
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Er under oppfølging
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            Nei
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Oppfølgingsenhet
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            E0001 Tangen AS
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Rettighetsgruppe
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            RGRP8
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Innsatsgruppe
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            INGRP10
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Veileder
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            Testident Testidentesen (Z0000001)
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Meldeplikt
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            Nei
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Formidlingsgruppe
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            FMGRP2
-          </dd>
-        </div>
-        <div>
-          <dt
-            className="typo-normal"
-          >
-            Oppfølgingsvedtak
-          </dt>
-          <dd
-            className="typo-element"
-          >
-            24.04.2019
-          </dd>
-        </div>
-      </dl>
-    </article>
+          <div>
+            <dt
+              className="typo-normal"
+            >
+              Oppfølgingsenhet
+            </dt>
+            <dd
+              className="typo-element"
+            >
+              E0001 Tangen AS
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-normal"
+            >
+              Rettighetsgruppe
+            </dt>
+            <dd
+              className="typo-element"
+            >
+              RGRP8
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-normal"
+            >
+              Innsatsgruppe
+            </dt>
+            <dd
+              className="typo-element"
+            >
+              INGRP10
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-normal"
+            >
+              Veileder
+            </dt>
+            <dd
+              className="typo-element"
+            >
+              Testident Testidentesen (Z0000001)
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-normal"
+            >
+              Meldeplikt
+            </dt>
+            <dd
+              className="typo-element"
+            >
+              Nei
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-normal"
+            >
+              Formidlingsgruppe
+            </dt>
+            <dd
+              className="typo-element"
+            >
+              FMGRP2
+            </dd>
+          </div>
+          <div>
+            <dt
+              className="typo-normal"
+            >
+              Oppfølgingsvedtak
+            </dt>
+            <dd
+              className="typo-element"
+            >
+              24.04.2019
+            </dd>
+          </div>
+        </dl>
+      </article>
+    </div>
   </div>
   <div
-    className="c7"
+    className="panel c7"
   >
     <div
       className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket ekspanderbartPanel--border"
@@ -630,7 +622,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
     </div>
   </div>
   <div
-    className="c7"
+    className="panel c7"
   >
     <div
       className="ekspanderbartPanel test-ytelse-ytelselamell ekspanderbartPanel--lukket ekspanderbartPanel--border"

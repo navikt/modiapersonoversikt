@@ -6,6 +6,7 @@ import { theme } from '../../../../../styles/personOversiktTheme';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Undertittel } from 'nav-frontend-typografi';
+import Panel from 'nav-frontend-paneler';
 
 interface Props {
     traad: Traad;
@@ -25,9 +26,8 @@ const StyledLi = styled.li`
     position: relative;
 `;
 
-const StyledOl = styled.ol`
+const StyledPanel = styled(Panel)`
     margin-top: 0.1rem;
-    ${theme.hvittPanel}
     > li:not(:last-child) {
         margin-bottom: 0.1rem;
     }
@@ -66,11 +66,17 @@ function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: bool
                 tittel={<Undertittel>{props.tittel}</Undertittel>}
                 border={true}
             >
-                <StyledOl>{meldinger}</StyledOl>
+                <StyledPanel>
+                    <ol>{meldinger}</ol>
+                </StyledPanel>
             </Ekspanderbartpanel>
         );
     } else {
-        return <StyledOl aria-label={props.tittel}>{meldinger}</StyledOl>;
+        return (
+            <StyledPanel aria-label={props.tittel}>
+                <ol>{meldinger}</ol>
+            </StyledPanel>
+        );
     }
 }
 

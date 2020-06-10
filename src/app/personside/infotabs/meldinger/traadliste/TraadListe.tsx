@@ -15,6 +15,7 @@ import { guid } from 'nav-frontend-js-utils';
 import usePrinter from '../../../../../utils/UsePrinter';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import MeldingerPrintMarkup from '../../../../../utils/MeldingerPrintMarkup';
+import Panel from 'nav-frontend-paneler';
 
 interface Props {
     traader: Traad[];
@@ -26,8 +27,7 @@ interface Props {
     setSkjulVarsler: (skjul: boolean) => void;
 }
 
-const StyledNav = styled.nav`
-    ${theme.hvittPanel};
+const StyledPanel = styled(Panel)`
     ol {
         list-style: none;
     }
@@ -149,53 +149,59 @@ function TraadListe(props: Props) {
     };
 
     return (
-        <StyledNav aria-label="Velg melding">
-            <SlaaSammenOppgaverKnapp traader={props.traader} />
-            <article aria-labelledby={sokTittelId.current}>
-                <h3 id={sokTittelId.current} className="sr-only">
-                    Filtrer meldinger
+        <nav aria-label="Velg melding">
+            <StyledPanel>
+                <SlaaSammenOppgaverKnapp traader={props.traader} />
+                <article aria-labelledby={sokTittelId.current}>
+                    <h3 id={sokTittelId.current} className="sr-only">
+                        Filtrer meldinger
+                    </h3>
+                    <InputStyle>
+                        <Input
+                            inputRef={
+                                ((ref: HTMLInputElement) => {
+                                    inputRef.current = ref;
+                                }) as any
+                            }
+                            value={props.sokeord}
+                            onChange={onMeldingerSok}
+                            label={'Søk etter melding'}
+                            placeholder={'Søk etter melding'}
+                            className={'move-input-label'}
+                        />
+                    </InputStyle>
+                    <SpaceBetween>
+                        <StyledCheckbox
+                            label="Skjul varsler"
+                            checked={props.skjulVarsler}
+                            onChange={handleSkjulVarsler}
+                        />
+                        <PrintAlle traader={props.traader} />
+                    </SpaceBetween>
+                    <SokVerktøyStyle>
+                        <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>
+                        {visAlleMeldingerKnapp}
+                    </SokVerktøyStyle>
+                </article>
+                <h3 className="sr-only" id={listeId.current}>
+                    Meldingsliste - {soketreffTekst}
                 </h3>
-                <InputStyle>
-                    <Input
-                        inputRef={
-                            ((ref: HTMLInputElement) => {
-                                inputRef.current = ref;
-                            }) as any
-                        }
-                        value={props.sokeord}
-                        onChange={onMeldingerSok}
-                        label={'Søk etter melding'}
-                        placeholder={'Søk etter melding'}
-                        className={'move-input-label'}
-                    />
-                </InputStyle>
-                <SpaceBetween>
-                    <StyledCheckbox label="Skjul varsler" checked={props.skjulVarsler} onChange={handleSkjulVarsler} />
-                    <PrintAlle traader={props.traader} />
-                </SpaceBetween>
-                <SokVerktøyStyle>
-                    <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>
-                    {visAlleMeldingerKnapp}
-                </SokVerktøyStyle>
-            </article>
-            <h3 className="sr-only" id={listeId.current}>
-                Meldingsliste - {soketreffTekst}
-            </h3>
-            {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
-            <StyledOl aria-labelledby={listeId.current} tabIndex={-1} ref={traadListeRef}>
-                {paginering.currentPage.map(traad => (
-                    <TraadListeElement
-                        traad={traad}
-                        key={traad.traadId}
-                        erValgt={traad === props.valgtTraad}
-                        listeId="traadliste-meldinger"
-                    />
-                ))}
-            </StyledOl>
-            {paginering.prevNextButtons && (
-                <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
-            )}
-        </StyledNav>
+                {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
+                <StyledOl aria-labelledby={listeId.current} tabIndex={-1} ref={traadListeRef}>
+                    {paginering.currentPage.map(traad => (
+                        <TraadListeElement
+                            traad={traad}
+                            key={traad.traadId}
+                            erValgt={traad === props.valgtTraad}
+                            listeId="traadliste-meldinger"
+                        />
+                    ))}
+                </StyledOl>
+                {paginering.prevNextButtons && (
+                    <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
+                )}
+            </StyledPanel>
+        </nav>
     );
 }
 

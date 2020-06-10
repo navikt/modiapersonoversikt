@@ -26,6 +26,7 @@ import { useDispatch } from 'react-redux';
 import { oppdaterAvsenderfilter } from '../../../../../redux/saksoversikt/actions';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import { guid } from 'nav-frontend-js-utils';
+import Panel from 'nav-frontend-paneler';
 
 interface Props {
     valgtSakstema: Sakstema;
@@ -37,8 +38,7 @@ interface JournalpostGruppeProps {
     valgtSakstema: Sakstema;
 }
 
-const StyledArticle = styled.article`
-    ${theme.hvittPanel};
+const StyledPanel = styled(Panel)`
     position: relative;
     margin-bottom: 2rem;
 `;
@@ -243,31 +243,33 @@ function JournalPoster(props: Props) {
 
     return (
         <div>
-            <StyledArticle aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
-                <InfoOgFilterPanel>
-                    <div>
-                        <TittelWrapperStyling ref={tittelRef} tabIndex={-1}>
-                            {valgtSakstemaTittel}
-                            <Normaltekst>({filtrerteJournalposter.length} journalposter)</Normaltekst>
-                        </TittelWrapperStyling>
-                        {filterCheckboxer}
-                    </div>
-                    <div>
-                        <LenkeNorg valgtSakstema={props.valgtSakstema} />
-                        <ToggleViktigAaViteKnapp valgtSakstema={props.valgtSakstema} />
-                    </div>
-                </InfoOgFilterPanel>
-                {paginering.pageSelect && <PaginatorStyling>{paginering.pageSelect}</PaginatorStyling>}
-                <ViktigÅVite valgtSakstema={props.valgtSakstema} />
-                <JournalpostListe sakstema={props.valgtSakstema} filtrerteJournalposter={paginering.currentPage} />
-                {paginering.prevNextButtons && (
-                    <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
-                )}
-            </StyledArticle>
-            <AlertStripeInfo>
-                Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter
-                som er journalført vises fra og med 4.juni 2016
-            </AlertStripeInfo>
+            <article>
+                <StyledPanel aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
+                    <InfoOgFilterPanel>
+                        <div>
+                            <TittelWrapperStyling ref={tittelRef} tabIndex={-1}>
+                                {valgtSakstemaTittel}
+                                <Normaltekst>({filtrerteJournalposter.length} journalposter)</Normaltekst>
+                            </TittelWrapperStyling>
+                            {filterCheckboxer}
+                        </div>
+                        <div>
+                            <LenkeNorg valgtSakstema={props.valgtSakstema} />
+                            <ToggleViktigAaViteKnapp valgtSakstema={props.valgtSakstema} />
+                        </div>
+                    </InfoOgFilterPanel>
+                    {paginering.pageSelect && <PaginatorStyling>{paginering.pageSelect}</PaginatorStyling>}
+                    <ViktigÅVite valgtSakstema={props.valgtSakstema} />
+                    <JournalpostListe sakstema={props.valgtSakstema} filtrerteJournalposter={paginering.currentPage} />
+                    {paginering.prevNextButtons && (
+                        <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
+                    )}
+                </StyledPanel>
+                <AlertStripeInfo>
+                    Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014.
+                    Dokumenter som er journalført vises fra og med 4.juni 2016
+                </AlertStripeInfo>
+            </article>
         </div>
     );
 }

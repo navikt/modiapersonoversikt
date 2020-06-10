@@ -11,7 +11,7 @@ import {
     summertBeløpStringFraUtbetalinger
 } from '../utils/utbetalingerUtils';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
-import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
+import { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import { FlexEnd } from '../../../../../components/common-styled-components';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
@@ -20,14 +20,14 @@ import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import { Table } from '../../../../../utils/table/Table';
 import { useState } from 'react';
 import usePrinter from '../../../../../utils/UsePrinter';
+import Panel from 'nav-frontend-paneler';
 
 export interface TotaltUtbetaltProps {
     utbetalinger: Utbetaling[];
     periode: UtbetalingerPeriode;
 }
 
-const Wrapper = styled.article`
-    ${theme.hvittPanel};
+const Wrapper = styled(Panel)`
     cursor: pointer;
 `;
 
@@ -85,31 +85,33 @@ function TotaltUtbetalt(props: TotaltUtbetaltProps) {
 
     return (
         <PrinterWrapper>
-            <Wrapper
-                aria-label="Totalt utbetalt"
-                onClick={(event: React.MouseEvent<HTMLElement>) =>
-                    cancelIfHighlighting(() => handleClickOnUtbetaling(event))
-                }
-            >
-                <UtbetalingTabellStyling>
-                    <Header>
-                        <Undertittel>Totalt utbetalt for perioden</Undertittel>
-                        <TotaltUtbetaltOversikt>
-                            <Normaltekst tag="span">{totaltUtbetaltTabell}</Normaltekst>
-                        </TotaltUtbetaltOversikt>
-                        <FlexEnd>
-                            <span ref={printerButtonRef}>
-                                <PrintKnapp onClick={handlePrint} />
-                            </span>
-                        </FlexEnd>
-                    </Header>
-                    <TotaltUtbetaltDetaljer
-                        visDetaljer={visDetaljer}
-                        toggleVisDetaljer={toggelVisDetaljer}
-                        {...props}
-                    />
-                </UtbetalingTabellStyling>
-            </Wrapper>
+            <article>
+                <Wrapper
+                    aria-label="Totalt utbetalt"
+                    onClick={(event: React.MouseEvent<HTMLElement>) =>
+                        cancelIfHighlighting(() => handleClickOnUtbetaling(event))
+                    }
+                >
+                    <UtbetalingTabellStyling>
+                        <Header>
+                            <Undertittel>Totalt utbetalt for perioden</Undertittel>
+                            <TotaltUtbetaltOversikt>
+                                <Normaltekst tag="span">{totaltUtbetaltTabell}</Normaltekst>
+                            </TotaltUtbetaltOversikt>
+                            <FlexEnd>
+                                <span ref={printerButtonRef}>
+                                    <PrintKnapp onClick={handlePrint} />
+                                </span>
+                            </FlexEnd>
+                        </Header>
+                        <TotaltUtbetaltDetaljer
+                            visDetaljer={visDetaljer}
+                            toggleVisDetaljer={toggelVisDetaljer}
+                            {...props}
+                        />
+                    </UtbetalingTabellStyling>
+                </Wrapper>
+            </article>
         </PrinterWrapper>
     );
 }
