@@ -12,6 +12,7 @@ interface Props {
 }
 
 const CustomStyling = styled(Panel)`
+    padding: 0rem;
     font-weight: 600;
     a {
         padding: ${pxToRem(15)};
