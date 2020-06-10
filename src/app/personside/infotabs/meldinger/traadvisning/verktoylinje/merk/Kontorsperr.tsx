@@ -78,9 +78,11 @@ export function Kontorsperr(props: Props) {
                 />
             </UnmountClosed>
             {opprettOppgave ? null : (
-                <Hovedknapp htmlType="button" onClick={kontorsperr}>
-                    Merk som kontorsperret
-                </Hovedknapp>
+                <Margin>
+                    <Hovedknapp htmlType="button" onClick={kontorsperr}>
+                        Merk som kontorsperret
+                    </Hovedknapp>
+                </Margin>
             )}
         </Style>
     );

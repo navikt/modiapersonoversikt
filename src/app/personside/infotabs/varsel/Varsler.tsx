@@ -2,17 +2,14 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Element } from 'nav-frontend-typografi';
 import { UnifiedVarsel } from '../../../../models/varsel';
-import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
-import { erModiabrukerdialog } from '../../../../utils/erNyPersonoversikt';
-import theme from '../../../../styles/personOversiktTheme';
 import Varsel from './Varsel';
+import Panel from 'nav-frontend-paneler';
 
 interface Props {
     varsler: Array<UnifiedVarsel>;
 }
 
-const HeaderStyle = styled.div`
-    ${theme.hvittPanel};
+const HeaderStyle = styled(Panel)`
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 6rem 55% 1fr;
@@ -26,9 +23,6 @@ const HeaderStyle = styled.div`
     > *:nth-child(3) {
         -ms-grid-column: 3;
     }
-    > * {
-        padding: 0.7rem;
-    }
     margin-bottom: 1rem;
 `;
 
@@ -41,7 +35,6 @@ const ListStyle = styled.ol`
 function Varsler(props: Props) {
     return (
         <>
-            {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Varsler" />}
             <HeaderStyle>
                 <Element>Dato</Element>
                 <Element>Type</Element>

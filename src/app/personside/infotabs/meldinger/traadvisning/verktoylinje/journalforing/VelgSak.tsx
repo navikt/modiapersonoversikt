@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsyncResult, FetchResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
+import useFetch, { AsyncResult, FetchResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { JournalforingsSak, Kategorier, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio, RadioProps } from 'nav-frontend-skjema';
@@ -12,7 +12,6 @@ import { apiBaseUri, includeCredentials } from '../../../../../../../api/config'
 import Spinner from 'nav-frontend-spinner';
 import { useSelector } from 'react-redux';
 import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
-import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 
 const Form = styled.form`
     display: flex;
@@ -93,14 +92,12 @@ export function sakKategori(sak: JournalforingsSak): SakKategori {
 function VelgSak(props: Props) {
     const fnr = useSelector(fnrSelector);
     const valgtKategori = useFieldState(SakKategori.FAG);
-    const gsakSaker: FetchResult<Array<JournalforingsSak>> = useFetchWithLog<Array<JournalforingsSak>>(
+    const gsakSaker: FetchResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`,
-        'VelgSak-GsakSaker',
         includeCredentials
     );
-    const psakSaker: FetchResult<Array<JournalforingsSak>> = useFetchWithLog<Array<JournalforingsSak>>(
+    const psakSaker: FetchResult<Array<JournalforingsSak>> = useFetch<Array<JournalforingsSak>>(
         `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`,
-        'VelgSak-PsakSaker',
         includeCredentials
     );
 

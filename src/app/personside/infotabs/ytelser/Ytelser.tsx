@@ -7,7 +7,7 @@ import useBrukersYtelser from './useBrukersYtelser';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 
-export const ytelserMediaTreshold = '45rem';
+const ytelserMediaTreshold = '45rem';
 
 const Layout = styled.div`
     ${scrollBarContainerStyle(ytelserMediaTreshold)};

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import styled from 'styled-components/macro';
-import theme, { pxToRem } from '../styles/personOversiktTheme';
+import { pxToRem } from '../styles/personOversiktTheme';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
+import Panel from 'nav-frontend-paneler';
 
 interface Props {
     url: string;
@@ -10,8 +11,7 @@ interface Props {
     className?: string;
 }
 
-const CustomStyling = styled.div`
-    ${theme.hvittPanel};
+const CustomStyling = styled(Panel)`
     font-weight: 600;
     a {
         padding: ${pxToRem(15)};

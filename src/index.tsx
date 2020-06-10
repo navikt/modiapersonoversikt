@@ -8,5 +8,8 @@ import AppContainer from './app/AppContainer';
 import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
 
 setupTimeSpentMetrics();
+if (process.env.REACT_APP_MOCK_ENABLED === 'true') {
+    require('./mock');
+}
 
 ReactDOM.render(<AppContainer />, document.getElementById('root') as HTMLElement);

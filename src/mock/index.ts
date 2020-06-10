@@ -47,6 +47,7 @@ import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
 import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinger-mock';
 import { failurerateMiddleware } from './utils/failureMiddleware';
 import { setupDraftMock } from './draft-mock';
+import tilgangskontrollMock from './tilgangskontroll-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -73,6 +74,17 @@ function setupInnloggetSaksbehandlerMock(mock: FetchMock) {
 
 function setUpSaksbehandlersEnheterMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/hode/enheter', withDelayedResponse(randomDelay(), STATUS_OK, getSaksBehandlersEnheterMock));
+}
+
+function setupTilgangskontroll(mock: FetchMock) {
+    mock.get(
+        '/modiapersonoversikt-api/rest/tilgang/:fodselsnummer?',
+        withDelayedResponse(
+            randomDelay(),
+            () => (Math.random() > 0.98 ? 400 : 200),
+            mockGeneratorMedFødselsnummer(tilgangskontrollMock)
+        )
+    );
 }
 
 function setupPersonMock(mock: FetchMock) {
@@ -455,7 +467,6 @@ function setupValutaKodeverk(mock: FetchMock) {
 }
 
 function setupJournalforingMock(mock: FetchMock) {
-    console.log('apibase', apiBaseUri);
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/sammensatte',
         withDelayedResponse(randomDelay(), STATUS_OK, () => gsakSaker)
@@ -541,75 +552,70 @@ const contentTypeMiddleware: Middleware = (requestArgs, response) => {
     return response;
 };
 
-let mockInitialised = false;
-export function setupMock() {
-    if (mockInitialised) {
-        return;
-    } else {
-        mockInitialised = true;
-    }
-    console.log('### MOCK ENABLED! ###');
+console.log('=========================='); // tslint:disable-line
+console.log('======== MED MOCK ========'); // tslint:disable-line
+console.log('=========================='); // tslint:disable-line
 
-    const mock = FetchMock.configure({
-        enableFallback: true,
-        middleware: MiddlewareUtils.combine(
-            contentTypeMiddleware,
-            failurerateMiddleware(0.02),
-            MiddlewareUtils.loggingMiddleware()
-        )
-    });
+const mock = FetchMock.configure({
+    enableFallback: true,
+    middleware: MiddlewareUtils.combine(
+        contentTypeMiddleware,
+        failurerateMiddleware(0.02),
+        MiddlewareUtils.loggingMiddleware()
+    )
+});
 
-    setupInnloggetSaksbehandlerMock(mock);
-    setupPersonMock(mock);
-    setupEgenAnsattMock(mock);
-    setupKontaktinformasjonMock(mock);
-    setupGeografiskTilknytningMock(mock);
-    setupSaksoversiktMock(mock);
-    setupUtbetalingerMock(mock);
-    setupSykepengerMock(mock);
-    setupForeldrepengerMock(mock);
-    setupPleiepengerMock(mock);
-    setupOppgaveMock(mock);
-    setupOpprettHenvendelseMock(mock);
-    setupFerdigstillHenvendelseMock(mock);
-    setupSendDelsvarMock(mock);
-    setupTildelteOppgaverMock(mock);
-    setupLeggTilbakeOppgaveMock(mock);
-    setupVergemalMock(mock);
-    setupBaseUrlsMock(mock);
-    setupFeatureToggleMock(mock);
-    setupVeilederRollerMock(mock);
-    setupRetningsnummerKodeverkMock(mock);
-    setupTilrettelagtKommunikasjonKodeverkMock(mock);
-    setupPostnummerKodeverk(mock);
-    setupWsControlAndMock(mock);
-    setupLandKodeverk(mock);
-    setupValutaKodeverk(mock);
-    setupOppfølgingMock(mock);
-    setupMeldingerMock(mock);
-    setupGsakTemaMock(mock);
-    setupOppgaveEnhetMock(mock);
-    setupForeslatteEnheterMock(mock);
-    setupAnsattePaaEnhetMock(mock);
-    setupTilgangTilSlettMock(mock);
-    setupYtelserOgKontrakter(mock);
-    setupVarselMock(mock);
-    opprettOppgaveMock(mock);
-    setupSendReferatMock(mock);
-    setupSendSpørsmålMock(mock);
-    setupSendSvarMock(mock);
-    setupPersonsokMock(mock);
-    merkAvsluttMock(mock);
-    merkBidragMock(mock);
-    merkFeilsendtMock(mock);
-    merkKontorsperretMock(mock);
-    merkSlettMock(mock);
-    setupJournalforingMock(mock);
-    setupStandardteksterMock(mock);
-    setupSlaasammenMock(mock);
-    setupVelgEnhetMock(mock);
-    setUpSaksbehandlersEnheterMock(mock);
-    setupAvsluttOppgaveGosysMock(mock);
-    setupSaksbehandlerInnstillingerMock(mock);
-    setupDraftMock(mock);
-}
+setupInnloggetSaksbehandlerMock(mock);
+setupPersonMock(mock);
+setupTilgangskontroll(mock);
+setupEgenAnsattMock(mock);
+setupKontaktinformasjonMock(mock);
+setupGeografiskTilknytningMock(mock);
+setupSaksoversiktMock(mock);
+setupUtbetalingerMock(mock);
+setupSykepengerMock(mock);
+setupForeldrepengerMock(mock);
+setupPleiepengerMock(mock);
+setupOppgaveMock(mock);
+setupOpprettHenvendelseMock(mock);
+setupFerdigstillHenvendelseMock(mock);
+setupSendDelsvarMock(mock);
+setupTildelteOppgaverMock(mock);
+setupLeggTilbakeOppgaveMock(mock);
+setupVergemalMock(mock);
+setupBaseUrlsMock(mock);
+setupFeatureToggleMock(mock);
+setupVeilederRollerMock(mock);
+setupRetningsnummerKodeverkMock(mock);
+setupTilrettelagtKommunikasjonKodeverkMock(mock);
+setupPostnummerKodeverk(mock);
+setupWsControlAndMock(mock);
+setupLandKodeverk(mock);
+setupValutaKodeverk(mock);
+setupOppfølgingMock(mock);
+setupMeldingerMock(mock);
+setupGsakTemaMock(mock);
+setupOppgaveEnhetMock(mock);
+setupForeslatteEnheterMock(mock);
+setupAnsattePaaEnhetMock(mock);
+setupTilgangTilSlettMock(mock);
+setupYtelserOgKontrakter(mock);
+setupVarselMock(mock);
+opprettOppgaveMock(mock);
+setupSendReferatMock(mock);
+setupSendSpørsmålMock(mock);
+setupSendSvarMock(mock);
+setupPersonsokMock(mock);
+merkAvsluttMock(mock);
+merkBidragMock(mock);
+merkFeilsendtMock(mock);
+merkKontorsperretMock(mock);
+merkSlettMock(mock);
+setupJournalforingMock(mock);
+setupStandardteksterMock(mock);
+setupSlaasammenMock(mock);
+setupVelgEnhetMock(mock);
+setUpSaksbehandlersEnheterMock(mock);
+setupAvsluttOppgaveGosysMock(mock);
+setupSaksbehandlerInnstillingerMock(mock);
+setupDraftMock(mock);

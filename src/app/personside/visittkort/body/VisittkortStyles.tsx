@@ -31,12 +31,6 @@ export const Kolonne = styled.div`
     }
 `;
 
-export const FormFieldSet = styled.fieldset`
-    margin: 0;
-    padding: 0;
-    border: 0;
-`;
-
 interface Props {
     children: ReactNode;
     tittel: string;

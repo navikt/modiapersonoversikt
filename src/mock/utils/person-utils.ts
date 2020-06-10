@@ -1,5 +1,6 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
+import moment from 'moment';
 
 export function lagNavn(fødselsnummer: string) {
     faker.seed(Number(fødselsnummer));
@@ -14,4 +15,8 @@ export function lagNavn(fødselsnummer: string) {
         mellomnavn: mellomnavn,
         sammensatt: `${mellomnavn} ${etternavn} ${fornavn} `
     };
+}
+
+export function getAlderFromFødselsnummer(fødselsnummer: string) {
+    return moment().diff(navfaker.personIdentifikator.getFødselsdato(fødselsnummer), 'years');
 }

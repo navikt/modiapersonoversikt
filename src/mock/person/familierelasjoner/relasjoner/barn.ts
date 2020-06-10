@@ -4,8 +4,7 @@ import navfaker from 'nav-faker';
 
 import { tilfeldigFodselsnummer } from '../../../utils/fnr-utils';
 import { getPersonstatus } from '../../personMock';
-import { lagNavn } from '../../../utils/person-utils';
-import { getAlderFromFødselsnummer } from '../../../../utils/dateUtils';
+import { lagNavn, getAlderFromFødselsnummer } from '../../../utils/person-utils';
 import { Familierelasjon, Relasjonstype } from '../../../../models/person/person';
 
 export function mockBarn(foreldresFødselsnummer: string) {

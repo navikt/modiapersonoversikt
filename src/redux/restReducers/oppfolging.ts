@@ -19,11 +19,6 @@ function lagQueryParametre(startDato: Date, sluttDato: Date): string {
     return `?startDato=${formaterTilISO8601Date(startDato)}&sluttDato=${formaterTilISO8601Date(sluttDato)}`;
 }
 
-export function getOppfolgingFetchUriu(state: AppState) {
-    const fodselsnummer = state.gjeldendeBruker.fødselsnummer;
-    return `${apiBaseUri}/oppfolging/${fodselsnummer}`;
-}
-
 export function reloadOppfolingActionCreator(dispatch: AsyncDispatch, getState: () => AppState) {
     dispatch(getState().restResources.oppfolging.actions.reload);
 }

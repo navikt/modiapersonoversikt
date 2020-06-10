@@ -18,7 +18,7 @@ interface ForelderProps {
     relasjon: Familierelasjon;
 }
 
-export function Forelder({ relasjon }: ForelderProps) {
+function Forelder({ relasjon }: ForelderProps) {
     const beskrivelse = relasjon.rolle === Relasjonstype.Mor ? 'Mor' : 'Far';
     const ikon = getKjønnIkon(relasjon.tilPerson.fødselsnummer);
     return (

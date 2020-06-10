@@ -16,9 +16,9 @@ import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 import { isValidDate } from '../../../../../utils/dateUtils';
+import Panel from 'nav-frontend-paneler';
 
-const FiltreringsPanel = styled.nav`
-    ${theme.hvittPanel};
+const FiltreringsPanel = styled(Panel)`
     padding: ${pxToRem(15)};
 `;
 
@@ -159,14 +159,16 @@ function Filtrering() {
     );
 
     return (
-        <FiltreringsPanel onClick={restoreScroll} aria-label="Filtrering utbetalinger">
-            <Undertittel>Filtrering</Undertittel>
+        <nav>
+            <FiltreringsPanel onClick={restoreScroll} aria-label="Filtrering utbetalinger">
+                <Undertittel>Filtrering</Undertittel>
 
-            <WrapOnSmallScreen>
-                {hentUtbetalingerPanel}
-                {checkBokser}
-            </WrapOnSmallScreen>
-        </FiltreringsPanel>
+                <WrapOnSmallScreen>
+                    {hentUtbetalingerPanel}
+                    {checkBokser}
+                </WrapOnSmallScreen>
+            </FiltreringsPanel>
+        </nav>
     );
 }
 

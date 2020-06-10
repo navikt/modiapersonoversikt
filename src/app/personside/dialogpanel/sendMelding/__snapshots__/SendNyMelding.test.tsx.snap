@@ -282,6 +282,14 @@ exports[`viser send ny melding 1`] = `
                 <div
                   className="textarea--medMeta__wrapper"
                 >
+                  <span
+                    className="sr-only"
+                    id="Helt tilfeldig ID"
+                  >
+                    Tekstområde med plass til 
+                    5000
+                     tegn.
+                  </span>
                   <textarea
                     aria-describedby="Helt tilfeldig ID"
                     aria-invalid={false}
@@ -295,12 +303,10 @@ exports[`viser send ny melding 1`] = `
                         "height": "30px",
                       }
                     }
-                    type="text"
                     value=""
                   />
                   <p
                     className="textarea--medMeta__teller"
-                    id="Helt tilfeldig ID"
                   >
                     <span
                       className="teller-tekst"

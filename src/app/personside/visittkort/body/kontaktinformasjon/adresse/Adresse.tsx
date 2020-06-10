@@ -70,7 +70,7 @@ function adressebeskrivelse(adresse: personadresse.Personadresse) {
     }
 }
 
-export function formatterRiktigAdresse(adresse: personadresse.Personadresse) {
+function formatterRiktigAdresse(adresse: personadresse.Personadresse) {
     let adressetekst = <Normaltekst>Ingen registrert adresse</Normaltekst>;
 
     if (adresse.gateadresse != null) {

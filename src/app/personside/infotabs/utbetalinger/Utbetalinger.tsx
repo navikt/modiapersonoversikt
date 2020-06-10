@@ -20,9 +20,9 @@ import AriaNotification from '../../../../components/AriaNotification';
 import { UtbetalingFilterState } from '../../../../redux/utbetalinger/types';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
+import Panel from 'nav-frontend-paneler';
 
-const UtbetalingerArticle = styled.article`
-    ${theme.hvittPanel};
+const UtbetalingerPanel = styled(Panel)`
     margin-top: ${theme.margin.layout};
     margin-bottom: ${theme.margin.layout};
     > *:first-child {
@@ -105,13 +105,15 @@ function Utbetalinger(props: UtbetalingerProps) {
             />
             <TotaltUtbetalt utbetalinger={filtrerteUtbetalinger} periode={props.utbetalingerData.periode} />
             <HandleUtbetalingerArrowKeys utbetalinger={filtrerteUtbetalinger}>
-                <UtbetalingerArticle aria-label="Utbetalinger">
-                    <OnOneLine>
-                        <Undertittel>Utbetalinger</Undertittel>
-                        <Normaltekst>({filtrerteUtbetalinger.length} utbetalinger)</Normaltekst>
-                    </OnOneLine>
-                    <UtbetalingerListe aria-label="Måneder">{månedsGrupper}</UtbetalingerListe>
-                </UtbetalingerArticle>
+                <article>
+                    <UtbetalingerPanel aria-label="Utbetalinger">
+                        <OnOneLine>
+                            <Undertittel>Utbetalinger</Undertittel>
+                            <Normaltekst>({filtrerteUtbetalinger.length} utbetalinger)</Normaltekst>
+                        </OnOneLine>
+                        <UtbetalingerListe aria-label="Måneder">{månedsGrupper}</UtbetalingerListe>
+                    </UtbetalingerPanel>
+                </article>
             </HandleUtbetalingerArrowKeys>
         </Wrapper>
     );

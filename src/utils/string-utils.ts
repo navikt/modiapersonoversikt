@@ -1,14 +1,5 @@
 export const ENDASH = '\u2013';
 
-export function padLeft(streng: string, width: number, symbol: string) {
-    if (streng.length >= width) {
-        return streng;
-    }
-    const leadingSymbol = symbol.length > 0 ? symbol.charAt(0) : ' ';
-
-    return leadingSymbol.repeat(width - streng.length) + streng;
-}
-
 export function removeWhitespace(input: string) {
     return input.replace(/ /g, '');
 }
@@ -29,11 +20,11 @@ export function sorterAlfabetisk(a: string, b: string) {
     return a > b ? 1 : -1;
 }
 
-export function delAvStringMedDots(input: string, lengde: number) {
-    let streng = input.substr(0, Math.min(lengde, input.length));
-    if (streng.length < input.length) {
-        // Vi har kuttet tekst, legg på dots
-        streng += '...';
-    }
-    return streng;
+export function removePrefix(base: string, ...prefixes: string[]): string {
+    return prefixes.reduce((current, prefix) => {
+        if (current.startsWith(prefix)) {
+            return current.slice(prefix.length);
+        }
+        return current;
+    }, base);
 }
