@@ -12,6 +12,7 @@ export function ReferatSendtKvittering(props: { request: SendReferatRequest; luk
             fritekst={props.request.fritekst}
             meldingstype={props.request.meldingstype}
             lukk={props.lukk}
+            meldingstatus={SendNyMeldingStatus.REFERAT_SENDT}
         />
     );
 }
@@ -23,6 +24,7 @@ export function SporsmalSendtKvittering(props: { fritekst: string; lukk: () => v
             fritekst={props.fritekst}
             meldingstype={Meldingstype.SPORSMAL_MODIA_UTGAAENDE}
             lukk={props.lukk}
+            meldingstatus={SendNyMeldingStatus.SPORSMAL_SENDT}
         />
     );
 }

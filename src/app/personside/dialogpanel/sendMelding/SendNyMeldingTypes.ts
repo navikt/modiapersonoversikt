@@ -5,7 +5,8 @@ export enum SendNyMeldingStatus {
     POSTING,
     ERROR,
     REFERAT_SENDT,
-    SPORSMAL_SENDT
+    SPORSMAL_SENDT,
+    SVAR_SENDT
 }
 
 interface SendNyMeldingStatusInterface {

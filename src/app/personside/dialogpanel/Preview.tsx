@@ -23,17 +23,18 @@ const PreviewStyle = styled.article`
 interface Props {
     tittel: string;
     fritekst: string;
-    meldingstatus?: SendNyMeldingStatus;
+    meldingstatus: SendNyMeldingStatus;
 }
 
 function Preview(props: Props) {
     const sendtMelding = useSendtMelding(props.fritekst);
 
-    const opprettetDato = sendtMelding.melding ? (
-        <EtikettGrå>{formatterDatoTid(sendtMelding.melding.opprettetDato)}</EtikettGrå>
-    ) : (
-        props.meldingstatus && props.meldingstatus !== SendNyMeldingStatus.ERROR && <NavFrontendSpinner type="XXS" />
-    );
+    let opprettetDato = null;
+    if (sendtMelding.melding) {
+        opprettetDato = <EtikettGrå>{formatterDatoTid(sendtMelding.melding.opprettetDato)}</EtikettGrå>;
+    } else if (props.meldingstatus !== SendNyMeldingStatus.ERROR) {
+        opprettetDato = <NavFrontendSpinner type="XXS" />;
+    }
 
     return (
         <PreviewStyle>

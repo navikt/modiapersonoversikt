@@ -81,7 +81,7 @@ export function DialogpanelKvittering(props: {
     meldingstype: Meldingstype;
     lukk: () => void;
     traad?: Traad;
-    meldingstatus?: SendNyMeldingStatus;
+    meldingstatus: SendNyMeldingStatus;
 }) {
     return (
         <ErrorBoundary boundaryName="DialogpanelKvittering">
@@ -100,7 +100,7 @@ export function DialogpanelKvittering(props: {
                         meldingstatus={props.meldingstatus}
                     />
                 </ErrorBoundary>
-                {props.meldingstatus && props.meldingstatus !== SendNyMeldingStatus.ERROR && (
+                {props.meldingstatus !== SendNyMeldingStatus.ERROR && (
                     <ErrorBoundary boundaryName="Sendt melding verktøylinje">
                         <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
                     </ErrorBoundary>

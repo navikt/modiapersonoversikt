@@ -11,6 +11,7 @@ import { post } from '../../../../api/api';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import useDraft, { Draft } from '../use-draft';
+import { feilMeldinger } from './FeilMeldinger';
 
 const initialState: SendNyMeldingState = {
     tekst: '',
@@ -70,6 +71,11 @@ function SendNyMeldingContainer() {
         setSendNyMeldingStatus({ type: SendNyMeldingStatus.UNDER_ARBEID });
     };
 
+    const handleFeilMelding = (error: Error) => {
+        const feilType = JSON.parse(error.toString()).type;
+        return feilMeldinger[feilType];
+    };
+
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         if (sendNyMeldingStatus.type === SendNyMeldingStatus.POSTING) {
@@ -116,7 +122,7 @@ function SendNyMeldingContainer() {
                     callback();
                     setSendNyMeldingStatus({
                         type: SendNyMeldingStatus.ERROR,
-                        fritekst: JSON.parse(error.toString()).detaljer.feilMelding
+                        fritekst: handleFeilMelding(error)
                     });
                     updateState({ visFeilmeldinger: true });
                 });
