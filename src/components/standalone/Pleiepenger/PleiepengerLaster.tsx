@@ -1,21 +1,16 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
 import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Pleiepengerettighet, PleiepengerResponse } from '../../../models/ytelse/pleiepenger';
 import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
 import Pleiepenger from '../../../app/personside/infotabs/ytelser/pleiepenger/Pleiepenger';
-import theme from '../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 import { BigCenteredLazySpinner } from '../../BigCenteredLazySpinner';
+import Panel from 'nav-frontend-paneler';
 
 interface Props {
     fødselsnummer: string;
     barnetsFødselsnummer: string;
 }
-
-const Style = styled.div`
-    ${theme.hvittPanel};
-`;
 
 const onError = (
     <FillCenterAndFadeIn>
@@ -38,9 +33,9 @@ class PleiepengerLaster extends React.PureComponent<Props> {
         }
 
         return (
-            <Style>
+            <Panel>
                 <Pleiepenger pleiepenger={aktuellRettighet} />
-            </Style>
+            </Panel>
         );
     }
 

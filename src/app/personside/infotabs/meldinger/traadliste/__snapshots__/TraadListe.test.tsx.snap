@@ -251,9 +251,7 @@ exports[`Viser Traadliste 1`] = `
 }
 
 .c0 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+  padding: 0rem;
 }
 
 .c0 ol {
@@ -337,557 +335,560 @@ exports[`Viser Traadliste 1`] = `
 
 <nav
   aria-label="Velg melding"
-  className="c0"
 >
-  <article
-    aria-labelledby="Helt tilfeldig ID"
+  <div
+    className="panel c0"
   >
+    <article
+      aria-labelledby="Helt tilfeldig ID"
+    >
+      <h3
+        className="sr-only"
+        id="Helt tilfeldig ID"
+      >
+        Filtrer meldinger
+      </h3>
+      <div
+        className="c1"
+      >
+        <div
+          className="skjemaelement move-input-label"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Søk etter melding
+          </label>
+          <input
+            aria-invalid={false}
+            className="skjemaelement__input input--fullbredde"
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+            placeholder="Søk etter melding"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="c2"
+      >
+        <div
+          className="skjemaelement c3"
+        >
+          <input
+            aria-invalid={false}
+            checked={false}
+            className="skjemaelement__input checkboks"
+            id="Helt tilfeldig ID"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <label
+            className="skjemaelement__label"
+            htmlFor="Helt tilfeldig ID"
+          >
+            Skjul varsler
+          </label>
+        </div>
+        <button
+          aria-label="Skriv ut"
+          className="c4"
+          onClick={[Function]}
+        >
+          <span
+            className="typo-normal"
+          >
+            Skriv ut alle meldinger
+          </span>
+           
+          <svg
+            viewBox="0 0 17 16"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
+              fill="#0067C5"
+              fillRule="evenodd"
+            />
+            <path
+              d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
+              fill="#0067C5"
+            />
+          </svg>
+        </button>
+        <div
+          className="c5"
+        >
+          <div
+            className="c6"
+          >
+            <p
+              className="typo-element"
+            >
+              Henvendelsen er avsluttet uten å svare bruker
+               
+               
+            </p>
+          </div>
+          <div
+            className="c7"
+          >
+            <p
+              className="typo-ingress"
+            >
+              Samtalereferat oppmøte - Arbeid
+            </p>
+            <div
+              className="c8"
+            >
+              <div>
+                <p
+                  className="typo-element"
+                >
+                  Kanal: NAV_NO
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Type: 
+                  SAMTALEREFERAT_OPPMOTE
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Temagruppe: 
+                  ARBD
+                </p>
+                <p
+                  className="typo-element"
+                >
+                   Journalført: 
+                  11.07.2019
+                   
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Journalført med team: 
+                </p>
+              </div>
+              <div>
+                <p
+                  className="typo-element"
+                >
+                  Fødselsnummer: 
+                  10108000398
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Mottatt/Sendt: 
+                  07.07.2019
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Lest: 
+                  12.07.2019 00:00
+                </p>
+              </div>
+            </div>
+            <div
+              className="c9"
+            >
+              <p
+                className="typo-element"
+              >
+                Innhold:
+              </p>
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            className="c7"
+          >
+            <p
+              className="typo-ingress"
+            >
+              Spørsmål fra bruker - Arbeid
+            </p>
+            <div
+              className="c8"
+            >
+              <div>
+                <p
+                  className="typo-element"
+                >
+                  Kanal: NAV_NO
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Type: 
+                  SPORSMAL_SKRIFTLIG
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Temagruppe: 
+                  ARBD
+                </p>
+                <p
+                  className="typo-element"
+                >
+                   Journalført: 
+                  12.08.2019
+                   
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Journalført med team: 
+                </p>
+              </div>
+              <div>
+                <p
+                  className="typo-element"
+                >
+                  Fødselsnummer: 
+                  10108000398
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Mottatt/Sendt: 
+                  12.07.2019
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Lest: 
+                  11.08.2019 00:00
+                </p>
+              </div>
+            </div>
+            <div
+              className="c9"
+            >
+              <p
+                className="typo-element"
+              >
+                Innhold:
+              </p>
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            className="c7"
+          >
+            <p
+              className="typo-ingress"
+            >
+              Spørsmål fra bruker - Arbeid
+            </p>
+            <div
+              className="c8"
+            >
+              <div>
+                <p
+                  className="typo-element"
+                >
+                  Kanal: NAV_NO
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Type: 
+                  SPORSMAL_SKRIFTLIG
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Temagruppe: 
+                  ARBD
+                </p>
+                <p
+                  className="typo-element"
+                >
+                   Journalført: 
+                  21.07.2019
+                   
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Journalført med team: 
+                </p>
+              </div>
+              <div>
+                <p
+                  className="typo-element"
+                >
+                  Fødselsnummer: 
+                  10108000398
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Mottatt/Sendt: 
+                  16.07.2019
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Lest: 
+                  14.07.2019 00:00
+                </p>
+              </div>
+            </div>
+            <div
+              className="c9"
+            >
+              <p
+                className="typo-element"
+              >
+                Innhold:
+              </p>
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            className="c7"
+          >
+            <p
+              className="typo-ingress"
+            >
+              Delsvar - Arbeid
+            </p>
+            <div
+              className="c8"
+            >
+              <div>
+                <p
+                  className="typo-element"
+                >
+                  Kanal: NAV_NO
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Type: 
+                  DELVIS_SVAR_SKRIFTLIG
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Temagruppe: 
+                  ARBD
+                </p>
+                <p
+                  className="typo-element"
+                >
+                   Journalført: 
+                  30.07.2019
+                   
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Journalført med team: 
+                </p>
+              </div>
+              <div>
+                <p
+                  className="typo-element"
+                >
+                  Fødselsnummer: 
+                  10108000398
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Mottatt/Sendt: 
+                  27.07.2019
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Lest: 
+                  23.07.2019 00:00
+                </p>
+              </div>
+            </div>
+            <div
+              className="c9"
+            >
+              <p
+                className="typo-element"
+              >
+                Innhold:
+              </p>
+              <div>
+                <p
+                  className="typo-normal"
+                >
+                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c10"
+      >
+        <p
+          aria-live="assertive"
+          className="typo-normal"
+        >
+          Totalt 1 melding
+        </p>
+      </div>
+    </article>
     <h3
       className="sr-only"
       id="Helt tilfeldig ID"
     >
-      Filtrer meldinger
+      Meldingsliste - 
+      Totalt 1 melding
     </h3>
-    <div
-      className="c1"
+    <ol
+      aria-labelledby="Helt tilfeldig ID"
+      className="c11"
+      tabIndex={-1}
     >
-      <div
-        className="skjemaelement move-input-label"
-      >
-        <label
-          className="skjemaelement__label"
-          htmlFor="Helt tilfeldig ID"
-        >
-          Søk etter melding
-        </label>
-        <input
-          aria-invalid={false}
-          className="skjemaelement__input input--fullbredde"
-          id="Helt tilfeldig ID"
-          onChange={[Function]}
-          placeholder="Søk etter melding"
-          type="text"
-          value=""
-        />
-      </div>
-    </div>
-    <div
-      className="c2"
-    >
-      <div
-        className="skjemaelement c3"
+      <li
+        className="c12"
       >
         <input
-          aria-invalid={false}
-          checked={false}
-          className="skjemaelement__input checkboks"
+          checked={true}
+          className="sr-only test-meldinger-melding valgt_melding  "
           id="Helt tilfeldig ID"
+          name="traadliste-meldinger"
           onChange={[Function]}
-          type="checkbox"
+          type="radio"
+          value="sg838exr"
         />
         <label
-          className="skjemaelement__label"
+          className="c13"
           htmlFor="Helt tilfeldig ID"
         >
-          Skjul varsler
-        </label>
-      </div>
-      <button
-        aria-label="Skriv ut"
-        className="c4"
-        onClick={[Function]}
-      >
-        <span
-          className="typo-normal"
-        >
-          Skriv ut alle meldinger
-        </span>
-         
-        <svg
-          viewBox="0 0 17 16"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-        >
-          <path
-            d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
-            fill="#0067C5"
-            fillRule="evenodd"
-          />
-          <path
-            d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
-            fill="#0067C5"
-          />
-        </svg>
-      </button>
-      <div
-        className="c5"
-      >
-        <div
-          className="c6"
-        >
-          <p
-            className="typo-element"
-          >
-            Henvendelsen er avsluttet uten å svare bruker
-             
-             
-          </p>
-        </div>
-        <div
-          className="c7"
-        >
-          <p
-            className="typo-ingress"
-          >
-            Samtalereferat oppmøte - Arbeid
-          </p>
           <div
-            className="c8"
+            className="c14"
           >
-            <div>
-              <p
-                className="typo-element"
-              >
-                Kanal: NAV_NO
-              </p>
-              <p
-                className="typo-element"
-              >
-                Type: 
-                SAMTALEREFERAT_OPPMOTE
-              </p>
-              <p
-                className="typo-element"
-              >
-                Temagruppe: 
-                ARBD
-              </p>
-              <p
-                className="typo-element"
-              >
-                 Journalført: 
-                11.07.2019
-                 
-              </p>
-              <p
-                className="typo-element"
-              >
-                Journalført med team: 
-              </p>
-            </div>
-            <div>
-              <p
-                className="typo-element"
-              >
-                Fødselsnummer: 
-                10108000398
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Mottatt/Sendt: 
-                07.07.2019
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Lest: 
-                12.07.2019 00:00
-              </p>
-            </div>
-          </div>
-          <div
-            className="c9"
-          >
-            <p
-              className="typo-element"
-            >
-              Innhold:
-            </p>
-            <div>
-              <p
-                className="typo-normal"
-              >
-                Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          className="c7"
-        >
-          <p
-            className="typo-ingress"
-          >
-            Spørsmål fra bruker - Arbeid
-          </p>
-          <div
-            className="c8"
-          >
-            <div>
-              <p
-                className="typo-element"
-              >
-                Kanal: NAV_NO
-              </p>
-              <p
-                className="typo-element"
-              >
-                Type: 
-                SPORSMAL_SKRIFTLIG
-              </p>
-              <p
-                className="typo-element"
-              >
-                Temagruppe: 
-                ARBD
-              </p>
-              <p
-                className="typo-element"
-              >
-                 Journalført: 
-                12.08.2019
-                 
-              </p>
-              <p
-                className="typo-element"
-              >
-                Journalført med team: 
-              </p>
-            </div>
-            <div>
-              <p
-                className="typo-element"
-              >
-                Fødselsnummer: 
-                10108000398
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Mottatt/Sendt: 
-                12.07.2019
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Lest: 
-                11.08.2019 00:00
-              </p>
-            </div>
-          </div>
-          <div
-            className="c9"
-          >
-            <p
-              className="typo-element"
-            >
-              Innhold:
-            </p>
-            <div>
-              <p
-                className="typo-normal"
-              >
-                Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          className="c7"
-        >
-          <p
-            className="typo-ingress"
-          >
-            Spørsmål fra bruker - Arbeid
-          </p>
-          <div
-            className="c8"
-          >
-            <div>
-              <p
-                className="typo-element"
-              >
-                Kanal: NAV_NO
-              </p>
-              <p
-                className="typo-element"
-              >
-                Type: 
-                SPORSMAL_SKRIFTLIG
-              </p>
-              <p
-                className="typo-element"
-              >
-                Temagruppe: 
-                ARBD
-              </p>
-              <p
-                className="typo-element"
-              >
-                 Journalført: 
-                21.07.2019
-                 
-              </p>
-              <p
-                className="typo-element"
-              >
-                Journalført med team: 
-              </p>
-            </div>
-            <div>
-              <p
-                className="typo-element"
-              >
-                Fødselsnummer: 
-                10108000398
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Mottatt/Sendt: 
-                16.07.2019
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Lest: 
-                14.07.2019 00:00
-              </p>
-            </div>
-          </div>
-          <div
-            className="c9"
-          >
-            <p
-              className="typo-element"
-            >
-              Innhold:
-            </p>
-            <div>
-              <p
-                className="typo-normal"
-              >
-                Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          className="c7"
-        >
-          <p
-            className="typo-ingress"
-          >
-            Delsvar - Arbeid
-          </p>
-          <div
-            className="c8"
-          >
-            <div>
-              <p
-                className="typo-element"
-              >
-                Kanal: NAV_NO
-              </p>
-              <p
-                className="typo-element"
-              >
-                Type: 
-                DELVIS_SVAR_SKRIFTLIG
-              </p>
-              <p
-                className="typo-element"
-              >
-                Temagruppe: 
-                ARBD
-              </p>
-              <p
-                className="typo-element"
-              >
-                 Journalført: 
-                30.07.2019
-                 
-              </p>
-              <p
-                className="typo-element"
-              >
-                Journalført med team: 
-              </p>
-            </div>
-            <div>
-              <p
-                className="typo-element"
-              >
-                Fødselsnummer: 
-                10108000398
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Mottatt/Sendt: 
-                27.07.2019
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Lest: 
-                23.07.2019 00:00
-              </p>
-            </div>
-          </div>
-          <div
-            className="c9"
-          >
-            <p
-              className="typo-element"
-            >
-              Innhold:
-            </p>
-            <div>
-              <p
-                className="typo-normal"
-              >
-                Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="c10"
-    >
-      <p
-        aria-live="assertive"
-        className="typo-normal"
-      >
-        Totalt 1 melding
-      </p>
-    </div>
-  </article>
-  <h3
-    className="sr-only"
-    id="Helt tilfeldig ID"
-  >
-    Meldingsliste - 
-    Totalt 1 melding
-  </h3>
-  <ol
-    aria-labelledby="Helt tilfeldig ID"
-    className="c11"
-    tabIndex={-1}
-  >
-    <li
-      className="c12"
-    >
-      <input
-        checked={true}
-        className="sr-only test-meldinger-melding valgt_melding  "
-        id="Helt tilfeldig ID"
-        name="traadliste-meldinger"
-        onChange={[Function]}
-        type="radio"
-        value="sg838exr"
-      />
-      <label
-        className="c13"
-        htmlFor="Helt tilfeldig ID"
-      >
-        <div
-          className="c14"
-        >
-          <div
-            className="c15"
-          >
-            <span
-              className="sr-only"
-            >
-              (
-              4
-              )
-            </span>
-            <span
-              className="c16"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  fill="#3e3832"
-                >
-                  <path
-                    d="M16.5 8.75c.476 0 .941.045 1.399.115.065-.379.101-.771.101-1.18C18 3.585 13.962.25 9 .25c-4.963 0-9 3.335-9 7.435 0 1.962.855 3.826 2.36 5.178l-1.794 3.14a.5.5 0 00.62.712l4.839-1.937c.435.124.887.218 1.348.281.022.002.065-.005.075.004.075 0 .319-.002.678-.022.679-3.514 4.233-6.291 8.374-6.291z"
-                  />
-                  <path
-                    d="M16.5 9.75c-4.065 0-7.5 2.977-7.5 6.5 0 3.355 2.878 6.224 6.434 6.572a7.581 7.581 0 003.578-.534l3.813 1.43a.498.498 0 00.623-.691l-1.325-2.65C23.327 19.289 24 17.868 24 16.25c0-3.523-3.435-6.5-7.5-6.5z"
-                  />
-                </g>
-              </svg>
-              <p
-                aria-hidden="true"
-                className="typo-undertekst c17"
-              >
-                4
-              </p>
-            </span>
             <div
-              className="c18"
+              className="c15"
             >
-              <div
-                className="c19 order-first"
+              <span
+                className="sr-only"
               >
-                <p
-                  className="typo-element order-second"
+                (
+                4
+                )
+              </span>
+              <span
+                className="c16"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  Delsvar - Arbeid
-                </p>
+                  <g
+                    fill="#3e3832"
+                  >
+                    <path
+                      d="M16.5 8.75c.476 0 .941.045 1.399.115.065-.379.101-.771.101-1.18C18 3.585 13.962.25 9 .25c-4.963 0-9 3.335-9 7.435 0 1.962.855 3.826 2.36 5.178l-1.794 3.14a.5.5 0 00.62.712l4.839-1.937c.435.124.887.218 1.348.281.022.002.065-.005.075.004.075 0 .319-.002.678-.022.679-3.514 4.233-6.291 8.374-6.291z"
+                    />
+                    <path
+                      d="M16.5 9.75c-4.065 0-7.5 2.977-7.5 6.5 0 3.355 2.878 6.224 6.434 6.572a7.581 7.581 0 003.578-.534l3.813 1.43a.498.498 0 00.623-.691l-1.325-2.65C23.327 19.289 24 17.868 24 16.25c0-3.523-3.435-6.5-7.5-6.5z"
+                    />
+                  </g>
+                </svg>
                 <p
-                  className="typo-normal order-first"
+                  aria-hidden="true"
+                  className="typo-undertekst c17"
                 >
-                  27.07.2019 00:00
+                  4
                 </p>
-              </div>
+              </span>
               <div
-                className="c20 order-third"
+                className="c18"
               >
                 <div
-                  className="etikett etikett--fokus"
+                  className="c19 order-first"
                 >
-                  <span
-                    className="typo-normal"
+                  <p
+                    className="typo-element order-second"
                   >
-                    Under arbeid
-                  </span>
+                    Delsvar - Arbeid
+                  </p>
+                  <p
+                    className="typo-normal order-first"
+                  >
+                    27.07.2019 00:00
+                  </p>
                 </div>
                 <div
-                  className="etikett etikett--info"
+                  className="c20 order-third"
                 >
-                  <span
-                    className="typo-normal"
+                  <div
+                    className="etikett etikett--fokus"
                   >
-                    Delvis besvart
-                  </span>
+                    <span
+                      className="typo-normal"
+                    >
+                      Under arbeid
+                    </span>
+                  </div>
+                  <div
+                    className="etikett etikett--info"
+                  >
+                    <span
+                      className="typo-normal"
+                    >
+                      Delvis besvart
+                    </span>
+                  </div>
                 </div>
+                <p
+                  className="typo-normal c21 order-second"
+                >
+                  Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                </p>
               </div>
-              <p
-                className="typo-normal c21 order-second"
-              >
-                Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-              </p>
             </div>
           </div>
-        </div>
-        <div
-          className="c22 hover-animation"
-        >
-          <i
-            className="nav-frontend-chevron chevronboks chevron--hoyre"
-          />
-        </div>
-      </label>
-    </li>
-  </ol>
+          <div
+            className="c22 hover-animation"
+          >
+            <i
+              className="nav-frontend-chevron chevronboks chevron--hoyre"
+            />
+          </div>
+        </label>
+      </li>
+    </ol>
+  </div>
 </nav>
 `;

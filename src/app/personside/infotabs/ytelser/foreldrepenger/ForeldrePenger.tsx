@@ -5,17 +5,17 @@ import ForeldrepengePeriode from './ForeldrepengePeriode';
 import Oversikt from './Oversikt';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { useOnMount } from '../../../../../utils/customHooks';
-import styled from 'styled-components';
-import theme from '../../../../../styles/personOversiktTheme';
 import { guid } from 'nav-frontend-js-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
+import Panel from 'nav-frontend-paneler';
+import styled from 'styled-components/macro';
 
 interface Props {
     foreldrepenger: Foreldrepengerettighet | null;
 }
 
-const StyledArticle = styled.article`
-    ${theme.hvittPanel};
+const StyledPanel = styled(Panel)`
+    padding: 0rem;
 `;
 
 function Foreldrepenger({ foreldrepenger }: Props) {
@@ -33,13 +33,15 @@ function Foreldrepenger({ foreldrepenger }: Props) {
     ));
 
     return (
-        <StyledArticle aria-labelledby={titleId.current}>
-            <h2 tabIndex={-1} className="sr-only" id={titleId.current}>
-                Foreldrepengerettighet
-            </h2>
-            <Oversikt foreldrePenger={foreldrepenger} />
-            <ol>{perioder}</ol>
-        </StyledArticle>
+        <article>
+            <StyledPanel aria-labelledby={titleId.current}>
+                <h2 tabIndex={-1} className="sr-only" id={titleId.current}>
+                    Foreldrepengerettighet
+                </h2>
+                <Oversikt foreldrePenger={foreldrepenger} />
+                <ol>{perioder}</ol>
+            </StyledPanel>
+        </article>
     );
 }
 

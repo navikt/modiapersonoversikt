@@ -2,10 +2,7 @@
 
 exports[`Viser oversikt med alt innhold 1`] = `
 .c2 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
-  padding-bottom: 0.3rem;
+  padding: 0rem 0rem 0.3rem 0rem;
 }
 
 .c3 {
@@ -112,9 +109,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c25 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+  padding: 0rem;
 }
 
 .c26 {
@@ -467,520 +462,604 @@ exports[`Viser oversikt med alt innhold 1`] = `
   <div
     className="c1"
   >
-    <article
-      aria-labelledby="Helt tilfeldig ID"
-      className="c2"
-    >
+    <article>
       <div
-        className="c3"
-        onClick={[Function]}
-        title="Alt + T"
+        aria-labelledby="Helt tilfeldig ID"
+        className="panel c2"
       >
-        <h3
-          className="typo-undertittel"
-          id="Helt tilfeldig ID"
-        >
-          Oppfølging
-        </h3>
         <div
-          className="c4"
-        />
-        <a
-          className="c5 lenke"
-          href="/person/10108000398/oppfølging/"
+          className="c3"
           onClick={[Function]}
+          title="Alt + T"
         >
-          <p
-            className="typo-normal"
+          <h3
+            className="typo-undertittel"
+            id="Helt tilfeldig ID"
           >
-            Gå til 
-            oppfølging
-          </p>
-        </a>
-      </div>
-      <div
-        className="c6"
-      >
-        <div
-          className="alertstripe alertstripe--info"
-        >
-          <span
-            aria-label="info"
-            className="alertstripe__ikon"
-          >
-            <svg
-              focusable="false"
-              height="1.5em"
-              kind="info-sirkel-fyll"
-              viewBox="0 0 24 24"
-              width="1.5em"
-            >
-              <g
-                fill="none"
-              >
-                <path
-                  d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                  fill="#669DB4"
-                />
-                <path
-                  d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-                  fill="#FFF"
-                />
-              </g>
-            </svg>
-          </span>
+            Oppfølging
+          </h3>
           <div
-            className="typo-normal alertstripe__tekst"
+            className="c4"
+          />
+          <a
+            className="c5 lenke"
+            href="/person/10108000398/oppfølging/"
+            onClick={[Function]}
           >
-            Er ikke i arbeidsrettet oppfølging
+            <p
+              className="typo-normal"
+            >
+              Gå til 
+              oppfølging
+            </p>
+          </a>
+        </div>
+        <div
+          className="c6"
+        >
+          <div
+            className="alertstripe alertstripe--info"
+          >
+            <span
+              aria-label="info"
+              className="alertstripe__ikon"
+            >
+              <svg
+                focusable="false"
+                height="1.5em"
+                kind="info-sirkel-fyll"
+                viewBox="0 0 24 24"
+                width="1.5em"
+              >
+                <g
+                  fill="none"
+                >
+                  <path
+                    d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                    fill="#669DB4"
+                  />
+                  <path
+                    d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+                    fill="#FFF"
+                  />
+                </g>
+              </svg>
+            </span>
+            <div
+              className="typo-normal alertstripe__tekst"
+            >
+              Er ikke i arbeidsrettet oppfølging
+            </div>
           </div>
         </div>
       </div>
     </article>
-    <article
-      aria-labelledby="Helt tilfeldig ID"
-      className="c2"
-    >
+    <article>
       <div
-        className="c3"
-        onClick={[Function]}
-        title="Alt + U"
+        aria-labelledby="Helt tilfeldig ID"
+        className="panel c2"
       >
-        <h3
-          className="typo-undertittel"
-          id="Helt tilfeldig ID"
-        >
-          Utbetalinger
-        </h3>
         <div
-          className="c4"
-        />
-        <a
-          className="c5 lenke"
-          href="/person/10108000398/utbetaling/"
+          className="c3"
           onClick={[Function]}
+          title="Alt + U"
         >
-          <p
-            className="typo-normal"
+          <h3
+            className="typo-undertittel"
+            id="Helt tilfeldig ID"
           >
-            Gå til 
-            utbetalinger
-          </p>
-        </a>
-      </div>
-      <div
-        className="c6"
-      >
-        <ol
-          aria-label="Oversikt brukers utbetalinger"
-          className="c7"
+            Utbetalinger
+          </h3>
+          <div
+            className="c4"
+          />
+          <a
+            className="c5 lenke"
+            href="/person/10108000398/utbetaling/"
+            onClick={[Function]}
+          >
+            <p
+              className="typo-normal"
+            >
+              Gå til 
+              utbetalinger
+            </p>
+          </a>
+        </div>
+        <div
+          className="c6"
         >
-          <li
-            className="test-utbetalinger-oversikt"
+          <ol
+            aria-label="Oversikt brukers utbetalinger"
+            className="c7"
           >
-            <div
-              className="c8"
-              onClick={[Function]}
+            <li
+              className="test-utbetalinger-oversikt"
             >
-              <div>
-                <p
-                  className="typo-normal"
-                >
-                  05.05.2019
-                   / 
-                  Ligger hos banken
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  <span
-                    className="c9"
-                  >
-                    Barnetrygd
-                  </span>
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  13.02.2018
-                   - 
-                  20.09.2018
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Utbetaling til: 
-                  AREMARK TESTFAMILIEN
-                </p>
-              </div>
-              <button
-                aria-label="Vis utbetaling"
-                aria-selected={false}
-                className="c10"
+              <div
+                className="c8"
+                onClick={[Function]}
               >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li
-            className="test-utbetalinger-oversikt"
-          >
-            <div
-              className="c8"
-              onClick={[Function]}
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    05.05.2019
+                     / 
+                    Ligger hos banken
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    <span
+                      className="c9"
+                    >
+                      Barnetrygd
+                    </span>
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    13.02.2018
+                     - 
+                    20.09.2018
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    Utbetaling til: 
+                    AREMARK TESTFAMILIEN
+                  </p>
+                </div>
+                <button
+                  aria-label="Vis utbetaling"
+                  aria-selected={false}
+                  className="c10"
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+            <li
+              className="test-utbetalinger-oversikt"
             >
-              <div>
-                <p
-                  className="typo-normal"
-                >
-                  17.12.2018
-                   / 
-                  Ligger hos banken
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  <span
-                    className="c9"
-                  >
-                    Diverse ytelser
-                  </span>
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  12.05.2018
-                   - 
-                  10.04.2019
-                </p>
-                <p
-                  className="typo-normal"
-                >
-                  Utbetaling til: 
-                  AREMARK TESTFAMILIEN
-                </p>
-              </div>
-              <button
-                aria-label="Vis utbetaling"
-                aria-selected={false}
-                className="c10"
+              <div
+                className="c8"
+                onClick={[Function]}
               >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-        </ol>
+                <div>
+                  <p
+                    className="typo-normal"
+                  >
+                    17.12.2018
+                     / 
+                    Ligger hos banken
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    <span
+                      className="c9"
+                    >
+                      Diverse ytelser
+                    </span>
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    12.05.2018
+                     - 
+                    10.04.2019
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    Utbetaling til: 
+                    AREMARK TESTFAMILIEN
+                  </p>
+                </div>
+                <button
+                  aria-label="Vis utbetaling"
+                  aria-selected={false}
+                  className="c10"
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+          </ol>
+        </div>
       </div>
     </article>
-    <article
-      aria-labelledby="Helt tilfeldig ID"
-      className="c2"
-    >
+    <article>
       <div
-        className="c3"
-        onClick={[Function]}
-        title="Alt + S"
+        aria-labelledby="Helt tilfeldig ID"
+        className="panel c2"
       >
-        <h3
-          className="typo-undertittel"
-          id="Helt tilfeldig ID"
-        >
-          Saker
-        </h3>
         <div
-          className="c4"
-        />
-        <a
-          className="c5 lenke"
-          href="/person/10108000398/saker/"
+          className="c3"
           onClick={[Function]}
+          title="Alt + S"
         >
-          <p
-            className="typo-normal"
+          <h3
+            className="typo-undertittel"
+            id="Helt tilfeldig ID"
           >
-            Gå til 
-            saker
-          </p>
-        </a>
-      </div>
-      <div
-        className="c6"
-      >
-        <ol
-          className="c11"
-        >
-          <li
-            className="test-sakstema-list"
+            Saker
+          </h3>
+          <div
+            className="c4"
+          />
+          <a
+            className="c5 lenke"
+            href="/person/10108000398/saker/"
+            onClick={[Function]}
           >
-            <div
-              className="c8"
-              onClick={[Function]}
+            <p
+              className="typo-normal"
             >
-              <div>
-                <div
-                  className="c12"
-                >
-                  <div>
-                    <div
-                      className="c13"
-                    >
-                      <p
-                        className="typo-element order-second test-saker-oversikt"
-                      >
-                        Sykepenger
-                      </p>
-                      <p
-                        className="typo-normal order-first"
-                      >
-                        24.12.2018
-                      </p>
-                    </div>
-                    <p
-                      className="typo-normal"
-                    >
-                      1
-                       
-                      søknad
-                       er 
-                      under behandling
-                      .
-                    </p>
-                  </div>
-                  <span
-                    className="c14"
+              Gå til 
+              saker
+            </p>
+          </a>
+        </div>
+        <div
+          className="c6"
+        >
+          <ol
+            className="c11"
+          >
+            <li
+              className="test-sakstema-list"
+            >
+              <div
+                className="c8"
+                onClick={[Function]}
+              >
+                <div>
+                  <div
+                    className="c12"
                   >
-                    <svg
-                      contentScriptType="text/ecmascript"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        fill="currentColor"
+                    <div>
+                      <div
+                        className="c13"
                       >
-                        <path
-                          d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
-                        />
-                        <path
-                          d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
-                        />
-                      </g>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-              <button
-                aria-label="Vis Sykepenger"
-                aria-selected={false}
-                className="c10"
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li
-            className="test-sakstema-list"
-          >
-            <div
-              className="c8"
-              onClick={[Function]}
-            >
-              <div>
-                <div
-                  className="c12"
-                >
-                  <div>
-                    <div
-                      className="c13"
-                    >
+                        <p
+                          className="typo-element order-second test-saker-oversikt"
+                        >
+                          Sykepenger
+                        </p>
+                        <p
+                          className="typo-normal order-first"
+                        >
+                          24.12.2018
+                        </p>
+                      </div>
                       <p
-                        className="typo-element order-second test-saker-oversikt"
+                        className="typo-normal"
                       >
-                        Arbeidsavklaringspenger
-                      </p>
-                      <p
-                        className="typo-normal order-first"
-                      >
-                        25.06.2018
+                        1
+                         
+                        søknad
+                         er 
+                        under behandling
+                        .
                       </p>
                     </div>
-                    <p
-                      className="typo-normal"
+                    <span
+                      className="c14"
                     >
-                      1
-                       
-                      søknad
-                       er 
-                      under behandling
-                      .
-                    </p>
-                    <p
-                      className="typo-normal"
-                    >
-                      2
-                       
-                      søknader
-                       er 
-                      ferdig behandlet
-                      .
-                    </p>
+                      <svg
+                        contentScriptType="text/ecmascript"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                          />
+                          <path
+                            d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                          />
+                        </g>
+                      </svg>
+                    </span>
                   </div>
-                  <span
-                    className="c14"
-                  />
                 </div>
+                <button
+                  aria-label="Vis Sykepenger"
+                  aria-selected={false}
+                  className="c10"
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
               </div>
-              <button
-                aria-label="Vis Arbeidsavklaringspenger"
-                aria-selected={false}
-                className="c10"
+            </li>
+            <li
+              className="test-sakstema-list"
+            >
+              <div
+                className="c8"
+                onClick={[Function]}
               >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-        </ol>
+                <div>
+                  <div
+                    className="c12"
+                  >
+                    <div>
+                      <div
+                        className="c13"
+                      >
+                        <p
+                          className="typo-element order-second test-saker-oversikt"
+                        >
+                          Arbeidsavklaringspenger
+                        </p>
+                        <p
+                          className="typo-normal order-first"
+                        >
+                          25.06.2018
+                        </p>
+                      </div>
+                      <p
+                        className="typo-normal"
+                      >
+                        1
+                         
+                        søknad
+                         er 
+                        under behandling
+                        .
+                      </p>
+                      <p
+                        className="typo-normal"
+                      >
+                        2
+                         
+                        søknader
+                         er 
+                        ferdig behandlet
+                        .
+                      </p>
+                    </div>
+                    <span
+                      className="c14"
+                    />
+                  </div>
+                </div>
+                <button
+                  aria-label="Vis Arbeidsavklaringspenger"
+                  aria-selected={false}
+                  className="c10"
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+          </ol>
+        </div>
       </div>
     </article>
   </div>
   <div
     className="c1"
   >
-    <article
-      aria-labelledby="Helt tilfeldig ID"
-      className="c2"
-    >
+    <article>
       <div
-        className="c3"
-        onClick={[Function]}
-        title="Alt + M"
+        aria-labelledby="Helt tilfeldig ID"
+        className="panel c2"
       >
-        <h3
-          className="typo-undertittel"
-          id="Helt tilfeldig ID"
-        >
-          Meldinger
-        </h3>
         <div
-          className="c4"
-        />
-        <a
-          className="c5 lenke"
-          href="/person/10108000398/meldinger/"
+          className="c3"
           onClick={[Function]}
+          title="Alt + M"
         >
-          <p
-            className="typo-normal"
+          <h3
+            className="typo-undertittel"
+            id="Helt tilfeldig ID"
           >
-            Gå til 
-            meldinger
-          </p>
-        </a>
-      </div>
-      <div
-        className="c6"
-      >
-        <ol
-          aria-label="Oversikt brukers meldinger"
-          className="c15"
+            Meldinger
+          </h3>
+          <div
+            className="c4"
+          />
+          <a
+            className="c5 lenke"
+            href="/person/10108000398/meldinger/"
+            onClick={[Function]}
+          >
+            <p
+              className="typo-normal"
+            >
+              Gå til 
+              meldinger
+            </p>
+          </a>
+        </div>
+        <div
+          className="c6"
         >
-          <li>
+          <ol
+            aria-label="Oversikt brukers meldinger"
+            className="c15"
+          >
+            <li>
+              <div
+                className="c8 test-meldinger-oversikt"
+                onClick={[Function]}
+              >
+                <div>
+                  <div
+                    className="c16"
+                  >
+                    <span
+                      className="sr-only"
+                    >
+                      (
+                      4
+                      )
+                    </span>
+                    <span
+                      className="c17"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          fill="#3e3832"
+                        >
+                          <path
+                            d="M16.5 8.75c.476 0 .941.045 1.399.115.065-.379.101-.771.101-1.18C18 3.585 13.962.25 9 .25c-4.963 0-9 3.335-9 7.435 0 1.962.855 3.826 2.36 5.178l-1.794 3.14a.5.5 0 00.62.712l4.839-1.937c.435.124.887.218 1.348.281.022.002.065-.005.075.004.075 0 .319-.002.678-.022.679-3.514 4.233-6.291 8.374-6.291z"
+                          />
+                          <path
+                            d="M16.5 9.75c-4.065 0-7.5 2.977-7.5 6.5 0 3.355 2.878 6.224 6.434 6.572a7.581 7.581 0 003.578-.534l3.813 1.43a.498.498 0 00.623-.691l-1.325-2.65C23.327 19.289 24 17.868 24 16.25c0-3.523-3.435-6.5-7.5-6.5z"
+                          />
+                        </g>
+                      </svg>
+                      <p
+                        aria-hidden="true"
+                        className="typo-undertekst c18"
+                      >
+                        4
+                      </p>
+                    </span>
+                    <div
+                      className="c19"
+                    >
+                      <div
+                        className="c20 order-first"
+                      >
+                        <p
+                          className="typo-element order-second"
+                        >
+                          Delsvar - Arbeid
+                        </p>
+                        <p
+                          className="typo-normal order-first"
+                        >
+                          27.07.2019 00:00
+                        </p>
+                      </div>
+                      <div
+                        className="c21 order-third"
+                      >
+                        <div
+                          className="etikett etikett--fokus"
+                        >
+                          <span
+                            className="typo-normal"
+                          >
+                            Under arbeid
+                          </span>
+                        </div>
+                        <div
+                          className="etikett etikett--info"
+                        >
+                          <span
+                            className="typo-normal"
+                          >
+                            Delvis besvart
+                          </span>
+                        </div>
+                      </div>
+                      <p
+                        className="typo-normal c22 order-second"
+                      >
+                        Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  aria-label="Vis meldinger for Delsvar - Arbeid"
+                  aria-selected={false}
+                  className="c10"
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </article>
+    <article>
+      <div
+        aria-labelledby="Helt tilfeldig ID"
+        className="panel c2"
+      >
+        <div
+          className="c3"
+          onClick={[Function]}
+          title="Alt + Y"
+        >
+          <h3
+            className="typo-undertittel"
+            id="Helt tilfeldig ID"
+          >
+            Ytelser
+          </h3>
+          <div
+            className="c4"
+          />
+          <a
+            className="c5 lenke"
+            href="/person/10108000398/ytelser/"
+            onClick={[Function]}
+          >
+            <p
+              className="typo-normal"
+            >
+              Gå til 
+              ytelser
+            </p>
+          </a>
+        </div>
+        <div
+          className="c6"
+        >
+          <div
+            className="c23"
+          >
             <div
-              className="c8 test-meldinger-oversikt"
+              className="c8 test-ytelse-oversikt"
               onClick={[Function]}
             >
               <div>
-                <div
-                  className="c16"
+                <p
+                  className="typo-normal"
                 >
-                  <span
-                    className="sr-only"
-                  >
-                    (
-                    4
-                    )
-                  </span>
-                  <span
-                    className="c17"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        fill="#3e3832"
-                      >
-                        <path
-                          d="M16.5 8.75c.476 0 .941.045 1.399.115.065-.379.101-.771.101-1.18C18 3.585 13.962.25 9 .25c-4.963 0-9 3.335-9 7.435 0 1.962.855 3.826 2.36 5.178l-1.794 3.14a.5.5 0 00.62.712l4.839-1.937c.435.124.887.218 1.348.281.022.002.065-.005.075.004.075 0 .319-.002.678-.022.679-3.514 4.233-6.291 8.374-6.291z"
-                        />
-                        <path
-                          d="M16.5 9.75c-4.065 0-7.5 2.977-7.5 6.5 0 3.355 2.878 6.224 6.434 6.572a7.581 7.581 0 003.578-.534l3.813 1.43a.498.498 0 00.623-.691l-1.325-2.65C23.327 19.289 24 17.868 24 16.25c0-3.523-3.435-6.5-7.5-6.5z"
-                        />
-                      </g>
-                    </svg>
-                    <p
-                      aria-hidden="true"
-                      className="typo-undertekst c18"
-                    >
-                      4
-                    </p>
-                  </span>
-                  <div
-                    className="c19"
-                  >
-                    <div
-                      className="c20 order-first"
-                    >
-                      <p
-                        className="typo-element order-second"
-                      >
-                        Delsvar - Arbeid
-                      </p>
-                      <p
-                        className="typo-normal order-first"
-                      >
-                        27.07.2019 00:00
-                      </p>
-                    </div>
-                    <div
-                      className="c21 order-third"
-                    >
-                      <div
-                        className="etikett etikett--fokus"
-                      >
-                        <span
-                          className="typo-normal"
-                        >
-                          Under arbeid
-                        </span>
-                      </div>
-                      <div
-                        className="etikett etikett--info"
-                      >
-                        <span
-                          className="typo-normal"
-                        >
-                          Delvis besvart
-                        </span>
-                      </div>
-                    </div>
-                    <p
-                      className="typo-normal c22 order-second"
-                    >
-                      Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
-                    </p>
-                  </div>
-                </div>
+                  ID dato: 
+                  06.02.2019
+                </p>
+                <p
+                  className="typo-element"
+                >
+                  Sykepenger
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  100% sykemeldt - Maksdato
+                   
+                  16.01.2019
+                </p>
               </div>
               <button
-                aria-label="Vis meldinger for Delsvar - Arbeid"
+                aria-label="Vis sykepenger"
                 aria-selected={false}
                 className="c10"
               >
@@ -989,358 +1068,290 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 />
               </button>
             </div>
-          </li>
-        </ol>
-      </div>
-    </article>
-    <article
-      aria-labelledby="Helt tilfeldig ID"
-      className="c2"
-    >
-      <div
-        className="c3"
-        onClick={[Function]}
-        title="Alt + Y"
-      >
-        <h3
-          className="typo-undertittel"
-          id="Helt tilfeldig ID"
-        >
-          Ytelser
-        </h3>
-        <div
-          className="c4"
-        />
-        <a
-          className="c5 lenke"
-          href="/person/10108000398/ytelser/"
-          onClick={[Function]}
-        >
-          <p
-            className="typo-normal"
-          >
-            Gå til 
-            ytelser
-          </p>
-        </a>
-      </div>
-      <div
-        className="c6"
-      >
-        <div
-          className="c23"
-        >
-          <div
-            className="c8 test-ytelse-oversikt"
-            onClick={[Function]}
-          >
-            <div>
-              <p
-                className="typo-normal"
-              >
-                ID dato: 
-                06.02.2019
-              </p>
-              <p
-                className="typo-element"
-              >
-                Sykepenger
-              </p>
-              <p
-                className="typo-normal"
-              >
-                100% sykemeldt - Maksdato
-                 
-                16.01.2019
-              </p>
-            </div>
-            <button
-              aria-label="Vis sykepenger"
-              aria-selected={false}
-              className="c10"
+            <div
+              className="c8 test-ytelse-oversikt"
+              onClick={[Function]}
             >
-              <i
-                className="nav-frontend-chevron chevronboks chevron--hoyre"
-              />
-            </button>
-          </div>
-          <div
-            className="c8 test-ytelse-oversikt"
-            onClick={[Function]}
-          >
-            <div>
-              <p
-                className="typo-element"
+              <div>
+                <p
+                  className="typo-element"
+                >
+                  Pleiepenger sykt barn
+                </p>
+                <p
+                  className="typo-normal"
+                >
+                  Barnets f.nr: 
+                  08031815240
+                </p>
+              </div>
+              <button
+                aria-label="Vis pleiepenger"
+                aria-selected={false}
+                className="c10"
               >
-                Pleiepenger sykt barn
-              </p>
-              <p
-                className="typo-normal"
-              >
-                Barnets f.nr: 
-                08031815240
-              </p>
+                <i
+                  className="nav-frontend-chevron chevronboks chevron--hoyre"
+                />
+              </button>
             </div>
-            <button
-              aria-label="Vis pleiepenger"
-              aria-selected={false}
-              className="c10"
-            >
-              <i
-                className="nav-frontend-chevron chevronboks chevron--hoyre"
-              />
-            </button>
           </div>
         </div>
       </div>
     </article>
-    <article
-      aria-labelledby="Helt tilfeldig ID"
-      className="c2"
-    >
+    <article>
       <div
-        className="c3"
-        onClick={[Function]}
-        title="Alt + V"
+        aria-labelledby="Helt tilfeldig ID"
+        className="panel c2"
       >
-        <h3
-          className="typo-undertittel"
-          id="Helt tilfeldig ID"
-        >
-          Varsler
-        </h3>
         <div
-          className="c4"
-        />
-        <a
-          className="c5 lenke"
-          href="/person/10108000398/varsler/"
+          className="c3"
           onClick={[Function]}
+          title="Alt + V"
         >
-          <p
-            className="typo-normal"
+          <h3
+            className="typo-undertittel"
+            id="Helt tilfeldig ID"
           >
-            Gå til 
-            varsler
-          </p>
-        </a>
-      </div>
-      <div
-        className="c6"
-      >
-        <ol
-          className="c24"
-        >
-          <li
-            className="c25"
+            Varsler
+          </h3>
+          <div
+            className="c4"
+          />
+          <a
+            className="c5 lenke"
+            href="/person/10108000398/varsler/"
+            onClick={[Function]}
           >
-            <article
-              aria-labelledby="Helt tilfeldig ID"
+            <p
+              className="typo-normal"
             >
+              Gå til 
+              varsler
+            </p>
+          </a>
+        </div>
+        <div
+          className="c6"
+        >
+          <ol
+            className="c24"
+          >
+            <li>
               <div
-                className="c26"
-                onClick={[Function]}
+                className="panel c25"
               >
-                <p
-                  className="typo-normal"
+                <article
+                  aria-labelledby="Helt tilfeldig ID"
                 >
-                  28.03.2019
-                </p>
-                <h4
-                  className="typo-element"
-                  id="Helt tilfeldig ID"
-                >
-                  Påminnelse om å sende meldekort
-                </h4>
-                <ul
-                  aria-label="Kommunikasjonskanaler"
-                  className="c27"
-                >
-                  <li
-                    className="typo-normal"
+                  <div
+                    className="c26"
+                    onClick={[Function]}
                   >
-                    EPOST
-                  </li>
-                  <li
-                    className="typo-normal"
-                  >
-                    SMS
-                  </li>
-                </ul>
-                <button
-                  aria-expanded={false}
-                  aria-label="Vis meldinger"
-                  className="c28"
-                  onClick={[Function]}
-                  title="Vis meldinger"
-                >
-                  <i
-                    className="nav-frontend-chevron chevronboks chevron--ned"
-                  />
-                </button>
-              </div>
-              <ol
-                aria-label="Meldinger"
-                className="c29"
-              >
-                <li
-                  aria-label="EPOST"
-                  className="c30"
-                >
-                  <div>
-                    <p
-                      className="typo-element"
-                    >
-                      EPOST
-                    </p>
                     <p
                       className="typo-normal"
                     >
-                      01. mars 2019
+                      28.03.2019
                     </p>
-                  </div>
-                  <div>
-                    <div>
-                      <p
-                        className="typo-element"
-                      >
-                        Epostemne
-                      </p>
-                      <p
+                    <h4
+                      className="typo-element"
+                      id="Helt tilfeldig ID"
+                    >
+                      Påminnelse om å sende meldekort
+                    </h4>
+                    <ul
+                      aria-label="Kommunikasjonskanaler"
+                      className="c27"
+                    >
+                      <li
                         className="typo-normal"
                       >
-                        Meldingsinnhold
-                      </p>
-                    </div>
-                    <p
-                      className="typo-element"
-                    >
-                      Epost: 
-                      mottakerinfo
-                    </p>
-                  </div>
-                </li>
-                <li
-                  aria-label="SMS"
-                  className="c30"
-                >
-                  <div>
-                    <p
-                      className="typo-element"
-                    >
-                      SMS
-                    </p>
-                    <p
-                      className="typo-normal"
-                    >
-                      24. jan. 2019
-                    </p>
-                  </div>
-                  <div>
-                    <p
-                      className="typo-normal"
-                    >
-                      Meldingsinnhold
-                    </p>
-                    <p
-                      className="typo-element"
-                    >
-                      Tlf: 
-                      mottakerinfo
-                    </p>
-                  </div>
-                </li>
-              </ol>
-            </article>
-          </li>
-          <li
-            className="c25"
-          >
-            <article
-              aria-labelledby="Helt tilfeldig ID"
-            >
-              <div
-                className="c26"
-                onClick={[Function]}
-              >
-                <p
-                  className="typo-normal"
-                >
-                  10.01.2019
-                </p>
-                <h4
-                  className="typo-element"
-                  id="Helt tilfeldig ID"
-                >
-                  Påminnelse om å sende meldekort
-                </h4>
-                <ul
-                  aria-label="Kommunikasjonskanaler"
-                  className="c27"
-                >
-                  <li
-                    className="typo-normal"
-                  >
-                    EPOST
-                  </li>
-                </ul>
-                <button
-                  aria-expanded={false}
-                  aria-label="Vis meldinger"
-                  className="c28"
-                  onClick={[Function]}
-                  title="Vis meldinger"
-                >
-                  <i
-                    className="nav-frontend-chevron chevronboks chevron--ned"
-                  />
-                </button>
-              </div>
-              <ol
-                aria-label="Meldinger"
-                className="c29"
-              >
-                <li
-                  aria-label="EPOST"
-                  className="c30"
-                >
-                  <div>
-                    <p
-                      className="typo-element"
-                    >
-                      EPOST
-                    </p>
-                    <p
-                      className="typo-normal"
-                    >
-                      02. feb. 2019
-                    </p>
-                  </div>
-                  <div>
-                    <div>
-                      <p
-                        className="typo-element"
-                      >
-                        Epostemne
-                      </p>
-                      <p
+                        EPOST
+                      </li>
+                      <li
                         className="typo-normal"
                       >
-                        Meldingsinnhold
-                      </p>
-                    </div>
-                    <p
-                      className="typo-element"
+                        SMS
+                      </li>
+                    </ul>
+                    <button
+                      aria-expanded={false}
+                      aria-label="Vis meldinger"
+                      className="c28"
+                      onClick={[Function]}
+                      title="Vis meldinger"
                     >
-                      Epost: 
-                      mottakerinfo
-                    </p>
+                      <i
+                        className="nav-frontend-chevron chevronboks chevron--ned"
+                      />
+                    </button>
                   </div>
-                </li>
-              </ol>
-            </article>
-          </li>
-        </ol>
+                  <ol
+                    aria-label="Meldinger"
+                    className="c29"
+                  >
+                    <li
+                      aria-label="EPOST"
+                      className="c30"
+                    >
+                      <div>
+                        <p
+                          className="typo-element"
+                        >
+                          EPOST
+                        </p>
+                        <p
+                          className="typo-normal"
+                        >
+                          01. mars 2019
+                        </p>
+                      </div>
+                      <div>
+                        <div>
+                          <p
+                            className="typo-element"
+                          >
+                            Epostemne
+                          </p>
+                          <p
+                            className="typo-normal"
+                          >
+                            Meldingsinnhold
+                          </p>
+                        </div>
+                        <p
+                          className="typo-element"
+                        >
+                          Epost: 
+                          mottakerinfo
+                        </p>
+                      </div>
+                    </li>
+                    <li
+                      aria-label="SMS"
+                      className="c30"
+                    >
+                      <div>
+                        <p
+                          className="typo-element"
+                        >
+                          SMS
+                        </p>
+                        <p
+                          className="typo-normal"
+                        >
+                          24. jan. 2019
+                        </p>
+                      </div>
+                      <div>
+                        <p
+                          className="typo-normal"
+                        >
+                          Meldingsinnhold
+                        </p>
+                        <p
+                          className="typo-element"
+                        >
+                          Tlf: 
+                          mottakerinfo
+                        </p>
+                      </div>
+                    </li>
+                  </ol>
+                </article>
+              </div>
+            </li>
+            <li>
+              <div
+                className="panel c25"
+              >
+                <article
+                  aria-labelledby="Helt tilfeldig ID"
+                >
+                  <div
+                    className="c26"
+                    onClick={[Function]}
+                  >
+                    <p
+                      className="typo-normal"
+                    >
+                      10.01.2019
+                    </p>
+                    <h4
+                      className="typo-element"
+                      id="Helt tilfeldig ID"
+                    >
+                      Påminnelse om å sende meldekort
+                    </h4>
+                    <ul
+                      aria-label="Kommunikasjonskanaler"
+                      className="c27"
+                    >
+                      <li
+                        className="typo-normal"
+                      >
+                        EPOST
+                      </li>
+                    </ul>
+                    <button
+                      aria-expanded={false}
+                      aria-label="Vis meldinger"
+                      className="c28"
+                      onClick={[Function]}
+                      title="Vis meldinger"
+                    >
+                      <i
+                        className="nav-frontend-chevron chevronboks chevron--ned"
+                      />
+                    </button>
+                  </div>
+                  <ol
+                    aria-label="Meldinger"
+                    className="c29"
+                  >
+                    <li
+                      aria-label="EPOST"
+                      className="c30"
+                    >
+                      <div>
+                        <p
+                          className="typo-element"
+                        >
+                          EPOST
+                        </p>
+                        <p
+                          className="typo-normal"
+                        >
+                          02. feb. 2019
+                        </p>
+                      </div>
+                      <div>
+                        <div>
+                          <p
+                            className="typo-element"
+                          >
+                            Epostemne
+                          </p>
+                          <p
+                            className="typo-normal"
+                          >
+                            Meldingsinnhold
+                          </p>
+                        </div>
+                        <p
+                          className="typo-element"
+                        >
+                          Epost: 
+                          mottakerinfo
+                        </p>
+                      </div>
+                    </li>
+                  </ol>
+                </article>
+              </div>
+            </li>
+          </ol>
+        </div>
       </div>
     </article>
   </div>

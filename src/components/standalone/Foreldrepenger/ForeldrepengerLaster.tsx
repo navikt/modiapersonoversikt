@@ -1,21 +1,19 @@
 import * as React from 'react';
-import styled from 'styled-components/macro';
 import AlertStripe, { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Foreldrepengerettighet, ForeldrepengerResponse } from '../../../models/ytelse/foreldrepenger';
 import FillCenterAndFadeIn from '../../FillCenterAndFadeIn';
 import Foreldrepenger from '../../../app/personside/infotabs/ytelser/foreldrepenger/ForeldrePenger';
-import theme from '../../../styles/personOversiktTheme';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 import { BigCenteredLazySpinner } from '../../BigCenteredLazySpinner';
+import Panel from 'nav-frontend-paneler';
+import styled from 'styled-components/macro';
 
+const StyledPanel = styled(Panel)`
+    padding: 0rem;
+`;
 interface Props {
     fødselsnummer: string;
 }
-
-const Style = styled.div`
-    ${theme.hvittPanel};
-`;
-
 const onError = (
     <FillCenterAndFadeIn>
         <AlertStripe type="advarsel">Beklager. Det skjedde en feil ved lasting av Foreldrepenger.</AlertStripe>
@@ -37,9 +35,9 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
         }
 
         return (
-            <Style>
+            <StyledPanel>
                 <Foreldrepenger foreldrepenger={aktuellRettighet} />
-            </Style>
+            </StyledPanel>
         );
     }
 

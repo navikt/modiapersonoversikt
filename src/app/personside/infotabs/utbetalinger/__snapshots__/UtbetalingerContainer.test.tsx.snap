@@ -263,9 +263,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c13 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   cursor: pointer;
 }
 
@@ -369,9 +366,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c27 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+  padding: 0rem;
   margin-top: .5rem;
   margin-bottom: .5rem;
 }
@@ -405,9 +400,6 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c5 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   padding: 0.9375rem;
 }
 
@@ -457,9 +449,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c2 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+  padding: 0rem;
   font-weight: 600;
 }
 
@@ -590,7 +580,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
     onScroll={[Function]}
   >
     <div
-      className="c2 c3"
+      className="panel c2 c3"
     >
       <a
         className="lenkepanel"
@@ -607,190 +597,192 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
     <section
       className="c4"
     >
-      <nav
-        aria-label="Filtrering utbetalinger"
-        className="c5"
-        onClick={[Function]}
-      >
-        <h2
-          className="typo-undertittel"
-        >
-          Filtrering
-        </h2>
+      <nav>
         <div
-          className="c6"
+          aria-label="Filtrering utbetalinger"
+          className="panel c5"
+          onClick={[Function]}
         >
-          <form
-            className="c7"
+          <h2
+            className="typo-undertittel"
           >
-            <fieldset
-              className="c8"
+            Filtrering
+          </h2>
+          <div
+            className="c6"
+          >
+            <form
+              className="c7"
             >
-              <legend
+              <fieldset
+                className="c8"
+              >
+                <legend
+                  className="typo-element"
+                >
+                  Velg periode
+                </legend>
+                <div
+                  className="c9"
+                >
+                  <div
+                    className="skjemaelement"
+                  >
+                    <input
+                      aria-invalid={false}
+                      checked={true}
+                      className="skjemaelement__input radioknapp"
+                      id="Helt tilfeldig ID"
+                      name="FiltreringsvalgGruppe"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    <label
+                      className="skjemaelement__label"
+                      htmlFor="Helt tilfeldig ID"
+                    >
+                      Siste 30 dager
+                    </label>
+                  </div>
+                </div>
+                <div
+                  className="c9"
+                >
+                  <div
+                    className="skjemaelement"
+                  >
+                    <input
+                      aria-invalid={false}
+                      checked={false}
+                      className="skjemaelement__input radioknapp"
+                      id="Helt tilfeldig ID"
+                      name="FiltreringsvalgGruppe"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    <label
+                      className="skjemaelement__label"
+                      htmlFor="Helt tilfeldig ID"
+                    >
+                      Inneværende år
+                    </label>
+                  </div>
+                </div>
+                <div
+                  className="c9"
+                >
+                  <div
+                    className="skjemaelement"
+                  >
+                    <input
+                      aria-invalid={false}
+                      checked={false}
+                      className="skjemaelement__input radioknapp"
+                      id="Helt tilfeldig ID"
+                      name="FiltreringsvalgGruppe"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    <label
+                      className="skjemaelement__label"
+                      htmlFor="Helt tilfeldig ID"
+                    >
+                      I fjor
+                    </label>
+                  </div>
+                </div>
+                <div
+                  className="c9"
+                >
+                  <div
+                    className="skjemaelement"
+                  >
+                    <input
+                      aria-invalid={false}
+                      checked={false}
+                      className="skjemaelement__input radioknapp"
+                      id="Helt tilfeldig ID"
+                      name="FiltreringsvalgGruppe"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    <label
+                      className="skjemaelement__label"
+                      htmlFor="Helt tilfeldig ID"
+                    >
+                      Egendefinert
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+              <div
+                className="c10"
+              >
+                <button
+                  className="knapp knapp--standard"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Hent utbetalinger
+                </button>
+              </div>
+            </form>
+            <form
+              className="c7"
+            >
+              <p
                 className="typo-element"
               >
-                Velg periode
-              </legend>
+                Utbetaling til
+              </p>
               <div
-                className="c9"
+                className="skjemaelement"
               >
-                <div
-                  className="skjemaelement"
+                <input
+                  aria-invalid={false}
+                  checked={true}
+                  className="skjemaelement__input checkboks"
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Helt tilfeldig ID"
                 >
-                  <input
-                    aria-invalid={false}
-                    checked={true}
-                    className="skjemaelement__input radioknapp"
-                    id="Helt tilfeldig ID"
-                    name="FiltreringsvalgGruppe"
-                    onChange={[Function]}
-                    type="radio"
-                  />
-                  <label
-                    className="skjemaelement__label"
-                    htmlFor="Helt tilfeldig ID"
-                  >
-                    Siste 30 dager
-                  </label>
-                </div>
+                  Bruker
+                </label>
               </div>
+            </form>
+            <form
+              className="c7"
+            >
+              <p
+                className="typo-element"
+              >
+                Velg ytelse
+              </p>
               <div
-                className="c9"
+                className="skjemaelement"
               >
-                <div
-                  className="skjemaelement"
+                <input
+                  aria-invalid={false}
+                  checked={true}
+                  className="skjemaelement__input checkboks"
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <label
+                  className="skjemaelement__label"
+                  htmlFor="Helt tilfeldig ID"
                 >
-                  <input
-                    aria-invalid={false}
-                    checked={false}
-                    className="skjemaelement__input radioknapp"
-                    id="Helt tilfeldig ID"
-                    name="FiltreringsvalgGruppe"
-                    onChange={[Function]}
-                    type="radio"
-                  />
-                  <label
-                    className="skjemaelement__label"
-                    htmlFor="Helt tilfeldig ID"
-                  >
-                    Inneværende år
-                  </label>
-                </div>
+                  Sykepenger
+                </label>
               </div>
-              <div
-                className="c9"
-              >
-                <div
-                  className="skjemaelement"
-                >
-                  <input
-                    aria-invalid={false}
-                    checked={false}
-                    className="skjemaelement__input radioknapp"
-                    id="Helt tilfeldig ID"
-                    name="FiltreringsvalgGruppe"
-                    onChange={[Function]}
-                    type="radio"
-                  />
-                  <label
-                    className="skjemaelement__label"
-                    htmlFor="Helt tilfeldig ID"
-                  >
-                    I fjor
-                  </label>
-                </div>
-              </div>
-              <div
-                className="c9"
-              >
-                <div
-                  className="skjemaelement"
-                >
-                  <input
-                    aria-invalid={false}
-                    checked={false}
-                    className="skjemaelement__input radioknapp"
-                    id="Helt tilfeldig ID"
-                    name="FiltreringsvalgGruppe"
-                    onChange={[Function]}
-                    type="radio"
-                  />
-                  <label
-                    className="skjemaelement__label"
-                    htmlFor="Helt tilfeldig ID"
-                  >
-                    Egendefinert
-                  </label>
-                </div>
-              </div>
-            </fieldset>
-            <div
-              className="c10"
-            >
-              <button
-                className="knapp knapp--standard"
-                disabled={false}
-                onClick={[Function]}
-                type="button"
-              >
-                Hent utbetalinger
-              </button>
-            </div>
-          </form>
-          <form
-            className="c7"
-          >
-            <p
-              className="typo-element"
-            >
-              Utbetaling til
-            </p>
-            <div
-              className="skjemaelement"
-            >
-              <input
-                aria-invalid={false}
-                checked={true}
-                className="skjemaelement__input checkboks"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                type="checkbox"
-              />
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Bruker
-              </label>
-            </div>
-          </form>
-          <form
-            className="c7"
-          >
-            <p
-              className="typo-element"
-            >
-              Velg ytelse
-            </p>
-            <div
-              className="skjemaelement"
-            >
-              <input
-                aria-invalid={false}
-                checked={true}
-                className="skjemaelement__input checkboks"
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                type="checkbox"
-              />
-              <label
-                className="skjemaelement__label"
-                htmlFor="Helt tilfeldig ID"
-              >
-                Sykepenger
-              </label>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </nav>
     </section>
@@ -812,167 +804,27 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
         >
           Det finnes 1 utbetalinger for valgt periode og filtrering
         </div>
-        <article
-          aria-label="Totalt utbetalt"
-          className="c13"
-          onClick={[Function]}
-        >
+        <article>
           <div
-            className="c14"
+            aria-label="Totalt utbetalt"
+            className="panel c13"
+            onClick={[Function]}
           >
             <div
-              className="c15"
-            >
-              <h2
-                className="typo-undertittel"
-              >
-                Totalt utbetalt for perioden
-              </h2>
-              <section
-                className="c16"
-              >
-                <span
-                  className="typo-normal"
-                >
-                  <table
-                    role="table"
-                  >
-                    <thead
-                      role="rowgroup"
-                    >
-                      <tr
-                        role="row"
-                      >
-                        <th
-                          role="columnheader"
-                        >
-                          Totalt Utbetalt
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Brutto
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Trekk
-                        </th>
-                        <th
-                          role="columnheader"
-                        >
-                          Utbetalt
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody
-                      role="rowgroup"
-                    >
-                      <tr
-                        role="row"
-                      >
-                        <td
-                          role="cell"
-                        >
-                          01.01.1905 - 28.12.1986
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          13,370.00
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          -1,984.00
-                        </td>
-                        <td
-                          role="cell"
-                        >
-                          11,386.00
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </span>
-              </section>
-              <div
-                className="c17"
-              >
-                <span>
-                  <button
-                    aria-label="Skriv ut"
-                    className="c18"
-                    onClick={[Function]}
-                  >
-                    <span
-                      className="typo-normal"
-                    >
-                      Skriv ut
-                    </span>
-                     
-                    <svg
-                      viewBox="0 0 17 16"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlnsXlink="http://www.w3.org/1999/xlink"
-                    >
-                      <path
-                        d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
-                        fill="#0067C5"
-                        fillRule="evenodd"
-                      />
-                      <path
-                        d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
-                        fill="#0067C5"
-                      />
-                    </svg>
-                  </button>
-                </span>
-              </div>
-            </div>
-            <div
-              className="c19"
+              className="c14"
             >
               <div
-                className="c20"
+                className="c15"
               >
-                <div
-                  className="c17"
+                <h2
+                  className="typo-undertittel"
                 >
-                  <button
-                    aria-expanded={false}
-                    className="c21"
-                    onClick={[Function]}
-                  >
-                    <span
-                      className="c22"
-                    >
-                      <span
-                        className="typo-normal"
-                      >
-                        Vis sammendrag
-                      </span>
-                    </span>
-                    <i
-                      className="nav-frontend-chevron chevronboks chevron--ned"
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              className="c23"
-              open={false}
-            >
-              <div
-                className="c24"
-                open={false}
-              >
-                <aside
-                  aria-label="Sammendrag utbetalinger"
-                  className="c25"
+                  Totalt utbetalt for perioden
+                </h2>
+                <section
+                  className="c16"
                 >
-                  <div
+                  <span
                     className="typo-normal"
                   >
                     <table
@@ -986,44 +838,23 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                         >
                           <th
                             role="columnheader"
-                            scope="col"
                           >
-                            Ytelse
+                            Totalt Utbetalt
                           </th>
                           <th
-                            className="sumBrutto"
                             role="columnheader"
-                            scope="col"
                           >
                             Brutto
                           </th>
                           <th
-                            className="sumTrekk"
                             role="columnheader"
-                            scope="col"
                           >
                             Trekk
                           </th>
                           <th
-                            className="sumNetto"
                             role="columnheader"
-                            scope="col"
                           >
                             Utbetalt
-                          </th>
-                          <th
-                            className="visually-hidden"
-                            role="columnheader"
-                            scope="col"
-                          >
-                            Periode
-                          </th>
-                          <th
-                            className="visually-hidden"
-                            role="columnheader"
-                            scope="col"
-                          >
-                            Detaljer
                           </th>
                         </tr>
                       </thead>
@@ -1033,68 +864,231 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                         <tr
                           role="row"
                         >
-                          <th
-                            role="rowheader"
-                            scope="row"
-                          >
-                            Sykepenger 2017
-                          </th>
                           <td
-                            className="sumBrutto"
+                            role="cell"
+                          >
+                            01.01.1905 - 28.12.1986
+                          </td>
+                          <td
                             role="cell"
                           >
                             13,370.00
                           </td>
                           <td
-                            className="sumTrekk"
                             role="cell"
                           >
                             -1,984.00
                           </td>
                           <td
-                            className="sumNetto"
                             role="cell"
                           >
                             11,386.00
                           </td>
-                          <td
-                            className="periodeForYtelse"
-                            role="cell"
-                          >
-                            01.01.1970
-                             - 
-                            31.10.2017
-                          </td>
-                          <td
-                            className="ytelseDetaljer"
-                            role="cell"
-                          >
-                            <dl>
-                              <dt>
-                                Mouse
-                              </dt>
-                              <dd>
-                                3,860.00
-                              </dd>
-                              <dt>
-                                Computer
-                              </dt>
-                              <dd>
-                                3,930.00
-                              </dd>
-                              <dt>
-                                Bacon
-                              </dt>
-                              <dd>
-                                5,580.00
-                              </dd>
-                            </dl>
-                          </td>
                         </tr>
                       </tbody>
                     </table>
+                  </span>
+                </section>
+                <div
+                  className="c17"
+                >
+                  <span>
+                    <button
+                      aria-label="Skriv ut"
+                      className="c18"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="typo-normal"
+                      >
+                        Skriv ut
+                      </span>
+                       
+                      <svg
+                        viewBox="0 0 17 16"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                      >
+                        <path
+                          d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
+                          fill="#0067C5"
+                          fillRule="evenodd"
+                        />
+                        <path
+                          d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
+                          fill="#0067C5"
+                        />
+                      </svg>
+                    </button>
+                  </span>
+                </div>
+              </div>
+              <div
+                className="c19"
+              >
+                <div
+                  className="c20"
+                >
+                  <div
+                    className="c17"
+                  >
+                    <button
+                      aria-expanded={false}
+                      className="c21"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="c22"
+                      >
+                        <span
+                          className="typo-normal"
+                        >
+                          Vis sammendrag
+                        </span>
+                      </span>
+                      <i
+                        className="nav-frontend-chevron chevronboks chevron--ned"
+                      />
+                    </button>
                   </div>
-                </aside>
+                </div>
+              </div>
+              <div
+                className="c23"
+                open={false}
+              >
+                <div
+                  className="c24"
+                  open={false}
+                >
+                  <aside
+                    aria-label="Sammendrag utbetalinger"
+                    className="c25"
+                  >
+                    <div
+                      className="typo-normal"
+                    >
+                      <table
+                        role="table"
+                      >
+                        <thead
+                          role="rowgroup"
+                        >
+                          <tr
+                            role="row"
+                          >
+                            <th
+                              role="columnheader"
+                              scope="col"
+                            >
+                              Ytelse
+                            </th>
+                            <th
+                              className="sumBrutto"
+                              role="columnheader"
+                              scope="col"
+                            >
+                              Brutto
+                            </th>
+                            <th
+                              className="sumTrekk"
+                              role="columnheader"
+                              scope="col"
+                            >
+                              Trekk
+                            </th>
+                            <th
+                              className="sumNetto"
+                              role="columnheader"
+                              scope="col"
+                            >
+                              Utbetalt
+                            </th>
+                            <th
+                              className="visually-hidden"
+                              role="columnheader"
+                              scope="col"
+                            >
+                              Periode
+                            </th>
+                            <th
+                              className="visually-hidden"
+                              role="columnheader"
+                              scope="col"
+                            >
+                              Detaljer
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody
+                          role="rowgroup"
+                        >
+                          <tr
+                            role="row"
+                          >
+                            <th
+                              role="rowheader"
+                              scope="row"
+                            >
+                              Sykepenger 2017
+                            </th>
+                            <td
+                              className="sumBrutto"
+                              role="cell"
+                            >
+                              13,370.00
+                            </td>
+                            <td
+                              className="sumTrekk"
+                              role="cell"
+                            >
+                              -1,984.00
+                            </td>
+                            <td
+                              className="sumNetto"
+                              role="cell"
+                            >
+                              11,386.00
+                            </td>
+                            <td
+                              className="periodeForYtelse"
+                              role="cell"
+                            >
+                              01.01.1970
+                               - 
+                              31.10.2017
+                            </td>
+                            <td
+                              className="ytelseDetaljer"
+                              role="cell"
+                            >
+                              <dl>
+                                <dt>
+                                  Mouse
+                                </dt>
+                                <dd>
+                                  3,860.00
+                                </dd>
+                                <dt>
+                                  Computer
+                                </dt>
+                                <dd>
+                                  3,930.00
+                                </dd>
+                                <dt>
+                                  Bacon
+                                </dt>
+                                <dd>
+                                  5,580.00
+                                </dd>
+                              </dl>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </aside>
+                </div>
               </div>
             </div>
           </div>
@@ -1104,191 +1098,260 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
           onKeyDown={[Function]}
           tabIndex={-1}
         >
-          <article
-            aria-label="Utbetalinger"
-            className="c27"
-          >
+          <article>
             <div
-              className="c28"
+              aria-label="Utbetalinger"
+              className="panel c27"
             >
-              <h2
-                className="typo-undertittel"
+              <div
+                className="c28"
               >
-                Utbetalinger
-              </h2>
-              <p
-                className="typo-normal"
-              >
-                (
-                1
-                 utbetalinger)
-              </p>
-            </div>
-            <ol
-              aria-label="Måneder"
-              className="c29"
-            >
-              <li
-                className="c30"
-              >
-                <div
-                  className="c31"
+                <h2
+                  className="typo-undertittel"
                 >
-                  <h3
-                    className="typo-element"
-                  >
-                    <span
-                      className="c32"
-                    >
-                      Mars 2017
-                    </span>
-                  </h3>
-                </div>
-                <ol
-                  aria-label="Utbetalinger fra Mars 2017"
+                  Utbetalinger
+                </h2>
+                <p
+                  className="typo-normal"
                 >
-                  <li
-                    className="c33 test-utbetaling-utbetalinglamell"
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    tabIndex={0}
+                  (
+                  1
+                   utbetalinger)
+                </p>
+              </div>
+              <ol
+                aria-label="Måneder"
+                className="c29"
+              >
+                <li
+                  className="c30"
+                >
+                  <div
+                    className="c31"
                   >
-                    <article
-                      aria-expanded={false}
-                      aria-label="Utbetaling Sykepenger"
+                    <h3
+                      className="typo-element"
                     >
-                      <div
-                        className="c14"
+                      <span
+                        className="c32"
+                      >
+                        Mars 2017
+                      </span>
+                    </h3>
+                  </div>
+                  <ol
+                    aria-label="Utbetalinger fra Mars 2017"
+                  >
+                    <li
+                      className="c33 test-utbetaling-utbetalinglamell"
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      tabIndex={0}
+                    >
+                      <article
+                        aria-expanded={false}
+                        aria-label="Utbetaling Sykepenger"
                       >
                         <div
-                          className="c34"
+                          className="c14"
                         >
                           <div
-                            className="c35"
-                          >
-                            <h4
-                              className="typo-element"
-                            >
-                              Sykepenger
-                            </h4>
-                            <p
-                              className="typo-element"
-                            >
-                              11,386.00
-                            </p>
-                          </div>
-                          <p
-                            className="typo-normal order-first"
-                          >
-                            29. Mars 2017
-                             / 
-                            <span
-                              className="c36"
-                            >
-                              Utbetalt
-                            </span>
-                          </p>
-                          <div
-                            className="c35"
-                          >
-                            <p
-                              className="typo-normal"
-                            >
-                              09.11.2016 - 31.10.2017
-                            </p>
-                            <p
-                              className="typo-normal"
-                            >
-                              
-                            </p>
-                          </div>
-                          <div
-                            className="c35"
-                          >
-                            <p
-                              className="typo-normal"
-                            >
-                              Utbetaling til: 
-                              AREMARK TESTFAMILIEN
-                            </p>
-                            <span>
-                              <button
-                                aria-label="Skriv ut"
-                                className="c18"
-                                onClick={[Function]}
-                              >
-                                <span
-                                  className="typo-normal"
-                                >
-                                  Skriv ut
-                                </span>
-                                 
-                                <svg
-                                  viewBox="0 0 17 16"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                                >
-                                  <path
-                                    d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
-                                    fill="#0067C5"
-                                    fillRule="evenodd"
-                                  />
-                                  <path
-                                    d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
-                                    fill="#0067C5"
-                                  />
-                                </svg>
-                              </button>
-                            </span>
-                          </div>
-                        </div>
-                        <div
-                          className="c19"
-                        >
-                          <div
-                            className="c20"
+                            className="c34"
                           >
                             <div
-                              className="c17"
+                              className="c35"
                             >
-                              <button
-                                aria-expanded={false}
-                                className="c21"
-                                onClick={[Function]}
+                              <h4
+                                className="typo-element"
                               >
-                                <span
-                                  className="c22"
+                                Sykepenger
+                              </h4>
+                              <p
+                                className="typo-element"
+                              >
+                                11,386.00
+                              </p>
+                            </div>
+                            <p
+                              className="typo-normal order-first"
+                            >
+                              29. Mars 2017
+                               / 
+                              <span
+                                className="c36"
+                              >
+                                Utbetalt
+                              </span>
+                            </p>
+                            <div
+                              className="c35"
+                            >
+                              <p
+                                className="typo-normal"
+                              >
+                                09.11.2016 - 31.10.2017
+                              </p>
+                              <p
+                                className="typo-normal"
+                              >
+                                
+                              </p>
+                            </div>
+                            <div
+                              className="c35"
+                            >
+                              <p
+                                className="typo-normal"
+                              >
+                                Utbetaling til: 
+                                AREMARK TESTFAMILIEN
+                              </p>
+                              <span>
+                                <button
+                                  aria-label="Skriv ut"
+                                  className="c18"
+                                  onClick={[Function]}
                                 >
                                   <span
                                     className="typo-normal"
                                   >
-                                    Vis detaljer
+                                    Skriv ut
                                   </span>
-                                </span>
-                                <i
-                                  className="nav-frontend-chevron chevronboks chevron--ned"
-                                />
-                              </button>
+                                   
+                                  <svg
+                                    viewBox="0 0 17 16"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                                  >
+                                    <path
+                                      d="M14.8,4.9H2.2c-0.9,0-1.7,0.7-1.7,1.7v4c0,0.9,0.7,1.7,1.7,1.7h1.7v3c0,0.2,0.1,0.3,0.3,0.3h8.7	c0.2,0,0.3-0.1,0.3-0.3v-3h1.7c0.9,0,1.7-0.7,1.7-1.7v-4C16.5,5.6,15.8,4.9,14.8,4.9z M4.5,14.9h8v-4.7h-8V14.9z"
+                                      fill="#0067C5"
+                                      fillRule="evenodd"
+                                    />
+                                    <path
+                                      d="M4.9,0.9h7.1c0.6,0,1,0.4,1,1v1.4c0,0.6-0.4,1-1,1H4.9c-0.6,0-1-0.4-1-1V1.9C3.9,1.3,4.4,0.9,4.9,0.9z"
+                                      fill="#0067C5"
+                                    />
+                                  </svg>
+                                </button>
+                              </span>
                             </div>
                           </div>
-                        </div>
-                        <div
-                          className="c23"
-                          open={false}
-                        >
                           <div
-                            className="c24"
+                            className="c19"
+                          >
+                            <div
+                              className="c20"
+                            >
+                              <div
+                                className="c17"
+                              >
+                                <button
+                                  aria-expanded={false}
+                                  className="c21"
+                                  onClick={[Function]}
+                                >
+                                  <span
+                                    className="c22"
+                                  >
+                                    <span
+                                      className="typo-normal"
+                                    >
+                                      Vis detaljer
+                                    </span>
+                                  </span>
+                                  <i
+                                    className="nav-frontend-chevron chevronboks chevron--ned"
+                                  />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            className="c23"
                             open={false}
                           >
-                            <aside
-                              aria-label="Utbetalingsdetaljer"
-                              className="c37"
+                            <div
+                              className="c24"
+                              open={false}
                             >
-                              <span
-                                className="typo-normal"
+                              <aside
+                                aria-label="Utbetalingsdetaljer"
+                                className="c37"
                               >
+                                <span
+                                  className="typo-normal"
+                                >
+                                  <div
+                                    className="c38"
+                                  >
+                                    <table
+                                      role="table"
+                                    >
+                                      <thead
+                                        role="rowgroup"
+                                      >
+                                        <tr
+                                          role="row"
+                                        >
+                                          <th
+                                            role="columnheader"
+                                          >
+                                            Konto
+                                          </th>
+                                          <th
+                                            role="columnheader"
+                                          >
+                                            Brutto
+                                          </th>
+                                          <th
+                                            role="columnheader"
+                                          >
+                                            Trekk
+                                          </th>
+                                          <th
+                                            role="columnheader"
+                                          >
+                                            Utbetalt
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody
+                                        role="rowgroup"
+                                      >
+                                        <tr
+                                          role="row"
+                                        >
+                                          <td
+                                            role="cell"
+                                          >
+                                            83980854563
+                                          </td>
+                                          <td
+                                            role="cell"
+                                          >
+                                            13,370.00
+                                          </td>
+                                          <td
+                                            role="cell"
+                                          >
+                                            -1,984.00
+                                          </td>
+                                          <td
+                                            role="cell"
+                                          >
+                                            11,386.00
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </span>
                                 <div
-                                  className="c38"
+                                  className="c39"
+                                />
+                                <span
+                                  className="typo-normal"
                                 >
                                   <table
                                     role="table"
@@ -1302,22 +1365,22 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                         <th
                                           role="columnheader"
                                         >
-                                          Konto
+                                          Detaljer
                                         </th>
                                         <th
                                           role="columnheader"
                                         >
-                                          Brutto
+                                          Sats
                                         </th>
                                         <th
                                           role="columnheader"
                                         >
-                                          Trekk
+                                          Antall
                                         </th>
                                         <th
                                           role="columnheader"
                                         >
-                                          Utbetalt
+                                          Beløp
                                         </th>
                                       </tr>
                                     </thead>
@@ -1330,237 +1393,170 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                         <td
                                           role="cell"
                                         >
-                                          83980854563
+                                          Bacon
                                         </td>
                                         <td
                                           role="cell"
                                         >
-                                          13,370.00
+                                          558.00
                                         </td>
                                         <td
                                           role="cell"
                                         >
-                                          -1,984.00
+                                          10
                                         </td>
                                         <td
                                           role="cell"
                                         >
-                                          11,386.00
+                                          5,580.00
+                                        </td>
+                                      </tr>
+                                      <tr
+                                        role="row"
+                                      >
+                                        <td
+                                          role="cell"
+                                        >
+                                          Computer
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          1,310.00
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          3
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          3,930.00
+                                        </td>
+                                      </tr>
+                                      <tr
+                                        role="row"
+                                      >
+                                        <td
+                                          role="cell"
+                                        >
+                                          Mouse
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          1,930.00
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          2
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          3,860.00
+                                        </td>
+                                      </tr>
+                                      <tr
+                                        role="row"
+                                      >
+                                        <td
+                                          role="cell"
+                                        >
+                                          Skattetrekk
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          —
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          —
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          -730.00
+                                        </td>
+                                      </tr>
+                                      <tr
+                                        role="row"
+                                      >
+                                        <td
+                                          role="cell"
+                                        >
+                                          Prosenttrekk
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          —
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          —
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          -1,042.00
+                                        </td>
+                                      </tr>
+                                      <tr
+                                        role="row"
+                                      >
+                                        <td
+                                          role="cell"
+                                        >
+                                          Prosenttrekk
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          —
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          —
+                                        </td>
+                                        <td
+                                          role="cell"
+                                        >
+                                          -212.00
                                         </td>
                                       </tr>
                                     </tbody>
                                   </table>
-                                </div>
-                              </span>
-                              <div
-                                className="c39"
-                              />
-                              <span
-                                className="typo-normal"
-                              >
-                                <table
-                                  role="table"
+                                </span>
+                                <div
+                                  className="c39"
+                                />
+                                <h4
+                                  className="typo-element"
                                 >
-                                  <thead
-                                    role="rowgroup"
-                                  >
-                                    <tr
-                                      role="row"
-                                    >
-                                      <th
-                                        role="columnheader"
-                                      >
-                                        Detaljer
-                                      </th>
-                                      <th
-                                        role="columnheader"
-                                      >
-                                        Sats
-                                      </th>
-                                      <th
-                                        role="columnheader"
-                                      >
-                                        Antall
-                                      </th>
-                                      <th
-                                        role="columnheader"
-                                      >
-                                        Beløp
-                                      </th>
-                                    </tr>
-                                  </thead>
-                                  <tbody
-                                    role="rowgroup"
-                                  >
-                                    <tr
-                                      role="row"
-                                    >
-                                      <td
-                                        role="cell"
-                                      >
-                                        Bacon
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        558.00
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        10
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        5,580.00
-                                      </td>
-                                    </tr>
-                                    <tr
-                                      role="row"
-                                    >
-                                      <td
-                                        role="cell"
-                                      >
-                                        Computer
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        1,310.00
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        3
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        3,930.00
-                                      </td>
-                                    </tr>
-                                    <tr
-                                      role="row"
-                                    >
-                                      <td
-                                        role="cell"
-                                      >
-                                        Mouse
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        1,930.00
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        2
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        3,860.00
-                                      </td>
-                                    </tr>
-                                    <tr
-                                      role="row"
-                                    >
-                                      <td
-                                        role="cell"
-                                      >
-                                        Skattetrekk
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        —
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        —
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        -730.00
-                                      </td>
-                                    </tr>
-                                    <tr
-                                      role="row"
-                                    >
-                                      <td
-                                        role="cell"
-                                      >
-                                        Prosenttrekk
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        —
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        —
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        -1,042.00
-                                      </td>
-                                    </tr>
-                                    <tr
-                                      role="row"
-                                    >
-                                      <td
-                                        role="cell"
-                                      >
-                                        Prosenttrekk
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        —
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        —
-                                      </td>
-                                      <td
-                                        role="cell"
-                                      >
-                                        -212.00
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </span>
-                              <div
-                                className="c39"
-                              />
-                              <h4
-                                className="typo-element"
-                              >
-                                Melding
-                              </h4>
-                              <p
-                                className="typo-normal"
-                              >
-                                Utbetalingsmelding
-                              </p>
-                            </aside>
+                                  Melding
+                                </h4>
+                                <p
+                                  className="typo-normal"
+                                >
+                                  Utbetalingsmelding
+                                </p>
+                              </aside>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </article>
-                  </li>
-                </ol>
-              </li>
-            </ol>
+                      </article>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </div>
           </article>
         </div>
       </div>

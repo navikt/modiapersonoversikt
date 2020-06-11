@@ -14,6 +14,7 @@ import { useSendtMelding } from './useSendtMelding';
 import GaaTilNesteOppgaveKnapp from './GaaTilNesteOppgaveKnapp';
 import TidligereMeldinger from './fortsettDialog/tidligereMeldinger/TidligereMeldinger';
 import ErrorBoundary from '../../../components/ErrorBoundary';
+import Panel from 'nav-frontend-paneler';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -37,7 +38,6 @@ export const DialogpanelKvitteringStyling = styled.div`
     ${theme.animation.fadeIn};
 `;
 const SpinnerWrapper = styled(FillCenterAndFadeIn)`
-    ${theme.hvittPanel};
     box-shadow: none;
     border: ${theme.border.skille};
     padding: 0.5rem;
@@ -58,7 +58,9 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     if (sendtMelding.pending) {
         return (
             <SpinnerWrapper>
-                <NavFrontendSpinner type="S" />
+                <Panel>
+                    <NavFrontendSpinner type="S" />
+                </Panel>
             </SpinnerWrapper>
         );
     }

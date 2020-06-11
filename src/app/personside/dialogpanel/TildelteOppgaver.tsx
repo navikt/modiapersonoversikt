@@ -16,9 +16,14 @@ import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { temagruppeTekst } from '../../../models/Temagrupper';
 import { useHistory } from 'react-router';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
+import Panel from 'nav-frontend-paneler';
 
 const Wrapper = styled.div`
     position: relative;
+`;
+
+const StyledPanel = styled(Panel)`
+    padding: 0rem;
 `;
 
 const OppgaveListe = styled.ul`
@@ -41,7 +46,6 @@ const OppgaveListe = styled.ul`
             border-bottom: ${theme.border.skilleSvak};
         }
     }
-    ${theme.hvittPanel}
 `;
 
 const JustifyRight = styled.div`
@@ -87,7 +91,11 @@ function OppgaverDropdown(props: { lukk: () => void }) {
         );
     });
 
-    return <OppgaveListe>{oppgaver}</OppgaveListe>;
+    return (
+        <OppgaveListe>
+            <StyledPanel>{oppgaver}</StyledPanel>
+        </OppgaveListe>
+    );
 }
 
 function TildelteOppgaver() {

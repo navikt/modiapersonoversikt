@@ -5,6 +5,7 @@ import styled from 'styled-components/macro';
 import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../styles/personOversiktTheme';
 import { ytelserTest } from '../../dyplenkeTest/utils';
+import Panel from 'nav-frontend-paneler';
 
 interface Props {
     children: ReactNode;
@@ -30,8 +31,8 @@ const TittelStyle = styled.div`
     }
 `;
 
-const CustomStyling = styled.div`
-    ${theme.hvittPanel};
+const CustomStyling = styled(Panel)`
+    padding: 0rem;
     .ekspanderbartPanel__hode {
         position: sticky;
         top: 0;
