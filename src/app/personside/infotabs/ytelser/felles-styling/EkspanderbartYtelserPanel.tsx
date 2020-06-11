@@ -32,6 +32,7 @@ const TittelStyle = styled.div`
 `;
 
 const CustomStyling = styled(Panel)`
+    padding: 0rem;
     .ekspanderbartPanel__hode {
         position: sticky;
         top: 0;

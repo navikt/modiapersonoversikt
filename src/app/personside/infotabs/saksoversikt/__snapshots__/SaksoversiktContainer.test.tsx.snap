@@ -257,6 +257,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c13 {
+  padding: 0rem;
   position: relative;
   margin-bottom: 2rem;
 }
@@ -362,6 +363,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c2 {
+  padding: 0rem;
   font-weight: 600;
 }
 

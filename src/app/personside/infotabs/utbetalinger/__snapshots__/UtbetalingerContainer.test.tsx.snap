@@ -366,6 +366,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c27 {
+  padding: 0rem;
   margin-top: .5rem;
   margin-bottom: .5rem;
 }
@@ -448,6 +449,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c2 {
+  padding: 0rem;
   font-weight: 600;
 }
 

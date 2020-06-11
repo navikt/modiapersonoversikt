@@ -22,6 +22,10 @@ const Wrapper = styled.div`
     position: relative;
 `;
 
+const StyledPanel = styled(Panel)`
+    padding: 0rem;
+`;
+
 const OppgaveListe = styled.ul`
     text-align: left;
     position: absolute;
@@ -89,7 +93,7 @@ function OppgaverDropdown(props: { lukk: () => void }) {
 
     return (
         <OppgaveListe>
-            <Panel>{oppgaver}</Panel>
+            <StyledPanel>{oppgaver}</StyledPanel>
         </OppgaveListe>
     );
 }

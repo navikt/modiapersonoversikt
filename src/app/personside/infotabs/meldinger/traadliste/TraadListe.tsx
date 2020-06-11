@@ -28,6 +28,7 @@ interface Props {
 }
 
 const StyledPanel = styled(Panel)`
+    padding: 0rem;
     ol {
         list-style: none;
     }
@@ -66,7 +67,7 @@ const InputStyle = styled.div`
 `;
 
 const PagineringStyling = styled.div`
-    padding: 0 ${theme.margin.layout};
+    padding: ${theme.margin.layout};
     label {
         ${theme.visuallyHidden};
     }

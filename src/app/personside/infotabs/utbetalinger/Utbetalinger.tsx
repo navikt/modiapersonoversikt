@@ -23,6 +23,7 @@ import { AppState } from '../../../../redux/reducers';
 import Panel from 'nav-frontend-paneler';
 
 const UtbetalingerPanel = styled(Panel)`
+    padding: 0rem;
     margin-top: ${theme.margin.layout};
     margin-bottom: ${theme.margin.layout};
     > *:first-child {

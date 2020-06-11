@@ -250,6 +250,10 @@ exports[`Viser Traadliste 1`] = `
   page-break-inside: avoid;
 }
 
+.c0 {
+  padding: 0rem;
+}
+
 .c0 ol {
   list-style: none;
 }

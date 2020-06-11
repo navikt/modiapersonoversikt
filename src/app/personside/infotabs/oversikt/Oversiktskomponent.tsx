@@ -20,7 +20,7 @@ interface Props {
 }
 
 const StyledPanel = styled(Panel)`
-    padding-bottom: 0.3rem;
+    padding: 0rem 0rem 0.3rem 0rem;
 `;
 
 const OverskriftStyle = styled.div`
