@@ -9,7 +9,7 @@ export function TemaOptions(props: { gsakTema: GsakTema[] }) {
     ));
     options.unshift(
         <option value={''} key={''} disabled>
-            {props.gsakTema ? 'Velg Tema' : 'Ingen tema funnet'}
+            {props.gsakTema ? 'Velg tema' : 'Ingen tema funnet'}
         </option>
     );
 
