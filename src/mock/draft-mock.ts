@@ -1,7 +1,8 @@
-import FetchMock, { JSONObject, MockHandler, ResponseUtils } from 'yet-another-fetch-mock';
+import FetchMock, { Handler } from 'yet-another-fetch-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { Draft, DraftContext } from '../app/personside/dialogpanel/use-draft';
 import { randomDelay } from './index';
+import { delayed } from './utils';
 
 const innloggetSaksbehandler = getMockInnloggetSaksbehandler();
 const storage = window.localStorage;
@@ -20,7 +21,7 @@ if (!storage.getItem(storageKey)) {
         ])
     );
 }
-let drafts: Array<Draft & JSONObject> = JSON.parse(storage.getItem('modiapersonoversikt-drafts-mock')!);
+let drafts: Array<Draft> = JSON.parse(storage.getItem('modiapersonoversikt-drafts-mock')!);
 
 function matchContext(context: DraftContext, other: DraftContext, exact: boolean = true): boolean {
     const keys = Object.keys(context);
@@ -38,19 +39,17 @@ function matchContext(context: DraftContext, other: DraftContext, exact: boolean
     });
 }
 
-const findDrafts: MockHandler = ({ queryParams }) => {
+const findDrafts: Handler = ({ queryParams }, res, ctx) => {
     const exact = !(queryParams['exact'] === 'false');
     const context: DraftContext = { ...queryParams };
     delete context['exact'];
-    const matchedDrafts: Array<Draft & JSONObject> = drafts.filter((draft: Draft) =>
-        matchContext(draft.context, context, exact)
-    );
+    const matchedDrafts: Array<Draft> = drafts.filter((draft: Draft) => matchContext(draft.context, context, exact));
 
-    return ResponseUtils.jsonPromise(matchedDrafts);
+    return res(ctx.json(matchedDrafts));
 };
 
-const updateDraft: MockHandler = ({ body }) => {
-    const newDraft: Draft & JSONObject = {
+const updateDraft: Handler = ({ body }, res, ctx) => {
+    const newDraft: Draft = {
         owner: innloggetSaksbehandler.ident,
         content: body.content,
         context: body.context,
@@ -61,20 +60,20 @@ const updateDraft: MockHandler = ({ body }) => {
     drafts.push(newDraft);
     storage.setItem(storageKey, JSON.stringify(drafts));
 
-    return ResponseUtils.jsonPromise(newDraft);
+    return res(ctx.json(newDraft));
 };
 
-const deleteDraft: MockHandler = ({ body }) => {
+const deleteDraft: Handler = ({ body }, res, ctx) => {
     const context: DraftContext = { ...body };
     drafts = drafts.filter((draft: Draft) => !matchContext(draft.context, context, true));
     storage.setItem(storageKey, JSON.stringify(drafts));
 
-    return ResponseUtils.jsonPromise({ status: 200 });
+    return res(ctx.status(200));
 };
 
 export function setupDraftMock(mock: FetchMock) {
     // console.log(findDrafts, updateDraft, deleteDraft);
-    mock.get('/modiapersonoversikt-draft/api/draft', ResponseUtils.delayed(2 * randomDelay(), findDrafts));
-    mock.post('/modiapersonoversikt-draft/api/draft', ResponseUtils.delayed(2 * randomDelay(), updateDraft));
-    mock.delete('/modiapersonoversikt-draft/api/draft', ResponseUtils.delayed(2 * randomDelay(), deleteDraft));
+    mock.get('/modiapersonoversikt-draft/api/draft', delayed(2 * randomDelay(), findDrafts));
+    mock.post('/modiapersonoversikt-draft/api/draft', delayed(2 * randomDelay(), updateDraft));
+    mock.delete('/modiapersonoversikt-draft/api/draft', delayed(2 * randomDelay(), deleteDraft));
 }
