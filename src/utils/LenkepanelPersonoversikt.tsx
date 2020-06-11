@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ReactNode } from 'react';
 import styled from 'styled-components/macro';
 import { pxToRem } from '../styles/personOversiktTheme';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
@@ -9,6 +8,7 @@ interface Props {
     url: string;
     children: string;
     className?: string;
+    linkCreator?: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => React.ReactNode;
 }
 
 const CustomStyling = styled(Panel)`
@@ -28,21 +28,18 @@ const CustomStyling = styled(Panel)`
 function LenkepanelPersonoversikt(props: Props) {
     return (
         <CustomStyling className={props.className}>
-            <LenkepanelBase
-                href={props.url}
-                linkCreator={(props: React.HTMLProps<HTMLElement>): ReactNode => (
-                    // eslint-disable-next-line jsx-a11y/anchor-has-content
-                    <a
-                        target={'_blank'}
-                        rel={'noopener noreferrer'}
-                        {...(props as React.HTMLProps<HTMLAnchorElement>)}
-                    />
-                )}
-            >
+            <LenkepanelBase href={props.url} linkCreator={props.linkCreator}>
                 {props.children}
             </LenkepanelBase>
         </CustomStyling>
     );
 }
+
+(LenkepanelPersonoversikt as React.FunctionComponent).defaultProps = {
+    linkCreator: (props: React.HTMLProps<HTMLAnchorElement>) => (
+        // eslint-disable-next-line jsx-a11y/anchor-has-content
+        <a target="_blank" rel="noopener noreferrer" {...props} />
+    )
+};
 
 export default LenkepanelPersonoversikt;
