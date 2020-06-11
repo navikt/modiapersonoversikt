@@ -1,22 +1,3 @@
-declare var _apiBaseUri: string;
-declare var _mockEnabled: string;
-
-function getApiBaseUri() {
-    if (typeof _apiBaseUri === 'undefined') {
-        return '/modiabrukerdialog/rest';
-    } else {
-        return _apiBaseUri;
-    }
-}
-
-function getMockEnabled(): boolean {
-    if (typeof _mockEnabled === 'undefined') {
-        return false;
-    } else {
-        return _mockEnabled === 'true';
-    }
-}
-
 export function postConfig(body: object | string) {
     return {
         body: JSON.stringify(body),
@@ -33,6 +14,4 @@ export function postConfig(body: object | string) {
 
 export const includeCredentials: RequestInit = { credentials: 'include' };
 
-export const apiBaseUri = getApiBaseUri();
-
-export const mockEnabled = getMockEnabled();
+export const apiBaseUri = '/modiapersonoversikt-api/rest';

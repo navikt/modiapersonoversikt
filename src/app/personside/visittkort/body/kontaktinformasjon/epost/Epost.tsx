@@ -11,7 +11,7 @@ interface EpostVisningProps {
     kontaktinformasjon: KRRKontaktinformasjon;
 }
 
-export function EpostVisning({ kontaktinformasjon }: EpostVisningProps) {
+function EpostVisning({ kontaktinformasjon }: EpostVisningProps) {
     if ('true' === kontaktinformasjon.reservasjon) {
         return (
             <>

@@ -6,7 +6,7 @@ import { loggError } from '../../utils/logger/frontendLogger';
 
 export default createRestResourceReducerAndActions<{ [name: string]: boolean }>('featureToggles', () => '');
 
-export async function fetchAllFeatureToggles() {
+export async function fetchAllFeatureToggles(): Promise<{ [name: string]: boolean }> {
     const featureToggleKeys = Object.keys(FeatureToggles);
 
     const featureTogglePromises: Promise<FeatureToggleResponse>[] = featureToggleKeys.map(key => {
@@ -15,16 +15,13 @@ export async function fetchAllFeatureToggles() {
 
     const toggleStates = await Promise.all(featureTogglePromises);
 
-    // @ts-ignore
-    const keysAndStatus = featureToggleKeys.reduce((acc, key, index) => {
+    return featureToggleKeys.reduce((acc, key, index) => {
         const toggleId = FeatureToggles[key];
         return {
             ...acc,
             [toggleId]: toggleStates[index]
         };
-    }, []);
-
-    return keysAndStatus;
+    }, {});
 }
 
 function fetchFeatureToggle(toggleId: string): Promise<FeatureToggleResponse> {

@@ -2,7 +2,7 @@ import { Periode } from '../periode';
 import { KommendeUtbetaling } from './ytelse-utbetalinger';
 import { Arbeidsforhold } from './arbeidsforhold';
 import moment from 'moment';
-import { backendDatoformat } from '../../mock/utils/mock-utils';
+import { backendDatoformat } from '../../utils/dateUtils';
 
 export interface ForeldrepengerResponse {
     foreldrepenger: Foreldrepengerettighet[] | null;

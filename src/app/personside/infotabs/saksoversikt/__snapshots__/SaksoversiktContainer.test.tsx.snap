@@ -140,9 +140,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c4 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+  padding: 0rem;
 }
 
 .c4 ol {
@@ -259,9 +257,6 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c13 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
   position: relative;
   margin-bottom: 2rem;
 }
@@ -366,26 +361,23 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   outline: none;
 }
 
-.c3 {
-  border-radius: 0.25rem;
-  background-color: white;
-  box-shadow: 0 0 0.5rem rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+.c2 {
   font-weight: 600;
 }
 
-.c3 a {
+.c2 a {
   padding: 0.9375rem;
 }
 
-.c3 a:visited {
+.c2 a:visited {
   color: currentColor !important;
 }
 
-.c3 .lenkepanel {
+.c2 .lenkepanel {
   margin-bottom: 0;
 }
 
-.c2 {
+.c3 {
   margin-bottom: .5rem;
 }
 
@@ -459,11 +451,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     onScroll={[Function]}
   >
     <div
-      className="c2 c3"
+      className="panel c2 c3"
     >
       <a
         className="lenkepanel"
-        href="/modiapersonoversikt/saker/10108000398?sakstema=ALLE1545606000"
+        href="/saker/10108000398?sakstema=ALLE1545606000"
         rel="noopener noreferrer"
         target="_blank"
       >
@@ -473,350 +465,352 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
         />
       </a>
     </div>
-    <nav
-      aria-labelledby="Helt tilfeldig ID"
-      className="c4"
-    >
+    <nav>
       <div
-        className="c5"
+        aria-labelledby="Helt tilfeldig ID"
+        className="panel c4"
       >
-        <h2
-          className="typo-undertittel"
-          id="Helt tilfeldig ID"
+        <div
+          className="c5"
         >
-          Tema
-        </h2>
-        <p
-          className="typo-normal"
-        >
-          (
-          5
-           saker)
-        </p>
-      </div>
-      <nav
-        aria-label="Velg sakstema"
-      >
-        <ol
-          className="c6"
-        >
-          <li
-            className="test-sakstema-list"
+          <h2
+            className="typo-undertittel"
+            id="Helt tilfeldig ID"
           >
-            <div
-              className="c7"
-              onClick={[Function]}
+            Tema
+          </h2>
+          <p
+            className="typo-normal"
+          >
+            (
+            5
+             saker)
+          </p>
+        </div>
+        <nav
+          aria-label="Velg sakstema"
+        >
+          <ol
+            className="c6"
+          >
+            <li
+              className="test-sakstema-list"
             >
-              <div>
-                <div
-                  className="c8"
-                >
-                  <div>
-                    <div
-                      className="c9"
-                    >
-                      <p
-                        className="typo-element order-second test-saker-oversikt"
-                      >
-                        Alle tema
-                      </p>
-                      <p
-                        className="typo-normal order-first"
-                      >
-                        24.12.2018
-                      </p>
-                    </div>
-                  </div>
-                  <span
-                    className="c10"
-                  />
-                </div>
-              </div>
-              <button
-                aria-label="Vis Alle tema"
-                aria-selected={true}
-                className="c11"
+              <div
+                className="c7"
+                onClick={[Function]}
               >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li
-            className="test-sakstema-list"
-          >
-            <div
-              className="c12"
-              onClick={[Function]}
-            >
-              <div>
-                <div
-                  className="c8"
-                >
-                  <div>
-                    <div
-                      className="c9"
-                    >
-                      <p
-                        className="typo-element order-second test-saker-oversikt"
-                      >
-                        Sykepenger
-                      </p>
-                      <p
-                        className="typo-normal order-first"
-                      >
-                        24.12.2018
-                      </p>
-                    </div>
-                    <p
-                      className="typo-normal"
-                    >
-                      1
-                       
-                      søknad
-                       er 
-                      under behandling
-                      .
-                    </p>
-                  </div>
-                  <span
-                    className="c10"
+                <div>
+                  <div
+                    className="c8"
                   >
-                    <svg
-                      contentScriptType="text/ecmascript"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        fill="currentColor"
+                    <div>
+                      <div
+                        className="c9"
                       >
-                        <path
-                          d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
-                        />
-                        <path
-                          d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
-                        />
-                      </g>
-                    </svg>
-                  </span>
+                        <p
+                          className="typo-element order-second test-saker-oversikt"
+                        >
+                          Alle tema
+                        </p>
+                        <p
+                          className="typo-normal order-first"
+                        >
+                          24.12.2018
+                        </p>
+                      </div>
+                    </div>
+                    <span
+                      className="c10"
+                    />
+                  </div>
                 </div>
-              </div>
-              <button
-                aria-label="Vis Sykepenger"
-                aria-selected={false}
-                className="c11"
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li
-            className="test-sakstema-list"
-          >
-            <div
-              className="c12"
-              onClick={[Function]}
-            >
-              <div>
-                <div
-                  className="c8"
+                <button
+                  aria-label="Vis Alle tema"
+                  aria-selected={true}
+                  className="c11"
                 >
-                  <div>
-                    <div
-                      className="c9"
-                    >
-                      <p
-                        className="typo-element order-second test-saker-oversikt"
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+            <li
+              className="test-sakstema-list"
+            >
+              <div
+                className="c12"
+                onClick={[Function]}
+              >
+                <div>
+                  <div
+                    className="c8"
+                  >
+                    <div>
+                      <div
+                        className="c9"
                       >
-                        Arbeidsavklaringspenger
-                      </p>
+                        <p
+                          className="typo-element order-second test-saker-oversikt"
+                        >
+                          Sykepenger
+                        </p>
+                        <p
+                          className="typo-normal order-first"
+                        >
+                          24.12.2018
+                        </p>
+                      </div>
                       <p
-                        className="typo-normal order-first"
+                        className="typo-normal"
                       >
-                        25.06.2018
+                        1
+                         
+                        søknad
+                         er 
+                        under behandling
+                        .
                       </p>
                     </div>
-                    <p
-                      className="typo-normal"
+                    <span
+                      className="c10"
                     >
-                      1
-                       
-                      søknad
-                       er 
-                      under behandling
-                      .
-                    </p>
-                    <p
-                      className="typo-normal"
-                    >
-                      2
-                       
-                      søknader
-                       er 
-                      ferdig behandlet
-                      .
-                    </p>
-                  </div>
-                  <span
-                    className="c10"
-                  />
-                </div>
-              </div>
-              <button
-                aria-label="Vis Arbeidsavklaringspenger"
-                aria-selected={false}
-                className="c11"
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li
-            className="test-sakstema-list"
-          >
-            <div
-              className="c12"
-              onClick={[Function]}
-            >
-              <div>
-                <div
-                  className="c8"
-                >
-                  <div>
-                    <div
-                      className="c9"
-                    >
-                      <p
-                        className="typo-element order-second test-saker-oversikt"
+                      <svg
+                        contentScriptType="text/ecmascript"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        Barnetrygd
+                        <g
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M17.5 10c1.3 0 2.5.3 3.5.9V4.5c0-.3-.2-.5-.5-.5H19V2.5c0-.3-.2-.5-.5-.5H6V.5c0-.3-.2-.5-.5-.5h-5C.2 0 0 .2 0 .5V16c0 1.1.9 2 2 2h8v-.5c0-4.1 3.4-7.5 7.5-7.5zM3 4.5V16a1 1 0 0 1-2 0V1h4v1.5c0 .3.2.5.5.5H18v1H3.5c-.3 0-.5.2-.5.5z"
+                          />
+                          <path
+                            d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                          />
+                        </g>
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+                <button
+                  aria-label="Vis Sykepenger"
+                  aria-selected={false}
+                  className="c11"
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+            <li
+              className="test-sakstema-list"
+            >
+              <div
+                className="c12"
+                onClick={[Function]}
+              >
+                <div>
+                  <div
+                    className="c8"
+                  >
+                    <div>
+                      <div
+                        className="c9"
+                      >
+                        <p
+                          className="typo-element order-second test-saker-oversikt"
+                        >
+                          Arbeidsavklaringspenger
+                        </p>
+                        <p
+                          className="typo-normal order-first"
+                        >
+                          25.06.2018
+                        </p>
+                      </div>
+                      <p
+                        className="typo-normal"
+                      >
+                        1
+                         
+                        søknad
+                         er 
+                        under behandling
+                        .
                       </p>
                       <p
-                        className="typo-normal order-first"
+                        className="typo-normal"
                       >
-                        20.03.2018
+                        2
+                         
+                        søknader
+                         er 
+                        ferdig behandlet
+                        .
                       </p>
                     </div>
+                    <span
+                      className="c10"
+                    />
                   </div>
-                  <span
-                    className="c10"
-                  />
                 </div>
-              </div>
-              <button
-                aria-label="Vis Barnetrygd"
-                aria-selected={false}
-                className="c11"
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li
-            className="test-sakstema-list"
-          >
-            <div
-              className="c12"
-              onClick={[Function]}
-            >
-              <div>
-                <div
-                  className="c8"
+                <button
+                  aria-label="Vis Arbeidsavklaringspenger"
+                  aria-selected={false}
+                  className="c11"
                 >
-                  <div>
-                    <div
-                      className="c9"
-                    >
-                      <p
-                        className="typo-element order-second test-saker-oversikt"
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+            <li
+              className="test-sakstema-list"
+            >
+              <div
+                className="c12"
+                onClick={[Function]}
+              >
+                <div>
+                  <div
+                    className="c8"
+                  >
+                    <div>
+                      <div
+                        className="c9"
                       >
-                        Tiltakspenger
-                      </p>
-                      <p
-                        className="typo-normal order-first"
+                        <p
+                          className="typo-element order-second test-saker-oversikt"
+                        >
+                          Barnetrygd
+                        </p>
+                        <p
+                          className="typo-normal order-first"
+                        >
+                          20.03.2018
+                        </p>
+                      </div>
+                    </div>
+                    <span
+                      className="c10"
+                    />
+                  </div>
+                </div>
+                <button
+                  aria-label="Vis Barnetrygd"
+                  aria-selected={false}
+                  className="c11"
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+            <li
+              className="test-sakstema-list"
+            >
+              <div
+                className="c12"
+                onClick={[Function]}
+              >
+                <div>
+                  <div
+                    className="c8"
+                  >
+                    <div>
+                      <div
+                        className="c9"
                       >
-                        14.01.2018
+                        <p
+                          className="typo-element order-second test-saker-oversikt"
+                        >
+                          Tiltakspenger
+                        </p>
+                        <p
+                          className="typo-normal order-first"
+                        >
+                          14.01.2018
+                        </p>
+                      </div>
+                      <p
+                        className="typo-normal"
+                      >
+                        1
+                         
+                        søknad
+                         er 
+                        under behandling
+                        .
                       </p>
                     </div>
-                    <p
-                      className="typo-normal"
-                    >
-                      1
-                       
-                      søknad
-                       er 
-                      under behandling
-                      .
-                    </p>
+                    <span
+                      className="c10"
+                    />
                   </div>
-                  <span
-                    className="c10"
-                  />
                 </div>
-              </div>
-              <button
-                aria-label="Vis Tiltakspenger"
-                aria-selected={false}
-                className="c11"
-              >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-          <li
-            className="test-sakstema-list"
-          >
-            <div
-              className="c12"
-              onClick={[Function]}
-            >
-              <div>
-                <div
-                  className="c8"
+                <button
+                  aria-label="Vis Tiltakspenger"
+                  aria-selected={false}
+                  className="c11"
                 >
-                  <div>
-                    <div
-                      className="c9"
-                    >
-                      <p
-                        className="typo-element order-second test-saker-oversikt"
-                      >
-                        Generell
-                      </p>
-                      <p
-                        className="typo-normal order-first"
-                      >
-                        21.11.2017
-                      </p>
-                    </div>
-                  </div>
-                  <span
-                    className="c10"
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
-                </div>
+                </button>
               </div>
-              <button
-                aria-label="Vis Generell"
-                aria-selected={false}
-                className="c11"
+            </li>
+            <li
+              className="test-sakstema-list"
+            >
+              <div
+                className="c12"
+                onClick={[Function]}
               >
-                <i
-                  className="nav-frontend-chevron chevronboks chevron--hoyre"
-                />
-              </button>
-            </div>
-          </li>
-        </ol>
-      </nav>
+                <div>
+                  <div
+                    className="c8"
+                  >
+                    <div>
+                      <div
+                        className="c9"
+                      >
+                        <p
+                          className="typo-element order-second test-saker-oversikt"
+                        >
+                          Generell
+                        </p>
+                        <p
+                          className="typo-normal order-first"
+                        >
+                          21.11.2017
+                        </p>
+                      </div>
+                    </div>
+                    <span
+                      className="c10"
+                    />
+                  </div>
+                </div>
+                <button
+                  aria-label="Vis Generell"
+                  aria-selected={false}
+                  className="c11"
+                >
+                  <i
+                    className="nav-frontend-chevron chevronboks chevron--hoyre"
+                  />
+                </button>
+              </div>
+            </li>
+          </ol>
+        </nav>
+      </div>
     </nav>
   </div>
   <div
@@ -824,385 +818,336 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
     onScroll={[Function]}
   >
     <div>
-      <article
-        aria-label="Saksdokumenter for Alle tema"
-        className="c13"
-      >
-        <section
-          className="c14"
+      <article>
+        <div
+          aria-label="Saksdokumenter for Alle tema"
+          className="panel c13"
         >
-          <div>
-            <div
-              className="c15"
-              tabIndex={-1}
-            >
-              <h2
-                className="typo-undertittel test-saker-dokumenter"
-              >
-                Alle tema
-              </h2>
-              <p
-                className="typo-normal"
-              >
-                (
-                14
-                 journalposter)
-              </p>
-            </div>
-            <form
-              aria-label="Filter"
-              className="c16"
-            >
-              <div
-                className="skjemaelement"
-              >
-                <input
-                  aria-invalid={false}
-                  checked={true}
-                  className="skjemaelement__input checkboks"
-                  id="Helt tilfeldig ID"
-                  onChange={[Function]}
-                  type="checkbox"
-                />
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="Helt tilfeldig ID"
-                >
-                  Bruker
-                </label>
-              </div>
-              <div
-                className="skjemaelement"
-              >
-                <input
-                  aria-invalid={false}
-                  checked={true}
-                  className="skjemaelement__input checkboks"
-                  id="Helt tilfeldig ID"
-                  onChange={[Function]}
-                  type="checkbox"
-                />
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="Helt tilfeldig ID"
-                >
-                  NAV
-                </label>
-              </div>
-              <div
-                className="skjemaelement"
-              >
-                <input
-                  aria-invalid={false}
-                  checked={true}
-                  className="skjemaelement__input checkboks"
-                  id="Helt tilfeldig ID"
-                  onChange={[Function]}
-                  type="checkbox"
-                />
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="Helt tilfeldig ID"
-                >
-                  Andre
-                </label>
-              </div>
-            </form>
-          </div>
-          <div>
-            <a
-              className="lenke"
-              href="https://norg2-frontend.nais.preprod.local/#/startsok?tema=SYK,AAP,BAR,IND,GEN&gt=0118"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <p
-                className="typo-normal"
-              >
-                Oversikt over enheter og tema de behandler
-              </p>
-            </a>
-          </div>
-        </section>
-        <ol
-          aria-label="Dokumenter gruppert på årstall"
-          className="c17"
-        >
-          <li
-            className="c18"
+          <section
+            className="c14"
           >
-            <div
-              className="c19"
-            >
-              <h3
-                className="typo-element"
-                id="Helt tilfeldig ID"
+            <div>
+              <div
+                className="c15"
+                tabIndex={-1}
               >
-                <span
-                  className="sr-only"
+                <h2
+                  className="typo-undertittel test-saker-dokumenter"
                 >
-                  Journalposter fra
-                </span>
-                2018
-              </h3>
+                  Alle tema
+                </h2>
+                <p
+                  className="typo-normal"
+                >
+                  (
+                  14
+                   journalposter)
+                </p>
+              </div>
+              <form
+                aria-label="Filter"
+                className="c16"
+              >
+                <div
+                  className="skjemaelement"
+                >
+                  <input
+                    aria-invalid={false}
+                    checked={true}
+                    className="skjemaelement__input checkboks"
+                    id="Helt tilfeldig ID"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    Bruker
+                  </label>
+                </div>
+                <div
+                  className="skjemaelement"
+                >
+                  <input
+                    aria-invalid={false}
+                    checked={true}
+                    className="skjemaelement__input checkboks"
+                    id="Helt tilfeldig ID"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    NAV
+                  </label>
+                </div>
+                <div
+                  className="skjemaelement"
+                >
+                  <input
+                    aria-invalid={false}
+                    checked={true}
+                    className="skjemaelement__input checkboks"
+                    id="Helt tilfeldig ID"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                  <label
+                    className="skjemaelement__label"
+                    htmlFor="Helt tilfeldig ID"
+                  >
+                    Andre
+                  </label>
+                </div>
+              </form>
             </div>
-            <ol
-              aria-labelledby="Helt tilfeldig ID"
+            <div>
+              <a
+                className="lenke"
+                href="https://norg2-frontend.nais.preprod.local/#/startsok?tema=SYK,AAP,BAR,IND,GEN&gt=0118"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <p
+                  className="typo-normal"
+                >
+                  Oversikt over enheter og tema de behandler
+                </p>
+              </a>
+            </div>
+          </section>
+          <ol
+            aria-label="Dokumenter gruppert på årstall"
+            className="c17"
+          >
+            <li
+              className="c18"
             >
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
+              <div
+                className="c19"
+              >
+                <h3
+                  className="typo-element"
+                  id="Helt tilfeldig ID"
                 >
-                  <div
-                    className="c21"
+                  <span
+                    className="sr-only"
                   >
-                    <svg
-                      aria-label="Du har ikke tilgang til dette dokumentet"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        fill="currentColor"
-                      >
-                        <path
-                          d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
-                        />
-                        <path
-                          d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
-                        />
-                      </g>
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
+                    Journalposter fra
+                  </span>
+                  2018
+                </h3>
+              </div>
+              <ol
+                aria-labelledby="Helt tilfeldig ID"
+              >
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
                   >
                     <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
+                      className="c21"
                     >
-                      <h4
-                        className="order-second"
+                      <svg
+                        aria-label="Du har ikke tilgang til dette dokumentet"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
+                          />
+                          <path
+                            d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
+                          <p
+                            className="typo-element"
+                          >
+                            Vurdering feilutbetaling/revurdering
+                          </p>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            05.12.2018 / Notat
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c24"
                       >
                         <p
-                          className="typo-element"
+                          className="typo-etikett-liten"
                         >
-                          Vurdering feilutbetaling/revurdering
+                          Alle tema
+                           / Saksid: 
+                          7181o3jv
                         </p>
-                      </h4>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <svg
+                        aria-label="Du har ikke tilgang til dette dokumentet"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
+                          />
+                          <path
+                            d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
                       <div
-                        className="order-first"
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
+                          <p
+                            className="typo-element"
+                          >
+                            Innhenting av opplysninger
+                          </p>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            03.08.2018 / Notat
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c25"
                       >
                         <p
                           className="typo-normal"
                         >
-                          05.12.2018 / Notat
+                          Dokumentet har 
+                          3
+                           vedlegg:
+                        </p>
+                        <ul>
+                          <li>
+                            <p
+                              className="typo-element"
+                            >
+                              A-inntekt
+                            </p>
+                          </li>
+                          <li>
+                            <p
+                              className="typo-element"
+                            >
+                              Spørsmål via nav.no
+                            </p>
+                          </li>
+                          <li>
+                            <p
+                              className="typo-element"
+                            >
+                              Inntektsopplysninger
+                            </p>
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        className="c24"
+                      >
+                        <p
+                          className="typo-etikett-liten"
+                        >
+                          Alle tema
+                           / Saksid: 
+                          40xxap7t
                         </p>
                       </div>
                     </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        7181o3jv
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
+                  </article>
+                </li>
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
                   >
-                    <svg
-                      aria-label="Du har ikke tilgang til dette dokumentet"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      className="c21"
                     >
-                      <g
-                        fill="currentColor"
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
+                          d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
+                          fill="#3e3832"
                         />
-                        <path
-                          d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
-                        />
-                      </g>
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
-                  >
+                      </svg>
+                    </div>
                     <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
+                      className="c22"
                     >
-                      <h4
-                        className="order-second"
-                      >
-                        <p
-                          className="typo-element"
-                        >
-                          Innhenting av opplysninger
-                        </p>
-                      </h4>
                       <div
-                        className="order-first"
+                        className="c23"
+                        id="Helt tilfeldig ID"
                       >
-                        <p
-                          className="typo-normal"
+                        <h4
+                          className="order-second"
                         >
-                          03.08.2018 / Notat
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      className="c25"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Dokumentet har 
-                        3
-                         vedlegg:
-                      </p>
-                      <ul>
-                        <li>
-                          <p
-                            className="typo-element"
-                          >
-                            A-inntekt
-                          </p>
-                        </li>
-                        <li>
-                          <p
-                            className="typo-element"
-                          >
-                            Spørsmål via nav.no
-                          </p>
-                        </li>
-                        <li>
-                          <p
-                            className="typo-element"
-                          >
-                            Inntektsopplysninger
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        40xxap7t
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
-                        fill="#3e3832"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
-                  >
-                    <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
-                    >
-                      <h4
-                        className="order-second"
-                      >
-                        <a
-                          className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
-                          onClick={[Function]}
-                          target="_blank"
-                        >
-                          Inntektsopplysninger
-                        </a>
-                        <a
-                          className="lenke typo-element c26"
-                          download={true}
-                          href="/detteeretmockdokument/"
-                          title="Last ned"
-                        >
-                          <svg
-                            aria-hidden={true}
-                            height={20}
-                            width={20}
-                          >
-                            download.svg
-                          </svg>
-                          <span
-                            className="sr-only"
-                          >
-                            Last ned pdf
-                          </span>
-                        </a>
-                      </h4>
-                      <div
-                        className="order-first"
-                      >
-                        <p
-                          className="typo-normal"
-                        >
-                          18.03.2018 / Fra Thea
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      className="c25"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Dokumentet har 
-                        3
-                         vedlegg:
-                      </p>
-                      <ul>
-                        <li>
                           <a
                             className="lenke typo-element"
-                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                            href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/q90p8dnw"
                             onClick={[Function]}
                             target="_blank"
                           >
-                            A-inntekt (Skjermet)
+                            Inntektsopplysninger
                           </a>
                           <a
-                            className="lenke typo-element c26"
+                            className="c26 lenke typo-element"
                             download={true}
-                            href="/detteeretmockdokument/"
+                            href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/q90p8dnw"
                             title="Last ned"
                           >
                             <svg
@@ -1218,20 +1163,966 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                               Last ned pdf
                             </span>
                           </a>
-                        </li>
-                        <li>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            18.03.2018 / Fra Thea
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c25"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Dokumentet har 
+                          3
+                           vedlegg:
+                        </p>
+                        <ul>
+                          <li>
+                            <a
+                              className="lenke typo-element"
+                              href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/fbp2nc3l"
+                              onClick={[Function]}
+                              target="_blank"
+                            >
+                              A-inntekt (Skjermet)
+                            </a>
+                            <a
+                              className="c26 lenke typo-element"
+                              download={true}
+                              href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/fbp2nc3l"
+                              title="Last ned"
+                            >
+                              <svg
+                                aria-hidden={true}
+                                height={20}
+                                width={20}
+                              >
+                                download.svg
+                              </svg>
+                              <span
+                                className="sr-only"
+                              >
+                                Last ned pdf
+                              </span>
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              className="lenke typo-element"
+                              href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/x2njhynn"
+                              onClick={[Function]}
+                              target="_blank"
+                            >
+                              Referat fra samtale på telefon
+                            </a>
+                            <a
+                              className="c26 lenke typo-element"
+                              download={true}
+                              href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/etcoicxr/x2njhynn"
+                              title="Last ned"
+                            >
+                              <svg
+                                aria-hidden={true}
+                                height={20}
+                                width={20}
+                              >
+                                download.svg
+                              </svg>
+                              <span
+                                className="sr-only"
+                              >
+                                Last ned pdf
+                              </span>
+                            </a>
+                          </li>
+                          <li>
+                            <p
+                              className="typo-element"
+                            >
+                              Vedtak korrigert refusjon/u bet
+                            </p>
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        className="c24"
+                      >
+                        <p
+                          className="typo-etikett-liten"
+                        >
+                          Alle tema
+                           / Saksid: 
+                          4g9b0ecf
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+              </ol>
+            </li>
+            <li
+              className="c18"
+            >
+              <div
+                className="c19"
+              >
+                <h3
+                  className="typo-element"
+                  id="Helt tilfeldig ID"
+                >
+                  <span
+                    className="sr-only"
+                  >
+                    Journalposter fra
+                  </span>
+                  2017
+                </h3>
+              </div>
+              <ol
+                aria-labelledby="Helt tilfeldig ID"
+              >
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
+                          fill="#3e3832"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
+                          <p
+                            className="typo-element"
+                          >
+                            Spørsmål via nav.no (Skjermet)
+                          </p>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            21.11.2017 / Notat
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c25"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Dokumentet har 
+                          3
+                           vedlegg:
+                        </p>
+                        <ul>
+                          <li>
+                            <a
+                              className="lenke typo-element"
+                              href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/lidtmy7n/428dwf43"
+                              onClick={[Function]}
+                              target="_blank"
+                            >
+                              Spørsmål via nav.no
+                            </a>
+                            <a
+                              className="c26 lenke typo-element"
+                              download={true}
+                              href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/lidtmy7n/428dwf43"
+                              title="Last ned"
+                            >
+                              <svg
+                                aria-hidden={true}
+                                height={20}
+                                width={20}
+                              >
+                                download.svg
+                              </svg>
+                              <span
+                                className="sr-only"
+                              >
+                                Last ned pdf
+                              </span>
+                            </a>
+                          </li>
+                          <li>
+                            <p
+                              className="typo-element"
+                            >
+                              Innhenting av opplysninger
+                            </p>
+                          </li>
+                          <li>
+                            <p
+                              className="typo-element"
+                            >
+                              Spørsmål via nav.no
+                            </p>
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        className="c24"
+                      >
+                        <p
+                          className="typo-etikett-liten"
+                        >
+                          Alle tema
+                           / Saksid: 
+                          53kj7i18
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
+                          fill="#3e3832"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
                           <a
                             className="lenke typo-element"
-                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                            href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/fg1w15sz/nvqxc1ip"
+                            onClick={[Function]}
+                            target="_blank"
+                          >
+                            Spørsmål via nav.no
+                          </a>
+                          <a
+                            className="c26 lenke typo-element"
+                            download={true}
+                            href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/fg1w15sz/nvqxc1ip"
+                            title="Last ned"
+                          >
+                            <svg
+                              aria-hidden={true}
+                              height={20}
+                              width={20}
+                            >
+                              download.svg
+                            </svg>
+                            <span
+                              className="sr-only"
+                            >
+                              Last ned pdf
+                            </span>
+                          </a>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            27.07.2017 / Fra NAV (Sendt til Eline)
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c24"
+                      >
+                        <p
+                          className="typo-etikett-liten"
+                        >
+                          Alle tema
+                           / Saksid: 
+                          huuael8f
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
+                          fill="#3e3832"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
+                          <a
+                            className="lenke typo-element"
+                            href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/o5z5pcse/me3wv1le"
+                            onClick={[Function]}
+                            target="_blank"
+                          >
+                            Automatisk vedtak/nyfødt barn
+                          </a>
+                          <a
+                            className="c26 lenke typo-element"
+                            download={true}
+                            href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/o5z5pcse/me3wv1le"
+                            title="Last ned"
+                          >
+                            <svg
+                              aria-hidden={true}
+                              height={20}
+                              width={20}
+                            >
+                              download.svg
+                            </svg>
+                            <span
+                              className="sr-only"
+                            >
+                              Last ned pdf
+                            </span>
+                          </a>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            17.03.2017 / Notat
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c25"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Dokumentet har 
+                          1
+                           vedlegg:
+                        </p>
+                        <ul>
+                          <li>
+                            <p
+                              className="typo-element"
+                            >
+                              A-inntekt
+                            </p>
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        className="c24"
+                      >
+                        <p
+                          className="typo-etikett-liten"
+                        >
+                          Alle tema
+                           / Saksid: 
+                          chsgwugz
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <svg
+                        aria-label="Du har ikke tilgang til dette dokumentet"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
+                          />
+                          <path
+                            d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
+                          <p
+                            className="typo-element"
+                          >
+                            Inntektsopplysninger
+                          </p>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            28.02.2017 / Fra AREMARK TESTFAMILIEN
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c25"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Dokumentet har 
+                          1
+                           vedlegg:
+                        </p>
+                        <ul>
+                          <li>
+                            <a
+                              className="lenke typo-element"
+                              href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/h6p0iy3l/k51y90us"
+                              onClick={[Function]}
+                              target="_blank"
+                            >
+                              A-inntekt
+                            </a>
+                            <a
+                              className="c26 lenke typo-element"
+                              download={true}
+                              href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/h6p0iy3l/k51y90us"
+                              title="Last ned"
+                            >
+                              <svg
+                                aria-hidden={true}
+                                height={20}
+                                width={20}
+                              >
+                                download.svg
+                              </svg>
+                              <span
+                                className="sr-only"
+                              >
+                                Last ned pdf
+                              </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        className="c24"
+                      >
+                        <p
+                          className="typo-etikett-liten"
+                        >
+                          Alle tema
+                           / Saksid: 
+                          q8mlv7u2
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <svg
+                        aria-label="Du har ikke tilgang til dette dokumentet"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
+                          />
+                          <path
+                            d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
+                          <p
+                            className="typo-element"
+                          >
+                            Innhenting av opplysninger
+                          </p>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            10.02.2017 / Fra Kristine
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c24"
+                      >
+                        <p
+                          className="typo-etikett-liten"
+                        >
+                          Alle tema
+                           / Saksid: 
+                          z0vfuifa
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+              </ol>
+            </li>
+            <li
+              className="c18"
+            >
+              <div
+                className="c19"
+              >
+                <h3
+                  className="typo-element"
+                  id="Helt tilfeldig ID"
+                >
+                  <span
+                    className="sr-only"
+                  >
+                    Journalposter fra
+                  </span>
+                  2016
+                </h3>
+              </div>
+              <ol
+                aria-labelledby="Helt tilfeldig ID"
+              >
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
+                          fill="#3e3832"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
+                          <a
+                            className="lenke typo-element"
+                            href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/fhtkfp66/bjol9s20"
+                            onClick={[Function]}
+                            target="_blank"
+                          >
+                            Vurdering feilutbetaling/revurdering
+                          </a>
+                          <a
+                            className="c26 lenke typo-element"
+                            download={true}
+                            href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/fhtkfp66/bjol9s20"
+                            title="Last ned"
+                          >
+                            <svg
+                              aria-hidden={true}
+                              height={20}
+                              width={20}
+                            >
+                              download.svg
+                            </svg>
+                            <span
+                              className="sr-only"
+                            >
+                              Last ned pdf
+                            </span>
+                          </a>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            26.12.2016 / Fra NAV (Sendt til Noah)
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c24"
+                      >
+                        <p
+                          className="typo-etikett-liten"
+                        >
+                          Alle tema
+                           / Saksid: 
+                          xlseaqei
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
+                          fill="#3e3832"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
+                          <a
+                            className="lenke typo-element"
+                            href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/s9765sz0/113wxk3r"
+                            onClick={[Function]}
+                            target="_blank"
+                          >
+                            Spørsmål via nav.no
+                          </a>
+                          <a
+                            className="c26 lenke typo-element"
+                            download={true}
+                            href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/s9765sz0/113wxk3r"
+                            title="Last ned"
+                          >
+                            <svg
+                              aria-hidden={true}
+                              height={20}
+                              width={20}
+                            >
+                              download.svg
+                            </svg>
+                            <span
+                              className="sr-only"
+                            >
+                              Last ned pdf
+                            </span>
+                          </a>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            19.12.2016 / Fra NAV (Sendt til Mats)
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c24"
+                      >
+                        <p
+                          className="typo-etikett-liten"
+                        >
+                          Alle tema
+                           / Saksid: 
+                          chqjww4b
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
+                          fill="#3e3832"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
+                          <a
+                            className="lenke typo-element"
+                            href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/aamyoz7n/mt1cssx0"
+                            onClick={[Function]}
+                            target="_blank"
+                          >
+                            Innhenting av opplysninger
+                          </a>
+                          <a
+                            className="c26 lenke typo-element"
+                            download={true}
+                            href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/aamyoz7n/mt1cssx0"
+                            title="Last ned"
+                          >
+                            <svg
+                              aria-hidden={true}
+                              height={20}
+                              width={20}
+                            >
+                              download.svg
+                            </svg>
+                            <span
+                              className="sr-only"
+                            >
+                              Last ned pdf
+                            </span>
+                          </a>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            15.11.2016 / Fra Sebastian
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c24"
+                      >
+                        <p
+                          className="typo-etikett-liten"
+                        >
+                          Alle tema
+                           / Saksid: 
+                          j6odo6im
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <svg
+                        aria-label="Du har ikke tilgang til dette dokumentet"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
+                          />
+                          <path
+                            d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
+                          <p
+                            className="typo-element"
+                          >
+                            Referat fra samtale på telefon
+                          </p>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            24.05.2016 / Fra Martine
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c24"
+                      >
+                        <p
+                          className="typo-etikett-liten"
+                        >
+                          Alle tema
+                           / Saksid: 
+                          ti2t0c00
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
+                          fill="#3e3832"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
+                          <a
+                            className="lenke typo-element"
+                            href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/cmlub095/nnp1em30"
                             onClick={[Function]}
                             target="_blank"
                           >
                             Referat fra samtale på telefon
                           </a>
                           <a
-                            className="lenke typo-element c26"
+                            className="c26 lenke typo-element"
                             download={true}
-                            href="/detteeretmockdokument/"
+                            href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/cmlub095/nnp1em30"
                             title="Last ned"
                           >
                             <svg
@@ -1247,422 +2138,71 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                               Last ned pdf
                             </span>
                           </a>
-                        </li>
-                        <li>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
                           <p
-                            className="typo-element"
+                            className="typo-normal"
                           >
-                            Vedtak korrigert refusjon/u bet
+                            15.05.2016 / Notat
                           </p>
-                        </li>
-                      </ul>
-                    </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        4g9b0ecf
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-            </ol>
-          </li>
-          <li
-            className="c18"
-          >
-            <div
-              className="c19"
-            >
-              <h3
-                className="typo-element"
-                id="Helt tilfeldig ID"
-              >
-                <span
-                  className="sr-only"
-                >
-                  Journalposter fra
-                </span>
-                2017
-              </h3>
-            </div>
-            <ol
-              aria-labelledby="Helt tilfeldig ID"
-            >
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
-                        fill="#3e3832"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
-                  >
-                    <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
-                    >
-                      <h4
-                        className="order-second"
-                      >
-                        <p
-                          className="typo-element"
-                        >
-                          Spørsmål via nav.no (Skjermet)
-                        </p>
-                      </h4>
+                        </div>
+                      </div>
                       <div
-                        className="order-first"
+                        className="c24"
                       >
                         <p
-                          className="typo-normal"
+                          className="typo-etikett-liten"
                         >
-                          21.11.2017 / Notat
+                          Alle tema
+                           / Saksid: 
+                          seeuzleo
                         </p>
                       </div>
                     </div>
-                    <div
-                      className="c25"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Dokumentet har 
-                        3
-                         vedlegg:
-                      </p>
-                      <ul>
-                        <li>
-                          <a
-                            className="lenke typo-element"
-                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
-                            onClick={[Function]}
-                            target="_blank"
-                          >
-                            Spørsmål via nav.no
-                          </a>
-                          <a
-                            className="lenke typo-element c26"
-                            download={true}
-                            href="/detteeretmockdokument/"
-                            title="Last ned"
-                          >
-                            <svg
-                              aria-hidden={true}
-                              height={20}
-                              width={20}
-                            >
-                              download.svg
-                            </svg>
-                            <span
-                              className="sr-only"
-                            >
-                              Last ned pdf
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <p
-                            className="typo-element"
-                          >
-                            Innhenting av opplysninger
-                          </p>
-                        </li>
-                        <li>
-                          <p
-                            className="typo-element"
-                          >
-                            Spørsmål via nav.no
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        53kj7i18
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
-                        fill="#3e3832"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
+                  </article>
+                </li>
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
                   >
                     <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
+                      className="c21"
                     >
-                      <h4
-                        className="order-second"
-                      >
-                        <a
-                          className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
-                          onClick={[Function]}
-                          target="_blank"
-                        >
-                          Spørsmål via nav.no
-                        </a>
-                        <a
-                          className="lenke typo-element c26"
-                          download={true}
-                          href="/detteeretmockdokument/"
-                          title="Last ned"
-                        >
-                          <svg
-                            aria-hidden={true}
-                            height={20}
-                            width={20}
-                          >
-                            download.svg
-                          </svg>
-                          <span
-                            className="sr-only"
-                          >
-                            Last ned pdf
-                          </span>
-                        </a>
-                      </h4>
-                      <div
-                        className="order-first"
-                      >
-                        <p
-                          className="typo-normal"
-                        >
-                          27.07.2017 / Fra NAV (Sendt til Eline)
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        huuael8f
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
-                        fill="#3e3832"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
-                  >
-                    <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
-                    >
-                      <h4
-                        className="order-second"
-                      >
-                        <a
-                          className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
-                          onClick={[Function]}
-                          target="_blank"
-                        >
-                          Automatisk vedtak/nyfødt barn
-                        </a>
-                        <a
-                          className="lenke typo-element c26"
-                          download={true}
-                          href="/detteeretmockdokument/"
-                          title="Last ned"
-                        >
-                          <svg
-                            aria-hidden={true}
-                            height={20}
-                            width={20}
-                          >
-                            download.svg
-                          </svg>
-                          <span
-                            className="sr-only"
-                          >
-                            Last ned pdf
-                          </span>
-                        </a>
-                      </h4>
-                      <div
-                        className="order-first"
-                      >
-                        <p
-                          className="typo-normal"
-                        >
-                          17.03.2017 / Notat
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      className="c25"
-                    >
-                      <p
-                        className="typo-normal"
-                      >
-                        Dokumentet har 
-                        1
-                         vedlegg:
-                      </p>
-                      <ul>
-                        <li>
-                          <p
-                            className="typo-element"
-                          >
-                            A-inntekt
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        chsgwugz
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
-                  >
-                    <svg
-                      aria-label="Du har ikke tilgang til dette dokumentet"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        fill="currentColor"
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
+                          d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
+                          fill="#3e3832"
                         />
-                        <path
-                          d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
-                        />
-                      </g>
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
-                  >
-                    <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
-                    >
-                      <h4
-                        className="order-second"
-                      >
-                        <p
-                          className="typo-element"
-                        >
-                          Inntektsopplysninger
-                        </p>
-                      </h4>
-                      <div
-                        className="order-first"
-                      >
-                        <p
-                          className="typo-normal"
-                        >
-                          28.02.2017 / Fra AREMARK TESTFAMILIEN
-                        </p>
-                      </div>
+                      </svg>
                     </div>
                     <div
-                      className="c25"
+                      className="c22"
                     >
-                      <p
-                        className="typo-normal"
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
                       >
-                        Dokumentet har 
-                        1
-                         vedlegg:
-                      </p>
-                      <ul>
-                        <li>
+                        <h4
+                          className="order-second"
+                        >
                           <a
                             className="lenke typo-element"
-                            href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
+                            href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/ai9t2h2n/gplzp0ho"
                             onClick={[Function]}
                             target="_blank"
                           >
                             A-inntekt
                           </a>
                           <a
-                            className="lenke typo-element c26"
+                            className="c26 lenke typo-element"
                             download={true}
-                            href="/detteeretmockdokument/"
+                            href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/ai9t2h2n/gplzp0ho"
                             title="Last ned"
                           >
                             <svg
@@ -1678,614 +2218,70 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                               Last ned pdf
                             </span>
                           </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        q8mlv7u2
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
-                  >
-                    <svg
-                      aria-label="Du har ikke tilgang til dette dokumentet"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        fill="currentColor"
-                      >
-                        <path
-                          d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
-                        />
-                        <path
-                          d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
-                        />
-                      </g>
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
-                  >
-                    <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
-                    >
-                      <h4
-                        className="order-second"
-                      >
-                        <p
-                          className="typo-element"
+                        </h4>
+                        <div
+                          className="order-first"
                         >
-                          Innhenting av opplysninger
-                        </p>
-                      </h4>
+                          <p
+                            className="typo-normal"
+                          >
+                            12.03.2016 / Notat
+                          </p>
+                        </div>
+                      </div>
                       <div
-                        className="order-first"
+                        className="c24"
                       >
                         <p
-                          className="typo-normal"
+                          className="typo-etikett-liten"
                         >
-                          10.02.2017 / Fra Kristine
+                          Alle tema
+                           / Saksid: 
+                          d4zxe6cm
                         </p>
                       </div>
                     </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        z0vfuifa
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-            </ol>
-          </li>
-          <li
-            className="c18"
-          >
-            <div
-              className="c19"
-            >
-              <h3
-                className="typo-element"
-                id="Helt tilfeldig ID"
-              >
-                <span
-                  className="sr-only"
-                >
-                  Journalposter fra
-                </span>
-                2016
-              </h3>
-            </div>
-            <ol
-              aria-labelledby="Helt tilfeldig ID"
-            >
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
-                        fill="#3e3832"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
-                  >
-                    <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
-                    >
-                      <h4
-                        className="order-second"
-                      >
-                        <a
-                          className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
-                          onClick={[Function]}
-                          target="_blank"
-                        >
-                          Vurdering feilutbetaling/revurdering
-                        </a>
-                        <a
-                          className="lenke typo-element c26"
-                          download={true}
-                          href="/detteeretmockdokument/"
-                          title="Last ned"
-                        >
-                          <svg
-                            aria-hidden={true}
-                            height={20}
-                            width={20}
-                          >
-                            download.svg
-                          </svg>
-                          <span
-                            className="sr-only"
-                          >
-                            Last ned pdf
-                          </span>
-                        </a>
-                      </h4>
-                      <div
-                        className="order-first"
-                      >
-                        <p
-                          className="typo-normal"
-                        >
-                          26.12.2016 / Fra NAV (Sendt til Noah)
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        xlseaqei
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
-                        fill="#3e3832"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
-                  >
-                    <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
-                    >
-                      <h4
-                        className="order-second"
-                      >
-                        <a
-                          className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
-                          onClick={[Function]}
-                          target="_blank"
-                        >
-                          Spørsmål via nav.no
-                        </a>
-                        <a
-                          className="lenke typo-element c26"
-                          download={true}
-                          href="/detteeretmockdokument/"
-                          title="Last ned"
-                        >
-                          <svg
-                            aria-hidden={true}
-                            height={20}
-                            width={20}
-                          >
-                            download.svg
-                          </svg>
-                          <span
-                            className="sr-only"
-                          >
-                            Last ned pdf
-                          </span>
-                        </a>
-                      </h4>
-                      <div
-                        className="order-first"
-                      >
-                        <p
-                          className="typo-normal"
-                        >
-                          19.12.2016 / Fra NAV (Sendt til Mats)
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        chqjww4b
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
-                        fill="#3e3832"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
-                  >
-                    <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
-                    >
-                      <h4
-                        className="order-second"
-                      >
-                        <a
-                          className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
-                          onClick={[Function]}
-                          target="_blank"
-                        >
-                          Innhenting av opplysninger
-                        </a>
-                        <a
-                          className="lenke typo-element c26"
-                          download={true}
-                          href="/detteeretmockdokument/"
-                          title="Last ned"
-                        >
-                          <svg
-                            aria-hidden={true}
-                            height={20}
-                            width={20}
-                          >
-                            download.svg
-                          </svg>
-                          <span
-                            className="sr-only"
-                          >
-                            Last ned pdf
-                          </span>
-                        </a>
-                      </h4>
-                      <div
-                        className="order-first"
-                      >
-                        <p
-                          className="typo-normal"
-                        >
-                          15.11.2016 / Fra Sebastian
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        j6odo6im
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
-                  >
-                    <svg
-                      aria-label="Du har ikke tilgang til dette dokumentet"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        fill="currentColor"
-                      >
-                        <path
-                          d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
-                        />
-                        <path
-                          d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
-                        />
-                      </g>
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
-                  >
-                    <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
-                    >
-                      <h4
-                        className="order-second"
-                      >
-                        <p
-                          className="typo-element"
-                        >
-                          Referat fra samtale på telefon
-                        </p>
-                      </h4>
-                      <div
-                        className="order-first"
-                      >
-                        <p
-                          className="typo-normal"
-                        >
-                          24.05.2016 / Fra Martine
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        ti2t0c00
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
-                        fill="#3e3832"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
-                  >
-                    <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
-                    >
-                      <h4
-                        className="order-second"
-                      >
-                        <a
-                          className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
-                          onClick={[Function]}
-                          target="_blank"
-                        >
-                          Referat fra samtale på telefon
-                        </a>
-                        <a
-                          className="lenke typo-element c26"
-                          download={true}
-                          href="/detteeretmockdokument/"
-                          title="Last ned"
-                        >
-                          <svg
-                            aria-hidden={true}
-                            height={20}
-                            width={20}
-                          >
-                            download.svg
-                          </svg>
-                          <span
-                            className="sr-only"
-                          >
-                            Last ned pdf
-                          </span>
-                        </a>
-                      </h4>
-                      <div
-                        className="order-first"
-                      >
-                        <p
-                          className="typo-normal"
-                        >
-                          15.05.2016 / Notat
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        seeuzleo
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-              <li>
-                <article
-                  aria-labelledby="Helt tilfeldig ID"
-                  className="c20"
-                >
-                  <div
-                    className="c21"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M20.854 6.146l-6-6A.505.505 0 0014.5 0h-11a.5.5 0 00-.5.5v23a.5.5 0 00.5.5h17a.5.5 0 00.5-.5v-17a.504.504 0 00-.146-.354zM7.5 7H12a.5.5 0 010 1H7.5a.5.5 0 010-1zm9 13h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm0-3h-9a.5.5 0 010-1h9a.5.5 0 010 1zm-2-4.5v-6l6 6h-6z"
-                        fill="#3e3832"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    className="c22"
-                  >
-                    <div
-                      className="c23"
-                      id="Helt tilfeldig ID"
-                    >
-                      <h4
-                        className="order-second"
-                      >
-                        <a
-                          className="lenke typo-element"
-                          href="/modiapersonoversikt/dokument/10108000398?dokumenturl=/detteeretmockdokument/"
-                          onClick={[Function]}
-                          target="_blank"
-                        >
-                          A-inntekt
-                        </a>
-                        <a
-                          className="lenke typo-element c26"
-                          download={true}
-                          href="/detteeretmockdokument/"
-                          title="Last ned"
-                        >
-                          <svg
-                            aria-hidden={true}
-                            height={20}
-                            width={20}
-                          >
-                            download.svg
-                          </svg>
-                          <span
-                            className="sr-only"
-                          >
-                            Last ned pdf
-                          </span>
-                        </a>
-                      </h4>
-                      <div
-                        className="order-first"
-                      >
-                        <p
-                          className="typo-normal"
-                        >
-                          12.03.2016 / Notat
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      className="c24"
-                    >
-                      <p
-                        className="typo-etikett-liten"
-                      >
-                        Alle tema
-                         / Saksid: 
-                        d4zxe6cm
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </li>
-            </ol>
-          </li>
-        </ol>
-      </article>
-      <div
-        className="alertstripe alertstripe--info"
-      >
-        <span
-          aria-label="info"
-          className="alertstripe__ikon"
-        >
-          <svg
-            focusable="false"
-            height="1.5em"
-            kind="info-sirkel-fyll"
-            viewBox="0 0 24 24"
-            width="1.5em"
-          >
-            <g
-              fill="none"
-            >
-              <path
-                d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                fill="#669DB4"
-              />
-              <path
-                d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-                fill="#FFF"
-              />
-            </g>
-          </svg>
-        </span>
-        <div
-          className="typo-normal alertstripe__tekst"
-        >
-          Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter som er journalført vises fra og med 4.juni 2016
+                  </article>
+                </li>
+              </ol>
+            </li>
+          </ol>
         </div>
-      </div>
+        <div
+          className="alertstripe alertstripe--info"
+        >
+          <span
+            aria-label="info"
+            className="alertstripe__ikon"
+          >
+            <svg
+              focusable="false"
+              height="1.5em"
+              kind="info-sirkel-fyll"
+              viewBox="0 0 24 24"
+              width="1.5em"
+            >
+              <g
+                fill="none"
+              >
+                <path
+                  d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                  fill="#669DB4"
+                />
+                <path
+                  d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+                  fill="#FFF"
+                />
+              </g>
+            </svg>
+          </span>
+          <div
+            className="typo-normal alertstripe__tekst"
+          >
+            Modia viser elektroniske dokumenter brukeren har sendt inn via nav.no etter 9. desember 2014. Dokumenter som er journalført vises fra og med 4.juni 2016
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </div>

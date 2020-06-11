@@ -1,9 +1,8 @@
 import navfaker from 'nav-faker';
 
 import { getPersonstatus } from '../../personMock';
-import { lagNavn } from '../../../utils/person-utils';
+import { lagNavn, getAlderFromFødselsnummer } from '../../../utils/person-utils';
 import { Familierelasjon, Relasjonstype } from '../../../../models/person/person';
-import { getAlderFromFødselsnummer } from '../../../../utils/dateUtils';
 
 export function lagPartner(relasjonstype: Relasjonstype): Familierelasjon {
     const partnersFødselsnummer = navfaker.personIdentifikator.myndigFødselsnummer();

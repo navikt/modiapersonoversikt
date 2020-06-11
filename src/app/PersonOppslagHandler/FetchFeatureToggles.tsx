@@ -10,7 +10,9 @@ export function useFetchFeatureTogglesOnNewFnr() {
     const setFeatureToggleData = useRestResource(restReducers => restReducers.featureToggles).actions.setData;
 
     useEffect(() => {
-        fetchAllFeatureToggles().then(toggles => dispatch(setFeatureToggleData(toggles)));
+        fetchAllFeatureToggles().then((toggles: { [name: string]: boolean }) =>
+            dispatch(setFeatureToggleData(toggles))
+        );
     }, [fnr, dispatch, setFeatureToggleData]);
 }
 

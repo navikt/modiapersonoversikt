@@ -1,7 +1,7 @@
 import FetchMock, { JSONObject, MockHandler, ResponseUtils } from 'yet-another-fetch-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { Draft, DraftContext } from '../app/personside/dialogpanel/use-draft';
-import { randomDelay } from './setup-mock';
+import { randomDelay } from './index';
 
 const innloggetSaksbehandler = getMockInnloggetSaksbehandler();
 const storage = window.localStorage;

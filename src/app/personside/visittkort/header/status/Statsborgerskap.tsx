@@ -8,7 +8,7 @@ function uppercaseFørsteBokstav(ord: string) {
     return ord.substring(0, 1).toUpperCase() + ord.substring(1, ord.length);
 }
 
-export function formaterStatsborgerskapMedRiktigCasing(statsborgerskap: string): string {
+function formaterStatsborgerskapMedRiktigCasing(statsborgerskap: string): string {
     return statsborgerskap
         .toLowerCase()
         .split(' ')
@@ -19,7 +19,7 @@ export function formaterStatsborgerskapMedRiktigCasing(statsborgerskap: string):
         .join('-');
 }
 
-export function Statsborgerskap({ statsborgerskap }: Props) {
+function Statsborgerskap({ statsborgerskap }: Props) {
     if (!statsborgerskap) {
         return <li title="Statsborgerskap">Ingen statsborgerskap registrert i NAV</li>;
     }

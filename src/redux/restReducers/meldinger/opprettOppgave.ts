@@ -4,7 +4,7 @@ import createPostResourceReducerAndActions from '../../../rest/utils/postResourc
 import { OpprettOppgaveRequest } from '../../../models/meldinger/oppgave';
 import { AsyncDispatch } from '../../ThunkTypes';
 
-export function getOpprettOppgaveUri(state: AppState): string {
+function getOpprettOppgaveUri(state: AppState): string {
     return `${apiBaseUri}/dialogoppgave/opprett`;
 }
 

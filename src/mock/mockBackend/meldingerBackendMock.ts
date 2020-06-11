@@ -12,10 +12,10 @@ import {
 } from '../../models/meldinger/meldinger';
 import { guid } from 'nav-frontend-js-utils';
 import moment from 'moment';
-import { backendDatoTidformat } from '../utils/mock-utils';
 import { getMockTraader } from '../meldinger/meldinger-mock';
 import { Temagruppe } from '../../models/Temagrupper';
 import { OppgaverBackendMock } from './oppgaverBackendMock';
+import { backendDatoTidformat } from '../../utils/dateUtils';
 
 export class MeldingerBackendMock {
     private sendteNyeMeldinger: Traad[] = [];

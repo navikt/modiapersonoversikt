@@ -14,17 +14,11 @@ import SakerFullscreen from '../../app/personside/infotabs/saksoversikt/SakerFul
 import theme from '../../styles/personOversiktTheme';
 import { moss } from '../../mock/person/moss';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
-import reducers from '../../redux/reducers';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
 import OppfolgingLamell from './OppfolgingLamell';
 import { paths } from '../../app/routes/routing';
 import { mapEnumToTabProps } from '../../utils/mapEnumToTabProps';
 import SykepengerLamell from './Sykepenger/SykepengerLamell';
 import VarslerLamell from './VarslerLamell';
-import TestProvider from '../../test/Testprovider';
 import DialogPanel from '../../app/personside/dialogpanel/DialogPanel';
 import JournalforingPanel from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import PersonsokStandAloneKomponent from './PersonsokStandAloneKomponent';
@@ -79,18 +73,12 @@ const KomponentStyle = styled.div`
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.7);
 `;
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
-
 function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
     switch (props.valgtTab) {
         case Komponenter.Saksoversikt:
             return <SaksoversiktLamell fødselsnummer={props.fnr} />;
         case Komponenter.SaksoversiktEgetVindu:
-            return (
-                <Provider store={store}>
-                    <SakerFullscreen fødselsnummer={props.fnr} />
-                </Provider>
-            );
+            return <SakerFullscreen fødselsnummer={props.fnr} />;
         case Komponenter.Brukerprofil:
             return <BrukerprofilStandalone fødselsnummer={props.fnr} />;
         case Komponenter.Utbetalinger:
@@ -110,33 +98,17 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Varsler:
             return <VarslerLamell fødselsnummer={props.fnr} />;
         case Komponenter.Dialogpanel:
-            return (
-                <TestProvider>
-                    <DialogPanel />
-                </TestProvider>
-            );
+            return <DialogPanel />;
         case Komponenter.Personsok:
             return <PersonsokStandAloneKomponent />;
         case Komponenter.JournalforingPanel:
-            return (
-                <TestProvider>
-                    <JournalforingPanel lukkPanel={() => null} traad={{ traadId: 'mockId', meldinger: [] }} />
-                </TestProvider>
-            );
+            return <JournalforingPanel lukkPanel={() => null} traad={statiskTraadMock} />;
         case Komponenter.TraadVisningDialogpanel:
             return <TidligereMeldinger traad={statiskTraadMock} />;
         case Komponenter.Standardtekster:
-            return (
-                <TestProvider>
-                    <StandardTekstModal appendTekst={tekst => alert(tekst)} />
-                </TestProvider>
-            );
+            return <StandardTekstModal appendTekst={tekst => alert(tekst)} />;
         case Komponenter.BesvarFlere:
-            return (
-                <TestProvider>
-                    <BesvarFlere traader={getMockTraader(aremark.fødselsnummer).slice(0, 3)} lukkModal={() => null} />
-                </TestProvider>
-            );
+            return <BesvarFlere traader={getMockTraader(aremark.fødselsnummer).slice(0, 3)} lukkModal={() => null} />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

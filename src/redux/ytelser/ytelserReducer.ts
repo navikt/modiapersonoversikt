@@ -42,15 +42,7 @@ export function toggleVisAlleArbeidsforhold(ytelse: Ytelse, vis: boolean): Toggl
     };
 }
 
-export function toggleVisYtesle(ytelse: Ytelse, vis: boolean): ToggleVisYtelse {
-    return {
-        type: actionKeys.TOGGLE_APNEYTELSE,
-        ytelse: ytelse,
-        vis: vis
-    };
-}
-
-export function ytelserReducer(state: YtelserState = initialState, action: Actions): YtelserState {
+function ytelserReducer(state: YtelserState = initialState, action: Actions): YtelserState {
     switch (action.type) {
         case actionKeys.TOGGLE_VIS_ALLE_ARBEIDSFORHOLD:
             const aapnedeArbeidsforhold = action.vis

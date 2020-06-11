@@ -1,43 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser personsøk-komponent 1`] = `
-.c5 {
-  margin-right: 0.5em;
-  margin-bottom: 1em;
-  line-height: 1.375rem;
-}
-
-.c5 .nav-datovelger__kalenderPortal {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  -webkit-transform: translateX(-85%);
-  -ms-transform: translateX(-85%);
-  transform: translateX(-85%);
-}
-
 .c6 {
-  margin-bottom: 0.5em;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c8 {
   position: relative;
   border: none;
   padding: 0;
@@ -55,7 +19,7 @@ exports[`viser personsøk-komponent 1`] = `
   color: #0067c5;
 }
 
-.c8:after {
+.c6:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -63,18 +27,37 @@ exports[`viser personsøk-komponent 1`] = `
   width: 100%;
 }
 
-.c8:focus {
+.c6:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c8:hover {
+.c6:hover {
   opacity: 0.8;
 }
 
-.c8:hover:after {
+.c6:hover:after {
   content: '';
   border-color: #0067c5;
+}
+
+.c3 {
+  margin-right: 0.5em;
+  margin-bottom: 1em;
+  line-height: 1.375rem;
+}
+
+.c3 .nav-datovelger__kalenderPortal {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  -webkit-transform: translateX(-85%);
+  -ms-transform: translateX(-85%);
+  transform: translateX(-85%);
+}
+
+.c4 {
+  margin-bottom: 0.5em;
 }
 
 .c0 {
@@ -92,7 +75,7 @@ exports[`viser personsøk-komponent 1`] = `
   margin-right: 10rem;
 }
 
-.c7 {
+.c5 {
   padding-top: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -141,16 +124,14 @@ exports[`viser personsøk-komponent 1`] = `
           >
             <label
               className="skjemaelement__label"
-              htmlFor="fornavn"
+              htmlFor="Helt tilfeldig ID"
             >
               Fornavn (Fonetisk søk)
             </label>
             <input
               aria-invalid={false}
               className="skjemaelement__input input--xl"
-              id="fornavn"
-              name="fornavn"
-              onBlur={[Function]}
+              id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
@@ -161,16 +142,14 @@ exports[`viser personsøk-komponent 1`] = `
           >
             <label
               className="skjemaelement__label"
-              htmlFor="etternavn"
+              htmlFor="Helt tilfeldig ID"
             >
               Etternavn (Fonetisk søk)
             </label>
             <input
               aria-invalid={false}
               className="skjemaelement__input input--xl"
-              id="etternavn"
-              name="etternavn"
-              onBlur={[Function]}
+              id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
@@ -185,16 +164,14 @@ exports[`viser personsøk-komponent 1`] = `
           >
             <label
               className="skjemaelement__label"
-              htmlFor="gatenavn"
+              htmlFor="Helt tilfeldig ID"
             >
               Gatenavn
             </label>
             <input
               aria-invalid={false}
               className="skjemaelement__input input--l"
-              id="gatenavn"
-              name="gatenavn"
-              onBlur={[Function]}
+              id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
@@ -205,16 +182,14 @@ exports[`viser personsøk-komponent 1`] = `
           >
             <label
               className="skjemaelement__label"
-              htmlFor="husnummer"
+              htmlFor="Helt tilfeldig ID"
             >
               Husnummer
             </label>
             <input
               aria-invalid={false}
               className="skjemaelement__input input--m"
-              id="husnummer"
-              name="husnummer"
-              onBlur={[Function]}
+              id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
@@ -225,16 +200,14 @@ exports[`viser personsøk-komponent 1`] = `
           >
             <label
               className="skjemaelement__label"
-              htmlFor="husbokstav"
+              htmlFor="Helt tilfeldig ID"
             >
               Husbokstav
             </label>
             <input
               aria-invalid={false}
               className="skjemaelement__input input--m"
-              id="husbokstav"
-              name="husbokstav"
-              onBlur={[Function]}
+              id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
@@ -246,16 +219,14 @@ exports[`viser personsøk-komponent 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="postnummer"
+            htmlFor="Helt tilfeldig ID"
           >
             Postnummer
           </label>
           <input
             aria-invalid={false}
             className="skjemaelement__input input--m"
-            id="postnummer"
-            name="postnummer"
-            onBlur={[Function]}
+            id="Helt tilfeldig ID"
             onChange={[Function]}
             type="text"
             value=""
@@ -266,16 +237,14 @@ exports[`viser personsøk-komponent 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="kontonummer"
+            htmlFor="Helt tilfeldig ID"
           >
             Kontonummer (Norske nummer)
           </label>
           <input
             aria-invalid={false}
             className="skjemaelement__input input--l"
-            id="kontonummer"
-            name="kontonummer"
-            onBlur={[Function]}
+            id="Helt tilfeldig ID"
             onChange={[Function]}
             type="text"
             value=""
@@ -295,16 +264,14 @@ exports[`viser personsøk-komponent 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="kommunenummer"
+            htmlFor="Helt tilfeldig ID"
           >
             Bosted
           </label>
           <input
             aria-invalid={false}
             className="skjemaelement__input input--m"
-            id="kommunenummer"
-            name="kommunenummer"
-            onBlur={[Function]}
+            id="Helt tilfeldig ID"
             onChange={[Function]}
             type="text"
             value=""
@@ -316,159 +283,150 @@ exports[`viser personsøk-komponent 1`] = `
           <div
             className="c3"
           >
+            <label
+              className="c4 skjemaelement__label"
+              htmlFor="personsok-datovelger-fra"
+            >
+              <p
+                className="typo-normal"
+              >
+                Fødselsdato fra
+              </p>
+            </label>
             <div
-              className="c4"
+              onBlur={[Function]}
+              onKeyDown={[Function]}
             >
               <div
-                className="c5"
+                className="nav-datovelger"
               >
-                <label
-                  className="skjemaelement__label c6"
-                  htmlFor="fodselsdatoFra"
-                >
-                  <p
-                    className="typo-normal"
-                  >
-                    Fødselsdato fra
-                  </p>
-                </label>
                 <div
-                  onBlur={[Function]}
-                  onKeyDown={[Function]}
+                  className="nav-datovelger__inputContainer"
                 >
-                  <div
-                    className="nav-datovelger"
+                  <input
+                    aria-invalid={false}
+                    autoComplete="off"
+                    autoCorrect="off"
+                    className="nav-datovelger__input"
+                    id="personsok-datovelger-fra"
+                    maxLength={10}
+                    name="Fødselsdato fra dato"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                    type="text"
+                    value=""
+                  />
+                  <button
+                    aria-expanded={false}
+                    aria-label="Kalender"
+                    className="nav-datovelger__kalenderknapp"
+                    onClick={[Function]}
+                    role="button"
+                    type="button"
                   >
-                    <div
-                      className="nav-datovelger__inputContainer"
+                    <svg
+                      aria-hidden="true"
+                      height={16}
+                      role="presentation"
+                      viewBox="0 0 18 18"
+                      width={16}
                     >
-                      <input
-                        aria-invalid={false}
-                        autoComplete="off"
-                        autoCorrect="off"
-                        className="nav-datovelger__input"
-                        id="fodselsdatoFra"
-                        maxLength={10}
-                        name="fodselsdatoFra"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onKeyDown={[Function]}
-                        pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-                        type="text"
-                        value=""
-                      />
-                      <button
-                        aria-expanded={false}
-                        aria-label="Kalender"
-                        className="nav-datovelger__kalenderknapp"
-                        onClick={[Function]}
-                        role="button"
-                        type="button"
+                      <title>
+                        Kalenderikon
+                      </title>
+                      <g
+                        fill="none"
+                        fillRule="evenodd"
+                        stroke="#0067C5"
                       >
-                        <svg
-                          aria-hidden="true"
-                          height={16}
-                          role="presentation"
-                          viewBox="0 0 18 18"
-                          width={16}
-                        >
-                          <title>
-                            Kalenderikon
-                          </title>
-                          <g
-                            fill="none"
-                            fillRule="evenodd"
-                            stroke="#0067C5"
-                          >
-                            <path
-                              d="M4 2.667H1.333v14h15.334v-14H14"
-                            />
-                            <path
-                              d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                            />
-                          </g>
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="c5"
-              >
-                <label
-                  className="skjemaelement__label c6"
-                  htmlFor="fodselsdatoTil"
-                >
-                  <p
-                    className="typo-normal"
-                  >
-                    Fødselsdato til
-                  </p>
-                </label>
-                <div
-                  onBlur={[Function]}
-                  onKeyDown={[Function]}
-                >
-                  <div
-                    className="nav-datovelger"
-                  >
-                    <div
-                      className="nav-datovelger__inputContainer"
-                    >
-                      <input
-                        aria-invalid={false}
-                        autoComplete="off"
-                        autoCorrect="off"
-                        className="nav-datovelger__input"
-                        id="fodselsdatoTil"
-                        maxLength={10}
-                        name="fodselsdatoTil"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onKeyDown={[Function]}
-                        pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
-                        type="text"
-                        value=""
-                      />
-                      <button
-                        aria-expanded={false}
-                        aria-label="Kalender"
-                        className="nav-datovelger__kalenderknapp"
-                        onClick={[Function]}
-                        role="button"
-                        type="button"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          height={16}
-                          role="presentation"
-                          viewBox="0 0 18 18"
-                          width={16}
-                        >
-                          <title>
-                            Kalenderikon
-                          </title>
-                          <g
-                            fill="none"
-                            fillRule="evenodd"
-                            stroke="#0067C5"
-                          >
-                            <path
-                              d="M4 2.667H1.333v14h15.334v-14H14"
-                            />
-                            <path
-                              d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                            />
-                          </g>
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
+                        <path
+                          d="M4 2.667H1.333v14h15.334v-14H14"
+                        />
+                        <path
+                          d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                        />
+                      </g>
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
-            <div />
+          </div>
+          <div
+            className="c3"
+          >
+            <label
+              className="c4 skjemaelement__label"
+              htmlFor="personsok-datovelger-til"
+            >
+              <p
+                className="typo-normal"
+              >
+                Fødselsdato til
+              </p>
+            </label>
+            <div
+              onBlur={[Function]}
+              onKeyDown={[Function]}
+            >
+              <div
+                className="nav-datovelger"
+              >
+                <div
+                  className="nav-datovelger__inputContainer"
+                >
+                  <input
+                    aria-invalid={false}
+                    autoComplete="off"
+                    autoCorrect="off"
+                    className="nav-datovelger__input"
+                    id="personsok-datovelger-til"
+                    maxLength={10}
+                    name="Fødselsdato til dato"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
+                    type="text"
+                    value=""
+                  />
+                  <button
+                    aria-expanded={false}
+                    aria-label="Kalender"
+                    className="nav-datovelger__kalenderknapp"
+                    onClick={[Function]}
+                    role="button"
+                    type="button"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      height={16}
+                      role="presentation"
+                      viewBox="0 0 18 18"
+                      width={16}
+                    >
+                      <title>
+                        Kalenderikon
+                      </title>
+                      <g
+                        fill="none"
+                        fillRule="evenodd"
+                        stroke="#0067C5"
+                      >
+                        <path
+                          d="M4 2.667H1.333v14h15.334v-14H14"
+                        />
+                        <path
+                          d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                        />
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div
@@ -479,16 +437,14 @@ exports[`viser personsøk-komponent 1`] = `
           >
             <label
               className="skjemaelement__label"
-              htmlFor="alderFra"
+              htmlFor="Helt tilfeldig ID"
             >
               Alder fra
             </label>
             <input
               aria-invalid={false}
               className="skjemaelement__input input--m"
-              id="alderFra"
-              name="alderFra"
-              onBlur={[Function]}
+              id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
@@ -499,16 +455,14 @@ exports[`viser personsøk-komponent 1`] = `
           >
             <label
               className="skjemaelement__label"
-              htmlFor="alderTil"
+              htmlFor="Helt tilfeldig ID"
             >
               Alder til
             </label>
             <input
               aria-invalid={false}
               className="skjemaelement__input input--m"
-              id="alderTil"
-              name="alderTil"
-              onBlur={[Function]}
+              id="Helt tilfeldig ID"
               onChange={[Function]}
               type="text"
               value=""
@@ -520,7 +474,7 @@ exports[`viser personsøk-komponent 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="kjonn"
+            htmlFor="Helt tilfeldig ID"
           >
             Kjønn
           </label>
@@ -531,11 +485,8 @@ exports[`viser personsøk-komponent 1`] = `
               aria-invalid={false}
               className="skjemaelement__input"
               disabled={false}
-              id="kjonn"
-              name="kjonn"
-              onBlur={[Function]}
+              id="Helt tilfeldig ID"
               onChange={[Function]}
-              value=""
             >
               <option
                 value=""
@@ -570,7 +521,7 @@ exports[`viser personsøk-komponent 1`] = `
       </p>
     </a>
     <div
-      className="c7"
+      className="c5"
     >
       <button
         className="knapp knapp--hoved"
@@ -580,7 +531,7 @@ exports[`viser personsøk-komponent 1`] = `
         Søk
       </button>
       <button
-        className="c8"
+        className="c6"
         type="reset"
       >
         Nullstill

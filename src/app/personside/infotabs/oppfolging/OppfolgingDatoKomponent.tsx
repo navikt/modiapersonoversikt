@@ -20,6 +20,7 @@ import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import Panel from 'nav-frontend-paneler';
 
 const DatoVelgerWrapper = styled.div`
     position: relative;
@@ -29,8 +30,7 @@ const DatoVelgerWrapper = styled.div`
     }
 `;
 
-const StyledArticle = styled.article`
-    ${theme.hvittPanel};
+const StyledPanel = styled(Panel)`
     padding: ${pxToRem(15)};
 `;
 
@@ -139,12 +139,14 @@ function OppfolgingDatoPanel(props: Props) {
     const headerId = useRef(guid());
 
     return (
-        <StyledArticle aria-labelledby={headerId.current}>
-            <TittelWrapper>
-                <Undertittel id={headerId.current}>Oppfølging og ytelser vises for perioden:</Undertittel>
-            </TittelWrapper>
-            <DatoInputs {...props} />
-        </StyledArticle>
+        <StyledPanel aria-labelledby={headerId.current}>
+            <article>
+                <TittelWrapper>
+                    <Undertittel id={headerId.current}>Oppfølging og ytelser vises for perioden:</Undertittel>
+                </TittelWrapper>
+                <DatoInputs {...props} />
+            </article>
+        </StyledPanel>
     );
 }
 

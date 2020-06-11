@@ -6,7 +6,7 @@ import { post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { AsyncDispatch } from '../ThunkTypes';
 
-export enum actions {
+enum actions {
     VELG_TEMAGRUPPE = 'VELG_TEMAGRUPPE',
     VELG_ENHET = 'VELG_ENHET',
     SET_JOBBER_MED_STO = 'SET_JOBBER_MED_STO'
@@ -59,7 +59,7 @@ export interface SessionState {
     jobberMedSTO: boolean;
 }
 
-export const SessionInitState: SessionState = {
+const SessionInitState: SessionState = {
     temagruppeForPlukk: getTemaFraCookie(),
     valgtEnhetId: getSaksbehandlerEnhetFraCookieDeprecated(),
     jobberMedSTO: false

@@ -6,17 +6,15 @@ import theme from '../../../../styles/personOversiktTheme';
 import styled, { css } from 'styled-components/macro';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import Arenalenke from './Arenalenke/Arenalenke';
-import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import { erIE11, erModiabrukerdialog, erNyePersonoversikten } from '../../../../utils/erNyPersonoversikt';
+import { erIE11 } from '../../../../utils/erNyPersonoversikt';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
 const UtbetalingerStyle = styled.div`
     ${scrollBarContainerStyle(theme.media.utbetalinger.minWidth)};
     @media (min-width: ${theme.media.utbetalinger.minWidth}) {
-        ${erNyePersonoversikten() &&
-            erIE11() &&
+        ${erIE11() &&
             css`
                 height: 0; /* IE11 */
                 flex-grow: 1; /* IE11 */
@@ -44,7 +42,6 @@ function UtbetalingerContainer() {
     return (
         <ErrorBoundary boundaryName={'UtbetalingerContainer'}>
             <UtbetalingerStyle>
-                {erModiabrukerdialog() && <VisuallyHiddenAutoFokusHeader tittel="Utbetalinger" />}
                 <ScrollBar keepScrollId="utbetalinger-filter">
                     <Arenalenke />
                     <FiltreringSection>

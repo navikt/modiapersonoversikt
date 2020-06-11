@@ -24,7 +24,7 @@ export function stringToNumber(input: string): number | undefined {
     return parseInt(input);
 }
 
-export function emptyString(input: string): string | undefined {
+function emptyString(input: string): string | undefined {
     if (input.length === 0) {
         return undefined;
     }

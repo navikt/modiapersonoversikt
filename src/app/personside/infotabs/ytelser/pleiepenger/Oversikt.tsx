@@ -7,8 +7,8 @@ import { formaterDato } from '../../../../../utils/stringFormatting';
 import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';
 import { Kjønn } from '../../../../../models/person/person';
 import styled from 'styled-components/macro';
-import theme from '../../../../../styles/personOversiktTheme';
 import ArbeidsForholdListe from './arbeidsforhold/ArbeidsforholdListe';
+import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;

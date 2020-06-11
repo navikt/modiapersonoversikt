@@ -10,7 +10,7 @@ export const scrollBarContainerStyle = (minWidth: string) => css`
     }
 `;
 
-export const ScrollBarStyle = styled.div`
+const ScrollBarStyle = styled.div`
     overflow: auto;
     max-height: 100%;
     padding: ${theme.margin.layout};

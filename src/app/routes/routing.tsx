@@ -4,14 +4,12 @@ import { useFødselsnummer } from '../../utils/customHooks';
 import { INFOTABS } from '../personside/infotabs/InfoTabEnum';
 
 export const paths = {
-    personUri: '/modiapersonoversikt/person',
-    sakerFullscreen: `/modiapersonoversikt/saker`,
-    saksdokumentEgetVindu: `/modiapersonoversikt/dokument`,
-    brukerprofil: '/modiapersonoversikt/brukerprofil',
-    basePath: '/modiapersonoversikt',
-    standaloneKomponenter: '/modiapersonoversikt/components',
-    legacyPersonPath: '/modiabrukerdialog/person',
-    legacyBrukerprofil: '#!brukerprofil'
+    personUri: '/person',
+    sakerFullscreen: `/saker`,
+    saksdokumentEgetVindu: `/dokument`,
+    brukerprofil: '/brukerprofil',
+    basePath: '',
+    standaloneKomponenter: '/components'
 };
 
 export function usePaths() {

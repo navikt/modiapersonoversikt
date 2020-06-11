@@ -9,14 +9,15 @@ import { useFocusOnMount, useFødselsnummer } from '../../../../../utils/customH
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import { SaksoversiktValg } from '../utils/useSaksoversiktValg';
 import { useInfotabsDyplenker } from '../../dyplenker';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { TilbakePil } from '../../../../../components/common-styled-components';
 import DokumentVisning from './SaksDokumentVisning';
 import { getSaksdokumentUrl } from './getSaksdokumentUrl';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
+import Panel from 'nav-frontend-paneler';
 
-const Content = styled.div`
+const Content = styled(Panel)`
     flex-grow: 1;
     min-height: 50vh;
     display: flex;
@@ -24,7 +25,6 @@ const Content = styled.div`
     flex-direction: column;
     object {
         flex-grow: 1;
-        ${theme.hvittPanel}
     }
 `;
 
@@ -43,15 +43,15 @@ const KnappWrapper = styled.div`
     top: 0.4rem;
 `;
 
-const HeaderStyle = styled.div`
-    ${theme.hvittPanel};
+const HeaderStyle = styled(Panel)`
     margin-bottom: ${theme.margin.layout};
     padding: ${pxToRem(15)};
 `;
 
 function DokumentOgVedlegg(props: SaksoversiktValg) {
     const ref = React.createRef<HTMLDivElement>();
-    const fullscreen = erSakerFullscreen();
+    const location = useLocation();
+    const fullscreen = erSakerFullscreen(location.pathname);
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
     const fødselsnummer = useFødselsnummer();
@@ -98,7 +98,7 @@ function DokumentOgVedlegg(props: SaksoversiktValg) {
     return (
         <ErrorBoundary boundaryName="Dokumentvisning">
             <Content>
-                <HeaderStyle ref={ref} tabIndex={-1} className={!fullscreen ? 'sr-only' : undefined}>
+                <HeaderStyle ref={() => ref} tabIndex={-1} className={!fullscreen ? 'sr-only' : undefined}>
                     <Undertittel>{props.saksdokument.tittel}</Undertittel>
                 </HeaderStyle>
                 {tabsHeader}

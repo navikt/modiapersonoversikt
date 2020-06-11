@@ -9,9 +9,10 @@ import {
     Saksbehandler,
     SyfoPunkt
 } from '../models/oppfolging';
-import { backendDatoformat, fyllRandomListe } from './utils/mock-utils';
+import { fyllRandomListe } from './utils/mock-utils';
 import navfaker from 'nav-faker';
 import moment from 'moment';
+import { backendDatoformat } from '../utils/dateUtils';
 
 export function getMockOppfølging(fødselsnummer: string): Oppfolging {
     faker.seed(Number(fødselsnummer));

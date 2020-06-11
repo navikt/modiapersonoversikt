@@ -1,28 +1,28 @@
 export const RESET_VALUE = '\u0000';
 
-export interface TogglesConfig {
+interface TogglesConfig {
     visVeileder?: boolean;
 }
 
-export interface Markup {
+interface Markup {
     etterSokefelt?: string;
 }
 
-export interface ControlledContextvalue<T> extends BaseContextvalue<T> {
+interface ControlledContextvalue<T> extends BaseContextvalue<T> {
     value: string | null;
 }
-export interface UncontrolledContextvalue<T> extends BaseContextvalue<T> {
+interface UncontrolledContextvalue<T> extends BaseContextvalue<T> {
     initialValue: string | null;
 }
 
-export interface BaseContextvalue<T> {
+interface BaseContextvalue<T> {
     display: T;
     onChange(value: string | null): void;
     skipModal?: boolean;
     ignoreWsEvents?: boolean;
 }
 
-export type Contextvalue<T> = ControlledContextvalue<T> | UncontrolledContextvalue<T>;
+type Contextvalue<T> = ControlledContextvalue<T> | UncontrolledContextvalue<T>;
 
 export enum EnhetDisplay {
     ENHET = 'ENHET',
@@ -33,8 +33,8 @@ export enum FnrDisplay {
     SOKEFELT = 'SOKEFELT'
 }
 
-export type EnhetContextvalue = Contextvalue<EnhetDisplay>;
-export type FnrContextvalue = Contextvalue<FnrDisplay>;
+type EnhetContextvalue = Contextvalue<EnhetDisplay>;
+type FnrContextvalue = Contextvalue<FnrDisplay>;
 
 export interface DecoratorProps {
     appname: string;

@@ -298,7 +298,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         Utbetalinger
       </h4>
       <div
-        className="typo-normal c6"
+        className="c6 typo-normal"
       >
         <table
           role="table"
@@ -432,7 +432,13 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
         <div
           className="typo-normal alertstripe__tekst"
         >
-          For detaljer om utførte utbetalinger, se Utbetalingsoversikten.
+          For detaljer om utførte utbetalinger 
+          <a
+            href="/person/10108000398/utbetaling"
+            onClick={[Function]}
+          >
+            se Utbetalingsoversikten.
+          </a>
         </div>
       </div>
     </section>

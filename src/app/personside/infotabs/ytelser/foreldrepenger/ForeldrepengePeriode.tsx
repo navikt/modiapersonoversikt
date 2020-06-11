@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { Foreldrepengerperiode } from '../../../../../models/ytelse/foreldrepenger';
-import styled from 'styled-components/macro';
-import theme from '../../../../../styles/personOversiktTheme';
 import DescriptionList, {
     DescriptionListEntries,
     fjernEntriesUtenVerdi
@@ -15,6 +13,8 @@ import {
 } from '../../../../../utils/stringFormatting';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
+import styled from 'styled-components/macro';
+import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {
     periode: Foreldrepengerperiode;

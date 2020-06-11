@@ -30,7 +30,7 @@ export interface VarslerRendererProps {
     varsler: Array<UnifiedVarsel>;
     feilmelding: React.ReactElement | null;
 }
-export type VarslerRenderer<P> = React.ComponentType<VarslerRendererProps & P>;
+type VarslerRenderer<P> = React.ComponentType<VarslerRendererProps & P>;
 type VarselLoaderProps<P> = P & { component: VarslerRenderer<P> };
 
 function VarslerLoader<P>(props: VarselLoaderProps<P>) {

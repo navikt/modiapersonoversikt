@@ -339,7 +339,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         className="textarea--medMeta__wrapper"
       >
         <textarea
-          aria-describedby="Helt tilfeldig ID"
+          aria-describedby=""
           aria-invalid={false}
           className="skjemaelement__input textarea--medMeta"
           id="beskrivelse"
@@ -351,7 +351,6 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
               "height": "30px",
             }
           }
-          type="text"
           value=""
         />
       </div>
