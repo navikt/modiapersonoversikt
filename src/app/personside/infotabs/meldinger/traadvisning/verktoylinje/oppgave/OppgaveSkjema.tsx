@@ -5,7 +5,7 @@ import { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
 import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
-import { cache, createCacheKey, FetchResult } from '@nutgaard/use-fetch';
+import useFetch, { cache, createCacheKey, FetchResult } from '@nutgaard/use-fetch';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { Resultat } from '../utils/VisPostResultat';
@@ -23,7 +23,6 @@ import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } fr
 import AutoComplete from './AutoComplete';
 import { hasData } from '@nutgaard/use-async';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
-import { useFetchWithLog } from '../../../../../../../utils/hooks/useFetchWithLog';
 import useForeslatteEnheter from './useForeslåtteEnheter';
 import { useNormalPrioritet } from './oppgaveUtils';
 
@@ -91,9 +90,8 @@ function OppgaveSkjema(props: OppgaveProps) {
     useNormalPrioritet(state, valgtTema);
 
     const ansattliste = useAnsattePaaEnhet(state.fields.valgtEnhet?.input.value);
-    const enhetliste: FetchResult<Array<Enhet>> = useFetchWithLog<Array<Enhet>>(
+    const enhetliste: FetchResult<Array<Enhet>> = useFetch<Array<Enhet>>(
         `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
-        'LagOppgave-Enheter',
         includeCredentials
     );
     const foreslatteEnheter = useForeslatteEnheter(
