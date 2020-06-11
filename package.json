@@ -38,7 +38,7 @@
         "@navikt/fnrvalidator": "^1.1.2",
         "@navikt/navspa": "^1.0.3",
         "@nutgaard/use-fetch": "^2.3.1",
-        "@nutgaard/use-formstate": "^2.2.1",
+        "@nutgaard/use-formstate": "^2.3.0-beta.0",
         "classnames": "^2.2.6",
         "core-js": "3.5.0",
         "craco-less": "^1.15.0",
