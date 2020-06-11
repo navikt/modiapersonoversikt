@@ -1,4 +1,5 @@
-import { HandlerArgument, Middleware, ResponseData } from 'yet-another-fetch-mock';
+import { Middleware, ResponseData } from 'yet-another-fetch-mock';
+import { HandlerRequest } from 'yet-another-fetch-mock/dist/types/types';
 
 const failures: ResponseData[] = [
     {
@@ -16,7 +17,7 @@ const failures: ResponseData[] = [
 ];
 
 export function failurerateMiddleware(probabilityOfFailure: number): Middleware {
-    return (request: HandlerArgument, response: ResponseData) => {
+    return (request: HandlerRequest, response: ResponseData) => {
         return new Promise<ResponseData>(resolve => {
             const rnd = Math.random();
             if (rnd < probabilityOfFailure) {

@@ -1,7 +1,7 @@
-import FetchMock, { JSONObject, ResponseUtils } from 'yet-another-fetch-mock';
+import FetchMock from 'yet-another-fetch-mock';
 import { SaksbehandlerInnstillinger } from '../redux/innstillinger';
 
-let innstillinger: SaksbehandlerInnstillinger & JSONObject = {
+let innstillinger: SaksbehandlerInnstillinger = {
     sistLagret: '2020-04-07T12:12:54',
     innstillinger: {
         defaultTagsStandardtekster: 'sto'
@@ -11,21 +11,15 @@ let innstillinger: SaksbehandlerInnstillinger & JSONObject = {
 export function setupSaksbehandlerInnstillingerMock(mock: FetchMock) {
     mock.get(
         '/modiapersonoversikt-innstillinger/api/innstillinger',
-        ResponseUtils.delayed(500, () => ResponseUtils.jsonPromise(innstillinger))
+        (req, res, ctx) => res(ctx.delay(500), ctx.json(innstillinger))
         // ResponseUtils.delayed(500, () => Promise.resolve({ status: 404 }))
     );
 
-    mock.post(
-        '/modiapersonoversikt-innstillinger/api/innstillinger',
-        ResponseUtils.delayed(500, ({ body }) => {
-            innstillinger = {
-                sistLagret: new Date().toISOString(),
-                innstillinger: body
-            };
-            return Promise.resolve({
-                status: 200,
-                body: JSON.stringify(innstillinger)
-            });
-        })
-    );
+    mock.post('/modiapersonoversikt-innstillinger/api/innstillinger', (req, res, ctx) => {
+        innstillinger = {
+            sistLagret: new Date().toISOString(),
+            innstillinger: req.body
+        };
+        return res(ctx.status(200), ctx.json(innstillinger));
+    });
 }

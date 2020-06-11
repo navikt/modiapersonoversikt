@@ -1,27 +1,17 @@
-import { HandlerArgument, JSONValue, ResponseData, ResponseUtils } from 'yet-another-fetch-mock';
+import { Handler, HandlerRequest } from 'yet-another-fetch-mock';
 
 export function withDelayedResponse(
     delay: number,
-    statusCode: (args: HandlerArgument) => number,
-    genererMockData: (args: HandlerArgument) => object | object[] | undefined
-) {
-    return ResponseUtils.delayed(delay, (args: HandlerArgument) => lagPromise(statusCode(args), genererMockData(args)));
-}
-
-function lagPromise(statusCode: number, data: object | object[] | undefined): Promise<ResponseData> {
-    return new Promise(resolve => {
-        if (statusCode >= 200 && statusCode < 300) {
-            resolve(ResponseUtils.jsonPromise(data as JSONValue));
-        } else {
-            resolve({ status: statusCode });
-        }
-    });
+    statusCode: (args: HandlerRequest) => number,
+    genererMockData: (args: HandlerRequest) => object | object[] | undefined
+): Handler {
+    return (req, res, ctx) => res(ctx.delay(delay), ctx.status(statusCode(req)), ctx.json(genererMockData(req)));
 }
 
 export function mockGeneratorMedFødselsnummer(fn: (fødselsnummer: string) => object | object[] | undefined) {
-    return (args: HandlerArgument) => fn(args.pathParams.fodselsnummer);
+    return (args: HandlerRequest) => fn(args.pathParams.fodselsnummer);
 }
 
 export function mockGeneratorMedEnhetId(fn: (enhetId: string) => object | object[] | undefined) {
-    return (args: HandlerArgument) => fn(args.pathParams.enhetId);
+    return (args: HandlerRequest) => fn(args.pathParams.enhetId);
 }

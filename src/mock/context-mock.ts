@@ -1,4 +1,4 @@
-import FetchMock, { JSONObject } from 'yet-another-fetch-mock';
+import FetchMock from 'yet-another-fetch-mock';
 
 type Context = { aktivEnhet: string | null; aktivBruker: string | null };
 const context: Context = { aktivEnhet: '', aktivBruker: '' };
@@ -21,45 +21,57 @@ class VoidWebSocket {
 export function setupWsControlAndMock(mock: FetchMock) {
     (window as any).WebSocket = VoidWebSocket;
 
-    mock.post('/modiacontextholder/api/context', ({ body }) => {
+    mock.post('/modiacontextholder/api/context', ({ body }, res, ctx) => {
         if (body.eventType === 'NY_AKTIV_ENHET') {
             context.aktivEnhet = body.verdi;
-            return Promise.resolve({ status: 200 });
+            return res(ctx.status(200));
         } else if (body.eventType === 'NY_AKTIV_BRUKER') {
             context.aktivBruker = body.verdi;
-            return Promise.resolve({ status: 200 });
+            return res(ctx.status(200));
         } else {
-            return Promise.resolve({ status: 500 });
+            return res(ctx.status(500));
         }
     });
 
-    mock.delete('/modiacontextholder/api/context', () => {
+    mock.delete('/modiacontextholder/api/context', (req, res, ctx) => {
         context.aktivBruker = null;
         context.aktivEnhet = null;
-        return {};
+        return res(ctx.status(200));
     });
 
-    mock.get('/modiacontextholder/api/context/aktivenhet', () => ({
-        aktivEnhet: context.aktivEnhet,
-        aktivBruker: null
-    }));
+    mock.get('/modiacontextholder/api/context/aktivenhet', (req, res, ctx) =>
+        res(
+            ctx.json({
+                aktivEnhet: context.aktivEnhet,
+                aktivBruker: null
+            })
+        )
+    );
 
-    mock.delete('/modiacontextholder/api/context/aktivbruker', () => {
+    mock.delete('/modiacontextholder/api/context/aktivbruker', (req, res, ctx) => {
         context.aktivBruker = null;
-        return {};
+        return res(ctx.status(200));
     });
 
-    mock.get('/modiacontextholder/api/context/aktivbruker', () => ({
-        aktivEnhet: null,
-        aktivBruker: context.aktivBruker
-    }));
+    mock.get('/modiacontextholder/api/context/aktivbruker', (req, res, ctx) =>
+        res(
+            ctx.json({
+                aktivEnhet: null,
+                aktivBruker: context.aktivBruker
+            })
+        )
+    );
 
-    mock.get('/modiacontextholder/api/context', () => ({
-        aktivEnhet: context.aktivEnhet,
-        aktivBruker: context.aktivBruker
-    }));
+    mock.get('/modiacontextholder/api/context', (req, res, ctx) =>
+        res(
+            ctx.json({
+                aktivEnhet: context.aktivEnhet,
+                aktivBruker: context.aktivBruker
+            })
+        )
+    );
 
-    const me: JSONObject = {
+    const me = {
         ident: 'Z999999',
         navn: 'Fornavn Ettersen',
         fornavn: 'Fornavn',
@@ -67,15 +79,17 @@ export function setupWsControlAndMock(mock: FetchMock) {
         enheter: enheter
     };
 
-    mock.get('/modiacontextholder/api/decorator', me);
+    mock.get('/modiacontextholder/api/decorator', (req, res, ctx) => res(ctx.json(me)));
 
-    mock.get('https://app-q0.adeo.no/aktoerregister/api/v1/identer', args => {
-        const fnr = (args.init!.headers! as Record<string, string>)['Nav-Personidenter'];
-        return {
-            [fnr]: {
-                feilmelding: null,
-                identer: [{ gjeldende: true, ident: `000${fnr}000`, identgruppe: 'AktoerId' }]
-            }
-        };
+    mock.get('https://app-q0.adeo.no/aktoerregister/api/v1/identer', (req, res, ctx) => {
+        const fnr = (req.init!.headers! as Record<string, string>)['Nav-Personidenter'];
+        return res(
+            ctx.json({
+                [fnr]: {
+                    feilmelding: null,
+                    identer: [{ gjeldende: true, ident: `000${fnr}000`, identgruppe: 'AktoerId' }]
+                }
+            })
+        );
     });
 }
