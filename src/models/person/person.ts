@@ -8,11 +8,6 @@ import { Fullmakt } from './fullmakter';
 export interface PersonRespons {
     sikkerhetstiltak?: Sikkerhetstiltak;
 }
-
-export interface BegrensetTilgang extends PersonRespons {
-    begrunnelse: BegrensetTilgangTyper;
-}
-
 export interface Person extends PersonRespons {
     navn: Navn;
     kjønn: Kjønn;

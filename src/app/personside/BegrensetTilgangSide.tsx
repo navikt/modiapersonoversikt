@@ -13,8 +13,6 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useState } from 'react';
-import IfFeatureToggleOn from '../../components/featureToggle/IfFeatureToggleOn';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 interface BegrensetTilgangProps {
     tilgangsData: HarIkkeTilgang;
@@ -66,13 +64,11 @@ function OpprettOppgaveAvvistTilgang() {
 function BegrensetTilgangSide(props: BegrensetTilgangProps) {
     return (
         <FillCenterAndFadeIn>
-            <AlertStripe type="advarsel">
-                <BegrensetTilgangBegrunnelse begrunnelseType={props.tilgangsData.ikkeTilgangArsak} />
-            </AlertStripe>
             <Wrapper>
-                <IfFeatureToggleOn toggleID={FeatureToggles.SkjermetPerson}>
-                    <OpprettOppgaveAvvistTilgang />
-                </IfFeatureToggleOn>
+                <AlertStripe type="advarsel">
+                    <BegrensetTilgangBegrunnelse begrunnelseType={props.tilgangsData.ikkeTilgangArsak} />
+                </AlertStripe>
+                <OpprettOppgaveAvvistTilgang />
             </Wrapper>
         </FillCenterAndFadeIn>
     );
