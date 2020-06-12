@@ -31,6 +31,7 @@ export interface JournalforingsSak {
     sakstypeForVisningGenerell: boolean;
     temaKode: string;
     temaNavn: string;
+    syntetisk?: boolean | null;
 }
 
 export type Tema = { tema: string; saker: Array<JournalforingsSak> };
