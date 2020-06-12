@@ -54,7 +54,7 @@ function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; so
                     htmlType="button"
                     key={tag}
                     className="tag blokk-xxxs"
-                    onClick={() => sokefelt.setValue(`#${tag} ${sokefelt.input.value}`)}
+                    onClick={() => sokefelt.setValue(`${sokefelt.input.value.trim()} #${tag} `)}
                     highlight={highlight}
                 >
                     {highlight ? <em>#{tag}</em> : `#${tag}`}
