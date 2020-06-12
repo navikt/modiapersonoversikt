@@ -20,7 +20,8 @@
         "start": "craco start",
         "build": "craco build",
         "test": "craco test",
-        "test-bail": "craco test --watchAll=false --bail"
+        "test-bail": "craco test --watchAll=false --bail",
+        "lint": "eslint --ext js,jsx,ts,tsx src"
     },
     "husky": {
         "hooks": {
