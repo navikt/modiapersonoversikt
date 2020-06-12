@@ -7,7 +7,7 @@ export const gsakSaker = [
         temaNavn: 'Bidrag',
         fagsystemKode: bidragMarkor,
         fagsystemNavn: 'Kopiert inn i Bisys',
-        sakstype: 'GEN',
+        sakstype: 'MFS',
         opprettetDato: null,
         finnesIGsak: false,
         finnesIPsak: false,
