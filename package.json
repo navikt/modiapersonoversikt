@@ -20,7 +20,8 @@
         "start": "craco start",
         "build": "craco build",
         "test": "craco test",
-        "test-bail": "craco test --watchAll=false --bail"
+        "test-bail": "craco test --watchAll=false --bail",
+        "lint": "eslint --ext js,jsx,ts,tsx src"
     },
     "husky": {
         "hooks": {
@@ -38,7 +39,7 @@
         "@navikt/fnrvalidator": "^1.1.2",
         "@navikt/navspa": "^1.0.3",
         "@nutgaard/use-fetch": "^2.3.1",
-        "@nutgaard/use-formstate": "^2.2.1",
+        "@nutgaard/use-formstate": "^2.3.0",
         "classnames": "^2.2.6",
         "core-js": "3.5.0",
         "craco-less": "^1.15.0",
@@ -105,7 +106,7 @@
         "redux-devtools-extension": "^2.13.7",
         "redux-thunk": "^2.3.0",
         "styled-components": "^5.1.1",
-        "yet-another-fetch-mock": "^3.2.0"
+        "yet-another-fetch-mock": "^4.0.0"
     },
     "devDependencies": {
         "@craco/craco": "^5.6.2",

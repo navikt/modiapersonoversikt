@@ -49,9 +49,9 @@ const Dropdown = styled.div`
 `;
 
 function getTittel(sak: JournalforingsSak) {
-    return `${sak.opprettetDato && formatterDatoMedMaanedsnavn(sak.opprettetDato) + ' | '}${sak.temaNavn} | ${
-        sak.saksIdVisning
-    }`;
+    return [sak.opprettetDato && formatterDatoMedMaanedsnavn(sak.opprettetDato), sak.temaNavn, sak.saksIdVisning]
+        .map(element => (element ? element : '-'))
+        .join(' | ');
 }
 
 function usePreFetchJournalforingsSaker() {

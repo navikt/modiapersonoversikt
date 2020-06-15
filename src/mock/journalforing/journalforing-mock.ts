@@ -1,4 +1,20 @@
+export const bidragMarkor = 'BID-HACK';
 export const gsakSaker = [
+    {
+        saksId: '-',
+        fagsystemSaksId: '-',
+        temaKode: bidragMarkor,
+        temaNavn: 'Bidrag',
+        fagsystemKode: bidragMarkor,
+        fagsystemNavn: 'Kopiert inn i Bisys',
+        sakstype: 'MFS',
+        opprettetDato: null,
+        finnesIGsak: false,
+        finnesIPsak: false,
+        sakstypeForVisningGenerell: true,
+        opprettetDatoFormatert: '',
+        saksIdVisning: ''
+    },
     {
         saksId: '138971902',
         fagsystemSaksId: 'SF 19857613',
