@@ -1,7 +1,7 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import Cookies from 'js-cookie';
-import FetchMock, { Handler, HandlerRequest, Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+import FetchMock, { MockHandler, MockRequest, Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
@@ -56,7 +56,7 @@ export function randomDelay() {
     return faker.random.number(750);
 }
 
-const fødselsNummerErGyldigStatus = (req: HandlerRequest) =>
+const fødselsNummerErGyldigStatus = (req: MockRequest) =>
     erGyldigFødselsnummer(req.pathParams.fodselsnummer) ? STATUS_OK() : STATUS_BAD_REQUEST();
 
 function setupInnloggetSaksbehandlerMock(mock: FetchMock) {
@@ -199,7 +199,7 @@ function setupVarselMock(mock: FetchMock) {
         )
     );
 
-    const dittnaveventHandler: Handler = (req, res, ctx) => {
+    const dittnaveventHandler: MockHandler = (req, res, ctx) => {
         const headers: any = req.init?.headers;
         const fnr = headers.fodselsnummer;
         if (!erGyldigFødselsnummer(fnr)) {
@@ -278,14 +278,14 @@ function setupGeografiskTilknytningMock(mock: FetchMock) {
         apiBaseUri + '/enheter',
         withDelayedResponse(
             randomDelay(),
-            (args: HandlerRequest) => {
+            (args: MockRequest) => {
                 if (isNaN(args.queryParams.gt) && !args.queryParams.dkode) {
                     return 404;
                 } else {
                     return 200;
                 }
             },
-            (args: HandlerRequest) => getMockNavKontor(args.queryParams.gt, args.queryParams.dkode)
+            (args: MockRequest) => getMockNavKontor(args.queryParams.gt, args.queryParams.dkode)
         )
     );
 }
@@ -297,7 +297,7 @@ function setupPersonsokMock(mock: FetchMock) {
     );
 }
 
-function setSaksbehandlerinnstillingerMockBackend(args: HandlerRequest) {
+function setSaksbehandlerinnstillingerMockBackend(args: MockRequest) {
     Cookies.set(saksbehandlerCookieNavnPrefix + '-Z990099', args.body);
     return args.body;
 }
