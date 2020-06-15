@@ -1,4 +1,4 @@
-import FetchMock, { Handler } from 'yet-another-fetch-mock';
+import FetchMock, { MockHandler } from 'yet-another-fetch-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { Draft, DraftContext } from '../app/personside/dialogpanel/use-draft';
 import { randomDelay } from './index';
@@ -39,7 +39,7 @@ function matchContext(context: DraftContext, other: DraftContext, exact: boolean
     });
 }
 
-const findDrafts: Handler = ({ queryParams }, res, ctx) => {
+const findDrafts: MockHandler = ({ queryParams }, res, ctx) => {
     const exact = !(queryParams['exact'] === 'false');
     const context: DraftContext = { ...queryParams };
     delete context['exact'];
@@ -48,7 +48,7 @@ const findDrafts: Handler = ({ queryParams }, res, ctx) => {
     return res(ctx.json(matchedDrafts));
 };
 
-const updateDraft: Handler = ({ body }, res, ctx) => {
+const updateDraft: MockHandler = ({ body }, res, ctx) => {
     const newDraft: Draft = {
         owner: innloggetSaksbehandler.ident,
         content: body.content,
@@ -63,7 +63,7 @@ const updateDraft: Handler = ({ body }, res, ctx) => {
     return res(ctx.json(newDraft));
 };
 
-const deleteDraft: Handler = ({ body }, res, ctx) => {
+const deleteDraft: MockHandler = ({ body }, res, ctx) => {
     const context: DraftContext = { ...body };
     drafts = drafts.filter((draft: Draft) => !matchContext(draft.context, context, true));
     storage.setItem(storageKey, JSON.stringify(drafts));
