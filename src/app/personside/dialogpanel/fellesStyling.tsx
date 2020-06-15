@@ -73,8 +73,12 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
 }
 
 function VarselTilBrukerOmStatus(props: { meldingstatus: SendNyMeldingStatus; tittle: string }) {
-    if (props.meldingstatus === SendNyMeldingStatus.ERROR) return <DialogpanelFeilmelding />;
-    else return <AlertStripeSuksess>{props.tittle}</AlertStripeSuksess>;
+    if (props.meldingstatus === SendNyMeldingStatus.ERROR) {
+        return <DialogpanelFeilmelding />;
+    }   
+    else { 
+        return <AlertStripeSuksess>{props.tittle}</AlertStripeSuksess>;
+    }
 }
 
 export function DialogpanelKvittering(props: {
