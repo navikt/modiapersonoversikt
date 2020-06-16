@@ -12,15 +12,18 @@ export class NyMeldingValidator {
         return state.sak !== undefined;
     }
     public static erReferat(state: SendNyMeldingState) {
-        return state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
+        return state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE && !this.erInfomelding(state);
     }
     public static erSporsmal(state: SendNyMeldingState) {
-        return !this.erReferat(state);
+        return !this.erReferat(state) && !this.erInfomelding(state);
     }
     public static erGyldigReferat(state: SendNyMeldingState) {
         return this.erReferat(state) && this.tema(state) && this.tekst(state);
     }
     public static erGyldigSpørsmal(state: SendNyMeldingState) {
         return this.erSporsmal(state) && this.sak(state) && this.tekst(state);
+    }
+    public static erInfomelding(state: SendNyMeldingState) {
+        return state.dialogType === Meldingstype.INFOMELDING_MODIA_UTGAAENDE;
     }
 }

@@ -32,7 +32,8 @@ export enum OppgavelisteValg {
 export type SendNyMeldingDialogType =
     | Meldingstype.SAMTALEREFERAT_TELEFON
     | Meldingstype.SAMTALEREFERAT_OPPMOTE
-    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
+    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE
+    | Meldingstype.INFOMELDING_MODIA_UTGAAENDE;
 
 export interface SendNyMeldingState {
     tekst: string;
@@ -96,6 +97,7 @@ function SendNyMelding(props: Props) {
 
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
+    const erInfomelding = NyMeldingValidator.erInfomelding(state);
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>
@@ -124,7 +126,7 @@ function SendNyMelding(props: Props) {
                             />
                             <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
                         </UnmountClosed>
-                        <UnmountClosed isOpened={erSpørsmål} hasNestedCollapse={true}>
+                        <UnmountClosed isOpened={erSpørsmål || erInfomelding} hasNestedCollapse={true}>
                             <DialogpanelVelgSak
                                 setValgtSak={sak => updateState({ sak })}
                                 visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
@@ -134,7 +136,11 @@ function SendNyMelding(props: Props) {
                                 oppgaveliste={state.oppgaveListe}
                                 setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
                             />
-                            <StyledAlertStripeInfo>Gir varsel, bruker kan svare</StyledAlertStripeInfo>
+                            {erSpørsmål ? (
+                                <StyledAlertStripeInfo>Gir varsel, bruker må svare</StyledAlertStripeInfo>
+                            ) : (
+                                <StyledAlertStripeInfo>Gir varsel, bruker kan svare</StyledAlertStripeInfo>
+                            )}
                         </UnmountClosed>
                     </Margin>
                     <Feilmelding sendNyMeldingPanelState={props.sendNyMeldingPanelState.type} />

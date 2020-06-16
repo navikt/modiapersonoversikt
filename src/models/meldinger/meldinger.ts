@@ -38,17 +38,6 @@ export interface Saksbehandler {
     ident?: string;
 }
 
-export enum TypeKontakt {
-    Telefon = 'telefon',
-    Oppmøte = 'oppmote',
-    Oppgave = 'oppgave',
-    Dokument = 'dokument',
-    Monolog = 'monolog',
-    MonologUbesvart = 'monlog ubesvart',
-    Dialog = 'dialog',
-    DialogBesvart = 'dialog besvart'
-}
-
 export enum Meldingstype {
     DOKUMENT_VARSEL = 'DOKUMENT_VARSEL',
     OPPGAVE_VARSEL = 'OPPGAVE_VARSEL',
@@ -61,7 +50,8 @@ export enum Meldingstype {
     SAMTALEREFERAT_OPPMOTE = 'SAMTALEREFERAT_OPPMOTE',
     SAMTALEREFERAT_TELEFON = 'SAMTALEREFERAT_TELEFON',
     SPORSMAL_MODIA_UTGAAENDE = 'SPORSMAL_MODIA_UTGAAENDE',
-    SVAR_SBL_INNGAAENDE = 'SVAR_SBL_INNGAAENDE'
+    SVAR_SBL_INNGAAENDE = 'SVAR_SBL_INNGAAENDE',
+    INFOMELDING_MODIA_UTGAAENDE = ' INFOMELDING_MODIA_UTGAAENDE'
 }
 
 export enum LestStatus {

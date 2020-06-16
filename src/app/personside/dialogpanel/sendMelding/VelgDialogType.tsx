@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SendNyMeldingState, SendNyMeldingDialogType } from './SendNyMelding';
+import { SendNyMeldingDialogType, SendNyMeldingState } from './SendNyMelding';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
@@ -29,6 +29,12 @@ function VelgDialogType(props: Props) {
                 onChange={() => props.updateDialogType(Meldingstype.SPORSMAL_MODIA_UTGAAENDE)}
                 checked={props.formState.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE}
                 name="dialogtype"
+            />
+            <Radio
+                label="Infomelding"
+                name="dialogtype"
+                onChange={() => props.updateDialogType(Meldingstype.INFOMELDING_MODIA_UTGAAENDE)}
+                checked={props.formState.dialogType === Meldingstype.INFOMELDING_MODIA_UTGAAENDE}
             />
         </VelgDialogtypeStyle>
     );

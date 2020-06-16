@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useCallback, useMemo, useState } from 'react';
-import SendNyMelding, { SendNyMeldingState, OppgavelisteValg } from './SendNyMelding';
+import SendNyMelding, { OppgavelisteValg, SendNyMeldingState } from './SendNyMelding';
 import { NyMeldingValidator } from './validatorer';
 import { Meldingstype, SendReferatRequest, SendSpørsmålRequest } from '../../../../models/meldinger/meldinger';
 import { useFødselsnummer } from '../../../../utils/customHooks';
@@ -90,7 +90,8 @@ function SendNyMeldingContainer() {
         if (
             NyMeldingValidator.erGyldigReferat(state) &&
             state.tema &&
-            state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE
+            state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE &&
+                state.dialogType !== Meldingstype.INFOMELDING_MODIA_UTGAAENDE
         ) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
             const request: SendReferatRequest = {
