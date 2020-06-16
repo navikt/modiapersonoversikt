@@ -81,7 +81,8 @@ export function lagSkjermetOppgaveRequest(
         underkategoriKode: form.valgtUnderkategori && form.valgtUnderkategori,
         brukerid: props.gjeldendeBrukerFnr,
         oppgaveTypeKode: form.valgtOppgavetype ? form.valgtOppgavetype : 'UKJENT',
-        prioritetKode: form.valgtPrioritet
+        prioritetKode: form.valgtPrioritet,
+        opprettetavenhetsnummer: saksbehandlerEnhet ? saksbehandlerEnhet : '2820'
     };
 }
 

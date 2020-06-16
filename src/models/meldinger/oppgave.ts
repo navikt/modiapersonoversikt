@@ -47,6 +47,7 @@ export interface OpprettSkjermetOppgaveRequest {
     brukerid: string;
     oppgaveTypeKode: string;
     prioritetKode: string;
+    opprettetavenhetsnummer: string;
 }
 
 export interface Enhet {
