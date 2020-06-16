@@ -12,7 +12,7 @@ const StyledLenkepanelPersonoversikt = styled(LenkepanelPersonoversikt)`
 
 function reactrouterLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
     const { href, ...rest } = props;
-    return <Link to={href!} {...rest} />;
+    return <Link to={href!} {...rest} target="_blank" />;
 }
 
 function SakerFullscreenLenke(props: SaksoversiktValg) {
