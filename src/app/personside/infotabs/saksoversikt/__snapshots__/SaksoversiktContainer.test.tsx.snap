@@ -459,6 +459,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
         className="lenkepanel"
         href="/saker/10108000398?sakstema=ALLE1545606000"
         onClick={[Function]}
+        target="_blank"
       >
         Åpne i fullscreen
         <span
