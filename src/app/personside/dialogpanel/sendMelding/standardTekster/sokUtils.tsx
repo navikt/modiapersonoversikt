@@ -1,5 +1,5 @@
 import { FetchResult, hasData } from '@nutgaard/use-fetch';
-import { parseTekst } from '../../../../../components/tag-input/tag-input';
+import { parseTekst } from '@navikt/tag-input';
 import * as StandardTekster from './domain';
 
 export function rapporterBruk(tekst: StandardTekster.Tekst): void {

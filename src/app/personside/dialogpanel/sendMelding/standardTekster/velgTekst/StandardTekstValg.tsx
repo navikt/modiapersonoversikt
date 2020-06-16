@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { createDynamicHighlightingRule } from 'nav-frontend-tekstomrade';
-import { parseTekst } from '../../../../../../components/tag-input/tag-input';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import styled from 'styled-components/macro';
+import { parseTekst } from '@navikt/tag-input';
 import { FieldState } from '../../../../../../utils/hooks/use-field-state';
 import * as StandardTekster from '../domain';
 import LocaleVelger from './LocaleVelger';
-import styled from 'styled-components/macro';
 import theme from '../../../../../../styles/personOversiktTheme';
 import useAlwaysInViewport from '../../../../../../utils/hooks/use-always-in-viewport';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import StandardTekstPreview from './StandardTekstPreview';
 import StandardtekstListe from './StandardtekstListe';
 
