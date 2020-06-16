@@ -456,6 +456,25 @@ exports[`viser dialogpanel 1`] = `
                 Spørsmål
               </label>
             </div>
+            <div
+              className="skjemaelement"
+            >
+              <input
+                aria-invalid={false}
+                checked={false}
+                className="skjemaelement__input radioknapp"
+                id="Helt tilfeldig ID"
+                name="dialogtype"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Infomelding
+              </label>
+            </div>
           </div>
           <div
             className=""
