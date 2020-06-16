@@ -1,23 +1,23 @@
 import React, { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
 import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import styled from 'styled-components/macro';
+import TagInput from '@navikt/tag-input';
+import { guid } from 'nav-frontend-js-utils';
+import { HjelpetekstUnderVenstre } from 'nav-frontend-hjelpetekst';
 import useFieldState, { FieldState } from '../../../../../utils/hooks/use-field-state';
 import { erGyldigValg, sokEtterTekster, rapporterBruk } from './sokUtils';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import StandardTekstValg from './velgTekst/StandardTekstValg';
 import * as StandardTeksterModels from './domain';
 import theme from '../../../../../styles/personOversiktTheme';
-import TagInput from '../../../../../components/tag-input/tag-input';
 import { captitalize } from '../../../../../utils/stringFormatting';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullførData } from '../autofullforUtils';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
-import { guid } from 'nav-frontend-js-utils';
 import AriaNotification from '../../../../../components/AriaNotification';
 import { usePrevious } from '../../../../../utils/customHooks';
-import { HjelpetekstUnderVenstre } from 'nav-frontend-hjelpetekst';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 
 interface Props {
