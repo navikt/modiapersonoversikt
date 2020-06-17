@@ -32,7 +32,6 @@ function VelgDialogType(props: Props) {
     const delvisSvar = lagRadio('Delvis svar', Meldingstype.DELVIS_SVAR_SKRIFTLIG);
     const svarTelefon = lagRadio('Svar telefon', Meldingstype.SVAR_TELEFON);
     const svarOppmote = lagRadio('Svar oppmøte', Meldingstype.SVAR_OPPMOTE);
-    const infomelding = lagRadio('Infomelding', Meldingstype.INFOMELDING_MODIA_UTGAAENDE);
 
     if (props.erDelvisBesvart) {
         return (
@@ -51,7 +50,6 @@ function VelgDialogType(props: Props) {
                 {!props.erOksosTraad && delvisSvar}
                 {!jobberMedSTO && svarTelefon}
                 {!jobberMedSTO && svarOppmote}
-                {infomelding}
             </VelgDialogtypeStyle>
         );
     }
@@ -62,7 +60,6 @@ function VelgDialogType(props: Props) {
             {spørsmål}
             {svarTelefon}
             {svarOppmote}
-            {infomelding}
         </VelgDialogtypeStyle>
     );
 }

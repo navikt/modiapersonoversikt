@@ -63,9 +63,7 @@ function FortsettDialog(props: Props) {
     const erDelsvar = state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
     const girIkkeVarsel = [Meldingstype.SVAR_OPPMOTE, Meldingstype.SVAR_TELEFON].includes(state.dialogType);
     const girVarselKanIkkeSvare = Meldingstype.SVAR_SKRIFTLIG === state.dialogType;
-    const brukerKanSvareValg =
-        state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE ||
-        state.dialogType === Meldingstype.INFOMELDING_MODIA_UTGAAENDE;
+    const brukerKanSvareValg = state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
     const delMedBrukerTekst = props.erTilknyttetOppgave ? `Del med ${navn} og avslutt oppgave` : `Del med ${navn}`;
     const erOksosTraad = props.traad.meldinger.some(it => it.temagruppe === 'OKSOS');
     return (
