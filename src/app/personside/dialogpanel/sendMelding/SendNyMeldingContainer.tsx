@@ -2,10 +2,20 @@ import * as React from 'react';
 import { FormEvent, useCallback, useMemo, useState } from 'react';
 import SendNyMelding, { OppgavelisteValg, SendNyMeldingState } from './SendNyMelding';
 import { NyMeldingValidator } from './validatorer';
-import { Meldingstype, SendReferatRequest, SendSpørsmålRequest } from '../../../../models/meldinger/meldinger';
+import {
+    Meldingstype,
+    SendInfomeldingRequest,
+    SendReferatRequest,
+    SendSpørsmålRequest
+} from '../../../../models/meldinger/meldinger';
 import { useFødselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
-import { ReferatSendtKvittering, SporsmalSendtFeilet, SporsmalSendtKvittering } from './SendNyMeldingKvittering';
+import {
+    InfomeldingSendtKvittering,
+    ReferatSendtKvittering,
+    SporsmalSendtFeilet,
+    SporsmalSendtKvittering
+} from './SendNyMeldingKvittering';
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
@@ -60,6 +70,9 @@ function SendNyMeldingContainer() {
     if (sendNyMeldingStatus.type === SendNyMeldingStatus.SPORSMAL_SENDT) {
         return <SporsmalSendtKvittering fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
     }
+    if (sendNyMeldingStatus.type === SendNyMeldingStatus.INFORMELDING_SENDT) {
+        return <InfomeldingSendtKvittering fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
+    }
 
     if (sendNyMeldingStatus.type === SendNyMeldingStatus.ERROR) {
         return <SporsmalSendtFeilet fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
@@ -91,7 +104,7 @@ function SendNyMeldingContainer() {
             NyMeldingValidator.erGyldigReferat(state) &&
             state.tema &&
             state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE &&
-                state.dialogType !== Meldingstype.INFOMELDING_MODIA_UTGAAENDE
+            state.dialogType !== Meldingstype.INFOMELDING_MODIA_UTGAAENDE
         ) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
             const request: SendReferatRequest = {
@@ -118,6 +131,29 @@ function SendNyMeldingContainer() {
                 .then(() => {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: request.fritekst });
+                })
+                .catch(error => {
+                    callback();
+                    setSendNyMeldingStatus({
+                        type: SendNyMeldingStatus.ERROR,
+                        fritekst: handleFeilMelding(error)
+                    });
+                    updateState({ visFeilmeldinger: true });
+                });
+        } else if (NyMeldingValidator.erGyldigInfomelding(state) && state.sak) {
+            setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
+            const request: SendInfomeldingRequest = {
+                fritekst: state.tekst,
+                sak: state.sak,
+                erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
+            };
+            post(`${apiBaseUri}/dialog/${fnr}/sendinfomelding`, request, 'Send-Infomelding')
+                .then(() => {
+                    callback();
+                    setSendNyMeldingStatus({
+                        type: SendNyMeldingStatus.INFORMELDING_SENDT,
+                        fritekst: request.fritekst
+                    });
                 })
                 .catch(error => {
                     callback();

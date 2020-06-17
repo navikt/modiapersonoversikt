@@ -26,4 +26,7 @@ export class NyMeldingValidator {
     public static erInfomelding(state: SendNyMeldingState) {
         return state.dialogType === Meldingstype.INFOMELDING_MODIA_UTGAAENDE;
     }
+    public static erGyldigInfomelding(state: SendNyMeldingState) {
+        return this.erInfomelding(state) && this.sak(state) && this.tekst(state);
+    }
 }

@@ -14,6 +14,7 @@ import { eldsteMelding, meldingstittel, nyesteMelding, saksbehandlerTekst } from
 import { formaterDato } from '../../../../../utils/stringFormatting';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/UsePrinter';
+
 interface Props {
     valgtTraad: Traad;
     sokeord: string;
@@ -33,7 +34,11 @@ const KnappWrapper = styled.div`
     flex-direction: column;
     align-items: flex-end;
 `;
-const KanBesvaresMeldingstyper = [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG];
+const KanBesvaresMeldingstyper = [
+    Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
+    Meldingstype.SPORSMAL_SKRIFTLIG,
+    Meldingstype.INFOMELDING_MODIA_UTGAAENDE
+];
 
 function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
     const meldingskomponenter = traad.meldinger

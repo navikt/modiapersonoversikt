@@ -24,6 +24,8 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
             return 'Svar fra bruker';
         case Meldingstype.SVAR_SKRIFTLIG:
             return 'Svar skriftlig';
+        case Meldingstype.INFOMELDING_MODIA_UTGAAENDE:
+            return 'Infomelding';
         default:
             return 'Ukjent meldingstype: ' + meldingstype;
     }

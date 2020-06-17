@@ -72,6 +72,12 @@ export interface SendSpørsmålRequest {
     erOppgaveTilknyttetAnsatt: boolean;
 }
 
+export interface SendInfomeldingRequest {
+    fritekst: string;
+    sak: JournalforingsSak;
+    erOppgaveTilknyttetAnsatt: boolean;
+}
+
 export interface ForsettDialogRequest {
     traadId: string;
     behandlingsId: string;

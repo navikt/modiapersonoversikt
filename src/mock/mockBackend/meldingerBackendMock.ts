@@ -6,6 +6,7 @@ import {
     OpprettHenvendelseRequest,
     OpprettHenvendelseResponse,
     SendDelsvarRequest,
+    SendInfomeldingRequest,
     SendReferatRequest,
     SendSpørsmålRequest,
     Traad
@@ -71,6 +72,18 @@ export class MeldingerBackendMock {
         const melding: Melding = {
             ...getMockMelding(),
             meldingstype: Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
+            fritekst: request.fritekst
+        };
+        this.sendteNyeMeldinger.unshift({
+            traadId: guid(),
+            meldinger: [melding]
+        });
+    }
+
+    public sendInfomelding(request: SendInfomeldingRequest) {
+        const melding: Melding = {
+            ...getMockMelding(),
+            meldingstype: Meldingstype.INFOMELDING_MODIA_UTGAAENDE,
             fritekst: request.fritekst
         };
         this.sendteNyeMeldinger.unshift({
