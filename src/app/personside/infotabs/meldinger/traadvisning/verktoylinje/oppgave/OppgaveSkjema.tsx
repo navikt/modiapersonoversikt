@@ -66,7 +66,7 @@ const validator = useFormstate<OppgaveSkjemaForm>({
     valgtOppgavetype: required('Du må velge oppgavetype'),
     beskrivelse: required('Du må skrive beskrivelse'),
     valgtPrioritet: required('Du må velge prioritet'),
-    valgtUnderkategori: required('Du må velge underkategori'),
+    valgtUnderkategori: notRequired(),
     valgtEnhet: required('Du må velge enhet'),
     valgtAnsatt: notRequired()
 });
