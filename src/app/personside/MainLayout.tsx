@@ -25,6 +25,7 @@ function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
     const dispatch = useDispatch();
     const tittelId = useRef(guid());
+    const visDialogpanel = !document.location.search.includes('chatvisning');
 
     const ekspanderDialogpanelHandler = () => {
         if (!UI.dialogPanel.ekspandert) {
@@ -41,21 +42,23 @@ function MainLayout() {
                 </Scrollbar>
                 <InfoTabs />
             </VenstreKolonne>
-            <HøyreKolonne
-                onClick={ekspanderDialogpanelHandler}
-                dialogPanelEkspandert={UI.dialogPanel.ekspandert}
-                aria-describedby={tittelId.current}
-            >
-                <h1 className="sr-only" id={tittelId.current}>
-                    Oppgavepanel
-                </h1>
-                <Scrollbar>
-                    <BrukerHarUbesvarteMeldinger />
-                    <HentOppgaveKnapp />
-                    <DialogPanel />
-                </Scrollbar>
-                <EkspanderDilaogpanelKnapp />
-            </HøyreKolonne>
+            {visDialogpanel && (
+                <HøyreKolonne
+                    onClick={ekspanderDialogpanelHandler}
+                    dialogPanelEkspandert={UI.dialogPanel.ekspandert}
+                    aria-describedby={tittelId.current}
+                >
+                    <h1 className="sr-only" id={tittelId.current}>
+                        Oppgavepanel
+                    </h1>
+                    <Scrollbar>
+                        <BrukerHarUbesvarteMeldinger />
+                        <HentOppgaveKnapp />
+                        <DialogPanel />
+                    </Scrollbar>
+                    <EkspanderDilaogpanelKnapp />
+                </HøyreKolonne>
+            )}
             <SmallScreenToggleButton UI={UI} toggleDialogpanel={() => dispatch(toggleDialogpanel())} />
         </LayoutWrapper>
     );
