@@ -12,4 +12,5 @@ if (process.env.REACT_APP_MOCK_ENABLED === 'true') {
     require('./mock');
 }
 
+(window as any).isChatVisning = (document.location.search + document.location.hash).includes('chatvisning');
 ReactDOM.render(<AppContainer />, document.getElementById('root') as HTMLElement);

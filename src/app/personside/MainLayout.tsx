@@ -25,7 +25,6 @@ function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
     const dispatch = useDispatch();
     const tittelId = useRef(guid());
-    const visDialogpanel = !(document.location.search + document.location.hash).includes('chatvisning');
 
     const ekspanderDialogpanelHandler = () => {
         if (!UI.dialogPanel.ekspandert) {
@@ -42,7 +41,7 @@ function MainLayout() {
                 </Scrollbar>
                 <InfoTabs />
             </VenstreKolonne>
-            {visDialogpanel && (
+            {!(window as any).isChatVisning && (
                 <HøyreKolonne
                     onClick={ekspanderDialogpanelHandler}
                     dialogPanelEkspandert={UI.dialogPanel.ekspandert}

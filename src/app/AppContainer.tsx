@@ -68,7 +68,6 @@ function AppContainer() {
     useOnMount(() => {
         ModalWrapper.setAppElement('#root');
     });
-    const visDekorator = !(document.location.search + document.location.hash).includes('chatvisning');
     return (
         <>
             <IeMacStyling />
@@ -77,7 +76,7 @@ function AppContainer() {
             <Provider store={store}>
                 <Router>
                     <AppStyle>
-                        {visDekorator && <Decorator />}
+                        {!(window as any).isChatVisning && <Decorator />}
                         <App />
                     </AppStyle>
                 </Router>
