@@ -72,7 +72,7 @@ jobs:
   deploy-q1:
     name: Deploy to q1
     needs: build-and-push
-    if: github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/validator'
     runs-on: ubuntu-latest
     strategy:
       matrix:
