@@ -41,10 +41,10 @@ export function InfomeldingSendtKvittering(props: { fritekst: string; lukk: () =
     );
 }
 
-export function SporsmalSendtFeilet(props: { fritekst: string; lukk: () => void }) {
+export function MeldingSendtFeilet(props: { fritekst: string; lukk: () => void }) {
     return (
         <DialogpanelKvittering
-            tittel="Spørsmål ble sendt men feil i baksystem"
+            tittel="Melding ble sendt men feil i baksystem"
             fritekst={props.fritekst}
             meldingstype={Meldingstype.SPORSMAL_MODIA_UTGAAENDE}
             lukk={props.lukk}

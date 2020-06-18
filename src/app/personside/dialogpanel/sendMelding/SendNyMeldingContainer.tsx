@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux';
 import {
     InfomeldingSendtKvittering,
     ReferatSendtKvittering,
-    SporsmalSendtFeilet,
+    MeldingSendtFeilet,
     SporsmalSendtKvittering
 } from './SendNyMeldingKvittering';
 import { apiBaseUri } from '../../../../api/config';
@@ -75,7 +75,7 @@ function SendNyMeldingContainer() {
     }
 
     if (sendNyMeldingStatus.type === SendNyMeldingStatus.ERROR) {
-        return <SporsmalSendtFeilet fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
+        return <MeldingSendtFeilet fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
     }
 
     const handleAvbryt = () => {
