@@ -29,5 +29,5 @@ export interface SkjermetOppgaveSkjemaForm {
     valgtOppgavetype: string;
     beskrivelse: string;
     valgtPrioritet: string;
-    valgtUnderkategori: string;
+    valgtUnderkategori?: string;
 }

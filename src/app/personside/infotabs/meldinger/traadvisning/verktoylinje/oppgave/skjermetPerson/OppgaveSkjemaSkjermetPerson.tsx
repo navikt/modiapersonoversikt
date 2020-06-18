@@ -10,7 +10,7 @@ import { lagSkjermetOppgaveRequest } from '../byggRequest';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../../redux/reducers';
 import { useAppState } from '../../../../../../../../utils/customHooks';
-import { feilmelding, required } from '../validering';
+import { feilmelding, notRequired, required } from '../validering';
 import useFormstate, { Values } from '@nutgaard/use-formstate';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from '../SkjemaElementOptions';
 import { Select, Textarea } from 'nav-frontend-skjema';
@@ -44,7 +44,7 @@ const validator = useFormstate<SkjermetOppgaveSkjemaForm>({
     valgtOppgavetype: required('Du må velge oppgavetype'),
     valgtPrioritet: required('Du må velge prioritet'),
     beskrivelse: required('Du må skrive beskrivelse'),
-    valgtUnderkategori: required('Du må velge underkategori')
+    valgtUnderkategori: notRequired()
 });
 
 function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
@@ -103,11 +103,7 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
                 >
                     <TemaOptions gsakTema={props.gsakTema} />
                 </Select>
-                <Select
-                    label={'Gjelder'}
-                    {...state.fields.valgtUnderkategori.input}
-                    feil={feilmelding(state.fields.valgtUnderkategori)}
-                >
+                <Select label={'Gjelder'} {...state.fields.valgtUnderkategori?.input}>
                     <UnderkategoriOptions valgtGsakTema={valgtTema} />
                 </Select>
                 <Select
