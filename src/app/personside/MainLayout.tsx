@@ -25,7 +25,7 @@ function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
     const dispatch = useDispatch();
     const tittelId = useRef(guid());
-    const visDialogpanel = !document.location.search.includes('chatvisning');
+    const visDialogpanel = !(document.location.search + document.location.hash).includes('chatvisning');
 
     const ekspanderDialogpanelHandler = () => {
         if (!UI.dialogPanel.ekspandert) {
