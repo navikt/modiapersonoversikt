@@ -162,11 +162,7 @@ function OppgaveSkjema(props: OppgaveProps) {
                 >
                     <TemaOptions gsakTema={props.gsakTema} />
                 </Select>
-                <Select
-                    label={'Gjelder'}
-                    {...state.fields.valgtUnderkategori.input}
-                    feil={feilmelding(state.fields.valgtUnderkategori)}
-                >
+                <Select label={'Gjelder'} {...state.fields.valgtUnderkategori.input}>
                     <UnderkategoriOptions valgtGsakTema={valgtTema} />
                 </Select>
                 <Select
