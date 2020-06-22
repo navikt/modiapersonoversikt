@@ -41,10 +41,10 @@ const AlertStyling = styled.div`
 `;
 const validator = useFormstate<SkjermetOppgaveSkjemaForm>({
     valgtTema: required('Du må velge tema'),
+    valgtUnderkategori: notRequired(),
     valgtOppgavetype: required('Du må velge oppgavetype'),
     valgtPrioritet: required('Du må velge prioritet'),
-    beskrivelse: required('Du må skrive beskrivelse'),
-    valgtUnderkategori: notRequired()
+    beskrivelse: required('Du må skrive beskrivelse')
 });
 
 function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
@@ -52,7 +52,7 @@ function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
 
-    const initialValues = {
+    const initialValues: SkjermetOppgaveSkjemaForm = {
         valgtTema: '',
         valgtUnderkategori: '',
         valgtOppgavetype: '',

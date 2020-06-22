@@ -74,7 +74,7 @@ const validator = useFormstate<OppgaveSkjemaForm>({
 function OppgaveSkjema(props: OppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
-    const initialValues = {
+    const initialValues: OppgaveSkjemaForm = {
         valgtTema: '',
         valgtOppgavetype: '',
         beskrivelse: '',

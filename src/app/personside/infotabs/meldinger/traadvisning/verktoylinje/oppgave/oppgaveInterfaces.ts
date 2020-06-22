@@ -14,7 +14,7 @@ export interface OppgaveProps {
     valgtTraad?: Traad;
 }
 
-export interface OppgaveSkjemaForm {
+export type OppgaveSkjemaForm = {
     valgtTema: string;
     valgtOppgavetype: string;
     beskrivelse: string;
@@ -22,12 +22,11 @@ export interface OppgaveSkjemaForm {
     valgtUnderkategori: string;
     valgtEnhet: string;
     valgtAnsatt: string;
-}
-
-export interface SkjermetOppgaveSkjemaForm {
+};
+export type SkjermetOppgaveSkjemaForm = {
     valgtTema: string;
     valgtOppgavetype: string;
     beskrivelse: string;
     valgtPrioritet: string;
-    valgtUnderkategori?: string;
-}
+    valgtUnderkategori: string;
+};
