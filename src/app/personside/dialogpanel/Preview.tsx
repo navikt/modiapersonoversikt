@@ -7,6 +7,7 @@ import { formatterDatoTid } from '../../../utils/dateUtils';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import { useSendtMelding } from './useSendtMelding';
+import { SendNyMeldingStatus } from './sendMelding/SendNyMeldingTypes';
 
 const PreviewStyle = styled.article`
     padding: 1rem;
@@ -22,16 +23,18 @@ const PreviewStyle = styled.article`
 interface Props {
     tittel: string;
     fritekst: string;
+    meldingstatus: SendNyMeldingStatus;
 }
 
 function Preview(props: Props) {
     const sendtMelding = useSendtMelding(props.fritekst);
 
-    const opprettetDato = sendtMelding.melding ? (
-        <EtikettGrå>{formatterDatoTid(sendtMelding.melding.opprettetDato)}</EtikettGrå>
-    ) : (
-        <NavFrontendSpinner type="XXS" />
-    );
+    let opprettetDato = null;
+    if (sendtMelding.melding) {
+        opprettetDato = <EtikettGrå>{formatterDatoTid(sendtMelding.melding.opprettetDato)}</EtikettGrå>;
+    } else if (props.meldingstatus !== SendNyMeldingStatus.ERROR) {
+        opprettetDato = <NavFrontendSpinner type="XXS" />;
+    }
 
     return (
         <PreviewStyle>

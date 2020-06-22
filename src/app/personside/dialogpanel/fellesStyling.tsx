@@ -14,6 +14,7 @@ import { useSendtMelding } from './useSendtMelding';
 import GaaTilNesteOppgaveKnapp from './GaaTilNesteOppgaveKnapp';
 import TidligereMeldinger from './fortsettDialog/tidligereMeldinger/TidligereMeldinger';
 import ErrorBoundary from '../../../components/ErrorBoundary';
+import { SendNyMeldingStatus } from './sendMelding/SendNyMeldingTypes';
 import Panel from 'nav-frontend-paneler';
 
 export const FormStyle = styled.form`
@@ -71,29 +72,45 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
     return <StyledVerktøylinje valgtTraad={sendtMelding.traad} />;
 }
 
+function VarselTilBrukerOmStatus(props: { meldingstatus: SendNyMeldingStatus; tittle: string }) {
+    if (props.meldingstatus === SendNyMeldingStatus.ERROR) {
+        return <DialogpanelFeilmelding />;
+    }   
+    else { 
+        return <AlertStripeSuksess>{props.tittle}</AlertStripeSuksess>;
+    }
+}
+
 export function DialogpanelKvittering(props: {
     tittel: string;
     fritekst: string;
     meldingstype: Meldingstype;
     lukk: () => void;
     traad?: Traad;
+    meldingstatus: SendNyMeldingStatus;
 }) {
     return (
         <ErrorBoundary boundaryName="DialogpanelKvittering">
             <DialogpanelKvitteringStyling>
                 <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
+                <VarselTilBrukerOmStatus meldingstatus={props.meldingstatus} tittle={props.tittel} />
                 {props.traad && (
                     <ErrorBoundary boundaryName="Tidligere meldinger Dialogpanelkvittering">
                         <TidligereMeldinger traad={props.traad} />
                     </ErrorBoundary>
                 )}
-                <AlertStripeSuksess>{props.tittel}</AlertStripeSuksess>
                 <ErrorBoundary boundaryName="Sendt melding preview">
-                    <Preview fritekst={props.fritekst} tittel={meldingstypeTekst(props.meldingstype)} />
+                    <Preview
+                        fritekst={props.fritekst}
+                        tittel={meldingstypeTekst(props.meldingstype)}
+                        meldingstatus={props.meldingstatus}
+                    />
                 </ErrorBoundary>
-                <ErrorBoundary boundaryName="Sendt melding verktøylinje">
-                    <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
-                </ErrorBoundary>
+                {props.meldingstatus !== SendNyMeldingStatus.ERROR && (
+                    <ErrorBoundary boundaryName="Sendt melding verktøylinje">
+                        <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
+                    </ErrorBoundary>
+                )}
                 <KnappBase type="standard" onClick={props.lukk}>
                     Start ny dialog
                 </KnappBase>

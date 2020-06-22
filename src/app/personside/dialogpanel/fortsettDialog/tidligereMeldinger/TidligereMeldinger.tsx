@@ -27,6 +27,7 @@ const StyledLi = styled.li`
 `;
 
 const StyledPanel = styled(Panel)`
+    padding: 0rem;
     margin-top: 0.1rem;
     > li:not(:last-child) {
         margin-bottom: 0.1rem;

@@ -5,12 +5,13 @@ import { NyMeldingValidator } from './validatorer';
 import { Meldingstype, SendReferatRequest, SendSpørsmålRequest } from '../../../../models/meldinger/meldinger';
 import { useFødselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
-import { ReferatSendtKvittering, SporsmalSendtKvittering } from './SendNyMeldingKvittering';
+import { ReferatSendtKvittering, SporsmalSendtFeilet, SporsmalSendtKvittering } from './SendNyMeldingKvittering';
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import useDraft, { Draft } from '../use-draft';
+import { feilMeldinger } from './FeilMeldinger';
 
 const initialState: SendNyMeldingState = {
     tekst: '',
@@ -60,10 +61,19 @@ function SendNyMeldingContainer() {
         return <SporsmalSendtKvittering fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
     }
 
+    if (sendNyMeldingStatus.type === SendNyMeldingStatus.ERROR) {
+        return <SporsmalSendtFeilet fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
+    }
+
     const handleAvbryt = () => {
         removeDraft();
         setState(initialState);
         setSendNyMeldingStatus({ type: SendNyMeldingStatus.UNDER_ARBEID });
+    };
+
+    const handleFeilMelding = (error: Error) => {
+        const feilType = JSON.parse(error.toString()).type;
+        return feilMeldinger[feilType];
     };
 
     const handleSubmit = (event: FormEvent) => {
@@ -94,7 +104,7 @@ function SendNyMeldingContainer() {
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: request });
                 })
                 .catch(() => {
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR, fritekst: request.fritekst });
                 });
         } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
@@ -108,8 +118,13 @@ function SendNyMeldingContainer() {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: request.fritekst });
                 })
-                .catch(() => {
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR });
+                .catch(error => {
+                    callback();
+                    setSendNyMeldingStatus({
+                        type: SendNyMeldingStatus.ERROR,
+                        fritekst: handleFeilMelding(error)
+                    });
+                    updateState({ visFeilmeldinger: true });
                 });
         } else {
             updateState({ visFeilmeldinger: true });

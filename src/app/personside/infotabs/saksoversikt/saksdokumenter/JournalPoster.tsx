@@ -39,6 +39,7 @@ interface JournalpostGruppeProps {
 }
 
 const StyledPanel = styled(Panel)`
+    padding: 0rem;
     position: relative;
     margin-bottom: 2rem;
 `;

@@ -1,15 +1,8 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import Cookies from 'js-cookie';
-import FetchMock, {
-    HandlerArgument,
-    Middleware,
-    MiddlewareUtils,
-    MockHandler,
-    ResponseUtils
-} from 'yet-another-fetch-mock';
+import FetchMock, { MockHandler, MockRequest, Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
-
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
 import { getMockKontaktinformasjon } from './person/krrKontaktinformasjon/kontaktinformasjon-mock';
@@ -48,6 +41,7 @@ import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinge
 import { failurerateMiddleware } from './utils/failureMiddleware';
 import { setupDraftMock } from './draft-mock';
 import tilgangskontrollMock from './tilgangskontroll-mock';
+import { delayed } from './utils';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -62,8 +56,8 @@ export function randomDelay() {
     return faker.random.number(750);
 }
 
-const fødselsNummerErGyldigStatus = (args: HandlerArgument) =>
-    erGyldigFødselsnummer(args.pathParams.fodselsnummer) ? STATUS_OK() : STATUS_BAD_REQUEST();
+const fødselsNummerErGyldigStatus = (req: MockRequest) =>
+    erGyldigFødselsnummer(req.pathParams.fodselsnummer) ? STATUS_OK() : STATUS_BAD_REQUEST();
 
 function setupInnloggetSaksbehandlerMock(mock: FetchMock) {
     mock.get(
@@ -205,17 +199,17 @@ function setupVarselMock(mock: FetchMock) {
         )
     );
 
-    const dittnaveventHandler: MockHandler = ({ init }) => {
-        const headers: any = init?.headers;
+    const dittnaveventHandler: MockHandler = (req, res, ctx) => {
+        const headers: any = req.init?.headers;
         const fnr = headers.fodselsnummer;
         if (!erGyldigFødselsnummer(fnr)) {
-            return Promise.resolve({ status: 400 });
+            return res(ctx.status(400));
         }
-        return Promise.resolve({ status: 200, body: JSON.stringify(getDittNavVarsler(fnr)) });
+        return res(ctx.status(200), ctx.json(getDittNavVarsler(fnr)));
     };
 
-    mock.get('/dittnav-eventer-modia/fetch/beskjed/all', ResponseUtils.delayed(randomDelay(), dittnaveventHandler));
-    mock.get('/dittnav-eventer-modia/fetch/oppgave/all', ResponseUtils.delayed(randomDelay(), dittnaveventHandler));
+    mock.get('/dittnav-eventer-modia/fetch/beskjed/all', delayed(randomDelay(), dittnaveventHandler));
+    mock.get('/dittnav-eventer-modia/fetch/oppgave/all', delayed(randomDelay(), dittnaveventHandler));
 }
 
 function setupMeldingerMock(mock: FetchMock) {
@@ -284,14 +278,14 @@ function setupGeografiskTilknytningMock(mock: FetchMock) {
         apiBaseUri + '/enheter',
         withDelayedResponse(
             randomDelay(),
-            (args: HandlerArgument) => {
+            (args: MockRequest) => {
                 if (isNaN(args.queryParams.gt) && !args.queryParams.dkode) {
                     return 404;
                 } else {
                     return 200;
                 }
             },
-            (args: HandlerArgument) => getMockNavKontor(args.queryParams.gt, args.queryParams.dkode)
+            (args: MockRequest) => getMockNavKontor(args.queryParams.gt, args.queryParams.dkode)
         )
     );
 }
@@ -303,7 +297,7 @@ function setupPersonsokMock(mock: FetchMock) {
     );
 }
 
-function setSaksbehandlerinnstillingerMockBackend(args: HandlerArgument) {
+function setSaksbehandlerinnstillingerMockBackend(args: MockRequest) {
     Cookies.set(saksbehandlerCookieNavnPrefix + '-Z990099', args.body);
     return args.body;
 }

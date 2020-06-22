@@ -10,6 +10,7 @@ import KnappBase from 'nav-frontend-knapper';
 import { KvitteringsData } from './FortsettDialogTypes';
 import { Temagruppe, temagruppeTekst } from '../../../../models/Temagrupper';
 import GaaTilNesteOppgaveKnapp from '../GaaTilNesteOppgaveKnapp';
+import { SendNyMeldingStatus } from '../sendMelding/SendNyMeldingTypes';
 
 export function SvarSendtKvittering(props: { kvitteringsData: KvitteringsData }) {
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export function SvarSendtKvittering(props: { kvitteringsData: KvitteringsData })
             lukk={() => {
                 dispatch(setIngenValgtTraadDialogpanel());
             }}
+            meldingstatus={SendNyMeldingStatus.SVAR_SENDT}
         />
     );
 }
@@ -40,6 +42,7 @@ export function DelsvarRegistrertKvittering(props: { kvitteringsData: Kvittering
             lukk={() => {
                 dispatch(setIngenValgtTraadDialogpanel());
             }}
+            meldingstatus={SendNyMeldingStatus.SVAR_SENDT}
         />
     );
 }
