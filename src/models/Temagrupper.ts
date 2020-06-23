@@ -45,7 +45,7 @@ export const TemaLeggTilbake = [
     Temagruppe.Utland
 ];
 
-export const TemaKommunaleTjenester = [Temagruppe.AndreSosiale];
+export const TemaKommunaleTjenester = [Temagruppe.AndreSosiale, Temagruppe.ØkonomiskSosial];
 
 export function temagruppeTekst(temagruppe: Temagruppe | null) {
     switch (temagruppe) {
