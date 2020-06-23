@@ -42,11 +42,10 @@ export const TemaLeggTilbake = [
     Temagruppe.Pensjon,
     Temagruppe.PleiepengerSyktBarn,
     Temagruppe.Uføretrygd,
-    Temagruppe.Utland,
-    Temagruppe.ØkonomiskSosial
+    Temagruppe.Utland
 ];
 
-export const TemaKommunaleTjenester = [Temagruppe.AndreSosiale, Temagruppe.ØkonomiskSosial];
+export const TemaKommunaleTjenester = [Temagruppe.AndreSosiale];
 
 export function temagruppeTekst(temagruppe: Temagruppe | null) {
     switch (temagruppe) {
