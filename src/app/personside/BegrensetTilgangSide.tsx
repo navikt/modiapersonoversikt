@@ -45,7 +45,9 @@ function OpprettOppgaveAvvistTilgang() {
     };
 
     if (!gsakTema || !innloggetSaksbehandler) {
-        return <AlertStripe type={'info'}>Kunne ikke vise opprett oppgave panel</AlertStripe>;
+        return (
+            <AlertStripe type={'info'}>Kunne ikke vise opprett oppgave panel. Vennligst last siden på nytt</AlertStripe>
+        );
     }
 
     return (
