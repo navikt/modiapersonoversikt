@@ -9,7 +9,6 @@ import { OppgaveProps, OppgaveSkjemaForm, SkjermetOppgaveSkjemaForm } from './op
 import { formatterDatoTidNaa } from '../../../../../../../utils/dateUtils';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { Mapped, Values } from '@nutgaard/use-formstate';
-import { stringToNumber } from '../../../../../../personsok/personsokUtils';
 
 function captureBuilder(regex: RegExp) {
     return (value: string, capture: number): string | undefined => {
