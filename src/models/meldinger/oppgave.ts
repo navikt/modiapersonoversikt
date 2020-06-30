@@ -26,6 +26,7 @@ export interface GsakTemaUnderkategori {
 export interface OpprettOppgaveRequest {
     fnr: string;
     opprettetavenhetsnummer: string;
+    valgtEnhetId: string;
     behandlingskjedeId: string;
     dagerFrist?: number;
     ansvarligIdent?: string;
