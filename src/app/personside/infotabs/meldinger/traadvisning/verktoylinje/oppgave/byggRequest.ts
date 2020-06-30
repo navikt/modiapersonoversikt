@@ -26,7 +26,7 @@ function assertRequired<T>(value: T, errorMessage: string) {
     }
 }
 
-const matchEnhet = captureBuilder(/(\d{4}).*/);
+export const matchEnhet = captureBuilder(/(\d{4}).*/);
 const matchAnsatt = captureBuilder(/.*?\((.+)\)/);
 
 export function lagOppgaveRequest(
