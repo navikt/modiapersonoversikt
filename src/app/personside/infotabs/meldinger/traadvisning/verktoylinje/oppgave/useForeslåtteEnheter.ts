@@ -1,25 +1,24 @@
-import { OppgaveSkjemaForm } from './oppgaveInterfaces';
 import { useFødselsnummer } from '../../../../../../../utils/customHooks';
 import { useEffect, useMemo, useState } from 'react';
 import { Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 
-function useForeslatteEnheter(form: OppgaveSkjemaForm) {
+function useForeslatteEnheter(temakode?: string, typekode?: string, underkategori?: string) {
     const fnr = useFødselsnummer();
     const [foreslatteEnheter, setForeslatteEnheter] = useState<Enhet[]>([]);
     const [pending, setPending] = useState(false);
 
     useEffect(() => {
-        if (!form.valgtTema || !form.valgtOppgavetype) {
+        if (!temakode || !typekode) {
             return;
         }
 
         const request = {
             fnr: fnr,
-            temakode: form.valgtTema.kode,
-            typekode: form.valgtOppgavetype.kode,
-            underkategori: form.valgtUnderkategori && form.valgtUnderkategori.kode
+            temakode: temakode,
+            typekode: typekode,
+            underkategori: underkategori
         };
         const queryParams = Object.entries(request)
             .filter(entry => entry[1])
@@ -33,7 +32,7 @@ function useForeslatteEnheter(form: OppgaveSkjemaForm) {
             .then(setForeslatteEnheter)
             .catch(e => loggError(e, 'Feil ved henting av foreslåtte enheter'))
             .finally(() => setPending(false));
-    }, [form.valgtTema, form.valgtOppgavetype, form.valgtUnderkategori, fnr]);
+    }, [temakode, typekode, underkategori, fnr]);
 
     return useMemo(
         () => ({

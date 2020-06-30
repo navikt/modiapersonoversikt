@@ -44,7 +44,9 @@ enum Komponenter {
     Personsok,
     JournalforingPanel,
     TraadVisningDialogpanel,
-    BesvarFlere
+    BesvarFlere,
+    HurtigTasterHjelp,
+    OppgaveSkjermetPerson
 }
 
 const Style = styled.div`
@@ -119,6 +121,7 @@ function StandAloneKomponenter(props: RouteComponentProps<{ fnr: string; compone
     const valgtTab = Komponenter[routeComponent] || Komponenter.Visittkort;
     const updatePath = (komponent: string) => props.history.push(`${paths.standaloneKomponenter}/${komponent}/${fnr}`);
     const tabs: TabProps[] = mapEnumToTabProps(Komponenter, valgtTab);
+
     return (
         <Style>
             <TabsPure kompakt={true} tabs={tabs} onChange={(event, index) => updatePath(Komponenter[index])} />

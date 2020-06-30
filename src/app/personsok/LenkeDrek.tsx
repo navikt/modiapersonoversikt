@@ -6,13 +6,18 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import { formaterDato } from '../../utils/stringFormatting';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { PersonSokFormState } from './personsokUtils';
 
+export interface DrekProps {
+    fornavn?: string;
+    etternavn?: string;
+    fodselsdatoFra?: string;
+    kjonn?: string;
+}
 function hentDrekUrl(baseUrlResource: RestResource<BaseUrlsResponse>) {
     return hasData(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'drek') : '';
 }
 
-function LenkeDrek({ props }: { props: PersonSokFormState }) {
+function LenkeDrek({ props }: { props: DrekProps }) {
     const baseUrlResource = useSelector((appstate: AppState) => appstate.restResources.baseUrl);
     const drekUrl = hentDrekUrl(baseUrlResource);
 

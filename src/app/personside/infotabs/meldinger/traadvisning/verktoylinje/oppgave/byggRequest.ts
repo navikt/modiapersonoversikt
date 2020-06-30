@@ -1,38 +1,89 @@
-import { OpprettOppgaveRequest } from '../../../../../../../models/meldinger/oppgave';
+import {
+    GsakTema,
+    OpprettOppgaveRequest,
+    OpprettSkjermetOppgaveRequest
+} from '../../../../../../../models/meldinger/oppgave';
 import { eldsteMelding } from '../../../utils/meldingerUtils';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
-import { OppgaveProps, OppgaveSkjemaProps } from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaForm, SkjermetOppgaveSkjemaForm } from './oppgaveInterfaces';
 import { formatterDatoTidNaa } from '../../../../../../../utils/dateUtils';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
+import { Mapped, Values } from '@nutgaard/use-formstate';
+
+function captureBuilder(regex: RegExp) {
+    return (value: string, capture: number): string | undefined => {
+        const match = regex.exec(value);
+        if (!match) {
+            return undefined;
+        }
+
+        return match[capture];
+    };
+}
+function assertRequired<T>(value: T, errorMessage: string) {
+    if (!value) {
+        throw new Error(errorMessage);
+    }
+}
+
+export const matchEnhet = captureBuilder(/(\d{4}).*/);
+const matchAnsatt = captureBuilder(/.*?\((.+)\)/);
 
 export function lagOppgaveRequest(
     props: OppgaveProps,
-    form: OppgaveSkjemaProps,
+    form: OppgaveSkjemaForm,
     fodselsnummer: string,
     saksbehandlerEnhet: string,
+    gsakTema: Array<GsakTema>,
     valgtTraad?: Traad
 ): OpprettOppgaveRequest {
-    const valgtTema = form.state.valgtTema;
-    const temakode = valgtTema ? valgtTema.kode : 'UKJENT';
-    const valgtOppgavetype = form.state.valgtOppgavetype;
+    const valgtEnhet = matchEnhet(form.valgtEnhet, 1);
+    const valgtAnsatt = matchAnsatt(form.valgtAnsatt, 1);
+    const valgtGsakTema = gsakTema.find(tema => tema.kode === form.valgtTema);
+    const valgtOppgaveType = valgtGsakTema?.oppgavetyper.find(
+        oppgavetype => oppgavetype.kode === form.valgtOppgavetype
+    );
 
-    if (!form.state.valgtPrioritet) {
-        throw Error('Valgt prioritet er ikke valgt');
-    }
+    assertRequired(form.valgtPrioritet, 'Valgt prioritet er ikke valgt');
+    assertRequired(valgtEnhet, 'Valgt enhet er ikke valgt');
 
     return {
         fnr: fodselsnummer,
+        opprettetavenhetsnummer: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
         valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
         behandlingskjedeId: valgtTraad ? eldsteMelding(valgtTraad).id : 'UKJENT',
-        dagerFrist: valgtOppgavetype ? valgtOppgavetype.dagerFrist : 0,
-        ansvarligIdent: form.state.valgtAnsatt && form.state.valgtAnsatt.ident,
-        beskrivelse: lagBeskrivelse(form.state.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
-        temaKode: temakode,
-        underkategoriKode: form.state.valgtUnderkategori && form.state.valgtUnderkategori.kode,
+        dagerFrist: valgtOppgaveType ? valgtOppgaveType.dagerFrist : 0,
+        ansvarligIdent: valgtAnsatt && valgtAnsatt,
+        beskrivelse: lagBeskrivelse(form.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
+        temaKode: form.valgtTema,
+        underkategoriKode: form.valgtUnderkategori && form.valgtUnderkategori,
         brukerid: props.gjeldendeBrukerFnr,
-        oppgaveTypeKode: valgtOppgavetype ? valgtOppgavetype.kode : 'UKJENT',
-        prioritetKode: form.state.valgtPrioritet,
-        ansvarligEnhetId: form.state.valgtEnhet!.enhetId
+        oppgaveTypeKode: valgtOppgaveType ? valgtOppgaveType.kode : 'UKJENT',
+        prioritetKode: form.valgtPrioritet,
+        ansvarligEnhetId: valgtEnhet!
+    };
+}
+
+export function lagSkjermetOppgaveRequest(
+    props: OppgaveProps,
+    form: Mapped<Values<SkjermetOppgaveSkjemaForm>, string>,
+    fodselsnummer: string,
+    saksbehandlerEnhet: string
+): OpprettSkjermetOppgaveRequest {
+    const temakode = form.valgtTema ? form.valgtTema : 'UKJENT';
+
+    if (!form.valgtPrioritet) {
+        throw Error('Valgt prioritet er ikke valgt');
+    }
+    return {
+        fnr: fodselsnummer,
+        beskrivelse: lagBeskrivelse(form.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
+        temaKode: temakode,
+        underkategoriKode: form.valgtUnderkategori && form.valgtUnderkategori,
+        brukerid: props.gjeldendeBrukerFnr,
+        oppgaveTypeKode: form.valgtOppgavetype ? form.valgtOppgavetype : 'UKJENT',
+        prioritetKode: form.valgtPrioritet,
+        opprettetavenhetsnummer: saksbehandlerEnhet ? saksbehandlerEnhet : '2820'
     };
 }
 

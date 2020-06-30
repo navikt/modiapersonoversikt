@@ -25,9 +25,10 @@ export interface GsakTemaUnderkategori {
 
 export interface OpprettOppgaveRequest {
     fnr: string;
-    valgtEnhetId: string;
+    opprettetavenhetsnummer: string;
+    valgtEnhetId?: string;
     behandlingskjedeId: string;
-    dagerFrist: number;
+    dagerFrist?: number;
     ansvarligIdent?: string;
     beskrivelse: string;
     temaKode: string;
@@ -36,6 +37,18 @@ export interface OpprettOppgaveRequest {
     oppgaveTypeKode: string;
     prioritetKode: string;
     ansvarligEnhetId: string;
+}
+
+export interface OpprettSkjermetOppgaveRequest {
+    fnr: string;
+    ansvarligIdent?: string;
+    beskrivelse: string;
+    temaKode: string;
+    underkategoriKode?: string;
+    brukerid: string;
+    oppgaveTypeKode: string;
+    prioritetKode: string;
+    opprettetavenhetsnummer: string;
 }
 
 export interface Enhet {
