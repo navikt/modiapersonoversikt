@@ -72,6 +72,8 @@ const validator = useFormstate<OppgaveSkjemaForm>({
 });
 
 function OppgaveSkjema(props: OppgaveProps) {
+    populerCacheMedTomAnsattliste();
+
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const initialValues: OppgaveSkjemaForm = {
@@ -89,7 +91,6 @@ function OppgaveSkjema(props: OppgaveProps) {
     const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
     useNormalPrioritet(state, valgtTema);
 
-    const ansattliste = useAnsattePaaEnhet(state.fields.valgtEnhet?.input.value);
     const enhetliste: FetchResult<Array<Enhet>> = useFetch<Array<Enhet>>(
         `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
         includeCredentials
@@ -99,7 +100,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         state.fields.valgtOppgavetype?.input.value,
         state.fields.valgtUnderkategori?.input.value
     );
-    populerCacheMedTomAnsattliste();
+    const ansattliste = useAnsattePaaEnhet(state.fields.valgtEnhet?.input.value);
 
     function submitHandler<S>(values: OppgaveSkjemaForm): Promise<any> {
         const request = lagOppgaveRequest(
