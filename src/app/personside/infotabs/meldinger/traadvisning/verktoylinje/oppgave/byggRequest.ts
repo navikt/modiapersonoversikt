@@ -51,7 +51,7 @@ export function lagOppgaveRequest(
     return {
         fnr: fodselsnummer,
         opprettetavenhetsnummer: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
-        valgtEnhetId: stringToNumber(saksbehandlerEnhet ? saksbehandlerEnhet : '2820'),
+        valgtEnhetId: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
         behandlingskjedeId: valgtTraad ? eldsteMelding(valgtTraad).id : 'UKJENT',
         dagerFrist: valgtOppgaveType ? valgtOppgaveType.dagerFrist : 0,
         ansvarligIdent: valgtAnsatt && valgtAnsatt,
