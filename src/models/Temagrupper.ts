@@ -42,8 +42,7 @@ export const TemaLeggTilbake = [
     Temagruppe.Pensjon,
     Temagruppe.PleiepengerSyktBarn,
     Temagruppe.Uføretrygd,
-    Temagruppe.Utland,
-    Temagruppe.ØkonomiskSosial
+    Temagruppe.Utland
 ];
 
 export const TemaKommunaleTjenester = [Temagruppe.AndreSosiale, Temagruppe.ØkonomiskSosial];
