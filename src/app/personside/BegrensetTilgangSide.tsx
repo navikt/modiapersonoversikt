@@ -13,6 +13,8 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useState } from 'react';
+import IfFeatureToggleOn from '../../components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 interface BegrensetTilgangProps {
     tilgangsData: HarIkkeTilgang;
@@ -51,16 +53,18 @@ function OpprettOppgaveAvvistTilgang() {
     }
 
     return (
-        <Ekspanderbartpanel tittel={'Opprett oppgave'} apen={apen} onClick={() => setApen(!apen)}>
-            <OppgaveSkjemaSkjermetPerson
-                gsakTema={gsakTema}
-                gjeldendeBrukerFnr={fnr}
-                innloggetSaksbehandler={innloggetSaksbehandler}
-                opprettOppgaveResource={opprettOppgaveResource}
-                opprettOppgave={opprettOppgave}
-                lukkPanel={lukk}
-            />
-        </Ekspanderbartpanel>
+        <IfFeatureToggleOn toggleID={FeatureToggles.SkjermetPerson}>
+            <Ekspanderbartpanel tittel={'Opprett oppgave'} apen={apen} onClick={() => setApen(!apen)}>
+                <OppgaveSkjemaSkjermetPerson
+                    gsakTema={gsakTema}
+                    gjeldendeBrukerFnr={fnr}
+                    innloggetSaksbehandler={innloggetSaksbehandler}
+                    opprettOppgaveResource={opprettOppgaveResource}
+                    opprettOppgave={opprettOppgave}
+                    lukkPanel={lukk}
+                />
+            </Ekspanderbartpanel>
+        </IfFeatureToggleOn>
     );
 }
 function BegrensetTilgangSide(props: BegrensetTilgangProps) {
