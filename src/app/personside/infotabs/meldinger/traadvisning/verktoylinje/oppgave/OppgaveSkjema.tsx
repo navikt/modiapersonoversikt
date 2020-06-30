@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Enhet } from '../../../../../../../models/meldinger/oppgave';
-import { lagOppgaveRequest } from './byggRequest';
+import { lagOppgaveRequest, matchEnhet } from './byggRequest';
 import { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
 import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
@@ -100,7 +100,8 @@ function OppgaveSkjema(props: OppgaveProps) {
         state.fields.valgtOppgavetype?.input.value,
         state.fields.valgtUnderkategori?.input.value
     );
-    const ansattliste = useAnsattePaaEnhet(state.fields.valgtEnhet?.input.value);
+    const valgtEnhet = matchEnhet(state.fields.valgtEnhet?.input.value, 1);
+    const ansattliste = useAnsattePaaEnhet(valgtEnhet);
 
     function submitHandler<S>(values: OppgaveSkjemaForm): Promise<any> {
         const request = lagOppgaveRequest(
