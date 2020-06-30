@@ -3,15 +3,7 @@ import moment from 'moment';
 
 import navfaker from 'nav-faker/dist/index';
 
-import {
-    BegrensetTilgang,
-    BegrensetTilgangTyper,
-    Bostatus,
-    BostatusTyper,
-    Navn,
-    Person,
-    PersonRespons
-} from '../../models/person/person';
+import { Bostatus, BostatusTyper, Navn, Person, PersonRespons } from '../../models/person/person';
 import { TilrettelagtKommunikasjonsTyper } from '../../konstanter';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familierelasjoner/familerelasjonerMock';
@@ -38,19 +30,8 @@ export function getPerson(fødselsnummer: string): PersonRespons {
     } else {
         faker.seed(Number(fødselsnummer));
         navfaker.seed(fødselsnummer);
-        if (vektetSjanse(faker, 0.02)) {
-            return getBegrensetInnsyn();
-        } else {
-            return genererPerson(fødselsnummer);
-        }
+        return genererPerson(fødselsnummer);
     }
-}
-
-function getBegrensetInnsyn(): BegrensetTilgang {
-    return {
-        begrunnelse: BegrensetTilgangTyper.Kode6,
-        sikkerhetstiltak: getSikkerhetstiltak()
-    };
 }
 
 function genererPerson(fødselsnummer: string): Person {
