@@ -9,6 +9,7 @@ import { OppgaveProps, OppgaveSkjemaForm, SkjermetOppgaveSkjemaForm } from './op
 import { formatterDatoTidNaa } from '../../../../../../../utils/dateUtils';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { Mapped, Values } from '@nutgaard/use-formstate';
+import { stringToNumber } from '../../../../../../personsok/personsokUtils';
 
 function captureBuilder(regex: RegExp) {
     return (value: string, capture: number): string | undefined => {
@@ -50,6 +51,7 @@ export function lagOppgaveRequest(
     return {
         fnr: fodselsnummer,
         opprettetavenhetsnummer: saksbehandlerEnhet ? saksbehandlerEnhet : '2820',
+        valgtEnhetId: stringToNumber(valgtEnhet!),
         behandlingskjedeId: valgtTraad ? eldsteMelding(valgtTraad).id : 'UKJENT',
         dagerFrist: valgtOppgaveType ? valgtOppgaveType.dagerFrist : 0,
         ansvarligIdent: valgtAnsatt && valgtAnsatt,
