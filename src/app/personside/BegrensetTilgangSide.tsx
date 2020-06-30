@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useState } from 'react';
-import IfFeatureToggleOn from '../../components/featureToggle/IfFeatureToggleOn';
+import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 interface BegrensetTilgangProps {
@@ -39,7 +39,6 @@ function OpprettOppgaveAvvistTilgang() {
     const opprettOppgaveResource = usePostResource(resources => resources.opprettOppgave);
     const dispatch = useDispatch();
     const opprettOppgave = (request: OpprettOppgaveRequest) => dispatch(opprettOppgaveActionCreator(request));
-
     const [apen, setApen] = useState(false);
 
     const lukk = () => {
@@ -53,28 +52,27 @@ function OpprettOppgaveAvvistTilgang() {
     }
 
     return (
-        <IfFeatureToggleOn toggleID={FeatureToggles.SkjermetPerson}>
-            <Ekspanderbartpanel tittel={'Opprett oppgave'} apen={apen} onClick={() => setApen(!apen)}>
-                <OppgaveSkjemaSkjermetPerson
-                    gsakTema={gsakTema}
-                    gjeldendeBrukerFnr={fnr}
-                    innloggetSaksbehandler={innloggetSaksbehandler}
-                    opprettOppgaveResource={opprettOppgaveResource}
-                    opprettOppgave={opprettOppgave}
-                    lukkPanel={lukk}
-                />
-            </Ekspanderbartpanel>
-        </IfFeatureToggleOn>
+        <Ekspanderbartpanel tittel={'Opprett oppgave'} apen={apen} onClick={() => setApen(!apen)}>
+            <OppgaveSkjemaSkjermetPerson
+                gsakTema={gsakTema}
+                gjeldendeBrukerFnr={fnr}
+                innloggetSaksbehandler={innloggetSaksbehandler}
+                opprettOppgaveResource={opprettOppgaveResource}
+                opprettOppgave={opprettOppgave}
+                lukkPanel={lukk}
+            />
+        </Ekspanderbartpanel>
     );
 }
 function BegrensetTilgangSide(props: BegrensetTilgangProps) {
+    const enabled = useFeatureToggle(FeatureToggles.SkjermetPerson).isOn ?? false;
     return (
         <FillCenterAndFadeIn>
             <Wrapper>
                 <AlertStripe type="advarsel">
                     <BegrensetTilgangBegrunnelse begrunnelseType={props.tilgangsData.ikkeTilgangArsak} />
                 </AlertStripe>
-                <OpprettOppgaveAvvistTilgang />
+                {enabled && <OpprettOppgaveAvvistTilgang />}
             </Wrapper>
         </FillCenterAndFadeIn>
     );
