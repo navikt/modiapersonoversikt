@@ -41,8 +41,8 @@ export function lagRequest(form: Mapped<Values<PersonSokFormState>, string>): Pe
         postnummer: emptyString(form.postnummer),
         kontonummer: emptyString(form.kontonummer),
         kommunenummer: emptyString(form.kommunenummer),
-        fodselsdatoFra: form.fodselsdatoFra,
-        fodselsdatoTil: form.fodselsdatoTil,
+        fodselsdatoFra: emptyString(form.fodselsdatoFra),
+        fodselsdatoTil: emptyString(form.fodselsdatoTil),
         alderFra: stringToNumber(form.alderFra),
         alderTil: stringToNumber(form.alderTil),
         kjonn: emptyString(form.kjonn)
