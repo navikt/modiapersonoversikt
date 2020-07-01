@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useState } from 'react';
+import { CenteredLazySpinner } from '../../components/LazySpinner';
 
 interface BegrensetTilgangProps {
     tilgangsData: HarIkkeTilgang;
@@ -32,8 +33,8 @@ function OpprettOppgaveAvvistTilgang() {
     const gsakTemaResource = useRestResource(resources => resources.oppgaveGsakTema);
     const gsakTema = gsakTemaResource?.data;
     const fnr = useFødselsnummer();
-    const innloggetSaksbehanderResource = useRestResource(resources => resources.innloggetSaksbehandler);
-    const innloggetSaksbehandler = innloggetSaksbehanderResource?.data;
+    const innloggetSaksbehandlerResource = useRestResource(resources => resources.innloggetSaksbehandler);
+    const innloggetSaksbehandler = innloggetSaksbehandlerResource?.data;
     const opprettOppgaveResource = usePostResource(resources => resources.opprettOppgave);
     const dispatch = useDispatch();
     const opprettOppgave = (request: OpprettOppgaveRequest) => dispatch(opprettOppgaveActionCreator(request));
@@ -43,7 +44,10 @@ function OpprettOppgaveAvvistTilgang() {
         setApen(!apen);
     };
 
-    if (!gsakTema || !innloggetSaksbehandler) {
+    if (innloggetSaksbehandlerResource.isLoading || gsakTemaResource.isLoading) {
+        return <CenteredLazySpinner />;
+    }
+    if (!innloggetSaksbehandler || !gsakTema) {
         return (
             <AlertStripe type={'info'}>Kunne ikke vise opprett oppgave panel. Vennligst last siden på nytt</AlertStripe>
         );

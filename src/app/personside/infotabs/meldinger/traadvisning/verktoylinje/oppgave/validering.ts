@@ -51,7 +51,7 @@ export function requiredGatenavn(): Validator<any> {
 
 export function requiredKontonummer(message: string): Validator<any> {
     return (value: string, values: Values<PersonSokFormState>) => {
-        if (!erTall(value) || validerKontonummer(removeWhitespaceAndDot(value))) {
+        if (!validerKontonummer(removeWhitespaceAndDot(value))) {
             return message;
         }
         if (!value && !values.gatenavn && !values.fornavn) {
