@@ -32,6 +32,7 @@ function emptyString(input: string): string | undefined {
 }
 
 export function lagRequest(form: Mapped<Values<PersonSokFormState>, string>): PersonsokRequest {
+    console.log(emptyString(form.kontonummer));
     return {
         fornavn: emptyString(form.fornavn),
         etternavn: emptyString(form.etternavn),
@@ -41,8 +42,8 @@ export function lagRequest(form: Mapped<Values<PersonSokFormState>, string>): Pe
         postnummer: emptyString(form.postnummer),
         kontonummer: emptyString(form.kontonummer),
         kommunenummer: emptyString(form.kommunenummer),
-        fodselsdatoFra: form.fodselsdatoFra,
-        fodselsdatoTil: form.fodselsdatoTil,
+        fodselsdatoFra: emptyString(form.fodselsdatoFra),
+        fodselsdatoTil: emptyString(form.fodselsdatoTil),
         alderFra: stringToNumber(form.alderFra),
         alderTil: stringToNumber(form.alderTil),
         kjonn: emptyString(form.kjonn)
