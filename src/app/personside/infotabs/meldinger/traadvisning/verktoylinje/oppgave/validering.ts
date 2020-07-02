@@ -13,6 +13,18 @@ export function required(message: string): Validator<any> {
     };
 }
 
+export function requiredFornavn(): Validator<any> {
+    return (value: string, values: Values<PersonSokFormState>) => {
+        if (!value && values.etternavn) {
+            return 'Fornavn må være utfylt hvis etternavn er satt';
+        }
+        if (!value && !values.gatenavn && !values.kontonummer) {
+            return ' ';
+        }
+        return undefined;
+    };
+}
+
 export function requiredToBeNumber(message: string): Validator<any> {
     return (value: string) => {
         if (!erTall(value)) {
@@ -69,15 +81,6 @@ export function notRequired(): Validator<any> {
 
 export function feilmelding(field: FieldState): string | undefined {
     return field.touched ? field.error : undefined;
-}
-
-export function minimumRequired(message: string): Validator<any> {
-    return (value: string, values: Values<PersonSokFormState>) => {
-        if (!values.kontonummer && !values.gatenavn && !values.fornavn) {
-            return message;
-        }
-        return undefined;
-    };
 }
 
 export function requiredDato(): Validator<any> {
