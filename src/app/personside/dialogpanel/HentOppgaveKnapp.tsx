@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
-import KnappBase from 'nav-frontend-knapper';
+import { Hovedknapp } from 'nav-frontend-knapper';
 import { Select } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { velgTemagruppeForPlukk } from '../../../redux/session/session';
@@ -137,14 +137,14 @@ function HentOppgaveKnapp() {
                     </option>
                     {temagruppeOptions}
                 </Select>
-                <KnappBase
+                <Hovedknapp
                     id="hentoppgaveknapp"
                     type="hoved"
                     onClick={onPlukkOppgaver}
                     spinner={isPosting(oppgaveResource)}
                 >
                     Hent oppgave
-                </KnappBase>
+                </Hovedknapp>
             </KnappLayout>
             {isFailedPosting(oppgaveResource) && <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>}
             {tomtTilbakemelding}
