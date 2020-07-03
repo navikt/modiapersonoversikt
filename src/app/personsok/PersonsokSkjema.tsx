@@ -12,9 +12,9 @@ import {
     requiredKontonummer,
     notRequired,
     feilmelding,
-    minimumRequired,
     requiredGatenavn,
-    requiredDato
+    requiredDato,
+    requiredFornavn
 } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
@@ -55,7 +55,7 @@ const InputLinje = styled.div`
 `;
 
 const validator = useFormstate<PersonSokFormState>({
-    fornavn: minimumRequired(' '),
+    fornavn: requiredFornavn(),
     etternavn: notRequired(),
     gatenavn: requiredGatenavn(),
     husnummer: requiredToBeNumber('Husnummer må være tall'),
