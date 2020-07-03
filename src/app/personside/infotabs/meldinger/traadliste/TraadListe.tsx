@@ -85,7 +85,7 @@ const StyledCheckbox = styled(Checkbox)`
 
 export const valgtMeldingKlasse = 'valgt_melding';
 
-function PrintAlle({ traader }: { traader: Traad[] }) {
+function PrintAlleMeldinger({ traader }: { traader: Traad[] }) {
     const printer = usePrinter();
     const PrinterWrapper = printer.printerWrapper;
 
@@ -177,7 +177,7 @@ function TraadListe(props: Props) {
                             checked={props.skjulVarsler}
                             onChange={handleSkjulVarsler}
                         />
-                        <PrintAlle traader={props.traader} />
+                        <PrintAlleMeldinger traader={props.traader} />
                     </SpaceBetween>
                     <SokVerktøyStyle>
                         <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>

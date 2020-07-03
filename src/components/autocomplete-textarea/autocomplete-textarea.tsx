@@ -43,7 +43,7 @@ function useRules(): Regler {
     const saksbehandlerResources = useRestResource(resources => resources.innloggetSaksbehandler);
     const saksbehanderEnhet = saksbehandlerResources.data?.enhetNavn ?? '';
     return [
-        { type: 'internal', regex: /^hei,?$/i, replacement: () => 'Hei, [bruker.fornavn]\n' },
+        { type: 'internal', regex: /^hei,?$/i, replacement: () => 'Hei [bruker.fornavn],\n' },
         {
             type: 'internal',
             regex: /^mvh$/i,
@@ -99,7 +99,7 @@ function useRules(): Regler {
             regex: /^aapen$/i,
             replacement: () => 'work assessment allowance '
         },
-        { type: 'internal', regex: /^hi,?$/i, replacement: () => 'Hi, [bruker.fornavn] ' },
+        { type: 'internal', regex: /^hi,?$/i, replacement: () => 'Hi [bruker.fornavn], ' },
         {
             type: 'internal',
             regex: /^mvhen$/i,
