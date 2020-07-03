@@ -17,7 +17,7 @@ const StyledModalWrapper = styled(ModalWrapper)`
 `;
 
 const TittelStyle = styled(Innholdstittel)`
-    padding-bottom: 3rem;
+    padding: 0rem 0rem 1rem 0.5rem;
 `;
 
 function PersonsokContainer() {
