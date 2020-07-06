@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRef, useState } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import { EtikettLiten } from 'nav-frontend-typografi';
+import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
 import {
     erDelsvar,
     erJournalfort,
@@ -154,9 +154,9 @@ export function LestDato({ melding }: { melding: Melding }) {
         return null;
     }
     return (
-        <Tekstomrade>
+        <Normaltekst>
             {melding.lestDato ? `Melding lest: ${formatterDatoTid(melding.lestDato)}` : 'Dato for lest ikke funnet'}
-        </Tekstomrade>
+        </Normaltekst>
     );
 }
 function EnkeltMelding(props: Props) {
