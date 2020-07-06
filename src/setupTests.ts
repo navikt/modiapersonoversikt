@@ -13,6 +13,7 @@ globalAny._mockEnabled = 'true';
 Date.now = jest.fn(() => 0);
 const JSutils = require('nav-frontend-js-utils');
 JSutils.guid = jest.fn(() => 'Helt tilfeldig ID');
+JSutils.getScrollParents = () => [];
 
 window['frontendlogger'] = { info: () => null, warn: () => null, error: () => null, event: () => null };
 

@@ -78,7 +78,7 @@ exports[`viser dialogpanel 1`] = `
 .c11 {
   position: absolute;
   top: 2.8rem;
-  left: -1rem;
+  left: 0.25rem;
 }
 
 .c11 ul {
@@ -338,55 +338,134 @@ exports[`viser dialogpanel 1`] = `
                     className="hjelpetekst"
                   >
                     <button
-                      aria-label="Hjelptekst"
-                      aria-pressed={false}
+                      aria-controls="Helt tilfeldig ID"
+                      aria-expanded={false}
+                      aria-haspopup="dialog"
                       className="hjelpetekst__apneknapp"
-                      onBlur={[Function]}
+                      id="Helt tilfeldig ID"
                       onClick={[Function]}
-                      onFocus={[Function]}
-                      onMouseDown={[Function]}
-                      onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                      onMouseUp={[Function]}
-                      title="Hjelptekst"
+                      title="Hjelp"
                       type="button"
                     >
-                      <span
-                        className="sr-only"
-                      >
-                        Hjelptekst
-                      </span>
                       <svg
-                        className="hjelpetekst__anchor"
+                        className="hjelpetekst__ikon"
                         focusable="false"
                         height={32}
                         kind="help-circle"
-                        viewBox="0 0 18.22 18.22"
+                        viewBox="0 0 18.2 18.2"
                         width={32}
                       >
-                        <title>
-                          Hjelp
-                        </title>
                         <path
-                          d="M9.11 1a8.11 8.11 0 1 0 8.11 8.11A8.12 8.12 0 0 0 9.11 1zm0 13.7a.89.89 0 1 1 .89-.9.89.89 0 0 1-.89.9zm.5-5.7v1.89a.5.5 0 0 1-1 0V8.5a.5.5 0 0 1 .5-.5 1.85 1.85 0 1 0-1.85-1.85.5.5 0 0 1-1 0A2.85 2.85 0 1 1 9.61 9z"
-                          fill="none"
-                        />
-                        <path
-                          d="M9.11 0a9.11 9.11 0 1 0 9.11 9.11A9.12 9.12 0 0 0 9.11 0zm0 17.22a8.11 8.11 0 1 1 8.11-8.11 8.12 8.12 0 0 1-8.11 8.11z"
-                          fill="#2968b2"
-                        />
-                        <path
-                          d="M9.11 3.3a2.85 2.85 0 0 0-2.85 2.85.5.5 0 0 0 1 0A1.85 1.85 0 1 1 9.11 8a.5.5 0 0 0-.5.5v2.35a.5.5 0 0 0 1 0V9a2.85 2.85 0 0 0-.5-5.65z"
-                          fill="#2968b2"
+                          d="M9.1 0C4.1 0 0 4.1 0 9.1s4.1 9.1 9.1 9.1 9.1-4.1 9.1-9.1S14.1 0 9.1 0zm0 17.2C4.6 17.2 1 13.6 1 9.1S4.6 1 9.1 1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1z"
                         />
                         <circle
-                          cx="9.11"
+                          cx="9.1"
                           cy="13.8"
-                          fill="#2968b2"
-                          r=".89"
+                          r=".9"
+                        />
+                        <path
+                          d="M9.1 11.5c-.3 0-.5-.2-.5-.5V8.6c0-.3.2-.5.5-.5 1 0 1.9-.8 1.9-1.9s-.8-1.9-1.9-1.9c-1 0-1.9.8-1.9 1.9 0 .3-.2.5-.5.5s-.5-.2-.5-.4c0-1.6 1.3-2.9 2.9-2.9S12 4.7 12 6.3c0 1.4-1 2.6-2.4 2.8V11c0 .3-.2.5-.5.5z"
                         />
                       </svg>
+                      <span
+                        className="sr-only"
+                      >
+                        Hjelp
+                      </span>
                     </button>
+                    <div
+                      className="popover popover--controlled popover--hidden popover--under"
+                      id="Helt tilfeldig ID"
+                      onClick={[Function]}
+                      role="tooltip"
+                      style={
+                        Object {
+                          "transform": "translate3d(0px, 0px, 0)",
+                        }
+                      }
+                      tabIndex={0}
+                    >
+                      <div
+                        className="popover__content-inner"
+                      >
+                        <div
+                          className="hjelpetekst__innhold"
+                        >
+                          <h2
+                            className="typo-undertittel"
+                          >
+                            Autofullfør-tips:
+                          </h2>
+                          <ul>
+                            <li>
+                              foet + mellomrom: Brukers fulle navn
+                            </li>
+                            <li>
+                              mvh + mellomrom: Signatur
+                            </li>
+                            <li>
+                              mvhks + mellomrom: Signatur som fra KS
+                            </li>
+                            <li>
+                              hei + mellomrom: Hei bruker
+                            </li>
+                            <li>
+                              vint + mellomrom: Videreformidle Internt
+                            </li>
+                            <li>
+                              vinten + mellomrom: Videreformidle Internt (engelsk)
+                            </li>
+                            <li>
+                              AAP + mellomrom: arbeidsavklaringspenger
+                            </li>
+                            <li>
+                              sbt + mellomrom: saksbehandlingstid
+                            </li>
+                            <li>
+                              nay + mellomrom: NAV Arbeid og ytelser
+                            </li>
+                            <li>
+                              nfp + mellomrom: NAV Familie- og pensjonsytelser
+                            </li>
+                            <li>
+                              hi, + mellomrom: Hi, bruker (engelsk)
+                            </li>
+                            <li>
+                              mvh/aap + nn + mellomrom: autofullfør på nynorsk
+                            </li>
+                            <li>
+                              mvh/aap + en + mellomrom: autofullfør på engelsk
+                            </li>
+                            <li>
+                              korkonk + mellomrom: Informasjon ved konkurs
+                            </li>
+                            <li>
+                              korperm + mellomrom: Informasjon ved permittering
+                            </li>
+                            <li>
+                              koroms + mellomrom: OMS - Korona stengt bhg/skole
+                            </li>
+                            <li>
+                              korosakt + mellomrom: OS - Korona aktivitet STO
+                            </li>
+                            <li>
+                              sykperm + mellomrom: Sykmeldt og permittert
+                            </li>
+                            <li>
+                              forskuddsøk + mellomrom: Søke om forskudd
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <span
+                        className="popover__pil"
+                        style={
+                          Object {
+                            "left": undefined,
+                          }
+                        }
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -527,9 +606,13 @@ exports[`viser dialogpanel 1`] = `
               className="alertstripe c14 alertstripe--info"
             >
               <span
-                aria-label="info"
                 className="alertstripe__ikon"
               >
+                <span
+                  className="sr-only"
+                >
+                  info
+                </span>
                 <svg
                   focusable="false"
                   height="1.5em"
@@ -542,7 +625,7 @@ exports[`viser dialogpanel 1`] = `
                   >
                     <path
                       d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                      fill="#669DB4"
+                      fill="#337C9B"
                     />
                     <path
                       d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
@@ -624,9 +707,13 @@ exports[`viser dialogpanel 1`] = `
               className="alertstripe c14 alertstripe--info"
             >
               <span
-                aria-label="info"
                 className="alertstripe__ikon"
               >
+                <span
+                  className="sr-only"
+                >
+                  info
+                </span>
                 <svg
                   focusable="false"
                   height="1.5em"
@@ -639,7 +726,7 @@ exports[`viser dialogpanel 1`] = `
                   >
                     <path
                       d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                      fill="#669DB4"
+                      fill="#337C9B"
                     />
                     <path
                       d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
