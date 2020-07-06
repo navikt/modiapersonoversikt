@@ -149,6 +149,16 @@ export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
     );
 }
 
+export function LestDato({ melding }: { melding: Melding }) {
+    if (melding.status === LestStatus.IkkeLest || erMeldingFraNav(melding.meldingstype)) {
+        return null;
+    }
+    return (
+        <Tekstomrade>
+            {melding.lestDato ? `Melding lest: ${formatterDatoTid(melding.lestDato)}` : 'Dato for lest ikke funnet'}
+        </Tekstomrade>
+    );
+}
 function EnkeltMelding(props: Props) {
     const fraNav = erMeldingFraNav(props.melding.meldingstype);
     const tittel = meldingstittel(props.melding);
@@ -172,6 +182,7 @@ function EnkeltMelding(props: Props) {
                                 <MeldingLestEtikett melding={props.melding} />
                             </SpaceBetween>
                             <Tekstomrade rules={[highlightRule]}>{datoTekst}</Tekstomrade>
+                            <LestDato melding={props.melding} />
                             <Avsender melding={props.melding} rule={highlightRule} />
                         </Topptekst>
                         <Tekstomrade rules={[highlightRule, ...defaultRules]}>{props.melding.fritekst}</Tekstomrade>
