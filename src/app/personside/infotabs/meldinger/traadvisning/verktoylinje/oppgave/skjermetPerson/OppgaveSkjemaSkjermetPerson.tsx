@@ -39,10 +39,8 @@ const AlertStyling = styled.div`
         margin-top: 1rem;
     }
 `;
-interface FormProps {
-    validate: boolean;
-}
-const validator = useFormstate<SkjermetOppgaveSkjemaForm, FormProps>((values, props) => {
+
+const validator = useFormstate<SkjermetOppgaveSkjemaForm>(values => {
     const valgtTema = values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
     const valgtUnderkategori = undefined;
     const valgtOppgavetype = values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;

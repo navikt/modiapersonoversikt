@@ -11,7 +11,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-top: 1rem;
 }
 
-.c23 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -66,61 +66,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   border-color: #0067c5;
 }
 
-.c16 {
-  position: relative;
-}
-
-.c17 {
-  position: relative;
-}
-
-.c17 .skjemaelement {
-  margin-bottom: 0;
-}
-
 .c15 {
-  padding-top: 1rem;
-}
-
-.c15 .inputPanelGruppe__inner {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c15 .inputPanelGruppe__inner > * {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c15 label {
-  font-weight: 600;
-  margin-bottom: 0.1rem;
-}
-
-.c15 .skjemaelement {
-  margin-bottom: 0.7rem;
-}
-
-.c18 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c18 button {
-  margin: 0;
-}
-
-.c19 {
   margin-top: 0.5rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -236,55 +182,55 @@ exports[`Viser traad med verktøylinje 1`] = `
   white-space: nowrap;
 }
 
-.c21 .snakkeboble-panel {
+.c17 .snakkeboble-panel {
   -webkit-flex-basis: 40rem;
   -ms-flex-preferred-size: 40rem;
   flex-basis: 40rem;
 }
 
-.c21 a {
+.c17 a {
   word-break: break-word;
 }
 
-.c21 .snakkeboble {
+.c17 .snakkeboble {
   margin: 0;
 }
 
-.c24 {
+.c20 {
   font-weight: 600;
 }
 
-.c22 {
+.c18 {
   text-align: left;
 }
 
-.c22 em {
+.c18 em {
   font-style: normal;
   background-color: #eed28c;
   box-shadow: 0 0 0 0.2rem #eed28c;
   border-radius: 0.625rem;
 }
 
-.c22 > *:not(:last-child) {
+.c18 > *:not(:last-child) {
   border-bottom: solid 0.0625rem #b7b1a9;
   padding-bottom: 0.7rem;
   margin-bottom: 0.5rem;
 }
 
-.c27 {
+.c23 {
   color: #0067c5;
 }
 
-.c26 .ekspanderbartPanel__hode,
-.c26 .ekspanderbartPanel__innhold {
+.c22 .ekspanderbartPanel__hode,
+.c22 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
 }
 
-.c25 p {
+.c21 p {
   margin-bottom: 0 !important;
 }
 
-.c20 {
+.c16 {
   padding: .5rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -292,7 +238,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   flex-grow: 1;
 }
 
-.c20 > *:last-child {
+.c16 > *:last-child {
   margin-top: .5rem;
 }
 
@@ -319,19 +265,19 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c21 {
+  .c17 {
     page-break-inside: avoid;
     border: solid 0.0625rem #78706a;
     margin-bottom: 2rem;
   }
 
-  .c21 .snakkeboble__snakkeboble-pil-container,
-  .c21 .nav-ikon,
-  .c21 .bruker-ikon {
+  .c17 .snakkeboble__snakkeboble-pil-container,
+  .c17 .nav-ikon,
+  .c17 .bruker-ikon {
     display: none;
   }
 
-  .c21 .snakkeboble-panel {
+  .c17 .snakkeboble-panel {
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
@@ -339,7 +285,7 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c26 {
+  .c22 {
     display: none;
   }
 }
@@ -831,288 +777,47 @@ exports[`Viser traad med verktøylinje 1`] = `
         </div>
       </section>
       <div
-        className="c15"
+        className="alertstripe alertstripe--advarsel"
       >
-        <form
-          onSubmit={[Function]}
+        <span
+          aria-label="advarsel"
+          className="alertstripe__ikon"
         >
-          <p
-            className="typo-element"
+          <svg
+            focusable="false"
+            height="1.5em"
+            kind="advarsel-sirkel-fyll"
+            viewBox="0 0 24 24"
+            width="1.5em"
           >
-            Opprett oppgave
-          </p>
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="valgtTema"
+            <g
+              fill="none"
+              fillRule="evenodd"
             >
-              Tema
-            </label>
-            <div
-              className="selectContainer input--fullbredde"
-            >
-              <select
-                aria-invalid={false}
-                autoFocus={true}
-                className="skjemaelement__input"
-                disabled={false}
-                id="valgtTema"
-                name="valgtTema"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value=""
-              >
-                <option
-                  disabled={true}
-                  value=""
-                >
-                  Velg tema
-                </option>
-                <option
-                  value="AGR"
-                >
-                  Ajourhold - Grunnopplysninger
-                </option>
-                <option
-                  value="AAP"
-                >
-                  Arbeidsavklaringspenger
-                </option>
-                <option
-                  value="BID"
-                >
-                  Bidrag
-                </option>
-              </select>
-            </div>
-          </div>
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="valgtUnderkategori"
-            >
-              Gjelder
-            </label>
-            <div
-              className="selectContainer input--fullbredde"
-            >
-              <select
-                aria-invalid={false}
-                className="skjemaelement__input"
-                disabled={false}
-                id="valgtUnderkategori"
-                name="valgtUnderkategori"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value=""
-              >
-                <option
-                  disabled={true}
-                  value=""
-                >
-                  Ingen tema valgt
-                </option>
-              </select>
-            </div>
-          </div>
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="valgtOppgavetype"
-            >
-              Type oppgave
-            </label>
-            <div
-              className="selectContainer input--fullbredde"
-            >
-              <select
-                aria-invalid={false}
-                className="skjemaelement__input"
-                disabled={false}
-                id="valgtOppgavetype"
-                name="valgtOppgavetype"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value=""
-              >
-                <option
-                  disabled={true}
-                  value=""
-                >
-                  Ingen tema valgt
-                </option>
-              </select>
-            </div>
-          </div>
-          <div
-            aria-expanded={false}
-            aria-haspopup="listbox"
-            aria-labelledby="downshift-0-label"
-            aria-owns={null}
-            className="c16"
-            role="combobox"
-          >
-            <div
-              className="c17"
-            >
-              <div
-                className="skjemaelement"
-              >
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="downshift-0-input"
-                >
-                  Velg enhet
-                </label>
-                <input
-                  aria-activedescendant={null}
-                  aria-autocomplete="list"
-                  aria-controls={null}
-                  aria-invalid={false}
-                  aria-labelledby="downshift-0-label"
-                  autoComplete="off"
-                  className="skjemaelement__input input--fullbredde"
-                  id="downshift-0-input"
-                  name="valgtEnhet"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            aria-expanded={false}
-            aria-haspopup="listbox"
-            aria-labelledby="downshift-1-label"
-            aria-owns={null}
-            className="c16"
-            role="combobox"
-          >
-            <div
-              className="c17"
-            >
-              <div
-                className="skjemaelement"
-              >
-                <label
-                  className="skjemaelement__label"
-                  htmlFor="downshift-1-input"
-                >
-                  Velg ansatt
-                </label>
-                <input
-                  aria-activedescendant={null}
-                  aria-autocomplete="list"
-                  aria-controls={null}
-                  aria-invalid={false}
-                  aria-labelledby="downshift-1-label"
-                  autoComplete="off"
-                  className="skjemaelement__input input--fullbredde"
-                  id="downshift-1-input"
-                  name="valgtAnsatt"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  onKeyDown={[Function]}
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="skjemaelement"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="valgtPrioritet"
-            >
-              Velg prioritet
-            </label>
-            <div
-              className="selectContainer input--fullbredde"
-            >
-              <select
-                aria-invalid={false}
-                className="skjemaelement__input"
-                disabled={false}
-                id="valgtPrioritet"
-                name="valgtPrioritet"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value=""
-              >
-                <option
-                  disabled={true}
-                  value=""
-                >
-                  Ingen tema valgt
-                </option>
-              </select>
-            </div>
-          </div>
-          <div
-            className="skjemaelement textarea__container"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="beskrivelse"
-            >
-              Beskrivelse
-            </label>
-            <div
-              className="textarea--medMeta__wrapper"
-            >
-              <textarea
-                aria-describedby=""
-                aria-invalid={false}
-                className="skjemaelement__input textarea--medMeta"
-                id="beskrivelse"
-                name="beskrivelse"
-                onBlur={[Function]}
-                onChange={[Function]}
-                style={
-                  Object {
-                    "height": "30px",
-                  }
-                }
-                value=""
+              <path
+                d="M12.205-.004l-.214.002a12.225 12.225 0 0 0-8.517 3.659C1.179 5.977-.053 9.013.002 12.208c.115 6.613 5.296 11.793 11.795 11.793l.212-.002c6.726-.116 12.105-5.595 11.99-12.21C23.883 5.178 18.702-.003 12.204-.003z"
+                fill="#FFA733"
+                fillRule="nonzero"
               />
-            </div>
-            <div
-              aria-hidden="true"
-              className="textareamirror"
-            />
-          </div>
-          <div
-            className="c18"
-          >
-            <button
-              className="knapp knapp--hoved"
-              disabled={false}
-              type="submit"
-            >
-              Opprett oppgave
-            </button>
-            <button
-              className="c4"
-              onClick={[Function]}
-              type="button"
-            >
-              Avbryt
-            </button>
-          </div>
-        </form>
+              <path
+                d="M12.027 19H12A1.499 1.499 0 0 1 11.973 16L12 16a1.501 1.501 0 0 1 .027 3z"
+                fill="#3E3832"
+              />
+              <path
+                d="M12 5a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"
+                fill="#3E3832"
+                fillRule="nonzero"
+              />
+            </g>
+          </svg>
+        </span>
+        <div
+          className="typo-normal alertstripe__tekst"
+        >
+          Beklager, det skjedde en feil. (
+          OpprettOppgaveContainer
+          )
+        </div>
       </div>
       <form
         onSubmit={[Function]}
@@ -1257,7 +962,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           />
         </fieldset>
         <div
-          className="c19"
+          className="c15"
         >
           <button
             className="knapp knapp--hoved"
@@ -1278,7 +983,7 @@ exports[`Viser traad med verktøylinje 1`] = `
     </div>
   </article>
   <section
-    className="c20"
+    className="c16"
   >
     <div
       className="alertstripe alertstripe--info"
@@ -1328,7 +1033,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       aria-label="Dialog"
     >
       <li
-        className="c21 snakkeboble_ikoner"
+        className="c17 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1353,13 +1058,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c22"
+                  className="c18"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c23"
+                      className="c19"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1371,7 +1076,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           4
                         </span>
                         <div
-                          className="c24"
+                          className="c20"
                         >
                           Delsvar - Arbeid
                         </div>
@@ -1390,7 +1095,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       27.07.2019 00:00
                     </div>
                     <div
-                      className="c25 typo-normal"
+                      className="c21 typo-normal"
                     >
                       Skrevet av Kristoffer Fredriksen (xy70r8)
                     </div>
@@ -1403,7 +1108,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-controls="Helt tilfeldig ID"
@@ -1421,7 +1126,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <p
-                            className="typo-etikett-liten c27"
+                            className="typo-etikett-liten c23"
                           >
                             Meldingen er journalført
                           </p>
@@ -1450,7 +1155,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="c21 snakkeboble_ikoner"
+        className="c17 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1475,13 +1180,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c22"
+                  className="c18"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c23"
+                      className="c19"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1493,7 +1198,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           3
                         </span>
                         <div
-                          className="c24"
+                          className="c20"
                         >
                           Spørsmål fra bruker - Arbeid
                         </div>
@@ -1511,7 +1216,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-controls="Helt tilfeldig ID"
@@ -1529,7 +1234,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <p
-                            className="typo-etikett-liten c27"
+                            className="typo-etikett-liten c23"
                           >
                             Meldingen er journalført
                           </p>
@@ -1558,7 +1263,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="c21 snakkeboble_ikoner"
+        className="c17 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1583,13 +1288,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c22"
+                  className="c18"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c23"
+                      className="c19"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1601,7 +1306,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           2
                         </span>
                         <div
-                          className="c24"
+                          className="c20"
                         >
                           Spørsmål fra bruker - Arbeid
                         </div>
@@ -1619,7 +1324,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-controls="Helt tilfeldig ID"
@@ -1637,7 +1342,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <p
-                            className="typo-etikett-liten c27"
+                            className="typo-etikett-liten c23"
                           >
                             Meldingen er journalført
                           </p>
@@ -1666,7 +1371,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="c21 snakkeboble_ikoner"
+        className="c17 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1691,13 +1396,13 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c22"
+                  className="c18"
                 >
                   <div
                     className=""
                   >
                     <div
-                      className="c23"
+                      className="c19"
                     >
                       <h4
                         id="Helt tilfeldig ID"
@@ -1709,7 +1414,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           1
                         </span>
                         <div
-                          className="c24"
+                          className="c20"
                         >
                           Samtalereferat oppmøte - Arbeid
                         </div>
@@ -1728,7 +1433,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                       07.07.2019 00:00
                     </div>
                     <div
-                      className="c25 typo-normal"
+                      className="c21 typo-normal"
                     >
                       Skrevet av Sander Hansen (nzxo4q)
                     </div>
@@ -1741,7 +1446,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                     </p>
                   </div>
                   <div
-                    className="ekspanderbartPanel c26 ekspanderbartPanel--lukket"
+                    className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
                   >
                     <button
                       aria-controls="Helt tilfeldig ID"
@@ -1759,7 +1464,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <p
-                            className="typo-etikett-liten c27"
+                            className="typo-etikett-liten c23"
                           >
                             Meldingen er journalført
                           </p>
