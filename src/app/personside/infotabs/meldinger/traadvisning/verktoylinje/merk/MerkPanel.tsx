@@ -171,56 +171,21 @@ function MerkPanel(props: Props) {
     const disableFerdigstillUtenSvar = !visFerdigstillUtenSvar(melding.meldingstype, valgtTraad);
     const disableTvungenFerdigstill = !visTvungenFerdigstillelse(valgtTraad, tildelteOppgaver.paaBruker);
 
-    const submitHandler = (event: FormEvent) => {
-        event.preventDefault();
-        if (!valgtOperasjon || submitting) {
-            return;
-        }
-        setSubmitting(true);
-
-        switch (valgtOperasjon) {
-            case MerkOperasjon.AVSLUTT:
-                merkPost(
-                    MERK_AVSLUTT_URL,
-                    getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad, valgtEnhet || ''),
-                    'AvluttUtenSvar'
-                );
-                break;
-            case MerkOperasjon.BISYS:
-                merkPost(MERK_BISYS_URL, getMerkBisysRequest(valgtBrukersFnr, valgtTraad), 'Bisys');
-                break;
-            case MerkOperasjon.FEILSENDT:
-                merkPost(MERK_FEILSENDT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Feilsendt');
-                break;
-            case MerkOperasjon.KONTORSPERRET: // Håndteres i egen funksjon
-                break;
-            case MerkOperasjon.SLETT:
-                merkPost(MERK_SLETT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Sletting');
-                break;
-            case MerkOperasjon.FERDIGSTILL:
-                merkPost(
-                    MERK_TVUNGEN_FERDIGSTILL_URL,
-                    getTvungenFerdigstillRequest(valgtBrukersFnr, valgtTraad, valgtEnhet || ''),
-                    'TvungenAvslutting'
-                );
-                break;
-        }
-    };
-
-    const callback = () => {
+    const callbackUtenOppgaveFerdigstilling = () => {
         dispatch(reloadMeldinger);
         dispatch(reloadTildelteOppgaver);
+    };
+    const callbackEtterOppgaveFerdigstilling = () => {
+        callbackUtenOppgaveFerdigstilling();
         dispatch(resetPlukkOppgaveResource);
     };
-
     const resetDialogpanel = () => {
         if (valgtTraad !== dialogpanelTraad || valgtOperasjon === MerkOperasjon.BISYS) {
             return;
         }
         dispatch(setIngenValgtTraadDialogpanel());
     };
-
-    function merkPost(url: string, object: any, name: string) {
+    const merkPost = (url: string, object: any, name: string, callback: () => void) => {
         post(url, object, 'MerkPanel-' + name)
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
@@ -232,7 +197,59 @@ function MerkPanel(props: Props) {
                 settResultat(Resultat.FEIL);
                 setSubmitting(false);
             });
-    }
+    };
+    const merkPostMedOppgaveFerdigstilling = (url: string, object: any, name: string) =>
+        merkPost(url, object, name, callbackEtterOppgaveFerdigstilling);
+    const merkPostUtenOppgaveFerdigstilling = (url: string, object: any, name: string) =>
+        merkPost(url, object, name, callbackUtenOppgaveFerdigstilling);
+
+    const submitHandler = (event: FormEvent) => {
+        event.preventDefault();
+        if (!valgtOperasjon || submitting) {
+            return;
+        }
+        setSubmitting(true);
+
+        switch (valgtOperasjon) {
+            case MerkOperasjon.AVSLUTT:
+                merkPostMedOppgaveFerdigstilling(
+                    MERK_AVSLUTT_URL,
+                    getMerkAvsluttRequest(valgtBrukersFnr, valgtTraad, valgtEnhet || ''),
+                    'AvluttUtenSvar'
+                );
+                break;
+            case MerkOperasjon.BISYS:
+                merkPostUtenOppgaveFerdigstilling(
+                    MERK_BISYS_URL,
+                    getMerkBisysRequest(valgtBrukersFnr, valgtTraad),
+                    'Bisys'
+                );
+                break;
+            case MerkOperasjon.FEILSENDT:
+                merkPostUtenOppgaveFerdigstilling(
+                    MERK_FEILSENDT_URL,
+                    getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad),
+                    'Feilsendt'
+                );
+                break;
+            case MerkOperasjon.KONTORSPERRET: // Håndteres i egen funksjon
+                break;
+            case MerkOperasjon.SLETT:
+                merkPostUtenOppgaveFerdigstilling(
+                    MERK_SLETT_URL,
+                    getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad),
+                    'Sletting'
+                );
+                break;
+            case MerkOperasjon.FERDIGSTILL:
+                merkPostMedOppgaveFerdigstilling(
+                    MERK_TVUNGEN_FERDIGSTILL_URL,
+                    getTvungenFerdigstillRequest(valgtBrukersFnr, valgtTraad, valgtEnhet || ''),
+                    'TvungenAvslutting'
+                );
+                break;
+        }
+    };
 
     if (resultat) {
         const alert =
@@ -259,7 +276,7 @@ function MerkPanel(props: Props) {
                 valgtTraad={props.valgtTraad}
                 tilbake={tilbake}
                 lukkPanel={props.lukkPanel}
-                merkPost={merkPost}
+                merkPost={merkPostUtenOppgaveFerdigstilling}
             />
         );
     } else {
