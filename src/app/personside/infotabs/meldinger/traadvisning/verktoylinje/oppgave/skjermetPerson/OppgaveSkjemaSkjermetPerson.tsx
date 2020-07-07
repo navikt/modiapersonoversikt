@@ -39,13 +39,17 @@ const AlertStyling = styled.div`
         margin-top: 1rem;
     }
 `;
+interface FormProps {
+    validate: boolean;
+}
 
-const validator = useFormstate<SkjermetOppgaveSkjemaForm>(values => {
-    const valgtTema = values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
+const validator = useFormstate<SkjermetOppgaveSkjemaForm, FormProps>((values, props) => {
+    const valgtTema = props.validate && values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
     const valgtUnderkategori = undefined;
-    const valgtOppgavetype = values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;
-    const valgtPrioritet = values.valgtPrioritet.length === 0 ? 'Du må velge prioritet' : undefined;
-    const beskrivelse = values.beskrivelse.length === 0 ? 'Du må skrive beskrivelse' : undefined;
+    const valgtOppgavetype =
+        props.validate && values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;
+    const valgtPrioritet = props.validate && values.valgtPrioritet.length === 0 ? 'Du må velge prioritet' : undefined;
+    const beskrivelse = props.validate && values.beskrivelse.length === 0 ? 'Du må skrive beskrivelse' : undefined;
 
     return { valgtTema, valgtOppgavetype, valgtPrioritet, valgtUnderkategori, beskrivelse };
 });
