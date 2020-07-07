@@ -17,7 +17,7 @@ import { useAppState } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
 import useFormstate from '@nutgaard/use-formstate';
-import { feilmelding, notRequired, required } from './validering';
+import { feilmelding } from './validering';
 import { Select, Textarea } from 'nav-frontend-skjema';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
 import AutoComplete from './AutoComplete';
@@ -61,14 +61,15 @@ function populerCacheMedTomAnsattliste() {
     cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
 }
 
-const validator = useFormstate<OppgaveSkjemaForm>({
-    valgtTema: required('Du må velge tema'),
-    valgtOppgavetype: required('Du må velge oppgavetype'),
-    beskrivelse: required('Du må skrive beskrivelse'),
-    valgtPrioritet: required('Du må velge prioritet'),
-    valgtUnderkategori: notRequired(),
-    valgtEnhet: required('Du må velge enhet'),
-    valgtAnsatt: notRequired()
+const validator = useFormstate<OppgaveSkjemaForm>(values => {
+    const valgtTema = values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
+    const valgtOppgavetype = values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;
+    const beskrivelse = values.beskrivelse.length === 0 ? 'Du må skrive beskrivelse' : undefined;
+    const valgtPrioritet = values.valgtPrioritet.length === 0 ? 'Du må velge prioritet' : undefined;
+    const valgtUnderkategori = undefined;
+    const valgtEnhet = values.valgtEnhet.length === 0 ? 'Du må velge enhet' : undefined;
+    const valgtAnsatt = undefined;
+    return { valgtTema, valgtOppgavetype, beskrivelse, valgtPrioritet, valgtUnderkategori, valgtEnhet, valgtAnsatt };
 });
 
 function OppgaveSkjema(props: OppgaveProps) {
