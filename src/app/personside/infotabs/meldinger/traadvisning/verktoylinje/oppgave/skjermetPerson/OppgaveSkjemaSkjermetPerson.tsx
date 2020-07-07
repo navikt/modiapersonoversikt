@@ -39,12 +39,17 @@ const AlertStyling = styled.div`
         margin-top: 1rem;
     }
 `;
-const validator = useFormstate<SkjermetOppgaveSkjemaForm>({
-    valgtTema: required('Du må velge tema'),
-    valgtUnderkategori: notRequired(),
-    valgtOppgavetype: required('Du må velge oppgavetype'),
-    valgtPrioritet: required('Du må velge prioritet'),
-    beskrivelse: required('Du må skrive beskrivelse')
+interface FormProps {
+    validate: boolean;
+}
+const validator = useFormstate<SkjermetOppgaveSkjemaForm, FormProps>((values, props) => {
+    const valgtTema = values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
+    const valgtUnderkategori = undefined;
+    const valgtOppgavetype = values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;
+    const valgtPrioritet = values.valgtPrioritet.length === 0 ? 'Du må velge prioritet' : undefined;
+    const beskrivelse = values.beskrivelse.length === 0 ? 'Du må skrive beskrivelse' : undefined;
+
+    return { valgtTema, valgtOppgavetype, valgtPrioritet, valgtUnderkategori, beskrivelse };
 });
 
 function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
