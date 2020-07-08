@@ -1,15 +1,7 @@
-import {
-    Ansatt,
-    Enhet,
-    GsakTema,
-    GsakTemaOppgavetype,
-    GsakTemaUnderkategori,
-    OpprettOppgaveRequest
-} from '../../../../../../../models/meldinger/oppgave';
+import { GsakTema, OpprettOppgaveRequest } from '../../../../../../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { PostResource } from '../../../../../../../rest/utils/postResource';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
-import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
 
 export interface OppgaveProps {
     gsakTema: GsakTema[];
@@ -22,26 +14,19 @@ export interface OppgaveProps {
     valgtTraad?: Traad;
 }
 
-export interface OppgaveSkjemaForm {
-    valgtTema?: GsakTema;
-    valgtOppgavetype?: GsakTemaOppgavetype;
+export type OppgaveSkjemaForm = {
+    valgtTema: string;
+    valgtOppgavetype: string;
     beskrivelse: string;
-    valgtPrioritet?: string;
-    valgtUnderkategori?: GsakTemaUnderkategori;
-    valgtEnhet?: Enhet;
-    valgtAnsatt?: Ansatt;
-}
-
-export interface OppgaveSkjemaProps {
-    state: OppgaveSkjemaForm;
-    actions: {
-        oppdaterStateVedValgtTema(tema: GsakTema | undefined): void;
-        settValgtUnderkategori(underkategori: GsakTemaUnderkategori | undefined): void;
-        settValgtOppgavetype(oppgavetype: GsakTemaOppgavetype | undefined): void;
-        settValgtPrioritet(prioritet: string): void;
-        settBeskrivelse(beskrivelse: string): void;
-        settValgtEnhet(enhet: Enhet | undefined): void;
-        settValgtAnsatt(ansatt: Ansatt | undefined): void;
-    };
-    valideringsResultat: ValideringsResultat<OppgaveSkjemaForm>;
-}
+    valgtPrioritet: string;
+    valgtUnderkategori: string;
+    valgtEnhet: string;
+    valgtAnsatt: string;
+};
+export type SkjermetOppgaveSkjemaForm = {
+    valgtTema: string;
+    valgtOppgavetype: string;
+    beskrivelse: string;
+    valgtPrioritet: string;
+    valgtUnderkategori: string;
+};

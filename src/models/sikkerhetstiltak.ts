@@ -9,5 +9,6 @@ export interface Sikkerhetstiltak {
 export enum SikkerhetstiltakTyper {
     FysiskUtestengelse = 'FYUS',
     FysiskOgTelefonUtestengelse = 'FTUS',
-    ToAnsatteSamtale = 'TOAN'
+    ToAnsatteSamtale = 'TOAN',
+    EgenAnsatt = 'EGAN'
 }

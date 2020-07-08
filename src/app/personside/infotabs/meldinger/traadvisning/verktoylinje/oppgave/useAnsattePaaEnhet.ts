@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Ansatt, Enhet } from '../../../../../../../models/meldinger/oppgave';
+import { Ansatt } from '../../../../../../../models/meldinger/oppgave';
 import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 
@@ -8,23 +8,23 @@ interface Returns {
     pending: boolean;
 }
 
-function useAnsattePaaEnhet(enhet?: Enhet): Returns {
+function useAnsattePaaEnhet(enhetId?: String): Returns {
     const [ansatte, setAnsatte] = useState<Ansatt[]>([]);
     const [pending, setPending] = useState(false);
 
     useEffect(() => {
-        if (!enhet) {
+        if (!enhetId) {
             return;
         }
 
         setPending(true);
         loggEvent('Fetch', 'LagOppgave-Ansatte');
-        fetch(`${apiBaseUri}/enheter/${enhet.enhetId}/ansatte`, includeCredentials)
+        fetch(`${apiBaseUri}/enheter/${enhetId}/ansatte`, includeCredentials)
             .then(response => response.json())
             .then(setAnsatte)
             .catch(e => loggError(e, 'Feil ved henting av ansatte'))
             .finally(() => setPending(false));
-    }, [enhet]);
+    }, [enhetId]);
 
     return useMemo(
         () => ({

@@ -1,12 +1,15 @@
 import * as React from 'react';
-import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
+import Datovelger, { Props as OriginalProps } from 'nav-datovelger/dist/datovelger/Datovelger';
 import styled from 'styled-components/macro';
-import { useRef, useState } from 'react';
-import { DatovelgerAvgrensninger } from 'nav-datovelger';
+import { ChangeEvent, useRef } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { pxToRem } from '../../styles/personOversiktTheme';
 import useBoundingRect from '../../utils/hooks/use-bounding-rect';
-import { PersonsokSkjemaProps } from './personsokUtils';
+import { PersonSokFormState } from './personsokUtils';
+import { FieldState, Mapped, Values } from '@nutgaard/use-formstate';
+import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import moment from 'moment';
+import { DatovelgerAvgrensninger } from 'nav-datovelger';
 
 const DatovelgerStyle = styled.div<{ top: number; left: number }>`
     margin-right: 0.5em;
@@ -25,55 +28,90 @@ const DatolabelStyle = styled.label`
     margin-bottom: 0.5em;
 `;
 
+const Style = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+const Flex = styled.div`
+    display: flex;
+`;
+
 function beregnDropdownCoordinate(clientRect: ClientRect) {
     return {
         top: clientRect.top + clientRect.height,
         left: clientRect.left + clientRect.width
     };
 }
+type OriginalOnChange = OriginalProps['onChange'];
+interface Props extends Pick<FieldState, 'input'> {
+    visÅrVelger: boolean;
+    avgrensninger?: DatovelgerAvgrensninger;
+}
 
-function PersonsokDatovelger(props: { form: PersonsokSkjemaProps }) {
+function transformProps(props: Props): OriginalProps {
+    const onChange: OriginalOnChange = value => {
+        const target = { name: props.input.name, value } as HTMLInputElement;
+        const event = { target, currentTarget: target } as ChangeEvent<HTMLInputElement>;
+        props.input.onChange(event);
+    };
+    return {
+        id: props.input.id,
+        input: { id: props.input.id, name: props.input.name },
+        visÅrVelger: props.visÅrVelger,
+        valgtDato: props.input.value,
+        avgrensninger: props.avgrensninger,
+        onChange
+    };
+}
+
+function CustomDatovelger(props: Props) {
+    const originalProps: OriginalProps = transformProps(props);
+    return <Datovelger {...originalProps} />;
+}
+function getDatoFeilmelding(fra: Date, til: Date) {
+    if (fra > til) {
+        return <SkjemaelementFeilmelding>Fra-dato kan ikke være senere enn til-dato</SkjemaelementFeilmelding>;
+    }
+    if (til > new Date()) {
+        return <SkjemaelementFeilmelding>Du kan ikke velge dato frem i tid</SkjemaelementFeilmelding>;
+    }
+    return null;
+}
+
+function PersonsokDatovelger(props: { form: Mapped<Values<PersonSokFormState>, FieldState> }) {
     const fraRef = useRef(React.createRef<HTMLDivElement>()).current;
     const tilRef = useRef(React.createRef<HTMLDivElement>()).current;
     const datovelgerFraRect = useBoundingRect(fraRef);
     const datovelgerTilRect = useBoundingRect(tilRef);
     const dropdownFraCoordinate = beregnDropdownCoordinate(datovelgerFraRect);
     const dropdownTilCoordinate = beregnDropdownCoordinate(datovelgerTilRect);
-
-    const [tilAvgrensing, settTilAvgrensing] = useState<DatovelgerAvgrensninger | undefined>(undefined);
-    const datoChanger = (dato?: string) => {
-        props.form.actions.settFodselsdatoFra(dato);
-        settTilAvgrensing({ minDato: dato });
-    };
-
+    const datoFeilmelding = getDatoFeilmelding(
+        moment(props.form.fodselsdatoFra.input.value).toDate(),
+        moment(props.form.fodselsdatoTil.input.value).toDate()
+    );
+    const avgrensninger = { minDato: props.form.fodselsdatoFra.input.value };
     return (
-        <>
-            <DatovelgerStyle ref={fraRef} top={dropdownFraCoordinate.top} left={dropdownFraCoordinate.left}>
-                <DatolabelStyle className="skjemaelement__label" htmlFor="personsok-datovelger-fra">
-                    <Normaltekst>Fødselsdato fra</Normaltekst>
-                </DatolabelStyle>
-                <Datovelger
-                    input={{ id: 'personsok-datovelger-fra', name: 'Fødselsdato fra dato' }}
-                    visÅrVelger={true}
-                    valgtDato={props.form.state.fodselsdatoFra}
-                    onChange={datoChanger}
-                    id="personsok-datovelger-fra"
-                />
-            </DatovelgerStyle>
-            <DatovelgerStyle ref={tilRef} top={dropdownTilCoordinate.top} left={dropdownTilCoordinate.left}>
-                <DatolabelStyle className="skjemaelement__label" htmlFor="personsok-datovelger-til">
-                    <Normaltekst>Fødselsdato til</Normaltekst>
-                </DatolabelStyle>
-                <Datovelger
-                    input={{ id: 'personsok-datovelger-til', name: 'Fødselsdato til dato' }}
-                    visÅrVelger={true}
-                    valgtDato={props.form.state.fodselsdatoTil}
-                    onChange={dato => props.form.actions.settFodselsdatoTil(dato)}
-                    id="personsok-datovelger-til"
-                    avgrensninger={tilAvgrensing}
-                />
-            </DatovelgerStyle>
-        </>
+        <Style>
+            <Flex>
+                <DatovelgerStyle ref={fraRef} top={dropdownFraCoordinate.top} left={dropdownFraCoordinate.left}>
+                    <DatolabelStyle className="skjemaelement__label" htmlFor="fodselsdatoFra">
+                        <Normaltekst>Fødselsdato fra</Normaltekst>
+                    </DatolabelStyle>
+                    <CustomDatovelger visÅrVelger={true} input={props.form.fodselsdatoFra.input} />
+                </DatovelgerStyle>
+                <DatovelgerStyle ref={tilRef} top={dropdownTilCoordinate.top} left={dropdownTilCoordinate.left}>
+                    <DatolabelStyle className="skjemaelement__label" htmlFor="fodselsdatoTil">
+                        <Normaltekst>Fødselsdato til</Normaltekst>
+                    </DatolabelStyle>
+                    <CustomDatovelger
+                        visÅrVelger={true}
+                        input={props.form.fodselsdatoTil.input}
+                        avgrensninger={avgrensninger}
+                    />
+                </DatovelgerStyle>
+            </Flex>
+            <div>{datoFeilmelding}</div>
+        </Style>
     );
 }
 

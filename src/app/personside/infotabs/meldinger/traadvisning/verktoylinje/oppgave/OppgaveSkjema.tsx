@@ -1,30 +1,30 @@
-import React, { FormEvent, useState } from 'react';
-import {
-    Ansatt,
-    Enhet,
-    GsakTema,
-    GsakTemaOppgavetype,
-    GsakTemaUnderkategori
-} from '../../../../../../../models/meldinger/oppgave';
-import { OppgaveSkjemaElementer } from './OppgaveSkjemaElementer';
-import { lagOppgaveRequest } from './byggRequest';
-import { OppgaveProps, OppgaveSkjemaForm, OppgaveSkjemaProps } from './oppgaveInterfaces';
+import React, { useState } from 'react';
+import { Enhet } from '../../../../../../../models/meldinger/oppgave';
+import { lagOppgaveRequest, matchEnhet } from './byggRequest';
+import { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
 import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
-import { cache, createCacheKey } from '@nutgaard/use-fetch';
-import { apiBaseUri } from '../../../../../../../api/config';
+import useFetch, { cache, createCacheKey, FetchResult } from '@nutgaard/use-fetch';
+import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { Resultat } from '../utils/VisPostResultat';
 import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { erBehandlet } from '../../../utils/meldingerUtils';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { getValidOppgaveSkjemaState, validerOppgaveSkjema } from './oppgaveSkjemaValidator';
-import { ValideringsResultat } from '../../../../../../../utils/forms/FormValidator';
 import { useAppState } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
+import useFormstate from '@nutgaard/use-formstate';
+import { feilmelding, notRequired, required } from './validering';
+import { Select, Textarea } from 'nav-frontend-skjema';
+import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
+import AutoComplete from './AutoComplete';
+import { hasData } from '@nutgaard/use-async';
+import useAnsattePaaEnhet from './useAnsattePaaEnhet';
+import useForeslatteEnheter from './useForeslåtteEnheter';
+import { useNormalPrioritet } from './oppgaveUtils';
 
 const AlertStyling = styled.div`
     > * {
@@ -61,90 +61,66 @@ function populerCacheMedTomAnsattliste() {
     cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
 }
 
+const validator = useFormstate<OppgaveSkjemaForm>({
+    valgtTema: required('Du må velge tema'),
+    valgtOppgavetype: required('Du må velge oppgavetype'),
+    beskrivelse: required('Du må skrive beskrivelse'),
+    valgtPrioritet: required('Du må velge prioritet'),
+    valgtUnderkategori: notRequired(),
+    valgtEnhet: required('Du må velge enhet'),
+    valgtAnsatt: notRequired()
+});
+
 function OppgaveSkjema(props: OppgaveProps) {
-    const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
-    const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
-    const [submitting, setSubmitting] = useState(false);
-    const [valgtTema, settValgtTema] = useState<GsakTema | undefined>(undefined);
-    const [valgtUnderkategori, settValgtUnderkategori] = useState<GsakTemaUnderkategori | undefined>(undefined);
-    const [valgtOppgavetype, settValgtOppgavetype] = useState<GsakTemaOppgavetype | undefined>(undefined);
-    const [valgtEnhet, settValgtEnhet] = useState<Enhet | undefined>(undefined);
-    const [valgtAnsatt, settValgtAnsatt] = useState<Ansatt | undefined>(undefined);
-    const [valgtPrioritet, settValgtPrioritet] = useState<string | undefined>(undefined);
-    const [beskrivelse, settBeskrivelse] = useState('');
-    const [valideringsResultat, settValideringsresultat] = useState<ValideringsResultat<OppgaveSkjemaForm>>(
-        getValidOppgaveSkjemaState()
-    );
     populerCacheMedTomAnsattliste();
 
-    function oppdaterStateVedValgtTema(tema: GsakTema | undefined) {
-        settValgtTema(tema);
-        if (!tema) {
-            settValgtUnderkategori(undefined);
-            settValgtOppgavetype(undefined);
-        }
+    const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+    const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
+    const initialValues: OppgaveSkjemaForm = {
+        valgtTema: '',
+        valgtOppgavetype: '',
+        beskrivelse: '',
+        valgtPrioritet: '',
+        valgtUnderkategori: '',
+        valgtEnhet: '',
+        valgtAnsatt: ''
+    };
+    const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
+    const state = validator(initialValues);
 
-        const normalOppgaveprioritet = tema?.prioriteter.find(prioritet => prioritet.kode.includes('NORM'));
-        settValgtPrioritet(normalOppgaveprioritet?.kode);
+    const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
+    useNormalPrioritet(state, valgtTema);
+
+    const enhetliste: FetchResult<Array<Enhet>> = useFetch<Array<Enhet>>(
+        `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
+        includeCredentials
+    );
+    const foreslatteEnheter = useForeslatteEnheter(
+        state.fields.valgtTema?.input.value,
+        state.fields.valgtOppgavetype?.input.value,
+        state.fields.valgtUnderkategori?.input.value
+    );
+    const valgtEnhet = matchEnhet(state.fields.valgtEnhet?.input.value, 1);
+    const ansattliste = useAnsattePaaEnhet(valgtEnhet);
+
+    function submitHandler<S>(values: OppgaveSkjemaForm): Promise<any> {
+        const request = lagOppgaveRequest(
+            props,
+            values,
+            valgtBrukersFnr,
+            saksbehandlersEnhet || '',
+            props.gsakTema,
+            props.valgtTraad
+        );
+        return post(`${apiBaseUri}/dialogoppgave/opprett`, request, 'OpprettOppgave')
+            .then(() => {
+                settResultat(Resultat.VELLYKKET);
+                props.onSuccessCallback && props.onSuccessCallback();
+            })
+            .catch((error: Error) => {
+                settResultat(Resultat.FEIL);
+            });
     }
-
-    const formState: OppgaveSkjemaForm = {
-        valgtTema,
-        valgtUnderkategori,
-        valgtOppgavetype,
-        valgtEnhet,
-        valgtAnsatt,
-        valgtPrioritet,
-        beskrivelse
-    };
-    const formProps: OppgaveSkjemaProps = {
-        state: formState,
-        actions: {
-            oppdaterStateVedValgtTema,
-            settValgtUnderkategori,
-            settValgtOppgavetype,
-            settValgtEnhet,
-            settValgtAnsatt,
-            settValgtPrioritet,
-            settBeskrivelse
-        },
-        valideringsResultat: valideringsResultat
-    };
-
-    const submitHandler = (event: FormEvent) => {
-        event.preventDefault();
-
-        if (submitting) {
-            return;
-        }
-
-        const valideringsResultat = validerOppgaveSkjema(formState);
-
-        if (valideringsResultat.formErGyldig) {
-            setSubmitting(true);
-            settValideringsresultat(getValidOppgaveSkjemaState());
-            const request = lagOppgaveRequest(
-                props,
-                formProps,
-                valgtBrukersFnr,
-                saksbehandlersEnhet || '',
-                props.valgtTraad
-            );
-            post(`${apiBaseUri}/dialogoppgave/opprett`, request, 'OpprettOppgave')
-                .then(() => {
-                    settResultat(Resultat.VELLYKKET);
-                    setSubmitting(false);
-                    props.onSuccessCallback && props.onSuccessCallback();
-                })
-                .catch((error: Error) => {
-                    settResultat(Resultat.FEIL);
-                    setSubmitting(false);
-                });
-        } else {
-            settValideringsresultat(valideringsResultat);
-        }
-    };
 
     if (props.valgtTraad && !erBehandlet(props.valgtTraad)) {
         return (
@@ -175,15 +151,64 @@ function OppgaveSkjema(props: OppgaveProps) {
     }
 
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
-
     return (
         <SkjemaStyle>
             <AvsluttGosysOppgaveSkjema />
-            <form onSubmit={submitHandler}>
+            <form onSubmit={state.onSubmit(submitHandler)}>
                 <Element>Opprett oppgave</Element>
-                <OppgaveSkjemaElementer {...props} form={formProps} />
+                <Select
+                    autoFocus={true}
+                    label={'Tema'}
+                    {...state.fields.valgtTema.input}
+                    feil={feilmelding(state.fields.valgtTema)}
+                >
+                    <TemaOptions gsakTema={props.gsakTema} />
+                </Select>
+                <Select label={'Gjelder'} {...state.fields.valgtUnderkategori.input}>
+                    <UnderkategoriOptions valgtGsakTema={valgtTema} />
+                </Select>
+                <Select
+                    label={'Type oppgave'}
+                    {...state.fields.valgtOppgavetype.input}
+                    feil={feilmelding(state.fields.valgtOppgavetype)}
+                >
+                    <OppgavetypeOptions valgtGsakTema={valgtTema} />
+                </Select>
+                <AutoComplete
+                    label={'Velg enhet'}
+                    suggestions={
+                        hasData(enhetliste) ? enhetliste.data.map(enhet => `${enhet.enhetId} ${enhet.enhetNavn}`) : []
+                    }
+                    topSuggestions={foreslatteEnheter.foreslatteEnheter.map(
+                        enhet => `${enhet.enhetId} ${enhet.enhetNavn}`
+                    )}
+                    topSuggestionsLabel="Foreslåtte enheter"
+                    otherSuggestionsLabel="Andre enheter"
+                    input={state.fields.valgtEnhet.input}
+                    feil={feilmelding(state.fields.valgtEnhet)}
+                />
+                <AutoComplete
+                    label={'Velg ansatt'}
+                    suggestions={ansattliste.ansatte.map(
+                        ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`
+                    )}
+                    input={state.fields.valgtAnsatt.input}
+                />
+                <Select
+                    label={'Velg prioritet'}
+                    {...state.fields.valgtPrioritet?.input}
+                    feil={feilmelding(state.fields.valgtPrioritet)}
+                >
+                    <Prioriteter valgtGsakTeam={valgtTema} />
+                </Select>
+                <Textarea
+                    maxLength={0}
+                    label={'Beskrivelse'}
+                    {...state.fields.beskrivelse.input}
+                    feil={feilmelding(state.fields.beskrivelse)}
+                />
                 <KnappStyle>
-                    <Hovedknapp htmlType="submit" spinner={submitting}>
+                    <Hovedknapp htmlType="submit" spinner={state.submitting}>
                         {knappetekst}
                     </Hovedknapp>
                     <LenkeKnapp type="button" onClick={props.lukkPanel}>

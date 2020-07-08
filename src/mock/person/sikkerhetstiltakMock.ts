@@ -20,6 +20,11 @@ const toAnsatte: Sikkerhetstiltak = {
     sikkerhetstiltaksbeskrivelse: 'To ansatte må delta i samtale med bruker.',
     periode: getPeriode()
 };
+const egenAnsatt: Sikkerhetstiltak = {
+    sikkerhetstiltakskode: SikkerhetstiltakTyper.EgenAnsatt,
+    sikkerhetstiltaksbeskrivelse: 'Bruker er egen ansatt, du har ikke tilgang til å se informasjon om bruker.',
+    periode: getPeriode()
+};
 
 export function getSikkerhetstiltak() {
     if (vektetSjanse(faker, 0.05)) {
@@ -30,6 +35,9 @@ export function getSikkerhetstiltak() {
     }
     if (vektetSjanse(faker, 0.05)) {
         return toAnsatte;
+    }
+    if (vektetSjanse(faker, 0.05)) {
+        return egenAnsatt;
     }
     return undefined;
 }
