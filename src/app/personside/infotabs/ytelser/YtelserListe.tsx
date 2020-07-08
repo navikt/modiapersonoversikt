@@ -6,7 +6,8 @@ import { Ytelse } from '../../../../models/ytelse/ytelse-utils';
 import YtelserListeElement from './YtelserListeElement';
 import { Undertittel } from 'nav-frontend-typografi';
 import { guid } from 'nav-frontend-js-utils';
-import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
+import { PopoverOrientering } from 'nav-frontend-popover';
 import { ReactNode } from 'react';
 import Panel from 'nav-frontend-paneler';
 
@@ -20,15 +21,17 @@ const StyledOl = styled.ol`
     }
 `;
 
-const HjelpetekstHoyreWrapper = styled.div`
-    margin-left: ${pxToRem(50)};
-    position: absolute;
-`;
-
 const TittelWrapper = styled.div`
     padding: ${pxToRem(15)};
     border-bottom: ${theme.border.skille};
     display: flex;
+
+    .hjelpetekst {
+        margin-left: 0.5rem;
+    }
+    .popover {
+        max-width: 30rem;
+    }
 `;
 
 interface Props {
@@ -47,11 +50,9 @@ function YtelseListe(props: Props) {
             <StyledPanel>
                 <TittelWrapper>
                     <Undertittel>Ytelser</Undertittel>
-                    <HjelpetekstHoyreWrapper>
-                        <HjelpetekstUnderHoyre id={guid()}>
-                            Viser kun ytelser fra Infotrygd 2 år tilbake i tid (foreldrepenger, pleiepenger, sykepenger)
-                        </HjelpetekstUnderHoyre>
-                    </HjelpetekstHoyreWrapper>
+                    <Hjelpetekst id={guid()} type={PopoverOrientering.UnderVenstre}>
+                        Viser kun ytelser fra Infotrygd 2 år tilbake i tid (foreldrepenger, pleiepenger, sykepenger)
+                    </Hjelpetekst>
                 </TittelWrapper>
                 <nav aria-label="Velg ytelser">
                     <StyledOl>{ytelser}</StyledOl>
