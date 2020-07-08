@@ -5,7 +5,7 @@ import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
 import { PersonSokFormState, lagRequest } from './personsokUtils';
 import { loggError } from '../../utils/logger/frontendLogger';
-import useFormstate, { Values } from '@nutgaard/use-formstate';
+import useFormstate, { FunctionValidator, Values } from '@nutgaard/use-formstate';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
@@ -47,8 +47,7 @@ const InputLinje = styled.div`
         padding-right: 0.5em;
     }
 `;
-
-const validator = useFormstate<PersonSokFormState>(values => {
+export const validatorFn: FunctionValidator<PersonSokFormState> = values => {
     let fornavn = undefined;
     if (!values.fornavn && values.etternavn) {
         fornavn = 'Fornavn må være utfylt hvis etternavn er satt';
@@ -121,7 +120,7 @@ const validator = useFormstate<PersonSokFormState>(values => {
         alderTil,
         kjonn
     };
-});
+};
 
 function PersonsokSkjema(props: Props) {
     const initialValues = {
@@ -139,7 +138,9 @@ function PersonsokSkjema(props: Props) {
         alderTil: '',
         kjonn: ''
     };
+    const validator = useFormstate<PersonSokFormState>(validatorFn);
     const state = validator(initialValues);
+
     const minimumsKravOppfylt =
         state.submittoken &&
         (!state.fields.gatenavn.input.value ||
