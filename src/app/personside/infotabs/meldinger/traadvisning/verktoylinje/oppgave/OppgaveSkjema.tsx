@@ -57,22 +57,17 @@ const KnappStyle = styled.div`
     }
 `;
 
-interface FormProps {
-    validate: boolean;
-}
-
 function populerCacheMedTomAnsattliste() {
     cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
 }
 
-const validator = useFormstate<OppgaveSkjemaForm, FormProps>((values, props) => {
-    const valgtTema = props.validate && values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
-    const valgtOppgavetype =
-        props.validate && values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;
-    const beskrivelse = props.validate && values.beskrivelse.length === 0 ? 'Du må skrive beskrivelse' : undefined;
-    const valgtPrioritet = props.validate && values.valgtPrioritet.length === 0 ? 'Du må velge prioritet' : undefined;
+const validator = useFormstate<OppgaveSkjemaForm>(values => {
+    const valgtTema = values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
+    const valgtOppgavetype = values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;
+    const beskrivelse = values.beskrivelse.length === 0 ? 'Du må skrive beskrivelse' : undefined;
+    const valgtPrioritet = values.valgtPrioritet.length === 0 ? 'Du må velge prioritet' : undefined;
     const valgtUnderkategori = undefined;
-    const valgtEnhet = props.validate && values.valgtEnhet.length === 0 ? 'Du må velge enhet' : undefined;
+    const valgtEnhet = values.valgtEnhet.length === 0 ? 'Du må velge enhet' : undefined;
     const valgtAnsatt = undefined;
     return { valgtTema, valgtOppgavetype, beskrivelse, valgtPrioritet, valgtUnderkategori, valgtEnhet, valgtAnsatt };
 });
