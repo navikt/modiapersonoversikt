@@ -16,7 +16,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { useAppState } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
-import useFormstate, { Formstate } from '@nutgaard/use-formstate';
+import useFormstate from '@nutgaard/use-formstate';
 import { feilmelding } from './validering';
 import { Select, Textarea } from 'nav-frontend-skjema';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
