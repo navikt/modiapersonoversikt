@@ -52,9 +52,6 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
     if (!values.fornavn && values.etternavn) {
         fornavn = 'Fornavn må være utfylt hvis etternavn er satt';
     }
-    if (!values.fornavn && !values.gatenavn && !values.kontonummer) {
-        fornavn = ' ';
-    }
 
     const etternavn = undefined;
 
@@ -68,9 +65,6 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
     if (!values.gatenavn && values.postnummer) {
         gatenavn = 'Gatenavn må være satt hvis postnummer er satt';
     }
-    if (!values.gatenavn && !values.kontonummer && !values.fornavn) {
-        gatenavn = ' ';
-    }
 
     const husnummer = !erTall(values.husnummer) ? 'Husnummer må være tall' : undefined;
 
@@ -81,9 +75,6 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
     let kontonummer = undefined;
     if (values.kontonummer && !validerKontonummer(removeWhitespaceAndDot(values.kontonummer))) {
         kontonummer = 'Kontonummer må være gyldig';
-    }
-    if (!values.kontonummer && !values.gatenavn && !values.fornavn) {
-        kontonummer = ' ';
     }
 
     const kommunenummer =
@@ -105,6 +96,14 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
     const alderTil = !erTall(values.alderTil) ? 'Alder må være tall' : undefined;
     const kjonn = undefined;
 
+    let _minimumskrav = undefined;
+    if (!values.gatenavn && !values.kontonummer && !values.fornavn) {
+        _minimumskrav = 'Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk';
+        fornavn = '';
+        gatenavn = '';
+        kontonummer = '';
+    }
+
     return {
         fornavn,
         etternavn,
@@ -118,34 +117,31 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
         fodselsdatoTil,
         alderFra,
         alderTil,
-        kjonn
+        kjonn,
+        _minimumskrav
     };
 };
 
+const initialValues: PersonSokFormState = {
+    fornavn: '',
+    etternavn: '',
+    gatenavn: '',
+    husnummer: '',
+    husbokstav: '',
+    postnummer: '',
+    kontonummer: '',
+    kommunenummer: '',
+    fodselsdatoFra: '',
+    fodselsdatoTil: '',
+    alderFra: '',
+    alderTil: '',
+    kjonn: '',
+    _minimumskrav: ''
+};
+
 function PersonsokSkjema(props: Props) {
-    const initialValues = {
-        fornavn: '',
-        etternavn: '',
-        gatenavn: '',
-        husnummer: '',
-        husbokstav: '',
-        postnummer: '',
-        kontonummer: '',
-        kommunenummer: '',
-        fodselsdatoFra: '',
-        fodselsdatoTil: '',
-        alderFra: '',
-        alderTil: '',
-        kjonn: ''
-    };
     const validator = useFormstate<PersonSokFormState>(validatorPersonsok);
     const state = validator(initialValues);
-
-    const minimumsKravOppfylt =
-        state.submittoken &&
-        (!state.fields.gatenavn.input.value ||
-            !state.fields.kontonummer.input.value ||
-            !state.fields.fornavn.input.value);
 
     function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
@@ -264,9 +260,9 @@ function PersonsokSkjema(props: Props) {
                     <LenkeKnapp type="reset">Nullstill</LenkeKnapp>
                 </KnappStyle>
             </FormStyle>
-            {minimumsKravOppfylt && (
+            {state.submittoken && state.fields._minimumskrav.error !== undefined && (
                 <AlertStripeInfo>
-                    <span role="alert">Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk</span>
+                    <span role="alert">{state.fields._minimumskrav.error}</span>
                 </AlertStripeInfo>
             )}
         </form>
