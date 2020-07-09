@@ -1,47 +1,382 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser oppgavecontainer med alt innhold 1`] = `
+.c4 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c4:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c4:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c4:hover {
+  opacity: 0.8;
+}
+
+.c4:hover:after {
+  content: '';
+  border-color: #0067c5;
+}
+
+.c1 {
+  position: relative;
+}
+
+.c2 {
+  position: relative;
+}
+
+.c2 .skjemaelement {
+  margin-bottom: 0;
+}
+
+.c0 {
+  padding-top: 1rem;
+}
+
+.c0 .inputPanelGruppe__inner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c0 .inputPanelGruppe__inner > * {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c0 label {
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+.c0 .skjemaelement {
+  margin-bottom: 0.7rem;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 button {
+  margin: 0;
+}
+
 <div
-  className="alertstripe alertstripe--advarsel"
+  className="c0"
 >
-  <span
-    aria-label="advarsel"
-    className="alertstripe__ikon"
+  <form
+    onSubmit={[Function]}
   >
-    <svg
-      focusable="false"
-      height="1.5em"
-      kind="advarsel-sirkel-fyll"
-      viewBox="0 0 24 24"
-      width="1.5em"
+    <p
+      className="typo-element"
     >
-      <g
-        fill="none"
-        fillRule="evenodd"
+      Opprett oppgave
+    </p>
+    <div
+      className="skjemaelement"
+    >
+      <label
+        className="skjemaelement__label"
+        htmlFor="valgtTema"
       >
-        <path
-          d="M12.205-.004l-.214.002a12.225 12.225 0 0 0-8.517 3.659C1.179 5.977-.053 9.013.002 12.208c.115 6.613 5.296 11.793 11.795 11.793l.212-.002c6.726-.116 12.105-5.595 11.99-12.21C23.883 5.178 18.702-.003 12.204-.003z"
-          fill="#FFA733"
-          fillRule="nonzero"
+        Tema
+      </label>
+      <div
+        className="selectContainer input--fullbredde"
+      >
+        <select
+          aria-invalid={false}
+          autoFocus={true}
+          className="skjemaelement__input"
+          disabled={false}
+          id="valgtTema"
+          name="valgtTema"
+          onBlur={[Function]}
+          onChange={[Function]}
+          value=""
+        >
+          <option
+            disabled={true}
+            value=""
+          >
+            Velg tema
+          </option>
+          <option
+            value="AGR"
+          >
+            Ajourhold - Grunnopplysninger
+          </option>
+          <option
+            value="AAP"
+          >
+            Arbeidsavklaringspenger
+          </option>
+          <option
+            value="BID"
+          >
+            Bidrag
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      className="skjemaelement"
+    >
+      <label
+        className="skjemaelement__label"
+        htmlFor="valgtUnderkategori"
+      >
+        Gjelder
+      </label>
+      <div
+        className="selectContainer input--fullbredde"
+      >
+        <select
+          aria-invalid={false}
+          className="skjemaelement__input"
+          disabled={false}
+          id="valgtUnderkategori"
+          name="valgtUnderkategori"
+          onBlur={[Function]}
+          onChange={[Function]}
+          value=""
+        >
+          <option
+            disabled={true}
+            value=""
+          >
+            Ingen tema valgt
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      className="skjemaelement"
+    >
+      <label
+        className="skjemaelement__label"
+        htmlFor="valgtOppgavetype"
+      >
+        Type oppgave
+      </label>
+      <div
+        className="selectContainer input--fullbredde"
+      >
+        <select
+          aria-invalid={false}
+          className="skjemaelement__input"
+          disabled={false}
+          id="valgtOppgavetype"
+          name="valgtOppgavetype"
+          onBlur={[Function]}
+          onChange={[Function]}
+          value=""
+        >
+          <option
+            disabled={true}
+            value=""
+          >
+            Ingen tema valgt
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      aria-expanded={false}
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-0-label"
+      aria-owns={null}
+      className="c1"
+      role="combobox"
+    >
+      <div
+        className="c2"
+      >
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="downshift-0-input"
+          >
+            Velg enhet
+          </label>
+          <input
+            aria-activedescendant={null}
+            aria-autocomplete="list"
+            aria-controls={null}
+            aria-invalid={false}
+            aria-labelledby="downshift-0-label"
+            autoComplete="off"
+            className="skjemaelement__input input--fullbredde"
+            id="downshift-0-input"
+            name="valgtEnhet"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      aria-expanded={false}
+      aria-haspopup="listbox"
+      aria-labelledby="downshift-1-label"
+      aria-owns={null}
+      className="c1"
+      role="combobox"
+    >
+      <div
+        className="c2"
+      >
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="downshift-1-input"
+          >
+            Velg ansatt
+          </label>
+          <input
+            aria-activedescendant={null}
+            aria-autocomplete="list"
+            aria-controls={null}
+            aria-invalid={false}
+            aria-labelledby="downshift-1-label"
+            autoComplete="off"
+            className="skjemaelement__input input--fullbredde"
+            id="downshift-1-input"
+            name="valgtAnsatt"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="skjemaelement"
+    >
+      <label
+        className="skjemaelement__label"
+        htmlFor="valgtPrioritet"
+      >
+        Velg prioritet
+      </label>
+      <div
+        className="selectContainer input--fullbredde"
+      >
+        <select
+          aria-invalid={false}
+          className="skjemaelement__input"
+          disabled={false}
+          id="valgtPrioritet"
+          name="valgtPrioritet"
+          onBlur={[Function]}
+          onChange={[Function]}
+          value=""
+        >
+          <option
+            disabled={true}
+            value=""
+          >
+            Ingen tema valgt
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      className="skjemaelement textarea__container"
+    >
+      <label
+        className="skjemaelement__label"
+        htmlFor="beskrivelse"
+      >
+        Beskrivelse
+      </label>
+      <div
+        className="textarea--medMeta__wrapper"
+      >
+        <textarea
+          aria-describedby=""
+          aria-invalid={false}
+          className="skjemaelement__input textarea--medMeta"
+          id="beskrivelse"
+          name="beskrivelse"
+          onBlur={[Function]}
+          onChange={[Function]}
+          style={
+            Object {
+              "height": "30px",
+            }
+          }
+          value=""
         />
-        <path
-          d="M12.027 19H12A1.499 1.499 0 0 1 11.973 16L12 16a1.501 1.501 0 0 1 .027 3z"
-          fill="#3E3832"
-        />
-        <path
-          d="M12 5a1 1 0 0 1 1 1v7a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"
-          fill="#3E3832"
-          fillRule="nonzero"
-        />
-      </g>
-    </svg>
-  </span>
-  <div
-    className="typo-normal alertstripe__tekst"
-  >
-    Beklager, det skjedde en feil. (
-    OpprettOppgaveContainer
-    )
-  </div>
+      </div>
+      <div
+        aria-hidden="true"
+        className="textareamirror"
+      />
+    </div>
+    <div
+      className="c3"
+    >
+      <button
+        className="knapp knapp--hoved"
+        disabled={false}
+        type="submit"
+      >
+        Opprett oppgave
+      </button>
+      <button
+        className="c4"
+        onClick={[Function]}
+        type="button"
+      >
+        Avbryt
+      </button>
+    </div>
+  </form>
 </div>
 `;

@@ -47,7 +47,7 @@ const InputLinje = styled.div`
         padding-right: 0.5em;
     }
 `;
-export const validatorFn: FunctionValidator<PersonSokFormState> = values => {
+export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values => {
     let fornavn = undefined;
     if (!values.fornavn && values.etternavn) {
         fornavn = 'Fornavn må være utfylt hvis etternavn er satt';
@@ -138,7 +138,7 @@ function PersonsokSkjema(props: Props) {
         alderTil: '',
         kjonn: ''
     };
-    const validator = useFormstate<PersonSokFormState>(validatorFn);
+    const validator = useFormstate<PersonSokFormState>(validatorPersonsok);
     const state = validator(initialValues);
 
     const minimumsKravOppfylt =

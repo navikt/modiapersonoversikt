@@ -1,4 +1,4 @@
-import { validatorFn } from './PersonsokSkjema';
+import { validatorPersonsok } from './PersonsokSkjema';
 import { PersonSokFormState } from './personsokUtils';
 
 const initialValues: PersonSokFormState = {
@@ -34,7 +34,7 @@ const ingenFeil = {
 };
 
 test('Valider alle felter som må være tall', () => {
-    const validator = validatorFn(
+    const validator = validatorPersonsok(
         {
             ...initialValues,
             alderFra: 'a',
@@ -58,26 +58,26 @@ test('Valider alle felter som må være tall', () => {
 });
 
 test('Validerer check om minimumskrav for personsøk', () => {
-    const validator = validatorFn(initialValues, {});
+    const validator = validatorPersonsok(initialValues, {});
     expect(validator).toEqual({ ...ingenFeil, kontonummer: ' ', fornavn: ' ', gatenavn: ' ' });
 });
 
 test('Valider krav om gatenavn ved husnummer', () => {
-    const validator = validatorFn({ ...initialValues, husnummer: '10', fornavn: 'Aremark' }, {});
+    const validator = validatorPersonsok({ ...initialValues, husnummer: '10', fornavn: 'Aremark' }, {});
     expect(validator).toEqual({ ...ingenFeil, gatenavn: 'Gatenavn må være satt hvis husnummer er satt' });
 });
 
 test('Valider krav om gatenavn ved postnummer', () => {
-    const validator = validatorFn({ ...initialValues, postnummer: '0000', fornavn: 'Aremark' }, {});
+    const validator = validatorPersonsok({ ...initialValues, postnummer: '0000', fornavn: 'Aremark' }, {});
     expect(validator).toEqual({ ...ingenFeil, gatenavn: 'Gatenavn må være satt hvis postnummer er satt' });
 });
 
 test('Valider krav om gatenavn ved husbokstav', () => {
-    const validator = validatorFn({ ...initialValues, husbokstav: 'A', fornavn: 'Aremark' }, {});
+    const validator = validatorPersonsok({ ...initialValues, husbokstav: 'A', fornavn: 'Aremark' }, {});
     expect(validator).toEqual({ ...ingenFeil, gatenavn: 'Gatenavn må være satt hvis husbokstav er satt' });
 });
 
 test('Valider krav korrekt kontonummer', () => {
-    const validator = validatorFn({ ...initialValues, kontonummer: '12345678910' }, {});
+    const validator = validatorPersonsok({ ...initialValues, kontonummer: '12345678910' }, {});
     expect(validator).toEqual({ ...ingenFeil, kontonummer: 'Kontonummer må være gyldig' });
 });
