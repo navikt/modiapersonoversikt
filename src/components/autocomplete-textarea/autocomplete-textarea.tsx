@@ -12,7 +12,8 @@ import {
 import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
 import * as StandardTeksterModels from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
 import styled from 'styled-components/macro';
-import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
+import { PopoverOrientering } from 'nav-frontend-popover';
 import { guid } from 'nav-frontend-js-utils';
 import { Undertittel } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/logger/frontendLogger';
@@ -169,7 +170,7 @@ function useRules(): Regler {
 const HjelpetekstStyle = styled.div`
     position: absolute;
     top: 2.8rem;
-    left: -1rem;
+    left: 0.25rem;
     ul {
         list-style: circle;
         margin-top: 1rem;
@@ -182,7 +183,7 @@ const HjelpetekstStyle = styled.div`
 function AutoTekstTips() {
     return (
         <HjelpetekstStyle>
-            <HjelpetekstUnderHoyre id={guid()}>
+            <Hjelpetekst id={guid()} type={PopoverOrientering.UnderVenstre}>
                 <Undertittel>Autofullfør-tips:</Undertittel>
                 <ul>
                     <li>foet + mellomrom: Brukers fulle navn</li>
@@ -205,7 +206,7 @@ function AutoTekstTips() {
                     <li>sykperm + mellomrom: Sykmeldt og permittert</li>
                     <li>forskuddsøk + mellomrom: Søke om forskudd</li>
                 </ul>
-            </HjelpetekstUnderHoyre>
+            </Hjelpetekst>
         </HjelpetekstStyle>
     );
 }
