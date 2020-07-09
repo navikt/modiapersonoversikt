@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Diskresjonskode } from './Diskresjonskode';
+import { Diskresjonskode, Diskresjonskoder } from './Diskresjonskode';
 import { Kodeverk } from '../../../../../../models/kodeverk';
 import { shallow } from 'enzyme';
-import { Diskresjonskoder } from '../../../../../../konstanter';
 
 test('Viser ikke andre diskresjonskoder enn fortrolig adresse', () => {
     const militær: Kodeverk = { kodeRef: 'MILI', beskrivelse: 'Militær' };

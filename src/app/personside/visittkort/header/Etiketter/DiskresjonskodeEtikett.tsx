@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Kodeverk } from '../../../../../models/kodeverk';
-import { Diskresjonskoder } from '../../../../../konstanter';
 import EtikettBase from 'nav-frontend-etiketter';
+import { Diskresjonskoder } from '../../body/familie/common/Diskresjonskode';
 
 function DiskresjonskodeEtikett(props: { diskresjonskode?: Kodeverk }) {
     if (!props.diskresjonskode) {
