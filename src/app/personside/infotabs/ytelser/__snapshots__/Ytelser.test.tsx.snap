@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Om Ytelser matcher snapshot 1`] = `
-.c7 {
+.c6 {
   position: relative;
   padding: .5rem;
   display: -webkit-box;
@@ -16,22 +16,22 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   background-color: #cce1f3;
 }
 
-.c7:hover {
+.c6:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c7:hover > button:last-child {
+.c6:hover > button:last-child {
   padding-left: 0.5rem;
 }
 
-.c7 > *:first-child {
+.c6 > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c9 {
+.c8 {
   position: relative;
   padding: .5rem;
   display: -webkit-box;
@@ -45,22 +45,22 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   cursor: pointer;
 }
 
-.c9:hover {
+.c8:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c9:hover > button:last-child {
+.c8:hover > button:last-child {
   padding-left: 0.5rem;
 }
 
-.c9 > *:first-child {
+.c8 > *:first-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c8 {
+.c7 {
   border: none;
   padding: 0;
   height: 2rem;
@@ -72,16 +72,16 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   transition: padding-left 0.3s;
 }
 
-.c8 .nav-frontend-chevron {
+.c7 .nav-frontend-chevron {
   width: 1.5625rem;
 }
 
-.c8:focus {
+.c7:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c8:focus::after {
+.c7:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -96,13 +96,8 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   padding: 0rem;
 }
 
-.c6 > *:not(:first-child) {
+.c5 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
-}
-
-.c5 {
-  margin-left: 3.125rem;
-  position: absolute;
 }
 
 .c4 {
@@ -114,13 +109,21 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   display: flex;
 }
 
+.c4 .hjelpetekst {
+  margin-left: 0.5rem;
+}
+
+.c4 .popover {
+  max-width: 30rem;
+}
+
 .c2 {
   overflow: auto;
   max-height: 100%;
   padding: .5rem;
 }
 
-.c15 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -130,84 +133,47 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   flex-wrap: wrap;
 }
 
-.c15 dt {
+.c14 dt {
   color: #645f5a;
 }
 
-.c15 > div {
+.c14 > div {
   margin: 0.5625rem 0;
   padding-right: 0.7rem;
   width: 13rem;
   overflow-wrap: break-word;
 }
 
-.c16 {
+.c15 {
   overflow: auto;
   box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
   border-radius: .25rem;
   background-color: white;
 }
 
-.c16 [role='table'] {
+.c15 [role='table'] {
   text-align: left;
   width: 100%;
 }
 
-.c16 [role='table'] thead,
-.c16 [role='table'] .thead[role='rowgroup'] {
+.c15 [role='table'] thead,
+.c15 [role='table'] .thead[role='rowgroup'] {
   border-bottom: 0.2rem solid rgba(0,0,0,0.15);
   font-weight: 600;
 }
 
-.c16 [role='table'] [role='cell'],
-.c16 [role='table'] [role='columnheader'] {
+.c15 [role='table'] [role='cell'],
+.c15 [role='table'] [role='columnheader'] {
   padding: 0.7rem;
   vertical-align: middle;
 }
 
-.c16 [role='table'] [role='columnheader'] {
+.c15 [role='table'] [role='columnheader'] {
   padding-bottom: 0.7rem;
 }
 
-.c16 [role='table'] [role='row']:nth-child(even) {
+.c15 [role='table'] [role='row']:nth-child(even) {
   background-color: rgba(0,0,0,0.1);
-}
-
-.c21 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-  white-space: nowrap;
-}
-
-.c21 > *:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
-.c14 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-}
-
-.c14 > h3 {
-  margin-bottom: 1rem;
-}
-
-.c18 span:not(:last-child):after {
-  content: '.';
-}
-
-.c17 li:not(:first-child) {
-  padding-top: 1rem;
-  margin-top: 1rem;
-  border-top: solid 0.0625rem #b7b1a9;
-}
-
-.c19 {
-  margin-top: 1rem;
 }
 
 .c20 {
@@ -222,11 +188,48 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   margin-bottom: 1rem;
 }
 
-.c11 {
+.c13 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
+}
+
+.c13 > h3 {
+  margin-bottom: 1rem;
+}
+
+.c17 span:not(:last-child):after {
+  content: '.';
+}
+
+.c16 li:not(:first-child) {
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: solid 0.0625rem #b7b1a9;
+}
+
+.c18 {
+  margin-top: 1rem;
+}
+
+.c19 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
+  white-space: nowrap;
+}
+
+.c19 > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.c10 {
   padding: .5rem;
 }
 
-.c12 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -236,7 +239,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   flex-wrap: wrap;
 }
 
-.c12 > * {
+.c11 > * {
   -webkit-flex-basis: 40%;
   -ms-flex-preferred-size: 40%;
   flex-basis: 40%;
@@ -246,7 +249,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   flex-grow: 1;
 }
 
-.c13 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -256,14 +259,14 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   flex-direction: column;
 }
 
-.c13 > * {
+.c12 > * {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c10 > * {
+.c9 > * {
   margin-bottom: 0.5rem;
 }
 
@@ -347,61 +350,73 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               Ytelser
             </h2>
             <div
-              className="c5"
+              className="hjelpetekst"
             >
-              <div
-                className="hjelpetekst"
+              <button
+                aria-controls="Helt tilfeldig ID"
+                aria-expanded={false}
+                aria-haspopup="dialog"
+                className="hjelpetekst__apneknapp"
+                id="Helt tilfeldig ID"
+                onClick={[Function]}
+                title="Hjelp"
+                type="button"
               >
-                <button
-                  aria-label="Hjelptekst"
-                  aria-pressed={false}
-                  className="hjelpetekst__apneknapp"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onMouseDown={[Function]}
-                  onMouseEnter={[Function]}
-                  onMouseLeave={[Function]}
-                  onMouseUp={[Function]}
-                  title="Hjelptekst"
-                  type="button"
+                <svg
+                  className="hjelpetekst__ikon"
+                  focusable="false"
+                  height={32}
+                  kind="help-circle"
+                  viewBox="0 0 18.2 18.2"
+                  width={32}
                 >
-                  <span
-                    className="sr-only"
+                  <path
+                    d="M9.1 0C4.1 0 0 4.1 0 9.1s4.1 9.1 9.1 9.1 9.1-4.1 9.1-9.1S14.1 0 9.1 0zm0 17.2C4.6 17.2 1 13.6 1 9.1S4.6 1 9.1 1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1z"
+                  />
+                  <circle
+                    cx="9.1"
+                    cy="13.8"
+                    r=".9"
+                  />
+                  <path
+                    d="M9.1 11.5c-.3 0-.5-.2-.5-.5V8.6c0-.3.2-.5.5-.5 1 0 1.9-.8 1.9-1.9s-.8-1.9-1.9-1.9c-1 0-1.9.8-1.9 1.9 0 .3-.2.5-.5.5s-.5-.2-.5-.4c0-1.6 1.3-2.9 2.9-2.9S12 4.7 12 6.3c0 1.4-1 2.6-2.4 2.8V11c0 .3-.2.5-.5.5z"
+                  />
+                </svg>
+                <span
+                  className="sr-only"
+                >
+                  Hjelp
+                </span>
+              </button>
+              <div
+                className="popover popover--controlled popover--hidden popover--under"
+                id="Helt tilfeldig ID"
+                onClick={[Function]}
+                role="tooltip"
+                style={
+                  Object {
+                    "transform": "translate3d(0px, 0px, 0)",
+                  }
+                }
+                tabIndex={0}
+              >
+                <div
+                  className="popover__content-inner"
+                >
+                  <div
+                    className="hjelpetekst__innhold"
                   >
-                    Hjelptekst
-                  </span>
-                  <svg
-                    className="hjelpetekst__anchor"
-                    focusable="false"
-                    height={32}
-                    kind="help-circle"
-                    viewBox="0 0 18.22 18.22"
-                    width={32}
-                  >
-                    <title>
-                      Hjelp
-                    </title>
-                    <path
-                      d="M9.11 1a8.11 8.11 0 1 0 8.11 8.11A8.12 8.12 0 0 0 9.11 1zm0 13.7a.89.89 0 1 1 .89-.9.89.89 0 0 1-.89.9zm.5-5.7v1.89a.5.5 0 0 1-1 0V8.5a.5.5 0 0 1 .5-.5 1.85 1.85 0 1 0-1.85-1.85.5.5 0 0 1-1 0A2.85 2.85 0 1 1 9.61 9z"
-                      fill="none"
-                    />
-                    <path
-                      d="M9.11 0a9.11 9.11 0 1 0 9.11 9.11A9.12 9.12 0 0 0 9.11 0zm0 17.22a8.11 8.11 0 1 1 8.11-8.11 8.12 8.12 0 0 1-8.11 8.11z"
-                      fill="#2968b2"
-                    />
-                    <path
-                      d="M9.11 3.3a2.85 2.85 0 0 0-2.85 2.85.5.5 0 0 0 1 0A1.85 1.85 0 1 1 9.11 8a.5.5 0 0 0-.5.5v2.35a.5.5 0 0 0 1 0V9a2.85 2.85 0 0 0-.5-5.65z"
-                      fill="#2968b2"
-                    />
-                    <circle
-                      cx="9.11"
-                      cy="13.8"
-                      fill="#2968b2"
-                      r=".89"
-                    />
-                  </svg>
-                </button>
+                    Viser kun ytelser fra Infotrygd 2 år tilbake i tid (foreldrepenger, pleiepenger, sykepenger)
+                  </div>
+                </div>
+                <span
+                  className="popover__pil"
+                  style={
+                    Object {
+                      "left": undefined,
+                    }
+                  }
+                />
               </div>
             </div>
           </div>
@@ -409,11 +424,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
             aria-label="Velg ytelser"
           >
             <ol
-              className="c6"
+              className="c5"
             >
               <li>
                 <div
-                  className="c7"
+                  className="c6"
                   onClick={[Function]}
                 >
                   <div>
@@ -436,7 +451,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis sykepenger"
                     aria-selected={true}
-                    className="c8"
+                    className="c7"
                   >
                     <i
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -446,7 +461,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c9"
+                  className="c8"
                   onClick={[Function]}
                 >
                   <div>
@@ -479,7 +494,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis pleiepenger"
                     aria-selected={false}
-                    className="c8"
+                    className="c7"
                   >
                     <i
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -489,7 +504,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c9"
+                  className="c8"
                   onClick={[Function]}
                 >
                   <div>
@@ -512,7 +527,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis foreldrepenger"
                     aria-selected={false}
-                    className="c8"
+                    className="c7"
                   >
                     <i
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -530,7 +545,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
       onScroll={[Function]}
     >
       <section
-        className="c10"
+        className="c9"
       >
         <h2
           className="sr-only"
@@ -542,7 +557,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
         <article>
           <div
             aria-labelledby="Helt tilfeldig ID"
-            className="panel c11"
+            className="panel c10"
           >
             <h2
               className="sr-only"
@@ -551,14 +566,14 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               Sykepengerrettighet
             </h2>
             <div
-              className="c12"
+              className="c11"
             >
               <div
-                className="c13"
+                className="c12"
               >
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c14"
+                  className="c13"
                 >
                   <h3
                     className="typo-ingress"
@@ -567,7 +582,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     Sykepengetilfellet
                   </h3>
                   <dl
-                    className="c15"
+                    className="c14"
                   >
                     <div>
                       <dt
@@ -693,7 +708,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 </article>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c14"
+                  className="c13"
                 >
                   <h3
                     className="typo-ingress"
@@ -702,7 +717,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     Sykmelding
                   </h3>
                   <dl
-                    className="c15"
+                    className="c14"
                   >
                     <div>
                       <dt
@@ -742,7 +757,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     </div>
                   </dl>
                   <div
-                    className="c16 typo-normal"
+                    className="c15 typo-normal"
                   >
                     <table
                       role="table"
@@ -789,7 +804,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </div>
               <article
                 aria-labelledby="Helt tilfeldig ID"
-                className="c14"
+                className="c13"
               >
                 <h3
                   className="typo-ingress"
@@ -798,7 +813,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   Arbeidssituasjon
                 </h3>
                 <dl
-                  className="c15"
+                  className="c14"
                 >
                   <div>
                     <dt
@@ -827,11 +842,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 </dl>
                 <ol
                   aria-label="Arbeidsgivere"
-                  className="c17"
+                  className="c16"
                 >
                   <li>
                     <dl
-                      className="c15"
+                      className="c14"
                     >
                       <div>
                         <dt
@@ -855,7 +870,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                           className="typo-element"
                         >
                           <span
-                            className="c18"
+                            className="c17"
                           >
                             <span>
                               8786
@@ -933,7 +948,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   </li>
                 </ol>
                 <button
-                  className="knapp c19 knapp--hoved"
+                  className="knapp c18 knapp--hoved"
                   disabled={false}
                   onClick={[Function]}
                   type="submit"
@@ -943,7 +958,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </article>
             </div>
             <section
-              className="c20"
+              className="c19"
             >
               <h4
                 className="typo-ingress"
@@ -951,7 +966,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 Utbetalinger på vent
               </h4>
               <div
-                className="c16 typo-normal"
+                className="c15 typo-normal"
               >
                 <table
                   role="table"
@@ -1025,7 +1040,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </div>
             </section>
             <section
-              className="c21"
+              className="c20"
             >
               <h4
                 className="typo-ingress"
@@ -1033,7 +1048,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 Utbetalinger
               </h4>
               <div
-                className="c16 typo-normal"
+                className="c15 typo-normal"
               >
                 <table
                   role="table"
@@ -1184,9 +1199,13 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 className="alertstripe alertstripe--info"
               >
                 <span
-                  aria-label="info"
                   className="alertstripe__ikon"
                 >
+                  <span
+                    className="sr-only"
+                  >
+                    info
+                  </span>
                   <svg
                     focusable="false"
                     height="1.5em"
@@ -1199,7 +1218,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     >
                       <path
                         d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                        fill="#669DB4"
+                        fill="#337C9B"
                       />
                       <path
                         d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"

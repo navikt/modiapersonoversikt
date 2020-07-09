@@ -5,7 +5,8 @@ import { Undertekst } from 'nav-frontend-typografi';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import styled from 'styled-components/macro';
 import { Select } from 'nav-frontend-skjema';
-import { HjelpetekstUnderHoyre } from 'nav-frontend-hjelpetekst';
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
+import { PopoverOrientering } from 'nav-frontend-popover';
 import { connect } from 'react-redux';
 import {
     Innstillinger,
@@ -20,14 +21,12 @@ const ModalContent = styled.div`
 `;
 const Label = styled.span`
     display: flex;
-    margin-bottom: -0.5rem;
-
-    .hjelpetekst {
-        padding-left: 0.5rem;
     }
-    .hjelpetekst__tooltip {
-        left: -0.65rem;
-        top: 2.5rem;
+    .popover {
+      max-width: 30rem;
+    }
+    .hjelpetekst__apneknapp {
+        margin-left: 0.5rem;
     }
 `;
 
@@ -41,9 +40,9 @@ const useFormState = useFormstateFactory<Innstillinger>({
 const AutomatiskeTagsLabel = (
     <Label>
         <b>Automatiske tags</b>
-        <HjelpetekstUnderHoyre id="AutomatiskeTagsLabel">
+        <Hjelpetekst id="AutomatiskeTagsLabel" type={PopoverOrientering.UnderVenstre}>
             Vil legge til henholdsvis #sto og #samref automatisk når man bruker standardtekstene-søket (alt + c).
-        </HjelpetekstUnderHoyre>
+        </Hjelpetekst>
     </Label>
 );
 
