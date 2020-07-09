@@ -254,7 +254,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
     }
 
     if (isFailedPosting(slaaSammenResource)) {
-        return <AlertStripeFeil>Det skjedde en feil: {slaaSammenResource.error}</AlertStripeFeil>;
+        return <AlertStripeFeil>Det skjedde en feil i baksystemene: {slaaSammenResource.error}</AlertStripeFeil>;
     }
 
     return (
