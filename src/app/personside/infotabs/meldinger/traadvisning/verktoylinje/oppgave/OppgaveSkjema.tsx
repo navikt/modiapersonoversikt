@@ -87,7 +87,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         valgtAnsatt: ''
     };
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
-    const state: Formstate<OppgaveSkjemaForm> = validator(initialValues);
+    const state = validator(initialValues);
 
     const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
     useNormalPrioritet(state, valgtTema);
