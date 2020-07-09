@@ -1,8 +1,8 @@
-import { Diskresjonskoder } from '../../konstanter';
 import { BostatusTyper, Kjønn, Person, Relasjonstype, SivilstandTyper } from '../../models/person/person';
 import { SikkerhetstiltakTyper } from '../../models/sikkerhetstiltak';
 import { Personadresse } from '../../models/personadresse';
 import { TilrettelagtKommunikasjonType } from '../../models/kodeverk';
+import { Diskresjonskoder } from '../../app/personside/visittkort/body/familie/common/Diskresjonskode';
 
 export const gateAdresseAremark: Personadresse = {
     endringsinfo: {
