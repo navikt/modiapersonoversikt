@@ -209,7 +209,7 @@ export function createRestResourceReducerAndActions<T>(resourceNavn: string, def
                     status: STATUS.FORBIDDEN
                 };
             case actionNames.FAILED:
-                /* Logging av feilen blir håndtert i handterFeil() i ./utils.ts, der har vi bedre tilgang på relevant informasjon */
+                /* Logging av feilen blir håndtert i handterFeil() i ./utils-mock.ts, der har vi bedre tilgang på relevant informasjon */
                 return {
                     ...state,
                     status: STATUS.FAILED,
