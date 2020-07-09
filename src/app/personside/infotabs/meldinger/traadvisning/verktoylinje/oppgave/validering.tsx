@@ -1,4 +1,5 @@
 import { FieldState, Validator } from '@nutgaard/use-formstate';
+import * as React from 'react';
 
 export function required(message: string): Validator<any> {
     return (value: string) => {
@@ -9,6 +10,6 @@ export function required(message: string): Validator<any> {
     };
 }
 
-export function feilmelding(field: FieldState): string | undefined {
-    return field.touched ? field.error : undefined;
+export function feilmelding(field: FieldState): React.ReactNode | undefined {
+    return field.touched && field.error !== undefined ? <>{field.error}</> : undefined;
 }

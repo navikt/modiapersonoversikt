@@ -14,7 +14,8 @@ const initialValues: PersonSokFormState = {
     fodselsdatoTil: '',
     alderFra: '',
     alderTil: '',
-    kjonn: ''
+    kjonn: '',
+    _minimumskrav: ''
 };
 
 const ingenFeil = {
@@ -30,7 +31,8 @@ const ingenFeil = {
     fodselsdatoTil: undefined,
     alderFra: undefined,
     alderTil: undefined,
-    kjonn: undefined
+    kjonn: undefined,
+    _minimumskrav: undefined
 };
 
 test('Valider alle felter som må være tall', () => {
@@ -57,9 +59,15 @@ test('Valider alle felter som må være tall', () => {
     });
 });
 
-test('Validerer check om minimumskrav for personsøk', () => {
+test('Validerer minimumskrav for personsøk', () => {
     const validator = validatorPersonsok(initialValues, {});
-    expect(validator).toEqual({ ...ingenFeil, kontonummer: ' ', fornavn: ' ', gatenavn: ' ' });
+    expect(validator).toEqual({
+        ...ingenFeil,
+        _minimumskrav: 'Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk',
+        kontonummer: '',
+        fornavn: '',
+        gatenavn: ''
+    });
 });
 
 test('Valider krav om gatenavn ved husnummer', () => {

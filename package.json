@@ -40,7 +40,7 @@
         "@navikt/navspa": "^1.0.3",
         "@navikt/tag-input": "^1.1.0",
         "@nutgaard/use-fetch": "^2.3.1",
-        "@nutgaard/use-formstate": "^2.3.2",
+        "@nutgaard/use-formstate": "^2.3.3",
         "classnames": "^2.2.6",
         "core-js": "3.5.0",
         "craco-less": "^1.17.0",
