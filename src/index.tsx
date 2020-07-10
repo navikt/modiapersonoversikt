@@ -6,11 +6,11 @@ import * as ReactDOM from 'react-dom';
 import './index.less';
 import AppContainer from './app/AppContainer';
 import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
+import './window-variabler';
 
 setupTimeSpentMetrics();
 if (process.env.REACT_APP_MOCK_ENABLED === 'true') {
     require('./mock');
 }
 
-(window as any).isChatVisning = (document.location.search + document.location.hash).includes('chatvisning');
 ReactDOM.render(<AppContainer />, document.getElementById('root') as HTMLElement);

@@ -76,7 +76,7 @@ function AppContainer() {
             <Provider store={store}>
                 <Router>
                     <AppStyle>
-                        {!(window as any).isChatVisning && <Decorator />}
+                        {!window.erChatvisning && <Decorator />}
                         <App />
                     </AppStyle>
                 </Router>

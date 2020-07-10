@@ -3,7 +3,7 @@ name: Publish gh-pages
 on:
   push:
     branches:
-      - chat-hack
+      - dev
 env:
   CI: true
   TZ: Europe/Oslo

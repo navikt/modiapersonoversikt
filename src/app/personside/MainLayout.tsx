@@ -41,7 +41,7 @@ function MainLayout() {
                 </Scrollbar>
                 <InfoTabs />
             </VenstreKolonne>
-            {!(window as any).isChatVisning && (
+            {!window.erChatvisning && (
                 <HøyreKolonne
                     onClick={ekspanderDialogpanelHandler}
                     dialogPanelEkspandert={UI.dialogPanel.ekspandert}
