@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { Kodeverk } from '../../../../../../models/kodeverk';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { Diskresjonskoder } from '../../../../../../konstanter';
+
+export const Diskresjonskoder = {
+    STRENGT_FORTROLIG_ADRESSE: 'SPSF',
+    FORTROLIG_ADRESSE: 'SPFO'
+};
 
 export function Diskresjonskode({ diskresjonskode }: { diskresjonskode?: Kodeverk | null }) {
     const diskresjonskoderSomSkalVises = [
