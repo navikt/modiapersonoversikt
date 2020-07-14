@@ -103,7 +103,8 @@ function SendNyMeldingContainer() {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: request });
                 })
-                .catch(() => {
+                .catch(error => {
+                    console.error('Send-Referat feilet', error);
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR, fritekst: request.fritekst });
                 });
         } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
@@ -120,6 +121,7 @@ function SendNyMeldingContainer() {
                 })
                 .catch(error => {
                     callback();
+                    console.error('Send-Sporsmal feilet', error);
                     setSendNyMeldingStatus({
                         type: SendNyMeldingStatus.ERROR,
                         fritekst: handleFeilMelding(error)
