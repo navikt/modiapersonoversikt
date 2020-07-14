@@ -1,6 +1,6 @@
-import { Diskresjonskoder } from '../../konstanter';
 import { BostatusTyper, Kjønn, Person, Relasjonstype, SivilstandTyper } from '../../models/person/person';
 import { Personadresse } from '../../models/personadresse';
+import { Diskresjonskoder } from '../../app/personside/visittkort/body/familie/common/Diskresjonskode';
 
 export const gateAdresseMoss: Personadresse = {
     endringsinfo: {

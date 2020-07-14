@@ -41,7 +41,7 @@ import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinge
 import { failurerateMiddleware } from './utils/failureMiddleware';
 import { setupDraftMock } from './draft-mock';
 import tilgangskontrollMock from './tilgangskontroll-mock';
-import { delayed } from './utils';
+import { delayed } from './utils-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;

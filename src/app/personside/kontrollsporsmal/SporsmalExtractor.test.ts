@@ -2,8 +2,8 @@ import { hentEpost, hentFødselsdatoBarn, hentGiftedato } from './SporsmalExtrac
 import { Familierelasjon, Person, Relasjonstype, SivilstandTyper } from '../../../models/person/person';
 import { aremark } from '../../../mock/person/aremark';
 import { getPersonstatus } from '../../../mock/person/personMock';
-import { Diskresjonskoder } from '../../../konstanter';
 import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
+import { Diskresjonskoder } from '../visittkort/body/familie/common/Diskresjonskode';
 
 describe('hentGiftedato', () => {
     const GIFTEDATO = '11.11.2011';
