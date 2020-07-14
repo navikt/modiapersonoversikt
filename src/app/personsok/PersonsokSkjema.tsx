@@ -5,17 +5,8 @@ import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
 import { PersonSokFormState, lagRequest } from './personsok-utils';
 import { loggError } from '../../utils/logger/frontendLogger';
-import useFormstate, { Values } from '@nutgaard/use-formstate';
-import {
-    requiredBosted,
-    requiredToBeNumber,
-    requiredKontonummer,
-    notRequired,
-    feilmelding,
-    requiredGatenavn,
-    requiredDato,
-    requiredFornavn
-} from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
+import useFormstate, { FunctionValidator, Values } from '@nutgaard/use-formstate';
+import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
 import PersonsokDatovelger from './PersonsokDatovelger';
@@ -25,6 +16,9 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../components/common-styled-components';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
+import { erTall } from '../../utils/string-utils';
+import { removeWhitespaceAndDot, validerKontonummer } from './kontonummer/kontonummerUtils';
+import moment from 'moment';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -53,45 +47,101 @@ const InputLinje = styled.div`
         padding-right: 0.5em;
     }
 `;
+export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values => {
+    let fornavn = undefined;
+    if (!values.fornavn && values.etternavn) {
+        fornavn = 'Fornavn må være utfylt hvis etternavn er satt';
+    }
 
-const validator = useFormstate<PersonSokFormState>({
-    fornavn: requiredFornavn(),
-    etternavn: notRequired(),
-    gatenavn: requiredGatenavn(),
-    husnummer: requiredToBeNumber('Husnummer må være tall'),
-    husbokstav: notRequired(),
-    postnummer: requiredToBeNumber('Postnummer må være tall'),
-    kontonummer: requiredKontonummer('Kontonummer må være gyldig'),
-    kommunenummer: requiredBosted('Bosted må være tall med 4 siffer'),
-    fodselsdatoFra: requiredDato(),
-    fodselsdatoTil: requiredDato(),
-    alderFra: requiredToBeNumber('Alder må være tall'),
-    alderTil: requiredToBeNumber('Alder må være tall'),
-    kjonn: notRequired()
-});
+    const etternavn = undefined;
+
+    let gatenavn = undefined;
+    if (!values.gatenavn && values.husnummer) {
+        gatenavn = 'Gatenavn må være satt hvis husnummer er satt';
+    }
+    if (!values.gatenavn && values.husbokstav) {
+        gatenavn = 'Gatenavn må være satt hvis husbokstav er satt';
+    }
+    if (!values.gatenavn && values.postnummer) {
+        gatenavn = 'Gatenavn må være satt hvis postnummer er satt';
+    }
+
+    const husnummer = !erTall(values.husnummer) ? 'Husnummer må være tall' : undefined;
+
+    const husbokstav = undefined;
+
+    const postnummer = !erTall(values.postnummer) ? 'Postnummer må være tall' : undefined;
+
+    let kontonummer = undefined;
+    if (values.kontonummer && !validerKontonummer(removeWhitespaceAndDot(values.kontonummer))) {
+        kontonummer = 'Kontonummer må være gyldig';
+    }
+
+    const kommunenummer =
+        !erTall(values.kommunenummer) && values.kommunenummer.length !== 4
+            ? 'Bosted må være tall med 4 siffer'
+            : undefined;
+
+    let fodselsdatoFra = undefined;
+    let fodselsdatoTil = undefined;
+    const fra = moment(values.fodselsdatoFra).toDate();
+    const til = moment(values.fodselsdatoTil).toDate();
+    if (fra > til) {
+        fodselsdatoFra = 'Fra-dato kan ikke være senere enn til-dato';
+    }
+    if (til > new Date()) {
+        fodselsdatoTil = 'Du kan ikke velge dato frem i tid';
+    }
+    const alderFra = !erTall(values.alderFra) ? 'Alder må være tall' : undefined;
+    const alderTil = !erTall(values.alderTil) ? 'Alder må være tall' : undefined;
+    const kjonn = undefined;
+
+    let _minimumskrav = undefined;
+    if (!values.gatenavn && !values.kontonummer && !values.fornavn) {
+        _minimumskrav = 'Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk';
+        fornavn = '';
+        gatenavn = '';
+        kontonummer = '';
+    }
+
+    return {
+        fornavn,
+        etternavn,
+        gatenavn,
+        husnummer,
+        husbokstav,
+        postnummer,
+        kontonummer,
+        kommunenummer,
+        fodselsdatoFra,
+        fodselsdatoTil,
+        alderFra,
+        alderTil,
+        kjonn,
+        _minimumskrav
+    };
+};
+
+const initialValues: PersonSokFormState = {
+    fornavn: '',
+    etternavn: '',
+    gatenavn: '',
+    husnummer: '',
+    husbokstav: '',
+    postnummer: '',
+    kontonummer: '',
+    kommunenummer: '',
+    fodselsdatoFra: '',
+    fodselsdatoTil: '',
+    alderFra: '',
+    alderTil: '',
+    kjonn: '',
+    _minimumskrav: ''
+};
 
 function PersonsokSkjema(props: Props) {
-    const initialValues = {
-        fornavn: '',
-        etternavn: '',
-        gatenavn: '',
-        husnummer: '',
-        husbokstav: '',
-        postnummer: '',
-        kontonummer: '',
-        kommunenummer: '',
-        fodselsdatoFra: '',
-        fodselsdatoTil: '',
-        alderFra: '',
-        alderTil: '',
-        kjonn: ''
-    };
+    const validator = useFormstate<PersonSokFormState>(validatorPersonsok);
     const state = validator(initialValues);
-    const minimumsKravOppfylt =
-        state.submittoken &&
-        (!state.fields.gatenavn.input.value ||
-            !state.fields.kontonummer.input.value ||
-            !state.fields.fornavn.input.value);
 
     function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
@@ -210,9 +260,9 @@ function PersonsokSkjema(props: Props) {
                     <LenkeKnapp type="reset">Nullstill</LenkeKnapp>
                 </KnappStyle>
             </FormStyle>
-            {minimumsKravOppfylt && (
+            {state.submittoken && state.fields._minimumskrav.error !== undefined && (
                 <AlertStripeInfo>
-                    <span role="alert">Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk</span>
+                    <span role="alert">{state.fields._minimumskrav.error}</span>
                 </AlertStripeInfo>
             )}
         </form>

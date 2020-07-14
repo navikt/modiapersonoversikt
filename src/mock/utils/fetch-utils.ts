@@ -3,7 +3,7 @@ import { MockHandler, MockRequest } from 'yet-another-fetch-mock';
 export function withDelayedResponse(
     delay: number,
     statusCode: (args: MockRequest) => number,
-    genererMockData: (args: MockRequest) => object | object[] | undefined
+    genererMockData: (args: MockRequest) => any
 ): MockHandler {
     return (req, res, ctx) => res(ctx.delay(delay), ctx.status(statusCode(req)), ctx.json(genererMockData(req)));
 }

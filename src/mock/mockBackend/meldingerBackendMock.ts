@@ -54,7 +54,7 @@ export class MeldingerBackendMock {
         return traaderMedSvar;
     }
 
-    public sendReferat(request: SendReferatRequest) {
+    public sendReferat(request: SendReferatRequest): string {
         const melding: Melding = {
             ...getMockMelding(),
             meldingstype: request.meldingstype,
@@ -65,6 +65,7 @@ export class MeldingerBackendMock {
             traadId: guid(),
             meldinger: [melding]
         });
+        return melding.id;
     }
 
     public sendSpørsmål(request: SendSpørsmålRequest) {
