@@ -14,7 +14,7 @@ import { feilmelding } from '../validering';
 import useFormstate, { Values } from '@nutgaard/use-formstate';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from '../SkjemaElementOptions';
 import { Select, Textarea } from 'nav-frontend-skjema';
-import { useNormalPrioritet } from '../oppgaveUtils';
+import { useNormalPrioritet } from '../oppgave-utils';
 
 const SkjemaStyle = styled.div`
     padding-top: 1rem;
