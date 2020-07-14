@@ -1,6 +1,6 @@
 import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
 import { apiBaseUri } from '../../api/config';
-import { formaterTilISO8601Date } from '../../utils/stringFormatting';
+import { formaterTilISO8601Date } from '../../utils/string-utils';
 import { AppState } from '../reducers';
 import { DetaljertOppfolging } from '../../models/oppfolging';
 import { AsyncDispatch } from '../ThunkTypes';

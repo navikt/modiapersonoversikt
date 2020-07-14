@@ -8,7 +8,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import DescriptionList, { DescriptionListEntries, fjernEntriesUtenVerdi } from '../../../../components/DescriptionList';
 import OppfolgingsVedtakTabell from './OppfolgingVedtakKomponent';
-import { datoEllerNull } from '../../../../utils/stringFormatting';
+import { datoEllerNull } from '../../../../utils/string-utils';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { setYtelserEkspandert } from '../../../../redux/oppfolging/actions';

@@ -2,7 +2,7 @@ import { UtbetalingerResponse } from '../../models/utbetalinger';
 import { apiBaseUri } from '../../api/config';
 import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
 import { AppState } from '../reducers';
-import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalingerUtils';
+import { getUtbetalingerForSiste30DagerDatoer } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import moment from 'moment';
 import { backendDatoformat } from '../../utils/dateUtils';
 

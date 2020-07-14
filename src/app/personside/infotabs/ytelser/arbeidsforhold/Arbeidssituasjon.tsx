@@ -1,6 +1,6 @@
 import * as React from 'react';
 import DescriptionList, { DescriptionListEntries } from '../../../../../components/DescriptionList';
-import { convertBoolTilJaNei } from '../../../../../utils/stringFormatting';
+import { convertBoolTilJaNei } from '../../../../../utils/string-utils';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import { Sykepenger } from '../../../../../models/ytelse/sykepenger';
 import ArbeidsForholdListe from './ArbeidsforholdListe';

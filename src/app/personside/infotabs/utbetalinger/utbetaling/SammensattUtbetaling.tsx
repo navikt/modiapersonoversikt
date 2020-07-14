@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { formaterNOK, getGjeldendeDatoForUtbetaling, getNettoSumYtelser } from '../utils/utbetalingerUtils';
+import { formaterNOK, getGjeldendeDatoForUtbetaling, getNettoSumYtelser } from '../utils/utbetalinger-utils';
 import styled from 'styled-components/macro';
 import { Bold, FlexEnd, SpaceBetween } from '../../../../../components/common-styled-components';
 import PrintKnapp from '../../../../../components/PrintKnapp';

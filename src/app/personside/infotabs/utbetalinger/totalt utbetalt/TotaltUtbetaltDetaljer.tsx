@@ -16,8 +16,8 @@ import {
     getTrekkSumYtelser,
     getTypeFromYtelse,
     reduceUtbetlingerTilYtelser
-} from '../utils/utbetalingerUtils';
-import { formaterDato } from '../../../../../utils/stringFormatting';
+} from '../utils/utbetalinger-utils';
+import { formaterDato } from '../../../../../utils/string-utils';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import moment from 'moment';
 import { sorterAlfabetisk } from '../../../../../utils/string-utils';

@@ -1,7 +1,7 @@
 import { FieldState, Validator, Values } from '@nutgaard/use-formstate';
 import { erTall } from '../../../../../../../utils/string-utils';
 import { removeWhitespaceAndDot, validerKontonummer } from '../../../../../../personsok/kontonummer/kontonummerUtils';
-import { PersonSokFormState } from '../../../../../../personsok/personsokUtils';
+import { PersonSokFormState } from '../../../../../../personsok/personsok-utils';
 import moment from 'moment';
 
 export function required(message: string): Validator<any> {

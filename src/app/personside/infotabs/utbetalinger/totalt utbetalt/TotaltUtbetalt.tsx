@@ -3,13 +3,13 @@ import { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalin
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import PrintKnapp from '../../../../../components/PrintKnapp';
-import { formaterDato } from '../../../../../utils/stringFormatting';
+import { formaterDato } from '../../../../../utils/string-utils';
 import {
     getBruttoSumYtelser,
     getNettoSumYtelser,
     getTrekkSumYtelser,
     summertBeløpStringFraUtbetalinger
-} from '../utils/utbetalingerUtils';
+} from '../utils/utbetalinger-utils';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';

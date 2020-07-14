@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models/utbetalinger';
-import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalingerUtils';
+import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalinger-utils';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components/macro';

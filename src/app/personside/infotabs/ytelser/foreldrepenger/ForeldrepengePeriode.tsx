@@ -10,7 +10,7 @@ import {
     formaterDato,
     periodeEllerNull,
     prosentEllerNull
-} from '../../../../../utils/stringFormatting';
+} from '../../../../../utils/string-utils';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import styled from 'styled-components/macro';

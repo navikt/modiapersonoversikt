@@ -9,7 +9,7 @@ import {
     OrganisasjonSomAdressat
 } from '../../../../../../models/person/doedsbo';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { formaterDato } from '../../../../../../utils/stringFormatting';
+import { formaterDato } from '../../../../../../utils/string-utils';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import VisittkortElement from '../../VisittkortElement';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';

@@ -20,7 +20,7 @@ import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import Ytelser from './ytelser/Ytelser';
 import { guid } from 'nav-frontend-js-utils';
-import { capitalizeName } from '../../../utils/stringFormatting';
+import { capitalizeName } from '../../../utils/string-utils';
 import { useOpenTab } from './utils/useOpenTab';
 
 const StyledArticle = styled.article`
