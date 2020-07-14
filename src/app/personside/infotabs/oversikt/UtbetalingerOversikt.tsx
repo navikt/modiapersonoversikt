@@ -12,7 +12,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useInfotabsDyplenker } from '../dyplenker';
-import { utbetalingerTest } from '../dyplenkeTest/utils';
+import { utbetalingerTest } from '../dyplenkeTest/utils-dyplenker-test';
 import moment from 'moment';
 import { ReactNode } from 'react';
 

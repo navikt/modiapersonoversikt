@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { setEkspanderYtelse } from '../../../../../redux/utbetalinger/actions';
 import { datoVerbose } from '../../../../../utils/dateUtils';
-import { utbetalingerTest } from '../../dyplenkeTest/utils';
+import { utbetalingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import usePrinter from '../../../../../utils/UsePrinter';
 import { useOnMount } from '../../../../../utils/customHooks';
 

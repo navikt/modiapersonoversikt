@@ -15,7 +15,7 @@ import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import { datoSynkende } from '../../../../../utils/dateUtils';
 import DropDownMenu from '../../../../../components/DropDownMenu';
 import JournalpostLiseElement from './JournalpostLiseElement';
-import { sakerTest } from '../../dyplenkeTest/utils';
+import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListe from '../sakstemaliste/SakstemaListe';
 import { useEffect, useRef } from 'react';

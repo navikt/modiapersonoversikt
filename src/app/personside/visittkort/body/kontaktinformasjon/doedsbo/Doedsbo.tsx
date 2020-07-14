@@ -15,7 +15,7 @@ import VisittkortElement from '../../VisittkortElement';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import LocationPin from '../../../../../../svg/LocationPin';
 import styled from 'styled-components/macro';
-import { hentNavn } from '../../../utils';
+import { hentNavn } from '../../../utils-visittkort';
 
 interface Props {
     person: Person;
