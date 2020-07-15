@@ -6,7 +6,7 @@ import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import useFormstate from '@nutgaard/use-formstate';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
-import { fnr } from '@navikt/fnrvalidator';
+import { fnr, ErrorReason } from '@navikt/fnrvalidator';
 
 const Form = styled.form`
     margin-top: 2rem;
