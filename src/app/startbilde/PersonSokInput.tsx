@@ -6,6 +6,7 @@ import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import useFormstate from '@nutgaard/use-formstate';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
+import { fnr } from '@navikt/fnrvalidator';
 
 const Form = styled.form`
     margin-top: 2rem;
@@ -27,15 +28,19 @@ type PersonSokForm = {
     fødselsnummer: string;
 };
 
-const validator = useFormstate<PersonSokForm>(values => {
-    let fødselsnummer = undefined;
-    if (!/^\d+$/.test(values.fødselsnummer)) {
-        fødselsnummer = 'Fødselsnummeret kan kun inneholde tall';
+const feilmeldinger = {
+    [ErrorReason.LENGTH]: 'Ikke riktig lenge på fnr',
+    [ErrorReason.CHECKSUM]: 'Ugyldig fnr',
+    [ErrorReason.DATE]: 'Ugyldig fnr'
+};
+
+const validering = useFormstate<PersonSokForm>(values => {
+    const fnrValidation = fnr(values.fødselsnummer);
+    if (fnrValidation.status === 'invalid') {
+        return { fødselsnummer: feilmeldinger[fnrValidation.reasons[0]] };
+    } else {
+        return { fødselsnummer: undefined };
     }
-    if (values.fødselsnummer.length !== 11) {
-        fødselsnummer = 'Fødselsnummeret må inneholde 11 siffer';
-    }
-    return { fødselsnummer };
 });
 
 function PersonSokInput() {
@@ -43,7 +48,7 @@ function PersonSokInput() {
     const initialValues: PersonSokForm = {
         fødselsnummer: ''
     };
-    const state = validator(initialValues);
+    const state = validering(initialValues);
 
     function submit<S>(values: PersonSokForm): Promise<any> {
         setNyBrukerIPath(history, values.fødselsnummer);
