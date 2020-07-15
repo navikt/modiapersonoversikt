@@ -275,13 +275,13 @@ exports[`Viser traad med verktøylinje 1`] = `
   color: #0067c5;
 }
 
+.c25 p {
+  margin-bottom: 0 !important;
+}
+
 .c26 .ekspanderbartPanel__hode,
 .c26 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
-}
-
-.c25 p {
-  margin-bottom: 0 !important;
 }
 
 .c20 {

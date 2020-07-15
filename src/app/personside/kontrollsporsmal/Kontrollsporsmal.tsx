@@ -9,7 +9,7 @@ import LazySpinner from '../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useErKontaktsenter } from '../../../utils/enheterUtils';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
-import { kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
+import { kontrollspørsmålHarBlittLukketForBruker } from './cookie-utils';
 
 const KontrollSporsmalStyling = styled.section`
     background-color: white;

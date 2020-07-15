@@ -2,7 +2,7 @@ import { Utbetaling } from '../../../../../models/utbetalinger';
 import { sorterAlfabetisk } from '../../../../../utils/string-utils';
 import * as React from 'react';
 import { Checkbox } from 'nav-frontend-skjema';
-import { getTypeFromYtelse, reduceUtbetlingerTilYtelser } from '../utils/utbetalingerUtils';
+import { getTypeFromYtelse, reduceUtbetlingerTilYtelser } from '../utils/utbetalinger-utils';
 import { UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 
 interface Props {

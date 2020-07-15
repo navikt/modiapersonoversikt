@@ -5,7 +5,7 @@ import { ChangeEvent, useRef } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { pxToRem } from '../../styles/personOversiktTheme';
 import useBoundingRect from '../../utils/hooks/use-bounding-rect';
-import { PersonSokFormState } from './personsokUtils';
+import { PersonSokFormState } from './personsok-utils';
 import { FieldState, Mapped, Values } from '@nutgaard/use-formstate';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import moment from 'moment';

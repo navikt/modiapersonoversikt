@@ -4,7 +4,7 @@ import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled, { css } from 'styled-components/macro';
 import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
 import { useInfotabsDyplenker } from '../../dyplenker';
-import { meldingerTest } from '../../dyplenkeTest/utils';
+import { meldingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useHistory } from 'react-router';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import TraadSammendrag from './TraadSammendrag';

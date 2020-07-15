@@ -9,7 +9,7 @@ import Mann from '../../../../svg/Mann.js';
 import Kvinne from '../../../../svg/Kvinne.js';
 import VisMerChevron from '../../../../components/VisMerChevron';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import { hentNavn } from '../utils';
+import { hentNavn } from '../utils-visittkort';
 import { useAppState, useOnMount } from '../../../../utils/customHooks';
 import Etiketter from './Etiketter/Etiketter';
 

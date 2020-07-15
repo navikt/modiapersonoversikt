@@ -10,7 +10,7 @@ import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
 import { datoStigende, formatterDatoMedMaanedsnavn, formatterDatoTid } from './dateUtils';
 import styled from 'styled-components';
 import theme from '../styles/personOversiktTheme';
-import { formaterDato } from './stringFormatting';
+import { formaterDato } from './string-utils';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 
 interface Props {

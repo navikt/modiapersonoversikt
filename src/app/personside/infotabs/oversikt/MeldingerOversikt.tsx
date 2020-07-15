@@ -11,7 +11,7 @@ import { datoSynkende } from '../../../../utils/dateUtils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useInfotabsDyplenker } from '../dyplenker';
-import { meldingerTest } from '../dyplenkeTest/utils';
+import { meldingerTest } from '../dyplenkeTest/utils-dyplenker-test';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useOnMount } from '../../../../utils/customHooks';
 import { temagruppeTekst } from '../../../../models/Temagrupper';

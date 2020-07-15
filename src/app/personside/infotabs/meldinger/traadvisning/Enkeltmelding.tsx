@@ -12,7 +12,7 @@ import {
     saksbehandlerTekst
 } from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/dateUtils';
-import { formaterDato } from '../../../../../utils/stringFormatting';
+import { formaterDato } from '../../../../../utils/string-utils';
 import styled from 'styled-components/macro';
 import Tekstomrade, { createDynamicHighlightingRule, defaultRules, Rule } from 'nav-frontend-tekstomrade';
 import Etikett from 'nav-frontend-etiketter';
@@ -79,6 +79,12 @@ const JournalforingLabel = styled(EtikettLiten)`
     color: ${theme.color.lenke};
 `;
 
+const StyledTekstomrade = styled(Tekstomrade)`
+    p {
+        margin-bottom: 0 !important;
+    }
+`;
+
 const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
     .ekspanderbartPanel__hode,
     .ekspanderbartPanel__innhold {
@@ -89,7 +95,7 @@ const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
     }
 `;
 
-function journalfortMelding(melding: Melding) {
+function JournalfortAvTekst(melding: Melding) {
     const navn = melding.journalfortAv ? saksbehandlerTekst(melding.journalfortAv) : 'ukjent';
     const dato = melding.journalfortDato ? formaterDato(melding.journalfortDato) : 'ukjent dato';
     const tema = melding.journalfortTemanavn ? `tema ${melding.journalfortTemanavn}` : 'ukjent tema';
@@ -110,7 +116,7 @@ function Journalforing({ melding }: { melding: Melding }) {
             onClick={() => setOpen(!open)}
             border={false}
         >
-            {journalfortMelding(melding)}
+            {JournalfortAvTekst(melding)}
         </StyledJournalforingPanel>
     );
 }
@@ -130,12 +136,6 @@ function MeldingLestEtikett({ melding }: { melding: Melding }) {
     }
     return null;
 }
-
-const StyledTekstomrade = styled(Tekstomrade)`
-    p {
-        margin-bottom: 0 !important;
-    }
-`;
 
 export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
     if (erMeldingFraBruker(melding.meldingstype)) {

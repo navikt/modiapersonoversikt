@@ -3,10 +3,9 @@ import { PersonsokRequest, PersonsokResponse } from '../../models/person/persons
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
-import { PersonSokFormState, lagRequest } from './personsokUtils';
+import { PersonSokFormState, lagRequest } from './personsok-utils';
 import { loggError } from '../../utils/logger/frontendLogger';
 import useFormstate, { FunctionValidator, Values } from '@nutgaard/use-formstate';
-import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
 import PersonsokDatovelger from './PersonsokDatovelger';
@@ -19,6 +18,7 @@ import theme from '../../styles/personOversiktTheme';
 import { erTall } from '../../utils/string-utils';
 import { removeWhitespaceAndDot, validerKontonummer } from './kontonummer/kontonummerUtils';
 import moment from 'moment';
+import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;

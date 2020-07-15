@@ -11,8 +11,8 @@ import useBrukersYtelserMarkup from '../ytelser/useBrukersYtelserMarkup';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useInfotabsDyplenker } from '../dyplenker';
-import { ytelserTest } from '../dyplenkeTest/utils';
-import { formaterDato } from '../../../../utils/stringFormatting';
+import { ytelserTest } from '../dyplenkeTest/utils-dyplenker-test';
+import { formaterDato } from '../../../../utils/string-utils';
 import { usePrevious } from '../../../../utils/customHooks';
 import { getUnikYtelseKey } from '../../../../models/ytelse/ytelse-utils';
 

@@ -9,7 +9,7 @@ import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import DialogpanelVelgSak from './DialogpanelVelgSak';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
-import { capitalizeName } from '../../../../utils/stringFormatting';
+import { capitalizeName } from '../../../../utils/string-utils';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { NyMeldingValidator } from './validatorer';
 import TekstFelt from './TekstFelt';

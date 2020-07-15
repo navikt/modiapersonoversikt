@@ -4,7 +4,7 @@ import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
 import { INFOTABS } from '../InfoTabEnum';
-import { getAktivTab, sakerTest } from './utils';
+import { getAktivTab, sakerTest } from './utils-dyplenker-test';
 
 test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra oversikt', () => {
     const infoTabs = mount(

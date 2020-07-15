@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models/utbetalinger';
-import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalingerUtils';
+import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalinger-utils';
 import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components/macro';
@@ -15,7 +15,7 @@ import { UtbetalingTabellStyling } from '../utils/CommonStyling';
 import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
 import { datoVerbose } from '../../../../../utils/dateUtils';
-import { utbetalingerTest } from '../../dyplenkeTest/utils';
+import { utbetalingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useAppState, useOnMount, useOnUpdate, usePrevious } from '../../../../../utils/customHooks';
 import usePrinter from '../../../../../utils/UsePrinter';
 import { useRef } from 'react';

@@ -9,7 +9,6 @@ import { UnmountClosed } from 'react-collapse';
 import AriaNotification from '../../../components/AriaNotification';
 import styled from 'styled-components/macro';
 import theme from '../../../styles/personOversiktTheme';
-import { useLoggSkjermInfoDaglig } from '../../../utils/logger/loggInfo/useLoggSkjermInfoDaglig';
 import { useAppState } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
@@ -45,8 +44,6 @@ function VisittkortContainer() {
         },
         [dispatch]
     );
-
-    useLoggSkjermInfoDaglig();
 
     if (!personResource.data) {
         return personResource.placeholder;

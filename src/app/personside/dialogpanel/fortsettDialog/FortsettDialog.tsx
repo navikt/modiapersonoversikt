@@ -6,7 +6,7 @@ import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
 import VelgDialogType from './VelgDialogType';
 import TekstFelt from '../sendMelding/TekstFelt';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
-import { capitalizeName } from '../../../../utils/stringFormatting';
+import { capitalizeName } from '../../../../utils/string-utils';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Temavelger from '../component/Temavelger';

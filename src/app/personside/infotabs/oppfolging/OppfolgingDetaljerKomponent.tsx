@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import DescriptionList from '../../../../components/DescriptionList';
-import { datoEllerNull } from '../../../../utils/stringFormatting';
+import { datoEllerNull } from '../../../../utils/string-utils';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';

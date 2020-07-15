@@ -2,7 +2,7 @@ import * as React from 'react';
 import { INFOTABS } from './InfoTabEnum';
 import styled, { css } from 'styled-components/macro';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
-import { capitalizeName } from '../../../utils/stringFormatting';
+import { capitalizeName } from '../../../utils/string-utils';
 
 interface TabPanelProps {
     onTabChange: Function;
