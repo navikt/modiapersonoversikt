@@ -6,7 +6,7 @@ import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import useFormstate from '@nutgaard/use-formstate';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
-import { fnr, ErrorReason } from '@navikt/fnrvalidator';
+import { fnr } from '@navikt/fnrvalidator';
 
 const Form = styled.form`
     margin-top: 2rem;
@@ -28,16 +28,20 @@ type PersonSokForm = {
     fødselsnummer: string;
 };
 
-const feilmeldinger = {
-    [ErrorReason.LENGTH]: 'Ikke riktig lengde på fnr',
-    [ErrorReason.CHECKSUM]: 'Ugyldig fnr',
-    [ErrorReason.DATE]: 'Ugyldig fnr'
-};
+function lagFeilmelding(error: ErrorReason): string {
+    switch (error) {
+        case 'fnr or dnr must consist of 11 digits':
+            return 'Ikke riktig lengde på fnr';
+        case "checksums don't match":
+        case 'invalid date':
+            return 'Ugyldig fnr';
+    }
+}
 
 const validering = useFormstate<PersonSokForm>(values => {
     const fnrValidation = fnr(values.fødselsnummer);
     if (fnrValidation.status === 'invalid') {
-        return { fødselsnummer: feilmeldinger[fnrValidation.reasons[0]] };
+        return { fødselsnummer: lagFeilmelding[fnrValidation.reasons[0]] };
     } else {
         return { fødselsnummer: undefined };
     }
