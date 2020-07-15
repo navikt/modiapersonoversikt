@@ -41,7 +41,7 @@ function lagFeilmelding(error: ErrorReason): string {
 const validering = useFormstate<PersonSokForm>(values => {
     const fnrValidation = fnr(values.fødselsnummer);
     if (fnrValidation.status === 'invalid') {
-        return { fødselsnummer: lagFeilmelding[fnrValidation.reasons[0]] };
+        return { fødselsnummer: lagFeilmelding(fnrValidation.reasons[0]) };
     } else {
         return { fødselsnummer: undefined };
     }
