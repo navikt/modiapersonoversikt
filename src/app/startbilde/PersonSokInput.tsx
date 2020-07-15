@@ -29,7 +29,7 @@ type PersonSokForm = {
 };
 
 const feilmeldinger = {
-    [ErrorReason.LENGTH]: 'Ikke riktig lenge på fnr',
+    [ErrorReason.LENGTH]: 'Ikke riktig lengde på fnr',
     [ErrorReason.CHECKSUM]: 'Ugyldig fnr',
     [ErrorReason.DATE]: 'Ugyldig fnr'
 };
