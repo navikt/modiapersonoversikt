@@ -6,7 +6,7 @@ import moment from 'moment';
 import {
     getFraDateFromFilter,
     getTilDateFromFilter
-} from '../../app/personside/infotabs/utbetalinger/utils/utbetalingerUtils';
+} from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 
 export const tidligsteTilgjengeligeDatoUtbetalingerRestkonto = moment()
     .subtract(5, 'year')

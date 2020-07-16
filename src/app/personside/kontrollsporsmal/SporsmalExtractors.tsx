@@ -9,8 +9,8 @@ import {
     SivilstandTyper
 } from '../../../models/person/person';
 import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
-import { formaterDato } from '../../../utils/stringFormatting';
-import { shuffle } from '../../../utils/list-utils';
+import { formaterDato } from '../../../utils/string-utils';
+import { shuffle } from './list-utils';
 import { Svar } from '../../../redux/kontrollSporsmal/types';
 import moment from 'moment';
 import { formatertKontonummerString } from '../../../utils/FormatertKontonummer';

@@ -15,7 +15,7 @@ import {
     reduceUtbetlingerTilYtelser,
     summertBeløpStringFraUtbetalinger,
     utbetalingDatoComparator
-} from './utbetalingerUtils';
+} from './utbetalinger-utils';
 import moment from 'moment';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
 import { Periode } from '../../../../../models/periode';

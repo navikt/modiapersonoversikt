@@ -7,7 +7,7 @@ import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
 import { hentFormattertDatoForSisteHendelse } from '../utils/saksoversiktUtils';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import { sakstemakodeAlle } from './SakstemaListe';
-import { sakerTest } from '../../dyplenkeTest/utils';
+import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useInfotabsDyplenker } from '../../dyplenker';
 
 interface Props {

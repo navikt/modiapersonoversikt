@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import { Ingress } from 'nav-frontend-typografi';
 import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import { utledUtbetalingPåVentÅrsak } from './utledUtbetalingerPåVentÅrsak';
-import { periodeEllerNull, prosentEllerNull } from '../../../../../../utils/stringFormatting';
+import { periodeEllerNull, prosentEllerNull } from '../../../../../../utils/string-utils';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { StyledTable } from '../../../../../../utils/table/StyledTable';
 

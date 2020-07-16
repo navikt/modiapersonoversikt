@@ -13,7 +13,7 @@ import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
 import { reloadOppfolingActionCreator } from '../../../../redux/restReducers/oppfolging';
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
-import { formaterDato, formaterTilISO8601Date } from '../../../../utils/stringFormatting';
+import { formaterDato, formaterTilISO8601Date } from '../../../../utils/string-utils';
 import moment from 'moment';
 import { isValidDate } from '../../../../utils/dateUtils';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';

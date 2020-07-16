@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useRef } from 'react';
 import styled from 'styled-components';
-import theme from '../styles/personOversiktTheme';
-import CopyIcon from '../svg/copyIcon';
-import { loggEvent } from '../utils/logger/frontendLogger';
+import theme from '../../../../../styles/personOversiktTheme';
+import CopyIcon from '../../../../../svg/copyIcon';
+import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 
 interface Props {
     stringToCopy: string;

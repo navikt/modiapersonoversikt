@@ -4,7 +4,7 @@ import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
 import { INFOTABS } from '../InfoTabEnum';
-import { getAktivTab, meldingerTest } from './utils';
+import { getAktivTab, meldingerTest } from './utils-dyplenker-test';
 import { getTestStore } from '../../../../test/testStore';
 import { getMockTraader } from '../../../../mock/meldinger/meldinger-mock';
 import { aremark } from '../../../../mock/person/aremark';

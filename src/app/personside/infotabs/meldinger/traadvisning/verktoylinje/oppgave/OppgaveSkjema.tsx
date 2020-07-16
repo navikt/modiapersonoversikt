@@ -24,7 +24,7 @@ import AutoComplete from './AutoComplete';
 import { hasData } from '@nutgaard/use-async';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 import useForeslatteEnheter from './useForeslåtteEnheter';
-import { useNormalPrioritet } from './oppgaveUtils';
+import { useNormalPrioritet } from './oppgave-utils';
 
 const AlertStyling = styled.div`
     > * {

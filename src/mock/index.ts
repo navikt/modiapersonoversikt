@@ -361,8 +361,7 @@ function setupSendReferatMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendreferat',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
-            meldingerBackendMock.sendReferat(request.body);
-            return {};
+            return meldingerBackendMock.sendReferat(request.body);
         })
     );
 }

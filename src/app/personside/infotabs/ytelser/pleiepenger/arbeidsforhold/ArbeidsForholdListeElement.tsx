@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Arbeidsforhold } from '../../../../../../models/ytelse/pleiepenger';
 import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
-import { datoEllerNull, NOKellerNull } from '../../../../../../utils/stringFormatting';
+import { datoEllerNull, NOKellerNull } from '../../../../../../utils/string-utils';
 import DescriptionList from '../../../../../../components/DescriptionList';
 
 function ArbeidsForhold({ arbeidsforhold }: { arbeidsforhold: Arbeidsforhold }) {
