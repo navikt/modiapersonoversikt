@@ -17,7 +17,6 @@ import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
 import useTokenRefresher from '../../utils/hooks/use-token-refresher';
-import { Oppgave } from '../../models/oppgave';
 
 const onError = (
     <FillCenterAndFadeIn>
@@ -34,7 +33,7 @@ function Personoversikt() {
 
     useOnMount(() => {
         if (isFinishedPosting(oppgaveResource)) {
-            const oppgaver = oppgaveResource.payload as Oppgave[];
+            const oppgaver = oppgaveResource.response;
             const harSattOppgaveFraGosysUrl = oppgaver.some(oppgave => oppgave.fraGosys === true);
             dispatch(setJobberMedSTO(!harSattOppgaveFraGosysUrl));
         } else {
