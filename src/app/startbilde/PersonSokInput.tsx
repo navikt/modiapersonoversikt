@@ -31,7 +31,7 @@ type PersonSokForm = {
 function lagFeilmelding(error: ErrorReason): string {
     switch (error) {
         case 'fnr or dnr must consist of 11 digits':
-            return 'Fødselsnummeret må kun inneholde tall';
+            return 'Fødselsnummeret må inneholde 11 siffer';
         case "checksums don't match":
         case 'invalid date':
             return 'Fødselsnummeret er ikke gyldig';
