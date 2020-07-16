@@ -31,10 +31,10 @@ type PersonSokForm = {
 function lagFeilmelding(error: ErrorReason): string {
     switch (error) {
         case 'fnr or dnr must consist of 11 digits':
-            return 'Ikke riktig lengde på fnr';
+            return 'Fødselsnummeret må kun inneholde tall';
         case "checksums don't match":
         case 'invalid date':
-            return 'Ugyldig fnr';
+            return 'Fødselsnummeret er ikke gyldig';
     }
 }
 
