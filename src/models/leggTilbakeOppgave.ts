@@ -1,10 +1,3 @@
-export interface Oppgave {
-    oppgaveId: string;
-    fødselsnummer: string;
-    fraGosys?: boolean;
-    traadId?: string;
-}
-
 interface LeggTilbakeOppgaveBaseRequest {
     type: 'Innhabil' | 'FeilTema' | 'AnnenAarsak';
     oppgaveId: string;

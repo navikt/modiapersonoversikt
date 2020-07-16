@@ -1,6 +1,6 @@
 import { ReactNode, useMemo } from 'react';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
-import { datoSynkende } from '../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../utils/date-utils';
 import { getYtelseIdDato, Ytelse } from '../../../../models/ytelse/ytelse-utils';
 
 interface Returns {

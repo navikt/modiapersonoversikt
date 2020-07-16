@@ -15,7 +15,7 @@ import { reloadOppfolingActionCreator } from '../../../../redux/restReducers/opp
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { formaterDato, formaterTilISO8601Date } from '../../../../utils/string-utils';
 import moment from 'moment';
-import { isValidDate } from '../../../../utils/dateUtils';
+import { isValidDate } from '../../../../utils/date-utils';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';

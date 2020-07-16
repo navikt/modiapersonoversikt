@@ -5,7 +5,7 @@ import { fyllRandomListe } from '../utils/mock-utils';
 import moment from 'moment';
 import { aremark } from '../person/aremark';
 import { statiskVarselMock } from './statiskVarselMock';
-import { backendDatoformat } from '../../utils/dateUtils';
+import { backendDatoformat } from '../../utils/date-utils';
 
 export function getMockVarsler(fnr: string): Varsel[] {
     faker.seed(Number(fnr));

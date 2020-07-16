@@ -6,7 +6,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import SakstemaListeElement from './SakstemaListeElement';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { getUnikSakstemaKey, hentDatoForSisteHendelse, useAgregerteSaker } from '../utils/saksoversiktUtils';
-import { datoSynkende } from '../../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../../utils/date-utils';
 import LazySpinner from '../../../../../components/LazySpinner';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import { useRef } from 'react';

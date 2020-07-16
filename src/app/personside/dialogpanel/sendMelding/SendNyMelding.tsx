@@ -19,7 +19,7 @@ import Oppgaveliste from './Oppgaveliste';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import theme from '../../../../styles/personOversiktTheme';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
-import { Temagruppe, TemaSamtalereferat } from '../../../../models/Temagrupper';
+import { Temagruppe, TemaSamtalereferat } from '../../../../models/temagrupper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { guid } from 'nav-frontend-js-utils';
 import ReflowBoundry from '../ReflowBoundry';

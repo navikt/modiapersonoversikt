@@ -8,7 +8,7 @@ import Arbeidssituasjon from '../arbeidsforhold/Arbeidssituasjon';
 import KommendeUtbetalinger from '../utbetalinger/kommendeUtbetalinger/KommendeUtbetalinger';
 import UtbetalingerPVentListe from './utbetalingerpåvent/UtbetalingerPåVent';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import { datoSynkende } from '../../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../../utils/date-utils';
 import { useOnMount } from '../../../../../utils/customHooks';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { guid } from 'nav-frontend-js-utils';

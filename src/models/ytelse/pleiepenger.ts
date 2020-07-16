@@ -1,6 +1,6 @@
 import { getSistePeriodeForPleiepengerettighet } from '../../app/personside/infotabs/ytelser/pleiepenger/pleiepengerUtils';
 import moment from 'moment';
-import { backendDatoformat } from '../../utils/dateUtils';
+import { backendDatoformat } from '../../utils/date-utils';
 
 export interface PleiepengerResponse {
     pleiepenger: Pleiepengerettighet[] | null;

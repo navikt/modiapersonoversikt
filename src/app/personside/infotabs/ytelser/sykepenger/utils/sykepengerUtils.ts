@@ -1,6 +1,6 @@
 import { Sykmelding } from '../../../../../../models/ytelse/sykepenger';
-import { Periode } from '../../../../../../models/periode';
-import { getNewestDate, getOldestDate } from '../../../../../../utils/dateUtils';
+import { Periode } from '../../../../../../models/tid';
+import { getNewestDate, getOldestDate } from '../../../../../../utils/date-utils';
 
 export function getSykemeldingPeriode(sykmeldinger: Sykmelding[]) {
     return sykmeldinger.reduce(

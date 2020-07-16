@@ -15,7 +15,7 @@ import { KommendeUtbetaling } from '../../models/ytelse/ytelse-utbetalinger';
 import { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
 import { aremark } from '../person/aremark';
 import { statiskForeldrepengeMock } from './statiskForeldrepengeMock';
-import { backendDatoformat } from '../../utils/dateUtils';
+import { backendDatoformat } from '../../utils/date-utils';
 
 export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerResponse {
     if (fødselsnummer === aremark.fødselsnummer) {

@@ -16,10 +16,10 @@ import {
     erMeldingFraNav,
     saksbehandlerTekst
 } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
-import { Temagruppe, TemaPlukkbare } from '../../models/Temagrupper';
+import { Temagruppe, TemaPlukkbare } from '../../models/temagrupper';
 import standardTeksterMock from '../standardTeksterMock';
 import { autofullfor, AutofullforMap } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
-import { backendDatoTidformat } from '../../utils/dateUtils';
+import { backendDatoTidformat } from '../../utils/date-utils';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)
 export const MOCKED_TRAADID_1 = '123';

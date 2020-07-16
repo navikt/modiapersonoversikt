@@ -4,7 +4,7 @@ import {
     Pleiepengerettighet,
     Vedtak
 } from '../../../../../models/ytelse/pleiepenger';
-import { datoStigende } from '../../../../../utils/dateUtils';
+import { datoStigende } from '../../../../../utils/date-utils';
 
 export function getSistePeriodeForPleiepengerettighet(pleiepenger: Pleiepengerettighet): Pleiepengeperiode | undefined {
     return pleiepenger.perioder.sort(datoStigende(p => p.fom)).reverse()[0];

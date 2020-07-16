@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Sikkerhetstiltak as SikkerhetstiltakInterface } from '../../../../../models/sikkerhetstiltak';
 import { Person } from '../../../../../models/person/person';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { Periode } from '../../../../../models/periode';
+import { Periode } from '../../../../../models/tid';
 import VisPeriode from '../../../../../components/person/VisPeriode';
 import SikkerhetsTiltakIkon from '../../../../../svg/Sikkerhetstiltak';
 import { VisittkortGruppe } from '../VisittkortStyles';

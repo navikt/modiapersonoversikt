@@ -1,8 +1,8 @@
-import { Oppgave } from '../models/oppgave';
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import { MOCKED_TRAADID_1, MOCKED_TRAADID_2, MOCKED_TRAADID_3 } from './meldinger/meldinger-mock';
 import { fyllRandomListe } from './utils/mock-utils';
+import { Oppgave } from '../models/meldinger/oppgave';
 
 export function getTilfeldigeOppgaver(): Oppgave[] {
     if (navfaker.random.vektetSjanse(0.05)) {

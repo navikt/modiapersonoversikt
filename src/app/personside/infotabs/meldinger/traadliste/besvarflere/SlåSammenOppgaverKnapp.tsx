@@ -2,7 +2,7 @@ import { Traad } from '../../../../../../models/meldinger/meldinger';
 import { default as React, useState } from 'react';
 import useTildelteOppgaver from '../../../../../../utils/hooks/useTildelteOppgaver';
 import { harDelsvar, nyesteMelding } from '../../utils/meldingerUtils';
-import { datoSynkende } from '../../../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../../../utils/date-utils';
 import KnappBase from 'nav-frontend-knapper';
 import BesvarFlere from './BesvarFlere';
 import styled from 'styled-components/macro';

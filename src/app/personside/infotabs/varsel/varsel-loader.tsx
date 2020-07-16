@@ -5,7 +5,7 @@ import { useGjeldendeBruker } from '../../../../redux/gjeldendeBruker/types';
 import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../api/config';
 import LazySpinner from '../../../../components/LazySpinner';
-import { datoSynkende } from '../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../utils/date-utils';
 import freeze from '../../../../utils/freeze';
 
 function lagFetchOptions(fnr: string): RequestInit {

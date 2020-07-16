@@ -12,7 +12,7 @@ import {
 import { fyllRandomListe } from './utils/mock-utils';
 import navfaker from 'nav-faker';
 import moment from 'moment';
-import { backendDatoformat } from '../utils/dateUtils';
+import { backendDatoformat } from '../utils/date-utils';
 
 export function getMockOppfølging(fødselsnummer: string): Oppfolging {
     faker.seed(Number(fødselsnummer));

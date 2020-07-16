@@ -16,7 +16,7 @@ import {
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { getBedriftsNavn, getMockNavn } from '../person/personMock';
 import { aremark } from '../person/aremark';
-import { backendDatoformat } from '../../utils/dateUtils';
+import { backendDatoformat } from '../../utils/date-utils';
 
 export function getMockUtbetalinger(fødselsnummer: string, startDato: string, sluttDato: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
