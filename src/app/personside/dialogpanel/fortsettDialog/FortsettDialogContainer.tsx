@@ -15,7 +15,7 @@ import {
 } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { loggError, loggEvent } from '../../../../utils/logger/frontendLogger';
+import { loggError } from '../../../../utils/logger/frontendLogger';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import {
@@ -24,7 +24,6 @@ import {
     FortsettDialogState,
     KvitteringsData
 } from './FortsettDialogTypes';
-import { useTimer } from '../../../../utils/hooks/useTimer';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../rest/consumer/usePostResource';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -87,7 +86,6 @@ function FortsettDialogContainer(props: Props) {
             }),
         [setState, updateDraft]
     );
-    const getDuration = useTimer();
 
     const opprettHenvendelse = useOpprettHenvendelse(props.traad);
 
@@ -121,7 +119,6 @@ function FortsettDialogContainer(props: Props) {
         }
         const callback = () => {
             removeDraft();
-            loggEvent('TidsbrukMillisekunder', 'FortsettDialog', undefined, { ms: getDuration() });
             dispatch(resetPlukkOppgaveResource);
             dispatch(reloadTildelteOppgaver);
             dispatch(reloadMeldinger);
