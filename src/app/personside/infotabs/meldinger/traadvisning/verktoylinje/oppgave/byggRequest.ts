@@ -6,7 +6,7 @@ import {
 import { eldsteMelding } from '../../../utils/meldingerUtils';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { OppgaveProps, OppgaveSkjemaForm, SkjermetOppgaveSkjemaForm } from './oppgaveInterfaces';
-import { formatterDatoTidNaa } from '../../../../../../../utils/dateUtils';
+import { formatterDatoTidNaa } from '../../../../../../../utils/date-utils';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { Mapped, Values } from '@nutgaard/use-formstate';
 

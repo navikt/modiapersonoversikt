@@ -11,7 +11,7 @@ import {
     meldingstittel,
     saksbehandlerTekst
 } from '../utils/meldingerUtils';
-import { formatterDatoTid } from '../../../../../utils/dateUtils';
+import { formatterDatoTid } from '../../../../../utils/date-utils';
 import { formaterDato } from '../../../../../utils/string-utils';
 import styled from 'styled-components/macro';
 import Tekstomrade, { createDynamicHighlightingRule, defaultRules, Rule } from 'nav-frontend-tekstomrade';

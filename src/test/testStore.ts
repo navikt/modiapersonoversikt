@@ -25,7 +25,7 @@ import { statiskForeldrepengeMock } from '../mock/ytelse/statiskForeldrepengeMoc
 import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
 import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUtbetalingRespons';
-import { SaksbehandlerRoller } from '../utils/RollerUtils';
+import { SaksbehandlerRoller } from '../app/personside/dialogpanel/RollerUtils';
 import { apiBaseUri } from '../api/config';
 
 export function getTestStore(): Store<AppState> {

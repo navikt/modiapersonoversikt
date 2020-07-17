@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Periode } from '../../models/periode';
+import { Periode } from '../../models/tid';
 import { formaterDato } from '../../utils/string-utils';
 import EtikettGrå from '../EtikettGrå';
 

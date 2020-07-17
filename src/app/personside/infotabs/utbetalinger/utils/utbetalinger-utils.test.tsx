@@ -18,7 +18,7 @@ import {
 } from './utbetalinger-utils';
 import moment from 'moment';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
-import { Periode } from '../../../../../models/periode';
+import { Periode } from '../../../../../models/tid';
 import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 
 Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts

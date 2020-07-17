@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OppfolgingsVedtak } from '../../../../models/oppfolging';
-import { datoSynkende } from '../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../utils/date-utils';
 import styled from 'styled-components/macro';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { datoEllerTomString } from '../../../../utils/string-utils';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useOnMount } from '../utils/customHooks';
 import { detect } from 'detect-browser';
-import { erIE11 } from '../utils/erNyPersonoversikt';
+import { erIE11 } from '../utils/erIE11';
 import { createGlobalStyle } from 'styled-components/macro';
 import { pxToRem } from '../styles/personOversiktTheme';
 

@@ -6,7 +6,7 @@ import SvgIkon from './StandardTekstIkon';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import useFieldState from '../../../../../utils/hooks/use-field-state';
-import { useErKontaktsenter } from '../../../../../utils/enheterUtils';
+import { useErKontaktsenter } from '../../../../../utils/enheter-utils';
 import { getInnstilling } from '../../../../../redux/innstillinger';
 import { useAppState } from '../../../../../utils/customHooks';
 

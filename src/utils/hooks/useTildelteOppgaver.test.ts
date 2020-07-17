@@ -1,4 +1,4 @@
-import { Oppgave } from '../../models/oppgave';
+import { Oppgave } from '../../models/leggTilbakeOppgave';
 import { removeDuplicateOppgaver } from './useTildelteOppgaver';
 
 test('filtrerer bort duplikater', () => {

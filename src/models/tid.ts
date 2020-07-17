@@ -3,3 +3,8 @@ export interface Klokkeslett {
     minutt: string;
     sekund: string;
 }
+
+export interface Periode {
+    fra: string;
+    til: string;
+}

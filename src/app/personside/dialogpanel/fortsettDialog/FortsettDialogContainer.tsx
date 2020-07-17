@@ -32,7 +32,7 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { isFinishedPosting } from '../../../../rest/utils/postResource';
 import ReflowBoundry from '../ReflowBoundry';
-import { Temagruppe } from '../../../../models/Temagrupper';
+import { Temagruppe } from '../../../../models/temagrupper';
 import useDraft, { Draft } from '../use-draft';
 
 export type FortsettDialogType =

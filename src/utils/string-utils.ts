@@ -1,6 +1,6 @@
 import { formaterNOK } from '../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import moment from 'moment';
-import { Periode } from '../models/periode';
+import { Periode } from '../models/tid';
 
 export const ENDASH = '\u2013';
 

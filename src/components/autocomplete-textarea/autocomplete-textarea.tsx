@@ -17,7 +17,7 @@ import { PopoverOrientering } from 'nav-frontend-popover';
 import { guid } from 'nav-frontend-js-utils';
 import { Undertittel } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/logger/frontendLogger';
-import { useErKontaktsenter } from '../../utils/enheterUtils';
+import { useErKontaktsenter } from '../../utils/enheter-utils';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 import useFetch, { FetchResult, hasData } from '@nutgaard/use-fetch';
 import { rapporterBruk } from '../../app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';

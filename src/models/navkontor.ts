@@ -1,4 +1,4 @@
-import { Klokkeslett } from './klokkeslett';
+import { Klokkeslett } from './tid';
 import { Gateadresse } from './personadresse';
 
 export interface ApningsTid {

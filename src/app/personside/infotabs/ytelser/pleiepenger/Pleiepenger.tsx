@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 import Pleiepengerperiode from './Pleiepengerperiode';
 import Oversikt from './Oversikt';
-import { datoStigende } from '../../../../../utils/dateUtils';
+import { datoStigende } from '../../../../../utils/date-utils';
 import { useOnMount } from '../../../../../utils/customHooks';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import styled from 'styled-components';

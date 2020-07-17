@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import { NavKontorResponse, PublikumsMottak } from '../../../../../models/navkontor';
-import { Klokkeslett } from '../../../../../models/klokkeslett';
+import { Klokkeslett } from '../../../../../models/tid';
 import EtikettGrå from '../../../../../components/EtikettGrå';
 import VisittkortElement from '../VisittkortElement';
 import NavLogo from '../../../../../svg/NavLogo';

@@ -1,9 +1,9 @@
-import { LeggTilbakeOppgaveRequest } from '../../../../models/oppgave';
+import { LeggTilbakeOppgaveRequest } from '../../../../models/leggTilbakeOppgave';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import { FortsettDialogType } from './FortsettDialogContainer';
-import { Temagruppe } from '../../../../models/Temagrupper';
+import { Temagruppe } from '../../../../models/temagrupper';
 
 export enum DialogPanelStatus {
     UNDER_ARBEID,

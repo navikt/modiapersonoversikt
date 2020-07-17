@@ -2,7 +2,7 @@ import moment from 'moment';
 
 import { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
 import { getPeriodeRange } from '../person/periodeMock';
-import { backendDatoformat } from '../../utils/dateUtils';
+import { backendDatoformat } from '../../utils/date-utils';
 
 export function getKommendeUtbetaling(faker: Faker.FakerStatic): KommendeUtbetaling {
     return {

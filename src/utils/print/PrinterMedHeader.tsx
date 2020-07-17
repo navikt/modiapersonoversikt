@@ -1,10 +1,10 @@
-import NavLogo from '../svg/NavLogo';
+import NavLogo from '../../svg/NavLogo';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { datoVerbose } from './dateUtils';
+import { datoVerbose } from '../date-utils';
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { ReactNode } from 'react';
-import { useFødselsnummer } from './customHooks';
+import { useFødselsnummer } from '../customHooks';
 
 const Wrapper = styled.div`
     @page {

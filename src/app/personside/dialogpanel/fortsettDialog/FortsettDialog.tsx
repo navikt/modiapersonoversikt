@@ -18,7 +18,7 @@ import styled from 'styled-components/macro';
 import { FortsettDialogValidator } from './validatorer';
 import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';
 import { erDelvisBesvart, erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { temagruppeTekst, TemaPlukkbare } from '../../../../models/Temagrupper';
+import { temagruppeTekst, TemaPlukkbare } from '../../../../models/temagrupper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 const SubmitKnapp = styled(Hovedknapp)`

@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import NavFaker from 'nav-faker/dist/navfaker';
-import { backendDatoformat } from '../../utils/dateUtils';
+import { backendDatoformat } from '../../utils/date-utils';
 
 export function getMockFullmakter(faker: Faker.FakerStatic, navfaker: NavFaker): Fullmakt[] | undefined {
     if (vektetSjanse(faker, 0.5)) {

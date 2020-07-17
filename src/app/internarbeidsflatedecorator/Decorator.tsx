@@ -13,7 +13,7 @@ import { useAppState, useOnMount } from '../../utils/customHooks';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { velgEnhetAction } from '../../redux/session/session';
-import { parseQueryString, useQueryParams } from '../../utils/urlUtils';
+import { parseQueryString, useQueryParams } from '../../utils/url-utils';
 import styled from 'styled-components';
 import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTipsContainer';
 import useHandleGosysUrl from './useHandleGosysUrl';

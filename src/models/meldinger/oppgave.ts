@@ -23,6 +23,13 @@ export interface GsakTemaUnderkategori {
     erGyldig: boolean;
 }
 
+export interface Oppgave {
+    oppgaveId: string;
+    fødselsnummer: string;
+    fraGosys?: boolean;
+    traadId?: string;
+}
+
 export interface OpprettOppgaveRequest {
     fnr: string;
     opprettetavenhetsnummer: string;

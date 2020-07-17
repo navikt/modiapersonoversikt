@@ -13,7 +13,7 @@ import { UnmountClosed } from 'react-collapse';
 import { EtikettAdvarsel, EtikettFokus, EtikettInfo, EtikettSuksess } from 'nav-frontend-etiketter';
 import * as React from 'react';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
-import { Temagruppe } from '../../../../../models/Temagrupper';
+import { Temagruppe } from '../../../../../models/temagrupper';
 import styled from 'styled-components/macro';
 
 const ContentStyle = styled.div`

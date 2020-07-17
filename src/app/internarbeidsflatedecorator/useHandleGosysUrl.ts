@@ -1,4 +1,4 @@
-import { useQueryParams } from '../../utils/urlUtils';
+import { useQueryParams } from '../../utils/url-utils';
 import { useOnMount } from '../../utils/customHooks';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { useDispatch } from 'react-redux';
@@ -6,7 +6,7 @@ import { usePostResource } from '../../rest/consumer/usePostResource';
 import { useHistory } from 'react-router';
 import { INFOTABS } from '../personside/infotabs/InfoTabEnum';
 import { paths } from '../routes/routing';
-import { Oppgave } from '../../models/oppgave';
+import { Oppgave } from '../../models/meldinger/oppgave';
 
 function useHandleGosysUrl() {
     const queryParams = useQueryParams<{ sokFnr?: string; oppgaveid?: string; behandlingsid?: string }>();

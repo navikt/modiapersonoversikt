@@ -12,7 +12,7 @@ import ViktigÅVite from '../viktigavite/viktigavite';
 import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types';
 import LenkeNorg from '../utils/LenkeNorg';
 import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
-import { datoSynkende } from '../../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../../utils/date-utils';
 import DropDownMenu from '../../../../../components/DropDownMenu';
 import JournalpostLiseElement from './JournalpostLiseElement';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';

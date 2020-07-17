@@ -3,7 +3,7 @@ import md5 from 'md5';
 import { detect } from 'detect-browser';
 import { useEffect } from 'react';
 import { useRestResource } from '../../rest/consumer/useRestResource';
-import { erKontaktsenter } from '../enheterUtils';
+import { erKontaktsenter } from '../enheter-utils';
 
 let ident = 'ikke satt';
 let enhet = 'ikke valgt';
