@@ -7,11 +7,11 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { useAppState, useFocusOnMount } from '../../../../../../../utils/customHooks';
 import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
 import { isFinishedPosting } from '../../../../../../../rest/utils/postResource';
-import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 import { Textarea } from 'nav-frontend-skjema';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { Element } from 'nav-frontend-typografi';
 import { useDispatch } from 'react-redux';
+import { AvsluttGosysOppgaveRequest } from '../../../../../../../models/meldinger/merk';
 
 const StyledAlert = styled.div`
     margin: 1rem 0rem;
@@ -42,7 +42,7 @@ function AvsluttGosysOppgaveSkjema() {
         }
         setSubmitting(true);
         if (oppgaveFraGosys) {
-            const request = {
+            const request: AvsluttGosysOppgaveRequest = {
                 fnr: oppgaveFraGosys.fødselsnummer,
                 oppgaveid: oppgaveFraGosys.oppgaveId,
                 beskrivelse: gosysBeskrivelse,
@@ -51,12 +51,10 @@ function AvsluttGosysOppgaveSkjema() {
             post(`${apiBaseUri}/dialogmerking/avsluttgosysoppgave`, request, 'Avslutt-Oppgave-Fra-Gosys')
                 .then(() => {
                     setAvsluttOppgaveSuksess(true);
-                    loggEvent('AvsluttGosysOppgaveFraUrl', 'AvsluttOppgaveskjema');
                     dispatch(plukkOppgaveResource.actions.reset);
                 })
                 .catch(() => {
                     setError(true);
-                    loggError(new Error('AvslutteGosysOppgave'), 'Oppgave');
                 })
                 .finally(() => {
                     setSubmitting(false);

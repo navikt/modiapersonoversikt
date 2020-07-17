@@ -8,7 +8,7 @@ import {
     erPlukkbar,
     kanLeggesTilbake
 } from './meldingerUtils';
-import { Temagruppe, temagruppeTekst } from '../../../../../models/Temagrupper';
+import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
 
 describe('Temagrupper', () => {
     const pensjon = Temagruppe.Pensjon;

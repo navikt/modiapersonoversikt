@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../redux/reducers';
 import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
-import { finnMiljoStreng } from '../../../../../utils/urlUtils';
+import { finnMiljoStreng } from '../../../../../utils/url-utils';
 
 const StyledLenkepanelPersonoversikt = styled(LenkepanelPersonoversikt)`
     margin-bottom: ${theme.margin.layout};

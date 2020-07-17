@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { getTemaFraCookie, setTemaCookie } from './plukkTemaCookie';
-import { Temagruppe } from '../../models/Temagrupper';
+import { Temagruppe } from '../../models/temagrupper';
 import { getSaksbehandlerEnhetFraCookieDeprecated } from './saksbehandlersEnhetCookieUtils';
 import { post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';

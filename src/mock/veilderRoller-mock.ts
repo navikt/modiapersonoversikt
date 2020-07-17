@@ -2,7 +2,7 @@ import faker from 'faker/locale/nb_NO';
 
 import { VeilederRoller } from '../models/veilederRoller';
 import { vektetSjanse } from './utils/mock-utils';
-import { SaksbehandlerRoller } from '../utils/RollerUtils';
+import { SaksbehandlerRoller } from '../app/personside/dialogpanel/RollerUtils';
 
 export function getMockVeilederRoller(): VeilederRoller {
     let roller = [];

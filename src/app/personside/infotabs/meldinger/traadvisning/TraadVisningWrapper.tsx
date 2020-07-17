@@ -4,7 +4,7 @@ import TraadVisning from './TraadVisning';
 import * as React from 'react';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import styled from 'styled-components/macro';
-import usePrinter from '../../../../../utils/UsePrinter';
+import usePrinter from '../../../../../utils/print/usePrinter';
 
 interface TraadVisningWrapperProps {
     valgtTraad?: Traad;

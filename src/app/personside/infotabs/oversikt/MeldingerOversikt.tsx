@@ -7,14 +7,14 @@ import theme from '../../../../styles/personOversiktTheme';
 import { nyesteMelding } from '../meldinger/utils/meldingerUtils';
 import { meldingstypeTekst } from '../meldinger/utils/meldingstekster';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
-import { datoSynkende } from '../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../utils/date-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { meldingerTest } from '../dyplenkeTest/utils-dyplenker-test';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useOnMount } from '../../../../utils/customHooks';
-import { temagruppeTekst } from '../../../../models/Temagrupper';
+import { temagruppeTekst } from '../../../../models/temagrupper';
 import TraadSammendrag from '../meldinger/traadliste/TraadSammendrag';
 
 const ListStyle = styled.ol`

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createRef, useState } from 'react';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import VelgSak from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
-import { formatterDatoMedMaanedsnavn } from '../../../../utils/dateUtils';
+import { formatterDatoMedMaanedsnavn } from '../../../../utils/date-utils';
 import { SkjemaGruppe } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';

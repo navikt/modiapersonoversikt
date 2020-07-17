@@ -1,4 +1,4 @@
-import { Periode } from './periode';
+import { Periode } from './tid';
 import { Kodeverk } from './kodeverk';
 
 export interface Endringsinfo {

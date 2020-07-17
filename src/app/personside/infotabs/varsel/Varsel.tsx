@@ -6,7 +6,7 @@ import {
     DittNavEvent,
     isDittNavEvent
 } from '../../../../models/varsel';
-import { datoSynkende } from '../../../../utils/dateUtils';
+import { datoSynkende } from '../../../../utils/date-utils';
 import VarselMeldinger from './varselDetaljer/VarselMeldinger';
 import styled from 'styled-components/macro';
 import { Element, Normaltekst } from 'nav-frontend-typografi';

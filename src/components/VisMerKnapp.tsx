@@ -3,7 +3,7 @@ import { pxToRem, theme } from '../styles/personOversiktTheme';
 import styled, { css } from 'styled-components/macro';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { isSelectingText } from '../utils/functionUtils';
+import { isSelectingText } from '../utils/function-utils';
 
 const Wrapper = styled.div<{ valgt: boolean }>`
     position: relative;

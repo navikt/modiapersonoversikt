@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DependencyList, EffectCallback, RefObject, useCallback, useEffect, useRef } from 'react';
-import { EventListener, runIfEventIsNotInsideRef } from './reactRefUtils';
+import { EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
 import { useSelector } from 'react-redux';
 import { AppState } from '../redux/reducers';
 

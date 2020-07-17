@@ -1,4 +1,4 @@
-import { Periode } from '../periode';
+import { Periode } from '../tid';
 
 export interface KommendeUtbetaling {
     vedtak: null | Periode;

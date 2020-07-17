@@ -6,7 +6,7 @@ import { Personadresse } from '../../../../../../models/personadresse';
 import { formaterDato } from '../../../../../../utils/string-utils';
 import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
-import { Periode } from '../../../../../../models/periode';
+import { Periode } from '../../../../../../models/tid';
 import VisPeriode from '../../../../../../components/person/VisPeriode';
 import LocationPin from '../../../../../../svg/LocationPin';
 import { Normaltekst } from 'nav-frontend-typografi';

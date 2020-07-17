@@ -8,7 +8,7 @@ import ErrorBoundary from '../../../../components/ErrorBoundary';
 import Arenalenke from './Arenalenke/Arenalenke';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
-import { erIE11 } from '../../../../utils/erNyPersonoversikt';
+import { erIE11 } from '../../../../utils/erIE11';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 
 const UtbetalingerStyle = styled.div`

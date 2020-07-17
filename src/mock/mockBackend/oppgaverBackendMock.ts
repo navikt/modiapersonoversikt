@@ -1,5 +1,6 @@
 import { getTilfeldigeOppgaver } from '../oppgave-mock';
-import { LeggTilbakeOppgaveRequest, Oppgave } from '../../models/oppgave';
+import { LeggTilbakeOppgaveRequest } from '../../models/leggTilbakeOppgave';
+import { Oppgave } from '../../models/meldinger/oppgave';
 
 export class OppgaverBackendMock {
     private tildelteOppgaver: Oppgave[] = [];

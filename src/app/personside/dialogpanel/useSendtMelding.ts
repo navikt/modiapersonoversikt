@@ -1,4 +1,4 @@
-import { erMaks10MinSiden } from '../../../utils/dateUtils';
+import { erMaks10MinSiden } from '../../../utils/date-utils';
 import { erSammefritekstSomIMelding, nyesteMelding, nyesteTraad } from '../infotabs/meldinger/utils/meldingerUtils';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { useEffect, useMemo, useState } from 'react';

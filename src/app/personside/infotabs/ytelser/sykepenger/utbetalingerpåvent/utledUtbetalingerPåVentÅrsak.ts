@@ -1,6 +1,6 @@
 import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
 import moment from 'moment';
-import { Periode } from '../../../../../../models/periode';
+import { Periode } from '../../../../../../models/tid';
 
 export function utledUtbetalingPåVentÅrsak(utbetaling: UtbetalingPåVent): string {
     if (utbetaling.arbeidskategori === 'Inntektsopplysninger mangler') {

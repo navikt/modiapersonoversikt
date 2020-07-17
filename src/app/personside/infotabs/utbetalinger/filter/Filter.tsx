@@ -15,7 +15,7 @@ import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetal
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
-import { isValidDate } from '../../../../../utils/dateUtils';
+import { isValidDate } from '../../../../../utils/date-utils';
 import Panel from 'nav-frontend-paneler';
 
 const FiltreringsPanel = styled(Panel)`

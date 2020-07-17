@@ -76,16 +76,13 @@ export const theme = {
         px40: pxToRem(40),
         px30: pxToRem(30),
         px20: pxToRem(20),
-        px10: pxToRem(10),
-        px2: pxToRem(2),
-        px1: pxToRem(1)
+        px10: pxToRem(10)
     },
     borderRadius: {
         layout: '.25rem;',
         knapp: '.35rem;'
     },
     border: {
-        skilleDashed: `dotted ${pxToRem(1.5)} ${navFarger.navGra60};`,
         skille: `solid ${pxToRem(1)} ${navFarger.navGra60}`,
         skilleSvak: `solid ${pxToRem(1)} ${navFarger.navGra40};`
     },

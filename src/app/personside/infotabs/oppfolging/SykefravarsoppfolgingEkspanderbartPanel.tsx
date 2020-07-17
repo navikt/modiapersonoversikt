@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SyfoPunkt } from '../../../../models/oppfolging';
 import EkspanderbartYtelserPanel from '../ytelser/felles-styling/EkspanderbartYtelserPanel';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { datoSynkende, formatterDato } from '../../../../utils/dateUtils';
+import { datoSynkende, formatterDato } from '../../../../utils/date-utils';
 import { StyledTable } from '../../../../utils/table/StyledTable';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';

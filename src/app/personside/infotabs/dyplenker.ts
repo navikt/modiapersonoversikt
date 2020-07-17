@@ -5,7 +5,7 @@ import { useParams } from 'react-router';
 import { Traad } from '../../../models/meldinger/meldinger';
 import { useMemo } from 'react';
 import { SakerRouting, useSakerRouting } from './saksoversikt/utils/saksoversiktRoutingUtils';
-import { useQueryParams } from '../../../utils/urlUtils';
+import { useQueryParams } from '../../../utils/url-utils';
 import { getUnikYtelseKey, Ytelse } from '../../../models/ytelse/ytelse-utils';
 
 interface Dyplenker {

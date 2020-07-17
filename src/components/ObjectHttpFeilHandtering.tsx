@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ReactNode, useEffect, useState } from 'react';
-import { Omit } from '../utils/types';
 import { CenteredLazySpinner } from './LazySpinner';
 
+export type Omit<T, U> = Pick<T, Exclude<keyof T, U>>;
 interface Props
     extends Omit<React.DetailedHTMLProps<React.ObjectHTMLAttributes<HTMLObjectElement>, HTMLObjectElement>, 'onError'> {
     url: string;

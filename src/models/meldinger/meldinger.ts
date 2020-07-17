@@ -1,5 +1,5 @@
-import { Temagruppe } from '../Temagrupper';
 import { JournalforingsSak } from '../../app/personside/infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import { Temagruppe } from '../temagrupper';
 
 export interface Traad {
     traadId: string;
@@ -36,17 +36,6 @@ export interface Saksbehandler {
     fornavn: string;
     etternavn: string;
     ident?: string;
-}
-
-export enum TypeKontakt {
-    Telefon = 'telefon',
-    Oppmøte = 'oppmote',
-    Oppgave = 'oppgave',
-    Dokument = 'dokument',
-    Monolog = 'monolog',
-    MonologUbesvart = 'monlog ubesvart',
-    Dialog = 'dialog',
-    DialogBesvart = 'dialog besvart'
 }
 
 export enum Meldingstype {

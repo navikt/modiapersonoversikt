@@ -2,7 +2,7 @@ import { useLocation } from 'react-router';
 import { useOnMount } from '../../../../../utils/customHooks';
 import { default as React, useEffect, useState } from 'react';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
-import { erIE11 } from '../../../../../utils/erNyPersonoversikt';
+import { erIE11 } from '../../../../../utils/erIE11';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFeilHandtering';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';

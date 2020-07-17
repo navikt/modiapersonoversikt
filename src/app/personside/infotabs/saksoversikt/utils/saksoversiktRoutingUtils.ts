@@ -4,7 +4,7 @@ import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { getUnikSakstemaKey } from './saksoversiktUtils';
 import { usePaths } from '../../../../routes/routing';
 import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import { useQueryParams } from '../../../../../utils/urlUtils';
+import { useQueryParams } from '../../../../../utils/url-utils';
 import { erSakerFullscreen } from './erSakerFullscreen';
 
 export interface SakerRouting {

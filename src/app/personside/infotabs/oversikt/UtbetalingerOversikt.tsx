@@ -4,7 +4,7 @@ import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
-import { datoStigende, datoSynkende } from '../../../../utils/dateUtils';
+import { datoStigende, datoSynkende } from '../../../../utils/date-utils';
 import { formaterDato } from '../../../../utils/string-utils';
 import { Bold } from '../../../../components/common-styled-components';
 import { getGjeldendeDatoForUtbetaling, utbetalingDatoComparator } from '../utbetalinger/utils/utbetalinger-utils';
