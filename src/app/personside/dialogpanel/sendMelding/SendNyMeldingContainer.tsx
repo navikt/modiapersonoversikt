@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useCallback, useMemo, useState } from 'react';
-import SendNyMelding, { SendNyMeldingState, OppgavelisteValg } from './SendNyMelding';
+import SendNyMelding, { OppgavelisteValg, SendNyMeldingState } from './SendNyMelding';
 import { NyMeldingValidator } from './validatorer';
 import { Meldingstype, SendReferatRequest, SendSpørsmålRequest } from '../../../../models/meldinger/meldinger';
 import { useFødselsnummer } from '../../../../utils/customHooks';
@@ -12,6 +12,7 @@ import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTyp
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import useDraft, { Draft } from '../use-draft';
 import { feilMeldinger } from './FeilMeldinger';
+import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 
 const initialState: SendNyMeldingState = {
     tekst: '',
@@ -116,6 +117,7 @@ function SendNyMeldingContainer() {
             };
             post(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, request, 'Send-Sporsmal')
                 .then(() => {
+                    JournalforingUtils.slettCacheForSammensatteSaker(fnr);
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: request.fritekst });
                 })
