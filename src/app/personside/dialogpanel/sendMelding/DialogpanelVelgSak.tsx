@@ -8,10 +8,9 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { NedChevron, OppChevron } from 'nav-frontend-chevron';
-import { cache, createCacheKey } from '@nutgaard/use-fetch';
-import { apiBaseUri, includeCredentials } from '../../../../api/config';
 import { useClickOutside, useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
+import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 
 interface Props {
     valgtSak?: JournalforingsSak;
@@ -57,10 +56,8 @@ function getTittel(sak: JournalforingsSak) {
 function usePreFetchJournalforingsSaker() {
     const fnr = useFødselsnummer();
     useOnMount(() => {
-        const sammensattUrl = `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`;
-        const pensjonUrl = `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`;
-        cache.fetch(createCacheKey(sammensattUrl, includeCredentials), sammensattUrl, includeCredentials);
-        cache.fetch(createCacheKey(pensjonUrl, includeCredentials), pensjonUrl, includeCredentials);
+        JournalforingUtils.prefetchSammensatteSaker(fnr);
+        JournalforingUtils.prefetchPensjonsaker(fnr);
     });
 }
 

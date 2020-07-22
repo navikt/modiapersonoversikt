@@ -13,6 +13,7 @@ import { loggError } from '../../../../../../../utils/logger/frontendLogger';
 import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { useFødselsnummer } from '../../../../../../../utils/customHooks';
+import * as JournalforingUtils from '../../../../../journalforings-use-fetch-utils';
 
 interface Props {
     sak: JournalforingsSak;
@@ -59,6 +60,7 @@ export function JournalforSak(props: Props) {
         setSubmitting(true);
         post(`${apiBaseUri}/journalforing/${fnr}/${props.traad.traadId}`, props.sak, 'Journalføring')
             .then(() => {
+                JournalforingUtils.slettCacheForSammensatteSaker(fnr);
                 setSubmitting(false);
                 setJournalforingSuksess(true);
                 dispatch(tråderResource.actions.reload);

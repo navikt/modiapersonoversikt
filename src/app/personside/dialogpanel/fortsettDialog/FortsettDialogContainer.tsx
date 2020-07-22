@@ -34,6 +34,7 @@ import { isFinishedPosting } from '../../../../rest/utils/postResource';
 import ReflowBoundry from '../ReflowBoundry';
 import { Temagruppe } from '../../../../models/temagrupper';
 import useDraft, { Draft } from '../use-draft';
+import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -179,6 +180,7 @@ function FortsettDialogContainer(props: Props) {
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
+                    JournalforingUtils.slettCacheForSammensatteSaker(fnr);
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
