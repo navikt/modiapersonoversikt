@@ -6,7 +6,8 @@ export enum SendNyMeldingStatus {
     ERROR,
     REFERAT_SENDT,
     SPORSMAL_SENDT,
-    SVAR_SENDT
+    SVAR_SENDT,
+    INFORMELDING_SENDT
 }
 
 interface SendNyMeldingStatusInterface {
@@ -27,9 +28,19 @@ interface SporsmalSendtSuccess extends SendNyMeldingStatusInterface {
     fritekst: string;
 }
 
+interface InfomeldingSendtSuccess extends SendNyMeldingStatusInterface {
+    type: SendNyMeldingStatus.INFORMELDING_SENDT;
+    fritekst: string;
+}
+
 interface SporsmalSendtError extends SendNyMeldingStatusInterface {
     type: SendNyMeldingStatus.ERROR;
     fritekst: string;
 }
 
-export type SendNyMeldingPanelState = UnderArbeid | ReferatSendtSuccess | SporsmalSendtSuccess | SporsmalSendtError;
+export type SendNyMeldingPanelState =
+    | UnderArbeid
+    | ReferatSendtSuccess
+    | SporsmalSendtSuccess
+    | SporsmalSendtError
+    | InfomeldingSendtSuccess;

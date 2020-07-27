@@ -376,6 +376,16 @@ function setupSendSpørsmålMock(mock: FetchMock) {
     );
 }
 
+function setupSendInfomeldingMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fodselsnummer/sendinfomelding',
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
+            meldingerBackendMock.sendInfomelding(request.body);
+            return {};
+        })
+    );
+}
+
 function setupSendSvarMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendsvar',
@@ -605,6 +615,7 @@ opprettOppgaveMock(mock);
 opprettSkjermetOppgaveMock(mock);
 setupSendReferatMock(mock);
 setupSendSpørsmålMock(mock);
+setupSendInfomeldingMock(mock);
 setupSendSvarMock(mock);
 setupPersonsokMock(mock);
 merkAvsluttMock(mock);

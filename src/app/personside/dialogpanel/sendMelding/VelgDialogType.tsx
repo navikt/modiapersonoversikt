@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { SendNyMeldingState, SendNyMeldingDialogType } from './SendNyMelding';
+import { SendNyMeldingDialogType, SendNyMeldingState } from './SendNyMelding';
 import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
+import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     formState: SendNyMeldingState;
@@ -10,6 +12,7 @@ interface Props {
 }
 
 function VelgDialogType(props: Props) {
+    const enabled = useFeatureToggle(FeatureToggles.Infomelding).isOn ?? false;
     return (
         <VelgDialogtypeStyle>
             <Radio
@@ -30,6 +33,14 @@ function VelgDialogType(props: Props) {
                 checked={props.formState.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE}
                 name="dialogtype"
             />
+            {enabled && (
+                <Radio
+                    label="Infomelding"
+                    name="dialogtype"
+                    onChange={() => props.updateDialogType(Meldingstype.INFOMELDING_MODIA_UTGAAENDE)}
+                    checked={props.formState.dialogType === Meldingstype.INFOMELDING_MODIA_UTGAAENDE}
+                />
+            )}
         </VelgDialogtypeStyle>
     );
 }

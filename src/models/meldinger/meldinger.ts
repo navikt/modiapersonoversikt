@@ -50,7 +50,8 @@ export enum Meldingstype {
     SAMTALEREFERAT_OPPMOTE = 'SAMTALEREFERAT_OPPMOTE',
     SAMTALEREFERAT_TELEFON = 'SAMTALEREFERAT_TELEFON',
     SPORSMAL_MODIA_UTGAAENDE = 'SPORSMAL_MODIA_UTGAAENDE',
-    SVAR_SBL_INNGAAENDE = 'SVAR_SBL_INNGAAENDE'
+    SVAR_SBL_INNGAAENDE = 'SVAR_SBL_INNGAAENDE',
+    INFOMELDING_MODIA_UTGAAENDE = ' INFOMELDING_MODIA_UTGAAENDE'
 }
 
 export enum LestStatus {
@@ -66,6 +67,12 @@ export interface SendReferatRequest {
 }
 
 export interface SendSpørsmålRequest {
+    fritekst: string;
+    sak: JournalforingsSak;
+    erOppgaveTilknyttetAnsatt: boolean;
+}
+
+export interface SendInfomeldingRequest {
     fritekst: string;
     sak: JournalforingsSak;
     erOppgaveTilknyttetAnsatt: boolean;

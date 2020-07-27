@@ -74,7 +74,8 @@ export function erMeldingFraNav(meldingstype: Meldingstype) {
         Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
         Meldingstype.DOKUMENT_VARSEL,
         Meldingstype.OPPGAVE_VARSEL,
-        Meldingstype.DELVIS_SVAR_SKRIFTLIG
+        Meldingstype.DELVIS_SVAR_SKRIFTLIG,
+        Meldingstype.INFOMELDING_MODIA_UTGAAENDE
     ].includes(meldingstype);
 }
 
