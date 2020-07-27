@@ -15,6 +15,7 @@ export type PersonSokFormState = {
     alderFra: string;
     alderTil: string;
     kjonn: string;
+    _minimumskrav: string;
 };
 
 export function stringToNumber(input: string): number | undefined {

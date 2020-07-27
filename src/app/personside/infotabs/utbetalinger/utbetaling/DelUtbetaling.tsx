@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { formaterNOK, periodeStringFromYtelse } from '../utils/utbetalingerUtils';
+import { formaterNOK, periodeStringFromYtelse } from '../utils/utbetalinger-utils';
 import { BulletPoint, SpaceBetween } from '../../../../../components/common-styled-components';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
 import { Ytelse } from '../../../../../models/utbetalinger';
 import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
-import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
+import { cancelIfHighlighting } from '../../../../../utils/function-utils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 import { AnyAction, Dispatch } from 'redux';

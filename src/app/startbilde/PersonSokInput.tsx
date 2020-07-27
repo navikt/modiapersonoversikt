@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { Input, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import { Input } from 'nav-frontend-skjema';
 import { useHistory } from 'react-router';
 import { setNyBrukerIPath } from '../routes/routing';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
+import useFormstate from '@nutgaard/use-formstate';
+import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
+import { fnr } from '@navikt/fnrvalidator';
 
 const Form = styled.form`
     margin-top: 2rem;
@@ -22,33 +24,48 @@ const Form = styled.form`
     }
 `;
 
+type PersonSokForm = {
+    fødselsnummer: string;
+};
+
+function lagFeilmelding(error: ErrorReason): string {
+    switch (error) {
+        case 'fnr or dnr must consist of 11 digits':
+            return 'Fødselsnummeret må inneholde 11 siffer';
+        case "checksums don't match":
+        case 'invalid date':
+            return 'Fødselsnummeret er ikke gyldig';
+    }
+}
+
+const validering = useFormstate<PersonSokForm>(values => {
+    const fnrValidation = fnr(values.fødselsnummer);
+    if (fnrValidation.status === 'invalid') {
+        return { fødselsnummer: lagFeilmelding(fnrValidation.reasons[0]) };
+    } else {
+        return { fødselsnummer: undefined };
+    }
+});
+
 function PersonSokInput() {
-    const [input, setInput] = useState('');
-    const [feilmelding, setFeilmelding] = useState<string | undefined>(undefined);
     const history = useHistory();
-
-    const handleSok = (event: React.FormEvent) => {
-        event.preventDefault();
-        if (!/^\d+$/.test(input)) {
-            setFeilmelding('Fødselsnummeret kan kun inneholde tall');
-            return;
-        }
-        if (input.length !== 11) {
-            setFeilmelding('Fødselsnummeret må inneholde 11 siffer');
-            return;
-        }
-        setNyBrukerIPath(history, input);
+    const initialValues: PersonSokForm = {
+        fødselsnummer: ''
     };
+    const state = validering(initialValues);
 
+    function submit<S>(values: PersonSokForm): Promise<any> {
+        setNyBrukerIPath(history, values.fødselsnummer);
+        return Promise.resolve();
+    }
     return (
         <div>
-            <Form onSubmit={handleSok}>
+            <Form onSubmit={state.onSubmit(submit)}>
                 <Input
-                    feil={feilmelding ? <SkjemaelementFeilmelding>{feilmelding}</SkjemaelementFeilmelding> : undefined}
+                    feil={feilmelding(state.fields.fødselsnummer)}
                     placeholder="Personsøk"
                     label="Personsøk"
-                    onChange={e => setInput(e.target.value)}
-                    value={input}
+                    {...state.fields.fødselsnummer.input}
                 />
             </Form>
         </div>

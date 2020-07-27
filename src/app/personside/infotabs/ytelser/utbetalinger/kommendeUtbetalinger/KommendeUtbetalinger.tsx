@@ -3,12 +3,7 @@ import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components/macro';
 import { Ingress } from 'nav-frontend-typografi';
-import {
-    datoEllerNull,
-    NOKellerNull,
-    periodeEllerNull,
-    prosentEllerNull
-} from '../../../../../../utils/stringFormatting';
+import { datoEllerNull, NOKellerNull, periodeEllerNull, prosentEllerNull } from '../../../../../../utils/string-utils';
 import theme from '../../../../../../styles/personOversiktTheme';
 import { StyledTable } from '../../../../../../utils/table/StyledTable';
 import { Link } from 'react-router-dom';

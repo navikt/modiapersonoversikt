@@ -1,8 +1,8 @@
 import { isFinishedPosting } from '../../rest/utils/postResource';
 import { useFødselsnummer } from '../customHooks';
-import { Oppgave } from '../../models/oppgave';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 import { usePostResource } from '../../rest/consumer/usePostResource';
+import { Oppgave } from '../../models/meldinger/oppgave';
 
 export function removeDuplicateOppgaver(value: Oppgave, index: number, list: Oppgave[]) {
     return list.findIndex(oppgave => oppgave.oppgaveId === value.oppgaveId) === index;

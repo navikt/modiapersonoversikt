@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Utbetaling as UtbetalingInterface, Ytelse } from '../../../../../models/utbetalinger';
-import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalingerUtils';
-import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
+import { formaterNOK, getGjeldendeDatoForUtbetaling, periodeStringFromYtelse } from '../utils/utbetalinger-utils';
+import { cancelIfHighlighting } from '../../../../../utils/function-utils';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import styled from 'styled-components/macro';
 import UtbetalingsDetaljer from './UtbetalingsDetaljer';
@@ -12,12 +12,12 @@ import PrintKnapp from '../../../../../components/PrintKnapp';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { useDispatch } from 'react-redux';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
-import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
+import { eventTagetIsInsideRef } from '../../../../../utils/reactRef-utils';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../../redux/utbetalinger/actions';
-import { datoVerbose } from '../../../../../utils/dateUtils';
-import { utbetalingerTest } from '../../dyplenkeTest/utils';
+import { datoVerbose } from '../../../../../utils/date-utils';
+import { utbetalingerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useAppState, useOnMount, useOnUpdate, usePrevious } from '../../../../../utils/customHooks';
-import usePrinter from '../../../../../utils/UsePrinter';
+import usePrinter from '../../../../../utils/print/usePrinter';
 import { useRef } from 'react';
 
 interface Props {

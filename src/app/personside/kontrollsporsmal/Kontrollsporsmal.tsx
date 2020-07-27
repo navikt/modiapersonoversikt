@@ -7,9 +7,9 @@ import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
 import { useAppState, useFødselsnummer } from '../../../utils/customHooks';
 import LazySpinner from '../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
-import { useErKontaktsenter } from '../../../utils/enheterUtils';
+import { useErKontaktsenter } from '../../../utils/enheter-utils';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
-import { kontrollspørsmålHarBlittLukketForBruker } from './cookieUtils';
+import { kontrollspørsmålHarBlittLukketForBruker } from './cookie-utils';
 
 const KontrollSporsmalStyling = styled.section`
     background-color: white;

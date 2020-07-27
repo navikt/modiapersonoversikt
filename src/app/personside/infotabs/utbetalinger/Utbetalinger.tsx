@@ -12,7 +12,7 @@ import {
     reduceUtbetlingerTilYtelser,
     utbetalingDatoComparator,
     utbetaltTilBruker
-} from './utils/utbetalingerUtils';
+} from './utils/utbetalinger-utils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Månedsgruppe from './MånedsGruppe';
 import HandleUtbetalingerArrowKeys from './HandleUtbetalingerHotKeys';

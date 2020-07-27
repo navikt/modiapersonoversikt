@@ -38,7 +38,7 @@ import { usePostResource } from '../../../../../../../rest/consumer/usePostResou
 import { useFocusOnFirstInputOnMount } from '../../../../../../../utils/hooks/useFocusOnFirstInputOnMount';
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
 import useTildelteOppgaver from '../../../../../../../utils/hooks/useTildelteOppgaver';
-import { Oppgave } from '../../../../../../../models/oppgave';
+import { Oppgave } from '../../../../../../../models/meldinger/oppgave';
 
 interface Props {
     lukkPanel: () => void;

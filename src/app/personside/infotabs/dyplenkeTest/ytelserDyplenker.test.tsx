@@ -3,7 +3,7 @@ import { mount, ReactWrapper } from 'enzyme';
 import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { INFOTABS } from '../InfoTabEnum';
-import { getAktivTab, ytelserTest } from './utils';
+import { getAktivTab, ytelserTest } from './utils-dyplenker-test';
 import { BrowserRouter } from 'react-router-dom';
 
 test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra oversikt', () => {

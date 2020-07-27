@@ -5,9 +5,13 @@ exports[`viser fortsett dialog 1`] = `
   className="alertstripe alertstripe--advarsel"
 >
   <span
-    aria-label="advarsel"
     className="alertstripe__ikon"
   >
+    <span
+      className="sr-only"
+    >
+      advarsel
+    </span>
     <svg
       focusable="false"
       height="1.5em"

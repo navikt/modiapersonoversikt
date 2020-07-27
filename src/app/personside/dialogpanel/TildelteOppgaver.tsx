@@ -13,7 +13,7 @@ import { LenkeKnapp } from '../../../components/common-styled-components';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
 import { useInfotabsDyplenker } from '../infotabs/dyplenker';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
-import { temagruppeTekst } from '../../../models/Temagrupper';
+import { temagruppeTekst } from '../../../models/temagrupper';
 import { useHistory } from 'react-router';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
 import Panel from 'nav-frontend-paneler';

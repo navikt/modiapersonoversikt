@@ -1,4 +1,4 @@
-import { Periode } from '../periode';
+import { Periode } from '../tid';
 import { KommendeUtbetaling, UtbetalingPåVent } from './ytelse-utbetalinger';
 import { Arbeidsforhold } from './arbeidsforhold';
 

@@ -81,7 +81,7 @@ export enum Varseltype {
     'RettTil4UkerFerieOppbrukt' = 'Opphør av dagpenger under ferie',
     'SPORSMAL' = 'Spørsmål',
     'SVAR' = 'Svar',
-    'SyfoAktivitetskrav' = 'Sykmelding',
+    'SyfoAktivitetskrav' = 'Informasjon om aktivitetsplikt',
     'SyfoMoteAvbrutt' = 'Dialogmøte er avbrutt',
     'SyfoMoteNyeTidspunkt' = 'Dialogmøte nye tidspunkt foreslått',
     'SyfoMotebekreftelse' = 'Møtebekreftelse',

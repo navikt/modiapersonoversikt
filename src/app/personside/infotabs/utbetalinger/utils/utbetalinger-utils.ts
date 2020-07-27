@@ -1,10 +1,10 @@
 import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
-import { formaterDato } from '../../../../../utils/stringFormatting';
-import { Periode } from '../../../../../models/periode';
+import { formaterDato } from '../../../../../utils/string-utils';
+import { Periode } from '../../../../../models/tid';
 import moment from 'moment';
 import { loggError } from '../../../../../utils/logger/frontendLogger';
 import { UtbetalingFilterState, PeriodeValg } from '../../../../../redux/utbetalinger/types';
-import { datoVerbose } from '../../../../../utils/dateUtils';
+import { datoVerbose } from '../../../../../utils/date-utils';
 
 export const utbetaltTilBruker = 'Bruker';
 

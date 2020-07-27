@@ -3,7 +3,7 @@ import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import DescriptionList from '../../../../../components/DescriptionList';
 import { getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
-import { formaterDato } from '../../../../../utils/stringFormatting';
+import { formaterDato } from '../../../../../utils/string-utils';
 import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';
 import { Kjønn } from '../../../../../models/person/person';
 import styled from 'styled-components/macro';

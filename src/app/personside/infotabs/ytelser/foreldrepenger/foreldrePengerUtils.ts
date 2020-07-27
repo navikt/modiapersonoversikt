@@ -1,5 +1,5 @@
 import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
-import { ascendingDateComparator, datoStigende } from '../../../../../utils/dateUtils';
+import { ascendingDateComparator, datoStigende } from '../../../../../utils/date-utils';
 import { Arbeidsforhold } from '../../../../../models/ytelse/arbeidsforhold';
 
 export function utledFraDatoForRettighet(foreldrepenger: Foreldrepengerettighet): Date {

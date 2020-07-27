@@ -9,7 +9,7 @@ import {
     datoSynkende,
     erMaks10MinSiden,
     backendDatoformat
-} from './dateUtils';
+} from './date-utils';
 import moment from 'moment';
 
 Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts

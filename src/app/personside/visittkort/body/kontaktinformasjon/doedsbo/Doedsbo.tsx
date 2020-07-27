@@ -9,13 +9,13 @@ import {
     OrganisasjonSomAdressat
 } from '../../../../../../models/person/doedsbo';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { formaterDato } from '../../../../../../utils/stringFormatting';
+import { formaterDato } from '../../../../../../utils/string-utils';
 import EtikettGrå from '../../../../../../components/EtikettGrå';
 import VisittkortElement from '../../VisittkortElement';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import LocationPin from '../../../../../../svg/LocationPin';
 import styled from 'styled-components/macro';
-import { hentNavn } from '../../../utils';
+import { hentNavn } from '../../../utils-visittkort';
 
 interface Props {
     person: Person;

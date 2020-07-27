@@ -9,7 +9,7 @@ import {
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { getUnikPleiepengerKey } from '../../../../models/ytelse/pleiepenger';
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { formaterDato } from '../../../../utils/stringFormatting';
+import { formaterDato } from '../../../../utils/string-utils';
 import { getUnikSykepengerKey } from '../../../../models/ytelse/sykepenger';
 import { getForeldepengerIdDato, getUnikForeldrepengerKey } from '../../../../models/ytelse/foreldrepenger';
 import { useInfotabsDyplenker } from '../dyplenker';

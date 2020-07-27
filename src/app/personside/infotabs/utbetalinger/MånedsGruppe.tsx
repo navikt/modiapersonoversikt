@@ -4,7 +4,7 @@ import theme from '../../../../styles/personOversiktTheme';
 import { ArrayGroup } from '../../../../utils/groupArray';
 import { Element } from 'nav-frontend-typografi';
 import { Uppercase } from '../../../../components/common-styled-components';
-import { getGjeldendeDatoForUtbetaling } from './utils/utbetalingerUtils';
+import { getGjeldendeDatoForUtbetaling } from './utils/utbetalinger-utils';
 import UtbetalingsKomponent from './utbetaling/Utbetaling';
 import { Utbetaling } from '../../../../models/utbetalinger';
 import { KategoriSkille } from '../../dialogpanel/fellesStyling';

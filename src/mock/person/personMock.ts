@@ -4,7 +4,6 @@ import moment from 'moment';
 import navfaker from 'nav-faker/dist/index';
 
 import { Bostatus, BostatusTyper, Navn, Person, PersonRespons } from '../../models/person/person';
-import { TilrettelagtKommunikasjonsTyper } from '../../konstanter';
 import { getSivilstand } from './sivilstandMock';
 import { getFamilierelasjoner } from './familierelasjoner/familerelasjonerMock';
 import { aremark } from './aremark';
@@ -19,6 +18,7 @@ import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpe
 import { moss } from './moss';
 import { getMockDoedsbo } from './doedsbo';
 import { getMockFullmakter } from './fullmakter-mock';
+import { TilrettelagtKommunikasjonType } from '../../models/kodeverk';
 
 export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {
@@ -112,51 +112,16 @@ function getTilrettelagtKommunikasjonsListe() {
     var liste = [];
     if (vektetSjanse(faker, 0.1)) {
         liste.push({
-            kodeRef: 'LESA',
-            beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
+            type: TilrettelagtKommunikasjonType.TALESPRAK,
+            kodeRef: 'SV',
+            beskrivelse: 'Svensk'
         });
     } else if (vektetSjanse(faker, 0.1)) {
         liste.push({
-            kodeRef: 'KOSK',
-            beskrivelse: TilrettelagtKommunikasjonsTyper.KOSK
+            type: TilrettelagtKommunikasjonType.TEGNSPRAK,
+            kodeRef: 'NO',
+            beskrivelse: 'Norsk'
         });
-    } else if (vektetSjanse(faker, 0.1)) {
-        liste.push({
-            kodeRef: 'KOMU',
-            beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
-        });
-    } else if (vektetSjanse(faker, 0.1)) {
-        liste.push({
-            kodeRef: 'TOHJ',
-            beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
-        });
-    } else if (vektetSjanse(faker, 0.1)) {
-        liste.push({
-            kodeRef: 'LESA',
-            beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
-        });
-    } else if (vektetSjanse(faker, 0.05)) {
-        liste.push(
-            {
-                kodeRef: 'LESA',
-                beskrivelse: TilrettelagtKommunikasjonsTyper.LESA
-            },
-            {
-                kodeRef: 'KOMU',
-                beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
-            }
-        );
-    } else if (vektetSjanse(faker, 0.05)) {
-        liste.push(
-            {
-                kodeRef: 'TOHJ',
-                beskrivelse: TilrettelagtKommunikasjonsTyper.TOHJ
-            },
-            {
-                kodeRef: 'KOMU',
-                beskrivelse: TilrettelagtKommunikasjonsTyper.KOMU
-            }
-        );
     }
 
     return liste;

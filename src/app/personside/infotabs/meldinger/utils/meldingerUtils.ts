@@ -1,9 +1,9 @@
 import { Melding, Meldingstype, Saksbehandler, Traad } from '../../../../../models/meldinger/meldinger';
 import { meldingstypeTekst } from './meldingstekster';
-import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/dateUtils';
+import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/date-utils';
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
-import { Temagruppe, temagruppeTekst, TemaKommunaleTjenester, TemaPlukkbare } from '../../../../../models/Temagrupper';
+import { Temagruppe, temagruppeTekst, TemaPlukkbare, TemaKommunaleTjenester } from '../../../../../models/temagrupper';
 
 export function nyesteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];

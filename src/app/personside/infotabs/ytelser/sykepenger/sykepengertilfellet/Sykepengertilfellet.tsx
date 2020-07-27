@@ -7,7 +7,7 @@ import {
     datoEllerNull,
     NOKellerNull,
     periodeEllerNull
-} from '../../../../../../utils/stringFormatting';
+} from '../../../../../../utils/string-utils';
 import * as React from 'react';
 import { Forsikring, Sykepenger, Sykmelding } from '../../../../../../models/ytelse/sykepenger';
 import YtelserInfoGruppe from '../../felles-styling/YtelserInfoGruppe';

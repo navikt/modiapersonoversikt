@@ -22,7 +22,7 @@ import { loggError, loggEvent } from '../../../../../../utils/logger/frontendLog
 import { useInfotabsDyplenker } from '../../../dyplenker';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { runIfEventIsNotInsideRef } from '../../../../../../utils/reactRefUtils';
+import { runIfEventIsNotInsideRef } from '../../../../../../utils/reactRef-utils';
 import { useRestResource } from '../../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../../rest/consumer/usePostResource';
 
@@ -254,7 +254,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
     }
 
     if (isFailedPosting(slaaSammenResource)) {
-        return <AlertStripeFeil>Det skjedde en feil: {slaaSammenResource.error}</AlertStripeFeil>;
+        return <AlertStripeFeil>Det skjedde en feil i baksystemene: {slaaSammenResource.error}</AlertStripeFeil>;
     }
 
     return (

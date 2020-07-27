@@ -41,21 +41,23 @@ function MainLayout() {
                 </Scrollbar>
                 <InfoTabs />
             </VenstreKolonne>
-            <HøyreKolonne
-                onClick={ekspanderDialogpanelHandler}
-                dialogPanelEkspandert={UI.dialogPanel.ekspandert}
-                aria-describedby={tittelId.current}
-            >
-                <h1 className="sr-only" id={tittelId.current}>
-                    Oppgavepanel
-                </h1>
-                <Scrollbar>
-                    <BrukerHarUbesvarteMeldinger />
-                    <HentOppgaveKnapp />
-                    <DialogPanel />
-                </Scrollbar>
-                <EkspanderDilaogpanelKnapp />
-            </HøyreKolonne>
+            {!window.erChatvisning && (
+                <HøyreKolonne
+                    onClick={ekspanderDialogpanelHandler}
+                    dialogPanelEkspandert={UI.dialogPanel.ekspandert}
+                    aria-describedby={tittelId.current}
+                >
+                    <h1 className="sr-only" id={tittelId.current}>
+                        Oppgavepanel
+                    </h1>
+                    <Scrollbar>
+                        <BrukerHarUbesvarteMeldinger />
+                        <HentOppgaveKnapp />
+                        <DialogPanel />
+                    </Scrollbar>
+                    <EkspanderDilaogpanelKnapp />
+                </HøyreKolonne>
+            )}
             <SmallScreenToggleButton UI={UI} toggleDialogpanel={() => dispatch(toggleDialogpanel())} />
         </LayoutWrapper>
     );

@@ -32,9 +32,10 @@ function Personoversikt() {
     useTokenRefresher(fnr);
 
     useOnMount(() => {
-        const harHentetOppgave = isFinishedPosting(oppgaveResource);
-        if (harHentetOppgave) {
-            dispatch(setJobberMedSTO(true));
+        if (isFinishedPosting(oppgaveResource)) {
+            const oppgaver = oppgaveResource.response;
+            const harSattOppgaveFraGosysUrl = oppgaver.some(oppgave => oppgave.fraGosys === true);
+            dispatch(setJobberMedSTO(!harSattOppgaveFraGosysUrl));
         } else {
             dispatch(setJobberMedSTO(false));
         }

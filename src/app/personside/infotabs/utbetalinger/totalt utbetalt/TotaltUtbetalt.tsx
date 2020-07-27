@@ -3,23 +3,23 @@ import { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalin
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import PrintKnapp from '../../../../../components/PrintKnapp';
-import { formaterDato } from '../../../../../utils/stringFormatting';
+import { formaterDato } from '../../../../../utils/string-utils';
 import {
     getBruttoSumYtelser,
     getNettoSumYtelser,
     getTrekkSumYtelser,
     summertBeløpStringFraUtbetalinger
-} from '../utils/utbetalingerUtils';
+} from '../utils/utbetalinger-utils';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { cancelIfHighlighting } from '../../../../../utils/functionUtils';
+import { cancelIfHighlighting } from '../../../../../utils/function-utils';
 import { FlexEnd } from '../../../../../components/common-styled-components';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { UtbetalingTabellStyling } from '../utils/CommonStyling';
-import { eventTagetIsInsideRef } from '../../../../../utils/reactRefUtils';
+import { eventTagetIsInsideRef } from '../../../../../utils/reactRef-utils';
 import { Table } from '../../../../../utils/table/Table';
 import { useState } from 'react';
-import usePrinter from '../../../../../utils/UsePrinter';
+import usePrinter from '../../../../../utils/print/usePrinter';
 import Panel from 'nav-frontend-paneler';
 
 export interface TotaltUtbetaltProps {

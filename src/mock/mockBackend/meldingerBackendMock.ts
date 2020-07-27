@@ -14,9 +14,9 @@ import {
 import { guid } from 'nav-frontend-js-utils';
 import moment from 'moment';
 import { getMockTraader } from '../meldinger/meldinger-mock';
-import { Temagruppe } from '../../models/Temagrupper';
+import { Temagruppe } from '../../models/temagrupper';
 import { OppgaverBackendMock } from './oppgaverBackendMock';
-import { backendDatoTidformat } from '../../utils/dateUtils';
+import { backendDatoTidformat } from '../../utils/date-utils';
 
 export class MeldingerBackendMock {
     private sendteNyeMeldinger: Traad[] = [];
@@ -55,7 +55,7 @@ export class MeldingerBackendMock {
         return traaderMedSvar;
     }
 
-    public sendReferat(request: SendReferatRequest) {
+    public sendReferat(request: SendReferatRequest): string {
         const melding: Melding = {
             ...getMockMelding(),
             meldingstype: request.meldingstype,
@@ -66,6 +66,7 @@ export class MeldingerBackendMock {
             traadId: guid(),
             meldinger: [melding]
         });
+        return melding.id;
     }
 
     public sendSpørsmål(request: SendSpørsmålRequest) {

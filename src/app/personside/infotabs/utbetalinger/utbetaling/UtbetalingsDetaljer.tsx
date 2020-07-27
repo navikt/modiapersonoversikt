@@ -7,7 +7,7 @@ import {
     skattBelopAscComparator,
     trekkBelopAscComparator,
     ytelseBelopDescComparator
-} from '../utils/utbetalingerUtils';
+} from '../utils/utbetalinger-utils';
 import { Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Table } from '../../../../../utils/table/Table';

@@ -69,7 +69,7 @@ interface Props {
     topSuggestionsLabel?: string;
     otherSuggestionsLabel?: string;
     spinner?: boolean;
-    feil?: string;
+    feil?: React.ReactNode;
 }
 
 function SuggestionMarkup<Item>(props: { item: Item; helpers: ControllerStateAndHelpers<Item> }) {

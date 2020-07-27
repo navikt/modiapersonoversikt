@@ -6,7 +6,7 @@ import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
 import VelgDialogType from './VelgDialogType';
 import TekstFelt from '../sendMelding/TekstFelt';
 import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
-import { capitalizeName } from '../../../../utils/stringFormatting';
+import { capitalizeName } from '../../../../utils/string-utils';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Temavelger from '../component/Temavelger';
@@ -18,7 +18,7 @@ import styled from 'styled-components/macro';
 import { FortsettDialogValidator } from './validatorer';
 import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';
 import { erDelvisBesvart, erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { temagruppeTekst, TemaPlukkbare } from '../../../../models/Temagrupper';
+import { temagruppeTekst, TemaPlukkbare } from '../../../../models/temagrupper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 const SubmitKnapp = styled(Hovedknapp)`

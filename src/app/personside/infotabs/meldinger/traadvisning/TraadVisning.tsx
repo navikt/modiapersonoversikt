@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { datoSynkende, formatterDatoMedMaanedsnavn, formatterDatoTid } from '../../../../../utils/dateUtils';
+import { datoSynkende, formatterDatoMedMaanedsnavn, formatterDatoTid } from '../../../../../utils/date-utils';
 import EnkeltMelding from './Enkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
@@ -11,9 +11,9 @@ import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, meldingstittel, nyesteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
-import { formaterDato } from '../../../../../utils/stringFormatting';
+import { formaterDato } from '../../../../../utils/string-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
-import { Printer } from '../../../../../utils/UsePrinter';
+import { Printer } from '../../../../../utils/print/usePrinter';
 
 interface Props {
     valgtTraad: Traad;

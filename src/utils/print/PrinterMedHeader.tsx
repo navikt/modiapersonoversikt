@@ -1,10 +1,10 @@
-import NavLogo from '../svg/NavLogo';
+import NavLogo from '../../svg/NavLogo';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { datoVerbose } from './dateUtils';
-import Fødselsnummer from '../components/Fødselsnummer';
+import { datoVerbose } from '../date-utils';
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { ReactNode } from 'react';
+import { useFødselsnummer } from '../customHooks';
 
 const Wrapper = styled.div`
     @page {
@@ -36,14 +36,13 @@ interface Props {
 }
 
 export function PrinterMedHeader(props: Props) {
+    const fnr = useFødselsnummer();
     return (
         <Wrapper className="ikke-skjul-ved-print-i-gamlemodia">
             <Header>
                 <NavLogo />
                 <Normaltekst>Utskriftsdato : {datoVerbose().sammensattMedKlokke}</Normaltekst>
-                <Normaltekst>
-                    Fødselsnummer: <Fødselsnummer />
-                </Normaltekst>
+                <Normaltekst>Fødselsnummer: {fnr}</Normaltekst>
             </Header>
             {props.children}
         </Wrapper>

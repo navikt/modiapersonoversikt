@@ -18,7 +18,7 @@ import { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytels
 import { aremark } from '../person/aremark';
 import { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
 import { statiskSykepengerMock } from './statiskSykepengerMock';
-import { backendDatoformat } from '../../utils/dateUtils';
+import { backendDatoformat } from '../../utils/date-utils';
 
 export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResponse {
     faker.seed(Number(fødselsnummer));

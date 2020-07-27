@@ -2,7 +2,7 @@ import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { FortsettDialogState } from './FortsettDialogTypes';
-import { Temagruppe } from '../../../../models/Temagrupper';
+import { Temagruppe } from '../../../../models/temagrupper';
 
 export class FortsettDialogValidator {
     public static tekst(state: FortsettDialogState) {

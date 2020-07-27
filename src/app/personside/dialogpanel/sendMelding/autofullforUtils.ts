@@ -2,7 +2,7 @@ import { erPersonResponsAvTypePerson, Kjønn, PersonRespons } from '../../../../
 import { NavKontorResponse } from '../../../../models/navkontor';
 import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
 import { Locale } from './standardTekster/domain';
-import { capitalizeName } from '../../../../utils/stringFormatting';
+import { capitalizeName } from '../../../../utils/string-utils';
 import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 

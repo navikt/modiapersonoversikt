@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { UtbetalingFilterState, FraTilDato } from '../../../../../redux/utbetalinger/types';
-import { formaterDato, formaterTilISO8601Date } from '../../../../../utils/stringFormatting';
+import { formaterDato, formaterTilISO8601Date } from '../../../../../utils/string-utils';
 import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import moment from 'moment';
 import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { tidligsteTilgjengeligeDatoUtbetalingerRestkonto } from '../../../../../redux/restReducers/utbetalinger';
-import { Periode } from '../../../../../models/periode';
-import { isValidDate } from '../../../../../utils/dateUtils';
+import { Periode } from '../../../../../models/tid';
+import { isValidDate } from '../../../../../utils/date-utils';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 
 interface Props {

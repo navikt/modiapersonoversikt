@@ -3,12 +3,12 @@ import { Meldingstype } from '../../../../models/meldinger/meldinger';
 import { DialogpanelKvittering, DialogpanelKvitteringStyling } from '../fellesStyling';
 import { useDispatch } from 'react-redux';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { erLeggTilbakeOppgaveFeilTemaRequest, LeggTilbakeOppgaveRequest } from '../../../../models/oppgave';
+import { erLeggTilbakeOppgaveFeilTemaRequest, LeggTilbakeOppgaveRequest } from '../../../../models/leggTilbakeOppgave';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import KnappBase from 'nav-frontend-knapper';
 import { KvitteringsData } from './FortsettDialogTypes';
-import { Temagruppe, temagruppeTekst } from '../../../../models/Temagrupper';
+import { Temagruppe, temagruppeTekst } from '../../../../models/temagrupper';
 import GaaTilNesteOppgaveKnapp from '../GaaTilNesteOppgaveKnapp';
 import { SendNyMeldingStatus } from '../sendMelding/SendNyMeldingTypes';
 

@@ -15,7 +15,7 @@ import {
 } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { loggError, loggEvent } from '../../../../utils/logger/frontendLogger';
+import { loggError } from '../../../../utils/logger/frontendLogger';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import {
@@ -24,7 +24,6 @@ import {
     FortsettDialogState,
     KvitteringsData
 } from './FortsettDialogTypes';
-import { useTimer } from '../../../../utils/hooks/useTimer';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../rest/consumer/usePostResource';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -33,8 +32,9 @@ import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
 import { isFinishedPosting } from '../../../../rest/utils/postResource';
 import ReflowBoundry from '../ReflowBoundry';
-import { Temagruppe } from '../../../../models/Temagrupper';
+import { Temagruppe } from '../../../../models/temagrupper';
 import useDraft, { Draft } from '../use-draft';
+import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -87,7 +87,6 @@ function FortsettDialogContainer(props: Props) {
             }),
         [setState, updateDraft]
     );
-    const getDuration = useTimer();
 
     const opprettHenvendelse = useOpprettHenvendelse(props.traad);
 
@@ -121,7 +120,6 @@ function FortsettDialogContainer(props: Props) {
         }
         const callback = () => {
             removeDraft();
-            loggEvent('TidsbrukMillisekunder', 'FortsettDialog', undefined, { ms: getDuration() });
             dispatch(resetPlukkOppgaveResource);
             dispatch(reloadTildelteOppgaver);
             dispatch(reloadMeldinger);
@@ -182,6 +180,7 @@ function FortsettDialogContainer(props: Props) {
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
+                    JournalforingUtils.slettCacheForSammensatteSaker(fnr);
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })

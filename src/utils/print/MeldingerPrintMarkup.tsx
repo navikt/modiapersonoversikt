@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { Melding, Traad } from '../models/meldinger/meldinger';
-import { useFødselsnummer } from './customHooks';
+import { Melding, Traad } from '../../models/meldinger/meldinger';
+import { useFødselsnummer } from '../customHooks';
 import {
     eldsteMelding,
     erJournalfort,
     meldingstittel
-} from '../app/personside/infotabs/meldinger/utils/meldingerUtils';
+} from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
-import { datoStigende, formatterDatoMedMaanedsnavn, formatterDatoTid } from './dateUtils';
+import { datoStigende, formatterDatoMedMaanedsnavn, formatterDatoTid } from '../date-utils';
 import styled from 'styled-components';
-import theme from '../styles/personOversiktTheme';
-import { formaterDato } from './stringFormatting';
+import theme from '../../styles/personOversiktTheme';
+import { formaterDato } from '../string-utils';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 
 interface Props {

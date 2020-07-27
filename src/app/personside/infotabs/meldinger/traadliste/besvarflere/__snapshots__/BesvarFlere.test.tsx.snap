@@ -281,13 +281,13 @@ exports[`BesvarFler matcher snapshot 1`] = `
   color: #0067c5;
 }
 
+.c22 p {
+  margin-bottom: 0 !important;
+}
+
 .c23 .ekspanderbartPanel__hode,
 .c23 .ekspanderbartPanel__innhold {
   padding: 0.3rem 0;
-}
-
-.c22 p {
-  margin-bottom: 0 !important;
 }
 
 .c0 {

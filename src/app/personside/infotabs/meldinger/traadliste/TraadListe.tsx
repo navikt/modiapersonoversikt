@@ -12,9 +12,9 @@ import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { guid } from 'nav-frontend-js-utils';
-import usePrinter from '../../../../../utils/UsePrinter';
+import usePrinter from '../../../../../utils/print/usePrinter';
 import PrintKnapp from '../../../../../components/PrintKnapp';
-import MeldingerPrintMarkup from '../../../../../utils/MeldingerPrintMarkup';
+import MeldingerPrintMarkup from '../../../../../utils/print/MeldingerPrintMarkup';
 import Panel from 'nav-frontend-paneler';
 
 interface Props {

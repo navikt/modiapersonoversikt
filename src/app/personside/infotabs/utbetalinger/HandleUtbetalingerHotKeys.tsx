@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Utbetaling, Ytelse } from '../../../../models/utbetalinger';
-import { flatMapYtelser } from './utils/utbetalingerUtils';
+import { flatMapYtelser } from './utils/utbetalinger-utils';
 import { AnyAction, Dispatch } from 'redux';
 import { setEkspanderYtelse, setNyYtelseIFokus } from '../../../../redux/utbetalinger/actions';
 import { AppState } from '../../../../redux/reducers';

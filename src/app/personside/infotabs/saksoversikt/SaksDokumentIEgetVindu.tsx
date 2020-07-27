@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import DokumentVisning from './dokumentvisning/SaksDokumentVisning';
-import { useQueryParams } from '../../../../utils/urlUtils';
+import { useQueryParams } from '../../../../utils/url-utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';

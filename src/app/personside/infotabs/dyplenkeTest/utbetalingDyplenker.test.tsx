@@ -4,7 +4,7 @@ import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
 import { INFOTABS } from '../InfoTabEnum';
-import { getAktivTab, utbetalingerTest } from './utils';
+import { getAktivTab, utbetalingerTest } from './utils-dyplenker-test';
 
 function clickOnUtbetalingIOversikt(infoTabs: ReactWrapper) {
     infoTabs

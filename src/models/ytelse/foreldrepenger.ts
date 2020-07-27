@@ -1,8 +1,8 @@
-import { Periode } from '../periode';
+import { Periode } from '../tid';
 import { KommendeUtbetaling } from './ytelse-utbetalinger';
 import { Arbeidsforhold } from './arbeidsforhold';
 import moment from 'moment';
-import { backendDatoformat } from '../../utils/dateUtils';
+import { backendDatoformat } from '../../utils/date-utils';
 
 export interface ForeldrepengerResponse {
     foreldrepenger: Foreldrepengerettighet[] | null;

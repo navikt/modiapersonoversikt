@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import { Element, Undertekst } from 'nav-frontend-typografi';
 import { Melding } from '../../../../../models/meldinger/meldinger';
-import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/dateUtils';
+import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/date-utils';
 import { meldingstittel } from '../../../infotabs/meldinger/utils/meldingerUtils';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Avsender } from '../../../infotabs/meldinger/traadvisning/Enkeltmelding';

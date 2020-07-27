@@ -4,7 +4,7 @@ import { BaseUrlsResponse } from '../../models/baseurls';
 import { hentBaseUrl } from '../../redux/restReducers/baseurls';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
-import { formaterDato } from '../../utils/stringFormatting';
+import { formaterDato } from '../../utils/string-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export interface DrekProps {

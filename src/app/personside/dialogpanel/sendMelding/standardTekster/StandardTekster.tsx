@@ -3,14 +3,16 @@ import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import styled from 'styled-components/macro';
 import TagInput from '@navikt/tag-input';
 import { guid } from 'nav-frontend-js-utils';
-import { HjelpetekstUnderVenstre } from 'nav-frontend-hjelpetekst';
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
+import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import { PopoverOrientering } from 'nav-frontend-popover';
 import useFieldState, { FieldState } from '../../../../../utils/hooks/use-field-state';
 import { erGyldigValg, sokEtterTekster, rapporterBruk } from './sokUtils';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import StandardTekstValg from './velgTekst/StandardTekstValg';
 import * as StandardTeksterModels from './domain';
 import theme from '../../../../../styles/personOversiktTheme';
-import { captitalize } from '../../../../../utils/stringFormatting';
+import { captitalize } from '../../../../../utils/string-utils';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullførData } from '../autofullforUtils';
@@ -18,7 +20,6 @@ import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import AriaNotification from '../../../../../components/AriaNotification';
 import { usePrevious } from '../../../../../utils/customHooks';
-import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 
 interface Props {
     sokefelt: FieldState;
@@ -52,6 +53,9 @@ const SokefeltStyledNav = styled.nav`
     }
     .skjemaelement__label {
         ${theme.visuallyHidden}
+    }
+    .hjelpetekst {
+        margin-left: 1.25rem;
     }
 `;
 
@@ -191,9 +195,9 @@ function StandardTekster(props: Props) {
                     id={sokeFeltId.current}
                     autoComplete="off"
                 />
-                <HjelpetekstUnderVenstre id={hjelpetekstID.current}>
+                <Hjelpetekst id={hjelpetekstID.current} type={PopoverOrientering.UnderHoyre}>
                     Filtrer på tags ved å skrive "#eksempel" + mellomrom
-                </HjelpetekstUnderVenstre>
+                </Hjelpetekst>
             </SokefeltStyledNav>
             {content}
             <AriaNotification ariaLive={'assertive'} beskjed={ariaNotification} />
