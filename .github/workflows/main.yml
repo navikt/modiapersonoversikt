@@ -13,6 +13,9 @@ jobs:
     if: github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/master'
     steps:
       - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
       - uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -32,6 +35,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
       - uses: actions/cache@v1
         with:
           path: ~/.npm
