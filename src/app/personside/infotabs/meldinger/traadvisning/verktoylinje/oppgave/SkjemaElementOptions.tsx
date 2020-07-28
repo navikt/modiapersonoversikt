@@ -23,7 +23,7 @@ export function UnderkategoriOptions(props: { valgtGsakTema?: GsakTema }) {
         </option>
     ));
     options.unshift(
-        <option value={''} key={''} disabled>
+        <option value={''} key={''}>
             {props.valgtGsakTema ? 'Ingen underkategori' : 'Ingen tema valgt'}
         </option>
     );

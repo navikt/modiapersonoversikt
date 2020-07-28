@@ -159,24 +159,24 @@ function OppgaveSkjema(props: OppgaveProps) {
                 <Element>Opprett oppgave</Element>
                 <Select
                     autoFocus={true}
-                    label={'Tema'}
+                    label="Tema"
                     {...state.fields.valgtTema.input}
                     feil={feilmelding(state.fields.valgtTema)}
                 >
                     <TemaOptions gsakTema={props.gsakTema} />
                 </Select>
-                <Select label={'Gjelder'} {...state.fields.valgtUnderkategori.input}>
+                <Select label="Gjelder" {...state.fields.valgtUnderkategori.input}>
                     <UnderkategoriOptions valgtGsakTema={valgtTema} />
                 </Select>
                 <Select
-                    label={'Type oppgave'}
+                    label="Type oppgave"
                     {...state.fields.valgtOppgavetype.input}
                     feil={feilmelding(state.fields.valgtOppgavetype)}
                 >
                     <OppgavetypeOptions valgtGsakTema={valgtTema} />
                 </Select>
                 <AutoComplete
-                    label={'Velg enhet'}
+                    label="Velg enhet"
                     suggestions={
                         hasData(enhetliste) ? enhetliste.data.map(enhet => `${enhet.enhetId} ${enhet.enhetNavn}`) : []
                     }
@@ -189,14 +189,14 @@ function OppgaveSkjema(props: OppgaveProps) {
                     feil={feilmelding(state.fields.valgtEnhet)}
                 />
                 <AutoComplete
-                    label={'Velg ansatt'}
+                    label="Velg ansatt"
                     suggestions={ansattliste.ansatte.map(
                         ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`
                     )}
                     input={state.fields.valgtAnsatt.input}
                 />
                 <Select
-                    label={'Velg prioritet'}
+                    label="Velg prioritet"
                     {...state.fields.valgtPrioritet?.input}
                     feil={feilmelding(state.fields.valgtPrioritet)}
                 >
@@ -204,7 +204,7 @@ function OppgaveSkjema(props: OppgaveProps) {
                 </Select>
                 <Textarea
                     maxLength={0}
-                    label={'Beskrivelse'}
+                    label="Beskrivelse"
                     {...state.fields.beskrivelse.input}
                     feil={feilmelding(state.fields.beskrivelse)}
                 />
