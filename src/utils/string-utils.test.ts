@@ -73,7 +73,7 @@ describe('datoEllerNull', () => {
 describe('NOKellerNull', () => {
     it('Returnerer Ja ved true', () => {
         const result = NOKellerNull(150);
-        expect(result).toEqual('150.00 NOK');
+        expect(result).toEqual('150,00 NOK');
     });
 
     it('Returnerer null ved null', () => {

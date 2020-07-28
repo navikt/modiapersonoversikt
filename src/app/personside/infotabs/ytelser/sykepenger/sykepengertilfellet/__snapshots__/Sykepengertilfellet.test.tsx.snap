@@ -139,7 +139,7 @@ exports[`Sykepengertilfellet matcher snapshot 1`] = `
       <dd
         className="typo-element"
       >
-        837.00 NOK
+        837,00 NOK
       </dd>
     </div>
     <div>

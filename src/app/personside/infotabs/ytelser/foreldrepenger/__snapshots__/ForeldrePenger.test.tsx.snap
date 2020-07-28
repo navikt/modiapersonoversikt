@@ -415,7 +415,7 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                 <dd
                   className="typo-element"
                 >
-                  40,062.00 NOK
+                  40 062,00 NOK
                 </dd>
               </div>
               <div>
@@ -757,12 +757,12 @@ exports[`Foreldrepengeperiode matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      705.00 NOK
+                      705,00 NOK
                     </td>
                     <td
                       role="cell"
                     >
-                      466.00 NOK
+                      466,00 NOK
                     </td>
                     <td
                       role="cell"

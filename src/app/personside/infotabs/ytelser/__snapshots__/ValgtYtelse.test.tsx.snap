@@ -429,7 +429,7 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
                   <dd
                     className="typo-element"
                   >
-                    40,062.00 NOK
+                    40 062,00 NOK
                   </dd>
                 </div>
                 <div>
@@ -771,12 +771,12 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
                       <td
                         role="cell"
                       >
-                        705.00 NOK
+                        705,00 NOK
                       </td>
                       <td
                         role="cell"
                       >
-                        466.00 NOK
+                        466,00 NOK
                       </td>
                       <td
                         role="cell"
@@ -1173,7 +1173,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
                   <dd
                     className="typo-element"
                   >
-                    45,029.00 NOK
+                    45 029,00 NOK
                   </dd>
                 </div>
                 <div>
@@ -1285,7 +1285,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      120.00 NOK
+                      120,00 NOK
                     </td>
                     <td
                       role="cell"
@@ -1295,7 +1295,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      5.00 NOK
+                      5,00 NOK
                     </td>
                     <td
                       role="cell"
@@ -1319,7 +1319,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      596.00 NOK
+                      596,00 NOK
                     </td>
                     <td
                       role="cell"
@@ -1329,7 +1329,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      27.00 NOK
+                      27,00 NOK
                     </td>
                     <td
                       role="cell"
@@ -1425,7 +1425,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      69.00 NOK
+                      69,00 NOK
                     </td>
                     <td
                       role="cell"
@@ -1435,7 +1435,7 @@ exports[`Om pleiepenger matcher snapshot 1`] = `
                     <td
                       role="cell"
                     >
-                      12.00 NOK
+                      12,00 NOK
                     </td>
                     <td
                       role="cell"
@@ -1735,7 +1735,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
                 <dd
                   className="typo-element"
                 >
-                  837.00 NOK
+                  837,00 NOK
                 </dd>
               </div>
               <div>
@@ -1963,7 +1963,7 @@ exports[`Om sykepenger matcher snapshot 1`] = `
                   <dd
                     className="typo-element"
                   >
-                    39,691.00 NOK
+                    39 691,00 NOK
                   </dd>
                 </div>
                 <div>
@@ -2188,12 +2188,12 @@ exports[`Om sykepenger matcher snapshot 1`] = `
                 <td
                   role="cell"
                 >
-                  705.00 NOK
+                  705,00 NOK
                 </td>
                 <td
                   role="cell"
                 >
-                  466.00 NOK
+                  466,00 NOK
                 </td>
                 <td
                   role="cell"
@@ -2232,12 +2232,12 @@ exports[`Om sykepenger matcher snapshot 1`] = `
                 <td
                   role="cell"
                 >
-                  705.00 NOK
+                  705,00 NOK
                 </td>
                 <td
                   role="cell"
                 >
-                  466.00 NOK
+                  466,00 NOK
                 </td>
                 <td
                   role="cell"

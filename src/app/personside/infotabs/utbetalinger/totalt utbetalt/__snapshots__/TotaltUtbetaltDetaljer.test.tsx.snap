@@ -386,19 +386,19 @@ Array [
                   className="sumBrutto"
                   role="cell"
                 >
-                  40,110.00
+                  40 110,00
                 </td>
                 <td
                   className="sumTrekk"
                   role="cell"
                 >
-                  -5,952.00
+                  −5 952,00
                 </td>
                 <td
                   className="sumNetto"
                   role="cell"
                 >
-                  34,158.00
+                  34 158,00
                 </td>
                 <td
                   className="periodeForYtelse"
@@ -417,19 +417,19 @@ Array [
                       Mouse
                     </dt>
                     <dd>
-                      11,580.00
+                      11 580,00
                     </dd>
                     <dt>
                       Computer
                     </dt>
                     <dd>
-                      11,790.00
+                      11 790,00
                     </dd>
                     <dt>
                       Bacon
                     </dt>
                     <dd>
-                      16,740.00
+                      16 740,00
                     </dd>
                   </dl>
                 </td>

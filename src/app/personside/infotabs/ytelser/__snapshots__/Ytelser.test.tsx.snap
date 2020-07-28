@@ -677,7 +677,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <dd
                         className="typo-element"
                       >
-                        837.00 NOK
+                        837,00 NOK
                       </dd>
                     </div>
                     <div>
@@ -905,7 +905,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                         <dd
                           className="typo-element"
                         >
-                          39,691.00 NOK
+                          39 691,00 NOK
                         </dd>
                       </div>
                       <div>
@@ -1130,12 +1130,12 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <td
                         role="cell"
                       >
-                        705.00 NOK
+                        705,00 NOK
                       </td>
                       <td
                         role="cell"
                       >
-                        466.00 NOK
+                        466,00 NOK
                       </td>
                       <td
                         role="cell"
@@ -1174,12 +1174,12 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                       <td
                         role="cell"
                       >
-                        705.00 NOK
+                        705,00 NOK
                       </td>
                       <td
                         role="cell"
                       >
-                        466.00 NOK
+                        466,00 NOK
                       </td>
                       <td
                         role="cell"
