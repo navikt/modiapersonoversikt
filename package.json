@@ -9,7 +9,7 @@
         "build/dist/"
     ],
     "engines": {
-        "node": ">13.0.0"
+        "node": ">=14.6.0"
     },
     "publishConfig": {
         "registry": "https://repo.adeo.no/repository/npm-internal/"
