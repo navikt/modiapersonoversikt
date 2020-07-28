@@ -915,7 +915,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                 value=""
               >
                 <option
-                  disabled={true}
                   value=""
                 >
                   Ingen tema valgt
