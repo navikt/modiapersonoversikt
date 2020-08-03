@@ -150,7 +150,7 @@ export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
 }
 
 export function LestDato({ melding }: { melding: Melding }) {
-    if (melding.status === LestStatus.IkkeLest || erMeldingFraNav(melding.meldingstype)) {
+    if (melding.status === LestStatus.IkkeLest || erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }
     return (
