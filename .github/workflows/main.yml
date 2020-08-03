@@ -3,8 +3,7 @@ name: Build, push, and deploy
 on: [push]
 
 env:
-  VERSION: ${{ github.sha }}
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/modiapersonoversikt:${VERSION}
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/modiapersonoversikt:${{ github.sha }}
   CI: true
   TZ: Europe/Oslo
 jobs:
@@ -69,7 +68,7 @@ jobs:
           PRINT_PAYLOAD: true
           CLUSTER: dev-fss
           RESOURCE: .nais/qa-template.yaml
-          VAR: namespace=${{ matrix.namespace }},version=${VERSION}
+          VAR: namespace=${{ matrix.namespace }},version=${{ github.sha }}
 
   deploy-prod:
     name: Deploy to prod
@@ -84,4 +83,4 @@ jobs:
           PRINT_PAYLOAD: true
           CLUSTER: prod-fss
           RESOURCE: .nais/prod.yaml
-          VAR: version=${VERSION}
+          VAR: version=${{ github.sha }}
