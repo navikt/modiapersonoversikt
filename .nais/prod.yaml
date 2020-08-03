@@ -40,6 +40,8 @@ spec:
       - kvPath: /serviceuser/data/prod/srvmodiapersonoversikt
         mountPath: /var/run/secrets/nais.io/service_user
   env:
+    - name: APP_VERSION
+      value: "{{ version }}"
     # ISSO props
     - name: VEILARBLOGIN_OPENAM_CLIENT_ID
       value: "veilarblogin-p"
