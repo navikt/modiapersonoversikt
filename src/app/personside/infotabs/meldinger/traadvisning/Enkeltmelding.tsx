@@ -155,7 +155,7 @@ export function LestDato({ melding }: { melding: Melding }) {
     }
     return (
         <Normaltekst>
-            {melding.lestDato ? `Melding lest: ${formatterDatoTid(melding.lestDato)}` : 'Dato for lest ikke funnet'}
+            {melding.lestDato ? `Melding lest: ${formatterDatoTid(melding.lestDato)}` : 'Melding ikke lest'}
         </Normaltekst>
     );
 }
