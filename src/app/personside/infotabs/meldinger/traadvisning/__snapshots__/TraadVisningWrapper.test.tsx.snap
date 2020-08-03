@@ -1389,6 +1389,11 @@ exports[`Viser traad med verktøylinje 1`] = `
                     <div>
                       27.07.2019 00:00
                     </div>
+                    <p
+                      className="typo-normal"
+                    >
+                      Melding lest: 23.07.2019 00:00
+                    </p>
                     <div
                       className="c25 typo-normal"
                     >
@@ -1610,11 +1615,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                     <div>
                       12.07.2019 00:00
                     </div>
-                    <p
-                      className="typo-normal"
-                    >
-                      Melding lest: 11.08.2019 00:00
-                    </p>
                   </div>
                   <div>
                     <p
@@ -1732,6 +1732,11 @@ exports[`Viser traad med verktøylinje 1`] = `
                     <div>
                       07.07.2019 00:00
                     </div>
+                    <p
+                      className="typo-normal"
+                    >
+                      Melding lest: 12.07.2019 00:00
+                    </p>
                     <div
                       className="c25 typo-normal"
                     >
