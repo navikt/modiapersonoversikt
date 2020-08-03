@@ -36,7 +36,7 @@
         ]
     },
     "dependencies": {
-        "@navikt/fnrvalidator": "^1.1.2",
+        "@navikt/fnrvalidator": "^1.1.3",
         "@navikt/navspa": "^1.0.3",
         "@navikt/tag-input": "^1.1.0",
         "@nutgaard/use-fetch": "^2.3.1",
