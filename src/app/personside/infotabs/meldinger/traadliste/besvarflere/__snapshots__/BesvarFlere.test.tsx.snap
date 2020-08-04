@@ -774,6 +774,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     <div>
                       07.07.2019 00:00
                     </div>
+                    <p
+                      className="typo-normal"
+                    >
+                      Melding lest: 12.07.2019 00:00
+                    </p>
                     <div
                       className="c22 typo-normal"
                     >
@@ -1112,6 +1117,11 @@ exports[`BesvarFler matcher snapshot 1`] = `
                     <div>
                       27.07.2019 00:00
                     </div>
+                    <p
+                      className="typo-normal"
+                    >
+                      Melding lest: 23.07.2019 00:00
+                    </p>
                     <div
                       className="c22 typo-normal"
                     >
