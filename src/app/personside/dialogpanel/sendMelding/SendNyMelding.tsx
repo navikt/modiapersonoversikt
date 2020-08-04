@@ -139,7 +139,7 @@ function SendNyMelding(props: Props) {
                             {erSpørsmål ? (
                                 <StyledAlertStripeInfo>Gir varsel, bruker må svare</StyledAlertStripeInfo>
                             ) : (
-                                <StyledAlertStripeInfo>Gir varsel, bruker kan svare</StyledAlertStripeInfo>
+                                <StyledAlertStripeInfo>Gir varsel, bruker kan ikke svare</StyledAlertStripeInfo>
                             )}
                         </UnmountClosed>
                     </Margin>
