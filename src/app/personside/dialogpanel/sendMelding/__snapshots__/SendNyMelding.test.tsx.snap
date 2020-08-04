@@ -727,7 +727,7 @@ exports[`viser send ny melding 1`] = `
             <div
               className="typo-normal alertstripe__tekst"
             >
-              Gir varsel, bruker kan svare
+              Gir varsel, bruker kan ikke svare
             </div>
           </div>
         </div>
