@@ -872,17 +872,17 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           <td
                             role="cell"
                           >
-                            13,370.00
+                            13 370,00
                           </td>
                           <td
                             role="cell"
                           >
-                            -1,984.00
+                            −1 984,00
                           </td>
                           <td
                             role="cell"
                           >
-                            11,386.00
+                            11 386,00
                           </td>
                         </tr>
                       </tbody>
@@ -1036,19 +1036,19 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                               className="sumBrutto"
                               role="cell"
                             >
-                              13,370.00
+                              13 370,00
                             </td>
                             <td
                               className="sumTrekk"
                               role="cell"
                             >
-                              -1,984.00
+                              −1 984,00
                             </td>
                             <td
                               className="sumNetto"
                               role="cell"
                             >
-                              11,386.00
+                              11 386,00
                             </td>
                             <td
                               className="periodeForYtelse"
@@ -1067,19 +1067,19 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                   Mouse
                                 </dt>
                                 <dd>
-                                  3,860.00
+                                  3 860,00
                                 </dd>
                                 <dt>
                                   Computer
                                 </dt>
                                 <dd>
-                                  3,930.00
+                                  3 930,00
                                 </dd>
                                 <dt>
                                   Bacon
                                 </dt>
                                 <dd>
-                                  5,580.00
+                                  5 580,00
                                 </dd>
                               </dl>
                             </td>
@@ -1169,7 +1169,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                               <p
                                 className="typo-element"
                               >
-                                11,386.00
+                                11 386,00
                               </p>
                             </div>
                             <p
@@ -1330,17 +1330,17 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                           <td
                                             role="cell"
                                           >
-                                            13,370.00
+                                            13 370,00
                                           </td>
                                           <td
                                             role="cell"
                                           >
-                                            -1,984.00
+                                            −1 984,00
                                           </td>
                                           <td
                                             role="cell"
                                           >
-                                            11,386.00
+                                            11 386,00
                                           </td>
                                         </tr>
                                       </tbody>
@@ -1398,7 +1398,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                         <td
                                           role="cell"
                                         >
-                                          558.00
+                                          558,00
                                         </td>
                                         <td
                                           role="cell"
@@ -1408,7 +1408,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                         <td
                                           role="cell"
                                         >
-                                          5,580.00
+                                          5 580,00
                                         </td>
                                       </tr>
                                       <tr
@@ -1422,7 +1422,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                         <td
                                           role="cell"
                                         >
-                                          1,310.00
+                                          1 310,00
                                         </td>
                                         <td
                                           role="cell"
@@ -1432,7 +1432,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                         <td
                                           role="cell"
                                         >
-                                          3,930.00
+                                          3 930,00
                                         </td>
                                       </tr>
                                       <tr
@@ -1446,7 +1446,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                         <td
                                           role="cell"
                                         >
-                                          1,930.00
+                                          1 930,00
                                         </td>
                                         <td
                                           role="cell"
@@ -1456,7 +1456,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                         <td
                                           role="cell"
                                         >
-                                          3,860.00
+                                          3 860,00
                                         </td>
                                       </tr>
                                       <tr
@@ -1480,7 +1480,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                         <td
                                           role="cell"
                                         >
-                                          -730.00
+                                          −730,00
                                         </td>
                                       </tr>
                                       <tr
@@ -1504,7 +1504,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                         <td
                                           role="cell"
                                         >
-                                          -1,042.00
+                                          −1 042,00
                                         </td>
                                       </tr>
                                       <tr
@@ -1528,7 +1528,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                         <td
                                           role="cell"
                                         >
-                                          -212.00
+                                          −212,00
                                         </td>
                                       </tr>
                                     </tbody>

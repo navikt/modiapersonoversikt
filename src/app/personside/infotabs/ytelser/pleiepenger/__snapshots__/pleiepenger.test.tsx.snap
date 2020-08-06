@@ -245,7 +245,7 @@ exports[`Om Oversikten i pleiepengeretten matcher snapshot 1`] = `
             <dd
               className="typo-element"
             >
-              45,029.00 NOK
+              45 029,00 NOK
             </dd>
           </div>
           <div>
@@ -413,7 +413,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
             <td
               role="cell"
             >
-              120.00 NOK
+              120,00 NOK
             </td>
             <td
               role="cell"
@@ -423,7 +423,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
             <td
               role="cell"
             >
-              5.00 NOK
+              5,00 NOK
             </td>
             <td
               role="cell"
@@ -447,7 +447,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
             <td
               role="cell"
             >
-              596.00 NOK
+              596,00 NOK
             </td>
             <td
               role="cell"
@@ -457,7 +457,7 @@ exports[`Om Pleiepengeperiode i pleiepengeretten matcher snapshot 1`] = `
             <td
               role="cell"
             >
-              27.00 NOK
+              27,00 NOK
             </td>
             <td
               role="cell"
