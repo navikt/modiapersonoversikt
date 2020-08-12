@@ -58,17 +58,22 @@ function getSaker(
     return [...gsakSaker, ...psakData];
 }
 
-function fordelSaker(saker: JournalforingsSak[]): Kategorier {
+export function fordelSaker(saker: JournalforingsSak[]): Kategorier {
     const kategoriGruppert = saker.reduce(groupBy(sakKategori), { [SakKategori.FAG]: [], [SakKategori.GEN]: [] });
 
+    const eksisterendeFagsakTemakoder: Set<string> = new Set(
+        kategoriGruppert[SakKategori.FAG].map(sak => sak.temaKode)
+    );
     const temaGruppertefagSaker: Group<JournalforingsSak> = kategoriGruppert[SakKategori.FAG].reduce(
         groupBy(sak => sak.temaNavn),
         {}
     );
-    const temaGrupperteGenerelleSaker: Group<JournalforingsSak> = kategoriGruppert[SakKategori.GEN].reduce(
-        groupBy(sak => sak.temaNavn),
-        {}
-    );
+    const temaGrupperteGenerelleSaker: Group<JournalforingsSak> = kategoriGruppert[SakKategori.GEN]
+        .filter(sak => !eksisterendeFagsakTemakoder.has(sak.temaKode))
+        .reduce(
+            groupBy(sak => sak.temaNavn),
+            {}
+        );
 
     const fagSaker = Object.entries(temaGruppertefagSaker).reduce(
         (acc, [tema, saker]) => [...acc, { tema, saker }],
