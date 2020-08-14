@@ -290,6 +290,7 @@ exports[`viser dialogpanel 1`] = `
                   >
                     Melding
                   </label>
+                  
                   <div
                     className="textarea--medMeta__wrapper"
                   >
@@ -297,9 +298,11 @@ exports[`viser dialogpanel 1`] = `
                       className="sr-only"
                       id="Helt tilfeldig ID"
                     >
-                      Tekstområde med plass til 
+                      Tekstområde med plass til
+                       
                       5000
-                       tegn.
+                       
+                      tegn.
                     </span>
                     <textarea
                       aria-describedby="Helt tilfeldig ID"
