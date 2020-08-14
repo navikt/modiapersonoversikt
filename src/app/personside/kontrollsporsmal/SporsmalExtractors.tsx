@@ -62,7 +62,8 @@ export function hentFødselsdatoBarn(person: Person): Svar {
     const gyldigeBarn = getBarnUnder21(person.familierelasjoner)
         .filter(barn => barn.harSammeBosted)
         .filter(barn => !barn.tilPerson.diskresjonskode)
-        .filter(barn => !erDød(barn.tilPerson.personstatus));
+        .filter(barn => !erDød(barn.tilPerson.personstatus))
+        .filter(barn => !harDødsDato(barn));
 
     if (gyldigeBarn.length === 0) {
         return { tekst: '' };
@@ -81,6 +82,12 @@ function hentFødselsdato(barn: Familierelasjon): string {
         return utledFødselsdato(barn.tilPerson.fødselsnummer);
     }
     return '';
+}
+function harDødsDato(barn: Familierelasjon): Boolean {
+    if (barn.tilPerson.personstatus.dødsdato) {
+        return true;
+    }
+    return false;
 }
 
 function utledFødselsdato(fnr: string): string {

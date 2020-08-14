@@ -72,19 +72,46 @@ describe('hentGiftedato', () => {
 });
 
 describe('hentFødselsdatoBarn', () => {
-    it('Filtrerer ut: barn over 21, ikke samme bosted, har diskresjonskode og er død', () => {
+    it('Spørsmål om  barn retunerers der barn ', () => {
         let person = aremark;
-        person.familierelasjoner = [
-            lagMockBarn(),
-            lagMockBarnOver21(),
-            lagMockBarnAnnetBosted(),
-            lagMockBarnDiskresjonskode(),
-            LagMockBarnDød()
-        ];
+        person.familierelasjoner = [lagMockBarn()];
 
         const tekst = hentFødselsdatoBarn(person);
 
         expect(tekst).toEqual({ beskrivelse: 'Aremark Sitt Barn', tekst: '01.01.2001' });
+    });
+    it('Barn over 21 skal ikke returnerest', () => {
+        let person = aremark;
+        person.familierelasjoner = [lagMockBarnOver21()];
+        const korrektSvar = { tekst: '' };
+        const tekst = hentFødselsdatoBarn(person);
+
+        expect(tekst).toEqual(korrektSvar);
+    });
+
+    it('barn med annet bosted skal ikke returneres', () => {
+        let person = aremark;
+        person.familierelasjoner = [lagMockBarnAnnetBosted()];
+        const korrektSvar = { tekst: '' };
+        const tekst = hentFødselsdatoBarn(person);
+
+        expect(tekst).toEqual(korrektSvar);
+    });
+    it('barn med diskresjonskode skal ikke returneres', () => {
+        let person = aremark;
+        person.familierelasjoner = [lagMockBarnDiskresjonskode()];
+        const korrektSvar = { tekst: '' };
+        const tekst = hentFødselsdatoBarn(person);
+
+        expect(tekst).toEqual(korrektSvar);
+    });
+    it('barn med dødsdato skal ikke returneres', () => {
+        let person = aremark;
+        person.familierelasjoner = [LagMockBarnDød()];
+        const korrektSvar = { tekst: '' };
+        const tekst = hentFødselsdatoBarn(person);
+
+        expect(tekst).toEqual(korrektSvar);
     });
 
     it('Gir tom streng ved ingen barn', () => {
