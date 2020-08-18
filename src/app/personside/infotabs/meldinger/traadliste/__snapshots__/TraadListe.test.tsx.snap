@@ -400,7 +400,7 @@ exports[`Viser Traadliste 1`] = `
           <span
             className="typo-normal"
           >
-            Skriv ut alle meldinger
+            Print alt
           </span>
            
           <svg
