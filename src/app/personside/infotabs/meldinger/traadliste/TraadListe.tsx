@@ -91,7 +91,7 @@ function PrintAlleMeldinger({ traader }: { traader: Traad[] }) {
 
     return (
         <>
-            <PrintKnapp tittel={'Skriv ut alle meldinger'} onClick={() => printer?.triggerPrint()} />
+            <PrintKnapp tittel={'Print alt'} onClick={() => printer?.triggerPrint()} />
             <PrinterWrapper>
                 {traader.map(traad => (
                     <MeldingerPrintMarkup key={traad.traadId} valgtTraad={traad} />
