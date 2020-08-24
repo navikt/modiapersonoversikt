@@ -40,7 +40,7 @@ export const statiskTraadMock: Traad = {
         {
             id: 'q57oayxa',
             meldingstype: Meldingstype.SPORSMAL_SKRIFTLIG,
-            temagruppe: Temagruppe.ForskuddDagpenger,
+            temagruppe: Temagruppe.Arbeid,
             skrevetAvTekst: saksbehandlerTekst({ ident: 'e5otkk', fornavn: 'Synne', etternavn: 'Lunde' }),
             journalfortAv: { ident: '3t55yt', fornavn: 'Victoria', etternavn: 'Andresen' },
             fritekst:
