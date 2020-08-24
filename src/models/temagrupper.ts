@@ -1,6 +1,7 @@
 export enum Temagruppe {
     Arbeid = 'ARBD',
     Familie = 'FMLI',
+    ForskuddDagpenger = 'FDAG',
     Hjelpemiddel = 'HJLPM',
     Bil = 'BIL',
     OrtopediskHjelpemiddel = 'ORT_HJE',
@@ -25,6 +26,7 @@ export const TemaSamtalereferat = [
 export const TemaPlukkbare = [
     Temagruppe.Arbeid,
     Temagruppe.Familie,
+    Temagruppe.ForskuddDagpenger,
     Temagruppe.Hjelpemiddel,
     Temagruppe.Bil,
     Temagruppe.OrtopediskHjelpemiddel,
@@ -33,9 +35,11 @@ export const TemaPlukkbare = [
     Temagruppe.Uføretrygd,
     Temagruppe.Utland
 ];
+
 export const TemaLeggTilbake = [
     Temagruppe.Arbeid,
     Temagruppe.Familie,
+    Temagruppe.ForskuddDagpenger,
     Temagruppe.Hjelpemiddel,
     Temagruppe.Bil,
     Temagruppe.OrtopediskHjelpemiddel,
@@ -73,6 +77,8 @@ export function temagruppeTekst(temagruppe: Temagruppe | null) {
             return 'Hjelpemidler';
         case Temagruppe.Familie:
             return 'Familie';
+        case Temagruppe.ForskuddDagpenger:
+            return 'Forskudd dagpenger endre tilbakebetaling';
         case Temagruppe.InnholdSlettet:
             return 'Innhold slettet';
         case null:
