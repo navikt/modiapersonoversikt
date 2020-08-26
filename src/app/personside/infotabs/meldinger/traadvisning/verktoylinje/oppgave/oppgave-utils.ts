@@ -10,9 +10,12 @@ export function useNormalPrioritet(
     const prioritetFieldName = state.fields.valgtPrioritet.input.name;
     const prioritetOnChange = state.fields.valgtPrioritet.input.onChange;
     useEffect(() => {
-        const normalOppgaveprioritet = valgtTema?.prioriteter.find(prioritet => prioritet.kode.includes('NORM'));
-        if (normalOppgaveprioritet) {
-            prioritetOnChange(changeEvent(prioritetFieldName, normalOppgaveprioritet.kode));
+        const onsketPrioritet =
+            valgtTema?.prioriteter.find(prioritet => prioritet.kode.includes('NORM')) ??
+            valgtTema?.prioriteter.find(() => true);
+
+        if (onsketPrioritet) {
+            prioritetOnChange(changeEvent(prioritetFieldName, onsketPrioritet.kode));
         }
     }, [valgtTema, prioritetFieldName, prioritetOnChange]);
 }
