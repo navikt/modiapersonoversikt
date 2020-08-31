@@ -19,6 +19,7 @@ import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTi
 import useHandleGosysUrl from './useHandleGosysUrl';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { removePrefix } from '../../utils/string-utils';
+import NotifikasjonsContainer from '../notifikasjon/NotifikasjonsContainer';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 const etterSokefelt = `
@@ -29,6 +30,9 @@ const etterSokefelt = `
   <button class="hurtigtaster-button" id="hurtigtaster-button" aria-label="Åpne hurtigtaster" title="Åpne hurtigtaster">
     <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
   </button>
+  <button class="hurtigtaster-button" id="notifikasjon-button" aria-label="Åpne notifikasjoner" title="Åpne notifikasjoner">
+    <span>N</span>
+</button>
 </div>
 `;
 
@@ -139,6 +143,7 @@ function Decorator() {
                     <InternflateDecorator {...config} />
                     <PersonsokContainer />
                     <HurtigtastTipsContainer />
+                    <NotifikasjonsContainer />
                     <DecoratorEasterEgg />
                 </>
             )}
