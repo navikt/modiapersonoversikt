@@ -32,7 +32,7 @@ const etterSokefelt = `
   </button>
   <button class="hurtigtaster-button" id="notifikasjon-button" aria-label="Åpne notifikasjoner" title="Åpne notifikasjoner">
     <span>N</span>
-</button>
+  </button>
 </div>
 `;
 

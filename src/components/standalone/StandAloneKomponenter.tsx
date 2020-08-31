@@ -27,6 +27,7 @@ import { statiskTraadMock } from '../../mock/meldinger/statiskTraadMock';
 import BesvarFlere from '../../app/personside/infotabs/meldinger/traadliste/besvarflere/BesvarFlere';
 import { getMockTraader } from '../../mock/meldinger/meldinger-mock';
 import StandardTekstModal from '../../app/personside/dialogpanel/sendMelding/standardTekster/StandardTekstModal';
+import Notifikasjon from '../../app/notifikasjon/Notifikasjon';
 
 enum Komponenter {
     Visittkort,
@@ -46,7 +47,8 @@ enum Komponenter {
     TraadVisningDialogpanel,
     BesvarFlere,
     HurtigTasterHjelp,
-    OppgaveSkjermetPerson
+    OppgaveSkjermetPerson,
+    Notifikasjon
 }
 
 const Style = styled.div`
@@ -109,6 +111,8 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
             return <StandardTekstModal appendTekst={tekst => alert(tekst)} />;
         case Komponenter.BesvarFlere:
             return <BesvarFlere traader={getMockTraader(aremark.fødselsnummer).slice(0, 3)} lukkModal={() => null} />;
+        case Komponenter.Notifikasjon:
+            return <Notifikasjon />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

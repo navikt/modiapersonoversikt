@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import ModalWrapper from 'nav-frontend-modal';
-import { Normaltekst } from 'nav-frontend-typografi';
 import useListener from '../../utils/hooks/use-listener';
+import Notifikasjon from './Notifikasjon';
+import { Sidetittel } from 'nav-frontend-typografi';
 
 function NotifikasjonsContainer() {
     const [apen, settApen] = useState(false);
@@ -13,7 +14,8 @@ function NotifikasjonsContainer() {
 
     return (
         <ModalWrapper contentLabel="Notifikasjon" isOpen={apen} onRequestClose={handleOnClose}>
-            <Normaltekst>Notifikasjon</Normaltekst>
+            <Sidetittel>Notifikasjon</Sidetittel>
+            <Notifikasjon />
         </ModalWrapper>
     );
 }
