@@ -42,6 +42,7 @@ import { failurerateMiddleware } from './utils/failureMiddleware';
 import { setupDraftMock } from './draft-mock';
 import tilgangskontrollMock from './tilgangskontroll-mock';
 import { delayed } from './utils-mock';
+import { getNotifikasjon } from './notifikasjon/notifikasjon-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -552,6 +553,13 @@ function setupAvsluttOppgaveGosysMock(mock: FetchMock) {
     );
 }
 
+function setupNotifikasjonMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/notifikasjon',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getNotifikasjon())
+    );
+}
+
 const contentTypeMiddleware: Middleware = (requestArgs, response) => {
     if (response.headers) {
         return response;
@@ -631,3 +639,4 @@ setUpSaksbehandlersEnheterMock(mock);
 setupAvsluttOppgaveGosysMock(mock);
 setupSaksbehandlerInnstillingerMock(mock);
 setupDraftMock(mock);
+setupNotifikasjonMock(mock);
