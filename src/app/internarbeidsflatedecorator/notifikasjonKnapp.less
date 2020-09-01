@@ -1,0 +1,34 @@
+@import '~nav-frontend-core';
+
+.dekorator .notifikasjon-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 44px;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    padding: 0;
+    margin-right: 0.5em;
+    cursor: pointer;
+
+    span {
+        background: none;
+        color: @navMorkGra;
+        width: 40px;
+        height: 40px;
+        border-radius: 40px;
+        text-align: center;
+        vertical-align: middle;
+        background-color: #fff;
+        display: inline-block;
+        pointer-events: none;
+    }
+    &:hover span {
+        background-color: @navBlaDarken20;
+        color: white;
+    }
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px #ffbd66;
+    }
+}

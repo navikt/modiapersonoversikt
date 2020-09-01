@@ -9,6 +9,7 @@ import { matchPath, useHistory } from 'react-router';
 import './personsokKnapp.less';
 import './hurtigtaster.less';
 import './decorator.less';
+import './notifikasjonKnapp.less';
 import { useAppState, useOnMount } from '../../utils/customHooks';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
@@ -20,8 +21,11 @@ import useHandleGosysUrl from './useHandleGosysUrl';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { removePrefix } from '../../utils/string-utils';
 import NotifikasjonsContainer from '../notifikasjon/NotifikasjonsContainer';
+/* eslint-disable-next-line */
+import BjelleIkon from '!!raw-loader!../../svg/bjelle.svg';
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
+
 const etterSokefelt = `
 <div class="knapper_container">
   <button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk">
@@ -30,8 +34,8 @@ const etterSokefelt = `
   <button class="hurtigtaster-button" id="hurtigtaster-button" aria-label="Åpne hurtigtaster" title="Åpne hurtigtaster">
     <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
   </button>
-  <button class="hurtigtaster-button" id="notifikasjon-button" aria-label="Åpne notifikasjoner" title="Åpne notifikasjoner">
-    <span>N</span>
+  <button class="notifikasjon-button" id="notifikasjon-button" aria-label="Åpne notifikasjoner" title="Åpne notifikasjoner">
+    <span>${BjelleIkon}</span>
   </button>
 </div>
 `;
@@ -50,7 +54,6 @@ function lagConfig(
     const { sokFnr, pathFnr } = getFnrFraUrl();
     const onsketFnr = sokFnr || pathFnr;
     const fnrValue = onsketFnr === '0' ? RESET_VALUE : onsketFnr;
-
     return {
         appname: 'Modia personoversikt',
         fnr: {
