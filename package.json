@@ -148,6 +148,7 @@
         "lint-staged": "^8.1.5",
         "prettier": "^1.19.1",
         "raw-loader": "^4.0.1",
+        "raw.macro": "^0.4.2",
         "react-test-renderer": "^16.8.6",
         "typescript": "^3.9.6"
     },

@@ -21,8 +21,9 @@ import useHandleGosysUrl from './useHandleGosysUrl';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { removePrefix } from '../../utils/string-utils';
 import NotifikasjonsContainer from '../notifikasjon/NotifikasjonsContainer';
-/* eslint-disable-next-line */
-import BjelleIkon from '!!raw-loader!../../svg/bjelle.svg';
+import raw from 'raw.macro';
+
+const bjelleIkon = raw('../../svg/bjelle.svg');
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -35,7 +36,7 @@ const etterSokefelt = `
     <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
   </button>
   <button class="notifikasjon-button" id="notifikasjon-button" aria-label="Åpne notifikasjoner" title="Åpne notifikasjoner">
-    <span>${BjelleIkon}</span>
+    <span>${bjelleIkon}</span>
   </button>
 </div>
 `;
