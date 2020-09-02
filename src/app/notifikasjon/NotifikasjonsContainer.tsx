@@ -8,11 +8,17 @@ import styled from 'styled-components';
 export interface Notifikasjon {
     id: string;
     tittel: string;
+    dato: string;
     beskrivelse: string;
+    prioritet: number;
 }
 
 const StyledModalWrapper = styled(ModalWrapper)`
     padding: 3rem;
+`;
+
+const StyledSidetittel = styled(Sidetittel)`
+    margin-left: 1rem;
 `;
 
 function NotifikasjonsContainer() {
@@ -25,7 +31,7 @@ function NotifikasjonsContainer() {
 
     return (
         <StyledModalWrapper contentLabel="Notifikasjon" isOpen={apen} onRequestClose={handleOnClose}>
-            <Sidetittel>Notifikasjon</Sidetittel>
+            <StyledSidetittel>Notifikasjon</StyledSidetittel>
             <Notifikasjon />
         </StyledModalWrapper>
     );
