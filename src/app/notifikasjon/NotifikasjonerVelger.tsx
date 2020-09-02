@@ -7,6 +7,14 @@ const StyledDiv = styled.div`
     text-align: center;
 `;
 
+const StyledNesteknapp = styled(Nesteknapp)`
+    float: right;
+`;
+
+const StyledTilbakeknapp = styled(Tilbakeknapp)`
+    float: left;
+`;
+
 export function NotfikiasjonerVelger() {
     const notifikasjoner = useNotifikasjoner();
 
@@ -16,7 +24,7 @@ export function NotfikiasjonerVelger() {
 
         return (
             <StyledDiv>
-                <Nesteknapp></Nesteknapp>
+                <StyledNesteknapp />
             </StyledDiv>
         );
     }
@@ -27,7 +35,7 @@ export function NotfikiasjonerVelger() {
 
     return (
         <StyledDiv>
-            <Tilbakeknapp />
+            <StyledTilbakeknapp />
         </StyledDiv>
     );
 }

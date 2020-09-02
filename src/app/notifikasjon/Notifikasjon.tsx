@@ -21,10 +21,20 @@ const StyledPanelPrioritert = styled(Panel)`
     border-width: thick;
 `;
 
-const StyledEtikett = styled(Etikett)`
+const StyledEtikettViktig = styled(Etikett)`
     margin: 0rem;
     background-color: red;
-    color: black;
+    color: white;
+`;
+
+const StyledEtikettBeskjed = styled(Etikett)`
+    margin: 0rem;
+    float: right;
+`;
+
+const StyledEtikettOppdatering = styled(Etikett)`
+    margin: 0rem;
+    float: right;
 `;
 
 function Notifikasjon() {
@@ -54,10 +64,11 @@ function Notifikasjon() {
     });
 
     const alleNotifikasjoner = sortertNotifikasjonArray.map(notifikasjon => {
-        if (notifikasjon.prioritet === 1 && notifikasjon.beskrivelse.length < 150) {
+        if (notifikasjon.prioritet === 1 && notifikasjon.beskrivelse.length < 150 && notifikasjon.type === 'beskjed') {
             return (
                 <StyledPanelPrioritert border>
-                    <StyledEtikett type="advarsel">Viktig</StyledEtikett>
+                    <StyledEtikettViktig type="advarsel">Viktig</StyledEtikettViktig>
+                    <StyledEtikettBeskjed type="info">Beskjed</StyledEtikettBeskjed>
                     <Systemtittel>{notifikasjon.tittel}</Systemtittel>
                     <Ingress>{notifikasjon.ingress}</Ingress>
                     <Undertekst>{notifikasjon.dato}</Undertekst>
@@ -67,11 +78,29 @@ function Notifikasjon() {
                 </StyledPanelPrioritert>
             );
         }
-
-        if (notifikasjon.prioritet === 1 && notifikasjon.beskrivelse.length >= 150) {
+        if (
+            notifikasjon.prioritet === 1 &&
+            notifikasjon.beskrivelse.length < 150 &&
+            notifikasjon.type === 'oppdatering'
+        ) {
             return (
                 <StyledPanelPrioritert border>
-                    <StyledEtikett type="advarsel">Viktig</StyledEtikett>
+                    <StyledEtikettViktig type="advarsel">Viktig</StyledEtikettViktig>
+                    <StyledEtikettOppdatering type="suksess">Oppdatering</StyledEtikettOppdatering>
+                    <Systemtittel>{notifikasjon.tittel}</Systemtittel>
+                    <Ingress>{notifikasjon.ingress}</Ingress>
+                    <Undertekst>{notifikasjon.dato}</Undertekst>
+                    <Normaltekst>
+                        <Tekstomrade>{notifikasjon.beskrivelse}</Tekstomrade>
+                    </Normaltekst>
+                </StyledPanelPrioritert>
+            );
+        }
+        if (notifikasjon.prioritet === 1 && notifikasjon.beskrivelse.length >= 150 && notifikasjon.type === 'beskjed') {
+            return (
+                <StyledPanelPrioritert border>
+                    <StyledEtikettViktig type="advarsel">Viktig</StyledEtikettViktig>
+                    <StyledEtikettBeskjed type="info">Beskjed</StyledEtikettBeskjed>
                     <Systemtittel>{notifikasjon.tittel}</Systemtittel>
                     <Ingress>{notifikasjon.ingress}</Ingress>
                     <Undertekst>{notifikasjon.dato}</Undertekst>
@@ -83,9 +112,30 @@ function Notifikasjon() {
                 </StyledPanelPrioritert>
             );
         }
-        if (notifikasjon.beskrivelse.length >= 150) {
+        if (
+            notifikasjon.prioritet === 1 &&
+            notifikasjon.beskrivelse.length >= 150 &&
+            notifikasjon.type === 'oppdatering'
+        ) {
+            return (
+                <StyledPanelPrioritert border>
+                    <StyledEtikettViktig type="advarsel">Viktig</StyledEtikettViktig>
+                    <StyledEtikettOppdatering type="suksess">Oppdatering</StyledEtikettOppdatering>
+                    <Systemtittel>{notifikasjon.tittel}</Systemtittel>
+                    <Ingress>{notifikasjon.ingress}</Ingress>
+                    <Undertekst>{notifikasjon.dato}</Undertekst>
+                    <Lesmerpanel>
+                        <Normaltekst>
+                            <Tekstomrade>{notifikasjon.beskrivelse}</Tekstomrade>
+                        </Normaltekst>
+                    </Lesmerpanel>
+                </StyledPanelPrioritert>
+            );
+        }
+        if (notifikasjon.beskrivelse.length >= 150 && notifikasjon.type === 'beskjed') {
             return (
                 <StyledPanel border>
+                    <StyledEtikettBeskjed type="info">Beskjed</StyledEtikettBeskjed>
                     <Systemtittel>{notifikasjon.tittel}</Systemtittel>
                     <Ingress>{notifikasjon.ingress}</Ingress>
                     <Undertekst>{notifikasjon.dato}</Undertekst>
@@ -97,8 +147,37 @@ function Notifikasjon() {
                 </StyledPanel>
             );
         }
+        if (notifikasjon.beskrivelse.length >= 150 && notifikasjon.type === 'oppdatering') {
+            return (
+                <StyledPanel border>
+                    <StyledEtikettOppdatering type="suksess">Oppdatering</StyledEtikettOppdatering>
+                    <Systemtittel>{notifikasjon.tittel}</Systemtittel>
+                    <Ingress>{notifikasjon.ingress}</Ingress>
+                    <Undertekst>{notifikasjon.dato}</Undertekst>
+                    <Lesmerpanel>
+                        <Normaltekst>
+                            <Tekstomrade>{notifikasjon.beskrivelse}</Tekstomrade>
+                        </Normaltekst>
+                    </Lesmerpanel>
+                </StyledPanel>
+            );
+        }
+        if (notifikasjon.type === 'beskjed') {
+            return (
+                <StyledPanel border>
+                    <StyledEtikettBeskjed type="info">Beskjed</StyledEtikettBeskjed>
+                    <Systemtittel>{notifikasjon.tittel}</Systemtittel>
+                    <Ingress>{notifikasjon.ingress}</Ingress>
+                    <Undertekst>{notifikasjon.dato}</Undertekst>
+                    <Normaltekst>
+                        <Tekstomrade>{notifikasjon.beskrivelse}</Tekstomrade>
+                    </Normaltekst>
+                </StyledPanel>
+            );
+        }
         return (
             <StyledPanel border>
+                <StyledEtikettOppdatering type="suksess">Oppdatering</StyledEtikettOppdatering>
                 <Systemtittel>{notifikasjon.tittel}</Systemtittel>
                 <Ingress>{notifikasjon.ingress}</Ingress>
                 <Undertekst>{notifikasjon.dato}</Undertekst>

@@ -12,6 +12,7 @@ export interface Notifikasjon {
     ingress: string;
     beskrivelse: string;
     prioritet: number;
+    type: string;
 }
 
 const StyledModalWrapper = styled(ModalWrapper)`
