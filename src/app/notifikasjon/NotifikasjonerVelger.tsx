@@ -16,7 +16,7 @@ export function NotfikiasjonerVelger() {
 
         return (
             <StyledDiv>
-                <Nesteknapp>{notifikasjoner.data[2]}</Nesteknapp>
+                <Nesteknapp></Nesteknapp>
             </StyledDiv>
         );
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormStyle } from '../personside/dialogpanel/fellesStyling';
-import { Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
+import { Ingress, Normaltekst, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import useNotifikasjoner from './useNotifikasjoner';
@@ -9,6 +9,7 @@ import { AlertStripeInfo, AlertStripeFeil } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import { NotfikiasjonerVelger } from './NotifikasjonerVelger';
 import Etikett from 'nav-frontend-etiketter';
+import Lesmerpanel from 'nav-frontend-lesmerpanel';
 
 const StyledPanel = styled(Panel)`
     margin: 1rem;
@@ -53,11 +54,12 @@ function Notifikasjon() {
     });
 
     const alleNotifikasjoner = sortertNotifikasjonArray.map(notifikasjon => {
-        if (notifikasjon.prioritet === 1) {
+        if (notifikasjon.prioritet === 1 && notifikasjon.beskrivelse.length < 150) {
             return (
                 <StyledPanelPrioritert border>
                     <StyledEtikett type="advarsel">Viktig</StyledEtikett>
                     <Systemtittel>{notifikasjon.tittel}</Systemtittel>
+                    <Ingress>{notifikasjon.ingress}</Ingress>
                     <Undertekst>{notifikasjon.dato}</Undertekst>
                     <Normaltekst>
                         <Tekstomrade>{notifikasjon.beskrivelse}</Tekstomrade>
@@ -65,9 +67,40 @@ function Notifikasjon() {
                 </StyledPanelPrioritert>
             );
         }
+
+        if (notifikasjon.prioritet === 1 && notifikasjon.beskrivelse.length >= 150) {
+            return (
+                <StyledPanelPrioritert border>
+                    <StyledEtikett type="advarsel">Viktig</StyledEtikett>
+                    <Systemtittel>{notifikasjon.tittel}</Systemtittel>
+                    <Ingress>{notifikasjon.ingress}</Ingress>
+                    <Undertekst>{notifikasjon.dato}</Undertekst>
+                    <Lesmerpanel>
+                        <Normaltekst>
+                            <Tekstomrade>{notifikasjon.beskrivelse}</Tekstomrade>
+                        </Normaltekst>
+                    </Lesmerpanel>
+                </StyledPanelPrioritert>
+            );
+        }
+        if (notifikasjon.beskrivelse.length >= 150) {
+            return (
+                <StyledPanel border>
+                    <Systemtittel>{notifikasjon.tittel}</Systemtittel>
+                    <Ingress>{notifikasjon.ingress}</Ingress>
+                    <Undertekst>{notifikasjon.dato}</Undertekst>
+                    <Lesmerpanel>
+                        <Normaltekst>
+                            <Tekstomrade>{notifikasjon.beskrivelse}</Tekstomrade>
+                        </Normaltekst>
+                    </Lesmerpanel>
+                </StyledPanel>
+            );
+        }
         return (
             <StyledPanel border>
                 <Systemtittel>{notifikasjon.tittel}</Systemtittel>
+                <Ingress>{notifikasjon.ingress}</Ingress>
                 <Undertekst>{notifikasjon.dato}</Undertekst>
                 <Normaltekst>
                     <Tekstomrade>{notifikasjon.beskrivelse}</Tekstomrade>

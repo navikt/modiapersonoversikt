@@ -9,6 +9,7 @@ export interface Notifikasjon {
     id: string;
     tittel: string;
     dato: string;
+    ingress: string;
     beskrivelse: string;
     prioritet: number;
 }

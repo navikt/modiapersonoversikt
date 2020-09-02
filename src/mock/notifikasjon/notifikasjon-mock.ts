@@ -6,6 +6,7 @@ export function getNotifikasjon(): Notifikasjon[] {
             id: '12345',
             tittel: 'Ny oppdatering',
             dato: '12.11.2020',
+            ingress: 'Vi har laget en ny print-ut knapp',
             beskrivelse:
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nullam vehicula ipsum a arcu cursus vitae congue. Duis at tellus at urna condimentum mattis pellentesque id. Sodales ut eu sem integer vitae justo eget magna fermentum.',
             prioritet: 0
@@ -14,6 +15,7 @@ export function getNotifikasjon(): Notifikasjon[] {
             id: '67891',
             tittel: 'Ny beskjed',
             dato: '23.08.2020',
+            ingress: 'Nå kan man gi foskudd på dagpenger',
             beskrivelse: 'Nå kan man skrive ',
             prioritet: 1
         },
@@ -21,6 +23,7 @@ export function getNotifikasjon(): Notifikasjon[] {
             id: '82371',
             tittel: 'Ny oppdatering',
             dato: '18.03.2020',
+            ingress: 'Vi har laget en notifikasjonsknapp',
             beskrivelse:
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempor id eu nisl nunc mi. Tempor commodo ullamcorper a lacus. Massa tincidunt dui ut ornare lectus sit amet est. Purus gravida quis blandit turpis cursus in hac habitasse. Id aliquet risus feugiat in ante metus dictum. Est velit egestas dui id ornare arcu odio ut. Consequat ac felis donec et odio. Sit amet justo donec enim diam vulputate ut pharetra. Volutpat ac tincidunt vitae semper quis lectus nulla. Porttitor leo a diam sollicitudin tempor. Mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Euismod quis viverra nibh cras.\n' +
                 '\n' +
