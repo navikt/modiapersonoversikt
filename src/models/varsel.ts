@@ -68,6 +68,7 @@ export enum Varseltype {
     'ForeldrepengerSoknadsvarsel' = 'Foreldrepengesøknad',
     'GodkjentAMO' = 'Aktivitetsplan - Godkjent AMO',
     'Gruppeaktivitet' = 'Gruppeaktivitet',
+    'AktivitetsplanMoteVarsel' = 'Aktivitetsplan - Møte',
     'IkkeLevMeldekortNO' = 'Påminnelse om å sende meldekort',
     'IkkeLevMeldekortNY' = 'Påminnelse om å sende meldekort',
     'IkkeMeldtSegFristNO' = 'Informasjon om for sen melding uten inaktivering',
