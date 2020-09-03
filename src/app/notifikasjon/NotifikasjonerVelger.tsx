@@ -18,18 +18,21 @@ const StyledTilbakeknapp = styled(Tilbakeknapp)`
 export function NotfikiasjonerVelger() {
     const notifikasjoner = useNotifikasjoner();
 
-    if (notifikasjoner.data.length > 1) {
-        const antall = notifikasjoner.data.length;
-        console.log(antall);
+    const neste = () => {
+        console.log('click');
+    };
 
+    const antall = notifikasjoner.data.length;
+
+    if (antall > 1) {
         return (
             <StyledDiv>
-                <StyledNesteknapp />
+                <StyledNesteknapp onClick={neste} />
             </StyledDiv>
         );
     }
 
-    if (notifikasjoner.data.length === 1) {
+    if (antall === 1) {
         return <StyledDiv></StyledDiv>;
     }
 

@@ -1,9 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import ModalWrapper from 'nav-frontend-modal';
 import useListener from '../../utils/hooks/use-listener';
-import Notifikasjon from './Notifikasjon';
+import Notifikasjoner from './Notifikasjoner';
 import { Sidetittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
+import { NotifikasjonsType } from './Notifikasjon';
 
 export interface Notifikasjon {
     id: string;
@@ -12,7 +13,7 @@ export interface Notifikasjon {
     ingress: string;
     beskrivelse: string;
     prioritet: number;
-    type: string;
+    type: NotifikasjonsType;
 }
 
 const StyledModalWrapper = styled(ModalWrapper)`
@@ -34,7 +35,7 @@ function NotifikasjonsContainer() {
     return (
         <StyledModalWrapper contentLabel="Notifikasjon" isOpen={apen} onRequestClose={handleOnClose}>
             <StyledSidetittel>Notifikasjon</StyledSidetittel>
-            <Notifikasjon />
+            <Notifikasjoner />
         </StyledModalWrapper>
     );
 }

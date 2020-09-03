@@ -27,7 +27,7 @@ import { statiskTraadMock } from '../../mock/meldinger/statiskTraadMock';
 import BesvarFlere from '../../app/personside/infotabs/meldinger/traadliste/besvarflere/BesvarFlere';
 import { getMockTraader } from '../../mock/meldinger/meldinger-mock';
 import StandardTekstModal from '../../app/personside/dialogpanel/sendMelding/standardTekster/StandardTekstModal';
-import Notifikasjon from '../../app/notifikasjon/Notifikasjon';
+import Notifikasjon from '../../app/notifikasjon/Notifikasjoner';
 
 enum Komponenter {
     Visittkort,
