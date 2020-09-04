@@ -4,7 +4,7 @@ import useListener from '../../utils/hooks/use-listener';
 import Notifikasjoner from './Notifikasjoner';
 import { Sidetittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
-import { NotifikasjonsType } from './Notifikasjon';
+import { NotifikasjonsType } from './EnkeltNotifikasjon';
 
 export interface Notifikasjon {
     id: string;
@@ -17,7 +17,9 @@ export interface Notifikasjon {
 }
 
 const StyledModalWrapper = styled(ModalWrapper)`
-    padding: 3rem;
+    padding: 2rem;
+    width: 80%;
+    height: 50%;
 `;
 
 const StyledSidetittel = styled(Sidetittel)`

@@ -9,6 +9,8 @@ import Lesmerpanel from 'nav-frontend-lesmerpanel';
 
 interface Props {
     notifikasjon: Notifikasjon;
+    visMer: boolean;
+    setVisMer: (visMer: boolean) => void;
 }
 
 export enum NotifikasjonsType {
@@ -56,10 +58,29 @@ function NotifikasjonPrioritet({ prioritet }: { prioritet: NotifikasjonsPriorite
     return null;
 }
 
-function Beskrivelse({ beskrivelse }: { beskrivelse: string }) {
+function Beskrivelse({
+    beskrivelse,
+    visMer,
+    setVisMer,
+    id
+}: {
+    beskrivelse: string;
+    visMer: boolean;
+    setVisMer: (visMer: boolean) => void;
+    id: string;
+}) {
     if (beskrivelse.length > 150) {
         return (
-            <Lesmerpanel>
+            <Lesmerpanel
+                defaultApen={visMer}
+                onOpen={() => {
+                    setVisMer(true);
+                }}
+                onClose={() => {
+                    setVisMer(false);
+                }}
+                key={id}
+            >
                 <Tekstomrade>{beskrivelse}</Tekstomrade>
             </Lesmerpanel>
         );
@@ -75,7 +96,12 @@ export default function EnkeltNotifikasjon(props: Props) {
             <Systemtittel>{props.notifikasjon.tittel}</Systemtittel>
             <Ingress>{props.notifikasjon.ingress}</Ingress>
             <Undertekst>{props.notifikasjon.dato}</Undertekst>
-            <Beskrivelse beskrivelse={props.notifikasjon.beskrivelse} />
+            <Beskrivelse
+                beskrivelse={props.notifikasjon.beskrivelse}
+                visMer={props.visMer}
+                setVisMer={props.setVisMer}
+                id={props.notifikasjon.id}
+            />
         </StyledPanel>
     );
 }

@@ -1,5 +1,5 @@
 import { Notifikasjon } from '../../app/notifikasjon/NotifikasjonsContainer';
-import { NotifikasjonsPrioritet, NotifikasjonsType } from '../../app/notifikasjon/Notifikasjon';
+import { NotifikasjonsPrioritet, NotifikasjonsType } from '../../app/notifikasjon/EnkeltNotifikasjon';
 
 export function getNotifikasjon(): Notifikasjon[] {
     return [

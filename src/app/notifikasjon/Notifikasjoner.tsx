@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useNotifikasjoner from './useNotifikasjoner';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import { AlertStripeInfo, AlertStripeFeil } from 'nav-frontend-alertstriper';
-import EnkeltNotifikasjon from './Notifikasjon';
+import EnkeltNotifikasjon from './EnkeltNotifikasjon';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import styled from 'styled-components';
+import Stegindikator from 'nav-frontend-stegindikator';
+import { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
 
 const StyledDiv = styled.div`
     text-align: center;
@@ -32,10 +34,16 @@ function NesteKnapp({ indeks, lengde, onClick }: { indeks: number; lengde: numbe
     return <StyledNesteknapp onClick={onClick} />;
 }
 
+function VisStegIndikator({ steg, onChange }: { steg: StegindikatorStegProps[]; onChange: (indeks: number) => void }) {
+    return <Stegindikator steg={steg} onChange={onChange} kompakt={true} />;
+}
+
 function Notifikasjoner() {
     const notifikasjoner = useNotifikasjoner();
 
     const [indeks, setIndeks] = useState(0);
+
+    const [visMer, setVisMer] = useState(false);
 
     if (notifikasjoner.error) {
         return <AlertStripeFeil>Notifikasjoner er nede, vennligst prøv igjen senere.</AlertStripeFeil>;
@@ -61,21 +69,33 @@ function Notifikasjoner() {
 
     const neste = () => {
         setIndeks(indeks + 1);
+        setVisMer(false);
     };
 
     const forrige = () => {
-        return setIndeks(indeks - 1);
+        setIndeks(indeks - 1);
+        setVisMer(false);
     };
 
     const currentNotifikasjon = sortertNotifikasjonArray[indeks];
 
+    const [steg, setSteg] = useState<StegindikatorStegProps[]>([]);
+    useEffect(() => {
+        const stegListe = sortertNotifikasjonArray.map((notifikasjon, i) => {
+            const erAktiv = indeks === i ? true : false;
+            return { label: notifikasjon.tittel, index: i, aktiv: erAktiv };
+        });
+        setSteg(stegListe);
+    }, [steg, indeks, sortertNotifikasjonArray]);
+
     return (
         <>
             <section>
-                <EnkeltNotifikasjon notifikasjon={currentNotifikasjon} />
+                <EnkeltNotifikasjon notifikasjon={currentNotifikasjon} visMer={visMer} setVisMer={setVisMer} />
             </section>
             <StyledDiv>
                 <ForrigeKnapp indeks={indeks} onClick={forrige} />
+                <VisStegIndikator steg={steg} onChange={setIndeks} />
                 <NesteKnapp indeks={indeks} lengde={sortertNotifikasjonArray.length} onClick={neste} />
             </StyledDiv>
         </>
