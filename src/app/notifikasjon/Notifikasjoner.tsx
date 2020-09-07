@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useNotifikasjoner from './useNotifikasjoner';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import { AlertStripeInfo, AlertStripeFeil } from 'nav-frontend-alertstriper';
@@ -9,15 +9,20 @@ import Stegindikator from 'nav-frontend-stegindikator';
 import { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
 
 const StyledDiv = styled.div`
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
 `;
 
 const StyledNesteknapp = styled(Nesteknapp)`
-    float: right;
+    display: flex;
+    align-content: flex-start;
+    margin-left: auto;
 `;
 
 const StyledTilbakeknapp = styled(Tilbakeknapp)`
-    float: left;
+    display: flex;
+    align-content: flex-start;
 `;
 
 function ForrigeKnapp({ indeks, onClick }: { indeks: number; onClick: () => void }) {
@@ -34,8 +39,16 @@ function NesteKnapp({ indeks, lengde, onClick }: { indeks: number; lengde: numbe
     return <StyledNesteknapp onClick={onClick} />;
 }
 
-function VisStegIndikator({ steg, onChange }: { steg: StegindikatorStegProps[]; onChange: (indeks: number) => void }) {
-    return <Stegindikator steg={steg} onChange={onChange} kompakt={true} />;
+function VisStegIndikator({
+    steg,
+    onChange,
+    indeks
+}: {
+    steg: StegindikatorStegProps[];
+    onChange: (indeks: number) => void;
+    indeks: number;
+}) {
+    return <Stegindikator steg={steg} aktivtSteg={indeks} onChange={onChange} kompakt={true} />;
 }
 
 function Notifikasjoner() {
@@ -55,16 +68,8 @@ function Notifikasjoner() {
         return <CenteredLazySpinner />;
     }
 
-    const notifikasjonArray = notifikasjoner.data.map(notifikasjon => {
-        return notifikasjon;
-    });
-
-    const sortertNotifikasjonArray = notifikasjonArray.sort((a, b) => {
-        return a.dato.localeCompare(b.dato);
-    });
-
-    sortertNotifikasjonArray.sort((a, b) => {
-        return b.prioritet - a.prioritet;
+    const sortertNotifikasjoner = notifikasjoner.data.sort((a, b) => {
+        return b.prioritet - a.prioritet || a.dato.localeCompare(b.dato);
     });
 
     const neste = () => {
@@ -77,26 +82,22 @@ function Notifikasjoner() {
         setVisMer(false);
     };
 
-    const currentNotifikasjon = sortertNotifikasjonArray[indeks];
+    const currentNotifikasjon = sortertNotifikasjoner[indeks];
 
-    const [steg, setSteg] = useState<StegindikatorStegProps[]>([]);
-    useEffect(() => {
-        const stegListe = sortertNotifikasjonArray.map((notifikasjon, i) => {
-            const erAktiv = indeks === i ? true : false;
-            return { label: notifikasjon.tittel, index: i, aktiv: erAktiv };
-        });
-        setSteg(stegListe);
-    }, [steg, indeks, sortertNotifikasjonArray]);
+    const stegListe = sortertNotifikasjoner.map((notifikasjon, i) => {
+        const erAktiv = indeks === i ? true : false;
+        return { label: notifikasjon.tittel, index: i, aktiv: erAktiv, key: notifikasjon.id };
+    });
 
     return (
         <>
             <section>
                 <EnkeltNotifikasjon notifikasjon={currentNotifikasjon} visMer={visMer} setVisMer={setVisMer} />
             </section>
+            <VisStegIndikator steg={stegListe} indeks={indeks} onChange={setIndeks} />
             <StyledDiv>
                 <ForrigeKnapp indeks={indeks} onClick={forrige} />
-                <VisStegIndikator steg={steg} onChange={setIndeks} />
-                <NesteKnapp indeks={indeks} lengde={sortertNotifikasjonArray.length} onClick={neste} />
+                <NesteKnapp indeks={indeks} lengde={sortertNotifikasjoner.length} onClick={neste} />
             </StyledDiv>
         </>
     );
