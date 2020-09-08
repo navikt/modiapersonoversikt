@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import useNotifikasjoner from './useNotifikasjoner';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
-import { AlertStripeInfo, AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import EnkeltNotifikasjon from './EnkeltNotifikasjon';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import styled from 'styled-components';
 import Stegindikator from 'nav-frontend-stegindikator';
 import { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
+import { datoSynkende } from '../../utils/date-utils';
+import useNotifikasjoner from './useNotifikasjoner';
 
 const StyledDiv = styled.div`
     display: flex;
@@ -58,18 +58,12 @@ function Notifikasjoner() {
 
     const [visMer, setVisMer] = useState(false);
 
-    if (notifikasjoner.error) {
-        return <AlertStripeFeil>Notifikasjoner er nede, vennligst prøv igjen senere.</AlertStripeFeil>;
-    }
-    if (notifikasjoner.data.length === 0) {
+    if (notifikasjoner.length === 0) {
         return <AlertStripeInfo>Fant ingen notifikasjoner</AlertStripeInfo>;
     }
-    if (notifikasjoner.pending) {
-        return <CenteredLazySpinner />;
-    }
 
-    const sortertNotifikasjoner = notifikasjoner.data.sort((a, b) => {
-        return b.prioritet - a.prioritet || a.dato.localeCompare(b.dato);
+    const sortertNotifikasjoner = notifikasjoner.sort(datoSynkende(notifikasjon => notifikasjon.dato)).sort((a, b) => {
+        return a.prioritet === b.prioritet ? 0 : a.prioritet ? -1 : 1;
     });
 
     const neste = () => {

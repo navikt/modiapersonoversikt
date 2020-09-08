@@ -12,8 +12,11 @@ export interface Notifikasjon {
     dato: string;
     ingress: string;
     beskrivelse: string;
-    prioritet: number;
+    prioritet: boolean;
     type: NotifikasjonsType;
+    src?: string;
+    width?: string;
+    height?: string;
 }
 
 const StyledModalWrapper = styled(ModalWrapper)`

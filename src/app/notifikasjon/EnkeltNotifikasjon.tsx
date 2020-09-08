@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Panel from 'nav-frontend-paneler';
 import Etikett from 'nav-frontend-etiketter';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
+import { formatterDatoTidMedMaanedsnavn } from '../../utils/date-utils';
 
 interface Props {
     notifikasjon: Notifikasjon;
@@ -16,12 +17,6 @@ interface Props {
 export enum NotifikasjonsType {
     Beskjed = 'beskjed',
     Oppdatering = 'oppdatering'
-}
-
-export enum NotifikasjonsPrioritet {
-    Lav,
-    Middels,
-    Hoy
 }
 
 const StyledPanel = styled(Panel)`
@@ -38,11 +33,16 @@ const StyledEtikettBeskjed = styled(Etikett)`
     float: right;
 `;
 
-const StyledEtikettViktig = styled(Etikett)`
-    margin: 0rem;
-    background-color: red;
-    color: white;
+const StyledDiv = styled.div`
+    text-align: center;
 `;
+
+function Bilde({ src, width, height }: { src?: string; width?: string; height?: string }) {
+    if (!src) {
+        return null;
+    }
+    return <img src={src} alt={''} width={width} height={height} />;
+}
 
 function NotifikasjonsEtikett({ type }: { type: NotifikasjonsType }) {
     if (type === NotifikasjonsType.Beskjed) {
@@ -51,23 +51,22 @@ function NotifikasjonsEtikett({ type }: { type: NotifikasjonsType }) {
     return <StyledEtikettOppdatering type="suksess">Oppdatering</StyledEtikettOppdatering>;
 }
 
-function NotifikasjonPrioritet({ prioritet }: { prioritet: NotifikasjonsPrioritet }) {
-    if (prioritet === NotifikasjonsPrioritet.Hoy) {
-        return <StyledEtikettViktig type="advarsel">Viktig</StyledEtikettViktig>;
-    }
-    return null;
-}
-
 function Beskrivelse({
     beskrivelse,
     visMer,
     setVisMer,
-    id
+    id,
+    src,
+    width,
+    height
 }: {
     beskrivelse: string;
     visMer: boolean;
     setVisMer: (visMer: boolean) => void;
     id: string;
+    src?: string;
+    width?: string;
+    height?: string;
 }) {
     if (beskrivelse.length > 150) {
         return (
@@ -81,26 +80,41 @@ function Beskrivelse({
                 }}
                 key={id}
             >
-                <Tekstomrade>{beskrivelse}</Tekstomrade>
+                <>
+                    <StyledDiv>
+                        <Bilde src={src} width={width} height={height} />
+                    </StyledDiv>
+                    <Tekstomrade>{beskrivelse}</Tekstomrade>
+                </>
             </Lesmerpanel>
         );
     }
-    return <Tekstomrade>{beskrivelse}</Tekstomrade>;
+    return (
+        <>
+            <StyledDiv>
+                <Bilde src={src} width={width} height={height} />
+            </StyledDiv>
+            <Tekstomrade>{beskrivelse}</Tekstomrade>
+        </>
+    );
 }
 
 export default function EnkeltNotifikasjon(props: Props) {
     return (
         <StyledPanel border>
             <NotifikasjonsEtikett type={props.notifikasjon.type} />
-            <NotifikasjonPrioritet prioritet={props.notifikasjon.prioritet} />
+            {props.notifikasjon.prioritet && <Etikett type="advarsel">Viktig</Etikett>}
             <Systemtittel>{props.notifikasjon.tittel}</Systemtittel>
             <Ingress>{props.notifikasjon.ingress}</Ingress>
-            <Undertekst>{props.notifikasjon.dato}</Undertekst>
+            <Undertekst>{formatterDatoTidMedMaanedsnavn(props.notifikasjon.dato)}</Undertekst>
             <Beskrivelse
                 beskrivelse={props.notifikasjon.beskrivelse}
                 visMer={props.visMer}
                 setVisMer={props.setVisMer}
                 id={props.notifikasjon.id}
+                src={props.notifikasjon.src}
+                width={props.notifikasjon.width}
+                height={props.notifikasjon.height}
             />
         </StyledPanel>
     );
