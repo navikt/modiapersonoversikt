@@ -17,6 +17,7 @@ import styled from 'styled-components';
 import { useAppState, useOnMount } from '../utils/customHooks';
 import VelgEnhet from './VelgEnhet';
 import usePersistentLogin from '../utils/hooks/use-persistent-login';
+import LoggetUtModal from './LoggetUtModal';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -66,12 +67,12 @@ function Router(props: { children?: React.ReactNode }) {
 
 function AppContainer() {
     const isLoggedIn = usePersistentLogin();
-    console.log('isLoggedIn', isLoggedIn);
     useOnMount(() => {
         ModalWrapper.setAppElement('#root');
     });
     return (
         <>
+            <LoggetUtModal erLoggetInn={isLoggedIn} />
             <IeMacStyling />
             <GlobalStyling />
             <DemoBanner />
