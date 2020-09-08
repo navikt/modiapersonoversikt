@@ -16,7 +16,7 @@ import Routing from './Routing';
 import styled from 'styled-components';
 import { useAppState, useOnMount } from '../utils/customHooks';
 import VelgEnhet from './VelgEnhet';
-import { ReactNode } from 'react';
+import usePersistentLogin from '../utils/hooks/use-persistent-login';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -57,7 +57,7 @@ function App() {
     );
 }
 
-function Router(props: { children?: ReactNode }) {
+function Router(props: { children?: React.ReactNode }) {
     if (process.env.REACT_APP_USE_HASH_ROUTER === 'true') {
         return <HashRouter>{props.children}</HashRouter>;
     }
@@ -65,6 +65,8 @@ function Router(props: { children?: ReactNode }) {
 }
 
 function AppContainer() {
+    const isLoggedIn = usePersistentLogin();
+    console.log('isLoggedIn', isLoggedIn);
     useOnMount(() => {
         ModalWrapper.setAppElement('#root');
     });

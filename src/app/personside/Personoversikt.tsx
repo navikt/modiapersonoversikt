@@ -16,7 +16,6 @@ import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner'
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
-import useTokenRefresher from '../../utils/hooks/use-token-refresher';
 
 const onError = (
     <FillCenterAndFadeIn>
@@ -29,7 +28,6 @@ function Personoversikt() {
     const dispatch = useDispatch();
     const fnr = useFødselsnummer();
     const history = useHistory();
-    useTokenRefresher(fnr);
 
     useOnMount(() => {
         if (isFinishedPosting(oppgaveResource)) {
