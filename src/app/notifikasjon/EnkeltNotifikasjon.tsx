@@ -35,6 +35,7 @@ const StyledEtikettBeskjed = styled(Etikett)`
 
 const StyledDiv = styled.div`
     text-align: center;
+    margin-top: 1rem;
 `;
 
 function Bilde({ src }: { src?: string }) {
@@ -66,23 +67,23 @@ function Beskrivelse({
 }) {
     if (beskrivelse.length > 150) {
         return (
-            <Lesmerpanel
-                defaultApen={visMer}
-                onOpen={() => {
-                    setVisMer(true);
-                }}
-                onClose={() => {
-                    setVisMer(false);
-                }}
-                key={id}
-            >
-                <>
-                    <StyledDiv>
-                        <Bilde src={src} />
-                    </StyledDiv>
+            <>
+                <StyledDiv>
+                    <Bilde src={src} />
+                </StyledDiv>
+                <Lesmerpanel
+                    defaultApen={visMer}
+                    onOpen={() => {
+                        setVisMer(true);
+                    }}
+                    onClose={() => {
+                        setVisMer(false);
+                    }}
+                    key={id}
+                >
                     <Tekstomrade>{beskrivelse}</Tekstomrade>
-                </>
-            </Lesmerpanel>
+                </Lesmerpanel>
+            </>
         );
     }
     return (
