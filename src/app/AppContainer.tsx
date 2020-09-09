@@ -40,15 +40,26 @@ const ContentStyle = styled.div`
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
 function App() {
+    const loginState = usePersistentLogin();
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
 
     if (!valgtEnhet) {
-        /* valgt enhet utledes fra saksbehandlerinnstillinger-cookie i session-reducer. Mange kall mot backenden vil feile uten denne cookien. Legger derfor denne sjekken før resten av appen mountes for å motvirke feilede kall */
-        return <VelgEnhet />;
+        /**
+         * valgt enhet utledes fra saksbehandlerinnstillinger-cookie i session-reducer.
+         * Mange kall mot backenden vil feile uten denne cookien.
+         * Legger derfor denne sjekken før resten av appen mountes for å motvirke feilede kall
+         */
+        return (
+            <>
+                <LoggetUtModal loginState={loginState} />
+                <VelgEnhet />
+            </>
+        );
     }
 
     return (
         <>
+            <LoggetUtModal loginState={loginState} />
             <LyttPåFnrIURLOgSettIRedux />
             <HentGlobaleVerdier />
             <ContentStyle>
@@ -66,13 +77,11 @@ function Router(props: { children?: React.ReactNode }) {
 }
 
 function AppContainer() {
-    const isLoggedIn = usePersistentLogin();
     useOnMount(() => {
         ModalWrapper.setAppElement('#root');
     });
     return (
         <>
-            <LoggetUtModal erLoggetInn={isLoggedIn} />
             <IeMacStyling />
             <GlobalStyling />
             <DemoBanner />
