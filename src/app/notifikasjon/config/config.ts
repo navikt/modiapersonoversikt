@@ -14,8 +14,6 @@ export const NotifikasjonerProd: Notifikasjon[] = [
             'det står Viktig. Man vil få beskjed om notifikasjonen er en ny oppdatering eller om det er en beskjed.',
         prioritet: true,
         type: NotifikasjonsType.Oppdatering,
-        src: NotifikasjonKnappBilde,
-        width: '100%',
-        height: '100%'
+        src: NotifikasjonKnappBilde
     }
 ];

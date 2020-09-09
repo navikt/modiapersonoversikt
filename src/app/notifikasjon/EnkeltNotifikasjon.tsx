@@ -37,11 +37,11 @@ const StyledDiv = styled.div`
     text-align: center;
 `;
 
-function Bilde({ src, width, height }: { src?: string; width?: string; height?: string }) {
+function Bilde({ src }: { src?: string }) {
     if (!src) {
         return null;
     }
-    return <img src={src} alt={''} width={width} height={height} />;
+    return <img src={src} alt={''} width="100%" height="100%" />;
 }
 
 function NotifikasjonsEtikett({ type }: { type: NotifikasjonsType }) {
@@ -56,17 +56,13 @@ function Beskrivelse({
     visMer,
     setVisMer,
     id,
-    src,
-    width,
-    height
+    src
 }: {
     beskrivelse: string;
     visMer: boolean;
     setVisMer: (visMer: boolean) => void;
     id: string;
     src?: string;
-    width?: string;
-    height?: string;
 }) {
     if (beskrivelse.length > 150) {
         return (
@@ -82,7 +78,7 @@ function Beskrivelse({
             >
                 <>
                     <StyledDiv>
-                        <Bilde src={src} width={width} height={height} />
+                        <Bilde src={src} />
                     </StyledDiv>
                     <Tekstomrade>{beskrivelse}</Tekstomrade>
                 </>
@@ -92,7 +88,7 @@ function Beskrivelse({
     return (
         <>
             <StyledDiv>
-                <Bilde src={src} width={width} height={height} />
+                <Bilde src={src} />
             </StyledDiv>
             <Tekstomrade>{beskrivelse}</Tekstomrade>
         </>
@@ -113,8 +109,6 @@ export default function EnkeltNotifikasjon(props: Props) {
                 setVisMer={props.setVisMer}
                 id={props.notifikasjon.id}
                 src={props.notifikasjon.src}
-                width={props.notifikasjon.width}
-                height={props.notifikasjon.height}
             />
         </StyledPanel>
     );

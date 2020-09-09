@@ -15,8 +15,6 @@ export interface Notifikasjon {
     prioritet: boolean;
     type: NotifikasjonsType;
     src?: string;
-    width?: string;
-    height?: string;
 }
 
 const StyledModalWrapper = styled(ModalWrapper)`
