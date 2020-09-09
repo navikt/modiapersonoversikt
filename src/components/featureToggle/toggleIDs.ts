@@ -1,5 +1,5 @@
 export enum FeatureToggles {
-    UtloggingsInfo = 'UtloggingsInfo',
+    UtloggingsInfo = 'utloggings-info',
     VisTilbakemelding = 'vis-tilbakemelding',
     Infomelding = 'infomelding'
 }
