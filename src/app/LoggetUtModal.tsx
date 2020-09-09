@@ -36,7 +36,7 @@ function finnConfig(state: PersistentLoginState): Config {
         return {
             ikon: AdvarselIkon,
             header: 'Du har blitt logget ut',
-            tekst: 'Ved å laste inn siden på nytt vil du bli automatisk logget inn igjen.',
+            tekst: 'Velg last siden på nytt så blir du automatisk logget inn igjen.',
             visModal: true
         };
     } else {
