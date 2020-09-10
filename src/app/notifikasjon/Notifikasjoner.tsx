@@ -55,7 +55,6 @@ function Notifikasjoner() {
     const notifikasjoner = useNotifikasjoner();
 
     const [indeks, setIndeks] = useState(0);
-
     const [visMer, setVisMer] = useState(false);
 
     if (notifikasjoner.length === 0) {

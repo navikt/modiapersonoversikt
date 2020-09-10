@@ -22,24 +22,33 @@ import { loggEvent } from '../../utils/logger/frontendLogger';
 import { removePrefix } from '../../utils/string-utils';
 import NotifikasjonsContainer from '../notifikasjon/NotifikasjonsContainer';
 import raw from 'raw.macro';
+import useNotifikasjoner from '../notifikasjon/useNotifikasjoner';
 
 const bjelleIkon = raw('../../svg/bjelle.svg');
 
+const notifikasjoner = useNotifikasjoner();
+
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
-const etterSokefelt = `
-<div class="knapper_container">
-  <button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk">
-    <span> A <span class="personsok-pil"></span></span>
-  </button>
-  <button class="hurtigtaster-button" id="hurtigtaster-button" aria-label="Åpne hurtigtaster" title="Åpne hurtigtaster">
-    <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
-  </button>
-  <button class="notifikasjon-button" id="notifikasjon-button" aria-label="Åpne notifikasjoner" title="Åpne notifikasjoner">
-    <span>${bjelleIkon}</span>
-  </button>
-</div>
-`;
+const etterSokefelt = (lest: boolean) => {
+    const notifikasjonsVarsel = lest ? `</>` : `<span class="notifikasjon-varsel">${notifikasjoner.length}</span>`;
+
+    return `
+        <div class="knapper_container">
+          <button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk">
+            <span> A <span class="personsok-pil"></span></span>
+          </button>
+          <button class="hurtigtaster-button" id="hurtigtaster-button" aria-label="Åpne hurtigtaster" title="Åpne hurtigtaster">
+            <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
+          </button>
+          <Popover>
+            <button class="notifikasjon-button" id="notifikasjon-button" aria-label="Åpne notifikasjoner" title="Åpne notifikasjoner">
+              <span>${bjelleIkon}${notifikasjonsVarsel}</span>
+            </button>
+          </Popover>
+        </div>
+    `;
+};
 
 const StyledNav = styled.nav`
     .dekorator .dekorator__container {
@@ -50,11 +59,13 @@ const StyledNav = styled.nav`
 function lagConfig(
     enhet: string | undefined | null,
     history: History,
-    settEnhet: (enhet: string) => void
+    settEnhet: (enhet: string) => void,
+    lestNotifikasjoner: boolean
 ): DecoratorProps {
     const { sokFnr, pathFnr } = getFnrFraUrl();
     const onsketFnr = sokFnr || pathFnr;
     const fnrValue = onsketFnr === '0' ? RESET_VALUE : onsketFnr;
+    const etterSokefeltMarkup = etterSokefelt(lestNotifikasjoner);
     return {
         appname: 'Modia personoversikt',
         fnr: {
@@ -84,7 +95,7 @@ function lagConfig(
             visVeileder: true
         },
         markup: {
-            etterSokefelt: etterSokefelt
+            etterSokefelt: etterSokefeltMarkup
         }
     };
 }
@@ -125,6 +136,7 @@ function Decorator() {
     const history = useHistory();
     const dispatch = useDispatch();
     const queryParams = useQueryParams<{ sokFnr?: string }>();
+    const [lest, setLest] = useState(false);
 
     useHandleGosysUrl();
 
@@ -138,7 +150,12 @@ function Decorator() {
         dispatch(velgEnhetAction(enhet));
     };
 
-    const config = useCallback(lagConfig, [valgtEnhet, history, handleSetEnhet])(valgtEnhet, history, handleSetEnhet);
+    const config = useCallback(lagConfig, [valgtEnhet, history, handleSetEnhet, lest])(
+        valgtEnhet,
+        history,
+        handleSetEnhet,
+        lest
+    );
 
     return (
         <StyledNav>
@@ -147,7 +164,7 @@ function Decorator() {
                     <InternflateDecorator {...config} />
                     <PersonsokContainer />
                     <HurtigtastTipsContainer />
-                    <NotifikasjonsContainer />
+                    <NotifikasjonsContainer setLest={setLest} />
                     <DecoratorEasterEgg />
                 </>
             )}

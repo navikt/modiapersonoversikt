@@ -26,9 +26,23 @@
     &:hover span {
         background-color: @navBlaDarken20;
         color: white;
+
+        .notifikasjon-varsel {
+            background: red;
+        }
     }
     &:focus {
         outline: none;
         box-shadow: 0 0 0 3px #ffbd66;
+    }
+    .notifikasjon-varsel {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        font-size: 1rem;
+        text-align: center;
+        border-radius: 50%;
+        background: red;
+        color: white;
     }
 }
