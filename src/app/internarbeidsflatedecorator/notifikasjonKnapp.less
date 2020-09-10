@@ -28,7 +28,7 @@
         color: white;
 
         .notifikasjon-varsel {
-            background: red;
+            background: @redError;
         }
     }
     &:focus {
@@ -42,7 +42,11 @@
         font-size: 1rem;
         text-align: center;
         border-radius: 50%;
-        background: red;
+        background: @redError;
         color: white;
+
+        .alle-lest {
+            width: 100px !important;
+        }
     }
 }

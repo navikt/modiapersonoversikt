@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import { useDispatch } from 'react-redux';
@@ -30,10 +30,7 @@ const notifikasjoner = useNotifikasjoner();
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
-const etterSokefelt = (lest: boolean) => {
-    const notifikasjonsVarsel = lest ? `</>` : `<span class="notifikasjon-varsel">${notifikasjoner.length}</span>`;
-
-    return `
+const etterSokefelt = `
         <div class="knapper_container">
           <button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk">
             <span> A <span class="personsok-pil"></span></span>
@@ -43,12 +40,11 @@ const etterSokefelt = (lest: boolean) => {
           </button>
           <Popover>
             <button class="notifikasjon-button" id="notifikasjon-button" aria-label="Åpne notifikasjoner" title="Åpne notifikasjoner">
-              <span>${bjelleIkon}${notifikasjonsVarsel}</span>
+              <span>${bjelleIkon}<span class="notifikasjon-varsel">${notifikasjoner.length}</span></span>
             </button>
           </Popover>
         </div>
     `;
-};
 
 const StyledNav = styled.nav`
     .dekorator .dekorator__container {
@@ -59,13 +55,11 @@ const StyledNav = styled.nav`
 function lagConfig(
     enhet: string | undefined | null,
     history: History,
-    settEnhet: (enhet: string) => void,
-    lestNotifikasjoner: boolean
+    settEnhet: (enhet: string) => void
 ): DecoratorProps {
     const { sokFnr, pathFnr } = getFnrFraUrl();
     const onsketFnr = sokFnr || pathFnr;
     const fnrValue = onsketFnr === '0' ? RESET_VALUE : onsketFnr;
-    const etterSokefeltMarkup = etterSokefelt(lestNotifikasjoner);
     return {
         appname: 'Modia personoversikt',
         fnr: {
@@ -95,7 +89,7 @@ function lagConfig(
             visVeileder: true
         },
         markup: {
-            etterSokefelt: etterSokefeltMarkup
+            etterSokefelt: etterSokefelt
         }
     };
 }
@@ -153,9 +147,16 @@ function Decorator() {
     const config = useCallback(lagConfig, [valgtEnhet, history, handleSetEnhet, lest])(
         valgtEnhet,
         history,
-        handleSetEnhet,
-        lest
+        handleSetEnhet
     );
+
+    useEffect(() => {
+        const element = document.querySelector('#notifikasjon-button');
+        element?.classList.remove('alle-lest');
+        if (lest) {
+            element?.classList.add('alle-lest');
+        }
+    }, [lest]);
 
     return (
         <StyledNav>
