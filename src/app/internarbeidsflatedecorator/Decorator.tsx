@@ -40,7 +40,10 @@ const etterSokefelt = `
           </button>
           <Popover>
             <button class="notifikasjon-button" id="notifikasjon-button" aria-label="Åpne notifikasjoner" title="Åpne notifikasjoner">
-              <span>${bjelleIkon}<span class="notifikasjon-varsel">${notifikasjoner.length}</span></span>
+              <span>
+                ${bjelleIkon}
+                <span class="notifikasjon-varsel" id="notifikasjon-varsel">${notifikasjoner.length}</span>
+              </span>
             </button>
           </Popover>
         </div>
@@ -151,7 +154,7 @@ function Decorator() {
     );
 
     useEffect(() => {
-        const element = document.querySelector('#notifikasjon-button');
+        const element = document.querySelector('#notifikasjon-varsel');
         element?.classList.remove('alle-lest');
         if (lest) {
             element?.classList.add('alle-lest');
