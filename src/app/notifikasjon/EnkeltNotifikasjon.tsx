@@ -23,12 +23,7 @@ const StyledPanel = styled(Panel)`
     margin: 1rem;
 `;
 
-const StyledEtikettOppdatering = styled(Etikett)`
-    margin: 0rem;
-    float: right;
-`;
-
-const StyledEtikettBeskjed = styled(Etikett)`
+const StyledEtikett = styled(Etikett)`
     margin: 0rem;
     float: right;
 `;
@@ -42,58 +37,48 @@ function Bilde({ src }: { src?: string }) {
     if (!src) {
         return null;
     }
-    return <img src={src} alt={''} width="100%" height="100%" />;
+    return (
+        <StyledDiv>
+            <img src={src} alt={''} width="100%" height="100%" />
+        </StyledDiv>
+    );
 }
 
 function NotifikasjonsEtikett({ type }: { type: NotifikasjonsType }) {
     if (type === NotifikasjonsType.Beskjed) {
-        return <StyledEtikettBeskjed type="info">Beskjed</StyledEtikettBeskjed>;
+        return <StyledEtikett type="info">Beskjed</StyledEtikett>;
     }
-    return <StyledEtikettOppdatering type="suksess">Oppdatering</StyledEtikettOppdatering>;
+    return <StyledEtikett type="suksess">Oppdatering</StyledEtikett>;
 }
 
 function Beskrivelse({
     beskrivelse,
     visMer,
     setVisMer,
-    id,
-    src
+    id
 }: {
     beskrivelse: string;
     visMer: boolean;
     setVisMer: (visMer: boolean) => void;
     id: string;
-    src?: string;
 }) {
     if (beskrivelse.length > 150) {
         return (
-            <>
-                <StyledDiv>
-                    <Bilde src={src} />
-                </StyledDiv>
-                <Lesmerpanel
-                    defaultApen={visMer}
-                    onOpen={() => {
-                        setVisMer(true);
-                    }}
-                    onClose={() => {
-                        setVisMer(false);
-                    }}
-                    key={id}
-                >
-                    <Tekstomrade>{beskrivelse}</Tekstomrade>
-                </Lesmerpanel>
-            </>
+            <Lesmerpanel
+                defaultApen={visMer}
+                onOpen={() => {
+                    setVisMer(true);
+                }}
+                onClose={() => {
+                    setVisMer(false);
+                }}
+                key={id}
+            >
+                <Tekstomrade>{beskrivelse}</Tekstomrade>
+            </Lesmerpanel>
         );
     }
-    return (
-        <>
-            <StyledDiv>
-                <Bilde src={src} />
-            </StyledDiv>
-            <Tekstomrade>{beskrivelse}</Tekstomrade>
-        </>
-    );
+    return <Tekstomrade>{beskrivelse}</Tekstomrade>;
 }
 
 export default function EnkeltNotifikasjon(props: Props) {
@@ -104,12 +89,12 @@ export default function EnkeltNotifikasjon(props: Props) {
             <Systemtittel>{props.notifikasjon.tittel}</Systemtittel>
             <Ingress>{props.notifikasjon.ingress}</Ingress>
             <Undertekst>{formatterDatoTidMedMaanedsnavn(props.notifikasjon.dato)}</Undertekst>
+            <Bilde src={props.notifikasjon.src} />
             <Beskrivelse
                 beskrivelse={props.notifikasjon.beskrivelse}
                 visMer={props.visMer}
                 setVisMer={props.setVisMer}
                 id={props.notifikasjon.id}
-                src={props.notifikasjon.src}
             />
         </StyledPanel>
     );
