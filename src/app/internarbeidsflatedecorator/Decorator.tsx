@@ -22,11 +22,8 @@ import { loggEvent } from '../../utils/logger/frontendLogger';
 import { removePrefix } from '../../utils/string-utils';
 import NotifikasjonsContainer from '../notifikasjon/NotifikasjonsContainer';
 import raw from 'raw.macro';
-import useNotifikasjoner from '../notifikasjon/useNotifikasjoner';
 
 const bjelleIkon = raw('../../svg/bjelle.svg');
-
-const notifikasjoner = useNotifikasjoner();
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
 
@@ -42,7 +39,7 @@ const etterSokefelt = `
             <button class="notifikasjon-button" id="notifikasjon-button" aria-label="Åpne notifikasjoner" title="Åpne notifikasjoner">
               <span>
                 ${bjelleIkon}
-                <span class="notifikasjon-varsel" id="notifikasjon-varsel">${notifikasjoner.length}</span>
+                <span class="notifikasjon-varsel" id="notifikasjon-varsel"></span>
               </span>
             </button>
           </Popover>
