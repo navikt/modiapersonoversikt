@@ -46,8 +46,7 @@ enum Komponenter {
     TraadVisningDialogpanel,
     BesvarFlere,
     HurtigTasterHjelp,
-    OppgaveSkjermetPerson,
-    Notifikasjon
+    OppgaveSkjermetPerson
 }
 
 const Style = styled.div`

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Notifikasjon } from './NotifikasjonsContainer';
+import { EnOppdateringslogg } from './OppdateringsloggContainer';
 import { Ingress, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import styled from 'styled-components';
@@ -9,12 +9,12 @@ import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import { formatterDatoTidMedMaanedsnavn } from '../../utils/date-utils';
 
 interface Props {
-    notifikasjon: Notifikasjon;
+    enOppdateringslogg: EnOppdateringslogg;
     visMer: boolean;
     setVisMer: (visMer: boolean) => void;
 }
 
-export enum NotifikasjonsType {
+export enum OppdateringsloggType {
     Beskjed = 'beskjed',
     Oppdatering = 'oppdatering'
 }
@@ -44,8 +44,8 @@ function Bilde({ src }: { src?: string }) {
     );
 }
 
-function NotifikasjonsEtikett({ type }: { type: NotifikasjonsType }) {
-    if (type === NotifikasjonsType.Beskjed) {
+function OppdateringsloggEtikett({ type }: { type: OppdateringsloggType }) {
+    if (type === OppdateringsloggType.Beskjed) {
         return <StyledEtikett type="info">Beskjed</StyledEtikett>;
     }
     return <StyledEtikett type="suksess">Oppdatering</StyledEtikett>;
@@ -81,20 +81,20 @@ function Beskrivelse({
     return <Tekstomrade>{beskrivelse}</Tekstomrade>;
 }
 
-export default function EnkeltNotifikasjon(props: Props) {
+export default function EnkeltOppdateringslogg(props: Props) {
     return (
         <StyledPanel border>
-            <NotifikasjonsEtikett type={props.notifikasjon.type} />
-            {props.notifikasjon.prioritet && <Etikett type="advarsel">Viktig</Etikett>}
-            <Systemtittel>{props.notifikasjon.tittel}</Systemtittel>
-            <Ingress>{props.notifikasjon.ingress}</Ingress>
-            <Undertekst>{formatterDatoTidMedMaanedsnavn(props.notifikasjon.dato)}</Undertekst>
-            <Bilde src={props.notifikasjon.src} />
+            <OppdateringsloggEtikett type={props.enOppdateringslogg.type} />
+            {props.enOppdateringslogg.prioritet && <Etikett type="advarsel">Viktig</Etikett>}
+            <Systemtittel>{props.enOppdateringslogg.tittel}</Systemtittel>
+            <Ingress>{props.enOppdateringslogg.ingress}</Ingress>
+            <Undertekst>{formatterDatoTidMedMaanedsnavn(props.enOppdateringslogg.dato)}</Undertekst>
+            <Bilde src={props.enOppdateringslogg.src} />
             <Beskrivelse
-                beskrivelse={props.notifikasjon.beskrivelse}
+                beskrivelse={props.enOppdateringslogg.beskrivelse}
                 visMer={props.visMer}
                 setVisMer={props.setVisMer}
-                id={props.notifikasjon.id}
+                id={props.enOppdateringslogg.id}
             />
         </StyledPanel>
     );

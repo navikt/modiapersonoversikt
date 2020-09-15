@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import EnkeltNotifikasjon from './EnkeltNotifikasjon';
+import EnkeltOppdateringslogg from './EnkeltOppdateringslogg';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
 import styled from 'styled-components';
 import Stegindikator from 'nav-frontend-stegindikator';
 import { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
 import { datoSynkende } from '../../utils/date-utils';
-import useNotifikasjoner from './useNotifikasjoner';
+import useOppdateringslogg from './useOppdateringslogg';
 
 const StyledDiv = styled.div`
     display: flex;
@@ -51,19 +51,21 @@ function VisStegIndikator({
     return <Stegindikator steg={steg} aktivtSteg={indeks} onChange={onChange} kompakt={true} />;
 }
 
-function Notifikasjoner() {
-    const notifikasjoner = useNotifikasjoner();
+function Oppdateringslogg() {
+    const oppdateringslogg = useOppdateringslogg();
 
     const [indeks, setIndeks] = useState(0);
     const [visMer, setVisMer] = useState(false);
 
-    if (notifikasjoner.length === 0) {
+    if (oppdateringslogg.length === 0) {
         return <AlertStripeInfo>Fant ingen notifikasjoner</AlertStripeInfo>;
     }
 
-    const sortertNotifikasjoner = notifikasjoner.sort(datoSynkende(notifikasjon => notifikasjon.dato)).sort((a, b) => {
-        return a.prioritet === b.prioritet ? 0 : a.prioritet ? -1 : 1;
-    });
+    const sortertOppdateringslogg = oppdateringslogg
+        .sort(datoSynkende(enOppdateringslogg => enOppdateringslogg.dato))
+        .sort((a, b) => {
+            return a.prioritet === b.prioritet ? 0 : a.prioritet ? -1 : 1;
+        });
 
     const neste = () => {
         setIndeks(indeks + 1);
@@ -75,25 +77,29 @@ function Notifikasjoner() {
         setVisMer(false);
     };
 
-    const currentNotifikasjon = sortertNotifikasjoner[indeks];
+    const currentOppdateringslogg = sortertOppdateringslogg[indeks];
 
-    const stegListe = sortertNotifikasjoner.map((notifikasjon, i) => {
+    const stegListe = sortertOppdateringslogg.map((enOppdateringslogg, i) => {
         const erAktiv = indeks === i ? true : false;
-        return { label: notifikasjon.tittel, index: i, aktiv: erAktiv, key: notifikasjon.id };
+        return { label: enOppdateringslogg.tittel, index: i, aktiv: erAktiv, key: enOppdateringslogg.id };
     });
 
     return (
         <>
             <section>
-                <EnkeltNotifikasjon notifikasjon={currentNotifikasjon} visMer={visMer} setVisMer={setVisMer} />
+                <EnkeltOppdateringslogg
+                    enOppdateringslogg={currentOppdateringslogg}
+                    visMer={visMer}
+                    setVisMer={setVisMer}
+                />
             </section>
             <VisStegIndikator steg={stegListe} indeks={indeks} onChange={setIndeks} />
             <StyledDiv>
                 <ForrigeKnapp indeks={indeks} onClick={forrige} />
-                <NesteKnapp indeks={indeks} lengde={sortertNotifikasjoner.length} onClick={neste} />
+                <NesteKnapp indeks={indeks} lengde={sortertOppdateringslogg.length} onClick={neste} />
             </StyledDiv>
         </>
     );
 }
 
-export default Notifikasjoner;
+export default Oppdateringslogg;

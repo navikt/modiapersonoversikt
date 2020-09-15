@@ -1,8 +1,8 @@
-import { NotifikasjonsType } from '../EnkeltNotifikasjon';
-import { Notifikasjon } from '../NotifikasjonsContainer';
-import NotifikasjonKnappBilde from './img/notifikasjon-knapp.jpg';
+import { OppdateringsloggType } from '../EnkeltOppdateringslogg';
+import { EnOppdateringslogg } from '../OppdateringsloggContainer';
+import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
 
-export const NotifikasjonerProd: Notifikasjon[] = [
+export const OppdateringsloggProd: EnOppdateringslogg[] = [
     {
         id: '00001',
         tittel: 'Modia personoversikt har fått notifikasjoner',
@@ -13,7 +13,7 @@ export const NotifikasjonerProd: Notifikasjon[] = [
             'og de viktigste vil komme først uavhengig av dato. Hvis noe er viktig vil det komme opp en rød boks hvor' +
             'det står Viktig. Man vil få beskjed om notifikasjonen er en ny oppdatering eller om det er en beskjed.',
         prioritet: true,
-        type: NotifikasjonsType.Oppdatering,
-        src: NotifikasjonKnappBilde
+        type: OppdateringsloggType.Oppdatering,
+        src: OppdateringsloggKnappBilde
     }
 ];

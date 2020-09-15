@@ -9,7 +9,7 @@ import { matchPath, useHistory } from 'react-router';
 import './personsokKnapp.less';
 import './hurtigtaster.less';
 import './decorator.less';
-import './notifikasjonKnapp.less';
+import './oppdateringsloggKnapp.less';
 import { useAppState, useOnMount } from '../../utils/customHooks';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
@@ -20,7 +20,7 @@ import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTi
 import useHandleGosysUrl from './useHandleGosysUrl';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { removePrefix } from '../../utils/string-utils';
-import NotifikasjonsContainer from '../notifikasjon/NotifikasjonsContainer';
+import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
 import raw from 'raw.macro';
 
 const bjelleIkon = raw('../../svg/bjelle.svg');
@@ -36,10 +36,10 @@ const etterSokefelt = `
             <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
           </button>
           <Popover>
-            <button class="notifikasjon-button" id="notifikasjon-button" aria-label="Åpne notifikasjoner" title="Åpne notifikasjoner">
+            <button class="oppdateringslogg-button" id="oppdateringslogg-button" aria-label="Åpne oppdateringslogg" title="Åpne oppdateringslogg">
               <span>
                 ${bjelleIkon}
-                <span class="notifikasjon-varsel" id="notifikasjon-varsel"></span>
+                <span class="oppdateringslogg-varsel" id="oppdateringslogg-varsel"></span>
               </span>
             </button>
           </Popover>
@@ -151,7 +151,7 @@ function Decorator() {
     );
 
     useEffect(() => {
-        const element = document.querySelector('#notifikasjon-varsel');
+        const element = document.querySelector('#oppdateringslogg-varsel');
         element?.classList.remove('alle-lest');
         if (lest) {
             element?.classList.add('alle-lest');
@@ -165,7 +165,7 @@ function Decorator() {
                     <InternflateDecorator {...config} />
                     <PersonsokContainer />
                     <HurtigtastTipsContainer />
-                    <NotifikasjonsContainer setLest={setLest} />
+                    <OppdateringsloggContainer setLest={setLest} />
                     <DecoratorEasterEgg />
                 </>
             )}

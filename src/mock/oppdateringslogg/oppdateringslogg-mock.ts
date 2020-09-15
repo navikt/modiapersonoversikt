@@ -1,10 +1,10 @@
-import { Notifikasjon } from '../../app/notifikasjon/NotifikasjonsContainer';
-import { NotifikasjonsType } from '../../app/notifikasjon/EnkeltNotifikasjon';
+import { EnOppdateringslogg } from '../../app/oppdateringslogg/OppdateringsloggContainer';
+import { OppdateringsloggType } from '../../app/oppdateringslogg/EnkeltOppdateringslogg';
 import moment from 'moment';
 import faker from 'faker/locale/nb_NO';
 import { backendDatoTidformat } from '../../utils/date-utils';
 
-export function getNotifikasjon(): Notifikasjon[] {
+export function getOppdateringslogg(): EnOppdateringslogg[] {
     return [
         {
             id: '12345',
@@ -14,7 +14,7 @@ export function getNotifikasjon(): Notifikasjon[] {
             beskrivelse:
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nullam vehicula ipsum a arcu cursus vitae congue. Duis at tellus at urna condimentum mattis pellentesque id. Sodales ut eu sem integer vitae justo eget magna fermentum.',
             prioritet: false,
-            type: NotifikasjonsType.Oppdatering
+            type: OppdateringsloggType.Oppdatering
         },
         {
             id: '67891',
@@ -23,7 +23,7 @@ export function getNotifikasjon(): Notifikasjon[] {
             ingress: 'Nå kan man gi foskudd på dagpenger',
             beskrivelse: 'Nå kan man skrive ',
             prioritet: true,
-            type: NotifikasjonsType.Beskjed
+            type: OppdateringsloggType.Beskjed
         },
         {
             id: '82371',
@@ -35,7 +35,7 @@ export function getNotifikasjon(): Notifikasjon[] {
                 '\n' +
                 'Eget nullam non nisi est sit amet. Velit ut tortor pretium viverra suspendisse potenti nullam ac. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien. Tellus cras adipiscing enim eu turpis egestas pretium. Facilisi cras fermentum odio eu feugiat. Dolor magna eget est lorem ipsum dolor sit. Sit amet commodo nulla facilisi nullam. Nulla pellentesque dignissim enim sit amet venenatis urna cursus. In mollis nunc sed id semper risus in. Vel eros donec ac odio tempor orci dapibus ultrices in. Cursus euismod quis viverra nibh cras pulvinar mattis nunc sed. Ut ornare lectus sit amet. Quis auctor elit sed vulputate mi sit amet. Vel orci porta non pulvinar neque laoreet suspendisse interdum consectetur. Non odio euismod lacinia at quis risus. Purus viverra accumsan in nisl. Mauris augue neque gravida in fermentum et.',
             prioritet: false,
-            type: NotifikasjonsType.Oppdatering
+            type: OppdateringsloggType.Oppdatering
         },
         {
             id: '53478',
@@ -47,7 +47,7 @@ export function getNotifikasjon(): Notifikasjon[] {
                 '\n' +
                 'Eget nullam non nisi est sit amet. Velit ut tortor pretium viverra suspendisse potenti nullam ac. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien. Tellus cras adipiscing enim eu turpis egestas pretium. Facilisi cras fermentum odio eu feugiat. Dolor magna eget est lorem ipsum dolor sit. Sit amet commodo nulla facilisi nullam. Nulla pellentesque dignissim enim sit amet venenatis urna cursus. In mollis nunc sed id semper risus in. Vel eros donec ac odio tempor orci dapibus ultrices in. Cursus euismod quis viverra nibh cras pulvinar mattis nunc sed. Ut ornare lectus sit amet. Quis auctor elit sed vulputate mi sit amet. Vel orci porta non pulvinar neque laoreet suspendisse interdum consectetur. Non odio euismod lacinia at quis risus. Purus viverra accumsan in nisl. Mauris augue neque gravida in fermentum et.',
             prioritet: false,
-            type: NotifikasjonsType.Oppdatering
+            type: OppdateringsloggType.Oppdatering
         }
     ];
 }
