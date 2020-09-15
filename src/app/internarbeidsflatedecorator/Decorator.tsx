@@ -144,11 +144,7 @@ function Decorator() {
         dispatch(velgEnhetAction(enhet));
     };
 
-    const config = useCallback(lagConfig, [valgtEnhet, history, handleSetEnhet, lest])(
-        valgtEnhet,
-        history,
-        handleSetEnhet
-    );
+    const config = useCallback(lagConfig, [valgtEnhet, history, handleSetEnhet])(valgtEnhet, history, handleSetEnhet);
 
     useEffect(() => {
         const element = document.querySelector('#oppdateringslogg-varsel');
