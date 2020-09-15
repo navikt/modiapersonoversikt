@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { DecoratorProps, EnhetDisplay, FnrDisplay, RESET_VALUE } from './decoratorprops';
 import { fjernBrukerFraPath, paths, setNyBrukerIPath } from '../routes/routing';
 import { matchPath, useHistory } from 'react-router';
+import raw from 'raw.macro';
 import './personsokKnapp.less';
 import './hurtigtaster.less';
 import './decorator.less';
@@ -21,7 +22,6 @@ import useHandleGosysUrl from './useHandleGosysUrl';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { removePrefix } from '../../utils/string-utils';
 import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
-import raw from 'raw.macro';
 
 const bjelleIkon = raw('../../svg/bjelle.svg');
 

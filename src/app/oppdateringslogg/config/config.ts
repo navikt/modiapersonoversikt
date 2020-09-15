@@ -5,7 +5,7 @@ import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
 export const OppdateringsloggProd: EnOppdateringslogg[] = [
     {
         id: '00001',
-        tittel: 'Modia personoversikt har fått notifikasjoner',
+        tittel: 'Modia personoversikt har fått en oppdateringslogg',
         dato: '2020-09-14 14:07',
         ingress: 'Nå kan du se nye ting som kommer i modia. Trykk på bjelleikonet for å se hva som er nytt.',
         beskrivelse:
