@@ -3,16 +3,19 @@ import ModalWrapper from 'nav-frontend-modal';
 import useListener from '../../utils/hooks/use-listener';
 import Oppdateringslogg from './Oppdateringslogg';
 import { Sidetittel } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { OppdateringsloggType } from './EnkeltOppdateringslogg';
 import usePersistentState from './usePersistentState';
-import { formatterDatoTidMedMaanedsnavn } from '../../utils/date-utils';
 import useOppdateringslogg from './useOppdateringslogg';
+import './oppdateringsloggKnapp.less';
+import useWaitForElement from '../../utils/hooks/use-wait-for-element';
 
+export const DecoratorButtonId = 'oppdateringslogg';
 export interface EnOppdateringslogg {
-    id: string;
+    id: number;
     tittel: string;
-    dato: string;
+    dato: Date;
+    aktiv: boolean;
     ingress: string;
     beskrivelse: string;
     prioritet: boolean;
@@ -30,46 +33,55 @@ const StyledSidetittel = styled(Sidetittel)`
     margin-left: 1rem;
 `;
 
-function OppdateringsloggContainer({ setLest }: { setLest: (lest: boolean) => void }) {
-    const [apen, settApen] = useState(false);
-    const [lestOppdateringslogg, setLestOppdateringslogg] = usePersistentState('lest-oppdateringslogg', false);
-    let [datoApnetOppdateringslogg, setDatoApnetOppdateringslogg] = usePersistentState(
-        'dato-apnet-oppdateringslogg',
-        ''
-    );
-    const oppdateringslogg = useOppdateringslogg();
-    const oppdateringsloggDato = oppdateringslogg.map(enOppdateringslogg =>
-        formatterDatoTidMedMaanedsnavn(enOppdateringslogg.dato)
-    );
+function harUleste(sistLesteId: number, oppdateringslogg: EnOppdateringslogg[]): boolean {
+    return oppdateringslogg.some(innslag => innslag.id > sistLesteId);
+}
 
-    const handleForApen = useCallback(() => {
-        for (var i = 0; i < oppdateringslogg.length; i++) {
-            if (oppdateringsloggDato[i] <= datoApnetOppdateringslogg) {
-                setLestOppdateringslogg(true);
-            } else {
-                setLestOppdateringslogg(false);
+function useHoldUlestIndikatorOppdatert(
+    element: HTMLElement | null,
+    sistLesteId: number,
+    oppdateringslogg: EnOppdateringslogg[]
+) {
+    useEffect(() => {
+        if (element != null) {
+            const ulest = harUleste(sistLesteId, oppdateringslogg);
+            element?.classList.remove('oppdateringslogg--uleste');
+            if (ulest) {
+                element?.classList.add('oppdateringslogg--uleste');
             }
         }
-    }, [setLestOppdateringslogg, oppdateringsloggDato, datoApnetOppdateringslogg, oppdateringslogg]);
+    }, [element, sistLesteId, oppdateringslogg]);
+}
 
-    const handleOnClose = () => {
-        settApen(false);
-        setLestOppdateringslogg(true);
-        setDatoApnetOppdateringslogg(formatterDatoTidMedMaanedsnavn(new Date()));
-    };
+function useApneOppdateringsLoggModal(
+    settApen: (apen: boolean) => void,
+    oppdateringslogg: EnOppdateringslogg[],
+    settSistLesteId: (id: number) => void
+) {
+    const listener = useCallback(() => {
+        const nyesteId: number | undefined = oppdateringslogg.map(innslag => innslag.id).sort((a, b) => b - a)[0];
 
-    const listener = useCallback(() => settApen(a => !a), [settApen]);
-    useListener('#oppdateringslogg-button', 'click', listener, document.querySelector('dekorator'));
+        settSistLesteId(nyesteId ?? -1);
+        settApen(true);
+    }, [settApen, oppdateringslogg, settSistLesteId]);
 
-    useEffect(() => {
-        handleForApen();
-        setLest(lestOppdateringslogg);
-    }, [lestOppdateringslogg, setLest, handleForApen]);
+    useListener(`#${DecoratorButtonId}`, 'click', listener, document.querySelector('dekorator'));
+}
+
+function OppdateringsloggContainer() {
+    const oppdateringslogg: EnOppdateringslogg[] = useOppdateringslogg().filter(innslag => innslag.aktiv);
+
+    const [apen, settApen] = useState(false);
+    const [sistLesteId, settSistLesteId] = usePersistentState('lest-oppdateringslogg', -1);
+    const element = useWaitForElement(`#${DecoratorButtonId}`);
+
+    useApneOppdateringsLoggModal(settApen, oppdateringslogg, settSistLesteId);
+    useHoldUlestIndikatorOppdatert(element, sistLesteId, oppdateringslogg);
 
     return (
-        <StyledModalWrapper contentLabel="Oppdateringslogg" isOpen={apen} onRequestClose={handleOnClose}>
+        <StyledModalWrapper contentLabel="Oppdateringslogg" isOpen={apen} onRequestClose={() => settApen(false)}>
             <StyledSidetittel>Oppdateringslogg</StyledSidetittel>
-            <Oppdateringslogg />
+            <Oppdateringslogg oppdateringslogg={oppdateringslogg} />
         </StyledModalWrapper>
     );
 }

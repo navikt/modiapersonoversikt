@@ -1,27 +1,28 @@
 import * as React from 'react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import { useDispatch } from 'react-redux';
+import raw from 'raw.macro';
+import styled from 'styled-components/macro';
 import { DecoratorProps, EnhetDisplay, FnrDisplay, RESET_VALUE } from './decoratorprops';
 import { fjernBrukerFraPath, paths, setNyBrukerIPath } from '../routes/routing';
 import { matchPath, useHistory } from 'react-router';
-import raw from 'raw.macro';
-import './personsokKnapp.less';
-import './hurtigtaster.less';
-import './decorator.less';
-import './oppdateringsloggKnapp.less';
 import { useAppState, useOnMount } from '../../utils/customHooks';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { velgEnhetAction } from '../../redux/session/session';
 import { parseQueryString, useQueryParams } from '../../utils/url-utils';
-import styled from 'styled-components';
 import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTipsContainer';
 import useHandleGosysUrl from './useHandleGosysUrl';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { removePrefix } from '../../utils/string-utils';
-import OppdateringsloggContainer from '../oppdateringslogg/OppdateringsloggContainer';
+import OppdateringsloggContainer, {
+    DecoratorButtonId as OppdateringsloggButtonId
+} from '../oppdateringslogg/OppdateringsloggContainer';
+import './personsokKnapp.less';
+import './hurtigtaster.less';
+import './decorator.less';
 
 const bjelleIkon = raw('../../svg/bjelle.svg');
 
@@ -35,14 +36,12 @@ const etterSokefelt = `
           <button class="hurtigtaster-button" id="hurtigtaster-button" aria-label="Åpne hurtigtaster" title="Åpne hurtigtaster">
             <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
           </button>
-          <Popover>
-            <button class="oppdateringslogg-button" id="oppdateringslogg-button" aria-label="Åpne oppdateringslogg" title="Åpne oppdateringslogg">
-              <span>
-                ${bjelleIkon}
-                <span class="oppdateringslogg-varsel" id="oppdateringslogg-varsel"></span>
-              </span>
-            </button>
-          </Popover>
+          <button class="${OppdateringsloggButtonId}" id="${OppdateringsloggButtonId}" aria-label="Åpne oppdateringslogg" title="Åpne oppdateringslogg">
+            <div class="oppdateringslogg__ikon">
+              ${bjelleIkon}
+            </div>
+            <span class="oppdateringslogg__ulestindikator"></span>
+          </button>
         </div>
     `;
 
@@ -130,7 +129,6 @@ function Decorator() {
     const history = useHistory();
     const dispatch = useDispatch();
     const queryParams = useQueryParams<{ sokFnr?: string }>();
-    const [lest, setLest] = useState(false);
 
     useHandleGosysUrl();
 
@@ -146,14 +144,6 @@ function Decorator() {
 
     const config = useCallback(lagConfig, [valgtEnhet, history, handleSetEnhet])(valgtEnhet, history, handleSetEnhet);
 
-    useEffect(() => {
-        const element = document.querySelector('#oppdateringslogg-varsel');
-        element?.classList.remove('alle-lest');
-        if (lest) {
-            element?.classList.add('alle-lest');
-        }
-    }, [lest]);
-
     return (
         <StyledNav>
             {reduxErKlar && (
@@ -161,7 +151,7 @@ function Decorator() {
                     <InternflateDecorator {...config} />
                     <PersonsokContainer />
                     <HurtigtastTipsContainer />
-                    <OppdateringsloggContainer setLest={setLest} />
+                    <OppdateringsloggContainer />
                     <DecoratorEasterEgg />
                 </>
             )}

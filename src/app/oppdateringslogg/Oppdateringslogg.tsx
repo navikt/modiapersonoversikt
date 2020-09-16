@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import EnkeltOppdateringslogg from './EnkeltOppdateringslogg';
 import { Nesteknapp, Tilbakeknapp } from 'nav-frontend-ikonknapper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Stegindikator from 'nav-frontend-stegindikator';
 import { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
 import { datoSynkende } from '../../utils/date-utils';
-import useOppdateringslogg from './useOppdateringslogg';
+import { EnOppdateringslogg } from './OppdateringsloggContainer';
 
 const StyledDiv = styled.div`
     display: flex;
@@ -51,14 +51,14 @@ function VisStegIndikator({
     return <Stegindikator steg={steg} aktivtSteg={indeks} onChange={onChange} kompakt={true} />;
 }
 
-function Oppdateringslogg() {
-    const oppdateringslogg = useOppdateringslogg();
+function Oppdateringslogg(props: { oppdateringslogg: EnOppdateringslogg[] }) {
+    const { oppdateringslogg } = props;
 
     const [indeks, setIndeks] = useState(0);
     const [visMer, setVisMer] = useState(false);
 
     if (oppdateringslogg.length === 0) {
-        return <AlertStripeInfo>Fant ingen notifikasjoner</AlertStripeInfo>;
+        return <AlertStripeInfo>Fant ingen oppdateringer</AlertStripeInfo>;
     }
 
     const sortertOppdateringslogg = oppdateringslogg

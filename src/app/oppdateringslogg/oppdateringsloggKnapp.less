@@ -1,0 +1,47 @@
+@import (reference) '~nav-frontend-core/less/_variabler';
+
+.dekorator .oppdateringslogg {
+    position: relative;
+    width: 2.5em;
+    height: 2.5em;
+    background: none;
+    color: white;
+    cursor: pointer;
+    border: 0.1rem white solid;
+    border-radius: 50%;
+    padding: 0;
+    margin-right: 1em;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px @orangeFocus;
+    }
+
+    &:hover {
+        background-color: white;
+        color: @navMorkGra;
+    }
+
+    &--uleste {
+        .oppdateringslogg__ulestindikator {
+            display: block;
+        }
+    }
+
+    &__ikon {
+        pointer-events: none;
+        width: 1.75em;
+        height: 1.75em;
+        margin: 0 auto;
+    }
+    &__ulestindikator {
+        display: none;
+        position: absolute;
+        top: -2px;
+        right: -4px;
+        width: 0.875em;
+        height: 0.875em;
+        border-radius: 100%;
+        background: @navRod;
+    }
+}

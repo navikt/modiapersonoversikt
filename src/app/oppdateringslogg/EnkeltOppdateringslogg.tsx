@@ -2,7 +2,7 @@ import * as React from 'react';
 import { EnOppdateringslogg } from './OppdateringsloggContainer';
 import { Ingress, Systemtittel, Undertekst } from 'nav-frontend-typografi';
 import Tekstomrade from 'nav-frontend-tekstomrade';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Panel from 'nav-frontend-paneler';
 import Etikett from 'nav-frontend-etiketter';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
@@ -54,13 +54,11 @@ function OppdateringsloggEtikett({ type }: { type: OppdateringsloggType }) {
 function Beskrivelse({
     beskrivelse,
     visMer,
-    setVisMer,
-    id
+    setVisMer
 }: {
     beskrivelse: string;
     visMer: boolean;
     setVisMer: (visMer: boolean) => void;
-    id: string;
 }) {
     if (beskrivelse.length > 150) {
         return (
@@ -72,7 +70,6 @@ function Beskrivelse({
                 onClose={() => {
                     setVisMer(false);
                 }}
-                key={id}
             >
                 <Tekstomrade>{beskrivelse}</Tekstomrade>
             </Lesmerpanel>
@@ -94,7 +91,6 @@ export default function EnkeltOppdateringslogg(props: Props) {
                 beskrivelse={props.enOppdateringslogg.beskrivelse}
                 visMer={props.visMer}
                 setVisMer={props.setVisMer}
-                id={props.enOppdateringslogg.id}
             />
         </StyledPanel>
     );
