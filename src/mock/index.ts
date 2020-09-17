@@ -40,7 +40,7 @@ import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
 import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinger-mock';
 import { failurerateMiddleware } from './utils/failureMiddleware';
 import { setupDraftMock } from './draft-mock';
-import tilgangskontrollMock from './tilgangskontroll-mock';
+import { tilgangskontrollMock, authMock } from './tilgangskontroll-mock';
 import { delayed } from './utils-mock';
 
 const STATUS_OK = () => 200;
@@ -71,6 +71,11 @@ function setUpSaksbehandlersEnheterMock(mock: FetchMock) {
 }
 
 function setupTilgangskontroll(mock: FetchMock) {
+    mock.get(
+        '/modiapersonoversikt-api/rest/tilgang/auth',
+        withDelayedResponse(randomDelay(), () => 200, authMock)
+    );
+
     mock.get(
         '/modiapersonoversikt-api/rest/tilgang/:fodselsnummer?',
         withDelayedResponse(

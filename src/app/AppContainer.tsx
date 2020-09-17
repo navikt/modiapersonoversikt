@@ -16,7 +16,8 @@ import Routing from './Routing';
 import styled from 'styled-components';
 import { useAppState, useOnMount } from '../utils/customHooks';
 import VelgEnhet from './VelgEnhet';
-import { ReactNode } from 'react';
+import usePersistentLogin from '../utils/hooks/use-persistent-login';
+import LoggetUtModal from './LoggetUtModal';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -39,15 +40,26 @@ const ContentStyle = styled.div`
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
 function App() {
+    const loginState = usePersistentLogin();
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
 
     if (!valgtEnhet) {
-        /* valgt enhet utledes fra saksbehandlerinnstillinger-cookie i session-reducer. Mange kall mot backenden vil feile uten denne cookien. Legger derfor denne sjekken før resten av appen mountes for å motvirke feilede kall */
-        return <VelgEnhet />;
+        /**
+         * valgt enhet utledes fra saksbehandlerinnstillinger-cookie i session-reducer.
+         * Mange kall mot backenden vil feile uten denne cookien.
+         * Legger derfor denne sjekken før resten av appen mountes for å motvirke feilede kall
+         */
+        return (
+            <>
+                <LoggetUtModal loginState={loginState} />
+                <VelgEnhet />
+            </>
+        );
     }
 
     return (
         <>
+            <LoggetUtModal loginState={loginState} />
             <LyttPåFnrIURLOgSettIRedux />
             <HentGlobaleVerdier />
             <ContentStyle>
@@ -57,7 +69,7 @@ function App() {
     );
 }
 
-function Router(props: { children?: ReactNode }) {
+function Router(props: { children?: React.ReactNode }) {
     if (process.env.REACT_APP_USE_HASH_ROUTER === 'true') {
         return <HashRouter>{props.children}</HashRouter>;
     }
