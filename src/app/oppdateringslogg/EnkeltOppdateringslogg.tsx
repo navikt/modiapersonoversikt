@@ -45,10 +45,14 @@ function Bilde({ src }: { src?: string }) {
 }
 
 function OppdateringsloggEtikett({ type }: { type: OppdateringsloggType }) {
-    if (type === OppdateringsloggType.Beskjed) {
-        return <StyledEtikett type="info">Beskjed</StyledEtikett>;
+    switch (type) {
+        case OppdateringsloggType.Beskjed:
+            return <StyledEtikett type="info">Beskjed</StyledEtikett>;
+        case OppdateringsloggType.Oppdatering:
+            return <StyledEtikett type="suksess">Oppdatering</StyledEtikett>;
+        default:
+            return null;
     }
-    return <StyledEtikett type="suksess">Oppdatering</StyledEtikett>;
 }
 
 function Beskrivelse({
