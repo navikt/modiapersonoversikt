@@ -7,11 +7,21 @@ import Stegindikator from 'nav-frontend-stegindikator';
 import { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
 import { datoSynkende } from '../../utils/date-utils';
 import { EnOppdateringslogg } from './OppdateringsloggContainer';
+import Panel from 'nav-frontend-paneler';
+
+const StyledPanel = styled(Panel)`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
+    width: 100%;
+`;
 
 const StyledDiv = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    align-content: flex-end;
 `;
 
 const StyledNesteknapp = styled(Nesteknapp)`
@@ -39,7 +49,7 @@ function NesteKnapp({ indeks, lengde, onClick }: { indeks: number; lengde: numbe
     return <StyledNesteknapp onClick={onClick} />;
 }
 
-function VisStegIndikator({
+function VisStegindikator({
     steg,
     onChange,
     indeks
@@ -48,7 +58,7 @@ function VisStegIndikator({
     onChange: (indeks: number) => void;
     indeks: number;
 }) {
-    return <Stegindikator steg={steg} aktivtSteg={indeks} onChange={onChange} kompakt={true} />;
+    return <Stegindikator steg={steg} aktivtSteg={indeks} onChange={onChange} visLabel={false} kompakt={true} />;
 }
 
 function Oppdateringslogg(props: { oppdateringslogg: EnOppdateringslogg[] }) {
@@ -85,7 +95,7 @@ function Oppdateringslogg(props: { oppdateringslogg: EnOppdateringslogg[] }) {
     });
 
     return (
-        <>
+        <StyledPanel>
             <section>
                 <EnkeltOppdateringslogg
                     enOppdateringslogg={currentOppdateringslogg}
@@ -93,12 +103,12 @@ function Oppdateringslogg(props: { oppdateringslogg: EnOppdateringslogg[] }) {
                     setVisMer={setVisMer}
                 />
             </section>
-            <VisStegIndikator steg={stegListe} indeks={indeks} onChange={setIndeks} />
             <StyledDiv>
                 <ForrigeKnapp indeks={indeks} onClick={forrige} />
+                <VisStegindikator steg={stegListe} indeks={indeks} onChange={setIndeks} />
                 <NesteKnapp indeks={indeks} lengde={sortertOppdateringslogg.length} onClick={neste} />
             </StyledDiv>
-        </>
+        </StyledPanel>
     );
 }
 

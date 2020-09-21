@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import ModalWrapper from 'nav-frontend-modal';
 import useListener from '../../utils/hooks/use-listener';
 import Oppdateringslogg from './Oppdateringslogg';
-import { Sidetittel } from 'nav-frontend-typografi';
+import { Innholdstittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import { OppdateringsloggType } from './EnkeltOppdateringslogg';
 import usePersistentState from './usePersistentState';
@@ -24,13 +24,21 @@ export interface EnOppdateringslogg {
 }
 
 const StyledModalWrapper = styled(ModalWrapper)`
-    padding: 2rem;
-    width: 80%;
-    height: 50%;
+    display: flex;
+    padding: 0rem;
+    width: 100%;
+    height: 100%;
+    max-width: 57rem;
+    min-height: 20rem;
+    max-height: 40rem;
+    justify-content: center;
 `;
 
-const StyledSidetittel = styled(Sidetittel)`
+const StyledInnholdstittel = styled(Innholdstittel)`
     margin-left: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 0.75rem;
 `;
 
 function harUleste(sistLesteId: number, oppdateringslogg: EnOppdateringslogg[]): boolean {
@@ -80,7 +88,7 @@ function OppdateringsloggContainer() {
 
     return (
         <StyledModalWrapper contentLabel="Oppdateringslogg" isOpen={apen} onRequestClose={() => settApen(false)}>
-            <StyledSidetittel>Oppdateringslogg</StyledSidetittel>
+            <StyledInnholdstittel>Oppdateringslogg</StyledInnholdstittel>
             <Oppdateringslogg oppdateringslogg={oppdateringslogg} />
         </StyledModalWrapper>
     );

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { EnOppdateringslogg } from './OppdateringsloggContainer';
-import { Ingress, Systemtittel, Undertekst } from 'nav-frontend-typografi';
+import { Ingress, Undertekst, Undertittel } from 'nav-frontend-typografi';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import styled from 'styled-components/macro';
 import Panel from 'nav-frontend-paneler';
@@ -20,17 +20,23 @@ export enum OppdateringsloggType {
 }
 
 const StyledPanel = styled(Panel)`
-    margin: 1rem;
-`;
-
-const StyledEtikett = styled(Etikett)`
-    margin: 0rem;
-    float: right;
+    text-align: center;
 `;
 
 const StyledDiv = styled.div`
     text-align: center;
     margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 3px 3px #ccc;
+`;
+
+const StyledEtikett = styled(Etikett)`
+    margin-left: 1rem;
+`;
+
+const StyledLesmerpanel = styled(Lesmerpanel)`
+    margin: -0.5rem;
+    padding: 0rem;
 `;
 
 function Bilde({ src }: { src?: string }) {
@@ -44,17 +50,6 @@ function Bilde({ src }: { src?: string }) {
     );
 }
 
-function OppdateringsloggEtikett({ type }: { type: OppdateringsloggType }) {
-    switch (type) {
-        case OppdateringsloggType.Beskjed:
-            return <StyledEtikett type="info">Beskjed</StyledEtikett>;
-        case OppdateringsloggType.Oppdatering:
-            return <StyledEtikett type="suksess">Oppdatering</StyledEtikett>;
-        default:
-            return null;
-    }
-}
-
 function Beskrivelse({
     beskrivelse,
     visMer,
@@ -66,7 +61,7 @@ function Beskrivelse({
 }) {
     if (beskrivelse.length > 150) {
         return (
-            <Lesmerpanel
+            <StyledLesmerpanel
                 defaultApen={visMer}
                 onOpen={() => {
                     setVisMer(true);
@@ -74,9 +69,11 @@ function Beskrivelse({
                 onClose={() => {
                     setVisMer(false);
                 }}
+                apneTekst={''}
+                lukkTekst={''}
             >
                 <Tekstomrade>{beskrivelse}</Tekstomrade>
-            </Lesmerpanel>
+            </StyledLesmerpanel>
         );
     }
     return <Tekstomrade>{beskrivelse}</Tekstomrade>;
@@ -84,18 +81,19 @@ function Beskrivelse({
 
 export default function EnkeltOppdateringslogg(props: Props) {
     return (
-        <StyledPanel border>
-            <OppdateringsloggEtikett type={props.enOppdateringslogg.type} />
-            {props.enOppdateringslogg.prioritet && <Etikett type="advarsel">Viktig</Etikett>}
-            <Systemtittel>{props.enOppdateringslogg.tittel}</Systemtittel>
-            <Ingress>{props.enOppdateringslogg.ingress}</Ingress>
-            <Undertekst>{formatterDatoTidMedMaanedsnavn(props.enOppdateringslogg.dato)}</Undertekst>
+        <>
             <Bilde src={props.enOppdateringslogg.src} />
-            <Beskrivelse
-                beskrivelse={props.enOppdateringslogg.beskrivelse}
-                visMer={props.visMer}
-                setVisMer={props.setVisMer}
-            />
-        </StyledPanel>
+            {props.enOppdateringslogg.prioritet && <StyledEtikett type="advarsel">Viktig</StyledEtikett>}
+            <StyledPanel>
+                <Undertittel>{props.enOppdateringslogg.tittel}</Undertittel>
+                <Ingress>{props.enOppdateringslogg.ingress}</Ingress>
+                <Undertekst>{formatterDatoTidMedMaanedsnavn(props.enOppdateringslogg.dato)}</Undertekst>
+                <Beskrivelse
+                    beskrivelse={props.enOppdateringslogg.beskrivelse}
+                    visMer={props.visMer}
+                    setVisMer={props.setVisMer}
+                />
+            </StyledPanel>
+        </>
     );
 }
