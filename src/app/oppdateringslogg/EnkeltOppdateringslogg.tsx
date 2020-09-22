@@ -31,8 +31,8 @@ const StyledDiv = styled.div`
 `;
 
 const StyledEtikett = styled(Etikett)`
-    float: left;
-    margin-right: 1rem;
+    position: absolute;
+    left: 2%;
 `;
 
 const StyledUndertittel = styled(Undertittel)`
@@ -46,7 +46,10 @@ const StyledLesmerpanel = styled(Lesmerpanel)`
 `;
 const TittelDiv = styled.div`
     display: flex;
+    justify-content: center;
+    position: relative;
 `;
+
 function OppdateringsloggBilde({ src }: { src?: string }) {
     if (!src) {
         return null;
