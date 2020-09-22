@@ -24,21 +24,14 @@ export interface EnOppdateringslogg {
 }
 
 const StyledModalWrapper = styled(ModalWrapper)`
-    display: flex;
-    padding: 0rem;
-    width: 100%;
-    height: 100%;
-    max-width: 57rem;
-    min-height: 20rem;
-    max-height: 40rem;
-    justify-content: center;
+    &.modal {
+        padding: 0rem;
+    }
 `;
 
 const StyledInnholdstittel = styled(Innholdstittel)`
-    margin-left: 1rem;
     text-align: center;
-    margin-bottom: 1rem;
-    margin-top: 0.75rem;
+    margin: 0.75rem 0rem 1rem 1rem;
 `;
 
 function harUleste(sistLesteId: number, oppdateringslogg: EnOppdateringslogg[]): boolean {

@@ -21,6 +21,7 @@ export enum OppdateringsloggType {
 
 const StyledPanel = styled(Panel)`
     text-align: center;
+    flex: 1;
 `;
 
 const StyledDiv = styled.div`
@@ -31,6 +32,8 @@ const StyledDiv = styled.div`
 `;
 
 const StyledEtikett = styled(Etikett)`
+    display: flex;
+    align-self: flex-start;
     margin-left: 1rem;
 `;
 

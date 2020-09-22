@@ -7,44 +7,50 @@ import Stegindikator from 'nav-frontend-stegindikator';
 import { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
 import { datoSynkende } from '../../utils/date-utils';
 import { EnOppdateringslogg } from './OppdateringsloggContainer';
-import Panel from 'nav-frontend-paneler';
 
-const StyledPanel = styled(Panel)`
+const StyledPanel = styled.section`
     display: flex;
+    height: 100%;
+    width: 40rem;
+    min-height: 20rem;
+    max-height: 40rem;
     flex-direction: column;
     justify-content: space-between;
-    height: 90%;
-    width: 100%;
 `;
 
-const StyledDiv = styled.div`
+const StyledFooter = styled.footer`
     display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-content: flex-end;
 `;
-
 const StyledNesteknapp = styled(Nesteknapp)`
-    display: flex;
-    align-content: flex-start;
-    margin-left: auto;
+    float: right;
+`;
+const HiddenNesteknapp = styled(Nesteknapp)`
+    float: right;
+    visibility: hidden;
+`;
+const StyledTilbakeknapp = styled(Tilbakeknapp)`
+    float: left;
 `;
 
-const StyledTilbakeknapp = styled(Tilbakeknapp)`
-    display: flex;
-    align-content: flex-start;
+const HiddenTilbakeknapp = styled(Tilbakeknapp)`
+    float: left;
+    visibility: hidden;
+`;
+const StyledStegindikator = styled.div`
+    margin: 0 auto;
+    align-self: center;
 `;
 
 function ForrigeKnapp({ indeks, onClick }: { indeks: number; onClick: () => void }) {
     if (indeks < 1) {
-        return null;
+        return <HiddenTilbakeknapp />;
     }
     return <StyledTilbakeknapp onClick={onClick} />;
 }
 
 function NesteKnapp({ indeks, lengde, onClick }: { indeks: number; lengde: number; onClick: () => void }) {
     if (indeks >= lengde - 1) {
-        return null;
+        return <HiddenNesteknapp />;
     }
     return <StyledNesteknapp onClick={onClick} />;
 }
@@ -58,7 +64,11 @@ function VisStegindikator({
     onChange: (indeks: number) => void;
     indeks: number;
 }) {
-    return <Stegindikator steg={steg} aktivtSteg={indeks} onChange={onChange} visLabel={false} kompakt={true} />;
+    return (
+        <StyledStegindikator>
+            <Stegindikator steg={steg} aktivtSteg={indeks} onChange={onChange} visLabel={false} kompakt={true} />
+        </StyledStegindikator>
+    );
 }
 
 function Oppdateringslogg(props: { oppdateringslogg: EnOppdateringslogg[] }) {
@@ -96,18 +106,16 @@ function Oppdateringslogg(props: { oppdateringslogg: EnOppdateringslogg[] }) {
 
     return (
         <StyledPanel>
-            <section>
-                <EnkeltOppdateringslogg
-                    enOppdateringslogg={currentOppdateringslogg}
-                    visMer={visMer}
-                    setVisMer={setVisMer}
-                />
-            </section>
-            <StyledDiv>
+            <EnkeltOppdateringslogg
+                enOppdateringslogg={currentOppdateringslogg}
+                visMer={visMer}
+                setVisMer={setVisMer}
+            />
+            <StyledFooter>
                 <ForrigeKnapp indeks={indeks} onClick={forrige} />
                 <VisStegindikator steg={stegListe} indeks={indeks} onChange={setIndeks} />
                 <NesteKnapp indeks={indeks} lengde={sortertOppdateringslogg.length} onClick={neste} />
-            </StyledDiv>
+            </StyledFooter>
         </StyledPanel>
     );
 }
