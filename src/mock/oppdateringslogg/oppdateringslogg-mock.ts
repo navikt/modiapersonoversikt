@@ -1,6 +1,7 @@
 import { EnOppdateringslogg } from '../../app/oppdateringslogg/OppdateringsloggContainer';
 import { OppdateringsloggType } from '../../app/oppdateringslogg/EnkeltOppdateringslogg';
 import faker from 'faker/locale/nb_NO';
+import OppdateringsloggKnappBilde from '../../app/oppdateringslogg/config/img/oppdateringslogg-knapp.jpg';
 
 export function getOppdateringslogg(): EnOppdateringslogg[] {
     return [
@@ -13,7 +14,8 @@ export function getOppdateringslogg(): EnOppdateringslogg[] {
             beskrivelse:
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nullam vehicula ipsum a arcu cursus vitae congue. Duis at tellus at urna condimentum mattis pellentesque id. Sodales ut eu sem integer vitae justo eget magna fermentum.',
             prioritet: false,
-            type: OppdateringsloggType.Oppdatering
+            type: OppdateringsloggType.Oppdatering,
+            src: OppdateringsloggKnappBilde
         },
         {
             id: 2,
