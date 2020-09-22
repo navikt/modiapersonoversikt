@@ -18,7 +18,6 @@ export interface EnOppdateringslogg {
     aktiv: boolean;
     ingress: string;
     beskrivelse: string;
-    prioritet: boolean;
     type: OppdateringsloggType;
     src?: string;
 }

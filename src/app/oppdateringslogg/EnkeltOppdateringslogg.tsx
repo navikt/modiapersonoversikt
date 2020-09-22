@@ -3,7 +3,6 @@ import { EnOppdateringslogg } from './OppdateringsloggContainer';
 import { Ingress, Undertekst, Undertittel } from 'nav-frontend-typografi';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import styled from 'styled-components/macro';
-import Etikett from 'nav-frontend-etiketter';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import { formatterDatoTidMedMaanedsnavn } from '../../utils/date-utils';
 
@@ -30,11 +29,6 @@ const StyledDiv = styled.div`
     align-content: center;
 `;
 
-const StyledEtikett = styled(Etikett)`
-    position: absolute;
-    left: 2%;
-`;
-
 const StyledUndertittel = styled(Undertittel)`
     align-self: center;
     margin: 0 auto;
@@ -43,11 +37,6 @@ const StyledUndertittel = styled(Undertittel)`
 const StyledLesmerpanel = styled(Lesmerpanel)`
     margin: -0.5rem;
     padding: 0rem;
-`;
-const TittelDiv = styled.div`
-    display: flex;
-    justify-content: center;
-    position: relative;
 `;
 
 function OppdateringsloggBilde({ src }: { src?: string }) {
@@ -94,12 +83,8 @@ export default function EnkeltOppdateringslogg(props: Props) {
     return (
         <>
             <OppdateringsloggBilde src={props.enOppdateringslogg.src} />
-
             <StyledPanel>
-                <TittelDiv>
-                    {props.enOppdateringslogg.prioritet && <StyledEtikett type="advarsel">Viktig</StyledEtikett>}
-                    <StyledUndertittel>{props.enOppdateringslogg.tittel}</StyledUndertittel>
-                </TittelDiv>
+                <StyledUndertittel>{props.enOppdateringslogg.tittel}</StyledUndertittel>
                 <Ingress>{props.enOppdateringslogg.ingress}</Ingress>
                 <Undertekst>{formatterDatoTidMedMaanedsnavn(props.enOppdateringslogg.dato)}</Undertekst>
                 <Beskrivelse

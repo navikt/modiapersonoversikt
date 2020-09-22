@@ -81,11 +81,7 @@ function Oppdateringslogg(props: { oppdateringslogg: EnOppdateringslogg[] }) {
         return <AlertStripeInfo>Fant ingen oppdateringer</AlertStripeInfo>;
     }
 
-    const sortertOppdateringslogg = oppdateringslogg
-        .sort(datoSynkende(enOppdateringslogg => enOppdateringslogg.dato))
-        .sort((a, b) => {
-            return a.prioritet === b.prioritet ? 0 : a.prioritet ? -1 : 1;
-        });
+    const sortertOppdateringslogg = oppdateringslogg.sort(datoSynkende(enOppdateringslogg => enOppdateringslogg.dato));
 
     const neste = () => {
         setIndeks(indeks + 1);
