@@ -3,7 +3,6 @@ import { EnOppdateringslogg } from './OppdateringsloggContainer';
 import { Ingress, Undertekst, Undertittel } from 'nav-frontend-typografi';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import styled from 'styled-components/macro';
-import Panel from 'nav-frontend-paneler';
 import Etikett from 'nav-frontend-etiketter';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import { formatterDatoTidMedMaanedsnavn } from '../../utils/date-utils';
@@ -19,30 +18,36 @@ export enum OppdateringsloggType {
     Oppdatering = 'oppdatering'
 }
 
-const StyledPanel = styled(Panel)`
+const StyledPanel = styled.article`
     text-align: center;
     flex: 1;
 `;
 
 const StyledDiv = styled.div`
-    text-align: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
     box-shadow: 0 0 3px 3px #ccc;
+    align-content: center;
 `;
 
 const StyledEtikett = styled(Etikett)`
-    display: flex;
-    align-self: flex-start;
-    margin-left: 1rem;
+    float: left;
+    margin-right: 1rem;
+`;
+
+const StyledUndertittel = styled(Undertittel)`
+    align-self: center;
+    margin: 0 auto;
 `;
 
 const StyledLesmerpanel = styled(Lesmerpanel)`
     margin: -0.5rem;
     padding: 0rem;
 `;
-
-function Bilde({ src }: { src?: string }) {
+const TittelDiv = styled.div`
+    display: flex;
+`;
+function OppdateringsloggBilde({ src }: { src?: string }) {
     if (!src) {
         return null;
     }
@@ -85,10 +90,13 @@ function Beskrivelse({
 export default function EnkeltOppdateringslogg(props: Props) {
     return (
         <>
-            <Bilde src={props.enOppdateringslogg.src} />
-            {props.enOppdateringslogg.prioritet && <StyledEtikett type="advarsel">Viktig</StyledEtikett>}
+            <OppdateringsloggBilde src={props.enOppdateringslogg.src} />
+
             <StyledPanel>
-                <Undertittel>{props.enOppdateringslogg.tittel}</Undertittel>
+                <TittelDiv>
+                    {props.enOppdateringslogg.prioritet && <StyledEtikett type="advarsel">Viktig</StyledEtikett>}
+                    <StyledUndertittel>{props.enOppdateringslogg.tittel}</StyledUndertittel>
+                </TittelDiv>
                 <Ingress>{props.enOppdateringslogg.ingress}</Ingress>
                 <Undertekst>{formatterDatoTidMedMaanedsnavn(props.enOppdateringslogg.dato)}</Undertekst>
                 <Beskrivelse

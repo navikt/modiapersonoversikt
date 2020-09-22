@@ -2,6 +2,7 @@ import { EnOppdateringslogg } from '../../app/oppdateringslogg/OppdateringsloggC
 import { OppdateringsloggType } from '../../app/oppdateringslogg/EnkeltOppdateringslogg';
 import faker from 'faker/locale/nb_NO';
 import OppdateringsloggKnappBilde from '../../app/oppdateringslogg/config/img/oppdateringslogg-knapp.jpg';
+import CodeBilde from '../../app/oppdateringslogg/config/img/code.png';
 
 export function getOppdateringslogg(): EnOppdateringslogg[] {
     return [
@@ -25,7 +26,8 @@ export function getOppdateringslogg(): EnOppdateringslogg[] {
             ingress: 'Nå kan man gi foskudd på dagpenger',
             beskrivelse: 'Nå kan man skrive ',
             prioritet: true,
-            type: OppdateringsloggType.Beskjed
+            type: OppdateringsloggType.Beskjed,
+            src: CodeBilde
         },
         {
             id: 3,

@@ -43,14 +43,14 @@ const StyledStegindikator = styled.div`
 
 function ForrigeKnapp({ indeks, onClick }: { indeks: number; onClick: () => void }) {
     if (indeks < 1) {
-        return <HiddenTilbakeknapp />;
+        return <HiddenTilbakeknapp aria-hidden={true} />;
     }
     return <StyledTilbakeknapp onClick={onClick} />;
 }
 
 function NesteKnapp({ indeks, lengde, onClick }: { indeks: number; lengde: number; onClick: () => void }) {
     if (indeks >= lengde - 1) {
-        return <HiddenNesteknapp />;
+        return <HiddenNesteknapp aria-hidden={true} />;
     }
     return <StyledNesteknapp onClick={onClick} />;
 }

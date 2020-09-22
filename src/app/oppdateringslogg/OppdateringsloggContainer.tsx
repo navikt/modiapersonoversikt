@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import ModalWrapper from 'nav-frontend-modal';
 import useListener from '../../utils/hooks/use-listener';
 import Oppdateringslogg from './Oppdateringslogg';
-import { Innholdstittel } from 'nav-frontend-typografi';
+import { Systemtittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import { OppdateringsloggType } from './EnkeltOppdateringslogg';
 import usePersistentState from './usePersistentState';
@@ -25,11 +25,11 @@ export interface EnOppdateringslogg {
 
 const StyledModalWrapper = styled(ModalWrapper)`
     &.modal {
-        padding: 0rem;
+        padding: 0.5rem;
     }
 `;
 
-const StyledInnholdstittel = styled(Innholdstittel)`
+const StyledSystemtittel = styled(Systemtittel)`
     text-align: center;
     margin: 0.75rem 0rem 1rem 1rem;
 `;
@@ -81,7 +81,7 @@ function OppdateringsloggContainer() {
 
     return (
         <StyledModalWrapper contentLabel="Oppdateringslogg" isOpen={apen} onRequestClose={() => settApen(false)}>
-            <StyledInnholdstittel>Oppdateringslogg</StyledInnholdstittel>
+            <StyledSystemtittel>Oppdateringslogg</StyledSystemtittel>
             <Oppdateringslogg oppdateringslogg={oppdateringslogg} />
         </StyledModalWrapper>
     );
