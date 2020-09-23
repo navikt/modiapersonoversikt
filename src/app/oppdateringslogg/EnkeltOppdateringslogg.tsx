@@ -12,11 +12,6 @@ interface Props {
     setVisMer: (visMer: boolean) => void;
 }
 
-export enum OppdateringsloggType {
-    Beskjed = 'beskjed',
-    Oppdatering = 'oppdatering'
-}
-
 const StyledArticle = styled.article`
     text-align: center;
     flex: 1;

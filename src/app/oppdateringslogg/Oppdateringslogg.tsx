@@ -8,7 +8,7 @@ import { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindik
 import { datoSynkende } from '../../utils/date-utils';
 import { EnOppdateringslogg } from './OppdateringsloggContainer';
 
-const StyledPanel = styled.section`
+const StyledSection = styled.section`
     display: flex;
     height: 100%;
     width: 40rem;
@@ -101,7 +101,7 @@ function Oppdateringslogg(props: { oppdateringslogg: EnOppdateringslogg[] }) {
     });
 
     return (
-        <StyledPanel>
+        <StyledSection>
             <EnkeltOppdateringslogg
                 enOppdateringslogg={currentOppdateringslogg}
                 visMer={visMer}
@@ -112,7 +112,7 @@ function Oppdateringslogg(props: { oppdateringslogg: EnOppdateringslogg[] }) {
                 <VisStegindikator steg={stegListe} indeks={indeks} onChange={setIndeks} />
                 <NesteKnapp indeks={indeks} lengde={sortertOppdateringslogg.length} onClick={neste} />
             </StyledFooter>
-        </StyledPanel>
+        </StyledSection>
     );
 }
 

@@ -4,7 +4,6 @@ import useListener from '../../utils/hooks/use-listener';
 import Oppdateringslogg from './Oppdateringslogg';
 import { Systemtittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
-import { OppdateringsloggType } from './EnkeltOppdateringslogg';
 import usePersistentState from './usePersistentState';
 import useOppdateringslogg from './useOppdateringslogg';
 import './oppdateringsloggKnapp.less';
@@ -18,7 +17,6 @@ export interface EnOppdateringslogg {
     aktiv: boolean;
     ingress: string;
     beskrivelse: string;
-    type: OppdateringsloggType;
     src?: string;
 }
 

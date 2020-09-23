@@ -1,4 +1,3 @@
-import { OppdateringsloggType } from '../EnkeltOppdateringslogg';
 import { EnOppdateringslogg } from '../OppdateringsloggContainer';
 import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
 
@@ -13,7 +12,6 @@ export const OppdateringsloggProd: EnOppdateringslogg[] = [
             'Her vil du se notifikasjoner sortert fra nyest til eldst,' +
             'og de viktigste vil komme først uavhengig av dato. Hvis noe er viktig vil det komme opp en rød boks hvor' +
             'det står Viktig. Man vil få beskjed om notifikasjonen er en ny oppdatering eller om det er en beskjed.',
-        type: OppdateringsloggType.Oppdatering,
         src: OppdateringsloggKnappBilde
     }
 ];
