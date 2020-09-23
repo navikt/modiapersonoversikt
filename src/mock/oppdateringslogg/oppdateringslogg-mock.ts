@@ -4,7 +4,7 @@ import faker from 'faker/locale/nb_NO';
 import OppdateringsloggKnappBilde from '../../app/oppdateringslogg/config/img/oppdateringslogg-knapp.jpg';
 import CodeBilde from '../../app/oppdateringslogg/config/img/code.png';
 
-export function getOppdateringslogg(): EnOppdateringslogg[] {
+export function getOppdateringsloggMock(): EnOppdateringslogg[] {
     return [
         {
             id: 1,

@@ -17,7 +17,7 @@ export enum OppdateringsloggType {
     Oppdatering = 'oppdatering'
 }
 
-const StyledPanel = styled.article`
+const StyledArticle = styled.article`
     text-align: center;
     flex: 1;
 `;
@@ -81,10 +81,10 @@ function Beskrivelse({
 
 export default function EnkeltOppdateringslogg(props: Props) {
     return (
-        <>
+        <article>
             <OppdateringsloggBilde src={props.enOppdateringslogg.src} />
-            <StyledPanel>
-                <StyledUndertittel>{props.enOppdateringslogg.tittel}</StyledUndertittel>
+            <StyledArticle>
+                <StyledUndertittel tag="h3">{props.enOppdateringslogg.tittel}</StyledUndertittel>
                 <Ingress>{props.enOppdateringslogg.ingress}</Ingress>
                 <Undertekst>{formatterDatoTidMedMaanedsnavn(props.enOppdateringslogg.dato)}</Undertekst>
                 <Beskrivelse
@@ -92,7 +92,7 @@ export default function EnkeltOppdateringslogg(props: Props) {
                     visMer={props.visMer}
                     setVisMer={props.setVisMer}
                 />
-            </StyledPanel>
-        </>
+            </StyledArticle>
+        </article>
     );
 }
