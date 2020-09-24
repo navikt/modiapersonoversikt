@@ -5,7 +5,7 @@ export const OppdateringsloggProd: EnOppdateringslogg[] = [
     {
         id: 1,
         tittel: 'Modia personoversikt har fått en oppdateringslogg',
-        dato: new Date('2020-09-23 16:23'),
+        dato: new Date('2020-09-24 12:42'),
         aktiv: true,
         ingress: 'Nå kan du se nye ting som kommer i modia. Trykk på bjelleikonet for å se hva som er nytt.',
         beskrivelse:

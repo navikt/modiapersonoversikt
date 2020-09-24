@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { EnOppdateringslogg } from './OppdateringsloggContainer';
-import { Ingress, Undertekst, Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertekst, Undertittel } from 'nav-frontend-typografi';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import styled from 'styled-components/macro';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
@@ -80,8 +80,10 @@ export default function EnkeltOppdateringslogg(props: Props) {
             <OppdateringsloggBilde src={props.enOppdateringslogg.src} />
             <StyledArticle>
                 <StyledUndertittel tag="h3">{props.enOppdateringslogg.tittel}</StyledUndertittel>
-                <Ingress>{props.enOppdateringslogg.ingress}</Ingress>
-                <Undertekst>{formatterDatoTidMedMaanedsnavn(props.enOppdateringslogg.dato)}</Undertekst>
+                <Undertekst className="blokk-xxs">
+                    {formatterDatoTidMedMaanedsnavn(props.enOppdateringslogg.dato)}
+                </Undertekst>
+                <Normaltekst>{props.enOppdateringslogg.ingress}</Normaltekst>
                 <Beskrivelse
                     beskrivelse={props.enOppdateringslogg.beskrivelse}
                     visMer={props.visMer}
