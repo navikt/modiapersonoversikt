@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { EnOppdateringslogg } from './OppdateringsloggContainer';
 import { Normaltekst, Undertekst, Undertittel } from 'nav-frontend-typografi';
-import Tekstomrade from 'nav-frontend-tekstomrade';
 import styled from 'styled-components/macro';
-import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import { formatterDatoTidMedMaanedsnavn } from '../../utils/date-utils';
 
 interface Props {
@@ -29,11 +27,6 @@ const StyledUndertittel = styled(Undertittel)`
     margin: 0 auto;
 `;
 
-const StyledLesmerpanel = styled(Lesmerpanel)`
-    margin: -0.5rem;
-    padding: 0rem;
-`;
-
 function OppdateringsloggBilde({ src }: { src?: string }) {
     if (!src) {
         return null;
@@ -43,35 +36,6 @@ function OppdateringsloggBilde({ src }: { src?: string }) {
             <img src={src} alt={''} width="100%" height="100%" />
         </StyledDiv>
     );
-}
-
-function Beskrivelse({
-    beskrivelse,
-    visMer,
-    setVisMer
-}: {
-    beskrivelse: string;
-    visMer: boolean;
-    setVisMer: (visMer: boolean) => void;
-}) {
-    if (beskrivelse.length > 150) {
-        return (
-            <StyledLesmerpanel
-                defaultApen={visMer}
-                onOpen={() => {
-                    setVisMer(true);
-                }}
-                onClose={() => {
-                    setVisMer(false);
-                }}
-                apneTekst={''}
-                lukkTekst={''}
-            >
-                <Tekstomrade>{beskrivelse}</Tekstomrade>
-            </StyledLesmerpanel>
-        );
-    }
-    return <Tekstomrade>{beskrivelse}</Tekstomrade>;
 }
 
 export default function EnkeltOppdateringslogg(props: Props) {
@@ -84,11 +48,7 @@ export default function EnkeltOppdateringslogg(props: Props) {
                     {formatterDatoTidMedMaanedsnavn(props.enOppdateringslogg.dato)}
                 </Undertekst>
                 <Normaltekst>{props.enOppdateringslogg.ingress}</Normaltekst>
-                <Beskrivelse
-                    beskrivelse={props.enOppdateringslogg.beskrivelse}
-                    visMer={props.visMer}
-                    setVisMer={props.setVisMer}
-                />
+                <Normaltekst tag="div">{props.enOppdateringslogg.beskrivelse}</Normaltekst>
             </StyledArticle>
         </article>
     );

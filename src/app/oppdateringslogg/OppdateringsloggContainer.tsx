@@ -15,8 +15,8 @@ export interface EnOppdateringslogg {
     tittel: string;
     dato: Date;
     aktiv: boolean;
-    ingress: string;
-    beskrivelse: string;
+    ingress: React.ReactNode;
+    beskrivelse: React.ReactNode;
     src?: string;
 }
 
