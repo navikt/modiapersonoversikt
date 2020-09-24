@@ -36,11 +36,12 @@ const etterSokefelt = `
           <button class="hurtigtaster-button" id="hurtigtaster-button" aria-label="Åpne hurtigtaster" title="Åpne hurtigtaster">
             <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
           </button>
-          <button class="${OppdateringsloggButtonId}" id="${OppdateringsloggButtonId}" aria-label="Åpne oppdateringslogg" title="Åpne oppdateringslogg">
+          <button class="${OppdateringsloggButtonId}" id="${OppdateringsloggButtonId}" title="Åpne oppdateringslogg">
             <div class="oppdateringslogg__ikon">
               ${bjelleIkon}
             </div>
-            <span class="oppdateringslogg__ulestindikator"></span>
+            <span class="oppdateringslogg__beskrivelse" aria-label="Åpne oppdateringslogg"></span>
+            <span class="oppdateringslogg__ulestindikator" aria-label="(Uleste)"></span>
           </button>
         </div>
     `;
