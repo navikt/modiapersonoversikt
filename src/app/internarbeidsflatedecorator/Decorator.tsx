@@ -3,34 +3,47 @@ import { useCallback, useState } from 'react';
 import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import { useDispatch } from 'react-redux';
+import raw from 'raw.macro';
+import styled from 'styled-components/macro';
 import { DecoratorProps, EnhetDisplay, FnrDisplay, RESET_VALUE } from './decoratorprops';
 import { fjernBrukerFraPath, paths, setNyBrukerIPath } from '../routes/routing';
 import { matchPath, useHistory } from 'react-router';
-import './personsokKnapp.less';
-import './hurtigtaster.less';
-import './decorator.less';
 import { useAppState, useOnMount } from '../../utils/customHooks';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { velgEnhetAction } from '../../redux/session/session';
 import { parseQueryString, useQueryParams } from '../../utils/url-utils';
-import styled from 'styled-components';
 import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTipsContainer';
 import useHandleGosysUrl from './useHandleGosysUrl';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { removePrefix } from '../../utils/string-utils';
+import OppdateringsloggContainer, {
+    DecoratorButtonId as OppdateringsloggButtonId
+} from '../oppdateringslogg/OppdateringsloggContainer';
+import './personsokKnapp.less';
+import './hurtigtaster.less';
+import './decorator.less';
+
+const bjelleIkon = raw('../../svg/bjelle.svg');
 
 const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
+
 const etterSokefelt = `
-<div class="knapper_container">
-  <button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk">
-    <span> A <span class="personsok-pil"></span></span>
-  </button>
-  <button class="hurtigtaster-button" id="hurtigtaster-button" aria-label="Åpne hurtigtaster" title="Åpne hurtigtaster">
-    <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
-  </button>
-</div>
-`;
+        <div class="knapper_container">
+          <button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk">
+            <span> A <span class="personsok-pil"></span></span>
+          </button>
+          <button class="hurtigtaster-button" id="hurtigtaster-button" aria-label="Åpne hurtigtaster" title="Åpne hurtigtaster">
+            <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
+          </button>
+          <button class="${OppdateringsloggButtonId} hidden" id="${OppdateringsloggButtonId}" aria-label="Åpne oppdateringslogg" title="Åpne oppdateringslogg">
+            <div class="oppdateringslogg__ikon">
+              ${bjelleIkon}
+            </div>
+            <span class="oppdateringslogg__ulestindikator"></span>
+          </button>
+        </div>
+    `;
 
 const StyledNav = styled.nav`
     .dekorator .dekorator__container {
@@ -46,7 +59,6 @@ function lagConfig(
     const { sokFnr, pathFnr } = getFnrFraUrl();
     const onsketFnr = sokFnr || pathFnr;
     const fnrValue = onsketFnr === '0' ? RESET_VALUE : onsketFnr;
-
     return {
         appname: 'Modia personoversikt',
         fnr: {
@@ -139,6 +151,7 @@ function Decorator() {
                     <InternflateDecorator {...config} />
                     <PersonsokContainer />
                     <HurtigtastTipsContainer />
+                    <OppdateringsloggContainer />
                     <DecoratorEasterEgg />
                 </>
             )}
