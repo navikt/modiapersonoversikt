@@ -9,7 +9,7 @@ export const OppdateringsloggProd: EnOppdateringslogg[] = [
     {
         id: 1,
         tittel: 'Modia personoversikt har fått oppdateringslogg',
-        dato: new Date('2020-09-24 14:15'),
+        dato: new Date('2020-09-25 08:00'),
         aktiv: true,
         ingress: (
             <>
