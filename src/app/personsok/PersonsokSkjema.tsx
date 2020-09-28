@@ -77,6 +77,18 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
         kontonummer = 'Kontonummer må være gyldig';
     }
 
+    const utenlandskID =
+        values.utenlandskID &&
+        (values.fornavn ||
+            values.etternavn ||
+            values.gatenavn ||
+            values.husnummer ||
+            values.husbokstav ||
+            values.postnummer ||
+            values.kontonummer)
+            ? 'Kan ikke kombinere søk på utendlansk ID med andre felt'
+            : undefined;
+
     const kommunenummer =
         !erTall(values.kommunenummer) && values.kommunenummer.length !== 4
             ? 'Bosted må være tall med 4 siffer'
@@ -97,11 +109,13 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
     const kjonn = undefined;
 
     let _minimumskrav = undefined;
-    if (!values.gatenavn && !values.kontonummer && !values.fornavn) {
-        _minimumskrav = 'Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk';
-        fornavn = '';
-        gatenavn = '';
-        kontonummer = '';
+    if (!values.utenlandskID) {
+        if (!values.gatenavn && !values.kontonummer && !values.fornavn) {
+            _minimumskrav = 'Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk';
+            fornavn = '';
+            gatenavn = '';
+            kontonummer = '';
+        }
     }
 
     return {
@@ -112,6 +126,7 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
         husbokstav,
         postnummer,
         kontonummer,
+        utenlandskID,
         kommunenummer,
         fodselsdatoFra,
         fodselsdatoTil,
@@ -130,6 +145,7 @@ const initialValues: PersonSokFormState = {
     husbokstav: '',
     postnummer: '',
     kontonummer: '',
+    utenlandskID: '',
     kommunenummer: '',
     fodselsdatoFra: '',
     fodselsdatoTil: '',
@@ -214,6 +230,12 @@ function PersonsokSkjema(props: Props) {
                             label={'Kontonummer (Norske nummer)'}
                             {...state.fields.kontonummer.input}
                             feil={feilmelding(state.fields.kontonummer)}
+                        />
+                        <Input
+                            bredde={'L'}
+                            label={'Utenlandsk ID'}
+                            {...state.fields.utenlandskID.input}
+                            feil={feilmelding(state.fields.utenlandskID)}
                         />
                     </section>
                     <section aria-label={'Begrens søket'}>
