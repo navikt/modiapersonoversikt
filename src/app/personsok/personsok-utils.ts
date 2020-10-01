@@ -1,5 +1,6 @@
 import { PersonsokRequest } from '../../models/person/personsok';
 import { Mapped, Values } from '@nutgaard/use-formstate';
+import { removeWhitespaceAndDot } from './kontonummer/kontonummerUtils';
 
 export type PersonSokFormState = {
     fornavn: string;
@@ -40,7 +41,7 @@ export function lagRequest(form: Mapped<Values<PersonSokFormState>, string>): Pe
         husnummer: stringToNumber(form.husnummer),
         husbokstav: emptyString(form.husbokstav),
         postnummer: emptyString(form.postnummer),
-        kontonummer: emptyString(form.kontonummer),
+        kontonummer: emptyString(removeWhitespaceAndDot(form.kontonummer)),
         kommunenummer: emptyString(form.kommunenummer),
         fodselsdatoFra: emptyString(form.fodselsdatoFra),
         fodselsdatoTil: emptyString(form.fodselsdatoTil),
