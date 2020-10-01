@@ -16,7 +16,7 @@ import { LenkeKnapp } from '../../components/common-styled-components';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import { erTall } from '../../utils/string-utils';
-import { removeWhitespaceAndDot, validerKontonummer } from './kontonummer/kontonummerUtils';
+import { validerKontonummer } from './kontonummer/kontonummerUtils';
 import moment from 'moment';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 
@@ -73,7 +73,7 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
     const postnummer = !erTall(values.postnummer) ? 'Postnummer må være tall' : undefined;
 
     let kontonummer = undefined;
-    if (values.kontonummer && !validerKontonummer(removeWhitespaceAndDot(values.kontonummer))) {
+    if (values.kontonummer && !validerKontonummer(values.kontonummer)) {
         kontonummer = 'Kontonummer må være gyldig';
     }
 
