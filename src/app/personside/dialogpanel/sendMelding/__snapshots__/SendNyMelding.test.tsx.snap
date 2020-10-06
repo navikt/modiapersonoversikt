@@ -657,6 +657,7 @@ exports[`viser send ny melding 1`] = `
               id="Helt tilfeldig ID"
             />
           </fieldset>
+          if(erSpørsmål)
           <div
             className="skjemaelement c16"
           >
