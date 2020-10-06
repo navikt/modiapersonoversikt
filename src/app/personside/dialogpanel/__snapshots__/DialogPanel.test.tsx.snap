@@ -668,6 +668,7 @@ exports[`viser dialogpanel 1`] = `
                 id="Helt tilfeldig ID"
               />
             </fieldset>
+            if(erSpørsmål)
             <div
               className="skjemaelement c17"
             >
