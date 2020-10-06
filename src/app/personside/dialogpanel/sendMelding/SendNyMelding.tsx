@@ -132,7 +132,7 @@ function SendNyMelding(props: Props) {
                                 visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
                                 valgtSak={state.sak}
                             />
-                            if(erSpørsmål){' '}
+                            if(erSpørsmål)
                             {
                                 <Oppgaveliste
                                     oppgaveliste={state.oppgaveListe}
