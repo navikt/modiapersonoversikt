@@ -19,6 +19,8 @@ import { erTall } from '../../utils/string-utils';
 import { removeWhitespaceAndDot, validerKontonummer } from './kontonummer/kontonummerUtils';
 import moment from 'moment';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
+import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -158,6 +160,7 @@ const initialValues: PersonSokFormState = {
 function PersonsokSkjema(props: Props) {
     const validator = useFormstate<PersonSokFormState>(validatorPersonsok);
     const state = validator(initialValues);
+    const enabled = useFeatureToggle(FeatureToggles.Infomelding).isOn ?? false;
 
     function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
@@ -231,12 +234,14 @@ function PersonsokSkjema(props: Props) {
                             {...state.fields.kontonummer.input}
                             feil={feilmelding(state.fields.kontonummer)}
                         />
-                        <Input
-                            bredde={'L'}
-                            label={'Utenlandsk ID'}
-                            {...state.fields.utenlandskID.input}
-                            feil={feilmelding(state.fields.utenlandskID)}
-                        />
+                        {enabled && (
+                            <Input
+                                bredde={'L'}
+                                label={'Utenlandsk ID'}
+                                {...state.fields.utenlandskID.input}
+                                feil={feilmelding(state.fields.utenlandskID)}
+                            />
+                        )}
                     </section>
                     <section aria-label={'Begrens søket'}>
                         <Systemtittel tag={'h2'}>Begrens søket</Systemtittel>
