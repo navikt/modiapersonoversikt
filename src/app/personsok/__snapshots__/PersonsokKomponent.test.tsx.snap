@@ -281,26 +281,6 @@ exports[`viser personsøk-komponent 1`] = `
             value=""
           />
         </div>
-        <div
-          className="skjemaelement"
-        >
-          <label
-            className="skjemaelement__label"
-            htmlFor="utenlandskID"
-          >
-            Utenlandsk ID
-          </label>
-          <input
-            aria-invalid={false}
-            className="skjemaelement__input input--l"
-            id="utenlandskID"
-            name="utenlandskID"
-            onBlur={[Function]}
-            onChange={[Function]}
-            type="text"
-            value=""
-          />
-        </div>
       </section>
       <section
         aria-label="Begrens søket"
