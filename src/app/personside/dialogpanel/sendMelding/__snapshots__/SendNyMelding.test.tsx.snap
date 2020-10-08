@@ -162,21 +162,6 @@ exports[`viser send ny melding 1`] = `
   margin-right: 1rem;
 }
 
-.c16 {
-  margin-top: 1rem;
-}
-
-.c16 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
 .c1 {
   position: relative;
 }
@@ -191,7 +176,7 @@ exports[`viser send ny melding 1`] = `
   padding: 1rem .5rem;
 }
 
-.c17 {
+.c16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -201,7 +186,7 @@ exports[`viser send ny melding 1`] = `
   flex-direction: column;
 }
 
-.c17 > * {
+.c16 > * {
   margin-bottom: 0.7rem;
 }
 
@@ -658,41 +643,6 @@ exports[`viser send ny melding 1`] = `
             />
           </fieldset>
           <div
-            className="skjemaelement c16"
-          >
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Oppgaveliste
-            </label>
-            <div
-              className="selectContainer input--fullbredde"
-            >
-              <select
-                aria-invalid={false}
-                className="skjemaelement__input"
-                disabled={false}
-                id="Helt tilfeldig ID"
-                onChange={[Function]}
-                value="MinListe"
-              >
-                <option
-                  value="MinListe"
-                >
-                  Svar skal til min oppgaveliste
-                </option>
-                <option
-                  value="Enhetensliste"
-                >
-                  Svar skal til 
-                  NAV Testmark
-                   sin oppgaveliste
-                </option>
-              </select>
-            </div>
-          </div>
-          <div
             className="alertstripe c13 alertstripe--info"
           >
             <span
@@ -732,7 +682,7 @@ exports[`viser send ny melding 1`] = `
           </div>
         </div>
         <div
-          className="c17"
+          className="c16"
         >
           <button
             className="knapp knapp--hoved"
