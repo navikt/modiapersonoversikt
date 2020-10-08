@@ -75,7 +75,6 @@ export interface SendSpørsmålRequest {
 export interface SendInfomeldingRequest {
     fritekst: string;
     sak: JournalforingsSak;
-    erOppgaveTilknyttetAnsatt: boolean;
 }
 
 export interface ForsettDialogRequest {
