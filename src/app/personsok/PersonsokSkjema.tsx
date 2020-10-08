@@ -160,7 +160,7 @@ const initialValues: PersonSokFormState = {
 function PersonsokSkjema(props: Props) {
     const validator = useFormstate<PersonSokFormState>(validatorPersonsok);
     const state = validator(initialValues);
-    const enabled = useFeatureToggle(FeatureToggles.Infomelding).isOn ?? false;
+    const enabled = useFeatureToggle(FeatureToggles.UtenlandskID).isOn ?? false;
 
     function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
