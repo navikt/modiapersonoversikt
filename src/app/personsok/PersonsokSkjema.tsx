@@ -88,7 +88,7 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
             values.husbokstav ||
             values.postnummer ||
             values.kontonummer)
-            ? 'Kan ikke kombinere søk på utendlansk ID med andre felt'
+            ? 'Kan ikke kombinere søk på utenlandsk ID med andre felt'
             : undefined;
 
     const kommunenummer =
