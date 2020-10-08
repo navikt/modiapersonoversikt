@@ -8,8 +8,6 @@ import usePersistentState from './usePersistentState';
 import useOppdateringslogg from './useOppdateringslogg';
 import './oppdateringsloggKnapp.less';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 export const DecoratorButtonId = 'oppdateringslogg';
 export interface EnOppdateringslogg {
@@ -68,19 +66,6 @@ function useApneOppdateringsLoggModal(
     useListener(`#${DecoratorButtonId}`, 'click', listener, document.querySelector('dekorator'));
 }
 
-function useSkjulOppdateringsloggBasertPaFeaturetoggle(element: HTMLElement | null) {
-    const erAktiv = useFeatureToggle(FeatureToggles.Oppdateringslogg).isOn ?? false;
-
-    useEffect(() => {
-        if (element != null) {
-            element?.classList.add('hidden');
-            if (erAktiv) {
-                element?.classList.remove('hidden');
-            }
-        }
-    }, [element, erAktiv]);
-}
-
 function OppdateringsloggContainer() {
     const oppdateringslogg: EnOppdateringslogg[] = useOppdateringslogg().filter(innslag => innslag.aktiv);
 
@@ -90,7 +75,6 @@ function OppdateringsloggContainer() {
 
     useApneOppdateringsLoggModal(settApen, oppdateringslogg, settSistLesteId);
     useHoldUlestIndikatorOppdatert(element, sistLesteId, oppdateringslogg);
-    useSkjulOppdateringsloggBasertPaFeaturetoggle(element);
 
     return (
         <StyledModalWrapper contentLabel="Oppdateringslogg" isOpen={apen} onRequestClose={() => settApen(false)}>
