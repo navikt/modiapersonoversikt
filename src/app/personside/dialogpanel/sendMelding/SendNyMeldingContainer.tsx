@@ -148,8 +148,7 @@ function SendNyMeldingContainer() {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
             const request: SendInfomeldingRequest = {
                 fritekst: state.tekst,
-                sak: state.sak,
-                erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
+                sak: state.sak
             };
             post(`${apiBaseUri}/dialog/${fnr}/sendinfomelding`, request, 'Send-Infomelding')
                 .then(() => {

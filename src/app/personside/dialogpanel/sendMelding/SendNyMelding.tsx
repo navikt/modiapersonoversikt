@@ -132,12 +132,14 @@ function SendNyMelding(props: Props) {
                                 visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
                                 valgtSak={state.sak}
                             />
-                            <Oppgaveliste
-                                oppgaveliste={state.oppgaveListe}
-                                setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
-                            />
                             {erSpørsmål ? (
-                                <StyledAlertStripeInfo>Gir varsel, bruker må svare</StyledAlertStripeInfo>
+                                <>
+                                    <Oppgaveliste
+                                        oppgaveliste={state.oppgaveListe}
+                                        setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
+                                    />
+                                    <StyledAlertStripeInfo>Gir varsel, bruker må svare</StyledAlertStripeInfo>
+                                </>
                             ) : (
                                 <StyledAlertStripeInfo>Gir varsel, bruker kan ikke svare</StyledAlertStripeInfo>
                             )}
