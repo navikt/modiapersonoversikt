@@ -27,5 +27,24 @@ export const OppdateringsloggProd: EnOppdateringslogg[] = [
             </>
         ),
         src: OppdateringsloggKnappBilde
+    },
+    {
+        id: 2,
+        tittel: 'Modia personoversikt har fått infomelding',
+        dato: new Date('2020-10-12 10:00'),
+        aktiv: true,
+        ingress: (
+            <>
+                <Normaltekst>Infomelding er melding til bruker sin innboks. Det er ikke</Normaltekst>
+                <Normaltekst>mulig for bruker å svare på denne meldingen.</Normaltekst>
+            </>
+        ),
+        beskrivelse: (
+            <>
+                <Normaltekst>Bruker vil på lik linje med de andre meldingsformene i Modia</Normaltekst>
+                <Normaltekst>personoversikt bli varslet om ny melding fra NAV på SMS,</Normaltekst>
+                <Normaltekst>e-post og når man logger seg på Ditt NAV.</Normaltekst>
+            </>
+        )
     }
 ];
