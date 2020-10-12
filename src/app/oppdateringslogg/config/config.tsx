@@ -6,7 +6,7 @@ import BjelleikonBilde from './img/bjelleikon.jpg';
 import InfomeldingBilde from './img/infomelding.jpg';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export const OppdateringsloggProd: EnOppdateringslogg[] = [
+export const OppdateringsloggConfig: EnOppdateringslogg[] = [
     {
         id: 1,
         tittel: 'Modia personoversikt har fått oppdateringslogg',

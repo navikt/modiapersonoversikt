@@ -5,9 +5,9 @@ import Oppdateringslogg from './Oppdateringslogg';
 import { Systemtittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import usePersistentState from './usePersistentState';
-import useOppdateringslogg from './useOppdateringslogg';
-import './oppdateringsloggKnapp.less';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
+import { OppdateringsloggConfig } from './config/config';
+import './oppdateringsloggKnapp.less';
 
 export const DecoratorButtonId = 'oppdateringslogg';
 export interface EnOppdateringslogg {
@@ -67,7 +67,7 @@ function useApneOppdateringsLoggModal(
 }
 
 function OppdateringsloggContainer() {
-    const oppdateringslogg: EnOppdateringslogg[] = useOppdateringslogg().filter(innslag => innslag.aktiv);
+    const oppdateringslogg: EnOppdateringslogg[] = OppdateringsloggConfig.filter(innslag => innslag.aktiv);
 
     const [apen, settApen] = useState(false);
     const [sistLesteId, settSistLesteId] = usePersistentState('lest-oppdateringslogg', -1);
