@@ -5,11 +5,9 @@ import Oppdateringslogg from './Oppdateringslogg';
 import { Systemtittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import usePersistentState from './usePersistentState';
-import useOppdateringslogg from './useOppdateringslogg';
-import './oppdateringsloggKnapp.less';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
+import { OppdateringsloggConfig } from './config/config';
+import './oppdateringsloggKnapp.less';
 
 export const DecoratorButtonId = 'oppdateringslogg';
 export interface EnOppdateringslogg {
@@ -68,21 +66,8 @@ function useApneOppdateringsLoggModal(
     useListener(`#${DecoratorButtonId}`, 'click', listener, document.querySelector('dekorator'));
 }
 
-function useSkjulOppdateringsloggBasertPaFeaturetoggle(element: HTMLElement | null) {
-    const erAktiv = useFeatureToggle(FeatureToggles.Oppdateringslogg).isOn ?? false;
-
-    useEffect(() => {
-        if (element != null) {
-            element?.classList.add('hidden');
-            if (erAktiv) {
-                element?.classList.remove('hidden');
-            }
-        }
-    }, [element, erAktiv]);
-}
-
 function OppdateringsloggContainer() {
-    const oppdateringslogg: EnOppdateringslogg[] = useOppdateringslogg().filter(innslag => innslag.aktiv);
+    const oppdateringslogg: EnOppdateringslogg[] = OppdateringsloggConfig.filter(innslag => innslag.aktiv);
 
     const [apen, settApen] = useState(false);
     const [sistLesteId, settSistLesteId] = usePersistentState('lest-oppdateringslogg', -1);
@@ -90,7 +75,6 @@ function OppdateringsloggContainer() {
 
     useApneOppdateringsLoggModal(settApen, oppdateringslogg, settSistLesteId);
     useHoldUlestIndikatorOppdatert(element, sistLesteId, oppdateringslogg);
-    useSkjulOppdateringsloggBasertPaFeaturetoggle(element);
 
     return (
         <StyledModalWrapper contentLabel="Oppdateringslogg" isOpen={apen} onRequestClose={() => settApen(false)}>

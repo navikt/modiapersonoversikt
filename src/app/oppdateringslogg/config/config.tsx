@@ -3,9 +3,10 @@ import { EnOppdateringslogg } from '../OppdateringsloggContainer';
 import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
 import BjelleikonVarselBilde from './img/bjelleikon-varsel.jpg';
 import BjelleikonBilde from './img/bjelleikon.jpg';
+import InfomeldingBilde from './img/infomelding.jpg';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export const OppdateringsloggProd: EnOppdateringslogg[] = [
+export const OppdateringsloggConfig: EnOppdateringslogg[] = [
     {
         id: 1,
         tittel: 'Modia personoversikt har fått oppdateringslogg',
@@ -27,5 +28,28 @@ export const OppdateringsloggProd: EnOppdateringslogg[] = [
             </>
         ),
         src: OppdateringsloggKnappBilde
+    },
+    {
+        id: 2,
+        tittel: 'Modia personoversikt har fått infomelding',
+        dato: new Date('2020-10-12 10:00'),
+        aktiv: true,
+        ingress: (
+            <>
+                <Normaltekst>
+                    Infomelding er melding til bruker sin innboks. Det er ikke mulig for bruker å svare på denne
+                    meldingen.
+                </Normaltekst>
+            </>
+        ),
+        beskrivelse: (
+            <>
+                <Normaltekst>
+                    Bruker vil på lik linje med de andre meldingsformene i Modia personoversikt bli varslet om ny
+                    melding fra NAV på SMS, e-post og når man logger seg på Ditt NAV.
+                </Normaltekst>
+            </>
+        ),
+        src: InfomeldingBilde
     }
 ];
