@@ -28,6 +28,7 @@ export interface PersonsokRequest {
     etternavn?: string;
     gatenavn?: string;
     kontonummer?: string;
+    utenlandskID?: string;
     alderFra?: number;
     alderTil?: number;
     kommunenummer?: string;

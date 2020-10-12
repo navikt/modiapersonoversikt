@@ -10,6 +10,7 @@ export type PersonSokFormState = {
     husbokstav: string;
     postnummer: string;
     kontonummer: string;
+    utenlandskID: string;
     kommunenummer: string;
     fodselsdatoFra: string;
     fodselsdatoTil: string;
@@ -42,6 +43,7 @@ export function lagRequest(form: Mapped<Values<PersonSokFormState>, string>): Pe
         husbokstav: emptyString(form.husbokstav),
         postnummer: emptyString(form.postnummer),
         kontonummer: emptyString(removeWhitespaceAndDot(form.kontonummer)),
+        utenlandskID: emptyString(form.utenlandskID),
         kommunenummer: emptyString(form.kommunenummer),
         fodselsdatoFra: emptyString(form.fodselsdatoFra),
         fodselsdatoTil: emptyString(form.fodselsdatoTil),
