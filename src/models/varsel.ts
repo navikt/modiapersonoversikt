@@ -90,6 +90,7 @@ export enum Varseltype {
     'SyfoMoteforesporsel' = 'Dialogmøte',
     'SyfoOppgave' = 'Sykmelding',
     'SyfoSykepengesoknad' = 'Sykepengesøknad',
+    'NyttSykepengevedtak' = 'Nytt sykepengevedtak',
     'UR_StoppPrint' = 'Utbetalingsmelding',
     'NySykmelding' = 'Ny sykmelding',
     'NySykmeldingUtenLenke' = 'Ny sykmelding',
