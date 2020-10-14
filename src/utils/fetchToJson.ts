@@ -15,11 +15,24 @@ export function hasError<T>(data: FetchResponse<T>): data is ErrorStatus {
     return !hasData(data);
 }
 
+async function getErrorMessage(response: Response): Promise<string> {
+    try {
+        const content = await response.json();
+        if (content.message && typeof content.message === 'string' && content.message.length > 0) {
+            return content.message;
+        }
+        return response.statusText;
+    } catch (e) {
+        return response.statusText;
+    }
+}
+
 export async function fetchToJson<T>(input: RequestInfo, request?: RequestInit): Promise<FetchResponse<T>> {
     try {
         const response = await fetch(input, request);
         if (!response.ok) {
-            return { status: response.status, message: response.statusText };
+            const errorMessage = await getErrorMessage(response);
+            return { status: response.status, message: errorMessage };
         }
         if (response.redirected) {
             return { status: 302, message: 'Redirect detected' };
