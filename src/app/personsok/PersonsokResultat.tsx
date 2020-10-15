@@ -20,12 +20,8 @@ function PersonsokResultat(props: Props) {
         return <NavFrontendSpinner />;
     }
 
-    if (props.response.status === 400) {
-        return <AlertStripeAdvarsel>Søket gav mer enn 200 treff. Forsøk å begrense søket</AlertStripeAdvarsel>;
-    }
-
     if (hasError(props.response)) {
-        return <AlertStripeAdvarsel>Feil fra søketjeneste: {props.response.message}</AlertStripeAdvarsel>;
+        return <AlertStripeAdvarsel>{props.response.message}</AlertStripeAdvarsel>;
     }
 
     const data = props.response.data;

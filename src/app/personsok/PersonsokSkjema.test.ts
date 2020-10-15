@@ -9,6 +9,7 @@ const initialValues: PersonSokFormState = {
     husbokstav: '',
     postnummer: '',
     kontonummer: '',
+    utenlandskID: '',
     kommunenummer: '',
     fodselsdatoFra: '',
     fodselsdatoTil: '',
@@ -26,6 +27,7 @@ const ingenFeil = {
     husbokstav: undefined,
     postnummer: undefined,
     kontonummer: undefined,
+    utenlandskID: undefined,
     kommunenummer: undefined,
     fodselsdatoFra: undefined,
     fodselsdatoTil: undefined,
@@ -67,6 +69,14 @@ test('Validerer minimumskrav for personsøk', () => {
         kontonummer: '',
         fornavn: '',
         gatenavn: ''
+    });
+});
+
+test('Valider utenlandskID må være eneste felt', () => {
+    const validator = validatorPersonsok({ ...initialValues, utenlandskID: '1231', fornavn: 'Aremark' }, {});
+    expect(validator).toEqual({
+        ...ingenFeil,
+        utenlandskID: 'Kan ikke kombinere søk på utenlandsk ID med andre felt'
     });
 });
 

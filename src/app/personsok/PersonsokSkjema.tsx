@@ -19,6 +19,8 @@ import { erTall } from '../../utils/string-utils';
 import { validerKontonummer } from './kontonummer/kontonummerUtils';
 import moment from 'moment';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
+import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -77,6 +79,18 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
         kontonummer = 'Kontonummer må være gyldig';
     }
 
+    const utenlandskID =
+        values.utenlandskID &&
+        (values.fornavn ||
+            values.etternavn ||
+            values.gatenavn ||
+            values.husnummer ||
+            values.husbokstav ||
+            values.postnummer ||
+            values.kontonummer)
+            ? 'Kan ikke kombinere søk på utenlandsk ID med andre felt'
+            : undefined;
+
     const kommunenummer =
         !erTall(values.kommunenummer) && values.kommunenummer.length !== 4
             ? 'Bosted må være tall med 4 siffer'
@@ -97,11 +111,13 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
     const kjonn = undefined;
 
     let _minimumskrav = undefined;
-    if (!values.gatenavn && !values.kontonummer && !values.fornavn) {
-        _minimumskrav = 'Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk';
-        fornavn = '';
-        gatenavn = '';
-        kontonummer = '';
+    if (!values.utenlandskID) {
+        if (!values.gatenavn && !values.kontonummer && !values.fornavn) {
+            _minimumskrav = 'Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk';
+            fornavn = '';
+            gatenavn = '';
+            kontonummer = '';
+        }
     }
 
     return {
@@ -112,6 +128,7 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
         husbokstav,
         postnummer,
         kontonummer,
+        utenlandskID,
         kommunenummer,
         fodselsdatoFra,
         fodselsdatoTil,
@@ -130,6 +147,7 @@ const initialValues: PersonSokFormState = {
     husbokstav: '',
     postnummer: '',
     kontonummer: '',
+    utenlandskID: '',
     kommunenummer: '',
     fodselsdatoFra: '',
     fodselsdatoTil: '',
@@ -142,6 +160,7 @@ const initialValues: PersonSokFormState = {
 function PersonsokSkjema(props: Props) {
     const validator = useFormstate<PersonSokFormState>(validatorPersonsok);
     const state = validator(initialValues);
+    const enabled = useFeatureToggle(FeatureToggles.UtenlandskID).isOn ?? false;
 
     function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
@@ -215,6 +234,14 @@ function PersonsokSkjema(props: Props) {
                             {...state.fields.kontonummer.input}
                             feil={feilmelding(state.fields.kontonummer)}
                         />
+                        {enabled && (
+                            <Input
+                                bredde={'L'}
+                                label={'Utenlandsk ID'}
+                                {...state.fields.utenlandskID.input}
+                                feil={feilmelding(state.fields.utenlandskID)}
+                            />
+                        )}
                     </section>
                     <section aria-label={'Begrens søket'}>
                         <Systemtittel tag={'h2'}>Begrens søket</Systemtittel>
