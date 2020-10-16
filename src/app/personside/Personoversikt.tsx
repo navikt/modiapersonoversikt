@@ -32,8 +32,8 @@ function Personoversikt() {
     useOnMount(() => {
         if (isFinishedPosting(oppgaveResource)) {
             const oppgaver = oppgaveResource.response;
-            const harSattOppgaveFraGosysUrl = oppgaver.some(oppgave => oppgave.fraGosys === true);
-            dispatch(setJobberMedSTO(!harSattOppgaveFraGosysUrl));
+            const harSTOOppgave = oppgaver.some(oppgave => oppgave.erSTOOppgave);
+            dispatch(setJobberMedSTO(!harSTOOppgave));
         } else {
             dispatch(setJobberMedSTO(false));
         }

@@ -103,10 +103,10 @@ function FortsettDialogContainer(props: Props) {
     if (opprettHenvendelse.success === false) {
         return opprettHenvendelse.placeholder;
     }
-    const oppgaveFraGosys =
-        isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.fraGosys);
-    const oppgaveIdFraGosys = oppgaveFraGosys && oppgaveFraGosys.oppgaveId;
-    const oppgaveId = oppgaveIdFraGosys ? oppgaveIdFraGosys : opprettHenvendelse.henvendelse.oppgaveId;
+    const harPlukketSTOOppgave =
+        isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.erSTOOppgave);
+    const STOOppgaveId = harPlukketSTOOppgave && harPlukketSTOOppgave.oppgaveId;
+    const oppgaveId = STOOppgaveId ? STOOppgaveId : opprettHenvendelse.henvendelse.oppgaveId;
 
     const handleAvbryt = () => {
         removeDraft();
