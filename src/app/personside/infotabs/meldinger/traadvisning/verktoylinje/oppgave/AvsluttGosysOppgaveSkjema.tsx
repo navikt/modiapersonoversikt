@@ -31,20 +31,20 @@ function AvsluttGosysOppgaveSkjema() {
     const [avsluttOppgaveSuksess, setAvsluttOppgaveSuksess] = useState(false);
     const [error, setError] = useState(false);
     const dispatch = useDispatch();
-    const oppgaveFraGosys =
-        isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.fraGosys);
+    const harSTOOppgave =
+        isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.erSTOOppgave);
     const ref = useRef<HTMLElement>(null);
     useFocusOnMount(ref);
 
-    const handleOppgaveFraGosys = () => {
+    const handleSubmit = () => {
         if (submitting) {
             return;
         }
         setSubmitting(true);
-        if (oppgaveFraGosys) {
+        if (harSTOOppgave) {
             const request: AvsluttGosysOppgaveRequest = {
-                fnr: oppgaveFraGosys.fødselsnummer,
-                oppgaveid: oppgaveFraGosys.oppgaveId,
+                fnr: harSTOOppgave.fødselsnummer,
+                oppgaveid: harSTOOppgave.oppgaveId,
                 beskrivelse: gosysBeskrivelse,
                 saksbehandlerValgtEnhet: saksbehandlersEnhet
             };
@@ -78,7 +78,7 @@ function AvsluttGosysOppgaveSkjema() {
         );
     }
 
-    if (!oppgaveFraGosys) {
+    if (!harSTOOppgave) {
         return null;
     }
     return (
@@ -90,7 +90,7 @@ function AvsluttGosysOppgaveSkjema() {
                 maxLength={0}
                 onChange={e => setGosysBeskrivelse(e.currentTarget.value)}
             />
-            <Hovedknapp onClick={handleOppgaveFraGosys} spinner={submitting}>
+            <Hovedknapp onClick={handleSubmit} spinner={submitting}>
                 Avslutt oppgave
             </Hovedknapp>
         </StyledArticle>
