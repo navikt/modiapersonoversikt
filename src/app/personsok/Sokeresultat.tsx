@@ -19,7 +19,7 @@ function Sokeresultat(props: Props) {
     const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
     let linje;
     for (linje of props.response) {
-        if (linje.utenlandskID && linje.request?.utenlandskID) {
+        if (linje.utenlandskID?.utenlandskID.identifikasjonsnummer) {
             tittelRekke.push('Utenlandsk ID');
         }
     }

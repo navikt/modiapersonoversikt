@@ -11,12 +11,14 @@ export interface PersonsokResponse {
     ident: NorskIdent;
     brukerinfo: Brukerinfo | null;
     utenlandskID?: UtenlandskID | null;
-    request?: PersonsokRequest;
 }
 
 export interface UtenlandskID {
-    utenlandskID: string | null;
-    type: Kodeverk;
+    utenlandskID: {
+        identifikasjonsnummer: string;
+        utstederland: string;
+        opphoert: boolean;
+    };
 }
 
 export interface NorskIdent {

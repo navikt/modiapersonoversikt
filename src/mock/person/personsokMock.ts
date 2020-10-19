@@ -47,10 +47,10 @@ function getPersonsokResponse(): PersonsokResponse {
 
 function getUtenlandskID(): UtenlandskID {
     return {
-        utenlandskID: '12345',
-        type: {
-            kodeRef: 'U',
-            beskrivelse: 'Utenlandsk ID'
+        utenlandskID: {
+            identifikasjonsnummer: '12345',
+            utstederland: 'FIN',
+            opphoert: false
         }
     };
 }
