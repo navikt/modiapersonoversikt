@@ -49,8 +49,7 @@ function getUtenlandskID(): UtenlandskID {
     return {
         utenlandskID: {
             identifikasjonsnummer: '12345',
-            utstederland: 'FIN',
-            opphoert: false
+            utstederland: 'FIN'
         }
     };
 }

@@ -17,7 +17,6 @@ export interface UtenlandskID {
     utenlandskID: {
         identifikasjonsnummer: string;
         utstederland: string;
-        opphoert: boolean;
     };
 }
 
