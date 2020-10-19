@@ -16,7 +16,15 @@ function Sokeresultat(props: Props) {
 
     useFocusOnMount(ref);
 
-    const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
+    const tittelRekke = props.response.map(linje => {
+        const titler = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
+        if (linje.request?.utenlandskID && linje.utenlandskID) {
+            return titler.push('Utenlandsk ID');
+        } else {
+            return titler;
+        }
+    });
+
     const tableEntries = props.response.map(linje => [
         <IdentCelle ident={linje.ident} />,
         <NavnCelle navn={linje.navn} status={linje.status} />,
