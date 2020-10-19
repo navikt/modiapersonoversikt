@@ -1,5 +1,5 @@
 import { default as React, useRef } from 'react';
-import { AdresseCelle, BostedCelle, IdentCelle, NavnCelle } from './PersonsokResultatElementer';
+import { AdresseCelle, BostedCelle, IdentCelle, NavnCelle, UtenlandskIDCelle } from './PersonsokResultatElementer';
 import { setNyBrukerIPath } from '../routes/routing';
 import { ClickableTable } from '../../utils/table/ClickableTable';
 import { PersonsokResponse } from '../../models/person/personsok';
@@ -17,12 +17,19 @@ function Sokeresultat(props: Props) {
     useFocusOnMount(ref);
 
     const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
-    const tableEntries = props.response.map(linje => [
-        <IdentCelle ident={linje.ident} />,
-        <NavnCelle navn={linje.navn} status={linje.status} />,
-        <AdresseCelle response={linje} />,
-        <BostedCelle brukerinfo={linje.brukerinfo} />
-    ]);
+    const tableEntries = props.response.map(linje => {
+        const celler = [
+            <IdentCelle ident={linje.ident} />,
+            <NavnCelle navn={linje.navn} status={linje.status} />,
+            <AdresseCelle response={linje} />,
+            <BostedCelle brukerinfo={linje.brukerinfo} />
+        ];
+        if (linje.request?.utenlandskID && linje.utenlandskID) {
+            return celler.push(<UtenlandskIDCelle utenlandskID={linje.utenlandskID} />);
+        } else {
+            return celler;
+        }
+    });
 
     const handlers = props.response.map(linje => () => {
         props.onClose();

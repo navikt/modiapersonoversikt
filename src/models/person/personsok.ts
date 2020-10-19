@@ -10,6 +10,13 @@ export interface PersonsokResponse {
     status?: Kodeverk;
     ident: NorskIdent;
     brukerinfo: Brukerinfo | null;
+    utenlandskID?: UtenlandskID | null;
+    request?: PersonsokRequest;
+}
+
+export interface UtenlandskID {
+    utenlandskID: string | null;
+    type: Kodeverk;
 }
 
 export interface NorskIdent {
