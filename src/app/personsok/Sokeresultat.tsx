@@ -17,9 +17,8 @@ function Sokeresultat(props: Props) {
     useFocusOnMount(ref);
 
     const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
-    let linje;
-    for (linje of props.response) {
-        if (linje.utenlandskID?.utenlandskID.identifikasjonsnummer) {
+    for (let linje of props.response) {
+        if (linje.utenlandskID?.utenlandskID.identifikasjonsnummer && !tittelRekke.includes('Utenlandsk ID')) {
             tittelRekke.push('Utenlandsk ID');
         }
     }
