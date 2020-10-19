@@ -16,14 +16,13 @@ function Sokeresultat(props: Props) {
 
     useFocusOnMount(ref);
 
-    const tittelRekke = props.response.map(linje => {
-        const titler = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
-        if (linje.request?.utenlandskID && linje.utenlandskID) {
-            return titler.push('Utenlandsk ID');
-        } else {
-            return titler;
+    const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
+    let linje;
+    for (linje of props.response) {
+        if (linje.utenlandskID && linje.request?.utenlandskID) {
+            tittelRekke.push('Utenlandsk ID');
         }
-    });
+    }
 
     const tableEntries = props.response.map(linje => [
         <IdentCelle ident={linje.ident} />,

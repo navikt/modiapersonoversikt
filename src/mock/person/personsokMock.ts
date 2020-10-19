@@ -1,4 +1,10 @@
-import { Brukerinfo, NorskIdent, PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
+import {
+    Brukerinfo,
+    NorskIdent,
+    PersonsokRequest,
+    PersonsokResponse,
+    UtenlandskID
+} from '../../models/person/personsok';
 import { aremark } from './aremark';
 import { moss } from './moss';
 import faker from 'faker/locale/nb_NO';
@@ -24,6 +30,7 @@ function getPersonsokResponse(): PersonsokResponse {
     const postadresse = vektetSjanse(faker, 0.5) ? getPostadresse() : null;
     const bostedsadresse = vektetSjanse(faker, 0.5) ? getBostedsadresse() : null;
     const brukerinfo = vektetSjanse(faker, 0.5) ? getBrukerinfo() : null;
+    const utenlandskID = vektetSjanse(faker, 0.5) ? getUtenlandskID() : null;
 
     return {
         diskresjonskode: diskresjonskode,
@@ -33,7 +40,18 @@ function getPersonsokResponse(): PersonsokResponse {
         navn: getMockNavn(fodselsnummer),
         status: getStatus(),
         ident: getIdent(fodselsnummer),
-        brukerinfo: brukerinfo
+        brukerinfo: brukerinfo,
+        utenlandskID: utenlandskID
+    };
+}
+
+function getUtenlandskID(): UtenlandskID {
+    return {
+        utenlandskID: '12345',
+        type: {
+            kodeRef: 'U',
+            beskrivelse: 'Utenlandsk ID'
+        }
     };
 }
 
