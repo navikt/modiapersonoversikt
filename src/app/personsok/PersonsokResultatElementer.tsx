@@ -72,7 +72,7 @@ export function BostedCelle(props: { brukerinfo: Brukerinfo | null }) {
 }
 
 export function UtenlandskIDCelle(props: {
-    utenlandskID: UtenlandskID | null;
+    utenlandskID?: UtenlandskID | null;
     requestUtenlandskID?: PersonsokRequest['utenlandskID'];
 }) {
     if (props.utenlandskID && props.requestUtenlandskID) {
