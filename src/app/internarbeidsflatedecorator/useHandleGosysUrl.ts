@@ -17,17 +17,21 @@ function useHandleGosysUrl() {
     const history = useHistory();
 
     useOnMount(() => {
+        const linkTilValgtHenvendelse = `${paths.personUri}/${
+            queryParams.sokFnr
+        }/${INFOTABS.MELDINGER.toLowerCase()}?traadId=${queryParams.behandlingsid}`;
+
         if (queryParams.oppgaveid && queryParams.behandlingsid && queryParams.sokFnr) {
             fetchToJson<Oppgave>(`${apiBaseUri}/oppgaver/oppgavedata/${queryParams.oppgaveid}`).then(response => {
                 if (hasData(response)) {
                     dispatch(plukkOppgaverResource.actions.setResponse([response.data]));
-                    loggEvent('Oppgave', 'FraGosys');
+                    loggEvent('Oppgave', 'FraGosys', { success: true });
+                } else {
+                    loggEvent('Oppgave', 'FraGosys', { success: false });
                 }
+                history.replace(linkTilValgtHenvendelse);
             });
         } else if (queryParams.sokFnr && queryParams.behandlingsid) {
-            const linkTilValgtHenvendelse = `${paths.personUri}/${
-                queryParams.sokFnr
-            }/${INFOTABS.MELDINGER.toLowerCase()}?traadId=${queryParams.behandlingsid}`;
             history.replace(linkTilValgtHenvendelse);
             loggEvent('Henvendelse', 'FraGosys');
         }
