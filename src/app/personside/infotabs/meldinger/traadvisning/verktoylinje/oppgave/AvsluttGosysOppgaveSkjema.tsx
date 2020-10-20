@@ -12,6 +12,7 @@ import theme from '../../../../../../../styles/personOversiktTheme';
 import { Element } from 'nav-frontend-typografi';
 import { useDispatch } from 'react-redux';
 import { AvsluttGosysOppgaveRequest } from '../../../../../../../models/meldinger/merk';
+import { Traad } from '../../../../../../../models/meldinger/meldinger';
 
 const StyledAlert = styled.div`
     margin: 1rem 0rem;
@@ -23,17 +24,23 @@ const StyledArticle = styled.article`
     margin-bottom: 2rem;
 `;
 
-function AvsluttGosysOppgaveSkjema() {
+interface Props {
+    valgtTraad: Traad;
+}
+
+function AvsluttGosysOppgaveSkjema(props: Props) {
+    const dispatch = useDispatch();
+    const ref = useRef<HTMLElement>(null);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const plukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
     const [gosysBeskrivelse, setGosysBeskrivelse] = useState('Henvendelse lest og vurdert i Modia.');
     const [submitting, setSubmitting] = useState(false);
     const [avsluttOppgaveSuksess, setAvsluttOppgaveSuksess] = useState(false);
     const [error, setError] = useState(false);
-    const dispatch = useDispatch();
-    const harSTOOppgave =
-        isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.erSTOOppgave);
-    const ref = useRef<HTMLElement>(null);
+    const harOppgaveTilknyttetTrad =
+        isFinishedPosting(plukkOppgaveResource) &&
+        plukkOppgaveResource.response.find(it => it.traadId === props.valgtTraad.traadId);
+
     useFocusOnMount(ref);
 
     const handleSubmit = () => {
@@ -41,10 +48,10 @@ function AvsluttGosysOppgaveSkjema() {
             return;
         }
         setSubmitting(true);
-        if (harSTOOppgave) {
+        if (harOppgaveTilknyttetTrad) {
             const request: AvsluttGosysOppgaveRequest = {
-                fnr: harSTOOppgave.fødselsnummer,
-                oppgaveid: harSTOOppgave.oppgaveId,
+                fnr: harOppgaveTilknyttetTrad.fødselsnummer,
+                oppgaveid: harOppgaveTilknyttetTrad.oppgaveId,
                 beskrivelse: gosysBeskrivelse,
                 saksbehandlerValgtEnhet: saksbehandlersEnhet
             };
@@ -78,7 +85,7 @@ function AvsluttGosysOppgaveSkjema() {
         );
     }
 
-    if (!harSTOOppgave) {
+    if (!harOppgaveTilknyttetTrad) {
         return null;
     }
     return (

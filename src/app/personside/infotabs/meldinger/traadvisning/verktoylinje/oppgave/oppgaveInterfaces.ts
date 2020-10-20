@@ -3,7 +3,11 @@ import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSak
 import { PostResource } from '../../../../../../../rest/utils/postResource';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 
-export interface OppgaveProps {
+export interface OppgaveProps extends SkjermetOppgaveProps {
+    valgtTraad: Traad;
+}
+
+export interface SkjermetOppgaveProps {
     gsakTema: GsakTema[];
     gjeldendeBrukerFnr: string;
     innloggetSaksbehandler: InnloggetSaksbehandler;
@@ -11,7 +15,6 @@ export interface OppgaveProps {
     lukkPanel: () => void;
     opprettOppgave: (request: OpprettOppgaveRequest) => void;
     onSuccessCallback?: () => void;
-    valgtTraad?: Traad;
 }
 
 export type OppgaveSkjemaForm = {
