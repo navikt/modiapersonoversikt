@@ -20,8 +20,13 @@ export function mockPersonsokResponse(request: PersonsokRequest): PersonsokRespo
     const seednr = navfaker.personIdentifikator.fødselsnummer();
     faker.seed(Number(seednr));
     navfaker.seed(seednr);
+    const fyllRandomListeSokUtenlandskID = fyllRandomListe(() => getPersonsokResponseSokUtenlandskID(), 20);
+    const fyllRandomListeUtenUtenlandskIDSok = fyllRandomListe(() => getPersonsokResponse(), 50);
+    const fyltRandomListe = vektetSjanse(faker, 0.5)
+        ? fyllRandomListeUtenUtenlandskIDSok
+        : fyllRandomListeSokUtenlandskID;
 
-    return fyllRandomListe(() => getPersonsokResponse(), 50);
+    return fyltRandomListe;
 }
 
 function getPersonsokResponse(): PersonsokResponse {
@@ -30,7 +35,7 @@ function getPersonsokResponse(): PersonsokResponse {
     const postadresse = vektetSjanse(faker, 0.5) ? getPostadresse() : null;
     const bostedsadresse = vektetSjanse(faker, 0.5) ? getBostedsadresse() : null;
     const brukerinfo = vektetSjanse(faker, 0.5) ? getBrukerinfo() : null;
-    const utenlandskID = vektetSjanse(faker, 0.5) ? getUtenlandskID() : null;
+    const utenlandskID = null;
 
     return {
         diskresjonskode: diskresjonskode,
@@ -42,6 +47,25 @@ function getPersonsokResponse(): PersonsokResponse {
         ident: getIdent(fodselsnummer),
         brukerinfo: brukerinfo,
         utenlandskID: utenlandskID
+    };
+}
+
+function getPersonsokResponseSokUtenlandskID(): PersonsokResponse {
+    const fodselsnummer = navfaker.personIdentifikator.fødselsnummer();
+    const postadresse = vektetSjanse(faker, 0.5) ? getPostadresse() : null;
+    const bostedsadresse = vektetSjanse(faker, 0.5) ? getBostedsadresse() : null;
+    const brukerinfo = getBrukerinfoSokUtenlandsID();
+
+    return {
+        diskresjonskode: null,
+        postadresse: postadresse,
+        bostedsadresse: bostedsadresse,
+        kjonn: null,
+        navn: getMockNavn(fodselsnummer),
+        status: null,
+        ident: getIdent(fodselsnummer),
+        brukerinfo: brukerinfo,
+        utenlandskID: getUtenlandskID()
     };
 }
 
@@ -110,6 +134,14 @@ function getBrukerinfo(): Brukerinfo {
             beskrivelse: 'Postadresse'
         },
         midlertidigPostadresse: midlertidigAdresse
+    };
+}
+
+function getBrukerinfoSokUtenlandsID(): Brukerinfo {
+    return {
+        ansvarligEnhet: null,
+        gjeldendePostadresseType: null,
+        midlertidigPostadresse: null
     };
 }
 

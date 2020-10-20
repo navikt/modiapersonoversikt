@@ -5,9 +5,9 @@ export interface PersonsokResponse {
     diskresjonskode?: Kodeverk | null;
     postadresse: string | null;
     bostedsadresse: string | null;
-    kjonn: Kodeverk;
+    kjonn: Kodeverk | null;
     navn: Navn;
-    status?: Kodeverk;
+    status?: Kodeverk | null;
     ident: NorskIdent;
     brukerinfo: Brukerinfo | null;
     utenlandskID: UtenlandskID | null;
@@ -26,8 +26,8 @@ export interface NorskIdent {
 }
 
 export interface Brukerinfo {
-    ansvarligEnhet: string;
-    gjeldendePostadresseType: Kodeverk;
+    ansvarligEnhet: string | null;
+    gjeldendePostadresseType: Kodeverk | null;
     midlertidigPostadresse: string | null;
 }
 
