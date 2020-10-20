@@ -9,8 +9,8 @@ import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
-import { eldsteMelding, meldingstittel, nyesteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
+import { Traad } from '../../../../../models/meldinger/meldinger';
+import { eldsteMelding, kanBesvares, meldingstittel, nyesteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/string-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/print/usePrinter';
@@ -34,11 +34,6 @@ const KnappWrapper = styled.div`
     flex-direction: column;
     align-items: flex-end;
 `;
-const KanBesvaresMeldingstyper = [
-    Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
-    Meldingstype.SPORSMAL_SKRIFTLIG,
-    Meldingstype.INFOMELDING_MODIA_UTGAAENDE
-];
 
 function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
     const meldingskomponenter = traad.meldinger
@@ -57,6 +52,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dispatch = useDispatch();
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
 
+    const traadKanBesvares = kanBesvares(valgtTraad);
     const melding = eldsteMelding(valgtTraad);
     if (melding.erFerdigstiltUtenSvar) {
         return (
@@ -90,7 +86,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         );
     }
 
-    if (KanBesvaresMeldingstyper.includes(melding.meldingstype)) {
+    if (traadKanBesvares) {
         return (
             <KnappWrapper>
                 <Hovedknapp onClick={handleNyMelding}>Ny melding</Hovedknapp>

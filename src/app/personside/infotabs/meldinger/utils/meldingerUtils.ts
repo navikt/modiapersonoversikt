@@ -5,12 +5,26 @@ import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import { Temagruppe, temagruppeTekst, TemaPlukkbare, TemaKommunaleTjenester } from '../../../../../models/temagrupper';
 
+export const KanBesvaresMeldingstyper = [
+    Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
+    Meldingstype.SPORSMAL_SKRIFTLIG,
+    Meldingstype.INFOMELDING_MODIA_UTGAAENDE
+];
+
 export function nyesteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
 }
 
 export function eldsteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoStigende(melding => melding.opprettetDato))[0];
+}
+
+export function kanBesvares(traad?: Traad): boolean {
+    if (!traad) {
+        return false;
+    }
+    const melding = eldsteMelding(traad);
+    return KanBesvaresMeldingstyper.includes(melding.meldingstype);
 }
 
 export function erMonolog(traad: Traad) {

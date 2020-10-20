@@ -7,6 +7,7 @@ import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { useHistory } from 'react-router';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import { kanBesvares } from '../../infotabs/meldinger/utils/meldingerUtils';
 
 interface Pending {
     pending: true;
@@ -34,7 +35,8 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
                 return;
             }
             const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.traadId);
-            if (traadTilknyttetOppgave) {
+            const kanTraadBesvares = kanBesvares(traadTilknyttetOppgave);
+            if (traadTilknyttetOppgave && kanTraadBesvares) {
                 dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
                 history.push(dyplenker.meldinger.link(traadTilknyttetOppgave));
             } else {
