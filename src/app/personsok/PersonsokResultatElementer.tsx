@@ -58,7 +58,7 @@ function BostedsadresseCelle(props: { bostedsadresse: string | null }) {
 }
 
 export function BostedCelle(props: { brukerinfo: Brukerinfo | null }) {
-    if (props.brukerinfo) {
+    if (props.brukerinfo?.ansvarligEnhet) {
         return <Normaltekst>{props.brukerinfo.ansvarligEnhet}</Normaltekst>;
     } else {
         return null;
