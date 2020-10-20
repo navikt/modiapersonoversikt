@@ -17,10 +17,11 @@ function Sokeresultat(props: Props) {
     useFocusOnMount(ref);
 
     const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
-    for (let linje of props.response) {
-        if (linje.utenlandskID?.utenlandskID.identifikasjonsnummer && !tittelRekke.includes('Utenlandsk ID')) {
-            tittelRekke.push('Utenlandsk ID');
-        }
+    const trengerUtenlandskIDTittel = props.response.some(
+        person => person.utenlandskID?.utenlandskID.identifikasjonsnummer !== undefined
+    );
+    if (trengerUtenlandskIDTittel) {
+        tittelRekke.push('Utenlandsk ID');
     }
 
     const tableEntries = props.response.map(linje => [
