@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import styled from 'styled-components';
-import { OppgaveProps, SkjermetOppgaveSkjemaForm } from '../oppgaveInterfaces';
+import { SkjermetOppgaveProps, SkjermetOppgaveSkjemaForm } from '../oppgaveInterfaces';
 import { post } from '../../../../../../../../api/api';
 import { apiBaseUri } from '../../../../../../../../api/config';
 import { Resultat } from '../../utils/VisPostResultat';
@@ -50,7 +50,7 @@ const validator = useFormstate<SkjermetOppgaveSkjemaForm>(values => {
     return { valgtTema, valgtOppgavetype, valgtPrioritet, valgtUnderkategori, beskrivelse };
 });
 
-function OppgaveSkjemaSkjermetPerson(props: OppgaveProps) {
+function OppgaveSkjemaSkjermetPerson(props: SkjermetOppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);

@@ -5,7 +5,7 @@ import {
 } from '../../../../../../../models/meldinger/oppgave';
 import { eldsteMelding } from '../../../utils/meldingerUtils';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
-import { OppgaveProps, OppgaveSkjemaForm, SkjermetOppgaveSkjemaForm } from './oppgaveInterfaces';
+import { OppgaveProps, OppgaveSkjemaForm, SkjermetOppgaveProps, SkjermetOppgaveSkjemaForm } from './oppgaveInterfaces';
 import { formatterDatoTidNaa } from '../../../../../../../utils/date-utils';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { Mapped, Values } from '@nutgaard/use-formstate';
@@ -65,7 +65,7 @@ export function lagOppgaveRequest(
 }
 
 export function lagSkjermetOppgaveRequest(
-    props: OppgaveProps,
+    props: SkjermetOppgaveProps,
     form: Mapped<Values<SkjermetOppgaveSkjemaForm>, string>,
     fodselsnummer: string,
     saksbehandlerEnhet: string
