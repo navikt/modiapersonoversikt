@@ -17,20 +17,25 @@ function Sokeresultat(props: Props) {
     useFocusOnMount(ref);
 
     const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
-    const trengerUtenlandskIDTittel = props.response.some(
-        person => person.utenlandskID?.utenlandskID.identifikasjonsnummer !== undefined
+    const trengerUtenlandskIDKolonne = props.response.some(
+        person => person.utenlandskID?.identifikasjonsnummer !== undefined
     );
-    if (trengerUtenlandskIDTittel) {
+    if (trengerUtenlandskIDKolonne) {
         tittelRekke.push('Utenlandsk ID');
     }
 
-    const tableEntries = props.response.map(linje => [
-        <IdentCelle ident={linje.ident} />,
-        <NavnCelle navn={linje.navn} status={linje.status} />,
-        <AdresseCelle response={linje} />,
-        <BostedCelle brukerinfo={linje.brukerinfo} />,
-        <UtenlandskIDCelle utenlandskID={linje.utenlandskID} />
-    ]);
+    const tableEntries = props.response.map(linje => {
+        const entries = [
+            <IdentCelle ident={linje.ident} />,
+            <NavnCelle navn={linje.navn} status={linje.status} />,
+            <AdresseCelle response={linje} />,
+            <BostedCelle brukerinfo={linje.brukerinfo} />
+        ];
+        if (trengerUtenlandskIDKolonne) {
+            entries.push(<UtenlandskIDCelle utenlandskID={linje.utenlandskID} />);
+        }
+        return entries;
+    });
 
     const handlers = props.response.map(linje => () => {
         props.onClose();
