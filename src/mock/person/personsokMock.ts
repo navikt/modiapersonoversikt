@@ -20,7 +20,7 @@ export function mockPersonsokResponse(request: PersonsokRequest): PersonsokRespo
     const seednr = navfaker.personIdentifikator.fødselsnummer();
     faker.seed(Number(seednr));
     navfaker.seed(seednr);
-    const fyllRandomListeSokUtenlandskID = fyllRandomListe(() => getPersonsokResponseSokUtenlandskID(), 20);
+    const fyllRandomListeSokUtenlandskID = fyllRandomListe(() => getPersonsokResponseSokUtenlandskID(), 50);
     const fyllRandomListeUtenUtenlandskIDSok = fyllRandomListe(() => getPersonsokResponse(), 50);
     const fyltRandomListe = vektetSjanse(faker, 0.5)
         ? fyllRandomListeUtenUtenlandskIDSok
@@ -71,10 +71,8 @@ function getPersonsokResponseSokUtenlandskID(): PersonsokResponse {
 
 function getUtenlandskID(): UtenlandskID {
     return {
-        utenlandskID: {
-            identifikasjonsnummer: '12345',
-            utstederland: 'FIN'
-        }
+        identifikasjonsnummer: '12345',
+        utstederland: 'FIN'
     };
 }
 

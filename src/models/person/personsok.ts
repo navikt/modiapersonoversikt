@@ -14,10 +14,8 @@ export interface PersonsokResponse {
 }
 
 export interface UtenlandskID {
-    utenlandskID: {
-        identifikasjonsnummer: string;
-        utstederland: string;
-    };
+    identifikasjonsnummer: string;
+    utstederland: string;
 }
 
 export interface NorskIdent {
