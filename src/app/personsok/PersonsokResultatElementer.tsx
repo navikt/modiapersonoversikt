@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Brukerinfo, NorskIdent, PersonsokResponse } from '../../models/person/personsok';
+import { Brukerinfo, NorskIdent, PersonsokResponse, UtenlandskID } from '../../models/person/personsok';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Navn } from '../../models/person/person';
 import { Kodeverk } from '../../models/kodeverk';
@@ -60,6 +60,15 @@ function BostedsadresseCelle(props: { bostedsadresse: string | null }) {
 export function BostedCelle(props: { brukerinfo: Brukerinfo | null }) {
     if (props.brukerinfo) {
         return <Normaltekst>{props.brukerinfo.ansvarligEnhet}</Normaltekst>;
+    } else {
+        return null;
+    }
+}
+
+export function UtenlandskIDCelle(props: { utenlandskID?: UtenlandskID | null }) {
+    if (props.utenlandskID?.utenlandskID.identifikasjonsnummer) {
+        const celletekst = `(${props.utenlandskID.utenlandskID.utstederland}) ${props.utenlandskID.utenlandskID.identifikasjonsnummer}`;
+        return <Normaltekst>{celletekst}</Normaltekst>;
     } else {
         return null;
     }
