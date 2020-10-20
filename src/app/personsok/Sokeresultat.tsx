@@ -22,6 +22,8 @@ function Sokeresultat(props: Props) {
     );
     if (trengerUtenlandskIDTittel) {
         tittelRekke.push('Utenlandsk ID');
+    } else {
+        tittelRekke.push('');
     }
 
     const tableEntries = props.response.map(linje => [
