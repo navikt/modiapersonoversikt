@@ -145,7 +145,8 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                     beskrivelse: 'Postadresse'
                 },
                 midlertidigPostadresse: 'Svingen 3 4321 Bergen'
-            }
+            },
+            utenlandskID: null
         },
         {
             diskresjonskode: null,
@@ -174,7 +175,8 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                     beskrivelse: 'Postadresse'
                 },
                 midlertidigPostadresse: '23rd street New York USA'
-            }
+            },
+            utenlandskID: null
         }
     ];
 }

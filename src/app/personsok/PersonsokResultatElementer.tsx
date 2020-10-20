@@ -65,7 +65,7 @@ export function BostedCelle(props: { brukerinfo: Brukerinfo | null }) {
     }
 }
 
-export function UtenlandskIDCelle(props: { utenlandskID?: UtenlandskID | null }) {
+export function UtenlandskIDCelle(props: { utenlandskID: UtenlandskID | null }) {
     if (props.utenlandskID?.utenlandskID.identifikasjonsnummer) {
         const celletekst = `(${props.utenlandskID.utenlandskID.utstederland}) ${props.utenlandskID.utenlandskID.identifikasjonsnummer}`;
         return <Normaltekst>{celletekst}</Normaltekst>;
