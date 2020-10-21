@@ -1,2 +1,7 @@
 csp:
   mode: REPORT_ONLY
+  scriptSrc: "'self' jsagent.adeo.no"
+  styleSrc: "'self' 'unsafe-inline'"
+  fontSrc: "'self' data:"
+  connectSrc: "'self' eumgw.adeo.no {{ WEBSOCKET_CSP }}"
+
