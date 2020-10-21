@@ -4,6 +4,8 @@ csp:
   scriptSrc: "'self' 'unsafe-inline' jsagent.adeo.no"
   # unsafe-inline trengs her fordi styled-components bruker det
   styleSrc: "'self' 'unsafe-inline'"
+  imgSrc: "'self' data:"
   fontSrc: "'self' data:"
   connectSrc: "'self' eumgw.adeo.no {{ WEBSOCKET_CSP }}"
+
 
