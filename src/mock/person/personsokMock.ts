@@ -3,7 +3,7 @@ import {
     NorskIdent,
     PersonsokRequest,
     PersonsokResponse,
-    UtenlandskIDListe
+    UtenlandskID
 } from '../../models/person/personsok';
 import { aremark } from './aremark';
 import { moss } from './moss';
@@ -35,7 +35,7 @@ function getPersonsokResponse(): PersonsokResponse {
     const postadresse = vektetSjanse(faker, 0.5) ? getPostadresse() : null;
     const bostedsadresse = vektetSjanse(faker, 0.5) ? getBostedsadresse() : null;
     const brukerinfo = vektetSjanse(faker, 0.5) ? getBrukerinfo() : null;
-    const utenlandskIDListe = null;
+    const utenlandskID = null;
 
     return {
         diskresjonskode: diskresjonskode,
@@ -46,7 +46,7 @@ function getPersonsokResponse(): PersonsokResponse {
         status: getStatus(),
         ident: getIdent(fodselsnummer),
         brukerinfo: brukerinfo,
-        utenlandskIDListe: utenlandskIDListe
+        utenlandskID: utenlandskID
     };
 }
 
@@ -65,23 +65,21 @@ function getPersonsokResponseSokUtenlandskID(): PersonsokResponse {
         status: null,
         ident: getIdent(fodselsnummer),
         brukerinfo: brukerinfo,
-        utenlandskIDListe: getUtenlandskID()
+        utenlandskID: getUtenlandskID()
     };
 }
 
-function getUtenlandskID(): UtenlandskIDListe {
-    return {
-        utenlandskID: [
-            {
-                identifikasjonsnummer: '12345',
-                utstederland: 'FIN'
-            },
-            {
-                identifikasjonsnummer: '6378',
-                utstederland: 'AFG'
-            }
-        ]
+function getUtenlandskID(): UtenlandskID[] {
+    const utenlandskID1 = {
+        identifikasjonsnummer: '12345',
+        utstederland: 'FIN'
     };
+    const utenlandskID2 = {
+        identifikasjonsnummer: '12658',
+        utstederland: 'AFG'
+    };
+    const utenlandskIDListe = [utenlandskID1, utenlandskID2];
+    return utenlandskIDListe;
 }
 
 function getPostadresse(): string {
@@ -184,7 +182,7 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                 },
                 midlertidigPostadresse: 'Svingen 3 4321 Bergen'
             },
-            utenlandskIDListe: null
+            utenlandskID: null
         },
         {
             diskresjonskode: null,
@@ -214,7 +212,7 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                 },
                 midlertidigPostadresse: '23rd street New York USA'
             },
-            utenlandskIDListe: null
+            utenlandskID: null
         }
     ];
 }

@@ -17,9 +17,7 @@ function Sokeresultat(props: Props) {
     useFocusOnMount(ref);
 
     const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
-    const trengerUtenlandskIDKolonne = props.response.some(
-        person => person.utenlandskIDListe?.utenlandskID !== undefined
-    );
+    const trengerUtenlandskIDKolonne = props.response.some(person => person.utenlandskID !== undefined);
     if (trengerUtenlandskIDKolonne) {
         tittelRekke.push('Utenlandsk ID');
     }
@@ -32,7 +30,7 @@ function Sokeresultat(props: Props) {
             <BostedCelle brukerinfo={linje.brukerinfo} />
         ];
         if (trengerUtenlandskIDKolonne) {
-            entries.push(<UtenlandskIDCelle utenlandskIDListe={linje.utenlandskIDListe} />);
+            entries.push(<UtenlandskIDCelle utenlandskID={linje.utenlandskID} />);
         }
         return entries;
     });
