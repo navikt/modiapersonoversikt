@@ -113,7 +113,7 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
     let _minimumskrav = undefined;
     if (!values.utenlandskID) {
         if (!values.gatenavn && !values.kontonummer && !values.fornavn) {
-            _minimumskrav = 'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk';
+            _minimumskrav = 'Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk';
             fornavn = '';
             gatenavn = '';
             kontonummer = '';
