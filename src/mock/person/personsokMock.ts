@@ -3,7 +3,7 @@ import {
     NorskIdent,
     PersonsokRequest,
     PersonsokResponse,
-    UtenlandskID
+    UtenlandskIDListe
 } from '../../models/person/personsok';
 import { aremark } from './aremark';
 import { moss } from './moss';
@@ -35,7 +35,7 @@ function getPersonsokResponse(): PersonsokResponse {
     const postadresse = vektetSjanse(faker, 0.5) ? getPostadresse() : null;
     const bostedsadresse = vektetSjanse(faker, 0.5) ? getBostedsadresse() : null;
     const brukerinfo = vektetSjanse(faker, 0.5) ? getBrukerinfo() : null;
-    const utenlandskID = null;
+    const utenlandskIDListe = null;
 
     return {
         diskresjonskode: diskresjonskode,
@@ -46,7 +46,7 @@ function getPersonsokResponse(): PersonsokResponse {
         status: getStatus(),
         ident: getIdent(fodselsnummer),
         brukerinfo: brukerinfo,
-        utenlandskID: utenlandskID
+        utenlandskIDListe: utenlandskIDListe
     };
 }
 
@@ -65,14 +65,22 @@ function getPersonsokResponseSokUtenlandskID(): PersonsokResponse {
         status: null,
         ident: getIdent(fodselsnummer),
         brukerinfo: brukerinfo,
-        utenlandskID: getUtenlandskID()
+        utenlandskIDListe: getUtenlandskID()
     };
 }
 
-function getUtenlandskID(): UtenlandskID {
+function getUtenlandskID(): UtenlandskIDListe {
     return {
-        identifikasjonsnummer: '12345',
-        utstederland: 'FIN'
+        utenlandskID: [
+            {
+                identifikasjonsnummer: '12345',
+                utstederland: 'FIN'
+            },
+            {
+                identifikasjonsnummer: '6378',
+                utstederland: 'AFG'
+            }
+        ]
     };
 }
 
@@ -176,7 +184,7 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                 },
                 midlertidigPostadresse: 'Svingen 3 4321 Bergen'
             },
-            utenlandskID: null
+            utenlandskIDListe: null
         },
         {
             diskresjonskode: null,
@@ -206,7 +214,7 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                 },
                 midlertidigPostadresse: '23rd street New York USA'
             },
-            utenlandskID: null
+            utenlandskIDListe: null
         }
     ];
 }
