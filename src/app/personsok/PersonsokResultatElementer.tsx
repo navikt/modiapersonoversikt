@@ -70,9 +70,9 @@ export function UtenlandskIDCelle(props: { utenlandskID: UtenlandskID[] | null }
     if (harUtenlandskID) {
         const celletekst = props.utenlandskID?.map(utenlandskID => {
             const celletekst = `(${utenlandskID.utstederland}) ${utenlandskID.identifikasjonsnummer} `;
-            return celletekst;
+            return <Normaltekst key={utenlandskID.identifikasjonsnummer}>{celletekst}</Normaltekst>;
         });
-        return <Normaltekst>{celletekst}</Normaltekst>;
+        return <div>{celletekst}</div>;
     } else {
         return null;
     }
