@@ -65,7 +65,7 @@ export function BostedCelle(props: { brukerinfo: Brukerinfo | null }) {
     }
 }
 
-export function UtenlandskIDCelle(props: { utenlandskID: Array<UtenlandskID> | null }) {
+export function UtenlandskIDCelle(props: { utenlandskID: UtenlandskID[] | null }) {
     const harUtenlandskID = props.utenlandskID?.some(utenlandskID => utenlandskID.identifikasjonsnummer !== undefined);
     if (harUtenlandskID) {
         const celletekst = props.utenlandskID?.map(utenlandskID => {
