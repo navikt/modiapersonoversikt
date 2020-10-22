@@ -17,9 +17,10 @@ function Sokeresultat(props: Props) {
     useFocusOnMount(ref);
 
     const tittelRekke = ['Fødselsnummer', 'Navn', 'Adresser', 'Bosted'];
-    const trengerUtenlandskIDKolonne = props.response.some(
-        person => person.utenlandskID?.identifikasjonsnummer !== undefined
+    const trengerUtenlandskIDKolonne = props.response.some(person =>
+        person.utenlandskID?.some(utenlandskID => utenlandskID.identifikasjonsnummer !== undefined)
     );
+
     if (trengerUtenlandskIDKolonne) {
         tittelRekke.push('Utenlandsk ID');
     }

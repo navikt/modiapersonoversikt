@@ -69,11 +69,17 @@ function getPersonsokResponseSokUtenlandskID(): PersonsokResponse {
     };
 }
 
-function getUtenlandskID(): UtenlandskID {
-    return {
+function getUtenlandskID(): UtenlandskID[] {
+    const utenlandskID1 = {
         identifikasjonsnummer: '12345',
         utstederland: 'FIN'
     };
+    const utenlandskID2 = {
+        identifikasjonsnummer: '12658',
+        utstederland: 'AFG'
+    };
+    const utenlandskIDListe = [utenlandskID1, utenlandskID2];
+    return utenlandskIDListe;
 }
 
 function getPostadresse(): string {

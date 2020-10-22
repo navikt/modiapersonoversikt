@@ -65,10 +65,14 @@ export function BostedCelle(props: { brukerinfo: Brukerinfo | null }) {
     }
 }
 
-export function UtenlandskIDCelle(props: { utenlandskID: UtenlandskID | null }) {
-    if (props.utenlandskID?.identifikasjonsnummer) {
-        const celletekst = `(${props.utenlandskID.utstederland}) ${props.utenlandskID.identifikasjonsnummer}`;
-        return <Normaltekst>{celletekst}</Normaltekst>;
+export function UtenlandskIDCelle(props: { utenlandskID: UtenlandskID[] | null }) {
+    const harUtenlandskID = props.utenlandskID?.some(utenlandskID => utenlandskID.identifikasjonsnummer !== undefined);
+    if (harUtenlandskID) {
+        const celletekst = props.utenlandskID?.map(utenlandskID => {
+            const celletekst = `(${utenlandskID.utstederland}) ${utenlandskID.identifikasjonsnummer} `;
+            return <Normaltekst key={utenlandskID.identifikasjonsnummer}>{celletekst}</Normaltekst>;
+        });
+        return <div>{celletekst}</div>;
     } else {
         return null;
     }
