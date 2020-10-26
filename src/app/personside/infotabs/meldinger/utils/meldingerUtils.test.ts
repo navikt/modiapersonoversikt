@@ -13,6 +13,7 @@ import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
 describe('Temagrupper', () => {
     const pensjon = Temagruppe.Pensjon;
     const arbeid = Temagruppe.Arbeid;
+    const helse = Temagruppe.Helse;
     const forskuddDagpenger = Temagruppe.ForskuddDagpenger;
     const økonomiskSosial = Temagruppe.ØkonomiskSosial;
 
@@ -22,6 +23,14 @@ describe('Temagrupper', () => {
 
     it('gir at arbeid er plukkbar', function() {
         expect(erPlukkbar(arbeid)).toBe(true);
+    });
+
+    it('gir at helse kan legges tilbake', function() {
+        expect(kanLeggesTilbake(helse)).toBe(true);
+    });
+
+    it('gir at helse er plukkbar', function() {
+        expect(erPlukkbar(helse)).toBe(true);
     });
 
     it('gir at forskudd dagpenger er plukkbar', function() {
