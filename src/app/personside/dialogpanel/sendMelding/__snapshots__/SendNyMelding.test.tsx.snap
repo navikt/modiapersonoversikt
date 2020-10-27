@@ -549,11 +549,6 @@ exports[`viser send ny melding 1`] = `
                     Arbeid
                   </option>
                   <option
-                    value="HELSE"
-                  >
-                    Helse
-                  </option>
-                  <option
                     value="FMLI"
                   >
                     Familie
