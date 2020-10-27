@@ -25,14 +25,6 @@ describe('Temagrupper', () => {
         expect(erPlukkbar(arbeid)).toBe(true);
     });
 
-    it('gir at helse kan legges tilbake', function() {
-        expect(kanLeggesTilbake(helse)).toBe(true);
-    });
-
-    it('gir at helse er plukkbar', function() {
-        expect(erPlukkbar(helse)).toBe(true);
-    });
-
     it('gir at forskudd dagpenger er plukkbar', function() {
         expect(erPlukkbar(forskuddDagpenger)).toBe(true);
     });
