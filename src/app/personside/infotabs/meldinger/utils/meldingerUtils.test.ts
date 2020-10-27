@@ -13,7 +13,6 @@ import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
 describe('Temagrupper', () => {
     const pensjon = Temagruppe.Pensjon;
     const arbeid = Temagruppe.Arbeid;
-    const helse = Temagruppe.Helse;
     const forskuddDagpenger = Temagruppe.ForskuddDagpenger;
     const økonomiskSosial = Temagruppe.ØkonomiskSosial;
 
