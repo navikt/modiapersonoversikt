@@ -18,16 +18,17 @@ export enum Temagruppe {
 
 export const TemaSamtalereferat = [
     Temagruppe.Arbeid,
-    Temagruppe.Helse,
     Temagruppe.Familie,
     Temagruppe.Hjelpemiddel,
     Temagruppe.Pensjon,
     Temagruppe.Øvrig
 ];
 
+export const TemaSamtalereferatFT = [...TemaSamtalereferat];
+TemaSamtalereferatFT.splice(1, 0, Temagruppe.Helse);
+
 export const TemaPlukkbare = [
     Temagruppe.Arbeid,
-    Temagruppe.Helse,
     Temagruppe.Familie,
     Temagruppe.ForskuddDagpenger,
     Temagruppe.Hjelpemiddel,
@@ -39,9 +40,11 @@ export const TemaPlukkbare = [
     Temagruppe.Utland
 ];
 
+export const TemaPlukkbareFT = [...TemaPlukkbare];
+TemaPlukkbareFT.splice(1, 0, Temagruppe.Helse);
+
 export const TemaLeggTilbake = [
     Temagruppe.Arbeid,
-    Temagruppe.Helse,
     Temagruppe.Familie,
     Temagruppe.ForskuddDagpenger,
     Temagruppe.Hjelpemiddel,
@@ -52,6 +55,9 @@ export const TemaLeggTilbake = [
     Temagruppe.Uføretrygd,
     Temagruppe.Utland
 ];
+
+export const TemaLeggTilbakeFT = [...TemaLeggTilbake];
+TemaLeggTilbakeFT.splice(1, 0, Temagruppe.Helse);
 
 export const TemaKommunaleTjenester = [Temagruppe.AndreSosiale, Temagruppe.ØkonomiskSosial];
 
