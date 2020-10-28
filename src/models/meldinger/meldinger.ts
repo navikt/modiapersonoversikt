@@ -67,17 +67,20 @@ export interface SendReferatRequest {
 }
 
 export interface SendSpørsmålRequest {
+    enhet: string;
     fritekst: string;
     sak: JournalforingsSak;
     erOppgaveTilknyttetAnsatt: boolean;
 }
 
 export interface SendInfomeldingRequest {
+    enhet: string;
     fritekst: string;
     sak: JournalforingsSak;
 }
 
 export interface ForsettDialogRequest {
+    enhet: string;
     traadId: string;
     behandlingsId: string;
     fritekst: string;
@@ -88,6 +91,7 @@ export interface ForsettDialogRequest {
 }
 
 export interface SendDelsvarRequest {
+    enhet: string;
     traadId: string;
     behandlingsId: string;
     fritekst: string;
@@ -96,6 +100,7 @@ export interface SendDelsvarRequest {
 }
 
 export interface OpprettHenvendelseRequest {
+    enhet: string;
     traadId: string;
 }
 
@@ -105,6 +110,7 @@ export interface OpprettHenvendelseResponse {
 }
 
 export interface SlaaSammenRequest {
+    enhet: string;
     traader: SlaaSammenTraad[];
     temagruppe: Temagruppe;
 }

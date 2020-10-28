@@ -16,7 +16,7 @@ import KnappBase, { Hovedknapp } from 'nav-frontend-knapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../../../../../redux/reducers';
 import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../../../rest/utils/postResource';
-import { useOnMount } from '../../../../../../utils/customHooks';
+import { useAppState, useOnMount } from '../../../../../../utils/customHooks';
 import { setValgtTraadDialogpanel } from '../../../../../../redux/oppgave/actions';
 import { loggError, loggEvent } from '../../../../../../utils/logger/frontendLogger';
 import { useInfotabsDyplenker } from '../../../dyplenker';
@@ -25,6 +25,7 @@ import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { runIfEventIsNotInsideRef } from '../../../../../../utils/reactRef-utils';
 import { useRestResource } from '../../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../../rest/consumer/usePostResource';
+import { selectValgtEnhet } from '../../../../../../redux/session/session';
 
 interface Props {
     traader: Traad[];
@@ -174,6 +175,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
     const [traadSomSkalVises, setTraadSomSkalVises] = useState<Traad>(props.traader[0]);
     const [feilmelding, setFeilmelding] = useState<string | undefined>(undefined);
     const dyplenker = useInfotabsDyplenker();
+    const valgtEnhet = useAppState(selectValgtEnhet);
 
     useOnMount(() => {
         loggEvent('Åpnet', 'BesvarFlere');
@@ -222,6 +224,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
             return;
         }
         const request: SlaaSammenRequest = {
+            enhet: valgtEnhet,
             temagruppe: temagruppe,
             traader: traaderSomSkalSlaasSammen
         };
