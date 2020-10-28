@@ -18,6 +18,8 @@ import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../rest/consumer/usePostResource';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import { Normaltekst } from 'nav-frontend-typografi';
+import { useAppState } from '../../../../../utils/customHooks';
+import { selectValgtEnhet } from '../../../../../redux/session/session';
 
 export interface LeggTilbakeState {
     årsak?: LeggTilbakeÅrsak;
@@ -80,6 +82,7 @@ function LeggTilbakepanel(props: Props) {
     const dispatch = useDispatch();
     const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
+    const valgtEnhet = useAppState(selectValgtEnhet);
     const leggerTilbake = props.status.type === DialogPanelStatus.POSTING;
 
     function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak; label?: string }) {
@@ -104,7 +107,11 @@ function LeggTilbakepanel(props: Props) {
         };
         if (LeggTilbakeValidator.erGyldigInnhabilRequest(state)) {
             props.setDialogStatus({ type: DialogPanelStatus.POSTING });
-            const payload: LeggTilbakeOppgaveRequest = { oppgaveId: props.oppgaveId, type: 'Innhabil' };
+            const payload: LeggTilbakeOppgaveRequest = {
+                enhet: valgtEnhet,
+                oppgaveId: props.oppgaveId,
+                type: 'Innhabil'
+            };
             post(`${apiBaseUri}/oppgaver/legg-tilbake`, payload, 'LeggTilbakeOppgave-Innhabil')
                 .then(() => {
                     callback();
@@ -116,6 +123,7 @@ function LeggTilbakepanel(props: Props) {
         } else if (LeggTilbakeValidator.erGyldigAnnenAarsakRequest(state)) {
             props.setDialogStatus({ type: DialogPanelStatus.POSTING });
             const payload: LeggTilbakeOppgaveRequest = {
+                enhet: valgtEnhet,
                 beskrivelse: state.tekst,
                 oppgaveId: props.oppgaveId,
                 type: 'AnnenAarsak'
@@ -131,6 +139,7 @@ function LeggTilbakepanel(props: Props) {
         } else if (LeggTilbakeValidator.erGyldigFeilTemaRequest(state) && state.temagruppe) {
             props.setDialogStatus({ type: DialogPanelStatus.POSTING });
             const payload: LeggTilbakeOppgaveRequest = {
+                enhet: valgtEnhet,
                 temagruppe: state.temagruppe,
                 oppgaveId: props.oppgaveId,
                 traadId: props.traadId,

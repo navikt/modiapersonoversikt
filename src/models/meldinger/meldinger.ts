@@ -61,6 +61,7 @@ export enum LestStatus {
 }
 
 export interface SendReferatRequest {
+    enhet: string;
     fritekst: string;
     temagruppe: Temagruppe;
     meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON | Meldingstype.SAMTALEREFERAT_OPPMOTE;

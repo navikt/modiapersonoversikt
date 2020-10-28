@@ -109,6 +109,7 @@ function SendNyMeldingContainer() {
         ) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
             const request: SendReferatRequest = {
+                enhet: valgtEnhet,
                 fritekst: state.tekst,
                 meldingstype: state.dialogType,
                 temagruppe: state.tema

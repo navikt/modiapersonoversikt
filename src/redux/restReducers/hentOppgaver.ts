@@ -5,7 +5,9 @@ import { Oppgave } from '../../models/meldinger/oppgave';
 
 function getOppgaveFetchUri(state: AppState) {
     const temagruppe = state.session.temagruppeForPlukk;
-    return `${apiBaseUri}/oppgaver/plukk/${temagruppe}`;
+    const enhet = state.session.valgtEnhetId;
+    const header = enhet ? `?enhet=${enhet}` : '';
+    return `${apiBaseUri}/oppgaver/plukk/${temagruppe}${header}`;
 }
 
 export default createPostResourceReducerAndActions<{}, Oppgave[]>('HentOppgave', getOppgaveFetchUri);
