@@ -599,7 +599,7 @@ exports[`Viser Traadliste 1`] = `
             <p
               className="typo-ingress"
             >
-              Spørsmål fra bruker - Arbeid
+              Spørsmål fra bruker - Helse
             </p>
             <div
               className="c8"
@@ -620,7 +620,7 @@ exports[`Viser Traadliste 1`] = `
                   className="typo-element"
                 >
                   Temagruppe: 
-                  ARBD
+                  HELSE
                 </p>
                 <p
                   className="typo-element"

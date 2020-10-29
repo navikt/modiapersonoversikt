@@ -13,13 +13,15 @@ import theme from '../../../styles/personOversiktTheme';
 import TildelteOppgaver from './TildelteOppgaver';
 import { paths } from '../../routes/routing';
 import { INFOTABS } from '../infotabs/InfoTabEnum';
-import { Temagruppe, temagruppeTekst, TemaPlukkbare } from '../../../models/temagrupper';
+import { Temagruppe, temagruppeTekst, TemaPlukkbare, TemaPlukkbareFT } from '../../../models/temagrupper';
 import { SaksbehandlerRoller } from './RollerUtils';
 import { loggEvent } from '../../../utils/logger/frontendLogger';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { RestResourcePlaceholderProps } from '../../../rest/consumer/placeholder';
 import { guid } from 'nav-frontend-js-utils';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
+import useFeatureToggle from '../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
 
 const StyledArticle = styled.article`
     text-align: center;
@@ -58,6 +60,9 @@ function HentOppgaveKnapp() {
     let selectRef: HTMLSelectElement | null = null;
 
     const rollerResource = useRestResource(resources => resources.veilederRoller, placeholderProps);
+
+    const enabled = useFeatureToggle(FeatureToggles.Helse).isOn ?? false;
+    const temaPlukkbare = enabled ? TemaPlukkbareFT : TemaPlukkbare;
 
     useEffect(() => {
         if (temaGruppeFeilmelding) {
@@ -107,11 +112,13 @@ function HentOppgaveKnapp() {
     const tomtTilbakemelding = tomKø ? (
         <AlertStripeInfo>Det er ingen nye oppgaver på valgt temagruppe</AlertStripeInfo>
     ) : null;
-    const temagruppeOptions = TemaPlukkbare.map(temagruppe => (
+
+    const temagruppeOptions = temaPlukkbare.map(temagruppe => (
         <option value={temagruppe} key={temagruppe}>
             {temagruppeTekst(temagruppe)}
         </option>
     ));
+
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
             <h2 className="sr-only" id={tittelId.current}>
