@@ -1,5 +1,6 @@
 export enum Temagruppe {
     Arbeid = 'ARBD',
+    Helse = 'HELSE',
     Familie = 'FMLI',
     ForskuddDagpenger = 'FDAG',
     Hjelpemiddel = 'HJLPM',
@@ -23,6 +24,9 @@ export const TemaSamtalereferat = [
     Temagruppe.Øvrig
 ];
 
+export const TemaSamtalereferatFT = [...TemaSamtalereferat];
+TemaSamtalereferatFT.splice(1, 0, Temagruppe.Helse);
+
 export const TemaPlukkbare = [
     Temagruppe.Arbeid,
     Temagruppe.Familie,
@@ -35,6 +39,9 @@ export const TemaPlukkbare = [
     Temagruppe.Uføretrygd,
     Temagruppe.Utland
 ];
+
+export const TemaPlukkbareFT = [...TemaPlukkbare];
+TemaPlukkbareFT.splice(1, 0, Temagruppe.Helse);
 
 export const TemaLeggTilbake = [
     Temagruppe.Arbeid,
@@ -49,6 +56,9 @@ export const TemaLeggTilbake = [
     Temagruppe.Utland
 ];
 
+export const TemaLeggTilbakeFT = [...TemaLeggTilbake];
+TemaLeggTilbakeFT.splice(1, 0, Temagruppe.Helse);
+
 export const TemaKommunaleTjenester = [Temagruppe.AndreSosiale, Temagruppe.ØkonomiskSosial];
 
 export function temagruppeTekst(temagruppe: Temagruppe | null) {
@@ -59,6 +69,8 @@ export function temagruppeTekst(temagruppe: Temagruppe | null) {
             return 'Pensjon';
         case Temagruppe.Arbeid:
             return 'Arbeid';
+        case Temagruppe.Helse:
+            return 'Helse';
         case Temagruppe.Utland:
             return 'Utland';
         case Temagruppe.PleiepengerSyktBarn:

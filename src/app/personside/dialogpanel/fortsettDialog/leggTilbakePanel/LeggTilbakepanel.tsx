@@ -9,7 +9,7 @@ import Temavelger from '../../component/Temavelger';
 import { LeggTilbakeValidator } from './validatorer';
 import { useDispatch } from 'react-redux';
 import { LeggTilbakeOppgaveRequest } from '../../../../../models/leggTilbakeOppgave';
-import { Temagruppe, TemaLeggTilbake } from '../../../../../models/temagrupper';
+import { Temagruppe, TemaLeggTilbake, TemaLeggTilbakeFT } from '../../../../../models/temagrupper';
 import { apiBaseUri } from '../../../../../api/config';
 import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
@@ -18,6 +18,8 @@ import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../rest/consumer/usePostResource';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import { Normaltekst } from 'nav-frontend-typografi';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 import { useAppState } from '../../../../../utils/customHooks';
 import { selectValgtEnhet } from '../../../../../redux/session/session';
 
@@ -84,6 +86,9 @@ function LeggTilbakepanel(props: Props) {
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const valgtEnhet = useAppState(selectValgtEnhet);
     const leggerTilbake = props.status.type === DialogPanelStatus.POSTING;
+
+    const enabled = useFeatureToggle(FeatureToggles.Helse).isOn ?? false;
+    const temaLeggTilbake = enabled ? TemaLeggTilbakeFT : TemaLeggTilbake;
 
     function ÅrsakRadio(props: { årsak: LeggTilbakeÅrsak; label?: string }) {
         return (
@@ -179,7 +184,7 @@ function LeggTilbakepanel(props: Props) {
                             setTema={tema => updateState({ temagruppe: tema })}
                             valgtTema={state.temagruppe}
                             visFeilmelding={!LeggTilbakeValidator.tema(state) && state.visFeilmeldinger}
-                            temavalg={TemaLeggTilbake}
+                            temavalg={temaLeggTilbake}
                         />
                     </UnmountClosed>
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.AnnenÅrsak} />
