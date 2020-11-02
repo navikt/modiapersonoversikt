@@ -19,14 +19,14 @@ const StyledSelect = styled(Select)`
 
 function Oppgaveliste(props: Props) {
     const saksbehandlerInfo = useRestResource(resources => resources.innloggetSaksbehandler);
-    const enhet = saksbehandlerInfo.data ? saksbehandlerInfo.data.enhetNavn : 'enheten';
+    let enhet = saksbehandlerInfo.data ? saksbehandlerInfo.data.enhetNavn : 'valgt enhet';
     return (
         <StyledSelect
             label="Oppgaveliste"
             value={props.oppgaveliste}
             onChange={event => props.setOppgaveliste(event.target.value as OppgavelisteValg)}
         >
-            <option value={OppgavelisteValg.MinListe}>Svar skal til min oppgaveliste</option>
+            <option value={OppgavelisteValg.MinListe}>Svar skal til min oppgaveliste hos {enhet}</option>
             <option value={OppgavelisteValg.EnhetensListe}>Svar skal til {enhet} sin oppgaveliste</option>
         </StyledSelect>
     );

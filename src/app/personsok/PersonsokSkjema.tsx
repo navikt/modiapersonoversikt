@@ -79,7 +79,7 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
         kontonummer = 'Kontonummer må være gyldig';
     }
 
-    const utenlandskID =
+    let utenlandskID =
         values.utenlandskID &&
         (values.fornavn ||
             values.etternavn ||
@@ -117,6 +117,7 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
             fornavn = '';
             gatenavn = '';
             kontonummer = '';
+            utenlandskID = '';
         }
     }
 

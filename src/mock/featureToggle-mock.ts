@@ -9,6 +9,10 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return true;
         case FeatureToggles.UtloggingsInfo:
             return true;
+        case FeatureToggles.UtenlandskID:
+            return true;
+        case FeatureToggles.Helse:
+            return true;
         default:
             return Math.random() > 0.5;
     }

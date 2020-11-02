@@ -68,7 +68,8 @@ test('Validerer minimumskrav for personsøk', () => {
         _minimumskrav: 'Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk',
         kontonummer: '',
         fornavn: '',
-        gatenavn: ''
+        gatenavn: '',
+        utenlandskID: ''
     });
 });
 

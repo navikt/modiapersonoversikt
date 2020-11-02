@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Brukerinfo, NorskIdent, PersonsokResponse } from '../../models/person/personsok';
+import { Brukerinfo, NorskIdent, PersonsokResponse, UtenlandskID } from '../../models/person/personsok';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Navn } from '../../models/person/person';
 import { Kodeverk } from '../../models/kodeverk';
@@ -8,7 +8,7 @@ export function IdentCelle(props: { ident: NorskIdent }) {
     return <Normaltekst>{props.ident.ident}</Normaltekst>;
 }
 
-export function NavnCelle(props: { navn: Navn; status?: Kodeverk }) {
+export function NavnCelle(props: { navn: Navn; status?: Kodeverk | null }) {
     return <Normaltekst>{formatterNavn(props.navn, props.status)}</Normaltekst>;
 }
 
@@ -58,14 +58,27 @@ function BostedsadresseCelle(props: { bostedsadresse: string | null }) {
 }
 
 export function BostedCelle(props: { brukerinfo: Brukerinfo | null }) {
-    if (props.brukerinfo) {
+    if (props.brukerinfo?.ansvarligEnhet) {
         return <Normaltekst>{props.brukerinfo.ansvarligEnhet}</Normaltekst>;
     } else {
         return null;
     }
 }
 
-function formatterNavn(navn: Navn, status?: Kodeverk) {
+export function UtenlandskIDCelle(props: { utenlandskID: UtenlandskID[] | null }) {
+    const harUtenlandskID = props.utenlandskID?.some(utenlandskID => utenlandskID.identifikasjonsnummer !== undefined);
+    if (harUtenlandskID) {
+        const celletekst = props.utenlandskID?.map(utenlandskID => {
+            const celletekst = `(${utenlandskID.utstederland}) ${utenlandskID.identifikasjonsnummer} `;
+            return <Normaltekst key={utenlandskID.identifikasjonsnummer}>{celletekst}</Normaltekst>;
+        });
+        return <div>{celletekst}</div>;
+    } else {
+        return null;
+    }
+}
+
+function formatterNavn(navn: Navn, status?: Kodeverk | null) {
     let personNavn = navn.etternavn + ', ' + navn.fornavn + formatNullableString(navn.mellomnavn, true);
     if (status?.beskrivelse === 'DØD') {
         personNavn += ' (død)';

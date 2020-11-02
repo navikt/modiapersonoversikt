@@ -154,7 +154,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
     return (
         <SkjemaStyle>
-            <AvsluttGosysOppgaveSkjema />
+            <AvsluttGosysOppgaveSkjema valgtTraad={props.valgtTraad} />
             <form onSubmit={state.onSubmit(submitHandler)}>
                 <Element>Opprett oppgave</Element>
                 <Select
