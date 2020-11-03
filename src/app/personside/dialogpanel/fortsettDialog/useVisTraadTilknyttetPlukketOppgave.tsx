@@ -36,8 +36,12 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
             }
             const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.traadId);
             const kanTraadBesvares = kanBesvares(traadTilknyttetOppgave);
+
             if (traadTilknyttetOppgave && kanTraadBesvares) {
                 dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
+            }
+
+            if (traadTilknyttetOppgave) {
                 history.push(dyplenker.meldinger.link(traadTilknyttetOppgave));
             } else {
                 loggError(
