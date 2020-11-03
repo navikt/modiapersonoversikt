@@ -30,11 +30,12 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { guid } from 'nav-frontend-js-utils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { isFinishedPosting } from '../../../../rest/utils/postResource';
+import { isFinishedPosting, PostResource } from '../../../../rest/utils/postResource';
 import ReflowBoundry from '../ReflowBoundry';
 import { Temagruppe } from '../../../../models/temagrupper';
 import useDraft, { Draft } from '../use-draft';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
+import { Oppgave } from '../../../../models/meldinger/oppgave';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -50,6 +51,21 @@ interface Props {
 const StyledArticle = styled.article`
     padding: 1rem ${theme.margin.layout};
 `;
+
+function finnPlukketOppgave(
+    resource: PostResource<{}, Oppgave[]>
+): { oppgave: Oppgave | undefined; erSTOOppgave: boolean } {
+    if (!isFinishedPosting(resource)) {
+        return { oppgave: undefined, erSTOOppgave: false };
+    } else {
+        const forsteOppgave = resource.response.find(() => true);
+        const STOOppgave = resource.response.find(it => it.erSTOOppgave);
+
+        const oppgave: Oppgave | undefined = STOOppgave || forsteOppgave;
+        const erSTOOppgave = oppgave !== undefined && oppgave === STOOppgave;
+        return { oppgave, erSTOOppgave };
+    }
+}
 
 function FortsettDialogContainer(props: Props) {
     const initialState = {
@@ -103,10 +119,9 @@ function FortsettDialogContainer(props: Props) {
     if (opprettHenvendelse.success === false) {
         return opprettHenvendelse.placeholder;
     }
-    const harPlukketSTOOppgave =
-        isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.erSTOOppgave);
-    const STOOppgaveId = harPlukketSTOOppgave && harPlukketSTOOppgave.oppgaveId;
-    const oppgaveId = STOOppgaveId ? STOOppgaveId : opprettHenvendelse.henvendelse.oppgaveId;
+
+    const { oppgave, erSTOOppgave } = finnPlukketOppgave(plukkOppgaveResource);
+    const oppgaveId = oppgave ? oppgave.oppgaveId : opprettHenvendelse.henvendelse.oppgaveId;
 
     const handleAvbryt = () => {
         removeDraft();
@@ -232,7 +247,7 @@ function FortsettDialogContainer(props: Props) {
                     fortsettDialogPanelState={dialogStatus}
                     erTilknyttetOppgave={!!oppgaveId}
                 />
-                {oppgaveId && (
+                {oppgaveId && erSTOOppgave && (
                     <LeggTilbakepanel
                         oppgaveId={oppgaveId}
                         traadId={props.traad.traadId}
