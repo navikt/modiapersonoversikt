@@ -7,6 +7,7 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import theme from '../../../../styles/personOversiktTheme';
 import { usePaths } from '../../../routes/routing';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import CopyToClipboard from '../../visittkort/header/status/CopyToClipboard';
 
 interface Props {
     detaljertOppfølging: DetaljertOppfolging;
@@ -53,7 +54,9 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
 
 function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
     const veilederNavn = detaljertOppfolging.oppfølging.veileder ? (
-        <Normaltekst>{detaljertOppfolging.oppfølging.veileder.navn}</Normaltekst>
+        <>
+            <Normaltekst>{detaljertOppfolging.oppfølging.veileder.navn}</Normaltekst>
+        </>
     ) : (
         <Normaltekst>Ikke angitt</Normaltekst>
     );
@@ -63,6 +66,16 @@ function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: Detal
     ) : (
         <Normaltekst>Ikke angitt</Normaltekst>
     );
+
+    const clipboard =
+        detaljertOppfolging.oppfølging.veileder && detaljertOppfolging.oppfølging.veileder.ident ? (
+            <CopyToClipboard
+                ariaLabel="Kopier veileder"
+                stringToCopy={`${detaljertOppfolging.oppfølging.veileder.navn} (${detaljertOppfolging.oppfølging.veileder.ident})`}
+            />
+        ) : (
+            undefined
+        );
 
     const veilederIdent = detaljertOppfolging.oppfølging.veileder ? (
         <Normaltekst>({detaljertOppfolging.oppfølging.veileder.ident})</Normaltekst>
@@ -77,6 +90,7 @@ function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: Detal
             <Element>Veileder:</Element>
             {veilederNavn}
             {veilederIdent}
+            {clipboard}
             <Element>Innsatsgruppe / Rettighetsgruppe:</Element>
             <Normaltekst>
                 {innsatsgruppe} / {rettighetsgruppe}{' '}
