@@ -54,9 +54,7 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
 
 function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
     const veilederNavn = detaljertOppfolging.oppfølging.veileder ? (
-        <>
-            <Normaltekst>{detaljertOppfolging.oppfølging.veileder.navn}</Normaltekst>
-        </>
+        <Normaltekst>{detaljertOppfolging.oppfølging.veileder.navn}</Normaltekst>
     ) : (
         <Normaltekst>Ikke angitt</Normaltekst>
     );
