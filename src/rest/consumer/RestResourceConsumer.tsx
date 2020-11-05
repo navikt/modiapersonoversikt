@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { RestResource } from '../utils/restResource';
 import { RestEndepunkter } from '../../redux/restReducers/restReducers';
 import { useRestResource } from './useRestResource';
@@ -12,8 +12,17 @@ export type Props<T> = {
 
 function RestResourceConsumer<T>(props: Props<T>) {
     const { getResource, children, ...placeholderProps } = props;
-
-    const resource = useRestResource(getResource, placeholderProps, true);
+    // Plukker hvert enkelt element fra `placeholderProps` slik at objektet ikke styrer memoiseringen
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const memomizedPlaceholder = useMemo(() => placeholderProps, [
+        placeholderProps.placeholderKey,
+        placeholderProps.returnOnError,
+        placeholderProps.returnOnPending,
+        placeholderProps.returnOnNotFound,
+        placeholderProps.returnOnForbidden,
+        placeholderProps.spinnerSize
+    ]);
+    const resource = useRestResource(getResource, memomizedPlaceholder, true);
 
     if (!resource.data) {
         return resource.placeholder;

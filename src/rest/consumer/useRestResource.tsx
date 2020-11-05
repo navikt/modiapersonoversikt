@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { RestEndepunkter } from '../../redux/restReducers/restReducers';
 import { useAppState, useOnMount } from '../../utils/customHooks';
 import {
@@ -43,17 +43,20 @@ export function useRestResource<T>(
         }
     });
 
-    return {
-        resource: resource,
-        data: hasData(resource) ? resource.data : undefined,
-        placeholder: (
-            <Placeholder restResource={resource} placeholderProps={placeholderProps} key={placeholderKey.current} />
-        ),
-        actions: resource.actions,
-        isLoading: isLoading(resource),
-        isReloading: isReloading(resource),
-        isNotStarted: isNotStarted(resource),
-        isFailed: isFailed(resource),
-        hasError: isFailed(resource) || isForbidden(resource) || isNotFound(resource)
-    };
+    return useMemo(
+        () => ({
+            resource: resource,
+            data: hasData(resource) ? resource.data : undefined,
+            placeholder: (
+                <Placeholder restResource={resource} placeholderProps={placeholderProps} key={placeholderKey.current} />
+            ),
+            actions: resource.actions,
+            isLoading: isLoading(resource),
+            isReloading: isReloading(resource),
+            isNotStarted: isNotStarted(resource),
+            isFailed: isFailed(resource),
+            hasError: isFailed(resource) || isForbidden(resource) || isNotFound(resource)
+        }),
+        [resource, placeholderKey, placeholderProps]
+    );
 }

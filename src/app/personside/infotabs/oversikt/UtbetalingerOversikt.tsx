@@ -26,11 +26,12 @@ interface Props {
     setHeaderContent: (content: ReactNode) => void;
 }
 
+const onPendingSpinner = <CenteredLazySpinner padding={theme.margin.layout} />;
 function UtbetalingerOversikt(props: Props) {
     return (
         <RestResourceConsumer<UtbetalingerResponse>
             getResource={restResources => restResources.utbetalingerOversikt}
-            returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+            returnOnPending={onPendingSpinner}
         >
             {data => <UtbetalingerPanel utbetalinger={data} {...props} />}
         </RestResourceConsumer>
