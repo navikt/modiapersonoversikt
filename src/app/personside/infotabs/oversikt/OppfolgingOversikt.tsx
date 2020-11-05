@@ -52,32 +52,40 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
     );
 }
 
-function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
+function Veileder({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
     const veilederNavn = detaljertOppfolging.oppfølging.veileder ? (
         <Normaltekst>{detaljertOppfolging.oppfølging.veileder.navn}</Normaltekst>
     ) : (
         <Normaltekst>Ikke angitt</Normaltekst>
     );
-
-    const enhet = detaljertOppfolging.oppfølging.enhet ? (
-        <Normaltekst>{detaljertOppfolging.oppfølging.enhet.navn}</Normaltekst>
-    ) : (
-        <Normaltekst>Ikke angitt</Normaltekst>
-    );
-
+    const veilederIdent = detaljertOppfolging.oppfølging.veileder ? (
+        <Normaltekst>({detaljertOppfolging.oppfølging.veileder.ident})</Normaltekst>
+    ) : null;
     const clipboard =
         detaljertOppfolging.oppfølging.veileder && detaljertOppfolging.oppfølging.veileder.ident ? (
             <CopyToClipboard
                 ariaLabel="Kopier veileder"
                 stringToCopy={`${detaljertOppfolging.oppfølging.veileder.navn} (${detaljertOppfolging.oppfølging.veileder.ident})`}
             />
-        ) : (
-            undefined
-        );
+        ) : null;
 
-    const veilederIdent = detaljertOppfolging.oppfølging.veileder ? (
-        <Normaltekst>({detaljertOppfolging.oppfølging.veileder.ident})</Normaltekst>
-    ) : null;
+    return (
+        <span title="Veileder">
+            <Element>Veileder:</Element>
+            {veilederNavn}
+            {veilederIdent}
+            {clipboard}
+        </span>
+    );
+}
+
+function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
+    const enhet = detaljertOppfolging.oppfølging.enhet ? (
+        <Normaltekst>{detaljertOppfolging.oppfølging.enhet.navn}</Normaltekst>
+    ) : (
+        <Normaltekst>Ikke angitt</Normaltekst>
+    );
+
     const innsatsgruppe = detaljertOppfolging.innsatsgruppe;
     const rettighetsgruppe = detaljertOppfolging.rettighetsgruppe;
 
@@ -85,10 +93,7 @@ function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: Detal
         <>
             <Element>Oppfølgende enhet:</Element>
             {enhet}
-            <Element>Veileder:</Element>
-            {veilederNavn}
-            {veilederIdent}
-            {clipboard}
+            <Veileder detaljertOppfolging={detaljertOppfolging} />
             <Element>Innsatsgruppe / Rettighetsgruppe:</Element>
             <Normaltekst>
                 {innsatsgruppe} / {rettighetsgruppe}{' '}
