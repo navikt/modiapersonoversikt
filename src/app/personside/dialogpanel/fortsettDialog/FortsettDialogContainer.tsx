@@ -246,6 +246,7 @@ function FortsettDialogContainer(props: Props) {
                     key={props.traad.traadId}
                     fortsettDialogPanelState={dialogStatus}
                     erTilknyttetOppgave={!!oppgaveId}
+                    erSTOOppgave={erSTOOppgave}
                 />
                 {oppgaveId && erSTOOppgave && (
                     <LeggTilbakepanel

@@ -41,6 +41,7 @@ interface Props {
     updateState: (change: Partial<FortsettDialogState>) => void;
     traad: Traad;
     erTilknyttetOppgave: boolean;
+    erSTOOppgave: boolean;
     fortsettDialogPanelState: FortsettDialogPanelState;
 }
 
@@ -84,6 +85,7 @@ function FortsettDialog(props: Props) {
                 formState={state}
                 updateDialogType={dialogType => updateState({ dialogType: dialogType })}
                 erTilknyttetOppgave={props.erTilknyttetOppgave}
+                erSTOOppgave={props.erSTOOppgave}
                 erDelvisBesvart={erDelvisBesvart(props.traad)}
                 erOksosTraad={erOksosTraad}
             />

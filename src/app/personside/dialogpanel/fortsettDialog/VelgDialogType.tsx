@@ -10,6 +10,7 @@ interface Props {
     formState: FortsettDialogState;
     updateDialogType: (dialogType: FortsettDialogType) => void;
     erTilknyttetOppgave: boolean;
+    erSTOOppgave: boolean;
     erDelvisBesvart: boolean;
     erOksosTraad: boolean;
 }
@@ -47,7 +48,7 @@ function VelgDialogType(props: Props) {
             <VelgDialogtypeStyle>
                 {svar}
                 {spørsmål}
-                {!props.erOksosTraad && delvisSvar}
+                {props.erSTOOppgave && !props.erOksosTraad && delvisSvar}
                 {!jobberMedSTO && svarTelefon}
                 {!jobberMedSTO && svarOppmote}
             </VelgDialogtypeStyle>
