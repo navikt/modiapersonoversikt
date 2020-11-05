@@ -12,12 +12,13 @@ interface Props {
     valgtTraad: Traad;
 }
 
+const onPendingSpinner = <NavFrontendSpinner aria-label={'Laster tema'} type={'S'} />;
 function OpprettOppgaveContainer(props: Props) {
     return (
         <ErrorBoundary boundaryName={'OpprettOppgaveContainer'}>
             <RestResourceConsumer<GsakTema[]>
                 getResource={restResources => restResources.oppgaveGsakTema}
-                returnOnPending={<NavFrontendSpinner aria-label={'Laster tema'} type={'S'} />}
+                returnOnPending={onPendingSpinner}
             >
                 {data => (
                     <OppgaveSkjemaContainer

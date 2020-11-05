@@ -12,11 +12,12 @@ interface Props {
     detaljertOppfølging: DetaljertOppfolging;
 }
 
+const onPendingSpinner = <CenteredLazySpinner padding={theme.margin.layout} />;
 function OppfolgingOversikt() {
     return (
         <RestResourceConsumer<DetaljertOppfolging>
             getResource={restResources => restResources.oppfolging}
-            returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+            returnOnPending={onPendingSpinner}
         >
             {data => <OppfolgingPanel detaljertOppfølging={data} />}
         </RestResourceConsumer>
