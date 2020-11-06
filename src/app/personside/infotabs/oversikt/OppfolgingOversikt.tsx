@@ -70,12 +70,12 @@ function Veileder({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfo
         ) : null;
 
     return (
-        <span title="Veileder">
+        <>
             <Element>Veileder:</Element>
             {veilederNavn}
             {veilederIdent}
             {clipboard}
-        </span>
+        </>
     );
 }
 
