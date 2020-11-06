@@ -272,7 +272,7 @@ exports[`viser send ny melding 1`] = `
                     id="Helt tilfeldig ID"
                   >
                     Tekstområde med plass til 
-                    5000
+                    10000
                      tegn.
                   </span>
                   <textarea
@@ -296,7 +296,7 @@ exports[`viser send ny melding 1`] = `
                     <span
                       className="teller-tekst"
                     >
-                      Du har 5000 tegn igjen
+                      Du har 10000 tegn igjen
                     </span>
                   </p>
                 </div>
