@@ -17,12 +17,9 @@ const Style = styled.div`
     }
 `;
 
+const placeholderProps = { returnOnError: 'Kunne ikke hente enhetsliste' };
 function VelgEnhet() {
-    const enheter = useRestResource(
-        resources => resources.saksbehandlersEnheter,
-        { returnOnError: 'Kunne ikke hente enhetsliste' },
-        true
-    );
+    const enheter = useRestResource(resources => resources.saksbehandlersEnheter, placeholderProps, true);
     const dispatch = useDispatch();
 
     useEffect(() => {

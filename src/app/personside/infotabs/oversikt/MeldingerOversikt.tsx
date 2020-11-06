@@ -27,11 +27,12 @@ interface Props {
     setHeaderContent: (content: ReactNode) => void;
 }
 
+const onPendingSpinner = <CenteredLazySpinner padding={theme.margin.layout} />;
 function MeldingerOversikt(props: Props) {
     return (
         <RestResourceConsumer<Traad[]>
             getResource={restResources => restResources.tråderOgMeldinger}
-            returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+            returnOnPending={onPendingSpinner}
         >
             {data => <TraadListe traader={data} {...props} />}
         </RestResourceConsumer>

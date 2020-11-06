@@ -44,10 +44,11 @@ const Placeholder = (
     </SpinnerWrapper>
 );
 
+const placeholderProps = { returnOnPending: Placeholder };
 function Kontrollsporsmal() {
     const visKontrollSpørsmål = useAppState(state => state.kontrollSpørsmål.open);
     const fnr = useFødselsnummer();
-    const personResource = useRestResource(resources => resources.personinformasjon, { returnOnPending: Placeholder });
+    const personResource = useRestResource(resources => resources.personinformasjon, placeholderProps);
     const erKontaktsenter = useErKontaktsenter();
     const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
 
