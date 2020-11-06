@@ -70,7 +70,7 @@ const StyledUndertittel = styled(Undertittel)`
     margin-bottom: 1rem !important;
 `;
 
-export const tekstMaksLengde = 5000;
+export const tekstMaksLengde = 10000;
 
 interface Props {
     handleSubmit: (event: FormEvent) => void;
