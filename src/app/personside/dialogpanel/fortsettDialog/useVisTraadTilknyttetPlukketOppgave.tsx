@@ -7,7 +7,7 @@ import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { useHistory } from 'react-router';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
-import { kanBesvares } from '../../infotabs/meldinger/utils/meldingerUtils';
+import { eldsteMelding, kanBesvares } from '../../infotabs/meldinger/utils/meldingerUtils';
 
 interface Pending {
     pending: true;
@@ -44,8 +44,13 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
             if (traadTilknyttetOppgave) {
                 history.push(dyplenker.meldinger.link(traadTilknyttetOppgave));
             } else {
+                const debugKanBesvares = traadTilknyttetOppgave
+                    ? eldsteMelding(traadTilknyttetOppgave).meldingstype
+                    : 'Fant ikke tråd';
                 loggError(
-                    new Error(`Fant ikke tråd tilknyttet oppgave ${oppgave.oppgaveId} med traadId ${oppgave.traadId}`)
+                    new Error(
+                        `Fant ikke tråd tilknyttet oppgave ${oppgave.oppgaveId} med traadId ${oppgave.traadId} [${debugKanBesvares}]`
+                    )
                 );
             }
         },
