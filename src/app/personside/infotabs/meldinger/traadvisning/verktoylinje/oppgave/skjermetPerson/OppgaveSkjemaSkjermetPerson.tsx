@@ -130,7 +130,9 @@ function OppgaveSkjemaSkjermetPerson(props: SkjermetOppgaveProps) {
                     feil={feilmelding(state.fields.beskrivelse)}
                 />
                 <KnappStyle>
-                    <Hovedknapp htmlType="submit">Opprett Oppgave</Hovedknapp>
+                    <Hovedknapp htmlType="submit" spinner={state.submitting} autoDisableVedSpinner>
+                        Opprett Oppgave
+                    </Hovedknapp>
                     <Flatknapp htmlType="reset">Nullstill</Flatknapp>
                 </KnappStyle>
             </form>
