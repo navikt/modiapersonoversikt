@@ -7,5 +7,5 @@ csp:
   imgSrc: "'self' data:"
   fontSrc: "'self' data:"
   connectSrc: "'self' eumgw.adeo.no {{ WEBSOCKET_CSP }}"
-
-
+  # PDF-visning lastes inn via blob-urler
+  objectSrc: "blob:"
