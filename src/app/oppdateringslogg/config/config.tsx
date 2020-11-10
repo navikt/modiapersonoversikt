@@ -4,6 +4,7 @@ import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
 import BjelleikonVarselBilde from './img/bjelleikon-varsel.jpg';
 import BjelleikonBilde from './img/bjelleikon.jpg';
 import InfomeldingBilde from './img/infomelding.jpg';
+import TemaHelseBilde from './img/temaHelse.jpg';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export const OppdateringsloggConfig: EnOppdateringslogg[] = [
@@ -51,5 +52,27 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
             </>
         ),
         src: InfomeldingBilde
+    },
+    {
+        id: 3,
+        tittel: 'Modia personoversikt har fått et nytt tema Helse',
+        dato: new Date('2020-11-13 10:00'),
+        aktiv: true,
+        ingress: (
+            <>
+                <Normaltekst>Tema Helse er tilsvarende tema Syk i skriv til oss på ditt NAV.</Normaltekst>
+            </>
+        ),
+        beskrivelse: (
+            <>
+                <Normaltekst>
+                    Når bruker sender melding til NAV vil meldinger fra tema Syk på Ditt NAV havne under tema Helse i
+                    Modia Personoversikt. Nå kan man velge temagruppe Helse for nye meldinger relatert til helse. Dette
+                    gjelder blant annet meldinger relatert til sykemelding, AAP, grunn- og hjelpestønad,
+                    yrkesskade/menerstatning etc.
+                </Normaltekst>
+            </>
+        ),
+        src: TemaHelseBilde
     }
 ];
