@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import useTildelteOppgaver from '../../../../utils/hooks/useTildelteOppgaver';
 import { useDispatch } from 'react-redux';
@@ -8,6 +7,7 @@ import { loggError } from '../../../../utils/logger/frontendLogger';
 import { useHistory } from 'react-router';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { eldsteMelding, kanBesvares } from '../../infotabs/meldinger/utils/meldingerUtils';
+import { useJustOnceEffect } from '../../../../utils/customHooks';
 
 interface Pending {
     pending: true;
@@ -27,8 +27,8 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
 
-    useEffect(
-        function visTraadTilknyttetOppgaveIDialogpanel() {
+    useJustOnceEffect(
+        function visTraadTilknyttetOppgaveIDialogpanel(done: () => void) {
             const oppgave = tildelteOppgaver.nettopTildelt[0];
             const åpneTrådIFortsettDialogpanel = !dialogpanelTraad && !!oppgave;
             if (!åpneTrådIFortsettDialogpanel || !traaderResource.data) {
@@ -43,6 +43,7 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
 
             if (traadTilknyttetOppgave) {
                 history.push(dyplenker.meldinger.link(traadTilknyttetOppgave));
+                done();
             } else {
                 const debugKanBesvares = traadTilknyttetOppgave
                     ? eldsteMelding(traadTilknyttetOppgave).meldingstype
