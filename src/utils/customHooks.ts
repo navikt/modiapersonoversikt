@@ -19,6 +19,20 @@ export function useOnMount(effect: EffectCallback) {
     useEffect(effect, []);
 }
 
+export type JustOnceEffectCallback = (done: () => void) => void | (() => void | undefined);
+export function useJustOnceEffect(effect: JustOnceEffectCallback, deps?: DependencyList) {
+    const done = useRef(false);
+    const setDone = useCallback(() => {
+        done.current = true;
+    }, [done]);
+    useEffect(() => {
+        debugger;
+        if (!done.current) {
+            return effect(setDone);
+        }
+    }, deps); // eslint-disable-line react-hooks/exhaustive-deps
+}
+
 export function useOnUpdate(effect: EffectCallback, deps: DependencyList) {
     const firstMount = useRef(true);
 
