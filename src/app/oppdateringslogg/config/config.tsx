@@ -56,7 +56,7 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
     {
         id: 3,
         tittel: 'Modia personoversikt har fått et nytt tema Helse',
-        dato: new Date('2020-11-13 10:00'),
+        dato: new Date('2020-11-13 08:00'),
         aktiv: true,
         ingress: (
             <>
