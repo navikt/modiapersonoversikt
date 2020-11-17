@@ -389,16 +389,13 @@ exports[`viser dialogpanel 1`] = `
                               mvh + mellomrom: Signatur
                             </li>
                             <li>
-                              mvhks + mellomrom: Signatur som fra KS
+                              mvhks + mellomrom: Signatur fra KS
                             </li>
                             <li>
                               hei + mellomrom: Hei bruker
                             </li>
                             <li>
-                              vint + mellomrom: Videreformidle Internt
-                            </li>
-                            <li>
-                              vinten + mellomrom: Videreformidle Internt (engelsk)
+                              vint + mellomrom: Videreformidle Internt (vinten for engelsk)
                             </li>
                             <li>
                               AAP + mellomrom: arbeidsavklaringspenger
@@ -416,10 +413,7 @@ exports[`viser dialogpanel 1`] = `
                               hi, + mellomrom: Hi, bruker (engelsk)
                             </li>
                             <li>
-                              mvh/aap + nn + mellomrom: autofullfør på nynorsk
-                            </li>
-                            <li>
-                              mvh/aap + en + mellomrom: autofullfør på engelsk
+                              mvh/aap + nn eller en + mellomrom: autofullfør på nynorsk eller engelsk
                             </li>
                             <li>
                               korkonk + mellomrom: Informasjon ved konkurs
@@ -438,6 +432,18 @@ exports[`viser dialogpanel 1`] = `
                             </li>
                             <li>
                               forskuddsøk + mellomrom: Søke om forskudd
+                            </li>
+                            <li>
+                              fp + mellomrom: foreldrepenger
+                            </li>
+                            <li>
+                              bm + mellomrom: bidragsmottaker
+                            </li>
+                            <li>
+                              bp + mellomrom: bidragspliktig
+                            </li>
+                            <li>
+                              ag + mellomrom: arbeidsgiver
                             </li>
                           </ul>
                         </div>
