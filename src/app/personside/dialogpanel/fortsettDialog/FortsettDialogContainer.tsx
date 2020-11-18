@@ -52,17 +52,18 @@ const StyledArticle = styled.article`
     padding: 1rem ${theme.margin.layout};
 `;
 
-function finnPlukketOppgave(
+function finnPlukketOppgaveForTraad(
+    traad: Traad,
     resource: PostResource<{}, Oppgave[]>
 ): { oppgave: Oppgave | undefined; erSTOOppgave: boolean } {
     if (!isFinishedPosting(resource)) {
         return { oppgave: undefined, erSTOOppgave: false };
     } else {
-        const forsteOppgave = resource.response.find(() => true);
-        const STOOppgave = resource.response.find(it => it.erSTOOppgave);
+        const oppgave: Oppgave | undefined = resource.response.find(
+            (oppgave: Oppgave) => oppgave.traadId === traad.traadId
+        );
+        const erSTOOppgave = oppgave !== undefined && oppgave.erSTOOppgave;
 
-        const oppgave: Oppgave | undefined = STOOppgave || forsteOppgave;
-        const erSTOOppgave = oppgave !== undefined && oppgave === STOOppgave;
         return { oppgave, erSTOOppgave };
     }
 }
@@ -120,7 +121,7 @@ function FortsettDialogContainer(props: Props) {
         return opprettHenvendelse.placeholder;
     }
 
-    const { oppgave, erSTOOppgave } = finnPlukketOppgave(plukkOppgaveResource);
+    const { oppgave, erSTOOppgave } = finnPlukketOppgaveForTraad(props.traad, plukkOppgaveResource);
     const oppgaveId = oppgave ? oppgave.oppgaveId : opprettHenvendelse.henvendelse.oppgaveId;
 
     const handleAvbryt = () => {
