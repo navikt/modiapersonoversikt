@@ -52,7 +52,7 @@ const StyledArticle = styled.article`
     padding: 1rem ${theme.margin.layout};
 `;
 
-function finnPlukketOppgaveForTraad(
+export function finnPlukketOppgaveForTraad(
     traad: Traad,
     resource: PostResource<{}, Oppgave[]>
 ): { oppgave: Oppgave | undefined; erSTOOppgave: boolean } {
