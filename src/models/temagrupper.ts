@@ -46,7 +46,6 @@ export const TemaLeggTilbake = [
     Temagruppe.ForskuddDagpenger,
     Temagruppe.Hjelpemiddel,
     Temagruppe.Bil,
-    Temagruppe.OrtopediskHjelpemiddel,
     Temagruppe.Pensjon,
     Temagruppe.PleiepengerSyktBarn,
     Temagruppe.Uføretrygd,
