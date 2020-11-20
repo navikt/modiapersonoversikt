@@ -91,7 +91,7 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
             <>
                 <Normaltekst>
                     Søk på Utenlandsk ID kan ikke kombineres med andre søk. Det er ett frittstående søkefelt. Du finner
-                    funksjonaliteten under <img src={AvansertSokKnappBilde} alt="Avansert Søk " width="20em" />
+                    funksjonaliteten under <img src={AvansertSokKnappBilde} alt="Avansert Søk" width="20em" />
                 </Normaltekst>
             </>
         ),
