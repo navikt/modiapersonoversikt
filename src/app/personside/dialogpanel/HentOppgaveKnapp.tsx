@@ -18,7 +18,7 @@ import { guid } from 'nav-frontend-js-utils';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import { FetchResponse, fetchToJson, hasData, hasError } from '../../../utils/fetchToJson';
 import { Oppgave } from '../../../models/meldinger/oppgave';
-import { apiBaseUri } from '../../../api/config';
+import { apiBaseUri, postConfig } from '../../../api/config';
 import { getTemaFraCookie, setTemaCookie } from '../../../redux/session/plukkTemaCookie';
 
 const StyledArticle = styled.article`
@@ -81,7 +81,7 @@ function HentOppgaveKnapp() {
         setTemaGruppeFeilmelding(false);
         setTomKø(false);
         setIsPosting(true);
-        fetchToJson<Oppgave[]>(`${apiBaseUri}/oppgaver/plukk/${temagruppe}`).then(response => {
+        fetchToJson<Oppgave[]>(`${apiBaseUri}/oppgaver/plukk/${temagruppe}`, postConfig()).then(response => {
             setIsPosting(false);
             setResponse(response);
             if (hasError(response)) {
