@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useState } from 'react';
-import {
-    SlaaSammenRequest,
-    SlaaSammenResponse,
-    SlaaSammenTraad,
-    Traad
-} from '../../../../../../models/meldinger/meldinger';
+import { Traad } from '../../../../../../models/meldinger/meldinger';
 import TraadListeElement from '../TraadListeElement';
 import styled from 'styled-components/macro';
 import theme from '../../../../../../styles/personOversiktTheme';
@@ -13,9 +8,7 @@ import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import EnkeltMelding from '../../traadvisning/Enkeltmelding';
 import { Ingress } from 'nav-frontend-typografi';
 import KnappBase, { Hovedknapp } from 'nav-frontend-knapper';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../../../../../redux/reducers';
-import { isFailedPosting, isFinishedPosting, isPosting } from '../../../../../../rest/utils/postResource';
+import { useDispatch } from 'react-redux';
 import { useOnMount } from '../../../../../../utils/customHooks';
 import { setValgtTraadDialogpanel } from '../../../../../../redux/oppgave/actions';
 import { loggError, loggEvent } from '../../../../../../utils/logger/frontendLogger';
@@ -25,10 +18,29 @@ import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { runIfEventIsNotInsideRef } from '../../../../../../utils/reactRef-utils';
 import { useRestResource } from '../../../../../../rest/consumer/useRestResource';
 import { usePostResource } from '../../../../../../rest/consumer/usePostResource';
+import { apiBaseUri, postConfig } from '../../../../../../api/config';
+import { useGjeldendeBruker } from '../../../../../../redux/gjeldendeBruker/types';
+import { FetchResponse, fetchToJson, hasData, hasError } from '../../../../../../utils/fetchToJson';
+import { Temagruppe } from '../../../../../../models/temagrupper';
 
 interface Props {
     traader: Traad[];
     lukkModal: () => void;
+}
+
+export interface SlaaSammenRequest {
+    traader: SlaaSammenTraad[];
+    temagruppe: Temagruppe;
+}
+
+export interface SlaaSammenTraad {
+    oppgaveId: string;
+    traadId: string;
+}
+
+export interface SlaaSammenResponse {
+    nyTraadId: string;
+    traader: Traad[];
 }
 
 const FormStyle = styled.form`
@@ -166,7 +178,9 @@ function ListeElement(props: {
 
 function BesvarFlere(props: Props & RouteComponentProps) {
     const dispatch = useDispatch();
-    const slaaSammenResource = useSelector((state: AppState) => state.restResources.slaaSammen);
+    const fnr = useGjeldendeBruker();
+    const [isPosting, setIsPosting] = useState(false);
+    const [response, setResponse] = useState<FetchResponse<SlaaSammenResponse> | undefined>(undefined);
     const setTråderITråderResource = useRestResource(resources => resources.tråderOgMeldinger).actions.setData;
     const resetPlukkOppgave = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
@@ -177,7 +191,6 @@ function BesvarFlere(props: Props & RouteComponentProps) {
 
     useOnMount(() => {
         loggEvent('Åpnet', 'BesvarFlere');
-        dispatch(slaaSammenResource.actions.reset);
     });
 
     function handleCheckboxChange(traad: Traad) {
@@ -204,6 +217,10 @@ function BesvarFlere(props: Props & RouteComponentProps) {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
+        if (isPosting) {
+            return;
+        }
+
         if (valgteTraader.length <= 1) {
             setFeilmelding('Du må minst velge to tråder');
             return;
@@ -218,31 +235,40 @@ function BesvarFlere(props: Props & RouteComponentProps) {
             });
             return;
         }
-        if (isPosting(slaaSammenResource)) {
-            return;
-        }
+
         const request: SlaaSammenRequest = {
             temagruppe: temagruppe,
             traader: traaderSomSkalSlaasSammen
         };
-        const callback = (response: SlaaSammenResponse) => {
-            loggEvent('OppgaverSlåttSammen', 'BesvarFlere', undefined, { antall: request.traader.length });
-            dispatch(setTråderITråderResource(response.traader));
-            dispatch(resetPlukkOppgave);
-            dispatch(reloadTildelteOppgaver);
 
-            const nyValgtTråd = response.traader.find(traad => traad.traadId === response.nyTraadId);
-            if (nyValgtTråd) {
-                dispatch(setValgtTraadDialogpanel(nyValgtTråd));
-                props.history.push(dyplenker.meldinger.link(nyValgtTråd));
-            } else {
-                loggError(Error('Besvar flere: Kunne ikke finne tråd som matcher trådId: ' + response.nyTraadId));
-            }
-        };
-        dispatch(slaaSammenResource.actions.post(request, callback));
+        setIsPosting(true);
+        fetchToJson<SlaaSammenResponse>(`${apiBaseUri}/dialog/${fnr}/slaasammen`, postConfig(request))
+            .then(response => {
+                setIsPosting(false);
+                setResponse(response);
+                if (hasData(response)) {
+                    loggEvent('OppgaverSlåttSammen', 'BesvarFlere', undefined, { antall: request.traader.length });
+                    dispatch(setTråderITråderResource(response.data.traader));
+                    dispatch(resetPlukkOppgave);
+                    dispatch(reloadTildelteOppgaver);
+
+                    const nyValgtTråd = response.data.traader.find(traad => traad.traadId === response.data.nyTraadId);
+                    if (nyValgtTråd) {
+                        dispatch(setValgtTraadDialogpanel(nyValgtTråd));
+                        props.history.push(dyplenker.meldinger.link(nyValgtTråd));
+                    } else {
+                        loggError(
+                            Error('Besvar flere: Kunne ikke finne tråd som matcher trådId: ' + response.data.nyTraadId)
+                        );
+                    }
+                }
+            })
+            .catch((e: Error) => {
+                loggError(e);
+            });
     };
 
-    if (isFinishedPosting(slaaSammenResource)) {
+    if (response && hasData(response)) {
         return (
             <KvitteringStyle>
                 <AlertStripeInfo>Oppgavene ble slått sammen</AlertStripeInfo>
@@ -253,8 +279,8 @@ function BesvarFlere(props: Props & RouteComponentProps) {
         );
     }
 
-    if (isFailedPosting(slaaSammenResource)) {
-        return <AlertStripeFeil>Det skjedde en feil i baksystemene: {slaaSammenResource.error}</AlertStripeFeil>;
+    if (response && hasError(response)) {
+        return <AlertStripeFeil>Det skjedde en feil i baksystemene: {response.message}</AlertStripeFeil>;
     }
 
     return (
@@ -268,7 +294,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
             </TraadStyle>
             <KnappWrapper>
                 {feilmelding && <SkjemaelementFeilmelding>{feilmelding}</SkjemaelementFeilmelding>}
-                <KnappBase type={'hoved'} spinner={isPosting(slaaSammenResource)}>
+                <KnappBase type={'hoved'} spinner={isPosting}>
                     Slå sammen {valgteTraader.length > 1 ? `${valgteTraader.length} ` : 'oppgaver'}
                 </KnappBase>
             </KnappWrapper>
