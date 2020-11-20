@@ -243,7 +243,7 @@ function PersonsokSkjema(props: Props) {
                         {enabled && (
                             <Input
                                 bredde={'L'}
-                                label={'Utenlandsk ID'}
+                                label={'Utenlandsk ID (med spesialtegn)'}
                                 {...state.fields.utenlandskID.input}
                                 feil={feilmelding(state.fields.utenlandskID)}
                             />
