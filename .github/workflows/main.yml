@@ -6,32 +6,11 @@ env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/modiapersonoversikt:${{ github.sha }}
   CI: true
   TZ: Europe/Oslo
+  Q1_TEST_BRANCH: refs/heads/fix/no-post-resource
+
 jobs:
   build:
-    name: Test and build
-    runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/master'
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '14.6.0'
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Install dependencies
-        run: npm ci
-      - name: Test
-        run: npm run test
-      - name: Build
-        run: npm run build
-
-  build-and-push:
-    name: Build and push Docker container
-    if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master'
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -51,16 +30,26 @@ jobs:
       - name: Build
         run: npm run build
       - name: Publish Docker image
+        if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master' || github.ref == env.Q1_TEST_BRANCH
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo ${GITHUB_TOKEN} | docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} --password-stdin
           docker build --tag ${IMAGE} .
           docker push ${IMAGE}
+      - name: Deploy to Q1 (Test branch)
+        uses: nais/deploy/actions/deploy@v1
+        if: github.ref == env.Q1_TEST_BRANCH
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          PRINT_PAYLOAD: true
+          CLUSTER: dev-fss
+          RESOURCE: .nais/qa-template.yaml
+          VAR: namespace=q1,version=${{ github.sha }}
 
   deploy-qa:
     name: Deploy to preprod
-    needs: build-and-push
+    needs: build
     if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
     strategy:
@@ -78,7 +67,7 @@ jobs:
 
   deploy-prod:
     name: Deploy to prod
-    needs: build-and-push
+    needs: build
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
