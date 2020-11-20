@@ -17,7 +17,6 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { runIfEventIsNotInsideRef } from '../../../../../../utils/reactRef-utils';
 import { useRestResource } from '../../../../../../rest/consumer/useRestResource';
-import { usePostResource } from '../../../../../../rest/consumer/usePostResource';
 import { apiBaseUri, postConfig } from '../../../../../../api/config';
 import { useGjeldendeBruker } from '../../../../../../redux/gjeldendeBruker/types';
 import { FetchResponse, fetchToJson, hasData, hasError } from '../../../../../../utils/fetchToJson';
@@ -182,7 +181,6 @@ function BesvarFlere(props: Props & RouteComponentProps) {
     const [isPosting, setIsPosting] = useState(false);
     const [response, setResponse] = useState<FetchResponse<SlaaSammenResponse> | undefined>(undefined);
     const setTråderITråderResource = useRestResource(resources => resources.tråderOgMeldinger).actions.setData;
-    const resetPlukkOppgave = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const [valgteTraader, setValgteTraader] = useState<Traad[]>([]);
     const [traadSomSkalVises, setTraadSomSkalVises] = useState<Traad>(props.traader[0]);
@@ -249,7 +247,6 @@ function BesvarFlere(props: Props & RouteComponentProps) {
                 if (hasData(response)) {
                     loggEvent('OppgaverSlåttSammen', 'BesvarFlere', undefined, { antall: request.traader.length });
                     dispatch(setTråderITråderResource(response.data.traader));
-                    dispatch(resetPlukkOppgave);
                     dispatch(reloadTildelteOppgaver);
 
                     const nyValgtTråd = response.data.traader.find(traad => traad.traadId === response.data.nyTraadId);

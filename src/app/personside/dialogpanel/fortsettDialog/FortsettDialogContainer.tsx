@@ -25,7 +25,6 @@ import {
     KvitteringsData
 } from './FortsettDialogTypes';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
-import { usePostResource } from '../../../../rest/consumer/usePostResource';
 import { Undertittel } from 'nav-frontend-typografi';
 import { guid } from 'nav-frontend-js-utils';
 import styled from 'styled-components';
@@ -87,8 +86,6 @@ function FortsettDialogContainer(props: Props) {
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
     const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
-    const plukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
-    const resetPlukkOppgaveResource = plukkOppgaveResource.actions.reset;
     const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
     const tildelteOppgaver = tildelteOppgaverResource.resource;
     const reloadTildelteOppgaver = tildelteOppgaverResource.actions.reload;
@@ -138,7 +135,6 @@ function FortsettDialogContainer(props: Props) {
         }
         const callback = () => {
             removeDraft();
-            dispatch(resetPlukkOppgaveResource);
             dispatch(reloadTildelteOppgaver);
             dispatch(reloadMeldinger);
         };

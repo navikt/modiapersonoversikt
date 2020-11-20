@@ -2,7 +2,6 @@ import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
 import tilgangskontrollReducer from './tilgangskontroll';
 import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
-import hentOppgaverReducer from './hentOppgaver';
 import kontaktinformasjonReducer from './kontaktinformasjon';
 import egenAnsattReducer from './egenansatt';
 import vergemalReducer from './vergemal';
@@ -40,7 +39,6 @@ import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
 import { Traad } from '../../models/meldinger/meldinger';
-import { PostResource } from '../../rest/utils/postResource';
 import { GsakTema, Oppgave } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 import tildelteOppgaver from './tildelteOppgaver';
@@ -56,7 +54,6 @@ export interface RestEndepunkter {
     saksbehandlersEnheter: RestResource<SaksbehandlersEnheter>;
     personinformasjon: RestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
-    plukkNyeOppgaver: PostResource<{}, Oppgave[]>;
     tildelteOppgaver: RestResource<Oppgave[]>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
@@ -88,7 +85,6 @@ export default combineResettableReducers<RestEndepunkter>(
         saksbehandlersEnheter: saksbehandlersEnheter,
         personinformasjon: personinformasjonReducer,
         brukersNavKontor: navkontorReducer,
-        plukkNyeOppgaver: hentOppgaverReducer,
         tildelteOppgaver: tildelteOppgaver,
         kontaktinformasjon: kontaktinformasjonReducer,
         egenAnsatt: egenAnsattReducer,
@@ -112,14 +108,5 @@ export default combineResettableReducers<RestEndepunkter>(
         tråderOgMeldinger: meldingerReducer,
         oppgaveGsakTema: oppgaveGsakTemaReducer
     },
-    [
-        'innloggetSaksbehandler',
-        'veilederRoller',
-        'baseUrl',
-        'postnummer',
-        'valuta',
-        'land',
-        'featureToggles',
-        'plukkNyeOppgaver'
-    ]
+    ['innloggetSaksbehandler', 'veilederRoller', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles']
 );
