@@ -5,6 +5,8 @@ import BjelleikonVarselBilde from './img/bjelleikon-varsel.jpg';
 import BjelleikonBilde from './img/bjelleikon.jpg';
 import InfomeldingBilde from './img/infomelding.jpg';
 import TemaHelseBilde from './img/temaHelse.jpg';
+import AvansertSokKnappBilde from './img/avansertSok-knapp.jpg';
+import UtenlandskIDBilde from './img/utenlandskID.jpg';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export const OppdateringsloggConfig: EnOppdateringslogg[] = [
@@ -74,5 +76,25 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
             </>
         ),
         src: TemaHelseBilde
+    },
+    {
+        id: 4,
+        tittel: 'Nå kan du søke på Utenlandsk ID i Modia Personoversikt',
+        dato: new Date('2020-11-20 11:00'),
+        aktiv: true,
+        ingress: (
+            <>
+                <Normaltekst>Nå kan det gjøres søk på Utenlandsk ID i Avansert Søk.</Normaltekst>
+            </>
+        ),
+        beskrivelse: (
+            <>
+                <Normaltekst>
+                    Søk på Utenlandsk ID kan ikke kombineres med andre søk. Det er ett frittstående søkefelt. Du finner
+                    funksjonaliteten under <img src={AvansertSokKnappBilde} alt="Avansert Søk " width="20em" />
+                </Normaltekst>
+            </>
+        ),
+        src: UtenlandskIDBilde
     }
 ];
