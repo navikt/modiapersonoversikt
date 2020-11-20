@@ -30,12 +30,12 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { guid } from 'nav-frontend-js-utils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { isFinishedPosting, PostResource } from '../../../../rest/utils/postResource';
 import ReflowBoundry from '../ReflowBoundry';
 import { Temagruppe } from '../../../../models/temagrupper';
 import useDraft, { Draft } from '../use-draft';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
+import { hasData, RestResource } from '../../../../rest/utils/restResource';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -54,12 +54,12 @@ const StyledArticle = styled.article`
 
 export function finnPlukketOppgaveForTraad(
     traad: Traad,
-    resource: PostResource<{}, Oppgave[]>
+    resource: RestResource<Oppgave[]>
 ): { oppgave: Oppgave | undefined; erSTOOppgave: boolean } {
-    if (!isFinishedPosting(resource)) {
+    if (!hasData(resource)) {
         return { oppgave: undefined, erSTOOppgave: false };
     } else {
-        const oppgave: Oppgave | undefined = resource.response.find(
+        const oppgave: Oppgave | undefined = resource.data.find(
             (oppgave: Oppgave) => oppgave.traadId === traad.traadId
         );
         const erSTOOppgave = oppgave !== undefined && oppgave.erSTOOppgave;
@@ -89,7 +89,9 @@ function FortsettDialogContainer(props: Props) {
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
     const plukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
     const resetPlukkOppgaveResource = plukkOppgaveResource.actions.reset;
-    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
+    const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
+    const tildelteOppgaver = tildelteOppgaverResource.resource;
+    const reloadTildelteOppgaver = tildelteOppgaverResource.actions.reload;
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
     });
@@ -121,7 +123,7 @@ function FortsettDialogContainer(props: Props) {
         return opprettHenvendelse.placeholder;
     }
 
-    const { oppgave, erSTOOppgave } = finnPlukketOppgaveForTraad(props.traad, plukkOppgaveResource);
+    const { oppgave, erSTOOppgave } = finnPlukketOppgaveForTraad(props.traad, tildelteOppgaver);
     const oppgaveId = oppgave ? oppgave.oppgaveId : opprettHenvendelse.henvendelse.oppgaveId;
 
     const handleAvbryt = () => {
