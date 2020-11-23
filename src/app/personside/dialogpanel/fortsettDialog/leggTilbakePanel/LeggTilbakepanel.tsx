@@ -15,7 +15,6 @@ import { post } from '../../../../../api/api';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { DialogPanelStatus, FortsettDialogPanelState } from '../FortsettDialogTypes';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
-import { usePostResource } from '../../../../../rest/consumer/usePostResource';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import { Normaltekst } from 'nav-frontend-typografi';
 
@@ -78,7 +77,6 @@ function LeggTilbakepanel(props: Props) {
     const updateState = (change: Partial<LeggTilbakeState>) =>
         setState({ ...state, visFeilmeldinger: false, ...change });
     const dispatch = useDispatch();
-    const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const leggerTilbake = props.status.type === DialogPanelStatus.POSTING;
 
@@ -99,7 +97,6 @@ function LeggTilbakepanel(props: Props) {
             return;
         }
         const callback = () => {
-            dispatch(resetPlukkOppgaveResource);
             dispatch(reloadTildelteOppgaver);
         };
         if (LeggTilbakeValidator.erGyldigInnhabilRequest(state)) {

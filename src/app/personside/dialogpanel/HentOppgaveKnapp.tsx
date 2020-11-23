@@ -1,14 +1,10 @@
 import * as React from 'react';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Select } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { velgTemagruppeForPlukk } from '../../../redux/session/session';
-import { AppState } from '../../../redux/reducers';
-import { isFailedPosting, isPosting } from '../../../rest/utils/postResource';
 import theme from '../../../styles/personOversiktTheme';
 import TildelteOppgaver from './TildelteOppgaver';
 import { paths } from '../../routes/routing';
@@ -20,6 +16,12 @@ import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { RestResourcePlaceholderProps } from '../../../rest/consumer/placeholder';
 import { guid } from 'nav-frontend-js-utils';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
+import { FetchResponse, fetchToJson, hasData, hasError } from '../../../utils/fetchToJson';
+import { Oppgave } from '../../../models/meldinger/oppgave';
+import { apiBaseUri, postConfig } from '../../../api/config';
+import { getTemaFraCookie, setTemaCookie } from '../../../redux/session/plukkTemaCookie';
+import { useDispatch } from 'react-redux';
+import { setJobberMedSTO } from '../../../redux/session/session';
 
 const StyledArticle = styled.article`
     text-align: center;
@@ -48,12 +50,13 @@ const placeholderProps: RestResourcePlaceholderProps = { returnOnNotFound: 'Kunn
 
 function HentOppgaveKnapp() {
     const history = useHistory();
+    const dispatch = useDispatch();
     const [tomKø, setTomKø] = useState(false);
     const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
-    const dispatch = useDispatch();
-    const oppgaveResource = useSelector((state: AppState) => state.restResources.plukkNyeOppgaver);
-    const velgTemaGruppe = (temagruppe: Temagruppe) => dispatch(velgTemagruppeForPlukk(temagruppe));
-    const valgtTemaGruppe = useSelector((state: AppState) => state.session.temagruppeForPlukk);
+    const [isPosting, setIsPosting] = useState(false);
+    const [response, setResponse] = useState<FetchResponse<Oppgave[]> | undefined>(undefined);
+    const [temagruppe, setTemagruppe] = useState<Temagruppe | undefined>(getTemaFraCookie);
+
     const tittelId = useRef(guid());
     let selectRef: HTMLSelectElement | null = null;
 
@@ -74,20 +77,24 @@ function HentOppgaveKnapp() {
     }
 
     const onPlukkOppgaver = () => {
-        if (!valgtTemaGruppe) {
+        if (!temagruppe) {
             setTemaGruppeFeilmelding(true);
             return;
         }
         setTemaGruppeFeilmelding(false);
         setTomKø(false);
-        dispatch(
-            oppgaveResource.actions.post({}, response => {
-                const antallOppgaverTildelt = response.length;
+        setIsPosting(true);
+        dispatch(setJobberMedSTO(true));
+        fetchToJson<Oppgave[]>(`${apiBaseUri}/oppgaver/plukk/${temagruppe}`, postConfig()).then(response => {
+            setIsPosting(false);
+            setResponse(response);
+            if (hasData(response)) {
+                const antallOppgaverTildelt = response.data.length;
                 if (antallOppgaverTildelt === 0) {
                     setTomKø(true);
                     return;
                 }
-                const oppgave = response[0];
+                const oppgave = response.data[0];
                 const fødselsnummer = oppgave.fødselsnummer;
                 history.push(
                     `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
@@ -95,12 +102,13 @@ function HentOppgaveKnapp() {
                 antallOppgaverTildelt > 1 &&
                     loggEvent('FlereOppgaverTildelt', 'HentOppgave', undefined, { antall: antallOppgaverTildelt });
                 loggEvent('Hent-Oppgave', 'HentOppgave', undefined, { antall: antallOppgaverTildelt });
-            })
-        );
+            }
+        });
     };
 
     const onTemagruppeChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        velgTemaGruppe(event.target.value as Temagruppe);
+        setTemagruppe(event.target.value as Temagruppe);
+        setTemaCookie(event.target.value as Temagruppe);
         setTemaGruppeFeilmelding(false);
     };
 
@@ -124,7 +132,7 @@ function HentOppgaveKnapp() {
                     // @ts-ignore
                     selectRef={ref => (selectRef = ref)}
                     label="Hent oppgave fra temagruppe"
-                    value={valgtTemaGruppe || ''}
+                    value={temagruppe || ''}
                     onChange={onTemagruppeChange}
                     feil={
                         temaGruppeFeilmelding ? (
@@ -139,16 +147,11 @@ function HentOppgaveKnapp() {
                     </option>
                     {temagruppeOptions}
                 </Select>
-                <Hovedknapp
-                    id="hentoppgaveknapp"
-                    type="hoved"
-                    onClick={onPlukkOppgaver}
-                    spinner={isPosting(oppgaveResource)}
-                >
+                <Hovedknapp id="hentoppgaveknapp" type="hoved" onClick={onPlukkOppgaver} spinner={isPosting}>
                     Hent oppgave
                 </Hovedknapp>
             </KnappLayout>
-            {isFailedPosting(oppgaveResource) && <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>}
+            {response && hasError(response) && <AlertStripeAdvarsel>Det skjedde en teknisk feil</AlertStripeAdvarsel>}
             {tomtTilbakemelding}
             <TildelteOppgaver />
         </StyledArticle>

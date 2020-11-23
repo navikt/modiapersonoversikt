@@ -103,18 +103,3 @@ export interface OpprettHenvendelseResponse {
     behandlingsId: string;
     oppgaveId?: string;
 }
-
-export interface SlaaSammenRequest {
-    traader: SlaaSammenTraad[];
-    temagruppe: Temagruppe;
-}
-
-export interface SlaaSammenTraad {
-    oppgaveId: string;
-    traadId: string;
-}
-
-export interface SlaaSammenResponse {
-    nyTraadId: string;
-    traader: Traad[];
-}

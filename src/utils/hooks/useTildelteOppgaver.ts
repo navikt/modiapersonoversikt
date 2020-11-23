@@ -1,8 +1,6 @@
 import { useMemo } from 'react';
-import { isFinishedPosting } from '../../rest/utils/postResource';
 import { useFødselsnummer } from '../customHooks';
 import { useRestResource } from '../../rest/consumer/useRestResource';
-import { usePostResource } from '../../rest/consumer/usePostResource';
 import { Oppgave } from '../../models/meldinger/oppgave';
 
 export function removeDuplicateOppgaver(value: Oppgave, index: number, list: Oppgave[]) {
@@ -11,26 +9,18 @@ export function removeDuplicateOppgaver(value: Oppgave, index: number, list: Opp
 
 const emptyList: any[] = [];
 function useTildelteOppgaver() {
-    const oppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
     const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
     const fnr = useFødselsnummer();
 
     const tildelteOppgaver = useMemo(
-        () =>
-            [
-                ...(isFinishedPosting(oppgaveResource) ? oppgaveResource.response : emptyList),
-                ...(tildelteOppgaverResource.data ? tildelteOppgaverResource.data : emptyList)
-            ].filter(removeDuplicateOppgaver),
-        [oppgaveResource, tildelteOppgaverResource]
+        () => (tildelteOppgaverResource.data ?? emptyList).filter(removeDuplicateOppgaver),
+        [tildelteOppgaverResource]
     );
 
-    const plukkedeOppgaverPåBruker = useMemo(
-        () =>
-            isFinishedPosting(oppgaveResource)
-                ? oppgaveResource.response.filter(oppg => oppg.fødselsnummer === fnr)
-                : emptyList,
-        [oppgaveResource, fnr]
-    );
+    const plukkedeOppgaverPåBruker = useMemo(() => tildelteOppgaver.filter(oppg => oppg.fødselsnummer === fnr), [
+        tildelteOppgaver,
+        fnr
+    ]);
 
     return useMemo(() => {
         const alleTildelteOppgaverPaaBruker = tildelteOppgaver.filter(oppg => oppg.fødselsnummer === fnr);
