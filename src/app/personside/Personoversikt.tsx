@@ -2,8 +2,6 @@ import * as React from 'react';
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
 import MainLayout from './MainLayout';
 import { useFødselsnummer, useOnMount } from '../../utils/customHooks';
-import { setJobberMedSTO } from '../../redux/session/session';
-import { useDispatch } from 'react-redux';
 import { erGydligishFnr } from '../../utils/fnr-utils';
 import { useHistory } from 'react-router';
 import { paths } from '../routes/routing';
@@ -14,7 +12,6 @@ import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner'
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
-import { useRestResource } from '../../rest/consumer/useRestResource';
 
 const onError = (
     <FillCenterAndFadeIn>
@@ -23,15 +20,8 @@ const onError = (
 );
 
 function Personoversikt() {
-    const tildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver);
-    const dispatch = useDispatch();
     const fnr = useFødselsnummer();
     const history = useHistory();
-
-    useOnMount(() => {
-        const harSTOOppgave = tildelteOppgaver?.data?.some(oppgave => oppgave.erSTOOppgave) ?? false;
-        dispatch(setJobberMedSTO(harSTOOppgave));
-    });
 
     useOnMount(() => {
         if (!erGydligishFnr(fnr)) {

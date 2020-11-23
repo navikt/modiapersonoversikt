@@ -20,6 +20,8 @@ import { FetchResponse, fetchToJson, hasData, hasError } from '../../../utils/fe
 import { Oppgave } from '../../../models/meldinger/oppgave';
 import { apiBaseUri, postConfig } from '../../../api/config';
 import { getTemaFraCookie, setTemaCookie } from '../../../redux/session/plukkTemaCookie';
+import { useDispatch } from 'react-redux';
+import { setJobberMedSTO } from '../../../redux/session/session';
 
 const StyledArticle = styled.article`
     text-align: center;
@@ -48,6 +50,7 @@ const placeholderProps: RestResourcePlaceholderProps = { returnOnNotFound: 'Kunn
 
 function HentOppgaveKnapp() {
     const history = useHistory();
+    const dispatch = useDispatch();
     const [tomKø, setTomKø] = useState(false);
     const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
     const [isPosting, setIsPosting] = useState(false);
@@ -81,11 +84,11 @@ function HentOppgaveKnapp() {
         setTemaGruppeFeilmelding(false);
         setTomKø(false);
         setIsPosting(true);
+        dispatch(setJobberMedSTO(true));
         fetchToJson<Oppgave[]>(`${apiBaseUri}/oppgaver/plukk/${temagruppe}`, postConfig()).then(response => {
             setIsPosting(false);
             setResponse(response);
-            if (hasError(response)) {
-            } else if (hasData(response)) {
+            if (hasData(response)) {
                 const antallOppgaverTildelt = response.data.length;
                 if (antallOppgaverTildelt === 0) {
                     setTomKø(true);
