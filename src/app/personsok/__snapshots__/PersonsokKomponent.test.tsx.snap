@@ -81,11 +81,20 @@ exports[`viser personsøk-komponent 1`] = `
   padding: .5rem;
 }
 
+.c0 .skjemaelement {
+  margin-bottom: 0.5rem;
+}
+
+.c0 .skjemaelement__label {
+  margin-bottom: 0rem;
+}
+
 .c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 0.5rem;
 }
 
 .c1 > *:first-child {
