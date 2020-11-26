@@ -34,7 +34,6 @@ import { useAppState } from '../../../../../../../utils/customHooks';
 import { hasData, isPending } from '@nutgaard/use-async';
 import useFetch, { FetchResult } from '@nutgaard/use-fetch';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
-import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
 import { useFocusOnFirstInputOnMount } from '../../../../../../../utils/hooks/useFocusOnFirstInputOnMount';
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
 import useTildelteOppgaver from '../../../../../../../utils/hooks/useTildelteOppgaver';
@@ -142,7 +141,6 @@ function MerkPanel(props: Props) {
 
     const reloadMeldinger = tråderResource.actions.reload;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
-    const resetPlukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver).actions.reset;
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
     const tildelteOppgaver = useTildelteOppgaver();
 
@@ -177,7 +175,7 @@ function MerkPanel(props: Props) {
     };
     const callbackEtterOppgaveFerdigstilling = () => {
         callbackUtenOppgaveFerdigstilling();
-        dispatch(resetPlukkOppgaveResource);
+        dispatch(reloadTildelteOppgaver);
     };
     const resetDialogpanel = () => {
         if (valgtTraad !== dialogpanelTraad || valgtOperasjon === MerkOperasjon.BISYS) {

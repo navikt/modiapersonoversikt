@@ -26,7 +26,6 @@ export function useJustOnceEffect(effect: JustOnceEffectCallback, deps?: Depende
         done.current = true;
     }, [done]);
     useEffect(() => {
-        debugger;
         if (!done.current) {
             return effect(setDone);
         }
