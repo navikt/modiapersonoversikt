@@ -4,7 +4,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
 import { PersonSokFormState, lagRequest } from './personsok-utils';
-import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
+import { loggError } from '../../utils/logger/frontendLogger';
 import useFormstate, { FunctionValidator, Values } from '@nutgaard/use-formstate';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
@@ -28,6 +28,15 @@ interface Props {
 }
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
+    .skjemaelement__label {
+        margin-top: 0.5rem;
+        margin-bottom: 0rem;
+    }
+    .lenke {
+        .typo-normal {
+            margin-top: 1rem;
+        }
+    }
 `;
 
 const SectionStyle = styled.section`
@@ -49,6 +58,7 @@ const InputLinje = styled.div`
         padding-right: 0.5em;
     }
 `;
+
 export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values => {
     let fornavn = undefined;
     if (!values.fornavn && values.etternavn) {
@@ -165,11 +175,6 @@ function PersonsokSkjema(props: Props) {
 
     function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
-
-        if (values.utenlandskID.length > 0) {
-            loggEvent('PersonsokUtenlandsId', 'Personsok');
-        }
-
         const request: PersonsokRequest = lagRequest(values);
         return fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok`, postConfig(request))
             .then(response => {
