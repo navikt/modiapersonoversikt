@@ -28,19 +28,17 @@ interface Props {
 }
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
-    .skjemaelement__label {
-        margin-top: 0.5rem;
-        margin-bottom: 0rem;
+    .skjemaelement {
+        margin-bottom: 0.5rem;
     }
-    .lenke {
-        .typo-normal {
-            margin-top: 1rem;
-        }
+    .skjemaelement__label {
+        margin-bottom: 0rem;
     }
 `;
 
 const SectionStyle = styled.section`
     display: flex;
+    margin-bottom: 0.5rem;
     > *:first-child {
         margin-right: 10rem;
     }
