@@ -81,6 +81,15 @@ exports[`viser personsøk-komponent 1`] = `
   padding: .5rem;
 }
 
+.c0 .skjemaelement__label {
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+}
+
+.c0 .lenke .typo-normal {
+  margin-top: 1rem;
+}
+
 .c1 {
   display: -webkit-box;
   display: -webkit-flex;
