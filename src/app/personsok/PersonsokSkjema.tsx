@@ -28,10 +28,17 @@ interface Props {
 }
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
+    .skjemaelement {
+        margin-bottom: 0.5rem;
+    }
+    .skjemaelement__label {
+        margin-bottom: 0rem;
+    }
 `;
 
 const SectionStyle = styled.section`
     display: flex;
+    margin-bottom: 0.5rem;
     > *:first-child {
         margin-right: 10rem;
     }
@@ -49,6 +56,7 @@ const InputLinje = styled.div`
         padding-right: 0.5em;
     }
 `;
+
 export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values => {
     let fornavn = undefined;
     if (!values.fornavn && values.etternavn) {
