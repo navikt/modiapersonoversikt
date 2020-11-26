@@ -4,7 +4,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
 import { PersonSokFormState, lagRequest } from './personsok-utils';
-import { loggError } from '../../utils/logger/frontendLogger';
+import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import useFormstate, { FunctionValidator, Values } from '@nutgaard/use-formstate';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
@@ -175,6 +175,11 @@ function PersonsokSkjema(props: Props) {
 
     function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
+
+        if (values.utenlandskID.length > 0) {
+            loggEvent('PersonsokUtenlandsId', 'Personsok');
+        }
+
         const request: PersonsokRequest = lagRequest(values);
         return fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok`, postConfig(request))
             .then(response => {
