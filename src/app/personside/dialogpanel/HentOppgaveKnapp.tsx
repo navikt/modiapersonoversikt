@@ -89,12 +89,13 @@ function HentOppgaveKnapp() {
             setIsPosting(false);
             setResponse(response);
             if (hasData(response)) {
-                const antallOppgaverTildelt = response.data.length;
+                const stoOppgaver = response.data.filter(oppgave => oppgave.erSTOOppgave);
+                const antallOppgaverTildelt = stoOppgaver.length;
                 if (antallOppgaverTildelt === 0) {
                     setTomKø(true);
                     return;
                 }
-                const oppgave = response.data[0];
+                const oppgave = stoOppgaver[0];
                 const fødselsnummer = oppgave.fødselsnummer;
                 history.push(
                     `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
