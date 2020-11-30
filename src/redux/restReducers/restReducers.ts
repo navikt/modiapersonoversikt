@@ -49,9 +49,9 @@ import { SaksbehandlersEnheter } from '../../models/saksbehandlersEnheter';
 import { TilgangDTO } from './tilgangskontroll';
 
 export interface RestEndepunkter {
-    innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>;
+    innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>; // TODO denne kan fjernes, eller evt erstattes med kall til modiacontextholder
+    saksbehandlersEnheter: RestResource<SaksbehandlersEnheter>; // TODO denne bør fjernes, eller evt erstattes med kall til modiacontextholder
     tilgangskontroll: RestResource<TilgangDTO>;
-    saksbehandlersEnheter: RestResource<SaksbehandlersEnheter>;
     personinformasjon: RestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
     tildelteOppgaver: RestResource<Oppgave[]>;

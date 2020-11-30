@@ -6,7 +6,12 @@ import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpe
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
 import { getMockKontaktinformasjon } from './person/krrKontaktinformasjon/kontaktinformasjon-mock';
-import { mockGeneratorMedEnhetId, mockGeneratorMedFødselsnummer, withDelayedResponse } from './utils/fetch-utils';
+import {
+    mockGeneratorMedEnhetId,
+    mockGeneratorMedFødselsnummer,
+    verify,
+    withDelayedResponse
+} from './utils/fetch-utils';
 import { getMockNavKontor } from './navkontor-mock';
 import { erEgenAnsatt } from './egenansatt-mock';
 import { mockBaseUrls } from './baseUrls-mock';
@@ -48,6 +53,14 @@ const STATUS_BAD_REQUEST = () => 400;
 
 const oppgaveBackendMock = new OppgaverBackendMock();
 const meldingerBackendMock = new MeldingerBackendMock(oppgaveBackendMock);
+
+const harEnhetIdSomQueryParam = (req: MockRequest) => {
+    const enhetQueryParam = req.queryParams.enhet;
+    if (!enhetQueryParam) {
+        return 'Skal ha enhetId i queryParameter';
+    }
+    return undefined;
+};
 
 export function randomDelay() {
     if (navfaker.random.vektetSjanse(0.05)) {
@@ -122,10 +135,13 @@ function setupKontaktinformasjonMock(mock: FetchMock) {
 function setupSaksoversiktMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/saker/:fodselsnummer/sakstema',
-        withDelayedResponse(
-            randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(getMockSaksoversikt)
+        verify(
+            harEnhetIdSomQueryParam,
+            withDelayedResponse(
+                randomDelay(),
+                fødselsNummerErGyldigStatus,
+                mockGeneratorMedFødselsnummer(getMockSaksoversikt)
+            )
         )
     );
 }
@@ -220,10 +236,13 @@ function setupVarselMock(mock: FetchMock) {
 function setupMeldingerMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/dialog/:fodselsnummer/meldinger',
-        withDelayedResponse(
-            randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fodselsnummer => meldingerBackendMock.getMeldinger(fodselsnummer))
+        verify(
+            harEnhetIdSomQueryParam,
+            withDelayedResponse(
+                randomDelay(),
+                fødselsNummerErGyldigStatus,
+                mockGeneratorMedFødselsnummer(fodselsnummer => meldingerBackendMock.getMeldinger(fodselsnummer))
+            )
         )
     );
 }
@@ -317,7 +336,10 @@ function setupVelgEnhetMock(mock: FetchMock) {
 function setupOppgaveMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/oppgaver/plukk/:temagruppe',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => oppgaveBackendMock.plukkOppgave())
+        verify(
+            harEnhetIdSomQueryParam,
+            withDelayedResponse(randomDelay(), STATUS_OK, () => oppgaveBackendMock.plukkOppgave())
+        )
     );
 }
 
@@ -485,7 +507,10 @@ function setupJournalforingMock(mock: FetchMock) {
     );
     mock.post(
         apiBaseUri + '/journalforing/:fnr/:traadId',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+        verify(
+            harEnhetIdSomQueryParam,
+            withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+        )
     );
 }
 

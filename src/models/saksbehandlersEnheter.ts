@@ -1,4 +1,4 @@
-interface Enhet {
+export interface Enhet {
     navn: string;
     enhetId: string;
 }

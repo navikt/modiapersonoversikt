@@ -4,6 +4,8 @@ import { OppgavelisteValg } from './SendNyMelding';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import { useAppState } from '../../../../utils/customHooks';
+import { selectValgtEnhet } from '../../../../redux/session/session';
 
 interface Props {
     oppgaveliste: OppgavelisteValg;
@@ -18,8 +20,11 @@ const StyledSelect = styled(Select)`
 `;
 
 function Oppgaveliste(props: Props) {
-    const saksbehandlerInfo = useRestResource(resources => resources.innloggetSaksbehandler);
-    let enhet = saksbehandlerInfo.data ? saksbehandlerInfo.data.enhetNavn : 'valgt enhet';
+    const enheter = useRestResource(resources => resources.saksbehandlersEnheter);
+    const valgtEnhetId = useAppState(selectValgtEnhet);
+    const valgtEnhet = enheter.data?.enhetliste.find(enhet => enhet.enhetId === valgtEnhetId);
+    const enhet = valgtEnhet?.navn ?? 'valgt enhet';
+
     return (
         <StyledSelect
             label="Oppgaveliste"

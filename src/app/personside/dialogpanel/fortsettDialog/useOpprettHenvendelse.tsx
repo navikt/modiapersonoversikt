@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
+import { useAppState, useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
@@ -9,6 +9,7 @@ import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { useState } from 'react';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import { selectValgtEnhet } from '../../../../redux/session/session';
 
 interface NotFinishedOpprettHenvendelse {
     success: false;
@@ -23,6 +24,7 @@ interface FinishedOpprettHenvendelse {
 type OpprettHenvendelseReturns = NotFinishedOpprettHenvendelse | FinishedOpprettHenvendelse;
 
 function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
+    const valgtEnhet = useAppState(selectValgtEnhet);
     const [error, setError] = useState(false);
     const [response, setResponse] = useState<OpprettHenvendelseResponse | undefined>();
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
@@ -30,7 +32,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
     const fnr = useFødselsnummer();
 
     useOnMount(function getBehandlingsId() {
-        const opprettHenvendelseRequest: OpprettHenvendelseRequest = { traadId: traad.traadId };
+        const opprettHenvendelseRequest: OpprettHenvendelseRequest = { enhet: valgtEnhet, traadId: traad.traadId };
         post(`${apiBaseUri}/dialog/${fnr}/fortsett/opprett`, opprettHenvendelseRequest, 'Opprett-henvendelse')
             .then(data => setResponse(data as OpprettHenvendelseResponse))
             .then(() => dispatch(reloadTildelteOppgaver))
