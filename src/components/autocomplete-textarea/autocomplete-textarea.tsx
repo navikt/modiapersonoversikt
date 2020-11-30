@@ -167,6 +167,26 @@ function useRules(): Regler {
             type: 'external',
             regex: /^forskuddsøk$/i,
             externalId: '6c6a3604-d47a-4cb3-bd7b-a354e98de48c'
+        },
+        {
+            type: 'internal',
+            regex: /^fp$/i,
+            replacement: () => 'foreldrepenger '
+        },
+        {
+            type: 'internal',
+            regex: /^bm$/i,
+            replacement: () => 'bidragsmottaker '
+        },
+        {
+            type: 'internal',
+            regex: /^ag$/i,
+            replacement: () => 'arbeidsgiver '
+        },
+        {
+            type: 'internal',
+            regex: /^bp$/i,
+            replacement: () => 'bidragspliktig '
         }
     ];
 }
@@ -192,23 +212,25 @@ function AutoTekstTips() {
                 <ul>
                     <li>foet + mellomrom: Brukers fulle navn</li>
                     <li>mvh + mellomrom: Signatur</li>
-                    <li>mvhks + mellomrom: Signatur som fra KS</li>
+                    <li>mvhks + mellomrom: Signatur fra KS</li>
                     <li>hei + mellomrom: Hei bruker</li>
-                    <li>vint + mellomrom: Videreformidle Internt</li>
-                    <li>vinten + mellomrom: Videreformidle Internt (engelsk)</li>
+                    <li>vint + mellomrom: Videreformidle Internt (vinten for engelsk)</li>
                     <li>AAP + mellomrom: arbeidsavklaringspenger</li>
                     <li>sbt + mellomrom: saksbehandlingstid</li>
                     <li>nay + mellomrom: NAV Arbeid og ytelser</li>
                     <li>nfp + mellomrom: NAV Familie- og pensjonsytelser</li>
                     <li>hi, + mellomrom: Hi, bruker (engelsk)</li>
-                    <li>mvh/aap + nn + mellomrom: autofullfør på nynorsk</li>
-                    <li>mvh/aap + en + mellomrom: autofullfør på engelsk</li>
+                    <li>mvh/aap + nn eller en + mellomrom: autofullfør på nynorsk eller engelsk</li>
                     <li>korkonk + mellomrom: Informasjon ved konkurs</li>
                     <li>korperm + mellomrom: Informasjon ved permittering</li>
                     <li>koroms + mellomrom: OMS - Korona stengt bhg/skole</li>
                     <li>korosakt + mellomrom: OS - Korona aktivitet STO</li>
                     <li>sykperm + mellomrom: Sykmeldt og permittert</li>
                     <li>forskuddsøk + mellomrom: Søke om forskudd</li>
+                    <li>fp + mellomrom: foreldrepenger</li>
+                    <li>bm + mellomrom: bidragsmottaker</li>
+                    <li>bp + mellomrom: bidragspliktig</li>
+                    <li>ag + mellomrom: arbeidsgiver</li>
                 </ul>
             </Hjelpetekst>
         </HjelpetekstStyle>
@@ -250,6 +272,7 @@ function autoFullfør(autofullførData: AutofullforData, parsedText: string) {
 }
 
 const tellerTekstCls = (remaining: number) => classNames('teller-tekst', { 'teller-tekst--overflow': remaining < 0 });
+
 function noAriaTellerTekst(antallTegn: number, maxLength: number) {
     const difference = maxLength - antallTegn;
     return (

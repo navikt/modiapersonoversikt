@@ -25,16 +25,16 @@ import {
     KvitteringsData
 } from './FortsettDialogTypes';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
-import { usePostResource } from '../../../../rest/consumer/usePostResource';
 import { Undertittel } from 'nav-frontend-typografi';
 import { guid } from 'nav-frontend-js-utils';
 import styled from 'styled-components';
 import theme from '../../../../styles/personOversiktTheme';
-import { isFinishedPosting } from '../../../../rest/utils/postResource';
 import ReflowBoundry from '../ReflowBoundry';
 import { Temagruppe } from '../../../../models/temagrupper';
 import useDraft, { Draft } from '../use-draft';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
+import { Oppgave } from '../../../../models/meldinger/oppgave';
+import { hasData, RestResource } from '../../../../rest/utils/restResource';
 import { selectValgtEnhet } from '../../../../redux/session/session';
 
 export type FortsettDialogType =
@@ -51,6 +51,22 @@ interface Props {
 const StyledArticle = styled.article`
     padding: 1rem ${theme.margin.layout};
 `;
+
+export function finnPlukketOppgaveForTraad(
+    traad: Traad,
+    resource: RestResource<Oppgave[]>
+): { oppgave: Oppgave | undefined; erSTOOppgave: boolean } {
+    if (!hasData(resource)) {
+        return { oppgave: undefined, erSTOOppgave: false };
+    } else {
+        const oppgave: Oppgave | undefined = resource.data.find(
+            (oppgave: Oppgave) => oppgave.traadId === traad.traadId
+        );
+        const erSTOOppgave = oppgave !== undefined && oppgave.erSTOOppgave;
+
+        return { oppgave, erSTOOppgave };
+    }
+}
 
 function FortsettDialogContainer(props: Props) {
     const initialState = {
@@ -72,9 +88,9 @@ function FortsettDialogContainer(props: Props) {
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
     const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
-    const plukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
-    const resetPlukkOppgaveResource = plukkOppgaveResource.actions.reset;
-    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
+    const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
+    const tildelteOppgaver = tildelteOppgaverResource.resource;
+    const reloadTildelteOppgaver = tildelteOppgaverResource.actions.reload;
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
     });
@@ -105,10 +121,9 @@ function FortsettDialogContainer(props: Props) {
     if (opprettHenvendelse.success === false) {
         return opprettHenvendelse.placeholder;
     }
-    const harPlukketSTOOppgave =
-        isFinishedPosting(plukkOppgaveResource) && plukkOppgaveResource.response.find(it => it.erSTOOppgave);
-    const STOOppgaveId = harPlukketSTOOppgave && harPlukketSTOOppgave.oppgaveId;
-    const oppgaveId = STOOppgaveId ? STOOppgaveId : opprettHenvendelse.henvendelse.oppgaveId;
+
+    const { oppgave, erSTOOppgave } = finnPlukketOppgaveForTraad(props.traad, tildelteOppgaver);
+    const oppgaveId = oppgave ? oppgave.oppgaveId : opprettHenvendelse.henvendelse.oppgaveId;
 
     const handleAvbryt = () => {
         removeDraft();
@@ -122,7 +137,6 @@ function FortsettDialogContainer(props: Props) {
         }
         const callback = () => {
             removeDraft();
-            dispatch(resetPlukkOppgaveResource);
             dispatch(reloadTildelteOppgaver);
             dispatch(reloadMeldinger);
         };
@@ -235,8 +249,9 @@ function FortsettDialogContainer(props: Props) {
                     key={props.traad.traadId}
                     fortsettDialogPanelState={dialogStatus}
                     erTilknyttetOppgave={!!oppgaveId}
+                    erSTOOppgave={erSTOOppgave}
                 />
-                {oppgaveId && (
+                {oppgaveId && erSTOOppgave && (
                     <LeggTilbakepanel
                         oppgaveId={oppgaveId}
                         traadId={props.traad.traadId}

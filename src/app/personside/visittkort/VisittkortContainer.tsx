@@ -31,12 +31,14 @@ const PlaceHolder = (
     </SpinnerWrapper>
 );
 
+const placeholderProps = {
+    returnOnError: 'Kunne ikke hente personinfo',
+    returnOnPending: PlaceHolder
+};
+
 function VisittkortContainer() {
     const erApnet = useAppState(state => state.ui.visittkort.apent);
-    const personResource = useRestResource(resources => resources.personinformasjon, {
-        returnOnError: 'Kunne ikke hente personinfo',
-        returnOnPending: PlaceHolder
-    });
+    const personResource = useRestResource(resources => resources.personinformasjon, placeholderProps);
     const dispatch = useDispatch();
     const toggle = useCallback(
         (apent?: boolean) => {

@@ -2,10 +2,6 @@ import * as React from 'react';
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
 import MainLayout from './MainLayout';
 import { useFødselsnummer, useOnMount } from '../../utils/customHooks';
-import { isFinishedPosting } from '../../rest/utils/postResource';
-import { setJobberMedSTO } from '../../redux/session/session';
-import { useDispatch } from 'react-redux';
-import { usePostResource } from '../../rest/consumer/usePostResource';
 import { erGydligishFnr } from '../../utils/fnr-utils';
 import { useHistory } from 'react-router';
 import { paths } from '../routes/routing';
@@ -24,20 +20,8 @@ const onError = (
 );
 
 function Personoversikt() {
-    const oppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
-    const dispatch = useDispatch();
     const fnr = useFødselsnummer();
     const history = useHistory();
-
-    useOnMount(() => {
-        if (isFinishedPosting(oppgaveResource)) {
-            const oppgaver = oppgaveResource.response;
-            const harSTOOppgave = oppgaver.some(oppgave => oppgave.erSTOOppgave);
-            dispatch(setJobberMedSTO(!harSTOOppgave));
-        } else {
-            dispatch(setJobberMedSTO(false));
-        }
-    });
 
     useOnMount(() => {
         if (!erGydligishFnr(fnr)) {

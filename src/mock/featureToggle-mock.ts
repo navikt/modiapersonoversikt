@@ -5,13 +5,9 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
     switch (toggleId) {
         case FeatureToggles.VisTilbakemelding:
             return true;
-        case FeatureToggles.Infomelding:
-            return true;
         case FeatureToggles.UtloggingsInfo:
             return true;
         case FeatureToggles.UtenlandskID:
-            return true;
-        case FeatureToggles.Helse:
             return true;
         default:
             return Math.random() > 0.5;

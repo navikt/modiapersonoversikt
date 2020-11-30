@@ -38,6 +38,8 @@ type DyplenkerQueryParams = {
 
 export function useInfotabsDyplenker(): Dyplenker {
     const params = useParams<DyplenkeParams>();
+    const posteringsdato: string | undefined = params.posteringsdato;
+
     const queryParams = useQueryParams<DyplenkerQueryParams>();
     const paths = usePaths();
     const sakerRouting = useSakerRouting();
@@ -48,7 +50,7 @@ export function useInfotabsDyplenker(): Dyplenker {
                 link: (utbetaling: Utbetaling) => `${paths.utbetlainger}/${moment(utbetaling.posteringsdato).unix()}`,
                 route: `${paths.utbetlainger}/:posteringsdato?`,
                 erValgt: (utbetaling: Utbetaling) => {
-                    const posteringsdatoFraUrl = moment.unix((params.posteringsdato as unknown) as number);
+                    const posteringsdatoFraUrl = moment.unix((posteringsdato as unknown) as number);
                     return moment(utbetaling.posteringsdato).isSame(posteringsdatoFraUrl);
                 }
             },
@@ -64,6 +66,6 @@ export function useInfotabsDyplenker(): Dyplenker {
                 erValgt: (ytelse: Ytelse) => getUnikYtelseKey(ytelse) === queryParams.ytelse
             }
         }),
-        [paths, params, sakerRouting, queryParams]
+        [paths, posteringsdato, sakerRouting, queryParams]
     );
 }

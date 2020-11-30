@@ -19,12 +19,10 @@ import Oppgaveliste from './Oppgaveliste';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import theme from '../../../../styles/personOversiktTheme';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
-import { Temagruppe, TemaSamtalereferat, TemaSamtalereferatFT } from '../../../../models/temagrupper';
+import { Temagruppe, TemaSamtalereferat } from '../../../../models/temagrupper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { guid } from 'nav-frontend-js-utils';
 import ReflowBoundry from '../ReflowBoundry';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -70,7 +68,7 @@ const StyledUndertittel = styled(Undertittel)`
     margin-bottom: 1rem !important;
 `;
 
-export const tekstMaksLengde = 5000;
+export const tekstMaksLengde = 10000;
 
 interface Props {
     handleSubmit: (event: FormEvent) => void;
@@ -101,9 +99,6 @@ function SendNyMelding(props: Props) {
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
     const erInfomelding = NyMeldingValidator.erInfomelding(state);
 
-    const enabled = useFeatureToggle(FeatureToggles.Helse).isOn ?? false;
-    const temaSamtalereferat = enabled ? TemaSamtalereferatFT : TemaSamtalereferat;
-
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>
@@ -128,7 +123,7 @@ function SendNyMelding(props: Props) {
                                 setTema={tema => updateState({ tema: tema })}
                                 valgtTema={state.tema}
                                 visFeilmelding={!NyMeldingValidator.tema(state) && state.visFeilmeldinger}
-                                temavalg={temaSamtalereferat}
+                                temavalg={TemaSamtalereferat}
                             />
                             <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
                         </UnmountClosed>

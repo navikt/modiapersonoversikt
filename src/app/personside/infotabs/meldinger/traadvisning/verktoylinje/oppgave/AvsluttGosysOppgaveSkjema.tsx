@@ -5,14 +5,14 @@ import { post } from '../../../../../../../api/api';
 import { AlertStripeAdvarsel, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { useAppState, useFocusOnMount } from '../../../../../../../utils/customHooks';
-import { usePostResource } from '../../../../../../../rest/consumer/usePostResource';
-import { isFinishedPosting } from '../../../../../../../rest/utils/postResource';
 import { Textarea } from 'nav-frontend-skjema';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { Element } from 'nav-frontend-typografi';
 import { useDispatch } from 'react-redux';
 import { AvsluttGosysOppgaveRequest } from '../../../../../../../models/meldinger/merk';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
+import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
+import { hasData } from '../../../../../../../rest/utils/restResource';
 
 const StyledAlert = styled.div`
     margin: 1rem 0rem;
@@ -32,14 +32,14 @@ function AvsluttGosysOppgaveSkjema(props: Props) {
     const dispatch = useDispatch();
     const ref = useRef<HTMLElement>(null);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
-    const plukkOppgaveResource = usePostResource(resources => resources.plukkNyeOppgaver);
+    const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
     const [gosysBeskrivelse, setGosysBeskrivelse] = useState('Henvendelse lest og vurdert i Modia.');
     const [submitting, setSubmitting] = useState(false);
     const [avsluttOppgaveSuksess, setAvsluttOppgaveSuksess] = useState(false);
     const [error, setError] = useState(false);
     const harOppgaveTilknyttetTrad =
-        isFinishedPosting(plukkOppgaveResource) &&
-        plukkOppgaveResource.response.find(it => it.traadId === props.valgtTraad.traadId);
+        hasData(tildelteOppgaverResource.resource) &&
+        tildelteOppgaverResource.resource.data.find(it => it.traadId === props.valgtTraad.traadId);
 
     useFocusOnMount(ref);
 
@@ -58,7 +58,7 @@ function AvsluttGosysOppgaveSkjema(props: Props) {
             post(`${apiBaseUri}/dialogmerking/avsluttgosysoppgave`, request, 'Avslutt-Oppgave-Fra-Gosys')
                 .then(() => {
                     setAvsluttOppgaveSuksess(true);
-                    dispatch(plukkOppgaveResource.actions.reset);
+                    dispatch(tildelteOppgaverResource.actions.reset);
                 })
                 .catch(() => {
                     setError(true);

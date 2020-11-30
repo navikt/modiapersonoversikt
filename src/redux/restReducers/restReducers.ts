@@ -2,7 +2,6 @@ import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
 import tilgangskontrollReducer from './tilgangskontroll';
 import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
-import hentOppgaverReducer from './hentOppgaver';
 import kontaktinformasjonReducer from './kontaktinformasjon';
 import egenAnsattReducer from './egenansatt';
 import vergemalReducer from './vergemal';
@@ -23,8 +22,6 @@ import saksoversiktReducer from './saksoversikt';
 import varselReducer from './varsel';
 import meldingerReducer from './meldinger/meldinger';
 import oppgaveGsakTemaReducer from './meldinger/gsakTema';
-import opprettOppgave from './meldinger/opprettOppgave';
-import personsok from './personsok';
 import { PersonRespons } from '../../models/person/person';
 import { NavKontorResponse } from '../../models/navkontor';
 import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
@@ -41,14 +38,11 @@ import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
-import { Traad, SlaaSammenRequest, SlaaSammenResponse } from '../../models/meldinger/meldinger';
-import { PostResource } from '../../rest/utils/postResource';
-import { GsakTema, Oppgave, OpprettOppgaveRequest } from '../../models/meldinger/oppgave';
+import { Traad } from '../../models/meldinger/meldinger';
+import { GsakTema, Oppgave } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
-import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
-import slaaSammen from './meldinger/slaaSammen';
 import utbetalingerOversikt from './utbetalingerOversikt';
 import saksbehandlersEnheter from './saksbehandlersEnheter';
 import { SaksbehandlersEnheter } from '../../models/saksbehandlersEnheter';
@@ -60,7 +54,6 @@ export interface RestEndepunkter {
     tilgangskontroll: RestResource<TilgangDTO>;
     personinformasjon: RestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
-    plukkNyeOppgaver: PostResource<{}, Oppgave[]>;
     tildelteOppgaver: RestResource<Oppgave[]>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
@@ -83,9 +76,6 @@ export interface RestEndepunkter {
     brukersVarsler: RestResource<Varsel[]>;
     tråderOgMeldinger: RestResource<Traad[]>;
     oppgaveGsakTema: RestResource<GsakTema[]>;
-    opprettOppgave: PostResource<OpprettOppgaveRequest>;
-    personsok: PostResource<PersonsokRequest, PersonsokResponse[]>;
-    slaaSammen: PostResource<SlaaSammenRequest, SlaaSammenResponse>;
 }
 
 export default combineResettableReducers<RestEndepunkter>(
@@ -95,7 +85,6 @@ export default combineResettableReducers<RestEndepunkter>(
         saksbehandlersEnheter: saksbehandlersEnheter,
         personinformasjon: personinformasjonReducer,
         brukersNavKontor: navkontorReducer,
-        plukkNyeOppgaver: hentOppgaverReducer,
         tildelteOppgaver: tildelteOppgaver,
         kontaktinformasjon: kontaktinformasjonReducer,
         egenAnsatt: egenAnsattReducer,
@@ -117,19 +106,7 @@ export default combineResettableReducers<RestEndepunkter>(
         featureToggles: featureToggleReducer,
         brukersVarsler: varselReducer,
         tråderOgMeldinger: meldingerReducer,
-        oppgaveGsakTema: oppgaveGsakTemaReducer,
-        opprettOppgave: opprettOppgave,
-        personsok: personsok,
-        slaaSammen: slaaSammen
+        oppgaveGsakTema: oppgaveGsakTemaReducer
     },
-    [
-        'innloggetSaksbehandler',
-        'veilederRoller',
-        'baseUrl',
-        'postnummer',
-        'valuta',
-        'land',
-        'featureToggles',
-        'plukkNyeOppgaver'
-    ]
+    ['innloggetSaksbehandler', 'veilederRoller', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles']
 );

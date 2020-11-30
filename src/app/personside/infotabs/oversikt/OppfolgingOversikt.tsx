@@ -7,16 +7,18 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import theme from '../../../../styles/personOversiktTheme';
 import { usePaths } from '../../../routes/routing';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import CopyToClipboard from '../../visittkort/header/status/CopyToClipboard';
 
 interface Props {
     detaljertOppfølging: DetaljertOppfolging;
 }
 
+const onPendingSpinner = <CenteredLazySpinner padding={theme.margin.layout} />;
 function OppfolgingOversikt() {
     return (
         <RestResourceConsumer<DetaljertOppfolging>
             getResource={restResources => restResources.oppfolging}
-            returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+            returnOnPending={onPendingSpinner}
         >
             {data => <OppfolgingPanel detaljertOppfølging={data} />}
         </RestResourceConsumer>
@@ -51,22 +53,40 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
     );
 }
 
-function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
+function Veileder({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
     const veilederNavn = detaljertOppfolging.oppfølging.veileder ? (
         <Normaltekst>{detaljertOppfolging.oppfølging.veileder.navn}</Normaltekst>
     ) : (
         <Normaltekst>Ikke angitt</Normaltekst>
     );
+    const veilederIdent = detaljertOppfolging.oppfølging.veileder ? (
+        <Normaltekst>({detaljertOppfolging.oppfølging.veileder.ident})</Normaltekst>
+    ) : null;
+    const clipboard =
+        detaljertOppfolging.oppfølging.veileder && detaljertOppfolging.oppfølging.veileder.ident ? (
+            <CopyToClipboard
+                ariaLabel="Kopier veileder"
+                stringToCopy={`${detaljertOppfolging.oppfølging.veileder.navn} (${detaljertOppfolging.oppfølging.veileder.ident})`}
+            />
+        ) : null;
 
+    return (
+        <>
+            <Element>Veileder:</Element>
+            {veilederNavn}
+            {veilederIdent}
+            {clipboard}
+        </>
+    );
+}
+
+function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
     const enhet = detaljertOppfolging.oppfølging.enhet ? (
         <Normaltekst>{detaljertOppfolging.oppfølging.enhet.navn}</Normaltekst>
     ) : (
         <Normaltekst>Ikke angitt</Normaltekst>
     );
 
-    const veilederIdent = detaljertOppfolging.oppfølging.veileder ? (
-        <Normaltekst>({detaljertOppfolging.oppfølging.veileder.ident})</Normaltekst>
-    ) : null;
     const innsatsgruppe = detaljertOppfolging.innsatsgruppe;
     const rettighetsgruppe = detaljertOppfolging.rettighetsgruppe;
 
@@ -74,9 +94,7 @@ function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: Detal
         <>
             <Element>Oppfølgende enhet:</Element>
             {enhet}
-            <Element>Veileder:</Element>
-            {veilederNavn}
-            {veilederIdent}
+            <Veileder detaljertOppfolging={detaljertOppfolging} />
             <Element>Innsatsgruppe / Rettighetsgruppe:</Element>
             <Normaltekst>
                 {innsatsgruppe} / {rettighetsgruppe}{' '}

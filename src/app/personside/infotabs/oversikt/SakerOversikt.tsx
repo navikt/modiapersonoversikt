@@ -20,11 +20,12 @@ interface Props {
     setHeaderContent: (content: ReactNode) => void;
 }
 
+const onPendingSpinner = <CenteredLazySpinner padding={theme.margin.layout} />;
 function SakerOversikt(props: Props) {
     return (
         <RestResourceConsumer<SakstemaResponse>
             getResource={restResources => restResources.sakstema}
-            returnOnPending={<CenteredLazySpinner padding={theme.margin.layout} />}
+            returnOnPending={onPendingSpinner}
         >
             {data => <SakerPanel sakstema={data.resultat} {...props} />}
         </RestResourceConsumer>

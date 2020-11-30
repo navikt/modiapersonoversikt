@@ -54,6 +54,6 @@ spec:
     - name: VEILARBLOGIN_AAD_LOGIN_URL
       value: "https://app.adeo.no/veilarblogin/api/aad-login"
     - name: UNLEASH_API_URL
-      value: "https://unleash.nais.adeo.no/api/"
+      value: "https://unleash.nais.io/api/"
     - name: WEBSOCKET_CSP
       value: "wss://veilederflatehendelser.adeo.no"

@@ -1,6 +1,5 @@
-import { GsakTema, OpprettOppgaveRequest } from '../../../../../../../models/meldinger/oppgave';
+import { GsakTema } from '../../../../../../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
-import { PostResource } from '../../../../../../../rest/utils/postResource';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 
 export interface OppgaveProps extends SkjermetOppgaveProps {
@@ -11,9 +10,7 @@ export interface SkjermetOppgaveProps {
     gsakTema: GsakTema[];
     gjeldendeBrukerFnr: string;
     innloggetSaksbehandler: InnloggetSaksbehandler;
-    opprettOppgaveResource: PostResource<OpprettOppgaveRequest>;
     lukkPanel: () => void;
-    opprettOppgave: (request: OpprettOppgaveRequest) => void;
     onSuccessCallback?: () => void;
 }
 

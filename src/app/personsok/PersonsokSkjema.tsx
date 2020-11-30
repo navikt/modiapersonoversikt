@@ -4,7 +4,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
 import { PersonSokFormState, lagRequest } from './personsok-utils';
-import { loggError } from '../../utils/logger/frontendLogger';
+import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import useFormstate, { FunctionValidator, Values } from '@nutgaard/use-formstate';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
@@ -28,10 +28,17 @@ interface Props {
 }
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
+    .skjemaelement {
+        margin-bottom: 0.5rem;
+    }
+    .skjemaelement__label {
+        margin-bottom: 0rem;
+    }
 `;
 
 const SectionStyle = styled.section`
     display: flex;
+    margin-bottom: 0.5rem;
     > *:first-child {
         margin-right: 10rem;
     }
@@ -49,6 +56,7 @@ const InputLinje = styled.div`
         padding-right: 0.5em;
     }
 `;
+
 export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values => {
     let fornavn = undefined;
     if (!values.fornavn && values.etternavn) {
@@ -113,7 +121,7 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
     let _minimumskrav = undefined;
     if (!values.utenlandskID) {
         if (!values.gatenavn && !values.kontonummer && !values.fornavn) {
-            _minimumskrav = 'Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk';
+            _minimumskrav = 'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk';
             fornavn = '';
             gatenavn = '';
             kontonummer = '';
@@ -165,6 +173,11 @@ function PersonsokSkjema(props: Props) {
 
     function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
+
+        if (values.utenlandskID.length > 0) {
+            loggEvent('PersonsokUtenlandsId', 'Personsok');
+        }
+
         const request: PersonsokRequest = lagRequest(values);
         return fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok`, postConfig(request))
             .then(response => {
@@ -238,7 +251,7 @@ function PersonsokSkjema(props: Props) {
                         {enabled && (
                             <Input
                                 bredde={'L'}
-                                label={'Utenlandsk ID'}
+                                label={'Utenlandsk ID (med mellomrom/spesialtegn)'}
                                 {...state.fields.utenlandskID.input}
                                 feil={feilmelding(state.fields.utenlandskID)}
                             />
