@@ -8,7 +8,7 @@ import {
     SendReferatRequest,
     SendSpørsmålRequest
 } from '../../../../models/meldinger/meldinger';
-import { useFødselsnummer } from '../../../../utils/customHooks';
+import { useAppState, useFødselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import {
     InfomeldingSendtKvittering,
@@ -23,6 +23,7 @@ import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import useDraft, { Draft } from '../use-draft';
 import { feilMeldinger } from './FeilMeldinger';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
+import { selectValgtEnhet } from '../../../../redux/session/session';
 
 const initialState: SendNyMeldingState = {
     tekst: '',
@@ -36,10 +37,9 @@ const initialState: SendNyMeldingState = {
 function SendNyMeldingContainer() {
     const dispatch = useDispatch();
     const fnr = useFødselsnummer();
+    const valgtEnhet = useAppState(selectValgtEnhet);
     const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
-
     const [state, setState] = useState<SendNyMeldingState>(initialState);
-
     const draftLoader = useCallback((draft: Draft) => setState(current => ({ ...current, tekst: draft.content })), [
         setState
     ]);
@@ -109,6 +109,7 @@ function SendNyMeldingContainer() {
         ) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
             const request: SendReferatRequest = {
+                enhet: valgtEnhet,
                 fritekst: state.tekst,
                 meldingstype: state.dialogType,
                 temagruppe: state.tema
@@ -125,6 +126,7 @@ function SendNyMeldingContainer() {
         } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
             const request: SendSpørsmålRequest = {
+                enhet: valgtEnhet,
                 fritekst: state.tekst,
                 sak: state.sak,
                 erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
@@ -147,6 +149,7 @@ function SendNyMeldingContainer() {
         } else if (NyMeldingValidator.erGyldigInfomelding(state) && state.sak) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
             const request: SendInfomeldingRequest = {
+                enhet: valgtEnhet,
                 fritekst: state.tekst,
                 sak: state.sak
             };

@@ -4,7 +4,7 @@ import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
 import { ForsettDialogRequest, Meldingstype, SendDelsvarRequest, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { useFødselsnummer } from '../../../../utils/customHooks';
+import { useAppState, useFødselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
@@ -35,6 +35,7 @@ import useDraft, { Draft } from '../use-draft';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
 import { hasData, RestResource } from '../../../../rest/utils/restResource';
+import { selectValgtEnhet } from '../../../../redux/session/session';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -80,6 +81,7 @@ function FortsettDialogContainer(props: Props) {
     const fnr = useFødselsnummer();
     const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
+    const valgtEnhet = useAppState(selectValgtEnhet);
     const draftLoader = useCallback((draft: Draft) => setState(current => ({ ...current, tekst: draft.content })), [
         setState
     ]);
@@ -141,6 +143,7 @@ function FortsettDialogContainer(props: Props) {
 
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
         const commonPayload = {
+            enhet: valgtEnhet,
             fritekst: state.tekst,
             meldingstype: state.dialogType,
             traadId: props.traad.traadId,
@@ -204,6 +207,7 @@ function FortsettDialogContainer(props: Props) {
         } else if (FortsettDialogValidator.erGyldigDelsvar(state) && oppgaveId && state.temagruppe) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
             const request: SendDelsvarRequest = {
+                enhet: valgtEnhet,
                 fritekst: state.tekst,
                 traadId: props.traad.traadId,
                 oppgaveId: oppgaveId,

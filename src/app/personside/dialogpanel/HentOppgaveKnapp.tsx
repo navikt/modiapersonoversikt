@@ -21,7 +21,8 @@ import { Oppgave } from '../../../models/meldinger/oppgave';
 import { apiBaseUri, postConfig } from '../../../api/config';
 import { getTemaFraCookie, setTemaCookie } from '../../../redux/session/plukkTemaCookie';
 import { useDispatch } from 'react-redux';
-import { setJobberMedSTO } from '../../../redux/session/session';
+import { selectValgtEnhet, setJobberMedSTO } from '../../../redux/session/session';
+import { useAppState } from '../../../utils/customHooks';
 
 const StyledArticle = styled.article`
     text-align: center;
@@ -51,6 +52,7 @@ const placeholderProps: RestResourcePlaceholderProps = { returnOnNotFound: 'Kunn
 function HentOppgaveKnapp() {
     const history = useHistory();
     const dispatch = useDispatch();
+    const valgtEnhet = useAppState(selectValgtEnhet);
     const [tomKø, setTomKø] = useState(false);
     const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
     const [isPosting, setIsPosting] = useState(false);
@@ -85,26 +87,28 @@ function HentOppgaveKnapp() {
         setTomKø(false);
         setIsPosting(true);
         dispatch(setJobberMedSTO(true));
-        fetchToJson<Oppgave[]>(`${apiBaseUri}/oppgaver/plukk/${temagruppe}`, postConfig()).then(response => {
-            setIsPosting(false);
-            setResponse(response);
-            if (hasData(response)) {
-                const stoOppgaver = response.data.filter(oppgave => oppgave.erSTOOppgave);
-                const antallOppgaverTildelt = stoOppgaver.length;
-                if (antallOppgaverTildelt === 0) {
-                    setTomKø(true);
-                    return;
+        fetchToJson<Oppgave[]>(`${apiBaseUri}/oppgaver/plukk/${temagruppe}?enhet=${valgtEnhet}`, postConfig()).then(
+            response => {
+                setIsPosting(false);
+                setResponse(response);
+                if (hasData(response)) {
+                    const stoOppgaver = response.data.filter(oppgave => oppgave.erSTOOppgave);
+                    const antallOppgaverTildelt = stoOppgaver.length;
+                    if (antallOppgaverTildelt === 0) {
+                        setTomKø(true);
+                        return;
+                    }
+                    const oppgave = stoOppgaver[0];
+                    const fødselsnummer = oppgave.fødselsnummer;
+                    history.push(
+                        `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
+                    );
+                    antallOppgaverTildelt > 1 &&
+                        loggEvent('FlereOppgaverTildelt', 'HentOppgave', undefined, { antall: antallOppgaverTildelt });
+                    loggEvent('Hent-Oppgave', 'HentOppgave', undefined, { antall: antallOppgaverTildelt });
                 }
-                const oppgave = stoOppgaver[0];
-                const fødselsnummer = oppgave.fødselsnummer;
-                history.push(
-                    `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
-                );
-                antallOppgaverTildelt > 1 &&
-                    loggEvent('FlereOppgaverTildelt', 'HentOppgave', undefined, { antall: antallOppgaverTildelt });
-                loggEvent('Hent-Oppgave', 'HentOppgave', undefined, { antall: antallOppgaverTildelt });
             }
-        });
+        );
     };
 
     const onTemagruppeChange = (event: ChangeEvent<HTMLSelectElement>) => {

@@ -71,6 +71,10 @@ export function setupWsControlAndMock(mock: FetchMock) {
         )
     );
 
+    mock.get('/modiacontextholder/api/decorator/aktor/:fnr', (req, res, ctx) =>
+        res(ctx.json({ fnr: req.pathParams.fnr, aktorId: `0000${req.pathParams.fnr}0000` }))
+    );
+
     const me = {
         ident: 'Z999999',
         navn: 'Fornavn Ettersen',

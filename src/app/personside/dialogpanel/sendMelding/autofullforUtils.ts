@@ -5,11 +5,15 @@ import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/string-utils';
 import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import { Enhet } from '../../../../models/saksbehandlersEnheter';
+import { useAppState } from '../../../../utils/customHooks';
+import { selectValgtEnhet } from '../../../../redux/session/session';
 
 export type AutofullforData = {
     person?: PersonRespons;
     saksbehandler?: InnloggetSaksbehandler;
     kontor?: NavKontorResponse;
+    enhet?: Enhet;
 };
 
 export type AutofullforMap = {
@@ -64,7 +68,8 @@ export function byggAutofullforMap(
     locale: string,
     person?: PersonRespons,
     navKontor?: NavKontorResponse,
-    saksbehandler?: InnloggetSaksbehandler
+    saksbehandler?: InnloggetSaksbehandler,
+    enhet?: Enhet
 ): AutofullforMap {
     let personData = {
         'bruker.fnr': '[bruker.fnr]',
@@ -96,7 +101,7 @@ export function byggAutofullforMap(
         'saksbehandler.fornavn': saksbehandler?.fornavn || '[saksbehandler.fornavn]',
         'saksbehandler.etternavn': saksbehandler?.etternavn || '[saksbehandler.etternavn]',
         'saksbehandler.navn': saksbehandler?.navn || '[saksbehandler.navn]',
-        'saksbehandler.enhet': saksbehandler?.enhetNavn || '[saksbehandler.enhet]'
+        'saksbehandler.enhet': enhet?.navn || '[saksbehandler.enhet]'
     };
 }
 
@@ -116,10 +121,14 @@ export function useAutoFullførData(): AutofullforData | undefined {
     const personResource = useRestResource(resources => resources.personinformasjon);
     const saksbehandler = useRestResource(resources => resources.innloggetSaksbehandler);
     const navKontorResource = useRestResource(resources => resources.brukersNavKontor);
+    const enheter = useRestResource(resources => resources.saksbehandlersEnheter);
+    const valgtEnhetId = useAppState(selectValgtEnhet);
+    const valgtEnhet = enheter.data?.enhetliste?.find(enhet => enhet.enhetId === valgtEnhetId);
 
     return {
         person: personResource.data,
         kontor: navKontorResource.data,
-        saksbehandler: saksbehandler.data
+        saksbehandler: saksbehandler.data,
+        enhet: valgtEnhet
     };
 }
