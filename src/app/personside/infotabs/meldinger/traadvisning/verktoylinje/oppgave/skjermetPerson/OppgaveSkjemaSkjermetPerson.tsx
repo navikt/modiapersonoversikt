@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../../redux/reducers';
 import { useAppState } from '../../../../../../../../utils/customHooks';
 import { feilmelding } from '../validering';
-import useFormstate, { Values } from '@nutgaard/use-formstate';
+import formstateFactory, { Values } from '@nutgaard/use-formstate';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from '../SkjemaElementOptions';
 import { Select, Textarea } from 'nav-frontend-skjema';
 import { useNormalPrioritet } from '../oppgave-utils';
@@ -40,7 +40,7 @@ const AlertStyling = styled.div`
     }
 `;
 
-const validator = useFormstate<SkjermetOppgaveSkjemaForm>(values => {
+const validator = formstateFactory<SkjermetOppgaveSkjemaForm>(values => {
     const valgtTema = values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
     const valgtUnderkategori = undefined;
     const valgtOppgavetype = values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;

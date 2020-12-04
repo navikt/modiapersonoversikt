@@ -16,7 +16,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { useAppState } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
-import useFormstate from '@nutgaard/use-formstate';
+import formstateFactory from '@nutgaard/use-formstate';
 import { feilmelding } from './validering';
 import { Select, Textarea } from 'nav-frontend-skjema';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
@@ -61,7 +61,7 @@ function populerCacheMedTomAnsattliste() {
     cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
 }
 
-const validator = useFormstate<OppgaveSkjemaForm>(values => {
+const validator = formstateFactory<OppgaveSkjemaForm>(values => {
     const valgtTema = values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
     const valgtOppgavetype = values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;
     const beskrivelse = values.beskrivelse.length === 0 ? 'Du må skrive beskrivelse' : undefined;
