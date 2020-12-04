@@ -5,7 +5,9 @@ import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 
 function getSaksoversiktFetchUri(state: AppState) {
     const fodselsnummer = state.gjeldendeBruker.fødselsnummer;
-    return `${apiBaseUri}/saker/${fodselsnummer}/sakstema`;
+    const enhet = state.session.valgtEnhetId;
+    const header = enhet ? `?enhet=${enhet}` : '';
+    return `${apiBaseUri}/saker/${fodselsnummer}/sakstema${header}`;
 }
 
 export default createRestResourceReducerAndActions<SakstemaResponse>('saksoversikt', getSaksoversiktFetchUri);

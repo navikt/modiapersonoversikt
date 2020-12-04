@@ -4,19 +4,22 @@ import { detect } from 'detect-browser';
 import { useEffect } from 'react';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 import { erKontaktsenter } from '../enheter-utils';
+import { useAppState } from '../customHooks';
+import { selectValgtEnhet } from '../../redux/session/session';
 
 let ident = 'ikke satt';
 let enhet = 'ikke valgt';
 
 export function useInitializeLogger() {
     const innloggetSaksbehResource = useRestResource(resources => resources.innloggetSaksbehandler);
+    const valgtEnhet = useAppState(selectValgtEnhet);
 
     useEffect(() => {
         if (innloggetSaksbehResource.data) {
             ident = innloggetSaksbehResource.data.ident;
-            enhet = innloggetSaksbehResource.data.enhetId;
+            enhet = valgtEnhet;
         }
-    }, [innloggetSaksbehResource]);
+    }, [innloggetSaksbehResource, valgtEnhet]);
 }
 
 interface ValuePairs {

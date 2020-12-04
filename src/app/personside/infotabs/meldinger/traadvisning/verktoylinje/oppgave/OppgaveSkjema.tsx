@@ -72,20 +72,21 @@ const validator = useFormstate<OppgaveSkjemaForm>(values => {
     return { valgtTema, valgtOppgavetype, beskrivelse, valgtPrioritet, valgtUnderkategori, valgtEnhet, valgtAnsatt };
 });
 
+const initialValues: OppgaveSkjemaForm = {
+    valgtTema: '',
+    valgtOppgavetype: '',
+    beskrivelse: '',
+    valgtPrioritet: '',
+    valgtUnderkategori: '',
+    valgtEnhet: '',
+    valgtAnsatt: ''
+};
+
 function OppgaveSkjema(props: OppgaveProps) {
     populerCacheMedTomAnsattliste();
 
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
-    const initialValues: OppgaveSkjemaForm = {
-        valgtTema: '',
-        valgtOppgavetype: '',
-        beskrivelse: '',
-        valgtPrioritet: '',
-        valgtUnderkategori: '',
-        valgtEnhet: '',
-        valgtAnsatt: ''
-    };
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const state = validator(initialValues);
 
@@ -154,7 +155,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
     return (
         <SkjemaStyle>
-            <AvsluttGosysOppgaveSkjema />
+            <AvsluttGosysOppgaveSkjema valgtTraad={props.valgtTraad} />
             <form onSubmit={state.onSubmit(submitHandler)}>
                 <Element>Opprett oppgave</Element>
                 <Select
@@ -209,7 +210,7 @@ function OppgaveSkjema(props: OppgaveProps) {
                     feil={feilmelding(state.fields.beskrivelse)}
                 />
                 <KnappStyle>
-                    <Hovedknapp htmlType="submit" spinner={state.submitting}>
+                    <Hovedknapp htmlType="submit" spinner={state.submitting} autoDisableVedSpinner>
                         {knappetekst}
                     </Hovedknapp>
                     <LenkeKnapp type="button" onClick={props.lukkPanel}>

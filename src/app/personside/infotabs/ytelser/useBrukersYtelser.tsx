@@ -9,35 +9,30 @@ interface Returns {
     placeholders: ReactNode[];
     harFeil: boolean;
 }
+const foreldrepengerPlaceholder = {
+    returnOnError: 'Kunne ikke laste foreldrepenger',
+    returnOnNotFound: 'Kunne finne foreldrepenger',
+    returnOnForbidden: 'Du har ikke tilgang til foreldrepenger'
+};
+const pleiepengerPlaceholder = {
+    returnOnError: 'Kunne ikke laste pleiepenger',
+    returnOnNotFound: 'Kunne finne pleiepenger',
+    returnOnForbidden: 'Du har ikke tilgang til pleiepenger'
+};
+const sykepengerPlaceholder = {
+    returnOnError: 'Kunne ikke laste sykepenger',
+    returnOnNotFound: 'Kunne finne sykepenger',
+    returnOnForbidden: 'Du har ikke tilgang til sykepenger'
+};
 
 function useBrukersYtelser(): Returns {
     const foreldrepengerResource = useRestResource(
         resources => resources.foreldrepenger,
-        {
-            returnOnError: 'Kunne ikke laste foreldrepenger',
-            returnOnNotFound: 'Kunne finne foreldrepenger',
-            returnOnForbidden: 'Du har ikke tilgang til foreldrepenger'
-        },
+        foreldrepengerPlaceholder,
         true
     );
-    const pleiepengerResource = useRestResource(
-        resources => resources.pleiepenger,
-        {
-            returnOnError: 'Kunne ikke laste pleiepenger',
-            returnOnNotFound: 'Kunne finne pleiepenger',
-            returnOnForbidden: 'Du har ikke tilgang til pleiepenger'
-        },
-        true
-    );
-    const sykepengerResource = useRestResource(
-        resources => resources.sykepenger,
-        {
-            returnOnError: 'Kunne ikke laste sykepenger',
-            returnOnNotFound: 'Kunne finne sykepenger',
-            returnOnForbidden: 'Du har ikke tilgang til sykepenger'
-        },
-        true
-    );
+    const pleiepengerResource = useRestResource(resources => resources.pleiepenger, pleiepengerPlaceholder, true);
+    const sykepengerResource = useRestResource(resources => resources.sykepenger, sykepengerPlaceholder, true);
 
     const pending = pleiepengerResource.isLoading || foreldrepengerResource.isLoading || sykepengerResource.isLoading;
 

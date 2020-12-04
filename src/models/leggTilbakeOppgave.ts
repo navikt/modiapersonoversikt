@@ -1,6 +1,7 @@
 interface LeggTilbakeOppgaveBaseRequest {
     type: 'Innhabil' | 'FeilTema' | 'AnnenAarsak';
     oppgaveId: string;
+    enhet: string;
 }
 
 interface LeggTilbakeOppgaveInnhabilRequest extends LeggTilbakeOppgaveBaseRequest {

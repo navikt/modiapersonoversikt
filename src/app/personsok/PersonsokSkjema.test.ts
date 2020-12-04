@@ -65,10 +65,11 @@ test('Validerer minimumskrav for personsøk', () => {
     const validator = validatorPersonsok(initialValues, {});
     expect(validator).toEqual({
         ...ingenFeil,
-        _minimumskrav: 'Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk',
+        _minimumskrav: 'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk',
         kontonummer: '',
         fornavn: '',
-        gatenavn: ''
+        gatenavn: '',
+        utenlandskID: ''
     });
 });
 

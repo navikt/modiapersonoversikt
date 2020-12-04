@@ -11,7 +11,6 @@ import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Temavelger from '../component/Temavelger';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
-import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import BrukerKanSvare from './BrukerKanSvare';
 import styled from 'styled-components/macro';
@@ -41,6 +40,7 @@ interface Props {
     updateState: (change: Partial<FortsettDialogState>) => void;
     traad: Traad;
     erTilknyttetOppgave: boolean;
+    erSTOOppgave: boolean;
     fortsettDialogPanelState: FortsettDialogPanelState;
 }
 
@@ -50,6 +50,8 @@ function Feilmelding(props: { status: DialogPanelStatus }) {
     }
     return null;
 }
+
+export const tekstMaksLengde = 5000;
 
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;
@@ -84,6 +86,7 @@ function FortsettDialog(props: Props) {
                 formState={state}
                 updateDialogType={dialogType => updateState({ dialogType: dialogType })}
                 erTilknyttetOppgave={props.erTilknyttetOppgave}
+                erSTOOppgave={props.erSTOOppgave}
                 erDelvisBesvart={erDelvisBesvart(props.traad)}
                 erOksosTraad={erOksosTraad}
             />

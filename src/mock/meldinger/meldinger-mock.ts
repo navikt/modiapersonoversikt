@@ -1,11 +1,4 @@
-import {
-    LestStatus,
-    Melding,
-    Saksbehandler,
-    Traad,
-    Meldingstype,
-    SlaaSammenResponse
-} from '../../models/meldinger/meldinger';
+import { LestStatus, Melding, Saksbehandler, Traad, Meldingstype } from '../../models/meldinger/meldinger';
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import moment from 'moment';
@@ -20,6 +13,7 @@ import { Temagruppe, TemaPlukkbare } from '../../models/temagrupper';
 import standardTeksterMock from '../standardTeksterMock';
 import { autofullfor, AutofullforMap } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
 import { backendDatoTidformat } from '../../utils/date-utils';
+import { SlaaSammenResponse } from '../../app/personside/infotabs/meldinger/traadliste/besvarflere/BesvarFlere';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)
 export const MOCKED_TRAADID_1 = '123';

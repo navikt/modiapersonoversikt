@@ -4,7 +4,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
 import { PersonSokFormState, lagRequest } from './personsok-utils';
-import { loggError } from '../../utils/logger/frontendLogger';
+import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import useFormstate, { FunctionValidator, Values } from '@nutgaard/use-formstate';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
@@ -19,8 +19,6 @@ import { erTall } from '../../utils/string-utils';
 import { validerKontonummer } from './kontonummer/kontonummerUtils';
 import moment from 'moment';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -28,10 +26,17 @@ interface Props {
 }
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
+    .skjemaelement {
+        margin-bottom: 0.5rem;
+    }
+    .skjemaelement__label {
+        margin-bottom: 0rem;
+    }
 `;
 
 const SectionStyle = styled.section`
     display: flex;
+    margin-bottom: 0.5rem;
     > *:first-child {
         margin-right: 10rem;
     }
@@ -49,6 +54,7 @@ const InputLinje = styled.div`
         padding-right: 0.5em;
     }
 `;
+
 export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values => {
     let fornavn = undefined;
     if (!values.fornavn && values.etternavn) {
@@ -79,7 +85,7 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
         kontonummer = 'Kontonummer må være gyldig';
     }
 
-    const utenlandskID =
+    let utenlandskID =
         values.utenlandskID &&
         (values.fornavn ||
             values.etternavn ||
@@ -113,10 +119,11 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
     let _minimumskrav = undefined;
     if (!values.utenlandskID) {
         if (!values.gatenavn && !values.kontonummer && !values.fornavn) {
-            _minimumskrav = 'Du må minimum fylle inn navn, adresse eller kontonummer for å gjøre søk';
+            _minimumskrav = 'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk';
             fornavn = '';
             gatenavn = '';
             kontonummer = '';
+            utenlandskID = '';
         }
     }
 
@@ -160,10 +167,14 @@ const initialValues: PersonSokFormState = {
 function PersonsokSkjema(props: Props) {
     const validator = useFormstate<PersonSokFormState>(validatorPersonsok);
     const state = validator(initialValues);
-    const enabled = useFeatureToggle(FeatureToggles.UtenlandskID).isOn ?? false;
 
     function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
+
+        if (values.utenlandskID.length > 0) {
+            loggEvent('PersonsokUtenlandsId', 'Personsok');
+        }
+
         const request: PersonsokRequest = lagRequest(values);
         return fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok`, postConfig(request))
             .then(response => {
@@ -234,14 +245,12 @@ function PersonsokSkjema(props: Props) {
                             {...state.fields.kontonummer.input}
                             feil={feilmelding(state.fields.kontonummer)}
                         />
-                        {enabled && (
-                            <Input
-                                bredde={'L'}
-                                label={'Utenlandsk ID'}
-                                {...state.fields.utenlandskID.input}
-                                feil={feilmelding(state.fields.utenlandskID)}
-                            />
-                        )}
+                        <Input
+                            bredde={'L'}
+                            label={'Utenlandsk ID (med mellomrom/spesialtegn)'}
+                            {...state.fields.utenlandskID.input}
+                            feil={feilmelding(state.fields.utenlandskID)}
+                        />
                     </section>
                     <section aria-label={'Begrens søket'}>
                         <Systemtittel tag={'h2'}>Begrens søket</Systemtittel>

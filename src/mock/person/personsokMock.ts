@@ -1,4 +1,10 @@
-import { Brukerinfo, NorskIdent, PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
+import {
+    Brukerinfo,
+    NorskIdent,
+    PersonsokRequest,
+    PersonsokResponse,
+    UtenlandskID
+} from '../../models/person/personsok';
 import { aremark } from './aremark';
 import { moss } from './moss';
 import faker from 'faker/locale/nb_NO';
@@ -14,8 +20,13 @@ export function mockPersonsokResponse(request: PersonsokRequest): PersonsokRespo
     const seednr = navfaker.personIdentifikator.fødselsnummer();
     faker.seed(Number(seednr));
     navfaker.seed(seednr);
+    const fyllRandomListeSokUtenlandskID = fyllRandomListe(() => getPersonsokResponseSokUtenlandskID(), 50);
+    const fyllRandomListeUtenUtenlandskIDSok = fyllRandomListe(() => getPersonsokResponse(), 50);
+    const fyltRandomListe = vektetSjanse(faker, 0.5)
+        ? fyllRandomListeUtenUtenlandskIDSok
+        : fyllRandomListeSokUtenlandskID;
 
-    return fyllRandomListe(() => getPersonsokResponse(), 50);
+    return fyltRandomListe;
 }
 
 function getPersonsokResponse(): PersonsokResponse {
@@ -24,6 +35,7 @@ function getPersonsokResponse(): PersonsokResponse {
     const postadresse = vektetSjanse(faker, 0.5) ? getPostadresse() : null;
     const bostedsadresse = vektetSjanse(faker, 0.5) ? getBostedsadresse() : null;
     const brukerinfo = vektetSjanse(faker, 0.5) ? getBrukerinfo() : null;
+    const utenlandskID = null;
 
     return {
         diskresjonskode: diskresjonskode,
@@ -33,8 +45,41 @@ function getPersonsokResponse(): PersonsokResponse {
         navn: getMockNavn(fodselsnummer),
         status: getStatus(),
         ident: getIdent(fodselsnummer),
-        brukerinfo: brukerinfo
+        brukerinfo: brukerinfo,
+        utenlandskID: utenlandskID
     };
+}
+
+function getPersonsokResponseSokUtenlandskID(): PersonsokResponse {
+    const fodselsnummer = navfaker.personIdentifikator.fødselsnummer();
+    const postadresse = vektetSjanse(faker, 0.5) ? getPostadresse() : null;
+    const bostedsadresse = vektetSjanse(faker, 0.5) ? getBostedsadresse() : null;
+    const brukerinfo = getBrukerinfoSokUtenlandsID();
+
+    return {
+        diskresjonskode: null,
+        postadresse: postadresse,
+        bostedsadresse: bostedsadresse,
+        kjonn: null,
+        navn: getMockNavn(fodselsnummer),
+        status: null,
+        ident: getIdent(fodselsnummer),
+        brukerinfo: brukerinfo,
+        utenlandskID: getUtenlandskID()
+    };
+}
+
+function getUtenlandskID(): UtenlandskID[] {
+    const utenlandskID1 = {
+        identifikasjonsnummer: '12345',
+        utstederland: 'FIN'
+    };
+    const utenlandskID2 = {
+        identifikasjonsnummer: '12658',
+        utstederland: 'AFG'
+    };
+    const utenlandskIDListe = [utenlandskID1, utenlandskID2];
+    return utenlandskIDListe;
 }
 
 function getPostadresse(): string {
@@ -96,6 +141,14 @@ function getBrukerinfo(): Brukerinfo {
     };
 }
 
+function getBrukerinfoSokUtenlandsID(): Brukerinfo {
+    return {
+        ansvarligEnhet: null,
+        gjeldendePostadresseType: null,
+        midlertidigPostadresse: null
+    };
+}
+
 export function mockStaticPersonsokResponse(): PersonsokResponse[] {
     return [
         {
@@ -128,7 +181,8 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                     beskrivelse: 'Postadresse'
                 },
                 midlertidigPostadresse: 'Svingen 3 4321 Bergen'
-            }
+            },
+            utenlandskID: null
         },
         {
             diskresjonskode: null,
@@ -157,7 +211,8 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                     beskrivelse: 'Postadresse'
                 },
                 midlertidigPostadresse: '23rd street New York USA'
-            }
+            },
+            utenlandskID: null
         }
     ];
 }

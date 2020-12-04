@@ -4,6 +4,8 @@ import { OppgavelisteValg } from './SendNyMelding';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import { useAppState } from '../../../../utils/customHooks';
+import { selectValgtEnhet } from '../../../../redux/session/session';
 
 interface Props {
     oppgaveliste: OppgavelisteValg;
@@ -18,15 +20,18 @@ const StyledSelect = styled(Select)`
 `;
 
 function Oppgaveliste(props: Props) {
-    const saksbehandlerInfo = useRestResource(resources => resources.innloggetSaksbehandler);
-    const enhet = saksbehandlerInfo.data ? saksbehandlerInfo.data.enhetNavn : 'enheten';
+    const enheter = useRestResource(resources => resources.saksbehandlersEnheter);
+    const valgtEnhetId = useAppState(selectValgtEnhet);
+    const valgtEnhet = enheter.data?.enhetliste.find(enhet => enhet.enhetId === valgtEnhetId);
+    const enhet = valgtEnhet?.navn ?? 'valgt enhet';
+
     return (
         <StyledSelect
             label="Oppgaveliste"
             value={props.oppgaveliste}
             onChange={event => props.setOppgaveliste(event.target.value as OppgavelisteValg)}
         >
-            <option value={OppgavelisteValg.MinListe}>Svar skal til min oppgaveliste</option>
+            <option value={OppgavelisteValg.MinListe}>Svar skal til min oppgaveliste hos {enhet}</option>
             <option value={OppgavelisteValg.EnhetensListe}>Svar skal til {enhet} sin oppgaveliste</option>
         </StyledSelect>
     );

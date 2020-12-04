@@ -284,7 +284,7 @@ exports[`viser dialogpanel 1`] = `
                       id="Helt tilfeldig ID"
                     >
                       Tekstområde med plass til 
-                      5000
+                      10000
                        tegn.
                     </span>
                     <textarea
@@ -308,7 +308,7 @@ exports[`viser dialogpanel 1`] = `
                       <span
                         className="teller-tekst"
                       >
-                        Du har 5000 tegn igjen
+                        Du har 10000 tegn igjen
                       </span>
                     </p>
                   </div>
@@ -390,16 +390,13 @@ exports[`viser dialogpanel 1`] = `
                               mvh + mellomrom: Signatur
                             </li>
                             <li>
-                              mvhks + mellomrom: Signatur som fra KS
+                              mvhks + mellomrom: Signatur fra KS
                             </li>
                             <li>
                               hei + mellomrom: Hei bruker
                             </li>
                             <li>
-                              vint + mellomrom: Videreformidle Internt
-                            </li>
-                            <li>
-                              vinten + mellomrom: Videreformidle Internt (engelsk)
+                              vint + mellomrom: Videreformidle Internt (vinten for engelsk)
                             </li>
                             <li>
                               AAP + mellomrom: arbeidsavklaringspenger
@@ -417,10 +414,7 @@ exports[`viser dialogpanel 1`] = `
                               hi, + mellomrom: Hi, bruker (engelsk)
                             </li>
                             <li>
-                              mvh/aap + nn + mellomrom: autofullfør på nynorsk
-                            </li>
-                            <li>
-                              mvh/aap + en + mellomrom: autofullfør på engelsk
+                              mvh/aap + nn eller en + mellomrom: autofullfør på nynorsk eller engelsk
                             </li>
                             <li>
                               korkonk + mellomrom: Informasjon ved konkurs
@@ -439,6 +433,18 @@ exports[`viser dialogpanel 1`] = `
                             </li>
                             <li>
                               forskuddsøk + mellomrom: Søke om forskudd
+                            </li>
+                            <li>
+                              fp + mellomrom: foreldrepenger
+                            </li>
+                            <li>
+                              bm + mellomrom: bidragsmottaker
+                            </li>
+                            <li>
+                              bp + mellomrom: bidragspliktig
+                            </li>
+                            <li>
+                              ag + mellomrom: arbeidsgiver
                             </li>
                           </ul>
                         </div>
@@ -521,6 +527,25 @@ exports[`viser dialogpanel 1`] = `
                 Spørsmål
               </label>
             </div>
+            <div
+              className="skjemaelement"
+            >
+              <input
+                aria-invalid={false}
+                checked={false}
+                className="skjemaelement__input radioknapp"
+                id="Helt tilfeldig ID"
+                name="dialogtype"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Infomelding
+              </label>
+            </div>
           </div>
           <div
             className=""
@@ -559,6 +584,11 @@ exports[`viser dialogpanel 1`] = `
                       value="ARBD"
                     >
                       Arbeid
+                    </option>
+                    <option
+                      value="HELSE"
+                    >
+                      Helse
                     </option>
                     <option
                       value="FMLI"

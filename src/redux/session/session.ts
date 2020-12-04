@@ -1,22 +1,13 @@
 import { Action } from 'redux';
-import { getTemaFraCookie, setTemaCookie } from './plukkTemaCookie';
-import { Temagruppe } from '../../models/temagrupper';
 import { getSaksbehandlerEnhetFraCookieDeprecated } from './saksbehandlersEnhetCookieUtils';
 import { post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { AsyncDispatch } from '../ThunkTypes';
+import { AppState } from '../reducers';
 
 enum actions {
-    VELG_TEMAGRUPPE = 'VELG_TEMAGRUPPE',
     VELG_ENHET = 'VELG_ENHET',
     SET_JOBBER_MED_STO = 'SET_JOBBER_MED_STO'
-}
-
-export function velgTemagruppeForPlukk(temagruppe: Temagruppe): VelgTemagruppeAction {
-    return {
-        temagruppe: temagruppe,
-        type: actions.VELG_TEMAGRUPPE
-    };
 }
 
 export function setJobberMedSTO(jobberMedSTO: boolean): SetJobberMedSTOAction {
@@ -38,11 +29,6 @@ export function velgEnhetAction(enhetsId: string) {
     };
 }
 
-interface VelgTemagruppeAction extends Action {
-    type: actions.VELG_TEMAGRUPPE;
-    temagruppe: Temagruppe;
-}
-
 interface VelgEnhetAction extends Action {
     type: actions.VELG_ENHET;
     enhetId: string;
@@ -54,27 +40,19 @@ interface SetJobberMedSTOAction extends Action {
 }
 
 export interface SessionState {
-    temagruppeForPlukk?: Temagruppe;
     valgtEnhetId?: string;
     jobberMedSTO: boolean;
 }
 
 const SessionInitState: SessionState = {
-    temagruppeForPlukk: getTemaFraCookie(),
     valgtEnhetId: getSaksbehandlerEnhetFraCookieDeprecated(),
     jobberMedSTO: false
 };
 
-type Actions = VelgTemagruppeAction | VelgEnhetAction | SetJobberMedSTOAction;
+type Actions = VelgEnhetAction | SetJobberMedSTOAction;
 
 export default function reducer(state: SessionState = SessionInitState, action: Actions): SessionState {
     switch (action.type) {
-        case actions.VELG_TEMAGRUPPE:
-            setTemaCookie(action.temagruppe);
-            return {
-                ...state,
-                temagruppeForPlukk: action.temagruppe
-            };
         case actions.VELG_ENHET:
             return {
                 ...state,
@@ -88,4 +66,8 @@ export default function reducer(state: SessionState = SessionInitState, action: 
         default:
             return state;
     }
+}
+
+export function selectValgtEnhet(state: AppState): string {
+    return state.session.valgtEnhetId!!;
 }

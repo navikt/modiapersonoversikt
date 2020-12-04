@@ -68,7 +68,7 @@ const StyledUndertittel = styled(Undertittel)`
     margin-bottom: 1rem !important;
 `;
 
-export const tekstMaksLengde = 5000;
+export const tekstMaksLengde = 10000;
 
 interface Props {
     handleSubmit: (event: FormEvent) => void;
@@ -98,6 +98,7 @@ function SendNyMelding(props: Props) {
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSpørsmål = NyMeldingValidator.erSporsmal(state);
     const erInfomelding = NyMeldingValidator.erInfomelding(state);
+
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>

@@ -8,7 +8,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { NedChevron, OppChevron } from 'nav-frontend-chevron';
-import { useClickOutside, useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
+import { useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 
@@ -64,9 +64,7 @@ function usePreFetchJournalforingsSaker() {
 function DialogpanelVelgSak(props: Props) {
     const [visSaker, setVisSaker] = useState(false);
     const knappRef = createRef<HTMLButtonElement>();
-    const ref = createRef<HTMLDivElement>();
     usePreFetchJournalforingsSaker();
-    useClickOutside(ref, () => setVisSaker(false));
 
     const handleVelgSak = (sak: JournalforingsSak) => {
         setVisSaker(false);
@@ -82,7 +80,7 @@ function DialogpanelVelgSak(props: Props) {
                 props.visFeilmelding ? <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding> : undefined
             }
         >
-            <Style ref={ref}>
+            <Style>
                 <Knapp ref={knappRef} type="button" onClick={() => setVisSaker(!visSaker)} aria-expanded={visSaker}>
                     <Normaltekst>{tittel}</Normaltekst>
                     {visSaker ? <OppChevron /> : <NedChevron />}
