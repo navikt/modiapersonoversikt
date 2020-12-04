@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
+import { mount, ReactWrapper } from '../../../../test/enzyme-container';
 import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';

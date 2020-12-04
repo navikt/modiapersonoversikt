@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Visittkort from './VisittkortContainer';
-import { mount } from 'enzyme';
+import { mount } from '../../../test/enzyme-container';
 import TestProvider from '../../../test/Testprovider';
 import { getTestStore } from '../../../test/testStore';
 import { UIActionTypes } from '../../../redux/uiReducers/UIReducer';
