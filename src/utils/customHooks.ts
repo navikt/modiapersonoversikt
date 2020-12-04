@@ -16,7 +16,7 @@ export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
 }
 
 export function useOnMount(effect: EffectCallback) {
-    useEffect(effect, []); // tslint:disable-line
+    useEffect(effect, []); // eslint-disable-line
 }
 
 export type JustOnceEffectCallback = (done: () => void) => void | (() => void | undefined);

@@ -29,7 +29,7 @@ export default function useHotkey(
     loggAction: string,
     element: HTMLElement = document.body
 ) {
-    const stableAction = useMemo(() => action, deps);
+    const stableAction = useMemo(() => action, deps); // eslint-disable-line
     const keyDescription = useCallback(toKeyDescription, [key])(key);
     const handler = useCallback(
         (event: KeyboardEvent) => {
