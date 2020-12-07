@@ -19,6 +19,9 @@ import { erTall } from '../../utils/string-utils';
 import { validerKontonummer } from './kontonummer/kontonummerUtils';
 import moment from 'moment';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -167,6 +170,7 @@ const initialValues: PersonSokFormState = {
 function PersonsokSkjema(props: Props) {
     const validator = useFormstate<PersonSokFormState>(validatorPersonsok);
     const state = validator(initialValues);
+    const hjelpetekstID = useRef(guid());
 
     function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
@@ -192,6 +196,11 @@ function PersonsokSkjema(props: Props) {
         fodselsdatoFra: state.fields.fodselsdatoFra.input.value,
         kjonn: state.fields.kjonn.input.value
     };
+
+    const utenlandskIDTittel = [
+        'Utenlandsk ID ',
+        <Hjelpetekst id={hjelpetekstID.current}>Husk å inkludere alle tegn. Eksempel: 010101-12345</Hjelpetekst>
+    ];
 
     return (
         <form
@@ -247,7 +256,7 @@ function PersonsokSkjema(props: Props) {
                         />
                         <Input
                             bredde={'L'}
-                            label={'Utenlandsk ID (med mellomrom/spesialtegn)'}
+                            label={utenlandskIDTittel}
                             {...state.fields.utenlandskID.input}
                             feil={feilmelding(state.fields.utenlandskID)}
                         />
