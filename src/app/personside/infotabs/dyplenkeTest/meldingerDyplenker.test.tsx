@@ -11,9 +11,7 @@ import { aremark } from '../../../../mock/person/aremark';
 
 test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyplenke fra oversikt', () => {
     const store = getTestStore();
-    store.dispatch(
-        store.getState().restResources.tråderOgMeldinger.actions.setData(getMockTraader(aremark.fødselsnummer))
-    );
+    store.dispatch(store.getState().restResources.traader.actions.setData(getMockTraader(aremark.fødselsnummer)));
     const infoTabs = mount(
         <TestProvider customStore={store}>
             <BrowserRouter>

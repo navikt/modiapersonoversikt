@@ -74,7 +74,7 @@ export interface RestEndepunkter {
     sakstema: RestResource<SakstemaResponse>;
     featureToggles: RestResource<{ [name: string]: boolean }>;
     brukersVarsler: RestResource<Varsel[]>;
-    tråderOgMeldinger: RestResource<Traad[]>;
+    traader: RestResource<Traad[]>;
     oppgaveGsakTema: RestResource<GsakTema[]>;
 }
 
@@ -105,7 +105,7 @@ export default combineResettableReducers<RestEndepunkter>(
         sakstema: saksoversiktReducer,
         featureToggles: featureToggleReducer,
         brukersVarsler: varselReducer,
-        tråderOgMeldinger: meldingerReducer,
+        traader: meldingerReducer,
         oppgaveGsakTema: oppgaveGsakTemaReducer
     },
     ['innloggetSaksbehandler', 'veilederRoller', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles']

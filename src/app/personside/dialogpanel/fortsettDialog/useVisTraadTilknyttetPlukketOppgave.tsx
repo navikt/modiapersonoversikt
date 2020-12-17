@@ -21,7 +21,7 @@ interface Success {
 type Response = Pending | Success;
 
 function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response {
-    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const traaderResource = useRestResource(resources => resources.traader);
     const tildelteOppgaver = useTildelteOppgaver();
     const dispatch = useDispatch();
     const dyplenker = useInfotabsDyplenker();

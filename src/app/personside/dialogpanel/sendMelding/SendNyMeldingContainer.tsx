@@ -36,7 +36,7 @@ const initialState: SendNyMeldingState = {
 function SendNyMeldingContainer() {
     const dispatch = useDispatch();
     const fnr = useFødselsnummer();
-    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
+    const reloadMeldinger = useRestResource(resources => resources.traader).actions.reload;
 
     const [state, setState] = useState<SendNyMeldingState>(initialState);
 
