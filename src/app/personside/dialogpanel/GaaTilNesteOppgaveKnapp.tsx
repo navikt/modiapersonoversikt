@@ -8,7 +8,7 @@ import { useRestResource } from '../../../rest/consumer/useRestResource';
 function GaaTilNesteOppgaveKnapp(props: { lukk: () => void }) {
     const tildelteOppgaver = useTildelteOppgaver();
     const dispatch = useDispatch();
-    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const traaderResource = useRestResource(resources => resources.traader);
     const nesteOppgavePåBruker = tildelteOppgaver.paaBruker[0];
 
     const gaaTilNesteSporsmaal = () => {

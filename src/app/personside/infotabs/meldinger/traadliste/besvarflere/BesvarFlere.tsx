@@ -182,7 +182,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
     const fnr = useGjeldendeBruker();
     const [isPosting, setIsPosting] = useState(false);
     const [response, setResponse] = useState<FetchResponse<SlaaSammenResponse> | undefined>(undefined);
-    const setTråderITråderResource = useRestResource(resources => resources.tråderOgMeldinger).actions.setData;
+    const setTråderITråderResource = useRestResource(resources => resources.traader).actions.setData;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const [valgteTraader, setValgteTraader] = useState<Traad[]>([]);
     const [traadSomSkalVises, setTraadSomSkalVises] = useState<Traad>(props.traader[0]);

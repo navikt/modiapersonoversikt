@@ -59,7 +59,7 @@ export function getTestStore(): Store<AppState> {
             toggleId: false
         })
     );
-    dispatch(restResources.tråderOgMeldinger.actions.setData([statiskTraadMock]));
+    dispatch(restResources.traader.actions.setData([statiskTraadMock]));
     dispatch(restResources.pleiepenger.actions.setData({ pleiepenger: [pleiepengerTestData] }));
     dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));
     dispatch(restResources.sykepenger.actions.setData({ sykepenger: [statiskSykepengerMock] }));

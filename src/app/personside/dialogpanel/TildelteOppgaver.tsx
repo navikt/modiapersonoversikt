@@ -55,7 +55,7 @@ const JustifyRight = styled.div`
 `;
 
 function OppgaverDropdown(props: { lukk: () => void }) {
-    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const traaderResource = useRestResource(resources => resources.traader);
     const dyplenker = useInfotabsDyplenker();
     const tildelteOppgaver = useTildelteOppgaver();
     const oppgaverPaaBruker = tildelteOppgaver.paaBruker;

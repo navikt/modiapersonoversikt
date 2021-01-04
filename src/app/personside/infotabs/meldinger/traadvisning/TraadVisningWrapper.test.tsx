@@ -7,7 +7,7 @@ import { hasData } from '../../../../../rest/utils/restResource';
 
 test('Viser traad med verktøylinje', () => {
     const store = getTestStore();
-    const traaderResource = getTestStore().getState().restResources.tråderOgMeldinger;
+    const traaderResource = getTestStore().getState().restResources.traader;
     const traader = hasData(traaderResource) && traaderResource.data;
 
     const container = renderer.create(

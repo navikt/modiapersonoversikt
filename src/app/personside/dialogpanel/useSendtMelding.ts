@@ -6,7 +6,7 @@ import { Melding, Traad } from '../../../models/meldinger/meldinger';
 import { loggError } from '../../../utils/logger/frontendLogger';
 
 export function useSendtMelding(fritekst: string) {
-    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const traaderResource = useRestResource(resources => resources.traader);
     const [pending, setPending] = useState(true);
     const [melding, setMelding] = useState<Melding | undefined>();
     const [traad, setTraad] = useState<Traad | undefined>();
