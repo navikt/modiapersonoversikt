@@ -108,5 +108,14 @@ export default combineResettableReducers<RestEndepunkter>(
         tråderOgMeldinger: meldingerReducer,
         oppgaveGsakTema: oppgaveGsakTemaReducer
     },
-    ['innloggetSaksbehandler', 'veilederRoller', 'baseUrl', 'postnummer', 'valuta', 'land', 'featureToggles']
+    [
+        'innloggetSaksbehandler',
+        'veilederRoller',
+        'baseUrl',
+        'postnummer',
+        'valuta',
+        'land',
+        'featureToggles',
+        'saksbehandlersEnheter'
+    ]
 );
