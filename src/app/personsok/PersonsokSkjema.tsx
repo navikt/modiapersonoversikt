@@ -19,8 +19,9 @@ import { erTall } from '../../utils/string-utils';
 import { validerKontonummer } from './kontonummer/kontonummerUtils';
 import moment from 'moment';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
+import { useRef } from 'react';
+import { guid } from 'nav-frontend-js-utils';
+import Hjelpetekst from 'nav-frontend-hjelpetekst';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -28,10 +29,17 @@ interface Props {
 }
 const FormStyle = styled.article`
     padding: ${theme.margin.layout};
+    .skjemaelement {
+        margin-bottom: 0.5rem;
+    }
+    .skjemaelement__label {
+        margin-bottom: 0rem;
+    }
 `;
 
 const SectionStyle = styled.section`
     display: flex;
+    margin-bottom: 0.5rem;
     > *:first-child {
         margin-right: 10rem;
     }
@@ -49,6 +57,7 @@ const InputLinje = styled.div`
         padding-right: 0.5em;
     }
 `;
+
 export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values => {
     let fornavn = undefined;
     if (!values.fornavn && values.etternavn) {
@@ -161,7 +170,7 @@ const initialValues: PersonSokFormState = {
 function PersonsokSkjema(props: Props) {
     const validator = useFormstate<PersonSokFormState>(validatorPersonsok);
     const state = validator(initialValues);
-    const enabled = useFeatureToggle(FeatureToggles.UtenlandskID).isOn ?? false;
+    const hjelpetekstID = useRef(guid());
 
     function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
@@ -187,6 +196,11 @@ function PersonsokSkjema(props: Props) {
         fodselsdatoFra: state.fields.fodselsdatoFra.input.value,
         kjonn: state.fields.kjonn.input.value
     };
+
+    const utenlandskIDTittel = [
+        'Utenlandsk ID ',
+        <Hjelpetekst id={hjelpetekstID.current}>Husk å inkludere alle tegn. Eksempel: 010101-12345</Hjelpetekst>
+    ];
 
     return (
         <form
@@ -240,14 +254,12 @@ function PersonsokSkjema(props: Props) {
                             {...state.fields.kontonummer.input}
                             feil={feilmelding(state.fields.kontonummer)}
                         />
-                        {enabled && (
-                            <Input
-                                bredde={'L'}
-                                label={'Utenlandsk ID (med spesialtegn)'}
-                                {...state.fields.utenlandskID.input}
-                                feil={feilmelding(state.fields.utenlandskID)}
-                            />
-                        )}
+                        <Input
+                            bredde={'L'}
+                            label={utenlandskIDTittel}
+                            {...state.fields.utenlandskID.input}
+                            feil={feilmelding(state.fields.utenlandskID)}
+                        />
                     </section>
                     <section aria-label={'Begrens søket'}>
                         <Systemtittel tag={'h2'}>Begrens søket</Systemtittel>

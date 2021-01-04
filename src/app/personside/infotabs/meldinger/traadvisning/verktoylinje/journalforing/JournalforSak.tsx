@@ -12,8 +12,9 @@ import { post } from '../../../../../../../api/api';
 import { loggError } from '../../../../../../../utils/logger/frontendLogger';
 import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
-import { useFødselsnummer } from '../../../../../../../utils/customHooks';
+import { useAppState, useFødselsnummer } from '../../../../../../../utils/customHooks';
 import * as JournalforingUtils from '../../../../../journalforings-use-fetch-utils';
+import { selectValgtEnhet } from '../../../../../../../redux/session/session';
 
 interface Props {
     sak: JournalforingsSak;
@@ -45,6 +46,7 @@ const SuksessStyling = styled.div`
 `;
 export function JournalforSak(props: Props) {
     const dispatch = useDispatch();
+    const valgtEnhet = useAppState(selectValgtEnhet);
     const tråderResource = useRestResource(resources => resources.traader);
     const kategori = sakKategori(props.sak);
     const fnr = useFødselsnummer();
@@ -58,7 +60,8 @@ export function JournalforSak(props: Props) {
         }
 
         setSubmitting(true);
-        post(`${apiBaseUri}/journalforing/${fnr}/${props.traad.traadId}`, props.sak, 'Journalføring')
+        const enhetheader = valgtEnhet ? `?enhet=${valgtEnhet}` : '';
+        post(`${apiBaseUri}/journalforing/${fnr}/${props.traad.traadId}${enhetheader}`, props.sak, 'Journalføring')
             .then(() => {
                 JournalforingUtils.slettCacheForSammensatteSaker(fnr);
                 setSubmitting(false);

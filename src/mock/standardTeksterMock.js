@@ -1921,7 +1921,7 @@ const standardTeksterMock = {
         vekttall: 0,
         innhold: {
             nb_NO:
-                'NAVN ETTERNAVN ringer på vegne av [bruker.navn]. Det ønskes timeavtale i forbindelse med søknad om ny stønadsperiode.\r\n\r\nTidspunkt for timeavtale  kan avtales med [navn.etternavn] på TELEFONNUMMER].\r\n\r\nDet er behov for tolk på SPRÅK.\r\nELLER Det er ikke behov for tolk.\r\n\r\nHenvendelsen er sendt til lokalt NAV-kontor for besvarelse innen (dag) den (dato).'
+                'NAVN ETTERNAVN ringer på vegne av [bruker.navn]. Det ønskes timeavtale i forbindelse med søknad om ny stønadsperiode.\r\n\r\nTidspunkt for timeavtale  kan avtales med [bruker.etternavn] på TELEFONNUMMER].\r\n\r\nDet er behov for tolk på SPRÅK.\r\nELLER Det er ikke behov for tolk.\r\n\r\nHenvendelsen er sendt til lokalt NAV-kontor for besvarelse innen (dag) den (dato).'
         }
     },
     'aa0dd420-12bf-4dd5-829d-9220ab4219eb': {

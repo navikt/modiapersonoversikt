@@ -9,7 +9,7 @@ import EnkeltMelding from '../../traadvisning/Enkeltmelding';
 import { Ingress } from 'nav-frontend-typografi';
 import KnappBase, { Hovedknapp } from 'nav-frontend-knapper';
 import { useDispatch } from 'react-redux';
-import { useOnMount } from '../../../../../../utils/customHooks';
+import { useAppState, useOnMount } from '../../../../../../utils/customHooks';
 import { setValgtTraadDialogpanel } from '../../../../../../redux/oppgave/actions';
 import { loggError, loggEvent } from '../../../../../../utils/logger/frontendLogger';
 import { useInfotabsDyplenker } from '../../../dyplenker';
@@ -21,6 +21,7 @@ import { apiBaseUri, postConfig } from '../../../../../../api/config';
 import { useGjeldendeBruker } from '../../../../../../redux/gjeldendeBruker/types';
 import { FetchResponse, fetchToJson, hasData, hasError } from '../../../../../../utils/fetchToJson';
 import { Temagruppe } from '../../../../../../models/temagrupper';
+import { selectValgtEnhet } from '../../../../../../redux/session/session';
 
 interface Props {
     traader: Traad[];
@@ -28,6 +29,7 @@ interface Props {
 }
 
 export interface SlaaSammenRequest {
+    enhet: String;
     traader: SlaaSammenTraad[];
     temagruppe: Temagruppe;
 }
@@ -186,6 +188,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
     const [traadSomSkalVises, setTraadSomSkalVises] = useState<Traad>(props.traader[0]);
     const [feilmelding, setFeilmelding] = useState<string | undefined>(undefined);
     const dyplenker = useInfotabsDyplenker();
+    const valgtEnhet = useAppState(selectValgtEnhet);
 
     useOnMount(() => {
         loggEvent('Åpnet', 'BesvarFlere');
@@ -235,6 +238,7 @@ function BesvarFlere(props: Props & RouteComponentProps) {
         }
 
         const request: SlaaSammenRequest = {
+            enhet: valgtEnhet,
             temagruppe: temagruppe,
             traader: traaderSomSkalSlaasSammen
         };

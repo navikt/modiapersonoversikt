@@ -18,9 +18,11 @@ import { guid } from 'nav-frontend-js-utils';
 import { Undertittel } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { useErKontaktsenter } from '../../utils/enheter-utils';
-import { useRestResource } from '../../rest/consumer/useRestResource';
 import useFetch, { FetchResult, hasData } from '@nutgaard/use-fetch';
 import { rapporterBruk } from '../../app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
+import { useAppState } from '../../utils/customHooks';
+import { selectValgtEnhet } from '../../redux/session/session';
+import { useRestResource } from '../../rest/consumer/useRestResource';
 
 interface InlineRegel {
     type: 'internal';
@@ -41,8 +43,10 @@ type Regler = Array<Regel>;
 
 function useRules(): Regler {
     const erKontaktsenter = useErKontaktsenter();
-    const saksbehandlerResources = useRestResource(resources => resources.innloggetSaksbehandler);
-    const saksbehanderEnhet = saksbehandlerResources.data?.enhetNavn ?? '';
+    const veiledersEnheter = useRestResource(resources => resources.saksbehandlersEnheter);
+    const valgtEnhetId = useAppState(selectValgtEnhet);
+    const valgtEnhet = veiledersEnheter.data?.enhetliste?.find(enhet => enhet.enhetId === valgtEnhetId);
+    const saksbehanderEnhet = valgtEnhet?.navn ?? '';
     return [
         { type: 'internal', regex: /^hei,?$/i, replacement: () => 'Hei [bruker.fornavn],\n' },
         {

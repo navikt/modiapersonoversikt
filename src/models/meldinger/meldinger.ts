@@ -61,23 +61,27 @@ export enum LestStatus {
 }
 
 export interface SendReferatRequest {
+    enhet: string;
     fritekst: string;
     temagruppe: Temagruppe;
     meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON | Meldingstype.SAMTALEREFERAT_OPPMOTE;
 }
 
 export interface SendSpørsmålRequest {
+    enhet: string;
     fritekst: string;
     sak: JournalforingsSak;
     erOppgaveTilknyttetAnsatt: boolean;
 }
 
 export interface SendInfomeldingRequest {
+    enhet: string;
     fritekst: string;
     sak: JournalforingsSak;
 }
 
 export interface ForsettDialogRequest {
+    enhet: string;
     traadId: string;
     behandlingsId: string;
     fritekst: string;
@@ -88,6 +92,7 @@ export interface ForsettDialogRequest {
 }
 
 export interface SendDelsvarRequest {
+    enhet: string;
     traadId: string;
     behandlingsId: string;
     fritekst: string;
@@ -96,6 +101,7 @@ export interface SendDelsvarRequest {
 }
 
 export interface OpprettHenvendelseRequest {
+    enhet: string;
     traadId: string;
 }
 

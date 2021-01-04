@@ -3,6 +3,7 @@ import { getSaksbehandlerEnhetFraCookieDeprecated } from './saksbehandlersEnhetC
 import { post } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { AsyncDispatch } from '../ThunkTypes';
+import { AppState } from '../reducers';
 
 enum actions {
     VELG_ENHET = 'VELG_ENHET',
@@ -65,4 +66,8 @@ export default function reducer(state: SessionState = SessionInitState, action: 
         default:
             return state;
     }
+}
+
+export function selectValgtEnhet(state: AppState): string {
+    return state.session.valgtEnhetId!!;
 }
