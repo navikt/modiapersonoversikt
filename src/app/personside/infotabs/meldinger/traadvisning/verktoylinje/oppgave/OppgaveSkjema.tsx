@@ -105,7 +105,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     const valgtEnhet = matchEnhet(state.fields.valgtEnhet?.input.value, 1);
     const ansattliste = useAnsattePaaEnhet(valgtEnhet);
 
-    function submitHandler<S>(values: OppgaveSkjemaForm): Promise<any> {
+    function submitHandler(values: OppgaveSkjemaForm): Promise<any> {
         const request = lagOppgaveRequest(
             props,
             values,

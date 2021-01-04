@@ -68,7 +68,7 @@ function OppgaveSkjemaSkjermetPerson(props: SkjermetOppgaveProps) {
     const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
     useNormalPrioritet(state, valgtTema);
 
-    function submitHandler<S>(values: Values<SkjermetOppgaveSkjemaForm>): Promise<any> {
+    function submitHandler(values: Values<SkjermetOppgaveSkjemaForm>): Promise<any> {
         const request = lagSkjermetOppgaveRequest(props, values, valgtBrukersFnr, saksbehandlersEnhet || '');
         return post(`${apiBaseUri}/dialogoppgave/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
             .then(() => {

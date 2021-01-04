@@ -54,7 +54,7 @@ function PersonSokInput() {
     };
     const state = validering(initialValues);
 
-    function submit<S>(values: PersonSokForm): Promise<any> {
+    function submit(values: PersonSokForm): Promise<any> {
         setNyBrukerIPath(history, values.fødselsnummer);
         return Promise.resolve();
     }

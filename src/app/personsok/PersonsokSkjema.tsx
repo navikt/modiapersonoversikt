@@ -168,7 +168,7 @@ function PersonsokSkjema(props: Props) {
     const validator = useFormstate<PersonSokFormState>(validatorPersonsok);
     const state = validator(initialValues);
 
-    function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
+    function submitHandler(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
 
         if (values.utenlandskID.length > 0) {
