@@ -31,7 +31,7 @@ const onPendingSpinner = <CenteredLazySpinner padding={theme.margin.layout} />;
 function MeldingerOversikt(props: Props) {
     return (
         <RestResourceConsumer<Traad[]>
-            getResource={restResources => restResources.tråderOgMeldinger}
+            getResource={restResources => restResources.traader}
             returnOnPending={onPendingSpinner}
         >
             {data => <TraadListe traader={data} {...props} />}

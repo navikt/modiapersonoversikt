@@ -137,7 +137,7 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
     const saksbehandlerKanSletteFetch: FetchResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, includeCredentials);
-    const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const tråderResource = useRestResource(resources => resources.traader);
 
     const reloadMeldinger = tråderResource.actions.reload;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;

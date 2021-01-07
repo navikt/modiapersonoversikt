@@ -4,7 +4,7 @@ import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 
 export function useValgtTraadIUrl(): Traad | undefined {
     const dyplenker = useInfotabsDyplenker();
-    const traaderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const traaderResource = useRestResource(resources => resources.traader);
     const traader = traaderResource.data ? traaderResource.data : [];
     return traader.find(dyplenker.meldinger.erValgt);
 }

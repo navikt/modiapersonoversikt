@@ -87,7 +87,7 @@ function FortsettDialogContainer(props: Props) {
     ]);
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
     const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
-    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
+    const reloadMeldinger = useRestResource(resources => resources.traader).actions.reload;
     const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
     const tildelteOppgaver = tildelteOppgaverResource.resource;
     const reloadTildelteOppgaver = tildelteOppgaverResource.actions.reload;

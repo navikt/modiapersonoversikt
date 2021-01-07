@@ -11,7 +11,7 @@ const Styling = styled.div`
 `;
 
 function BrukerHarUbesvarteMeldinger() {
-    const traader = useRestResource(resources => resources.tråderOgMeldinger);
+    const traader = useRestResource(resources => resources.traader);
 
     const antallUbesvarteTraader = traader.data?.filter(traad => erUbesvartHenvendelseFraBruker(traad)).length;
 
