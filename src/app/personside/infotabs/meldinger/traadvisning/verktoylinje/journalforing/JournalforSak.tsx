@@ -47,7 +47,7 @@ const SuksessStyling = styled.div`
 export function JournalforSak(props: Props) {
     const dispatch = useDispatch();
     const valgtEnhet = useAppState(selectValgtEnhet);
-    const tråderResource = useRestResource(resources => resources.tråderOgMeldinger);
+    const tråderResource = useRestResource(resources => resources.traader);
     const kategori = sakKategori(props.sak);
     const fnr = useFødselsnummer();
     const [submitting, setSubmitting] = useState(false);

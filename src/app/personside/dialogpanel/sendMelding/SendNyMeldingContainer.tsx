@@ -37,8 +37,9 @@ const initialState: SendNyMeldingState = {
 function SendNyMeldingContainer() {
     const dispatch = useDispatch();
     const fnr = useFødselsnummer();
+    const reloadMeldinger = useRestResource(resources => resources.traader).actions.reload;
+
     const valgtEnhet = useAppState(selectValgtEnhet);
-    const reloadMeldinger = useRestResource(resources => resources.tråderOgMeldinger).actions.reload;
     const [state, setState] = useState<SendNyMeldingState>(initialState);
     const draftLoader = useCallback((draft: Draft) => setState(current => ({ ...current, tekst: draft.content })), [
         setState
