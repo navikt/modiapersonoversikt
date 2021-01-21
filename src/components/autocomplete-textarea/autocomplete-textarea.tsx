@@ -187,6 +187,36 @@ function useRules(): Regler {
             type: 'internal',
             regex: /^bp$/i,
             replacement: () => 'bidragspliktig '
+        },
+        {
+            type: 'internal',
+            regex: /^ub$/i,
+            replacement: () => 'utbetaling '
+        },
+        {
+            type: 'internal',
+            regex: /^dp$/i,
+            replacement: () => 'dagpenger '
+        },
+        {
+            type: 'internal',
+            regex: /^dpv$/i,
+            replacement: () => 'dagpengevedtak '
+        },
+        {
+            type: 'internal',
+            regex: /^sp$/i,
+            replacement: () => 'sykepenger '
+        },
+        {
+            type: 'internal',
+            regex: /^sosp$/i,
+            replacement: () => 'søknad om sykepenger '
+        },
+        {
+            type: 'internal',
+            regex: /^info$/i,
+            replacement: () => 'informasjon '
         }
     ];
 }
@@ -231,6 +261,12 @@ function AutoTekstTips() {
                     <li>bm + mellomrom: bidragsmottaker</li>
                     <li>bp + mellomrom: bidragspliktig</li>
                     <li>ag + mellomrom: arbeidsgiver</li>
+                    <li>ub + mellomrom: utbetaling</li>
+                    <li>dp + mellomrom: dagpenger</li>
+                    <li>dpv + mellomrom: dagpengevedtak</li>
+                    <li>sp + mellomrom: sykepenger</li>
+                    <li>sosp + mellomrom: søknad om sykepenger</li>
+                    <li>info + mellomrom: informasjon</li>
                 </ul>
             </Hjelpetekst>
         </HjelpetekstStyle>
