@@ -445,6 +445,24 @@ exports[`viser dialogpanel 1`] = `
                             <li>
                               ag + mellomrom: arbeidsgiver
                             </li>
+                            <li>
+                              ub + mellomrom: utbetaling
+                            </li>
+                            <li>
+                              dp + mellomrom: dagpenger
+                            </li>
+                            <li>
+                              dpv + mellomrom: dagpengevedtak
+                            </li>
+                            <li>
+                              sp + mellomrom: sykepenger
+                            </li>
+                            <li>
+                              sosp + mellomrom: søknad om sykepenger
+                            </li>
+                            <li>
+                              info + mellomrom: informasjon
+                            </li>
                           </ul>
                         </div>
                       </div>
