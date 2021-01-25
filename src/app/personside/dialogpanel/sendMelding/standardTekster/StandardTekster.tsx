@@ -100,7 +100,8 @@ function velgTekst(
                     locale,
                     autofullforData.person,
                     autofullforData.kontor,
-                    autofullforData.saksbehandler
+                    autofullforData.saksbehandler,
+                    autofullforData.enhet
                 );
                 const ferdigTekst = captitalize(autofullfor(localeTekst, nokler));
                 settTekst(ferdigTekst);
