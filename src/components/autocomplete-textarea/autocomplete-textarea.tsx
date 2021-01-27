@@ -265,7 +265,8 @@ function autoFullfør(autofullførData: AutofullforData, parsedText: string) {
         Locale.nb_NO,
         autofullførData.person,
         autofullførData.kontor,
-        autofullførData.saksbehandler
+        autofullførData.saksbehandler,
+        autofullførData.enhet
     );
     const fullfortTekst = autofullfor(parsedText, autofullforMap);
     return fullfortTekst;
