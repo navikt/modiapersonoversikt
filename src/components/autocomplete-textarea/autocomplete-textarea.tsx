@@ -299,6 +299,7 @@ const Style = styled.div`
 function autoFullfør(autofullførData: AutofullforData, parsedText: string) {
     const autofullforMap = byggAutofullforMap(
         Locale.nb_NO,
+        autofullførData.enhet,
         autofullførData.person,
         autofullførData.kontor,
         autofullførData.saksbehandler

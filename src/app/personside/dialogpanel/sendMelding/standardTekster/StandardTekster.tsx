@@ -98,10 +98,10 @@ function velgTekst(
             if (autofullforData) {
                 const nokler = byggAutofullforMap(
                     locale,
+                    autofullforData.enhet,
                     autofullforData.person,
                     autofullforData.kontor,
-                    autofullforData.saksbehandler,
-                    autofullforData.enhet
+                    autofullforData.saksbehandler
                 );
                 const ferdigTekst = captitalize(autofullfor(localeTekst, nokler));
                 settTekst(ferdigTekst);
