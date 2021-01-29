@@ -98,6 +98,7 @@ function velgTekst(
             if (autofullforData) {
                 const nokler = byggAutofullforMap(
                     locale,
+                    autofullforData.enhet,
                     autofullforData.person,
                     autofullforData.kontor,
                     autofullforData.saksbehandler

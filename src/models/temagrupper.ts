@@ -35,7 +35,8 @@ export const TemaPlukkbare = [
     Temagruppe.Pensjon,
     Temagruppe.PleiepengerSyktBarn,
     Temagruppe.Uføretrygd,
-    Temagruppe.Utland
+    Temagruppe.Utland,
+    Temagruppe.Øvrig
 ];
 
 export const TemaLeggTilbake = [
