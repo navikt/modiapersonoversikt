@@ -126,7 +126,6 @@ export function useAutoFullførData(): AutofullforData | undefined {
     const valgtEnhet = enheter.data?.enhetliste?.find(enhet => enhet.enhetId === valgtEnhetId);
 
     if (!valgtEnhet) {
-        loggError(new Error(`Fant ingen enhet`));
         return;
     }
 
