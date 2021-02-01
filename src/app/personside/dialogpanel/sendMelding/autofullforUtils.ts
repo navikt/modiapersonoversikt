@@ -3,7 +3,7 @@ import { NavKontorResponse } from '../../../../models/navkontor';
 import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/string-utils';
-import { loggError, loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
+import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { Enhet } from '../../../../models/saksbehandlersEnheter';
 import { useAppState } from '../../../../utils/customHooks';
@@ -126,7 +126,7 @@ export function useAutoFullførData(): AutofullforData | undefined {
     const valgtEnhet = enheter.data?.enhetliste?.find(enhet => enhet.enhetId === valgtEnhetId);
 
     if (!valgtEnhet) {
-        loggError(new Error(`Fant ingen enhet`));
+        loggWarning(new Error(`Fant ingen enhet`));
         return;
     }
 
