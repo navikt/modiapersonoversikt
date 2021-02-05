@@ -3,14 +3,14 @@ import { NavKontorResponse } from '../../../../models/navkontor';
 import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/string-utils';
-import { loggError, loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
+import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { Enhet } from '../../../../models/saksbehandlersEnheter';
 import { useAppState } from '../../../../utils/customHooks';
 import { selectValgtEnhet } from '../../../../redux/session/session';
 
 export type AutofullforData = {
-    enhet: Enhet;
+    enhet?: Enhet;
     person?: PersonRespons;
     saksbehandler?: InnloggetSaksbehandler;
     kontor?: NavKontorResponse;
@@ -66,7 +66,7 @@ function subjectPronomen(kjonn: Kjønn, locale: string) {
 
 export function byggAutofullforMap(
     locale: string,
-    enhet: Enhet,
+    enhet?: Enhet,
     person?: PersonRespons,
     navKontor?: NavKontorResponse,
     saksbehandler?: InnloggetSaksbehandler
@@ -124,11 +124,6 @@ export function useAutoFullførData(): AutofullforData | undefined {
     const enheter = useRestResource(resources => resources.saksbehandlersEnheter);
     const valgtEnhetId = useAppState(selectValgtEnhet);
     const valgtEnhet = enheter.data?.enhetliste?.find(enhet => enhet.enhetId === valgtEnhetId);
-
-    if (!valgtEnhet) {
-        loggError(new Error(`Fant ingen enhet`));
-        return;
-    }
 
     return {
         enhet: valgtEnhet,

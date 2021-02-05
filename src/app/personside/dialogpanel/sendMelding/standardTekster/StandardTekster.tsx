@@ -123,6 +123,7 @@ function StandardTekster(props: Props) {
     const valgtLocale = useFieldState('');
     const valgtTekst = filtrerteTekster.find(tekst => tekst.id === valgt.input.value);
     const personResource = useRestResource(resources => resources.personinformasjon, undefined, true);
+    const enheterResource = useRestResource(resources => resources.saksbehandlersEnheter, undefined, true);
     const autofullforData = useAutoFullførData();
     const sokeFeltId = useRef(guid());
     const [ariaNotification, setAriaNotification] = useState('');
@@ -182,6 +183,10 @@ function StandardTekster(props: Props) {
 
     if (!personResource.data) {
         return personResource.placeholder;
+    }
+
+    if (!enheterResource.data) {
+        return enheterResource.placeholder;
     }
 
     return (
