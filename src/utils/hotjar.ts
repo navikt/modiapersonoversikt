@@ -18,26 +18,30 @@ function requireHotjar(cmd: string, ...args: any[]) {
     }
 }
 
-export function formSubmitSuccess() {
-    requireHotjar('formSubmitSuccessful');
+class Hotjar {
+    static formSubmitSuccess() {
+        requireHotjar('formSubmitSuccessful');
+    }
+
+    static formSubmitFailed() {
+        requireHotjar('formSubmitFailed');
+    }
+
+    static stateChange(relativePath: string) {
+        requireHotjar('stateChange', relativePath);
+    }
+
+    static tagRecording(tags: string[]) {
+        requireHotjar('tagRecording', tags);
+    }
+
+    static trigger(event: HotjarTriggers): void {
+        requireHotjar('trigger', event);
+    }
+
+    static virtualPageView(funnel: string) {
+        requireHotjar('vpv', funnel);
+    }
 }
 
-export function formSubmitFailed() {
-    requireHotjar('formSubmitFailed');
-}
-
-export function stateChange(relativePath: string) {
-    requireHotjar('stateChange', relativePath);
-}
-
-export function tagRecording(tags: string[]) {
-    requireHotjar('tagRecording', tags);
-}
-
-export function trigger(event: HotjarTriggers): void {
-    requireHotjar('trigger', event);
-}
-
-export function virtualPageView(funnel: string) {
-    requireHotjar('vpv', funnel);
-}
+export default Hotjar;
