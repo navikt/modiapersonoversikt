@@ -1,12 +1,12 @@
 csp:
   mode: ENFORCE
   # unsafe-inline trengs her fordi adrum/appd bruker det ved oppsett
-  scriptSrc: "'self' 'unsafe-inline' jsagent.adeo.no static.hotjar.com"
+  scriptSrc: "'self' 'unsafe-inline' jsagent.adeo.no https://static.hotjar.com https://script.hotjar.com"
   # unsafe-inline trengs her fordi styled-components bruker det
   styleSrc: "'self' 'unsafe-inline'"
   imgSrc: "'self' data:"
-  fontSrc: "'self' data:"
-  connectSrc: "'self' eumgw.adeo.no {{ WEBSOCKET_CSP }}"
+  fontSrc: "'self' data: https://script.hotjar.com"
+  connectSrc: "'self' eumgw.adeo.no {{ WEBSOCKET_CSP }} https://*.hotjar.com:* https://vc.hotjar.io:*"
   # PDF-visning lastes inn via blob-urler
   objectSrc: "blob:"
-  frameSrc: "blob:"
+  frameSrc: "blob: https://vars.hotjar.com"
