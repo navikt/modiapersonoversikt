@@ -264,7 +264,6 @@ exports[`viser send ny melding 1`] = `
                 >
                   Melding
                 </label>
-                
                 <div
                   className="textarea--medMeta__wrapper"
                 >

@@ -334,7 +334,6 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
       >
         Beskrivelse
       </label>
-      
       <div
         className="textarea--medMeta__wrapper"
       >
