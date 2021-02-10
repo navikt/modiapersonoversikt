@@ -21,7 +21,7 @@ import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/ut
 import { Periode } from '../../../../../models/tid';
 import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 
-Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
+Date.now = () => new Date().getTime(); // for å motvirke Date.now() mock i setupTests.ts
 
 const randomUtbetaling = getMockUtbetaling();
 

@@ -1,4 +1,4 @@
-import { DependencyList, useCallback, useEffect } from 'react';
+import { DependencyList, useCallback, useEffect, useMemo } from 'react';
 import { loggEvent } from '../logger/frontendLogger';
 
 type KeyDescription = { char: string; altKey?: boolean; ctrlKey?: boolean; metaKey?: boolean; shiftKey?: boolean };
@@ -29,7 +29,7 @@ export default function useHotkey(
     loggAction: string,
     element: HTMLElement = document.body
 ) {
-    const stableAction = useCallback(action, deps);
+    const stableAction = useMemo(() => action, deps); // eslint-disable-line
     const keyDescription = useCallback(toKeyDescription, [key])(key);
     const handler = useCallback(
         (event: KeyboardEvent) => {

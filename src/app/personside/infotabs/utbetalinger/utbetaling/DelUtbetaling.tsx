@@ -78,6 +78,7 @@ class DelUtbetaling extends React.PureComponent<Props> {
                 tabIndex={0}
                 onFocus={this.props.settYtelseIFokus}
             >
+                {/*eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
                 <article aria-expanded={this.props.erEkspandert} aria-label={'Delutbetaling ' + ytelse.type}>
                     <DetaljerCollapse open={this.props.erEkspandert} toggle={this.toggleVisDetaljer} header={header}>
                         <UtbetalingsDetaljer {...this.props} />

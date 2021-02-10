@@ -3,4 +3,6 @@ if (!Element.prototype.matches) {
     Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 }
 
-export default {}; // Bare for å gjøre TS happy
+// Bare for å gjøre TS happy
+const dummy = {};
+export default dummy;

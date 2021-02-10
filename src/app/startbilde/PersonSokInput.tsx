@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import { setNyBrukerIPath } from '../routes/routing';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
-import useFormstate from '@nutgaard/use-formstate';
+import formstateFactory from '@nutgaard/use-formstate';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { fnr } from '@navikt/fnrvalidator';
 
@@ -38,7 +38,7 @@ function lagFeilmelding(error: ErrorReason): string {
     }
 }
 
-const validering = useFormstate<PersonSokForm>(values => {
+const validering = formstateFactory<PersonSokForm>(values => {
     const fnrValidation = fnr(values.fødselsnummer);
     if (fnrValidation.status === 'invalid') {
         return { fødselsnummer: lagFeilmelding(fnrValidation.reasons[0]) };
@@ -54,7 +54,7 @@ function PersonSokInput() {
     };
     const state = validering(initialValues);
 
-    function submit<S>(values: PersonSokForm): Promise<any> {
+    function submit(values: PersonSokForm): Promise<any> {
         setNyBrukerIPath(history, values.fødselsnummer);
         return Promise.resolve();
     }

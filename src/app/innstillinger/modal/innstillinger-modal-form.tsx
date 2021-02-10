@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useFormstateFactory from '@nutgaard/use-formstate';
+import formstateFactory from '@nutgaard/use-formstate';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { Undertekst } from 'nav-frontend-typografi';
 import { Hovedknapp } from 'nav-frontend-knapper';
@@ -33,7 +33,7 @@ const Label = styled.span`
 const defaultInnstillinger: Innstillinger = {
     defaultTagsStandardtekster: 'na'
 };
-const useFormState = useFormstateFactory<Innstillinger>({
+const useFormState = formstateFactory<Innstillinger>({
     defaultTagsStandardtekster: () => undefined
 });
 
