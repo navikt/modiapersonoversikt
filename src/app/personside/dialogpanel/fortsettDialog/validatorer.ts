@@ -17,7 +17,7 @@ export class FortsettDialogValidator {
     public static erGyldigSvarSkriftlig(state: FortsettDialogState) {
         return state.dialogType === Meldingstype.SVAR_SKRIFTLIG && this.tekst(state);
     }
-    public static erGyldigSpørsmålSkriftlig(state: FortsettDialogState, traad: Traad) {
+    public static erGyldigSporsmaalSkriftlig(state: FortsettDialogState, traad: Traad) {
         const traadTemagruppe = traad.meldinger[0].temagruppe;
         if (traadTemagruppe === Temagruppe.ØkonomiskSosial) {
             return state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE && this.tekst(state);

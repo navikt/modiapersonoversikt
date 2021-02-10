@@ -1,4 +1,4 @@
-import { Kjønn } from '../models/person/person';
+import { Kjonn } from '../models/person/person';
 
 export function getFodselsdatoFraFnr(fnr: string): Date {
     if (fnr.length !== 11) {
@@ -39,11 +39,11 @@ function getFiresifretAr(fnr: string): number {
     }
 }
 
-export function utledKjønnFraFødselsnummer(fødselsnummer?: string): Kjønn {
+export function utledKjønnFraFødselsnummer(fødselsnummer?: string): Kjonn {
     if (!fødselsnummer) {
-        return Kjønn.Diskresjonskode;
+        return Kjonn.Diskresjonskode;
     }
-    return Number(fødselsnummer.charAt(8)) % 2 === 1 ? Kjønn.Mann : Kjønn.Kvinne;
+    return Number(fødselsnummer.charAt(8)) % 2 === 1 ? Kjonn.Mann : Kjonn.Kvinne;
 }
 
 export function erDnummer(fødselsnummer: string) {

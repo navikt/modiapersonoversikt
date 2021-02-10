@@ -4,7 +4,7 @@ import { saksbehandlerTekst, useSokEtterMeldinger } from '../utils/meldingerUtil
 import { renderHook } from '@testing-library/react-hooks';
 import { Temagruppe } from '../../../../../models/temagrupper';
 
-function getMockSøketråd(
+function getMockSoketraad(
     fritekst: string,
     tittel?: { meldingtype: Meldingstype; temagruppe: Temagruppe },
     saksbehandler?: Saksbehandler
@@ -26,8 +26,8 @@ function getMockSøketråd(
 
 test('Sjekke søk i meldinger basert på fritekst', () => {
     const traader: Traad[] = [
-        getMockSøketråd('Dette er en tekst for å sjekke om fritekstsøk fungerer.'),
-        getMockSøketråd('Her er en annen tråd med en annen tekst')
+        getMockSoketraad('Dette er en tekst for å sjekke om fritekstsøk fungerer.'),
+        getMockSoketraad('Her er en annen tråd med en annen tekst')
     ];
 
     const renderer = renderHook(() => useSokEtterMeldinger(traader, 'sjekke'));
@@ -41,8 +41,8 @@ test('Sjekke søk i meldinger basert på fritekst', () => {
 
 test('Sjekke søk i meldinger basert på tittel', () => {
     const traader: Traad[] = [
-        getMockSøketråd('', { meldingtype: Meldingstype.SVAR_TELEFON, temagruppe: Temagruppe.Arbeid }),
-        getMockSøketråd('', { meldingtype: Meldingstype.SVAR_SKRIFTLIG, temagruppe: Temagruppe.AndreSosiale })
+        getMockSoketraad('', { meldingtype: Meldingstype.SVAR_TELEFON, temagruppe: Temagruppe.Arbeid }),
+        getMockSoketraad('', { meldingtype: Meldingstype.SVAR_SKRIFTLIG, temagruppe: Temagruppe.AndreSosiale })
     ];
     const renderer = renderHook(() => useSokEtterMeldinger(traader, 'Arbeid'));
     const treff = renderer.result.current;
@@ -51,8 +51,8 @@ test('Sjekke søk i meldinger basert på tittel', () => {
 
 test('Sjekke søk i meldinger basert på saksbehandler', () => {
     const traader: Traad[] = [
-        getMockSøketråd('', undefined, { fornavn: 'Henriette', etternavn: 'Hansen', ident: '' }),
-        getMockSøketråd('', undefined, { fornavn: 'Jørgen', etternavn: 'Braathen', ident: '' })
+        getMockSoketraad('', undefined, { fornavn: 'Henriette', etternavn: 'Hansen', ident: '' }),
+        getMockSoketraad('', undefined, { fornavn: 'Jørgen', etternavn: 'Braathen', ident: '' })
     ];
 
     const renderer = renderHook(() => useSokEtterMeldinger(traader, 'Jørgen'));

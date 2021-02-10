@@ -18,7 +18,7 @@ interface Props {
     valgt: FieldState;
     valgtLocale: FieldState;
     valgtTekst?: StandardTekster.Tekst;
-    harAutofullførData: boolean;
+    harAutofullforData: boolean;
 }
 
 const Style = styled.div`
@@ -66,7 +66,7 @@ const manglerAutoCompleteDataWarning = (
     </StyledAlertstripeAdvarsel>
 );
 
-function StandardTekstValg({ valgt, valgtLocale, valgtTekst, sokefelt, tekster, harAutofullførData }: Props) {
+function StandardTekstValg({ valgt, valgtLocale, valgtTekst, sokefelt, tekster, harAutofullforData }: Props) {
     const { text, tags } = useMemo(() => parseTekst(sokefelt.input.value), [sokefelt.input.value]);
     const highlightRule = useMemo(() => createDynamicHighlightingRule(text.split(' ').concat(tags)), [text, tags]);
 
@@ -88,7 +88,7 @@ function StandardTekstValg({ valgt, valgtLocale, valgtTekst, sokefelt, tekster, 
                     highlightRule={highlightRule}
                 />
                 <VelgTekst>
-                    {!harAutofullførData && manglerAutoCompleteDataWarning}
+                    {!harAutofullforData && manglerAutoCompleteDataWarning}
                     <div>
                         <LocaleVelgerStyle>
                             <LocaleVelger tekst={valgtTekst} valgt={valgtLocale} />

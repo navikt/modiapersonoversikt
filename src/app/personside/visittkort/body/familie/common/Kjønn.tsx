@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { utledKjønnFraFødselsnummer } from '../../../../../../utils/fnr-utils';
-import { Kjønn } from '../../../../../../models/person/person';
+import { Kjonn } from '../../../../../../models/person/person';
 import MannIkon from '../../../../../../svg/Mann';
 import KvinneIkon from '../../../../../../svg/Kvinne';
 import DiskresjonskodeIkon from '../../../../../../svg/DiskresjonskodeKjonn';
@@ -11,11 +11,11 @@ import Jentebarn from '../../../../../../svg/Jentebarn';
 export function getKjønnIkon(fødselsnummer?: string) {
     const kjønn = utledKjønnFraFødselsnummer(fødselsnummer);
     switch (kjønn) {
-        case Kjønn.Mann:
+        case Kjonn.Mann:
             return <MannIkon />;
-        case Kjønn.Kvinne:
+        case Kjonn.Kvinne:
             return <KvinneIkon />;
-        case Kjønn.Diskresjonskode:
+        case Kjonn.Diskresjonskode:
             return <DiskresjonskodeIkon />;
         default:
             return <DiskresjonskodeIkon />;
@@ -25,11 +25,11 @@ export function getKjønnIkon(fødselsnummer?: string) {
 export function getKjønnBarnIkon(fødselsnummer?: string) {
     const kjønn = utledKjønnFraFødselsnummer(fødselsnummer);
     switch (kjønn) {
-        case Kjønn.Mann:
+        case Kjonn.Mann:
             return <Guttebarn />;
-        case Kjønn.Kvinne:
+        case Kjonn.Kvinne:
             return <Jentebarn />;
-        case Kjønn.Diskresjonskode:
+        case Kjonn.Diskresjonskode:
             return <DiskresjonskodeIkon />;
         default:
             return <DiskresjonskodeIkon />;
@@ -39,11 +39,11 @@ export function getKjønnBarnIkon(fødselsnummer?: string) {
 export function getKjønnBeskrivelseForBarn(fødselsnummer?: string) {
     const kjønn = utledKjønnFraFødselsnummer(fødselsnummer);
     switch (kjønn) {
-        case Kjønn.Mann:
+        case Kjonn.Mann:
             return 'Gutt';
-        case Kjønn.Kvinne:
+        case Kjonn.Kvinne:
             return 'Jente';
-        case Kjønn.Diskresjonskode:
+        case Kjonn.Diskresjonskode:
             return 'Barn';
         default:
             return 'Ukjent';

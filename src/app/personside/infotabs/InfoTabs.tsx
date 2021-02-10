@@ -13,7 +13,7 @@ import VarslerContainer from './varsel/VarslerContainer';
 import MeldingerContainer from './meldinger/MeldingerContainer';
 import Oversikt from './oversikt/Oversikt';
 import { useInfotabsDyplenker } from './dyplenker';
-import { useFødselsnummer } from '../../../utils/customHooks';
+import { useFodselsnummer } from '../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
@@ -31,7 +31,7 @@ const StyledArticle = styled.article`
 `;
 
 function InfoTabs() {
-    const fødselsnummer = useFødselsnummer();
+    const fødselsnummer = useFodselsnummer();
     const paths = usePaths();
     const headerRef = useRef<HTMLHeadingElement>(null);
     const dyplenker = useInfotabsDyplenker();

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Melding, Traad } from '../../models/meldinger/meldinger';
-import { useFødselsnummer } from '../customHooks';
+import { useFodselsnummer } from '../customHooks';
 import {
     eldsteMelding,
     erJournalfort,
@@ -51,7 +51,7 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
     const journalfortTema = erJournalfort(melding) && (
         <Element>Journalført med team: {melding.journalfortTemanavn}</Element>
     );
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
     const tittel = meldingstittel(melding);
     const temagruppe = melding.temagruppe && <Element>Temagruppe: {melding.temagruppe}</Element>;
 

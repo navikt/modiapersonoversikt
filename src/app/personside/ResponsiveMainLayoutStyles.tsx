@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import PilKnapp from '../../components/pilknapp';
-import { HøyreKolonne as HøyreKolonneBase, VenstreKolonne as VenstreKolonneBase } from './MainLayoutStyles';
+import { HoyreKolonne as HoyreKolonneBase, VenstreKolonne as VenstreKolonneBase } from './MainLayoutStyles';
 import { Undertittel } from 'nav-frontend-typografi';
 import theme from '../../styles/personOversiktTheme';
 import { UIState } from '../../redux/uiReducers/UIReducer';
@@ -13,7 +13,7 @@ export const VenstreKolonne = styled(VenstreKolonneBase)`
     order: 1;
 `;
 
-export const HøyreKolonne = styled(HøyreKolonneBase)`
+export const HoyreKolonne = styled(HoyreKolonneBase)`
     @media (${theme.media.smallScreen}) {
         ${props => (props.dialogPanelEkspandert ? 'flex-grow: 1;' : theme.visuallyHidden)}
         > *:last-child {

@@ -4,7 +4,7 @@ import { datoVerbose } from '../date-utils';
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { ReactNode } from 'react';
-import { useFødselsnummer } from '../customHooks';
+import { useFodselsnummer } from '../customHooks';
 
 const Wrapper = styled.div`
     @page {
@@ -36,7 +36,7 @@ interface Props {
 }
 
 export function PrinterMedHeader(props: Props) {
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
     return (
         <Wrapper className="ikke-skjul-ved-print-i-gamlemodia">
             <Header>

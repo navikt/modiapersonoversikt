@@ -7,7 +7,7 @@ import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
-import { useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
+import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
 import LazySpinner from '../../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../../components/FillCenterAndFadeIn';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
@@ -67,7 +67,7 @@ function Innhold() {
 
 function SakerFullscreen(props: Props) {
     const dispatch = useDispatch();
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
     const saksoversiktResource = useRestResource(resources => resources.sakstema);
 
     useOnMount(() => {

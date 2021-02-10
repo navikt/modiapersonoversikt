@@ -7,7 +7,7 @@ import {
     autofullfor,
     AutofullforData,
     byggAutofullforMap,
-    useAutoFullførData
+    useAutoFullforData
 } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
 import { Locale } from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
 import * as StandardTeksterModels from '../../app/personside/dialogpanel/sendMelding/standardTekster/domain';
@@ -329,7 +329,7 @@ function asChangeEvent<T>(event: React.KeyboardEvent<T>): React.ChangeEvent<T> {
 }
 
 function AutocompleteTextarea(props: TextareaProps) {
-    const autofullførData = useAutoFullførData();
+    const autofullførData = useAutoFullforData();
     const [feilmelding, settFeilmelding] = useState<string>();
     const standardtekster: FetchResult<StandardTeksterModels.Tekster> = useFetch<StandardTeksterModels.Tekster>(
         '/modiapersonoversikt-skrivestotte/skrivestotte'

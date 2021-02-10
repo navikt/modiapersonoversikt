@@ -10,7 +10,7 @@ import {
     getTilDateFromFilter,
     getTrekkSumYtelser,
     getTypeFromYtelse,
-    månedOgÅrForUtbetaling,
+    maanedOgAarForUtbetaling,
     periodeStringFromYtelse,
     reduceUtbetlingerTilYtelser,
     summertBeløpStringFraUtbetalinger,
@@ -38,7 +38,7 @@ test('lager riktig måned og år string for utbetaling', () => {
         utbetalingsdato: '1986-12-28'
     };
 
-    const result = månedOgÅrForUtbetaling(utbetaling);
+    const result = maanedOgAarForUtbetaling(utbetaling);
 
     expect(result).toEqual('Desember 1986');
 });

@@ -8,7 +8,7 @@ import {
     SendReferatRequest,
     SendSpørsmålRequest
 } from '../../../../models/meldinger/meldinger';
-import { useAppState, useFødselsnummer } from '../../../../utils/customHooks';
+import { useAppState, useFodselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import {
     InfomeldingSendtKvittering,
@@ -36,7 +36,7 @@ const initialState: SendNyMeldingState = {
 
 function SendNyMeldingContainer() {
     const dispatch = useDispatch();
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
     const reloadMeldinger = useRestResource(resources => resources.traader).actions.reload;
 
     const valgtEnhet = useAppState(selectValgtEnhet);

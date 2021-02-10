@@ -4,7 +4,7 @@ import theme from '../../../styles/personOversiktTheme';
 import KontrollSpørsmålKnapper from './KontrollSpørsmålKnapper';
 import SpørsmålOgSvar from './SporsmalOgSvarContainer';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
-import { useAppState, useFødselsnummer } from '../../../utils/customHooks';
+import { useAppState, useFodselsnummer } from '../../../utils/customHooks';
 import LazySpinner from '../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useErKontaktsenter } from '../../../utils/enheter-utils';
@@ -47,7 +47,7 @@ const Placeholder = (
 const placeholderProps = { returnOnPending: Placeholder };
 function Kontrollsporsmal() {
     const visKontrollSpørsmål = useAppState(state => state.kontrollSpørsmål.open);
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
     const personResource = useRestResource(resources => resources.personinformasjon, placeholderProps);
     const erKontaktsenter = useErKontaktsenter();
     const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);

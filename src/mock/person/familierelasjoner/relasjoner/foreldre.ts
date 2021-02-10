@@ -6,7 +6,7 @@ import navfaker from 'nav-faker';
 import { tilfeldigFodselsnummer } from '../../../utils/fnr-utils';
 import { getPersonstatus } from '../../personMock';
 import { lagNavn, getAlderFromFødselsnummer } from '../../../utils/person-utils';
-import { Familierelasjon, Kjønn, Relasjonstype } from '../../../../models/person/person';
+import { Familierelasjon, Kjonn, Relasjonstype } from '../../../../models/person/person';
 
 export function lagForeldre(barnetsAlder: Moment): Familierelasjon[] {
     let foreldre = [];
@@ -20,7 +20,7 @@ export function lagForeldre(barnetsAlder: Moment): Familierelasjon[] {
 }
 
 function lagForelder(barnetsFødselsdato: Moment, relasjonstype: Relasjonstype) {
-    const kjønn = relasjonstype === Relasjonstype.Mor ? Kjønn.Kvinne : Kjønn.Mann;
+    const kjønn = relasjonstype === Relasjonstype.Mor ? Kjonn.Kvinne : Kjonn.Mann;
     const foreldersFødselsnummer = lagFødselsnummer(barnetsFødselsdato, kjønn);
     const alder = getAlderFromFødselsnummer(foreldersFødselsnummer);
     return {
@@ -36,7 +36,7 @@ function lagForelder(barnetsFødselsdato: Moment, relasjonstype: Relasjonstype) 
     };
 }
 
-function lagFødselsnummer(barnetsFødselsdato: moment.Moment, kjønn: Kjønn) {
+function lagFødselsnummer(barnetsFødselsdato: moment.Moment, kjønn: Kjonn) {
     const minFødselsdato = barnetsFødselsdato.subtract(18, 'years');
     const maxFødselsdato = moment.min(minFødselsdato, moment().subtract(100, 'years'));
     const fødselsdato = navfaker.dato.mellom(minFødselsdato.toDate(), maxFødselsdato.toDate());

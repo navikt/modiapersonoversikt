@@ -96,7 +96,7 @@ function SendNyMelding(props: Props) {
         : 'bruker';
 
     const erReferat = NyMeldingValidator.erReferat(state);
-    const erSpørsmål = NyMeldingValidator.erSporsmal(state);
+    const erSporsmaal = NyMeldingValidator.erSporsmal(state);
     const erInfomelding = NyMeldingValidator.erInfomelding(state);
 
     return (
@@ -127,13 +127,13 @@ function SendNyMelding(props: Props) {
                             />
                             <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
                         </UnmountClosed>
-                        <UnmountClosed isOpened={erSpørsmål || erInfomelding} hasNestedCollapse={true}>
+                        <UnmountClosed isOpened={erSporsmaal || erInfomelding} hasNestedCollapse={true}>
                             <DialogpanelVelgSak
                                 setValgtSak={sak => updateState({ sak })}
                                 visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
                                 valgtSak={state.sak}
                             />
-                            {erSpørsmål ? (
+                            {erSporsmaal ? (
                                 <>
                                     <Oppgaveliste
                                         oppgaveliste={state.oppgaveListe}

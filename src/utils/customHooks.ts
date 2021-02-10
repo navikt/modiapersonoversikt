@@ -65,6 +65,6 @@ export function useAppState<T>(selector: (state: AppState) => T) {
     return useSelector((state: AppState) => selector(state));
 }
 
-export function useFødselsnummer() {
+export function useFodselsnummer() {
     return useAppState(state => state.gjeldendeBruker.fødselsnummer);
 }
