@@ -1,4 +1,4 @@
-FROM node:14.14.5-alpine as nodebuilder
+FROM node:14.15.5-alpine as nodebuilder
 
 COPY /package.json /source/package.json
 COPY /package-lock.json /source/package-lock.json
