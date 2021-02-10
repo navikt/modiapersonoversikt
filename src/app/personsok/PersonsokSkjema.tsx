@@ -172,7 +172,7 @@ function PersonsokSkjema(props: Props) {
     const state = validator(initialValues);
     const hjelpetekstID = useRef(guid());
 
-    function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
+    function submitHandler(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
 
         if (values.utenlandskID.length > 0) {

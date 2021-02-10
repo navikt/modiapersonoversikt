@@ -12,7 +12,7 @@ import {
 } from './date-utils';
 import moment from 'moment';
 
-Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
+Date.now = () => new Date().getTime(); // for å motvirke Date.now() mock i setupTests.ts
 
 describe('dato erImorgenEllerSenere', () => {
     it('Dagens dato', () => {

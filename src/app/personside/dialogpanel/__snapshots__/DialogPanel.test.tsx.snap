@@ -275,6 +275,7 @@ exports[`viser dialogpanel 1`] = `
                   >
                     Melding
                   </label>
+                  
                   <div
                     className="textarea--medMeta__wrapper"
                   >

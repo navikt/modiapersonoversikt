@@ -1073,6 +1073,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             >
               Beskrivelse
             </label>
+            
             <div
               className="textarea--medMeta__wrapper"
             >
