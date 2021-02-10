@@ -6,7 +6,7 @@ import SetFnrIRedux from '../../../app/PersonOppslagHandler/SetFnrIRedux';
 import SykePengerLaster from './SykepengerLaster';
 
 interface Props {
-    fødselsnummer: string;
+    fnr: string;
     sykmeldtFraOgMed: string;
 }
 
@@ -21,8 +21,8 @@ function SykepengerLamell(props: Props) {
     return (
         <ErrorBoundary boundaryName="SykepengerLamell">
             <Styles>
-                <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
-                <SykePengerLaster fødselsnummer={props.fødselsnummer} sykmeldtFraOgMed={props.sykmeldtFraOgMed} />
+                <SetFnrIRedux fnr={props.fnr} />
+                <SykePengerLaster fødselsnummer={props.fnr} sykmeldtFraOgMed={props.sykmeldtFraOgMed} />
             </Styles>
         </ErrorBoundary>
     );

@@ -18,13 +18,11 @@ function Routing() {
                 <Route path={`${paths.standaloneKomponenter}/:component?/:fnr?`} component={StandAloneKomponenter} />
                 <Route
                     path={`${paths.sakerFullscreen}/:fodselsnummer/`}
-                    render={routeProps => <SakerFullscreen fødselsnummer={routeProps.match.params.fodselsnummer} />}
+                    render={routeProps => <SakerFullscreen fnr={routeProps.match.params.fodselsnummer} />}
                 />
                 <Route
                     path={`${paths.saksdokumentEgetVindu}/:fodselsnummer/`}
-                    render={routeProps => (
-                        <SaksDokumentEgetVindu fødselsnummer={routeProps.match.params.fodselsnummer} />
-                    )}
+                    render={routeProps => <SaksDokumentEgetVindu fnr={routeProps.match.params.fodselsnummer} />}
                 />
                 <Route path={`${paths.personUri}/:fodselsnummer`} component={Personoversikt} />
                 <Route component={Startbilde} />

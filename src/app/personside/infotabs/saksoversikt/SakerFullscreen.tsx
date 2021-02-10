@@ -16,7 +16,7 @@ import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
 interface Props {
-    fødselsnummer: string;
+    fnr: string;
 }
 
 const SaksoversiktArticle = styled.article`
@@ -83,7 +83,7 @@ function SakerFullscreen(props: Props) {
 
     return (
         <>
-            <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
+            <SetFnrIRedux fnr={props.fnr} />
             <LyttPåNyttFnrIReduxOgHentPersoninfo />
             <FetchFeatureToggles />
             <Innhold />
