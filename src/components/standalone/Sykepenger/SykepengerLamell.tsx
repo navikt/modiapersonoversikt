@@ -22,7 +22,7 @@ function SykepengerLamell(props: Props) {
         <ErrorBoundary boundaryName="SykepengerLamell">
             <Styles>
                 <SetFnrIRedux fnr={props.fnr} />
-                <SykePengerLaster fødselsnummer={props.fnr} sykmeldtFraOgMed={props.sykmeldtFraOgMed} />
+                <SykePengerLaster fnr={props.fnr} sykmeldtFraOgMed={props.sykmeldtFraOgMed} />
             </Styles>
         </ErrorBoundary>
     );

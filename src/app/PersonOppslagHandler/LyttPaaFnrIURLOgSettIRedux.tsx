@@ -3,7 +3,7 @@ import { paths } from '../routes/routing';
 import * as React from 'react';
 import SetFnrIRedux from './SetFnrIRedux';
 
-function LyttPåFnrIURLOgSettIRedux() {
+function LyttPaaFnrIURLOgSettIRedux() {
     return (
         <Switch>
             <Route
@@ -23,4 +23,4 @@ function LyttPåFnrIURLOgSettIRedux() {
     );
 }
 
-export default LyttPåFnrIURLOgSettIRedux;
+export default LyttPaaFnrIURLOgSettIRedux;
