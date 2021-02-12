@@ -6,7 +6,7 @@ import VarslerContainer from '../../app/personside/infotabs/varsel/VarslerContai
 import styled from 'styled-components/macro';
 
 interface Props {
-    fødselsnummer: string;
+    fnr: string;
 }
 
 const Styles = styled.div`
@@ -22,7 +22,7 @@ class VarslerLamell extends React.PureComponent<Props> {
         return (
             <ErrorBoundary boundaryName={'Oppfølging'}>
                 <Styles>
-                    <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                    <SetFnrIRedux fnr={this.props.fnr} />
                     <VarslerContainer />
                 </Styles>
             </ErrorBoundary>

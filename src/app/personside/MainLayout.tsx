@@ -6,7 +6,7 @@ import { toggleDialogpanel } from '../../redux/uiReducers/UIReducer';
 import { AppState } from '../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { LayoutWrapper } from './MainLayoutStyles';
-import { HøyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './ResponsiveMainLayoutStyles';
+import { HoyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './ResponsiveMainLayoutStyles';
 import Kontrollsporsmal from './kontrollsporsmal/Kontrollsporsmal';
 import InfoTabs from './infotabs/InfoTabs';
 import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
@@ -42,7 +42,7 @@ function MainLayout() {
                 <InfoTabs />
             </VenstreKolonne>
             {!window.erChatvisning && (
-                <HøyreKolonne
+                <HoyreKolonne
                     onClick={ekspanderDialogpanelHandler}
                     dialogPanelEkspandert={UI.dialogPanel.ekspandert}
                     aria-describedby={tittelId.current}
@@ -56,7 +56,7 @@ function MainLayout() {
                         <DialogPanel />
                     </Scrollbar>
                     <EkspanderDilaogpanelKnapp />
-                </HøyreKolonne>
+                </HoyreKolonne>
             )}
             <SmallScreenToggleButton UI={UI} toggleDialogpanel={() => dispatch(toggleDialogpanel())} />
         </LayoutWrapper>

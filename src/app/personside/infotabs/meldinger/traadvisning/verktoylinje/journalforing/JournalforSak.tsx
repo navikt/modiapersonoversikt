@@ -12,7 +12,7 @@ import { post } from '../../../../../../../api/api';
 import { loggError } from '../../../../../../../utils/logger/frontendLogger';
 import { useDispatch } from 'react-redux';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
-import { useAppState, useFødselsnummer } from '../../../../../../../utils/customHooks';
+import { useAppState, useFodselsnummer } from '../../../../../../../utils/customHooks';
 import * as JournalforingUtils from '../../../../../journalforings-use-fetch-utils';
 import { selectValgtEnhet } from '../../../../../../../redux/session/session';
 
@@ -49,7 +49,7 @@ export function JournalforSak(props: Props) {
     const valgtEnhet = useAppState(selectValgtEnhet);
     const tråderResource = useRestResource(resources => resources.traader);
     const kategori = sakKategori(props.sak);
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [journalforingSuksess, setJournalforingSuksess] = useState(false);

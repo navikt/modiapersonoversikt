@@ -76,27 +76,25 @@ const KomponentStyle = styled.div`
 function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
     switch (props.valgtTab) {
         case Komponenter.Saksoversikt:
-            return <SaksoversiktLamell fødselsnummer={props.fnr} />;
+            return <SaksoversiktLamell fnr={props.fnr} />;
         case Komponenter.SaksoversiktEgetVindu:
-            return <SakerFullscreen fødselsnummer={props.fnr} />;
+            return <SakerFullscreen fnr={props.fnr} />;
         case Komponenter.Brukerprofil:
-            return <BrukerprofilStandalone fødselsnummer={props.fnr} />;
+            return <BrukerprofilStandalone fnr={props.fnr} />;
         case Komponenter.Utbetalinger:
-            return <UtbetalingsLamell fødselsnummer={props.fnr} />;
+            return <UtbetalingsLamell fnr={props.fnr} />;
         case Komponenter.Pleiepenger:
-            return (
-                <PleiepengerLamell fødselsnummer={aremark.fødselsnummer} barnetsFødselsnummer={moss.fødselsnummer} />
-            );
+            return <PleiepengerLamell fnr={aremark.fødselsnummer} barnetsFnr={moss.fødselsnummer} />;
         case Komponenter.Foreldrepenger:
-            return <ForeldrepengerLamell fødselsnummer={props.fnr} />;
+            return <ForeldrepengerLamell fnr={props.fnr} />;
         case Komponenter.Visittkort:
-            return <VisittkortStandAlone fødselsnummer={props.fnr} />;
+            return <VisittkortStandAlone fnr={props.fnr} />;
         case Komponenter.Oppfølging:
-            return <OppfolgingLamell fødselsnummer={props.fnr} />;
+            return <OppfolgingLamell fnr={props.fnr} />;
         case Komponenter.Sykepenger:
-            return <SykepengerLamell fødselsnummer={aremark.fødselsnummer} sykmeldtFraOgMed="2019-02-06" />;
+            return <SykepengerLamell fnr={aremark.fødselsnummer} sykmeldtFraOgMed="2019-02-06" />;
         case Komponenter.Varsler:
-            return <VarslerLamell fødselsnummer={props.fnr} />;
+            return <VarslerLamell fnr={props.fnr} />;
         case Komponenter.Dialogpanel:
             return <DialogPanel />;
         case Komponenter.Personsok:

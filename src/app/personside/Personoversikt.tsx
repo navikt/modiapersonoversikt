@@ -1,7 +1,7 @@
 import * as React from 'react';
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
 import MainLayout from './MainLayout';
-import { useFødselsnummer, useOnMount } from '../../utils/customHooks';
+import { useFodselsnummer, useOnMount } from '../../utils/customHooks';
 import { erGydligishFnr } from '../../utils/fnr-utils';
 import { useHistory } from 'react-router';
 import { paths } from '../routes/routing';
@@ -20,7 +20,7 @@ const onError = (
 );
 
 function Personoversikt() {
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
     const history = useHistory();
 
     useOnMount(() => {

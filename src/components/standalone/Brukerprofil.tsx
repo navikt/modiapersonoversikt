@@ -8,7 +8,7 @@ import theme from '../../styles/personOversiktTheme';
 import FetchSessionInfoOgLeggIRedux from '../../app/FetchSessionInfoOgLeggIRedux';
 
 interface Props {
-    fødselsnummer: string;
+    fnr: string;
 }
 
 const Styles = styled.div`
@@ -24,7 +24,7 @@ class BrukerprofilStandalone extends React.Component<Props> {
             <ErrorBoundary boundaryName="Brukerprofil">
                 <Styles>
                     <FetchSessionInfoOgLeggIRedux />
-                    <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                    <SetFnrIRedux fnr={this.props.fnr} />
                     <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
                     <BrukerprofilSide />
                 </Styles>

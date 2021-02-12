@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { paths } from '../../../../routes/routing';
-import { useFødselsnummer } from '../../../../../utils/customHooks';
+import { useFodselsnummer } from '../../../../../utils/customHooks';
 import { getSaksdokumentUrl } from '../dokumentvisning/getSaksdokumentUrl';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import { useInfotabsDyplenker } from '../../dyplenker';
@@ -44,7 +44,7 @@ function getUrlSaksdokumentEgetVindu(fødselsnummer: string, journalpostId: stri
 
 function DokumentLenke(props: Props) {
     const pathname = useLocation().pathname;
-    const fødselsnummer = useFødselsnummer();
+    const fødselsnummer = useFodselsnummer();
     const dyplenker = useInfotabsDyplenker();
 
     if (!props.kanVises) {

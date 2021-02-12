@@ -10,7 +10,7 @@ import { useInfotabsDyplenker } from '../../app/personside/infotabs/dyplenker';
 import ErrorBoundary from '../ErrorBoundary';
 
 interface Props {
-    fødselsnummer: string;
+    fnr: string;
 }
 
 const Styles = styled.div`
@@ -33,7 +33,7 @@ function SaksoversiktLamell(props: Props) {
         <ErrorBoundary boundaryName="SaksoversiktLamell">
             <MemoryRouter>
                 <Styles>
-                    <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
+                    <SetFnrIRedux fnr={props.fnr} />
                     <LyttPåNyttFnrIReduxOgHentPersoninfo />
                     <FetchFeatureToggles />
                     <Routing />

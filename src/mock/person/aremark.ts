@@ -1,4 +1,4 @@
-import { BostatusTyper, Kjønn, Person, Relasjonstype, SivilstandTyper } from '../../models/person/person';
+import { BostatusTyper, Kjonn, Person, Relasjonstype, SivilstandTyper } from '../../models/person/person';
 import { SikkerhetstiltakTyper } from '../../models/sikkerhetstiltak';
 import { Personadresse } from '../../models/personadresse';
 import { TilrettelagtKommunikasjonType } from '../../models/kodeverk';
@@ -56,7 +56,7 @@ export const utlandsAdresseAremark: Personadresse = {
 
 export const aremark: Person = {
     fødselsnummer: '10108000398',
-    kjønn: Kjønn.Mann,
+    kjønn: Kjonn.Mann,
     geografiskTilknytning: '0118',
     alder: 42,
     folkeregistrertAdresse: gateAdresseAremark,

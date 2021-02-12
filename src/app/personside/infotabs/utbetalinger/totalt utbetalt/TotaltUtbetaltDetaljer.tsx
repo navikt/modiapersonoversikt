@@ -122,11 +122,11 @@ function getAlleYtelsesKomponenterFraYtelser(ytelser: Ytelse[]) {
 
 function getYtelsesKomponentSammendragListe(ytelser: Ytelse[]) {
     const alleYtelsesKomponenter = getAlleYtelsesKomponenterFraYtelser(ytelser);
-    const ytelsesKomponenterGruppertPåType = groupArray(
+    const ytelsesKomponenterGruppertPaaType = groupArray(
         alleYtelsesKomponenter,
         ytelseskomponent => ytelseskomponent.ytelseskomponenttype
     );
-    const listeKomponenter = ytelsesKomponenterGruppertPåType.map(gruppe => {
+    const listeKomponenter = ytelsesKomponenterGruppertPaaType.map(gruppe => {
         const sum = gruppe.array.reduce((acc, ytelsesKomponent) => acc + ytelsesKomponent.ytelseskomponentbeløp, 0);
         return (
             <Fragment key={gruppe.category}>
@@ -143,14 +143,14 @@ function getAlleUtbetalteYtelserFraUtbetalinger(utbetalinger: Utbetaling[]) {
     return reduceUtbetlingerTilYtelser(utbetalteUtbetalinger);
 }
 
-function getTypeOgÅrFromYtelse(ytelse: Ytelse): string {
+function getTypeOgAarFromYtelse(ytelse: Ytelse): string {
     return getTypeFromYtelse(ytelse) + ' ' + moment(ytelse.periode.slutt).year();
 }
 
 function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
     const alleUtbetalteYtelser: Ytelse[] = getAlleUtbetalteYtelserFraUtbetalinger(utbetalinger);
-    const ytelserGruppertPåTema = groupArray(alleUtbetalteYtelser, getTypeOgÅrFromYtelse);
-    const ytelsesSammendrag = ytelserGruppertPåTema
+    const ytelserGruppertPaaTema = groupArray(alleUtbetalteYtelser, getTypeOgAarFromYtelse);
+    const ytelsesSammendrag = ytelserGruppertPaaTema
         .sort((a, b) => sorterAlfabetisk(a.category, b.category))
         .map(gruppe => {
             const ytelser = gruppe.array;

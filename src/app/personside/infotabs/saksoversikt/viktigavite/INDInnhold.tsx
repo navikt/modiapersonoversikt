@@ -1,7 +1,7 @@
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import * as React from 'react';
 
-export function ViktigÅViteINDInnhold(): JSX.Element {
+export function ViktigAaViteINDInnhold(): JSX.Element {
     return (
         <div>
             <Undertittel>Informasjon om meldekort</Undertittel>

@@ -8,7 +8,7 @@ import { datoVerbose } from '../../../../../utils/date-utils';
 
 export const utbetaltTilBruker = 'Bruker';
 
-export function månedOgÅrForUtbetaling(utbetaling: Utbetaling) {
+export function maanedOgAarForUtbetaling(utbetaling: Utbetaling) {
     const verbose = datoVerbose(getGjeldendeDatoForUtbetaling(utbetaling));
     return `${verbose.måned} ${verbose.år}`;
 }
