@@ -3,6 +3,10 @@ import { DependencyList, EffectCallback, RefObject, useCallback, useEffect, useM
 import { EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
 import { useSelector } from 'react-redux';
 import { AppState } from '../redux/reducers';
+import useFeatureToggle from '../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../components/featureToggle/toggleIDs';
+import { erKontaktsenter } from './enheter-utils';
+import Hotjar, { HotjarTriggers } from './hotjar';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
     useOnMount(() => {
@@ -67,4 +71,19 @@ export function useAppState<T>(selector: (state: AppState) => T) {
 
 export function useFodselsnummer() {
     return useAppState(state => state.gjeldendeBruker.fødselsnummer);
+}
+
+export function useTriggerHotjarForLokalKontor() {
+    const bruksmonsterSurveyAktiv = useFeatureToggle(FeatureToggles.BruksmonsterSurvey).isOn ?? false;
+    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+
+    useJustOnceEffect(
+        done => {
+            if (valgtEnhet && bruksmonsterSurveyAktiv && !erKontaktsenter(valgtEnhet)) {
+                Hotjar.trigger(HotjarTriggers.BRUKSMONSTER);
+                done();
+            }
+        },
+        [bruksmonsterSurveyAktiv, valgtEnhet]
+    );
 }
