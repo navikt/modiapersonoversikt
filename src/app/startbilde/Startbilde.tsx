@@ -10,7 +10,7 @@ function Startbilde() {
     useFetchFeatureTogglesOnNewFnr();
     return (
         <StartBildeLayout>
-            <SetFnrIRedux fødselsnummer="" />
+            <SetFnrIRedux fnr="" />
             <HentOppgaveKnapp />
             <PersonSokInput />
             <StartbildeInnstillinger />

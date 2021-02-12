@@ -12,7 +12,7 @@ import IfFeatureToggleOn from '../featureToggle/IfFeatureToggleOn';
 import FetchSessionInfoOgLeggIRedux from '../../app/FetchSessionInfoOgLeggIRedux';
 
 interface Props {
-    fødselsnummer: string;
+    fnr: string;
 }
 
 const Styles = styled.div`
@@ -33,7 +33,7 @@ class VisittkortStandAlone extends React.Component<Props> {
             <ErrorBoundary>
                 <Styles>
                     <FetchSessionInfoOgLeggIRedux />
-                    <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                    <SetFnrIRedux fnr={this.props.fnr} />
                     <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
                     <Kontrollsporsmal />
                     <VisittkortLaster />

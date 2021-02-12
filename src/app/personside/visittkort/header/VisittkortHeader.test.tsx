@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import VisittkortHeader from './VisittkortHeader';
 import { aremark } from '../../../../mock/person/aremark';
 import TestProvider from '../../../../test/Testprovider';
-import { mount } from 'enzyme';
+import { mount } from '../../../../test/enzyme-container';
 import { Person } from '../../../../models/person/person';
 import { getTestStore } from '../../../../test/testStore';
 

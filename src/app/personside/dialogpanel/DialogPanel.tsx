@@ -13,10 +13,10 @@ const DialogPanelWrapper = styled.div`
 
 function DialogPanel() {
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
-    const slåOppOppgave = useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad);
+    const slaaOppOppgave = useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad);
 
-    if (slåOppOppgave.pending) {
-        return slåOppOppgave.placeholder;
+    if (slaaOppOppgave.pending) {
+        return slaaOppOppgave.placeholder;
     }
 
     return (

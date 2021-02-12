@@ -6,7 +6,7 @@ import OppfolgingContainer from '../../app/personside/infotabs/oppfolging/Oppfol
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 
 interface Props {
-    fødselsnummer: string;
+    fnr: string;
 }
 
 const Styles = styled.div`
@@ -22,7 +22,7 @@ class OppfolgingLamell extends React.PureComponent<Props> {
         return (
             <ErrorBoundary boundaryName={'Oppfølging'}>
                 <Styles>
-                    <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                    <SetFnrIRedux fnr={this.props.fnr} />
                     <OppfolgingContainer />
                 </Styles>
             </ErrorBoundary>

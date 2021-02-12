@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DependencyList, EffectCallback, RefObject, useCallback, useEffect, useRef } from 'react';
+import { DependencyList, EffectCallback, RefObject, useCallback, useEffect, useMemo, useRef } from 'react';
 import { EventListener, runIfEventIsNotInsideRef } from './reactRef-utils';
 import { useSelector } from 'react-redux';
 import { AppState } from '../redux/reducers';
@@ -16,7 +16,7 @@ export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
 }
 
 export function useOnMount(effect: EffectCallback) {
-    useEffect(effect, []);
+    useEffect(effect, []); // eslint-disable-line
 }
 
 export type JustOnceEffectCallback = (done: () => void) => void | (() => void | undefined);
@@ -45,7 +45,7 @@ export function useOnUpdate(effect: EffectCallback, deps: DependencyList) {
 }
 
 export function useClickOutside<T extends HTMLElement>(ref: RefObject<T>, callback: EventListener) {
-    const handler: EventListener = useCallback(runIfEventIsNotInsideRef(ref, callback), [ref, callback]);
+    const handler: EventListener = useMemo(() => runIfEventIsNotInsideRef(ref, callback), [ref, callback]);
 
     useEffect(() => {
         document.addEventListener('mousedown', handler);
@@ -65,6 +65,6 @@ export function useAppState<T>(selector: (state: AppState) => T) {
     return useSelector((state: AppState) => selector(state));
 }
 
-export function useFødselsnummer() {
+export function useFodselsnummer() {
     return useAppState(state => state.gjeldendeBruker.fødselsnummer);
 }

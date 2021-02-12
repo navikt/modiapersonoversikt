@@ -8,7 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import DemoBanner from '../components/DemoBanner';
 import IeMacStyling from './IeMacStyling';
 import { Provider } from 'react-redux';
-import LyttPåFnrIURLOgSettIRedux from './PersonOppslagHandler/LyttPåFnrIURLOgSettIRedux';
+import LyttPaaFnrIURLOgSettIRedux from './PersonOppslagHandler/LyttPaaFnrIURLOgSettIRedux';
 import HentGlobaleVerdier from './FetchSessionInfoOgLeggIRedux';
 import GlobalStyling from './GlobalStyling';
 import Decorator from './internarbeidsflatedecorator/Decorator';
@@ -60,7 +60,7 @@ function App() {
     return (
         <>
             <LoggetUtModal loginState={loginState} />
-            <LyttPåFnrIURLOgSettIRedux />
+            <LyttPaaFnrIURLOgSettIRedux />
             <HentGlobaleVerdier />
             <ContentStyle>
                 <Routing />

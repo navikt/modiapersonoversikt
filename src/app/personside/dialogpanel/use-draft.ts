@@ -19,18 +19,19 @@ interface DraftSystem {
 }
 
 function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
-    const update = useCallback(
-        debounce((content: string) => {
-            fetch('/modiapersonoversikt-draft/api/draft', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ content, context })
-            }).catch((error: Error) => {
-                loggError(error, 'Feil ved oppdatering av draft', { context });
-            });
-        }, 500),
+    const update = useMemo(
+        () =>
+            debounce((content: string) => {
+                fetch('/modiapersonoversikt-draft/api/draft', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ content, context })
+                }).catch((error: Error) => {
+                    loggError(error, 'Feil ved oppdatering av draft', { context });
+                });
+            }, 500),
         [context]
     );
 

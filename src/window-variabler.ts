@@ -6,4 +6,6 @@ declare global {
 
 window.erChatvisning = (document.location.search + document.location.hash).includes('chatvisning');
 
-export default {};
+// Bare for å gjøre TS happy
+const dummy = {};
+export default dummy;

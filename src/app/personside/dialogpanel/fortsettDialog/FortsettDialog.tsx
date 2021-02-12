@@ -78,7 +78,7 @@ function FortsettDialog(props: Props) {
                 updateTekst={tekst => updateState({ tekst: tekst })}
                 feilmelding={
                     !FortsettDialogValidator.tekst(state) && state.visFeilmeldinger
-                        ? `Du må skrive en tekst på mellom 0 og ${tekstMaksLengde} tegn`
+                        ? `Du må skrive en tekst på mellom 1 og ${tekstMaksLengde} tegn`
                         : undefined
                 }
             />

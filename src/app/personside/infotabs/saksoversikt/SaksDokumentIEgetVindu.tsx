@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 
 interface Props {
-    fødselsnummer: string;
+    fnr: string;
 }
 
 const Sentring = styled.div`
@@ -36,7 +36,7 @@ function SaksDokumentEgetVindu(props: Props) {
     }
     return (
         <>
-            <SetFnrIRedux fødselsnummer={props.fødselsnummer} />
+            <SetFnrIRedux fnr={props.fnr} />
             <DokumentVisning url={queryParams.dokumenturl} />
         </>
     );

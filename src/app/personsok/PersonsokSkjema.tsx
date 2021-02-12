@@ -9,7 +9,7 @@ import useFormstate, { FunctionValidator, Values } from '@nutgaard/use-formstate
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
 import PersonsokDatovelger from './PersonsokDatovelger';
-import { Kjønn } from '../../models/person/person';
+import { Kjonn } from '../../models/person/person';
 import LenkeDrek, { DrekProps } from './LenkeDrek';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../components/common-styled-components';
@@ -172,7 +172,7 @@ function PersonsokSkjema(props: Props) {
     const state = validator(initialValues);
     const hjelpetekstID = useRef(guid());
 
-    function submitHandler<S>(values: Values<PersonSokFormState>): Promise<any> {
+    function submitHandler(values: Values<PersonSokFormState>): Promise<any> {
         props.setPosting(true);
 
         if (values.utenlandskID.length > 0) {
@@ -290,10 +290,10 @@ function PersonsokSkjema(props: Props) {
                             <option value={''} key={''}>
                                 Velg Kjønn
                             </option>
-                            <option value={Kjønn.Kvinne} key={'K'}>
+                            <option value={Kjonn.Kvinne} key={'K'}>
                                 K - Kvinne
                             </option>
-                            <option value={Kjønn.Mann} key={'M'}>
+                            <option value={Kjonn.Mann} key={'M'}>
                                 M - Mann
                             </option>
                         </Select>

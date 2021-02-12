@@ -8,7 +8,7 @@ import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArr
 import {
     fjernTommeUtbetalinger,
     getTypeFromYtelse,
-    månedOgÅrForUtbetaling,
+    maanedOgAarForUtbetaling,
     reduceUtbetlingerTilYtelser,
     utbetalingDatoComparator,
     utbetaltTilBruker
@@ -92,7 +92,7 @@ function Utbetalinger(props: UtbetalingerProps) {
 
     const utbetalingerGruppert: GroupedArray<Utbetaling> = groupArray(
         filtrerteUtbetalinger.sort(utbetalingDatoComparator),
-        månedOgÅrForUtbetaling
+        maanedOgAarForUtbetaling
     );
 
     const månedsGrupper = utbetalingerGruppert.map((gruppe: ArrayGroup<Utbetaling>) => (

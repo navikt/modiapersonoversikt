@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useFødselsnummer } from '../customHooks';
+import { useFodselsnummer } from '../customHooks';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 import { Oppgave } from '../../models/meldinger/oppgave';
 
@@ -10,7 +10,7 @@ export function removeDuplicateOppgaver(value: Oppgave, index: number, list: Opp
 const emptyList: any[] = [];
 function useTildelteOppgaver() {
     const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
 
     const tildelteOppgaver = useMemo(
         () => (tildelteOppgaverResource.data ?? emptyList).filter(removeDuplicateOppgaver),

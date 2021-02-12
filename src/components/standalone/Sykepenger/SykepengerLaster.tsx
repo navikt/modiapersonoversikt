@@ -10,7 +10,7 @@ import { BigCenteredLazySpinner } from '../../BigCenteredLazySpinner';
 import Panel from 'nav-frontend-paneler';
 
 interface OwnProps {
-    fødselsnummer: string;
+    fnr: string;
     sykmeldtFraOgMed: string;
 }
 
@@ -30,7 +30,7 @@ function SykePengerLaster(props: Props) {
         );
         if (!aktuellRettighet) {
             loggError(new Error('Kunne ikke finne sykepengerettighet'), undefined, {
-                fnr: props.fødselsnummer,
+                fnr: props.fnr,
                 sykmeldtFraOgMed: props.sykmeldtFraOgMed
             });
             return <AlertStripeAdvarsel>Fant ikke aktuell sykepengerettighet for bruker</AlertStripeAdvarsel>;

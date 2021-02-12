@@ -12,7 +12,7 @@ const StyledPanel = styled(Panel)`
     padding: 0rem;
 `;
 interface Props {
-    fødselsnummer: string;
+    fnr: string;
 }
 const onError = (
     <FillCenterAndFadeIn>
@@ -26,9 +26,7 @@ class ForeldrepengerLaster extends React.PureComponent<Props> {
             return <AlertStripeInfo>Kunne ikke finne noen Foreldrepengerettigheter for bruker</AlertStripeInfo>;
         }
 
-        const aktuellRettighet = ForeldrepengeRettighet.find(
-            rettighet => rettighet.forelder === this.props.fødselsnummer
-        );
+        const aktuellRettighet = ForeldrepengeRettighet.find(rettighet => rettighet.forelder === this.props.fnr);
 
         if (!aktuellRettighet) {
             return <AlertStripeInfo>Kunne ikke finne Foreldrepengerettighet</AlertStripeInfo>;

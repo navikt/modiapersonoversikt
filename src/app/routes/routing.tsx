@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { History } from 'history';
-import { useFødselsnummer } from '../../utils/customHooks';
+import { useFodselsnummer } from '../../utils/customHooks';
 import { INFOTABS } from '../personside/infotabs/InfoTabEnum';
 
 export const paths = {
@@ -13,7 +13,7 @@ export const paths = {
 };
 
 export function usePaths() {
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
 
     const getPath = useCallback(
         (tab: INFOTABS) => {

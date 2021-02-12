@@ -1,4 +1,4 @@
-import { BostatusTyper, Kjønn, Person, Relasjonstype, SivilstandTyper } from '../../models/person/person';
+import { BostatusTyper, Kjonn, Person, Relasjonstype, SivilstandTyper } from '../../models/person/person';
 import { Personadresse } from '../../models/personadresse';
 import { Diskresjonskoder } from '../../app/personside/visittkort/body/familie/common/Diskresjonskode';
 
@@ -42,7 +42,7 @@ export const utlandsAdresseMoss: Personadresse = {
 
 export const moss: Person = {
     fødselsnummer: '07063000250',
-    kjønn: Kjønn.Kvinne,
+    kjønn: Kjonn.Kvinne,
     geografiskTilknytning: '0001',
     alder: 10,
     folkeregistrertAdresse: gateAdresseMoss,

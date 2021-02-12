@@ -7,7 +7,7 @@ import theme from '../../styles/personOversiktTheme';
 import { MemoryRouter } from 'react-router';
 
 interface Props {
-    fødselsnummer: string;
+    fnr: string;
 }
 
 const Styles = styled.div`
@@ -23,7 +23,7 @@ class UtbetalingsLamell extends React.Component<Props> {
             <ErrorBoundary boundaryName="Utbetalinger">
                 <MemoryRouter>
                     <Styles>
-                        <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
+                        <SetFnrIRedux fnr={this.props.fnr} />
                         <UtbetalingerContainer />
                     </Styles>
                 </MemoryRouter>

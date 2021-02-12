@@ -10,7 +10,7 @@ import {
     getTilDateFromFilter,
     getTrekkSumYtelser,
     getTypeFromYtelse,
-    månedOgÅrForUtbetaling,
+    maanedOgAarForUtbetaling,
     periodeStringFromYtelse,
     reduceUtbetlingerTilYtelser,
     summertBeløpStringFraUtbetalinger,
@@ -21,7 +21,7 @@ import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/ut
 import { Periode } from '../../../../../models/tid';
 import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
 
-Date.now = jest.fn(() => new Date()); // for å motvirke Date.now() mock i setupTests.ts
+Date.now = () => new Date().getTime(); // for å motvirke Date.now() mock i setupTests.ts
 
 const randomUtbetaling = getMockUtbetaling();
 
@@ -38,7 +38,7 @@ test('lager riktig måned og år string for utbetaling', () => {
         utbetalingsdato: '1986-12-28'
     };
 
-    const result = månedOgÅrForUtbetaling(utbetaling);
+    const result = maanedOgAarForUtbetaling(utbetaling);
 
     expect(result).toEqual('Desember 1986');
 });

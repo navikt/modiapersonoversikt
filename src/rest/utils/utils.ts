@@ -92,11 +92,7 @@ function handterFeil(dispatch: Dispatch<Action>, resourceNavn: string, fetchUri:
     };
 }
 
-export function fetchDataAndDispatchToRedux<T>(
-    fetchUriCreator: FetchUriCreator,
-    resourceNavn: string,
-    reload?: boolean
-) {
+export function fetchDataAndDispatchToRedux(fetchUriCreator: FetchUriCreator, resourceNavn: string, reload?: boolean) {
     const actionNames = getActionTypes(resourceNavn);
     return (dispatch: AsyncDispatch, getState: () => AppState) => {
         const uri = fetchUriCreator(getState());

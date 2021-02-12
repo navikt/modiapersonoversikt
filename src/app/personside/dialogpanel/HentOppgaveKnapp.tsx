@@ -53,7 +53,7 @@ function HentOppgaveKnapp() {
     const history = useHistory();
     const dispatch = useDispatch();
     const valgtEnhet = useAppState(selectValgtEnhet);
-    const [tomKø, setTomKø] = useState(false);
+    const [emptyQueue, setEmptyQueue] = useState(false);
     const [temaGruppeFeilmelding, setTemaGruppeFeilmelding] = useState(false);
     const [isPosting, setIsPosting] = useState(false);
     const [response, setResponse] = useState<FetchResponse<Oppgave[]> | undefined>(undefined);
@@ -84,7 +84,7 @@ function HentOppgaveKnapp() {
             return;
         }
         setTemaGruppeFeilmelding(false);
-        setTomKø(false);
+        setEmptyQueue(false);
         setIsPosting(true);
         dispatch(setJobberMedSTO(true));
         fetchToJson<Oppgave[]>(`${apiBaseUri}/oppgaver/plukk/${temagruppe}?enhet=${valgtEnhet}`, postConfig()).then(
@@ -95,14 +95,12 @@ function HentOppgaveKnapp() {
                     const stoOppgaver = response.data.filter(oppgave => oppgave.erSTOOppgave);
                     const antallOppgaverTildelt = stoOppgaver.length;
                     if (antallOppgaverTildelt === 0) {
-                        setTomKø(true);
+                        setEmptyQueue(true);
                         return;
                     }
                     const oppgave = stoOppgaver[0];
-                    const fødselsnummer = oppgave.fødselsnummer;
-                    history.push(
-                        `${paths.personUri}/${fødselsnummer}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`
-                    );
+                    const fnr = oppgave.fødselsnummer;
+                    history.push(`${paths.personUri}/${fnr}/${INFOTABS.MELDINGER.toLowerCase()}/${oppgave.traadId}`);
                     antallOppgaverTildelt > 1 &&
                         loggEvent('FlereOppgaverTildelt', 'HentOppgave', undefined, { antall: antallOppgaverTildelt });
                     loggEvent('Hent-Oppgave', 'HentOppgave', undefined, { antall: antallOppgaverTildelt });
@@ -117,7 +115,7 @@ function HentOppgaveKnapp() {
         setTemaGruppeFeilmelding(false);
     };
 
-    const tomtTilbakemelding = tomKø ? (
+    const tomtTilbakemelding = emptyQueue ? (
         <AlertStripeInfo>Det er ingen nye oppgaver på valgt temagruppe</AlertStripeInfo>
     ) : null;
 
