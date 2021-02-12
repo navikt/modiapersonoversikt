@@ -8,6 +8,7 @@ import { useFetchFeatureTogglesOnNewFnr } from '../PersonOppslagHandler/FetchFea
 
 function Startbilde() {
     useFetchFeatureTogglesOnNewFnr();
+
     return (
         <StartBildeLayout>
             <SetFnrIRedux fnr="" />
