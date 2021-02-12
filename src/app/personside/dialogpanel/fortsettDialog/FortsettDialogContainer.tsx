@@ -4,7 +4,7 @@ import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
 import { ForsettDialogRequest, Meldingstype, SendDelsvarRequest, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { useAppState, useFødselsnummer } from '../../../../utils/customHooks';
+import { useAppState, useFodselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
@@ -78,7 +78,7 @@ function FortsettDialogContainer(props: Props) {
         oppgaveListe: OppgavelisteValg.MinListe
     };
 
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
     const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const valgtEnhet = useAppState(selectValgtEnhet);
@@ -173,7 +173,7 @@ function FortsettDialogContainer(props: Props) {
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
-        } else if (FortsettDialogValidator.erGyldigSpørsmålSkriftlig(state, props.traad)) {
+        } else if (FortsettDialogValidator.erGyldigSporsmaalSkriftlig(state, props.traad)) {
             const erJournalfort = erEldsteMeldingJournalfort(props.traad);
             const erOksos = props.traad.meldinger[0].temagruppe === Temagruppe.ØkonomiskSosial;
             if (!state.sak && !erJournalfort && !erOksos) {

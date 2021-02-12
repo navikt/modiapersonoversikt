@@ -1,4 +1,4 @@
-import { erPersonResponsAvTypePerson, Kjønn, PersonRespons } from '../../../../models/person/person';
+import { erPersonResponsAvTypePerson, Kjonn, PersonRespons } from '../../../../models/person/person';
 import { NavKontorResponse } from '../../../../models/navkontor';
 import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
 import { Locale } from './standardTekster/domain';
@@ -31,12 +31,12 @@ export type AutofullforMap = {
 };
 
 const subjectPronomenMap = {
-    [Kjønn.Mann]: {
+    [Kjonn.Mann]: {
         [Locale.nb_NO]: 'han',
         [Locale.nn_NO]: 'han',
         [Locale.en_US]: 'he'
     },
-    [Kjønn.Kvinne]: {
+    [Kjonn.Kvinne]: {
         [Locale.nb_NO]: 'hun',
         [Locale.nn_NO]: 'ho',
         [Locale.en_US]: 'she'
@@ -44,23 +44,23 @@ const subjectPronomenMap = {
 };
 
 const objektPronomenMap = {
-    [Kjønn.Mann]: {
+    [Kjonn.Mann]: {
         [Locale.nb_NO]: 'ham',
         [Locale.nn_NO]: 'han',
         [Locale.en_US]: 'him'
     },
-    [Kjønn.Kvinne]: {
+    [Kjonn.Kvinne]: {
         [Locale.nb_NO]: 'henne',
         [Locale.nn_NO]: 'ho',
         [Locale.en_US]: 'her'
     }
 };
 
-function objektPronomen(kjonn: Kjønn, locale: string) {
+function objektPronomen(kjonn: Kjonn, locale: string) {
     return (objektPronomenMap[kjonn] || {})[locale] || null;
 }
 
-function subjectPronomen(kjonn: Kjønn, locale: string) {
+function subjectPronomen(kjonn: Kjonn, locale: string) {
     return (subjectPronomenMap[kjonn] || {})[locale] || null;
 }
 
@@ -117,7 +117,7 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
     });
 }
 
-export function useAutoFullførData(): AutofullforData | undefined {
+export function useAutoFullforData(): AutofullforData | undefined {
     const personResource = useRestResource(resources => resources.personinformasjon);
     const saksbehandler = useRestResource(resources => resources.innloggetSaksbehandler);
     const navKontorResource = useRestResource(resources => resources.brukersNavKontor);

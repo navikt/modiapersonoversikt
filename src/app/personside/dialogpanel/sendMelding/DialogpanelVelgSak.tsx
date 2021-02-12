@@ -8,7 +8,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { NedChevron, OppChevron } from 'nav-frontend-chevron';
-import { useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
+import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
 import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 
@@ -54,7 +54,7 @@ function getTittel(sak: JournalforingsSak) {
 }
 
 function usePreFetchJournalforingsSaker() {
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
     useOnMount(() => {
         JournalforingUtils.prefetchSammensatteSaker(fnr);
         JournalforingUtils.prefetchPensjonsaker(fnr);

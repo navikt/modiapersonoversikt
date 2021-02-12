@@ -6,7 +6,7 @@ import theme from '../../../styles/personOversiktTheme';
 import SetFnrIRedux from '../../../app/PersonOppslagHandler/SetFnrIRedux';
 
 interface Props {
-    fødselsnummer: string;
+    fnr: string;
 }
 const Styles = styled.div`
     overflow-y: auto;
@@ -20,8 +20,8 @@ class ForeldrepengerLamell extends React.PureComponent<Props> {
         return (
             <ErrorBoundary boundaryName="ForeldrepengeLamell">
                 <Styles>
-                    <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
-                    <ForeldrepengerLaster fødselsnummer={this.props.fødselsnummer} />
+                    <SetFnrIRedux fnr={this.props.fnr} />
+                    <ForeldrepengerLaster fnr={this.props.fnr} />
                 </Styles>
             </ErrorBoundary>
         );

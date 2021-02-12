@@ -5,7 +5,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useFocusOnMount, useFødselsnummer } from '../../../../../utils/customHooks';
+import { useFocusOnMount, useFodselsnummer } from '../../../../../utils/customHooks';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import { SaksoversiktValg } from '../utils/useSaksoversiktValg';
 import { useInfotabsDyplenker } from '../../dyplenker';
@@ -54,7 +54,7 @@ function DokumentOgVedlegg(props: SaksoversiktValg) {
     const fullscreen = erSakerFullscreen(location.pathname);
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
-    const fødselsnummer = useFødselsnummer();
+    const fødselsnummer = useFodselsnummer();
 
     useFocusOnMount(ref);
 

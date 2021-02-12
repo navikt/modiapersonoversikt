@@ -1,17 +1,17 @@
 import setGjeldendeBrukerIRedux from '../../redux/gjeldendeBruker/actions';
 import { useDispatch } from 'react-redux';
-import { useFødselsnummer } from '../../utils/customHooks';
+import { useFodselsnummer } from '../../utils/customHooks';
 
 interface Props {
-    fødselsnummer: string;
+    fnr: string;
 }
 
 function SetFnrIRedux(props: Props) {
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
     const dispatch = useDispatch();
 
-    if (fnr !== props.fødselsnummer) {
-        dispatch(setGjeldendeBrukerIRedux(props.fødselsnummer));
+    if (fnr !== props.fnr) {
+        dispatch(setGjeldendeBrukerIRedux(props.fnr));
     }
     return null;
 }

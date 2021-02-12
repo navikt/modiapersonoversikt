@@ -11,7 +11,7 @@ function Startbilde() {
 
     return (
         <StartBildeLayout>
-            <SetFnrIRedux fødselsnummer="" />
+            <SetFnrIRedux fnr="" />
             <HentOppgaveKnapp />
             <PersonSokInput />
             <StartbildeInnstillinger />

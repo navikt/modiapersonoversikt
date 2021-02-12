@@ -8,7 +8,7 @@ import { usePaths } from '../../routes/routing';
 type Props = RouteComponentProps<{}>;
 
 function HandleInfotabsHotkeys(props: Props) {
-    const fødselsnummer = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+    const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const paths = usePaths();
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function HandleInfotabsHotkeys(props: Props) {
 
         window.addEventListener('keydown', handleOversiktHotkeys);
         return () => window.removeEventListener('keydown', handleOversiktHotkeys);
-    }, [fødselsnummer, props.history, paths]);
+    }, [fnr, props.history, paths]);
 
     return null;
 }

@@ -5,7 +5,7 @@ import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgan
 import { HarIkkeTilgang } from '../../redux/restReducers/tilgangskontroll';
 import OppgaveSkjemaSkjermetPerson from './infotabs/meldinger/traadvisning/verktoylinje/oppgave/skjermetPerson/OppgaveSkjemaSkjermetPerson';
 import { useRestResource } from '../../rest/consumer/useRestResource';
-import { useFødselsnummer } from '../../utils/customHooks';
+import { useFodselsnummer } from '../../utils/customHooks';
 import styled from 'styled-components/macro';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useState } from 'react';
@@ -28,7 +28,7 @@ const Wrapper = styled.div`
 function OpprettOppgaveAvvistTilgang() {
     const gsakTemaResource = useRestResource(resources => resources.oppgaveGsakTema);
     const gsakTema = gsakTemaResource?.data;
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
     const innloggetSaksbehandlerResource = useRestResource(resources => resources.innloggetSaksbehandler);
     const innloggetSaksbehandler = innloggetSaksbehandlerResource?.data;
     const [apen, setApen] = useState(false);

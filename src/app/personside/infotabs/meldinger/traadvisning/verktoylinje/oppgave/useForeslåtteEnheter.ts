@@ -1,11 +1,11 @@
-import { useFødselsnummer } from '../../../../../../../utils/customHooks';
+import { useFodselsnummer } from '../../../../../../../utils/customHooks';
 import { useEffect, useMemo, useState } from 'react';
 import { Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 
 function useForeslatteEnheter(temakode?: string, typekode?: string, underkategori?: string) {
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
     const [foreslatteEnheter, setForeslatteEnheter] = useState<Enhet[]>([]);
     const [pending, setPending] = useState(false);
 

@@ -59,6 +59,7 @@ function VisittkortContainer() {
                 dontShowOnFirstRender={true}
             />
             <HandleVisittkortHotkeys />
+            {/*eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
             <article role="region" aria-label="Visittkort" aria-expanded={erApnet}>
                 <VisittkortHeader person={person} toggleVisittkort={toggle} visittkortApent={erApnet} />
                 <VisittkortBodyWrapper className="hook-for-spesialstyling-i-gamlemodia-visittkortbodywrapper">

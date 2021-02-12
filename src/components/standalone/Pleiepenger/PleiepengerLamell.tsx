@@ -6,8 +6,8 @@ import theme from '../../../styles/personOversiktTheme';
 import SetFnrIRedux from '../../../app/PersonOppslagHandler/SetFnrIRedux';
 
 interface Props {
-    fødselsnummer: string;
-    barnetsFødselsnummer: string;
+    fnr: string;
+    barnetsFnr: string;
 }
 
 const Styles = styled.div`
@@ -22,11 +22,8 @@ class PleiepengerLamell extends React.PureComponent<Props> {
         return (
             <ErrorBoundary boundaryName="PleiepengeLamell">
                 <Styles>
-                    <SetFnrIRedux fødselsnummer={this.props.fødselsnummer} />
-                    <PleiepengerLaster
-                        fødselsnummer={this.props.fødselsnummer}
-                        barnetsFødselsnummer={this.props.barnetsFødselsnummer}
-                    />
+                    <SetFnrIRedux fnr={this.props.fnr} />
+                    <PleiepengerLaster fødselsnummer={this.props.fnr} barnetsFødselsnummer={this.props.barnetsFnr} />
                 </Styles>
             </ErrorBoundary>
         );

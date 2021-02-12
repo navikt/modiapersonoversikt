@@ -10,7 +10,7 @@ export interface PersonRespons {
 }
 export interface Person extends PersonRespons {
     navn: Navn;
-    kjønn: Kjønn;
+    kjønn: Kjonn;
     geografiskTilknytning?: string;
     fødselsnummer: string;
     alder: number;
@@ -101,18 +101,18 @@ export enum SivilstandTyper {
     Enke = 'ENKE'
 }
 
-export enum Kjønn {
+export enum Kjonn {
     Mann = 'M',
     Kvinne = 'K',
     Diskresjonskode = 'D'
 }
 
 export function erMann(person: Person) {
-    return person.kjønn === Kjønn.Mann;
+    return person.kjønn === Kjonn.Mann;
 }
 
 export function erKvinne(person: Person) {
-    return person.kjønn === Kjønn.Kvinne;
+    return person.kjønn === Kjonn.Kvinne;
 }
 
 export enum BegrensetTilgangTyper {

@@ -15,7 +15,7 @@ import theme from '../../../../../styles/personOversiktTheme';
 import { captitalize } from '../../../../../utils/string-utils';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
-import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullførData } from '../autofullforUtils';
+import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullforData } from '../autofullforUtils';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import AriaNotification from '../../../../../components/AriaNotification';
@@ -124,7 +124,7 @@ function StandardTekster(props: Props) {
     const valgtTekst = filtrerteTekster.find(tekst => tekst.id === valgt.input.value);
     const personResource = useRestResource(resources => resources.personinformasjon, undefined, true);
     const enheterResource = useRestResource(resources => resources.saksbehandlersEnheter, undefined, true);
-    const autofullforData = useAutoFullførData();
+    const autofullforData = useAutoFullforData();
     const sokeFeltId = useRef(guid());
     const [ariaNotification, setAriaNotification] = useState('');
     const hjelpetekstID = useRef(guid());
@@ -176,7 +176,7 @@ function StandardTekster(props: Props) {
                 valgt={valgt}
                 valgtLocale={valgtLocale}
                 valgtTekst={valgtTekst}
-                harAutofullførData={!!autofullforData}
+                harAutofullforData={!!autofullforData}
             />
         );
     }

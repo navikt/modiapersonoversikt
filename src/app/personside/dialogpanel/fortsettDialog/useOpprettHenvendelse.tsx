@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useAppState, useFødselsnummer, useOnMount } from '../../../../utils/customHooks';
+import { useAppState, useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
@@ -29,7 +29,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
     const [response, setResponse] = useState<OpprettHenvendelseResponse | undefined>();
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
     const dispatch = useDispatch();
-    const fnr = useFødselsnummer();
+    const fnr = useFodselsnummer();
 
     useOnMount(function getBehandlingsId() {
         const opprettHenvendelseRequest: OpprettHenvendelseRequest = { enhet: valgtEnhet, traadId: traad.traadId };

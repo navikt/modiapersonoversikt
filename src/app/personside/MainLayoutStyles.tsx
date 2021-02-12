@@ -40,7 +40,7 @@ export const VenstreKolonne = styled.article<StyleProps>`
     }
 `;
 
-export const HøyreKolonne = styled.article<StyleProps>`
+export const HoyreKolonne = styled.article<StyleProps>`
     ${props =>
         props.dialogPanelEkspandert
             ? css`

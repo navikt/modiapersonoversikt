@@ -3,7 +3,7 @@ import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { ViktigÅViteDAGInnhold } from './DAGInnhold';
 import { ViktigÅViteAAPInnhold } from './AAPInnhold';
-import { ViktigÅViteINDInnhold } from './INDInnhold';
+import { ViktigAaViteINDInnhold } from './INDInnhold';
 import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
@@ -42,7 +42,7 @@ class ViktigÅVite extends React.PureComponent<Props> {
                 innhold = ViktigÅViteDAGInnhold();
                 break;
             case 'IND':
-                innhold = ViktigÅViteINDInnhold();
+                innhold = ViktigAaViteINDInnhold();
                 break;
             default:
                 return null;
