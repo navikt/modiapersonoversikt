@@ -19,6 +19,7 @@ import { moss } from './moss';
 import { getMockDoedsbo } from './doedsbo';
 import { getMockFullmakter } from './fullmakter-mock';
 import { TilrettelagtKommunikasjonType } from '../../models/kodeverk';
+import { mockVergemal } from './vergemal/vergemalMock';
 
 export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {
@@ -57,7 +58,8 @@ function genererPerson(fødselsnummer: string): Person {
         sikkerhetstiltak: getSikkerhetstiltak(),
         kontaktinformasjon: getNavKontaktinformasjon(faker),
         kontaktinformasjonForDoedsbo: getMockDoedsbo(faker),
-        fullmakt: getMockFullmakter(faker, navfaker)
+        fullmakt: getMockFullmakter(faker, navfaker),
+        vergemal: mockVergemal(fødselsnummer)
     };
 }
 

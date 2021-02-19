@@ -11,8 +11,7 @@ const mockVerge = (ident: string) => ({
         mellomnavn: '',
         sammensatt: 'Vergen Aremark'
     },
-    vergesakstype: { beskrivelse: 'Voksen', kodeRef: 'V' },
-    virkningsperiode: {}
+    vergesakstype: 'voksen'
 });
 
 test('Vergemål uten verge', () => {
@@ -30,15 +29,15 @@ test('Viser vergemål', () => {
 describe('Vergemål med flere verger', () => {
     test('Slår sammen duplikate vergesakstyper', () => {
         const VergemålWrapper = mount(<Vergemål vergemal={{ verger: [mockVerge('0'), mockVerge('1')] }} />);
-        expect(VergemålWrapper.find(Vergesakstype)).toHaveText('Voksen');
+        expect(VergemålWrapper.find(Vergesakstype)).toHaveText('voksen');
     });
 
     test('Viser flere vergesakstyper', () => {
         const verge2 = mockVerge('1');
-        verge2.vergesakstype.beskrivelse = 'Enslig Asylsøker';
+        verge2.vergesakstype = 'ensligMindreårigAsylsøker';
 
         const VergemålWrapper = mount(<Vergemål vergemal={{ verger: [mockVerge('0'), verge2] }} />);
 
-        expect(VergemålWrapper.find(Vergesakstype)).toHaveText('Voksen, Enslig Asylsøker');
+        expect(VergemålWrapper.find(Vergesakstype)).toHaveText('voksen, ensligMindreårigAsylsøker');
     });
 });

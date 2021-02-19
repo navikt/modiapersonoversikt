@@ -4,6 +4,7 @@ import { NavKontaktinformasjon, Telefon } from './NAVKontaktinformasjon';
 import { Kodeverk } from '../kodeverk';
 import { Doedsbo } from './doedsbo';
 import { Fullmakt } from './fullmakter';
+import { Vergemal } from '../vergemal/vergemal';
 
 export interface PersonRespons {
     sikkerhetstiltak?: Sikkerhetstiltak;
@@ -28,6 +29,7 @@ export interface Person extends PersonRespons {
     kontaktinformasjonForDoedsbo?: Doedsbo[];
     fullmakt?: Fullmakt[];
     telefonnummer?: Array<Telefon>;
+    vergemal?: Vergemal;
 }
 
 export interface Navn {

@@ -4,7 +4,6 @@ import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
 import kontaktinformasjonReducer from './kontaktinformasjon';
 import egenAnsattReducer from './egenansatt';
-import vergemalReducer from './vergemal';
 import baseUrlReducer from './baseurls';
 import veilederRollerReducer from './veilederRoller';
 import retningsnummereReducer from './kodeverk/retningsnummereReducer';
@@ -26,7 +25,6 @@ import { PersonRespons } from '../../models/person/person';
 import { NavKontorResponse } from '../../models/navkontor';
 import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
 import { Egenansatt } from '../../models/egenansatt';
-import { Vergemal } from '../../models/vergemal/vergemal';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { KodeverkResponse } from '../../models/kodeverk';
 import { BaseUrlsResponse } from '../../models/baseurls';
@@ -57,7 +55,6 @@ export interface RestEndepunkter {
     tildelteOppgaver: RestResource<Oppgave[]>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     egenAnsatt: RestResource<Egenansatt>;
-    vergemal: RestResource<Vergemal>;
     baseUrl: RestResource<BaseUrlsResponse>;
     veilederRoller: RestResource<VeilederRoller>;
     retningsnummer: RestResource<KodeverkResponse>;
@@ -88,7 +85,6 @@ export default combineResettableReducers<RestEndepunkter>(
         tildelteOppgaver: tildelteOppgaver,
         kontaktinformasjon: kontaktinformasjonReducer,
         egenAnsatt: egenAnsattReducer,
-        vergemal: vergemalReducer,
         baseUrl: baseUrlReducer,
         veilederRoller: veilederRollerReducer,
         retningsnummer: retningsnummereReducer,

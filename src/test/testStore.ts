@@ -7,7 +7,6 @@ import { getPerson } from '../mock/person/personMock';
 import { getMockNavKontor } from '../mock/navkontor-mock';
 import { getMockKontaktinformasjon } from '../mock/person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import { erEgenAnsatt } from '../mock/egenansatt-mock';
-import { mockVergemal } from '../mock/person/vergemal/vergemalMock';
 import { mockBaseUrls } from '../mock/baseUrls-mock';
 import { mockTilrettelagtKommunikasjonKodeverk } from '../mock/kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-mock';
@@ -40,7 +39,6 @@ export function getTestStore(): Store<AppState> {
     dispatch(restResources.brukersNavKontor.actions.setData(getMockNavKontor('0118', undefined)));
     dispatch(restResources.kontaktinformasjon.actions.setData(getMockKontaktinformasjon(aremarkFnr)));
     dispatch(restResources.egenAnsatt.actions.setData(erEgenAnsatt(aremarkFnr)));
-    dispatch(restResources.vergemal.actions.setData(mockVergemal(aremarkFnr)));
     dispatch(restResources.baseUrl.actions.setData(mockBaseUrls()));
     dispatch(restResources.veilederRoller.actions.setData({ roller: [SaksbehandlerRoller.HentOppgave] }));
     dispatch(restResources.tilrettelagtKommunikasjonKodeverk.actions.setData(mockTilrettelagtKommunikasjonKodeverk()));
