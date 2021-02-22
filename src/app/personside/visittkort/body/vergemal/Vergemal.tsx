@@ -12,6 +12,7 @@ import { ENDASH } from '../../../../../utils/string-utils';
 import { Vergesakstype } from './Vergesakstype';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import { Element } from 'nav-frontend-typografi';
+import { vergeOmfangMapper } from './VergemalMapper';
 
 function getPeriodeTekst(gyldighetstidspunkt?: string, opphoerstidspunkt?: string) {
     const fom = gyldighetstidspunkt ? formaterDato(gyldighetstidspunkt) : '';
@@ -34,7 +35,7 @@ function Verge(props: { verge: VergeInterface }) {
             </Vergeinformasjon>
 
             <Element>Omfang</Element>
-            <Normaltekst>{verge.omfang ? verge.omfang : 'Ikke oppgitt'}</Normaltekst>
+            <Normaltekst>{verge.omfang ? vergeOmfangMapper[verge.omfang] : 'Ikke oppgitt'}</Normaltekst>
             <EtikettGrå>
                 {verge.embete ? verge.embete : ''}
                 {verge.embete ? <br /> : ''}

@@ -8,21 +8,21 @@ import { getSistOppdatert, vektetSjanse } from '../../utils/mock-utils';
 import { lagNavn } from '../../utils/person-utils';
 
 const VERGESAKSTYPER = [
-    'ensligMindreårigAsylsøker',
-    'ensligMindreårigFlyktning',
+    'ensligMindreaarigAsylsøker',
+    'ensligMindreaarigFlyktning',
     'voksen',
     'midlertidigForVoksen',
-    'mindreårig',
-    'midlertidigForMindreårig',
-    'forvaltningUtenforVergemål',
+    'mindreaarig',
+    'midlertidigForMindreaarig',
+    'forvaltningUtenforVergemaal',
     'stadfestetFremtidsfullmakt',
     undefined
 ];
 
 const OMFANGTYPER = [
-    'utlendingssakerPersonligeOgØkonomiskeInteresser',
-    'personligeOgØkonomiskeInteresser',
-    'økonomiskeInteresser',
+    'utlendingssakerPersonligeOgOekonomiskeInteresser',
+    'personligeOgOekonomiskeInteresser',
+    'oekonomiskeInteresser',
     'personligeInteresser'
 ];
 
