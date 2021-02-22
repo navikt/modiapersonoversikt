@@ -28,7 +28,12 @@ const Vergeinformasjon = styled.div`
 
 function Verge(props: { verge: VergeInterface }) {
     const { verge } = props;
-    loggInfo('Vergemål omfang er ' + verge.omfang + ' og vergesakstype er ' + verge.vergesakstype);
+    if (!verge.omfang) {
+        loggInfo('Vergemål omfang er ' + verge.omfang);
+    }
+    if (!verge.vergesakstype) {
+        loggInfo('Vergesakstype er ' + verge.vergesakstype);
+    }
 
     return (
         <VisittkortElement beskrivelse={'Verge'}>
