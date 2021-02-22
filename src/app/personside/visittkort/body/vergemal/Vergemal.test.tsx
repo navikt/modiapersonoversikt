@@ -29,15 +29,15 @@ test('Viser vergemål', () => {
 describe('Vergemål med flere verger', () => {
     test('Slår sammen duplikate vergesakstyper', () => {
         const VergemålWrapper = mount(<Vergemål vergemal={{ verger: [mockVerge('0'), mockVerge('1')] }} />);
-        expect(VergemålWrapper.find(Vergesakstype)).toHaveText('voksen');
+        expect(VergemålWrapper.find(Vergesakstype)).toHaveText('Voksen');
     });
 
     test('Viser flere vergesakstyper', () => {
         const verge2 = mockVerge('1');
-        verge2.vergesakstype = 'ensligMindreårigAsylsøker';
+        verge2.vergesakstype = 'ensligMindreaarigAsylsoeker';
 
         const VergemålWrapper = mount(<Vergemål vergemal={{ verger: [mockVerge('0'), verge2] }} />);
 
-        expect(VergemålWrapper.find(Vergesakstype)).toHaveText('voksen, ensligMindreårigAsylsøker');
+        expect(VergemålWrapper.find(Vergesakstype)).toHaveText('Voksen, Enslig mindreårig asylsøker');
     });
 });
