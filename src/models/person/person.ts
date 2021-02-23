@@ -29,7 +29,7 @@ export interface Person extends PersonRespons {
     kontaktinformasjonForDoedsbo?: Doedsbo[];
     fullmakt?: Fullmakt[];
     telefonnummer?: Array<Telefon>;
-    vergemal?: Verge[];
+    vergemal: Verge[];
 }
 
 export interface Navn {

@@ -14,7 +14,7 @@ import { VisittkortGruppe } from '../VisittkortStyles';
 import { Element } from 'nav-frontend-typografi';
 import { vergeOmfangMapper } from './VergemalMapper';
 
-function getPeriodeTekst(gyldighetstidspunkt?: string, opphoerstidspunkt?: string) {
+function getPeriodeTekst(gyldighetstidspunkt?: string, opphoerstidspunkt?: string | null) {
     const fom = gyldighetstidspunkt ? formaterDato(gyldighetstidspunkt) : '';
     const tom = opphoerstidspunkt ? formaterDato(opphoerstidspunkt) : '';
 

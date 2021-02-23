@@ -7,7 +7,7 @@ export interface Verge {
     omfang?: string;
     embete?: string;
     gyldighetstidspunkt?: string;
-    opphoerstidspunkt?: string;
+    opphoerstidspunkt: string | null;
 }
 
 export interface Periode {

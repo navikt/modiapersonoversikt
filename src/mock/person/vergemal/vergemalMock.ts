@@ -78,7 +78,7 @@ function getTilfeldigGyldighetstidspunkt() {
 }
 
 function getTilfeldigOpphoersTidspunkt() {
-    return vektetSjanse(faker, 0.8) ? getSistOppdatert() : undefined;
+    return vektetSjanse(faker, 0.8) ? getSistOppdatert() : null;
 }
 
 function getAremarkVerge() {

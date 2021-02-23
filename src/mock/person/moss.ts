@@ -137,5 +137,6 @@ export const moss: Person = {
             retningsnummer: null,
             sistEndretAv: 'Z999999'
         }
-    }
+    },
+    vergemal: []
 };

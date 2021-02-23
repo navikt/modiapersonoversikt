@@ -217,5 +217,21 @@ export const aremark: Person = {
             sistEndretAv: 'Z123456',
             retningsnummer: null
         }
+    ],
+    vergemal: [
+        {
+            ident: '12076918951',
+            embete: 'Fylkesmannen i Troms og Finnmark',
+            gyldighetstidspunkt: '2021-02-15T00:00:00',
+            navn: {
+                fornavn: 'LUNKEN',
+                mellomnavn: null,
+                etternavn: 'KOPP',
+                sammensatt: 'LUNKEN KOPP'
+            },
+            omfang: 'personligeOgOekonomiskeInteresser',
+            opphoerstidspunkt: null,
+            vergesakstype: 'voksen'
+        }
     ]
 };
