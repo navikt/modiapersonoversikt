@@ -9,7 +9,7 @@ export const vergesakstypeMapper: VergemaalMapper = {
     midlertidigForMindreaarig: 'Mindreårig midlertidig',
     forvaltningUtenforVergemaal: 'Forvaltning utenfor vergemål',
     stadfestetFremtidsfullmakt: 'Fremtidsfullmakt',
-    undefied: 'Ingen vergesakstype oppgitt'
+    undefined: 'Ingen vergesakstype oppgitt'
 };
 
 export const vergeOmfangMapper: VergemaalMapper = {
