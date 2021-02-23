@@ -446,6 +446,15 @@ exports[`viser info om bruker i visittkort-header 1`] = `
           <span
             className="typo-normal"
           >
+            Vergemål
+          </span>
+        </div>
+        <div
+          className="etikett etikett--fokus"
+        >
+          <span
+            className="typo-normal"
+          >
             Talespråktolk
           </span>
         </div>
