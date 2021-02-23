@@ -8,7 +8,8 @@ export const vergesakstypeMapper: VergemaalMapper = {
     mindreaarig: 'Mindreårig',
     midlertidigForMindreaarig: 'Mindreårig midlertidig',
     forvaltningUtenforVergemaal: 'Forvaltning utenfor vergemål',
-    stadfestetFremtidsfullmakt: 'Fremtidsfullmakt'
+    stadfestetFremtidsfullmakt: 'Fremtidsfullmakt',
+    undefied: 'Ingen vergesakstype oppgitt'
 };
 
 export const vergeOmfangMapper: VergemaalMapper = {
@@ -16,5 +17,6 @@ export const vergeOmfangMapper: VergemaalMapper = {
         'Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken',
     personligeOgOekonomiskeInteresser: 'Ivareta personens interesser innenfor det personlige og økonomiske området',
     oekonomiskeInteresser: 'Ivareta personens interesser innenfor det økonomiske området',
-    personligeInteresser: 'Ivareta personens interesser innenfor det personlige området'
+    personligeInteresser: 'Ivareta personens interesser innenfor det personlige området',
+    undefined: 'Ikke oppgitt'
 };

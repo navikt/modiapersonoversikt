@@ -36,7 +36,7 @@ function Verge(props: { verge: VergeInterface }) {
             </Vergeinformasjon>
 
             <Element>Omfang</Element>
-            <Normaltekst>{verge.omfang ? vergeOmfangMapper[verge.omfang] : 'Ikke oppgitt'}</Normaltekst>
+            <Normaltekst>{verge.omfang ? vergeOmfangMapper[verge.omfang] : verge.omfang}</Normaltekst>
             <EtikettGrå>
                 {verge.embete ? verge.embete : ''}
                 {verge.embete ? <br /> : ''}
