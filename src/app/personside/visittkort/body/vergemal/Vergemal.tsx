@@ -13,7 +13,6 @@ import { Vergesakstype } from './Vergesakstype';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import { Element } from 'nav-frontend-typografi';
 import { vergeOmfangMapper } from './VergemalMapper';
-import { loggInfo } from '../../../../../utils/logger/frontendLogger';
 
 function getPeriodeTekst(gyldighetstidspunkt?: string, opphoerstidspunkt?: string) {
     const fom = gyldighetstidspunkt ? formaterDato(gyldighetstidspunkt) : '';
@@ -28,12 +27,6 @@ const Vergeinformasjon = styled.div`
 
 function Verge(props: { verge: VergeInterface }) {
     const { verge } = props;
-    if (!verge.omfang) {
-        loggInfo('Vergemål omfang er ' + verge.omfang);
-    }
-    if (!verge.vergesakstype) {
-        loggInfo('Vergesakstype er ' + verge.vergesakstype);
-    }
 
     return (
         <VisittkortElement beskrivelse={'Verge'}>
