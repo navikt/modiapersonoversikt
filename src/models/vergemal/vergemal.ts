@@ -1,9 +1,5 @@
 import { Navn } from '../person/person';
 
-export interface Vergemal {
-    verger: Verge[];
-}
-
 export interface Verge {
     ident?: string;
     navn?: Navn;
