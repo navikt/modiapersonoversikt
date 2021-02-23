@@ -57,4 +57,6 @@ spec:
       value: "https://unleash.nais.io/api/"
     - name: WEBSOCKET_CSP
       value: "wss://veilederflatehendelser-{{ namespace }}.adeo.no"
+    - name: ISSO_CSP
+      value: "isso-q.adeo.no"
 
