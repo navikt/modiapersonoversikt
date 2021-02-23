@@ -46,10 +46,7 @@ function Verge(props: { verge: VergeInterface }) {
     );
 }
 
-function Vergemal(props: { vergemal?: VergeInterface[] }) {
-    if (!props.vergemal || props.vergemal.length === 0) {
-        return null;
-    }
+function Vergemal(props: { vergemal: VergeInterface[] }) {
     const verger = props.vergemal.map((verge, index) => <Verge verge={verge} key={index} />);
     return (
         <VisittkortGruppe ikon={<VergemålLogo />} tittel="Bruker er under vergemål">
