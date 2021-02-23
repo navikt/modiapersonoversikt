@@ -6,7 +6,7 @@ csp:
   styleSrc: "'self' 'unsafe-inline'"
   imgSrc: "'self' data: https://*.hotjar.com https://*.hotjar.io"
   fontSrc: "'self' data: https://*.hotjar.com https://*.hotjar.io"
-  connectSrc: "'self' eumgw.adeo.no {{ WEBSOCKET_CSP }} {{ ISSO_CSP }} https://*.hotjar.com https://*.hotjar.io"
+  connectSrc: "'self' eumgw.adeo.no {{ WEBSOCKET_CSP }} https://*.hotjar.com https://*.hotjar.io"
   # PDF-visning lastes inn via blob-urler
   objectSrc: "blob:"
   frameSrc: "blob: https://*.hotjar.com https://*.hotjar.io"
