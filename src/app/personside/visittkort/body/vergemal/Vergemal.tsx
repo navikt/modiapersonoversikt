@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import VisittkortElement from '../VisittkortElement';
-import { Verge as VergeInterface, Vergemal as VergemalInterface } from '../../../../../models/vergemal/vergemal';
+import { Verge as VergeInterface } from '../../../../../models/vergemal/vergemal';
 import { formaterDato } from '../../../../../utils/string-utils';
 import VergemålLogo from '../../../../../svg/Utropstegn';
 import EtikettGrå from '../../../../../components/EtikettGrå';
@@ -46,21 +46,21 @@ function Verge(props: { verge: VergeInterface }) {
     );
 }
 
-function Vergemal(props: { vergemal?: VergemalInterface }) {
-    if (!props.vergemal || props.vergemal.verger.length === 0) {
+function Vergemal(props: { vergemal?: VergeInterface[] }) {
+    if (!props.vergemal || props.vergemal.length === 0) {
         return null;
     }
-    const verger = props.vergemal.verger.map((verge, index) => <Verge verge={verge} key={index} />);
+    const verger = props.vergemal.map((verge, index) => <Verge verge={verge} key={index} />);
     return (
         <VisittkortGruppe ikon={<VergemålLogo />} tittel="Bruker er under vergemål">
-            <Vergesakstype verger={props.vergemal.verger} />
+            <Vergesakstype verger={props.vergemal} />
             {verger}
         </VisittkortGruppe>
     );
 }
 
-function VergemalWrapper(props: { vergemal?: VergemalInterface }) {
-    if (!props.vergemal || props.vergemal.verger.length === 0) {
+function VergemalWrapper(props: { vergemal?: VergeInterface[] }) {
+    if (!props.vergemal || props.vergemal.length === 0) {
         return null;
     }
 

@@ -2,7 +2,7 @@ import faker from 'faker/locale/nb_NO';
 
 import navfaker from 'nav-faker';
 
-import { Verge, Vergemal } from '../../../models/vergemal/vergemal';
+import { Verge } from '../../../models/vergemal/vergemal';
 import { aremark } from '../aremark';
 import { getSistOppdatert, vektetSjanse } from '../../utils/mock-utils';
 import { lagNavn } from '../../utils/person-utils';
@@ -26,16 +26,14 @@ const OMFANGTYPER = [
     'personligeInteresser'
 ];
 
-export function mockVergemal(fødselsnummer: string): Vergemal {
+export function mockVergemal(fødselsnummer: string): Verge[] {
     if (fødselsnummer === aremark.fødselsnummer) {
         return getAremarkVerge();
     }
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer);
     if (vektetSjanse(faker, 0.7)) {
-        return {
-            verger: []
-        };
+        return [];
     }
     return getVergemal();
 }
@@ -46,9 +44,7 @@ function getVergemal() {
     for (let i = 0; i < antallVerger; i++) {
         verger.push(getVerge());
     }
-    return {
-        verger: verger
-    };
+    return verger;
 }
 
 function getVerge(): Verge {
@@ -86,22 +82,20 @@ function getTilfeldigOpphoersTidspunkt() {
 }
 
 function getAremarkVerge() {
-    return {
-        verger: [
-            {
-                ident: '21042900076',
-                vergesakstype: 'voksen',
-                omfang: 'personligeOgOekonomiskeInteresser',
-                gydlighetstidspunkt: '2016-03-27T18:16:49+02:00',
-                opphoerstidspunkt: '2013-06-30T11:50:13+02:00',
-                navn: {
-                    fornavn: 'Simen',
-                    etternavn: 'Solli',
-                    mellomnavn: '',
-                    sammensatt: ' Solli Simen'
-                },
-                embete: 'Fylkesmannen i Troms og Finnmark'
-            }
-        ]
-    };
+    return [
+        {
+            ident: '21042900076',
+            vergesakstype: 'voksen',
+            omfang: 'personligeOgOekonomiskeInteresser',
+            gydlighetstidspunkt: '2016-03-27T18:16:49+02:00',
+            opphoerstidspunkt: '2013-06-30T11:50:13+02:00',
+            navn: {
+                fornavn: 'Simen',
+                etternavn: 'Solli',
+                mellomnavn: '',
+                sammensatt: ' Solli Simen'
+            },
+            embete: 'Fylkesmannen i Troms og Finnmark'
+        }
+    ];
 }

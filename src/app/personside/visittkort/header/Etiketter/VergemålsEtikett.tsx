@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Vergemal } from '../../../../../models/vergemal/vergemal';
+import { Verge } from '../../../../../models/vergemal/vergemal';
 import EtikettBase from 'nav-frontend-etiketter';
 
-function VergemålsEtikett(props: { vergemål?: Vergemal }) {
-    if (!props.vergemål?.verger || props.vergemål.verger.length === 0) {
+function VergemålsEtikett(props: { vergemål?: Verge[] }) {
+    if (!props.vergemål || props.vergemål.length === 0) {
         return null;
     }
 
