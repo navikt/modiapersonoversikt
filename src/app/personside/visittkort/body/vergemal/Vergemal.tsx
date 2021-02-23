@@ -56,8 +56,8 @@ function Vergemal(props: { vergemal: VergeInterface[] }) {
     );
 }
 
-function VergemalWrapper(props: { vergemal?: VergeInterface[] }) {
-    if (!props.vergemal || props.vergemal.length === 0) {
+function VergemalWrapper(props: { vergemal: VergeInterface[] }) {
+    if (props.vergemal.length === 0) {
         return null;
     }
 

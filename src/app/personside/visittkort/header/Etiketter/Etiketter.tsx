@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import { Person } from '../../../../../models/person/person';
 import SikkerhetstiltakEtikett from './SikkerhetstiltakEtikett';
 import EgenAnsattEtikett from './EgenansattEtikettContainer';
-import VergemålsEtikett from './VergemålsEtikett';
+import VergemalsEtikett from './VergemalsEtikett';
 import DiskresjonskodeEtikett from './DiskresjonskodeEtikett';
 import TilrettelagtKommunikasjonsEtiketter from './TilrettelagtKommunikasjonsEtiketter';
 import ReservertIKRREtikett from './ReservertIKRREtikett';
@@ -34,7 +34,7 @@ function Etiketter({ person }: Props) {
                 <EgenAnsattEtikett />
                 <SikkerhetstiltakEtikett sikkerhetstiltak={person.sikkerhetstiltak} />
                 <ReservertIKRREtikett />
-                <VergemålsEtikett vergemål={person.vergemal} />
+                <VergemalsEtikett vergemål={person.vergemal} />
                 <TilrettelagtKommunikasjonsEtiketter
                     tilrettelagtKomunikasjonsListe={person.tilrettelagtKomunikasjonsListe}
                 />
