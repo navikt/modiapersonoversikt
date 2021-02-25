@@ -1,19 +1,13 @@
 import { Navn } from '../person/person';
-import { Kodeverk } from '../kodeverk';
-
-export interface Vergemal {
-    verger: Verge[];
-}
 
 export interface Verge {
     ident?: string;
-    vergetype?: Kodeverk;
-    vergesakstype?: Kodeverk;
-    mandattype?: Kodeverk;
-    mandattekst?: string;
-    embete?: Kodeverk;
-    virkningsperiode: Periode;
     navn?: Navn;
+    vergesakstype?: string;
+    omfang?: string;
+    embete?: string;
+    gyldighetstidspunkt?: string;
+    opphoerstidspunkt: string | null;
 }
 
 export interface Periode {

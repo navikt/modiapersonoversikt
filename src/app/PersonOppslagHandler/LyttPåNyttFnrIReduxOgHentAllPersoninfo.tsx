@@ -12,7 +12,6 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     const restResources = useSelector((state: AppState) => state.restResources);
     const personinformasjonFetch = restResources.personinformasjon.actions.fetch;
     const kontaktinformasjonFetch = restResources.kontaktinformasjon.actions.fetch;
-    const vergemalFetch = restResources.vergemal.actions.fetch;
     const egenAnsattFetch = restResources.egenAnsatt.actions.fetch;
     const tildDelteOppgaverFetch = restResources.tildelteOppgaver.actions.fetch;
 
@@ -21,19 +20,10 @@ function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
             loggEvent('OppslagNyPerson', 'HentAllPersoninfo');
             dispatch(personinformasjonFetch);
             dispatch(kontaktinformasjonFetch);
-            dispatch(vergemalFetch);
             dispatch(egenAnsattFetch);
             dispatch(tildDelteOppgaverFetch);
         }
-    }, [
-        dispatch,
-        fnr,
-        personinformasjonFetch,
-        kontaktinformasjonFetch,
-        vergemalFetch,
-        egenAnsattFetch,
-        tildDelteOppgaverFetch
-    ]);
+    }, [dispatch, fnr, personinformasjonFetch, kontaktinformasjonFetch, egenAnsattFetch, tildDelteOppgaverFetch]);
     useFetchFeatureTogglesOnNewFnr();
     return null;
 }

@@ -94,10 +94,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   line-height: 1rem;
 }
 
-.c10 {
-  margin-bottom: 5px;
-}
-
 .c7 span:not(:last-child):after {
   content: '.';
 }
@@ -149,6 +145,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+}
+
+.c10 {
+  margin-bottom: 5px;
 }
 
 <section
@@ -1277,7 +1277,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       <p
         className="typo-normal"
       >
-        Enslig mindreårig asylsøker
+        Voksen
       </p>
       <div
         className="c4"
@@ -1298,33 +1298,23 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-normal"
           >
-             Solli Simen
+            LUNKEN KOPP
           </p>
           <p
             className="typo-normal"
           >
-            21042900076
-          </p>
-          <p
-            className="typo-normal"
-          >
-            Advokat
+            12076918951
           </p>
         </div>
         <p
           className="typo-element"
         >
-          Mandat
+          Omfang
         </p>
         <p
           className="typo-normal"
         >
-          Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken (kun for EMA)
-        </p>
-        <p
-          className="typo-normal"
-        >
-          Her kommer en mandattekst som er sånn passelig lang
+          Ivareta personens interesser innenfor det personlige og økonomiske området
         </p>
         <div
           className="c6"
@@ -1332,9 +1322,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-etikett-liten"
           >
-            Fylkesmannen i Østfold
+            Fylkesmannen i Troms og Finnmark
             <br />
-            27.03.2016 – 30.06.2013
+            15.02.2021 – 
           </p>
         </div>
       </div>
