@@ -29,6 +29,7 @@ spec:
       memory: 1024Mi
   ingresses:
     - https://app-{{ namespace }}.adeo.no/modiapersonoversikt
+    - https://modia-{{ namespace }}.adeo.no/modiapersonoversikt
   replicas:
     min: 2
     max: 4
