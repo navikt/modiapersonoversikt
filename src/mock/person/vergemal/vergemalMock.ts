@@ -2,53 +2,38 @@ import faker from 'faker/locale/nb_NO';
 
 import navfaker from 'nav-faker';
 
-import { Verge, Vergemal } from '../../../models/vergemal/vergemal';
+import { Verge } from '../../../models/vergemal/vergemal';
 import { aremark } from '../aremark';
 import { getSistOppdatert, vektetSjanse } from '../../utils/mock-utils';
 import { lagNavn } from '../../utils/person-utils';
-import { Kodeverk } from '../../../models/kodeverk';
-
-const VERGETYPER = [
-    lagKodeverksverdi('ADV', 'Advokat'),
-    lagKodeverksverdi('ALM', 'Alminnelig'),
-    lagKodeverksverdi('EKT', 'Ektefelle / Samboer'),
-    lagKodeverksverdi('FDV', 'Foreldreverge'),
-    lagKodeverksverdi('PRF', 'Fast /profesjonell'),
-    undefined
-];
 
 const VERGESAKSTYPER = [
-    lagKodeverksverdi('EMA', 'Enslig mindreårig asylsøker'),
-    lagKodeverksverdi('VOK', 'Voksen'),
-    lagKodeverksverdi('VOM', 'Voksen midlertidlig'),
-    lagKodeverksverdi('MIN', 'Mindreårig (unntatt EMF)'),
-    lagKodeverksverdi('FRE', 'Fremtidsfullmakt'),
-    lagKodeverksverdi('ANN', 'Forvaltning utenfor vergemål'),
+    'ensligMindreaarigAsylsøker',
+    'ensligMindreaarigFlyktning',
+    'voksen',
+    'midlertidigForVoksen',
+    'mindreaarig',
+    'midlertidigForMindreaarig',
+    'forvaltningUtenforVergemaal',
+    'stadfestetFremtidsfullmakt',
     undefined
 ];
 
-const MANDATTYPER = [
-    lagKodeverksverdi(
-        'FOR',
-        'Ivareta personens interesser innenfor det personlige og økonomiske ' +
-            'området herunder utlendingssaken (kun for EMA)'
-    ),
-    lagKodeverksverdi('CMB', 'Ivareta personens interesser innenfor det personlige og økonomiske området'),
-    lagKodeverksverdi('FIN', 'Ivareta personens interesser innenfor det økonomiske området'),
-    lagKodeverksverdi('PER', 'Ivareta personens interesser innenfor det personlige området'),
-    lagKodeverksverdi('ADP', 'Tilpasset mandat (utfyllende tekst i eget felt)')
+const OMFANGTYPER = [
+    'utlendingssakerPersonligeOgOekonomiskeInteresser',
+    'personligeOgOekonomiskeInteresser',
+    'oekonomiskeInteresser',
+    'personligeInteresser'
 ];
 
-export function mockVergemal(fødselsnummer: string): Vergemal {
+export function mockVergemal(fødselsnummer: string): Verge[] {
     if (fødselsnummer === aremark.fødselsnummer) {
         return getAremarkVerge();
     }
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer);
     if (vektetSjanse(faker, 0.7)) {
-        return {
-            verger: []
-        };
+        return [];
     }
     return getVergemal();
 }
@@ -59,9 +44,7 @@ function getVergemal() {
     for (let i = 0; i < antallVerger; i++) {
         verger.push(getVerge());
     }
-    return {
-        verger: verger
-    };
+    return verger;
 }
 
 function getVerge(): Verge {
@@ -70,64 +53,49 @@ function getVerge(): Verge {
     return {
         ident: vergemålManglerVergeData ? undefined : vergesFødselsnummer,
         vergesakstype: getTilfeldigVergesakstype(),
-        mandattype: vektetSjanse(faker, 0.5) ? getTilfeldigMandattype() : undefined,
-        mandattekst: vektetSjanse(faker, 0.1) ? 'Fritekst vedrørende mandat' : undefined,
-        virkningsperiode: getTilfeldigPeriode(),
+        omfang: vektetSjanse(faker, 0.5) ? getTilfeldigOmfangtype() : undefined,
+        gyldighetstidspunkt: getTilfeldigGyldighetstidspunkt(),
+        opphoerstidspunkt: getTilfeldigOpphoersTidspunkt(),
         navn: vergemålManglerVergeData ? undefined : lagNavn(vergesFødselsnummer),
-        vergetype: getTilfeldigVergetype(),
-        embete: lagKodeverksverdi('AAA', 'Fylkesmannen i ' + faker.address.city())
+        embete: getTilfeldigEmbete()
     };
 }
 
-function getTilfeldigVergesakstype(): Kodeverk | undefined {
+function getTilfeldigVergesakstype(): string | undefined {
     return VERGESAKSTYPER[faker.random.number(VERGESAKSTYPER.length - 1)];
 }
 
-function getTilfeldigMandattype(): Kodeverk | undefined {
-    return MANDATTYPER[faker.random.number(MANDATTYPER.length - 1)];
+function getTilfeldigOmfangtype(): string | undefined {
+    return OMFANGTYPER[faker.random.number(OMFANGTYPER.length - 1)];
 }
 
-function getTilfeldigVergetype(): Kodeverk | undefined {
-    return VERGETYPER[faker.random.number(VERGETYPER.length - 1)];
+function getTilfeldigEmbete(): string | undefined {
+    return 'Fylkesmannen i ' + faker.address.city();
 }
 
-function lagKodeverksverdi(kodeRef: string, beskrivelse: string): Kodeverk {
-    return {
-        kodeRef: kodeRef,
-        beskrivelse: beskrivelse
-    };
+function getTilfeldigGyldighetstidspunkt() {
+    return vektetSjanse(faker, 0.8) ? getSistOppdatert() : undefined;
 }
 
-function getTilfeldigPeriode() {
-    const fraOgMed = vektetSjanse(faker, 0.8) ? getSistOppdatert() : undefined;
-    const tilOgMed = vektetSjanse(faker, 0.8) ? getSistOppdatert() : undefined;
-    return {
-        fom: fraOgMed,
-        tom: tilOgMed
-    };
+function getTilfeldigOpphoersTidspunkt() {
+    return vektetSjanse(faker, 0.8) ? getSistOppdatert() : null;
 }
 
 function getAremarkVerge() {
-    return {
-        verger: [
-            {
-                ident: '21042900076',
-                vergesakstype: VERGESAKSTYPER[0],
-                mandattype: MANDATTYPER[0],
-                mandattekst: 'Her kommer en mandattekst som er sånn passelig lang',
-                vergetype: VERGETYPER[0],
-                virkningsperiode: {
-                    fom: '2016-03-27T18:16:49+02:00',
-                    tom: '2013-06-30T11:50:13+02:00'
-                },
-                navn: {
-                    fornavn: 'Simen',
-                    etternavn: 'Solli',
-                    mellomnavn: '',
-                    sammensatt: ' Solli Simen'
-                },
-                embete: lagKodeverksverdi('AAA', 'Fylkesmannen i Østfold')
-            }
-        ]
-    };
+    return [
+        {
+            ident: '21042900076',
+            vergesakstype: 'voksen',
+            omfang: 'personligeOgOekonomiskeInteresser',
+            gydlighetstidspunkt: '2016-03-27T18:16:49+02:00',
+            opphoerstidspunkt: '2013-06-30T11:50:13+02:00',
+            navn: {
+                fornavn: 'Simen',
+                etternavn: 'Solli',
+                mellomnavn: '',
+                sammensatt: ' Solli Simen'
+            },
+            embete: 'Fylkesmannen i Troms og Finnmark'
+        }
+    ];
 }

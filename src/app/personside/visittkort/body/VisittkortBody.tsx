@@ -4,13 +4,13 @@ import { Kolonne, VisittkortBodyWrapper, VisittkortGruppe } from './VisittkortSt
 import Familie from './familie/Familie';
 import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
-import VergemalContainer from './vergemal/VergemalContainer';
 import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import LenkeBrukerprofilContainer from './lenkebrukerprofil/LenkeBrukerprofilContainer';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import Fullmakter from './fullmakt/Fullmakt';
+import Vergemal from './vergemal/Vergemal';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -32,7 +32,7 @@ function OneColumnLayout(person: Person) {
             <Familie person={person} />
             <NavKontorSeksjon />
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
-            <VergemalContainer />
+            <Vergemal vergemal={person.vergemal} />
             <Sikkerhetstiltak person={person} />
             <LenkeBrukerprofilContainer person={person} />
         </Kolonne>
@@ -50,7 +50,7 @@ function TwoColumnLayout(person: Person) {
             <Kolonne>
                 <NavKontorSeksjon />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
-                <VergemalContainer />
+                <Vergemal vergemal={person.vergemal} />
                 <Sikkerhetstiltak person={person} />
                 <LenkeBrukerprofilContainer person={person} />
             </Kolonne>
@@ -68,7 +68,7 @@ function ThreeColumnLayout(person: Person) {
             <Kolonne>
                 <Familie person={person} />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
-                <VergemalContainer />
+                <Vergemal vergemal={person.vergemal} />
             </Kolonne>
             <Kolonne>
                 <NavKontorSeksjon />
