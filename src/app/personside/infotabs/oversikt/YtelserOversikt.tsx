@@ -93,7 +93,7 @@ function SykepengerKomponent(props: { sykepenger: Sykepenger }) {
         >
             <Normaltekst>ID dato: {formaterDato(getSykepengerIdDato(props.sykepenger))}</Normaltekst>
             <Element>Sykepenger</Element>
-            <Normaltekst>100% sykemeldt - Maksdato ligger i vedtaksdokumentet i Saksoversikten</Normaltekst>
+            <Normaltekst>100% sykemeldt - Dokumentet Sykepenger behandlet i ny løsning inneholder maksdato</Normaltekst>
         </VisMerKnapp>
     );
 }
