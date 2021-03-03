@@ -1057,7 +1057,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 <p
                   className="typo-normal"
                 >
-                  100% sykemeldt - Maksdato ligger i vedtaksdokumentet i Saksoversikten
+                  100% sykemeldt - Dokumentet Sykepenger behandlet i ny løsning inneholder maksdato
                 </p>
               </div>
               <button
