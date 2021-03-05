@@ -29,6 +29,7 @@ spec:
       memory: 1024Mi
   ingresses:
     - https://app.adeo.no/modiapersonoversikt
+    - https://modia.adeo.no/modiapersonoversikt
   replicas:
     min: 2
     max: 4
@@ -44,7 +45,7 @@ spec:
     - name: OPENAM_DISCOVERY_URL
       value: "https://isso.adeo.no/isso/oauth2/.well-known/openid-configuration"
     - name: VEILARBLOGIN_OPENAM_CLIENT_ID
-      value: "veilarblogin-p"
+      value: "veilarblogin-p,modialogin-p"
     - name: VEILARBLOGIN_OPENAM_LOGIN_URL
       value: "https://app.adeo.no/veilarblogin/api/start"
     - name: AAD_DISCOVERY_URL
