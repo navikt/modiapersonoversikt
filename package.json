@@ -54,7 +54,7 @@
         "lodash.debounce": "^4.0.8",
         "md5": "^2.2.1",
         "moment": "^2.22.2",
-        "nav-datovelger": "^10.1.1",
+        "nav-datovelger": "^10.1.2",
         "nav-faker": "^3.2.1",
         "nav-frontend-alertstriper": "^3.0.20",
         "nav-frontend-alertstriper-style": "^2.0.17",
