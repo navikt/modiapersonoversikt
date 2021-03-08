@@ -121,6 +121,9 @@ function DatoInputs(props: Props) {
                 }}
                 showYearSelector={true}
                 limitations={avgrensninger}
+                dayPickerProps={{
+                    onMonthChange: dato => props.settValgtPeriode({ fra: moment(dato).toDate() })
+                }}
             />
             <label htmlFor="oppfolging-datovelger-til">Til:</label>
             <Datepicker
@@ -135,6 +138,9 @@ function DatoInputs(props: Props) {
                 }}
                 showYearSelector={true}
                 limitations={avgrensninger}
+                dayPickerProps={{
+                    onMonthChange: dato => props.settValgtPeriode({ til: moment(dato).toDate() })
+                }}
             />
             {periodeFeilmelding}
             <Knapp onClick={onClickHandler} spinner={oppfølgingLastes} htmlType="button">
