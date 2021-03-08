@@ -35,6 +35,7 @@ export enum FnrDisplay {
 
 type EnhetContextvalue = Contextvalue<EnhetDisplay>;
 type FnrContextvalue = Contextvalue<FnrDisplay>;
+type ProxyConfig = boolean | string;
 
 export interface DecoratorProps {
     appname: string;
@@ -42,4 +43,6 @@ export interface DecoratorProps {
     enhet?: EnhetContextvalue;
     toggles?: TogglesConfig;
     markup?: Markup;
+    useProxy?: ProxyConfig;
+    accessToken?: string;
 }
