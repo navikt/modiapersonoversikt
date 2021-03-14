@@ -10,7 +10,7 @@ import styled from 'styled-components/macro';
 const Margin = styled.div`
     margin-bottom: 5px;
 `;
-function Foreldreansvar(props: { foreldreansvar: Foreldreansvar }) {
+function ForeldreansvarVisittkort(props: { foreldreansvar: Foreldreansvar }) {
     return (
         <VisittkortGruppe ikon={<Utropstegn />} tittel="Bruker har foreldreansvar">
             <VisittkortElement beskrivelse={'Foreldreansvar'}>
@@ -32,6 +32,6 @@ function ForendreansvarWrapper(props: { foreldreansvar: Foreldreansvar }) {
         return null;
     }
 
-    return <Foreldreansvar foreldreansvar={props.foreldreansvar} />;
+    return <ForeldreansvarVisittkort foreldreansvar={props.foreldreansvar} />;
 }
 export default ForendreansvarWrapper;

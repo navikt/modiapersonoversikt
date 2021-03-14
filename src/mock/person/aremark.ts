@@ -233,5 +233,25 @@ export const aremark: Person = {
             opphoerstidspunkt: null,
             vergesakstype: 'voksen'
         }
-    ]
+    ],
+    foreldreansvar: {
+        ansvar: 'felles',
+        ansvarlig: {
+            fornavn: 'Test',
+            etternavn: 'Testesen',
+            mellomnavn: '',
+            sammensatt: 'Test Testesen'
+        },
+        ansvarligUtenIdentifikator: {
+            navn: {
+                fornavn: 'Test',
+                etternavn: 'Testesen',
+                mellomnavn: '',
+                sammensatt: 'Test Testesen'
+            },
+            foedselsdato: '2020-01-01',
+            statsborgerskap: 'Norge',
+            kjoenn: 'M'
+        }
+    }
 };

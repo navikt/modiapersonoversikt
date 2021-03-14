@@ -98,11 +98,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   content: '.';
 }
 
-.c9 {
+.c10 {
   text-transform: capitalize;
 }
 
-.c8 {
+.c9 {
   margin: initial;
   padding: initial;
   list-style: none;
@@ -115,20 +115,20 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   flex-flow: row wrap;
 }
 
-.c8 dt {
+.c9 dt {
   -webkit-flex: 1 1 50%;
   -ms-flex: 1 1 50%;
   flex: 1 1 50%;
 }
 
-.c8 dd {
+.c9 dd {
   -webkit-flex: 2 2 50%;
   -ms-flex: 2 2 50%;
   flex: 2 2 50%;
   margin: 0;
 }
 
-.c11 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -147,7 +147,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   flex-grow: 1;
 }
 
-.c10 {
+.c11 {
+  margin-bottom: 5px;
+}
+
+.c8 {
   margin-bottom: 5px;
 }
 
@@ -949,6 +953,79 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       <div
         className="c2"
       >
+        <div
+          className="c5"
+        >
+          <svg
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="50"
+              cy="50"
+              fill="#FFB249"
+              r="50"
+            />
+            <line
+              stroke="#3E3832"
+              strokeLinecap="round"
+              strokeWidth="4"
+              x1="50"
+              x2="50"
+              y1="25"
+              y2="57"
+            />
+            <circle
+              cx="50"
+              cy="72"
+              fill="#3E3832"
+              r="4.5"
+            />
+          </svg>
+        </div>
+        <h3
+          className="typo-undertittel"
+        >
+          Bruker har foreldreansvar
+        </h3>
+      </div>
+      <div
+        className="c3"
+      />
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+          <h4
+            className="typo-element"
+          >
+            Foreldreansvar
+          </h4>
+        </div>
+        <div
+          className="c8"
+        >
+          <p
+            className="typo-normal"
+          >
+            Test Testesen
+          </p>
+          <p
+            className="typo-normal"
+          >
+            Ansvar: 
+            felles
+          </p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div
+        className="c2"
+      >
         
         <h3
           className="typo-undertittel"
@@ -1033,14 +1110,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </p>
           </div>
           <dl
-            className="c8"
+            className="c9"
           >
             <dt>
               <p
                 className="typo-normal"
               >
                 <span
-                  className="c9"
+                  className="c10"
                 >
                   mandag
                 </span>
@@ -1062,7 +1139,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-normal"
               >
                 <span
-                  className="c9"
+                  className="c10"
                 >
                   tirsdag
                 </span>
@@ -1084,7 +1161,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-normal"
               >
                 <span
-                  className="c9"
+                  className="c10"
                 >
                   onsdag
                 </span>
@@ -1106,7 +1183,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-normal"
               >
                 <span
-                  className="c9"
+                  className="c10"
                 >
                   torsdag
                 </span>
@@ -1128,7 +1205,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-normal"
               >
                 <span
-                  className="c9"
+                  className="c10"
                 >
                   fredag
                 </span>
@@ -1293,7 +1370,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c10"
+          className="c11"
         >
           <p
             className="typo-normal"
@@ -1415,7 +1492,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </section>
     <div
-      className="c11"
+      className="c12"
     >
       <a
         className="lenke"
