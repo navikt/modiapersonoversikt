@@ -98,11 +98,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   content: '.';
 }
 
-.c10 {
+.c9 {
   text-transform: capitalize;
 }
 
-.c9 {
+.c8 {
   margin: initial;
   padding: initial;
   list-style: none;
@@ -115,20 +115,20 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   flex-flow: row wrap;
 }
 
-.c9 dt {
+.c8 dt {
   -webkit-flex: 1 1 50%;
   -ms-flex: 1 1 50%;
   flex: 1 1 50%;
 }
 
-.c9 dd {
+.c8 dd {
   -webkit-flex: 2 2 50%;
   -ms-flex: 2 2 50%;
   flex: 2 2 50%;
   margin: 0;
 }
 
-.c12 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -147,11 +147,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   flex-grow: 1;
 }
 
-.c11 {
-  margin-bottom: 5px;
-}
-
-.c8 {
+.c10 {
   margin-bottom: 5px;
 }
 
@@ -986,7 +982,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <h3
           className="typo-undertittel"
         >
-          Bruker har foreldreansvar
+          Foreldreansvar
         </h3>
       </div>
       <div
@@ -999,27 +995,31 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c2"
         >
           
-          <h4
-            className="typo-element"
-          >
-            Foreldreansvar
-          </h4>
         </div>
-        <div
-          className="c8"
+        <p
+          className="typo-element"
         >
-          <p
-            className="typo-normal"
-          >
-            Test Testesen
-          </p>
-          <p
-            className="typo-normal"
-          >
-            Ansvar: 
-            felles
-          </p>
-        </div>
+          Test Testesen
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Ansvar: 
+          felles
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Test Testesen
+           (
+          2020-01-01
+          )
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Norge
+        </p>
       </div>
     </section>
     <section>
@@ -1110,14 +1110,14 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </p>
           </div>
           <dl
-            className="c9"
+            className="c8"
           >
             <dt>
               <p
                 className="typo-normal"
               >
                 <span
-                  className="c10"
+                  className="c9"
                 >
                   mandag
                 </span>
@@ -1139,7 +1139,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-normal"
               >
                 <span
-                  className="c10"
+                  className="c9"
                 >
                   tirsdag
                 </span>
@@ -1161,7 +1161,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-normal"
               >
                 <span
-                  className="c10"
+                  className="c9"
                 >
                   onsdag
                 </span>
@@ -1183,7 +1183,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-normal"
               >
                 <span
-                  className="c10"
+                  className="c9"
                 >
                   torsdag
                 </span>
@@ -1205,7 +1205,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                 className="typo-normal"
               >
                 <span
-                  className="c10"
+                  className="c9"
                 >
                   fredag
                 </span>
@@ -1370,7 +1370,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c11"
+          className="c10"
         >
           <p
             className="typo-normal"
@@ -1492,7 +1492,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </section>
     <div
-      className="c12"
+      className="c11"
     >
       <a
         className="lenke"
