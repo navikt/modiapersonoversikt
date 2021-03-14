@@ -2,32 +2,25 @@ import * as React from 'react';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Utropstegn from '../../../../../svg/Utropstegn';
 import { Foreldreansvar } from '../../../../../models/foreldreansvar/foreldreansvar';
-import VisittkortElement from '../VisittkortElement';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 
-import styled from 'styled-components/macro';
-
-const Margin = styled.div`
-    margin-bottom: 5px;
-`;
 function ForeldreansvarVisittkort(props: { foreldreansvar: Foreldreansvar }) {
     return (
-        <VisittkortGruppe ikon={<Utropstegn />} tittel="Bruker har foreldreansvar">
-            <VisittkortElement beskrivelse={'Foreldreansvar'}>
-                <Margin>
-                    <Normaltekst>
-                        {props.foreldreansvar.ansvarlig
-                            ? props.foreldreansvar.ansvarlig.sammensatt
-                            : 'Navn ikke tilgjengelig'}
-                    </Normaltekst>
-                    <Normaltekst>Ansvar: {props.foreldreansvar.ansvar}</Normaltekst>
-                </Margin>
-            </VisittkortElement>
+        <VisittkortGruppe ikon={<Utropstegn />} tittel="Foreldreansvar">
+            <Element>
+                {props.foreldreansvar.ansvarlig ? props.foreldreansvar.ansvarlig.sammensatt : 'Navn ikke tilgjengelig'}
+            </Element>
+            <Normaltekst>Ansvar: {props.foreldreansvar.ansvar}</Normaltekst>
+            <Normaltekst>
+                {props.foreldreansvar.ansvarligUtenIdentifikator.navn} (
+                {props.foreldreansvar.ansvarligUtenIdentifikator.foedselsdato})
+            </Normaltekst>
+            <Normaltekst>{props.foreldreansvar.ansvarligUtenIdentifikator.statsborgerskap}</Normaltekst>
         </VisittkortGruppe>
     );
 }
 
-function ForendreansvarWrapper(props: { foreldreansvar: Foreldreansvar }) {
+function ForendreansvarWrapper(props: { foreldreansvar?: Foreldreansvar }) {
     if (!props.foreldreansvar) {
         return null;
     }

@@ -138,5 +138,6 @@ export const moss: Person = {
             sistEndretAv: 'Z999999'
         }
     },
-    vergemal: []
+    vergemal: [],
+    foreldreansvar: undefined
 };
