@@ -92,7 +92,7 @@ function mockKontaktpersonMedId(faker: Faker.FakerStatic): KontaktpersonMedId {
     };
 }
 
-function mockPersonnavn(faker: Faker.FakerStatic): Navn {
+export function mockPersonnavn(faker: Faker.FakerStatic): Navn {
     return {
         fornavn: faker.name.firstName(),
         etternavn: faker.name.lastName(),
