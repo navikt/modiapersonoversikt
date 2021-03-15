@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DatepickerProps as OriginalProps } from 'nav-datovelger/lib/Datepicker';
-import { Datepicker, DatepickerLimitations } from 'nav-datovelger';
+import { Datepicker, DatepickerLimitations, isISODateString } from 'nav-datovelger';
 import styled from 'styled-components/macro';
 import { ChangeEvent, useRef } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -56,10 +56,14 @@ function transformProps(props: Props): OriginalProps {
     };
     return {
         inputId: props.input.id,
-        inputProps: { name: props.input.name },
+        inputProps: {
+            name: props.input.name,
+            'aria-invalid': props.input.value !== '' && isISODateString(props.input.value) === false
+        },
         showYearSelector: props.visÅrVelger,
         value: props.input.value,
         limitations: props.avgrensninger,
+
         onChange
     };
 }
