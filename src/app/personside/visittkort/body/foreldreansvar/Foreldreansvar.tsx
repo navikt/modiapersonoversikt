@@ -15,11 +15,6 @@ function ForeldreansvarVisittkort(props: { foreldreansvar: Foreldreansvar }) {
                         : 'Navn ikke tilgjengelig'}
                 </Element>
                 <Normaltekst>Ansvar: {props.foreldreansvar.ansvar}</Normaltekst>
-                <Normaltekst>
-                    {props.foreldreansvar.ansvarligUtenIdentifikator.navn?.sammensatt} (
-                    {props.foreldreansvar.ansvarligUtenIdentifikator.foedselsdato})
-                </Normaltekst>
-                <Normaltekst>{props.foreldreansvar.ansvarligUtenIdentifikator.statsborgerskap}</Normaltekst>
             </VisittkortElement>
         </VisittkortGruppe>
     );

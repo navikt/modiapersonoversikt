@@ -1,7 +1,7 @@
 import { aremark } from './aremark';
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
-import { getSistOppdatert, vektetSjanse } from '../utils/mock-utils';
+import { vektetSjanse } from '../utils/mock-utils';
 import { Foreldreansvar } from '../../models/foreldreansvar/foreldreansvar';
 import { mockPersonnavn } from './doedsbo';
 
@@ -20,13 +20,7 @@ export function mockVergemal(fødselsnummer: string) {
 function getForeldreansvar(): Foreldreansvar {
     return {
         ansvar: getTilfeldigAnsvar(),
-        ansvarlig: mockPersonnavn(faker),
-        ansvarligUtenIdentifikator: {
-            navn: mockPersonnavn(faker),
-            foedselsdato: getFodselsdato(),
-            statsborgerskap: faker.address.country(),
-            kjoenn: navfaker.person.kjønn().toString()
-        }
+        ansvarlig: mockPersonnavn(faker)
     };
 }
 
@@ -38,24 +32,10 @@ function getAremarkForeldreansvar(): Foreldreansvar {
             etternavn: 'Testesen',
             mellomnavn: '',
             sammensatt: 'Test Testesen'
-        },
-        ansvarligUtenIdentifikator: {
-            navn: {
-                fornavn: 'Test',
-                etternavn: 'Testesen',
-                mellomnavn: '',
-                sammensatt: 'Test Testesen'
-            },
-            foedselsdato: '2020-01-01',
-            statsborgerskap: 'Norge',
-            kjoenn: 'M'
         }
     };
 }
 
-export function getFodselsdato() {
-    return getSistOppdatert();
-}
 function getTilfeldigAnsvar(): string {
     return ANSVARSTYPER[faker.random.number(ANSVARSTYPER.length - 1)];
 }

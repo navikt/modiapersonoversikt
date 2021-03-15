@@ -237,21 +237,10 @@ export const aremark: Person = {
     foreldreansvar: {
         ansvar: 'felles',
         ansvarlig: {
-            fornavn: 'Test',
-            etternavn: 'Testesen',
+            fornavn: 'Ola',
+            etternavn: 'Normann',
             mellomnavn: '',
-            sammensatt: 'Test Testesen'
-        },
-        ansvarligUtenIdentifikator: {
-            navn: {
-                fornavn: 'Test',
-                etternavn: 'Testesen',
-                mellomnavn: '',
-                sammensatt: 'Test Testesen'
-            },
-            foedselsdato: '2020-01-01',
-            statsborgerskap: 'Norge',
-            kjoenn: 'M'
+            sammensatt: 'Ola Normann'
         }
     }
 };
