@@ -442,6 +442,7 @@ exports[`viser personsøk-komponent 1`] = `
                       className="nav-datovelger__inputContainer"
                     >
                       <input
+                        aria-invalid={false}
                         autoComplete="off"
                         autoCorrect="off"
                         className="nav-datovelger__input"
@@ -528,6 +529,7 @@ exports[`viser personsøk-komponent 1`] = `
                       className="nav-datovelger__inputContainer"
                     >
                       <input
+                        aria-invalid={false}
                         autoComplete="off"
                         autoCorrect="off"
                         className="nav-datovelger__input"
