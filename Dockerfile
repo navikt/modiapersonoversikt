@@ -1,3 +1,3 @@
-FROM docker.pkg.github.com/navikt/pus-fss-frontend/pus-fss-frontend:ecd23b296051ce8d436025e242b79521d9244b32
+FROM docker.pkg.github.com/navikt/modialogin/frontend:481430eeb101cb2ee66478e1f95002c5f324eda8-beta
 ADD config.yaml /config.yaml
-COPY build /app/public
+COPY build /app
