@@ -28,7 +28,7 @@ spec:
       cpu: 3000m
       memory: 1024Mi
   ingresses:
-    - https://modia-{{ namespace }}.dev.adeo.no/modiapersonoversikt
+    - https://app-{{ namespace }}.adeo.no/modiapersonoversikt
   replicas:
     min: 2
     max: 4
