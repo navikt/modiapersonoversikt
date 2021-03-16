@@ -31,7 +31,7 @@ export interface Person extends PersonRespons {
     fullmakt?: Fullmakt[];
     telefonnummer?: Array<Telefon>;
     vergemal: Verge[];
-    foreldreansvar?: Foreldreansvar;
+    foreldreansvar?: Foreldreansvar[];
 }
 
 export interface Navn {

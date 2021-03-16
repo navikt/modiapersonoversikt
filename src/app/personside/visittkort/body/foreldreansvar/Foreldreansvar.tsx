@@ -5,26 +5,29 @@ import { Foreldreansvar } from '../../../../../models/foreldreansvar/foreldreans
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 
-function ForeldreansvarVisittkort(props: { foreldreansvar: Foreldreansvar }) {
+function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {
     return (
-        <VisittkortGruppe ikon={<Utropstegn />} tittel="Foreldreansvar">
-            <VisittkortElement>
-                <Element>
-                    {props.foreldreansvar.ansvarlig
-                        ? props.foreldreansvar.ansvarlig.sammensatt
-                        : 'Navn ikke tilgjengelig'}
-                </Element>
-                <Normaltekst>Ansvar: {props.foreldreansvar.ansvar}</Normaltekst>
-            </VisittkortElement>
-        </VisittkortGruppe>
+        <VisittkortElement>
+            <Element>
+                {props.foreldreansvar.ansvarlig ? props.foreldreansvar.ansvarlig.sammensatt : 'Navn ikke tilgjengelig'}
+            </Element>
+            <Normaltekst>Ansvar: {props.foreldreansvar.ansvar}</Normaltekst>
+        </VisittkortElement>
     );
 }
 
-function ForendreansvarWrapper(props: { foreldreansvar?: Foreldreansvar }) {
+function ForendreansvarWrapper(props: { foreldreansvar?: Foreldreansvar[] }) {
     if (!props.foreldreansvar) {
         return null;
     }
+    const foreldreansvarElementer = props.foreldreansvar.map((foreldreansvar, index) => (
+        <ForeldreansvarElement key={index} foreldreansvar={foreldreansvar} />
+    ));
 
-    return <ForeldreansvarVisittkort foreldreansvar={props.foreldreansvar} />;
+    return (
+        <VisittkortGruppe ikon={<Utropstegn />} tittel="Foreldreansvar">
+            {foreldreansvarElementer}
+        </VisittkortGruppe>
+    );
 }
 export default ForendreansvarWrapper;
