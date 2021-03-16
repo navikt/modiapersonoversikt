@@ -46,7 +46,7 @@ spec:
     - name: VEILARBLOGIN_OPENAM_CLIENT_ID
       value: "modialogin-{{ namespace }}"
     - name: VEILARBLOGIN_OPENAM_LOGIN_URL
-      value: "https://modia-{{ namespace }}.dev.adeo.no/modialogin/api/start"
+      value: "https://app-{{ namespace }}.adeo.no/modialogin/api/start"
     - name: WEBSOCKET_CSP
       value: "wss://veilederflatehendelser-{{ namespace }}.adeo.no wss://veilederflatehendelser-{{ namespace }}.dev.adeo.no"
     # Verdiene nedenfor er ikke ibruk da appen ikke bruker aad.
