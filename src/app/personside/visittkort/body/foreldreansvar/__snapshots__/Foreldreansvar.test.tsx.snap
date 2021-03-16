@@ -98,26 +98,13 @@ exports[`viser foreldreansvar 1`] = `
     <p
       className="typo-element"
     >
-      Test Testesen
+      Ola Normann
     </p>
     <p
       className="typo-normal"
     >
       Ansvar: 
       felles
-    </p>
-    <p
-      className="typo-normal"
-    >
-      Test Testesen
-       (
-      2020-01-01
-      )
-    </p>
-    <p
-      className="typo-normal"
-    >
-      Norge
     </p>
   </div>
 </section>
