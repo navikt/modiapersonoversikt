@@ -107,5 +107,25 @@ exports[`viser foreldreansvar 1`] = `
       felles
     </p>
   </div>
+  <div
+    className="c3"
+  >
+    <div
+      className="c0"
+    >
+      
+    </div>
+    <p
+      className="typo-element"
+    >
+      Petter Pettersen
+    </p>
+    <p
+      className="typo-normal"
+    >
+      Ansvar: 
+      far
+    </p>
+  </div>
 </section>
 `;

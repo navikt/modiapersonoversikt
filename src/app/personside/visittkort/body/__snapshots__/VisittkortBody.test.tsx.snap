@@ -1008,6 +1008,26 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           felles
         </p>
       </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+        </div>
+        <p
+          className="typo-element"
+        >
+          Petter Pettersen
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Ansvar: 
+          far
+        </p>
+      </div>
     </section>
     <section>
       <div
