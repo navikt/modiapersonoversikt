@@ -85,14 +85,14 @@ function getDatoFeilmelding(fra: Date, til: Date) {
     if (!isValidDate(fra)) {
         return (
             <SkjemaelementFeilmelding>
-                Du må velge gyldig fra-dato. Gyldig datoformat er dd.mm.yyyy
+                Du må velge gyldig fra-dato. Gyldig datoformat er dd.mm.åååå
             </SkjemaelementFeilmelding>
         );
     }
     if (!isValidDate(til)) {
         return (
             <SkjemaelementFeilmelding>
-                Du må velge gyldig til-dato. Gyldig datoformat er dd.mm.yyyy
+                Du må velge gyldig til-dato. Gyldig datoformat er dd.mm.åååå
             </SkjemaelementFeilmelding>
         );
     }
