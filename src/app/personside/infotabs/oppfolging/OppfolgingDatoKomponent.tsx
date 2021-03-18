@@ -82,10 +82,17 @@ function getDatoFeilmelding(fra: Date, til: Date) {
             </SkjemaelementFeilmelding>
         );
     }
-    if (!isValidDate(fra) || !isValidDate(til)) {
+    if (!isValidDate(fra)) {
         return (
             <SkjemaelementFeilmelding>
-                Du må velge gyldige datoer. Gyldig datoformat er dd.mm.yyyy
+                Du må velge gyldig fra-dato. Gyldig datoformat er dd.mm.yyyy
+            </SkjemaelementFeilmelding>
+        );
+    }
+    if (!isValidDate(til)) {
+        return (
+            <SkjemaelementFeilmelding>
+                Du må velge gyldig til-dato. Gyldig datoformat er dd.mm.yyyy
             </SkjemaelementFeilmelding>
         );
     }
