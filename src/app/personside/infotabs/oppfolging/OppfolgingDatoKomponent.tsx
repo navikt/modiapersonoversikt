@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Undertittel } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { Knapp } from 'nav-frontend-knapper';
 import { isLoading, isReloading, RestResource } from '../../../../rest/utils/restResource';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
@@ -12,7 +11,6 @@ import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
 import { reloadOppfolingActionCreator } from '../../../../redux/restReducers/oppfolging';
-import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import { formaterDato, formaterTilISO8601Date } from '../../../../utils/string-utils';
 import moment from 'moment';
 import { isValidDate } from '../../../../utils/date-utils';
@@ -21,6 +19,7 @@ import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import Panel from 'nav-frontend-paneler';
+import { Datepicker, isISODateString } from 'nav-datovelger';
 
 const DatoVelgerWrapper = styled.div`
     position: relative;
@@ -94,9 +93,9 @@ function DatoInputs(props: Props) {
     const fra = props.valgtPeriode.fra;
     const til = props.valgtPeriode.til;
     const periodeFeilmelding = getDatoFeilmelding(fra, til);
-    const avgrensninger: DatovelgerAvgrensninger = {
-        minDato: formaterTilISO8601Date(tidligsteDato()),
-        maksDato: formaterTilISO8601Date(senesteDato())
+    const avgrensninger = {
+        minDate: formaterTilISO8601Date(tidligsteDato()),
+        maxDate: formaterTilISO8601Date(senesteDato())
     };
 
     const onClickHandler = () => {
@@ -110,22 +109,38 @@ function DatoInputs(props: Props) {
     return (
         <DatoVelgerWrapper>
             <label htmlFor="oppfolging-datovelger-fra">Fra:</label>
-            <Datovelger
-                input={{ id: 'oppfolging-datovelger-fra', name: 'Fra dato' }}
-                visÅrVelger={true}
-                valgtDato={formaterTilISO8601Date(fra)}
+            <Datepicker
+                locale={'nb'}
+                inputId="oppfolging-datovelger-fra"
+                value={formaterTilISO8601Date(fra)}
                 onChange={dato => props.settValgtPeriode({ fra: moment(dato).toDate() })}
-                id="oppfolging-datovelger-fra"
-                avgrensninger={avgrensninger}
+                inputProps={{
+                    name: 'Fra dato',
+                    'aria-invalid':
+                        formaterTilISO8601Date(fra) !== '' && isISODateString(formaterTilISO8601Date(fra)) === false
+                }}
+                showYearSelector={true}
+                limitations={avgrensninger}
+                dayPickerProps={{
+                    onMonthChange: dato => props.settValgtPeriode({ fra: moment(dato).toDate() })
+                }}
             />
             <label htmlFor="oppfolging-datovelger-til">Til:</label>
-            <Datovelger
-                input={{ id: 'oppfolging-datovelger-til', name: 'Til dato' }}
-                visÅrVelger={true}
-                valgtDato={formaterTilISO8601Date(til)}
+            <Datepicker
+                locale={'nb'}
+                inputId="oppfolging-datovelger-til"
+                value={formaterTilISO8601Date(til)}
                 onChange={dato => props.settValgtPeriode({ til: moment(dato).toDate() })}
-                id="oppfolging-datovelger-til"
-                avgrensninger={avgrensninger}
+                inputProps={{
+                    name: 'Til dato',
+                    'aria-invalid':
+                        formaterTilISO8601Date(til) !== '' && isISODateString(formaterTilISO8601Date(til)) === false
+                }}
+                showYearSelector={true}
+                limitations={avgrensninger}
+                dayPickerProps={{
+                    onMonthChange: dato => props.settValgtPeriode({ til: moment(dato).toDate() })
+                }}
             />
             {periodeFeilmelding}
             <Knapp onClick={onClickHandler} spinner={oppfølgingLastes} htmlType="button">
