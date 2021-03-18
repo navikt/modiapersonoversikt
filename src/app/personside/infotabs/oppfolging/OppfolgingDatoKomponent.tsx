@@ -83,7 +83,11 @@ function getDatoFeilmelding(fra: Date, til: Date) {
         );
     }
     if (!isValidDate(fra) || !isValidDate(til)) {
-        return <SkjemaelementFeilmelding>Du må velge gyldige datoer</SkjemaelementFeilmelding>;
+        return (
+            <SkjemaelementFeilmelding>
+                Du må velge gyldige datoer. Gyldig datoformat er dd.mm.yyyy
+            </SkjemaelementFeilmelding>
+        );
     }
     return null;
 }
