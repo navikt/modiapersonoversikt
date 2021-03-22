@@ -229,8 +229,14 @@ function setupVarselMock(mock: FetchMock) {
         return res(ctx.status(200), ctx.json(getDittNavVarsler(fnr)));
     };
 
-    mock.get('/dittnav-eventer-modia/fetch/beskjed/all', delayed(randomDelay(), dittnaveventHandler));
-    mock.get('/dittnav-eventer-modia/fetch/oppgave/all', delayed(randomDelay(), dittnaveventHandler));
+    mock.get(
+        '/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/beskjed/all',
+        delayed(randomDelay(), dittnaveventHandler)
+    );
+    mock.get(
+        '/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all',
+        delayed(randomDelay(), dittnaveventHandler)
+    );
 }
 
 function setupMeldingerMock(mock: FetchMock) {
