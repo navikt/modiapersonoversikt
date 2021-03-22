@@ -8,7 +8,7 @@ metadata:
     team: personoversikt
 spec:
   image: {{image}}
-  port: 443
+  port: 8080
   webproxy: true
   team: personoversikt
   liveness:
