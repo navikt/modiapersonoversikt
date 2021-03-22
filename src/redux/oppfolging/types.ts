@@ -1,8 +1,6 @@
-import moment from 'moment';
-
 export interface VisOppfolgingFraTilDato {
-    fra: Date;
-    til: Date;
+    fra: string;
+    til: string;
 }
 
 export interface OppfolgingState {
@@ -11,14 +9,22 @@ export interface OppfolgingState {
     ytelserEkspandert: boolean;
 }
 
+const fraDato = () => {
+    const dato = new Date();
+    dato.setMonth(dato.getMonth() - 2);
+    return dato.toLocaleDateString('en-CA');
+};
+
+const tilDato = () => {
+    const dato = new Date();
+    dato.setMonth(dato.getMonth() + 1);
+    return dato.toLocaleDateString('en-CA');
+};
+
 export const initialState: OppfolgingState = {
     valgtPeriode: {
-        fra: moment()
-            .subtract(2, 'month')
-            .toDate(),
-        til: moment()
-            .add(1, 'month')
-            .toDate()
+        fra: fraDato(),
+        til: tilDato()
     },
     sykefraværEkspandert: false,
     ytelserEkspandert: false
