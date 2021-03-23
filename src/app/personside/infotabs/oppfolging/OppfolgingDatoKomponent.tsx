@@ -11,13 +11,14 @@ import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
 import { reloadOppfolingActionCreator } from '../../../../redux/restReducers/oppfolging';
-import { isValidDate } from '../../../../utils/date-utils';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import Panel from 'nav-frontend-paneler';
 import { Datepicker, isISODateString } from 'nav-datovelger';
+import moment from 'moment';
+import { formaterDato } from '../../../../utils/string-utils';
 
 const DatoVelgerWrapper = styled.div`
     position: relative;
@@ -50,40 +51,51 @@ interface DispatchProps {
 
 type Props = DispatchProps & StateProps;
 
-const tidligsteDato = () => {
-    const dato = new Date();
-    dato.setFullYear(dato.getFullYear() - 10);
-    return dato.toLocaleDateString('en-CA');
-};
+const tidligsteDato = () =>
+    moment()
+        .subtract(10, 'year')
+        .startOf('day')
+        .toISOString()
+        .split('T')[0];
 
-const senesteDato = () => {
-    const dato = new Date();
-    dato.setFullYear(dato.getFullYear() + 1);
-    return dato.toLocaleDateString('en-CA');
-};
+const senesteDato = () =>
+    moment()
+        .add(1, 'year')
+        .endOf('day')
+        .toISOString()
+        .split('T')[0];
 
 function getDatoFeilmelding(fra: string, til: string) {
     if (Date.parse(fra) > Date.parse(til)) {
         return <SkjemaelementFeilmelding>Fra-dato kan ikke være senere enn til-dato</SkjemaelementFeilmelding>;
     }
     if (Date.parse(til) > Date.parse(senesteDato())) {
-        return <SkjemaelementFeilmelding>Du kan ikke velge dato etter {senesteDato()}</SkjemaelementFeilmelding>;
+        return (
+            <SkjemaelementFeilmelding>
+                Du kan ikke velge dato etter {formaterDato(senesteDato())}
+            </SkjemaelementFeilmelding>
+        );
     }
     if (Date.parse(fra) < Date.parse(tidligsteDato())) {
-        return <SkjemaelementFeilmelding>Du kan ikke velge en dato før {tidligsteDato()}</SkjemaelementFeilmelding>;
+        return (
+            <SkjemaelementFeilmelding>
+                Du kan ikke velge en dato før {formaterDato(tidligsteDato())}
+            </SkjemaelementFeilmelding>
+        );
     }
-
-    const feilmelding = (string: String) => (
-        <SkjemaelementFeilmelding>
-            Du må velge gyldig {string}-dato. Gyldig datoformat er dd.mm.åååå
-        </SkjemaelementFeilmelding>
-    );
-
     if (!Date.parse(fra)) {
-        return feilmelding('fra');
+        return (
+            <SkjemaelementFeilmelding>
+                Du må velge gyldig fra-dato. Gyldig datoformat er dd.mm.åååå
+            </SkjemaelementFeilmelding>
+        );
     }
     if (!Date.parse(til)) {
-        return feilmelding('til');
+        return (
+            <SkjemaelementFeilmelding>
+                Du må velge gyldig til-dato. Gyldig datoformat er dd.mm.åååå
+            </SkjemaelementFeilmelding>
+        );
     }
     return null;
 }
@@ -99,7 +111,7 @@ function DatoInputs(props: Props) {
     };
 
     const onClickHandler = () => {
-        if (oppfølgingLastes || !isValidDate(fra) || !isValidDate(til)) {
+        if (oppfølgingLastes || !Date.parse(fra) || !Date.parse(til)) {
             return;
         }
         loggEvent('SøkNyPeriode', 'Oppfølging');
@@ -121,7 +133,12 @@ function DatoInputs(props: Props) {
                 showYearSelector={true}
                 limitations={avgrensninger}
                 dayPickerProps={{
-                    onMonthChange: dato => props.settValgtPeriode({ fra: dato.toLocaleDateString('en-CA') })
+                    onMonthChange: dato =>
+                        props.settValgtPeriode({
+                            fra: moment(dato)
+                                .format('YYYY-MM-DD')
+                                .toString()
+                        })
                 }}
             />
             <label htmlFor="oppfolging-datovelger-til">Til:</label>
@@ -137,7 +154,12 @@ function DatoInputs(props: Props) {
                 showYearSelector={true}
                 limitations={avgrensninger}
                 dayPickerProps={{
-                    onMonthChange: dato => props.settValgtPeriode({ til: dato.toLocaleDateString('en-CA') })
+                    onMonthChange: dato =>
+                        props.settValgtPeriode({
+                            til: moment(dato)
+                                .format('YYYY-MM-DD')
+                                .toString()
+                        })
                 }}
             />
             {periodeFeilmelding}
