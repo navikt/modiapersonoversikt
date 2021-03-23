@@ -257,7 +257,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   onChange={[Function]}
                   onKeyDown={[Function]}
                   type="text"
-                  value="22.01.2021"
+                  value="01.11.1969"
                 />
                 <button
                   aria-expanded={false}
@@ -335,7 +335,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   onChange={[Function]}
                   onKeyDown={[Function]}
                   type="text"
-                  value="22.04.2021"
+                  value="01.02.1970"
                 />
                 <button
                   aria-expanded={false}
