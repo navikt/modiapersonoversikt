@@ -1,3 +1,3 @@
-FROM docker.pkg.github.com/navikt/modialogin/frontend:c04af997cb7e859a17422c2c7bae9cfdce76988f
+FROM docker.pkg.github.com/navikt/modialogin/frontend:01a9a9790313a6a50eaffe7a0c15ec2df766d743
 ADD proxy.nginx /nginx
 COPY build /app
