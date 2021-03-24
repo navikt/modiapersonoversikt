@@ -7,7 +7,7 @@ import { DeltBosted, DeltBostedAdresse } from '../../../../../models/deltBosted'
 import Utropstegn from '../../../../../svg/Utropstegn';
 
 function harAdresse(adresse?: DeltBostedAdresse) {
-    return adresse != undefined;
+    return adresse !== undefined;
 }
 
 function getAdresse(deltBosted?: DeltBosted) {
