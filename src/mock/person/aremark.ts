@@ -233,5 +233,23 @@ export const aremark: Person = {
             opphoerstidspunkt: null,
             vergesakstype: 'voksen'
         }
+    ],
+    deltBosted: [
+        {
+            startdatoForKontrakt: '2020-12-12',
+            sluttdatoForKontrakt: '2023-12-12',
+            adresse: {
+                adressenavn: 'Adresseveien',
+                husnummer: '1',
+                husbokstav: undefined,
+                bruksenhetsnummer: 'H0201',
+                kommunenummer: '0301',
+                postnummer: '0661',
+                bydelsnummer: '1',
+                tilleggsnavn: undefined,
+                coAdressenavn: undefined
+            },
+            ukjentBosted: undefined
+        }
     ]
 };

@@ -20,6 +20,7 @@ import { getMockDoedsbo } from './doedsbo';
 import { getMockFullmakter } from './fullmakter-mock';
 import { TilrettelagtKommunikasjonType } from '../../models/kodeverk';
 import { mockVergemal } from './vergemal/vergemalMock';
+import { getDeltBostedMock } from './deltbosted-mock';
 
 export function getPerson(fødselsnummer: string): PersonRespons {
     if (fødselsnummer === aremark.fødselsnummer) {
@@ -59,7 +60,8 @@ function genererPerson(fødselsnummer: string): Person {
         kontaktinformasjon: getNavKontaktinformasjon(faker),
         kontaktinformasjonForDoedsbo: getMockDoedsbo(faker),
         fullmakt: getMockFullmakter(faker, navfaker),
-        vergemal: mockVergemal(fødselsnummer)
+        vergemal: mockVergemal(fødselsnummer),
+        deltBosted: getDeltBostedMock(faker, navfaker)
     };
 }
 

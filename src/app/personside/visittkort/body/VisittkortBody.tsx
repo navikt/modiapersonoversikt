@@ -11,6 +11,7 @@ import LenkeBrukerprofilContainer from './lenkebrukerprofil/LenkeBrukerprofilCon
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import Fullmakter from './fullmakt/Fullmakt';
 import Vergemal from './vergemal/Vergemal';
+import DeltBosted from './deltBosted/DeltBosted';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -30,6 +31,7 @@ function OneColumnLayout(person: Person) {
             <Kontaktinformasjon person={person} />
             <Fullmakter fullmakter={person.fullmakt} />
             <Familie person={person} />
+            <DeltBosted deltbosted={person.deltBosted} />
             <NavKontorSeksjon />
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
             <Vergemal vergemal={person.vergemal} />
@@ -46,6 +48,7 @@ function TwoColumnLayout(person: Person) {
                 <Kontaktinformasjon person={person} />
                 <Fullmakter fullmakter={person.fullmakt} />
                 <Familie person={person} />
+                <DeltBosted deltbosted={person.deltBosted} />
             </Kolonne>
             <Kolonne>
                 <NavKontorSeksjon />
@@ -67,6 +70,7 @@ function ThreeColumnLayout(person: Person) {
             </Kolonne>
             <Kolonne>
                 <Familie person={person} />
+                <DeltBosted deltbosted={person.deltBosted} />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
                 <Vergemal vergemal={person.vergemal} />
             </Kolonne>

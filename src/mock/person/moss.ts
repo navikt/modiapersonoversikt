@@ -138,5 +138,15 @@ export const moss: Person = {
             sistEndretAv: 'Z999999'
         }
     },
-    vergemal: []
+    vergemal: [],
+    deltBosted: [
+        {
+            startdatoForKontrakt: '2020-12-12',
+            sluttdatoForKontrakt: '2023-12-12',
+            adresse: undefined,
+            ukjentBosted: {
+                bostedskommune: 'Oslo'
+            }
+        }
+    ]
 };
