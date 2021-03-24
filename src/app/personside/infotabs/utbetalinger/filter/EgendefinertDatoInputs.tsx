@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { UtbetalingFilterState, FraTilDato } from '../../../../../redux/utbetalinger/types';
 import { formaterDato, formaterTilISO8601Date } from '../../../../../utils/string-utils';
+import { DatovelgerAvgrensninger } from 'nav-datovelger';
 import moment from 'moment';
+import Datovelger from 'nav-datovelger/dist/datovelger/Datovelger';
 import { tidligsteTilgjengeligeDatoUtbetalingerRestkonto } from '../../../../../redux/restReducers/utbetalinger';
 import { Periode } from '../../../../../models/tid';
 import { isValidDate } from '../../../../../utils/date-utils';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
-import { Datepicker, isISODateString } from 'nav-datovelger';
 
 interface Props {
     filter: UtbetalingFilterState;
@@ -50,42 +51,30 @@ function EgendefinertDatoInputs(props: Props) {
     const fra = props.filter.periode.egendefinertPeriode.fra;
     const til = props.filter.periode.egendefinertPeriode.til;
     const periodeFeilmelding = getDatoFeilmelding(fra, til);
-    const avgrensninger = {
-        minDate: formaterTilISO8601Date(tidligsteTilgjengeligeDatoUtbetalingerRestkonto),
-        maxDate: formaterTilISO8601Date(new Date())
+    const avgrensninger: DatovelgerAvgrensninger = {
+        minDato: formaterTilISO8601Date(tidligsteTilgjengeligeDatoUtbetalingerRestkonto),
+        maksDato: formaterTilISO8601Date(new Date())
     };
 
     return (
         <>
             <label htmlFor="utbetalinger-datovelger-fra">Fra:</label>
-            <Datepicker
-                locale={'nb'}
-                inputId="utbetalinger-datovelger-fra"
-                value={formaterTilISO8601Date(props.filter.periode.egendefinertPeriode.fra)}
+            <Datovelger
+                input={{ id: 'utbetalinger-datovelger-fra', name: 'Fra dato' }}
+                visÅrVelger={true}
+                valgtDato={formaterTilISO8601Date(props.filter.periode.egendefinertPeriode.fra)}
                 onChange={dato => onDatoChange(props, { fra: dato })}
-                inputProps={{
-                    name: 'Fra dato',
-                    'aria-invalid':
-                        formaterTilISO8601Date(props.filter.periode.egendefinertPeriode.fra) !== '' &&
-                        isISODateString(formaterTilISO8601Date(props.filter.periode.egendefinertPeriode.fra)) === false
-                }}
-                showYearSelector={true}
-                limitations={avgrensninger}
+                id="utbetalinger-datovelger-fra"
+                avgrensninger={avgrensninger}
             />
             <label htmlFor="utbetalinger-datovelger-til">Til:</label>
-            <Datepicker
-                locale={'nb'}
-                inputId="utbetalinger-datovelger-til"
-                value={formaterTilISO8601Date(props.filter.periode.egendefinertPeriode.til)}
+            <Datovelger
+                input={{ id: 'utbetalinger-datovelger-til', name: 'Til dato' }}
+                visÅrVelger={true}
+                valgtDato={formaterTilISO8601Date(props.filter.periode.egendefinertPeriode.til)}
                 onChange={dato => onDatoChange(props, { til: dato })}
-                inputProps={{
-                    name: 'Til dato',
-                    'aria-invalid':
-                        formaterTilISO8601Date(props.filter.periode.egendefinertPeriode.til) !== '' &&
-                        isISODateString(formaterTilISO8601Date(props.filter.periode.egendefinertPeriode.til)) === false
-                }}
-                showYearSelector={true}
-                limitations={avgrensninger}
+                id="utbetalinger-datovelger-til"
+                avgrensninger={avgrensninger}
             />
             {periodeFeilmelding}
         </>
