@@ -31,7 +31,7 @@ export interface Person extends PersonRespons {
     fullmakt?: Fullmakt[];
     telefonnummer?: Array<Telefon>;
     vergemal: Verge[];
-    deltBosted: DeltBosted[];
+    deltBosted?: DeltBosted[];
 }
 
 export interface Navn {
