@@ -1670,18 +1670,6 @@ exports[`Om sykepenger matcher snapshot 1`] = `
                 <dt
                   className="typo-normal"
                 >
-                  Maksdato
-                </dt>
-                <dd
-                  className="typo-element"
-                >
-                  16.01.2019
-                </dd>
-              </div>
-              <div>
-                <dt
-                  className="typo-normal"
-                >
                   Untatt aktivitet
                 </dt>
                 <dd

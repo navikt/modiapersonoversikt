@@ -7,9 +7,6 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return true;
         case FeatureToggles.UtloggingsInfo:
             return true;
-        case FeatureToggles.BruksmonsterSurvey:
-            // Vil ikke at denne skal dukke opp lokalt eller på heroku
-            return false;
         default:
             return Math.random() > 0.5;
     }

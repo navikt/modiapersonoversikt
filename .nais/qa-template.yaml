@@ -29,7 +29,6 @@ spec:
       memory: 1024Mi
   ingresses:
     - https://app-{{ namespace }}.adeo.no/modiapersonoversikt
-    - https://modia-{{ namespace }}.dev.adeo.no/modiapersonoversikt
   replicas:
     min: 2
     max: 4
@@ -42,20 +41,27 @@ spec:
       - kvPath: /serviceuser/data/dev/srvmodiapersonoversikt
         mountPath: /var/run/secrets/nais.io/service_user
   env:
-    - name: OPENAM_DISCOVERY_URL
+    - name: APP_NAME
+      value: "modiapersonoversikt"
+    - name: APP_VERSION
+      value: "{{ version }}"
+    - name: IDP_DISCOVERY_URL
       value: "https://isso-q.adeo.no/isso/oauth2/.well-known/openid-configuration"
-    - name: VEILARBLOGIN_OPENAM_CLIENT_ID
-      value: "veilarblogin-{{ namespace }}"
-    - name: VEILARBLOGIN_OPENAM_LOGIN_URL
-      value: "https://app-{{ namespace }}.adeo.no/veilarblogin/api/start"
-    - name: AAD_DISCOVERY_URL
-      value: "https://login.microsoftonline.com/966ac572-f5b7-4bbe-aa88-c76419c0f851/v2.0/.well-known/openid-configuration"
-    - name: VEILARBLOGIN_AAD_CLIENT_ID
-      value: "2edd96a2-fb5a-4dfa-8f36-848ae306f9b1"
-    - name: VEILARBLOGIN_AAD_LOGIN_URL
-      value: "https://app-{{ namespace }}.adeo.no/veilarblogin/api/aad-login"
-    - name: UNLEASH_API_URL
-      value: "https://unleash.nais.io/api/"
-    - name: WEBSOCKET_CSP
-      value: "wss://veilederflatehendelser-{{ namespace }}.adeo.no"
-
+    - name: IDP_CLIENT_ID
+      value: "modialogin-{{ namespace }}"
+    - name: DELEGATED_LOGIN_URL
+      value: "https://app-{{ namespace }}.adeo.no/modialogin/api/start"
+    - name: AUTH_TOKEN_RESOLVER
+      value: "modia_ID_token"
+    - name: APP_ADEO_DOMAIN
+      value: "https://app-{{ namespace}}.adeo.no"
+    - name: CSP_DIRECTIVES
+      value: "default-src 'self';\
+      script-src 'self' 'unsafe-inline' jsagent.adeo.no https://*.hotjar.com https://*.hotjar.io;\
+      style-src 'self' 'unsafe-inline';\
+      img-src 'self' data: https://*.hotjar.com https://*.hotjar.io;\
+      font-src 'self' data: https://*.hotjar.com https://*.hotjar.io;\
+      connect-src 'self' eumgw.adeo.no wss://veilederflatehendelser-{{ namespace }}.adeo.no https://*.hotjar.com https://*.hotjar.io;\
+      object-src blob:;\
+      frame-src blob: https://*.hotjar.com https://*.hotjar.io;\
+      report-uri /frontendlogger/api/warn;"

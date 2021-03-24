@@ -7,12 +7,12 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { useAppState, useFocusOnMount } from '../../../../../../../utils/customHooks';
 import { Textarea } from 'nav-frontend-skjema';
 import theme from '../../../../../../../styles/personOversiktTheme';
-import { Element } from 'nav-frontend-typografi';
 import { useDispatch } from 'react-redux';
 import { AvsluttGosysOppgaveRequest } from '../../../../../../../models/meldinger/merk';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { hasData } from '../../../../../../../rest/utils/restResource';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 const StyledAlert = styled.div`
     margin: 1rem 0rem;
@@ -90,16 +90,17 @@ function AvsluttGosysOppgaveSkjema(props: Props) {
     }
     return (
         <StyledArticle ref={ref}>
-            <Element>Avslutt oppgave</Element>
-            <Textarea
-                label={'Beskrivelse'}
-                value={gosysBeskrivelse}
-                maxLength={0}
-                onChange={e => setGosysBeskrivelse(e.currentTarget.value)}
-            />
-            <Hovedknapp onClick={handleSubmit} spinner={submitting}>
-                Avslutt oppgave
-            </Hovedknapp>
+            <Ekspanderbartpanel tittel={'Avslutt aktiv oppgave fra GOSYS'} apen={false}>
+                <Textarea
+                    label={'Beskrivelse'}
+                    value={gosysBeskrivelse}
+                    maxLength={0}
+                    onChange={e => setGosysBeskrivelse(e.currentTarget.value)}
+                />
+                <Hovedknapp onClick={handleSubmit} spinner={submitting}>
+                    Avslutt oppgave
+                </Hovedknapp>
+            </Ekspanderbartpanel>
         </StyledArticle>
     );
 }
