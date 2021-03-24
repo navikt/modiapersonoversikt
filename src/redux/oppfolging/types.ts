@@ -15,12 +15,10 @@ export const initialState: OppfolgingState = {
     valgtPeriode: {
         fra: moment()
             .subtract(2, 'month')
-            .format('YYYY-MM-DD')
-            .toString(),
+            .format('YYYY-MM-DD'),
         til: moment()
             .add(1, 'month')
             .format('YYYY-MM-DD')
-            .toString()
     },
     sykefraværEkspandert: false,
     ytelserEkspandert: false

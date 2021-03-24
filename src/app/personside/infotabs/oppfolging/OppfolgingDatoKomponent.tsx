@@ -55,15 +55,13 @@ const tidligsteDato = () =>
     moment()
         .subtract(10, 'year')
         .startOf('day')
-        .toISOString()
-        .split('T')[0];
+        .format('YYYY-MM-DD');
 
 const senesteDato = () =>
     moment()
         .add(1, 'year')
         .endOf('day')
-        .toISOString()
-        .split('T')[0];
+        .format('YYYY-MM-DD');
 
 function getDatoFeilmelding(fra: string, til: string) {
     if (Date.parse(fra) > Date.parse(til)) {
