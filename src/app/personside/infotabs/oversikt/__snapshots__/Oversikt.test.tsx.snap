@@ -483,7 +483,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           />
           <a
             className="c5 lenke"
-            href="/person/10108000398/oppfølging/"
+            href="/person/10108000398/oppfolging/"
             onClick={[Function]}
           >
             <p
