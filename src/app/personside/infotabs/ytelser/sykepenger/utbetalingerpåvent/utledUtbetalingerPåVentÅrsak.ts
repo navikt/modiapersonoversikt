@@ -1,6 +1,10 @@
 import { UtbetalingPåVent } from '../../../../../../models/ytelse/ytelse-utbetalinger';
-import moment from 'moment';
 import { Periode } from '../../../../../../models/tid';
+import dayjs from 'dayjs';
+import isSameOrBeforePlugin from 'dayjs/plugin/isSameOrBefore';
+import isSameOrAfterPlugin from 'dayjs/plugin/isSameOrAfter';
+dayjs.extend(isSameOrBeforePlugin);
+dayjs.extend(isSameOrAfterPlugin);
 
 export function utledUtbetalingPåVentÅrsak(utbetaling: UtbetalingPåVent): string {
     if (utbetaling.arbeidskategori === 'Inntektsopplysninger mangler') {
@@ -23,9 +27,9 @@ export function utledUtbetalingPåVentÅrsak(utbetaling: UtbetalingPåVent): str
 
 function utbetalingPåVentPgaSanksjon({ vedtak, sanksjon }: UtbetalingPåVent): boolean {
     if (sanksjon && vedtak && vedtak.til) {
-        const sanksjonInnenforVedtaksperiode = moment(sanksjon.fra).isSameOrBefore(moment(vedtak.til));
+        const sanksjonInnenforVedtaksperiode = dayjs(sanksjon.fra).isSameOrBefore(dayjs(vedtak.til));
         const sanksjonUtenSlutt = sanksjonInnenforVedtaksperiode && !sanksjon.til;
-        const sanksjonFremdelesGjeldende = !!sanksjon.til && moment(sanksjon.til).isSameOrAfter(moment(vedtak.til));
+        const sanksjonFremdelesGjeldende = !!sanksjon.til && dayjs(sanksjon.til).isSameOrAfter(dayjs(vedtak.til));
         return sanksjonUtenSlutt || sanksjonFremdelesGjeldende;
     }
     return false;
@@ -33,7 +37,7 @@ function utbetalingPåVentPgaSanksjon({ vedtak, sanksjon }: UtbetalingPåVent): 
 
 function erPåVentFordiSykemeldingMangler({ vedtak, sykmeldt }: UtbetalingPåVent): boolean {
     if (vedtak && sykmeldt && vedtak.til && sykmeldt.til) {
-        return moment(vedtak.til).isSameOrAfter(moment(sykmeldt.til));
+        return dayjs(vedtak.til).isSameOrAfter(dayjs(sykmeldt.til));
     }
     return false;
 }
@@ -46,5 +50,5 @@ function erPåVentGrunnetFerie({ vedtak, ferie1, ferie2 }: UtbetalingPåVent): b
 }
 
 function ferieEtterVedtakTom(ferie: Periode | null, vedtakTil: string): boolean {
-    return !!ferie && moment(vedtakTil).isSameOrBefore(moment(ferie.til));
+    return !!ferie && dayjs(vedtakTil).isSameOrBefore(dayjs(ferie.til));
 }

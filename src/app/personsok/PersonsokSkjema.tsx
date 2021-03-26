@@ -17,7 +17,7 @@ import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import { erTall } from '../../utils/string-utils';
 import { validerKontonummer } from './kontonummer/kontonummerUtils';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
@@ -107,8 +107,8 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
 
     let fodselsdatoFra = undefined;
     let fodselsdatoTil = undefined;
-    const fra = moment(values.fodselsdatoFra).toDate();
-    const til = moment(values.fodselsdatoTil).toDate();
+    const fra = dayjs(values.fodselsdatoFra).toDate();
+    const til = dayjs(values.fodselsdatoTil).toDate();
     if (fra > til) {
         fodselsdatoFra = 'Fra-dato kan ikke være senere enn til-dato';
     }

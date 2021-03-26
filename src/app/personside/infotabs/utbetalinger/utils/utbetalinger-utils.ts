@@ -1,11 +1,10 @@
 import { Skatt, Trekk, Utbetaling, Ytelse, Ytelseskomponent } from '../../../../../models/utbetalinger';
 import { formaterDato } from '../../../../../utils/string-utils';
 import { Periode } from '../../../../../models/tid';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { loggError } from '../../../../../utils/logger/frontendLogger';
 import { UtbetalingFilterState, PeriodeValg } from '../../../../../redux/utbetalinger/types';
 import { datoVerbose } from '../../../../../utils/date-utils';
-import dayjs from 'dayjs';
 import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
 export const utbetaltTilBruker = 'Bruker';
@@ -16,7 +15,7 @@ export function maanedOgAarForUtbetaling(utbetaling: Utbetaling) {
 }
 
 export function utbetalingDatoComparator(a: Utbetaling, b: Utbetaling) {
-    return moment(getGjeldendeDatoForUtbetaling(b)).unix() - moment(getGjeldendeDatoForUtbetaling(a)).unix();
+    return dayjs(getGjeldendeDatoForUtbetaling(b)).unix() - dayjs(getGjeldendeDatoForUtbetaling(a)).unix();
 }
 
 export function ytelseBelopDescComparator(a: Ytelseskomponent, b: Ytelseskomponent) {
@@ -33,11 +32,11 @@ export function trekkBelopAscComparator(a: Trekk, b: Trekk) {
 
 export function getUtbetalingerForSiste30DagerDatoer() {
     return {
-        fra: moment()
+        fra: dayjs()
             .subtract(30, 'day')
             .startOf('day')
             .toDate(),
-        til: moment()
+        til: dayjs()
             .add(100, 'day')
             .endOf('day')
             .toDate()
@@ -47,11 +46,11 @@ export function getUtbetalingerForSiste30DagerDatoer() {
 export function getFraDateFromFilter(filter: UtbetalingFilterState): Date {
     switch (filter.periode.radioValg) {
         case PeriodeValg.INNEVÆRENDE_ÅR:
-            return moment()
+            return dayjs()
                 .startOf('year')
                 .toDate();
         case PeriodeValg.I_FJOR:
-            return moment()
+            return dayjs()
                 .subtract(1, 'year')
                 .startOf('year')
                 .toDate();
@@ -66,7 +65,7 @@ export function getFraDateFromFilter(filter: UtbetalingFilterState): Date {
 export function getTilDateFromFilter(filter: UtbetalingFilterState): Date {
     switch (filter.periode.radioValg) {
         case PeriodeValg.I_FJOR:
-            return moment()
+            return dayjs()
                 .subtract(1, 'year')
                 .endOf('year')
                 .toDate();
@@ -154,20 +153,20 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
 }
 
 export function getPeriodeFromYtelser(ytelser: Ytelse[]): Periode {
-    console.log('debug', moment().format(), moment(0).format());
+    console.log('debug', dayjs().format(), dayjs(0).format());
     return ytelser.reduce(
         (acc: Periode, ytelse: Ytelse) => {
             if (!ytelse.periode) {
                 return acc;
             }
             return {
-                fra: moment(ytelse.periode.start).isBefore(moment(acc.fra)) ? ytelse.periode.start : acc.fra,
-                til: moment(ytelse.periode.slutt).isAfter(moment(acc.til)) ? ytelse.periode.slutt : acc.til
+                fra: dayjs(ytelse.periode.start).isBefore(dayjs(acc.fra)) ? ytelse.periode.start : acc.fra,
+                til: dayjs(ytelse.periode.slutt).isAfter(dayjs(acc.til)) ? ytelse.periode.slutt : acc.til
             };
         },
         {
-            fra: moment().format(),
-            til: moment(0).format()
+            fra: dayjs().format(),
+            til: dayjs(0).format()
         }
     );
 }

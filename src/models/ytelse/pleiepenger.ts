@@ -1,5 +1,5 @@
 import { getSistePeriodeForPleiepengerettighet } from '../../app/personside/infotabs/ytelser/pleiepenger/pleiepengerUtils';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { backendDatoformat } from '../../utils/date-utils';
 
 export interface PleiepengerResponse {
@@ -54,7 +54,7 @@ export function getPleiepengerIdDato(pleiepengerettighet: Pleiepengerettighet) {
     const sistePeriodeForPleiepengerettighet = getSistePeriodeForPleiepengerettighet(pleiepengerettighet);
     return sistePeriodeForPleiepengerettighet
         ? sistePeriodeForPleiepengerettighet.fom
-        : moment().format(backendDatoformat);
+        : dayjs().format(backendDatoformat);
 }
 
 export function getUnikPleiepengerKey(pleiepengerettighet: Pleiepengerettighet): string {

@@ -12,7 +12,7 @@ import {
     Traad
 } from '../../models/meldinger/meldinger';
 import { guid } from 'nav-frontend-js-utils';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { getMockTraader } from '../meldinger/meldinger-mock';
 import { Temagruppe } from '../../models/temagrupper';
 import { OppgaverBackendMock } from './oppgaverBackendMock';
@@ -141,7 +141,7 @@ function getMockMelding(): Melding {
         skrevetAvTekst: 'Saksbehandler',
         fritekst: 'Dette er en mock-melding',
         status: LestStatus.IkkeLest,
-        opprettetDato: moment().format(backendDatoTidformat),
+        opprettetDato: dayjs().format(backendDatoTidformat),
         erFerdigstiltUtenSvar: false,
         erDokumentMelding: false
     };

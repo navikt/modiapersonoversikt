@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { SykepengerResponse } from '../../../models/ytelse/sykepenger';
 import { loggError, loggEvent } from '../../../utils/logger/frontendLogger';
 import Sykepenger from '../../../app/personside/infotabs/ytelser/sykepenger/Sykepenger';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import RestResourceConsumer from '../../../rest/consumer/RestResourceConsumer';
 import { BigCenteredLazySpinner } from '../../BigCenteredLazySpinner';
@@ -26,7 +26,7 @@ function SykePengerLaster(props: Props) {
             return <AlertStripeInfo>Kunne ikke finne sykepengerettighet for bruker</AlertStripeInfo>;
         }
         const aktuellRettighet = data.sykepenger.find(rettighet =>
-            moment(rettighet.sykmeldtFom).isSame(moment(props.sykmeldtFraOgMed))
+            dayjs(rettighet.sykmeldtFom).isSame(dayjs(props.sykmeldtFraOgMed))
         );
         if (!aktuellRettighet) {
             loggError(new Error('Kunne ikke finne sykepengerettighet'), undefined, {
