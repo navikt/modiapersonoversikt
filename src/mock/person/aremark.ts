@@ -233,5 +233,25 @@ export const aremark: Person = {
             opphoerstidspunkt: null,
             vergesakstype: 'voksen'
         }
+    ],
+    foreldreansvar: [
+        {
+            ansvar: 'felles',
+            ansvarlig: {
+                fornavn: 'Ola',
+                etternavn: 'Normann',
+                mellomnavn: '',
+                sammensatt: 'Ola Normann'
+            }
+        },
+        {
+            ansvar: 'far',
+            ansvarlig: {
+                fornavn: 'Petter',
+                etternavn: 'Pettersen',
+                mellomnavn: '',
+                sammensatt: 'Petter Pettersen'
+            }
+        }
     ]
 };
