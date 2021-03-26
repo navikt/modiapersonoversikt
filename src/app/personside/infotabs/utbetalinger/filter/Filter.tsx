@@ -15,8 +15,9 @@ import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetal
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import EgendefinertDatoInputs from './EgendefinertDatoInputs';
-import { isValidDate } from '../../../../../utils/date-utils';
 import Panel from 'nav-frontend-paneler';
+import dayjs from 'dayjs';
+import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
 const FiltreringsPanel = styled(Panel)`
     padding: ${pxToRem(15)};
@@ -90,7 +91,9 @@ function Filtrering() {
     const reloadUtbetalinger = useCallback(() => {
         if (filter.periode.radioValg === PeriodeValg.EGENDEFINERT) {
             const periode = filter.periode.egendefinertPeriode;
-            if (!isValidDate(periode.fra) || !isValidDate(periode.til)) {
+            const fraDato = dayjs(periode.fra, ISO_DATE_STRING_FORMAT);
+            const tilDato = dayjs(periode.til, ISO_DATE_STRING_FORMAT);
+            if (!fraDato.isValid() || !tilDato.isValid()) {
                 return;
             }
         }

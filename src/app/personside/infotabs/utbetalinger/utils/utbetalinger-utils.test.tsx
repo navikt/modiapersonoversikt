@@ -1,3 +1,4 @@
+import MockDate from 'mockdate';
 import { Utbetaling, Ytelse } from '../../../../../models/utbetalinger';
 import { getMockUtbetaling, getMockYtelse } from '../../../../../mock/utbetalinger/utbetalinger-mock';
 import {
@@ -20,6 +21,8 @@ import moment from 'moment';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
 import { Periode } from '../../../../../models/tid';
 import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
+import dayjs from 'dayjs';
+import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
 Date.now = () => new Date().getTime(); // for å motvirke Date.now() mock i setupTests.ts
 
@@ -31,6 +34,10 @@ const randomUtbetalingUtenDato: Utbetaling = {
     utbetalingsdato: null
 };
 const randomYtelse = getMockYtelse();
+
+beforeEach(() => {
+    MockDate.reset();
+});
 
 test('lager riktig måned og år string for utbetaling', () => {
     const utbetaling: Utbetaling = {
@@ -222,8 +229,8 @@ const mockFilter: UtbetalingFilterState = {
     periode: {
         radioValg: PeriodeValg.SISTE_30_DAGER,
         egendefinertPeriode: {
-            fra: new Date(),
-            til: new Date()
+            fra: dayjs().format(ISO_DATE_STRING_FORMAT),
+            til: dayjs().format(ISO_DATE_STRING_FORMAT)
         }
     },
     ytelser: [],
@@ -308,12 +315,13 @@ test('henter riktig fra og til-date fra filter ved valg av "i fjor', () => {
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "egendefinert periode', () => {
+    const dato = dayjs(0);
     const filter: UtbetalingFilterState = {
         ...mockFilter,
         periode: {
             egendefinertPeriode: {
-                fra: new Date(0),
-                til: new Date(0)
+                fra: dato.format(ISO_DATE_STRING_FORMAT),
+                til: dato.format(ISO_DATE_STRING_FORMAT)
             },
             radioValg: PeriodeValg.EGENDEFINERT
         }
@@ -321,9 +329,8 @@ test('henter riktig fra og til-date fra filter ved valg av "egendefinert periode
 
     const fraDate: Date = getFraDateFromFilter(filter);
     const tilDate: Date = getTilDateFromFilter(filter);
-
-    expect(moment(fraDate).toString()).toEqual(moment(0).toString());
-    expect(moment(tilDate).toString()).toEqual(moment(0).toString());
+    expect(dayjs(fraDate).isSame(dato, 'day')).toBeTruthy();
+    expect(dayjs(tilDate).isSame(dato, 'day')).toBeTruthy();
 });
 
 test('filtrerer bort utbetalinger som ikke er utbetalt', () => {

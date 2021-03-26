@@ -4,8 +4,10 @@ import TestProvider from '../../../../test/Testprovider';
 import UtbetalingerContainer from './UtbetalingerContainer';
 import { getTestStore } from '../../../../test/testStore';
 import { statiskMockUtbetaling } from '../../../../mock/utbetalinger/statiskMockUtbetaling';
+import MockDate from 'mockdate';
 
 test('Viser utbetalingercontainer med alt innhold', () => {
+    MockDate.reset();
     const testStore = getTestStore();
     testStore.dispatch(
         testStore.getState().restResources.utbetalinger.actions.setData({

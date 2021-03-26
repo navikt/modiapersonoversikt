@@ -5,6 +5,8 @@ import moment from 'moment';
 import { loggError } from '../../../../../utils/logger/frontendLogger';
 import { UtbetalingFilterState, PeriodeValg } from '../../../../../redux/utbetalinger/types';
 import { datoVerbose } from '../../../../../utils/date-utils';
+import dayjs from 'dayjs';
+import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
 export const utbetaltTilBruker = 'Bruker';
 
@@ -54,7 +56,7 @@ export function getFraDateFromFilter(filter: UtbetalingFilterState): Date {
                 .startOf('year')
                 .toDate();
         case PeriodeValg.EGENDEFINERT:
-            return filter.periode.egendefinertPeriode.fra;
+            return dayjs(filter.periode.egendefinertPeriode.fra, ISO_DATE_STRING_FORMAT).toDate();
         case PeriodeValg.SISTE_30_DAGER:
         default:
             return getUtbetalingerForSiste30DagerDatoer().fra;
@@ -69,7 +71,7 @@ export function getTilDateFromFilter(filter: UtbetalingFilterState): Date {
                 .endOf('year')
                 .toDate();
         case PeriodeValg.EGENDEFINERT:
-            return filter.periode.egendefinertPeriode.til;
+            return dayjs(filter.periode.egendefinertPeriode.til, ISO_DATE_STRING_FORMAT).toDate();
         case PeriodeValg.INNEVÆRENDE_ÅR:
         case PeriodeValg.SISTE_30_DAGER:
         default:
@@ -152,6 +154,7 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
 }
 
 export function getPeriodeFromYtelser(ytelser: Ytelse[]): Periode {
+    console.log('debug', moment().format(), moment(0).format());
     return ytelser.reduce(
         (acc: Periode, ytelse: Ytelse) => {
             if (!ytelse.periode) {

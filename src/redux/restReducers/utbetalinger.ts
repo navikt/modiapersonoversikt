@@ -8,11 +8,6 @@ import {
     getTilDateFromFilter
 } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 
-export const tidligsteTilgjengeligeDatoUtbetalingerRestkonto = moment()
-    .subtract(5, 'year')
-    .startOf('year')
-    .toDate();
-
 function getUtbetalingerFetchUri(state: AppState) {
     const fodselsnummer = state.gjeldendeBruker.fødselsnummer;
 

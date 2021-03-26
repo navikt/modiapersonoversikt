@@ -17,8 +17,9 @@ import { guid } from 'nav-frontend-js-utils';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import Panel from 'nav-frontend-paneler';
 import { Datepicker, isISODateString } from 'nav-datovelger';
-import moment from 'moment';
-import { formaterDato } from '../../../../utils/string-utils';
+import { ISO_DATE_STRING_FORMAT, INPUT_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
+import { DatepickerLimitations } from 'nav-datovelger/lib/types';
+import dayjs, { Dayjs } from 'dayjs';
 
 const DatoVelgerWrapper = styled.div`
     position: relative;
@@ -51,65 +52,72 @@ interface DispatchProps {
 
 type Props = DispatchProps & StateProps;
 
-const tidligsteDato = () =>
-    moment()
-        .subtract(10, 'year')
-        .startOf('day')
-        .format('YYYY-MM-DD');
+const tidligsteDato: Dayjs = dayjs()
+    .subtract(10, 'years')
+    .startOf('day');
+const senesteDato: Dayjs = dayjs()
+    .add(1, 'year')
+    .endOf('day');
 
-const senesteDato = () =>
-    moment()
-        .add(1, 'year')
-        .endOf('day')
-        .format('YYYY-MM-DD');
+const isoTidligsteDato = tidligsteDato.format(ISO_DATE_STRING_FORMAT);
+const isoSenesteDato = senesteDato.format(ISO_DATE_STRING_FORMAT);
+
+const periodeValidering = [
+    {
+        erUgyldig(fra: Dayjs, til: Dayjs) {
+            return !fra.isValid();
+        },
+        feilmelding: 'Du må velge gyldig fra-dato. Gyldig datoformat er dd.mm.åååå'
+    },
+    {
+        erUgyldig(fra: Dayjs, til: Dayjs) {
+            return !til.isValid();
+        },
+        feilmelding: 'Du må velge gyldig til-dato. Gyldig datoformat er dd.mm.åååå'
+    },
+    {
+        erUgyldig(fra: Dayjs, til: Dayjs) {
+            return fra.isAfter(til);
+        },
+        feilmelding: 'Fra-dato kan ikke være senere enn til-dato'
+    },
+    {
+        erUgyldig(fra: Dayjs, til: Dayjs) {
+            return til.isAfter(senesteDato);
+        },
+        feilmelding: `Du kan ikke velge dato etter ${senesteDato.format(INPUT_DATE_STRING_FORMAT)}`
+    },
+    {
+        erUgyldig(fra: Dayjs, til: Dayjs) {
+            return fra.isBefore(tidligsteDato);
+        },
+        feilmelding: `Du kan ikke velge en dato før ${tidligsteDato.format(INPUT_DATE_STRING_FORMAT)}`
+    }
+];
 
 function getDatoFeilmelding(fra: string, til: string) {
-    if (Date.parse(fra) > Date.parse(til)) {
-        return <SkjemaelementFeilmelding>Fra-dato kan ikke være senere enn til-dato</SkjemaelementFeilmelding>;
-    }
-    if (Date.parse(til) > Date.parse(senesteDato())) {
-        return (
-            <SkjemaelementFeilmelding>
-                Du kan ikke velge dato etter {formaterDato(senesteDato())}
-            </SkjemaelementFeilmelding>
-        );
-    }
-    if (Date.parse(fra) < Date.parse(tidligsteDato())) {
-        return (
-            <SkjemaelementFeilmelding>
-                Du kan ikke velge en dato før {formaterDato(tidligsteDato())}
-            </SkjemaelementFeilmelding>
-        );
-    }
-    if (!Date.parse(fra)) {
-        return (
-            <SkjemaelementFeilmelding>
-                Du må velge gyldig fra-dato. Gyldig datoformat er dd.mm.åååå
-            </SkjemaelementFeilmelding>
-        );
-    }
-    if (!Date.parse(til)) {
-        return (
-            <SkjemaelementFeilmelding>
-                Du må velge gyldig til-dato. Gyldig datoformat er dd.mm.åååå
-            </SkjemaelementFeilmelding>
-        );
+    const fraDato = dayjs(fra, ISO_DATE_STRING_FORMAT);
+    const tilDato = dayjs(til, ISO_DATE_STRING_FORMAT);
+    const feilmelding: string | undefined = periodeValidering.find(validering => validering.erUgyldig(fraDato, tilDato))
+        ?.feilmelding;
+    if (feilmelding) {
+        return <SkjemaelementFeilmelding>{feilmelding}</SkjemaelementFeilmelding>;
     }
     return null;
 }
 
 function DatoInputs(props: Props) {
-    const oppfølgingLastes = isLoading(props.oppfølgingResource) || isReloading(props.oppfølgingResource);
+    const oppfolgingLastes = isLoading(props.oppfølgingResource) || isReloading(props.oppfølgingResource);
     const fra = props.valgtPeriode.fra;
     const til = props.valgtPeriode.til;
     const periodeFeilmelding = getDatoFeilmelding(fra, til);
-    const avgrensninger = {
-        minDate: tidligsteDato(),
-        maxDate: senesteDato()
+    const avgrensninger: DatepickerLimitations = {
+        minDate: isoTidligsteDato,
+        maxDate: isoSenesteDato
     };
 
     const onClickHandler = () => {
-        if (oppfølgingLastes || !Date.parse(fra) || !Date.parse(til)) {
+        if (oppfolgingLastes || periodeFeilmelding !== null) {
             return;
         }
         loggEvent('SøkNyPeriode', 'Oppfølging');
@@ -131,12 +139,11 @@ function DatoInputs(props: Props) {
                 showYearSelector={true}
                 limitations={avgrensninger}
                 dayPickerProps={{
-                    onMonthChange: dato =>
+                    onMonthChange(dato: Date) {
                         props.settValgtPeriode({
-                            fra: moment(dato)
-                                .format('YYYY-MM-DD')
-                                .toString()
-                        })
+                            fra: dayjs(dato).format(ISO_DATE_STRING_FORMAT)
+                        });
+                    }
                 }}
             />
             <label htmlFor="oppfolging-datovelger-til">Til:</label>
@@ -152,16 +159,15 @@ function DatoInputs(props: Props) {
                 showYearSelector={true}
                 limitations={avgrensninger}
                 dayPickerProps={{
-                    onMonthChange: dato =>
+                    onMonthChange(dato: Date) {
                         props.settValgtPeriode({
-                            til: moment(dato)
-                                .format('YYYY-MM-DD')
-                                .toString()
-                        })
+                            til: dayjs(dato).format(ISO_DATE_STRING_FORMAT)
+                        });
+                    }
                 }}
             />
             {periodeFeilmelding}
-            <Knapp onClick={onClickHandler} spinner={oppfølgingLastes} htmlType="button">
+            <Knapp onClick={onClickHandler} spinner={oppfolgingLastes} htmlType="button">
                 Søk
             </Knapp>
         </DatoVelgerWrapper>
