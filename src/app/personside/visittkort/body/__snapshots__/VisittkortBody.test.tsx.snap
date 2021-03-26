@@ -1008,6 +1008,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             <p
               className="typo-normal"
             >
+              
+            </p>
+            <p
+              className="typo-normal"
+            >
               0661 (1)
             </p>
             <p
