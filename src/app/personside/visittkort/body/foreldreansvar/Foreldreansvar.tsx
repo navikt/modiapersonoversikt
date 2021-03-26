@@ -8,9 +8,7 @@ import VisittkortElement from '../VisittkortElement';
 function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {
     return (
         <VisittkortElement>
-            <Element>
-                {props.foreldreansvar.ansvarlig ? props.foreldreansvar.ansvarlig.sammensatt : 'Navn ikke tilgjengelig'}
-            </Element>
+            <Element>{props.foreldreansvar.ansvarlig?.sammensatt ?? 'Navn ikke tilgjengelig'}</Element>
             <Normaltekst>Ansvar: {props.foreldreansvar.ansvar}</Normaltekst>
         </VisittkortElement>
     );
