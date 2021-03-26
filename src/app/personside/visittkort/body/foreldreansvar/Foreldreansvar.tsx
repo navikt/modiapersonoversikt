@@ -2,14 +2,15 @@ import * as React from 'react';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Utropstegn from '../../../../../svg/Utropstegn';
 import { Foreldreansvar } from '../../../../../models/foreldreansvar/foreldreansvar';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Element } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 
 function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {
     return (
         <VisittkortElement>
-            <Element>{props.foreldreansvar.ansvarlig?.sammensatt ?? 'Navn ikke tilgjengelig'}</Element>
-            <Normaltekst>Ansvar: {props.foreldreansvar.ansvar}</Normaltekst>
+            <Element>
+                {props.foreldreansvar.ansvarlig?.sammensatt ?? 'Navn ikke tilgjengelig'}({props.foreldreansvar.ansvar})
+            </Element>
         </VisittkortElement>
     );
 }
