@@ -1,6 +1,6 @@
 import React from 'react';
-import { AsyncResult, FetchResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
-import { JournalforingsSak, Kategorier, SakKategori, Tema } from './JournalforingPanel';
+import { AsyncResult, FetchResult, hasData, isPending } from '@nutgaard/use-fetch';
+import { JournalforingsSak, Kategorier, Result, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio, RadioProps } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
@@ -45,17 +45,12 @@ interface Props {
     valgtSak?: JournalforingsSak;
 }
 
-function getSaker(
-    gsak: AsyncResult<Array<JournalforingsSak>>,
-    psak: AsyncResult<Array<JournalforingsSak>>
-): JournalforingsSak[] {
-    const psakData = hasData(psak) ? psak.data : [];
-    const gsakData = hasData(gsak) ? gsak.data : [];
+function getSaker(result: AsyncResult<Result>): JournalforingsSak[] {
+    return hasData(result) ? result.data.saker : [];
+}
 
-    const psakIder = psakData.map(sak => sak.fagsystemSaksId);
-    const gsakSaker = gsakData.filter(sak => !psakIder.includes(sak.fagsystemSaksId));
-
-    return [...gsakSaker, ...psakData];
+function getErrors(result: AsyncResult<Result>): string[] {
+    return hasData(result) ? result.data.feiledeSystemer : [];
 }
 
 export function fordelSaker(saker: JournalforingsSak[]): Kategorier {
@@ -97,13 +92,13 @@ export function sakKategori(sak: JournalforingsSak): SakKategori {
 function VelgSak(props: Props) {
     const fnr = useSelector(fnrSelector);
     const valgtKategori = useFieldState(SakKategori.FAG);
-    const gsakSaker: FetchResult<Array<JournalforingsSak>> = JournalforingUtils.useSammensatteSaker(fnr);
-    const psakSaker: FetchResult<Array<JournalforingsSak>> = JournalforingUtils.usePensjonSaker(fnr);
+    const result: FetchResult<Result> = JournalforingUtils.useSammensatteSaker(fnr);
 
-    const saker = getSaker(gsakSaker, psakSaker);
+    const saker = getSaker(result);
+    const errors = getErrors(result);
     const fordelteSaker = fordelSaker(saker);
 
-    const pending = isPending(gsakSaker) || isPending(psakSaker);
+    const pending = isPending(result);
 
     if (pending) {
         return <Spinner type="XL" />;
@@ -138,11 +133,8 @@ function VelgSak(props: Props) {
                 />
             </Form>
             <div>
-                <ConditionalFeilmelding visible={hasError(gsakSaker)} className="blokk-xxxs">
-                    Feil ved uthenting av saker fra GSAK
-                </ConditionalFeilmelding>
-                <ConditionalFeilmelding visible={hasError(psakSaker)} className="blokk-xxxs">
-                    Feil ved uthenting av saker fra PSAK
+                <ConditionalFeilmelding visible={errors.length > 0} className="blokk-xxxs">
+                    Feil ved uthenting av saker fra sak {errors.join()}
                 </ConditionalFeilmelding>
             </div>
             {temaTable}
