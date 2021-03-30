@@ -7,7 +7,7 @@ import { PersonSokFormState, lagRequest } from './personsok-utils';
 import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import useFormstate, { FunctionValidator, Values } from '@nutgaard/use-formstate';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { Input, Select } from 'nav-frontend-skjema';
+import { Input, Select, Feiloppsummering } from 'nav-frontend-skjema';
 import PersonsokDatovelger from './PersonsokDatovelger';
 import { Kjonn } from '../../models/person/person';
 import LenkeDrek, { DrekProps } from './LenkeDrek';
@@ -85,7 +85,7 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
 
     let kontonummer = undefined;
     if (values.kontonummer && !validerKontonummer(values.kontonummer)) {
-        kontonummer = 'Kontonummer må være gyldig';
+        kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
     }
 
     let utenlandskID =
@@ -210,6 +210,15 @@ function PersonsokSkjema(props: Props) {
             }}
         >
             <FormStyle>
+                <Feiloppsummering
+                    tittel="For å gå videre må du rette opp følgende:"
+                    feil={[
+                        {
+                            skjemaelementId: state.fields.fornavn.input.id,
+                            feilmelding: state.fields.fornavn.error ?? 'test'
+                        }
+                    ]}
+                />
                 <SectionStyle>
                     <section aria-label={'Søkekriterier'}>
                         <Systemtittel tag={'h2'}>Søkekriterier</Systemtittel>
