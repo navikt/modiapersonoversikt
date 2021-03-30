@@ -98,5 +98,5 @@ test('Valider krav om gatenavn ved husbokstav', () => {
 
 test('Valider krav korrekt kontonummer', () => {
     const validator = validatorPersonsok({ ...initialValues, kontonummer: '12345678910' }, {});
-    expect(validator).toEqual({ ...ingenFeil, kontonummer: 'Kontonummer må være gyldig' });
+    expect(validator).toEqual({ ...ingenFeil, kontonummer: 'Kontonummer må kun bestå av tall og være 11 siffer' });
 });
