@@ -1000,12 +1000,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-element"
         >
           Ola Normann
-        </p>
-        <p
-          className="typo-normal"
-        >
-          Ansvar: 
+          (
           felles
+          )
         </p>
       </div>
       <div
@@ -1020,12 +1017,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-element"
         >
           Petter Pettersen
-        </p>
-        <p
-          className="typo-normal"
-        >
-          Ansvar: 
+          (
           far
+          )
         </p>
       </div>
     </section>

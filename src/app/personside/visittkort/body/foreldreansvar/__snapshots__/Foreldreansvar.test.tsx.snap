@@ -99,12 +99,9 @@ exports[`viser foreldreansvar 1`] = `
       className="typo-element"
     >
       Ola Normann
-    </p>
-    <p
-      className="typo-normal"
-    >
-      Ansvar: 
+      (
       felles
+      )
     </p>
   </div>
   <div
@@ -119,12 +116,9 @@ exports[`viser foreldreansvar 1`] = `
       className="typo-element"
     >
       Petter Pettersen
-    </p>
-    <p
-      className="typo-normal"
-    >
-      Ansvar: 
+      (
       far
+      )
     </p>
   </div>
 </section>
