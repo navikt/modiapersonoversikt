@@ -210,15 +210,6 @@ function PersonsokSkjema(props: Props) {
             }}
         >
             <FormStyle>
-                <Feiloppsummering
-                    tittel="For å gå videre må du rette opp følgende:"
-                    feil={[
-                        {
-                            skjemaelementId: state.fields.fornavn.input.id,
-                            feilmelding: state.fields.fornavn.error ?? 'test'
-                        }
-                    ]}
-                />
                 <SectionStyle>
                     <section aria-label={'Søkekriterier'}>
                         <Systemtittel tag={'h2'}>Søkekriterier</Systemtittel>
