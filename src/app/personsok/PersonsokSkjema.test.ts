@@ -1,5 +1,4 @@
-import { validatorPersonsok } from './PersonsokSkjema';
-import { PersonSokFormState } from './personsokUtils';
+import { PersonSokFormState, validatorPersonsok } from './personsok-utils';
 
 const initialValues: PersonSokFormState = {
     fornavn: '',
