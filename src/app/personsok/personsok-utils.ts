@@ -1,8 +1,9 @@
 import { PersonsokRequest } from '../../models/person/personsok';
-import { FunctionValidator, Mapped, Values } from '@nutgaard/use-formstate';
+import { Mapped, Values } from '@nutgaard/use-formstate';
 import { removeWhitespaceAndDot, validerKontonummer } from './kontonummer/kontonummerUtils';
 import { erTall } from '../../utils/string-utils';
 import moment from 'moment';
+import formstateFactory from '@nutgaard/use-formstate';
 
 export type PersonSokFormState = {
     fornavn: string;
@@ -21,7 +22,7 @@ export type PersonSokFormState = {
     kjonn: string;
     _minimumskrav: string;
 };
-export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values => {
+export const useFormstate = formstateFactory<PersonSokFormState>(values => {
     let fornavn = undefined;
     if (!values.fornavn && values.etternavn) {
         fornavn = 'Fornavn må være utfylt hvis etternavn er satt';
@@ -110,7 +111,7 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
         kjonn,
         _minimumskrav
     };
-};
+});
 
 export function stringToNumber(input: string): number | undefined {
     if (input.length === 0) {

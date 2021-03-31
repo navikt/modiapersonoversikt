@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
-import { PersonSokFormState, lagRequest, validatorPersonsok } from './personsok-utils';
+import { PersonSokFormState, lagRequest, useFormstate } from './personsok-utils';
 import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
@@ -18,7 +18,7 @@ import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { FeilmeldingOppsummering } from '../../components/FeilmeldingOppsummering';
-import useFormstateFactory, { Values } from '@nutgaard/use-formstate';
+import { Values } from '@nutgaard/use-formstate';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -74,7 +74,6 @@ const initialValues: PersonSokFormState = {
 };
 
 function PersonsokSkjema(props: Props) {
-    const useFormstate = useFormstateFactory(validatorPersonsok);
     const formstate = useFormstate(initialValues);
     const hjelpetekstID = useRef(guid());
 
