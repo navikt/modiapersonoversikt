@@ -96,7 +96,7 @@ exports[`viser foreldreansvar 1`] = `
       
     </div>
     <p
-      className="typo-element"
+      className="typo-normal"
     >
       Ola Normann
       (
@@ -113,7 +113,7 @@ exports[`viser foreldreansvar 1`] = `
       
     </div>
     <p
-      className="typo-element"
+      className="typo-normal"
     >
       Petter Pettersen
       (

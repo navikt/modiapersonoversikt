@@ -997,7 +997,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           
         </div>
         <p
-          className="typo-element"
+          className="typo-normal"
         >
           Ola Normann
           (
@@ -1014,7 +1014,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           
         </div>
         <p
-          className="typo-element"
+          className="typo-normal"
         >
           Petter Pettersen
           (
