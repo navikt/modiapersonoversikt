@@ -7,7 +7,7 @@ import { PersonSokFormState, lagRequest } from './personsok-utils';
 import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import useFormstate, { FunctionValidator, Values } from '@nutgaard/use-formstate';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { Input, Select, Feiloppsummering } from 'nav-frontend-skjema';
+import { Input, Select } from 'nav-frontend-skjema';
 import PersonsokDatovelger from './PersonsokDatovelger';
 import { Kjonn } from '../../models/person/person';
 import LenkeDrek, { DrekProps } from './LenkeDrek';
@@ -113,7 +113,7 @@ export const validatorPersonsok: FunctionValidator<PersonSokFormState> = values 
         fodselsdatoFra = 'Fra-dato kan ikke være senere enn til-dato';
     }
     if (til > new Date()) {
-        fodselsdatoTil = 'Du kan ikke velge dato frem i tid';
+        fodselsdatoTil = 'Du kan ikke velge til-dato frem i tid';
     }
     const alderFra = !erTall(values.alderFra) ? 'Alder må være tall' : undefined;
     const alderTil = !erTall(values.alderTil) ? 'Alder må være tall' : undefined;
