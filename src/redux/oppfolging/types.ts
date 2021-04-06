@@ -1,8 +1,8 @@
 import moment from 'moment';
 
 export interface VisOppfolgingFraTilDato {
-    fra: Date;
-    til: Date;
+    fra: string;
+    til: string;
 }
 
 export interface OppfolgingState {
@@ -15,10 +15,10 @@ export const initialState: OppfolgingState = {
     valgtPeriode: {
         fra: moment()
             .subtract(2, 'month')
-            .toDate(),
+            .format('YYYY-MM-DD'),
         til: moment()
             .add(1, 'month')
-            .toDate()
+            .format('YYYY-MM-DD')
     },
     sykefraværEkspandert: false,
     ytelserEkspandert: false

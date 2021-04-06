@@ -3,6 +3,7 @@ import * as renderer from 'react-test-renderer';
 import { statiskMockUtbetaling } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
 import TotaltUtbetaltDetaljer from './TotaltUtbetaltDetaljer';
 import { Utbetaling, UtbetalingerPeriode } from '../../../../../models/utbetalinger';
+import MockDate from 'mockdate';
 
 Date.now = () => new Date().getTime(); // for å motvirke Date.now() mock i setupTests.ts
 
@@ -22,6 +23,7 @@ const mockUtbetalingReturnertForSaksbehandling: Utbetaling = {
 };
 
 test('Filtrerer bort utbetalinger som ikke skal medregnes og viser totalt-utbetalt-detaljer riktig', () => {
+    MockDate.reset();
     const visittkortheader = renderer.create(
         <TotaltUtbetaltDetaljer
             visDetaljer={true}

@@ -447,46 +447,59 @@ exports[`viser personsøk-komponent 1`] = `
                         autoCorrect="off"
                         className="nav-datovelger__input"
                         id="fodselsdatoFra"
+                        inputMode="text"
                         maxLength={10}
                         name="fodselsdatoFra"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onKeyDown={[Function]}
-                        pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
                         type="text"
                         value=""
                       />
                       <button
                         aria-expanded={false}
-                        aria-label="Kalender"
                         className="nav-datovelger__kalenderknapp"
                         onClick={[Function]}
-                        role="button"
                         type="button"
                       >
-                        <svg
-                          aria-hidden="true"
-                          height={16}
-                          role="presentation"
-                          viewBox="0 0 18 18"
-                          width={16}
+                        <span
+                          className="sr-only"
                         >
-                          <title>
-                            Kalenderikon
-                          </title>
-                          <g
-                            fill="none"
-                            fillRule="evenodd"
-                            stroke="#0067C5"
+                          Kalender
+                        </span>
+                        <span
+                          aria-hidden={true}
+                          className="nav-datovelger__kalenderknapp__icon"
+                        >
+                          <svg
+                            focusable={false}
+                            height={16}
+                            role="presentation"
+                            style={
+                              Object {
+                                "pointerEvents": "none",
+                              }
+                            }
+                            viewBox="0 0 18 18"
+                            width={16}
                           >
-                            <path
-                              d="M4 2.667H1.333v14h15.334v-14H14"
-                            />
-                            <path
-                              d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                            />
-                          </g>
-                        </svg>
+                            <title>
+                              Kalenderikon
+                            </title>
+                            <g
+                              fill="none"
+                              fillRule="evenodd"
+                              stroke="#0067C5"
+                            >
+                              <path
+                                d="M4 2.667H1.333v14h15.334v-14H14"
+                              />
+                              <path
+                                d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                              />
+                            </g>
+                          </svg>
+                        </span>
                       </button>
                     </div>
                   </div>
@@ -521,46 +534,59 @@ exports[`viser personsøk-komponent 1`] = `
                         autoCorrect="off"
                         className="nav-datovelger__input"
                         id="fodselsdatoTil"
+                        inputMode="text"
                         maxLength={10}
                         name="fodselsdatoTil"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onKeyDown={[Function]}
-                        pattern="\\\\d{2}.\\\\d{2}.\\\\d{4}"
                         type="text"
                         value=""
                       />
                       <button
                         aria-expanded={false}
-                        aria-label="Kalender"
                         className="nav-datovelger__kalenderknapp"
                         onClick={[Function]}
-                        role="button"
                         type="button"
                       >
-                        <svg
-                          aria-hidden="true"
-                          height={16}
-                          role="presentation"
-                          viewBox="0 0 18 18"
-                          width={16}
+                        <span
+                          className="sr-only"
                         >
-                          <title>
-                            Kalenderikon
-                          </title>
-                          <g
-                            fill="none"
-                            fillRule="evenodd"
-                            stroke="#0067C5"
+                          Kalender
+                        </span>
+                        <span
+                          aria-hidden={true}
+                          className="nav-datovelger__kalenderknapp__icon"
+                        >
+                          <svg
+                            focusable={false}
+                            height={16}
+                            role="presentation"
+                            style={
+                              Object {
+                                "pointerEvents": "none",
+                              }
+                            }
+                            viewBox="0 0 18 18"
+                            width={16}
                           >
-                            <path
-                              d="M4 2.667H1.333v14h15.334v-14H14"
-                            />
-                            <path
-                              d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                            />
-                          </g>
-                        </svg>
+                            <title>
+                              Kalenderikon
+                            </title>
+                            <g
+                              fill="none"
+                              fillRule="evenodd"
+                              stroke="#0067C5"
+                            >
+                              <path
+                                d="M4 2.667H1.333v14h15.334v-14H14"
+                              />
+                              <path
+                                d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                              />
+                            </g>
+                          </svg>
+                        </span>
                       </button>
                     </div>
                   </div>
