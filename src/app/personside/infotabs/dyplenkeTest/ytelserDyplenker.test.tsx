@@ -2,7 +2,7 @@ import * as React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
-import { INFOTABS } from '../InfoTabEnum';
+import { INFOTABS, InfotabsType } from '../InfoTabEnum';
 import { getAktivTab, ytelserTest } from './utils-dyplenker-test';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -15,11 +15,11 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
         </TestProvider>
     );
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.toLowerCase());
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS[InfotabsType.OVERSIKT].path);
 
     clickOnYtelse(infoTabs);
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.YTELSER.toLowerCase());
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS[InfotabsType.YTELSER].path);
 
     const forventetMarkert = infoTabs
         .find('VisMerKnapp')

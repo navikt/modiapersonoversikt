@@ -7,7 +7,7 @@ import OppfolgingOversikt from './OppfolgingOversikt';
 import YtelserOversikt from './YtelserOversikt';
 import UtbetalingerOversikt from './UtbetalingerOversikt';
 import MeldingerOversikt from './MeldingerOversikt';
-import { INFOTABS } from '../InfoTabEnum';
+import { InfotabsType } from '../InfoTabEnum';
 import SakerOversikt from './SakerOversikt';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 
@@ -44,39 +44,39 @@ function Oversikt() {
             <Style>
                 <KolonneStyle>
                     <Oversiktskomponent
-                        infotabPath={INFOTABS.OPPFOLGING}
+                        infotabPath={InfotabsType.OPPFOLGING}
                         tittel={'Oppfølging'}
                         component={OppfolgingOversikt}
                         hurtigtast={'T'}
                     />
                     <Oversiktskomponent
-                        infotabPath={INFOTABS.UTBETALING}
+                        infotabPath={InfotabsType.UTBETALING}
                         tittel={'Utbetalinger'}
                         component={UtbetalingerOversikt}
                         hurtigtast={'U'}
                     />
                     <Oversiktskomponent
                         tittel={'Saker'}
-                        infotabPath={INFOTABS.SAKER}
+                        infotabPath={InfotabsType.SAKER}
                         component={SakerOversikt}
                         hurtigtast={'S'}
                     />
                 </KolonneStyle>
                 <KolonneStyle>
                     <Oversiktskomponent
-                        infotabPath={INFOTABS.MELDINGER}
+                        infotabPath={InfotabsType.MELDINGER}
                         tittel={'Meldinger'}
                         component={MeldingerOversikt}
                         hurtigtast={'M'}
                     />
                     <Oversiktskomponent
-                        infotabPath={INFOTABS.YTELSER}
+                        infotabPath={InfotabsType.YTELSER}
                         tittel={'Ytelser'}
                         component={YtelserOversikt}
                         hurtigtast={'Y'}
                     />
                     <Oversiktskomponent
-                        infotabPath={INFOTABS.VARSEL}
+                        infotabPath={InfotabsType.VARSEL}
                         tittel={'Varsler'}
                         component={VarselOversikt}
                         hurtigtast={'V'}

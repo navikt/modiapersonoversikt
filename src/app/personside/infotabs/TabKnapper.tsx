@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { INFOTABS } from './InfoTabEnum';
+import { INFOTABS, InfotabsType } from './InfoTabEnum';
 import styled, { css } from 'styled-components/macro';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
-import { capitalizeName } from '../../../utils/string-utils';
 
 interface TabPanelProps {
     onTabChange: Function;
-    openTab: INFOTABS;
+    openTab: InfotabsType;
 }
 
 const TabKnapperNav = styled.nav`
@@ -64,12 +63,12 @@ const TabKnapp = styled.button<TabKnappProps>`
 `;
 
 function TabKnapper(props: TabPanelProps) {
-    const knapper = Object.keys(INFOTABS).map(key => {
-        const erValgt = INFOTABS[key] === props.openTab;
+    const knapper = Object.keys(InfotabsType).map(key => {
+        const erValgt = InfotabsType[key] === props.openTab;
         return (
             <KnappWrapper key={key} role="presentation">
                 <TabKnapp role="tab" aria-selected={erValgt} valgt={erValgt} onClick={() => props.onTabChange(key)}>
-                    {capitalizeName(INFOTABS[key])}
+                    {INFOTABS[key].tittel}
                 </TabKnapp>
             </KnappWrapper>
         );

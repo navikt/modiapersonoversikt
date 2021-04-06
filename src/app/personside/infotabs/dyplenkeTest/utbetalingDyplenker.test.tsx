@@ -3,7 +3,7 @@ import { mount, ReactWrapper } from '../../../../test/enzyme-container';
 import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
-import { INFOTABS } from '../InfoTabEnum';
+import { INFOTABS, InfotabsType } from '../InfoTabEnum';
 import { getAktivTab, utbetalingerTest } from './utils-dyplenker-test';
 
 function clickOnUtbetalingIOversikt(infoTabs: ReactWrapper) {
@@ -23,11 +23,11 @@ test('bytter til riktig tab og setter fokus på riktig utbetaling ved bruk av dy
         </TestProvider>
     );
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.toLowerCase());
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS[InfotabsType.OVERSIKT].path);
 
     clickOnUtbetalingIOversikt(infoTabs);
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.UTBETALING.toLowerCase());
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS[InfotabsType.UTBETALING].path);
 
     const activeElement = document.activeElement ? document.activeElement.outerHTML : fail('ingen elementer i fokus');
     const expectedElement = infoTabs

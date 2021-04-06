@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
-import { INFOTABS } from './InfoTabEnum';
+import { INFOTABS, InfotabsType } from './InfoTabEnum';
 import TabKnapper from './TabKnapper';
 import styled from 'styled-components/macro';
 import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
@@ -41,8 +41,8 @@ function InfoTabs() {
     const history = useHistory();
     const location = useLocation();
 
-    const updateRouterPath = (newTab: INFOTABS) => {
-        const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`;
+    const updateRouterPath = (newTab: InfotabsType) => {
+        const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].path}/`;
         const newPath = history.location.pathname !== path;
         if (newPath) {
             history.push(path);
