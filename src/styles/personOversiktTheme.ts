@@ -66,8 +66,8 @@ export const theme = {
         smallScreen: 'max-width: 35rem',
         wideScreen: 'min-width: 35rem',
         utbetalinger: {
-            minWidth: `${80 * 16}px`,
-            maxWidth: `${80 * 16 - 1}px`
+            minWidth: `${83 * 16}px`,
+            maxWidth: `${83 * 16 - 1}px`
         }
     },
     margin: {

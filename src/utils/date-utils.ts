@@ -77,10 +77,6 @@ export function datoVerbose(dato?: string | Date) {
     };
 }
 
-export function isValidDate(date: string | Date) {
-    return moment(date).isValid();
-}
-
 export function erImorgenEllerSenere(date: Date) {
     return moment(date).isAfter(new Date(), 'day');
 }
