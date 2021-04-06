@@ -16,7 +16,7 @@ function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {
 }
 
 function ForendreansvarWrapper(props: { foreldreansvar?: Foreldreansvar[] }) {
-    if (!props.foreldreansvar) {
+    if (!props.foreldreansvar || props.foreldreansvar.length === 0) {
         return null;
     }
     const foreldreansvarElementer = props.foreldreansvar.map((foreldreansvar, index) => (
