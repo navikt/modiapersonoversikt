@@ -6,7 +6,6 @@ import { Radio, RadioProps } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import TemaTable from './TemaTabell';
 import styled from 'styled-components/macro';
-import visibleIf from '../../../../../../../components/visibleIfHoc';
 import { Group, groupBy } from '../../../../../../../utils/groupArray';
 import Spinner from 'nav-frontend-spinner';
 import { useSelector } from 'react-redux';
@@ -32,8 +31,6 @@ const MiniRadio = styled(Radio)`
         }
     }
 `;
-
-const ConditionalFeilmelding = visibleIf(AlertStripeAdvarsel);
 
 function SakgruppeRadio(props: FieldState & RadioProps & { label: SakKategori }) {
     const { input, ...rest } = props;
@@ -92,17 +89,20 @@ export function sakKategori(sak: JournalforingsSak): SakKategori {
 function VelgSak(props: Props) {
     const fnr = useSelector(fnrSelector);
     const valgtKategori = useFieldState(SakKategori.FAG);
-    const result: FetchResult<Result> = JournalforingUtils.useSammensatteSaker(fnr);
+    const result: FetchResult<Result> = JournalforingUtils.useSaker(fnr);
+
+    if (isPending(result)) {
+        return <Spinner type="XL" />;
+    } else if (getErrors(result).length > 0) {
+        return (
+            <AlertStripeAdvarsel className="blokk-xxxs">
+                Feilet ved uthenting av saker fra {getErrors(result).join()}
+            </AlertStripeAdvarsel>
+        );
+    }
 
     const saker = getSaker(result);
-    const errors = getErrors(result);
     const fordelteSaker = fordelSaker(saker);
-
-    const pending = isPending(result);
-
-    if (pending) {
-        return <Spinner type="XL" />;
-    }
 
     const temaTable = fordelteSaker[valgtKategori.input.value].map((tema: Tema) => (
         <TemaTable
@@ -132,11 +132,7 @@ function VelgSak(props: Props) {
                     {...valgtKategori}
                 />
             </Form>
-            <div>
-                <ConditionalFeilmelding visible={errors.length > 0} className="blokk-xxxs">
-                    Feil ved uthenting av saker fra sak {errors.join()}
-                </ConditionalFeilmelding>
-            </div>
+
             {temaTable}
         </>
     );

@@ -63,7 +63,7 @@ export function JournalforSak(props: Props) {
         const enhetheader = valgtEnhet ? `?enhet=${valgtEnhet}` : '';
         post(`${apiBaseUri}/journalforing/${fnr}/${props.traad.traadId}${enhetheader}`, props.sak, 'Journalføring')
             .then(() => {
-                JournalforingUtils.slettCacheForSammensatteSaker(fnr);
+                JournalforingUtils.slettCacheForSaker(fnr);
                 setSubmitting(false);
                 setJournalforingSuksess(true);
                 dispatch(tråderResource.actions.reload);

@@ -197,7 +197,7 @@ function FortsettDialogContainer(props: Props) {
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
-                    JournalforingUtils.slettCacheForSammensatteSaker(fnr);
+                    JournalforingUtils.slettCacheForSaker(fnr);
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })

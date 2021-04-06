@@ -1,4 +1,9 @@
 export const bidragMarkor = 'BID-HACK';
+export const feilendeSaker = {
+    saker: [],
+    feiledeSystemer: ['SAK', 'PENSJON']
+};
+
 export const saker = {
     saker: [
         {

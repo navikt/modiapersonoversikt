@@ -56,7 +56,7 @@ function getTittel(sak: JournalforingsSak) {
 function usePreFetchJournalforingsSaker() {
     const fnr = useFodselsnummer();
     useOnMount(() => {
-        JournalforingUtils.prefetchSammensatteSaker(fnr);
+        JournalforingUtils.prefetchSaker(fnr);
     });
 }
 
