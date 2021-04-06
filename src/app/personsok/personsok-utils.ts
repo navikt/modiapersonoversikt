@@ -22,7 +22,8 @@ export type PersonSokFormState = {
     kjonn: string;
     _minimumskrav: string;
 };
-export const useFormstate = formstateFactory<PersonSokFormState>(values => {
+
+export function validatorPersonsok(values: PersonSokFormState) {
     let fornavn = undefined;
     if (!values.fornavn && values.etternavn) {
         fornavn = 'Fornavn må være utfylt hvis etternavn er satt';
@@ -111,7 +112,9 @@ export const useFormstate = formstateFactory<PersonSokFormState>(values => {
         kjonn,
         _minimumskrav
     };
-});
+}
+
+export const useFormstate = formstateFactory<PersonSokFormState>(validatorPersonsok);
 
 export function stringToNumber(input: string): number | undefined {
     if (input.length === 0) {
