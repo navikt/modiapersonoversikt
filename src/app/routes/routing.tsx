@@ -32,7 +32,7 @@ export function usePaths() {
             utbetlainger: getPath(InfotabsType.UTBETALING),
             saker: getPath(InfotabsType.SAKER),
             ytelser: getPath(InfotabsType.YTELSER),
-            varsler: getPath(InfotabsType.VARSEL)
+            varsler: getPath(InfotabsType.VARSLER)
         }),
         [getPath, fnr]
     );

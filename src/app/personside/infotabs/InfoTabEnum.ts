@@ -1,11 +1,11 @@
 export enum InfotabsType {
     OVERSIKT = 'OVERSIKT',
-    OPPFOLGING = 'OPPFØLGING',
+    OPPFOLGING = 'OPPFOLGING',
     MELDINGER = 'MELDINGER',
     UTBETALING = 'UTBETALING',
     SAKER = 'SAKER',
     YTELSER = 'YTELSER',
-    VARSEL = 'VARSLER'
+    VARSLER = 'VARSLER'
 }
 
 interface InfotabConfig {

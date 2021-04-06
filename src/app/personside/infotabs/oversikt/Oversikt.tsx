@@ -76,7 +76,7 @@ function Oversikt() {
                         hurtigtast={'Y'}
                     />
                     <Oversiktskomponent
-                        infotabPath={InfotabsType.VARSEL}
+                        infotabPath={InfotabsType.VARSLER}
                         tittel={'Varsler'}
                         component={VarselOversikt}
                         hurtigtast={'V'}
