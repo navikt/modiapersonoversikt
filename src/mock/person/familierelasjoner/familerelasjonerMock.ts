@@ -1,7 +1,5 @@
-import moment from 'moment';
-
+import dayjs from 'dayjs';
 import navfaker from 'nav-faker';
-
 import { Familierelasjon, Relasjonstype, Sivilstand, SivilstandTyper } from '../../../models/person/person';
 import { lagForeldre } from './relasjoner/foreldre';
 import { mockBarn } from './relasjoner/barn';
@@ -10,14 +8,14 @@ import { getDiskresjonskode } from '../../utils/diskresjonskode-util';
 
 export function getFamilierelasjoner(forFødselsnummer: string, sivilstand: Sivilstand) {
     const fødselsdato = navfaker.personIdentifikator.getFødselsdato(forFødselsnummer);
-    const alder = moment().diff(fødselsdato, 'years');
+    const alder = dayjs().diff(fødselsdato, 'years');
 
     let relasjoner: Familierelasjon[] = [];
     if (alder >= 18) {
         relasjoner = relasjoner.concat(mockBarn(forFødselsnummer));
     }
 
-    relasjoner = relasjoner.concat(lagForeldre(moment(fødselsdato)));
+    relasjoner = relasjoner.concat(lagForeldre(dayjs(fødselsdato)));
 
     if (sivilstand.kodeRef === SivilstandTyper.Gift) {
         relasjoner.push(lagPartner(Relasjonstype.Ektefelle));

@@ -25,8 +25,8 @@ export enum PeriodeValg {
 }
 
 export interface FraTilDato {
-    fra: Date;
-    til: Date;
+    fra: string;
+    til: string;
 }
 
 interface PeriodeOptions {

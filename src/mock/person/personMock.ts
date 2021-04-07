@@ -1,6 +1,5 @@
 import faker from 'faker/locale/nb_NO';
-import moment from 'moment';
-
+import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
 
 import { Bostatus, BostatusTyper, Navn, Person, PersonRespons } from '../../models/person/person';
@@ -37,8 +36,8 @@ export function getPerson(fødselsnummer: string): PersonRespons {
 
 function genererPerson(fødselsnummer: string): Person {
     const fødselsdato = navfaker.personIdentifikator.getFødselsdato(fødselsnummer);
-    const alder = moment().diff(fødselsdato, 'years');
-    const sivilstand = getSivilstand(moment(fødselsdato), faker);
+    const alder = dayjs().diff(fødselsdato, 'years');
+    const sivilstand = getSivilstand(dayjs(fødselsdato), faker);
     return {
         fødselsnummer,
         kjønn: utledKjønnFraFødselsnummer(fødselsnummer),
@@ -91,9 +90,7 @@ export function getBedriftsNavn(id: string): string {
 export function getPersonstatus(alder: number): Bostatus {
     const bostatus = getBostatus();
     const dødsdato =
-        bostatus && bostatus.kodeRef === BostatusTyper.Død
-            ? moment(faker.date.past(alder)).format(moment.ISO_8601.__momentBuiltinFormatBrand)
-            : undefined;
+        bostatus && bostatus.kodeRef === BostatusTyper.Død ? dayjs(faker.date.past(alder)).toISOString() : undefined;
     return {
         bostatus,
         dødsdato

@@ -20,11 +20,11 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
         </TestProvider>
     );
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.toLowerCase());
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
 
     clickOnMeldingerIOversikt(infoTabs);
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.MELDINGER.toLowerCase());
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.MELDINGER.path);
 
     const checkedMelding = infoTabs.find('input[checked=true].' + meldingerTest.melding).html();
     const expectedElement = infoTabs

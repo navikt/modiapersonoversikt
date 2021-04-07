@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { History } from 'history';
 import { useFodselsnummer } from '../../utils/customHooks';
-import { INFOTABS } from '../personside/infotabs/InfoTabEnum';
+import { InfotabConfig, INFOTABS } from '../personside/infotabs/InfoTabEnum';
 
 export const paths = {
     personUri: '/person',
@@ -16,8 +16,8 @@ export function usePaths() {
     const fnr = useFodselsnummer();
 
     const getPath = useCallback(
-        (tab: INFOTABS) => {
-            return `${paths.personUri}/${fnr}/${tab.toLowerCase()}`;
+        (tab: InfotabConfig) => {
+            return `${paths.personUri}/${fnr}/${tab.path}`;
         },
         [fnr]
     );
@@ -32,7 +32,7 @@ export function usePaths() {
             utbetlainger: getPath(INFOTABS.UTBETALING),
             saker: getPath(INFOTABS.SAKER),
             ytelser: getPath(INFOTABS.YTELSER),
-            varsler: getPath(INFOTABS.VARSEL)
+            varsler: getPath(INFOTABS.VARSLER)
         }),
         [getPath, fnr]
     );

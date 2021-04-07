@@ -1,6 +1,5 @@
 import { createRestResourceReducerAndActions } from '../../rest/utils/restResource';
 import { apiBaseUri } from '../../api/config';
-import { formaterTilISO8601Date } from '../../utils/string-utils';
 import { AppState } from '../reducers';
 import { DetaljertOppfolging } from '../../models/oppfolging';
 import { AsyncDispatch } from '../ThunkTypes';
@@ -15,8 +14,8 @@ function getDetaljertOppfolgingFetchUri(state: AppState) {
     return uri;
 }
 
-function lagQueryParametre(startDato: Date, sluttDato: Date): string {
-    return `?startDato=${formaterTilISO8601Date(startDato)}&sluttDato=${formaterTilISO8601Date(sluttDato)}`;
+function lagQueryParametre(startDato: string, sluttDato: string): string {
+    return `?startDato=${startDato}&sluttDato=${sluttDato}`;
 }
 
 export function reloadOppfolingActionCreator(dispatch: AsyncDispatch, getState: () => AppState) {

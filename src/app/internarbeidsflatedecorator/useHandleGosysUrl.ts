@@ -13,9 +13,7 @@ function useHandleGosysUrl() {
     const history = useHistory();
 
     useOnMount(() => {
-        const linkTilValgtHenvendelse = `${paths.personUri}/${
-            queryParams.sokFnr
-        }/${INFOTABS.MELDINGER.toLowerCase()}?traadId=${queryParams.behandlingsid}`;
+        const linkTilValgtHenvendelse = `${paths.personUri}/${queryParams.sokFnr}/${INFOTABS.MELDINGER.path}?traadId=${queryParams.behandlingsid}`;
 
         if (queryParams.oppgaveid && queryParams.behandlingsid && queryParams.sokFnr) {
             fetchToJson<Oppgave>(`${apiBaseUri}/oppgaver/oppgavedata/${queryParams.oppgaveid}`).then(response => {

@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { usePaths } from '../../routes/routing';
 import { Utbetaling } from '../../../models/utbetalinger';
 import { useParams } from 'react-router';
@@ -47,11 +47,11 @@ export function useInfotabsDyplenker(): Dyplenker {
     return useMemo(
         () => ({
             utbetaling: {
-                link: (utbetaling: Utbetaling) => `${paths.utbetlainger}/${moment(utbetaling.posteringsdato).unix()}`,
+                link: (utbetaling: Utbetaling) => `${paths.utbetlainger}/${dayjs(utbetaling.posteringsdato).unix()}`,
                 route: `${paths.utbetlainger}/:posteringsdato?`,
                 erValgt: (utbetaling: Utbetaling) => {
-                    const posteringsdatoFraUrl = moment.unix((posteringsdato as unknown) as number);
-                    return moment(utbetaling.posteringsdato).isSame(posteringsdatoFraUrl);
+                    const posteringsdatoFraUrl = dayjs.unix((posteringsdato as unknown) as number);
+                    return dayjs(utbetaling.posteringsdato).isSame(posteringsdatoFraUrl);
                 }
             },
             meldinger: {

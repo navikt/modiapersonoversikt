@@ -1,10 +1,10 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import * as Cookies from 'js-cookie';
 
 const kontrollSpmErLukketForBrukerCookieNavn = 'KontrollSpmErLukketForBruker';
 
 export function settSkjulKontrollspørsmålPåTversAvVinduerForBrukerCookie(fnr: string) {
-    const omEnTime = moment()
+    const omEnTime = dayjs()
         .add(1, 'hour')
         .toDate();
     Cookies.set(kontrollSpmErLukketForBrukerCookieNavn, fnr, { expires: omEnTime });

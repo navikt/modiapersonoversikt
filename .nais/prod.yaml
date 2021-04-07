@@ -29,6 +29,9 @@ spec:
       memory: 1024Mi
   ingresses:
     - https://app.adeo.no/modiapersonoversikt
+  sessionAffinity:
+    ClientIP:
+      timeoutSeconds: 300
   replicas:
     min: 2
     max: 4

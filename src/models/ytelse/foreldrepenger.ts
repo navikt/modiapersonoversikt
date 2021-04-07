@@ -1,7 +1,7 @@
 import { Periode } from '../tid';
 import { KommendeUtbetaling } from './ytelse-utbetalinger';
 import { Arbeidsforhold } from './arbeidsforhold';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { backendDatoformat } from '../../utils/date-utils';
 
 export interface ForeldrepengerResponse {
@@ -69,7 +69,7 @@ export interface Foreldrepengerperiode {
 }
 
 export function getForeldepengerIdDato(foreldrepenger: Foreldrepengerettighet) {
-    return foreldrepenger.rettighetFom ? foreldrepenger.rettighetFom : moment().format(backendDatoformat);
+    return foreldrepenger.rettighetFom ? foreldrepenger.rettighetFom : dayjs().format(backendDatoformat);
 }
 
 export function getUnikForeldrepengerKey(foreldrepenger: Foreldrepengerettighet): string {
