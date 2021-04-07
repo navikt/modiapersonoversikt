@@ -134,7 +134,7 @@ function SendNyMeldingContainer() {
             };
             post(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, request, 'Send-Sporsmal')
                 .then(() => {
-                    JournalforingUtils.slettCacheForSammensatteSaker(fnr);
+                    JournalforingUtils.slettCacheForSaker(fnr);
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: request.fritekst });
                 })
