@@ -1,15 +1,12 @@
-import { InfotabsType } from '../InfoTabEnum';
+import { InfotabConfig, INFOTABS } from '../InfoTabEnum';
 import { useLocation } from 'react-router';
 
-export function getOpenTabFromRouterPath(currentPath: string): InfotabsType {
-    const infoTabs: InfotabsType[] = Object.keys(InfotabsType).map(key => InfotabsType[key]);
-    const openTab: InfotabsType | undefined = infoTabs.find((infoTab: string) =>
-        currentPath
-            .toUpperCase()
-            .split('/')
-            .includes(infoTab)
+export function getOpenTabFromRouterPath(currentPath: string): InfotabConfig {
+    const pathfragments = currentPath.toLowerCase().split('/');
+    const infotab: InfotabConfig | undefined = Object.values(INFOTABS).find(infotab =>
+        pathfragments.includes(infotab.path)
     );
-    return openTab || InfotabsType.OVERSIKT;
+    return infotab ?? INFOTABS.OVERSIKT;
 }
 
 export function useOpenTab() {

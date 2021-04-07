@@ -3,7 +3,7 @@ import { mount, ReactWrapper } from 'enzyme';
 import TestProvider from '../../../../test/Testprovider';
 import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
-import { INFOTABS, InfotabsType } from '../InfoTabEnum';
+import { INFOTABS } from '../InfoTabEnum';
 import { getAktivTab, meldingerTest } from './utils-dyplenker-test';
 import { getTestStore } from '../../../../test/testStore';
 import { getMockTraader } from '../../../../mock/meldinger/meldinger-mock';
@@ -20,11 +20,11 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
         </TestProvider>
     );
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS[InfotabsType.OVERSIKT].path);
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
 
     clickOnMeldingerIOversikt(infoTabs);
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS[InfotabsType.MELDINGER].path);
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.MELDINGER.path);
 
     const checkedMelding = infoTabs.find('input[checked=true].' + meldingerTest.melding).html();
     const expectedElement = infoTabs

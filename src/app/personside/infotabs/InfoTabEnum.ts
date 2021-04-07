@@ -8,14 +8,12 @@ export enum InfotabsType {
     VARSLER = 'VARSLER'
 }
 
-interface InfotabConfig {
+export interface InfotabConfig {
     tittel: string;
     path: string;
 }
-interface Infotabs {
-    [key: string]: InfotabConfig;
-}
 
+export type Infotabs = Record<InfotabsType, InfotabConfig>;
 export const INFOTABS: Infotabs = {
     OVERSIKT: { tittel: 'Oversikt', path: 'oversikt' },
     OPPFOLGING: { tittel: 'Oppfølging', path: 'oppfolging' },
