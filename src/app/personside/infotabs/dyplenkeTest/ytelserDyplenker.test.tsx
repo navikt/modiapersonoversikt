@@ -15,11 +15,11 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
         </TestProvider>
     );
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.toLowerCase());
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
 
     clickOnYtelse(infoTabs);
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.YTELSER.toLowerCase());
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.YTELSER.path);
 
     const forventetMarkert = infoTabs
         .find('VisMerKnapp')

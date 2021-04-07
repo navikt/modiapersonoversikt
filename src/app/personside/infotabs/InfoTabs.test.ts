@@ -1,18 +1,18 @@
-import { INFOTABS } from './InfoTabEnum';
+import { InfotabConfig, INFOTABS } from './InfoTabEnum';
 import { getOpenTabFromRouterPath } from './utils/useOpenTab';
 
 test('henter riktig tab fra routerpath', () => {
-    const path = 'http://localhost:7777/modiapersonoversikt/person/1000000000/' + INFOTABS.UTBETALING + '/';
+    const path = 'http://localhost:7777/modiapersonoversikt/person/1000000000/' + INFOTABS.UTBETALING.path + '/';
 
-    const åpenLamell: INFOTABS = getOpenTabFromRouterPath(path);
+    const apenLamell: InfotabConfig = getOpenTabFromRouterPath(path);
 
-    expect(åpenLamell.toLowerCase()).toEqual(INFOTABS.UTBETALING.toLowerCase());
+    expect(apenLamell.path).toEqual(INFOTABS.UTBETALING.path);
 });
 
 test('åpner oversikt som default hvis url ikke matcher en infotab', () => {
     const path = 'http://localhost:7777/modiapersonoversikt/person/1000000000/' + 'tull&tøys' + '/';
 
-    const åpenLamell: INFOTABS = getOpenTabFromRouterPath(path);
+    const apenLamell: InfotabConfig = getOpenTabFromRouterPath(path);
 
-    expect(åpenLamell.toLowerCase()).toEqual(INFOTABS.OVERSIKT.toLowerCase());
+    expect(apenLamell.path).toEqual(INFOTABS.OVERSIKT.path);
 });
