@@ -100,7 +100,7 @@ function HentOppgaveKnapp() {
                     }
                     const oppgave = stoOppgaver[0];
                     const fnr = oppgave.fødselsnummer;
-                    history.push(`${paths.personUri}/${fnr}/${INFOTABS['MELDINGER'].path}/${oppgave.traadId}`);
+                    history.push(`${paths.personUri}/${fnr}/${INFOTABS.MELDINGER.path}/${oppgave.traadId}`);
                     antallOppgaverTildelt > 1 &&
                         loggEvent('FlereOppgaverTildelt', 'HentOppgave', undefined, { antall: antallOppgaverTildelt });
                     loggEvent('Hent-Oppgave', 'HentOppgave', undefined, { antall: antallOppgaverTildelt });
