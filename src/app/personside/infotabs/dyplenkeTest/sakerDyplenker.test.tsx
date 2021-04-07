@@ -15,7 +15,7 @@ test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra o
         </TestProvider>
     );
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.toLowerCase());
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
 
     const expectedSak = infoTabs
         .find('.' + sakerTest.oversikt)
@@ -24,7 +24,7 @@ test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra o
 
     clickOnSak(infoTabs);
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.SAKER.toLowerCase());
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.SAKER.path);
 
     const valgtSak = infoTabs
         .find('.' + sakerTest.dokument)

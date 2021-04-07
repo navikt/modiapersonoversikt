@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
-import { INFOTABS } from './InfoTabEnum';
+import { INFOTABS, InfotabsType } from './InfoTabEnum';
 import TabKnapper from './TabKnapper';
 import styled from 'styled-components/macro';
 import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
@@ -20,7 +20,6 @@ import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import Ytelser from './ytelser/Ytelser';
 import { guid } from 'nav-frontend-js-utils';
-import { capitalizeName } from '../../../utils/string-utils';
 import { useOpenTab } from './utils/useOpenTab';
 
 const StyledArticle = styled.article`
@@ -41,8 +40,8 @@ function InfoTabs() {
     const history = useHistory();
     const location = useLocation();
 
-    const updateRouterPath = (newTab: INFOTABS) => {
-        const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].toLowerCase()}/`;
+    const updateRouterPath = (newTab: InfotabsType) => {
+        const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].path}/`;
         const newPath = history.location.pathname !== path;
         if (newPath) {
             history.push(path);
@@ -58,17 +57,17 @@ function InfoTabs() {
     }, [openTab, headerRef]);
 
     useEffect(() => {
-        document.title = 'Modia personoversikt - ' + capitalizeName(openTab);
+        document.title = 'Modia personoversikt - ' + openTab.tittel;
     }, [openTab]);
 
     const openTabRef = useRef<HTMLDivElement>(null);
-    const storeCroll = useKeepScroll(openTabRef, 'Opentab-' + openTab);
+    const storeCroll = useKeepScroll(openTabRef, 'Opentab-' + openTab.path);
 
     return (
         <ErrorBoundary boundaryName="InfoTabs">
             <HandleInfotabsHotkeys />
             <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
-            <ErrorBoundary boundaryName={'Open tab: ' + openTab}>
+            <ErrorBoundary boundaryName={'Open tab: ' + openTab.tittel}>
                 <StyledArticle ref={openTabRef} onScroll={storeCroll} aria-labelledby={articleId.current}>
                     <h2
                         id={articleId.current}
@@ -77,7 +76,7 @@ function InfoTabs() {
                         className="sr-only"
                         aria-live={'assertive'}
                     >
-                        {openTab} - Fane
+                        {openTab.tittel} - Fane
                     </h2>
                     <Switch location={location}>
                         <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />

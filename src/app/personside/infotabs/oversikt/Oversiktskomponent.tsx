@@ -7,7 +7,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../redux/reducers';
 import { paths } from '../../../routes/routing';
-import { INFOTABS } from '../InfoTabEnum';
+import { InfotabConfig } from '../InfoTabEnum';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
@@ -15,7 +15,7 @@ import Panel from 'nav-frontend-paneler';
 interface Props {
     component: React.ComponentType<{ setHeaderContent: (content: ReactNode) => void }>;
     tittel: string;
-    infotabPath: INFOTABS;
+    infotabPath: InfotabConfig;
     hurtigtast: string;
 }
 
@@ -56,7 +56,7 @@ const CustomContent = styled.div`
 
 function Oversiktskomponent(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath.toLowerCase()}/`;
+    const path = `${paths.personUri}/${valgtBrukersFnr}/${props.infotabPath.path}/`;
     const [customContent, setCustomContent] = useState<ReactNode>(null);
     const [redirect, setRedirect] = useState(false);
     const headerId = useRef(guid());
