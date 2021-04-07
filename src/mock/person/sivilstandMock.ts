@@ -1,6 +1,4 @@
-import moment from 'moment';
-import { Moment } from 'moment';
-
+import dayjs, { Dayjs } from 'dayjs';
 import { vektetSjanse } from '../utils/mock-utils';
 import { Sivilstand, SivilstandTyper } from '../../models/person/person';
 
@@ -44,8 +42,8 @@ const enke = (fraOgMed: string) => {
     };
 };
 
-export function getSivilstand(fødselsdato: Moment, faker: Faker.FakerStatic): Sivilstand {
-    const alder = moment().diff(fødselsdato, 'years');
+export function getSivilstand(fødselsdato: Dayjs, faker: Faker.FakerStatic): Sivilstand {
+    const alder = dayjs().diff(fødselsdato, 'years');
     const fraOgMed = getSistOppdatert(alder, faker);
     if (alder < 18) {
         return ugift(fraOgMed);
@@ -69,5 +67,5 @@ function getTilfeldigSilvstand(fraOgMed: string, faker: Faker.FakerStatic) {
 
 function getSistOppdatert(alder: number, faker: Faker.FakerStatic) {
     const maxYearsAgo = alder - 18;
-    return moment(faker.date.past(maxYearsAgo)).format('YYYY-MM-DD');
+    return dayjs(faker.date.past(maxYearsAgo)).format('YYYY-MM-DD');
 }

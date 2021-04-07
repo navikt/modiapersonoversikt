@@ -19,7 +19,7 @@ import {
 } from '../utils/utbetalinger-utils';
 import { formaterDato } from '../../../../../utils/string-utils';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { sorterAlfabetisk } from '../../../../../utils/string-utils';
 import DetaljerCollapse from '../../../../../components/DetaljerCollapse';
 
@@ -144,7 +144,7 @@ function getAlleUtbetalteYtelserFraUtbetalinger(utbetalinger: Utbetaling[]) {
 }
 
 function getTypeOgAarFromYtelse(ytelse: Ytelse): string {
-    return getTypeFromYtelse(ytelse) + ' ' + moment(ytelse.periode.slutt).year();
+    return getTypeFromYtelse(ytelse) + ' ' + dayjs(ytelse.periode.slutt).year();
 }
 
 function getYtelserSammendrag(utbetalinger: Utbetaling[]) {

@@ -17,11 +17,10 @@ import {
     summertBeløpStringFraUtbetalinger,
     utbetalingDatoComparator
 } from './utbetalinger-utils';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { statiskMockUtbetaling, statiskMockYtelse } from '../../../../../mock/utbetalinger/statiskMockUtbetaling';
 import { Periode } from '../../../../../models/tid';
 import { PeriodeValg, UtbetalingFilterState } from '../../../../../redux/utbetalinger/types';
-import dayjs from 'dayjs';
 import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 
 Date.now = () => new Date().getTime(); // for å motvirke Date.now() mock i setupTests.ts
@@ -249,14 +248,14 @@ test('henter riktig fra og til-date fra filter ved valg av "siste 30 dager"', ()
     const fraDate: Date = getFraDateFromFilter(filter);
     const tilDate: Date = getTilDateFromFilter(filter);
 
-    expect(moment(fraDate).toString()).toEqual(
-        moment()
+    expect(dayjs(fraDate).toString()).toEqual(
+        dayjs()
             .subtract(30, 'day')
             .startOf('day')
             .toString()
     );
-    expect(moment(tilDate).toString()).toEqual(
-        moment()
+    expect(dayjs(tilDate).toString()).toEqual(
+        dayjs()
             .add(100, 'day')
             .endOf('day')
             .toString()
@@ -275,13 +274,13 @@ test('henter riktig fra og til-date fra filter ved valg av "inneværende år', (
     const fraDate: Date = getFraDateFromFilter(filter);
     const tilDate: Date = getTilDateFromFilter(filter);
 
-    expect(moment(fraDate).toString()).toEqual(
-        moment()
+    expect(dayjs(fraDate).toString()).toEqual(
+        dayjs()
             .startOf('year')
             .toString()
     );
-    expect(moment(tilDate).toString()).toEqual(
-        moment()
+    expect(dayjs(tilDate).toString()).toEqual(
+        dayjs()
             .add(100, 'day')
             .endOf('day')
             .toString()
@@ -300,14 +299,14 @@ test('henter riktig fra og til-date fra filter ved valg av "i fjor', () => {
     const fraDate: Date = getFraDateFromFilter(filter);
     const tilDate: Date = getTilDateFromFilter(filter);
 
-    expect(moment(fraDate).toString()).toEqual(
-        moment()
+    expect(dayjs(fraDate).toString()).toEqual(
+        dayjs()
             .subtract(1, 'year')
             .startOf('year')
             .toString()
     );
-    expect(moment(tilDate).toString()).toEqual(
-        moment()
+    expect(dayjs(tilDate).toString()).toEqual(
+        dayjs()
             .subtract(1, 'year')
             .endOf('year')
             .toString()
