@@ -33,7 +33,7 @@ import { getDittNavVarsler, getMockVarsler } from './varsler/varsel-mock';
 import { getMockSlaaSammen } from './meldinger/meldinger-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
-import { gsakSaker, pesysSaker } from './journalforing/journalforing-mock';
+import { saker } from './journalforing/journalforing-mock';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
 import standardTekster from './standardTeksterMock.js';
@@ -504,12 +504,8 @@ function setupValutaKodeverk(mock: FetchMock) {
 
 function setupJournalforingMock(mock: FetchMock) {
     mock.get(
-        apiBaseUri + '/journalforing/:fnr/saker/sammensatte',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => gsakSaker)
-    );
-    mock.get(
-        apiBaseUri + '/journalforing/:fnr/saker/pensjon',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => pesysSaker)
+        apiBaseUri + '/journalforing/:fnr/saker/',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => saker)
     );
     mock.post(
         apiBaseUri + '/journalforing/:fnr/:traadId',

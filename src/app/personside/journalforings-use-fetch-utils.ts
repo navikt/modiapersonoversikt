@@ -1,9 +1,8 @@
 import useFetch, { cache, createCacheKey, FetchResult } from '@nutgaard/use-fetch';
 import { apiBaseUri, includeCredentials } from '../../api/config';
-import { JournalforingsSak } from './infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
+import { Result } from './infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 
-const sammensatteSakerUrl = (fnr: string) => `${apiBaseUri}/journalforing/${fnr}/saker/sammensatte`;
-const pensjonSakerUrl = (fnr: string) => `${apiBaseUri}/journalforing/${fnr}/saker/pensjon`;
+const sakerUrl = (fnr: string) => `${apiBaseUri}/journalforing/${fnr}/saker/`;
 
 function prefetch(url: string) {
     const cachekey = createCacheKey(url, includeCredentials);
@@ -19,13 +18,8 @@ function useFetchHook<TYPE>(url: string, lazy: boolean = false): FetchResult<TYP
     return useFetch<TYPE>(url, includeCredentials, { lazy, cacheKey: createCacheKey(url, includeCredentials) });
 }
 
-export const prefetchSammensatteSaker = (fnr: string) => prefetch(sammensatteSakerUrl(fnr));
-export const prefetchPensjonsaker = (fnr: string) => prefetch(pensjonSakerUrl(fnr));
-export const slettCacheForSammensatteSaker = (fnr: string) => remove(sammensatteSakerUrl(fnr));
-export const slettCacheForPensjonSaker = (fnr: string) => remove(pensjonSakerUrl(fnr));
-export function useSammensatteSaker(fnr: string, lazy: boolean = false): FetchResult<Array<JournalforingsSak>> {
-    return useFetchHook(sammensatteSakerUrl(fnr), lazy);
-}
-export function usePensjonSaker(fnr: string, lazy: boolean = false): FetchResult<Array<JournalforingsSak>> {
-    return useFetchHook(pensjonSakerUrl(fnr), lazy);
+export const prefetchSaker = (fnr: string) => prefetch(sakerUrl(fnr));
+export const slettCacheForSaker = (fnr: string) => remove(sakerUrl(fnr));
+export function useSaker(fnr: string, lazy: boolean = false): FetchResult<Result> {
+    return useFetchHook(sakerUrl(fnr), lazy);
 }
