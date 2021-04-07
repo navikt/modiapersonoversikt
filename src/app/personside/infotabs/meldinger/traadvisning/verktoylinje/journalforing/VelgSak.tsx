@@ -1,9 +1,9 @@
 import React from 'react';
-import { AsyncResult, FetchResult, hasData, isPending } from '@nutgaard/use-fetch';
+import { FetchResult, hasError, isPending } from '@nutgaard/use-fetch';
 import { JournalforingsSak, Kategorier, Result, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio, RadioProps } from 'nav-frontend-skjema';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
 import TemaTable from './TemaTabell';
 import styled from 'styled-components/macro';
 import { Group, groupBy } from '../../../../../../../utils/groupArray';
@@ -40,14 +40,6 @@ function SakgruppeRadio(props: FieldState & RadioProps & { label: SakKategori })
 interface Props {
     velgSak: (sak: JournalforingsSak) => void;
     valgtSak?: JournalforingsSak;
-}
-
-function getSaker(result: AsyncResult<Result>): JournalforingsSak[] {
-    return hasData(result) ? result.data.saker : [];
-}
-
-function getErrors(result: AsyncResult<Result>): string[] {
-    return hasData(result) ? result.data.feiledeSystemer : [];
 }
 
 export function fordelSaker(saker: JournalforingsSak[]): Kategorier {
@@ -93,16 +85,18 @@ function VelgSak(props: Props) {
 
     if (isPending(result)) {
         return <Spinner type="XL" />;
-    } else if (getErrors(result).length > 0) {
-        return (
-            <AlertStripeAdvarsel className="blokk-xxxs">
-                Feilet ved uthenting av saker fra {getErrors(result).join()}
-            </AlertStripeAdvarsel>
-        );
+    } else if (hasError(result)) {
+        return <AlertStripeFeil className="blokk-xxxs">Feilet ved uthenting av saker</AlertStripeFeil>;
     }
 
-    const saker = getSaker(result);
+    const { saker, feiledeSystemer } = result.data;
     const fordelteSaker = fordelSaker(saker);
+
+    const feiledeSystemerAlerts = feiledeSystemer.map(system => (
+        <AlertStripeAdvarsel className="blokk-xxxs" key={system}>
+            Feil ved uthenting av saker fra saker fra {system}
+        </AlertStripeAdvarsel>
+    ));
 
     const temaTable = fordelteSaker[valgtKategori.input.value].map((tema: Tema) => (
         <TemaTable
@@ -132,7 +126,7 @@ function VelgSak(props: Props) {
                     {...valgtKategori}
                 />
             </Form>
-
+            <div>{feiledeSystemerAlerts}</div>
             {temaTable}
         </>
     );
