@@ -10,7 +10,7 @@ import {
     erMaks10MinSiden,
     backendDatoformat
 } from './date-utils';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 Date.now = () => new Date().getTime(); // for å motvirke Date.now() mock i setupTests.ts
 
@@ -92,10 +92,10 @@ test('datoVerbose henter riktig dag, måned og år', () => {
 
 describe('getNewestDate', () => {
     it('git den nyeste datoen', () => {
-        const oldDate = moment()
+        const oldDate = dayjs()
             .subtract(1, 'year')
             .toDate();
-        const newDate = moment().toDate();
+        const newDate = dayjs().toDate();
 
         const result = getNewestDate(newDate, oldDate);
         const result2 = getNewestDate(oldDate, newDate);
@@ -105,10 +105,10 @@ describe('getNewestDate', () => {
     });
 
     it('aksepterer strings som argumenter', () => {
-        const oldDate = moment()
+        const oldDate = dayjs()
             .subtract(1, 'year')
             .format(backendDatoformat);
-        const newDate = moment().format(backendDatoformat);
+        const newDate = dayjs().format(backendDatoformat);
 
         const result = getNewestDate(newDate, oldDate);
 
@@ -118,10 +118,10 @@ describe('getNewestDate', () => {
 
 describe('getOldestDate', () => {
     it('git den eldste datoen', () => {
-        const oldDate = moment()
+        const oldDate = dayjs()
             .subtract(1, 'year')
             .toDate();
-        const newDate = moment().toDate();
+        const newDate = dayjs().toDate();
 
         const result = getOldestDate(newDate, oldDate);
         const result2 = getOldestDate(oldDate, newDate);
@@ -131,10 +131,10 @@ describe('getOldestDate', () => {
     });
 
     it('aksepterer strings og dates som argumenter', () => {
-        const oldDate = moment()
+        const oldDate = dayjs()
             .subtract(1, 'year')
             .format(backendDatoformat);
-        const newDate = moment().format(backendDatoformat);
+        const newDate = dayjs().format(backendDatoformat);
 
         const result = getOldestDate(newDate, oldDate);
 
@@ -144,10 +144,10 @@ describe('getOldestDate', () => {
 
 describe('erMaks10MinSiden', () => {
     it('sjekker om dato er mindre enn 10 min siden', () => {
-        const dateUnder10min = moment()
+        const dateUnder10min = dayjs()
             .subtract(5, 'minute')
             .toDate();
-        const dateOver10min = moment()
+        const dateOver10min = dayjs()
             .subtract(15, 'minute')
             .toDate();
 

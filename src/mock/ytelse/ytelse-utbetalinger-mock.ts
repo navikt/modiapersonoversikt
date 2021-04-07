@@ -1,5 +1,4 @@
-import moment from 'moment';
-
+import dayjs from 'dayjs';
 import { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
 import { getPeriodeRange } from '../person/periodeMock';
 import { backendDatoformat } from '../../utils/date-utils';
@@ -8,7 +7,7 @@ export function getKommendeUtbetaling(faker: Faker.FakerStatic): KommendeUtbetal
     return {
         vedtak: getPeriodeRange(faker, 2),
         utbetalingsgrad: faker.random.number(100),
-        utbetalingsdato: moment(faker.date.past(2)).format(backendDatoformat),
+        utbetalingsdato: dayjs(faker.date.past(2)).format(backendDatoformat),
         bruttobeløp: Number(faker.commerce.price()),
         arbeidsgiverNavn: faker.company.companyName(),
         arbeidsgiverOrgNr: '1234567890',

@@ -9,7 +9,7 @@ import {
 } from '../../../../../models/saksoversikt/journalpost';
 import styled, { css } from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
 import DokumentIkon from '../../../../../svg/DokumentIkon';
@@ -93,7 +93,7 @@ function utgåendeTekst(mottaker: Entitet, mottakernavn: string) {
 }
 
 function formaterDatoOgAvsender(brukernavn: string, dokument: Journalpost) {
-    const dato = moment(saksdatoSomDate(dokument.dato)).format('DD.MM.YYYY');
+    const dato = dayjs(saksdatoSomDate(dokument.dato)).format('DD.MM.YYYY');
     return `${dato} / ${tekstBasertPåRetning(brukernavn, dokument)}`;
 }
 

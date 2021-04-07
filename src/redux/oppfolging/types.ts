@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export interface VisOppfolgingFraTilDato {
     fra: string;
@@ -13,10 +13,10 @@ export interface OppfolgingState {
 
 export const initialState: OppfolgingState = {
     valgtPeriode: {
-        fra: moment()
+        fra: dayjs()
             .subtract(2, 'month')
             .format('YYYY-MM-DD'),
-        til: moment()
+        til: dayjs()
             .add(1, 'month')
             .format('YYYY-MM-DD')
     },

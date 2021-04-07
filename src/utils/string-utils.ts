@@ -1,5 +1,5 @@
 import { formaterNOK } from '../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Periode } from '../models/tid';
 
 export const ENDASH = '\u2013';
@@ -69,7 +69,7 @@ export function formatNumber(format: string, streng: string) {
 }
 
 export function formaterDato(rawDate: string | Date): string {
-    return moment(rawDate).format('DD.MM.YYYY');
+    return dayjs(rawDate).format('DD.MM.YYYY');
 }
 
 export function datoEllerNull(dato: string | Date | null): string | null {
@@ -94,7 +94,7 @@ export function periodeEllerNull(periode: Periode | null): string | null {
 }
 
 export function formaterTilISO8601Date(date: Date) {
-    return moment(date).format('YYYY-MM-DD');
+    return dayjs(date).format('YYYY-MM-DD');
 }
 
 export function capitalizeName(name: string): string {

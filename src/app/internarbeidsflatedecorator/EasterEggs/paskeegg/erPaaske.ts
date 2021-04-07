@@ -1,7 +1,7 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export function erPaaske() {
-    const date = moment();
+    const date = dayjs();
     const month = date.month();
     const day = date.date();
     const year = date.year();

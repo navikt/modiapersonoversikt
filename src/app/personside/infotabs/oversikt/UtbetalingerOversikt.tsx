@@ -13,7 +13,7 @@ import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { utbetalingerTest } from '../dyplenkeTest/utils-dyplenker-test';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { ReactNode } from 'react';
 
 const ListStyle = styled.ol`
@@ -39,7 +39,12 @@ function UtbetalingerOversikt(props: Props) {
 }
 
 function datoEldreEnn30Dager(utbetaling: Utbetaling) {
-    return moment(getGjeldendeDatoForUtbetaling(utbetaling)) < moment().subtract(30, 'days');
+    return (
+        dayjs(getGjeldendeDatoForUtbetaling(utbetaling)).toDate() <
+        dayjs()
+            .subtract(30, 'days')
+            .toDate()
+    );
 }
 
 function UtbetalingerPanel(props: { utbetalinger: UtbetalingerResponse } & Props) {

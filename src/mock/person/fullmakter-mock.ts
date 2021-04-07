@@ -1,6 +1,5 @@
 import { Fullmakt } from '../../models/person/fullmakter';
-import moment from 'moment';
-
+import dayjs from 'dayjs';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import NavFaker from 'nav-faker/dist/navfaker';
 import { backendDatoformat } from '../../utils/date-utils';
@@ -18,8 +17,8 @@ function getMockFullmakt(faker: Faker.FakerStatic, navfaker: NavFaker): Fullmakt
         motpartsPersonident: navfaker.personIdentifikator.fødselsnummer(),
         motpartsPersonNavn: navfaker.navn.fornavn(),
         omraade: getOmraade(faker),
-        gyldigFraOgMed: moment(faker.date.past(1)).format(backendDatoformat),
-        gyldigTilOgMed: moment(faker.date.future(2)).format(backendDatoformat)
+        gyldigFraOgMed: dayjs(faker.date.past(1)).format(backendDatoformat),
+        gyldigTilOgMed: dayjs(faker.date.future(2)).format(backendDatoformat)
     };
 }
 

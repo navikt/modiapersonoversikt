@@ -3,6 +3,9 @@ import { configure } from 'enzyme';
 import EnzymeReactAdapter from 'enzyme-adapter-react-16';
 import * as EnzymeContainer from './test/enzyme-container';
 import MockDate from 'mockdate';
+import dayjs from 'dayjs';
+import 'dayjs/locale/nb';
+dayjs.locale('nb');
 import 'jest-enzyme';
 import 'jest-styled-components';
 

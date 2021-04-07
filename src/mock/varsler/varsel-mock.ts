@@ -2,7 +2,7 @@ import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import { DittNavEvent, Varsel, Varselmelding, Varseltype } from '../../models/varsel';
 import { fyllRandomListe } from '../utils/mock-utils';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { aremark } from '../person/aremark';
 import { statiskVarselMock } from './statiskVarselMock';
 import { backendDatoformat } from '../../utils/date-utils';
@@ -27,10 +27,10 @@ function genererDittNavEventVarsel(fnr: string): DittNavEvent {
         fodselsnummer: fnr,
         grupperingsId: faker.random.uuid(),
         eventId: faker.random.uuid(),
-        eventTidspunkt: moment(tidspunkt).format(backendDatoformat),
+        eventTidspunkt: dayjs(tidspunkt).format(backendDatoformat),
         produsent: faker.random.alphaNumeric(),
         sikkerhetsnivaa: navfaker.random.arrayElement([3, 4]),
-        sistOppdatert: moment(tidspunkt).format(backendDatoformat),
+        sistOppdatert: dayjs(tidspunkt).format(backendDatoformat),
         tekst: faker.lorem.sentence(5 + faker.random.number(5)),
         link: faker.lorem.sentence(5 + faker.random.number(5)),
         aktiv: faker.random.boolean()
@@ -40,7 +40,7 @@ function genererDittNavEventVarsel(fnr: string): DittNavEvent {
 function getVarsel(): Varsel {
     return {
         varselType: navfaker.random.arrayElement(Object.keys(Varseltype)),
-        mottattTidspunkt: moment(faker.date.recent(90)).format(backendDatoformat),
+        mottattTidspunkt: dayjs(faker.date.recent(90)).format(backendDatoformat),
         erRevarsling: faker.random.boolean(),
         meldingListe: fyllRandomListe(getVarselMelding, 5)
     };
@@ -53,7 +53,7 @@ function getVarselMelding(): Varselmelding {
         kanal: kanal,
         innhold: faker.lorem.sentence(faker.random.number(25)),
         mottakerInformasjon: motakerInfo,
-        utsendingsTidspunkt: moment(faker.date.recent(90)).format(backendDatoformat),
+        utsendingsTidspunkt: dayjs(faker.date.recent(90)).format(backendDatoformat),
         feilbeskrivelse: 'Feil',
         epostemne: 'Epostemne',
         url: 'http://test.com',

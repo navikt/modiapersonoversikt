@@ -12,7 +12,7 @@ import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
 import { formaterDato } from '../../../utils/string-utils';
 import { shuffle } from './list-utils';
 import { Svar } from '../../../redux/kontrollSporsmal/types';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { formatertKontonummerString } from '../../../utils/FormatertKontonummer';
 import { getFodselsdatoFraFnr } from '../../../utils/fnr-utils';
 
@@ -110,7 +110,7 @@ export function hentGiftedato(person: Person) {
 }
 
 function hentDato(person: Person): string {
-    const relasjonFraOgMed = moment(person.sivilstand.fraOgMed).format('DD.MM.YYYY');
+    const relasjonFraOgMed = dayjs(person.sivilstand.fraOgMed).format('DD.MM.YYYY');
     const nullDatoFraTPS = '01.01.9999';
 
     if (relasjonFraOgMed === nullDatoFraTPS) {

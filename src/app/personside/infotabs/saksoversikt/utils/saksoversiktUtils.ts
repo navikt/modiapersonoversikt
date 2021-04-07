@@ -1,6 +1,6 @@
 import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { Behandlingskjede, Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { useMemo } from 'react';
@@ -66,7 +66,7 @@ function hentSenesteDatoForBehandling(behandlingskjede: Behandlingskjede[]) {
 }
 
 function formatterDato(date: Date) {
-    return moment(date).format('DD.MM.YYYY');
+    return dayjs(date).format('DD.MM.YYYY');
 }
 
 export function getUnikSakstemaKey(sakstema: Sakstema) {
