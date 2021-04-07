@@ -2,7 +2,7 @@ import { PersonsokRequest } from '../../models/person/personsok';
 import { Mapped, Values } from '@nutgaard/use-formstate';
 import { removeWhitespaceAndDot, validerKontonummer } from './kontonummer/kontonummerUtils';
 import { erTall } from '../../utils/string-utils';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import formstateFactory from '@nutgaard/use-formstate';
 
 export type PersonSokFormState = {
@@ -72,8 +72,8 @@ export function validatorPersonsok(values: PersonSokFormState) {
 
     let fodselsdatoFra = undefined;
     let fodselsdatoTil = undefined;
-    const fra = moment(values.fodselsdatoFra).toDate();
-    const til = moment(values.fodselsdatoTil).toDate();
+    const fra = dayjs(values.fodselsdatoFra).toDate();
+    const til = dayjs(values.fodselsdatoTil).toDate();
     if (fra > til) {
         fodselsdatoFra = 'Fra-dato kan ikke være senere enn til-dato';
     }
