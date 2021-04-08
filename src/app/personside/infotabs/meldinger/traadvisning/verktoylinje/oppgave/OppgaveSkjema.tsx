@@ -25,6 +25,7 @@ import { hasData } from '@nutgaard/use-async';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 import useForeslatteEnheter from './useForeslåtteEnheter';
 import { useNormalPrioritet } from './oppgave-utils';
+import { FeilmeldingOppsummering } from '../../../../../../../components/FeilmeldingOppsummering';
 
 const AlertStyling = styled.div`
     > * {
@@ -61,7 +62,7 @@ function populerCacheMedTomAnsattliste() {
     cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
 }
 
-const validator = formstateFactory<OppgaveSkjemaForm>(values => {
+const useFormstate = formstateFactory<OppgaveSkjemaForm>(values => {
     const valgtTema = values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
     const valgtOppgavetype = values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;
     const beskrivelse = values.beskrivelse.length === 0 ? 'Du må skrive beskrivelse' : undefined;
@@ -88,7 +89,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
-    const state = validator(initialValues);
+    const state = useFormstate(initialValues);
 
     const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
     useNormalPrioritet(state, valgtTema);
@@ -157,6 +158,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         <SkjemaStyle>
             <AvsluttGosysOppgaveSkjema valgtTraad={props.valgtTraad} />
             <form onSubmit={state.onSubmit(submitHandler)}>
+                <FeilmeldingOppsummering formstate={state} tittel={'For å kunne søke må du rett opp i følgende:'} />
                 <Element>Opprett oppgave</Element>
                 <Select
                     autoFocus={true}
