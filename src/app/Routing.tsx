@@ -8,7 +8,9 @@ import Startbilde from './startbilde/Startbilde';
 import { useFodselsnummer, useTriggerHotjarForLokalKontor } from '../utils/customHooks';
 import { CenteredLazySpinner } from '../components/LazySpinner';
 
-const StandAloneKomponenter = lazy(() => import('../components/standalone/StandAloneKomponenter'));
+const StandAloneKomponenter = lazy(() =>
+    import(/* webpackChunkName: "standalonekomponenter" */ '../components/standalone/StandAloneKomponenter')
+);
 
 function Routing() {
     const fnr = useFodselsnummer();
