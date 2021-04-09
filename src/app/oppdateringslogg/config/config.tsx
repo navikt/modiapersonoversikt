@@ -116,6 +116,7 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
                     direkte knyttet til barnets bosted.
                     <a
                         target="_blank"
+                        rel="noreferrer"
                         href={
                             'https://navno.sharepoint.com/sites/enhet-kontaktsenter/SitePages/Familie-Felles-Barneloven.aspx'
                         }
