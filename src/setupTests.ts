@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import { configure } from 'enzyme';
 import EnzymeReactAdapter from 'enzyme-adapter-react-16';
 import * as EnzymeContainer from './test/enzyme-container';

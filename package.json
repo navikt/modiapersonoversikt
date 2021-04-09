@@ -19,7 +19,6 @@
         "url": "git+https://github.com/navikt/modiapersonoversikt"
     },
     "scripts": {
-        "preinstall": "npx npm-force-resolutions",
         "start": "craco start",
         "build": "craco build",
         "test": "craco test",
@@ -44,7 +43,6 @@
         "@navikt/tag-input": "^1.1.0",
         "@nutgaard/use-fetch": "^2.3.1",
         "@nutgaard/use-formstate": "^3.0.0",
-        "core-js": "3.5.0",
         "craco-less": "^1.17.0",
         "detect-browser": "^3.0.1",
         "downshift": "^5.0.5",
@@ -160,9 +158,6 @@
         "react-collapse": "^5.0.1",
         "react-test-renderer": "^16.8.6",
         "typescript": "^3.9.6"
-    },
-    "resolutions": {
-        "core-js": "3.5.0"
     },
     "browserslist": {
         "production": [
