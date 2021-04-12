@@ -12,7 +12,7 @@ import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
 import { connect } from 'react-redux';
 import { reloadOppfolingActionCreator } from '../../../../redux/restReducers/oppfolging';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import Panel from 'nav-frontend-paneler';
@@ -20,7 +20,7 @@ import { Datepicker, isISODateString } from 'nav-datovelger';
 import { ISO_DATE_STRING_FORMAT, INPUT_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
 import dayjs, { Dayjs } from 'dayjs';
-import { dayDateKey } from 'nav-datovelger/lib/utils';
+import { setFocusOnDate } from 'nav-datovelger/lib/utils/calendarFocusUtils';
 
 const DatoVelgerWrapper = styled.div`
     position: relative;
@@ -118,14 +118,12 @@ function DatoInputs(props: Props) {
     };
 
     const datovelgerRef = useRef<HTMLInputElement>(null);
-    if (datovelgerRef.current !== null) {
-        const datoIFocus = datovelgerRef.current.querySelector(
-            `[data-date="${dayDateKey(dayjs(isoTidligsteDato).toDate())}"]`
-        ) as HTMLElement;
-        if (datoIFocus) {
-            (datoIFocus as HTMLInputElement).focus();
+    useEffect(() => {
+        if (datovelgerRef.current !== null) {
+            setFocusOnDate(datovelgerRef.current, dayjs(isoTidligsteDato).toDate());
         }
-    }
+    }, [datovelgerRef]);
+
     const onClickHandler = () => {
         if (oppfolgingLastes || periodeFeilmelding !== null) {
             return;
