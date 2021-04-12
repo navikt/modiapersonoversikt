@@ -20,6 +20,7 @@ import { Datepicker, isISODateString } from 'nav-datovelger';
 import { ISO_DATE_STRING_FORMAT, INPUT_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
 import dayjs, { Dayjs } from 'dayjs';
+import { dayDateKey } from 'nav-datovelger/lib/utils';
 
 const DatoVelgerWrapper = styled.div`
     position: relative;
@@ -116,6 +117,15 @@ function DatoInputs(props: Props) {
         maxDate: isoSenesteDato
     };
 
+    const datovelgerRef = useRef<HTMLInputElement>(null);
+    if (datovelgerRef.current !== null) {
+        const datoIFocus = datovelgerRef.current.querySelector(
+            `[data-date="${dayDateKey(dayjs(isoTidligsteDato).toDate())}"]`
+        ) as HTMLElement;
+        if (datoIFocus) {
+            (datoIFocus as HTMLInputElement).focus();
+        }
+    }
     const onClickHandler = () => {
         if (oppfolgingLastes || periodeFeilmelding !== null) {
             return;
@@ -134,6 +144,7 @@ function DatoInputs(props: Props) {
                 onChange={dato => props.settValgtPeriode({ fra: dato })}
                 inputProps={{
                     name: 'Fra dato',
+                    inputRef: datovelgerRef,
                     'aria-invalid': fra !== '' && isISODateString(fra) === false
                 }}
                 showYearSelector={true}
