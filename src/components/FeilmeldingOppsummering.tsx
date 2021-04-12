@@ -1,5 +1,5 @@
-import React from 'react';
-import { FieldState, Formstate } from '@nutgaard/use-formstate';
+import React, { useEffect, useRef } from 'react';
+import { Formstate } from '@nutgaard/use-formstate';
 import { Feiloppsummering } from 'nav-frontend-skjema';
 
 interface Props {
@@ -8,13 +8,28 @@ interface Props {
 }
 
 export function FeilmeldingOppsummering(props: Props) {
-    if (!props.formstate.submittoken || Object.values(props.formstate.errors).length === 0) {
+    const errors = Object.values(props.formstate.fields).filter(field => field.touched);
+    const summaryRef = useRef<HTMLDivElement>(null);
+
+    const submittoken = props.formstate.submittoken;
+    // focus on summary ref when shown
+    useEffect(() => {
+        if (submittoken && summaryRef.current !== null) {
+            summaryRef.current.focus();
+            summaryRef.current.scrollIntoView && summaryRef.current.scrollIntoView();
+        }
+    }, [submittoken, summaryRef]);
+
+    if (!props.formstate.submittoken || errors.length === 0) {
         return null;
     }
 
-    const feilmeldinger = Object.values(props.formstate.fields)
-        .filter((field: FieldState) => field.touched)
-        .map((field: FieldState) => ({ skjemaelementId: field.input.id, feilmelding: field.error ?? '' }));
+    const feilmeldinger = errors
+        .filter(field => field.error)
+        .map(field => ({
+            skjemaelementId: field.input.id,
+            feilmelding: field.error!!
+        }));
 
-    return <Feiloppsummering tittel={props.tittel} feil={feilmeldinger} />;
+    return <Feiloppsummering innerRef={summaryRef} tittel={props.tittel} feil={feilmeldinger} />;
 }
