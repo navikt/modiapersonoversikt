@@ -251,6 +251,11 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                   className="nav-datovelger__input"
                   id="oppfolging-datovelger-fra"
                   inputMode="text"
+                  inputRef={
+                    Object {
+                      "current": null,
+                    }
+                  }
                   maxLength={10}
                   name="Fra dato"
                   onBlur={[Function]}
