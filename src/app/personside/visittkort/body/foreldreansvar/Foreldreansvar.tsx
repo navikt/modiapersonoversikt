@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { VisittkortGruppe } from '../VisittkortStyles';
-import Utropstegn from '../../../../../svg/Utropstegn';
 import { Foreldreansvar } from '../../../../../models/foreldreansvar/foreldreansvar';
 import VisittkortElement from '../VisittkortElement';
 import { Normaltekst } from 'nav-frontend-typografi';
+import Infotegn from '../../../../../svg/Info';
 
 function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {
     return (
@@ -24,7 +24,7 @@ function ForendreansvarWrapper(props: { foreldreansvar?: Foreldreansvar[] }) {
     ));
 
     return (
-        <VisittkortGruppe ikon={<Utropstegn />} tittel="Foreldreansvar">
+        <VisittkortGruppe ikon={<Infotegn />} tittel="Foreldreansvar">
             {foreldreansvarElementer}
         </VisittkortGruppe>
     );
