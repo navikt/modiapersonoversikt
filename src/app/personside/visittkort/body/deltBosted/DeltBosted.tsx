@@ -4,7 +4,7 @@ import { formaterDato } from '../../../../../utils/string-utils';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import * as React from 'react';
 import { DeltBosted, DeltBostedAdresse } from '../../../../../models/deltBosted';
-import Utropstegn from '../../../../../svg/Utropstegn';
+import Infotegn from '../../../../../svg/Info';
 
 function harAdresse(adresse?: DeltBostedAdresse) {
     return adresse !== undefined;
@@ -52,7 +52,7 @@ function DeltBostedElement(props: { deltbosted: DeltBosted }) {
     );
 }
 
-function DeltBostedWrapper(props: { deltbosted?: DeltBosted[] }) {
+function DeltBostedWrapper(props: { deltbosted: DeltBosted[] }) {
     if (!props.deltbosted || props.deltbosted.length === 0) {
         return null;
     }
@@ -62,7 +62,7 @@ function DeltBostedWrapper(props: { deltbosted?: DeltBosted[] }) {
     ));
 
     return (
-        <VisittkortGruppe tittel={'Delt Bosted'} ikon={<Utropstegn />}>
+        <VisittkortGruppe tittel={'Delt Bosted'} ikon={<Infotegn />}>
             {delteBosteder}
         </VisittkortGruppe>
     );

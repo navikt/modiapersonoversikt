@@ -33,7 +33,7 @@ export interface Person extends PersonRespons {
     telefonnummer?: Array<Telefon>;
     vergemal: Verge[];
     foreldreansvar?: Foreldreansvar[];
-    deltBosted?: DeltBosted[];
+    deltBosted: DeltBosted[];
 }
 
 export interface Navn {
