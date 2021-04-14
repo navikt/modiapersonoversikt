@@ -4,9 +4,7 @@ import {
     OpprettSkjermetOppgaveRequest
 } from '../../../../../../../models/meldinger/oppgave';
 import { eldsteMelding } from '../../../utils/meldingerUtils';
-import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { OppgaveProps, OppgaveSkjemaForm, SkjermetOppgaveProps, SkjermetOppgaveSkjemaForm } from './oppgaveInterfaces';
-import { formatterDatoTidNaa } from '../../../../../../../utils/date-utils';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { Mapped, Values } from '@nutgaard/use-formstate';
 
@@ -54,7 +52,7 @@ export function lagOppgaveRequest(
         behandlingskjedeId: valgtTraad ? eldsteMelding(valgtTraad).id : 'UKJENT',
         dagerFrist: valgtOppgaveType ? valgtOppgaveType.dagerFrist : 0,
         ansvarligIdent: valgtAnsatt && valgtAnsatt,
-        beskrivelse: lagBeskrivelse(form.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
+        beskrivelse: form.beskrivelse,
         temaKode: form.valgtTema,
         underkategoriKode: form.valgtUnderkategori && form.valgtUnderkategori,
         brukerid: props.gjeldendeBrukerFnr,
@@ -77,7 +75,7 @@ export function lagSkjermetOppgaveRequest(
     }
     return {
         fnr: fodselsnummer,
-        beskrivelse: lagBeskrivelse(form.beskrivelse, props.innloggetSaksbehandler, saksbehandlerEnhet),
+        beskrivelse: form.beskrivelse,
         temaKode: temakode,
         underkategoriKode: form.valgtUnderkategori && form.valgtUnderkategori,
         brukerid: props.gjeldendeBrukerFnr,
@@ -85,14 +83,4 @@ export function lagSkjermetOppgaveRequest(
         prioritetKode: form.valgtPrioritet,
         opprettetavenhetsnummer: saksbehandlerEnhet ? saksbehandlerEnhet : '2820'
     };
-}
-
-function lagBeskrivelse(
-    beskrivelse: string,
-    innloggetSaksbehandler: InnloggetSaksbehandler,
-    saksbehandlerEnhet?: string
-) {
-    return `--- ${formatterDatoTidNaa()} ${innloggetSaksbehandler.navn} (${
-        innloggetSaksbehandler.ident
-    } ${saksbehandlerEnhet}) ---\n${beskrivelse}`;
 }
