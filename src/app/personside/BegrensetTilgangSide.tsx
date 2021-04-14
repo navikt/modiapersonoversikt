@@ -29,18 +29,16 @@ function OpprettOppgaveAvvistTilgang() {
     const gsakTemaResource = useRestResource(resources => resources.oppgaveGsakTema);
     const gsakTema = gsakTemaResource?.data;
     const fnr = useFodselsnummer();
-    const innloggetSaksbehandlerResource = useRestResource(resources => resources.innloggetSaksbehandler);
-    const innloggetSaksbehandler = innloggetSaksbehandlerResource?.data;
     const [apen, setApen] = useState(false);
 
     const lukk = () => {
         setApen(!apen);
     };
 
-    if (innloggetSaksbehandlerResource.isLoading || gsakTemaResource.isLoading) {
+    if (gsakTemaResource.isLoading) {
         return <CenteredLazySpinner />;
     }
-    if (!innloggetSaksbehandler || !gsakTema) {
+    if (!gsakTema) {
         return (
             <AlertStripe type={'info'}>Kunne ikke vise opprett oppgave panel. Vennligst last siden på nytt</AlertStripe>
         );
@@ -48,12 +46,7 @@ function OpprettOppgaveAvvistTilgang() {
 
     return (
         <Ekspanderbartpanel tittel={'Opprett oppgave'} apen={apen} onClick={() => setApen(!apen)}>
-            <OppgaveSkjemaSkjermetPerson
-                gsakTema={gsakTema}
-                gjeldendeBrukerFnr={fnr}
-                innloggetSaksbehandler={innloggetSaksbehandler}
-                lukkPanel={lukk}
-            />
+            <OppgaveSkjemaSkjermetPerson gsakTema={gsakTema} gjeldendeBrukerFnr={fnr} lukkPanel={lukk} />
         </Ekspanderbartpanel>
     );
 }

@@ -1,5 +1,4 @@
 import { GsakTema } from '../../../../../../../models/meldinger/oppgave';
-import { InnloggetSaksbehandler } from '../../../../../../../models/innloggetSaksbehandler';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 
 export interface OppgaveProps extends SkjermetOppgaveProps {
@@ -9,7 +8,6 @@ export interface OppgaveProps extends SkjermetOppgaveProps {
 export interface SkjermetOppgaveProps {
     gsakTema: GsakTema[];
     gjeldendeBrukerFnr: string;
-    innloggetSaksbehandler: InnloggetSaksbehandler;
     lukkPanel: () => void;
     onSuccessCallback?: () => void;
 }
