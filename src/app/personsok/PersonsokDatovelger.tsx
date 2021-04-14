@@ -9,7 +9,7 @@ import useBoundingRect from '../../utils/hooks/use-bounding-rect';
 import { PersonSokFormState } from './personsok-utils';
 import { FieldState, Mapped, Values } from '@nutgaard/use-formstate';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const DatovelgerStyle = styled.div<{ top: number; left: number }>`
     margin-right: 0.5em;
@@ -90,8 +90,8 @@ function PersonsokDatovelger(props: { form: Mapped<Values<PersonSokFormState>, F
     const dropdownFraCoordinate = beregnDropdownCoordinate(datovelgerFraRect);
     const dropdownTilCoordinate = beregnDropdownCoordinate(datovelgerTilRect);
     const datoFeilmelding = getDatoFeilmelding(
-        moment(props.form.fodselsdatoFra.input.value).toDate(),
-        moment(props.form.fodselsdatoTil.input.value).toDate()
+        dayjs(props.form.fodselsdatoFra.input.value).toDate(),
+        dayjs(props.form.fodselsdatoTil.input.value).toDate()
     );
     const avgrensninger = { minDate: props.form.fodselsdatoFra.input.value };
     return (

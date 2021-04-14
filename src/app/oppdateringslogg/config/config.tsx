@@ -7,6 +7,7 @@ import InfomeldingBilde from './img/infomelding.jpg';
 import TemaHelseBilde from './img/temaHelse.jpg';
 import AvansertSokKnappBilde from './img/avansertSok-knapp.jpg';
 import UtenlandskIDBilde from './img/utenlandskID.jpg';
+import ForeldreansvarBilde from './img/foreldreansvar1.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export const OppdateringsloggConfig: EnOppdateringslogg[] = [
@@ -96,5 +97,37 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
             </>
         ),
         src: UtenlandskIDBilde
+    },
+    {
+        id: 4,
+        tittel: 'Visning av foreldreansvar',
+        dato: new Date('2021-04-08 13:00'),
+        aktiv: true,
+        ingress: (
+            <>
+                <Normaltekst>Nå vises foreldreansvar i visittkortet</Normaltekst>
+            </>
+        ),
+        beskrivelse: (
+            <>
+                <Normaltekst>
+                    Foreldreansvar handler om hvem som har ansvar for å ta seg av barnet og gi god omsorg, og om hvem
+                    som har rett og plikt til å ta store personlige avgjørelser for barnet. Foreldreansvar er ikke
+                    direkte knyttet til barnets bosted.
+                    <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={
+                            'https://navno.sharepoint.com/sites/enhet-kontaktsenter/SitePages/Familie-Felles-Barneloven.aspx'
+                        }
+                    >
+                        {' '}
+                        Les mer om Foreldreansvar på Navet.
+                    </a>{' '}
+                    Foreldreansvar vil kun bli vist på barnet og ikke foreldre.
+                </Normaltekst>
+            </>
+        ),
+        src: ForeldreansvarBilde
     }
 ];

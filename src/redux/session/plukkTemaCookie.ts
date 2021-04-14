@@ -1,5 +1,5 @@
 import * as Cookies from 'js-cookie';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Temagruppe } from '../../models/temagrupper';
 
 const temaValgCookieNavn = 'plukk-tema';
@@ -9,7 +9,7 @@ export function getTemaFraCookie(): Temagruppe | undefined {
 }
 
 export function setTemaCookie(tema: Temagruppe) {
-    const omEnTime = moment()
+    const omEnTime = dayjs()
         .add(1, 'hour')
         .toDate();
     Cookies.set(temaValgCookieNavn, tema, { expires: omEnTime });

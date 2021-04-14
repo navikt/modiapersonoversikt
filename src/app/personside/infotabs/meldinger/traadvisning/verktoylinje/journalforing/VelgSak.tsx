@@ -1,12 +1,11 @@
 import React from 'react';
-import { AsyncResult, FetchResult, hasData, hasError, isPending } from '@nutgaard/use-fetch';
-import { JournalforingsSak, Kategorier, SakKategori, Tema } from './JournalforingPanel';
+import { FetchResult, hasError, isPending } from '@nutgaard/use-fetch';
+import { JournalforingsSak, Kategorier, Result, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio, RadioProps } from 'nav-frontend-skjema';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
 import TemaTable from './TemaTabell';
 import styled from 'styled-components/macro';
-import visibleIf from '../../../../../../../components/visibleIfHoc';
 import { Group, groupBy } from '../../../../../../../utils/groupArray';
 import Spinner from 'nav-frontend-spinner';
 import { useSelector } from 'react-redux';
@@ -33,8 +32,6 @@ const MiniRadio = styled(Radio)`
     }
 `;
 
-const ConditionalFeilmelding = visibleIf(AlertStripeAdvarsel);
-
 function SakgruppeRadio(props: FieldState & RadioProps & { label: SakKategori }) {
     const { input, ...rest } = props;
     return <MiniRadio onChange={props.input.onChange} checked={props.input.value === props.label} {...rest} />;
@@ -43,19 +40,6 @@ function SakgruppeRadio(props: FieldState & RadioProps & { label: SakKategori })
 interface Props {
     velgSak: (sak: JournalforingsSak) => void;
     valgtSak?: JournalforingsSak;
-}
-
-function getSaker(
-    gsak: AsyncResult<Array<JournalforingsSak>>,
-    psak: AsyncResult<Array<JournalforingsSak>>
-): JournalforingsSak[] {
-    const psakData = hasData(psak) ? psak.data : [];
-    const gsakData = hasData(gsak) ? gsak.data : [];
-
-    const psakIder = psakData.map(sak => sak.fagsystemSaksId);
-    const gsakSaker = gsakData.filter(sak => !psakIder.includes(sak.fagsystemSaksId));
-
-    return [...gsakSaker, ...psakData];
 }
 
 export function fordelSaker(saker: JournalforingsSak[]): Kategorier {
@@ -97,17 +81,22 @@ export function sakKategori(sak: JournalforingsSak): SakKategori {
 function VelgSak(props: Props) {
     const fnr = useSelector(fnrSelector);
     const valgtKategori = useFieldState(SakKategori.FAG);
-    const gsakSaker: FetchResult<Array<JournalforingsSak>> = JournalforingUtils.useSammensatteSaker(fnr);
-    const psakSaker: FetchResult<Array<JournalforingsSak>> = JournalforingUtils.usePensjonSaker(fnr);
+    const result: FetchResult<Result> = JournalforingUtils.useSaker(fnr);
 
-    const saker = getSaker(gsakSaker, psakSaker);
+    if (isPending(result)) {
+        return <Spinner type="XL" />;
+    } else if (hasError(result)) {
+        return <AlertStripeFeil className="blokk-xxxs">Feilet ved uthenting av saker</AlertStripeFeil>;
+    }
+
+    const { saker, feiledeSystemer } = result.data;
     const fordelteSaker = fordelSaker(saker);
 
-    const pending = isPending(gsakSaker) || isPending(psakSaker);
-
-    if (pending) {
-        return <Spinner type="XL" />;
-    }
+    const feiledeSystemerAlerts = feiledeSystemer.map(system => (
+        <AlertStripeAdvarsel className="blokk-xxxs" key={system}>
+            Feil ved uthenting av saker fra saker fra {system}
+        </AlertStripeAdvarsel>
+    ));
 
     const temaTable = fordelteSaker[valgtKategori.input.value].map((tema: Tema) => (
         <TemaTable
@@ -137,14 +126,7 @@ function VelgSak(props: Props) {
                     {...valgtKategori}
                 />
             </Form>
-            <div>
-                <ConditionalFeilmelding visible={hasError(gsakSaker)} className="blokk-xxxs">
-                    Feil ved uthenting av saker fra GSAK
-                </ConditionalFeilmelding>
-                <ConditionalFeilmelding visible={hasError(psakSaker)} className="blokk-xxxs">
-                    Feil ved uthenting av saker fra PSAK
-                </ConditionalFeilmelding>
-            </div>
+            <div>{feiledeSystemerAlerts}</div>
             {temaTable}
         </>
     );

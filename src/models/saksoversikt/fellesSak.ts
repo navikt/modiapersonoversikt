@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export enum Baksystem {
     Gsak = 'GSAK',
@@ -22,7 +22,7 @@ export interface Saksdato {
 }
 
 export function saksdatoSomDate(saksdato: Saksdato): Date {
-    return moment(`${saksdato.år}-${padZero(saksdato.måned)}-${padZero(saksdato.dag)}`).toDate();
+    return dayjs(`${saksdato.år}-${padZero(saksdato.måned)}-${padZero(saksdato.dag)}`).toDate();
 }
 
 function padZero(date: number): string {

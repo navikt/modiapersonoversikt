@@ -139,6 +139,8 @@ export const moss: Person = {
         }
     },
     vergemal: [],
+    foreldreansvar: undefined,
+    vergemal: [],
     deltBosted: [
         {
             startdatoForKontrakt: '2020-12-12',

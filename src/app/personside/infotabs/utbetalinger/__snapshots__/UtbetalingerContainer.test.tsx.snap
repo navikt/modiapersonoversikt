@@ -480,10 +480,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
 }
 
 .c4 {
-  min-width: 19.5rem;
-  -webkit-flex-basis: 19.5rem;
-  -ms-flex-preferred-size: 19.5rem;
-  flex-basis: 19.5rem;
+  width: 100%;
 }
 
 .c11 {
@@ -519,7 +516,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   }
 }
 
-@media (max-width:1279px) {
+@media (max-width:1327px) {
   .c6 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -545,14 +542,14 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width:1328px) {
   .c0 {
     max-height: 100%;
     max-width: 100%;
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width:1328px) {
   .c0 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -569,6 +566,12 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
+  }
+}
+
+@media (min-width:1328px) {
+  .c4 {
+    width: 19.5rem;
   }
 }
 
@@ -1054,7 +1057,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                               className="periodeForYtelse"
                               role="cell"
                             >
-                              01.01.1970
+                              09.11.2016
                                - 
                               31.10.2017
                             </td>

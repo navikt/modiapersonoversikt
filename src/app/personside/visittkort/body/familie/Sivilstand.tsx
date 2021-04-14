@@ -1,5 +1,5 @@
 import * as React from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import {
@@ -27,7 +27,7 @@ function Sivilstand(props: { sivilstand: SivilstandInterface }) {
     if (props.sivilstand.kodeRef === SivilstandTyper.Ugift) {
         return <>{props.sivilstand.beskrivelse}</>;
     }
-    const relasjonFraOgMed = moment(props.sivilstand.fraOgMed).format('DD.MM.YYYY');
+    const relasjonFraOgMed = dayjs(props.sivilstand.fraOgMed).format('DD.MM.YYYY');
     const nullDatoFraTPS = '01.01.9999';
 
     if (relasjonFraOgMed !== nullDatoFraTPS) {

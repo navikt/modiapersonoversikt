@@ -6,6 +6,7 @@ import { Doedsbo } from './doedsbo';
 import { Fullmakt } from './fullmakter';
 import { Verge } from '../vergemal/vergemal';
 import { DeltBosted } from '../deltBosted';
+import { Foreldreansvar } from '../foreldreansvar/foreldreansvar';
 
 export interface PersonRespons {
     sikkerhetstiltak?: Sikkerhetstiltak;
@@ -31,6 +32,7 @@ export interface Person extends PersonRespons {
     fullmakt?: Fullmakt[];
     telefonnummer?: Array<Telefon>;
     vergemal: Verge[];
+    foreldreansvar?: Foreldreansvar[];
     deltBosted?: DeltBosted[];
 }
 

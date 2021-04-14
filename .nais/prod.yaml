@@ -41,21 +41,27 @@ spec:
       - kvPath: /serviceuser/data/prod/srvmodiapersonoversikt
         mountPath: /var/run/secrets/nais.io/service_user
   env:
-    - name: OPENAM_DISCOVERY_URL
+    - name: APP_NAME
+      value: "modiapersonoversikt"
+    - name: APP_VERSION
+      value: "{{ version }}"
+    - name: IDP_DISCOVERY_URL
       value: "https://isso.adeo.no/isso/oauth2/.well-known/openid-configuration"
-    - name: VEILARBLOGIN_OPENAM_CLIENT_ID
-      value: "veilarblogin-p,modialogin-p"
-    - name: VEILARBLOGIN_OPENAM_LOGIN_URL
-      value: "https://app.adeo.no/veilarblogin/api/start"
-    - name: AAD_DISCOVERY_URL
-      value: "https://login.microsoftonline.com/62366534-1ec3-4962-8869-9b5535279d0b/v2.0/.well-known/openid-configuration"
-    - name: VEILARBLOGIN_AAD_CLIENT_ID
-      value: "109c7064-47c9-4e34-b735-8cdc0d383cc1"
-    - name: VEILARBLOGIN_AAD_LOGIN_URL
-      value: "https://app.adeo.no/veilarblogin/api/aad-login"
-    - name: UNLEASH_API_URL
-      value: "https://unleash.nais.io/api/"
-    - name: WEBSOCKET_CSP
-      value: "wss://veilederflatehendelser.adeo.no"
+    - name: IDP_CLIENT_ID
+      value: "modialogin-p"
+    - name: DELEGATED_LOGIN_URL
+      value: "https://app.adeo.no/modialogin/api/start"
+    - name: AUTH_TOKEN_RESOLVER
+      value: "modia_ID_token"
     - name: APP_ADEO_DOMAIN
       value: "https://app.adeo.no"
+    - name: CSP_DIRECTIVES
+      value: "default-src 'self';\
+      script-src 'self' 'unsafe-inline' jsagent.adeo.no https://*.hotjar.com https://*.hotjar.io;\
+      style-src 'self' 'unsafe-inline';\
+      img-src 'self' data: https://*.hotjar.com https://*.hotjar.io;\
+      font-src 'self' data: https://*.hotjar.com https://*.hotjar.io;\
+      connect-src 'self' eumgw.adeo.no wss://veilederflatehendelser.adeo.no https://*.hotjar.com https://*.hotjar.io;\
+      object-src blob:;\
+      frame-src blob: https://*.hotjar.com https://*.hotjar.io;\
+      report-uri /frontendlogger/api/warn;"

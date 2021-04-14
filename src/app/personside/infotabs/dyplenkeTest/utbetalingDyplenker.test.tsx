@@ -23,11 +23,11 @@ test('bytter til riktig tab og setter fokus på riktig utbetaling ved bruk av dy
         </TestProvider>
     );
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.toLowerCase());
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.OVERSIKT.path);
 
     clickOnUtbetalingIOversikt(infoTabs);
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.UTBETALING.toLowerCase());
+    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.UTBETALING.path);
 
     const activeElement = document.activeElement ? document.activeElement.outerHTML : fail('ingen elementer i fokus');
     const expectedElement = infoTabs

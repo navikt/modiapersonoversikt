@@ -1,6 +1,9 @@
 import { PersonsokRequest } from '../../models/person/personsok';
 import { Mapped, Values } from '@nutgaard/use-formstate';
-import { removeWhitespaceAndDot } from './kontonummer/kontonummerUtils';
+import { removeWhitespaceAndDot, validerKontonummer } from './kontonummer/kontonummerUtils';
+import { erTall } from '../../utils/string-utils';
+import dayjs from 'dayjs';
+import formstateFactory from '@nutgaard/use-formstate';
 
 export type PersonSokFormState = {
     fornavn: string;
@@ -19,6 +22,99 @@ export type PersonSokFormState = {
     kjonn: string;
     _minimumskrav: string;
 };
+
+export function validatorPersonsok(values: PersonSokFormState) {
+    let fornavn = undefined;
+    if (!values.fornavn && values.etternavn) {
+        fornavn = 'Fornavn må være utfylt hvis etternavn er satt';
+    }
+
+    const etternavn = undefined;
+
+    let gatenavn = undefined;
+    if (!values.gatenavn && values.husnummer) {
+        gatenavn = 'Gatenavn må være satt hvis husnummer er satt';
+    }
+    if (!values.gatenavn && values.husbokstav) {
+        gatenavn = 'Gatenavn må være satt hvis husbokstav er satt';
+    }
+    if (!values.gatenavn && values.postnummer) {
+        gatenavn = 'Gatenavn må være satt hvis postnummer er satt';
+    }
+
+    const husnummer = !erTall(values.husnummer) ? 'Husnummer må være tall' : undefined;
+
+    const husbokstav = undefined;
+
+    const postnummer = !erTall(values.postnummer) ? 'Postnummer må være tall' : undefined;
+
+    let kontonummer = undefined;
+    if (values.kontonummer && !validerKontonummer(values.kontonummer)) {
+        kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
+    }
+
+    let utenlandskID =
+        values.utenlandskID &&
+        (values.fornavn ||
+            values.etternavn ||
+            values.gatenavn ||
+            values.husnummer ||
+            values.husbokstav ||
+            values.postnummer ||
+            values.kontonummer)
+            ? 'Kan ikke kombinere søk på utenlandsk ID med andre felt'
+            : undefined;
+
+    const kommunenummer =
+        !erTall(values.kommunenummer) && values.kommunenummer.length !== 4
+            ? 'Bosted må være tall med 4 siffer'
+            : undefined;
+
+    let fodselsdatoFra = undefined;
+    let fodselsdatoTil = undefined;
+    const fra = dayjs(values.fodselsdatoFra).toDate();
+    const til = dayjs(values.fodselsdatoTil).toDate();
+    if (fra > til) {
+        fodselsdatoFra = 'Fra-dato kan ikke være senere enn til-dato';
+    }
+    if (til > new Date()) {
+        fodselsdatoTil = 'Du kan ikke velge til-dato frem i tid';
+    }
+    const alderFra = !erTall(values.alderFra) ? 'Alder må være tall' : undefined;
+    const alderTil = !erTall(values.alderTil) ? 'Alder må være tall' : undefined;
+    const kjonn = undefined;
+
+    let _minimumskrav = undefined;
+    if (!values.utenlandskID) {
+        if (!values.gatenavn && !values.kontonummer && !values.fornavn) {
+            _minimumskrav = 'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk';
+            fornavn = '';
+            gatenavn = '';
+            kontonummer = '';
+            utenlandskID = '';
+        }
+    }
+
+    return {
+        fornavn,
+        etternavn,
+        gatenavn,
+        husnummer,
+        husbokstav,
+        postnummer,
+        kontonummer,
+        utenlandskID,
+        kommunenummer,
+        fodselsdatoFra,
+        fodselsdatoTil,
+        alderFra,
+        alderTil,
+        kjonn,
+        _minimumskrav
+    };
+}
+
+export const useFormstate = formstateFactory<PersonSokFormState>(validatorPersonsok);
 
 export function stringToNumber(input: string): number | undefined {
     if (input.length === 0) {

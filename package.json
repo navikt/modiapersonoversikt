@@ -19,7 +19,6 @@
         "url": "git+https://github.com/navikt/modiapersonoversikt"
     },
     "scripts": {
-        "preinstall": "npx npm-force-resolutions",
         "start": "craco start",
         "build": "craco build",
         "test": "craco test",
@@ -43,8 +42,7 @@
         "@navikt/navspa": "^1.1.1",
         "@navikt/tag-input": "^1.1.0",
         "@nutgaard/use-fetch": "^2.3.1",
-        "@nutgaard/use-formstate": "^2.3.3",
-        "core-js": "3.5.0",
+        "@nutgaard/use-formstate": "^3.0.0",
         "craco-less": "^1.17.0",
         "detect-browser": "^3.0.1",
         "downshift": "^5.0.5",
@@ -53,7 +51,6 @@
         "js-cookie": "^2.2.1",
         "lodash.debounce": "^4.0.8",
         "md5": "^2.2.1",
-        "moment": "^2.22.2",
         "nav-datovelger": "^10.1.2",
         "nav-faker": "^3.2.1",
         "nav-frontend-alertstriper": "^3.0.20",
@@ -105,6 +102,7 @@
     },
     "devDependencies": {
         "@craco/craco": "^5.6.4",
+        "@navikt/craco-plugins": "^2.0.0",
         "@testing-library/react-hooks": "^2.0.1",
         "@types/classnames": "^2.2.10",
         "@types/detect-browser": "^2.0.1",
@@ -138,6 +136,7 @@
         "jest-styled-components": "^7.0.2",
         "lint-staged": "^8.1.5",
         "lodash.throttle": "^4.1.1",
+        "mockdate": "^3.0.5",
         "nav-frontend-chevron": "^1.0.13",
         "nav-frontend-chevron-style": "^0.3.5",
         "nav-frontend-core": "^5.0.1",
@@ -159,9 +158,6 @@
         "react-collapse": "^5.0.1",
         "react-test-renderer": "^16.8.6",
         "typescript": "^3.9.6"
-    },
-    "resolutions": {
-        "core-js": "3.5.0"
     },
     "browserslist": {
         "production": [

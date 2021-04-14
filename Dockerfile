@@ -1,4 +1,3 @@
-FROM docker.pkg.github.com/navikt/modialogin/frontend:55621b946e60d88a9d689be63a6c09f09ac9fb69-beta
-ADD config.yaml /config.yaml
+FROM docker.pkg.github.com/navikt/modialogin/frontend:01a9a9790313a6a50eaffe7a0c15ec2df766d743
 ADD proxy.nginx /nginx
 COPY build /app

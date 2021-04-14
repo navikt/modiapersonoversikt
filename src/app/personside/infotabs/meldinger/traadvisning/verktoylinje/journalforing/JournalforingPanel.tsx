@@ -34,6 +34,7 @@ export interface JournalforingsSak {
     syntetisk?: boolean | null;
 }
 
+export type Result = { saker: Array<JournalforingsSak>; feiledeSystemer: Array<string> };
 export type Tema = { tema: string; saker: Array<JournalforingsSak> };
 export type Kategorier = { [key in SakKategori]: Tema[] };
 

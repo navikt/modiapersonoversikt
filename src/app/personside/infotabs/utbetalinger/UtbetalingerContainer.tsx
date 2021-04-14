@@ -29,8 +29,10 @@ const UtbetalingerStyle = styled.div`
 `;
 
 const FiltreringSection = styled.section`
-    min-width: 19.5rem;
-    flex-basis: 19.5rem;
+    width: 100%;
+    @media (min-width: ${theme.media.utbetalinger.minWidth}) {
+        width: 19.5rem;
+    }
 `;
 
 const UtbetalingerSection = styled.section`

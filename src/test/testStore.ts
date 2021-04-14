@@ -78,11 +78,17 @@ export function setupFetchCache() {
 
     cache.putResolved(createCacheKey(`${apiBaseUri}/varsler/${aremark.fødselsnummer}`), statiskVarselMock);
     cache.putResolved(
-        createCacheKey(`/dittnav-eventer-modia/fetch/oppgave/all`, fnrheader(aremark.fødselsnummer)),
+        createCacheKey(
+            `/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all`,
+            fnrheader(aremark.fødselsnummer)
+        ),
         statiskDittnavEventVarselMock
     );
     cache.putResolved(
-        createCacheKey(`/dittnav-eventer-modia/fetch/beskjed/all`, fnrheader(aremark.fødselsnummer)),
+        createCacheKey(
+            `/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/beskjed/all`,
+            fnrheader(aremark.fødselsnummer)
+        ),
         statiskDittnavEventVarselMock
     );
 }

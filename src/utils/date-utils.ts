@@ -1,6 +1,10 @@
-import moment from 'moment';
-import 'moment/locale/nb';
+import dayjs from 'dayjs';
+import 'dayjs/locale/nb';
+import isSameOrBeforePlugin from 'dayjs/plugin/isSameOrBefore';
 import { loggError } from './logger/frontendLogger';
+
+dayjs.locale('nb');
+dayjs.extend(isSameOrBeforePlugin);
 
 export const backendDatoformat: string = 'YYYY-MM-DD';
 export const backendDatoTidformat: string = 'YYYY-MM-DD HH:mm';
@@ -11,23 +15,23 @@ const DATO_TID_FORMAT = 'DD.MM.YYYY HH:mm';
 const DATO_TID_MANEDSNANV_FORMAT = 'DD. MMM YYYY HH:mm';
 
 export function formatterDato(dato: string | Date) {
-    return moment(dato).format(DATO_FORMAT);
+    return dayjs(dato).format(DATO_FORMAT);
 }
 
 export function formatterDatoMedMaanedsnavn(dato: string | Date) {
-    return moment(dato).format(DATO_FORMAT_MANEDSNAVN);
+    return dayjs(dato).format(DATO_FORMAT_MANEDSNAVN);
 }
 
 export function formatterDatoTid(dato: string | Date) {
-    return moment(dato).format(DATO_TID_FORMAT);
+    return dayjs(dato).format(DATO_TID_FORMAT);
 }
 
 export function formatterDatoTidMedMaanedsnavn(dato?: string | Date) {
-    return moment(dato).format(DATO_TID_MANEDSNANV_FORMAT);
+    return dayjs(dato).format(DATO_TID_MANEDSNANV_FORMAT);
 }
 
 export function formatterDatoTidNaa() {
-    return moment().format(DATO_TID_FORMAT);
+    return dayjs().format(DATO_TID_FORMAT);
 }
 
 const månedTilNavnMapping = (månednr: number) => {
@@ -62,11 +66,11 @@ const månedTilNavnMapping = (månednr: number) => {
 };
 
 export function datoVerbose(dato?: string | Date) {
-    const datoMoment = dato ? moment(dato) : moment();
-    const måned = månedTilNavnMapping(datoMoment.month());
-    const år = datoMoment.year();
-    const dag = datoMoment.date();
-    const klokkeslett = datoMoment.format('HH:mm');
+    const parsedDato = dato ? dayjs(dato) : dayjs();
+    const måned = månedTilNavnMapping(parsedDato.month());
+    const år = parsedDato.year();
+    const dag = parsedDato.date();
+    const klokkeslett = parsedDato.format('HH:mm');
     return {
         dag: dag,
         måned: måned,
@@ -77,34 +81,30 @@ export function datoVerbose(dato?: string | Date) {
     };
 }
 
-export function isValidDate(date: string | Date) {
-    return moment(date).isValid();
-}
-
 export function erImorgenEllerSenere(date: Date) {
-    return moment(date).isAfter(new Date(), 'day');
+    return dayjs(date).isAfter(new Date(), 'day');
 }
 
 export function erMaks10MinSiden(date: string | Date) {
-    return moment(date).isAfter(moment().subtract(10, 'minute'));
+    return dayjs(date).isAfter(dayjs().subtract(10, 'minute'));
 }
 
 export function erMaksEttÅrFramITid(date: Date) {
-    const ettÅrFramITid = moment().add(1, 'years');
-    return moment(date).isSameOrBefore(ettÅrFramITid);
+    const ettÅrFramITid = dayjs().add(1, 'years');
+    return dayjs(date).isSameOrBefore(ettÅrFramITid);
 }
 
 export function getOldestDate<T extends string | Date>(date1: T, date2: T): T {
-    return moment(date1).isBefore(date2) ? date1 : date2;
+    return dayjs(date1).isBefore(date2) ? date1 : date2;
 }
 
 export function getNewestDate<T extends string | Date>(date1: T, date2: T): T {
-    return moment(date1).isAfter(date2) ? date1 : date2;
+    return dayjs(date1).isAfter(date2) ? date1 : date2;
 }
 
 export function ascendingDateComparator(a: Date | string, b: Date | string) {
-    const dateA = moment(a);
-    const dateB = moment(b);
+    const dateA = dayjs(a);
+    const dateB = dayjs(b);
     if (!dateA.isValid() || !dateB.isValid()) {
         loggError(Error('Invalid date in date comparator'), undefined, { datoA: a, datoB: b });
     }

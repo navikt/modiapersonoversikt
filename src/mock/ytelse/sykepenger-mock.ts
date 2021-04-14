@@ -1,6 +1,5 @@
 import faker from 'faker/locale/nb_NO';
-import moment from 'moment';
-
+import dayjs from 'dayjs';
 import navfaker from 'nav-faker/dist/index';
 
 import {
@@ -44,7 +43,7 @@ export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResp
 export function getMockSykmepenger(fødselsnummer: string): Sykepenger {
     return {
         fødselsnummer: fødselsnummer,
-        sykmeldtFom: moment(faker.date.past(1)).format(backendDatoformat),
+        sykmeldtFom: dayjs(faker.date.past(1)).format(backendDatoformat),
         forbrukteDager: navfaker.random.integer(100),
         ferie1: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
         ferie2: navfaker.random.vektetSjanse(0.3) ? getPeriode() : null,
@@ -57,9 +56,9 @@ export function getMockSykmepenger(fødselsnummer: string): Sykepenger {
         utbetalingerPåVent: fyllRandomListe<UtbetalingPåVent>(() => getUtbetalingPåVent(faker), 2, true),
         bruker: fødselsnummer,
         midlertidigStanset: navfaker.random.vektetSjanse(0.3)
-            ? moment(faker.date.past(1)).format(backendDatoformat)
+            ? dayjs(faker.date.past(1)).format(backendDatoformat)
             : null,
-        slutt: navfaker.random.vektetSjanse(0.7) ? null : moment(faker.date.past(1)).format(backendDatoformat),
+        slutt: navfaker.random.vektetSjanse(0.7) ? null : dayjs(faker.date.past(1)).format(backendDatoformat),
         arbeidsforholdListe: fyllRandomListe(() => getArbeidsforhold(), 10, true),
         erArbeidsgiverperiode: navfaker.random.vektetSjanse(0.5),
         arbeidskategori: 'Ærlig arbeid'
@@ -78,7 +77,7 @@ function getForsikring(): Forsikring {
 export function getMockSykmelding(): Sykmelding {
     return {
         sykmelder: faker.name.firstName() + ' ' + faker.name.lastName(),
-        behandlet: moment(faker.date.past(1)).format(backendDatoformat),
+        behandlet: dayjs(faker.date.past(1)).format(backendDatoformat),
         sykmeldt: getPeriode(),
         sykmeldingsgrad: navfaker.random.integer(100),
         gjelderYrkesskade: navfaker.random.vektetSjanse(0.0) ? getYrkesskade() : null,
@@ -89,8 +88,8 @@ export function getMockSykmelding(): Sykmelding {
 function getYrkesskade(): Yrkesskade {
     return {
         yrkesskadeart: faker.lorem.words(3),
-        skadet: moment(faker.date.past(1)).format(backendDatoformat),
-        vedtatt: moment(faker.date.past(1)).format(backendDatoformat)
+        skadet: dayjs(faker.date.past(1)).format(backendDatoformat),
+        vedtatt: dayjs(faker.date.past(1)).format(backendDatoformat)
     };
 }
 
@@ -107,8 +106,8 @@ function getArbeidsforhold(): Arbeidsforhold {
         arbeidsgiverKontonr: Number(faker.finance.account(11)).toString(),
         inntektsperiode: 'Månedssats',
         inntektForPerioden: Math.round(Number(faker.finance.amount(5000, 50000))),
-        refusjonTom: moment(faker.date.past(2)).format(backendDatoformat),
+        refusjonTom: dayjs(faker.date.past(2)).format(backendDatoformat),
         refusjonstype: 'Ikke refusjon',
-        sykepengerFom: moment(faker.date.past(2)).format(backendDatoformat)
+        sykepengerFom: dayjs(faker.date.past(2)).format(backendDatoformat)
     };
 }
