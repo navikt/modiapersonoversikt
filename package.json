@@ -48,6 +48,7 @@
         "downshift": "^5.0.5",
         "faker": "^4.1.0",
         "history": "^4.7.2",
+        "hosted-git-info": "^2.8.9",
         "js-cookie": "^2.2.1",
         "lodash.debounce": "^4.0.8",
         "md5": "^2.2.1",
