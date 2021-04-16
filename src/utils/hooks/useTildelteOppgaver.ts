@@ -3,36 +3,17 @@ import { useFodselsnummer } from '../customHooks';
 import { useRestResource } from '../../rest/consumer/useRestResource';
 import { Oppgave } from '../../models/meldinger/oppgave';
 
-export function removeDuplicateOppgaver(value: Oppgave, index: number, list: Oppgave[]) {
-    return list.findIndex(oppgave => oppgave.oppgaveId === value.oppgaveId) === index;
-}
-
 const emptyList: any[] = [];
-function useTildelteOppgaver() {
+function useTildelteOppgaver(): { paaBruker: Oppgave[] } {
     const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
     const fnr = useFodselsnummer();
 
-    const tildelteOppgaver = useMemo(
-        () => (tildelteOppgaverResource.data ?? emptyList).filter(removeDuplicateOppgaver),
-        [tildelteOppgaverResource]
-    );
-
-    const plukkedeOppgaverPåBruker = useMemo(() => tildelteOppgaver.filter(oppg => oppg.fødselsnummer === fnr), [
-        tildelteOppgaver,
-        fnr
-    ]);
-
+    const tildelteOppgaver = tildelteOppgaverResource.data ?? emptyList;
     return useMemo(() => {
         const alleTildelteOppgaverPaaBruker = tildelteOppgaver.filter(oppg => oppg.fødselsnummer === fnr);
-        const alleTildelteOppgaverPaaAndreBrukere = tildelteOppgaver.filter(oppg => oppg.fødselsnummer !== fnr);
 
-        return {
-            alle: tildelteOppgaver,
-            paaBruker: alleTildelteOppgaverPaaBruker,
-            andreBrukere: alleTildelteOppgaverPaaAndreBrukere,
-            nettopTildelt: plukkedeOppgaverPåBruker
-        };
-    }, [tildelteOppgaver, plukkedeOppgaverPåBruker, fnr]);
+        return { paaBruker: alleTildelteOppgaverPaaBruker };
+    }, [tildelteOppgaver, fnr]);
 }
 
 export default useTildelteOppgaver;
