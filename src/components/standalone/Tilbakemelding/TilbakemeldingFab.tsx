@@ -19,12 +19,12 @@ const TilbakemeldingBtn = styled.button`
     border-radius: 50%;
     border: none;
     background-color: white;
-    box-shadow: 0 ${pxToRem(6)} ${pxToRem(10)} 0 ${theme.color.gråSkrift};
+    box-shadow: 0 ${pxToRem(6)} ${pxToRem(10)} 0 ${theme.color.graaSkrift};
     transition: all 0.1s ease-in-out;
     z-index: 999;
 
     &:hover {
-        box-shadow: 0 ${pxToRem(6)} ${pxToRem(14)} 0 ${theme.color.gråSkrift};
+        box-shadow: 0 ${pxToRem(6)} ${pxToRem(14)} 0 ${theme.color.graaSkrift};
         transform: scale(1.15);
         cursor: pointer;
     }

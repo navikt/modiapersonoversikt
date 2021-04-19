@@ -8,7 +8,7 @@ const ListStyling = styled.dl`
     display: flex;
     flex-wrap: wrap;
     dt {
-        color: ${theme.color.gråSkrift};
+        color: ${theme.color.graaSkrift};
     }
     > div {
         margin: ${pxToRem(9)} 0;

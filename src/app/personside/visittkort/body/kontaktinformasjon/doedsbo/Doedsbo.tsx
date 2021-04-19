@@ -10,7 +10,7 @@ import {
 } from '../../../../../../models/person/doedsbo';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { formaterDato } from '../../../../../../utils/string-utils';
-import EtikettGrå from '../../../../../../components/EtikettGrå';
+import EtikettGraa from '../../../../../../components/EtikettGraa';
 import VisittkortElement from '../../VisittkortElement';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import LocationPin from '../../../../../../svg/LocationPin';
@@ -65,9 +65,9 @@ function Adresseinfo({ doedsbo }: { doedsbo: Doedsbo }) {
 
 function Endretinfo({ doedsbo }: { doedsbo: Doedsbo }) {
     return (
-        <EtikettGrå>
+        <EtikettGraa>
             Endret {formaterDato(doedsbo.registrert)} i {doedsbo.master}
-        </EtikettGrå>
+        </EtikettGraa>
     );
 }
 

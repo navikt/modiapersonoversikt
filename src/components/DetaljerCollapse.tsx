@@ -22,7 +22,7 @@ const Styling = styled.div<{
 }>`
     transition: 0.5s;
     padding: ${props => (props.hasHeader ? theme.margin.px20 : `0 ${theme.margin.px20} ${theme.margin.px20}`)};
-    ${props => (props.open || props.alwaysGrayBackground) && theme.gråttPanel};
+    ${props => (props.open || props.alwaysGrayBackground) && theme.graattPanel};
     ${props => props.open && !props.hasHeader && `margin-top: ${theme.margin.px20}`};
 `;
 

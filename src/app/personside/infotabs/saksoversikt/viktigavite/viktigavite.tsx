@@ -24,7 +24,7 @@ const Luft = styled.div`
 `;
 
 const GråttPanel = styled.div`
-    ${theme.gråttPanel};
+    ${theme.graattPanel};
 `;
 
 class ViktigÅVite extends React.PureComponent<Props> {

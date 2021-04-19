@@ -7,7 +7,7 @@ import VisittkortElement from '../VisittkortElement';
 import { Verge as VergeInterface } from '../../../../../models/vergemal/vergemal';
 import { formaterDato } from '../../../../../utils/string-utils';
 import VergemålLogo from '../../../../../svg/Utropstegn';
-import EtikettGrå from '../../../../../components/EtikettGrå';
+import EtikettGraa from '../../../../../components/EtikettGraa';
 import { ENDASH } from '../../../../../utils/string-utils';
 import { Vergesakstype } from './Vergesakstype';
 import { VisittkortGruppe } from '../VisittkortStyles';
@@ -37,11 +37,11 @@ function Verge(props: { verge: VergeInterface }) {
 
             <Element>Omfang</Element>
             <Normaltekst>{vergeOmfangMapper[verge.omfang ?? 'undefined'] ?? verge.omfang}</Normaltekst>
-            <EtikettGrå>
+            <EtikettGraa>
                 {verge.embete ? verge.embete : ''}
                 {verge.embete ? <br /> : ''}
                 {getPeriodeTekst(verge.gyldighetstidspunkt, verge.opphoerstidspunkt)}
-            </EtikettGrå>
+            </EtikettGraa>
         </VisittkortElement>
     );
 }

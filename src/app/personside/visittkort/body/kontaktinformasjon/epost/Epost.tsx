@@ -2,7 +2,7 @@ import * as React from 'react';
 import VisittkortElement from '../../VisittkortElement';
 import { KRRKontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
 import { formaterDato } from '../../../../../../utils/string-utils';
-import EtikettGrå from '../../../../../../components/EtikettGrå';
+import EtikettGraa from '../../../../../../components/EtikettGraa';
 import EmailIkon from '../../../../../../svg/Email';
 import { Normaltekst } from 'nav-frontend-typografi';
 import RestResourceConsumer from '../../../../../../rest/consumer/RestResourceConsumer';
@@ -16,7 +16,7 @@ function EpostVisning({ kontaktinformasjon }: EpostVisningProps) {
         return (
             <>
                 <Normaltekst>Reservert</Normaltekst>
-                <EtikettGrå>I Kontakt- og reservasjonsregisteret</EtikettGrå>
+                <EtikettGraa>I Kontakt- og reservasjonsregisteret</EtikettGraa>
             </>
         );
     } else if (kontaktinformasjon.epost) {
@@ -24,7 +24,7 @@ function EpostVisning({ kontaktinformasjon }: EpostVisningProps) {
         return (
             <>
                 <Normaltekst>{kontaktinformasjon.epost.value}</Normaltekst>
-                <EtikettGrå>Endret {formatertDato} i Kontakt-og reservasjonsregisteret</EtikettGrå>
+                <EtikettGraa>Endret {formatertDato} i Kontakt-og reservasjonsregisteret</EtikettGraa>
             </>
         );
     } else {
