@@ -864,7 +864,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="c13"
                               >
                                 <p
-                                  className="typo-etikett-liten first"
+                                  className="typo-undertekst first"
                                 >
                                   27.04.2019 - 01.05.2019
                                 </p>
@@ -900,7 +900,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="c13"
                               >
                                 <p
-                                  className="typo-etikett-liten first"
+                                  className="typo-undertekst first"
                                 >
                                   10.04.2019 - 19.04.2019
                                 </p>
@@ -936,7 +936,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
                                 className="c13"
                               >
                                 <p
-                                  className="typo-etikett-liten first"
+                                  className="typo-undertekst first"
                                 >
                                   04.04.2019 - 24.04.2019
                                 </p>

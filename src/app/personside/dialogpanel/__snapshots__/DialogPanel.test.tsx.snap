@@ -566,7 +566,7 @@ exports[`viser dialogpanel 1`] = `
             </div>
           </div>
           <div
-            className=""
+            className="SendNyMelding__Margin-h55t11-3"
           >
             <fieldset
               aria-invalid={false}
@@ -648,9 +648,11 @@ exports[`viser dialogpanel 1`] = `
                   info
                 </span>
                 <svg
+                  aria-label="info-ikon"
                   focusable="false"
                   height="1.5em"
                   kind="info-sirkel-fyll"
+                  role="img"
                   viewBox="0 0 24 24"
                   width="1.5em"
                 >
@@ -692,7 +694,7 @@ exports[`viser dialogpanel 1`] = `
                   >
                     Velg sak
                   </p>
-                  <i
+                  <span
                     className="nav-frontend-chevron chevronboks chevron--ned"
                   />
                 </button>
@@ -714,9 +716,11 @@ exports[`viser dialogpanel 1`] = `
                   info
                 </span>
                 <svg
+                  aria-label="info-ikon"
                   focusable="false"
                   height="1.5em"
                   kind="info-sirkel-fyll"
+                  role="img"
                   viewBox="0 0 24 24"
                   width="1.5em"
                 >
