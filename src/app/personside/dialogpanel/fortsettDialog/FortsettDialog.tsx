@@ -104,7 +104,7 @@ function FortsettDialog(props: Props) {
                         visVelgSak={!erEldsteMeldingJournalfort(props.traad) && !erOksosTraad}
                     />
                 </UnmountClosed>
-                <UnmountClosed isOpened={erDelsvar} hasNestedCollapse={true}>
+                <UnmountClosed isOpened={erDelsvar}>
                     {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                     <Temavelger
                         setTema={tema => updateState({ temagruppe: tema })}
