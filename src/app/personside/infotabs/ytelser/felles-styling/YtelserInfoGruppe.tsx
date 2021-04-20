@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Style = styled.article`
-    ${theme.gråttPanel}
+    ${theme.graattPanel}
     > h3 {
         margin-bottom: 1rem;
     }

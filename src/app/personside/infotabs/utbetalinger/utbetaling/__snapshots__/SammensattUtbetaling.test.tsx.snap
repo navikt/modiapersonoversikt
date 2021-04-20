@@ -384,7 +384,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
                         Vis detaljer
                       </span>
                     </span>
-                    <i
+                    <span
                       className="nav-frontend-chevron chevronboks chevron--ned"
                     />
                   </button>
@@ -733,7 +733,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
                         Vis detaljer
                       </span>
                     </span>
-                    <i
+                    <span
                       className="nav-frontend-chevron chevronboks chevron--ned"
                     />
                   </button>

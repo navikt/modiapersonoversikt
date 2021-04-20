@@ -94,7 +94,7 @@ Array [
               Skjul sammendrag
             </span>
           </span>
-          <i
+          <span
             className="nav-frontend-chevron chevronboks chevron--opp"
           />
         </button>
@@ -462,7 +462,7 @@ Array [
                 Skjul sammendrag
               </span>
             </span>
-            <i
+            <span
               className="nav-frontend-chevron chevronboks chevron--opp"
             />
           </button>

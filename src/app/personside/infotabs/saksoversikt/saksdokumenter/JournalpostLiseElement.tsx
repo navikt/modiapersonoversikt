@@ -15,7 +15,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import DokumentIkon from '../../../../../svg/DokumentIkon';
 import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
-import EtikettGrå from '../../../../../components/EtikettGrå';
+import EtikettGraa from '../../../../../components/EtikettGraa';
 import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { useInfotabsDyplenker } from '../../dyplenker';
@@ -135,11 +135,11 @@ function JournalpostLiseElement(props: Props) {
     const saksid = journalpost.tilhørendeFagsaksid ? journalpost.tilhørendeFagsaksid : journalpost.tilhørendeSaksid;
     const saksvisning =
         props.valgtSakstema.temakode === sakstemakodeAlle ? (
-            <EtikettGrå>
+            <EtikettGraa>
                 {props.valgtSakstema.temanavn} / Saksid: {saksid}
-            </EtikettGrå>
+            </EtikettGraa>
         ) : (
-            <EtikettGrå>Saksid: {saksid}</EtikettGrå>
+            <EtikettGraa>Saksid: {saksid}</EtikettGraa>
         );
 
     const dokumentVedlegg = journalpost.vedlegg && journalpost.vedlegg.length > 0 && (

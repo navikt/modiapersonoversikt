@@ -13,9 +13,11 @@ exports[`viser fortsett dialog 1`] = `
       advarsel
     </span>
     <svg
+      aria-label="advarsel-ikon"
       focusable="false"
       height="1.5em"
       kind="advarsel-sirkel-fyll"
+      role="img"
       viewBox="0 0 24 24"
       width="1.5em"
     >

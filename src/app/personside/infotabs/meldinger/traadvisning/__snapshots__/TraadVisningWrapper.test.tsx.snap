@@ -376,7 +376,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                 Journalfør
               </span>
             </span>
-            <i
+            <span
               className="nav-frontend-chevron chevronboks chevron--ned"
             />
           </button>
@@ -394,7 +394,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                 Oppgave
               </span>
             </span>
-            <i
+            <span
               className="nav-frontend-chevron chevronboks chevron--ned"
             />
           </button>
@@ -412,7 +412,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                 Merk
               </span>
             </span>
-            <i
+            <span
               className="nav-frontend-chevron chevronboks chevron--ned"
             />
           </button>
@@ -798,9 +798,11 @@ exports[`Viser traad med verktøylinje 1`] = `
                 info
               </span>
               <svg
+                aria-label="info-ikon"
                 focusable="false"
                 height="1.5em"
                 kind="info-sirkel-fyll"
+                role="img"
                 viewBox="0 0 24 24"
                 width="1.5em"
               >
@@ -1296,9 +1298,11 @@ exports[`Viser traad med verktøylinje 1`] = `
           info
         </span>
         <svg
+          aria-label="info-ikon"
           focusable="false"
           height="1.5em"
           kind="info-sirkel-fyll"
+          role="img"
           viewBox="0 0 24 24"
           width="1.5em"
         >
@@ -1364,7 +1368,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   className="c22"
                 >
                   <div
-                    className=""
+                    className="Enkeltmelding__Topptekst-sc-1l864g6-2"
                   >
                     <div
                       className="c23"
@@ -1434,7 +1438,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <p
-                            className="typo-etikett-liten c27"
+                            className="typo-undertekst-bold c27"
                           >
                             Meldingen er journalført
                           </p>
@@ -1491,7 +1495,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   className="c22"
                 >
                   <div
-                    className=""
+                    className="Enkeltmelding__Topptekst-sc-1l864g6-2"
                   >
                     <div
                       className="c23"
@@ -1542,7 +1546,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <p
-                            className="typo-etikett-liten c27"
+                            className="typo-undertekst-bold c27"
                           >
                             Meldingen er journalført
                           </p>
@@ -1599,7 +1603,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   className="c22"
                 >
                   <div
-                    className=""
+                    className="Enkeltmelding__Topptekst-sc-1l864g6-2"
                   >
                     <div
                       className="c23"
@@ -1650,7 +1654,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <p
-                            className="typo-etikett-liten c27"
+                            className="typo-undertekst-bold c27"
                           >
                             Meldingen er journalført
                           </p>
@@ -1707,7 +1711,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   className="c22"
                 >
                   <div
-                    className=""
+                    className="Enkeltmelding__Topptekst-sc-1l864g6-2"
                   >
                     <div
                       className="c23"
@@ -1777,7 +1781,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <p
-                            className="typo-etikett-liten c27"
+                            className="typo-undertekst-bold c27"
                           >
                             Meldingen er journalført
                           </p>

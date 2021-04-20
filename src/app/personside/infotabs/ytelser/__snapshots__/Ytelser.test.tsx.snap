@@ -453,7 +453,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     aria-selected={true}
                     className="c7"
                   >
-                    <i
+                    <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
                     />
                   </button>
@@ -496,7 +496,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     aria-selected={false}
                     className="c7"
                   >
-                    <i
+                    <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
                     />
                   </button>
@@ -529,7 +529,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     aria-selected={false}
                     className="c7"
                   >
-                    <i
+                    <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
                     />
                   </button>
@@ -1195,9 +1195,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     info
                   </span>
                   <svg
+                    aria-label="info-ikon"
                     focusable="false"
                     height="1.5em"
                     kind="info-sirkel-fyll"
+                    role="img"
                     viewBox="0 0 24 24"
                     width="1.5em"
                   >

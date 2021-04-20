@@ -169,7 +169,7 @@ function LeggTilbakepanel(props: Props) {
                     <legend className="sr-only">Velg årsak</legend>
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.Innhabil} label="Inhabil" />
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.FeilTemagruppe} />
-                    <UnmountClosed isOpened={state.årsak === LeggTilbakeÅrsak.FeilTemagruppe} hasNestedCollapse={true}>
+                    <UnmountClosed isOpened={state.årsak === LeggTilbakeÅrsak.FeilTemagruppe}>
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                         <Temavelger
                             setTema={tema => updateState({ temagruppe: tema })}
@@ -179,7 +179,7 @@ function LeggTilbakepanel(props: Props) {
                         />
                     </UnmountClosed>
                     <ÅrsakRadio årsak={LeggTilbakeÅrsak.AnnenÅrsak} />
-                    <UnmountClosed isOpened={state.årsak === LeggTilbakeÅrsak.AnnenÅrsak} hasNestedCollapse={true}>
+                    <UnmountClosed isOpened={state.årsak === LeggTilbakeÅrsak.AnnenÅrsak}>
                         {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                         <StyledSkjemaGruppe
                             feil={

@@ -4,7 +4,7 @@ import VisittkortElement from '../../VisittkortElement';
 import { Person } from '../../../../../../models/person/person';
 import { formaterDato } from '../../../../../../utils/string-utils';
 import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
-import EtikettGrå from '../../../../../../components/EtikettGrå';
+import EtikettGraa from '../../../../../../components/EtikettGraa';
 import CoinsIkon from '../../../../../../svg/Coins';
 import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
 
@@ -34,9 +34,9 @@ function kontoinfo(person: Person) {
                 <Normaltekst>
                     <FormatertKontonummer kontonummer={person.bankkonto.kontonummer} />
                 </Normaltekst>
-                <EtikettGrå>
+                <EtikettGraa>
                     Endret {formatertDato} {endretAv}
-                </EtikettGrå>
+                </EtikettGraa>
             </>
         );
     }

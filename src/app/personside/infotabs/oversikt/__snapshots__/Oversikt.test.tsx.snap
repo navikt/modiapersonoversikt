@@ -509,9 +509,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 info
               </span>
               <svg
+                aria-label="info-ikon"
                 focusable="false"
                 height="1.5em"
                 kind="info-sirkel-fyll"
+                role="img"
                 viewBox="0 0 24 24"
                 width="1.5em"
               >
@@ -620,7 +622,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   aria-selected={false}
                   className="c10"
                 >
-                  <i
+                  <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
                 </button>
@@ -669,7 +671,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   aria-selected={false}
                   className="c10"
                 >
-                  <i
+                  <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
                 </button>
@@ -781,7 +783,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   aria-selected={false}
                   className="c10"
                 >
-                  <i
+                  <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
                 </button>
@@ -844,7 +846,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   aria-selected={false}
                   className="c10"
                 >
-                  <i
+                  <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
                 </button>
@@ -990,7 +992,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   aria-selected={false}
                   className="c10"
                 >
-                  <i
+                  <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
                 </button>
@@ -1065,7 +1067,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 aria-selected={false}
                 className="c10"
               >
-                <i
+                <span
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
@@ -1092,7 +1094,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                 aria-selected={false}
                 className="c10"
               >
-                <i
+                <span
                   className="nav-frontend-chevron chevronboks chevron--hoyre"
                 />
               </button>
@@ -1183,7 +1185,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       onClick={[Function]}
                       title="Vis meldinger"
                     >
-                      <i
+                      <span
                         className="nav-frontend-chevron chevronboks chevron--ned"
                       />
                     </button>
@@ -1302,7 +1304,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       onClick={[Function]}
                       title="Vis meldinger"
                     >
-                      <i
+                      <span
                         className="nav-frontend-chevron chevronboks chevron--ned"
                       />
                     </button>
