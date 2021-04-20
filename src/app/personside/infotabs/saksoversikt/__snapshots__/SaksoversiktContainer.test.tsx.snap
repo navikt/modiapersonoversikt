@@ -532,7 +532,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   aria-selected={true}
                   className="c11"
                 >
-                  <i
+                  <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
                 </button>
@@ -602,7 +602,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   aria-selected={false}
                   className="c11"
                 >
-                  <i
+                  <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
                 </button>
@@ -665,7 +665,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   aria-selected={false}
                   className="c11"
                 >
-                  <i
+                  <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
                 </button>
@@ -708,7 +708,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   aria-selected={false}
                   className="c11"
                 >
-                  <i
+                  <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
                 </button>
@@ -761,7 +761,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   aria-selected={false}
                   className="c11"
                 >
-                  <i
+                  <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
                 </button>
@@ -804,7 +804,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   aria-selected={false}
                   className="c11"
                 >
-                  <i
+                  <span
                     className="nav-frontend-chevron chevronboks chevron--hoyre"
                   />
                 </button>
@@ -1001,7 +1001,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -1100,7 +1100,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -1258,7 +1258,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -1395,7 +1395,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -1475,7 +1475,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -1575,7 +1575,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -1682,7 +1682,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -1747,7 +1747,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -1850,7 +1850,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -1930,7 +1930,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -2010,7 +2010,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -2075,7 +2075,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -2155,7 +2155,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -2235,7 +2235,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         className="c24"
                       >
                         <p
-                          className="typo-etikett-liten"
+                          className="typo-undertekst"
                         >
                           Alle tema
                            / Saksid: 
@@ -2261,9 +2261,11 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
               info
             </span>
             <svg
+              aria-label="info-ikon"
               focusable="false"
               height="1.5em"
               kind="info-sirkel-fyll"
+              role="img"
               viewBox="0 0 24 24"
               width="1.5em"
             >

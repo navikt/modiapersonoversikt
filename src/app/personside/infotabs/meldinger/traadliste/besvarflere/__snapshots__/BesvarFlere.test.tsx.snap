@@ -568,7 +568,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
           <div
             className="c15 hover-animation"
           >
-            <i
+            <span
               className="nav-frontend-chevron chevronboks chevron--hoyre"
             />
           </div>
@@ -701,7 +701,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
           <div
             className="c15 hover-animation"
           >
-            <i
+            <span
               className="nav-frontend-chevron chevronboks chevron--hoyre"
             />
           </div>
@@ -741,7 +741,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   className="c19"
                 >
                   <div
-                    className=""
+                    className="Enkeltmelding__Topptekst-sc-1l864g6-2"
                   >
                     <div
                       className="c20"
@@ -811,7 +811,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <p
-                            className="typo-etikett-liten c24"
+                            className="typo-undertekst-bold c24"
                           >
                             Meldingen er journalført
                           </p>
@@ -868,7 +868,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   className="c19"
                 >
                   <div
-                    className=""
+                    className="Enkeltmelding__Topptekst-sc-1l864g6-2"
                   >
                     <div
                       className="c20"
@@ -919,7 +919,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <p
-                            className="typo-etikett-liten c24"
+                            className="typo-undertekst-bold c24"
                           >
                             Meldingen er journalført
                           </p>
@@ -976,7 +976,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   className="c19"
                 >
                   <div
-                    className=""
+                    className="Enkeltmelding__Topptekst-sc-1l864g6-2"
                   >
                     <div
                       className="c20"
@@ -1027,7 +1027,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <p
-                            className="typo-etikett-liten c24"
+                            className="typo-undertekst-bold c24"
                           >
                             Meldingen er journalført
                           </p>
@@ -1084,7 +1084,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                   className="c19"
                 >
                   <div
-                    className=""
+                    className="Enkeltmelding__Topptekst-sc-1l864g6-2"
                   >
                     <div
                       className="c20"
@@ -1154,7 +1154,7 @@ exports[`BesvarFler matcher snapshot 1`] = `
                           className="ekspanderbartPanel__tittel"
                         >
                           <p
-                            className="typo-etikett-liten c24"
+                            className="typo-undertekst-bold c24"
                           >
                             Meldingen er journalført
                           </p>

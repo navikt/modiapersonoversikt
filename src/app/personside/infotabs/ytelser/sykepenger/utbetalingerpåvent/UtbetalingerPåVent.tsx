@@ -16,7 +16,7 @@ const Style = styled.section`
     > *:not(:last-child) {
         margin-bottom: 1rem;
     }
-    ${theme.gråttPanel};
+    ${theme.graattPanel};
     white-space: nowrap;
 `;
 

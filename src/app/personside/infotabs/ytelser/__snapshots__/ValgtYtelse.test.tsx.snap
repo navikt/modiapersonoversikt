@@ -804,9 +804,11 @@ exports[`Om foreldrepenger matcher snapshot 1`] = `
                     info
                   </span>
                   <svg
+                    aria-label="info-ikon"
                     focusable="false"
                     height="1.5em"
                     kind="info-sirkel-fyll"
+                    role="img"
                     viewBox="0 0 24 24"
                     width="1.5em"
                   >
@@ -2253,9 +2255,11 @@ exports[`Om sykepenger matcher snapshot 1`] = `
               info
             </span>
             <svg
+              aria-label="info-ikon"
               focusable="false"
               height="1.5em"
               kind="info-sirkel-fyll"
+              role="img"
               viewBox="0 0 24 24"
               width="1.5em"
             >

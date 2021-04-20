@@ -117,7 +117,7 @@ function SendNyMelding(props: Props) {
                     />
                     <VelgDialogType formState={state} updateDialogType={dialogType => updateState({ dialogType })} />
                     <Margin>
-                        <UnmountClosed isOpened={erReferat} hasNestedCollapse={true}>
+                        <UnmountClosed isOpened={erReferat}>
                             {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                             <Temavelger
                                 setTema={tema => updateState({ tema: tema })}
@@ -127,7 +127,7 @@ function SendNyMelding(props: Props) {
                             />
                             <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
                         </UnmountClosed>
-                        <UnmountClosed isOpened={erSporsmaal || erInfomelding} hasNestedCollapse={true}>
+                        <UnmountClosed isOpened={erSporsmaal || erInfomelding}>
                             <DialogpanelVelgSak
                                 setValgtSak={sak => updateState({ sak })}
                                 visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
