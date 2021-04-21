@@ -29,7 +29,7 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
 
     useJustOnceEffect(
         function visTraadTilknyttetOppgaveIDialogpanel(done: () => void) {
-            const oppgave = tildelteOppgaver.nettopTildelt[0];
+            const oppgave = tildelteOppgaver.paaBruker[0];
             const åpneTrådIFortsettDialogpanel = !dialogpanelTraad && !!oppgave;
             if (!åpneTrådIFortsettDialogpanel || !traaderResource.data) {
                 return;
@@ -55,10 +55,10 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
                 );
             }
         },
-        [tildelteOppgaver.nettopTildelt, dialogpanelTraad, dispatch, dyplenker, history, traaderResource]
+        [tildelteOppgaver.paaBruker, dialogpanelTraad, dispatch, dyplenker, history, traaderResource]
     );
 
-    if (tildelteOppgaver.nettopTildelt.length > 0 && !traaderResource.data) {
+    if (tildelteOppgaver.paaBruker.length > 0 && !traaderResource.data) {
         return {
             pending: true,
             placeholder: traaderResource.placeholder
