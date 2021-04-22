@@ -16,8 +16,9 @@ function getAdresse(deltBosted?: DeltBosted) {
     }
 
     const { adresse } = deltBosted;
+
     const gateadresse = `${adresse.adressenavn} ${adresse.husnummer || ''}${adresse.husbokstav || ''}`;
-    const poststed = `${adresse.postnummer} (${adresse.bydelsnummer})`;
+    const poststed = adresse.bydelsnummer ? `${adresse.postnummer} (${adresse.bydelsnummer})` : `${adresse.postnummer}`;
     const coAdresse = adresse.coAdressenavn ? `C/O ${adresse.coAdressenavn}` : '';
     const tilleggsnavn = adresse?.tilleggsnavn ?? '';
     return (
