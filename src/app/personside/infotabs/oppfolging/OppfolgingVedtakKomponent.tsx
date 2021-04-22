@@ -4,7 +4,7 @@ import { datoSynkende } from '../../../../utils/date-utils';
 import styled from 'styled-components/macro';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { datoEllerTomString } from '../../../../utils/string-utils';
-import EtikettGrå from '../../../../components/EtikettGrå';
+import EtikettGraa from '../../../../components/EtikettGraa';
 import { StyledTable } from '../../../../utils/table/StyledTable';
 
 interface Props {
@@ -34,7 +34,7 @@ function OppfolgingsVedtakTabell(props: Props) {
             <Element tag="h4" className="second">
                 {vedtak.vedtakstype}
             </Element>
-            <EtikettGrå className="first">{formaterPeriode(vedtak)}</EtikettGrå>
+            <EtikettGraa className="first">{formaterPeriode(vedtak)}</EtikettGraa>
         </UUOrder>,
         vedtak.vedtakstatus,
         vedtak.aktivitetsfase

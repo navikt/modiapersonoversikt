@@ -2,7 +2,7 @@ import * as React from 'react';
 import VisittkortElement from '../../VisittkortElement';
 import { KRRKontaktinformasjon } from '../../../../../../models/kontaktinformasjon';
 import { formaterDato } from '../../../../../../utils/string-utils';
-import EtikettGrå from '../../../../../../components/EtikettGrå';
+import EtikettGraa from '../../../../../../components/EtikettGraa';
 import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
 import PhoneIkon from '../../../../../../svg/Phone';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -17,7 +17,7 @@ function MobiltelefonVisning({ kontaktinformasjon }: MobiltelefonVisningProps) {
         return (
             <>
                 <Normaltekst>Reservert</Normaltekst>
-                <EtikettGrå>I Kontakt- og reservasjonsregisteret</EtikettGrå>
+                <EtikettGraa>I Kontakt- og reservasjonsregisteret</EtikettGraa>
             </>
         );
     } else if (kontaktinformasjon.mobiltelefon) {
@@ -26,7 +26,7 @@ function MobiltelefonVisning({ kontaktinformasjon }: MobiltelefonVisningProps) {
         return (
             <>
                 <Normaltekst>{formatertTelefonnummer}</Normaltekst>
-                <EtikettGrå>Endret {formatertDato} i Kontakt- og reservasjonsregisteret</EtikettGrå>
+                <EtikettGraa>Endret {formatertDato} i Kontakt- og reservasjonsregisteret</EtikettGraa>
             </>
         );
     } else {

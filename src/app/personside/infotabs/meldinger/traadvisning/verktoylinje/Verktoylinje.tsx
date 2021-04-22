@@ -116,7 +116,7 @@ function Verktoylinje(props: Props) {
                         </OppgaveknapperStyle>
                         <Print {...props} />
                     </KnapperPanelStyle>
-                    <UnmountClosed isOpened={visJournalforing} hasNestedCollapse={true}>
+                    <UnmountClosed isOpened={visJournalforing}>
                         <JournalforingPanel traad={props.valgtTraad} lukkPanel={lukk} />
                     </UnmountClosed>
                     <UnmountClosed isOpened={visOppgave}>

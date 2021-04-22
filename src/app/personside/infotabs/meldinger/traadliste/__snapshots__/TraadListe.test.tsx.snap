@@ -882,7 +882,7 @@ exports[`Viser Traadliste 1`] = `
           <div
             className="c22 hover-animation"
           >
-            <i
+            <span
               className="nav-frontend-chevron chevronboks chevron--hoyre"
             />
           </div>

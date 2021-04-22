@@ -243,7 +243,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c6"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-undertekst"
           >
             Endret 
             25.11.2017
@@ -316,7 +316,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c6"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-undertekst"
           >
             Endret 
             10.04.2018
@@ -366,7 +366,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c6"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-undertekst"
           >
             Endret 
             15.05.2014
@@ -411,7 +411,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c6"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-undertekst"
           >
             Endret 
             15.05.2014
@@ -443,7 +443,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c6"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-undertekst"
           >
             Endret 
             21.06.2014
@@ -462,7 +462,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c6"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-undertekst"
           >
             Endret 
             21.05.2014
@@ -565,7 +565,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c6"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-undertekst"
           >
             Endret 
             12.12.2005
@@ -1151,7 +1151,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="c6"
           >
             <p
-              className="typo-etikett-liten"
+              className="typo-undertekst"
             >
               Besøksadresse
             </p>
@@ -1172,7 +1172,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="c6"
           >
             <p
-              className="typo-etikett-liten"
+              className="typo-undertekst"
             >
               Åpningstider
             </p>
@@ -1465,7 +1465,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c6"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-undertekst"
           >
             Fylkesmannen i Troms og Finnmark
             <br />
@@ -1544,7 +1544,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="c6"
         >
           <p
-            className="typo-etikett-liten"
+            className="typo-undertekst"
           >
             Gyldig: 
             12.12.2005

@@ -6,7 +6,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 import { NavKontorResponse, PublikumsMottak } from '../../../../../models/navkontor';
 import { Klokkeslett } from '../../../../../models/tid';
-import EtikettGrå from '../../../../../components/EtikettGrå';
+import EtikettGraa from '../../../../../components/EtikettGraa';
 import VisittkortElement from '../VisittkortElement';
 import NavLogo from '../../../../../svg/NavLogo';
 import { BaseUrlsResponse } from '../../../../../models/baseurls';
@@ -68,11 +68,11 @@ function publikumsMottakKontaktInfo(publikumsMottak: PublikumsMottak) {
     return (
         <div key={adresse}>
             <br />
-            <EtikettGrå>Besøksadresse</EtikettGrå>
+            <EtikettGraa>Besøksadresse</EtikettGraa>
             <Normaltekst>{adresse}</Normaltekst>
             <Normaltekst>{postSted}</Normaltekst>
             <br />
-            <EtikettGrå>Åpningstider</EtikettGrå>
+            <EtikettGraa>Åpningstider</EtikettGraa>
             <ApningsTiderListe>{apningstider}</ApningsTiderListe>
             <br />
         </div>

@@ -52,11 +52,11 @@ export const theme = {
         bakgrunn: navFarger.navGra40,
         kategori: '#cce1f3',
         ytelser: '#d6897d',
-        gråSkrift: '#645f5a',
+        graaSkrift: '#645f5a',
         objektlisteHover: 'rgba(102, 203, 236, 0.18)',
         objektlisteActive: 'rgba(102, 203, 236, 0.35)'
     },
-    gråttPanel: css`
+    graattPanel: css`
         border-radius: ${pxToRem(8)};
         background-color: #f1f0f0;
         box-shadow: inset 0 0 0 0.3rem white, inset 0 0 0 0.37rem rgba(0, 0, 0, 0.15);

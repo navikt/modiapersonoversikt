@@ -13,7 +13,7 @@ interface Props {
 }
 
 const VedtaksTable = styled.div`
-    ${theme.gråttPanel};
+    ${theme.graattPanel};
     margin: ${theme.margin.layout};
     > *:not(:last-child) {
         margin-bottom: 1rem;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import VisittkortElement from '../VisittkortElement';
-import EtikettGrå from '../../../../../components/EtikettGrå';
+import EtikettGraa from '../../../../../components/EtikettGraa';
 import {
     NavKontaktinformasjon as NavKontaktinformasjonInterface,
     Telefon as TelefonInterface
@@ -33,9 +33,9 @@ function Telefon({ telefon, nummerFormaterer, beskrivelse }: TelefonProps) {
             <Normaltekst>
                 {`${retningsnummmer} ${formatertNummer}`} {beskrivelse}
             </Normaltekst>
-            <EtikettGrå>
+            <EtikettGraa>
                 Endret {formatertDato} {endretAv}
-            </EtikettGrå>
+            </EtikettGraa>
         </>
     );
 }

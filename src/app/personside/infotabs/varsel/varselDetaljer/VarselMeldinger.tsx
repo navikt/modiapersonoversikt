@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ListeStyle = styled.ol`
-    ${theme.gråttPanel}
+    ${theme.graattPanel}
     > *:not(:first-child) {
         border-top: ${theme.border.skille};
     }

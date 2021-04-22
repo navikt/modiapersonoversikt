@@ -13,7 +13,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { Input, InputProps } from 'nav-frontend-skjema';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import EtikettGrå from '../../../../../../../components/EtikettGrå';
+import EtikettGraa from '../../../../../../../components/EtikettGraa';
 import { isNumber } from 'util';
 
 const DropDownWrapper = styled.div`
@@ -171,17 +171,17 @@ function AutoComplete(props: Props) {
                                     {filteredTopSuggetions.length > 0 && (
                                         <>
                                             <li aria-hidden="true">
-                                                <EtikettGrå>
+                                                <EtikettGraa>
                                                     {props.topSuggestionsLabel || 'Anbefalte forslag'}
-                                                </EtikettGrå>
+                                                </EtikettGraa>
                                             </li>
                                             {filteredTopSuggetions.map(item => (
                                                 <SuggestionMarkup key={item} item={item} helpers={helpers} />
                                             ))}
                                             <li aria-hidden="true">
-                                                <EtikettGrå>
+                                                <EtikettGraa>
                                                     {props.otherSuggestionsLabel || 'Andre forslag'}
-                                                </EtikettGrå>
+                                                </EtikettGraa>
                                             </li>
                                         </>
                                     )}

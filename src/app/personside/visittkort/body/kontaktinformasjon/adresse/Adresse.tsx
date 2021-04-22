@@ -5,7 +5,7 @@ import * as personadresse from '../../../../../../models/personadresse';
 import { Personadresse } from '../../../../../../models/personadresse';
 import { formaterDato } from '../../../../../../utils/string-utils';
 import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
-import EtikettGrå from '../../../../../../components/EtikettGrå';
+import EtikettGraa from '../../../../../../components/EtikettGraa';
 import { Periode } from '../../../../../../models/tid';
 import VisPeriode from '../../../../../../components/person/VisPeriode';
 import LocationPin from '../../../../../../svg/LocationPin';
@@ -99,9 +99,9 @@ function hentEndringstekst(adresse: Personadresse) {
         const formattertdato = formaterDato(adresse.endringsinfo.sistEndret);
         const endretAv = endretAvTekst(adresse.endringsinfo.sistEndretAv);
         return (
-            <EtikettGrå>
+            <EtikettGraa>
                 Endret {formattertdato} {endretAv}
-            </EtikettGrå>
+            </EtikettGraa>
         );
     } else {
         return null;

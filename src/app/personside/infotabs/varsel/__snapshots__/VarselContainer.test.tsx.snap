@@ -208,7 +208,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               onClick={[Function]}
               title="Vis meldinger"
             >
-              <i
+              <span
                 className="nav-frontend-chevron chevronboks chevron--ned"
               />
             </button>
@@ -327,7 +327,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               onClick={[Function]}
               title="Vis meldinger"
             >
-              <i
+              <span
                 className="nav-frontend-chevron chevronboks chevron--ned"
               />
             </button>

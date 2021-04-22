@@ -949,7 +949,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                           Vis sammendrag
                         </span>
                       </span>
-                      <i
+                      <span
                         className="nav-frontend-chevron chevronboks chevron--ned"
                       />
                     </button>
@@ -1263,7 +1263,7 @@ exports[`Viser utbetalingercontainer med alt innhold 1`] = `
                                       Vis detaljer
                                     </span>
                                   </span>
-                                  <i
+                                  <span
                                     className="nav-frontend-chevron chevronboks chevron--ned"
                                   />
                                 </button>

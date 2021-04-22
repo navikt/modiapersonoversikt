@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EtikettLiten } from 'nav-frontend-typografi';
+import { Undertekst } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import { ReactNode } from 'react';
 import { TypografiProps } from 'nav-frontend-typografi';
@@ -10,20 +10,20 @@ interface Props extends TypografiProps {
 }
 
 const Wrapper = styled.div`
-    color: ${theme.color.gråSkrift};
+    color: ${theme.color.graaSkrift};
     margin-top: 3px;
     .typo-etikett-liten {
         line-height: 1rem;
     }
 `;
 
-function EtikettGrå(props: Props) {
+function EtikettGraa(props: Props) {
     const { children, ...resten } = props;
     return (
         <Wrapper>
-            <EtikettLiten {...resten}>{children}</EtikettLiten>
+            <Undertekst {...resten}>{children}</Undertekst>
         </Wrapper>
     );
 }
 
-export default EtikettGrå;
+export default EtikettGraa;

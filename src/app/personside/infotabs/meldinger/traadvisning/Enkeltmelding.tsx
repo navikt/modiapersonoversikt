@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRef, useState } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import { EtikettLiten, Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst, UndertekstBold } from 'nav-frontend-typografi';
 import {
     erDelsvar,
     erJournalfort,
@@ -75,7 +75,7 @@ const SnakkebobleWrapper = styled.div`
     }
 `;
 
-const JournalforingLabel = styled(EtikettLiten)`
+const JournalforingLabel = styled(UndertekstBold)`
     color: ${theme.color.lenke};
 `;
 
