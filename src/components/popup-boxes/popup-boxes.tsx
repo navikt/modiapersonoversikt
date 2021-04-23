@@ -71,7 +71,7 @@ function Confirm(props: PopupComponentProps<boolean, ConfirmProps>) {
         >
             <p className="blokk-s">{props.message}</p>
             <Hovedknapp onClick={() => props.close(true)}>OK</Hovedknapp>
-            <Flatknapp onClick={() => props.close(false)}>Cancel</Flatknapp>
+            <Flatknapp onClick={() => props.close(false)}>Avbryt</Flatknapp>
         </Modal>
     );
 }
@@ -98,7 +98,7 @@ function Prompt(props: PopupComponentProps<string | null, PromptProps>) {
                 />
                 <Hovedknapp onClick={() => props.close(value)}>OK</Hovedknapp>
                 <Flatknapp htmlType="button" onClick={() => props.close(null)}>
-                    Cancel
+                    Avbryt
                 </Flatknapp>
             </form>
         </Modal>

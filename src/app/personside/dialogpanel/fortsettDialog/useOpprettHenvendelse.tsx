@@ -6,7 +6,7 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { OpprettHenvendelseRequest, OpprettHenvendelseResponse, Traad } from '../../../../models/meldinger/meldinger';
 import { useDispatch } from 'react-redux';
 import { apiBaseUri } from '../../../../api/config';
-import { post } from '../../../../api/api';
+import { postWithConflictVerification } from '../../../../api/api';
 import { useState } from 'react';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { selectValgtEnhet } from '../../../../redux/session/session';
@@ -33,7 +33,11 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
 
     useOnMount(function getBehandlingsId() {
         const opprettHenvendelseRequest: OpprettHenvendelseRequest = { enhet: valgtEnhet, traadId: traad.traadId };
-        post(`${apiBaseUri}/dialog/${fnr}/fortsett/opprett`, opprettHenvendelseRequest, 'Opprett-henvendelse')
+        postWithConflictVerification(
+            `${apiBaseUri}/dialog/${fnr}/fortsett/opprett`,
+            opprettHenvendelseRequest,
+            'Opprett-henvendelse'
+        )
             .then(data => setResponse(data as OpprettHenvendelseResponse))
             .then(() => dispatch(reloadTildelteOppgaver))
             .catch(e => {
