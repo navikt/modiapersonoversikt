@@ -16,6 +16,7 @@ export function getDeltBostedMock(faker: Faker.FakerStatic, navfaker: NavFaker):
                 bruksenhetsnummer: undefined,
                 kommunenummer: '0301',
                 postnummer: '0000',
+                poststed: 'AREMARK',
                 bydelsnummer: '1',
                 tilleggsnavn: undefined,
                 coAdressenavn: vektetSjanse(faker, 0.2) ? navfaker.navn.fornavn(1) : undefined
