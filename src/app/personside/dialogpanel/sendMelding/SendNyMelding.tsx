@@ -108,7 +108,11 @@ function SendNyMelding(props: Props) {
                         tekst={state.tekst}
                         navn={navn}
                         tekstMaksLengde={tekstMaksLengde}
-                        updateTekst={tekst => updateState({ tekst })}
+                        updateTekst={tekst =>
+                            updateState({
+                                tekst: tekst.replace(/[^a-zA-Z0-9,æøåÆØÅ!?.*<>":;/(){}|+#$¢=&%£\-\[\]\s]/g, '')
+                            })
+                        }
                         feilmelding={
                             !NyMeldingValidator.tekst(state) && state.visFeilmeldinger
                                 ? `Du må skrive en tekst på mellom 1 og ${tekstMaksLengde} tegn`
