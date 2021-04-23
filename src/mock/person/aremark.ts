@@ -265,7 +265,7 @@ export const aremark: Person = {
                 bruksenhetsnummer: 'H0201',
                 kommunenummer: '0301',
                 postnummer: '0661',
-                poststed: 'AREMARK',
+                poststed: 'AREMARKSTAD',
                 bydelsnummer: '1',
                 tilleggsnavn: undefined,
                 coAdressenavn: undefined
