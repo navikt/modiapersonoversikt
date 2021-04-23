@@ -16,6 +16,7 @@ export interface DeltBostedAdresse {
     bruksenhetsnummer?: string;
     kommunenummer?: string;
     postnummer?: string;
+    poststed?: string;
     bydelsnummer?: string;
     tilleggsnavn?: string;
     coAdressenavn?: string;
