@@ -34,7 +34,7 @@ import { useAppState } from '../../../../../../../utils/customHooks';
 import { hasData, isPending } from '@nutgaard/use-async';
 import useFetch, { FetchResult } from '@nutgaard/use-fetch';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
-import { useFocusOnFirstInputOnMount } from '../../../../../../../utils/hooks/useFocusOnFirstInputOnMount';
+import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-focus-on-first-focusable';
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
 import useTildelteOppgaver from '../../../../../../../utils/hooks/useTildelteOppgaver';
 import { Oppgave } from '../../../../../../../models/meldinger/oppgave';
@@ -152,7 +152,7 @@ function MerkPanel(props: Props) {
     const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
     const formRef = useRef<HTMLFormElement>(null);
 
-    useFocusOnFirstInputOnMount(formRef);
+    useFocusOnFirstFocusable(formRef);
 
     const melding = eldsteMelding(valgtTraad);
 
