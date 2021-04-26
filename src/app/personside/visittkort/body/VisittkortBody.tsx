@@ -12,6 +12,7 @@ import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHidden
 import Fullmakter from './fullmakt/Fullmakt';
 import Vergemal from './vergemal/Vergemal';
 import Foreldreansvar from './foreldreansvar/Foreldreansvar';
+import DeltBosted from './deltBosted/DeltBosted';
 
 interface VisittkortBodyProps {
     person: Person;
@@ -31,6 +32,7 @@ function OneColumnLayout(person: Person) {
             <Kontaktinformasjon person={person} />
             <Fullmakter fullmakter={person.fullmakt} />
             <Familie person={person} />
+            <DeltBosted deltbosted={person.deltBosted} />
             <Foreldreansvar foreldreansvar={person.foreldreansvar} />
             <NavKontorSeksjon />
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
@@ -49,6 +51,7 @@ function TwoColumnLayout(person: Person) {
                 <Fullmakter fullmakter={person.fullmakt} />
                 <Familie person={person} />
                 <Foreldreansvar foreldreansvar={person.foreldreansvar} />
+                <DeltBosted deltbosted={person.deltBosted} />
             </Kolonne>
             <Kolonne>
                 <NavKontorSeksjon />
@@ -71,6 +74,7 @@ function ThreeColumnLayout(person: Person) {
             <Kolonne>
                 <Familie person={person} />
                 <Foreldreansvar foreldreansvar={person.foreldreansvar} />
+                <DeltBosted deltbosted={person.deltBosted} />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
                 <Vergemal vergemal={person.vergemal} />
             </Kolonne>

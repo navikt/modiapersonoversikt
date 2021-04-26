@@ -139,5 +139,15 @@ export const moss: Person = {
         }
     },
     vergemal: [],
-    foreldreansvar: undefined
+    foreldreansvar: undefined,
+    deltBosted: [
+        {
+            startdatoForKontrakt: '2020-12-12',
+            sluttdatoForKontrakt: '2023-12-12',
+            adresse: undefined,
+            ukjentBosted: {
+                bostedskommune: 'Oslo'
+            }
+        }
+    ]
 };
