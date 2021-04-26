@@ -110,7 +110,7 @@ function SendNyMelding(props: Props) {
                         tekstMaksLengde={tekstMaksLengde}
                         updateTekst={tekst =>
                             updateState({
-                                tekst: tekst.replace(/[^a-zA-Z0-9,æøåÆØÅ!?.*<>":;/(){}|+#$¢=&%£\-[]\s]/g, '')
+                                tekst: tekst.replace(/[^a-zA-Z0-9,àèéæøåÆØÅÀÈÉ!?.*<>":;/(){}|+#$¢@=&%£\-\][\s]/g, '')
                             })
                         }
                         feilmelding={

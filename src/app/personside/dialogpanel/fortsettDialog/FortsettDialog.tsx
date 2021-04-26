@@ -75,7 +75,11 @@ function FortsettDialog(props: Props) {
                 tekst={state.tekst}
                 navn={navn}
                 tekstMaksLengde={tekstMaksLengde}
-                updateTekst={tekst => updateState({ tekst: tekst })}
+                updateTekst={tekst =>
+                    updateState({
+                        tekst: tekst.replace(/[^a-zA-Z0-9,àèéæøåÆØÅÀÈÉ!?.*<>":;/(){}|+#$¢@=&%£\-\][\s]/g, '')
+                    })
+                }
                 feilmelding={
                     !FortsettDialogValidator.tekst(state) && state.visFeilmeldinger
                         ? `Du må skrive en tekst på mellom 1 og ${tekstMaksLengde} tegn`
