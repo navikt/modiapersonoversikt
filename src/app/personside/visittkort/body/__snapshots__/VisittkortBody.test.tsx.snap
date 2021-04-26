@@ -879,9 +879,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
         <p
           className="typo-normal"
-        >
-          Bor med bruker
-        </p>
+        />
       </div>
       <div
         className="c4"
@@ -940,9 +938,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
         <p
           className="typo-normal"
-        >
-          Bor ikke med bruker
-        </p>
+        />
       </div>
     </section>
     <section>
