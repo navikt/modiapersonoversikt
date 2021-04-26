@@ -92,7 +92,7 @@ export function getBedriftsNavn(id: string): string {
 export function getPersonstatus(alder: number): Bostatus {
     const bostatus = getBostatus();
     const dødsdato =
-        bostatus && bostatus.kodeRef === BostatusTyper.Død ? dayjs(faker.date.past(alder)).toISOString() : undefined;
+        bostatus && bostatus.kodeRef === BostatusTyper.Dod ? dayjs(faker.date.past(alder)).toISOString() : undefined;
     return {
         bostatus,
         dødsdato
@@ -101,7 +101,7 @@ export function getPersonstatus(alder: number): Bostatus {
 
 function getBostatus() {
     if (vektetSjanse(faker, 0.1)) {
-        return { kodeRef: BostatusTyper.Død, beskrivelse: 'Død' };
+        return { kodeRef: BostatusTyper.Dod, beskrivelse: 'Død' };
     } else if (vektetSjanse(faker, 0.1)) {
         return { kodeRef: BostatusTyper.Utvandret, beskrivelse: 'Utvandret' };
     } else {

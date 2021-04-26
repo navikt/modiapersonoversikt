@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import {
-    erDød,
     Familierelasjon,
     getPartner,
     Person,
@@ -43,7 +42,6 @@ function Sivilstand(props: { sivilstand: SivilstandInterface }) {
 }
 
 function Partner({ relasjon, sivilstand }: PartnerProps) {
-    const erDod = erDød(relasjon.tilPerson.personstatus);
     return (
         <>
             <Normaltekst>
@@ -55,7 +53,7 @@ function Partner({ relasjon, sivilstand }: PartnerProps) {
             </Normaltekst>
             <Normaltekst>{relasjon.tilPerson.fødselsnummer || ''}</Normaltekst>
             <Normaltekst>
-                <BorMedBruker harSammeBosted={relasjon.harSammeBosted} skalVise={!erDod} />
+                <BorMedBruker relasjon={relasjon} />
             </Normaltekst>
         </>
     );

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import VisittkortElement from '../VisittkortElement';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { erDød, Familierelasjon, getBarnUnder21 } from '../../../../../models/person/person';
+import { Familierelasjon, getBarnUnder21 } from '../../../../../models/person/person';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 import { Diskresjonskode } from './common/Diskresjonskode';
@@ -19,7 +19,6 @@ interface BarnProps {
 function Barn({ barn }: BarnProps) {
     const ikon = getKjønnBarnIkon(barn.tilPerson.fødselsnummer);
     const beskrivelse = getKjønnBeskrivelseForBarn(barn.tilPerson.fødselsnummer);
-    const erDod = erDød(barn.tilPerson.personstatus);
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={ikon}>
             <Diskresjonskode diskresjonskode={barn.tilPerson.diskresjonskode} />
@@ -28,7 +27,7 @@ function Barn({ barn }: BarnProps) {
             </Normaltekst>
             <Normaltekst>{barn.tilPerson.fødselsnummer || ''}</Normaltekst>
             <Normaltekst>
-                <BorMedBruker harSammeBosted={barn.harSammeBosted} erDod={erDod} />
+                <BorMedBruker relasjon={barn} />
             </Normaltekst>
         </VisittkortElement>
     );

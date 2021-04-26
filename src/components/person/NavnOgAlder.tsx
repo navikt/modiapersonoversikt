@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { erDød, Familierelasjon, getNavn } from '../../models/person/person';
+import { erDod, Familierelasjon, getNavn } from '../../models/person/person';
 
 interface Props {
     relasjon: Familierelasjon;
@@ -16,7 +16,7 @@ function getAlder(relasjon: Familierelasjon) {
 }
 
 function getAlderTekst(relasjon: Familierelasjon) {
-    if (erDød(relasjon.tilPerson.personstatus)) {
+    if (erDod(relasjon.tilPerson.personstatus)) {
         return '(Død)';
     }
 
