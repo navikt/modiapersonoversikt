@@ -3,7 +3,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 import VisittkortElement from '../VisittkortElement';
 
-import { Familierelasjon, getMorOgFar, Relasjonstype } from '../../../../../models/person/person';
+import { erDød, Familierelasjon, getMorOgFar, Relasjonstype } from '../../../../../models/person/person';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 
@@ -21,6 +21,7 @@ interface ForelderProps {
 function Forelder({ relasjon }: ForelderProps) {
     const beskrivelse = relasjon.rolle === Relasjonstype.Mor ? 'Mor' : 'Far';
     const ikon = getKjønnIkon(relasjon.tilPerson.fødselsnummer);
+    const erDod = erDød(relasjon.tilPerson.personstatus);
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={ikon}>
             <Diskresjonskode diskresjonskode={relasjon.tilPerson.diskresjonskode} />
@@ -29,7 +30,7 @@ function Forelder({ relasjon }: ForelderProps) {
             </Normaltekst>
             <Normaltekst>{relasjon.tilPerson.fødselsnummer || ''}</Normaltekst>
             <Normaltekst>
-                <BorMedBruker harSammeBosted={relasjon.harSammeBosted} />
+                <BorMedBruker harSammeBosted={relasjon.harSammeBosted} erDod={erDod} />
             </Normaltekst>
         </VisittkortElement>
     );
