@@ -81,7 +81,7 @@ export interface Bostatus {
 }
 
 export enum BostatusTyper {
-    Død = 'DØD',
+    Dod = 'DØD',
     Utvandret = 'UTVA'
 }
 
@@ -148,8 +148,8 @@ export function getNavn({ fornavn, mellomnavn, etternavn, sammensatt }: Navn) {
     return navn.join(' ');
 }
 
-export function erDød(personstatus: Bostatus) {
-    return personstatus.dødsdato || (personstatus.bostatus && personstatus.bostatus.kodeRef === BostatusTyper.Død);
+export function erDod(personstatus: Bostatus) {
+    return personstatus.dødsdato || (personstatus.bostatus && personstatus.bostatus.kodeRef === BostatusTyper.Dod);
 }
 
 export function getBarn(familierelasjoner: Familierelasjon[]) {

@@ -27,7 +27,7 @@ function Barn({ barn }: BarnProps) {
             </Normaltekst>
             <Normaltekst>{barn.tilPerson.fødselsnummer || ''}</Normaltekst>
             <Normaltekst>
-                <BorMedBruker harSammeBosted={barn.harSammeBosted} />
+                <BorMedBruker relasjon={barn} />
             </Normaltekst>
         </VisittkortElement>
     );
