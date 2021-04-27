@@ -2,10 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import useFetch, { FetchResult, hasData, hasError, Status } from '@nutgaard/use-fetch';
 import { WithData } from '@nutgaard/use-async';
 import { apiBaseUri, includeCredentials } from '../../api/config';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
-const debug = window.location.search.includes(FeatureToggles.UtloggingsInfo);
+const debug = window.location.search.includes('utloggings-info');
 const SECOND_IN_MS = 1000;
 const MINUTE_IN_MS = 60 * SECOND_IN_MS;
 
@@ -64,14 +62,11 @@ function useActivityMonitor() {
  * Refreshes accesstoken `PREEMPTY_REFRESH_TIME_IN_MS` milliseconds before token expires
  * if a user-interactions happened within `INACTIVITY_LIMIT_IN_MS`.
  */
-function useTokenRefresher(active: boolean, auth: FetchResult<AuthIntropectionDTO>) {
+function useTokenRefresher(auth: FetchResult<AuthIntropectionDTO>) {
     const timerRef = useRef<number>(0);
     const activityMonitor = useActivityMonitor();
 
     useEffect(() => {
-        if (!active) {
-            return;
-        }
         if (timerRef.current) {
             window.clearTimeout(timerRef.current);
             timerRef.current = 0;
@@ -94,19 +89,16 @@ function useTokenRefresher(active: boolean, auth: FetchResult<AuthIntropectionDT
                 }, timeToRefresh - PREEMPTIVE_REFRESH_TIME_IN_MS);
             }
         }
-    }, [active, auth, timerRef, activityMonitor]);
+    }, [auth, timerRef, activityMonitor]);
 }
 
 /**
  * Periodically (`RECALC_LOGIN_STATUS_INTERVAL_IN_MS`) compare current time with accessToken expiration,
  * and return whether or not user is currently logged in.
  */
-function useLoginState(active: boolean, auth: FetchResult<AuthIntropectionDTO>) {
+function useLoginState(auth: FetchResult<AuthIntropectionDTO>) {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
     useEffect(() => {
-        if (!active) {
-            return;
-        }
         let intervalId = 0;
         if (hasData(auth)) {
             intervalId = window.setInterval(() => {
@@ -121,7 +113,7 @@ function useLoginState(active: boolean, auth: FetchResult<AuthIntropectionDTO>) 
                 window.clearInterval(intervalId);
             }
         };
-    }, [active, auth, setIsLoggedIn]);
+    }, [auth, setIsLoggedIn]);
 
     return isLoggedIn;
 }
@@ -130,10 +122,8 @@ export enum ErrorReason {
     INVALID_EXPIRATION_DATE = 'INVALID_EXP_DATE',
     FETCH_ERROR = 'FETCH_ERROR'
 }
-function useErrorHandling(active: boolean, auth: FetchResult<AuthIntropectionDTO>): ErrorReason | undefined {
-    if (!active) {
-        return undefined;
-    } else if (hasError(auth)) {
+function useErrorHandling(auth: FetchResult<AuthIntropectionDTO>): ErrorReason | undefined {
+    if (hasError(auth)) {
         return ErrorReason.FETCH_ERROR;
     } else if (hasData(auth) && auth.data.expirationDate === INVALID_EXPIRATION_DATE) {
         return ErrorReason.INVALID_EXPIRATION_DATE;
@@ -145,11 +135,10 @@ export type PersistentLoginState = { isLoggedIn: boolean; errorStatus?: ErrorRea
 export default function usePersistentLogin(): PersistentLoginState {
     debug && console.debug('Using debugging of persistent-loging');
 
-    const active = useFeatureToggle(FeatureToggles.UtloggingsInfo).isOn ?? false;
-    const auth = useFetch<AuthIntropectionDTO>(`${apiBaseUri}/tilgang/auth`, includeCredentials, { lazy: !active });
-    const isLoggedIn = useLoginState(active, auth);
-    const errorStatus = useErrorHandling(active, auth);
-    useTokenRefresher(active, auth);
+    const auth = useFetch<AuthIntropectionDTO>(`${apiBaseUri}/tilgang/auth`, includeCredentials);
+    const isLoggedIn = useLoginState(auth);
+    const errorStatus = useErrorHandling(auth);
+    useTokenRefresher(auth);
 
     return useMemo(
         () => ({
