@@ -53,7 +53,7 @@ function Partner({ relasjon, sivilstand }: PartnerProps) {
             </Normaltekst>
             <Normaltekst>{relasjon.tilPerson.fødselsnummer || ''}</Normaltekst>
             <Normaltekst>
-                <BorMedBruker harSammeBosted={relasjon.harSammeBosted} />
+                <BorMedBruker relasjon={relasjon} />
             </Normaltekst>
         </>
     );

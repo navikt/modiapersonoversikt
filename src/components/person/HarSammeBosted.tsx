@@ -1,13 +1,15 @@
 import * as React from 'react';
+import { erDod, Familierelasjon } from '../../models/person/person';
 
 interface Props {
-    harSammeBosted?: boolean;
+    relasjon?: Familierelasjon;
 }
 
-function BorMedBruker({ harSammeBosted }: Props) {
-    if (harSammeBosted === undefined) {
+function BorMedBruker({ relasjon }: Props) {
+    const personErDod = relasjon && erDod(relasjon.tilPerson.personstatus);
+    if (relasjon?.harSammeBosted === undefined || personErDod) {
         return null;
-    } else if (harSammeBosted) {
+    } else if (relasjon.harSammeBosted) {
         return <>Bor med bruker</>;
     } else {
         return <>Bor ikke med bruker</>;

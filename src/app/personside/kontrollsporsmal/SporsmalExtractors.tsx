@@ -1,5 +1,5 @@
 import {
-    erDød,
+    erDod,
     Familierelasjon,
     getBarnUnder21,
     getNavn,
@@ -62,7 +62,7 @@ export function hentFødselsdatoBarn(person: Person): Svar {
     const gyldigeBarn = getBarnUnder21(person.familierelasjoner)
         .filter(barn => barn.harSammeBosted)
         .filter(barn => !barn.tilPerson.diskresjonskode)
-        .filter(barn => !erDød(barn.tilPerson.personstatus))
+        .filter(barn => !erDod(barn.tilPerson.personstatus))
         .filter(barn => !harDødsDato(barn));
 
     if (gyldigeBarn.length === 0) {

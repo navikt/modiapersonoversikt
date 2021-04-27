@@ -29,7 +29,7 @@ function Forelder({ relasjon }: ForelderProps) {
             </Normaltekst>
             <Normaltekst>{relasjon.tilPerson.fødselsnummer || ''}</Normaltekst>
             <Normaltekst>
-                <BorMedBruker harSammeBosted={relasjon.harSammeBosted} />
+                <BorMedBruker relasjon={relasjon} />
             </Normaltekst>
         </VisittkortElement>
     );

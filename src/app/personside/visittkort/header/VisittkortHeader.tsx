@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import styled from 'styled-components/macro';
 import { Undertittel } from 'nav-frontend-typografi';
 import NavKontorContainer from './navkontor/NavKontorContainer';
-import { erDød, erMann, Person } from '../../../../models/person/person';
+import { erDod, erMann, Person } from '../../../../models/person/person';
 import PersonStatus from './status/PersonStatus';
 import Mann from '../../../../svg/Mann.js';
 import Kvinne from '../../../../svg/Kvinne.js';
@@ -105,7 +105,7 @@ function VisittkortHeader(props: Props) {
         ikon: erMann(props.person) ? <Mann /> : <Kvinne />
     };
 
-    const alder = erDød(props.person.personstatus) ? 'Død' : props.person.alder;
+    const alder = erDod(props.person.personstatus) ? 'Død' : props.person.alder;
     const kjønn = props.person.kjønn === 'M' ? 'Mann' : 'Kvinne';
     return (
         <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={toggleVisittkort}>
