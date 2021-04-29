@@ -73,7 +73,9 @@ function FortsettDialog(props: Props) {
     const brukerKanSvareValg = state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
     const delMedBrukerTekst = props.erTilknyttetOppgave ? `Del med ${navn} og avslutt oppgave` : `Del med ${navn}`;
     const erOksosTraad = props.traad.meldinger.some(it => it.temagruppe === 'OKSOS');
-    const erSamtalereferat = erMeldingstypeSamtalereferat(eldsteMelding(props.traad).meldingstype);
+
+    const melding = eldsteMelding(props.traad);
+    const erSamtalereferat = erMeldingstypeSamtalereferat(melding.meldingstype);
     return (
         <FormStyle onSubmit={handleSubmit}>
             <TidligereMeldinger traad={props.traad} />
