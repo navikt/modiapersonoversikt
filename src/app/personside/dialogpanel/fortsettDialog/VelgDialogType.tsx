@@ -13,6 +13,7 @@ interface Props {
     erSTOOppgave: boolean;
     erDelvisBesvart: boolean;
     erOksosTraad: boolean;
+    erSamtalereferat: boolean;
 }
 
 function VelgDialogType(props: Props) {
@@ -53,8 +54,15 @@ function VelgDialogType(props: Props) {
                 {props.erSTOOppgave && !props.erOksosTraad && delvisSvar}
                 {!jobberMedSTO && svarTelefon}
                 {!jobberMedSTO && svarOppmote}
-                {props.erSTOOppgave && referatTelefon}
-                {props.erSTOOppgave && referatOppmote}
+            </VelgDialogtypeStyle>
+        );
+    }
+
+    if (props.erSamtalereferat) {
+        return (
+            <VelgDialogtypeStyle>
+                {referatTelefon}
+                {referatOppmote}
             </VelgDialogtypeStyle>
         );
     }
