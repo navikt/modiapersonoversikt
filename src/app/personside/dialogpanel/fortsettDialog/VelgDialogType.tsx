@@ -13,6 +13,7 @@ interface Props {
     erSTOOppgave: boolean;
     erDelvisBesvart: boolean;
     erOksosTraad: boolean;
+    erSamtalereferat: boolean;
 }
 
 function VelgDialogType(props: Props) {
@@ -33,6 +34,8 @@ function VelgDialogType(props: Props) {
     const delvisSvar = lagRadio('Delvis svar', Meldingstype.DELVIS_SVAR_SKRIFTLIG);
     const svarTelefon = lagRadio('Svar telefon', Meldingstype.SVAR_TELEFON);
     const svarOppmote = lagRadio('Svar oppmøte', Meldingstype.SVAR_OPPMOTE);
+    const referatTelefon = lagRadio('Referat telefon', Meldingstype.SAMTALEREFERAT_TELEFON);
+    const referatOppmote = lagRadio('Referat oppmøte', Meldingstype.SAMTALEREFERAT_OPPMOTE);
 
     if (props.erDelvisBesvart) {
         return (
@@ -51,6 +54,15 @@ function VelgDialogType(props: Props) {
                 {props.erSTOOppgave && !props.erOksosTraad && delvisSvar}
                 {!jobberMedSTO && svarTelefon}
                 {!jobberMedSTO && svarOppmote}
+            </VelgDialogtypeStyle>
+        );
+    }
+
+    if (props.erSamtalereferat) {
+        return (
+            <VelgDialogtypeStyle>
+                {referatTelefon}
+                {referatOppmote}
             </VelgDialogtypeStyle>
         );
     }
