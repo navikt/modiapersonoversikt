@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router';
 import { useOnMount } from '../../../../../utils/customHooks';
-import { default as React, useEffect, useState } from 'react';
+import { default as React, useCallback, useEffect, useState } from 'react';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { erIE11 } from '../../../../../utils/erIE11';
 import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -22,7 +22,7 @@ const ErrorStyle = styled.div`
 function DokumentVisning(props: Props) {
     const pathname = useLocation().pathname;
     const [errMsg, setErrMsg] = useState('');
-    const onError = (statusKode: number) => setErrMsg(feilmelding(statusKode));
+    const onError = useCallback((statusKode: number) => setErrMsg(feilmelding(statusKode)), [setErrMsg]);
 
     useEffect(() => {
         loggEvent('VisSaksdokument', 'Saker', { standalone: erSakerFullscreen(pathname) });
