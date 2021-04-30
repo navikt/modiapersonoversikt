@@ -20,8 +20,9 @@ class VoidWebSocket {
 
 export function setupWsControlAndMock(mock: FetchMock) {
     (window as any).WebSocket = VoidWebSocket;
+    const baseUrl = `https://${window.location.host}`;
 
-    mock.post('/modiacontextholder/api/context', ({ body }, res, ctx) => {
+    mock.post(baseUrl + '/modiacontextholder/api/context', ({ body }, res, ctx) => {
         if (body.eventType === 'NY_AKTIV_ENHET') {
             context.aktivEnhet = body.verdi;
             return res(ctx.status(200));
@@ -33,13 +34,13 @@ export function setupWsControlAndMock(mock: FetchMock) {
         }
     });
 
-    mock.delete('/modiacontextholder/api/context', (req, res, ctx) => {
+    mock.delete(baseUrl + '/modiacontextholder/api/context', (req, res, ctx) => {
         context.aktivBruker = null;
         context.aktivEnhet = null;
         return res(ctx.status(200));
     });
 
-    mock.get('/modiacontextholder/api/context/aktivenhet', (req, res, ctx) =>
+    mock.get(baseUrl + '/modiacontextholder/api/context/aktivenhet', (req, res, ctx) =>
         res(
             ctx.json({
                 aktivEnhet: context.aktivEnhet,
@@ -48,12 +49,12 @@ export function setupWsControlAndMock(mock: FetchMock) {
         )
     );
 
-    mock.delete('/modiacontextholder/api/context/aktivbruker', (req, res, ctx) => {
+    mock.delete(baseUrl + '/modiacontextholder/api/context/aktivbruker', (req, res, ctx) => {
         context.aktivBruker = null;
         return res(ctx.status(200));
     });
 
-    mock.get('/modiacontextholder/api/context/aktivbruker', (req, res, ctx) =>
+    mock.get(baseUrl + '/modiacontextholder/api/context/aktivbruker', (req, res, ctx) =>
         res(
             ctx.json({
                 aktivEnhet: null,
@@ -62,7 +63,7 @@ export function setupWsControlAndMock(mock: FetchMock) {
         )
     );
 
-    mock.get('/modiacontextholder/api/context', (req, res, ctx) =>
+    mock.get(baseUrl + '/modiacontextholder/api/context', (req, res, ctx) =>
         res(
             ctx.json({
                 aktivEnhet: context.aktivEnhet,
@@ -71,7 +72,7 @@ export function setupWsControlAndMock(mock: FetchMock) {
         )
     );
 
-    mock.get('/modiacontextholder/api/decorator/aktor/:fnr', (req, res, ctx) =>
+    mock.get(baseUrl + '/modiacontextholder/api/decorator/aktor/:fnr', (req, res, ctx) =>
         res(ctx.json({ fnr: req.pathParams.fnr, aktorId: `0000${req.pathParams.fnr}0000` }))
     );
 
@@ -83,7 +84,7 @@ export function setupWsControlAndMock(mock: FetchMock) {
         enheter: enheter
     };
 
-    mock.get('/modiacontextholder/api/decorator', (req, res, ctx) => res(ctx.json(me)));
+    mock.get(baseUrl + '/modiacontextholder/api/decorator', (req, res, ctx) => res(ctx.json(me)));
 
     mock.get('https://app-q0.adeo.no/aktoerregister/api/v1/identer', (req, res, ctx) => {
         const fnr = (req.init!.headers! as Record<string, string>)['Nav-Personidenter'];
