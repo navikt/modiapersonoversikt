@@ -296,16 +296,16 @@ const Style = styled.div`
     position: relative;
 `;
 
-function autoFullfør(autofullførData: AutofullforData, parsedText: string) {
+function autoFullfor(autofullforData: AutofullforData, parsedText: string) {
     const autofullforMap = byggAutofullforMap(
         Locale.nb_NO,
-        autofullførData.enhet,
-        autofullførData.person,
-        autofullførData.kontor,
-        autofullførData.saksbehandler
+        autofullforData.enhet,
+        autofullforData.person,
+        autofullforData.kontor,
+        autofullforData.saksbehandler
     );
-    const fullfortTekst = autofullfor(parsedText, autofullforMap);
-    return fullfortTekst;
+
+    return autofullfor(parsedText, autofullforMap);
 }
 
 const tellerTekstCls = (remaining: number) => classNames('teller-tekst', { 'teller-tekst--overflow': remaining < 0 });
@@ -329,7 +329,7 @@ function asChangeEvent<T>(event: React.KeyboardEvent<T>): React.ChangeEvent<T> {
 }
 
 function AutocompleteTextarea(props: TextareaProps) {
-    const autofullførData = useAutoFullforData();
+    const autofullforData = useAutoFullforData();
     const [feilmelding, settFeilmelding] = useState<string>();
     const standardtekster: FetchResult<StandardTeksterModels.Tekster> = useFetch<StandardTeksterModels.Tekster>(
         '/modiapersonoversikt-skrivestotte/skrivestotte'
@@ -383,7 +383,7 @@ function AutocompleteTextarea(props: TextareaProps) {
                         return acc;
                     }, word);
 
-                    const fullfortTekst = autofullførData ? autoFullfør(autofullførData, replacement) : replacement;
+                    const fullfortTekst = autofullforData ? autoFullfor(autofullforData, replacement) : replacement;
 
                     event.currentTarget.value = [value.substring(0, start), fullfortTekst, value.substring(end)].join(
                         ''
@@ -395,7 +395,7 @@ function AutocompleteTextarea(props: TextareaProps) {
                 }
             }
         },
-        [autofullførData, onChange, rules, standardtekster]
+        [autofullforData, onChange, rules, standardtekster]
     );
 
     return (
