@@ -46,6 +46,15 @@ function VelgDialogType(props: Props) {
         );
     }
 
+    if (props.erSamtalereferat) {
+        return (
+            <VelgDialogtypeStyle>
+                {referatTelefon}
+                {referatOppmote}
+            </VelgDialogtypeStyle>
+        );
+    }
+
     if (props.erTilknyttetOppgave) {
         return (
             <VelgDialogtypeStyle>
@@ -54,15 +63,6 @@ function VelgDialogType(props: Props) {
                 {props.erSTOOppgave && !props.erOksosTraad && delvisSvar}
                 {!jobberMedSTO && svarTelefon}
                 {!jobberMedSTO && svarOppmote}
-            </VelgDialogtypeStyle>
-        );
-    }
-
-    if (props.erSamtalereferat) {
-        return (
-            <VelgDialogtypeStyle>
-                {referatTelefon}
-                {referatOppmote}
             </VelgDialogtypeStyle>
         );
     }
