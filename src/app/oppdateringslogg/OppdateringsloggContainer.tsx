@@ -4,7 +4,7 @@ import useListener from '../../utils/hooks/use-listener';
 import Oppdateringslogg from './Oppdateringslogg';
 import { Systemtittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
-import usePersistentState from './usePersistentState';
+import useSisteLestOppdateringLogg from './useSisteLestOppdateringLogg';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
 import { OppdateringsloggConfig } from './config/config';
 import './oppdateringsloggKnapp.less';
@@ -70,7 +70,7 @@ function OppdateringsloggContainer() {
     const oppdateringslogg: EnOppdateringslogg[] = OppdateringsloggConfig.filter(innslag => innslag.aktiv);
 
     const [apen, settApen] = useState(false);
-    const [sistLesteId, settSistLesteId] = usePersistentState('lest-oppdateringslogg', -1);
+    const [sistLesteId, settSistLesteId] = useSisteLestOppdateringLogg();
     const element = useWaitForElement(`#${DecoratorButtonId}`);
 
     useApneOppdateringsLoggModal(settApen, oppdateringslogg, settSistLesteId);
