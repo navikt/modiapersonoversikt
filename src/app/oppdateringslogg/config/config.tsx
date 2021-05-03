@@ -112,7 +112,7 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
         tittel: 'Oppdatert oppdateringslogg-varslingen',
         dato: new Date('2021-05-03 15:00'),
         aktiv: true,
-        ingress: <Normaltekst>Oppdateringsloggen har fått fikset problemet med varsling</Normaltekst>,
+        ingress: <Normaltekst>Oppdateringsloggen har fått fikset problemet med varsling.</Normaltekst>,
         beskrivelse: (
             <Normaltekst>
                 Det var problemer med at det kom opp varsel om nye oppdateringer når det ikke var tilfellet. Dette er nå
