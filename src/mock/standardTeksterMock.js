@@ -9,6 +9,44 @@ const standardTeksterMock = {
                 'Hei [bruker.fornavn]\r\nVi ber om at du sender skriftlig kontoendring til NAV Økonomi Pensjon, postboks 6600 Etterstad, 0607 Oslo, sammen med en kopi av skifteattesten.\r\nDersom det finnes flere arvinger i skifteattesten, må du legge ved fullmakt fra disse.\r\n'
         }
     },
+    'f31f5d09-4873-4f84-912d-0ff3636db1cd': {
+        id: 'f31f5d09-4873-4f84-912d-0ff3636db1cd',
+        overskrift: 'Generell - Videreformidle - Internt (STO)',
+        tags: ['ks', 'sto', 'videresende', 'videreformidle', 'forwarded', 'office', ''],
+        innhold: {
+            nb_NO:
+                'Hei, [bruker.fornavn]\n\nJeg har videreformidlet henvendelsen til ENHET som skal kontakte deg senest innen utgangen av DAG+DATO. \n\nMed vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter',
+            nn_NO:
+                'Hei, [bruker.fornavn]\n\nEg har sendt spørsmålet til EINING ditt som skal kontakte deg seinast innan utgongen av DAG+DATO\n\nMed venleg helsing\n[saksbehandler.fornavn]\nNAV Kontaktsenter',
+            en_US:
+                'Hello, [bruker.fornavn]\n\nI have forwarded your enquiry to OFFICE who will reply within the end of DAY+DATE\n\nKind regards,\n[saksbehandler.fornavn]\nNAV Kontaktsenter'
+        },
+        vekttall: 1604
+    },
+    'b4b67323-f57d-47a2-ac19-7ba4b62fe156': {
+        id: 'b4b67323-f57d-47a2-ac19-7ba4b62fe156',
+        overskrift: 'Signatur',
+        tags: ['signatur', ''],
+        innhold: {
+            nb_NO: 'Med vennlig hilsen\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n',
+            nn_NO: 'Med venleg helsing\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n',
+            en_US: 'Sincerely,\r\n[saksbehandler.navn]\r\n[saksbehandler.enhet]\r\n'
+        },
+        vekttall: 70
+    },
+    'fd71ff08-be9c-4e90-a6f8-bc17a798f244': {
+        id: 'fd71ff08-be9c-4e90-a6f8-bc17a798f244',
+        overskrift: 'Generell - Signatur.fornavn (STO) ',
+        tags: ['ks', 'sto', 'signatur'],
+        innhold: {
+            nb_NO:
+                'Vi ønsker å forbedre oss. Hvis du har ett minutt til overs vil vi gjerne at du svarer på disse spørsmålene https://url.til.nettside.com/tilbakmeldinger/submit.aspx?id=langrandomidheresombareerherforslikatlenkenercalikelangsomtidligere\n\nMed vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter',
+            nn_NO:
+                'Vi ønsker å forbedre oss. Hvis du har ett minutt til overs vil vi gjerne at du svarer på disse spørsmålene https://url.til.nettside.com/tilbakmeldinger/submit.aspx?id=langrandomidheresombareerherforslikatlenkenercalikelangsomtidligere\n\nMed venleg helsing\n[saksbehandler.fornavn]\nNAV Kontaktsenter',
+            en_US: 'Kind regards,\n[saksbehandler.fornavn]\nNAV Kontaktsenter'
+        },
+        vekttall: 241
+    },
 
     'b2e93ec9-feba-41e9-a7c7-d54193191430': {
         id: 'b2e93ec9-feba-41e9-a7c7-d54193191430',

@@ -378,7 +378,7 @@ function setupSendDelsvarMock(mock: FetchMock) {
 
 function setupTildelteOppgaverMock(mock: FetchMock) {
     mock.get(
-        apiBaseUri + '/oppgaver/tildelt',
+        apiBaseUri + '/oppgaver/tildelt/:fnr',
         withDelayedResponse(randomDelay(), STATUS_OK, () => oppgaveBackendMock.getTildelteOppgaver())
     );
 }

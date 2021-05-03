@@ -20,9 +20,6 @@ import { loggEvent } from '../../utils/logger/frontendLogger';
 import { useErKontaktsenter } from '../../utils/enheter-utils';
 import useFetch, { FetchResult, hasData } from '@nutgaard/use-fetch';
 import { rapporterBruk } from '../../app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
-import { useAppState } from '../../utils/customHooks';
-import { selectValgtEnhet } from '../../redux/session/session';
-import { useRestResource } from '../../rest/consumer/useRestResource';
 
 interface InlineRegel {
     type: 'internal';
@@ -43,31 +40,20 @@ type Regler = Array<Regel>;
 
 function useRules(): Regler {
     const erKontaktsenter = useErKontaktsenter();
-    const veiledersEnheter = useRestResource(resources => resources.saksbehandlersEnheter);
-    const valgtEnhetId = useAppState(selectValgtEnhet);
-    const valgtEnhet = veiledersEnheter.data?.enhetliste?.find(enhet => enhet.enhetId === valgtEnhetId);
-    const saksbehanderEnhet = valgtEnhet?.navn ?? '';
+
+    const nksSignaturReferanse = 'fd71ff08-be9c-4e90-a6f8-bc17a798f244';
+    const navKontorSignaturReferanse = 'b4b67323-f57d-47a2-ac19-7ba4b62fe156';
+    const signaturReferanse = erKontaktsenter ? nksSignaturReferanse : navKontorSignaturReferanse;
     return [
         { type: 'internal', regex: /^hei,?$/i, replacement: () => 'Hei [bruker.fornavn],\n' },
-        {
-            type: 'internal',
-            regex: /^mvh$/i,
-            replacement: () => {
-                const mvh = 'Med vennlig hilsen';
-                if (erKontaktsenter) {
-                    return `${mvh}\n[saksbehandler.fornavn]\nNAV Kontaktsenter`;
-                }
-                return `${mvh}\n[saksbehandler.navn]\n${saksbehanderEnhet}`;
-            }
-        },
-        {
-            type: 'internal',
-            regex: /^mvhks$/i,
-            replacement: () => {
-                return `Med vennlig hilsen\n[saksbehandler.fornavn]\nNAV Kontaktsenter`;
-            }
-        },
+        { type: 'internal', regex: /^hi,?$/i, replacement: () => 'Hi [bruker.fornavn], ' },
         { type: 'internal', regex: /^foet$/i, replacement: () => '[bruker.navn] ' },
+
+        { type: 'external', regex: /^mvh$/i, externalId: signaturReferanse },
+        { type: 'external', regex: /^mvhen$/i, externalId: signaturReferanse, locale: Locale.en_US },
+        { type: 'external', regex: /^mvhnn$/i, externalId: signaturReferanse, locale: Locale.nn_NO },
+        { type: 'external', regex: /^mvhks$/i, externalId: nksSignaturReferanse },
+
         {
             type: 'external',
             regex: /^vint$/i,
@@ -78,59 +64,6 @@ function useRules(): Regler {
             regex: /^vinten$/i,
             externalId: 'f31f5d09-4873-4f84-912d-0ff3636db1cd',
             locale: Locale.en_US
-        },
-        {
-            type: 'internal',
-            regex: /^aap$/i,
-            replacement: () => 'arbeidsavklaringspenger '
-        },
-        {
-            type: 'internal',
-            regex: /^sbt$/i,
-            replacement: () => 'saksbehandlingstid '
-        },
-        {
-            type: 'internal',
-            regex: /^nay$/i,
-            replacement: () => 'NAV Arbeid og ytelser '
-        },
-        {
-            type: 'internal',
-            regex: /^nfp$/i,
-            replacement: () => 'NAV Familie- og pensjonsytelser '
-        },
-        {
-            type: 'internal',
-            regex: /^aapen$/i,
-            replacement: () => 'work assessment allowance '
-        },
-        { type: 'internal', regex: /^hi,?$/i, replacement: () => 'Hi [bruker.fornavn], ' },
-        {
-            type: 'internal',
-            regex: /^mvhen$/i,
-            replacement: () => {
-                const bestregards = `Best regards`;
-                if (erKontaktsenter) {
-                    return `${bestregards}\n[saksbehandler.fornavn]\nNAV Call and Service Centre`;
-                }
-                return `${bestregards}\n[saksbehandler.navn]\n${saksbehanderEnhet}`;
-            }
-        },
-        {
-            type: 'internal',
-            regex: /^mvhnn$/i,
-            replacement: () => {
-                const mvh = 'Med vennleg helsing';
-                if (erKontaktsenter) {
-                    return `${mvh}\n[saksbehandler.fornavn]\nNAV Kontaktsenter`;
-                }
-                return `${mvh}\n[saksbehandler.navn]\n${saksbehanderEnhet}`;
-            }
-        },
-        {
-            type: 'internal',
-            regex: /^aapnn$/i,
-            replacement: () => 'arbeidsavklaringspengar '
         },
         {
             type: 'external',
@@ -167,6 +100,36 @@ function useRules(): Regler {
             type: 'external',
             regex: /^forskuddsøk$/i,
             externalId: '6c6a3604-d47a-4cb3-bd7b-a354e98de48c'
+        },
+        {
+            type: 'internal',
+            regex: /^aap$/i,
+            replacement: () => 'arbeidsavklaringspenger '
+        },
+        {
+            type: 'internal',
+            regex: /^aapen$/i,
+            replacement: () => 'work assessment allowance '
+        },
+        {
+            type: 'internal',
+            regex: /^aapnn$/i,
+            replacement: () => 'arbeidsavklaringspengar '
+        },
+        {
+            type: 'internal',
+            regex: /^sbt$/i,
+            replacement: () => 'saksbehandlingstid '
+        },
+        {
+            type: 'internal',
+            regex: /^nay$/i,
+            replacement: () => 'NAV Arbeid og ytelser '
+        },
+        {
+            type: 'internal',
+            regex: /^nfp$/i,
+            replacement: () => 'NAV Familie- og pensjonsytelser '
         },
         {
             type: 'internal',
@@ -296,16 +259,16 @@ const Style = styled.div`
     position: relative;
 `;
 
-function autoFullfør(autofullførData: AutofullforData, parsedText: string) {
+function autoFullfor(autofullforData: AutofullforData, parsedText: string) {
     const autofullforMap = byggAutofullforMap(
         Locale.nb_NO,
-        autofullførData.enhet,
-        autofullførData.person,
-        autofullførData.kontor,
-        autofullførData.saksbehandler
+        autofullforData.enhet,
+        autofullforData.person,
+        autofullforData.kontor,
+        autofullforData.saksbehandler
     );
-    const fullfortTekst = autofullfor(parsedText, autofullforMap);
-    return fullfortTekst;
+
+    return autofullfor(parsedText, autofullforMap);
 }
 
 const tellerTekstCls = (remaining: number) => classNames('teller-tekst', { 'teller-tekst--overflow': remaining < 0 });
@@ -329,7 +292,7 @@ function asChangeEvent<T>(event: React.KeyboardEvent<T>): React.ChangeEvent<T> {
 }
 
 function AutocompleteTextarea(props: TextareaProps) {
-    const autofullførData = useAutoFullforData();
+    const autofullforData = useAutoFullforData();
     const [feilmelding, settFeilmelding] = useState<string>();
     const standardtekster: FetchResult<StandardTeksterModels.Tekster> = useFetch<StandardTeksterModels.Tekster>(
         '/modiapersonoversikt-skrivestotte/skrivestotte'
@@ -383,7 +346,7 @@ function AutocompleteTextarea(props: TextareaProps) {
                         return acc;
                     }, word);
 
-                    const fullfortTekst = autofullførData ? autoFullfør(autofullførData, replacement) : replacement;
+                    const fullfortTekst = autofullforData ? autoFullfor(autofullforData, replacement) : replacement;
 
                     event.currentTarget.value = [value.substring(0, start), fullfortTekst, value.substring(end)].join(
                         ''
@@ -395,7 +358,7 @@ function AutocompleteTextarea(props: TextareaProps) {
                 }
             }
         },
-        [autofullførData, onChange, rules, standardtekster]
+        [autofullforData, onChange, rules, standardtekster]
     );
 
     return (

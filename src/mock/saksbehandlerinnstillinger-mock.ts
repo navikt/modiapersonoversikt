@@ -1,12 +1,15 @@
 import FetchMock from 'yet-another-fetch-mock';
 import { SaksbehandlerInnstillinger } from '../redux/innstillinger';
 
-let innstillinger: SaksbehandlerInnstillinger = {
+const localstoreageKey = 'modia-innstillinger-mock';
+const finnesILocalStorage = localStorage.getItem(localstoreageKey);
+const defaultInnstillinger: SaksbehandlerInnstillinger = {
     sistLagret: '2020-04-07T12:12:54',
-    innstillinger: {
-        defaultTagsStandardtekster: 'sto'
-    }
+    innstillinger: {}
 };
+
+let innstillinger: SaksbehandlerInnstillinger =
+    finnesILocalStorage !== null ? JSON.parse(finnesILocalStorage) : defaultInnstillinger;
 
 export function setupSaksbehandlerInnstillingerMock(mock: FetchMock) {
     mock.get(
@@ -20,6 +23,7 @@ export function setupSaksbehandlerInnstillingerMock(mock: FetchMock) {
             sistLagret: new Date().toISOString(),
             innstillinger: req.body
         };
+        window.localStorage.setItem(localstoreageKey, JSON.stringify(innstillinger));
         return res(ctx.status(200), ctx.json(innstillinger));
     });
 }

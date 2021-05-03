@@ -63,7 +63,7 @@ function InnstillingerModalForm(props: Props) {
 
     const onSubmitHandler = (nyeInnstillinger: Innstillinger): Promise<any> => {
         return props.actions
-            .oppdaterInnstillinger(nyeInnstillinger)
+            .oppdaterInnstillinger({ ...innstillinger.data.innstillinger, ...nyeInnstillinger })
             .then(oppdaterteInnstillinger => {
                 state.reinitialize(oppdaterteInnstillinger.innstillinger);
                 settInnsendingFeilet(false);
