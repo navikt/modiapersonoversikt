@@ -47,7 +47,7 @@ export default function EnkeltOppdateringslogg(props: Props) {
                 <Undertekst className="blokk-xxs">
                     {formatterDatoTidMedMaanedsnavn(props.enOppdateringslogg.dato)}
                 </Undertekst>
-                <Normaltekst>{props.enOppdateringslogg.ingress}</Normaltekst>
+                {props.enOppdateringslogg.ingress}
                 <Normaltekst tag="div">{props.enOppdateringslogg.beskrivelse}</Normaltekst>
             </StyledArticle>
         </article>
