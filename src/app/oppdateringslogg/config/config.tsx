@@ -17,10 +17,10 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
         dato: new Date('2020-09-25 08:00'),
         aktiv: true,
         ingress: (
-            <>
+            <Normaltekst>
                 Ved å trykke på bjelleikonet <img src={BjelleikonBilde} alt="bjelleikon" width="20em" /> vil du se hva
                 som er nytt i Modia personoversikt.
-            </>
+            </Normaltekst>
         ),
         beskrivelse: (
             <>
@@ -39,20 +39,15 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
         dato: new Date('2020-10-12 10:00'),
         aktiv: true,
         ingress: (
-            <>
-                <Normaltekst>
-                    Infomelding er melding til bruker sin innboks. Det er ikke mulig for bruker å svare på denne
-                    meldingen.
-                </Normaltekst>
-            </>
+            <Normaltekst>
+                Infomelding er melding til bruker sin innboks. Det er ikke mulig for bruker å svare på denne meldingen.
+            </Normaltekst>
         ),
         beskrivelse: (
-            <>
-                <Normaltekst>
-                    Bruker vil på lik linje med de andre meldingsformene i Modia personoversikt bli varslet om ny
-                    melding fra NAV på SMS, e-post og når man logger seg på Ditt NAV.
-                </Normaltekst>
-            </>
+            <Normaltekst>
+                Bruker vil på lik linje med de andre meldingsformene i Modia personoversikt bli varslet om ny melding
+                fra NAV på SMS, e-post og når man logger seg på Ditt NAV.
+            </Normaltekst>
         ),
         src: InfomeldingBilde
     },
@@ -61,20 +56,14 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
         tittel: 'Modia personoversikt har fått et nytt tema Helse',
         dato: new Date('2020-11-13 08:00'),
         aktiv: true,
-        ingress: (
-            <>
-                <Normaltekst>Tema Helse er tilsvarende tema Syk i skriv til oss på ditt NAV.</Normaltekst>
-            </>
-        ),
+        ingress: <Normaltekst>Tema Helse er tilsvarende tema Syk i skriv til oss på ditt NAV.</Normaltekst>,
         beskrivelse: (
-            <>
-                <Normaltekst>
-                    Når bruker sender melding til NAV vil meldinger fra tema Syk på Ditt NAV havne under tema Helse i
-                    Modia Personoversikt. Nå kan man velge temagruppe Helse for nye meldinger relatert til helse. Dette
-                    gjelder blant annet meldinger relatert til sykemelding, AAP, grunn- og hjelpestønad,
-                    yrkesskade/menerstatning etc.
-                </Normaltekst>
-            </>
+            <Normaltekst>
+                Når bruker sender melding til NAV vil meldinger fra tema Syk på Ditt NAV havne under tema Helse i Modia
+                Personoversikt. Nå kan man velge temagruppe Helse for nye meldinger relatert til helse. Dette gjelder
+                blant annet meldinger relatert til sykemelding, AAP, grunn- og hjelpestønad, yrkesskade/menerstatning
+                etc.
+            </Normaltekst>
         ),
         src: TemaHelseBilde
     },
@@ -83,50 +72,38 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
         tittel: 'Nå kan du søke på Utenlandsk ID i Modia Personoversikt',
         dato: new Date('2020-11-20 11:00'),
         aktiv: true,
-        ingress: (
-            <>
-                <Normaltekst>Nå kan det gjøres søk på Utenlandsk ID i Avansert Søk.</Normaltekst>
-            </>
-        ),
+        ingress: <Normaltekst>Nå kan det gjøres søk på Utenlandsk ID i Avansert Søk.</Normaltekst>,
         beskrivelse: (
-            <>
-                <Normaltekst>
-                    Søk på Utenlandsk ID kan ikke kombineres med andre søk. Det er ett frittstående søkefelt. Du finner
-                    funksjonaliteten under <img src={AvansertSokKnappBilde} alt="Avansert Søk" width="20em" />
-                </Normaltekst>
-            </>
+            <Normaltekst>
+                Søk på Utenlandsk ID kan ikke kombineres med andre søk. Det er ett frittstående søkefelt. Du finner
+                funksjonaliteten under <img src={AvansertSokKnappBilde} alt="Avansert Søk" width="20em" />
+            </Normaltekst>
         ),
         src: UtenlandskIDBilde
     },
     {
-        id: 4,
+        id: 5,
         tittel: 'Visning av foreldreansvar',
         dato: new Date('2021-04-08 13:00'),
         aktiv: true,
-        ingress: (
-            <>
-                <Normaltekst>Nå vises foreldreansvar i visittkortet</Normaltekst>
-            </>
-        ),
+        ingress: <Normaltekst>Nå vises foreldreansvar i visittkortet</Normaltekst>,
         beskrivelse: (
-            <>
-                <Normaltekst>
-                    Foreldreansvar handler om hvem som har ansvar for å ta seg av barnet og gi god omsorg, og om hvem
-                    som har rett og plikt til å ta store personlige avgjørelser for barnet. Foreldreansvar er ikke
-                    direkte knyttet til barnets bosted.
-                    <a
-                        target="_blank"
-                        rel="noreferrer"
-                        href={
-                            'https://navno.sharepoint.com/sites/enhet-kontaktsenter/SitePages/Familie-Felles-Barneloven.aspx'
-                        }
-                    >
-                        {' '}
-                        Les mer om Foreldreansvar på Navet.
-                    </a>{' '}
-                    Foreldreansvar vil kun bli vist på barnet og ikke foreldre.
-                </Normaltekst>
-            </>
+            <Normaltekst>
+                Foreldreansvar handler om hvem som har ansvar for å ta seg av barnet og gi god omsorg, og om hvem som
+                har rett og plikt til å ta store personlige avgjørelser for barnet. Foreldreansvar er ikke direkte
+                knyttet til barnets bosted.
+                <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={
+                        'https://navno.sharepoint.com/sites/enhet-kontaktsenter/SitePages/Familie-Felles-Barneloven.aspx'
+                    }
+                >
+                    {' '}
+                    Les mer om Foreldreansvar på Navet.
+                </a>{' '}
+                Foreldreansvar vil kun bli vist på barnet og ikke foreldre.
+            </Normaltekst>
         ),
         src: ForeldreansvarBilde
     }
