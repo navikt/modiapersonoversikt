@@ -106,5 +106,20 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
             </Normaltekst>
         ),
         src: ForeldreansvarBilde
+    },
+    {
+        id: 6,
+        tittel: 'Oppdatert oppdateringslogg-varslingen',
+        dato: new Date('2021-05-03 15:00'),
+        aktiv: true,
+        ingress: <Normaltekst>Oppdateringsloggen har fått fikset problemet med varsling.</Normaltekst>,
+        beskrivelse: (
+            <Normaltekst>
+                Det var problemer med at det kom opp varsel om nye oppdateringer når det ikke var tilfellet. Dette er nå
+                løst. Hvis noen likevel opplever at dette skjer, så lag gjerne en sak i Porten slik at vi får melding om
+                det.
+            </Normaltekst>
+        ),
+        src: OppdateringsloggKnappBilde
     }
 ];
