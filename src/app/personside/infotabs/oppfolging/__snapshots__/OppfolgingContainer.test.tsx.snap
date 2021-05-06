@@ -89,6 +89,7 @@ exports[`Viser oppfølgingcontainer med alt innhold 1`] = `
   top: 0;
   border-bottom: solid 0.0625rem #b7b1a9;
   z-index: 10;
+  background-color: white;
 }
 
 .c9 {
