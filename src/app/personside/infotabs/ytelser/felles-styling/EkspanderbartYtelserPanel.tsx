@@ -38,6 +38,7 @@ const CustomStyling = styled(Panel)`
         top: 0;
         border-bottom: ${theme.border.skilleSvak};
         z-index: 10;
+        background-color: white;
     }
 `;
 
