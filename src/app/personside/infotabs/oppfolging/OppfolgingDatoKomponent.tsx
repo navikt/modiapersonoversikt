@@ -145,6 +145,7 @@ function DatoInputs(props: Props) {
                         });
                     }
                 }}
+                setFocusOnDateWhenOpened={true}
             />
             <label htmlFor="oppfolging-datovelger-til">Til:</label>
             <Datepicker
@@ -165,6 +166,7 @@ function DatoInputs(props: Props) {
                         });
                     }
                 }}
+                setFocusOnDateWhenOpened={true}
             />
             {periodeFeilmelding}
             <Knapp onClick={onClickHandler} spinner={oppfolgingLastes} htmlType="button">
