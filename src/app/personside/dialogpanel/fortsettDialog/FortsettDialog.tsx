@@ -76,6 +76,7 @@ function FortsettDialog(props: Props) {
 
     const melding = eldsteMelding(props.traad);
     const erSamtalereferat = erMeldingstypeSamtalereferat(melding.meldingstype);
+
     return (
         <FormStyle onSubmit={handleSubmit}>
             <TidligereMeldinger traad={props.traad} />

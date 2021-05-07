@@ -18,6 +18,7 @@ interface Props {
 
 function VelgDialogType(props: Props) {
     const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
+
     function lagRadio(label: string, type: FortsettDialogType) {
         return (
             <Radio
@@ -55,7 +56,7 @@ function VelgDialogType(props: Props) {
         );
     }
 
-    if (props.erTilknyttetOppgave) {
+    if (props.erTilknyttetOppgave && !props.erSamtalereferat) {
         return (
             <VelgDialogtypeStyle>
                 {svar}
