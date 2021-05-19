@@ -25,9 +25,9 @@ describe('fordelSaker', () => {
         expect(fordelSaker(saker)[SakKategori.GEN].length).toBe(generelleSaker.length);
     });
 
-    it('skal fjerne generell sak om fagsak eksisterer', () => {
+    it('skal ikke fjerne generell sak om fagsak eksisterer', () => {
         const saker = [...generelleSaker, sak('FAG', 'AAP')];
         expect(fordelSaker(saker)[SakKategori.FAG].length).toBe(1);
-        expect(fordelSaker(saker)[SakKategori.GEN].length).toBe(generelleSaker.length - 1);
+        expect(fordelSaker(saker)[SakKategori.GEN].length).toBe(generelleSaker.length);
     });
 });
