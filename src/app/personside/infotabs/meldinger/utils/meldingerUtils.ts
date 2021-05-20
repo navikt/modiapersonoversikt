@@ -8,9 +8,7 @@ import { Temagruppe, temagruppeTekst, TemaPlukkbare, TemaKommunaleTjenester } fr
 export const KanBesvaresMeldingstyper = [
     Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
     Meldingstype.SPORSMAL_SKRIFTLIG,
-    Meldingstype.INFOMELDING_MODIA_UTGAAENDE,
-    Meldingstype.SAMTALEREFERAT_TELEFON,
-    Meldingstype.SAMTALEREFERAT_OPPMOTE
+    Meldingstype.INFOMELDING_MODIA_UTGAAENDE
 ];
 
 export function nyesteMelding(traad: Traad) {
