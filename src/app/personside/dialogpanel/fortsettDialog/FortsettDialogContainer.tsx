@@ -42,7 +42,9 @@ export type FortsettDialogType =
     | Meldingstype.DELVIS_SVAR_SKRIFTLIG
     | Meldingstype.SVAR_OPPMOTE
     | Meldingstype.SVAR_TELEFON
-    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
+    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE
+    | Meldingstype.SAMTALEREFERAT_OPPMOTE
+    | Meldingstype.SAMTALEREFERAT_TELEFON;
 
 interface Props {
     traad: Traad;
