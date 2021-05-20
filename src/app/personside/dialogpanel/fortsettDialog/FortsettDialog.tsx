@@ -16,12 +16,7 @@ import BrukerKanSvare from './BrukerKanSvare';
 import styled from 'styled-components/macro';
 import { FortsettDialogValidator } from './validatorer';
 import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';
-import {
-    eldsteMelding,
-    erDelvisBesvart,
-    erEldsteMeldingJournalfort,
-    erMeldingstypeSamtalereferat
-} from '../../infotabs/meldinger/utils/meldingerUtils';
+import { erDelvisBesvart, erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { temagruppeTekst, TemaPlukkbare } from '../../../../models/temagrupper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 
@@ -74,9 +69,6 @@ function FortsettDialog(props: Props) {
     const delMedBrukerTekst = props.erTilknyttetOppgave ? `Del med ${navn} og avslutt oppgave` : `Del med ${navn}`;
     const erOksosTraad = props.traad.meldinger.some(it => it.temagruppe === 'OKSOS');
 
-    const melding = eldsteMelding(props.traad);
-    const erSamtalereferat = erMeldingstypeSamtalereferat(melding.meldingstype);
-
     return (
         <FormStyle onSubmit={handleSubmit}>
             <TidligereMeldinger traad={props.traad} />
@@ -98,7 +90,6 @@ function FortsettDialog(props: Props) {
                 erSTOOppgave={props.erSTOOppgave}
                 erDelvisBesvart={erDelvisBesvart(props.traad)}
                 erOksosTraad={erOksosTraad}
-                erSamtalereferat={erSamtalereferat}
             />
             <Margin>
                 <UnmountClosed isOpened={girVarselKanIkkeSvare}>
