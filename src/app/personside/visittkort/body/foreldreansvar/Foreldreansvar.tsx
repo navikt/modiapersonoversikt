@@ -11,6 +11,9 @@ function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {
             <Normaltekst>
                 {props.foreldreansvar.ansvarlig?.sammensatt ?? 'Navn ikke tilgjengelig'}({props.foreldreansvar.ansvar})
             </Normaltekst>
+            <Normaltekst>
+                Gjelder for: {props.foreldreansvar.ansvarssubjekt?.sammensatt ?? 'Navn ikke tilgjengelig'}
+            </Normaltekst>
         </VisittkortElement>
     );
 }

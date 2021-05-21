@@ -1071,6 +1071,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           felles
           )
         </p>
+        <p
+          className="typo-normal"
+        >
+          Gjelder for: 
+          Pål Askeladden
+        </p>
       </div>
       <div
         className="c4"
@@ -1087,6 +1093,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           (
           far
           )
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Gjelder for: 
+          Navn ikke tilgjengelig
         </p>
       </div>
     </section>

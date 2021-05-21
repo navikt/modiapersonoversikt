@@ -242,6 +242,12 @@ export const aremark: Person = {
                 etternavn: 'Normann',
                 mellomnavn: '',
                 sammensatt: 'Ola Normann'
+            },
+            ansvarssubjekt: {
+                fornavn: 'Pål',
+                etternavn: 'Askeladden',
+                mellomnavn: '',
+                sammensatt: 'Pål Askeladden'
             }
         },
         {
@@ -251,7 +257,8 @@ export const aremark: Person = {
                 etternavn: 'Pettersen',
                 mellomnavn: '',
                 sammensatt: 'Petter Pettersen'
-            }
+            },
+            ansvarssubjekt: undefined
         }
     ],
     deltBosted: [
