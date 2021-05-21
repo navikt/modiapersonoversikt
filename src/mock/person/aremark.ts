@@ -258,12 +258,7 @@ export const aremark: Person = {
                 mellomnavn: '',
                 sammensatt: 'Petter Pettersen'
             },
-            ansvarssubjekt: {
-                fornavn: 'Per',
-                etternavn: 'Askeladden',
-                mellomnavn: '',
-                sammensatt: 'Per Askeladden'
-            }
+            ansvarssubjekt: undefined
         }
     ],
     deltBosted: [
