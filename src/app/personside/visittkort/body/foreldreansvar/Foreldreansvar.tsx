@@ -6,12 +6,16 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import Infotegn from '../../../../../svg/Info';
 
 function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {
+    const ansvarssubjekt =
+        props.foreldreansvar.ansvarssubjekt.sammensatt.length > 0
+            ? props.foreldreansvar.ansvarssubjekt.sammensatt
+            : 'Navn ikke tilgjengelig';
     return (
         <VisittkortElement>
             <Normaltekst>
                 {props.foreldreansvar.ansvarlig?.sammensatt ?? 'Navn ikke tilgjengelig'}({props.foreldreansvar.ansvar})
             </Normaltekst>
-            <Normaltekst>Gjelder for: {props.foreldreansvar.ansvarssubjekt.sammensatt}</Normaltekst>
+            <Normaltekst>Gjelder for: {ansvarssubjekt}</Normaltekst>
         </VisittkortElement>
     );
 }
