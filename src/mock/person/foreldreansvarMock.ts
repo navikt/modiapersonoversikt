@@ -20,7 +20,8 @@ export function mockVergemal(fødselsnummer: string) {
 function getForeldreansvar(): Foreldreansvar {
     return {
         ansvar: getTilfeldigAnsvar(),
-        ansvarlig: mockPersonnavn(faker)
+        ansvarlig: mockPersonnavn(faker),
+        ansvarssubjekt: mockPersonnavn(faker)
     };
 }
 
@@ -32,6 +33,12 @@ function getAremarkForeldreansvar(): Foreldreansvar {
             etternavn: 'Testesen',
             mellomnavn: '',
             sammensatt: 'Test Testesen'
+        },
+        ansvarssubjekt: {
+            fornavn: 'Barn',
+            etternavn: 'Barnesen',
+            mellomnavn: '',
+            sammensatt: 'Barn Barnesen'
         }
     };
 }
