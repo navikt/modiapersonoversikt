@@ -67,6 +67,21 @@ const Kommaliste = styled.ul`
     }
 `;
 
+const GraattDefinisjonsListe = styled.dl`
+    ${theme.graattPanel}
+    dt {
+        float: left;
+        clear: left;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        width: 7rem;
+    }
+    dd {
+        margin-bottom: 0.5rem;
+        margin-left: 7.125rem;
+    }
+`;
+
 function getVarselTekst(varsel: VarselModell) {
     const varselTekst = Varseltype[varsel.varselType];
 
@@ -80,13 +95,18 @@ function getVarselTekst(varsel: VarselModell) {
 }
 
 function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
+    const open = useAppState(state => state.varsler.aapneVarsler).includes(varsel);
+    const dispatch = useDispatch();
+    const setOpen = (open: boolean) => dispatch(toggleVisVarsel(varsel, open));
+    const toggleOpen = () => setOpen(!open);
+
     const tittelId = useRef(guid());
     const aktiv = varsel.aktiv ? '' : '(Inaktiv)';
     return (
         <li>
             <StyledPanel>
                 <article aria-labelledby={tittelId.current}>
-                    <HeaderStyle>
+                    <HeaderStyle onClick={toggleOpen}>
                         <Normaltekst>{formaterDato(varsel.sistOppdatert)}</Normaltekst>
                         <Element id={tittelId.current} tag="h4">
                             {varsel.tekst}
@@ -94,7 +114,25 @@ function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
                         <Kommaliste aria-label="Kommunikasjonskanaler">
                             <Normaltekst tag="li">NOTIFIKASJON {aktiv}</Normaltekst>
                         </Kommaliste>
+                        <VisMerChevron
+                            focusOnRelativeParent={true}
+                            onClick={toggleOpen}
+                            open={open}
+                            title={(open ? 'Skjul' : 'Vis') + ' mer informasjon om notifikasjon'}
+                        />
                     </HeaderStyle>
+                    <UnmountClosed isOpened={open}>
+                        <GraattDefinisjonsListe>
+                            <dt>Produsert av:</dt>
+                            <dd>{varsel.produsent}</dd>
+
+                            <dt>Tekst:</dt>
+                            <dd>{varsel.tekst}</dd>
+
+                            <dt>Link:</dt>
+                            <dd>{varsel.link}</dd>
+                        </GraattDefinisjonsListe>
+                    </UnmountClosed>
                 </article>
             </StyledPanel>
         </li>
