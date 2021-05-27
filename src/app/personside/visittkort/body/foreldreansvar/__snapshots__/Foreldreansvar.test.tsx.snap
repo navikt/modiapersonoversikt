@@ -94,8 +94,7 @@ exports[`viser foreldreansvar 1`] = `
     <p
       className="typo-normal"
     >
-      Gjelder for: 
-      Pål Askeladden
+      Gjelder for: Pål Askeladden
     </p>
   </div>
   <div
@@ -116,10 +115,7 @@ exports[`viser foreldreansvar 1`] = `
     </p>
     <p
       className="typo-normal"
-    >
-      Gjelder for: 
-      Navn ikke tilgjengelig
-    </p>
+    />
   </div>
 </section>
 `;
