@@ -1,8 +1,8 @@
 import { Action } from 'redux';
-import { Varsel } from '../../models/varsel';
+import { UnifiedVarsel } from '../../models/varsel';
 
 export interface VarslerState {
-    aapneVarsler: Varsel[];
+    aapneVarsler: UnifiedVarsel[];
 }
 
 const initialState: VarslerState = {
@@ -15,11 +15,11 @@ enum actionKeys {
 
 interface ToggleVisAction extends Action {
     type: actionKeys.TOGGLE_VIS_VARSEL;
-    varsel: Varsel;
+    varsel: UnifiedVarsel;
     vis: boolean;
 }
 
-export function toggleVisVarsel(varsel: Varsel, vis: boolean): ToggleVisAction {
+export function toggleVisVarsel(varsel: UnifiedVarsel, vis: boolean): ToggleVisAction {
     return {
         type: actionKeys.TOGGLE_VIS_VARSEL,
         varsel: varsel,

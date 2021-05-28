@@ -28,7 +28,7 @@ function genererDittNavEventVarsel(fnr: string): DittNavEvent {
         grupperingsId: faker.random.uuid(),
         eventId: faker.random.uuid(),
         eventTidspunkt: dayjs(tidspunkt).format(backendDatoformat),
-        produsent: faker.random.alphaNumeric(),
+        produsent: faker.random.alphaNumeric(10),
         sikkerhetsnivaa: navfaker.random.arrayElement([3, 4]),
         sistOppdatert: dayjs(tidspunkt).format(backendDatoformat),
         tekst: faker.lorem.sentence(5 + faker.random.number(5)),
