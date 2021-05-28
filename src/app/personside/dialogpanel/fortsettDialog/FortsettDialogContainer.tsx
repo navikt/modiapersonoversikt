@@ -155,7 +155,8 @@ function FortsettDialogContainer(props: Props) {
         if (
             FortsettDialogValidator.erGyldigSvarSkriftlig(state) ||
             FortsettDialogValidator.erGyldigSvarOppmote(state) ||
-            FortsettDialogValidator.erGyldigSvarTelefon(state)
+            FortsettDialogValidator.erGyldigSvarTelefon(state) ||
+            FortsettDialogValidator.erGyldigSamtalereferat(state)
         ) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
             const request: ForsettDialogRequest = {
