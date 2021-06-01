@@ -10,6 +10,8 @@ export async function post(uri: string, body: object | string, loggLocation: str
     return handleResponse(response, loggLocation);
 }
 
+export class RespectConflictError extends Error {}
+
 export async function postWithConflictVerification(
     uri: string,
     body: object | string,
@@ -24,6 +26,8 @@ export async function postWithConflictVerification(
         if (await confirm(message)) {
             config.headers['Ignore-Conflict'] = 'true';
             response = await fetch(uri, config);
+        } else {
+            throw new RespectConflictError();
         }
     }
     return handleResponse(response, loggLocation);
