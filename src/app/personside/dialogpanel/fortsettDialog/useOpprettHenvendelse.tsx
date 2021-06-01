@@ -36,7 +36,8 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
         postWithConflictVerification(
             `${apiBaseUri}/dialog/${fnr}/fortsett/opprett`,
             opprettHenvendelseRequest,
-            'Opprett-henvendelse'
+            'Opprett-henvendelse',
+            'Oppgaven tilknyttet denne meldingen er allerede tilordnet en saksbehandler. Vil du overstyre dette?'
         )
             .then(data => setResponse(data as OpprettHenvendelseResponse))
             .then(() => dispatch(reloadTildelteOppgaver))
