@@ -6,10 +6,11 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { OpprettHenvendelseRequest, OpprettHenvendelseResponse, Traad } from '../../../../models/meldinger/meldinger';
 import { useDispatch } from 'react-redux';
 import { apiBaseUri } from '../../../../api/config';
-import { post } from '../../../../api/api';
+import { postWithConflictVerification, RespectConflictError } from '../../../../api/api';
 import { useState } from 'react';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { selectValgtEnhet } from '../../../../redux/session/session';
+import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 
 interface NotFinishedOpprettHenvendelse {
     success: false;
@@ -33,12 +34,21 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
 
     useOnMount(function getBehandlingsId() {
         const opprettHenvendelseRequest: OpprettHenvendelseRequest = { enhet: valgtEnhet, traadId: traad.traadId };
-        post(`${apiBaseUri}/dialog/${fnr}/fortsett/opprett`, opprettHenvendelseRequest, 'Opprett-henvendelse')
+        postWithConflictVerification(
+            `${apiBaseUri}/dialog/${fnr}/fortsett/opprett`,
+            opprettHenvendelseRequest,
+            'Opprett-henvendelse',
+            'Oppgaven tilknyttet denne meldingen er allerede tilordnet en saksbehandler. Vil du overstyre dette?'
+        )
             .then(data => setResponse(data as OpprettHenvendelseResponse))
             .then(() => dispatch(reloadTildelteOppgaver))
             .catch(e => {
-                setError(true);
-                loggError(e, 'Kunne ikke opprette henvendelse for traadId: ' + traad.traadId, {});
+                if (e instanceof RespectConflictError) {
+                    dispatch(setIngenValgtTraadDialogpanel());
+                } else {
+                    setError(true);
+                    loggError(e, 'Kunne ikke opprette henvendelse for traadId: ' + traad.traadId, {});
+                }
             });
     });
 
