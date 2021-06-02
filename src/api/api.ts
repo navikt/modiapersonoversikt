@@ -23,7 +23,7 @@ export async function postWithConflictVerification(
     let response = await fetch(uri, config);
     if (response.status === CONFLICT) {
         const message = await readConflictMessage(response, conflictMessage);
-        if (await confirm(message)) {
+        if (await confirm({ icon: 'warning', header: 'Oppgave tilordning', message })) {
             config.headers['Ignore-Conflict'] = 'true';
             response = await fetch(uri, config);
         } else {
