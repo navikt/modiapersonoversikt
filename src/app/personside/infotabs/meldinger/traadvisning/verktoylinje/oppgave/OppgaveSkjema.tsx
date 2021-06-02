@@ -26,6 +26,9 @@ import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 import useForeslatteEnheter from './useForeslåtteEnheter';
 import { useNormalPrioritet } from './oppgave-utils';
 import { FeilmeldingOppsummering } from '../../../../../../../components/FeilmeldingOppsummering';
+import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
+import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
+import IfFeatureToggleOn from '../../../../../../../components/featureToggle/IfFeatureToggleOn';
 
 const AlertStyling = styled.div`
     > * {
@@ -58,6 +61,11 @@ const KnappStyle = styled.div`
     }
 `;
 
+const SettTilEgenOppgaveListeKnapp = styled(LenkeKnapp)`
+    display: inline-block;
+    float: right;
+`;
+
 function populerCacheMedTomAnsattliste() {
     cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
 }
@@ -88,6 +96,7 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
+    const saksbehandlerIdent = useRestResource(state => state.innloggetSaksbehandler);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const state = useFormstate(initialValues);
 
@@ -152,6 +161,16 @@ function OppgaveSkjema(props: OppgaveProps) {
             </AlertStyling>
         );
     }
+    const settTilSaksbehandlerOppgaveListe = async () => {
+        const enhet = hasData(enhetliste) ? enhetliste.data.find(e => e.enhetId === saksbehandlersEnhet) : undefined;
+        const enhetValue = enhet ? `${enhet.enhetId} ${enhet.enhetNavn}` : '';
+
+        const ansatt = saksbehandlerIdent.data;
+        const ansattValue = ansatt ? `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})` : '';
+
+        state.fields.valgtEnhet.setValue(enhetValue);
+        state.fields.valgtAnsatt.setValue(ansattValue);
+    };
 
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
     return (
@@ -179,7 +198,21 @@ function OppgaveSkjema(props: OppgaveProps) {
                     <OppgavetypeOptions valgtGsakTema={valgtTema} />
                 </Select>
                 <AutoComplete
-                    label="Velg enhet"
+                    label={
+                        <>
+                            <span>Velg enhet</span>
+                            {hasData(enhetliste) && saksbehandlerIdent.data !== undefined && (
+                                <IfFeatureToggleOn toggleID={FeatureToggles.SettTilEgenOppgaveliste}>
+                                    <SettTilEgenOppgaveListeKnapp
+                                        type="button"
+                                        onClick={settTilSaksbehandlerOppgaveListe}
+                                    >
+                                        Sett til min oppgaveliste
+                                    </SettTilEgenOppgaveListeKnapp>
+                                </IfFeatureToggleOn>
+                            )}
+                        </>
+                    }
                     suggestions={
                         hasData(enhetliste) ? enhetliste.data.map(enhet => `${enhet.enhetId} ${enhet.enhetNavn}`) : []
                     }

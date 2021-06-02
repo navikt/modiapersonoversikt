@@ -973,7 +973,9 @@ exports[`Viser traad med verktøylinje 1`] = `
                   className="skjemaelement__label"
                   htmlFor="downshift-0-input"
                 >
-                  Velg enhet
+                  <span>
+                    Velg enhet
+                  </span>
                 </label>
                 <input
                   aria-activedescendant={null}
