@@ -1,31 +1,59 @@
-import React, { createElement, useState } from 'react';
+import React, { createElement, FormEvent, useState } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-import NavFrontendModal from 'nav-frontend-modal';
-import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
-import { focusOnFirstFocusable } from '../../utils/hooks/use-focus-on-first-focusable';
+import RawModal from 'nav-frontend-modal';
+import KnappBase from 'nav-frontend-knapper';
 import { Input } from 'nav-frontend-skjema';
+import { ReactComponent as OkIkon } from 'nav-frontend-ikoner-assets/assets/ok-sirkel-fyll.svg';
+import { ReactComponent as AdvarselIkon } from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll.svg';
+import { ReactComponent as ErrorIkon } from 'nav-frontend-ikoner-assets/assets/feil-sirkel-fyll.svg';
+import { ReactComponent as HelpIkon } from 'nav-frontend-ikoner-assets/assets/help-circle_hover.svg';
+import { ReactComponent as InfoIkon } from 'nav-frontend-ikoner-assets/assets/info-sirkel-fyll.svg';
 import styled from 'styled-components/macro';
+import { focusOnFirstFocusable } from '../../utils/hooks/use-focus-on-first-focusable';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 
-type PopupComponentProps<RESULT, PROPS> = { close(result: RESULT): void } & PROPS;
-type PopupComponent<RESULT, PROPS> = React.ComponentType<PopupComponentProps<RESULT, PROPS>>;
+type IconChoice = 'none' | 'ok' | 'warning' | 'error' | 'help' | 'info';
+type CommonPopupComponentProps = {
+    icon: IconChoice;
+    header: string;
+    message: string;
+};
+type PopupComponentProps<RESULT, PROPS extends CommonPopupComponentProps> = { close(result: RESULT): void } & PROPS;
+type PopupComponent<RESULT, PROPS extends CommonPopupComponentProps> = React.ComponentType<
+    PopupComponentProps<RESULT, PROPS>
+>;
 
-const Modal = styled(NavFrontendModal)`
-    text-align: right;
-    width: 30rem;
-
-    button {
-        width: 4.5rem;
-    }
-    button + button {
-        margin-left: 0.5rem;
-    }
-    p {
-        margin-top: 0;
-        text-align: left;
-    }
+const Modal = styled(RawModal)`
+    text-align: center;
+    max-width: 30rem;
+    width: 100%;
+`;
+const Knapp = styled(KnappBase)`
+    display: block;
+    width: 100%;
 `;
 
-function renderPopup<RESULT, PROPS>(componentType: PopupComponent<RESULT, PROPS>, props: PROPS): Promise<RESULT> {
+function getIcon(choice: IconChoice): React.ReactNode {
+    switch (choice) {
+        case 'ok':
+            return <OkIkon width="2rem" className="blokk-xs" />;
+        case 'warning':
+            return <AdvarselIkon width="2rem" className="blokk-xs" />;
+        case 'error':
+            return <ErrorIkon width="2rem" className="blokk-xs" />;
+        case 'help':
+            return <HelpIkon width="2rem" className="blokk-xs" />;
+        case 'info':
+            return <InfoIkon width="2rem" className="blokk-xs" />;
+        default:
+            return null;
+    }
+}
+
+function renderPopup<RESULT, PROPS extends CommonPopupComponentProps>(
+    componentType: PopupComponent<RESULT, PROPS>,
+    props: PROPS
+): Promise<RESULT> {
     return new Promise(resolve => {
         const tmp = document.createElement('div');
         document.body.appendChild(tmp);
@@ -41,7 +69,7 @@ function renderPopup<RESULT, PROPS>(componentType: PopupComponent<RESULT, PROPS>
     });
 }
 
-type AlertProps = { message: string };
+type AlertProps = CommonPopupComponentProps;
 
 function Alert(props: PopupComponentProps<void, AlertProps>) {
     return (
@@ -52,13 +80,19 @@ function Alert(props: PopupComponentProps<void, AlertProps>) {
             isOpen={true}
             contentRef={el => focusOnFirstFocusable(el)}
         >
-            <p className="blokk-s">{props.message}</p>
-            <Hovedknapp onClick={() => props.close()}>OK</Hovedknapp>
+            {getIcon(props.icon)}
+            <Systemtittel tag="h1" className="blokk-xxxs">
+                {props.header}
+            </Systemtittel>
+            <Normaltekst className="blokk-m">{props.message}</Normaltekst>
+            <Knapp type="hoved" onClick={() => props.close()}>
+                OK
+            </Knapp>
         </Modal>
     );
 }
 
-type ConfirmProps = { message: string };
+type ConfirmProps = CommonPopupComponentProps;
 
 function Confirm(props: PopupComponentProps<boolean, ConfirmProps>) {
     return (
@@ -69,17 +103,30 @@ function Confirm(props: PopupComponentProps<boolean, ConfirmProps>) {
             isOpen={true}
             contentRef={el => focusOnFirstFocusable(el)}
         >
-            <p className="blokk-s">{props.message}</p>
-            <Hovedknapp onClick={() => props.close(true)}>OK</Hovedknapp>
-            <Flatknapp onClick={() => props.close(false)}>Avbryt</Flatknapp>
+            {getIcon(props.icon)}
+            <Systemtittel tag="h1" className="blokk-xxxs">
+                {props.header}
+            </Systemtittel>
+            <Normaltekst className="blokk-m">{props.message}</Normaltekst>
+            <Knapp type="hoved" className="blokk-xxxs" onClick={() => props.close(true)}>
+                OK
+            </Knapp>
+            <Knapp type="flat" onClick={() => props.close(false)}>
+                Avbryt
+            </Knapp>
         </Modal>
     );
 }
 
-type PromptProps = { message: string; secret: boolean };
+type PromptProps = CommonPopupComponentProps & { secret: boolean };
 
 function Prompt(props: PopupComponentProps<string | null, PromptProps>) {
     const [value, setValue] = useState('');
+    const submitHandler = (event: FormEvent) => {
+        event.preventDefault();
+        props.close(value);
+    };
+
     return (
         <Modal
             contentLabel="Input popup"
@@ -88,35 +135,39 @@ function Prompt(props: PopupComponentProps<string | null, PromptProps>) {
             isOpen={true}
             contentRef={el => focusOnFirstFocusable(el)}
         >
-            <form>
-                <p className="blokk-xxs">{props.message}</p>
+            <form onSubmit={submitHandler}>
+                {getIcon(props.icon)}
+                <Systemtittel tag="h1" className="blokk-xxxs">
+                    {props.header}
+                </Systemtittel>
+                <Normaltekst className="blokk-m">{props.message}</Normaltekst>
                 <Input
                     type={props.secret ? 'password' : 'text'}
                     className="blokk-s"
                     value={value}
                     onChange={event => setValue(event.target.value)}
                 />
-                <Hovedknapp onClick={() => props.close(value)}>OK</Hovedknapp>
-                <Flatknapp htmlType="button" onClick={() => props.close(null)}>
+                <Knapp type="hoved">OK</Knapp>
+                <Knapp type="flat" htmlType="button" onClick={() => props.close(null)}>
                     Avbryt
-                </Flatknapp>
+                </Knapp>
             </form>
         </Modal>
     );
 }
 
-export function alert(message: string): Promise<void> {
-    return renderPopup(Alert, { message });
+export function alert(props: CommonPopupComponentProps): Promise<void> {
+    return renderPopup(Alert, props);
 }
 
-export function confirm(message: string): Promise<boolean> {
-    return renderPopup(Confirm, { message });
+export function confirm(props: CommonPopupComponentProps): Promise<boolean> {
+    return renderPopup(Confirm, props);
 }
 
-export function prompt(message: string): Promise<string | null> {
-    return renderPopup(Prompt, { message, secret: false });
+export function prompt(props: CommonPopupComponentProps): Promise<string | null> {
+    return renderPopup(Prompt, { ...props, secret: false });
 }
 
-export function promptSecret(message: string): Promise<string | null> {
-    return renderPopup(Prompt, { message, secret: true });
+export function promptSecret(props: CommonPopupComponentProps): Promise<string | null> {
+    return renderPopup(Prompt, { ...props, secret: true });
 }

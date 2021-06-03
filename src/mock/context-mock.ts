@@ -78,9 +78,9 @@ export function setupWsControlAndMock(mock: FetchMock) {
 
     const me = {
         ident: 'Z999999',
-        navn: 'Fornavn Ettersen',
-        fornavn: 'Fornavn',
-        etternavn: 'Ettersen',
+        navn: 'Kari Etternavn',
+        fornavn: 'Kari',
+        etternavn: 'Etternavn',
         enheter: enheter
     };
 
