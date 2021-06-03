@@ -43,7 +43,7 @@ export function getForeslattEnhet(): Enhet[] {
 export function getMockEnheter(): Enhet[] {
     return [
         {
-            enhetId: '1234',
+            enhetId: '0118',
             enhetNavn: 'NAV Aremark',
             status: 'Aktiv'
         },
@@ -63,7 +63,7 @@ export function getMockEnheter(): Enhet[] {
 export function getMockAnsatte(enhetId: string): Ansatt[] {
     faker.seed(Number(enhetId));
     navfaker.seed(enhetId);
-    return fyllRandomListe(() => mockAnsatt(), 10);
+    return [{ ident: 'Z999999', fornavn: 'Kari', etternavn: 'Etternavn' }, ...fyllRandomListe(() => mockAnsatt(), 10)];
 }
 
 function mockAnsatt(): Ansatt {

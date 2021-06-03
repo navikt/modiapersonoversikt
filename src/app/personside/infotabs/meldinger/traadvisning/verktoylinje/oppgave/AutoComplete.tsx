@@ -63,7 +63,7 @@ interface Props {
         onChange: ChangeEventHandler;
         onBlur: FocusEventHandler;
     };
-    label: string;
+    label: React.ReactNode;
     suggestions: string[];
     topSuggestions?: string[];
     topSuggestionsLabel?: string;
