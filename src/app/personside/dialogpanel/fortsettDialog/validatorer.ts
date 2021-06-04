@@ -40,8 +40,8 @@ export class FortsettDialogValidator {
 
     public static erGyldigSamtalereferat(state: FortsettDialogState) {
         return (
-            state.dialogType === Meldingstype.SAMTALEREFERAT_TELEFON ||
-            (Meldingstype.SAMTALEREFERAT_OPPMOTE && this.tekst(state))
+            [Meldingstype.SAMTALEREFERAT_TELEFON, Meldingstype.SAMTALEREFERAT_OPPMOTE].includes(state.dialogType) &&
+            this.tekst(state)
         );
     }
 }
