@@ -37,4 +37,11 @@ export class FortsettDialogValidator {
     public static erGyldigSvarTelefon(state: FortsettDialogState) {
         return state.dialogType === Meldingstype.SVAR_TELEFON && this.tekst(state);
     }
+
+    public static erGyldigSamtalereferat(state: FortsettDialogState) {
+        return (
+            state.dialogType === Meldingstype.SAMTALEREFERAT_TELEFON ||
+            (Meldingstype.SAMTALEREFERAT_OPPMOTE && this.tekst(state))
+        );
+    }
 }
