@@ -49,7 +49,7 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
     const filtrerteYtelser = ytelser.filter((item, index) => ytelser.indexOf(item) === index).join(', ');
     return (
         <>
-            <Element>{filtrerteYtelser.length > 0 ? 'Ytelser:' : ''}</Element>
+            <Element>Ytelser:</Element>
             <Normaltekst>{filtrerteYtelser}</Normaltekst>
         </>
     );
