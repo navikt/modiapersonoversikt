@@ -42,7 +42,9 @@ export type FortsettDialogType =
     | Meldingstype.DELVIS_SVAR_SKRIFTLIG
     | Meldingstype.SVAR_OPPMOTE
     | Meldingstype.SVAR_TELEFON
-    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
+    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE
+    | Meldingstype.SAMTALEREFERAT_OPPMOTE
+    | Meldingstype.SAMTALEREFERAT_TELEFON;
 
 interface Props {
     traad: Traad;
@@ -153,7 +155,8 @@ function FortsettDialogContainer(props: Props) {
         if (
             FortsettDialogValidator.erGyldigSvarSkriftlig(state) ||
             FortsettDialogValidator.erGyldigSvarOppmote(state) ||
-            FortsettDialogValidator.erGyldigSvarTelefon(state)
+            FortsettDialogValidator.erGyldigSvarTelefon(state) ||
+            FortsettDialogValidator.erGyldigSamtalereferat(state)
         ) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
             const request: ForsettDialogRequest = {
