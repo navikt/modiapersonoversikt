@@ -43,7 +43,9 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
     if (detaljertOppfolging.ytelser.length === 0) {
         return null;
     }
-    const ytelser = detaljertOppfolging.ytelser.map(ytelse => ytelse.type);
+    const ytelser = detaljertOppfolging.ytelser
+        .filter(ytelse => ytelse.status !== 'Avsluttet')
+        .map(ytelse => ytelse.type + ' : ' + ytelse.status);
     const filtrerteYtelser = ytelser.filter((item, index) => ytelser.indexOf(item) === index).join(', ');
     return (
         <>

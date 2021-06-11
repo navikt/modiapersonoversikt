@@ -71,7 +71,7 @@ function getYtelse(): OppfolgingsYtelse {
         datoKravMottatt: dayjs(faker.date.recent(30)).format(backendDatoformat),
         fom: dayjs(faker.date.recent(20)).format(backendDatoformat),
         tom: dayjs(faker.date.recent(10)).format(backendDatoformat),
-        status: navfaker.random.arrayElement(['Aktiv', 'Avsluttet']),
+        status: navfaker.random.arrayElement(['Aktiv', 'Avsluttet', 'Inaktiv']),
         type: navfaker.random.arrayElement(['Arbeidsavklaringspenger', 'Individstønad']),
         vedtak: Array(navfaker.random.integer(5, 1))
             .fill(null)
