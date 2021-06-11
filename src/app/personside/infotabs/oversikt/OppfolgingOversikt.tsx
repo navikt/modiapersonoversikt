@@ -45,6 +45,7 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
     }
     const ytelser = detaljertOppfolging.ytelser
         .filter(ytelse => ytelse.status !== 'Avsluttet')
+        .filter(ytelse => ytelse.status !== 'Lukket')
         .map(ytelse => ytelse.type + ' : ' + ytelse.status);
     const filtrerteYtelser = ytelser.filter((item, index) => ytelser.indexOf(item) === index).join(', ');
     return (
