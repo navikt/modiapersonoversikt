@@ -27,8 +27,6 @@ import useForeslatteEnheter from './useForeslåtteEnheter';
 import { useNormalPrioritet } from './oppgave-utils';
 import { FeilmeldingOppsummering } from '../../../../../../../components/FeilmeldingOppsummering';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
-import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
-import IfFeatureToggleOn from '../../../../../../../components/featureToggle/IfFeatureToggleOn';
 
 const AlertStyling = styled.div`
     > * {
@@ -202,14 +200,9 @@ function OppgaveSkjema(props: OppgaveProps) {
                         <>
                             <span>Velg enhet</span>
                             {hasData(enhetliste) && saksbehandlerIdent.data !== undefined && (
-                                <IfFeatureToggleOn toggleID={FeatureToggles.SettTilEgenOppgaveliste}>
-                                    <SettTilEgenOppgaveListeKnapp
-                                        type="button"
-                                        onClick={settTilSaksbehandlerOppgaveListe}
-                                    >
-                                        Sett til min oppgaveliste
-                                    </SettTilEgenOppgaveListeKnapp>
-                                </IfFeatureToggleOn>
+                                <SettTilEgenOppgaveListeKnapp type="button" onClick={settTilSaksbehandlerOppgaveListe}>
+                                    Sett til min oppgaveliste
+                                </SettTilEgenOppgaveListeKnapp>
                             )}
                         </>
                     }
