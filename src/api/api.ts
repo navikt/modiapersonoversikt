@@ -16,14 +16,13 @@ export async function postWithConflictVerification(
     uri: string,
     body: object | string,
     loggLocation: string,
-    conflictMessage: string | undefined = 'Det oppstod en konflikt. Vil du overstyre?'
+    conflictMessage: string = 'Det oppstod en konflikt. Vil du overstyre?'
 ): Promise<object> {
     loggEvent('Post', loggLocation);
     const config = postConfig(body);
     let response = await fetch(uri, config);
     if (response.status === CONFLICT) {
-        const message = await readConflictMessage(response, conflictMessage);
-        if (await confirm({ icon: 'warning', header: 'Oppgave tilordning', message })) {
+        if (await confirm({ icon: 'warning', header: 'Oppgave tilordning', message: conflictMessage })) {
             config.headers['Ignore-Conflict'] = 'true';
             response = await fetch(uri, config);
         } else {
@@ -31,19 +30,6 @@ export async function postWithConflictVerification(
         }
     }
     return handleResponse(response, loggLocation);
-}
-
-async function readConflictMessage(response: Response, fallbackMessage: string): Promise<string> {
-    try {
-        const json: any = response.clone().json();
-        if (typeof json.message === 'string' && json.message.length > 0) {
-            return json.message;
-        } else {
-            return fallbackMessage;
-        }
-    } catch (e) {
-        return await response.clone().text();
-    }
 }
 
 function handleResponse(response: Response, loggLocation: string): Promise<object> {
