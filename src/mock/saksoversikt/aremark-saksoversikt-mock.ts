@@ -97,6 +97,39 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     feil: { inneholderFeil: true, feilmelding: Feilmelding.Sikkerhetsbegrensning }
                 },
                 {
+                    id: 'jg2nbv00_null',
+                    retning: Kommunikasjonsretning.Inn,
+                    dato: { år: 2017, måned: 2, dag: 28, time: 23, minutt: 50, sekund: 24 },
+                    navn: 'Benjamin',
+                    journalpostId: 'null',
+                    hoveddokument: {
+                        tittel: 'Inntektsopplysninger',
+                        dokumentreferanse: 'null',
+                        kanVises: true,
+                        logiskDokument: false,
+                        skjerming: null
+                    },
+                    vedlegg: [
+                        {
+                            tittel: 'A-inntekt',
+                            dokumentreferanse: 'k51y90us',
+                            kanVises: true,
+                            logiskDokument: false,
+                            skjerming: null
+                        }
+                    ],
+                    avsender: Entitet.Sluttbruker,
+                    mottaker: Entitet.EksternPart,
+                    tilhørendeSaksid: 't6s7hp8k',
+                    tilhørendeFagsaksid: 'q8mlv7u2',
+                    baksystem: [Baksystem.Gsak, Baksystem.Kodeverk],
+                    temakode: 'SYK',
+                    temakodeVisning: 'Sykepenger',
+                    ettersending: false,
+                    erJournalfort: false,
+                    feil: { inneholderFeil: true, feilmelding: Feilmelding.Sikkerhetsbegrensning }
+                },
+                {
                     id: 'odiio5ou',
                     retning: Kommunikasjonsretning.Intern,
                     dato: { år: 2018, måned: 12, dag: 5, time: 5, minutt: 29, sekund: 17 },
