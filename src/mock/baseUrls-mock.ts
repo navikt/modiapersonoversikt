@@ -9,7 +9,7 @@ export function mockBaseUrls(): BaseUrlsResponse {
             },
             {
                 key: 'personforvalter',
-                url: 'https://person-forvalter.nais.preprod.local/'
+                url: 'https://pdl-web.dev.intern.nav.no/'
             },
             {
                 key: 'drek',
