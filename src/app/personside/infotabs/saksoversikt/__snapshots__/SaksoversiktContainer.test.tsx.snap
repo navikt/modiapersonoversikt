@@ -842,7 +842,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                   className="typo-normal"
                 >
                   (
-                  14
+                  15
                    journalposter)
                 </p>
               </div>
@@ -1675,6 +1675,93 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                                 Last ned pdf
                               </span>
                             </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        className="c24"
+                      >
+                        <p
+                          className="typo-undertekst"
+                        >
+                          Alle tema
+                           / Saksid: 
+                          q8mlv7u2
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li>
+                  <article
+                    aria-labelledby="Helt tilfeldig ID"
+                    className="c20"
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <svg
+                        aria-label="Du har ikke tilgang til dette dokumentet"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M17 10V5.5l-.1-.4-5-5-.4-.1H.5C.2 0 0 .2 0 .5v21c0 .3.2.5.5.5h11A7.5 7.5 0 0 1 17 10zM11.5.5l5 5h-5v-5z"
+                          />
+                          <path
+                            d="M17.5 11a6.5 6.5 0 0 0-5 10.7l9.2-9.1a6.5 6.5 0 0 0-4.2-1.6zM22.4 13.3l-9.1 9.1c1.1 1 2.6 1.6 4.2 1.6a6.5 6.5 0 0 0 5-10.7z"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                    <div
+                      className="c22"
+                    >
+                      <div
+                        className="c23"
+                        id="Helt tilfeldig ID"
+                      >
+                        <h4
+                          className="order-second"
+                        >
+                          <p
+                            className="typo-element"
+                          >
+                            Inntektsopplysninger
+                          </p>
+                        </h4>
+                        <div
+                          className="order-first"
+                        >
+                          <p
+                            className="typo-normal"
+                          >
+                            28.02.2017 / Fra AREMARK TESTFAMILIEN
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="c25"
+                      >
+                        <p
+                          className="typo-normal"
+                        >
+                          Dokumentet har 
+                          1
+                           vedlegg:
+                        </p>
+                        <ul>
+                          <li>
+                            A-inntekt
+                             
+                            <p
+                              className="typo-undertekst"
+                            >
+                              (Dokument er ikke tilgjengelig)
+                            </p>
                           </li>
                         </ul>
                       </div>

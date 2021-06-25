@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Element } from 'nav-frontend-typografi';
+import { Element, Undertekst } from 'nav-frontend-typografi';
 import { Link, useLocation } from 'react-router-dom';
 import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
@@ -54,11 +54,20 @@ function DokumentLenke(props: Props) {
     const apneDokumentINyttVindu = !erSakerFullscreen(pathname);
     const journalpostId = props.journalPost.journalpostId;
     const dokumentReferanse = props.dokument.dokumentreferanse;
+
+    if (journalpostId === 'null' || dokumentReferanse === 'null') {
+        return (
+            <>
+                {dokumentTekst(props.dokument)} <Undertekst>(Dokument er ikke tilgjengelig)</Undertekst>
+            </>
+        );
+    }
+
     const url = apneDokumentINyttVindu
         ? getUrlSaksdokumentEgetVindu(fødselsnummer, journalpostId, dokumentReferanse)
         : dyplenker.saker.link(props.valgtSakstema, props.dokument);
-    const saksdokumentUrl = getSaksdokumentUrl(fødselsnummer, journalpostId, dokumentReferanse);
 
+    const saksdokumentUrl = getSaksdokumentUrl(fødselsnummer, journalpostId, dokumentReferanse);
     return (
         <>
             <Link to={url} target={apneDokumentINyttVindu ? '_blank' : undefined} className="lenke typo-element">
