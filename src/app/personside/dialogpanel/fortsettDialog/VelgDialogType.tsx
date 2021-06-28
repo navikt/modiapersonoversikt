@@ -52,6 +52,8 @@ function VelgDialogType(props: Props) {
             <VelgDialogtypeStyle>
                 {referatTelefon}
                 {referatOppmote}
+                {svar}
+                {spørsmål}
             </VelgDialogtypeStyle>
         );
     }
