@@ -8,6 +8,7 @@ import TemaHelseBilde from './img/temaHelse.jpg';
 import AvansertSokKnappBilde from './img/avansertSok-knapp.jpg';
 import UtenlandskIDBilde from './img/utenlandskID.jpg';
 import ForeldreansvarBilde from './img/foreldreansvar1.png';
+import MarkeringDodeBarnBilde from './img/markering-dode-barn.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export const OppdateringsloggConfig: EnOppdateringslogg[] = [
@@ -121,5 +122,27 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
             </Normaltekst>
         ),
         src: OppdateringsloggKnappBilde
+    },
+    {
+        id: 7,
+        tittel: 'Markering ved døde barn',
+        dato: new Date('2021-07-21 12:00'),
+        aktiv: true,
+        ingress: (
+            <Normaltekst className="blokk-xxs">
+                Ikonet gir en tidlig indikasjon på at man bør undersøke barns status nærmere.
+            </Normaltekst>
+        ),
+        beskrivelse: (
+            <>
+                <Normaltekst>
+                    Man sjekker i dag bare personens status, men dette vil muligens endres i fremtiden.
+                </Normaltekst>
+                <Normaltekst>
+                    Det er derfor anbefalt å åpne visittkortet for en nærmere titt om ikonet dukker opp.
+                </Normaltekst>
+            </>
+        ),
+        src: MarkeringDodeBarnBilde
     }
 ];
