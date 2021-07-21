@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/modiapersonoversikt/static/css/main.css",
+    "main.js": "/modiapersonoversikt/static/js/main.js",
+    "main.js.map": "/modiapersonoversikt/static/js/main.js.map",
+    "standalonekomponenter.js": "/modiapersonoversikt/static/js/standalonekomponenter.chunk.js",
+    "standalonekomponenter.js.map": "/modiapersonoversikt/static/js/standalonekomponenter.chunk.js.map",
+    "index.html": "/modiapersonoversikt/index.html",
+    "static/css/main.css.map": "/modiapersonoversikt/static/css/main.css.map",
+    "static/js/main.js.LICENSE.txt": "/modiapersonoversikt/static/js/main.js.LICENSE.txt",
+    "static/media/advarsel-sirkel-fyll.svg": "/modiapersonoversikt/static/media/advarsel-sirkel-fyll.a4c65775.svg",
+    "static/media/enkeltmelding.less": "/modiapersonoversikt/static/media/navlogo.a08548af.svg",
+    "static/media/chickIcon.38255162.svg": "/modiapersonoversikt/static/media/chickIcon.38255162.svg",
+    "static/media/cog.5d75aa76.svg": "/modiapersonoversikt/static/media/cog.5d75aa76.svg",
+    "static/media/download.6a13a13a.svg": "/modiapersonoversikt/static/media/download.6a13a13a.svg",
+    "static/media/feil-sirkel-fyll.svg": "/modiapersonoversikt/static/media/feil-sirkel-fyll.29ccecf4.svg",
+    "static/media/foreldreansvar1.f19f8733.png": "/modiapersonoversikt/static/media/foreldreansvar1.f19f8733.png",
+    "static/media/help-circle_hover.870c372d.svg": "/modiapersonoversikt/static/media/help-circle_hover.870c372d.svg",
+    "static/media/info-sirkel-fyll.6a70af59.svg": "/modiapersonoversikt/static/media/info-sirkel-fyll.6a70af59.svg",
+    "static/media/infomelding.0675c7d6.jpg": "/modiapersonoversikt/static/media/infomelding.0675c7d6.jpg",
+    "static/media/nisselue.cbdfe326.svg": "/modiapersonoversikt/static/media/nisselue.cbdfe326.svg",
+    "static/media/ok-sirkel-fyll.5a42686b.svg": "/modiapersonoversikt/static/media/ok-sirkel-fyll.5a42686b.svg",
+    "static/media/oppdateringslogg-knapp.0edebe58.jpg": "/modiapersonoversikt/static/media/oppdateringslogg-knapp.0edebe58.jpg",
+    "static/media/paaskeegg.774297ed.svg": "/modiapersonoversikt/static/media/paaskeegg.774297ed.svg",
+    "static/media/partyhatt.3acfc350.svg": "/modiapersonoversikt/static/media/partyhatt.3acfc350.svg",
+    "static/media/temaHelse.7f8c4e43.jpg": "/modiapersonoversikt/static/media/temaHelse.7f8c4e43.jpg",
+    "static/media/utenlandskID.7741fd4f.jpg": "/modiapersonoversikt/static/media/utenlandskID.7741fd4f.jpg"
+  },
+  "entrypoints": [
+    "static/css/main.css",
+    "static/js/main.js"
+  ]
+}
