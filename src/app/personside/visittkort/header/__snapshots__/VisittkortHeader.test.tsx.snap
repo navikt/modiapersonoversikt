@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser info om bruker i visittkort-header 1`] = `
-.c12 {
+.c14 {
   margin: 0.5rem 0 0 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -13,16 +13,16 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   justify-content: flex-end;
 }
 
-.c12 > * {
+.c14 > * {
   white-space: nowrap;
 }
 
-.c12 > *:first-child:after {
+.c14 > *:first-child:after {
   content: '/';
   margin: 0 0.2em;
 }
 
-.c12 > *:last-child {
+.c14 > *:last-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -32,6 +32,20 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   -ms-flex-align: center;
   align-items: center;
   margin: 0;
+}
+
+.c9 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.c10 {
+  width: 1rem;
+  margin-top: -0.125rem;
+  margin-left: 0.125rem;
+  margin-right: 0.125rem;
 }
 
 .c7 {
@@ -111,7 +125,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin: 0 0.5rem;
 }
 
-.c14 {
+.c16 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -119,17 +133,17 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   border-radius: 0.5em;
 }
 
-.c14:focus {
+.c16:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c14:focus {
+.c16:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c14:focus::after {
+.c16:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -140,18 +154,18 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   pointer-events: none;
 }
 
-.c11 {
+.c13 {
   display: inline-block;
   -webkit-animation: cKnfBw 0.3s 1s 6 alternate;
   animation: cKnfBw 0.3s 1s 6 alternate;
 }
 
-.c11:focus {
+.c13:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c10 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -166,7 +180,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   align-items: center;
 }
 
-.c10 > * {
+.c12 > * {
   margin: 6px 0 0 6px;
   white-space: nowrap;
 }
@@ -214,7 +228,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   display: flex;
 }
 
-.c9 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -270,7 +284,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
   margin-bottom: 0.2em !important;
 }
 
-.c13 {
+.c15 {
   padding: 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -397,22 +411,29 @@ exports[`viser info om bruker i visittkort-header 1`] = `
             >
               Gift
             </li>
-            <li
+            <span
+              className="c9"
               title="Barn under 21 år"
             >
-              4
+              <svg
+                className="c10"
+                title="Ett eller flere av barnene har status som død"
+              >
+                advarsel-sirkel-fyll.svg
+              </svg>
+              5
                barn under 21 år
-            </li>
+            </span>
           </ul>
         </span>
       </section>
     </section>
     <div
-      className="c9"
+      className="c11"
     >
       <section
         aria-label="etiketter"
-        className="c10"
+        className="c12"
         role="region"
       >
         <div
@@ -426,7 +447,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
         </div>
         <div
           aria-live="assertive"
-          className="c11"
+          className="c13"
           role="alert"
           tabIndex={-1}
         >
@@ -479,7 +500,7 @@ exports[`viser info om bruker i visittkort-header 1`] = `
       </section>
       <section
         aria-label="Nav kontor"
-        className="c12"
+        className="c14"
       >
         <h2
           className="typo-element"
@@ -497,12 +518,12 @@ exports[`viser info om bruker i visittkort-header 1`] = `
     </div>
   </div>
   <div
-    className="c13"
+    className="c15"
   >
     <button
       aria-expanded={false}
       aria-label="Åpne visittkort (Alt + N)"
-      className="c14"
+      className="c16"
       onClick={[Function]}
       title="Åpne visittkort (Alt + N)"
     >
