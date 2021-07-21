@@ -144,6 +144,26 @@ export const aremark: Person = {
             }
         },
         {
+            harSammeBosted: false,
+            rolle: Relasjonstype.Barn,
+            tilPerson: {
+                fødselsnummer: '10011100001',
+                navn: {
+                    fornavn: '',
+                    etternavn: '',
+                    mellomnavn: '',
+                    sammensatt: 'NAVN'
+                },
+                personstatus: {
+                    dødsdato: '2011-01-01T00:00:00.000',
+                    bostatus: {
+                        kodeRef: 'DØD',
+                        beskrivelse: 'Død'
+                    }
+                }
+            }
+        },
+        {
             harSammeBosted: true,
             rolle: Relasjonstype.Barn,
             tilPerson: {
