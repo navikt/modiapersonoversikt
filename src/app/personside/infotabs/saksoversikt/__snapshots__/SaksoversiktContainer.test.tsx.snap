@@ -1755,13 +1755,33 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         </p>
                         <ul>
                           <li>
-                            A-inntekt
-                             
-                            <p
-                              className="typo-undertekst"
+                            <a
+                              className="lenke typo-element"
+                              href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/null/k51y90us"
+                              onClick={[Function]}
+                              target="_blank"
                             >
-                              (Dokument er ikke tilgjengelig)
-                            </p>
+                              A-inntekt
+                            </a>
+                            <a
+                              className="c26 lenke typo-element"
+                              download={true}
+                              href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/null/k51y90us"
+                              title="Last ned"
+                            >
+                              <svg
+                                aria-hidden={true}
+                                height={20}
+                                width={20}
+                              >
+                                download.svg
+                              </svg>
+                              <span
+                                className="sr-only"
+                              >
+                                Last ned pdf
+                              </span>
+                            </a>
                           </li>
                         </ul>
                       </div>
