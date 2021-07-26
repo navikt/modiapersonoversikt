@@ -147,7 +147,7 @@ function JournalpostLiseElement(props: Props) {
             <Normaltekst>Dokumentet har {journalpost.vedlegg.length} vedlegg:</Normaltekst>
             <ul ref={vedleggLinkRef}>
                 {journalpost.vedlegg.map(vedlegg => (
-                    <li key={vedlegg.dokumentreferanse + journalpost.journalpostId}>
+                    <li key={vedlegg.dokumentreferanse + journalpost.journalpostId!}>
                         <DokumentLenke
                             dokument={vedlegg}
                             valgtSakstema={props.valgtSakstema}
@@ -175,7 +175,7 @@ function JournalpostLiseElement(props: Props) {
                     <UUcustomOrder id={tittelId.current}>
                         <h4 ref={hoveddokumentLinkRef} className="order-second">
                             <DokumentLenke
-                                key={hovedDokument.dokumentreferanse + journalpost.journalpostId}
+                                key={hovedDokument.dokumentreferanse?.concat(journalpost.journalpostId!)}
                                 dokument={hovedDokument}
                                 valgtSakstema={props.valgtSakstema}
                                 kanVises={tilgangTilHoveddokument && dokumentKanVises(hovedDokument, journalpost)}

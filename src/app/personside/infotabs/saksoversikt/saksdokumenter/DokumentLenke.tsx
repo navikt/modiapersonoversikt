@@ -36,7 +36,11 @@ const dokumentTekst = (dokument: Dokument) => {
     return dokument.tittel + (dokument.skjerming ? ' (Skjermet)' : '');
 };
 
-function getUrlSaksdokumentEgetVindu(fødselsnummer: string, journalpostId: string, dokumentReferanse: string) {
+function getUrlSaksdokumentEgetVindu(
+    fødselsnummer: string,
+    journalpostId?: string | null,
+    dokumentReferanse?: string | null
+) {
     const saksdokumentUrl = getSaksdokumentUrl(fødselsnummer, journalpostId, dokumentReferanse);
 
     return `${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`;
