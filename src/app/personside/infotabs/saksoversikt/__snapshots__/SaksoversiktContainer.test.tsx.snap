@@ -1757,7 +1757,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <li>
                             <a
                               className="lenke typo-element"
-                              href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/null/k51y90us"
+                              href="/dokument/10108000398?dokumenturl=/modiapersonoversikt-api/rest/saker/10108000398/dokument/12345/k51y90us"
                               onClick={[Function]}
                               target="_blank"
                             >
@@ -1766,7 +1766,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                             <a
                               className="c26 lenke typo-element"
                               download={true}
-                              href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/null/k51y90us"
+                              href="/modiapersonoversikt-api/rest/saker/10108000398/dokument/12345/k51y90us"
                               title="Last ned"
                             >
                               <svg
