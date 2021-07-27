@@ -38,8 +38,8 @@ const dokumentTekst = (dokument: Dokument) => {
 
 function getUrlSaksdokumentEgetVindu(
     fødselsnummer: string,
-    journalpostId?: string | null,
-    dokumentReferanse?: string | null
+    journalpostId: string | null,
+    dokumentReferanse: string | null
 ) {
     const saksdokumentUrl = getSaksdokumentUrl(fødselsnummer, journalpostId, dokumentReferanse);
 

@@ -5,7 +5,7 @@ export interface Journalpost {
     retning: Kommunikasjonsretning;
     dato: Saksdato;
     navn: string;
-    journalpostId?: string | null;
+    journalpostId: string | null;
     hoveddokument: Dokument;
     vedlegg: Dokument[];
     avsender: Entitet;
@@ -55,7 +55,7 @@ export interface FeilWrapper {
 
 export interface Dokument {
     tittel: string;
-    dokumentreferanse?: string | null;
+    dokumentreferanse: string | null;
     kanVises: boolean;
     logiskDokument: boolean;
     skjerming: string | null;
