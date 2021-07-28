@@ -101,10 +101,10 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     retning: Kommunikasjonsretning.Inn,
                     dato: { år: 2017, måned: 2, dag: 28, time: 23, minutt: 50, sekund: 24 },
                     navn: 'Benjamin',
-                    journalpostId: 'null',
+                    journalpostId: null,
                     hoveddokument: {
                         tittel: 'Inntektsopplysninger',
-                        dokumentreferanse: 'null',
+                        dokumentreferanse: null,
                         kanVises: true,
                         logiskDokument: false,
                         skjerming: null
@@ -112,7 +112,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     vedlegg: [
                         {
                             tittel: 'A-inntekt',
-                            dokumentreferanse: 'k51y90us',
+                            dokumentreferanse: null,
                             kanVises: true,
                             logiskDokument: false,
                             skjerming: null
