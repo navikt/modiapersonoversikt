@@ -36,7 +36,11 @@ const dokumentTekst = (dokument: Dokument) => {
     return dokument.tittel + (dokument.skjerming ? ' (Skjermet)' : '');
 };
 
-function getUrlSaksdokumentEgetVindu(fødselsnummer: string, journalpostId: string, dokumentReferanse: string) {
+function getUrlSaksdokumentEgetVindu(
+    fødselsnummer: string,
+    journalpostId: string | null,
+    dokumentReferanse: string | null
+) {
     const saksdokumentUrl = getSaksdokumentUrl(fødselsnummer, journalpostId, dokumentReferanse);
 
     return `${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`;
@@ -55,7 +59,7 @@ function DokumentLenke(props: Props) {
     const journalpostId = props.journalPost.journalpostId;
     const dokumentReferanse = props.dokument.dokumentreferanse;
 
-    if (journalpostId === 'null' || dokumentReferanse === 'null') {
+    if (journalpostId === null || dokumentReferanse === null) {
         return (
             <>
                 {dokumentTekst(props.dokument)} <Undertekst>(Dokument er ikke tilgjengelig)</Undertekst>
