@@ -36,6 +36,7 @@ import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
 import { hasData, RestResource } from '../../../../rest/utils/restResource';
 import { selectValgtEnhet } from '../../../../redux/session/session';
+import {usingSFBackend} from "../../../../index";
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -254,7 +255,7 @@ function FortsettDialogContainer(props: Props) {
                     erTilknyttetOppgave={!!oppgaveId}
                     erSTOOppgave={erSTOOppgave}
                 />
-                {oppgaveId && erSTOOppgave && (
+                {!usingSFBackend && oppgaveId && erSTOOppgave && (
                     <LeggTilbakepanel
                         oppgaveId={oppgaveId}
                         traadId={props.traad.traadId}

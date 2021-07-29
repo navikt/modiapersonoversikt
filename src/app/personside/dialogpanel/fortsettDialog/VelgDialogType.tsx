@@ -5,6 +5,7 @@ import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
 import { FortsettDialogState } from './FortsettDialogTypes';
 import { useAppState } from '../../../../utils/customHooks';
+import {usingSFBackend} from "../../../../index";
 
 interface Props {
     formState: FortsettDialogState;
@@ -42,7 +43,7 @@ function VelgDialogType(props: Props) {
         return (
             <VelgDialogtypeStyle>
                 {svar}
-                {!props.erOksosTraad && delvisSvar}
+                {!usingSFBackend && !props.erOksosTraad && delvisSvar}
             </VelgDialogtypeStyle>
         );
     }
@@ -63,7 +64,7 @@ function VelgDialogType(props: Props) {
             <VelgDialogtypeStyle>
                 {svar}
                 {spørsmål}
-                {props.erSTOOppgave && !props.erOksosTraad && delvisSvar}
+                {!usingSFBackend && props.erSTOOppgave && !props.erOksosTraad && delvisSvar}
                 {!jobberMedSTO && svarTelefon}
                 {!jobberMedSTO && svarOppmote}
             </VelgDialogtypeStyle>

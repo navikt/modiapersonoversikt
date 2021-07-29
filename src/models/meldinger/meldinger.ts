@@ -23,6 +23,7 @@ export interface Melding {
     statusTekst?: string;
     opprettetDato: string;
     ferdigstiltDato?: string;
+    avsluttetDato?: string;
     erFerdigstiltUtenSvar: boolean;
     ferdigstiltUtenSvarAv?: Saksbehandler;
     kontorsperretEnhet?: string;

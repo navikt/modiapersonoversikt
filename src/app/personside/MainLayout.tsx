@@ -14,6 +14,7 @@ import styled from 'styled-components/macro';
 import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMeldinger';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
+import {usingSFBackend} from "../../index";
 
 const Scrollbar = styled.div`
     overflow-y: auto;
@@ -52,7 +53,7 @@ function MainLayout() {
                     </h1>
                     <Scrollbar>
                         <BrukerHarUbesvarteMeldinger />
-                        <HentOppgaveKnapp />
+                        {!usingSFBackend && <HentOppgaveKnapp /> }
                         <DialogPanel />
                     </Scrollbar>
                     <EkspanderDilaogpanelKnapp />

@@ -38,6 +38,7 @@ import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-f
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
 import useTildelteOppgaver from '../../../../../../../utils/hooks/useTildelteOppgaver';
 import { Oppgave } from '../../../../../../../models/meldinger/oppgave';
+import {usingSFBackend} from "../../../../../../../index";
 
 interface Props {
     lukkPanel: () => void;
@@ -284,7 +285,11 @@ function MerkPanel(props: Props) {
                 value: MerkOperasjon.FEILSENDT,
                 disabled: disableStandardvalg
             },
-            { label: 'Kopiert inn i Bisys', value: MerkOperasjon.BISYS, disabled: disableBidrag },
+            {
+                label: 'Kopiert inn i Bisys',
+                value: MerkOperasjon.BISYS,
+                disabled: usingSFBackend || disableBidrag
+            },
             {
                 label: 'Kontorsperret',
                 value: MerkOperasjon.KONTORSPERRET,
@@ -293,12 +298,12 @@ function MerkPanel(props: Props) {
             {
                 label: 'Avslutt uten å svare bruker',
                 value: MerkOperasjon.AVSLUTT,
-                disabled: disableFerdigstillUtenSvar
+                disabled: usingSFBackend || disableFerdigstillUtenSvar
             },
             {
                 label: 'Overstyrt ferdigstillelse av oppgave',
                 value: MerkOperasjon.FERDIGSTILL,
-                disabled: disableTvungenFerdigstill
+                disabled: usingSFBackend || disableTvungenFerdigstill
             }
         ];
         if (visSletting) {

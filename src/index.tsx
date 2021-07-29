@@ -9,6 +9,8 @@ import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
 import './window-variabler';
 
 setupTimeSpentMetrics();
+export const usingSFBackend = true;
+
 if (process.env.REACT_APP_MOCK_ENABLED === 'true') {
     require('./mock');
 }

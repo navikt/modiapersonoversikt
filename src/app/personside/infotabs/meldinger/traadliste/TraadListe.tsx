@@ -16,6 +16,7 @@ import usePrinter from '../../../../../utils/print/usePrinter';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import MeldingerPrintMarkup from '../../../../../utils/print/MeldingerPrintMarkup';
 import Panel from 'nav-frontend-paneler';
+import {usingSFBackend} from "../../../../../index";
 
 interface Props {
     traader: Traad[];
@@ -152,7 +153,7 @@ function TraadListe(props: Props) {
     return (
         <nav aria-label="Velg melding">
             <StyledPanel>
-                <SlaaSammenOppgaverKnapp traader={props.traader} />
+                {!usingSFBackend && <SlaaSammenOppgaverKnapp traader={props.traader} /> }
                 <article aria-labelledby={sokTittelId.current}>
                     <h3 id={sokTittelId.current} className="sr-only">
                         Filtrer meldinger
