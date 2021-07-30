@@ -5,7 +5,7 @@ import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
 import { FortsettDialogState } from './FortsettDialogTypes';
 import { useAppState } from '../../../../utils/customHooks';
-import {usingSFBackend} from "../../../../index";
+import { usingSFBackend } from '../../../../static-mock';
 
 interface Props {
     formState: FortsettDialogState;

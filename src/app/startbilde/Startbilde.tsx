@@ -5,14 +5,14 @@ import SetFnrIRedux from '../PersonOppslagHandler/SetFnrIRedux';
 import PersonSokInput from './PersonSokInput';
 import StartbildeInnstillinger from '../innstillinger/startbilde-innstillinger';
 import { useFetchFeatureTogglesOnNewFnr } from '../PersonOppslagHandler/FetchFeatureToggles';
-import {usingSFBackend} from "../../index";
+import { usingSFBackend } from '../../static-mock';
 
 function Startbilde() {
     useFetchFeatureTogglesOnNewFnr();
     return (
         <StartBildeLayout>
             <SetFnrIRedux fnr="" />
-            {!usingSFBackend && <HentOppgaveKnapp /> }
+            {!usingSFBackend && <HentOppgaveKnapp />}
             <PersonSokInput />
             <StartbildeInnstillinger />
         </StartBildeLayout>

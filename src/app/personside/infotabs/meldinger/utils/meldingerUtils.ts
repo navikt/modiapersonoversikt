@@ -4,7 +4,7 @@ import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../uti
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import { Temagruppe, temagruppeTekst, TemaPlukkbare, TemaKommunaleTjenester } from '../../../../../models/temagrupper';
-import {usingSFBackend} from "../../../../../index";
+import { usingSFBackend } from '../../../../../static-mock';
 
 export const KanBesvaresMeldingstyper = [
     Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
@@ -33,7 +33,7 @@ export function kanBesvares(traad?: Traad): boolean {
             Meldingstype.SPORSMAL_SKRIFTLIG,
             Meldingstype.SVAR_SBL_INNGAAENDE,
             Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
-            Meldingstype.SVAR_SKRIFTLIG,
+            Meldingstype.SVAR_SKRIFTLIG
         ].includes(melding.meldingstype);
         // avsluttetDato betyr at ting er journalført, og kan ikke besvares videre.
         return !melding.avsluttetDato && type;

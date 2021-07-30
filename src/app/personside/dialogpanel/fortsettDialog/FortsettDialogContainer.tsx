@@ -36,7 +36,7 @@ import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
 import { hasData, RestResource } from '../../../../rest/utils/restResource';
 import { selectValgtEnhet } from '../../../../redux/session/session';
-import {usingSFBackend} from "../../../../index";
+import { usingSFBackend } from '../../../../static-mock';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG

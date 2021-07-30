@@ -38,7 +38,7 @@ import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-f
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
 import useTildelteOppgaver from '../../../../../../../utils/hooks/useTildelteOppgaver';
 import { Oppgave } from '../../../../../../../models/meldinger/oppgave';
-import {usingSFBackend} from "../../../../../../../index";
+import { usingSFBackend } from '../../../../../../../static-mock';
 
 interface Props {
     lukkPanel: () => void;
