@@ -38,7 +38,8 @@ import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-f
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
 import useTildelteOppgaver from '../../../../../../../utils/hooks/useTildelteOppgaver';
 import { Oppgave } from '../../../../../../../models/meldinger/oppgave';
-import { usingSFBackend } from '../../../../../../../static-mock';
+import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     lukkPanel: () => void;
@@ -139,6 +140,7 @@ function MerkPanel(props: Props) {
     const dispatch = useDispatch();
     const saksbehandlerKanSletteFetch: FetchResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, includeCredentials);
     const tråderResource = useRestResource(resources => resources.traader);
+    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
 
     const reloadMeldinger = tråderResource.actions.reload;
     const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;

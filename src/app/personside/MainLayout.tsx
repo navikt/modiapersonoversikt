@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import DialogPanel from './dialogpanel/DialogPanel';
 import HentOppgaveKnapp from './dialogpanel/HentOppgaveKnapp';
 import Visittkort from './visittkort/VisittkortContainer';
@@ -12,9 +13,9 @@ import InfoTabs from './infotabs/InfoTabs';
 import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
 import styled from 'styled-components/macro';
 import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMeldinger';
-import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
-import { usingSFBackend } from '../../static-mock';
+import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 const Scrollbar = styled.div`
     overflow-y: auto;
@@ -26,6 +27,7 @@ function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
     const dispatch = useDispatch();
     const tittelId = useRef(guid());
+    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
 
     const ekspanderDialogpanelHandler = () => {
         if (!UI.dialogPanel.ekspandert) {

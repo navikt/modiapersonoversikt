@@ -1,21 +1,21 @@
-import FetchMock, {MockRequest} from "yet-another-fetch-mock";
-import {apiBaseUri} from "../../api/config";
-import {mockGeneratorMedFødselsnummer, verify, withDelayedResponse} from "../utils/fetch-utils";
-import {randomDelay} from "../index";
-import {mockTilgangTilSlett} from "../meldinger/merk-mock";
-import {MeldingerBackendMock} from "../mockBackend/meldingerBackendMock";
-import {erGyldigFødselsnummer} from "nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils";
-import {Melding, Meldingstype, Traad} from "../../models/meldinger/meldinger";
-import {guid} from "nav-frontend-js-utils";
+import FetchMock, { MockRequest } from 'yet-another-fetch-mock';
+import { apiBaseUri } from '../../api/config';
+import { mockGeneratorMedFødselsnummer, verify, withDelayedResponse } from '../utils/fetch-utils';
+import { randomDelay } from '../index';
+import { mockTilgangTilSlett } from '../meldinger/merk-mock';
+import { MeldingerBackendMock } from '../mockBackend/meldingerBackendMock';
+import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
+import { Melding, Meldingstype, Traad } from '../../models/meldinger/meldinger';
+import { guid } from 'nav-frontend-js-utils';
 import {
     erMeldingFraBruker,
     erMeldingstypeSamtalereferat
-} from "../../app/personside/infotabs/meldinger/utils/meldingerUtils";
+} from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
 const STATUS_SERVER_ERROR = () => 500;
-let meldingerBackendMock: MeldingerBackendMock = null as unknown as MeldingerBackendMock;
+let meldingerBackendMock: MeldingerBackendMock = (null as unknown) as MeldingerBackendMock;
 
 const harEnhetIdSomQueryParam = (req: MockRequest) => {
     const enhetQueryParam = req.queryParams.enhet;
@@ -28,19 +28,16 @@ const harEnhetIdSomQueryParam = (req: MockRequest) => {
 const fødselsNummerErGyldigStatus = (req: MockRequest) =>
     erGyldigFødselsnummer(req.pathParams.fodselsnummer) ? STATUS_OK() : STATUS_BAD_REQUEST();
 
-// const sfLegacyPrefix = '/sf-legacy-';
-const sfLegacyPrefix = '/';
-
 function setupMeldingerMock(mock: FetchMock) {
     mock.get(
-        apiBaseUri + sfLegacyPrefix + 'dialog/:fodselsnummer/meldinger',
+        apiBaseUri + '/dialog/:fodselsnummer/meldinger',
         verify(
             harEnhetIdSomQueryParam,
             withDelayedResponse(
                 randomDelay(),
                 fødselsNummerErGyldigStatus,
-                mockGeneratorMedFødselsnummer(fodselsnummer => simulateSf(
-                    meldingerBackendMock.getMeldinger(fodselsnummer))
+                mockGeneratorMedFødselsnummer(fodselsnummer =>
+                    simulateSf(meldingerBackendMock.getMeldinger(fodselsnummer))
                 )
             )
         )
@@ -50,17 +47,17 @@ function setupMeldingerMock(mock: FetchMock) {
 function simulateSf(trader: Traad[]): Traad[] {
     trader.forEach((trad: Traad) => {
         trad.meldinger.forEach((melding: Melding, index: number) => {
-            melding.id = guid() // Denne informasjonen får vi ikke, og autogenereres derfor på backend
+            melding.id = guid(); // Denne informasjonen får vi ikke, og autogenereres derfor på backend
             melding.oppgaveId = undefined; // Denne informasjonen får vi ikke
 
             // SF har bare samtalereferat og meldingskjede, så vi utleder de gamle typene etter beste evne.
             melding.meldingstype = (() => {
                 if (erMeldingstypeSamtalereferat(melding.meldingstype)) {
-                    return Meldingstype.SAMTALEREFERAT_TELEFON
-                }else if (erMeldingFraBruker(melding.meldingstype)) {
-                    return index === 0 ? Meldingstype.SPORSMAL_SKRIFTLIG : Meldingstype.SVAR_SBL_INNGAAENDE
+                    return Meldingstype.SAMTALEREFERAT_TELEFON;
+                } else if (erMeldingFraBruker(melding.meldingstype)) {
+                    return index === 0 ? Meldingstype.SPORSMAL_SKRIFTLIG : Meldingstype.SVAR_SBL_INNGAAENDE;
                 } else {
-                    return index === 0 ? Meldingstype.SPORSMAL_MODIA_UTGAAENDE : Meldingstype.SVAR_SKRIFTLIG
+                    return index === 0 ? Meldingstype.SPORSMAL_MODIA_UTGAAENDE : Meldingstype.SVAR_SKRIFTLIG;
                 }
             })();
             melding.statusTekst = undefined;
@@ -69,7 +66,7 @@ function simulateSf(trader: Traad[]): Traad[] {
             melding.ferdigstiltUtenSvarDato = undefined;
             melding.ferdigstiltUtenSvarAv = undefined;
 
-            melding.erDokumentMelding = false
+            melding.erDokumentMelding = false;
         });
     });
     return trader;
@@ -77,25 +74,21 @@ function simulateSf(trader: Traad[]): Traad[] {
 
 function setupSlaasammenMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialog/:fodselsnummer/slaasammen',
-        withDelayedResponse(
-            randomDelay(),
-            STATUS_SERVER_ERROR,
-            () => null
-        )
+        apiBaseUri + '/dialog/:fodselsnummer/slaasammen',
+        withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
     );
 }
 
 function setupOpprettHenvendelseMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialog/:fnr/fortsett/opprett',
+        apiBaseUri + '/dialog/:fnr/fortsett/opprett',
         withDelayedResponse(randomDelay(), STATUS_OK, request => meldingerBackendMock.opprettHenvendelse(request.body))
     );
 }
 
 function setupFerdigstillHenvendelseMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialog/:fnr/fortsett/ferdigstill',
+        apiBaseUri + '/dialog/:fnr/fortsett/ferdigstill',
         withDelayedResponse(randomDelay(), STATUS_OK, request => {
             meldingerBackendMock.ferdigstillHenvendelse(request.body);
             return {};
@@ -105,7 +98,7 @@ function setupFerdigstillHenvendelseMock(mock: FetchMock) {
 
 function setupSendReferatMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialog/:fodselsnummer/sendreferat',
+        apiBaseUri + '/dialog/:fodselsnummer/sendreferat',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
             return meldingerBackendMock.sendReferat(request.body);
         })
@@ -114,7 +107,7 @@ function setupSendReferatMock(mock: FetchMock) {
 
 function setupSendSpørsmålMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialog/:fodselsnummer/sendsporsmal',
+        apiBaseUri + '/dialog/:fodselsnummer/sendsporsmal',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
             meldingerBackendMock.sendSpørsmål(request.body);
             return {};
@@ -124,7 +117,7 @@ function setupSendSpørsmålMock(mock: FetchMock) {
 
 function setupSendInfomeldingMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialog/:fodselsnummer/sendinfomelding',
+        apiBaseUri + '/dialog/:fodselsnummer/sendinfomelding',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
             meldingerBackendMock.sendInfomelding(request.body);
             return {};
@@ -134,7 +127,7 @@ function setupSendInfomeldingMock(mock: FetchMock) {
 
 function setupSendSvarMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialog/:fodselsnummer/sendsvar',
+        apiBaseUri + '/dialog/:fodselsnummer/sendsvar',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
             return {};
         })
@@ -143,63 +136,63 @@ function setupSendSvarMock(mock: FetchMock) {
 
 function setupSendDelsvarMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialog/:fnr/delvis-svar',
+        apiBaseUri + '/dialog/:fnr/delvis-svar',
         withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
     );
 }
 
 function merkBidragMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialogmerking/bidrag',
+        apiBaseUri + '/dialogmerking/bidrag',
         withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
     );
 }
 
 function merkFeilsendtMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialogmerking/feilsendt',
+        apiBaseUri + '/dialogmerking/feilsendt',
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
 
 function merkKontorsperretMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialogmerking/kontorsperret',
+        apiBaseUri + '/dialogmerking/kontorsperret',
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
 
 function merkSlettMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialogmerking/slett',
+        apiBaseUri + '/dialogmerking/slett',
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
 
 function setupTilgangTilSlettMock(mock: FetchMock) {
     mock.get(
-        apiBaseUri + sfLegacyPrefix + 'dialogmerking/slett',
+        apiBaseUri + '/dialogmerking/slett',
         withDelayedResponse(randomDelay(), STATUS_OK, () => mockTilgangTilSlett())
     );
 }
 
 function setupAvsluttOppgaveGosysMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialogmerking/avsluttgosysoppgave',
+        apiBaseUri + '/dialogmerking/avsluttgosysoppgave',
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
 
 function merkAvsluttMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialogmerking/avslutt',
+        apiBaseUri + '/dialogmerking/avslutt',
         withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
     );
 }
 
 function merkTvungenAvsluttning(mock: FetchMock) {
     mock.post(
-        apiBaseUri + sfLegacyPrefix + 'dialogmerking/tvungenferdigstill',
+        apiBaseUri + '/dialogmerking/tvungenferdigstill',
         withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
     );
 }

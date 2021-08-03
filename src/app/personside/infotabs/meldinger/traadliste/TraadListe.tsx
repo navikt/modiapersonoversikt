@@ -16,7 +16,8 @@ import usePrinter from '../../../../../utils/print/usePrinter';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import MeldingerPrintMarkup from '../../../../../utils/print/MeldingerPrintMarkup';
 import Panel from 'nav-frontend-paneler';
-import { usingSFBackend } from '../../../../../static-mock';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     traader: Traad[];
@@ -102,6 +103,7 @@ function PrintAlleMeldinger({ traader }: { traader: Traad[] }) {
     );
 }
 function TraadListe(props: Props) {
+    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
     const inputRef = React.useRef<HTMLInputElement>();
     const paginering = usePaginering(props.traaderEtterSokOgFiltrering, 50, 'melding', props.valgtTraad);
     const sokTittelId = useRef(guid());

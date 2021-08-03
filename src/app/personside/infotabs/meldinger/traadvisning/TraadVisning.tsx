@@ -14,6 +14,8 @@ import { eldsteMelding, kanBesvares, meldingstittel, nyesteMelding, saksbehandle
 import { formaterDato } from '../../../../../utils/string-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/print/usePrinter';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     valgtTraad: Traad;
@@ -51,8 +53,9 @@ function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
 function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dispatch = useDispatch();
     const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
+    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
 
-    const traadKanBesvares = kanBesvares(valgtTraad);
+    const traadKanBesvares = kanBesvares(usingSFBackend, valgtTraad);
     const melding = eldsteMelding(valgtTraad);
     if (melding.erFerdigstiltUtenSvar) {
         return (

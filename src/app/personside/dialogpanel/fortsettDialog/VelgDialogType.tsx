@@ -5,7 +5,8 @@ import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
 import { FortsettDialogState } from './FortsettDialogTypes';
 import { useAppState } from '../../../../utils/customHooks';
-import { usingSFBackend } from '../../../../static-mock';
+import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     formState: FortsettDialogState;
@@ -19,6 +20,7 @@ interface Props {
 
 function VelgDialogType(props: Props) {
     const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
+    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
 
     function lagRadio(label: string, type: FortsettDialogType) {
         return (

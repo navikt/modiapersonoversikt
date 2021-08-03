@@ -4,7 +4,6 @@ import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../uti
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import { Temagruppe, temagruppeTekst, TemaPlukkbare, TemaKommunaleTjenester } from '../../../../../models/temagrupper';
-import { usingSFBackend } from '../../../../../static-mock';
 
 export const KanBesvaresMeldingstyper = [
     Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
@@ -22,7 +21,7 @@ export function eldsteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoStigende(melding => melding.opprettetDato))[0];
 }
 
-export function kanBesvares(traad?: Traad): boolean {
+export function kanBesvares(usingSFBackend: boolean, traad?: Traad): boolean {
     if (!traad) {
         return false;
     }
