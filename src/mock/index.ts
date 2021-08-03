@@ -1,7 +1,7 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import Cookies from 'js-cookie';
-import FetchMock, { MockHandler, MockRequest, Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+import FetchMock, { Middleware, MiddlewareUtils, MockHandler, MockRequest } from 'yet-another-fetch-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
@@ -42,11 +42,13 @@ import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
 import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinger-mock';
 import { failurerateMiddleware } from './utils/failureMiddleware';
 import { setupDraftMock } from './draft-mock';
-import { tilgangskontrollMock, authMock } from './tilgangskontroll-mock';
+import { authMock, tilgangskontrollMock } from './tilgangskontroll-mock';
 import { delayed } from './utils-mock';
-import { MeldingerBackendMock } from "./mockBackend/meldingerBackendMock";
+import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
 // import { setupHenvendelseDialogMock } from "./dialoger/henvendelse-dialoger-mock";
-import { setupSFDialogMock } from "./dialoger/sf-dialoger-mock";
+import { setupSFDialogMock } from './dialoger/sf-dialoger-mock';
+import { setupHenvendelseDialogMock } from './dialoger/henvendelse-dialoger-mock';
+import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -480,8 +482,13 @@ setupSykepengerMock(mock);
 setupForeldrepengerMock(mock);
 setupPleiepengerMock(mock);
 setupOppgaveMock(mock);
-// setupHenvendelseDialogMock(mock, meldingerBackendMock);
-setupSFDialogMock(mock, meldingerBackendMock);
+
+if (mockFeatureToggle(FeatureToggles.BrukSalesforceDialoger)) {
+    setupSFDialogMock(mock, meldingerBackendMock);
+} else {
+    setupHenvendelseDialogMock(mock, meldingerBackendMock);
+}
+
 setupTildelteOppgaverMock(mock);
 setupLeggTilbakeOppgaveMock(mock);
 setupVergemalMock(mock);
