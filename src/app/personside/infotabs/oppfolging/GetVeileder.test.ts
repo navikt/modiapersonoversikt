@@ -1,4 +1,4 @@
-import { getVeileder } from './OppfolgingDetaljerKomponent';
+import { getVeileder } from './oppfolging-utils';
 
 test('Viser informasjon om veileder dersom veileder finnes med navn og ident', () => {
     const veilederMedTommeFelter = {
@@ -21,10 +21,10 @@ test('Viser ikke informasjon om veileder med et veilederobjekt med tomme feilter
         navn: '',
         ident: ''
     };
-    expect(getVeileder(veilederMedTommeFelter)).toBeNull();
+    expect(getVeileder(veilederMedTommeFelter)).toBe('\u2014');
 });
 
 test('Viser ikke informasjon om veileder med null-veilederobjekt', () => {
     const nullVeileder = null;
-    expect(getVeileder(nullVeileder)).toBeNull();
+    expect(getVeileder(nullVeileder)).toBe('\u2014');
 });

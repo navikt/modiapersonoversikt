@@ -8,9 +8,10 @@ import theme from '../../../../styles/personOversiktTheme';
 import { usePaths } from '../../../routes/routing';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import CopyToClipboard from '../../visittkort/header/status/CopyToClipboard';
+import { getOppfolgingEnhet, getVeileder } from '../oppfolging/oppfolging-utils';
 
 interface Props {
-    detaljertOppfølging: DetaljertOppfolging;
+    detaljertOppfolging: DetaljertOppfolging;
 }
 
 const onPendingSpinner = <CenteredLazySpinner padding={theme.margin.layout} />;
@@ -20,7 +21,7 @@ function OppfolgingOversikt() {
             getResource={restResources => restResources.oppfolging}
             returnOnPending={onPendingSpinner}
         >
-            {data => <OppfolgingPanel detaljertOppfølging={data} />}
+            {data => <OppfolgingPanel detaljertOppfolging={data} />}
         </RestResourceConsumer>
     );
 }
@@ -28,13 +29,13 @@ function OppfolgingOversikt() {
 function OppfolgingPanel(props: Props) {
     const paths = usePaths();
 
-    if (!props.detaljertOppfølging.oppfølging.erUnderOppfølging) {
+    if (props.detaljertOppfolging.oppfolging !== null && !props.detaljertOppfolging.oppfolging.erUnderOppfolging) {
         return <AlertStripeInfo>Er ikke i arbeidsrettet oppfølging</AlertStripeInfo>;
     }
 
     return (
         <VisMerKnapp linkTo={paths.oppfolging} ariaDescription="Gå til oppfølging" valgt={false}>
-            <OppfolgingVisning detaljertOppfolging={props.detaljertOppfølging} />
+            <OppfolgingVisning detaljertOppfolging={props.detaljertOppfolging} />
         </VisMerKnapp>
     );
 }
@@ -57,46 +58,31 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
 }
 
 function Veileder({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
-    const veilederNavn = detaljertOppfolging.oppfølging.veileder ? (
-        <Normaltekst>{detaljertOppfolging.oppfølging.veileder.navn}</Normaltekst>
-    ) : (
-        <Normaltekst>Ikke angitt</Normaltekst>
-    );
-    const veilederIdent = detaljertOppfolging.oppfølging.veileder ? (
-        <Normaltekst>({detaljertOppfolging.oppfølging.veileder.ident})</Normaltekst>
-    ) : null;
     const clipboard =
-        detaljertOppfolging.oppfølging.veileder && detaljertOppfolging.oppfølging.veileder.ident ? (
+        detaljertOppfolging.oppfolging?.veileder && detaljertOppfolging.oppfolging.veileder.ident ? (
             <CopyToClipboard
                 ariaLabel="Kopier veileder"
-                stringToCopy={`${detaljertOppfolging.oppfølging.veileder.navn} (${detaljertOppfolging.oppfølging.veileder.ident})`}
+                stringToCopy={`${detaljertOppfolging.oppfolging.veileder.navn} (${detaljertOppfolging.oppfolging.veileder.ident})`}
             />
         ) : null;
 
     return (
         <>
             <Element>Veileder:</Element>
-            {veilederNavn}
-            {veilederIdent}
+            <Normaltekst>{getVeileder(detaljertOppfolging.oppfolging?.veileder)}</Normaltekst>
             {clipboard}
         </>
     );
 }
 
 function OppfolgingVisning({ detaljertOppfolging }: { detaljertOppfolging: DetaljertOppfolging }) {
-    const enhet = detaljertOppfolging.oppfølging.enhet ? (
-        <Normaltekst>{detaljertOppfolging.oppfølging.enhet.navn}</Normaltekst>
-    ) : (
-        <Normaltekst>Ikke angitt</Normaltekst>
-    );
-
     const innsatsgruppe = detaljertOppfolging.innsatsgruppe;
     const rettighetsgruppe = detaljertOppfolging.rettighetsgruppe;
 
     return (
         <>
             <Element>Oppfølgende enhet:</Element>
-            {enhet}
+            <Normaltekst>{getOppfolgingEnhet(detaljertOppfolging.oppfolging)}</Normaltekst>
             <Veileder detaljertOppfolging={detaljertOppfolging} />
             <Element>Innsatsgruppe / Rettighetsgruppe:</Element>
             <Normaltekst>
