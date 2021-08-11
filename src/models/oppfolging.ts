@@ -1,5 +1,4 @@
 export interface Oppfolging {
-    erUnderOppfølging: boolean;
     erUnderOppfolging: boolean;
     veileder: null | Saksbehandler;
     enhet: null | AnsattEnhet;

@@ -19,7 +19,6 @@ export function getMockOppfølging(fødselsnummer: string): Oppfolging {
     const erUnderOppfolging = faker.random.boolean();
 
     return {
-        erUnderOppfølging: erUnderOppfolging,
         erUnderOppfolging: erUnderOppfolging,
         veileder: erUnderOppfolging ? getSaksbehandler() : null,
         enhet: erUnderOppfolging ? getAnsattEnhet() : null

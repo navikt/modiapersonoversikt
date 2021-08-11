@@ -2,7 +2,6 @@ import { DetaljertOppfolging } from '../models/oppfolging';
 
 export const statiskOppfolgingMock: DetaljertOppfolging = {
     oppfolging: {
-        erUnderOppfølging: false,
         erUnderOppfolging: false,
         veileder: { ident: 'Z0000001', navn: 'Testident Testidentesen' },
         enhet: { id: 'E0001', navn: 'Tangen AS', status: 'ESTAT' }
