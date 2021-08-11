@@ -1,5 +1,5 @@
 import { Behandlingsstatus, Sakstema } from '../../models/saksoversikt/sakstema';
-import { Entitet, Feilmelding, Kommunikasjonsretning } from '../../models/saksoversikt/journalpost';
+import { DokumentStatus, Entitet, Feilmelding, Kommunikasjonsretning } from '../../models/saksoversikt/journalpost';
 import { Baksystem } from '../../models/saksoversikt/fellesSak';
 
 export function getAremarkSakstemaListe(): Sakstema[] {
@@ -27,7 +27,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: '77tn8ir0',
                         kanVises: true,
                         logiskDokument: false,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [
                         {
@@ -35,21 +36,24 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                             dokumentreferanse: 'u87cu54s',
                             kanVises: false,
                             logiskDokument: true,
-                            skjerming: null
+                            skjerming: null,
+                            dokumentStatus: null
                         },
                         {
                             tittel: 'Spørsmål via nav.no',
                             dokumentreferanse: '1s9k5q9y',
                             kanVises: true,
                             logiskDokument: true,
-                            skjerming: null
+                            skjerming: null,
+                            dokumentStatus: null
                         },
                         {
                             tittel: 'Inntektsopplysninger',
                             dokumentreferanse: '113o8et1',
                             kanVises: true,
                             logiskDokument: true,
-                            skjerming: null
+                            skjerming: null,
+                            dokumentStatus: null
                         }
                     ],
                     avsender: Entitet.Sluttbruker,
@@ -74,7 +78,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: '15pdmh42',
                         kanVises: true,
                         logiskDokument: false,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [
                         {
@@ -82,7 +87,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                             dokumentreferanse: 'k51y90us',
                             kanVises: true,
                             logiskDokument: false,
-                            skjerming: null
+                            skjerming: null,
+                            dokumentStatus: null
                         }
                     ],
                     avsender: Entitet.Sluttbruker,
@@ -107,7 +113,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: null,
                         kanVises: true,
                         logiskDokument: false,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [
                         {
@@ -115,7 +122,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                             dokumentreferanse: null,
                             kanVises: true,
                             logiskDokument: false,
-                            skjerming: null
+                            skjerming: null,
+                            dokumentStatus: null
                         }
                     ],
                     avsender: Entitet.Sluttbruker,
@@ -140,7 +148,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: '7rtstmj8',
                         kanVises: true,
                         logiskDokument: true,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [],
                     avsender: Entitet.EksternPart,
@@ -165,7 +174,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: '5a2gc968',
                         kanVises: true,
                         logiskDokument: true,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [],
                     avsender: Entitet.Ukjent,
@@ -239,7 +249,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: 'nvqxc1ip',
                         kanVises: true,
                         logiskDokument: true,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [],
                     avsender: Entitet.Ukjent,
@@ -264,7 +275,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: 'q90p8dnw',
                         kanVises: true,
                         logiskDokument: false,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [
                         {
@@ -272,21 +284,24 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                             dokumentreferanse: 'fbp2nc3l',
                             kanVises: false,
                             logiskDokument: false,
-                            skjerming: 'Skjerming'
+                            skjerming: 'Skjerming',
+                            dokumentStatus: null
                         },
                         {
                             tittel: 'Referat fra samtale på telefon',
                             dokumentreferanse: 'x2njhynn',
                             kanVises: true,
                             logiskDokument: false,
-                            skjerming: null
+                            skjerming: null,
+                            dokumentStatus: null
                         },
                         {
                             tittel: 'Vedtak korrigert refusjon/u bet',
                             dokumentreferanse: 'prrweqli',
                             kanVises: true,
                             logiskDokument: true,
-                            skjerming: null
+                            skjerming: null,
+                            dokumentStatus: null
                         }
                     ],
                     avsender: Entitet.EksternPart,
@@ -311,7 +326,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: 'me3wv1le',
                         kanVises: true,
                         logiskDokument: false,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [
                         {
@@ -319,7 +335,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                             dokumentreferanse: '2whugwip',
                             kanVises: true,
                             logiskDokument: true,
-                            skjerming: null
+                            skjerming: null,
+                            dokumentStatus: DokumentStatus.KASSERT
                         }
                     ],
                     avsender: Entitet.Nav,
@@ -344,7 +361,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: 'mt1cssx0',
                         kanVises: true,
                         logiskDokument: true,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [],
                     avsender: Entitet.Nav,
@@ -394,7 +412,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: 'nnp1em30',
                         kanVises: true,
                         logiskDokument: false,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [],
                     avsender: Entitet.Nav,
@@ -476,7 +495,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: 'bjol9s20',
                         kanVises: true,
                         logiskDokument: true,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [],
                     avsender: Entitet.EksternPart,
@@ -501,7 +521,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: '113wxk3r',
                         kanVises: true,
                         logiskDokument: false,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [],
                     avsender: Entitet.Ukjent,
@@ -546,7 +567,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: '4asiwin3',
                         kanVises: false,
                         logiskDokument: false,
-                        skjerming: 'POL'
+                        skjerming: 'POL',
+                        dokumentStatus: DokumentStatus.KASSERT
                     },
                     vedlegg: [
                         {
@@ -554,21 +576,24 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                             dokumentreferanse: '428dwf43',
                             kanVises: true,
                             logiskDokument: false,
-                            skjerming: null
+                            skjerming: null,
+                            dokumentStatus: null
                         },
                         {
                             tittel: 'Innhenting av opplysninger',
                             dokumentreferanse: 'sw0rma45',
                             kanVises: true,
                             logiskDokument: true,
-                            skjerming: null
+                            skjerming: null,
+                            dokumentStatus: null
                         },
                         {
                             tittel: 'Spørsmål via nav.no',
                             dokumentreferanse: 'tdxt2vie',
                             kanVises: true,
                             logiskDokument: true,
-                            skjerming: null
+                            skjerming: null,
+                            dokumentStatus: null
                         }
                     ],
                     avsender: Entitet.EksternPart,
@@ -593,7 +618,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: 'gplzp0ho',
                         kanVises: true,
                         logiskDokument: true,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [],
                     avsender: Entitet.Ukjent,
@@ -618,7 +644,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                         dokumentreferanse: 'zochf067',
                         kanVises: true,
                         logiskDokument: false,
-                        skjerming: null
+                        skjerming: null,
+                        dokumentStatus: null
                     },
                     vedlegg: [],
                     avsender: Entitet.Ukjent,

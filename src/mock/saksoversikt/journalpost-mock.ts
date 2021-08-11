@@ -1,9 +1,10 @@
 import {
     Dokument,
-    Journalpost,
+    DokumentStatus,
     Entitet,
     Feilmelding,
     FeilWrapper,
+    Journalpost,
     Kommunikasjonsretning
 } from '../../models/saksoversikt/journalpost';
 import { fyllRandomListe } from '../utils/mock-utils';
@@ -67,7 +68,8 @@ function getDokument(faker: Faker.FakerStatic, navFaker: NavFaker): Dokument {
         dokumentreferanse: faker.random.alphaNumeric(8),
         kanVises: navFaker.random.vektetSjanse(0.9),
         logiskDokument: faker.random.boolean(),
-        skjerming: navFaker.random.vektetSjanse(0.1) ? 'POL' : null
+        skjerming: navFaker.random.vektetSjanse(0.1) ? 'POL' : null,
+        dokumentStatus: navFaker.random.vektetSjanse(0.1) ? DokumentStatus.KASSERT : null
     };
 }
 
