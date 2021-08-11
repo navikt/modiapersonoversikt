@@ -36,7 +36,7 @@ const dokumentTekst = (dokument: Dokument) => {
     return (
         dokument.tittel +
         (dokument.skjerming ? ' (Skjermet)' : '') +
-        (dokument.dokumentStatus == DokumentStatus.KASSERT ? ' (Kassert)' : '')
+        (dokument.dokumentStatus === DokumentStatus.KASSERT ? ' (Kassert)' : '')
     );
 };
 
