@@ -19,7 +19,7 @@ export function getMockOppfølging(fødselsnummer: string): Oppfolging {
     const erUnderOppfolging = faker.random.boolean();
 
     return {
-        erUnderOppfølging: erUnderOppfolging,
+        erUnderOppfolging: erUnderOppfolging,
         veileder: erUnderOppfolging ? getSaksbehandler() : null,
         enhet: erUnderOppfolging ? getAnsattEnhet() : null
     };
@@ -45,7 +45,7 @@ export function getMockYtelserOgKontrakter(fødselsnummer: string): DetaljertOpp
     navfaker.seed(fødselsnummer + 'oppf');
 
     return {
-        oppfølging: getMockOppfølging(fødselsnummer),
+        oppfolging: getMockOppfølging(fødselsnummer),
         meldeplikt: faker.random.boolean(),
         formidlingsgruppe: 'FMGRP' + faker.random.number(5),
         innsatsgruppe: 'INGRP' + faker.random.number(10),
