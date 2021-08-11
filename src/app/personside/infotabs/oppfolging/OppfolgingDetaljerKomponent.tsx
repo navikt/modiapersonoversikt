@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DetaljertOppfolging, Saksbehandler } from '../../../../models/oppfolging';
+import { DetaljertOppfolging } from '../../../../models/oppfolging';
 import styled from 'styled-components/macro';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -8,6 +8,8 @@ import { datoEllerNull } from '../../../../utils/string-utils';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
+import { getErUnderOppfolging, getOppfolgingEnhet, getVeileder } from './oppfolging-utils';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 const StyledPanel = styled(Panel)`
     padding: ${pxToRem(15)};
@@ -17,24 +19,24 @@ const StyledPanel = styled(Panel)`
 `;
 
 interface Props {
-    detaljertOppfølging: DetaljertOppfolging;
+    detaljertOppfolging: DetaljertOppfolging;
 }
 
 function VisOppfolgingDetaljer(props: Props) {
-    const detaljer = props.detaljertOppfølging;
-    const arbeidsrettetOppfølging = detaljer.oppfølging.erUnderOppfølging ? 'Ja' : 'Nei';
-    const oppfølgingsenhet = detaljer.oppfølging.enhet
-        ? `${detaljer.oppfølging.enhet.id} ${detaljer.oppfølging.enhet.navn}`
-        : 'Ikke angitt';
-    const meldeplikt = detaljer.meldeplikt ? 'Ja' : detaljer.meldeplikt === false ? 'Nei' : 'Meldeplikt Ukjent';
     const headerId = useRef(guid());
+    const detaljer = props.detaljertOppfolging;
+    const meldeplikt = detaljer.meldeplikt ? 'Ja' : detaljer.meldeplikt === false ? 'Nei' : 'Meldeplikt Ukjent';
+    const ikkeFullstendigData =
+        detaljer.oppfolging === null ? (
+            <AlertStripeAdvarsel>Kunne ikke hente ut all oppfølgings-informasjon</AlertStripeAdvarsel>
+        ) : null;
 
     const descriptionListProps = {
-        'Er under oppfølging': arbeidsrettetOppfølging,
-        Oppfølgingsenhet: oppfølgingsenhet,
+        'Er under oppfølging': getErUnderOppfolging(detaljer.oppfolging),
+        Oppfølgingsenhet: getOppfolgingEnhet(detaljer.oppfolging),
         Rettighetsgruppe: detaljer.rettighetsgruppe,
         Innsatsgruppe: detaljer.innsatsgruppe,
-        Veileder: getVeileder(detaljer.oppfølging.veileder),
+        Veileder: getVeileder(detaljer.oppfolging?.veileder),
         Meldeplikt: meldeplikt,
         Formidlingsgruppe: detaljer.formidlingsgruppe,
         Oppfølgingsvedtak: datoEllerNull(detaljer.vedtaksdato)
@@ -44,14 +46,11 @@ function VisOppfolgingDetaljer(props: Props) {
         <StyledPanel aria-labelledby={headerId.current}>
             <article>
                 <Undertittel id={headerId.current}>Arbeidsoppfølging</Undertittel>
+                {ikkeFullstendigData}
                 <DescriptionList entries={descriptionListProps} />
             </article>
         </StyledPanel>
     );
-}
-
-export function getVeileder(veileder: Saksbehandler | null) {
-    return veileder && veileder.ident ? veileder.navn + ' (' + veileder.ident + ')' : null;
 }
 
 export default VisOppfolgingDetaljer;

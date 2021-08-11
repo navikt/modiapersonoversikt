@@ -1,5 +1,5 @@
 export interface Oppfolging {
-    erUnderOppfølging: boolean;
+    erUnderOppfolging: boolean;
     veileder: null | Saksbehandler;
     enhet: null | AnsattEnhet;
 }
@@ -16,7 +16,7 @@ export interface AnsattEnhet {
 }
 
 export interface DetaljertOppfolging {
-    oppfølging: Oppfolging;
+    oppfolging: Oppfolging | null;
     meldeplikt: boolean;
     formidlingsgruppe: string;
     innsatsgruppe: string;
