@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Element, Undertekst } from 'nav-frontend-typografi';
 import { Link, useLocation } from 'react-router-dom';
-import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
+import { Dokument, DokumentStatus, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { paths } from '../../../../routes/routing';
 import { useFodselsnummer } from '../../../../../utils/customHooks';
@@ -33,7 +33,11 @@ const LastNedLenke = styled.a`
 `;
 
 const dokumentTekst = (dokument: Dokument) => {
-    return dokument.tittel + (dokument.skjerming ? ' (Skjermet)' : '');
+    return (
+        dokument.tittel +
+        (dokument.skjerming ? ' (Skjermet)' : '') +
+        (dokument.dokumentStatus === DokumentStatus.KASSERT ? ' (Kassert)' : '')
+    );
 };
 
 function getUrlSaksdokumentEgetVindu(
