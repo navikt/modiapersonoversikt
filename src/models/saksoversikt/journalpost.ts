@@ -59,4 +59,12 @@ export interface Dokument {
     kanVises: boolean;
     logiskDokument: boolean;
     skjerming: string | null;
+    dokumentStatus: DokumentStatus | null;
+}
+
+export enum DokumentStatus {
+    UNDER_REDIGERING = 'UNDER_REDIGERING',
+    FERDIGSTILT = 'FERDIGSTILT',
+    AVBRUTT = 'AVBRUTT',
+    KASSERT = 'KASSERT'
 }

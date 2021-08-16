@@ -1322,7 +1322,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <p
                             className="typo-element"
                           >
-                            Spørsmål via nav.no (Skjermet)
+                            Spørsmål via nav.no (Skjermet) (Kassert)
                           </p>
                         </h4>
                         <div
@@ -1566,7 +1566,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                             <p
                               className="typo-element"
                             >
-                              A-inntekt
+                              A-inntekt (Kassert)
                             </p>
                           </li>
                         </ul>
