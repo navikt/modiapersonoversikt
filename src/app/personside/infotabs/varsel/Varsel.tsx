@@ -101,7 +101,7 @@ function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
     const toggleOpen = () => setOpen(!open);
 
     const tittelId = useRef(guid());
-    const aktiv = varsel.aktiv ? '' : '(Inaktiv)';
+    const aktiv = varsel.aktiv ? '' : '(Ferdigstilt)';
     return (
         <li>
             <StyledPanel>
