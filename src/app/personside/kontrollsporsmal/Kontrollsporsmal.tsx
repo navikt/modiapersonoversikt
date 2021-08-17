@@ -10,6 +10,8 @@ import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useErKontaktsenter } from '../../../utils/enheter-utils';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { kontrollspørsmålHarBlittLukketForBruker } from './cookie-utils';
+import useFeatureToggle from '../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
 
 const KontrollSporsmalStyling = styled.section`
     background-color: white;
@@ -51,8 +53,15 @@ function Kontrollsporsmal() {
     const personResource = useRestResource(resources => resources.personinformasjon, placeholderProps);
     const erKontaktsenter = useErKontaktsenter();
     const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
+    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
 
-    if (!visKontrollSpørsmål || jobberMedSTO || !erKontaktsenter || kontrollspørsmålHarBlittLukketForBruker(fnr)) {
+    if (
+        usingSFBackend ||
+        !visKontrollSpørsmål ||
+        jobberMedSTO ||
+        !erKontaktsenter ||
+        kontrollspørsmålHarBlittLukketForBruker(fnr)
+    ) {
         return null;
     }
 
