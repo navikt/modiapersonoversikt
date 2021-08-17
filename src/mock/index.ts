@@ -45,7 +45,6 @@ import { setupDraftMock } from './draft-mock';
 import { authMock, tilgangskontrollMock } from './tilgangskontroll-mock';
 import { delayed } from './utils-mock';
 import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
-// import { setupHenvendelseDialogMock } from "./dialoger/henvendelse-dialoger-mock";
 import { setupSFDialogMock } from './dialoger/sf-dialoger-mock';
 import { setupHenvendelseDialogMock } from './dialoger/henvendelse-dialoger-mock';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
