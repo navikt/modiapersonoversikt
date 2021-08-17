@@ -21,11 +21,22 @@ export function eldsteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoStigende(melding => melding.opprettetDato))[0];
 }
 
-export function kanBesvares(traad?: Traad): boolean {
+export function kanBesvares(usingSFBackend: boolean, traad?: Traad): boolean {
     if (!traad) {
         return false;
     }
     const melding = eldsteMelding(traad);
+
+    if (usingSFBackend) {
+        const type = [
+            Meldingstype.SPORSMAL_SKRIFTLIG,
+            Meldingstype.SVAR_SBL_INNGAAENDE,
+            Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
+            Meldingstype.SVAR_SKRIFTLIG
+        ].includes(melding.meldingstype);
+        // avsluttetDato betyr at ting er journalført, og kan ikke besvares videre.
+        return !melding.avsluttetDato && type;
+    }
     return KanBesvaresMeldingstyper.includes(melding.meldingstype);
 }
 

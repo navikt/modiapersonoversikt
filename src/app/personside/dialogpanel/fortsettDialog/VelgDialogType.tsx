@@ -5,6 +5,8 @@ import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
 import { FortsettDialogState } from './FortsettDialogTypes';
 import { useAppState } from '../../../../utils/customHooks';
+import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     formState: FortsettDialogState;
@@ -18,6 +20,7 @@ interface Props {
 
 function VelgDialogType(props: Props) {
     const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
+    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
 
     function lagRadio(label: string, type: FortsettDialogType) {
         return (
@@ -42,7 +45,7 @@ function VelgDialogType(props: Props) {
         return (
             <VelgDialogtypeStyle>
                 {svar}
-                {!props.erOksosTraad && delvisSvar}
+                {!usingSFBackend && !props.erOksosTraad && delvisSvar}
             </VelgDialogtypeStyle>
         );
     }
@@ -63,7 +66,7 @@ function VelgDialogType(props: Props) {
             <VelgDialogtypeStyle>
                 {svar}
                 {spørsmål}
-                {props.erSTOOppgave && !props.erOksosTraad && delvisSvar}
+                {!usingSFBackend && props.erSTOOppgave && !props.erOksosTraad && delvisSvar}
                 {!jobberMedSTO && svarTelefon}
                 {!jobberMedSTO && svarOppmote}
             </VelgDialogtypeStyle>

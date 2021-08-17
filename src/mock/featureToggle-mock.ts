@@ -5,6 +5,8 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
     switch (toggleId) {
         case FeatureToggles.VisTilbakemelding:
             return true;
+        case FeatureToggles.BrukSalesforceDialoger:
+            return false;
         default:
             return Math.random() > 0.5;
     }

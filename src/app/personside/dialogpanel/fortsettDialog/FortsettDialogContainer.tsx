@@ -36,6 +36,8 @@ import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
 import { hasData, RestResource } from '../../../../rest/utils/restResource';
 import { selectValgtEnhet } from '../../../../redux/session/session';
+import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -84,6 +86,7 @@ function FortsettDialogContainer(props: Props) {
     const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const valgtEnhet = useAppState(selectValgtEnhet);
+    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
     const draftLoader = useCallback((draft: Draft) => setState(current => ({ ...current, tekst: draft.content })), [
         setState
     ]);
@@ -254,7 +257,7 @@ function FortsettDialogContainer(props: Props) {
                     erTilknyttetOppgave={!!oppgaveId}
                     erSTOOppgave={erSTOOppgave}
                 />
-                {oppgaveId && erSTOOppgave && (
+                {!usingSFBackend && oppgaveId && erSTOOppgave && (
                     <LeggTilbakepanel
                         oppgaveId={oppgaveId}
                         traadId={props.traad.traadId}

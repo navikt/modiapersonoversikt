@@ -9,6 +9,7 @@ import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
 import './window-variabler';
 
 setupTimeSpentMetrics();
+
 if (process.env.REACT_APP_MOCK_ENABLED === 'true') {
     require('./mock');
 }

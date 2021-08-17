@@ -16,6 +16,8 @@ import usePrinter from '../../../../../utils/print/usePrinter';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import MeldingerPrintMarkup from '../../../../../utils/print/MeldingerPrintMarkup';
 import Panel from 'nav-frontend-paneler';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     traader: Traad[];
@@ -101,6 +103,7 @@ function PrintAlleMeldinger({ traader }: { traader: Traad[] }) {
     );
 }
 function TraadListe(props: Props) {
+    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
     const inputRef = React.useRef<HTMLInputElement>();
     const paginering = usePaginering(props.traaderEtterSokOgFiltrering, 50, 'melding', props.valgtTraad);
     const sokTittelId = useRef(guid());
@@ -152,7 +155,7 @@ function TraadListe(props: Props) {
     return (
         <nav aria-label="Velg melding">
             <StyledPanel>
-                <SlaaSammenOppgaverKnapp traader={props.traader} />
+                {!usingSFBackend && <SlaaSammenOppgaverKnapp traader={props.traader} />}
                 <article aria-labelledby={sokTittelId.current}>
                     <h3 id={sokTittelId.current} className="sr-only">
                         Filtrer meldinger
