@@ -9,8 +9,3 @@ export interface Verge {
     gyldighetstidspunkt?: string;
     opphoerstidspunkt: string | null;
 }
-
-export interface Periode {
-    fom?: string;
-    tom?: string;
-}

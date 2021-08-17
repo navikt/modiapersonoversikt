@@ -1,7 +1,7 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import Cookies from 'js-cookie';
-import FetchMock, { MockHandler, MockRequest, Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+import FetchMock, { Middleware, MiddlewareUtils, MockHandler, MockRequest } from 'yet-another-fetch-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { apiBaseUri } from '../api/config';
 import { getPerson } from './person/personMock';
@@ -30,23 +30,25 @@ import { mockFeatureToggle } from './featureToggle-mock';
 import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getDittNavVarsler, getMockVarsler } from './varsler/varsel-mock';
-import { getMockSlaaSammen } from './meldinger/meldinger-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { saker } from './journalforing/journalforing-mock';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './person/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
 import standardTekster from './standardTeksterMock.js';
-import { mockTilgangTilSlett } from './meldinger/merk-mock';
-import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
 import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
 import { saksbehandlerCookieNavnPrefix } from '../redux/session/saksbehandlersEnhetCookieUtils';
 import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
 import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinger-mock';
 import { failurerateMiddleware } from './utils/failureMiddleware';
 import { setupDraftMock } from './draft-mock';
-import { tilgangskontrollMock, authMock } from './tilgangskontroll-mock';
+import { authMock, tilgangskontrollMock } from './tilgangskontroll-mock';
 import { delayed } from './utils-mock';
+import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
+// import { setupHenvendelseDialogMock } from "./dialoger/henvendelse-dialoger-mock";
+import { setupSFDialogMock } from './dialoger/sf-dialoger-mock';
+import { setupHenvendelseDialogMock } from './dialoger/henvendelse-dialoger-mock';
+import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -239,31 +241,6 @@ function setupVarselMock(mock: FetchMock) {
     );
 }
 
-function setupMeldingerMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/dialog/:fodselsnummer/meldinger',
-        verify(
-            harEnhetIdSomQueryParam,
-            withDelayedResponse(
-                randomDelay(),
-                fødselsNummerErGyldigStatus,
-                mockGeneratorMedFødselsnummer(fodselsnummer => meldingerBackendMock.getMeldinger(fodselsnummer))
-            )
-        )
-    );
-}
-
-function setupSlaasammenMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fodselsnummer/slaasammen',
-        withDelayedResponse(
-            randomDelay(),
-            STATUS_OK,
-            mockGeneratorMedFødselsnummer(fodselsnummer => getMockSlaaSammen(fodselsnummer))
-        )
-    );
-}
-
 function setupGsakTemaMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/dialogoppgave/tema',
@@ -293,13 +270,6 @@ function setupAnsattePaaEnhetMock(mock: FetchMock) {
             STATUS_OK,
             mockGeneratorMedEnhetId(enhetId => getMockAnsatte(enhetId))
         )
-    );
-}
-
-function setupTilgangTilSlettMock(mock: FetchMock) {
-    mock.get(
-        `${apiBaseUri}/dialogmerking/slett`,
-        withDelayedResponse(randomDelay(), STATUS_OK, () => mockTilgangTilSlett())
     );
 }
 
@@ -349,33 +319,6 @@ function setupOppgaveMock(mock: FetchMock) {
     );
 }
 
-function setupOpprettHenvendelseMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fnr/fortsett/opprett',
-        withDelayedResponse(randomDelay(), STATUS_OK, request => meldingerBackendMock.opprettHenvendelse(request.body))
-    );
-}
-
-function setupFerdigstillHenvendelseMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fnr/fortsett/ferdigstill',
-        withDelayedResponse(randomDelay(), STATUS_OK, request => {
-            meldingerBackendMock.ferdigstillHenvendelse(request.body);
-            return {};
-        })
-    );
-}
-
-function setupSendDelsvarMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fnr/delvis-svar',
-        withDelayedResponse(randomDelay(), STATUS_OK, request => {
-            meldingerBackendMock.sendDelsvar(request.body);
-            return {};
-        })
-    );
-}
-
 function setupTildelteOppgaverMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/oppgaver/tildelt/:fnr',
@@ -387,44 +330,6 @@ function setupLeggTilbakeOppgaveMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/oppgaver/legg-tilbake',
         withDelayedResponse(randomDelay(), STATUS_OK, request => oppgaveBackendMock.leggTilbake(request.body))
-    );
-}
-
-function setupSendReferatMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fodselsnummer/sendreferat',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
-            return meldingerBackendMock.sendReferat(request.body);
-        })
-    );
-}
-
-function setupSendSpørsmålMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fodselsnummer/sendsporsmal',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
-            meldingerBackendMock.sendSpørsmål(request.body);
-            return {};
-        })
-    );
-}
-
-function setupSendInfomeldingMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fodselsnummer/sendinfomelding',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
-            meldingerBackendMock.sendInfomelding(request.body);
-            return {};
-        })
-    );
-}
-
-function setupSendSvarMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fodselsnummer/sendsvar',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
-            return {};
-        })
     );
 }
 
@@ -530,41 +435,6 @@ function opprettSkjermetOppgaveMock(mock: FetchMock) {
     );
 }
 
-function merkAvsluttMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/avslutt',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
-function merkBidragMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/bidrag',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
-function merkFeilsendtMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/feilsendt',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
-function merkKontorsperretMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/kontorsperret',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
-function merkSlettMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/slett',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
 function setupStandardteksterMock(mock: FetchMock) {
     mock.get(
         '/modiapersonoversikt-skrivestotte/skrivestotte',
@@ -574,13 +444,6 @@ function setupStandardteksterMock(mock: FetchMock) {
     mock.post(
         '/modiapersonoversikt-skrivestotte/skrivestotte/statistikk/:id',
         withDelayedResponse(randomDelay(), STATUS_OK, () => undefined)
-    );
-}
-
-function setupAvsluttOppgaveGosysMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/avsluttgosysoppgave',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
 
@@ -619,9 +482,13 @@ setupSykepengerMock(mock);
 setupForeldrepengerMock(mock);
 setupPleiepengerMock(mock);
 setupOppgaveMock(mock);
-setupOpprettHenvendelseMock(mock);
-setupFerdigstillHenvendelseMock(mock);
-setupSendDelsvarMock(mock);
+
+if (mockFeatureToggle(FeatureToggles.BrukSalesforceDialoger)) {
+    setupSFDialogMock(mock, meldingerBackendMock);
+} else {
+    setupHenvendelseDialogMock(mock, meldingerBackendMock);
+}
+
 setupTildelteOppgaverMock(mock);
 setupLeggTilbakeOppgaveMock(mock);
 setupVergemalMock(mock);
@@ -635,31 +502,18 @@ setupWsControlAndMock(mock);
 setupLandKodeverk(mock);
 setupValutaKodeverk(mock);
 setupOppfølgingMock(mock);
-setupMeldingerMock(mock);
 setupGsakTemaMock(mock);
 setupOppgaveEnhetMock(mock);
 setupForeslatteEnheterMock(mock);
 setupAnsattePaaEnhetMock(mock);
-setupTilgangTilSlettMock(mock);
 setupYtelserOgKontrakter(mock);
 setupVarselMock(mock);
 opprettOppgaveMock(mock);
 opprettSkjermetOppgaveMock(mock);
-setupSendReferatMock(mock);
-setupSendSpørsmålMock(mock);
-setupSendInfomeldingMock(mock);
-setupSendSvarMock(mock);
 setupPersonsokMock(mock);
-merkAvsluttMock(mock);
-merkBidragMock(mock);
-merkFeilsendtMock(mock);
-merkKontorsperretMock(mock);
-merkSlettMock(mock);
 setupJournalforingMock(mock);
 setupStandardteksterMock(mock);
-setupSlaasammenMock(mock);
 setupVelgEnhetMock(mock);
 setUpSaksbehandlersEnheterMock(mock);
-setupAvsluttOppgaveGosysMock(mock);
 setupSaksbehandlerInnstillingerMock(mock);
 setupDraftMock(mock);
