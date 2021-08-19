@@ -9,6 +9,7 @@ import AvansertSokKnappBilde from './img/avansertSok-knapp.jpg';
 import UtenlandskIDBilde from './img/utenlandskID.jpg';
 import ForeldreansvarBilde from './img/foreldreansvar1.png';
 import MarkeringDodeBarnBilde from './img/markering-dode-barn.png';
+import KassertDokumentBilde from './img/kassert.jpg';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export const OppdateringsloggConfig: EnOppdateringslogg[] = [
@@ -144,5 +145,18 @@ export const OppdateringsloggConfig: EnOppdateringslogg[] = [
             </>
         ),
         src: MarkeringDodeBarnBilde
+    },
+    {
+        id: 8,
+        tittel: 'Viser at dokument er kassert',
+        dato: new Date('2021-08-19 10:00'),
+        aktiv: true,
+        ingress: <Normaltekst>Vi viser nå at dokument er kassert i en sak.</Normaltekst>,
+        beskrivelse: (
+            <Normaltekst>
+                Hvis et dokument er blitt kassert så står det i parentes bak det aktuelle dokumentet.
+            </Normaltekst>
+        ),
+        src: KassertDokumentBilde
     }
 ];
