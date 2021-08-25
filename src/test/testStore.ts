@@ -91,4 +91,8 @@ export function setupFetchCache() {
         ),
         statiskDittnavEventVarselMock
     );
+    cache.putResolved(
+        createCacheKey(`${apiBaseUri}/person/${aremark.fødselsnummer}/aktorid`),
+        (`000${aremark.fødselsnummer}000` as unknown) as object
+    );
 }
