@@ -48,6 +48,7 @@ import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
 import { setupSFDialogMock } from './dialoger/sf-dialoger-mock';
 import { setupHenvendelseDialogMock } from './dialoger/henvendelse-dialoger-mock';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
+import { getAktorId } from './aktorid-mock';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -107,6 +108,17 @@ function setupPersonMock(mock: FetchMock) {
             randomDelay(),
             fødselsNummerErGyldigStatus,
             mockGeneratorMedFødselsnummer(fødselsnummer => getPerson(fødselsnummer))
+        )
+    );
+}
+
+function setupAktorIdMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/person/:fodselsnummer/aktorid',
+        withDelayedResponse(
+            randomDelay(),
+            fødselsNummerErGyldigStatus,
+            mockGeneratorMedFødselsnummer(fodselsnummer => getAktorId(fodselsnummer))
         )
     );
 }
@@ -481,6 +493,7 @@ setupSykepengerMock(mock);
 setupForeldrepengerMock(mock);
 setupPleiepengerMock(mock);
 setupOppgaveMock(mock);
+setupAktorIdMock(mock);
 
 if (mockFeatureToggle(FeatureToggles.BrukSalesforceDialoger)) {
     setupSFDialogMock(mock, meldingerBackendMock);

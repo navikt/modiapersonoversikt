@@ -19,7 +19,9 @@ export function verify(isInvalid: (req: MockRequest) => string | undefined, hand
     };
 }
 
-export function mockGeneratorMedFødselsnummer(fn: (fødselsnummer: string) => object | object[] | undefined) {
+export function mockGeneratorMedFødselsnummer(
+    fn: (fødselsnummer: string) => object | object[] | undefined | string | null
+) {
     return (args: MockRequest) => fn(args.pathParams.fodselsnummer);
 }
 
