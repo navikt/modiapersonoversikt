@@ -3,37 +3,19 @@ import { createRef, useState } from 'react';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import VelgSak from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
 import { formatterDatoMedMaanedsnavn } from '../../../../utils/date-utils';
-import { SkjemaGruppe } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
-import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import { NedChevron, OppChevron } from 'nav-frontend-chevron';
+import theme from '../../../../styles/personOversiktTheme';
 import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
-import SkjemaelementFeilmelding from 'nav-frontend-skjema/lib/skjemaelement-feilmelding';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
+import ModalWrapper from 'nav-frontend-modal';
+import { Hovedknapp } from 'nav-frontend-knapper';
 
 interface Props {
     valgtSak?: JournalforingsSak;
     setValgtSak: (sak: JournalforingsSak) => void;
     visFeilmelding: boolean;
 }
-
-const Style = styled.div`
-    background-color: white;
-    border-radius: ${theme.borderRadius.layout};
-    border: 1px solid #78706a;
-    position: relative;
-`;
-
-const Knapp = styled.button`
-    ${theme.resetButtonStyle};
-    padding: ${pxToRem(8)};
-    border-radius: ${theme.borderRadius.layout};
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-`;
 
 const Dropdown = styled.div`
     padding: ${theme.margin.layout};
@@ -60,37 +42,53 @@ function usePreFetchJournalforingsSaker() {
     });
 }
 
+const StyledModalWrapper = styled(ModalWrapper)`
+    &.modal {
+        background-color: ${theme.color.navLysGra};
+    }
+`;
+
+const StyledArticle = styled.article`
+    padding: ${theme.margin.layout};
+    min-width: 30rem;
+    min-height: 40rem;
+`;
+
+const StyledDiv = styled.div`
+    display: flex;
+    align-items: center;
+    > *:not(:last-child) {
+        margin-right: 1rem;
+    }
+`;
 function DialogpanelVelgSak(props: Props) {
-    const [visSaker, setVisSaker] = useState(false);
     const knappRef = createRef<HTMLButtonElement>();
     usePreFetchJournalforingsSaker();
 
     const handleVelgSak = (sak: JournalforingsSak) => {
-        setVisSaker(false);
         props.setValgtSak(sak);
         knappRef.current && knappRef.current.focus();
     };
 
-    const tittel = props.valgtSak ? getTittel(props.valgtSak) : 'Velg sak';
-
+    const tittelDialogpanel = props.valgtSak ? getTittel(props.valgtSak) : 'Ingen valgt sak';
+    const [apen, settApen] = useState(false);
+    const handleOnClose = () => {
+        settApen(false);
+    };
     return (
-        <SkjemaGruppe
-            feil={
-                props.visFeilmelding ? <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding> : undefined
-            }
-        >
-            <Style>
-                <Knapp ref={knappRef} type="button" onClick={() => setVisSaker(!visSaker)} aria-expanded={visSaker}>
-                    <Normaltekst>{tittel}</Normaltekst>
-                    {visSaker ? <OppChevron /> : <NedChevron />}
-                </Knapp>
-                {visSaker && (
+        <>
+            <StyledDiv>
+                <Hovedknapp onClick={() => settApen(true)}>Velg sak</Hovedknapp>
+                <Normaltekst>{tittelDialogpanel}</Normaltekst>
+            </StyledDiv>
+            <StyledModalWrapper contentLabel="Velg sak" onRequestClose={handleOnClose} isOpen={apen}>
+                <StyledArticle>
                     <Dropdown>
                         <VelgSak velgSak={handleVelgSak} valgtSak={props.valgtSak} />
                     </Dropdown>
-                )}
-            </Style>
-        </SkjemaGruppe>
+                </StyledArticle>
+            </StyledModalWrapper>
+        </>
     );
 }
 
