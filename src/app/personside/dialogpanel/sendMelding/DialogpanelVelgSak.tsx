@@ -3,7 +3,7 @@ import { createRef, useState } from 'react';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import VelgSak from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/VelgSak';
 import { formatterDatoMedMaanedsnavn } from '../../../../utils/date-utils';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
@@ -16,18 +16,6 @@ interface Props {
     setValgtSak: (sak: JournalforingsSak) => void;
     visFeilmelding: boolean;
 }
-
-const Dropdown = styled.div`
-    padding: ${theme.margin.layout};
-    position: absolute;
-    z-index: 1000;
-    background-color: white;
-    border: ${theme.border.skille};
-    border-radius: ${theme.borderRadius.layout};
-    width: 100%;
-    max-height: 50vh;
-    overflow: auto;
-`;
 
 function getTittel(sak: JournalforingsSak) {
     return [sak.opprettetDato && formatterDatoMedMaanedsnavn(sak.opprettetDato), sak.temaNavn, sak.saksIdVisning]
@@ -48,10 +36,15 @@ const StyledModalWrapper = styled(ModalWrapper)`
     }
 `;
 
-const StyledArticle = styled.article`
-    padding: ${theme.margin.layout};
-    min-width: 30rem;
-    min-height: 40rem;
+const Style = styled.section`
+    display: flex;
+    height: 100%;
+    width: 40rem;
+    min-height: 20rem;
+    max-height: 40rem;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
 `;
 
 const StyledDiv = styled.div`
@@ -82,11 +75,11 @@ function DialogpanelVelgSak(props: Props) {
                 <Normaltekst>{tittelDialogpanel}</Normaltekst>
             </StyledDiv>
             <StyledModalWrapper contentLabel="Velg sak" onRequestClose={handleOnClose} isOpen={apen}>
-                <StyledArticle>
-                    <Dropdown>
-                        <VelgSak velgSak={handleVelgSak} valgtSak={props.valgtSak} />
-                    </Dropdown>
-                </StyledArticle>
+                <Systemtittel>Velg sak</Systemtittel>
+                <Style>
+                    <VelgSak velgSak={handleVelgSak} valgtSak={props.valgtSak} />
+                </Style>
+                <Hovedknapp onClick={() => settApen(false)}>Lukk</Hovedknapp>
             </StyledModalWrapper>
         </>
     );
