@@ -13,36 +13,18 @@ exports[`viser send ny melding 1`] = `
 }
 
 .c14 {
-  background-color: white;
-  border-radius: .25rem;
-  border: 1px solid #78706a;
-  position: relative;
-}
-
-.c15 {
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  padding: 0.5rem;
-  border-radius: .25rem;
-  width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
 }
 
-.c15:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
+.c14 > *:not(:last-child) {
+  margin-right: 1rem;
 }
 
 .c6 {
@@ -176,7 +158,7 @@ exports[`viser send ny melding 1`] = `
   padding: 1rem .5rem;
 }
 
-.c16 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -186,7 +168,7 @@ exports[`viser send ny melding 1`] = `
   flex-direction: column;
 }
 
-.c16 > * {
+.c15 > * {
   margin-bottom: 0.7rem;
 }
 
@@ -665,34 +647,23 @@ exports[`viser send ny melding 1`] = `
               Gir ikke varsel til bruker
             </div>
           </div>
-          <fieldset
-            aria-invalid={false}
-            className="skjemagruppe"
+          <div
+            className="c14"
           >
-            <div
-              className="c14"
+            <button
+              className="knapp knapp--hoved"
+              disabled={false}
+              onClick={[Function]}
+              type="submit"
             >
-              <button
-                aria-expanded={false}
-                className="c15"
-                onClick={[Function]}
-                type="button"
-              >
-                <p
-                  className="typo-normal"
-                >
-                  Velg sak
-                </p>
-                <span
-                  className="nav-frontend-chevron chevronboks chevron--ned"
-                />
-              </button>
-            </div>
-            <div
-              aria-live="polite"
-              id="Helt tilfeldig ID"
-            />
-          </fieldset>
+              Velg sak
+            </button>
+            <p
+              className="typo-normal"
+            >
+              Ingen valgt sak
+            </p>
+          </div>
           <div
             className="alertstripe c13 alertstripe--info"
           >
@@ -735,7 +706,7 @@ exports[`viser send ny melding 1`] = `
           </div>
         </div>
         <div
-          className="c16"
+          className="c15"
         >
           <button
             className="knapp knapp--hoved"
