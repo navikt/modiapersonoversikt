@@ -45,6 +45,8 @@ const Style = styled.section`
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem;
+    overflow-y: scroll;
+    margin-bottom: 1rem;
 `;
 
 const StyledDiv = styled.div`
@@ -57,14 +59,15 @@ const StyledDiv = styled.div`
 function DialogpanelVelgSak(props: Props) {
     const knappRef = createRef<HTMLButtonElement>();
     usePreFetchJournalforingsSaker();
+    const [apen, settApen] = useState(false);
 
     const handleVelgSak = (sak: JournalforingsSak) => {
+        settApen(false);
         props.setValgtSak(sak);
         knappRef.current && knappRef.current.focus();
     };
 
     const tittelDialogpanel = props.valgtSak ? getTittel(props.valgtSak) : 'Ingen valgt sak';
-    const [apen, settApen] = useState(false);
     const handleOnClose = () => {
         settApen(false);
     };
