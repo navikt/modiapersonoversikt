@@ -9,7 +9,7 @@ import LazySpinner from '../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useErKontaktsenter } from '../../../utils/enheter-utils';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
-import { kontrollspørsmålHarBlittLukketForBruker } from './cookie-utils';
+import { kontrollsporsmaalHarBlittLukketForBruker } from './cookie-utils';
 import useFeatureToggle from '../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
 
@@ -60,7 +60,7 @@ function Kontrollsporsmal() {
         !visKontrollSpørsmål ||
         jobberMedSTO ||
         !erKontaktsenter ||
-        kontrollspørsmålHarBlittLukketForBruker(fnr)
+        kontrollsporsmaalHarBlittLukketForBruker(fnr)
     ) {
         return null;
     }

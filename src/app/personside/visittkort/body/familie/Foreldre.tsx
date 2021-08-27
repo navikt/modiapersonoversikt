@@ -8,7 +8,7 @@ import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 
 import { Diskresjonskode } from './common/Diskresjonskode';
-import { getKjønnIkon } from './common/Kjønn';
+import { getKjonnIkon } from './common/Kjonn';
 
 interface Props {
     familierelasjoner: Familierelasjon[];
@@ -20,7 +20,7 @@ interface ForelderProps {
 
 function Forelder({ relasjon }: ForelderProps) {
     const beskrivelse = relasjon.rolle === Relasjonstype.Mor ? 'Mor' : 'Far';
-    const ikon = getKjønnIkon(relasjon.tilPerson.fødselsnummer);
+    const ikon = getKjonnIkon(relasjon.tilPerson.fødselsnummer);
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={ikon}>
             <Diskresjonskode diskresjonskode={relasjon.tilPerson.diskresjonskode} />

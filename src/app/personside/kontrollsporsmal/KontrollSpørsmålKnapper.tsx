@@ -8,7 +8,7 @@ import { loggEvent } from '../../../utils/logger/frontendLogger';
 import KnappBase from 'nav-frontend-knapper';
 import { AppState } from '../../../redux/reducers';
 import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
-import { settSkjulKontrollspørsmålPåTversAvVinduerForBrukerCookie } from './cookie-utils';
+import { settSkjulKontrollsporsmaalPaaTversAvVinduerForBrukerCookie } from './cookie-utils';
 import { KontrollSpørsmålState } from '../../../redux/kontrollSporsmal/types';
 
 interface DispatchProps {
@@ -54,7 +54,7 @@ class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
         if (!this.props.fnr) {
             return;
         }
-        settSkjulKontrollspørsmålPåTversAvVinduerForBrukerCookie(this.props.fnr);
+        settSkjulKontrollsporsmaalPaaTversAvVinduerForBrukerCookie(this.props.fnr);
     }
 
     visNyttKnapp() {

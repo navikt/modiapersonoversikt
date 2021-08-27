@@ -7,7 +7,7 @@ import { setKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
 import { connect } from 'react-redux';
 import { PersonRespons } from '../../../models/person/person';
 import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
-import { kontaktInformasjonSpørsmål, personInformasjonSpørsmål, SpørsmålsExtractor } from './SporsmalExtractors';
+import { kontaktInformasjonSporsmaal, personInformasjonSpørsmål, SpørsmålsExtractor } from './SporsmalExtractors';
 import { shuffle } from './list-utils';
 import { loggEvent } from '../../../utils/logger/frontendLogger';
 import { hasData, RestResource } from '../../../rest/utils/restResource';
@@ -46,7 +46,7 @@ class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
         let spørsmål: Spørsmål[] = [];
 
         spørsmål = spørsmål.concat(extractSpørsmål(this.props.personinformasjon, personInformasjonSpørsmål));
-        spørsmål = spørsmål.concat(extractSpørsmål(this.props.kontaktinformasjon, kontaktInformasjonSpørsmål));
+        spørsmål = spørsmål.concat(extractSpørsmål(this.props.kontaktinformasjon, kontaktInformasjonSporsmaal));
 
         shuffle(spørsmål);
 
