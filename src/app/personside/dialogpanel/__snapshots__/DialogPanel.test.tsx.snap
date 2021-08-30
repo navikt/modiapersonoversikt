@@ -662,7 +662,7 @@ exports[`viser dialogpanel 1`] = `
               className="c15"
             >
               <button
-                className="knapp knapp--hoved"
+                className="knapp knapp--hoved knapp--mini"
                 disabled={false}
                 onClick={[Function]}
                 type="submit"
