@@ -46,7 +46,7 @@ const Style = styled.section`
     justify-content: space-between;
     padding: 1rem;
     overflow-y: scroll;
-    margin-bottom: 1rem;
+    margin: 1rem;
 `;
 
 const StyledDiv = styled.div`
@@ -74,7 +74,9 @@ function DialogpanelVelgSak(props: Props) {
     return (
         <>
             <StyledDiv>
-                <Hovedknapp onClick={() => settApen(true)}>Velg sak</Hovedknapp>
+                <Hovedknapp mini onClick={() => settApen(true)}>
+                    Velg sak
+                </Hovedknapp>
                 <Normaltekst>{tittelDialogpanel}</Normaltekst>
             </StyledDiv>
             <StyledModalWrapper contentLabel="Velg sak" onRequestClose={handleOnClose} isOpen={apen}>
