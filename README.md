@@ -46,10 +46,7 @@ Du kan, men du må ikke, bruke et verktøy for å generere markdown filer som AD
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot:
 
--   Jan-Eirik B. Nævdal, jan.eirik.b.navdal@nav.no
--   Nicklas Utgaard, nicklas.utgaard@nav.no
--   Andreas Bergman, andreas.bergman@nav.no
--   Ankur Tade, ankur.tade@nav.no
+[Team Personoversikt](https://github.com/navikt/info-team-personoversikt)
 
 ### For NAV-ansatte
 
