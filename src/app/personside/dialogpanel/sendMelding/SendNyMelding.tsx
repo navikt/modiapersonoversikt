@@ -23,6 +23,7 @@ import { Temagruppe, TemaSamtalereferat } from '../../../../models/temagrupper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { guid } from 'nav-frontend-js-utils';
 import ReflowBoundry from '../ReflowBoundry';
+import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -98,7 +99,7 @@ function SendNyMelding(props: Props) {
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSporsmaal = NyMeldingValidator.erSporsmal(state);
     const erInfomelding = NyMeldingValidator.erInfomelding(state);
-
+    const visFeilmelding = !NyMeldingValidator.sak(state) && state.visFeilmeldinger;
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>
@@ -133,6 +134,11 @@ function SendNyMelding(props: Props) {
                                 visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
                                 valgtSak={state.sak}
                             />
+                            {visFeilmelding ? (
+                                <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding>
+                            ) : (
+                                undefined
+                            )}
                             {erSporsmaal ? (
                                 <>
                                     <Oppgaveliste
