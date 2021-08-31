@@ -23,6 +23,7 @@ import { Temagruppe, TemaSamtalereferat } from '../../../../models/temagrupper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { guid } from 'nav-frontend-js-utils';
 import ReflowBoundry from '../ReflowBoundry';
+import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -98,7 +99,7 @@ function SendNyMelding(props: Props) {
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSporsmaal = NyMeldingValidator.erSporsmal(state);
     const erInfomelding = NyMeldingValidator.erInfomelding(state);
-
+    const visFeilmelding = !NyMeldingValidator.sak(state) && state.visFeilmeldinger;
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>
@@ -128,11 +129,12 @@ function SendNyMelding(props: Props) {
                             <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
                         </UnmountClosed>
                         <UnmountClosed isOpened={erSporsmaal || erInfomelding}>
-                            <DialogpanelVelgSak
-                                setValgtSak={sak => updateState({ sak })}
-                                visFeilmelding={!NyMeldingValidator.sak(state) && state.visFeilmeldinger}
-                                valgtSak={state.sak}
-                            />
+                            <DialogpanelVelgSak setValgtSak={sak => updateState({ sak })} valgtSak={state.sak} />
+                            {visFeilmelding ? (
+                                <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding>
+                            ) : (
+                                undefined
+                            )}
                             {erSporsmaal ? (
                                 <>
                                     <Oppgaveliste

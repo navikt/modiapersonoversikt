@@ -14,7 +14,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 interface Props {
     valgtSak?: JournalforingsSak;
     setValgtSak: (sak: JournalforingsSak) => void;
-    visFeilmelding: boolean;
+    visFeilmelding?: boolean;
 }
 
 function getTittel(sak: JournalforingsSak) {
