@@ -5,37 +5,37 @@ export interface Svar {
     beskrivelse?: string;
 }
 
-export interface Spørsmål {
-    spørsmål: string;
+export interface Sporsmaal {
+    sporsmaal: string;
     svar: Svar[];
 }
 
-export interface KontrollSpørsmålState {
-    spørsmål?: Spørsmål[];
+export interface KontrollSporsmaalState {
+    sporsmaal?: Sporsmaal[];
     open: boolean;
 }
 
-export const initState: KontrollSpørsmålState = {
-    spørsmål: undefined,
+export const initState: KontrollSporsmaalState = {
+    sporsmaal: undefined,
     open: true
 };
 
 export enum ActionTypes {
     Roter = 'KONTROLLSPØRSMAL / ROTER',
-    SetSpørsmål = 'KONTROLLSPØRSMÅL / SETSPØRSMÅL',
+    SetSporsmaal = 'KONTROLLSPØRSMÅL / SETSPØRSMÅL',
     Lukk = 'KONTROLLSPØRSMÅL / LUKK',
     Reset = 'KONTROLLSPØRSMÅL / RESET'
 }
 
-export type Actions = Roter | SetSpørsmål | Lukk | Reset;
+export type Actions = Roter | SetSporsmaal | Lukk | Reset;
 
 export interface Roter extends Action {
     type: ActionTypes.Roter;
 }
 
-export interface SetSpørsmål extends Action {
-    type: ActionTypes.SetSpørsmål;
-    spørsmål: Spørsmål[];
+export interface SetSporsmaal extends Action {
+    type: ActionTypes.SetSporsmaal;
+    sporsmaal: Sporsmaal[];
 }
 
 export interface Lukk extends Action {

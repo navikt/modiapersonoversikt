@@ -48,7 +48,7 @@ const Placeholder = (
 
 const placeholderProps = { returnOnPending: Placeholder };
 function Kontrollsporsmal() {
-    const visKontrollSpørsmål = useAppState(state => state.kontrollSpørsmål.open);
+    const visKontrollSpørsmål = useAppState(state => state.kontrollSporsmaal.open);
     const fnr = useFodselsnummer();
     const personResource = useRestResource(resources => resources.personinformasjon, placeholderProps);
     const erKontaktsenter = useErKontaktsenter();

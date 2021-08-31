@@ -1,9 +1,9 @@
-import { ActionTypes, Roter, SetSpørsmål, Spørsmål, Lukk } from './types';
+import { ActionTypes, Roter, SetSporsmaal, Sporsmaal, Lukk } from './types';
 
-export function setKontrollSpørsmål(spørsmål: Spørsmål[]): SetSpørsmål {
+export function setKontrollSpørsmål(spørsmål: Sporsmaal[]): SetSporsmaal {
     return {
-        type: ActionTypes.SetSpørsmål,
-        spørsmål: spørsmål
+        type: ActionTypes.SetSporsmaal,
+        sporsmaal: spørsmål
     };
 }
 

@@ -2,12 +2,12 @@ import styled from 'styled-components/macro';
 import * as React from 'react';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { Bold } from '../../../components/common-styled-components';
-import { Spørsmål } from '../../../redux/kontrollSporsmal/types';
+import { Sporsmaal } from '../../../redux/kontrollSporsmal/types';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
-    spørsmål: Spørsmål;
+    sporsmaal: Sporsmaal;
 }
 
 const SporsmalOgSvarStyling = styled.div`
@@ -15,7 +15,7 @@ const SporsmalOgSvarStyling = styled.div`
     flex-wrap: wrap;
 `;
 
-const SpørsmålTekstStyle = styled.div`
+const SporsmaalTekstStyle = styled.div`
     flex-flow: row;
     flex-grow: 1.5;
 `;
@@ -41,30 +41,30 @@ const Luft = styled.div`
     margin-bottom: 1rem;
 `;
 
-const IngenKontrollspørsmålStyling = styled(AlertStripeAdvarsel)`
+const IngenKontrollsporsmaalStyling = styled(AlertStripeAdvarsel)`
     margin-right: 1rem;
 `;
 
 class SpørsmålOgSvar extends React.PureComponent<Props> {
     render() {
-        const svar = lagSvar(this.props.spørsmål);
+        const svar = lagSvar(this.props.sporsmaal);
 
         return (
             <SporsmalOgSvarStyling>
                 <OpplysningsTekst />
-                <SpørsmålTekstStyle>
+                <SporsmaalTekstStyle>
                     <Undertittel aria-live="polite" tag="h3">
-                        {this.props.spørsmål.spørsmål}
+                        {this.props.sporsmaal.sporsmaal}
                     </Undertittel>
                     <Luft />
                     <SvarKolonneStyling>{svar}</SvarKolonneStyling>
-                </SpørsmålTekstStyle>
+                </SporsmaalTekstStyle>
             </SporsmalOgSvarStyling>
         );
     }
 }
 
-function lagSvar(spørsmål: Spørsmål) {
+function lagSvar(spørsmål: Sporsmaal) {
     return spørsmål.svar.map(enkeltSvar => (
         <KolonneStyling key={enkeltSvar.tekst}>
             <Normaltekst>
@@ -77,9 +77,9 @@ function lagSvar(spørsmål: Spørsmål) {
 
 export function FeilTekst() {
     return (
-        <IngenKontrollspørsmålStyling>
+        <IngenKontrollsporsmaalStyling>
             Vi fant ingen opplysninger som kan brukes til å stille kontrollspørsmål
-        </IngenKontrollspørsmålStyling>
+        </IngenKontrollsporsmaalStyling>
     );
 }
 

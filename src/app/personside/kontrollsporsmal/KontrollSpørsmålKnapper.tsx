@@ -9,16 +9,16 @@ import KnappBase from 'nav-frontend-knapper';
 import { AppState } from '../../../redux/reducers';
 import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
 import { settSkjulKontrollsporsmaalPaaTversAvVinduerForBrukerCookie } from './cookie-utils';
-import { KontrollSpørsmålState } from '../../../redux/kontrollSporsmal/types';
+import { KontrollSporsmaalState } from '../../../redux/kontrollSporsmal/types';
 
 interface DispatchProps {
-    lukkKontrollSpørsmål: () => void;
-    nyttSpørsmål: () => void;
+    lukkKontrollSporsmaal: () => void;
+    nyttSporsmaal: () => void;
 }
 
 interface StateProps {
     fnr?: string;
-    kontrollSpørsmål: KontrollSpørsmålState;
+    kontrollSporsmaal: KontrollSporsmaalState;
 }
 
 type Props = StateProps & DispatchProps;
@@ -35,22 +35,22 @@ const KnapperStyling = styled.div`
 class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
     constructor(props: Props) {
         super(props);
-        this.handleNyttSpørsmålClick = this.handleNyttSpørsmålClick.bind(this);
+        this.handleNyttSporsmaalClick = this.handleNyttSporsmaalClick.bind(this);
         this.handleLukkClick = this.handleLukkClick.bind(this);
     }
 
-    handleNyttSpørsmålClick() {
+    handleNyttSporsmaalClick() {
         loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Nytt' });
-        this.props.nyttSpørsmål();
+        this.props.nyttSporsmaal();
     }
 
     handleLukkClick() {
         loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Lukk' });
-        this.skjulPåTversAvVinduer();
-        this.props.lukkKontrollSpørsmål();
+        this.skjulPaaTversAvVinduer();
+        this.props.lukkKontrollSporsmaal();
     }
 
-    skjulPåTversAvVinduer() {
+    skjulPaaTversAvVinduer() {
         if (!this.props.fnr) {
             return;
         }
@@ -58,7 +58,7 @@ class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
     }
 
     visNyttKnapp() {
-        return this.props.kontrollSpørsmål.spørsmål && this.props.kontrollSpørsmål.spørsmål.length !== 0;
+        return this.props.kontrollSporsmaal.sporsmaal && this.props.kontrollSporsmaal.sporsmaal.length !== 0;
     }
 
     render() {
@@ -68,7 +68,7 @@ class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
                     Lukk
                 </KnappBase>
                 {this.visNyttKnapp() ? (
-                    <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={this.handleNyttSpørsmålClick}>
+                    <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={this.handleNyttSporsmaalClick}>
                         Nytt
                     </KnappBase>
                 ) : null}
@@ -80,14 +80,14 @@ class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
 function mapStateToProps(state: AppState): StateProps {
     return {
         fnr: getFnrFromPerson(state.restResources.personinformasjon),
-        kontrollSpørsmål: state.kontrollSpørsmål
+        kontrollSporsmaal: state.kontrollSporsmaal
     };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        lukkKontrollSpørsmål: () => dispatch(lukkKontrollSpørsmål()),
-        nyttSpørsmål: () => dispatch(roterKontrollSpørsmål())
+        lukkKontrollSporsmaal: () => dispatch(lukkKontrollSpørsmål()),
+        nyttSporsmaal: () => dispatch(roterKontrollSpørsmål())
     };
 }
 

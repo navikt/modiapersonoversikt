@@ -1,20 +1,20 @@
 import { Action, createStore } from 'redux';
 import kontrollspørsmålReducer from './reducer';
 import { roterKontrollSpørsmål, setKontrollSpørsmål, lukkKontrollSpørsmål } from './actions';
-import { Spørsmål } from './types';
+import { Sporsmaal } from './types';
 
-const spm1: Spørsmål = {
-    spørsmål: 'Spørsmål 1',
+const spm1: Sporsmaal = {
+    sporsmaal: 'Spørsmål 1',
     svar: [{ tekst: 'svar til spørsmål 1' }]
 };
 
-const spm2: Spørsmål = {
-    spørsmål: 'Spørsmål 2',
+const spm2: Sporsmaal = {
+    sporsmaal: 'Spørsmål 2',
     svar: [{ tekst: 'svar til spørsmål 2' }]
 };
 
-const spm3: Spørsmål = {
-    spørsmål: 'Spørsmål 3',
+const spm3: Sporsmaal = {
+    sporsmaal: 'Spørsmål 3',
     svar: [{ tekst: 'svar til spørsmål 3' }]
 };
 
@@ -25,7 +25,7 @@ describe('Kontrollspørsmål reducer', () => {
 
         store.dispatch(action);
 
-        expect(store.getState().spørsmål).toBeUndefined();
+        expect(store.getState().sporsmaal).toBeUndefined();
         expect(store.getState().open).toBe(true);
     });
 
@@ -36,9 +36,9 @@ describe('Kontrollspørsmål reducer', () => {
 
         store.dispatch(setKontrollSpørsmål(lagSpørsmål()));
 
-        expect(store.getState().spørsmål).toContain(spm1);
-        expect(store.getState().spørsmål).toContain(spm2);
-        expect(store.getState().spørsmål).not.toContain(spm3);
+        expect(store.getState().sporsmaal).toContain(spm1);
+        expect(store.getState().sporsmaal).toContain(spm2);
+        expect(store.getState().sporsmaal).not.toContain(spm3);
         expect(store.getState().open).toBe(true);
     });
 
@@ -47,21 +47,21 @@ describe('Kontrollspørsmål reducer', () => {
 
         store.dispatch(setKontrollSpørsmål(lagSpørsmål()));
 
-        expect(store.getState().spørsmål).not.toBeUndefined();
-        expect((store.getState().spørsmål as Spørsmål[])[0]).toBe(spm1);
-        expect((store.getState().spørsmål as Spørsmål[])[1]).toBe(spm2);
+        expect(store.getState().sporsmaal).not.toBeUndefined();
+        expect((store.getState().sporsmaal as Sporsmaal[])[0]).toBe(spm1);
+        expect((store.getState().sporsmaal as Sporsmaal[])[1]).toBe(spm2);
 
         store.dispatch(roterKontrollSpørsmål());
 
-        expect(store.getState().spørsmål).not.toBeUndefined();
-        expect((store.getState().spørsmål as Spørsmål[])[0]).toBe(spm2);
-        expect((store.getState().spørsmål as Spørsmål[])[1]).toBe(spm1);
+        expect(store.getState().sporsmaal).not.toBeUndefined();
+        expect((store.getState().sporsmaal as Sporsmaal[])[0]).toBe(spm2);
+        expect((store.getState().sporsmaal as Sporsmaal[])[1]).toBe(spm1);
 
         store.dispatch(roterKontrollSpørsmål());
 
-        expect(store.getState().spørsmål).not.toBeUndefined();
-        expect((store.getState().spørsmål as Spørsmål[])[0]).toBe(spm1);
-        expect((store.getState().spørsmål as Spørsmål[])[1]).toBe(spm2);
+        expect(store.getState().sporsmaal).not.toBeUndefined();
+        expect((store.getState().sporsmaal as Sporsmaal[])[0]).toBe(spm1);
+        expect((store.getState().sporsmaal as Sporsmaal[])[1]).toBe(spm2);
     });
 
     it('Toggler synlig korrekt', () => {
@@ -79,7 +79,7 @@ describe('Kontrollspørsmål reducer', () => {
     });
 });
 
-function lagSpørsmål(): Spørsmål[] {
+function lagSpørsmål(): Sporsmaal[] {
     return [spm1, spm2];
 }
 
