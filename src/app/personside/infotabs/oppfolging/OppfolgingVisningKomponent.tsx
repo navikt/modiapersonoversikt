@@ -8,7 +8,7 @@ import SykefravarsoppfolgingEkspanderbartPanel from './SykefravarsoppfolgingEksp
 import OppfolgingYtelserEkspanderbartPanel from './OppfolgingYtelserEkspanderbartPanel';
 
 interface VisningProps {
-    detaljertOppfølging: DetaljertOppfolging;
+    detaljertOppfolging: DetaljertOppfolging;
 }
 
 const OppfolgingStyle = styled.div`
@@ -32,10 +32,10 @@ function OppfolgingVisning(props: VisningProps) {
         <OppfolgingStyle>
             <DetaljertInfoWrapper>
                 <OppfolgingDatoPanel />
-                <VisOppfolgingDetaljer detaljertOppfolging={props.detaljertOppfølging} />
+                <VisOppfolgingDetaljer detaljertOppfolging={props.detaljertOppfolging} />
             </DetaljertInfoWrapper>
-            <SykefravarsoppfolgingEkspanderbartPanel syfoPunkter={props.detaljertOppfølging.sykefraværsoppfølging} />
-            <OppfolgingYtelserEkspanderbartPanel ytelser={props.detaljertOppfølging.ytelser} />
+            <SykefravarsoppfolgingEkspanderbartPanel syfoPunkter={props.detaljertOppfolging.sykefravaersoppfolging} />
+            <OppfolgingYtelserEkspanderbartPanel ytelser={props.detaljertOppfolging.ytelser} />
         </OppfolgingStyle>
     );
 }

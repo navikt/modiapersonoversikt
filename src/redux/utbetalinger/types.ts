@@ -19,7 +19,7 @@ interface PeriodeOptions {
 
 export enum PeriodeValg {
     SISTE_30_DAGER = 'Siste 30 dager',
-    INNEVÆRENDE_ÅR = 'Inneværende år',
+    INNEVAERENDE_AAR = 'Inneværende år',
     I_FJOR = 'I fjor',
     EGENDEFINERT = 'Egendefinert'
 }

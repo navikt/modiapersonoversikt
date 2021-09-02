@@ -12,22 +12,22 @@ export const statiskOppfolgingMock: DetaljertOppfolging = {
     sykemeldtFra: '2019-04-24',
     rettighetsgruppe: 'RGRP8',
     vedtaksdato: '2019-04-24',
-    sykefraværsoppfølging: [
+    sykefravaersoppfolging: [
         {
             dato: '2019-01-27',
-            fastOppfølgingspunkt: true,
+            fastOppfolgingspunkt: true,
             status: 'Ferdig behandlet',
             syfoHendelse: 'nostrum sunt quia mollitia impedit sint'
         },
         {
             dato: '2019-04-10',
-            fastOppfølgingspunkt: false,
+            fastOppfolgingspunkt: false,
             status: 'Ferdig behandlet',
             syfoHendelse: 'vel expedita dolore excepturi est alias'
         },
         {
             dato: '2019-02-12',
-            fastOppfølgingspunkt: true,
+            fastOppfolgingspunkt: true,
             status: 'Ferdig behandlet',
             syfoHendelse: 'illo repellendus ad iste neque maxime'
         }

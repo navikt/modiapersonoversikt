@@ -23,13 +23,13 @@ export interface DetaljertOppfolging {
     sykemeldtFra: string;
     rettighetsgruppe: string;
     vedtaksdato: string;
-    sykefraværsoppfølging: SyfoPunkt[];
+    sykefravaersoppfolging: SyfoPunkt[];
     ytelser: (OppfolgingsYtelse | Dagpenger)[];
 }
 
 export interface SyfoPunkt {
     dato: string;
-    fastOppfølgingspunkt: boolean;
+    fastOppfolgingspunkt: boolean;
     status: string;
     syfoHendelse: string;
 }

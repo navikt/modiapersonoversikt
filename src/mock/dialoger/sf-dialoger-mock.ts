@@ -1,6 +1,6 @@
 import FetchMock, { MockRequest } from 'yet-another-fetch-mock';
 import { apiBaseUri } from '../../api/config';
-import { mockGeneratorMedFødselsnummer, verify, withDelayedResponse } from '../utils/fetch-utils';
+import { mockGeneratorMedFodselsnummer, verify, withDelayedResponse } from '../utils/fetch-utils';
 import { randomDelay } from '../index';
 import { mockTilgangTilSlett } from '../meldinger/merk-mock';
 import { MeldingerBackendMock } from '../mockBackend/meldingerBackendMock';
@@ -25,7 +25,7 @@ const harEnhetIdSomQueryParam = (req: MockRequest) => {
     return undefined;
 };
 
-const fødselsNummerErGyldigStatus = (req: MockRequest) =>
+const fodselsNummerErGyldigStatus = (req: MockRequest) =>
     erGyldigFødselsnummer(req.pathParams.fodselsnummer) ? STATUS_OK() : STATUS_BAD_REQUEST();
 
 function setupMeldingerMock(mock: FetchMock) {
@@ -35,8 +35,8 @@ function setupMeldingerMock(mock: FetchMock) {
             harEnhetIdSomQueryParam,
             withDelayedResponse(
                 randomDelay(),
-                fødselsNummerErGyldigStatus,
-                mockGeneratorMedFødselsnummer(fodselsnummer =>
+                fodselsNummerErGyldigStatus,
+                mockGeneratorMedFodselsnummer(fodselsnummer =>
                     simulateSf(meldingerBackendMock.getMeldinger(fodselsnummer))
                 )
             )
@@ -105,11 +105,11 @@ function setupSendReferatMock(mock: FetchMock) {
     );
 }
 
-function setupSendSpørsmålMock(mock: FetchMock) {
+function setupSendSporsmaalMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendsporsmal',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
-            meldingerBackendMock.sendSpørsmål(request.body);
+            meldingerBackendMock.sendSporsmaal(request.body);
             return {};
         })
     );
@@ -206,7 +206,7 @@ export function setupSFDialogMock(mock: FetchMock, backend: MeldingerBackendMock
     setupSendDelsvarMock(mock);
     setupTilgangTilSlettMock(mock);
     setupSendReferatMock(mock);
-    setupSendSpørsmålMock(mock);
+    setupSendSporsmaalMock(mock);
     setupSendInfomeldingMock(mock);
     setupSendSvarMock(mock);
     setupSlaasammenMock(mock);
