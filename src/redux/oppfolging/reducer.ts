@@ -10,10 +10,10 @@ export function oppfolgingReducer(state: OppfolgingState = initialState, action:
                     ...action.periodeEndring
                 }
             };
-        case OppfolgingActionTypes.SetSykefraværEkspandert:
+        case OppfolgingActionTypes.SetSykefravaerEkspandert:
             return {
                 ...state,
-                sykefraværEkspandert: action.ekspandert
+                sykefravaerEkspandert: action.ekspandert
             };
         case OppfolgingActionTypes.SetYtelserEkspandert:
             return {

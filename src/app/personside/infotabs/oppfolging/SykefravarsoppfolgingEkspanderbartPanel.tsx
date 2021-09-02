@@ -6,7 +6,7 @@ import { datoSynkende, formatterDato } from '../../../../utils/date-utils';
 import { StyledTable } from '../../../../utils/table/StyledTable';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
-import { setSykefraværEkspandert } from '../../../../redux/oppfolging/actions';
+import { setSykefravaerEkspandert } from '../../../../redux/oppfolging/actions';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
 
 interface Props {
@@ -14,10 +14,10 @@ interface Props {
 }
 
 function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
-    const sortertPåDato = props.syfoPunkter.sort(datoSynkende(syfoPunkt => syfoPunkt.dato));
+    const sortertPaaDato = props.syfoPunkter.sort(datoSynkende(syfoPunkt => syfoPunkt.dato));
 
     const tableHeaders = ['Innen', 'Hendelse', 'Status'];
-    const tableRows = sortertPåDato.map((syfopunkt, index) => [
+    const tableRows = sortertPaaDato.map((syfopunkt, index) => [
         formatterDato(syfopunkt.dato),
         syfopunkt.syfoHendelse,
         syfopunkt.status
@@ -27,10 +27,10 @@ function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
 }
 
 function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {
-    const open = useAppState(state => state.oppfolging.sykefraværEkspandert);
+    const open = useAppState(state => state.oppfolging.sykefravaerEkspandert);
     const dispatch = useDispatch();
     const setOpen = (open: boolean) => {
-        dispatch(setSykefraværEkspandert(open));
+        dispatch(setSykefravaerEkspandert(open));
         !open && loggEvent('VisSykefraværsPanel', 'Oppfølging');
     };
 
