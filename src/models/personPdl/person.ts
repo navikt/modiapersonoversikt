@@ -4,6 +4,7 @@ import { Verge } from './verge';
 import { DeltBosted } from './deltBosted';
 import { Bankkonto } from './bankkonto';
 import { DigitalKontaktinformasjon } from './digitalKontaktinformasjon';
+import { Foreldreansvar } from './foreldreansvar';
 
 export interface Person {
     fnr: string;
@@ -88,12 +89,6 @@ export interface Telefon {
     sistEndret: Date | null;
     sistEndretAv: string | null;
     prioritet: number;
-}
-
-export interface Foreldreansvar {
-    ansvar: string;
-    ansvarlig: Navn | null;
-    ansvarsubject: Navn | null;
 }
 
 export enum Kjonn {
