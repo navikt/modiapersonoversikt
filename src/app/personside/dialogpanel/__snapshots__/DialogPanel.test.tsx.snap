@@ -13,36 +13,18 @@ exports[`viser dialogpanel 1`] = `
 }
 
 .c15 {
-  background-color: white;
-  border-radius: .25rem;
-  border: 1px solid #78706a;
-  position: relative;
-}
-
-.c16 {
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  padding: 0.5rem;
-  border-radius: .25rem;
-  width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
 }
 
-.c16:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
+.c15 > *:not(:last-child) {
+  margin-right: 1rem;
 }
 
 .c7 {
@@ -176,7 +158,7 @@ exports[`viser dialogpanel 1`] = `
   padding: 1rem .5rem;
 }
 
-.c17 {
+.c16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -186,7 +168,7 @@ exports[`viser dialogpanel 1`] = `
   flex-direction: column;
 }
 
-.c17 > * {
+.c16 > * {
   margin-bottom: 0.7rem;
 }
 
@@ -676,34 +658,23 @@ exports[`viser dialogpanel 1`] = `
                 Gir ikke varsel til bruker
               </div>
             </div>
-            <fieldset
-              aria-invalid={false}
-              className="skjemagruppe"
+            <div
+              className="c15"
             >
-              <div
-                className="c15"
+              <button
+                className="knapp knapp--hoved knapp--mini"
+                disabled={false}
+                onClick={[Function]}
+                type="submit"
               >
-                <button
-                  aria-expanded={false}
-                  className="c16"
-                  onClick={[Function]}
-                  type="button"
-                >
-                  <p
-                    className="typo-normal"
-                  >
-                    Velg sak
-                  </p>
-                  <span
-                    className="nav-frontend-chevron chevronboks chevron--ned"
-                  />
-                </button>
-              </div>
-              <div
-                aria-live="polite"
-                id="Helt tilfeldig ID"
-              />
-            </fieldset>
+                Velg sak
+              </button>
+              <p
+                className="typo-normal"
+              >
+                Ingen valgt sak
+              </p>
+            </div>
             <div
               className="alertstripe c14 alertstripe--info"
             >
@@ -746,7 +717,7 @@ exports[`viser dialogpanel 1`] = `
             </div>
           </div>
           <div
-            className="c17"
+            className="c16"
           >
             <button
               className="knapp knapp--hoved"
