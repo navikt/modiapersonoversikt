@@ -9,7 +9,7 @@ import {
 } from '../../models/personPdl/dodsbo';
 import { Navn } from '../../models/personPdl/person';
 
-export function getMockDoedsbo(faker: Faker.FakerStatic): Dodsbo[] {
+export function getMockDodsbo(faker: Faker.FakerStatic): Dodsbo[] {
     return fyllRandomListe<Dodsbo>(() => mockDodsbo(faker), 2, false);
 }
 

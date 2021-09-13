@@ -19,12 +19,12 @@ import {
 import { getAremarkForeldreansvar } from './foreldreansvarMock';
 import { getDeltBostedMock } from './deltBostedMock';
 import * as faker from 'faker';
-import { getMockDoedsbo } from './dodsbo';
-import { getMockFullmakter } from '../person/fullmakterMock';
+import { getMockDodsbo } from './dodsbo';
 import navfaker from 'nav-faker/dist/index';
 import { mockVergemal } from './vergemalMock';
 import { DigitalKontaktinformasjon } from '../../models/personPdl/digitalKontaktinformasjon';
 import { getBankKonto } from './bankkontoMock';
+import { Fullmakt, FullmaktsRolle } from '../../models/personPdl/fullmakt';
 
 export const navnAremark: Navn = {
     fornavn: 'TESTFAMILIEN',
@@ -122,6 +122,19 @@ export const digitalKontaktInformasjonAremark: DigitalKontaktinformasjon = {
     }
 };
 
+export const fullmaktAremark: Fullmakt = {
+    motpartsPersonident: '123456789',
+    motpartsPersonNavn: {
+        fornavn: 'Navn',
+        mellomnavn: null,
+        etternavn: 'Navnesen'
+    },
+    motpartsRolle: FullmaktsRolle.Fullmektig,
+    omraade: ['*'],
+    gyldigFraOgMed: new Date('2019-01-01'),
+    gyldigTilOgMed: new Date('2022-12-12')
+};
+
 export const aremark: Person = {
     fnr: '10108000398',
     navn: [navnAremark],
@@ -139,8 +152,8 @@ export const aremark: Person = {
     sivilstand: [sivilstandAremark],
     foreldreansvar: [getAremarkForeldreansvar()],
     deltBosted: getDeltBostedMock(faker),
-    dodsbo: getMockDoedsbo(faker),
-    fullmakt: getMockFullmakter(faker, navfaker),
+    dodsbo: getMockDodsbo(faker),
+    fullmakt: [fullmaktAremark],
     vergemal: mockVergemal(navfaker.personIdentifikator.fødselsnummer()),
     tilrettelagtKommunikasjon: tilrettelagtKommunikasjonAremark,
     telefonnummer: [telefonAremark],
