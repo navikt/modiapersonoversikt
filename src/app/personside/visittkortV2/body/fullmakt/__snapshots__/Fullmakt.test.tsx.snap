@@ -98,7 +98,7 @@ exports[`viser fullmakt 1`] = `
         className="typo-element"
       >
         Fullmektig
-    : [object Object](07046131805)
+    : [object Object](07043827221)
       </h4>
     </div>
     <p
@@ -112,39 +112,6 @@ exports[`viser fullmakt 1`] = `
     >
       Gyldig til og med 
       25.02.1971
-    </p>
-    <p
-      className="typo-normal"
-    >
-      Gjelder 
-      alle ytelser
-    </p>
-  </div>
-  <div
-    className="c3"
-  >
-    <div
-      className="c0"
-    >
-      
-      <h4
-        className="typo-element"
-      >
-        Fullmektig
-    : [object Object](11041802733)
-      </h4>
-    </div>
-    <p
-      className="typo-normal"
-    >
-      Gyldig fra og med 
-      26.01.1969
-    </p>
-    <p
-      className="typo-normal"
-    >
-      Gyldig til og med 
-      22.07.1970
     </p>
     <p
       className="typo-normal"
