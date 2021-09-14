@@ -17,14 +17,12 @@ import {
     TilrettelagtKommunikasjon
 } from '../../models/personPdl/person';
 import { getAremarkForeldreansvar } from './foreldreansvarMock';
-import { getDeltBostedMock } from './deltBostedMock';
-import * as faker from 'faker';
-import { getMockDodsbo } from './dodsbo';
-import navfaker from 'nav-faker/dist/index';
-import { mockVergemal } from './vergemalMock';
+import { getAremarkVerge } from './vergemalMock';
 import { DigitalKontaktinformasjon } from '../../models/personPdl/digitalKontaktinformasjon';
-import { getBankKonto } from './bankkontoMock';
 import { Fullmakt, FullmaktsRolle } from '../../models/personPdl/fullmakt';
+import { DeltBosted } from '../../models/personPdl/deltBosted';
+import { Dodsbo, Skifteform } from '../../models/personPdl/dodsbo';
+import { Bankkonto } from '../../models/personPdl/bankkonto';
 
 export const navnAremark: Navn = {
     fornavn: 'TESTFAMILIEN',
@@ -135,6 +133,59 @@ export const fullmaktAremark: Fullmakt = {
     gyldigTilOgMed: new Date('2022-12-12')
 };
 
+export const deltBostedAremark: DeltBosted = {
+    startdatoForKontrakt: new Date('1990-10-10'),
+    sluttdatoForKontrakt: new Date('2005-05-07'),
+    adresse: {
+        linje1: `Adresseveien 1`,
+        linje2: '0000 Aremark',
+        linje3: null
+    }
+};
+
+export const dodsboAremark: Dodsbo = {
+    adressat: {
+        advokatSomAdressat: {
+            kontaktperson: {
+                fornavn: 'Advokat',
+                mellomnavn: null,
+                etternavn: 'Navnesen'
+            },
+            organisasjonsnavn: 'Advokatkontoret Aremark',
+            organisasjonsnummer: '01234567891011'
+        },
+        organisasjonSomAdressat: null,
+        personSomAdressat: null
+    },
+    adresse: {
+        linje1: 'Elgelia 20, 0000 Aremark',
+        linje2: null,
+        linje3: null
+    },
+    registrert: new Date('2020-02-02'),
+    skifteform: Skifteform.Offentlig
+};
+
+export const bankkontoAremark: Bankkonto = {
+    kontonummer: '1234567890',
+    banknavn: 'DNB ASA',
+    sistEndret: new Date(),
+    sistEndretAv: '1010800 BD03',
+
+    bankkode: null,
+    swift: 'DNBANOKKXXX',
+    landkode: null,
+    adresse: {
+        linje1: 'Bankveien 1,',
+        linje2: '0357 Bankestad',
+        linje3: null
+    },
+    valuta: {
+        kode: 'NOK',
+        beskrivelse: 'Norske kroner'
+    }
+};
+
 export const aremark: Person = {
     fnr: '10108000398',
     navn: [navnAremark],
@@ -151,12 +202,12 @@ export const aremark: Person = {
     personstatus: [personstatusAremark],
     sivilstand: [sivilstandAremark],
     foreldreansvar: [getAremarkForeldreansvar()],
-    deltBosted: getDeltBostedMock(faker),
-    dodsbo: getMockDodsbo(faker),
+    deltBosted: [deltBostedAremark],
+    dodsbo: [dodsboAremark],
     fullmakt: [fullmaktAremark],
-    vergemal: mockVergemal(navfaker.personIdentifikator.fødselsnummer()),
+    vergemal: getAremarkVerge(),
     tilrettelagtKommunikasjon: tilrettelagtKommunikasjonAremark,
     telefonnummer: [telefonAremark],
     kontaktOgReservasjon: digitalKontaktInformasjonAremark,
-    bankkonto: getBankKonto()
+    bankkonto: bankkontoAremark
 };
