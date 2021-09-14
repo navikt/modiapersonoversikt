@@ -98,7 +98,7 @@ function getTilfeldigOpphoersTidspunkt() {
     return vektetSjanse(faker, 0.8) ? new Date(getSistOppdatert()) : null;
 }
 
-function getAremarkVerge(): Verge[] {
+export function getAremarkVerge(): Verge[] {
     return [
         {
             ident: '21042900076',
