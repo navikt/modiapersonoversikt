@@ -87,7 +87,7 @@ export function ViktigÅViteDAGInnhold(): JSX.Element {
                     Les mer om meldekort
                 </a>
                 <br />
-                <strong>Ferie</strong> - hvis du planlegger ferie eller frav ær, må du søke om det.&nbsp;
+                <strong>Ferie</strong> - hvis du planlegger ferie eller fravær, må du søke om det.&nbsp;
                 <a
                     href="https://www.nav.no/no/Person/Arbeid/Sykmeldt%2C+arbeidsavklaringspenger+og+yrkesskade/
                     Relatert+informasjon/Ferie+med+ytelser+fra+NAV.351695.cms"
