@@ -90,7 +90,7 @@ exports[`viser deltbosted 1`] = `
         <p
           className="typo-normal"
         >
-          652 Krajcik Lakes New Carmenborough 1663 null null
+          Adresseveien 1 0000 Aremark null
         </p>
       </div>
     </p>
@@ -98,13 +98,13 @@ exports[`viser deltbosted 1`] = `
       className="typo-normal"
     >
       Gyldig fra og med 
-      14.05.1969
+      10.10.1990
     </p>
     <p
       className="typo-normal"
     >
       Gyldig til og med 
-      28.04.1970
+      07.05.2005
     </p>
   </div>
 </section>
