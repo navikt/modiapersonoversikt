@@ -12,7 +12,7 @@ export const statiskOppfolgingMock: DetaljertOppfolging = {
     sykemeldtFra: '2019-04-24',
     rettighetsgruppe: 'RGRP8',
     vedtaksdato: '2019-04-24',
-    sykefravaersoppfolging: [
+    sykefraværsoppfølging: [
         {
             dato: '2019-01-27',
             fastOppfolgingspunkt: true,

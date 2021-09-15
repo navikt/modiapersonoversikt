@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import OppfolgingDatoPanel from './OppfolgingDatoKomponent';
 import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';
-import SykefravarsoppfolgingEkspanderbartPanel from './SykefravarsoppfolgingEkspanderbartPanel';
+import SykefraversoppfolgingEkspanderbartPanel from './SykefraversoppfolgingEkspanderbartPanel';
 import OppfolgingYtelserEkspanderbartPanel from './OppfolgingYtelserEkspanderbartPanel';
 
 interface VisningProps {
@@ -34,7 +34,7 @@ function OppfolgingVisning(props: VisningProps) {
                 <OppfolgingDatoPanel />
                 <VisOppfolgingDetaljer detaljertOppfolging={props.detaljertOppfolging} />
             </DetaljertInfoWrapper>
-            <SykefravarsoppfolgingEkspanderbartPanel syfoPunkter={props.detaljertOppfolging.sykefravaersoppfolging} />
+            <SykefraversoppfolgingEkspanderbartPanel syfoPunkter={props.detaljertOppfolging.sykefraværsoppfølging} />
             <OppfolgingYtelserEkspanderbartPanel ytelser={props.detaljertOppfolging.ytelser} />
         </OppfolgingStyle>
     );

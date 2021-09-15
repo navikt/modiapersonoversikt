@@ -1,22 +1,22 @@
-import { ActionTypes, Roter, SetSporsmaal, Sporsmaal, Lukk } from './types';
+import { ActionTypes, Roter, SetSporsmal, Sporsmal, Lukk } from './types';
 
-export function setKontrollSpørsmål(spørsmål: Sporsmaal[]): SetSporsmaal {
+export function setKontrollSporsmal(sporsmal: Sporsmal[]): SetSporsmal {
     return {
-        type: ActionTypes.SetSporsmaal,
-        sporsmaal: spørsmål
+        type: ActionTypes.SetSporsmal,
+        sporsmal: sporsmal
     };
 }
 
-export function roterKontrollSpørsmål(): Roter {
+export function roterKontrollSporsmal(): Roter {
     return {
         type: ActionTypes.Roter
     };
 }
 
-export function lukkKontrollSpørsmål(): Lukk {
+export function lukkKontrollSporsmal(): Lukk {
     return {
         type: ActionTypes.Lukk
     };
 }
 
-export const resetKontrollSpørsmål = { type: ActionTypes.Reset };
+export const resetKontrollSporsmal = { type: ActionTypes.Reset };

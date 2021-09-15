@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { KontrollSporsmaalState, Sporsmaal } from '../../../redux/kontrollSporsmal/types';
+import { KontrollSporsmalState, Sporsmal } from '../../../redux/kontrollSporsmal/types';
 import { AppState } from '../../../redux/reducers';
-import SpørsmålOgSvar, { FeilTekst } from './SporsmalOgSvar';
+import SporsmalOgSvar, { FeilTekst } from './SporsmalOgSvar';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
-import { setKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
+import { setKontrollSporsmal } from '../../../redux/kontrollSporsmal/actions';
 import { connect } from 'react-redux';
 import { PersonRespons } from '../../../models/person/person';
 import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
-import { kontaktInformasjonSporsmaal, personInformasjonSpørsmål, SpørsmålsExtractor } from './SporsmalExtractors';
+import { kontaktInformasjonSporsmal, personInformasjonSporsmal, SporsmalsExtractor } from './SporsmalExtractors';
 import { shuffle } from './list-utils';
 import { loggEvent } from '../../../utils/logger/frontendLogger';
 import { hasData, RestResource } from '../../../rest/utils/restResource';
@@ -15,67 +15,67 @@ import { hasData, RestResource } from '../../../rest/utils/restResource';
 interface StateProps {
     personinformasjon: RestResource<PersonRespons>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
-    kontrollSpørsmål: KontrollSporsmaalState;
+    kontrollSporsmal: KontrollSporsmalState;
 }
 
 interface DispatchProps {
-    setSpørsmål: (sporsmaal: Sporsmaal[]) => void;
+    setSporsmal: (sporsmal: Sporsmal[]) => void;
 }
 
 type Props = StateProps & DispatchProps;
 
-class SpørsmålOgSvarContainer extends React.PureComponent<Props> {
+class SporsmalOgSvarContainer extends React.PureComponent<Props> {
     componentDidMount() {
-        this.props.setSpørsmål(this.lagSpørsmål());
+        this.props.setSporsmal(this.lagSporsmal());
         loggEvent('Visning', 'Kontrollsporsmal', undefined);
     }
 
     componentDidUpdate() {
-        this.oppdaterSpørsmål();
+        this.oppdaterSporsmal();
     }
 
-    oppdaterSpørsmål() {
-        const sporsmaal = this.lagSpørsmål();
-        const nyeSporsmaal = sporsmaal.filter(spm => !this.spørsmålEksisterer(spm));
-        if (nyeSporsmaal.length > 0) {
-            this.props.setSpørsmål(sporsmaal);
+    oppdaterSporsmal() {
+        const sporsmal = this.lagSporsmal();
+        const nyeSporsmal = sporsmal.filter(spm => !this.sporsmalEksisterer(spm));
+        if (nyeSporsmal.length > 0) {
+            this.props.setSporsmal(sporsmal);
         }
     }
 
-    lagSpørsmål(): Sporsmaal[] {
-        let spørsmål: Sporsmaal[] = [];
+    lagSporsmal(): Sporsmal[] {
+        let sporsmal: Sporsmal[] = [];
 
-        spørsmål = spørsmål.concat(extractSporsmaal(this.props.personinformasjon, personInformasjonSpørsmål));
-        spørsmål = spørsmål.concat(extractSporsmaal(this.props.kontaktinformasjon, kontaktInformasjonSporsmaal));
+        sporsmal = sporsmal.concat(extractSporsmal(this.props.personinformasjon, personInformasjonSporsmal));
+        sporsmal = sporsmal.concat(extractSporsmal(this.props.kontaktinformasjon, kontaktInformasjonSporsmal));
 
-        shuffle(spørsmål);
+        shuffle(sporsmal);
 
-        return spørsmål;
+        return sporsmal;
     }
 
-    spørsmålEksisterer(sporsmaal: Sporsmaal) {
-        if (this.props.kontrollSpørsmål.sporsmaal) {
-            return this.props.kontrollSpørsmål.sporsmaal.some(stateSpm => erSpørsmålLike(stateSpm, sporsmaal));
+    sporsmalEksisterer(sporsmal: Sporsmal) {
+        if (this.props.kontrollSporsmal.sporsmal) {
+            return this.props.kontrollSporsmal.sporsmal.some(stateSpm => erSporsmalLike(stateSpm, sporsmal));
         }
         return false;
     }
 
     render() {
-        if (!this.props.kontrollSpørsmål.sporsmaal || this.props.kontrollSpørsmål.sporsmaal.length === 0) {
+        if (!this.props.kontrollSporsmal.sporsmal || this.props.kontrollSporsmal.sporsmal.length === 0) {
             return <FeilTekst />;
         }
 
-        return <SpørsmålOgSvar sporsmaal={this.props.kontrollSpørsmål.sporsmaal[0]} />;
+        return <SporsmalOgSvar sporsmal={this.props.kontrollSporsmal.sporsmal[0]} />;
     }
 }
 
-function extractSporsmaal<T>(restRessurs: RestResource<T>, spørsmålExtractors: SpørsmålsExtractor<T>[]): Sporsmaal[] {
+function extractSporsmal<T>(restRessurs: RestResource<T>, sporsmalExtractors: SporsmalsExtractor<T>[]): Sporsmal[] {
     if (hasData(restRessurs)) {
         const data = restRessurs.data;
-        return spørsmålExtractors
+        return sporsmalExtractors
             .map(extractor => {
                 return {
-                    sporsmaal: extractor.spørsmål,
+                    sporsmal: extractor.sporsmal,
                     svar: extractor.extractSvar(data)
                 };
             })
@@ -84,17 +84,17 @@ function extractSporsmaal<T>(restRessurs: RestResource<T>, spørsmålExtractors:
     return [];
 }
 
-function erSpørsmålLike(sporsmaal1: Sporsmaal, sporsmaal2: Sporsmaal): boolean {
-    return sporsmaal1.sporsmaal === sporsmaal2.sporsmaal;
+function erSporsmalLike(sporsmal1: Sporsmal, sporsmal2: Sporsmal): boolean {
+    return sporsmal1.sporsmal === sporsmal2.sporsmal;
 }
 
-function erTom(spm: Sporsmaal): boolean {
+function erTom(spm: Sporsmal): boolean {
     return spm.svar.every(enkeltSvar => enkeltSvar.tekst === '');
 }
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        kontrollSpørsmål: state.kontrollSporsmaal,
+        kontrollSporsmal: state.kontrollSporsmal,
         kontaktinformasjon: state.restResources.kontaktinformasjon,
         personinformasjon: state.restResources.personinformasjon
     };
@@ -102,8 +102,8 @@ function mapStateToProps(state: AppState): StateProps {
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        setSpørsmål: (spørsmål: Sporsmaal[]) => dispatch(setKontrollSpørsmål(spørsmål))
+        setSporsmal: (sporsmal: Sporsmal[]) => dispatch(setKontrollSporsmal(sporsmal))
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpørsmålOgSvarContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SporsmalOgSvarContainer);

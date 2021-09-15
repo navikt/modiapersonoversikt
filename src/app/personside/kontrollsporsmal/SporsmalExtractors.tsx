@@ -16,14 +16,14 @@ import dayjs from 'dayjs';
 import { formatertKontonummerString } from '../../../utils/FormatertKontonummer';
 import { getFodselsdatoFraFnr } from '../../../utils/fnr-utils';
 
-export interface SpørsmålsExtractor<T> {
-    spørsmål: string;
+export interface SporsmalsExtractor<T> {
+    sporsmal: string;
     extractSvar: (data: T) => Svar[];
 }
 
-export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] = [
+export const personInformasjonSporsmal: SporsmalsExtractor<PersonRespons>[] = [
     {
-        spørsmål: 'Hva er bankkontonummeret ditt?',
+        sporsmal: 'Hva er bankkontonummeret ditt?',
         extractSvar: personinformasjon => {
             const bankkonto = (personinformasjon as Person).bankkonto;
             return [
@@ -34,14 +34,14 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
         }
     },
     {
-        spørsmål: 'Hva er fødselsdatoen til ditt barn _______',
+        sporsmal: 'Hva er fødselsdatoen til ditt barn _______',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
             return [hentFodselsdatoBarn(person)];
         }
     },
     {
-        spørsmål: 'Hvilken dato giftet du deg?',
+        sporsmal: 'Hvilken dato giftet du deg?',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
             return [{ tekst: hentGiftedato(person) }];
@@ -49,9 +49,9 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
     }
 ];
 
-export const kontaktInformasjonSporsmaal: SpørsmålsExtractor<KRRKontaktinformasjon>[] = [
+export const kontaktInformasjonSporsmal: SporsmalsExtractor<KRRKontaktinformasjon>[] = [
     {
-        spørsmål: 'Hva er din e-post adresse?',
+        sporsmal: 'Hva er din e-post adresse?',
         extractSvar: kontaktinformasjon => {
             return [hentEpost(kontaktinformasjon)];
         }

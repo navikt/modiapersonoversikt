@@ -2,12 +2,12 @@ import styled from 'styled-components/macro';
 import * as React from 'react';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { Bold } from '../../../components/common-styled-components';
-import { Sporsmaal } from '../../../redux/kontrollSporsmal/types';
+import { Sporsmal } from '../../../redux/kontrollSporsmal/types';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
-    sporsmaal: Sporsmaal;
+    sporsmal: Sporsmal;
 }
 
 const SporsmalOgSvarStyling = styled.div`
@@ -15,7 +15,7 @@ const SporsmalOgSvarStyling = styled.div`
     flex-wrap: wrap;
 `;
 
-const SporsmaalTekstStyle = styled.div`
+const SporsmalTekstStyle = styled.div`
     flex-flow: row;
     flex-grow: 1.5;
 `;
@@ -41,31 +41,31 @@ const Luft = styled.div`
     margin-bottom: 1rem;
 `;
 
-const IngenKontrollsporsmaalStyling = styled(AlertStripeAdvarsel)`
+const IngenKontrollsporsmalStyling = styled(AlertStripeAdvarsel)`
     margin-right: 1rem;
 `;
 
-class SpørsmålOgSvar extends React.PureComponent<Props> {
+class SporsmalOgSvar extends React.PureComponent<Props> {
     render() {
-        const svar = lagSvar(this.props.sporsmaal);
+        const svar = lagSvar(this.props.sporsmal);
 
         return (
             <SporsmalOgSvarStyling>
                 <OpplysningsTekst />
-                <SporsmaalTekstStyle>
+                <SporsmalTekstStyle>
                     <Undertittel aria-live="polite" tag="h3">
-                        {this.props.sporsmaal.sporsmaal}
+                        {this.props.sporsmal.sporsmal}
                     </Undertittel>
                     <Luft />
                     <SvarKolonneStyling>{svar}</SvarKolonneStyling>
-                </SporsmaalTekstStyle>
+                </SporsmalTekstStyle>
             </SporsmalOgSvarStyling>
         );
     }
 }
 
-function lagSvar(spørsmål: Sporsmaal) {
-    return spørsmål.svar.map(enkeltSvar => (
+function lagSvar(sporsmal: Sporsmal) {
+    return sporsmal.svar.map(enkeltSvar => (
         <KolonneStyling key={enkeltSvar.tekst}>
             <Normaltekst>
                 <Bold>{enkeltSvar.beskrivelse}</Bold>
@@ -77,9 +77,9 @@ function lagSvar(spørsmål: Sporsmaal) {
 
 export function FeilTekst() {
     return (
-        <IngenKontrollsporsmaalStyling>
+        <IngenKontrollsporsmalStyling>
             Vi fant ingen opplysninger som kan brukes til å stille kontrollspørsmål
-        </IngenKontrollsporsmaalStyling>
+        </IngenKontrollsporsmalStyling>
     );
 }
 
@@ -94,4 +94,4 @@ function OpplysningsTekst() {
     );
 }
 
-export default SpørsmålOgSvar;
+export default SporsmalOgSvar;

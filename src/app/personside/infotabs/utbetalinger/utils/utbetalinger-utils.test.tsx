@@ -267,7 +267,7 @@ test('henter riktig fra og til-date fra filter ved valg av "inneværende år', (
         ...mockFilter,
         periode: {
             ...mockFilter.periode,
-            radioValg: PeriodeValg.INNEVAERENDE_AAR
+            radioValg: PeriodeValg.INNEVERENDE_AR
         }
     };
 

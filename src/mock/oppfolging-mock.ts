@@ -52,7 +52,7 @@ export function getMockYtelserOgKontrakter(fodselsnummer: string): DetaljertOppf
         sykemeldtFra: dayjs(faker.date.recent(10)).format(backendDatoformat),
         rettighetsgruppe: 'RGRP' + faker.random.number(10),
         vedtaksdato: dayjs(faker.date.recent(10)).format(backendDatoformat),
-        sykefravaersoppfolging: fyllRandomListe(getSyfoPunkt, 5),
+        sykefraværsoppfølging: fyllRandomListe(getSyfoPunkt, 5),
         ytelser: fyllRandomListe(() => navfaker.random.arrayElement([getYtelse(), getDagpenger()]), 4)
     };
 }

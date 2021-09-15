@@ -5,37 +5,37 @@ export interface Svar {
     beskrivelse?: string;
 }
 
-export interface Sporsmaal {
-    sporsmaal: string;
+export interface Sporsmal {
+    sporsmal: string;
     svar: Svar[];
 }
 
-export interface KontrollSporsmaalState {
-    sporsmaal?: Sporsmaal[];
+export interface KontrollSporsmalState {
+    sporsmal?: Sporsmal[];
     open: boolean;
 }
 
-export const initState: KontrollSporsmaalState = {
-    sporsmaal: undefined,
+export const initState: KontrollSporsmalState = {
+    sporsmal: undefined,
     open: true
 };
 
 export enum ActionTypes {
     Roter = 'KONTROLLSPØRSMAL / ROTER',
-    SetSporsmaal = 'KONTROLLSPØRSMÅL / SETSPØRSMÅL',
+    SetSporsmal = 'KONTROLLSPØRSMÅL / SETSPØRSMÅL',
     Lukk = 'KONTROLLSPØRSMÅL / LUKK',
     Reset = 'KONTROLLSPØRSMÅL / RESET'
 }
 
-export type Actions = Roter | SetSporsmaal | Lukk | Reset;
+export type Actions = Roter | SetSporsmal | Lukk | Reset;
 
 export interface Roter extends Action {
     type: ActionTypes.Roter;
 }
 
-export interface SetSporsmaal extends Action {
-    type: ActionTypes.SetSporsmaal;
-    sporsmaal: Sporsmaal[];
+export interface SetSporsmal extends Action {
+    type: ActionTypes.SetSporsmal;
+    sporsmal: Sporsmal[];
 }
 
 export interface Lukk extends Action {

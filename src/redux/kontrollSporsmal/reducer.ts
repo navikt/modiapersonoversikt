@@ -1,18 +1,18 @@
-import { Actions, ActionTypes, initState, KontrollSporsmaalState } from './types';
+import { Actions, ActionTypes, initState, KontrollSporsmalState } from './types';
 
-function reducer(state: KontrollSporsmaalState = initState, action: Actions): KontrollSporsmaalState {
+function reducer(state: KontrollSporsmalState = initState, action: Actions): KontrollSporsmalState {
     switch (action.type) {
-        case ActionTypes.SetSporsmaal:
+        case ActionTypes.SetSporsmal:
             return {
                 ...state,
-                sporsmaal: action.sporsmaal
+                sporsmal: action.sporsmal
             };
         case ActionTypes.Roter:
-            if (state.sporsmaal) {
-                const nySporsmaal = [...state.sporsmaal.slice(1, state.sporsmaal.length), state.sporsmaal[0]];
+            if (state.sporsmal) {
+                const nySporsmal = [...state.sporsmal.slice(1, state.sporsmal.length), state.sporsmal[0]];
                 return {
                     ...state,
-                    sporsmaal: nySporsmaal
+                    sporsmal: nySporsmal
                 };
             } else {
                 return {

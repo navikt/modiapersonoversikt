@@ -7,7 +7,7 @@ export interface VisOppfolgingFraTilDato {
 
 export interface OppfolgingState {
     valgtPeriode: VisOppfolgingFraTilDato;
-    sykefravaerEkspandert: boolean;
+    sykefraverEkspandert: boolean;
     ytelserEkspandert: boolean;
 }
 
@@ -20,13 +20,13 @@ export const initialState: OppfolgingState = {
             .add(1, 'month')
             .format('YYYY-MM-DD')
     },
-    sykefravaerEkspandert: false,
+    sykefraverEkspandert: false,
     ytelserEkspandert: false
 };
 
 export enum OppfolgingActionTypes {
     SetValgtPeriode = 'SetValgtPeriode',
-    SetSykefravaerEkspandert = 'SetSykefraværEkspandert',
+    SetSykefraverEkspandert = 'SetSykefraværEkspandert',
     SetYtelserEkspandert = 'SetYtelserEkspandert'
 }
 
@@ -35,8 +35,8 @@ export interface SetValgtPeriode {
     periodeEndring: Partial<VisOppfolgingFraTilDato>;
 }
 
-export interface SetSykefravaerEkspandertAction {
-    type: OppfolgingActionTypes.SetSykefravaerEkspandert;
+export interface SetSykefraverEkspandertAction {
+    type: OppfolgingActionTypes.SetSykefraverEkspandert;
     ekspandert: boolean;
 }
 
@@ -45,4 +45,4 @@ export interface SetYtelserEkspandertAction {
     ekspandert: boolean;
 }
 
-export type OppfolgingActions = SetValgtPeriode | SetSykefravaerEkspandertAction | SetYtelserEkspandertAction;
+export type OppfolgingActions = SetValgtPeriode | SetSykefraverEkspandertAction | SetYtelserEkspandertAction;

@@ -1,6 +1,6 @@
 import {
     OppfolgingActionTypes,
-    SetSykefravaerEkspandertAction,
+    SetSykefraverEkspandertAction,
     SetValgtPeriode,
     SetYtelserEkspandertAction,
     VisOppfolgingFraTilDato
@@ -20,9 +20,9 @@ export function setYtelserEkspandert(ekspandert: boolean): SetYtelserEkspandertA
     };
 }
 
-export function setSykefravaerEkspandert(ekspandert: boolean): SetSykefravaerEkspandertAction {
+export function setSykefraverEkspandert(ekspandert: boolean): SetSykefraverEkspandertAction {
     return {
-        type: OppfolgingActionTypes.SetSykefravaerEkspandert,
+        type: OppfolgingActionTypes.SetSykefraverEkspandert,
         ekspandert: ekspandert
     };
 }
