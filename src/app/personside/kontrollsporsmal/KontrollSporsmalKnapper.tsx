@@ -46,11 +46,11 @@ class KontrollSporsmalKnapper extends React.PureComponent<Props> {
 
     handleLukkClick() {
         loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Lukk' });
-        this.skjulPaaTversAvVinduer();
+        this.skjulPaTversAvVinduer();
         this.props.lukkKontrollSporsmal();
     }
 
-    skjulPaaTversAvVinduer() {
+    skjulPaTversAvVinduer() {
         if (!this.props.fnr) {
             return;
         }
