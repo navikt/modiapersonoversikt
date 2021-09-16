@@ -29,7 +29,7 @@ export interface DetaljertOppfolging {
 
 export interface SyfoPunkt {
     dato: string;
-    fastOppfolgingspunkt: boolean;
+    fastOppfølgingspunkt: boolean;
     status: string;
     syfoHendelse: string;
 }

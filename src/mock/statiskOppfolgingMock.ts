@@ -15,19 +15,19 @@ export const statiskOppfolgingMock: DetaljertOppfolging = {
     sykefraværsoppfølging: [
         {
             dato: '2019-01-27',
-            fastOppfolgingspunkt: true,
+            fastOppfølgingspunkt: true,
             status: 'Ferdig behandlet',
             syfoHendelse: 'nostrum sunt quia mollitia impedit sint'
         },
         {
             dato: '2019-04-10',
-            fastOppfolgingspunkt: false,
+            fastOppfølgingspunkt: false,
             status: 'Ferdig behandlet',
             syfoHendelse: 'vel expedita dolore excepturi est alias'
         },
         {
             dato: '2019-02-12',
-            fastOppfolgingspunkt: true,
+            fastOppfølgingspunkt: true,
             status: 'Ferdig behandlet',
             syfoHendelse: 'illo repellendus ad iste neque maxime'
         }

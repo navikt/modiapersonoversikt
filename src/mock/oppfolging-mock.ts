@@ -60,7 +60,7 @@ export function getMockYtelserOgKontrakter(fodselsnummer: string): DetaljertOppf
 function getSyfoPunkt(): SyfoPunkt {
     return {
         dato: dayjs(faker.date.recent(100)).format(backendDatoformat),
-        fastOppfolgingspunkt: faker.random.boolean(),
+        fastOppfølgingspunkt: faker.random.boolean(),
         status: 'Ferdig behandlet',
         syfoHendelse: faker.lorem.words(6)
     };
