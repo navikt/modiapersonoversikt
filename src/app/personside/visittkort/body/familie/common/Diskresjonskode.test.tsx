@@ -4,8 +4,8 @@ import { Kodeverk } from '../../../../../../models/kodeverk';
 import { shallow } from 'enzyme';
 
 test('Viser ikke andre diskresjonskoder enn fortrolig adresse', () => {
-    const militaer: Kodeverk = { kodeRef: 'MILI', beskrivelse: 'Militær' };
-    const result = shallow(<Diskresjonskode diskresjonskode={militaer} />);
+    const militer: Kodeverk = { kodeRef: 'MILI', beskrivelse: 'Militær' };
+    const result = shallow(<Diskresjonskode diskresjonskode={militer} />);
     expect(result.html()).toBeNull();
 });
 
