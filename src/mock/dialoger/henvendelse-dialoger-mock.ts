@@ -36,7 +36,7 @@ function setupMeldingerMock(mock: FetchMock) {
     );
 }
 
-function setupSlaasammenMock(mock: FetchMock) {
+function setupSlasammenMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/slaasammen',
         withDelayedResponse(
@@ -73,11 +73,11 @@ function setupSendReferatMock(mock: FetchMock) {
     );
 }
 
-function setupSendSporsmaalMock(mock: FetchMock) {
+function setupSendSporsmalMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendsporsmal',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
-            meldingerBackendMock.sendSporsmaal(request.body);
+            meldingerBackendMock.sendSporsmal(request.body);
             return {};
         })
     );
@@ -170,10 +170,10 @@ export function setupHenvendelseDialogMock(mock: FetchMock, backend: MeldingerBa
     setupSendDelsvarMock(mock);
     setupTilgangTilSlettMock(mock);
     setupSendReferatMock(mock);
-    setupSendSporsmaalMock(mock);
+    setupSendSporsmalMock(mock);
     setupSendInfomeldingMock(mock);
     setupSendSvarMock(mock);
-    setupSlaasammenMock(mock);
+    setupSlasammenMock(mock);
     merkAvsluttMock(mock);
     merkBidragMock(mock);
     merkFeilsendtMock(mock);

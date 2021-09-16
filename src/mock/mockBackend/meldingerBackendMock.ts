@@ -69,7 +69,7 @@ export class MeldingerBackendMock {
         return melding.id;
     }
 
-    public sendSporsmaal(request: SendSpørsmålRequest) {
+    public sendSporsmal(request: SendSpørsmålRequest) {
         const melding: Melding = {
             ...getMockMelding(),
             meldingstype: Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
