@@ -5,6 +5,7 @@ import { DeltBosted } from './deltBosted';
 import { Bankkonto } from './bankkonto';
 import { DigitalKontaktinformasjon } from './digitalKontaktinformasjon';
 import { Foreldreansvar } from './foreldreansvar';
+import { Sikkerhetstiltak } from './sikkerhetstiltak';
 
 export interface Person {
     fnr: string;
@@ -59,12 +60,6 @@ export interface Statsborgerskap {
 export interface Sivilstand {
     type: KodeBeskrivelse<SivilstandType>;
     gyldigFraOgMed: Date | null;
-}
-
-export interface Sikkerhetstiltak {
-    type: SikkerhetstiltakType;
-    gyldigFraOgMed: Date;
-    gyldigTilOgMed: Date;
 }
 
 export interface Adresse {
