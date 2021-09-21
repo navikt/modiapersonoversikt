@@ -8,7 +8,6 @@ import {
     Navn,
     Person,
     PersonStatus,
-    Sikkerhetstiltak,
     SikkerhetstiltakType,
     Sivilstand,
     SivilstandType,
@@ -23,6 +22,7 @@ import { Fullmakt, FullmaktsRolle } from '../../models/personPdl/fullmakt';
 import { DeltBosted } from '../../models/personPdl/deltBosted';
 import { Dodsbo, Skifteform } from '../../models/personPdl/dodsbo';
 import { Bankkonto } from '../../models/personPdl/bankkonto';
+import { Sikkerhetstiltak } from '../../models/personPdl/sikkerhetstiltak';
 
 export const navnAremark: Navn = {
     fornavn: 'TESTFAMILIEN',
