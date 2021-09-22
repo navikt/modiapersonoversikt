@@ -1,0 +1,248 @@
+export interface Data {
+    feilendeSystemer: Array<string>;
+    person: Person;
+}
+
+type LocalDate = string & { __type__: 'LocalDate' };
+type LocalDateTime = string & { __type__: 'LocalDateTime' };
+
+export interface Person {
+    fnr: string;
+    navn: Array<Navn>;
+    kjonn: Array<KodeBeskrivelse<Kjonn>>;
+    fodselsdato: Array<LocalDate>;
+    dodsdato: Array<LocalDate>;
+    bostedAdresse: Array<Adresse>;
+    kontaktAdresse: Array<Adresse>;
+    navEnhet: Enhet | null;
+    statsborgerskap: Array<Statsborgerskap>;
+    adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
+    sikkerhetstiltak: Array<Sikkerhetstiltak>;
+    erEgenAnsatt: EgenAnsatt;
+    personstatus: Array<KodeBeskrivelse<PersonStatus>>;
+    sivilstand: Array<Sivilstand>;
+    foreldreansvar: Array<Foreldreansvar>;
+    deltBosted: Array<DeltBosted>;
+    dodsbo: Array<Dodsbo>;
+    fullmakt: Array<Fullmakt>;
+    vergemal: Array<Verge>;
+    tilrettelagtKommunikasjon: TilrettelagtKommunikasjon;
+    telefonnummer: Array<Telefon>;
+    kontaktOgReservasjon: DigitalKontaktinformasjon | null;
+    bankkonto: Bankkonto | null;
+}
+
+interface KodeBeskrivelse<T> {
+    kode: T;
+    beskrivelse: string;
+}
+
+interface Navn {
+    fornavn: string;
+    mellomnavn: string | null;
+    etternavn: string;
+}
+
+interface Statsborgerskap {
+    land: KodeBeskrivelse<string>;
+    gyldigFraOgMed: LocalDate | null;
+    gyldigTilOgMed: LocalDate | null;
+}
+
+interface Sivilstand {
+    type: KodeBeskrivelse<SivilstandType>;
+    gyldigFraOgMed: LocalDate | null;
+}
+
+interface Sikkerhetstiltak {
+    type: SikkerhetstiltakType;
+    gyldigFraOgMed: LocalDate;
+    gyldigTilOgMed: LocalDate;
+}
+
+interface Adresse {
+    linje1: string;
+    linje2: string | null;
+    linje3: string | null;
+}
+
+interface Enhet {
+    id: string;
+    navn: string;
+}
+
+interface Dodsbo {
+    adressat: Adressat;
+    adresse: Adresse;
+    registrert: LocalDate;
+    skifteform: Skifteform;
+}
+
+interface Adressat {
+    advokatSomAdressat: AdvokatSomAdressat | null;
+    personSomAdressat: PersonSomAdressat | null;
+    organisasjonSomAdressat: OrganisasjonSomAdressat | null;
+}
+
+interface AdvokatSomAdressat {
+    kontaktperson: Navn;
+    organisasjonsnavn: string | null;
+    organisasjonsnummer: string | null;
+}
+
+interface PersonSomAdressat {
+    fnr: string | null;
+    navn: Navn | null;
+    fodselsdato: LocalDate | null;
+}
+
+interface OrganisasjonSomAdressat {
+    kontaktperson: Navn | null;
+    organisasjonsnavn: string;
+    organisasjonsnummer: string | null;
+}
+
+interface Bankkonto {
+    kontonummer: string;
+    banknavn: string;
+    sistEndret: LocalDateTime;
+    sistEndretAv: string;
+
+    bankkode: string | null;
+    swift: string | null;
+    landkode: KodeBeskrivelse<string> | null;
+    adresse: Adresse | null;
+    valuta: KodeBeskrivelse<string> | null;
+}
+
+interface TilrettelagtKommunikasjon {
+    talesprak: Array<KodeBeskrivelse<string>>;
+    tegnsprak: Array<KodeBeskrivelse<string>>;
+}
+
+interface Fullmakt {
+    motpartsPersonident: string;
+    motpartsPersonNavn: Navn;
+    motpartsRolle: FullmaktsRolle;
+    omraade: Array<string>;
+    gyldigFraOgMed: LocalDate;
+    gyldigTilOgMed: LocalDate;
+}
+
+interface Telefon {
+    retningsnummer: KodeBeskrivelse<string> | null;
+    identifikator: string;
+    sistEndret: LocalDateTime | null;
+    sistEndretAv: string | null;
+    prioritet: number;
+}
+
+interface Verge {
+    ident: string | null;
+    navn: Navn | null;
+    vergesakstype: string | null;
+    omfang: string | null;
+    embete: string | null;
+    gyldighetstidspunkt: LocalDate | null;
+    opphoerstidspunkt: LocalDate | null;
+}
+
+interface Foreldreansvar {
+    ansvar: string;
+    ansvarlig: Navn | null;
+    ansvarsubject: Navn | null;
+}
+
+interface DeltBosted {
+    startdatoForKontrakt: LocalDate;
+    sluttdatoForKontrakt: LocalDate | null;
+    adresse: Adresse | null;
+}
+
+enum Kjonn {
+    M = 'M',
+    K = 'K',
+    U = 'U'
+}
+
+enum AdresseBeskyttelse {
+    KODE6 = 'KODE6',
+    KODE6_UTLAND = 'KODE6_UTLAND',
+    KODE7 = 'KODE7',
+    UGRADERT = 'UGRADERT',
+    UKJENT = 'UKJENT'
+}
+
+export enum EgenAnsatt {
+    JA = 'JA',
+    NEI = 'NEI',
+    UKJENT = 'UKJENT'
+}
+
+enum PersonStatus {
+    BOSATT = 'BOSATT',
+    DOD = 'DOD',
+    OPPHORT = 'OPPHORT',
+    INAKTIV = 'INAKTIV',
+    MIDLERTIDIG = 'MIDLERTIDIG',
+    FORSVUNNET = 'FORSVUNNET',
+    UTFLYTTET = 'UTFLYTTET',
+    IKKE_BOSATT = 'IKKE_BOSATT',
+    FODSELSREGISTERT = 'FODSELSREGISTERT',
+    UKJENT = 'UKJENT'
+}
+
+enum SivilstandType {
+    UOPPGITT = 'UOPPGITT',
+    UGIFT = 'UGIFT',
+    GIFT = 'GIFT',
+    ENKE_ELLER_ENKEMANN = 'ENKE_ELLER_ENKEMANN',
+    SKILT = 'SKILT',
+    SEPARERT = 'SEPARERT',
+    REGISTRERT_PARTNER = 'REGISTRERT_PARTNER',
+    SEPARERT_PARTNER = 'SEPARERT_PARTNER',
+    SKILT_PARTNER = 'SKILT_PARTNER',
+    GJENLEVENDE_PARTNER = 'GJENLEVENDE_PARTNER'
+}
+
+enum SikkerhetstiltakType {
+    FYUS = 'FYUS',
+    TFUS = 'TFUS',
+    FTUS = 'FTUS',
+    DIUS = 'DIUS',
+    TOAN = 'TOAN'
+}
+
+enum Skifteform {
+    OFFENTLIG = 'OFFENTLIG',
+    ANNET = 'ANNET',
+    UKJENT = 'UKJENT'
+}
+
+enum FullmaktsRolle {
+    FULLMAKTSGIVER = 'FULLMAKTSGIVER',
+    FULLMEKTIG = 'FULLMEKTIG',
+    UKJENT = 'UKJENT'
+}
+
+/**
+ * DKIF Data klasser
+ */
+interface DigitalKontaktinformasjon {
+    personident: string | null;
+    reservasjon: string | null;
+    epostadresse: Epostadresse | null;
+    mobiltelefonnummer: MobilTelefon | null;
+}
+
+interface Epostadresse {
+    value: string | null;
+    sistOppdatert: LocalDate | null;
+    sistVerifisert: LocalDate | null;
+}
+
+interface MobilTelefon {
+    value: string | null;
+    sistOppdatert: LocalDate | null;
+    sistVerifisert: LocalDate | null;
+}
