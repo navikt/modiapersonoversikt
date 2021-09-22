@@ -2,7 +2,7 @@ import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { PersonRespons } from '../../models/person/person';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
-import Visittkort from '../../app/personside/visittkort/VisittkortContainer';
+import Visittkort from '../../app/personside/VisittkortSwitcher';
 import { BigCenteredLazySpinner } from '../BigCenteredLazySpinner';
 import RestResourceConsumer from '../../rest/consumer/RestResourceConsumer';
 
