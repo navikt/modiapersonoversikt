@@ -6,8 +6,6 @@ metadata:
   cluster: prod-fss
   labels:
     team: personoversikt
-  annotations:
-    nais.io/security-does-not-matter: "true"
 spec:
   image: {{image}}
   port: 8080

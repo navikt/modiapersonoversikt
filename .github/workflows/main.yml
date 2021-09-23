@@ -6,7 +6,7 @@ env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/modiapersonoversikt:${{ github.sha }}
   CI: true
   TZ: Europe/Oslo
-  Q1_TEST_BRANCH: refs/heads/fix/no-post-resource
+  Q1_TEST_BRANCH: refs/heads/fix/nais-security
 
 jobs:
   build:
