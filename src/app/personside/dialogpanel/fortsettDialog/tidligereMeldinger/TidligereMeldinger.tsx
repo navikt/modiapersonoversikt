@@ -47,7 +47,7 @@ function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: bool
         const meldingnummer = props.traad.length - index;
 
         return (
-            <StyledLi>
+            <StyledLi key={index}>
                 <EnkeltMelding
                     key={melding.id}
                     melding={melding}
