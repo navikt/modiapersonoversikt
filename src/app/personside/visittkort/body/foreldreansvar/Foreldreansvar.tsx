@@ -16,7 +16,7 @@ function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {
             <Normaltekst>
                 {ansvarlig}({ansvar})
             </Normaltekst>
-            <Normaltekst>{gjelder}</Normaltekst>
+            {gjelder && <Normaltekst>{gjelder}</Normaltekst>}
         </VisittkortElement>
     );
 }
