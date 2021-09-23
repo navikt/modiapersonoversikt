@@ -45,7 +45,7 @@ export function getUtbetalingerForSiste30DagerDatoer() {
 
 export function getFraDateFromFilter(filter: UtbetalingFilterState): Date {
     switch (filter.periode.radioValg) {
-        case PeriodeValg.INNEVÆRENDE_ÅR:
+        case PeriodeValg.INNEVERENDE_AR:
             return dayjs()
                 .startOf('year')
                 .toDate();
@@ -71,7 +71,7 @@ export function getTilDateFromFilter(filter: UtbetalingFilterState): Date {
                 .toDate();
         case PeriodeValg.EGENDEFINERT:
             return dayjs(filter.periode.egendefinertPeriode.til, ISO_DATE_STRING_FORMAT).toDate();
-        case PeriodeValg.INNEVÆRENDE_ÅR:
+        case PeriodeValg.INNEVERENDE_AR:
         case PeriodeValg.SISTE_30_DAGER:
         default:
             return getUtbetalingerForSiste30DagerDatoer().til;

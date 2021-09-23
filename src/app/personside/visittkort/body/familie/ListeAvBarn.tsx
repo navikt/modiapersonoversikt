@@ -6,7 +6,7 @@ import { Familierelasjon, getBarnUnder21 } from '../../../../../models/person/pe
 import NavnOgAlder from '../../../../../components/person/NavnOgAlder';
 import BorMedBruker from '../../../../../components/person/HarSammeBosted';
 import { Diskresjonskode } from './common/Diskresjonskode';
-import { getKjønnBarnIkon, getKjønnBeskrivelseForBarn } from './common/Kjønn';
+import { getKjonnBarnIkon, getKjonnBeskrivelseForBarn } from './common/Kjonn';
 
 interface Props {
     relasjoner: Familierelasjon[];
@@ -17,8 +17,8 @@ interface BarnProps {
 }
 
 function Barn({ barn }: BarnProps) {
-    const ikon = getKjønnBarnIkon(barn.tilPerson.fødselsnummer);
-    const beskrivelse = getKjønnBeskrivelseForBarn(barn.tilPerson.fødselsnummer);
+    const ikon = getKjonnBarnIkon(barn.tilPerson.fødselsnummer);
+    const beskrivelse = getKjonnBeskrivelseForBarn(barn.tilPerson.fødselsnummer);
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={ikon}>
             <Diskresjonskode diskresjonskode={barn.tilPerson.diskresjonskode} />

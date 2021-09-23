@@ -1,85 +1,85 @@
 import { Action, createStore } from 'redux';
-import kontrollspørsmålReducer from './reducer';
-import { roterKontrollSpørsmål, setKontrollSpørsmål, lukkKontrollSpørsmål } from './actions';
-import { Spørsmål } from './types';
+import kontrollsporsmalReducer from './reducer';
+import { roterKontrollSporsmal, setKontrollSporsmal, lukkKontrollSporsmal } from './actions';
+import { Sporsmal } from './types';
 
-const spm1: Spørsmål = {
-    spørsmål: 'Spørsmål 1',
+const spm1: Sporsmal = {
+    sporsmal: 'Spørsmål 1',
     svar: [{ tekst: 'svar til spørsmål 1' }]
 };
 
-const spm2: Spørsmål = {
-    spørsmål: 'Spørsmål 2',
+const spm2: Sporsmal = {
+    sporsmal: 'Spørsmål 2',
     svar: [{ tekst: 'svar til spørsmål 2' }]
 };
 
-const spm3: Spørsmål = {
-    spørsmål: 'Spørsmål 3',
+const spm3: Sporsmal = {
+    sporsmal: 'Spørsmål 3',
     svar: [{ tekst: 'svar til spørsmål 3' }]
 };
 
 describe('Kontrollspørsmål reducer', () => {
     it('har korrekt init state', () => {
         const action = invalidAction();
-        const store = createStore(kontrollspørsmålReducer);
+        const store = createStore(kontrollsporsmalReducer);
 
         store.dispatch(action);
 
-        expect(store.getState().spørsmål).toBeUndefined();
+        expect(store.getState().sporsmal).toBeUndefined();
         expect(store.getState().open).toBe(true);
     });
 
     it('Setter nye spørsmål med SetSpørsmål', () => {
-        const store = createStore(kontrollspørsmålReducer);
+        const store = createStore(kontrollsporsmalReducer);
 
-        store.dispatch(setKontrollSpørsmål([spm3]));
+        store.dispatch(setKontrollSporsmal([spm3]));
 
-        store.dispatch(setKontrollSpørsmål(lagSpørsmål()));
+        store.dispatch(setKontrollSporsmal(lagSporsmal()));
 
-        expect(store.getState().spørsmål).toContain(spm1);
-        expect(store.getState().spørsmål).toContain(spm2);
-        expect(store.getState().spørsmål).not.toContain(spm3);
+        expect(store.getState().sporsmal).toContain(spm1);
+        expect(store.getState().sporsmal).toContain(spm2);
+        expect(store.getState().sporsmal).not.toContain(spm3);
         expect(store.getState().open).toBe(true);
     });
 
     it('Roterer array korrekt', () => {
-        const store = createStore(kontrollspørsmålReducer);
+        const store = createStore(kontrollsporsmalReducer);
 
-        store.dispatch(setKontrollSpørsmål(lagSpørsmål()));
+        store.dispatch(setKontrollSporsmal(lagSporsmal()));
 
-        expect(store.getState().spørsmål).not.toBeUndefined();
-        expect((store.getState().spørsmål as Spørsmål[])[0]).toBe(spm1);
-        expect((store.getState().spørsmål as Spørsmål[])[1]).toBe(spm2);
+        expect(store.getState().sporsmal).not.toBeUndefined();
+        expect((store.getState().sporsmal as Sporsmal[])[0]).toBe(spm1);
+        expect((store.getState().sporsmal as Sporsmal[])[1]).toBe(spm2);
 
-        store.dispatch(roterKontrollSpørsmål());
+        store.dispatch(roterKontrollSporsmal());
 
-        expect(store.getState().spørsmål).not.toBeUndefined();
-        expect((store.getState().spørsmål as Spørsmål[])[0]).toBe(spm2);
-        expect((store.getState().spørsmål as Spørsmål[])[1]).toBe(spm1);
+        expect(store.getState().sporsmal).not.toBeUndefined();
+        expect((store.getState().sporsmal as Sporsmal[])[0]).toBe(spm2);
+        expect((store.getState().sporsmal as Sporsmal[])[1]).toBe(spm1);
 
-        store.dispatch(roterKontrollSpørsmål());
+        store.dispatch(roterKontrollSporsmal());
 
-        expect(store.getState().spørsmål).not.toBeUndefined();
-        expect((store.getState().spørsmål as Spørsmål[])[0]).toBe(spm1);
-        expect((store.getState().spørsmål as Spørsmål[])[1]).toBe(spm2);
+        expect(store.getState().sporsmal).not.toBeUndefined();
+        expect((store.getState().sporsmal as Sporsmal[])[0]).toBe(spm1);
+        expect((store.getState().sporsmal as Sporsmal[])[1]).toBe(spm2);
     });
 
     it('Toggler synlig korrekt', () => {
-        const store = createStore(kontrollspørsmålReducer);
+        const store = createStore(kontrollsporsmalReducer);
 
         expect(store.getState().open).toBe(true);
 
-        store.dispatch(lukkKontrollSpørsmål());
+        store.dispatch(lukkKontrollSporsmal());
 
         expect(store.getState().open).toBe(false);
 
-        store.dispatch(lukkKontrollSpørsmål());
+        store.dispatch(lukkKontrollSporsmal());
 
         expect(store.getState().open).toBe(false);
     });
 });
 
-function lagSpørsmål(): Spørsmål[] {
+function lagSporsmal(): Sporsmal[] {
     return [spm1, spm2];
 }
 

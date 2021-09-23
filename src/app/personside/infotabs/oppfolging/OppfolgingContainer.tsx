@@ -10,7 +10,7 @@ function OppfolgingContainer() {
             getResource={restResources => restResources.oppfolging}
             returnOnPending={BigCenteredLazySpinner}
         >
-            {data => <OppfolgingVisning detaljertOppfølging={data} />}
+            {data => <OppfolgingVisning detaljertOppfolging={data} />}
         </RestResourceConsumer>
     );
 }
