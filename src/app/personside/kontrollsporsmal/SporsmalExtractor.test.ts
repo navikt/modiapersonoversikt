@@ -1,4 +1,4 @@
-import { hentEpost, hentFødselsdatoBarn, hentGiftedato } from './SporsmalExtractors';
+import { hentEpost, hentFodselsdatoBarn, hentGiftedato } from './SporsmalExtractors';
 import { Familierelasjon, Person, Relasjonstype, SivilstandTyper } from '../../../models/person/person';
 import { aremark } from '../../../mock/person/aremark';
 import { getPersonstatus } from '../../../mock/person/personMock';
@@ -76,7 +76,7 @@ describe('hentFødselsdatoBarn', () => {
         let person = aremark;
         person.familierelasjoner = [lagMockBarn()];
 
-        const tekst = hentFødselsdatoBarn(person);
+        const tekst = hentFodselsdatoBarn(person);
 
         expect(tekst).toEqual({ beskrivelse: 'Aremark Sitt Barn', tekst: '01.01.2001' });
     });
@@ -85,7 +85,7 @@ describe('hentFødselsdatoBarn', () => {
         let person = aremark;
         person.familierelasjoner = [lagMockBarnOver21()];
         const korrektSvar = { tekst: '' };
-        const tekst = hentFødselsdatoBarn(person);
+        const tekst = hentFodselsdatoBarn(person);
 
         expect(tekst).toEqual(korrektSvar);
     });
@@ -94,7 +94,7 @@ describe('hentFødselsdatoBarn', () => {
         let person = aremark;
         person.familierelasjoner = [lagMockBarnAnnetBosted()];
         const korrektSvar = { tekst: '' };
-        const tekst = hentFødselsdatoBarn(person);
+        const tekst = hentFodselsdatoBarn(person);
 
         expect(tekst).toEqual(korrektSvar);
     });
@@ -102,7 +102,7 @@ describe('hentFødselsdatoBarn', () => {
         let person = aremark;
         person.familierelasjoner = [lagMockBarnDiskresjonskode()];
         const korrektSvar = { tekst: '' };
-        const tekst = hentFødselsdatoBarn(person);
+        const tekst = hentFodselsdatoBarn(person);
 
         expect(tekst).toEqual(korrektSvar);
     });
@@ -110,7 +110,7 @@ describe('hentFødselsdatoBarn', () => {
         let person = aremark;
         person.familierelasjoner = [LagMockBarnDød()];
         const korrektSvar = { tekst: '' };
-        const tekst = hentFødselsdatoBarn(person);
+        const tekst = hentFodselsdatoBarn(person);
 
         expect(tekst).toEqual(korrektSvar);
     });
@@ -120,7 +120,7 @@ describe('hentFødselsdatoBarn', () => {
         person.familierelasjoner = [];
         const korrektSvar = { tekst: '' };
 
-        const tekst = hentFødselsdatoBarn(person);
+        const tekst = hentFodselsdatoBarn(person);
 
         expect(tekst).toEqual(korrektSvar);
     });

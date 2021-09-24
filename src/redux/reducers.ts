@@ -4,8 +4,8 @@ import sessionReducer, { SessionState } from './session/session';
 import { utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
 import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
-import { KontrollSpørsmålState } from './kontrollSporsmal/types';
-import kontrollspørsmålReducer from './kontrollSporsmal/reducer';
+import { KontrollSporsmalState } from './kontrollSporsmal/types';
+import kontrollsporsmalReducer from './kontrollSporsmal/reducer';
 import ytelserReducer, { YtelserState } from './ytelser/ytelserReducer';
 import { OppfolgingState } from './oppfolging/types';
 import { oppfolgingReducer } from './oppfolging/reducer';
@@ -30,7 +30,7 @@ export interface AppState {
     oppgaver: OppgaveState;
     ytelser: YtelserState;
     varsler: VarslerState;
-    kontrollSpørsmål: KontrollSpørsmålState;
+    kontrollSporsmal: KontrollSporsmalState;
     oppfolging: OppfolgingState;
     gjeldendeBruker: GjeldendeBrukerState;
     innstillinger: InnstillingerState;
@@ -47,7 +47,7 @@ export default combineResettableReducers<AppState>(
         oppgaver: oppgaverReducer,
         ytelser: ytelserReducer,
         varsler: varslerReducer,
-        kontrollSpørsmål: kontrollspørsmålReducer,
+        kontrollSporsmal: kontrollsporsmalReducer,
         oppfolging: oppfolgingReducer,
         gjeldendeBruker: gjeldendeBrukerReducer,
         innstillinger: innstillingerReducer

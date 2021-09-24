@@ -14,8 +14,8 @@ import navfaker from 'nav-faker';
 import dayjs from 'dayjs';
 import { backendDatoformat } from '../utils/date-utils';
 
-export function getMockOppfølging(fødselsnummer: string): Oppfolging {
-    faker.seed(Number(fødselsnummer));
+export function getMockOppfolging(fodselsnummer: string): Oppfolging {
+    faker.seed(Number(fodselsnummer));
     const erUnderOppfolging = faker.random.boolean();
 
     return {
@@ -40,12 +40,12 @@ function getAnsattEnhet(): AnsattEnhet {
     };
 }
 
-export function getMockYtelserOgKontrakter(fødselsnummer: string): DetaljertOppfolging {
-    faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'oppf');
+export function getMockYtelserOgKontrakter(fodselsnummer: string): DetaljertOppfolging {
+    faker.seed(Number(fodselsnummer));
+    navfaker.seed(fodselsnummer + 'oppf');
 
     return {
-        oppfolging: getMockOppfølging(fødselsnummer),
+        oppfolging: getMockOppfolging(fodselsnummer),
         meldeplikt: faker.random.boolean(),
         formidlingsgruppe: 'FMGRP' + faker.random.number(5),
         innsatsgruppe: 'INGRP' + faker.random.number(10),

@@ -8,7 +8,7 @@ import { getFamilierelasjoner } from './familierelasjoner/familerelasjonerMock';
 import { aremark } from './aremark';
 import { vektetSjanse } from '../utils/mock-utils';
 import { getBankKonto } from './bankkontoMock';
-import { utledKjønnFraFødselsnummer } from '../../utils/fnr-utils';
+import { utledKjonnFraFodselsnummer } from '../../utils/fnr-utils';
 import { getTilfeldigAdresseMedPeriode, getTilfeldigFolkeregistrertAdresse } from './adresseMock';
 import { getSikkerhetstiltak } from './sikkerhetstiltakMock';
 import { getNavKontaktinformasjon } from './navKontaktinformasjonMock';
@@ -41,7 +41,7 @@ function genererPerson(fødselsnummer: string): Person {
     const sivilstand = getSivilstand(dayjs(fødselsdato), faker);
     return {
         fødselsnummer,
-        kjønn: utledKjønnFraFødselsnummer(fødselsnummer),
+        kjønn: utledKjonnFraFodselsnummer(fødselsnummer),
         geografiskTilknytning: getGeografiskTilknytning(),
         alder: alder,
         navn: getMockNavn(fødselsnummer),

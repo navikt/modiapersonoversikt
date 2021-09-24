@@ -4,7 +4,7 @@ import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import DescriptionList from '../../../../../components/DescriptionList';
 import { getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
 import { formaterDato } from '../../../../../utils/string-utils';
-import { utledKjønnFraFødselsnummer } from '../../../../../utils/fnr-utils';
+import { utledKjonnFraFodselsnummer } from '../../../../../utils/fnr-utils';
 import { Kjonn } from '../../../../../models/person/person';
 import styled from 'styled-components/macro';
 import ArbeidsForholdListe from './arbeidsforhold/ArbeidsforholdListe';
@@ -25,7 +25,7 @@ const OversiktStyling = styled.div`
 `;
 
 function getKjønnString(fnr: string): string {
-    switch (utledKjønnFraFødselsnummer(fnr)) {
+    switch (utledKjonnFraFodselsnummer(fnr)) {
         case Kjonn.Mann:
             return 'gutt';
         case Kjonn.Kvinne:

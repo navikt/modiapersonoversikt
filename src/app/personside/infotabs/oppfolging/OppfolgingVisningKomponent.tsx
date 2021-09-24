@@ -4,11 +4,11 @@ import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import OppfolgingDatoPanel from './OppfolgingDatoKomponent';
 import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';
-import SykefravarsoppfolgingEkspanderbartPanel from './SykefravarsoppfolgingEkspanderbartPanel';
+import SykefraversoppfolgingEkspanderbartPanel from './SykefraversoppfolgingEkspanderbartPanel';
 import OppfolgingYtelserEkspanderbartPanel from './OppfolgingYtelserEkspanderbartPanel';
 
 interface VisningProps {
-    detaljertOppfølging: DetaljertOppfolging;
+    detaljertOppfolging: DetaljertOppfolging;
 }
 
 const OppfolgingStyle = styled.div`
@@ -32,10 +32,10 @@ function OppfolgingVisning(props: VisningProps) {
         <OppfolgingStyle>
             <DetaljertInfoWrapper>
                 <OppfolgingDatoPanel />
-                <VisOppfolgingDetaljer detaljertOppfolging={props.detaljertOppfølging} />
+                <VisOppfolgingDetaljer detaljertOppfolging={props.detaljertOppfolging} />
             </DetaljertInfoWrapper>
-            <SykefravarsoppfolgingEkspanderbartPanel syfoPunkter={props.detaljertOppfølging.sykefraværsoppfølging} />
-            <OppfolgingYtelserEkspanderbartPanel ytelser={props.detaljertOppfølging.ytelser} />
+            <SykefraversoppfolgingEkspanderbartPanel syfoPunkter={props.detaljertOppfolging.sykefraværsoppfølging} />
+            <OppfolgingYtelserEkspanderbartPanel ytelser={props.detaljertOppfolging.ytelser} />
         </OppfolgingStyle>
     );
 }

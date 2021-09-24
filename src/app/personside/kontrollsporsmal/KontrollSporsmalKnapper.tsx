@@ -3,22 +3,22 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import theme from '../../../styles/personOversiktTheme';
-import { lukkKontrollSpørsmål, roterKontrollSpørsmål } from '../../../redux/kontrollSporsmal/actions';
+import { lukkKontrollSporsmal, roterKontrollSporsmal } from '../../../redux/kontrollSporsmal/actions';
 import { loggEvent } from '../../../utils/logger/frontendLogger';
 import KnappBase from 'nav-frontend-knapper';
 import { AppState } from '../../../redux/reducers';
 import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
-import { settSkjulKontrollspørsmålPåTversAvVinduerForBrukerCookie } from './cookie-utils';
-import { KontrollSpørsmålState } from '../../../redux/kontrollSporsmal/types';
+import { settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie } from './cookie-utils';
+import { KontrollSporsmalState } from '../../../redux/kontrollSporsmal/types';
 
 interface DispatchProps {
-    lukkKontrollSpørsmål: () => void;
-    nyttSpørsmål: () => void;
+    lukkKontrollSporsmal: () => void;
+    nyttSporsmal: () => void;
 }
 
 interface StateProps {
     fnr?: string;
-    kontrollSpørsmål: KontrollSpørsmålState;
+    kontrollSporsmal: KontrollSporsmalState;
 }
 
 type Props = StateProps & DispatchProps;
@@ -32,33 +32,33 @@ const KnapperStyling = styled.div`
     }
 `;
 
-class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
+class KontrollSporsmalKnapper extends React.PureComponent<Props> {
     constructor(props: Props) {
         super(props);
-        this.handleNyttSpørsmålClick = this.handleNyttSpørsmålClick.bind(this);
+        this.handleNyttSporsmalClick = this.handleNyttSporsmalClick.bind(this);
         this.handleLukkClick = this.handleLukkClick.bind(this);
     }
 
-    handleNyttSpørsmålClick() {
+    handleNyttSporsmalClick() {
         loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Nytt' });
-        this.props.nyttSpørsmål();
+        this.props.nyttSporsmal();
     }
 
     handleLukkClick() {
         loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Lukk' });
-        this.skjulPåTversAvVinduer();
-        this.props.lukkKontrollSpørsmål();
+        this.skjulPaTversAvVinduer();
+        this.props.lukkKontrollSporsmal();
     }
 
-    skjulPåTversAvVinduer() {
+    skjulPaTversAvVinduer() {
         if (!this.props.fnr) {
             return;
         }
-        settSkjulKontrollspørsmålPåTversAvVinduerForBrukerCookie(this.props.fnr);
+        settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie(this.props.fnr);
     }
 
     visNyttKnapp() {
-        return this.props.kontrollSpørsmål.spørsmål && this.props.kontrollSpørsmål.spørsmål.length !== 0;
+        return this.props.kontrollSporsmal.sporsmal && this.props.kontrollSporsmal.sporsmal.length !== 0;
     }
 
     render() {
@@ -68,7 +68,7 @@ class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
                     Lukk
                 </KnappBase>
                 {this.visNyttKnapp() ? (
-                    <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={this.handleNyttSpørsmålClick}>
+                    <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={this.handleNyttSporsmalClick}>
                         Nytt
                     </KnappBase>
                 ) : null}
@@ -80,15 +80,15 @@ class KontrollSpørsmålKnapper extends React.PureComponent<Props> {
 function mapStateToProps(state: AppState): StateProps {
     return {
         fnr: getFnrFromPerson(state.restResources.personinformasjon),
-        kontrollSpørsmål: state.kontrollSpørsmål
+        kontrollSporsmal: state.kontrollSporsmal
     };
 }
 
 function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
     return {
-        lukkKontrollSpørsmål: () => dispatch(lukkKontrollSpørsmål()),
-        nyttSpørsmål: () => dispatch(roterKontrollSpørsmål())
+        lukkKontrollSporsmal: () => dispatch(lukkKontrollSporsmal()),
+        nyttSporsmal: () => dispatch(roterKontrollSporsmal())
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(KontrollSpørsmålKnapper);
+export default connect(mapStateToProps, mapDispatchToProps)(KontrollSporsmalKnapper);

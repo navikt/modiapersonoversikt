@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { utledKjønnFraFødselsnummer } from '../../../../../../utils/fnr-utils';
+import { utledKjonnFraFodselsnummer } from '../../../../../../utils/fnr-utils';
 import { Kjonn } from '../../../../../../models/person/person';
 import MannIkon from '../../../../../../svg/Mann';
 import KvinneIkon from '../../../../../../svg/Kvinne';
@@ -8,9 +8,9 @@ import DiskresjonskodeIkon from '../../../../../../svg/DiskresjonskodeKjonn';
 import Guttebarn from '../../../../../../svg/Guttebarn';
 import Jentebarn from '../../../../../../svg/Jentebarn';
 
-export function getKjønnIkon(fødselsnummer?: string) {
-    const kjønn = utledKjønnFraFødselsnummer(fødselsnummer);
-    switch (kjønn) {
+export function getKjonnIkon(fnr?: string) {
+    const kjonn = utledKjonnFraFodselsnummer(fnr);
+    switch (kjonn) {
         case Kjonn.Mann:
             return <MannIkon />;
         case Kjonn.Kvinne:
@@ -22,9 +22,9 @@ export function getKjønnIkon(fødselsnummer?: string) {
     }
 }
 
-export function getKjønnBarnIkon(fødselsnummer?: string) {
-    const kjønn = utledKjønnFraFødselsnummer(fødselsnummer);
-    switch (kjønn) {
+export function getKjonnBarnIkon(fnr?: string) {
+    const kjonn = utledKjonnFraFodselsnummer(fnr);
+    switch (kjonn) {
         case Kjonn.Mann:
             return <Guttebarn />;
         case Kjonn.Kvinne:
@@ -36,9 +36,9 @@ export function getKjønnBarnIkon(fødselsnummer?: string) {
     }
 }
 
-export function getKjønnBeskrivelseForBarn(fødselsnummer?: string) {
-    const kjønn = utledKjønnFraFødselsnummer(fødselsnummer);
-    switch (kjønn) {
+export function getKjonnBeskrivelseForBarn(fnr?: string) {
+    const kjonn = utledKjonnFraFodselsnummer(fnr);
+    switch (kjonn) {
         case Kjonn.Mann:
             return 'Gutt';
         case Kjonn.Kvinne:

@@ -6,18 +6,18 @@ import { datoSynkende, formatterDato } from '../../../../utils/date-utils';
 import { StyledTable } from '../../../../utils/table/StyledTable';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
-import { setSykefraværEkspandert } from '../../../../redux/oppfolging/actions';
+import { setSykefraverEkspandert } from '../../../../redux/oppfolging/actions';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
 
 interface Props {
     syfoPunkter: SyfoPunkt[];
 }
 
-function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
-    const sortertPåDato = props.syfoPunkter.sort(datoSynkende(syfoPunkt => syfoPunkt.dato));
+function SykefraversoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
+    const sortertPaDato = props.syfoPunkter.sort(datoSynkende(syfoPunkt => syfoPunkt.dato));
 
     const tableHeaders = ['Innen', 'Hendelse', 'Status'];
-    const tableRows = sortertPåDato.map((syfopunkt, index) => [
+    const tableRows = sortertPaDato.map((syfopunkt, index) => [
         formatterDato(syfopunkt.dato),
         syfopunkt.syfoHendelse,
         syfopunkt.status
@@ -26,11 +26,11 @@ function SykefravarsoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
     return <StyledTable tittelRekke={tableHeaders} rows={tableRows} />;
 }
 
-function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {
-    const open = useAppState(state => state.oppfolging.sykefraværEkspandert);
+function SykefraversoppfolgingEkspanderbartPanel(props: Props) {
+    const open = useAppState(state => state.oppfolging.sykefraverEkspandert);
     const dispatch = useDispatch();
     const setOpen = (open: boolean) => {
-        dispatch(setSykefraværEkspandert(open));
+        dispatch(setSykefraverEkspandert(open));
         !open && loggEvent('VisSykefraværsPanel', 'Oppfølging');
     };
 
@@ -44,9 +44,9 @@ function SykefravarsoppfolgingEkspanderbartPanel(props: Props) {
 
     return (
         <EkspanderbartYtelserPanel open={open} setOpen={setOpen} tittel="Sykefraværsoppfølging">
-            <SykefravarsoppfolgingTabell syfoPunkter={props.syfoPunkter} />
+            <SykefraversoppfolgingTabell syfoPunkter={props.syfoPunkter} />
         </EkspanderbartYtelserPanel>
     );
 }
 
-export default SykefravarsoppfolgingEkspanderbartPanel;
+export default SykefraversoppfolgingEkspanderbartPanel;
