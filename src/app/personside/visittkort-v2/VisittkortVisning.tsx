@@ -25,6 +25,7 @@ function VisittkortVisning(props: Props) {
                 dontShowOnFirstRender={true}
             />
             <VisittkortHurtigtaster />
+            {/*eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
             <article role="region" aria-label="Visittkort" aria-expanded={erApen}>
                 <VisittkortHeader persondata={props.persondata} erApen={erApen} toggleApen={toggleApen} />
                 <UnmountClosed isOpened={erApen}>
