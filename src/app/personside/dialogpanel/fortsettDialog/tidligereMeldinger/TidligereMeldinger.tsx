@@ -47,9 +47,8 @@ function Traadpanel(props: { traad: Melding[]; tittel: string; defaultApen: bool
         const meldingnummer = props.traad.length - index;
 
         return (
-            <StyledLi key={index}>
+            <StyledLi key={melding.id}>
                 <EnkeltMelding
-                    key={melding.id}
                     melding={melding}
                     erEnkeltstaende={props.traad.length === 1}
                     defaultApen={props.defaultApen && !flereMeldinger}
