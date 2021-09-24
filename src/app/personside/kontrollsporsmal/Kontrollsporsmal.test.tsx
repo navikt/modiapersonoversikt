@@ -4,11 +4,11 @@ import Kontrollsporsmal from './Kontrollsporsmal';
 import TestProvider from '../../../test/Testprovider';
 
 test('Smoketest kontrollspørsmål', () => {
-    const kontrollspørsmål = mount(
+    const kontrollsporsmal = mount(
         <TestProvider>
             <Kontrollsporsmal />
         </TestProvider>
     );
 
-    expect(kontrollspørsmål).toExist();
+    expect(kontrollsporsmal).toExist();
 });

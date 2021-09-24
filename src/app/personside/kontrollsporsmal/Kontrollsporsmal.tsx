@@ -1,15 +1,15 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import theme from '../../../styles/personOversiktTheme';
-import KontrollSpørsmålKnapper from './KontrollSpørsmålKnapper';
-import SpørsmålOgSvar from './SporsmalOgSvarContainer';
+import KontrollSporsmalKnapper from './KontrollSporsmalKnapper';
+import SporsmalOgSvar from './SporsmalOgSvarContainer';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
 import { useAppState, useFodselsnummer } from '../../../utils/customHooks';
 import LazySpinner from '../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useErKontaktsenter } from '../../../utils/enheter-utils';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
-import { kontrollspørsmålHarBlittLukketForBruker } from './cookie-utils';
+import { kontrollsporsmalHarBlittLukketForBruker } from './cookie-utils';
 import useFeatureToggle from '../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
 
@@ -48,7 +48,7 @@ const Placeholder = (
 
 const placeholderProps = { returnOnPending: Placeholder };
 function Kontrollsporsmal() {
-    const visKontrollSpørsmål = useAppState(state => state.kontrollSpørsmål.open);
+    const visKontrollSporsmal = useAppState(state => state.kontrollSporsmal.open);
     const fnr = useFodselsnummer();
     const personResource = useRestResource(resources => resources.personinformasjon, placeholderProps);
     const erKontaktsenter = useErKontaktsenter();
@@ -57,10 +57,10 @@ function Kontrollsporsmal() {
 
     if (
         usingSFBackend ||
-        !visKontrollSpørsmål ||
+        !visKontrollSporsmal ||
         jobberMedSTO ||
         !erKontaktsenter ||
-        kontrollspørsmålHarBlittLukketForBruker(fnr)
+        kontrollsporsmalHarBlittLukketForBruker(fnr)
     ) {
         return null;
     }
@@ -74,10 +74,10 @@ function Kontrollsporsmal() {
             <KontrollSporsmalStyling role="region" aria-label="Visittkort-hode">
                 <h2 className={'visually-hidden'}>Kontrollspørsmål</h2>
                 <div className="innhold">
-                    <SpørsmålOgSvar />
+                    <SporsmalOgSvar />
                 </div>
                 <div className="knapper">
-                    <KontrollSpørsmålKnapper />
+                    <KontrollSporsmalKnapper />
                 </div>
             </KontrollSporsmalStyling>
             <HandleKontrollSporsmalHotkeys />

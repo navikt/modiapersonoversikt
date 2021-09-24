@@ -39,15 +39,15 @@ function getFiresifretAr(fnr: string): number {
     }
 }
 
-export function utledKjønnFraFødselsnummer(fødselsnummer?: string): Kjonn {
-    if (!fødselsnummer) {
+export function utledKjonnFraFodselsnummer(fnr?: string): Kjonn {
+    if (!fnr) {
         return Kjonn.Diskresjonskode;
     }
-    return Number(fødselsnummer.charAt(8)) % 2 === 1 ? Kjonn.Mann : Kjonn.Kvinne;
+    return Number(fnr.charAt(8)) % 2 === 1 ? Kjonn.Mann : Kjonn.Kvinne;
 }
 
-export function erDnummer(fødselsnummer: string) {
-    const dag = Number(fødselsnummer.substring(0, 2));
+export function erDnummer(fnr: string) {
+    const dag = Number(fnr.substring(0, 2));
     return dag > 40 && dag <= 71;
 }
 

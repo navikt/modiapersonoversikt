@@ -8,7 +8,7 @@ import { getPerson } from './person/personMock';
 import { getMockKontaktinformasjon } from './person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import {
     mockGeneratorMedEnhetId,
-    mockGeneratorMedFødselsnummer,
+    mockGeneratorMedFodselsnummer,
     verify,
     withDelayedResponse
 } from './utils/fetch-utils';
@@ -28,7 +28,7 @@ import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { mockFeatureToggle } from './featureToggle-mock';
 import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
-import { getMockOppfølging, getMockYtelserOgKontrakter } from './oppfolging-mock';
+import { getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getDittNavVarsler, getMockVarsler } from './varsler/varsel-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
@@ -72,7 +72,7 @@ export function randomDelay() {
     return faker.random.number(750);
 }
 
-const fødselsNummerErGyldigStatus = (req: MockRequest) =>
+const fodselsNummerErGyldigStatus = (req: MockRequest) =>
     erGyldigFødselsnummer(req.pathParams.fodselsnummer) ? STATUS_OK() : STATUS_BAD_REQUEST();
 
 function setupInnloggetSaksbehandlerMock(mock: FetchMock) {
@@ -97,7 +97,7 @@ function setupTilgangskontroll(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             () => (Math.random() > 0.98 ? 400 : 200),
-            mockGeneratorMedFødselsnummer(tilgangskontrollMock)
+            mockGeneratorMedFodselsnummer(tilgangskontrollMock)
         )
     );
 }
@@ -107,8 +107,8 @@ function setupPersonMock(mock: FetchMock) {
         apiBaseUri + '/person/:fodselsnummer',
         withDelayedResponse(
             randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fødselsnummer => getPerson(fødselsnummer))
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummer(fodselsnummer => getPerson(fodselsnummer))
         )
     );
 }
@@ -118,8 +118,8 @@ function setupAktorIdMock(mock: FetchMock) {
         apiBaseUri + '/person/:fodselsnummer/aktorid',
         withDelayedResponse(
             randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fodselsnummer => getAktorId(fodselsnummer))
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummer(fodselsnummer => getAktorId(fodselsnummer))
         )
     );
 }
@@ -129,8 +129,8 @@ function setupEgenAnsattMock(mock: FetchMock) {
         apiBaseUri + '/egenansatt/:fodselsnummer',
         withDelayedResponse(
             randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fødselsnummer => erEgenAnsatt(fødselsnummer))
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummer(fodselsnummer => erEgenAnsatt(fodselsnummer))
         )
     );
 }
@@ -140,8 +140,8 @@ function setupKontaktinformasjonMock(mock: FetchMock) {
         apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon',
         withDelayedResponse(
             randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fødselsnummer => getMockKontaktinformasjon(fødselsnummer))
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummer(fodselsnummer => getMockKontaktinformasjon(fodselsnummer))
         )
     );
 }
@@ -153,8 +153,8 @@ function setupSaksoversiktMock(mock: FetchMock) {
             harEnhetIdSomQueryParam,
             withDelayedResponse(
                 randomDelay(),
-                fødselsNummerErGyldigStatus,
-                mockGeneratorMedFødselsnummer(getMockSaksoversikt)
+                fodselsNummerErGyldigStatus,
+                mockGeneratorMedFodselsnummer(getMockSaksoversikt)
             )
         )
     );
@@ -163,7 +163,7 @@ function setupSaksoversiktMock(mock: FetchMock) {
 function setupUtbetalingerMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/utbetaling/:fodselsnummer',
-        withDelayedResponse(randomDelay(), fødselsNummerErGyldigStatus, args =>
+        withDelayedResponse(randomDelay(), fodselsNummerErGyldigStatus, args =>
             getMockUtbetalinger(args.pathParams.fodselsnummer, args.queryParams.startDato, args.queryParams.sluttDato)
         )
     );
@@ -174,8 +174,8 @@ function setupSykepengerMock(mock: FetchMock) {
         apiBaseUri + '/ytelse/sykepenger/:fodselsnummer',
         withDelayedResponse(
             randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fodselsnummer => getMockSykepengerRespons(fodselsnummer))
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummer(fodselsnummer => getMockSykepengerRespons(fodselsnummer))
         )
     );
 }
@@ -185,8 +185,8 @@ function setupForeldrepengerMock(mock: FetchMock) {
         apiBaseUri + '/ytelse/foreldrepenger/:fodselsnummer',
         withDelayedResponse(
             randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fodselsnummer => getMockForeldrepenger(fodselsnummer))
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummer(fodselsnummer => getMockForeldrepenger(fodselsnummer))
         )
     );
 }
@@ -196,19 +196,19 @@ function setupPleiepengerMock(mock: FetchMock) {
         apiBaseUri + '/ytelse/pleiepenger/:fodselsnummer',
         withDelayedResponse(
             randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fodselsnummer => getMockPleiepenger(fodselsnummer))
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummer(fodselsnummer => getMockPleiepenger(fodselsnummer))
         )
     );
 }
 
-function setupOppfølgingMock(mock: FetchMock) {
+function setupOppfolgingMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/oppfolging/:fodselsnummer',
         withDelayedResponse(
             randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fodselsnummer => getMockOppfølging(fodselsnummer))
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummer(fodselsnummer => getMockOppfolging(fodselsnummer))
         )
     );
 }
@@ -218,8 +218,8 @@ function setupYtelserOgKontrakter(mock: FetchMock) {
         apiBaseUri + '/oppfolging/:fodselsnummer/ytelserogkontrakter',
         withDelayedResponse(
             randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fodselsnummer => getMockYtelserOgKontrakter(fodselsnummer))
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummer(fodselsnummer => getMockYtelserOgKontrakter(fodselsnummer))
         )
     );
 }
@@ -229,8 +229,8 @@ function setupVarselMock(mock: FetchMock) {
         apiBaseUri + '/varsler/:fodselsnummer',
         withDelayedResponse(
             randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fodselsnummer => getMockVarsler(fodselsnummer))
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummer(fodselsnummer => getMockVarsler(fodselsnummer))
         )
     );
 
@@ -350,8 +350,8 @@ function setupVergemalMock(mock: FetchMock) {
         apiBaseUri + '/person/:fodselsnummer/vergemal',
         withDelayedResponse(
             randomDelay(),
-            fødselsNummerErGyldigStatus,
-            mockGeneratorMedFødselsnummer(fødselsnummer => mockVergemal(fødselsnummer))
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummer(fodselsnummer => mockVergemal(fodselsnummer))
         )
     );
 }
@@ -515,7 +515,7 @@ setupPostnummerKodeverk(mock);
 setupWsControlAndMock(mock);
 setupLandKodeverk(mock);
 setupValutaKodeverk(mock);
-setupOppfølgingMock(mock);
+setupOppfolgingMock(mock);
 setupGsakTemaMock(mock);
 setupOppgaveEnhetMock(mock);
 setupForeslatteEnheterMock(mock);

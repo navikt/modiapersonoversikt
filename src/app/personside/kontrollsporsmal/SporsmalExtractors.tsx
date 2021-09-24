@@ -16,14 +16,14 @@ import dayjs from 'dayjs';
 import { formatertKontonummerString } from '../../../utils/FormatertKontonummer';
 import { getFodselsdatoFraFnr } from '../../../utils/fnr-utils';
 
-export interface SpørsmålsExtractor<T> {
-    spørsmål: string;
+export interface SporsmalsExtractor<T> {
+    sporsmal: string;
     extractSvar: (data: T) => Svar[];
 }
 
-export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] = [
+export const personInformasjonSporsmal: SporsmalsExtractor<PersonRespons>[] = [
     {
-        spørsmål: 'Hva er bankkontonummeret ditt?',
+        sporsmal: 'Hva er bankkontonummeret ditt?',
         extractSvar: personinformasjon => {
             const bankkonto = (personinformasjon as Person).bankkonto;
             return [
@@ -34,14 +34,14 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
         }
     },
     {
-        spørsmål: 'Hva er fødselsdatoen til ditt barn _______',
+        sporsmal: 'Hva er fødselsdatoen til ditt barn _______',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
-            return [hentFødselsdatoBarn(person)];
+            return [hentFodselsdatoBarn(person)];
         }
     },
     {
-        spørsmål: 'Hvilken dato giftet du deg?',
+        sporsmal: 'Hvilken dato giftet du deg?',
         extractSvar: personinformasjon => {
             const person = personinformasjon as Person;
             return [{ tekst: hentGiftedato(person) }];
@@ -49,21 +49,21 @@ export const personInformasjonSpørsmål: SpørsmålsExtractor<PersonRespons>[] 
     }
 ];
 
-export const kontaktInformasjonSpørsmål: SpørsmålsExtractor<KRRKontaktinformasjon>[] = [
+export const kontaktInformasjonSporsmal: SporsmalsExtractor<KRRKontaktinformasjon>[] = [
     {
-        spørsmål: 'Hva er din e-post adresse?',
+        sporsmal: 'Hva er din e-post adresse?',
         extractSvar: kontaktinformasjon => {
             return [hentEpost(kontaktinformasjon)];
         }
     }
 ];
 
-export function hentFødselsdatoBarn(person: Person): Svar {
+export function hentFodselsdatoBarn(person: Person): Svar {
     const gyldigeBarn = getBarnUnder21(person.familierelasjoner)
         .filter(barn => barn.harSammeBosted)
         .filter(barn => !barn.tilPerson.diskresjonskode)
         .filter(barn => !erDod(barn.tilPerson.personstatus))
-        .filter(barn => !harDødsDato(barn));
+        .filter(barn => !harDodsDato(barn));
 
     if (gyldigeBarn.length === 0) {
         return { tekst: '' };
@@ -72,19 +72,19 @@ export function hentFødselsdatoBarn(person: Person): Svar {
     const barnet = ettTilfeldigBarn(gyldigeBarn);
 
     return {
-        tekst: hentFødselsdato(barnet),
+        tekst: hentFodselsdato(barnet),
         beskrivelse: barnet.tilPerson.navn ? getNavn(barnet.tilPerson.navn) : undefined
     };
 }
 
-function hentFødselsdato(barn: Familierelasjon): string {
+function hentFodselsdato(barn: Familierelasjon): string {
     if (barn.tilPerson.fødselsnummer) {
-        return utledFødselsdato(barn.tilPerson.fødselsnummer);
+        return utledFodselsdato(barn.tilPerson.fødselsnummer);
     }
     return '';
 }
 
-function utledFødselsdato(fnr: string): string {
+function utledFodselsdato(fnr: string): string {
     return formaterDato(getFodselsdatoFraFnr(fnr));
 }
 
@@ -139,6 +139,6 @@ export function hentEpost(kontaktinformasjon: KRRKontaktinformasjon) {
     return { tekst: kontaktinformasjon.epost ? kontaktinformasjon.epost.value : '' };
 }
 
-export function harDødsDato(barn: Familierelasjon): Boolean {
+export function harDodsDato(barn: Familierelasjon): Boolean {
     return !!barn.tilPerson.personstatus.dødsdato;
 }

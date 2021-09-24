@@ -1,18 +1,18 @@
-import { Actions, ActionTypes, initState, KontrollSpørsmålState } from './types';
+import { Actions, ActionTypes, initState, KontrollSporsmalState } from './types';
 
-function reducer(state: KontrollSpørsmålState = initState, action: Actions): KontrollSpørsmålState {
+function reducer(state: KontrollSporsmalState = initState, action: Actions): KontrollSporsmalState {
     switch (action.type) {
-        case ActionTypes.SetSpørsmål:
+        case ActionTypes.SetSporsmal:
             return {
                 ...state,
-                spørsmål: action.spørsmål
+                sporsmal: action.sporsmal
             };
         case ActionTypes.Roter:
-            if (state.spørsmål) {
-                const nySpørsmål = [...state.spørsmål.slice(1, state.spørsmål.length), state.spørsmål[0]];
+            if (state.sporsmal) {
+                const nySporsmal = [...state.sporsmal.slice(1, state.sporsmal.length), state.sporsmal[0]];
                 return {
                     ...state,
-                    spørsmål: nySpørsmål
+                    sporsmal: nySporsmal
                 };
             } else {
                 return {
