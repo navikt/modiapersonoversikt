@@ -74,7 +74,7 @@ function DialogpanelVelgSak(props: Props) {
     return (
         <>
             <StyledDiv>
-                <Hovedknapp mini onClick={() => settApen(true)}>
+                <Hovedknapp mini htmlType="button" onClick={() => settApen(true)}>
                     Velg sak
                 </Hovedknapp>
                 <Normaltekst>{tittelDialogpanel}</Normaltekst>
