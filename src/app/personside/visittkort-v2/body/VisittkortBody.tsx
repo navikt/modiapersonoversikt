@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Data as Persondata } from './PersondataDomain';
+import { Data as Persondata } from '../PersondataDomain';
 
 interface Props {
     persondata: Persondata;

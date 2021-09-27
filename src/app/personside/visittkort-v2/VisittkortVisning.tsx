@@ -3,8 +3,8 @@ import { Data as Persondata } from './PersondataDomain';
 import AriaNotification from '../../../components/AriaNotification';
 import { UnmountClosed } from 'react-collapse';
 import useToggle from '../../../utils/hooks/use-toggle';
-import VisittkortBody from './VisittkortBody';
-import VisittkortHeader from './VisittkortHeader';
+import VisittkortBody from './body/VisittkortBody';
+import VisittkortHeader from './header/VisittkortHeader';
 
 interface Props {
     persondata: Persondata;
