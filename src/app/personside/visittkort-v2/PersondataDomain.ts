@@ -3,8 +3,8 @@ export interface Data {
     person: Person;
 }
 
-type LocalDate = string & { __type__: 'LocalDate' };
-type LocalDateTime = string & { __type__: 'LocalDateTime' };
+export type LocalDate = string & { __type__: 'LocalDate' };
+export type LocalDateTime = string & { __type__: 'LocalDateTime' };
 
 export interface Person {
     fnr: string;
@@ -37,7 +37,7 @@ interface KodeBeskrivelse<T> {
     beskrivelse: string;
 }
 
-interface Navn {
+export interface Navn {
     fornavn: string;
     mellomnavn: string | null;
     etternavn: string;
@@ -159,13 +159,13 @@ interface DeltBosted {
     adresse: Adresse | null;
 }
 
-enum Kjonn {
+export enum Kjonn {
     M = 'M',
     K = 'K',
     U = 'U'
 }
 
-enum AdresseBeskyttelse {
+export enum AdresseBeskyttelse {
     KODE6 = 'KODE6',
     KODE6_UTLAND = 'KODE6_UTLAND',
     KODE7 = 'KODE7',
@@ -179,7 +179,7 @@ export enum EgenAnsatt {
     UKJENT = 'UKJENT'
 }
 
-enum PersonStatus {
+export enum PersonStatus {
     BOSATT = 'BOSATT',
     DOD = 'DOD',
     OPPHORT = 'OPPHORT',
@@ -192,7 +192,7 @@ enum PersonStatus {
     UKJENT = 'UKJENT'
 }
 
-enum SivilstandType {
+export enum SivilstandType {
     UOPPGITT = 'UOPPGITT',
     UGIFT = 'UGIFT',
     GIFT = 'GIFT',
@@ -205,7 +205,7 @@ enum SivilstandType {
     GJENLEVENDE_PARTNER = 'GJENLEVENDE_PARTNER'
 }
 
-enum SikkerhetstiltakType {
+export enum SikkerhetstiltakType {
     FYUS = 'FYUS',
     TFUS = 'TFUS',
     FTUS = 'FTUS',
@@ -213,13 +213,13 @@ enum SikkerhetstiltakType {
     TOAN = 'TOAN'
 }
 
-enum Skifteform {
+export enum Skifteform {
     OFFENTLIG = 'OFFENTLIG',
     ANNET = 'ANNET',
     UKJENT = 'UKJENT'
 }
 
-enum FullmaktsRolle {
+export enum FullmaktsRolle {
     FULLMAKTSGIVER = 'FULLMAKTSGIVER',
     FULLMEKTIG = 'FULLMEKTIG',
     UKJENT = 'UKJENT'
