@@ -21,6 +21,8 @@ export function setupPersondataMock(mock: FetchMock) {
     );
 }
 
+const erDod = false;
+
 function lagPersondata(fnr: string): PersonData {
     const person: Person = {
         fnr: fnr,
@@ -38,7 +40,7 @@ function lagPersondata(fnr: string): PersonData {
             }
         ],
         fodselsdato: ['2000-02-02' as LocalDate],
-        dodsdato: ['2018-06-07' as LocalDate],
+        dodsdato: erDod ? ['2018-06-07' as LocalDate] : [],
         bostedAdresse: [
             {
                 linje1: 'Adressevei 1',
@@ -83,8 +85,8 @@ function lagPersondata(fnr: string): PersonData {
         erEgenAnsatt: EgenAnsatt.UKJENT,
         personstatus: [
             {
-                kode: PersonStatus.BOSATT,
-                beskrivelse: 'Bosatt i Norge'
+                kode: erDod ? PersonStatus.DOD : PersonStatus.BOSATT,
+                beskrivelse: erDod ? 'Død' : 'Bosatt i Norge'
             }
         ],
         sivilstand: [
