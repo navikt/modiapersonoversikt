@@ -50,7 +50,7 @@ export default function NavKontaktinformasjon(props: Props) {
 
     if (props.telefonnummer && props.telefonnummer.length > 0) {
         const telefonNummer = props.telefonnummer.map(telefon => (
-            <Telefon telefon={telefon} nummerFormaterer={formaterTelefonnummer} beskrivelse="" />
+            <Telefon key={telefon.identifikator} telefon={telefon} nummerFormaterer={formaterTelefonnummer} beskrivelse="" />
         ));
 
         return <VisittkortElement beskrivelse="Telefon til bruk for NAV">{telefonNummer}</VisittkortElement>;

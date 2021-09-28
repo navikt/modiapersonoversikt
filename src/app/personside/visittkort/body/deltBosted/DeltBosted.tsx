@@ -48,7 +48,7 @@ function DeltBostedElement(props: { deltbosted: DeltBosted }) {
 
     return (
         <VisittkortElement>
-            <Normaltekst>{getAdresse(props.deltbosted) ?? ukjentBosted}</Normaltekst>
+            {getAdresse(props.deltbosted) ?? ukjentBosted}
             <Normaltekst>Gyldig fra og med {startdato}</Normaltekst>
             <Normaltekst>Gyldig til og med {sluttdato}</Normaltekst>
         </VisittkortElement>

@@ -104,9 +104,8 @@ function Filtrering() {
         const label = PeriodeValg[key];
         const checked = filter.periode.radioValg === label;
         return (
-            <RadioWrapper>
+            <RadioWrapper key={label}>
                 <Radio
-                    key={label}
                     label={label}
                     checked={checked}
                     onChange={() =>
