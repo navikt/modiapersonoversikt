@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Data as Persondata, Kjonn, PersonStatus } from '../PersondataDomain';
+import { Data as Persondata, Kjonn } from '../PersondataDomain';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
@@ -7,6 +7,8 @@ import Kvinne from '../../../../svg/Kvinne';
 import Mann from '../../../../svg/Mann';
 import { hentAlder, hentNavn } from '../utils-visittkort';
 import { useRef } from 'react';
+import PersonStatus from './status/PersonStatus';
+import { erDod } from '../person-utils';
 
 interface Props {
     persondata: Persondata;
@@ -86,8 +88,8 @@ function erMann(props: Props) {
 }
 
 function getAlder(props: Props): string | undefined {
-    if (props.persondata.person.personstatus[0].kode === PersonStatus.DOD) {
-        return "Død"
+    if (erDod(props.persondata.person)) {
+        return 'Død';
     }
 
     // TODO: Trenger vi denne?
@@ -95,7 +97,7 @@ function getAlder(props: Props): string | undefined {
     if (!fodselsdato) {
         return;
     }
-    
+
     return hentAlder(fodselsdato).toString();
 }
 
@@ -112,6 +114,7 @@ function VisittkortHeader(props: Props) {
     };
 
     const alder = getAlder(props);
+    const kjonn = props.persondata.person.kjonn[0].kode === 'M' ? 'Mann' : 'Kvinne';
 
     return (
         <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={toggleApen}>
@@ -124,6 +127,8 @@ function VisittkortHeader(props: Props) {
                                 {hentNavn(props.persondata.person.navn[0])} ({alder})
                             </span>
                         </Undertittel>
+                        <span className="visually-hidden">{kjonn}</span>
+                        <PersonStatus person={props.persondata.person} />
                     </GrunninfoDiv>
                 </VenstreFelt>
                 <HoyreFelt>

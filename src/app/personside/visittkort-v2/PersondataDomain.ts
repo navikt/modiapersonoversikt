@@ -30,6 +30,7 @@ export interface Person {
     telefonnummer: Array<Telefon>;
     kontaktOgReservasjon: DigitalKontaktinformasjon | null;
     bankkonto: Bankkonto | null;
+    forelderBarnRelasjon: Array<ForelderBarnRelasjon>;
 }
 
 interface KodeBeskrivelse<T> {
@@ -43,13 +44,13 @@ export interface Navn {
     etternavn: string;
 }
 
-interface Statsborgerskap {
+export interface Statsborgerskap {
     land: KodeBeskrivelse<string>;
     gyldigFraOgMed: LocalDate | null;
     gyldigTilOgMed: LocalDate | null;
 }
 
-interface Sivilstand {
+export interface Sivilstand {
     type: KodeBeskrivelse<SivilstandType>;
     gyldigFraOgMed: LocalDate | null;
 }
@@ -159,6 +160,11 @@ interface DeltBosted {
     adresse: Adresse | null;
 }
 
+export interface ForelderBarnRelasjon {
+    relatertPersonsIdent: string;
+    relatertPersonsRolle: ForelderBarnRelasjonRolle;
+}
+
 export enum Kjonn {
     M = 'M',
     K = 'K',
@@ -222,6 +228,14 @@ export enum Skifteform {
 export enum FullmaktsRolle {
     FULLMAKTSGIVER = 'FULLMAKTSGIVER',
     FULLMEKTIG = 'FULLMEKTIG',
+    UKJENT = 'UKJENT'
+}
+
+export enum ForelderBarnRelasjonRolle {
+    BARN = 'BARN',
+    MOR = 'MOR',
+    FAR = 'FAR',
+    MEDMOR = 'MEDMOR',
     UKJENT = 'UKJENT'
 }
 
