@@ -6,7 +6,7 @@ interface Props {
     kjonn: Kjonn;
 }
 
-function getBeskrivelseForSivilstand(sivilstand: SivilstandInterface, kjonn: Kjonn) {
+function hentBeskrivelseForSivilstand(sivilstand: SivilstandInterface, kjonn: Kjonn) {
     if (sivilstand.type.kode === SivilstandType.ENKE_ELLER_ENKEMANN) {
         return kjonn === Kjonn.M ? 'Enkemann' : 'Enke';
     } else {
@@ -15,7 +15,7 @@ function getBeskrivelseForSivilstand(sivilstand: SivilstandInterface, kjonn: Kjo
 }
 
 export function Sivilstand({ sivilstand, kjonn }: Props) {
-    const sivilstandBeskrivelse = getBeskrivelseForSivilstand(sivilstand, kjonn);
+    const sivilstandBeskrivelse = hentBeskrivelseForSivilstand(sivilstand, kjonn);
 
     return <li title="Sivilstand">{sivilstandBeskrivelse}</li>;
 }
