@@ -9,6 +9,7 @@ import { hentAlder, hentNavn } from '../utils-visittkort';
 import { useRef } from 'react';
 import PersonStatus from './status/PersonStatus';
 import { erDod } from '../person-utils';
+import Etiketter from './etiketter/Etiketter';
 
 interface Props {
     persondata: Persondata;
@@ -92,12 +93,12 @@ function getAlder(props: Props): string | undefined {
         return 'Død';
     }
 
-    // TODO: Trenger vi denne?
     const fodselsdato = props.persondata.person.fodselsdato[0];
+    // TODO: Trenger vi denne?
     if (!fodselsdato) {
         return;
     }
-
+    // TOOD: Utregning skal skje i backend
     return hentAlder(fodselsdato).toString();
 }
 
@@ -132,6 +133,7 @@ function VisittkortHeader(props: Props) {
                     </GrunninfoDiv>
                 </VenstreFelt>
                 <HoyreFelt>
+                    <Etiketter person={props.persondata.person} />
                     <Normaltekst>Her kommer navkontor osv</Normaltekst>
                 </HoyreFelt>
                 <ChevronStyling>

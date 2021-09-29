@@ -55,7 +55,7 @@ export interface Sivilstand {
     gyldigFraOgMed: LocalDate | null;
 }
 
-interface Sikkerhetstiltak {
+export interface Sikkerhetstiltak {
     type: SikkerhetstiltakType;
     gyldigFraOgMed: LocalDate;
     gyldigTilOgMed: LocalDate;
