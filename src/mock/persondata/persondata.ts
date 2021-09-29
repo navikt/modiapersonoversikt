@@ -3,6 +3,7 @@ import {
     AdresseBeskyttelse,
     Data as PersonData,
     EgenAnsatt,
+    ForelderBarnRelasjonRolle,
     FullmaktsRolle,
     Kjonn,
     LocalDate,
@@ -17,11 +18,13 @@ import { apiBaseUri } from '../../api/config';
 
 export function setupPersondataMock(mock: FetchMock) {
     mock.get(apiBaseUri + '/v2/person/:fodselsnummer', (req, res, ctx) =>
-        res(ctx.json(lagPersondata(req.pathParams.fnr)))
+        res(ctx.json(lagPersondata(req.pathParams.fodselsnummer)))
     );
 }
 
+// Til bruk under testing av funksjonalitet
 const erDod = false;
+const visEtiketter = false;
 
 function lagPersondata(fnr: string): PersonData {
     const person: Person = {
@@ -71,7 +74,7 @@ function lagPersondata(fnr: string): PersonData {
         ],
         adressebeskyttelse: [
             {
-                kode: AdresseBeskyttelse.UGRADERT,
+                kode: visEtiketter ? AdresseBeskyttelse.KODE6 : AdresseBeskyttelse.UGRADERT,
                 beskrivelse: 'Ingen'
             }
         ],
@@ -79,10 +82,10 @@ function lagPersondata(fnr: string): PersonData {
             {
                 type: SikkerhetstiltakType.TFUS,
                 gyldigFraOgMed: '2005-02-13' as LocalDate,
-                gyldigTilOgMed: '2015-02-02' as LocalDate
+                gyldigTilOgMed: visEtiketter ? ('2030-02-15' as LocalDate) : ('2010-02-15' as LocalDate)
             }
         ],
-        erEgenAnsatt: EgenAnsatt.UKJENT,
+        erEgenAnsatt: visEtiketter ? EgenAnsatt.JA : EgenAnsatt.UKJENT,
         personstatus: [
             {
                 kode: erDod ? PersonStatus.DOD : PersonStatus.BOSATT,
@@ -235,7 +238,17 @@ function lagPersondata(fnr: string): PersonData {
                 kode: 'NOK',
                 beskrivelse: 'Norske kroner'
             }
-        }
+        },
+        forelderBarnRelasjon: [
+            {
+                relatertPersonsIdent: '12345678910',
+                relatertPersonsRolle: ForelderBarnRelasjonRolle.BARN
+            },
+            {
+                relatertPersonsIdent: '12345678911',
+                relatertPersonsRolle: ForelderBarnRelasjonRolle.BARN
+            }
+        ]
     };
 
     return { feilendeSystemer: [], person };
