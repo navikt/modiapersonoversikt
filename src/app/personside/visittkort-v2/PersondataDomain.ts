@@ -73,7 +73,7 @@ interface Enhet {
     navn: string;
 }
 
-interface Dodsbo {
+export interface Dodsbo {
     adressat: Adressat;
     adresse: Adresse;
     registrert: LocalDate;

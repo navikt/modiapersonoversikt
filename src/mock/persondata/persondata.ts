@@ -80,13 +80,15 @@ function lagPersondata(fnr: string): PersonData {
                 beskrivelse: 'Ingen'
             }
         ],
-        sikkerhetstiltak: [
-            {
-                type: SikkerhetstiltakType.TFUS,
-                gyldigFraOgMed: '2005-02-13' as LocalDate,
-                gyldigTilOgMed: visEtiketter ? ('2030-02-15' as LocalDate) : ('2010-02-15' as LocalDate)
-            }
-        ],
+        sikkerhetstiltak: visEtiketter
+            ? [
+                  {
+                      type: SikkerhetstiltakType.TFUS,
+                      gyldigFraOgMed: '2005-02-13' as LocalDate,
+                      gyldigTilOgMed: visEtiketter ? ('2030-02-15' as LocalDate) : ('2010-02-15' as LocalDate)
+                  }
+              ]
+            : [],
         erEgenAnsatt: visEtiketter ? EgenAnsatt.JA : EgenAnsatt.UKJENT,
         personstatus: [
             {
@@ -129,30 +131,32 @@ function lagPersondata(fnr: string): PersonData {
                 }
             }
         ],
-        dodsbo: [
-            {
-                adressat: {
-                    advokatSomAdressat: {
-                        kontaktperson: {
-                            fornavn: 'Advokat',
-                            mellomnavn: null,
-                            etternavn: 'Navnesen'
-                        },
-                        organisasjonsnavn: 'Advokatkontoret Aremark',
-                        organisasjonsnummer: '01234567891011'
-                    },
-                    organisasjonSomAdressat: null,
-                    personSomAdressat: null
-                },
-                adresse: {
-                    linje1: 'Elgelia 20, 0000 Aremark',
-                    linje2: null,
-                    linje3: null
-                },
-                registrert: '2010-02-02' as LocalDate,
-                skifteform: Skifteform.OFFENTLIG
-            }
-        ],
+        dodsbo: visEtiketter
+            ? [
+                  {
+                      adressat: {
+                          advokatSomAdressat: {
+                              kontaktperson: {
+                                  fornavn: 'Advokat',
+                                  mellomnavn: null,
+                                  etternavn: 'Navnesen'
+                              },
+                              organisasjonsnavn: 'Advokatkontoret Aremark',
+                              organisasjonsnummer: '01234567891011'
+                          },
+                          organisasjonSomAdressat: null,
+                          personSomAdressat: null
+                      },
+                      adresse: {
+                          linje1: 'Elgelia 20, 0000 Aremark',
+                          linje2: null,
+                          linje3: null
+                      },
+                      registrert: '2010-02-02' as LocalDate,
+                      skifteform: Skifteform.OFFENTLIG
+                  }
+              ]
+            : [],
         fullmakt: [
             {
                 motpartsPersonident: '123456789',
