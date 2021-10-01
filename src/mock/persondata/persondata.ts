@@ -43,6 +43,7 @@ function lagPersondata(fnr: string): PersonData {
             }
         ],
         fodselsdato: ['2000-02-02' as LocalDate],
+        alder: 21,
         dodsdato: erDod ? ['2018-06-07' as LocalDate] : [],
         bostedAdresse: [
             {
@@ -241,12 +242,94 @@ function lagPersondata(fnr: string): PersonData {
         },
         forelderBarnRelasjon: [
             {
-                relatertPersonsIdent: '12345678910',
-                relatertPersonsRolle: ForelderBarnRelasjonRolle.BARN
+                ident: '12345678910',
+                rolle: ForelderBarnRelasjonRolle.BARN,
+                navn: [
+                    {
+                        fornavn: 'BARN1',
+                        mellomnavn: null,
+                        etternavn: 'BARNESEN'
+                    }
+                ],
+                fodselsdato: ['2008-03-15' as LocalDate],
+                alder: 13,
+                adressebeskyttelse: [
+                    {
+                        kode: AdresseBeskyttelse.UGRADERT,
+                        beskrivelse: 'UGRADERT'
+                    }
+                ],
+                bostedAdresse: [
+                    {
+                        linje1: 'Gatenavn 1',
+                        linje2: '0000 AREMARK',
+                        linje3: 'Norge'
+                    }
+                ],
+                personstatus: [
+                    {
+                        kode: PersonStatus.BOSATT,
+                        beskrivelse: 'BOSATT'
+                    }
+                ]
             },
             {
-                relatertPersonsIdent: '12345678911',
-                relatertPersonsRolle: ForelderBarnRelasjonRolle.BARN
+                ident: '12345678911',
+                rolle: ForelderBarnRelasjonRolle.BARN,
+                navn: [
+                    {
+                        fornavn: 'BARN2',
+                        mellomnavn: null,
+                        etternavn: 'BARNESEN'
+                    }
+                ],
+                fodselsdato: ['2010-04-21' as LocalDate],
+                alder: null,
+                adressebeskyttelse: [
+                    {
+                        kode: AdresseBeskyttelse.UGRADERT,
+                        beskrivelse: 'UGRADERT'
+                    }
+                ],
+                bostedAdresse: [],
+                personstatus: [
+                    {
+                        kode: PersonStatus.DOD,
+                        beskrivelse: 'DØD'
+                    }
+                ]
+            },
+            {
+                ident: '12345678912',
+                rolle: ForelderBarnRelasjonRolle.BARN,
+                navn: [
+                    {
+                        fornavn: 'BARN3',
+                        mellomnavn: null,
+                        etternavn: 'BARNESEN'
+                    }
+                ],
+                fodselsdato: ['2012-06-05' as LocalDate],
+                alder: 9,
+                adressebeskyttelse: [
+                    {
+                        kode: AdresseBeskyttelse.KODE6,
+                        beskrivelse: 'KODE 6'
+                    }
+                ],
+                bostedAdresse: [
+                    {
+                        linje1: 'Gatenavn 22',
+                        linje2: '0000 AREMARK',
+                        linje3: 'Norge'
+                    }
+                ],
+                personstatus: [
+                    {
+                        kode: PersonStatus.BOSATT,
+                        beskrivelse: 'BOSATT'
+                    }
+                ]
             }
         ]
     };
