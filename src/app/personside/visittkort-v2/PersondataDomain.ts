@@ -117,7 +117,7 @@ interface Bankkonto {
     valuta: KodeBeskrivelse<string> | null;
 }
 
-interface TilrettelagtKommunikasjon {
+export interface TilrettelagtKommunikasjon {
     talesprak: Array<KodeBeskrivelse<string>>;
     tegnsprak: Array<KodeBeskrivelse<string>>;
 }

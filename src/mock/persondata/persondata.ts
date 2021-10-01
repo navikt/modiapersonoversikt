@@ -185,18 +185,22 @@ function lagPersondata(fnr: string): PersonData {
               ]
             : [],
         tilrettelagtKommunikasjon: {
-            talesprak: [
-                {
-                    kode: 'NO',
-                    beskrivelse: 'Norsk'
-                }
-            ],
-            tegnsprak: [
-                {
-                    kode: 'NO',
-                    beskrivelse: 'Norsk'
-                }
-            ]
+            talesprak: visEtiketter
+                ? [
+                      {
+                          kode: 'NO',
+                          beskrivelse: 'Norsk'
+                      }
+                  ]
+                : [],
+            tegnsprak: visEtiketter
+                ? [
+                      {
+                          kode: 'NO',
+                          beskrivelse: 'Norsk'
+                      }
+                  ]
+                : []
         },
         telefonnummer: [
             {
