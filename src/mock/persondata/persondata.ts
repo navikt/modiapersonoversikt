@@ -157,20 +157,22 @@ function lagPersondata(fnr: string): PersonData {
                   }
               ]
             : [],
-        fullmakt: [
-            {
-                motpartsPersonident: '123456789',
-                motpartsPersonNavn: {
-                    fornavn: 'Navn',
-                    mellomnavn: null,
-                    etternavn: 'Navnesen'
-                },
-                motpartsRolle: FullmaktsRolle.FULLMEKTIG,
-                omraade: ['*'],
-                gyldigFraOgMed: '2015-01-01' as LocalDate,
-                gyldigTilOgMed: '2017-12-12' as LocalDate
-            }
-        ],
+        fullmakt: visEtiketter
+            ? [
+                  {
+                      motpartsPersonident: '123456789',
+                      motpartsPersonNavn: {
+                          fornavn: 'Navn',
+                          mellomnavn: null,
+                          etternavn: 'Navnesen'
+                      },
+                      motpartsRolle: FullmaktsRolle.FULLMEKTIG,
+                      omraade: ['*'],
+                      gyldigFraOgMed: '2015-01-01' as LocalDate,
+                      gyldigTilOgMed: '2017-12-12' as LocalDate
+                  }
+              ]
+            : [],
         vergemal: visEtiketter
             ? [
                   {

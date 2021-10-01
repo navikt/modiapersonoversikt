@@ -122,7 +122,7 @@ export interface TilrettelagtKommunikasjon {
     tegnsprak: Array<KodeBeskrivelse<string>>;
 }
 
-interface Fullmakt {
+export interface Fullmakt {
     motpartsPersonident: string;
     motpartsPersonNavn: Navn;
     motpartsRolle: FullmaktsRolle;
