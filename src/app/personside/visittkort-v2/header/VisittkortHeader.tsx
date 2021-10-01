@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import Kvinne from '../../../../svg/Kvinne';
 import Mann from '../../../../svg/Mann';
-import { hentAlder, hentNavn } from '../utils-visittkort';
+import { hentNavn } from '../utils-visittkort';
 import { useRef } from 'react';
 import PersonStatus from './status/PersonStatus';
 import { erDod } from '../person-utils';
@@ -88,18 +88,11 @@ function erMann(props: Props) {
     return kjonn.kode === Kjonn.M;
 }
 
-function getAlder(props: Props): string | undefined {
+function hentAlder(props: Props): string | undefined {
     if (erDod(props.persondata.person)) {
         return 'Død';
     }
-
-    const fodselsdato = props.persondata.person.fodselsdato[0];
-    // TODO: Trenger vi denne?
-    if (!fodselsdato) {
-        return;
-    }
-    // TOOD: Utregning skal skje i backend
-    return hentAlder(fodselsdato).toString();
+    return props.persondata.person.alder?.toString();
 }
 
 function VisittkortHeader(props: Props) {
@@ -114,7 +107,7 @@ function VisittkortHeader(props: Props) {
         props.toggleApen();
     };
 
-    const alder = getAlder(props);
+    const alder = hentAlder(props);
     const kjonn = props.persondata.person.kjonn[0].kode === 'M' ? 'Mann' : 'Kvinne';
 
     return (
