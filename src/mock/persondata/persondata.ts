@@ -3,6 +3,7 @@ import {
     AdresseBeskyttelse,
     Data as PersonData,
     EgenAnsatt,
+    ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
     FullmaktsRolle,
     Kjonn,
@@ -240,99 +241,165 @@ function lagPersondata(fnr: string): PersonData {
                 beskrivelse: 'Norske kroner'
             }
         },
-        forelderBarnRelasjon: [
-            {
-                ident: '12345678910',
-                rolle: ForelderBarnRelasjonRolle.BARN,
-                navn: [
-                    {
-                        fornavn: 'BARN1',
-                        mellomnavn: null,
-                        etternavn: 'BARNESEN'
-                    }
-                ],
-                fodselsdato: ['2008-03-15' as LocalDate],
-                alder: 13,
-                adressebeskyttelse: [
-                    {
-                        kode: AdresseBeskyttelse.UGRADERT,
-                        beskrivelse: 'UGRADERT'
-                    }
-                ],
-                bostedAdresse: [
-                    {
-                        linje1: 'Gatenavn 1',
-                        linje2: '0000 AREMARK',
-                        linje3: 'Norge'
-                    }
-                ],
-                personstatus: [
-                    {
-                        kode: PersonStatus.BOSATT,
-                        beskrivelse: 'BOSATT'
-                    }
-                ]
-            },
-            {
-                ident: '12345678911',
-                rolle: ForelderBarnRelasjonRolle.BARN,
-                navn: [
-                    {
-                        fornavn: 'BARN2',
-                        mellomnavn: null,
-                        etternavn: 'BARNESEN'
-                    }
-                ],
-                fodselsdato: ['2010-04-21' as LocalDate],
-                alder: null,
-                adressebeskyttelse: [
-                    {
-                        kode: AdresseBeskyttelse.UGRADERT,
-                        beskrivelse: 'UGRADERT'
-                    }
-                ],
-                bostedAdresse: [],
-                personstatus: [
-                    {
-                        kode: PersonStatus.DOD,
-                        beskrivelse: 'DØD'
-                    }
-                ]
-            },
-            {
-                ident: '12345678912',
-                rolle: ForelderBarnRelasjonRolle.BARN,
-                navn: [
-                    {
-                        fornavn: 'BARN3',
-                        mellomnavn: null,
-                        etternavn: 'BARNESEN'
-                    }
-                ],
-                fodselsdato: ['2012-06-05' as LocalDate],
-                alder: 9,
-                adressebeskyttelse: [
-                    {
-                        kode: AdresseBeskyttelse.KODE6,
-                        beskrivelse: 'KODE 6'
-                    }
-                ],
-                bostedAdresse: [
-                    {
-                        linje1: 'Gatenavn 22',
-                        linje2: '0000 AREMARK',
-                        linje3: 'Norge'
-                    }
-                ],
-                personstatus: [
-                    {
-                        kode: PersonStatus.BOSATT,
-                        beskrivelse: 'BOSATT'
-                    }
-                ]
-            }
-        ]
+        forelderBarnRelasjon: barnMock
     };
 
     return { feilendeSystemer: [], person };
 }
+
+const barnMock: ForelderBarnRelasjon[] = [
+    {
+        ident: '12345678910',
+        rolle: ForelderBarnRelasjonRolle.BARN,
+        navn: [
+            {
+                fornavn: 'BARN1',
+                mellomnavn: null,
+                etternavn: 'BARNESEN'
+            }
+        ],
+        fodselsdato: ['2008-03-15' as LocalDate],
+        alder: 13,
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.UGRADERT,
+                beskrivelse: 'UGRADERT'
+            }
+        ],
+        bostedAdresse: [
+            {
+                linje1: 'Gatenavn 1',
+                linje2: '0000 AREMARK',
+                linje3: 'Norge'
+            }
+        ],
+        personstatus: [
+            {
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'BOSATT'
+            }
+        ]
+    },
+    {
+        ident: '12345678911',
+        rolle: ForelderBarnRelasjonRolle.BARN,
+        navn: [
+            {
+                fornavn: 'BARN2',
+                mellomnavn: null,
+                etternavn: 'BARNESEN'
+            }
+        ],
+        fodselsdato: ['2010-04-21' as LocalDate],
+        alder: null,
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.UGRADERT,
+                beskrivelse: 'UGRADERT'
+            }
+        ],
+        bostedAdresse: [],
+        personstatus: [
+            {
+                kode: PersonStatus.DOD,
+                beskrivelse: 'DØD'
+            }
+        ]
+    },
+    {
+        ident: '12345678912',
+        rolle: ForelderBarnRelasjonRolle.BARN,
+        navn: [
+            {
+                fornavn: 'BARN3',
+                mellomnavn: null,
+                etternavn: 'BARNESEN'
+            }
+        ],
+        fodselsdato: ['2012-06-05' as LocalDate],
+        alder: 9,
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.KODE6,
+                beskrivelse: 'KODE 6'
+            }
+        ],
+        bostedAdresse: [
+            {
+                linje1: 'Gatenavn 22',
+                linje2: '0000 AREMARK',
+                linje3: 'Norge'
+            }
+        ],
+        personstatus: [
+            {
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'BOSATT'
+            }
+        ]
+    },
+    {
+        ident: '12345678913',
+        rolle: ForelderBarnRelasjonRolle.BARN,
+        navn: [
+            {
+                fornavn: 'BARN4',
+                mellomnavn: null,
+                etternavn: 'BARNESEN'
+            }
+        ],
+        fodselsdato: ['1998-04-09' as LocalDate],
+        alder: 23,
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.KODE6_UTLAND,
+                beskrivelse: 'KODE 6 UTLAND'
+            }
+        ],
+        bostedAdresse: [
+            {
+                linje1: 'Gatenavn 22',
+                linje2: '0000 AREMARK',
+                linje3: 'Sverige'
+            }
+        ],
+        personstatus: [
+            {
+                kode: PersonStatus.UTFLYTTET,
+                beskrivelse: 'UTFLYTTET'
+            }
+        ]
+    },
+    {
+        ident: '12345678914',
+        rolle: ForelderBarnRelasjonRolle.BARN,
+        navn: [
+            {
+                fornavn: 'BARN5',
+                mellomnavn: null,
+                etternavn: 'BARNESEN'
+            }
+        ],
+        fodselsdato: ['1998-04-09' as LocalDate],
+        alder: 23,
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.KODE7,
+                beskrivelse: 'KODE 7'
+            }
+        ],
+        bostedAdresse: [
+            {
+                linje1: 'Gatenavn 22',
+                linje2: '0000 AREMARK',
+                linje3: 'Norge'
+            }
+        ],
+        personstatus: [
+            {
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'BOSATT'
+            }
+        ]
+    }
+];
