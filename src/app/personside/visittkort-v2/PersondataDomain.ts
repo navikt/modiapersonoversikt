@@ -11,6 +11,7 @@ export interface Person {
     navn: Array<Navn>;
     kjonn: Array<KodeBeskrivelse<Kjonn>>;
     fodselsdato: Array<LocalDate>;
+    alder: number | null;
     dodsdato: Array<LocalDate>;
     bostedAdresse: Array<Adresse>;
     kontaktAdresse: Array<Adresse>;
@@ -161,8 +162,14 @@ interface DeltBosted {
 }
 
 export interface ForelderBarnRelasjon {
-    relatertPersonsIdent: string;
-    relatertPersonsRolle: ForelderBarnRelasjonRolle;
+    ident: String;
+    rolle: ForelderBarnRelasjonRolle;
+    navn: Array<Navn>;
+    fodselsdato: Array<LocalDate>;
+    alder: number | null;
+    adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
+    bostedAdresse: Array<Adresse>;
+    personstatus: Array<KodeBeskrivelse<PersonStatus>>;
 }
 
 export enum Kjonn {
