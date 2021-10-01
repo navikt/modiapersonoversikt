@@ -21,35 +21,19 @@ interface Props {
     sikkerhetstiltak: Sikkerhetstiltak[];
 }
 
-function erAktivSikkerhetstiltak(sikkerhetstiltak: Sikkerhetstiltak[]) {
-    for (const tiltak of sikkerhetstiltak) {
-        const gyldigTilOgMedTid = new Date(tiltak.gyldigTilOgMed).getTime();
-        const gyldigFraOgMedTid = new Date(tiltak.gyldigFraOgMed).getTime();
-        const naverendeTidspunkt = Date.now();
-        if (gyldigFraOgMedTid <= naverendeTidspunkt && gyldigTilOgMedTid >= naverendeTidspunkt) {
-            return true;
-        }
-    }
-    return false;
-}
-
 function SikkerhetstiltakEtikett({ sikkerhetstiltak }: Props) {
     const etikettRef = React.createRef<HTMLDivElement>();
     useFocusOnMount(etikettRef);
 
-    // TODO: Vil denne lista bli oppdatert (fjerne gamle tiltak)
     if (sikkerhetstiltak.length === 0) {
         return null;
     }
 
-    if (erAktivSikkerhetstiltak(sikkerhetstiltak)) {
-        return (
-            <Styling tabIndex={-1} ref={etikettRef} role="alert" aria-live="assertive">
-                <EtikettBase type={'advarsel'}>Sikkerhetstiltak</EtikettBase>
-            </Styling>
-        );
-    }
-    return null;
+    return (
+        <Styling tabIndex={-1} ref={etikettRef} role="alert" aria-live="assertive">
+            <EtikettBase type={'advarsel'}>Sikkerhetstiltak</EtikettBase>
+        </Styling>
+    );
 }
 
 export default SikkerhetstiltakEtikett;
