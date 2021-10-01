@@ -249,7 +249,7 @@ export enum ForelderBarnRelasjonRolle {
 /**
  * DKIF Data klasser
  */
-interface DigitalKontaktinformasjon {
+export interface DigitalKontaktinformasjon {
     personident: string | null;
     reservasjon: string | null;
     epostadresse: Epostadresse | null;

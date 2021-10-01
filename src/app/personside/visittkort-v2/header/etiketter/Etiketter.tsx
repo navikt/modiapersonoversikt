@@ -5,6 +5,7 @@ import DiskresjonskodeEtikett from './DiskresjonskodeEtikett';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import EgenAnsattEtikett from './EgenAnsattEtikett';
 import SikkerhetstiltakEtikett from './SikkerhetstiltakEtikett';
+import ReservertIKRREtikett from './ReservertIKRREtikett';
 
 interface Props {
     person: Person;
@@ -27,8 +28,8 @@ function Etiketter({ person }: Props) {
                 <DiskresjonskodeEtikett adressebeskyttelse={person.adressebeskyttelse[0].kode} />
                 <EgenAnsattEtikett erEgenansatt={person.erEgenAnsatt} />
                 <SikkerhetstiltakEtikett sikkerhetstiltak={person.sikkerhetstiltak} />
-                {/*<ReservertIKRREtikett />
-                <VergemalsEtikett vergemål={person.vergemal} />
+                <ReservertIKRREtikett kontaktOgReservasjon={person.kontaktOgReservasjon} />
+                {/*<VergemalsEtikett vergemål={person.vergemal} />
                 <TilrettelagtKommunikasjonsEtiketter
                     tilrettelagtKomunikasjonsListe={person.tilrettelagtKomunikasjonsListe}
                 />

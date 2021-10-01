@@ -25,7 +25,7 @@ export function setupPersondataMock(mock: FetchMock) {
 
 // Til bruk under testing av funksjonalitet
 const erDod = false;
-const visEtiketter = false;
+const visEtiketter = true;
 
 function lagPersondata(fnr: string): PersonData {
     const person: Person = {
@@ -210,14 +210,14 @@ function lagPersondata(fnr: string): PersonData {
         ],
         kontaktOgReservasjon: {
             personident: '10108000398',
-            reservasjon: 'reservert',
+            reservasjon: visEtiketter ? 'true' : 'false',
             epostadresse: {
-                value: null,
+                value: 'epost@nav.no',
                 sistOppdatert: null,
                 sistVerifisert: '2013-01-01' as LocalDate
             },
             mobiltelefonnummer: {
-                value: null,
+                value: '90000000',
                 sistOppdatert: null,
                 sistVerifisert: null
             }
