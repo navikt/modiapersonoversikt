@@ -139,7 +139,7 @@ interface Telefon {
     prioritet: number;
 }
 
-interface Verge {
+export interface Verge {
     ident: string | null;
     navn: Navn | null;
     vergesakstype: string | null;

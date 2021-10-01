@@ -167,21 +167,23 @@ function lagPersondata(fnr: string): PersonData {
                 gyldigTilOgMed: '2017-12-12' as LocalDate
             }
         ],
-        vergemal: [
-            {
-                ident: '21042900076',
-                navn: {
-                    fornavn: 'Simen',
-                    mellomnavn: null,
-                    etternavn: 'Solli'
-                },
-                vergesakstype: 'voksen',
-                omfang: 'personligeOgOekonomiskeInteresser',
-                embete: 'Fylkesmannen i Troms og Finnmark',
-                gyldighetstidspunkt: '2016-03-27' as LocalDate,
-                opphoerstidspunkt: '2017-06-30' as LocalDate
-            }
-        ],
+        vergemal: visEtiketter
+            ? [
+                  {
+                      ident: '21042900076',
+                      navn: {
+                          fornavn: 'Simen',
+                          mellomnavn: null,
+                          etternavn: 'Solli'
+                      },
+                      vergesakstype: 'voksen',
+                      omfang: 'personligeOgOekonomiskeInteresser',
+                      embete: 'Fylkesmannen i Troms og Finnmark',
+                      gyldighetstidspunkt: '2016-03-27' as LocalDate,
+                      opphoerstidspunkt: '2017-06-30' as LocalDate
+                  }
+              ]
+            : [],
         tilrettelagtKommunikasjon: {
             talesprak: [
                 {
