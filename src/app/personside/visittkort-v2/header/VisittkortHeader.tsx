@@ -134,7 +134,10 @@ function VisittkortHeader(props: Props) {
             </StyledContent>
             <ChevronStyling>
                 <VisMerChevron
-                    onClick={toggleApen}
+                    onClick={e => {
+                        e.stopPropagation();
+                        toggleApen();
+                    }}
                     open={props.erApen}
                     title={(props.erApen ? 'Lukk' : 'Åpne') + ' visittkort (Alt + N)'}
                     focusOnRelativeParent={true}
