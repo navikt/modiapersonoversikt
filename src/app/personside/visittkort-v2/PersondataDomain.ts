@@ -68,7 +68,7 @@ interface Adresse {
     linje3: string | null;
 }
 
-interface Enhet {
+export interface Enhet {
     id: string;
     navn: string;
 }

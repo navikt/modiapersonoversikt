@@ -11,6 +11,7 @@ import PersonStatus from './status/PersonStatus';
 import { erDod } from '../person-utils';
 import Etiketter from './etiketter/Etiketter';
 import VisMerChevron from '../../../../components/VisMerChevron';
+import NavKontorContainer from './navkontor/NavKontorContainer';
 
 interface Props {
     persondata: Persondata;
@@ -128,6 +129,7 @@ function VisittkortHeader(props: Props) {
                 </VenstreFelt>
                 <HoyreFelt>
                     <Etiketter person={props.persondata.person} />
+                    <NavKontorContainer person={props.persondata.person} />
                 </HoyreFelt>
             </StyledContent>
             <ChevronStyling>
