@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Data as Persondata, Kjonn } from '../PersondataDomain';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import Kvinne from '../../../../svg/Kvinne';
@@ -10,6 +10,7 @@ import { useRef } from 'react';
 import PersonStatus from './status/PersonStatus';
 import { erDod } from '../person-utils';
 import Etiketter from './etiketter/Etiketter';
+import VisMerChevron from '../../../../components/VisMerChevron';
 
 interface Props {
     persondata: Persondata;
@@ -127,12 +128,18 @@ function VisittkortHeader(props: Props) {
                 </VenstreFelt>
                 <HoyreFelt>
                     <Etiketter person={props.persondata.person} />
-                    <Normaltekst>Her kommer navkontor osv</Normaltekst>
                 </HoyreFelt>
-                <ChevronStyling>
-                    <Normaltekst>Her er det noe</Normaltekst>
-                </ChevronStyling>
             </StyledContent>
+            <ChevronStyling>
+                <VisMerChevron
+                    onClick={toggleApen}
+                    open={props.erApen}
+                    title={(props.erApen ? 'Lukk' : 'Åpne') + ' visittkort (Alt + N)'}
+                    focusOnRelativeParent={true}
+                >
+                    <span className="visually-hidden">{props.erApen ? 'Lukk visittkort' : 'Ekspander visittkort'}</span>
+                </VisMerChevron>
+            </ChevronStyling>
         </VisittkortHeaderDiv>
     );
 }
