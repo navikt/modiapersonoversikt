@@ -12,6 +12,7 @@ import { erDod } from '../person-utils';
 import Etiketter from './etiketter/Etiketter';
 import VisMerChevron from '../../../../components/VisMerChevron';
 import NavKontorContainer from './navkontor/NavKontorContainer';
+import { useAppState, useOnMount } from '../../../../utils/customHooks';
 
 interface Props {
     persondata: Persondata;
@@ -98,8 +99,19 @@ function hentAlder(props: Props): string | undefined {
 }
 
 function VisittkortHeader(props: Props) {
-    // TODO: Sette denne verdien til noe
     const navneLinjeRef = useRef<HTMLSpanElement>(null);
+    const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
+
+    useOnMount(() => {
+        if (props.persondata.person.sikkerhetstiltak.length > 0) {
+            return;
+        }
+        if (jobberMedSTO) {
+            // Fokus skal havne i meldingsliste
+            return;
+        }
+        navneLinjeRef.current?.focus();
+    });
 
     const ikon = {
         ikon: erMann(props) ? <Mann /> : <Kvinne />
