@@ -42,8 +42,8 @@ interface Props {
 }
 
 function YtelseListe(props: Props) {
-    const ytelser = props.ytelser.map(ytelse => (
-        <YtelserListeElement ytelse={ytelse} erValgt={ytelse === props.valgtYtelse} />
+    const ytelser = props.ytelser.map((ytelse, index) => (
+        <YtelserListeElement key={index} ytelse={ytelse} erValgt={ytelse === props.valgtYtelse} />
     ));
     return (
         <section>

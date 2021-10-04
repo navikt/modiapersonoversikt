@@ -38,7 +38,7 @@ function OneColumnLayout(person: Person) {
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
             <Vergemal vergemal={person.vergemal} />
             <Sikkerhetstiltak person={person} />
-            <LenkeBrukerprofilContainer person={person} />
+            <LenkeBrukerprofilContainer />
         </Kolonne>
     );
 }
@@ -58,7 +58,7 @@ function TwoColumnLayout(person: Person) {
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
                 <Vergemal vergemal={person.vergemal} />
                 <Sikkerhetstiltak person={person} />
-                <LenkeBrukerprofilContainer person={person} />
+                <LenkeBrukerprofilContainer />
             </Kolonne>
         </>
     );
@@ -81,7 +81,7 @@ function ThreeColumnLayout(person: Person) {
             <Kolonne>
                 <NavKontorSeksjon />
                 <Sikkerhetstiltak person={person} />
-                <LenkeBrukerprofilContainer person={person} />
+                <LenkeBrukerprofilContainer />
             </Kolonne>
         </>
     );
