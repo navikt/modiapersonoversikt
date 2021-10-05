@@ -124,7 +124,7 @@ function VisittkortHeader(props: Props) {
     };
 
     const alder = hentAlder(props);
-    const kjonn = props.persondata.person.kjonn[0].kode === 'M' ? 'Mann' : 'Kvinne';
+    const kjonn = props.persondata.person.kjonn[0].kode === Kjonn.M ? 'Mann' : 'Kvinne';
 
     return (
         <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={toggleApen}>
