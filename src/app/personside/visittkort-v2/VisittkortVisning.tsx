@@ -29,7 +29,7 @@ function VisittkortVisning(props: Props) {
             <article role="region" aria-label="Visittkort" aria-expanded={erApen}>
                 <VisittkortHeader persondata={props.persondata} erApen={erApen} toggleApen={toggleApen} />
                 <UnmountClosed isOpened={erApen}>
-                    <VisittkortBody persondata={props.persondata} />
+                    <VisittkortBody person={props.persondata.person} />
                 </UnmountClosed>
             </article>
         </>

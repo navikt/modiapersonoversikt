@@ -80,25 +80,25 @@ export interface Dodsbo {
     skifteform: Skifteform;
 }
 
-interface Adressat {
+export interface Adressat {
     advokatSomAdressat: AdvokatSomAdressat | null;
     personSomAdressat: PersonSomAdressat | null;
     organisasjonSomAdressat: OrganisasjonSomAdressat | null;
 }
 
-interface AdvokatSomAdressat {
+export interface AdvokatSomAdressat {
     kontaktperson: Navn;
     organisasjonsnavn: string | null;
     organisasjonsnummer: string | null;
 }
 
-interface PersonSomAdressat {
+export interface PersonSomAdressat {
     fnr: string | null;
     navn: Navn | null;
     fodselsdato: LocalDate | null;
 }
 
-interface OrganisasjonSomAdressat {
+export interface OrganisasjonSomAdressat {
     kontaktperson: Navn | null;
     organisasjonsnavn: string;
     organisasjonsnummer: string | null;

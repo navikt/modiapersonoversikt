@@ -1,12 +1,64 @@
 import * as React from 'react';
-import { Data as Persondata } from '../PersondataDomain';
+import ErrorBoundary from '../../../../components/ErrorBoundary';
+import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
+import { Person } from '../PersondataDomain';
+import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
+import { Kolonne, VisittkortBodyWrapper } from './VisittkortStyles';
 
 interface Props {
-    persondata: Persondata;
+    person: Person;
 }
 
-function VisittkortBody(props: Props) {
-    return <h1>Hello</h1>;
+function SingleColumnLayout({ person }: { person: Person }) {
+    return (
+        <Kolonne>
+            <Kontaktinformasjon person={person} />
+            {/* <Fullmakter fullmakter={person.fullmakt} />
+            <Familie person={person} />
+            <DeltBosted deltbosted={person.deltBosted} />
+            <Foreldreansvar foreldreansvar={person.foreldreansvar} />
+            <NavKontorSeksjon />
+            <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
+            <Vergemal vergemal={person.vergemal} />
+            <Sikkerhetstiltak person={person} />
+            <LenkeBrukerprofilContainer person={person} /> */}
+        </Kolonne>
+    );
+}
+
+function VisittkortBody({ person }: Props) {
+    const visittKortBodyRef = React.createRef<HTMLDivElement>();
+
+    // function getComponentWidth(): number {
+    //     return visittKortBodyRef.current ? visittKortBodyRef.current.clientWidth : 0;
+    // }
+
+    // function getColumnLayout(antallKolonner: number) {
+    //     switch (antallKolonner) {
+    //         case 1:
+    //             return SingleColumnLayout({ person });
+    //         default:
+    //             return null;
+    //         // case 2:
+    //         //     return DoubleColumnLayout(person);
+    //         // default:
+    //         //     return TripleColumnLayout(person);
+    //     }
+    // }
+
+    // const componentWidth = getComponentWidth();
+    // const maxColumnWidth = 275;
+    // const numberOfColumns = Math.floor(componentWidth / maxColumnWidth);
+    // const columnLayOut = getColumnLayout(numberOfColumns);
+
+    return (
+        <ErrorBoundary>
+            <VisittkortBodyWrapper role="region" aria-label="Visittkortdetaljer" ref={visittKortBodyRef}>
+                <VisuallyHiddenAutoFokusHeader tittel="Visittkortdetaljer" />
+                <SingleColumnLayout person={person} />
+            </VisittkortBodyWrapper>
+        </ErrorBoundary>
+    );
 }
 
 export default VisittkortBody;

@@ -24,7 +24,7 @@ export function setupPersondataMock(mock: FetchMock) {
 }
 
 // Til bruk under testing av funksjonalitet
-const erDod = false;
+const erDod = true;
 const visEtiketter = true;
 
 function lagPersondata(fnr: string): PersonData {
@@ -148,8 +148,8 @@ function lagPersondata(fnr: string): PersonData {
                           personSomAdressat: null
                       },
                       adresse: {
-                          linje1: 'Elgelia 20, 0000 Aremark',
-                          linje2: null,
+                          linje1: 'Elgelia 20',
+                          linje2: '0000 Aremark',
                           linje3: null
                       },
                       registrert: '2010-02-02' as LocalDate,
