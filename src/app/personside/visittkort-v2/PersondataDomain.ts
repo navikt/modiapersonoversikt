@@ -62,7 +62,7 @@ export interface Sikkerhetstiltak {
     gyldigTilOgMed: LocalDate;
 }
 
-interface Adresse {
+export interface Adresse {
     linje1: string;
     linje2: string | null;
     linje3: string | null;
