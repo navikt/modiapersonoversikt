@@ -53,8 +53,10 @@ const HoyreFelt = styled.div`
 `;
 
 const IkonDiv = styled.div`
-    flex: 0 0 ${theme.margin.px50};
-    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    margin-right: 0.5rem;
     svg {
         height: ${theme.margin.px40};
         width: auto;
