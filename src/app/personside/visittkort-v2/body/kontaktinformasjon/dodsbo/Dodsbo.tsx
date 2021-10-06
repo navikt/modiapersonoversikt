@@ -15,6 +15,7 @@ import {
     Person,
     PersonSomAdressat
 } from '../../../PersondataDomain';
+import { Adresseinfo } from '../../AdresseInfo';
 
 interface Props {
     person: Person;
@@ -37,24 +38,11 @@ function KontaktinformasjonDodsbo(props: Props) {
                 <VisittkortElement key={index} beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
                     <Adressatinfo adressat={dodsbo.adressat} />
                     <AdresseStyle>
-                        <Adresseinfo dodsbo={dodsbo} />
+                        <Adresseinfo adresse={dodsbo.adresse} />
                     </AdresseStyle>
                     <Endretinfo dodsbo={dodsbo} />
                 </VisittkortElement>
             ))}
-        </>
-    );
-}
-
-function Adresseinfo({ dodsbo }: { dodsbo: Dodsbo }) {
-    const adresselinje2 = dodsbo.adresse.linje2 ? <Normaltekst>{dodsbo.adresse.linje2}</Normaltekst> : null;
-    const adresselinje3 = dodsbo.adresse.linje3 ? <Normaltekst>{dodsbo.adresse.linje3}</Normaltekst> : null;
-
-    return (
-        <>
-            <Normaltekst>{dodsbo.adresse.linje1}</Normaltekst>
-            {adresselinje2}
-            {adresselinje3}
         </>
     );
 }

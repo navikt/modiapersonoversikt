@@ -50,7 +50,9 @@ function lagPersondata(fnr: string): PersonData {
             {
                 linje1: 'Adressevei 1',
                 linje2: '0000 AREMARK',
-                linje3: 'Norge'
+                linje3: 'Norge',
+                registrert: '2020-01-01T10:15:30' as LocalDateTime,
+                registrertAv: 'Folkeregisteret'
             }
         ],
         kontaktAdresse: [
