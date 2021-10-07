@@ -107,6 +107,7 @@ function FortsettDialog(props: Props) {
                     <AlertStripeInfo>Gir ikke varsel</AlertStripeInfo>
                 </UnmountClosed>
                 <UnmountClosed isOpened={brukerKanSvareValg}>
+                    <AlertStripeInfo>Gir varsel, bruker kan svare</AlertStripeInfo>
                     <BrukerKanSvare
                         formState={state}
                         updateFormState={updateState}

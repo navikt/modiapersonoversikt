@@ -22,7 +22,6 @@ function BrukerKanSvare(props: Props) {
     const visFeilmelding = !FortsettDialogValidator.sak(props.formState) && props.formState.visFeilmeldinger;
     return (
         <Style>
-            <AlertStripeInfo>Gir varsel, bruker kan svare</AlertStripeInfo>
             <Oppgaveliste
                 oppgaveliste={props.formState.oppgaveListe}
                 setOppgaveliste={oppgaveliste => props.updateFormState({ oppgaveListe: oppgaveliste })}
