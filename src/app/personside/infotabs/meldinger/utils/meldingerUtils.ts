@@ -28,14 +28,15 @@ export function kanBesvares(usingSFBackend: boolean, traad?: Traad): boolean {
     const melding = eldsteMelding(traad);
 
     if (usingSFBackend) {
-        const type = [
-            Meldingstype.SPORSMAL_SKRIFTLIG,
-            Meldingstype.SVAR_SBL_INNGAAENDE,
-            Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
-            Meldingstype.SVAR_SKRIFTLIG
-        ].includes(melding.meldingstype);
-        // avsluttetDato betyr at ting er journalført, og kan ikke besvares videre.
-        return !melding.avsluttetDato && type;
+        if (erMeldingstypeSamtalereferat(melding.meldingstype)) {
+            return true;
+        } else {
+            /**
+             * For meldingskjeder i salesforce er det kun mulig å sende oppfølgingsmeldinger
+             * før tråden blir avsluttet. På dette tidspunktet vil tråden bli journalført og låst.
+             */
+            return !melding.avsluttetDato;
+        }
     }
     return KanBesvaresMeldingstyper.includes(melding.meldingstype);
 }
