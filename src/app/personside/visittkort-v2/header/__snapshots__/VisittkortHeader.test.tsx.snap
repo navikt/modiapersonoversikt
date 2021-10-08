@@ -157,25 +157,25 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   justify-content: flex-end;
 }
 
-.c13 > * {
-  white-space: nowrap;
-}
-
-.c13 > *:first-child:after {
-  content: '/';
-  margin: 0 0.2em;
-}
-
-.c13 > *:last-child {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin: 0;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  margin-right: 0.5rem;
+}
+
+.c3 svg {
+  height: 2.5rem;
+  width: auto;
 }
 
 .c0 {
@@ -235,27 +235,6 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   justify-content: space-between;
   text-align: right;
   box-sizing: border-box;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: start;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: start;
-  margin-right: 0.5rem;
-}
-
-.c3 svg {
-  height: 2.5rem;
-  width: auto;
 }
 
 .c4 {
@@ -525,15 +504,11 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
         <h2
           className="typo-element"
         >
-          NAV-kontor
-        </h2>
-        <p
-          className="typo-element"
-        >
+          NAV-kontor / 
           0219
            
           NAV Bærum
-        </p>
+        </h2>
       </section>
     </div>
   </div>
