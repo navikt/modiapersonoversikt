@@ -4,9 +4,10 @@ import * as EnzymeContainer from './test/enzyme-container';
 import MockDate from 'mockdate';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
-dayjs.locale('nb');
 import 'jest-enzyme';
 import 'jest-styled-components';
+import './extra-polyfills';
+dayjs.locale('nb');
 
 configure({ adapter: new EnzymeReactAdapter() });
 
