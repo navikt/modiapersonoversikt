@@ -19,7 +19,9 @@ function MobiltelefonVisning({ kontaktinformasjon }: { kontaktinformasjon: Digit
                 <EtikettGraa>I Kontakt- og reservasjonsregisteret</EtikettGraa>
             </>
         );
-    } else if (kontaktinformasjon.mobiltelefonnummer) {
+    } else if (!kontaktinformasjon.mobiltelefonnummer?.value) {
+        return <Normaltekst>Ikke registrert</Normaltekst>;
+    } else {
         const formatertDato = kontaktinformasjon.mobiltelefonnummer.sistOppdatert
             ? formaterDato(kontaktinformasjon.mobiltelefonnummer.sistOppdatert)
             : null;
@@ -32,8 +34,6 @@ function MobiltelefonVisning({ kontaktinformasjon }: { kontaktinformasjon: Digit
                 <EtikettGraa>Endret {formatertDato} i Kontakt- og reservasjonsregisteret</EtikettGraa>
             </>
         );
-    } else {
-        return <Normaltekst>Ikke registrert</Normaltekst>;
     }
 }
 

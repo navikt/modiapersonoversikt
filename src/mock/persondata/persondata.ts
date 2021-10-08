@@ -27,7 +27,7 @@ export function setupPersondataMock(mock: FetchMock) {
 const erDod = true;
 const visEtiketter = true;
 const erReservert = false;
-const ikkeRegisrert = false;
+const ikkeRegisrert = true;
 
 function lagPersondata(fnr: string): PersonData {
     const person: Person = {
@@ -231,7 +231,7 @@ function lagPersondata(fnr: string): PersonData {
                   epostadresse: {
                       value: null,
                       sistOppdatert: null,
-                      sistVerifisert: '2013-01-01' as LocalDate
+                      sistVerifisert: null
                   },
                   mobiltelefonnummer: {
                       value: null,

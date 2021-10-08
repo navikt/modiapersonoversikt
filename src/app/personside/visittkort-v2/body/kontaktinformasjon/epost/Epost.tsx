@@ -18,7 +18,9 @@ function EpostVisning({ kontaktinformasjon }: { kontaktinformasjon: DigitalKonta
                 <EtikettGraa>I Kontakt- og reservasjonsregisteret</EtikettGraa>
             </>
         );
-    } else if (kontaktinformasjon.epostadresse) {
+    } else if (!kontaktinformasjon.epostadresse?.value) {
+        return <Normaltekst>Ikke registerert</Normaltekst>;
+    } else {
         const formatertDato = kontaktinformasjon.epostadresse.sistOppdatert
             ? formaterDato(kontaktinformasjon.epostadresse.sistOppdatert)
             : null;
@@ -28,8 +30,6 @@ function EpostVisning({ kontaktinformasjon }: { kontaktinformasjon: DigitalKonta
                 <EtikettGraa>Endret {formatertDato} i Kontakt- og reservasjonsregisteret</EtikettGraa>
             </>
         );
-    } else {
-        return <Normaltekst>Ikke registerert</Normaltekst>;
     }
 }
 
