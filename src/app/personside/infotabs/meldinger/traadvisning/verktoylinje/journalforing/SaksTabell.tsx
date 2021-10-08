@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { JournalforingsSak } from './JournalforingPanel';
 import { ClickableTable } from '../../../../../../../utils/table/ClickableTable';
 
@@ -10,7 +10,12 @@ interface Props {
 function SaksTabell(props: Props) {
     const tittelRekke = ['Saks id', 'Opprettet dato', 'Fagsystem'];
     const rows = props.saker.map(sak => [sak.saksIdVisning, sak.opprettetDatoFormatert, sak.fagsystemNavn]);
-    const handlers = props.saker.map(sak => () => props.velgSak(sak));
+    const handlers: Array<MouseEventHandler> = props.saker.map(sak => {
+        return e => {
+            e.preventDefault();
+            props.velgSak(sak);
+        };
+    });
 
     return <ClickableTable rows={rows} tittelRekke={tittelRekke} rowsOnClickHandlers={handlers} />;
 }

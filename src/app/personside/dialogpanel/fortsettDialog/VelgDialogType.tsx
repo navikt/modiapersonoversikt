@@ -4,7 +4,7 @@ import { FortsettDialogType } from './FortsettDialogContainer';
 import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
 import { FortsettDialogState } from './FortsettDialogTypes';
-import { useAppState } from '../../../../utils/customHooks';
+import { useAppState, useJustOnceEffect } from '../../../../utils/customHooks';
 import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
@@ -21,6 +21,16 @@ interface Props {
 function VelgDialogType(props: Props) {
     const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
     const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
+    useJustOnceEffect(
+        done => {
+            if (usingSFBackend) {
+                const type = props.erSamtalereferat ? Meldingstype.SAMTALEREFERAT_TELEFON : Meldingstype.SVAR_SKRIFTLIG;
+                props.updateDialogType(type);
+                done();
+            }
+        },
+        [usingSFBackend, props.erSamtalereferat]
+    );
 
     function lagRadio(label: string, type: FortsettDialogType) {
         return (
@@ -40,6 +50,24 @@ function VelgDialogType(props: Props) {
     const svarOppmote = lagRadio('Svar oppmøte', Meldingstype.SVAR_OPPMOTE);
     const referatTelefon = lagRadio('Referat telefon', Meldingstype.SAMTALEREFERAT_TELEFON);
     const referatOppmote = lagRadio('Referat oppmøte', Meldingstype.SAMTALEREFERAT_OPPMOTE);
+
+    if (usingSFBackend) {
+        if (props.erSamtalereferat) {
+            return (
+                <VelgDialogtypeStyle>
+                    {referatTelefon}
+                    {referatOppmote}
+                </VelgDialogtypeStyle>
+            );
+        } else {
+            return (
+                <VelgDialogtypeStyle>
+                    {svar}
+                    {spørsmål}
+                </VelgDialogtypeStyle>
+            );
+        }
+    }
 
     if (props.erDelvisBesvart) {
         return (
