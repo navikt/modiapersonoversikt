@@ -34,7 +34,7 @@ export interface Person {
     forelderBarnRelasjon: Array<ForelderBarnRelasjon>;
 }
 
-interface KodeBeskrivelse<T> {
+export interface KodeBeskrivelse<T> {
     kode: T;
     beskrivelse: string;
 }

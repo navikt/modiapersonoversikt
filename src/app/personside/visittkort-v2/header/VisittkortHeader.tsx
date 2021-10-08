@@ -1,18 +1,16 @@
 import * as React from 'react';
-import { Data as Persondata, Kjonn } from '../PersondataDomain';
+import { Data as Persondata, Kjonn, KodeBeskrivelse } from '../PersondataDomain';
 import { Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import Kvinne from '../../../../svg/Kvinne';
-import Mann from '../../../../svg/Mann';
-import { hentNavn } from '../utils-visittkort';
+import { hentAlderEllerDod, hentNavn } from '../utils-visittkort';
 import { useRef } from 'react';
 import PersonStatus from './status/PersonStatus';
-import { erDod } from '../person-utils';
 import Etiketter from './etiketter/Etiketter';
 import VisMerChevron from '../../../../components/VisMerChevron';
 import NavKontorContainer from './navkontor/NavKontorContainer';
 import { useAppState, useOnMount } from '../../../../utils/customHooks';
+import KjonnIkon from './KjonnIkon';
 
 interface Props {
     persondata: Persondata;
@@ -52,17 +50,6 @@ const HoyreFelt = styled.div`
     box-sizing: border-box;
 `;
 
-const IkonDiv = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    margin-right: 0.5rem;
-    svg {
-        height: ${theme.margin.px40};
-        width: auto;
-    }
-`;
-
 const GrunninfoDiv = styled.section`
     flex: 1 1;
     text-align: left;
@@ -85,20 +72,10 @@ const ChevronStyling = styled.div`
     justify-content: center;
 `;
 
-function erMann(props: Props) {
-    const kjonn = props.persondata.person.kjonn[0];
-    if (!kjonn) {
-        return;
-    }
-    return kjonn.kode === Kjonn.M;
-}
-
-function hentAlder(props: Props): string | undefined {
-    if (erDod(props.persondata.person)) {
-        return 'Død';
-    }
-    return props.persondata.person.alder?.toString();
-}
+const ukjentKjonn: KodeBeskrivelse<Kjonn> = {
+    kode: Kjonn.U,
+    beskrivelse: 'Ukjent kjønn'
+};
 
 function VisittkortHeader(props: Props) {
     const navneLinjeRef = useRef<HTMLSpanElement>(null);
@@ -115,29 +92,21 @@ function VisittkortHeader(props: Props) {
         navneLinjeRef.current?.focus();
     });
 
-    const ikon = {
-        ikon: erMann(props) ? <Mann /> : <Kvinne />
-    };
-
-    const toggleApen = () => {
-        props.toggleApen();
-    };
-
-    const alder = hentAlder(props);
-    const kjonn = props.persondata.person.kjonn[0].kode === Kjonn.M ? 'Mann' : 'Kvinne';
+    const kjonn = props.persondata.person.kjonn.firstOrNull() ?? ukjentKjonn;
+    const navn = props.persondata.person.navn.firstOrNull();
 
     return (
-        <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={toggleApen}>
+        <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={props.toggleApen}>
             <StyledContent>
                 <VenstreFelt>
-                    <IkonDiv>{ikon.ikon}</IkonDiv>
+                    <KjonnIkon kjonn={kjonn.kode} />
                     <GrunninfoDiv>
                         <Undertittel tag="h1">
                             <span ref={navneLinjeRef} tabIndex={-1} /* for at focus skal funke */>
-                                {hentNavn(props.persondata.person.navn[0])} ({alder})
+                                {hentNavn(navn)} ({hentAlderEllerDod(props.persondata.person)})
                             </span>
                         </Undertittel>
-                        <span className="visually-hidden">{kjonn}</span>
+                        <span className="visually-hidden">{kjonn?.beskrivelse}</span>
                         <PersonStatus person={props.persondata.person} />
                     </GrunninfoDiv>
                 </VenstreFelt>
@@ -150,7 +119,7 @@ function VisittkortHeader(props: Props) {
                 <VisMerChevron
                     onClick={e => {
                         e.stopPropagation();
-                        toggleApen();
+                        props.toggleApen();
                     }}
                     open={props.erApen}
                     title={(props.erApen ? 'Lukk' : 'Åpne') + ' visittkort (Alt + N)'}
