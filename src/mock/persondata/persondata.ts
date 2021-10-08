@@ -26,6 +26,8 @@ export function setupPersondataMock(mock: FetchMock) {
 // Til bruk under testing av funksjonalitet
 const erDod = true;
 const visEtiketter = true;
+const erReservert = false;
+const ikkeRegisrert = false;
 
 function lagPersondata(fnr: string): PersonData {
     const person: Person = {
@@ -222,20 +224,35 @@ function lagPersondata(fnr: string): PersonData {
                 prioritet: 1
             }
         ],
-        kontaktOgReservasjon: {
-            personident: '10108000398',
-            reservasjon: visEtiketter ? 'true' : 'false',
-            epostadresse: {
-                value: 'epost@nav.no',
-                sistOppdatert: null,
-                sistVerifisert: '2013-01-01' as LocalDate
-            },
-            mobiltelefonnummer: {
-                value: '90000000',
-                sistOppdatert: null,
-                sistVerifisert: null
-            }
-        },
+        kontaktOgReservasjon: ikkeRegisrert
+            ? {
+                  personident: '10108000398',
+                  reservasjon: erReservert ? 'true' : 'false',
+                  epostadresse: {
+                      value: null,
+                      sistOppdatert: null,
+                      sistVerifisert: '2013-01-01' as LocalDate
+                  },
+                  mobiltelefonnummer: {
+                      value: null,
+                      sistOppdatert: null,
+                      sistVerifisert: null
+                  }
+              }
+            : {
+                  personident: '10108000398',
+                  reservasjon: erReservert ? 'true' : 'false',
+                  epostadresse: {
+                      value: 'epost@nav.no',
+                      sistOppdatert: null,
+                      sistVerifisert: '2013-01-01' as LocalDate
+                  },
+                  mobiltelefonnummer: {
+                      value: '90000000',
+                      sistOppdatert: null,
+                      sistVerifisert: null
+                  }
+              },
         bankkonto: {
             kontonummer: '1234567890',
             banknavn: 'DNB ASA',
