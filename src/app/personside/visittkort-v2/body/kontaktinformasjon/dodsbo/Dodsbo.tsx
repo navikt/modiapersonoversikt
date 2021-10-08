@@ -10,7 +10,6 @@ import EtikettGraa from '../../../../../../components/EtikettGraa';
 import {
     Adressat,
     AdvokatSomAdressat,
-    Dodsbo,
     OrganisasjonSomAdressat,
     Person,
     PersonSomAdressat
@@ -40,7 +39,7 @@ function KontaktinformasjonDodsbo(props: Props) {
                     <AdresseStyle>
                         <Adresseinfo adresse={dodsbo.adresse} />
                     </AdresseStyle>
-                    <Endretinfo dodsbo={dodsbo} />
+                    <EtikettGraa>Endret {formaterDato(dodsbo.registrert)}</EtikettGraa>
                 </VisittkortElement>
             ))}
         </>
@@ -57,10 +56,6 @@ function Adressatinfo({ adressat }: { adressat: Adressat }) {
     } else {
         return <AlertStripeFeil>Ingen adressat funnet</AlertStripeFeil>;
     }
-}
-
-function Endretinfo({ dodsbo }: { dodsbo: Dodsbo }) {
-    return <EtikettGraa>Endret {formaterDato(dodsbo.registrert)}</EtikettGraa>;
 }
 
 function AdvokatSomAdressatInfo({ adressat }: { adressat: AdvokatSomAdressat }) {
