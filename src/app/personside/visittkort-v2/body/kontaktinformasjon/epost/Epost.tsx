@@ -16,7 +16,9 @@ function Epost({ person }: Props) {
         return null;
     }
     const epost = kontaktinformasjon.epostadresse?.value ?? null;
-    const sistOppdatert = formaterDato(kontaktinformasjon.epostadresse?.sistOppdatert ?? '');
+    const sistOppdatert = kontaktinformasjon.epostadresse?.sistOppdatert
+        ? formaterDato(kontaktinformasjon.epostadresse.sistOppdatert)
+        : null;
 
     return (
         <VisittkortElement beskrivelse="E-post" ikon={<EmailIkon />}>

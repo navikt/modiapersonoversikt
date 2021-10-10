@@ -18,7 +18,9 @@ function Telefon({ person }: Props) {
     }
 
     const telefonnummer = formaterMobiltelefonnummer(kontaktinformasjon.mobiltelefonnummer?.value ?? '');
-    const sistOppdatert = formaterDato(kontaktinformasjon.mobiltelefonnummer?.sistOppdatert ?? '');
+    const sistOppdatert = kontaktinformasjon.mobiltelefonnummer?.sistOppdatert
+        ? formaterDato(kontaktinformasjon.mobiltelefonnummer.sistOppdatert)
+        : null;
 
     return (
         <VisittkortElement beskrivelse="Telefon" ikon={<PhoneIkon />}>

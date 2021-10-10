@@ -259,12 +259,12 @@ function lagPersondata(fnr: string): PersonData {
                   reservasjon: erReservert ? 'true' : 'false',
                   epostadresse: {
                       value: 'epost@nav.no',
-                      sistOppdatert: null,
+                      sistOppdatert: '2013-01-01' as LocalDate,
                       sistVerifisert: '2013-01-01' as LocalDate
                   },
                   mobiltelefonnummer: {
                       value: '90000000',
-                      sistOppdatert: null,
+                      sistOppdatert: '2015-02-01' as LocalDate,
                       sistVerifisert: null
                   }
               },
