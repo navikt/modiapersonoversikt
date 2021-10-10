@@ -264,13 +264,13 @@ export interface DigitalKontaktinformasjon {
     mobiltelefonnummer: MobilTelefon | null;
 }
 
-interface Epostadresse {
+export interface Epostadresse {
     value: string | null;
     sistOppdatert: LocalDate | null;
     sistVerifisert: LocalDate | null;
 }
 
-interface MobilTelefon {
+export interface MobilTelefon {
     value: string | null;
     sistOppdatert: LocalDate | null;
     sistVerifisert: LocalDate | null;
