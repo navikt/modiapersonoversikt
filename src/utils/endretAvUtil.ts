@@ -21,8 +21,11 @@ export function endretAvTekst(rawString: string): string {
 
 function endretIFolkeregisteret(rawString: string) {
     //TODO: Dobbelsjekk Pdl-responser for å se hva sistEndret.ident gir når det er fra FREG
-    const system = 'FREG Folkeregisteret'.toLowerCase();
-    return rawString.match(FOLKEREGISTERET) || system.match(rawString.toLowerCase());
+    return (
+        rawString.match(FOLKEREGISTERET) ||
+        rawString.toLowerCase() === 'folkeregisteret' ||
+        rawString.toLowerCase() === 'freg'
+    );
 }
 
 function endretIFagsystem(rawString: string) {
