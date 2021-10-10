@@ -1,12 +1,10 @@
 import * as React from 'react';
 import VisittkortElement from '../../VisittkortElement';
-import { formaterDato } from '../../../../../../utils/string-utils';
-import { endretAvTekst } from '../../../../../../utils/endretAvUtil';
-import EtikettGraa from '../../../../../../components/EtikettGraa';
 import LocationPin from '../../../../../../svg/LocationPin';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Adresse as PersonAdresse, Person } from '../../../PersondataDomain';
 import { Adresseinfo } from '../../AdresseInfo';
+import Endringstekst from '../../Endringstekst';
 
 interface Props {
     person: Person;
@@ -26,7 +24,7 @@ function formaterAdresse(personAdresse: PersonAdresse) {
         personAdresse != null ? (
             <>
                 <Adresseinfo adresse={personAdresse} />
-                {hentEndringstekst(personAdresse)}
+                <Endringstekst sistEndret={personAdresse.sistEndret} />
             </>
         ) : (
             <Normaltekst>Ikke registrert</Normaltekst>
@@ -49,21 +47,6 @@ function hentKontaktAdresse(adresse: PersonAdresse) {
             {formaterAdresse(adresse)}
         </VisittkortElement>
     );
-}
-
-function hentEndringstekst(personAdresse: PersonAdresse) {
-    const formatertdato = personAdresse.registrert ? formaterDato(new Date(personAdresse.registrert)) : null;
-    const endretAv = personAdresse.registrertAv ? endretAvTekst(personAdresse.registrertAv) : null;
-
-    if (formatertdato != null) {
-        return (
-            <EtikettGraa>
-                Endret {formatertdato} {endretAv}
-            </EtikettGraa>
-        );
-    } else {
-        return null;
-    }
 }
 
 export default Adresse;
