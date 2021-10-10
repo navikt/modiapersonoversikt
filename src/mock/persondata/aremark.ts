@@ -264,9 +264,11 @@ export const aremark: Person = {
     bankkonto: {
         kontonummer: '1234567890',
         banknavn: 'DNB ASA',
-        sistEndret: '2006-03-15T00:00:00' as LocalDateTime,
-        sistEndretAv: '1010800 BD03',
-
+        sistEndret: {
+            ident: '1010800 BD03',
+            tidspunkt: '2006-03-15T00:00:00' as LocalDateTime,
+            system: ''
+        },
         bankkode: null,
         swift: 'DNBANOKKXXX',
         landkode: null,

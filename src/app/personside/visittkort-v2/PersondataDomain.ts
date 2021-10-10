@@ -115,9 +115,7 @@ export interface OrganisasjonSomAdressat {
 interface Bankkonto {
     kontonummer: string;
     banknavn: string;
-    sistEndret: LocalDateTime;
-    sistEndretAv: string;
-
+    sistEndret: SistEndret;
     bankkode: string | null;
     swift: string | null;
     landkode: KodeBeskrivelse<string> | null;

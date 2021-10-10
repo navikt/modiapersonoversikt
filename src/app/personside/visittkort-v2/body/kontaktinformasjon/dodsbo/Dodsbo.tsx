@@ -6,7 +6,6 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { hentNavn } from '../../../utils-visittkort';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { formaterDato } from '../../../../../../utils/string-utils';
-import EtikettGraa from '../../../../../../components/EtikettGraa';
 import {
     Adressat,
     AdvokatSomAdressat,
@@ -15,6 +14,7 @@ import {
     PersonSomAdressat
 } from '../../../PersondataDomain';
 import { Adresseinfo } from '../../AdresseInfo';
+import Endringstekst from '../../Endringstekst';
 
 interface Props {
     person: Person;
@@ -34,16 +34,14 @@ function KontaktinformasjonDodsbo(props: Props) {
     return (
         <>
             {dodsboListe.map((dodsbo, index) => {
-                const sistEndret = dodsbo.sistEndret
-                    ? formaterDato(dodsbo.sistEndret.tidspunkt)
-                    : formaterDato(dodsbo.registrert);
                 return (
                     <VisittkortElement key={index} beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
                         <Adressatinfo adressat={dodsbo.adressat} />
                         <AdresseStyle>
                             <Adresseinfo adresse={dodsbo.adresse} />
                         </AdresseStyle>
-                        <EtikettGraa>Endret {sistEndret}</EtikettGraa>
+                        {/* TODO: Her ble det tidligere brukt dodsbo.registrert. Hva ønsker vi å bruke? */}
+                        <Endringstekst sistEndret={dodsbo.sistEndret} />
                     </VisittkortElement>
                 );
             })}
