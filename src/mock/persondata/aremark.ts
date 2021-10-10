@@ -37,7 +37,8 @@ export const barnAremark: ForelderBarnRelasjon[] = [
             {
                 linje1: 'Islandsgate 49',
                 linje2: '7693 Hovedøya',
-                linje3: 'Norge'
+                linje3: 'Norge',
+                sistEndret: null
             }
         ],
         personstatus: [
@@ -71,14 +72,24 @@ export const aremark: Person = {
         {
             linje1: 'Islandsgate 49',
             linje2: '7693 Hovedøya',
-            linje3: 'Norge'
+            linje3: 'Norge',
+            sistEndret: {
+                ident: 'Folkeregisteret',
+                tidspunkt: '2010-02-20T10:15:30' as LocalDateTime,
+                system: 'Folkeregisteret'
+            }
         }
     ],
     kontaktAdresse: [
         {
             linje1: 'Aremarkveien 1',
             linje2: '0320 Aremark',
-            linje3: null
+            linje3: null,
+            sistEndret: {
+                ident: 'Folkeregisteret',
+                tidspunkt: '2020-01-01T10:15:30' as LocalDateTime,
+                system: 'Folkeregisteret'
+            }
         }
     ],
     navEnhet: {
@@ -146,7 +157,8 @@ export const aremark: Person = {
             adresse: {
                 linje1: `Adresseveien 1`,
                 linje2: '0000 Aremark',
-                linje3: null
+                linje3: null,
+                sistEndret: null
             }
         }
     ],
@@ -168,10 +180,16 @@ export const aremark: Person = {
             adresse: {
                 linje1: 'Elgelia 20, 0000 Aremark',
                 linje2: null,
-                linje3: null
+                linje3: null,
+                sistEndret: null
             },
             registrert: '2010-02-02' as LocalDate,
-            skifteform: Skifteform.OFFENTLIG
+            skifteform: Skifteform.OFFENTLIG,
+            sistEndret: {
+                ident: 'Folkeregisteret',
+                tidspunkt: '2020-01-01T10:15:30' as LocalDateTime,
+                system: 'Folkeregisteret'
+            }
         }
     ],
     fullmakt: [
@@ -255,7 +273,8 @@ export const aremark: Person = {
         adresse: {
             linje1: 'Bankveien 1,',
             linje2: '0357 Bankestad',
-            linje3: null
+            linje3: null,
+            sistEndret: null
         },
         valuta: {
             kode: 'NOK',

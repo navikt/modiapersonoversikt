@@ -33,15 +33,20 @@ function KontaktinformasjonDodsbo(props: Props) {
 
     return (
         <>
-            {dodsboListe.map((dodsbo, index) => (
-                <VisittkortElement key={index} beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
-                    <Adressatinfo adressat={dodsbo.adressat} />
-                    <AdresseStyle>
-                        <Adresseinfo adresse={dodsbo.adresse} />
-                    </AdresseStyle>
-                    <EtikettGraa>Endret {formaterDato(dodsbo.registrert)}</EtikettGraa>
-                </VisittkortElement>
-            ))}
+            {dodsboListe.map((dodsbo, index) => {
+                const sistEndret = dodsbo.sistEndret
+                    ? formaterDato(dodsbo.sistEndret.tidspunkt)
+                    : formaterDato(dodsbo.registrert);
+                return (
+                    <VisittkortElement key={index} beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
+                        <Adressatinfo adressat={dodsbo.adressat} />
+                        <AdresseStyle>
+                            <Adresseinfo adresse={dodsbo.adresse} />
+                        </AdresseStyle>
+                        <EtikettGraa>Endret {sistEndret}</EtikettGraa>
+                    </VisittkortElement>
+                );
+            })}
         </>
     );
 }

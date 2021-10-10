@@ -27,7 +27,7 @@ export function setupPersondataMock(mock: FetchMock) {
 const erDod = true;
 const visEtiketter = true;
 const erReservert = false;
-const ikkeRegisrert = true;
+const ikkeRegistrert = false;
 
 function lagPersondata(fnr: string): PersonData {
     const person: Person = {
@@ -53,15 +53,23 @@ function lagPersondata(fnr: string): PersonData {
                 linje1: 'Adressevei 1',
                 linje2: '0000 AREMARK',
                 linje3: 'Norge',
-                registrert: '2020-01-01T10:15:30' as LocalDateTime,
-                registrertAv: 'Folkeregisteret'
+                sistEndret: {
+                    ident: 'Folkeregisteret',
+                    tidspunkt: '2020-01-01T10:15:30' as LocalDateTime,
+                    system: 'Folkeregisteret'
+                }
             }
         ],
         kontaktAdresse: [
             {
                 linje1: 'Kontaktadresse 1',
                 linje2: '0320 HEI',
-                linje3: null
+                linje3: null,
+                sistEndret: {
+                    ident: 'D159000',
+                    tidspunkt: '2021-10-10T10:15:30' as LocalDateTime,
+                    system: 'NAV'
+                }
             }
         ],
         navEnhet: {
@@ -131,7 +139,8 @@ function lagPersondata(fnr: string): PersonData {
                 adresse: {
                     linje1: `Adresseveien 1`,
                     linje2: '0000 Aremark',
-                    linje3: null
+                    linje3: null,
+                    sistEndret: null
                 }
             }
         ],
@@ -154,10 +163,16 @@ function lagPersondata(fnr: string): PersonData {
                       adresse: {
                           linje1: 'Elgelia 20',
                           linje2: '0000 Aremark',
-                          linje3: null
+                          linje3: null,
+                          sistEndret: null
                       },
                       registrert: '2010-02-02' as LocalDate,
-                      skifteform: Skifteform.OFFENTLIG
+                      skifteform: Skifteform.OFFENTLIG,
+                      sistEndret: {
+                          ident: 'Folkeregisteret',
+                          tidspunkt: '2015-01-01T10:15:30' as LocalDateTime,
+                          system: 'Folkeregisteret'
+                      }
                   }
               ]
             : [],
@@ -224,7 +239,7 @@ function lagPersondata(fnr: string): PersonData {
                 prioritet: 1
             }
         ],
-        kontaktOgReservasjon: ikkeRegisrert
+        kontaktOgReservasjon: ikkeRegistrert
             ? {
                   personident: '10108000398',
                   reservasjon: erReservert ? 'true' : 'false',
@@ -265,7 +280,8 @@ function lagPersondata(fnr: string): PersonData {
             adresse: {
                 linje1: 'Bankveien 1,',
                 linje2: '0357 Bankestad',
-                linje3: null
+                linje3: null,
+                sistEndret: null
             },
             valuta: {
                 kode: 'NOK',
@@ -301,7 +317,8 @@ const barnMock: ForelderBarnRelasjon[] = [
             {
                 linje1: 'Gatenavn 1',
                 linje2: '0000 AREMARK',
-                linje3: 'Norge'
+                linje3: 'Norge',
+                sistEndret: null
             }
         ],
         personstatus: [
@@ -359,7 +376,8 @@ const barnMock: ForelderBarnRelasjon[] = [
             {
                 linje1: 'Gatenavn 22',
                 linje2: '0000 AREMARK',
-                linje3: 'Norge'
+                linje3: 'Norge',
+                sistEndret: null
             }
         ],
         personstatus: [
@@ -391,7 +409,8 @@ const barnMock: ForelderBarnRelasjon[] = [
             {
                 linje1: 'Gatenavn 22',
                 linje2: '0000 AREMARK',
-                linje3: 'Sverige'
+                linje3: 'Sverige',
+                sistEndret: null
             }
         ],
         personstatus: [
@@ -423,7 +442,8 @@ const barnMock: ForelderBarnRelasjon[] = [
             {
                 linje1: 'Gatenavn 22',
                 linje2: '0000 AREMARK',
-                linje3: 'Norge'
+                linje3: 'Norge',
+                sistEndret: null
             }
         ],
         personstatus: [

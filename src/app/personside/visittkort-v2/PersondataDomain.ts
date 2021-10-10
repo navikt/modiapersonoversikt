@@ -62,12 +62,17 @@ export interface Sikkerhetstiltak {
     gyldigTilOgMed: LocalDate;
 }
 
+export interface SistEndret {
+    ident: string;
+    tidspunkt: LocalDateTime;
+    system: string;
+}
+
 export interface Adresse {
     linje1: string;
     linje2: string | null;
     linje3: string | null;
-    registrert?: LocalDateTime | null;
-    registrertAv?: string | null;
+    sistEndret: SistEndret | null;
 }
 
 export interface Enhet {
@@ -80,6 +85,7 @@ export interface Dodsbo {
     adresse: Adresse;
     registrert: LocalDate;
     skifteform: Skifteform;
+    sistEndret: SistEndret | null;
 }
 
 export interface Adressat {
