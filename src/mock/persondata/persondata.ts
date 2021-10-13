@@ -24,7 +24,7 @@ export function setupPersondataMock(mock: FetchMock) {
 }
 
 // Til bruk under testing av funksjonalitet
-const erDod = true;
+const erDod = false;
 const visEtiketter = true;
 const erReservert = false;
 const ikkeRegistrert = false;
@@ -111,10 +111,28 @@ function lagPersondata(fnr: string): PersonData {
         sivilstand: [
             {
                 type: {
-                    kode: SivilstandType.SKILT,
-                    beskrivelse: 'Skilt'
+                    kode: SivilstandType.GIFT,
+                    beskrivelse: 'Gift'
                 },
-                gyldigFraOgMed: '2010-03-06' as LocalDate
+                gyldigFraOgMed: '2010-03-06' as LocalDate,
+                sivilstandRelasjon: {
+                    fnr: '12345555555',
+                    navn: [
+                        {
+                            fornavn: 'BAREMARK',
+                            mellomnavn: null,
+                            etternavn: 'TESTFAMILIEN'
+                        }
+                    ],
+                    alder: 40,
+                    adressebeskyttelse: [
+                        {
+                            kode: AdresseBeskyttelse.KODE6,
+                            beskrivelse: 'Sperret adresse, strengt fortrolig'
+                        }
+                    ],
+                    harSammeAdresse: false
+                }
             }
         ],
         foreldreansvar: [
@@ -339,7 +357,7 @@ const barnMock: ForelderBarnRelasjon[] = [
     },
     {
         ident: '12345678911',
-        rolle: ForelderBarnRelasjonRolle.MEDMOR,
+        rolle: ForelderBarnRelasjonRolle.BARN,
         navn: [
             {
                 fornavn: 'BARN2',

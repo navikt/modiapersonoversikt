@@ -51,9 +51,18 @@ export interface Statsborgerskap {
     gyldigTilOgMed: LocalDate | null;
 }
 
+export interface SivilstandRelasjon {
+    fnr: string | null;
+    navn: Array<Navn>;
+    alder: number | null;
+    adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
+    harSammeAdresse: boolean;
+}
+
 export interface Sivilstand {
     type: KodeBeskrivelse<SivilstandType>;
     gyldigFraOgMed: LocalDate | null;
+    sivilstandRelasjon: SivilstandRelasjon | null;
 }
 
 export interface Sikkerhetstiltak {

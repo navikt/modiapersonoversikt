@@ -4,7 +4,9 @@ import {
     ForelderBarnRelasjonRolle,
     KodeBeskrivelse,
     Person,
-    PersonStatus
+    PersonStatus,
+    Sivilstand,
+    SivilstandType
 } from './PersondataDomain';
 
 export function erDod(person: Person) {
@@ -40,4 +42,13 @@ export function harDiskresjonskode(adressebeskyttelse: KodeBeskrivelse<AdresseBe
             beskyttelse.kode === AdresseBeskyttelse.KODE6_UTLAND ||
             beskyttelse.kode === AdresseBeskyttelse.KODE7
     );
+}
+
+export function hentPartner(sivilstand: Sivilstand[]) {
+    const aktuelleRelasjoner = [
+        SivilstandType.GIFT,
+        SivilstandType.REGISTRERT_PARTNER,
+        SivilstandType.GJENLEVENDE_PARTNER // TODO: Hva er denne?
+    ];
+    return sivilstand.find(relasjon => aktuelleRelasjoner.includes(relasjon.type.kode));
 }

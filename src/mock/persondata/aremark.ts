@@ -139,7 +139,25 @@ export const aremark: Person = {
                 kode: SivilstandType.GIFT,
                 beskrivelse: 'Gift'
             },
-            gyldigFraOgMed: '2005-12-12' as LocalDate
+            gyldigFraOgMed: '2005-12-12' as LocalDate,
+            sivilstandRelasjon: {
+                fnr: '12345555555',
+                navn: [
+                    {
+                        fornavn: 'BAREMARK',
+                        mellomnavn: null,
+                        etternavn: 'TESTFAMILIEN'
+                    }
+                ],
+                alder: 40,
+                adressebeskyttelse: [
+                    {
+                        kode: AdresseBeskyttelse.UGRADERT,
+                        beskrivelse: 'UGRADERT'
+                    }
+                ],
+                harSammeAdresse: true
+            }
         }
     ],
     foreldreansvar: [
