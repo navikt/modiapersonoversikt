@@ -27,6 +27,12 @@ export const barnAremark: ForelderBarnRelasjon[] = [
         ],
         fodselsdato: ['2008-03-15' as LocalDate],
         alder: 13,
+        kjonn: [
+            {
+                kode: Kjonn.K,
+                beskrivelse: 'Kvinne'
+            }
+        ],
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.UGRADERT,
@@ -41,6 +47,7 @@ export const barnAremark: ForelderBarnRelasjon[] = [
                 sistEndret: null
             }
         ],
+        harSammeAdresse: false,
         personstatus: [
             {
                 kode: PersonStatus.BOSATT,

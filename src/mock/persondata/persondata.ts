@@ -299,7 +299,7 @@ function lagPersondata(fnr: string): PersonData {
 const barnMock: ForelderBarnRelasjon[] = [
     {
         ident: '12345678910',
-        rolle: ForelderBarnRelasjonRolle.BARN,
+        rolle: ForelderBarnRelasjonRolle.MOR,
         navn: [
             {
                 fornavn: 'BARN1',
@@ -309,10 +309,16 @@ const barnMock: ForelderBarnRelasjon[] = [
         ],
         fodselsdato: ['2008-03-15' as LocalDate],
         alder: 13,
+        kjonn: [
+            {
+                kode: Kjonn.K,
+                beskrivelse: 'Kvinne'
+            }
+        ],
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.UGRADERT,
-                beskrivelse: 'UGRADERT'
+                beskrivelse: 'Militær'
             }
         ],
         bostedAdresse: [
@@ -323,6 +329,7 @@ const barnMock: ForelderBarnRelasjon[] = [
                 sistEndret: null
             }
         ],
+        harSammeAdresse: true,
         personstatus: [
             {
                 kode: PersonStatus.BOSATT,
@@ -332,7 +339,7 @@ const barnMock: ForelderBarnRelasjon[] = [
     },
     {
         ident: '12345678911',
-        rolle: ForelderBarnRelasjonRolle.BARN,
+        rolle: ForelderBarnRelasjonRolle.MEDMOR,
         navn: [
             {
                 fornavn: 'BARN2',
@@ -342,13 +349,20 @@ const barnMock: ForelderBarnRelasjon[] = [
         ],
         fodselsdato: ['2010-04-21' as LocalDate],
         alder: null,
+        kjonn: [
+            {
+                kode: Kjonn.M,
+                beskrivelse: 'Mann'
+            }
+        ],
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.UGRADERT,
-                beskrivelse: 'UGRADERT'
+                beskrivelse: 'Pendler'
             }
         ],
         bostedAdresse: [],
+        harSammeAdresse: false,
         personstatus: [
             {
                 kode: PersonStatus.DOD,
@@ -358,7 +372,7 @@ const barnMock: ForelderBarnRelasjon[] = [
     },
     {
         ident: '12345678912',
-        rolle: ForelderBarnRelasjonRolle.BARN,
+        rolle: ForelderBarnRelasjonRolle.FAR,
         navn: [
             {
                 fornavn: 'BARN3',
@@ -368,10 +382,11 @@ const barnMock: ForelderBarnRelasjon[] = [
         ],
         fodselsdato: ['2012-06-05' as LocalDate],
         alder: 9,
+        kjonn: [],
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.KODE6,
-                beskrivelse: 'KODE 6'
+                beskrivelse: 'Sperret adresse, strengt fortrolig'
             }
         ],
         bostedAdresse: [
@@ -382,6 +397,7 @@ const barnMock: ForelderBarnRelasjon[] = [
                 sistEndret: null
             }
         ],
+        harSammeAdresse: false,
         personstatus: [
             {
                 kode: PersonStatus.BOSATT,
@@ -401,10 +417,16 @@ const barnMock: ForelderBarnRelasjon[] = [
         ],
         fodselsdato: ['1998-04-09' as LocalDate],
         alder: 23,
+        kjonn: [
+            {
+                kode: Kjonn.U,
+                beskrivelse: 'Ukjent kjønn'
+            }
+        ],
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.KODE6_UTLAND,
-                beskrivelse: 'KODE 6 UTLAND'
+                beskrivelse: 'Sperret adresse, strengt fortrolig utland'
             }
         ],
         bostedAdresse: [
@@ -415,6 +437,7 @@ const barnMock: ForelderBarnRelasjon[] = [
                 sistEndret: null
             }
         ],
+        harSammeAdresse: true,
         personstatus: [
             {
                 kode: PersonStatus.UTFLYTTET,
@@ -434,10 +457,16 @@ const barnMock: ForelderBarnRelasjon[] = [
         ],
         fodselsdato: ['1998-04-09' as LocalDate],
         alder: 23,
+        kjonn: [
+            {
+                kode: Kjonn.K,
+                beskrivelse: 'Kvinne'
+            }
+        ],
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.KODE7,
-                beskrivelse: 'KODE 7'
+                beskrivelse: 'Sperret adresse, fortrolig'
             }
         ],
         bostedAdresse: [
@@ -448,6 +477,7 @@ const barnMock: ForelderBarnRelasjon[] = [
                 sistEndret: null
             }
         ],
+        harSammeAdresse: false,
         personstatus: [
             {
                 kode: PersonStatus.BOSATT,

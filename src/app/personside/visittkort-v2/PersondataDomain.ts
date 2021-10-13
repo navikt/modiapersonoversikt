@@ -168,13 +168,15 @@ interface DeltBosted {
 }
 
 export interface ForelderBarnRelasjon {
-    ident: String;
+    ident: string;
     rolle: ForelderBarnRelasjonRolle;
     navn: Array<Navn>;
     fodselsdato: Array<LocalDate>;
+    kjonn: Array<KodeBeskrivelse<Kjonn>>;
     alder: number | null;
     adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
     bostedAdresse: Array<Adresse>;
+    harSammeAdresse: boolean;
     personstatus: Array<KodeBeskrivelse<PersonStatus>>;
 }
 

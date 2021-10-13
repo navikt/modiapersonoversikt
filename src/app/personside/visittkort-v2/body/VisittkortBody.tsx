@@ -2,6 +2,7 @@ import * as React from 'react';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
 import { Person } from '../PersondataDomain';
+import Familie from './familie/Familie';
 import Fullmakter from './fullmakt/Fullmakt';
 import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import { Kolonne, VisittkortBodyWrapper } from './VisittkortStyles';
@@ -15,8 +16,8 @@ function SingleColumnLayout({ person }: { person: Person }) {
         <Kolonne>
             <Kontaktinformasjon person={person} />
             <Fullmakter fullmakter={person.fullmakt} />
-            {/* <Familie person={person} />
-            <DeltBosted deltbosted={person.deltBosted} />
+            <Familie person={person} />
+            {/*<DeltBosted deltbosted={person.deltBosted} />
             <Foreldreansvar foreldreansvar={person.foreldreansvar} />
             <NavKontorSeksjon />
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />

@@ -1,5 +1,5 @@
 import { erDod } from './person-utils';
-import { Navn, Person } from './PersondataDomain';
+import { ForelderBarnRelasjon, Navn, Person, PersonStatus } from './PersondataDomain';
 
 export function hentNavn(navn: Navn | null): string {
     if (!navn) {
@@ -13,4 +13,16 @@ export function hentAlderEllerDod(person: Person): string | undefined {
         return 'Død';
     }
     return person.alder?.toString();
+}
+
+export function hentAlderEllerDodRelasjon(relasjon: ForelderBarnRelasjon): string | undefined {
+    if (relasjonErDod(relasjon)) {
+        return 'Død';
+    }
+    return relasjon.alder?.toString();
+}
+
+export function relasjonErDod(relasjon: ForelderBarnRelasjon): boolean {
+    const personstatus = relasjon.personstatus.firstOrNull();
+    return !!personstatus && personstatus.kode === PersonStatus.DOD;
 }
