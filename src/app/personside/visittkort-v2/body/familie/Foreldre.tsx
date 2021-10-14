@@ -13,9 +13,9 @@ function Foreldre({ forelderBarnRelasjon }: Props) {
 
     return (
         <>
-            {foreldre.map(relasjon => (
+            {foreldre.map((relasjon, index) => (
                 <ForelderBarnRelasjonVisning
-                    key={relasjon.ident}
+                    key={relasjon.ident ? relasjon.ident : index}
                     beskrivelse={capitalizeName(relasjon.rolle)}
                     relasjon={relasjon}
                     erBarn={false}

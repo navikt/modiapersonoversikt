@@ -116,15 +116,9 @@ function lagPersondata(fnr: string): PersonData {
                 },
                 gyldigFraOgMed: '2010-03-06' as LocalDate,
                 sivilstandRelasjon: {
-                    fnr: '12345555555',
-                    navn: [
-                        {
-                            fornavn: 'BAREMARK',
-                            mellomnavn: null,
-                            etternavn: 'TESTFAMILIEN'
-                        }
-                    ],
-                    alder: 40,
+                    fnr: '',
+                    navn: [],
+                    alder: null,
                     adressebeskyttelse: [
                         {
                             kode: AdresseBeskyttelse.KODE6,
@@ -389,17 +383,11 @@ const barnMock: ForelderBarnRelasjon[] = [
         ]
     },
     {
-        ident: '12345678912',
+        ident: '',
         rolle: ForelderBarnRelasjonRolle.FAR,
-        navn: [
-            {
-                fornavn: 'BARN3',
-                mellomnavn: null,
-                etternavn: 'BARNESEN'
-            }
-        ],
-        fodselsdato: ['2012-06-05' as LocalDate],
-        alder: 9,
+        navn: [],
+        fodselsdato: [],
+        alder: null,
         kjonn: [],
         adressebeskyttelse: [
             {
@@ -407,14 +395,7 @@ const barnMock: ForelderBarnRelasjon[] = [
                 beskrivelse: 'Sperret adresse, strengt fortrolig'
             }
         ],
-        bostedAdresse: [
-            {
-                linje1: 'Gatenavn 22',
-                linje2: '0000 AREMARK',
-                linje3: 'Norge',
-                sistEndret: null
-            }
-        ],
+        bostedAdresse: [],
         harSammeAdresse: false,
         personstatus: [
             {
@@ -443,7 +424,7 @@ const barnMock: ForelderBarnRelasjon[] = [
         ],
         adressebeskyttelse: [
             {
-                kode: AdresseBeskyttelse.KODE6_UTLAND,
+                kode: AdresseBeskyttelse.UGRADERT,
                 beskrivelse: 'Sperret adresse, strengt fortrolig utland'
             }
         ],
@@ -464,37 +445,19 @@ const barnMock: ForelderBarnRelasjon[] = [
         ]
     },
     {
-        ident: '12345678914',
+        ident: '',
         rolle: ForelderBarnRelasjonRolle.BARN,
-        navn: [
-            {
-                fornavn: 'BARN5',
-                mellomnavn: null,
-                etternavn: 'BARNESEN'
-            }
-        ],
-        fodselsdato: ['1998-04-09' as LocalDate],
-        alder: 23,
-        kjonn: [
-            {
-                kode: Kjonn.K,
-                beskrivelse: 'Kvinne'
-            }
-        ],
+        navn: [],
+        fodselsdato: [],
+        alder: null,
+        kjonn: [],
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.KODE7,
                 beskrivelse: 'Sperret adresse, fortrolig'
             }
         ],
-        bostedAdresse: [
-            {
-                linje1: 'Gatenavn 22',
-                linje2: '0000 AREMARK',
-                linje3: 'Norge',
-                sistEndret: null
-            }
-        ],
+        bostedAdresse: [],
         harSammeAdresse: false,
         personstatus: [
             {

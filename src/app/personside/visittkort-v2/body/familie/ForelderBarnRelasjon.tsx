@@ -16,14 +16,15 @@ interface Props {
 
 function ForelderBarnRelasjonVisning({ relasjon, beskrivelse, erBarn }: Props) {
     const adressebeskyttet: boolean = harDiskresjonskode(relasjon.adressebeskyttelse);
-    const alder = adressebeskyttet ? '' : `(${hentAlderEllerDodRelasjon(relasjon)})`;
+    const alder = `(${hentAlderEllerDodRelasjon(relasjon)})`;
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}>
             <Diskresjonskode adressebeskyttelse={relasjon.adressebeskyttelse} />
-            {/* // TODO: skal relasjonens navn vises dersom kode6/7 */}
-            <Normaltekst>
-                {hentNavn(relasjon.navn.firstOrNull())} {alder}
-            </Normaltekst>
+            {!adressebeskyttet && (
+                <Normaltekst>
+                    {hentNavn(relasjon.navn.firstOrNull())} {alder}
+                </Normaltekst>
+            )}
             {!adressebeskyttet && <Normaltekst>{relasjon.ident}</Normaltekst>}
             <Normaltekst>
                 <BostedForRelasjon relasjon={relasjon} />

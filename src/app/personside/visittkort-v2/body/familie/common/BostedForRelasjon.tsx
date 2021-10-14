@@ -7,8 +7,7 @@ interface Props {
 }
 
 function BostedForRelasjon({ relasjon }: Props) {
-    const personErDod = relasjon && relasjonErDod(relasjon);
-    if (relasjon.bostedAdresse.isEmpty() || personErDod) {
+    if (relasjonErDod(relasjon)) {
         return null;
     } else if (relasjon.harSammeAdresse) {
         return <>Bor med bruker</>;

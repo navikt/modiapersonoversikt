@@ -29,9 +29,9 @@ function ListeAvBarn({ relasjoner }: Props) {
 
     return (
         <>
-            {barnUnder21.map(barn => (
+            {barnUnder21.map((barn, index) => (
                 <ForelderBarnRelasjonVisning
-                    key={barn.ident}
+                    key={barn.ident ? barn.ident : index}
                     beskrivelse={capitalizeName(hentKjonnBeskrivelseForBarn(barn))}
                     relasjon={barn}
                     erBarn={true}
