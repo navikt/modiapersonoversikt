@@ -6,6 +6,7 @@ import Familie from './familie/Familie';
 import Fullmakter from './fullmakt/Fullmakt';
 import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
 import { Kolonne, VisittkortBodyWrapper } from './VisittkortStyles';
+import DeltBosted from './deltBosted/DeltBosted';
 
 interface Props {
     person: Person;
@@ -17,8 +18,8 @@ function SingleColumnLayout({ person }: { person: Person }) {
             <Kontaktinformasjon person={person} />
             <Fullmakter fullmakter={person.fullmakt} />
             <Familie person={person} />
-            {/*<DeltBosted deltbosted={person.deltBosted} />
-            <Foreldreansvar foreldreansvar={person.foreldreansvar} />
+            <DeltBosted deltBosted={person.deltBosted} />
+            {/* <Foreldreansvar foreldreansvar={person.foreldreansvar} />
             <NavKontorSeksjon />
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjonsListe={person.tilrettelagtKomunikasjonsListe} />
             <Vergemal vergemal={person.vergemal} />

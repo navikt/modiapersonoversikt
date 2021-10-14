@@ -170,7 +170,7 @@ interface Foreldreansvar {
     ansvarsubject: Navn | null;
 }
 
-interface DeltBosted {
+export interface DeltBosted {
     startdatoForKontrakt: LocalDate;
     sluttdatoForKontrakt: LocalDate | null;
     adresse: Adresse | null;

@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`viser deltbosted 1`] = `
+.c0 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1 {
+  position: absolute;
+  left: -3.125rem;
+  width: 3.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c1 > svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+.c3 {
+  margin: 10px 0 20px 0;
+}
+
+.c3:last-child {
+  margin: 10px 0 0 0;
+}
+
+.c2 {
+  margin-bottom: 1rem;
+}
+
+<section>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      <svg
+        fill="none"
+        height="1em"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zM9 19v-2h2v-5H9v-2h4v7h2v2H9zm3-14a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"
+          fill="#0067C5"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <h3
+      className="typo-undertittel"
+    >
+      Delt Bosted
+    </h3>
+  </div>
+  <div
+    className="c2"
+  />
+  <div
+    className="c3"
+  >
+    <div
+      className="c0"
+    >
+      
+    </div>
+    <p
+      className="typo-normal"
+    >
+      Adresseveien 1
+    </p>
+    <p
+      className="typo-normal"
+    >
+      0000 Aremark
+    </p>
+    <p
+      className="typo-normal"
+    >
+      Gyldig fra og med 
+      10.10.2000
+    </p>
+    <p
+      className="typo-normal"
+    >
+      Gyldig til og med 
+      07.05.2005
+    </p>
+  </div>
+</section>
+`;
