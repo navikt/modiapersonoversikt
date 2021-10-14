@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import { utledKjonnFraFodselsnummer } from '../../../../../../utils/fnr-utils';
 import Mann from '../../../../../../svg/Mann';
 import Kvinne from '../../../../../../svg/Kvinne';
 import DiskresjonskodeIkon from '../../../../../../svg/DiskresjonskodeKjonn';
@@ -14,7 +13,7 @@ interface Props {
     erBarn: boolean;
 }
 
-export function FamilierelasjonIkon({ relasjon, erBarn }: Props) {
+function FamilierelasjonIkon({ relasjon, erBarn }: Props) {
     if (harDiskresjonskode(relasjon.adressebeskyttelse)) {
         return <DiskresjonskodeIkon />;
     }
@@ -28,16 +27,4 @@ export function FamilierelasjonIkon({ relasjon, erBarn }: Props) {
     }
 }
 
-// export function getKjonnBeskrivelseForBarn(fnr?: string) {
-//     const kjonn = utledKjonnFraFodselsnummer(fnr);
-//     switch (kjonn) {
-//         case Kjonn.Mann:
-//             return 'Gutt';
-//         case Kjonn.Kvinne:
-//             return 'Jente';
-//         case Kjonn.Diskresjonskode:
-//             return 'Barn';
-//         default:
-//             return 'Ukjent';
-//     }
-// }
+export default FamilierelasjonIkon;
