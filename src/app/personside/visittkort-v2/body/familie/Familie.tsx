@@ -3,6 +3,7 @@ import { VisittkortGruppe } from '../VisittkortStyles';
 import Foreldre from './Foreldre';
 import { Person } from '../../PersondataDomain';
 import Sivilstand from './Sivilstand';
+import ListeAvBarn from './ListeAvBarn';
 
 interface Props {
     person: Person;
@@ -14,7 +15,7 @@ function Familie({ person }: Props) {
     return (
         <VisittkortGruppe tittel={'Familie'}>
             <Sivilstand person={person} />
-            {/*<ListeAvBarn relasjoner={person.familierelasjoner} /> */}
+            <ListeAvBarn relasjoner={person.forelderBarnRelasjon} />
             {skalViseForeldre && <Foreldre forelderBarnRelasjon={person.forelderBarnRelasjon} />}
         </VisittkortGruppe>
     );
