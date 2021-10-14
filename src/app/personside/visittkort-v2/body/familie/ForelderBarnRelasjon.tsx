@@ -6,7 +6,7 @@ import { hentAlderEllerDodRelasjon, hentNavn } from '../../utils-visittkort';
 import VisittkortElement from '../VisittkortElement';
 import BostedForRelasjon from './common/BostedForRelasjon';
 import Diskresjonskode from './common/Diskresjonskode';
-import { FamilierelasjonIkon } from './common/FamilierelasjonIkon';
+import FamilierelasjonIkon from './common/FamilierelasjonIkon';
 
 interface Props {
     relasjon: ForelderBarnRelasjon;

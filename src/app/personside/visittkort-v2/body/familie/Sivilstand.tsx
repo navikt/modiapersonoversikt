@@ -7,7 +7,6 @@ import { Person, Sivilstand as SivilstandInterface, SivilstandType } from '../..
 import { harDiskresjonskode, hentPartner } from '../../person-utils';
 import { hentNavn } from '../../utils-visittkort';
 import Diskresjonskode from './common/Diskresjonskode';
-// import Diskresjonskode from './common/Diskresjonskode';
 
 interface Props {
     person: Person;
