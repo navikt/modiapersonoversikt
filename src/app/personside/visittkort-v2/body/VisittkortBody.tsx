@@ -18,7 +18,7 @@ interface Props {
     person: Person;
 }
 
-function SingleColumnLayout({ person }: { person: Person }) {
+function SingleColumnLayout(person: Person) {
     return (
         <Kolonne>
             <Kontaktinformasjon person={person} />
@@ -92,15 +92,12 @@ function VisittkortBody({ person }: Props) {
     }, []);
 
     function getColumnLayout(antallKolonner: number) {
-        switch (antallKolonner) {
-            case 0:
-            case 1:
-                return SingleColumnLayout({ person });
-            case 2:
-                return DoubleColumnLayout(person);
-            default:
-                return TripleColumnLayout(person);
+        if (antallKolonner <= 1) {
+            return SingleColumnLayout(person);
+        } else if (antallKolonner === 2) {
+            return DoubleColumnLayout(person);
         }
+        return TripleColumnLayout(person);
     }
 
     const maxColumnWidth = 275;
