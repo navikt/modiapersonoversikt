@@ -239,8 +239,21 @@ export const aremark: Person = {
                 mellomnavn: null,
                 etternavn: 'Solli'
             },
-            vergesakstype: 'voksen',
-            omfang: 'personligeOgOekonomiskeInteresser',
+            vergesakstype: 'Voksen',
+            omfang: 'Ivareta personens interesser innenfor det personlige og økonomiske området',
+            embete: 'Fylkesmannen i Troms og Finnmark',
+            gyldighetstidspunkt: '2016-03-27' as LocalDate,
+            opphoerstidspunkt: '2017-06-30' as LocalDate
+        },
+        {
+            ident: '123456799',
+            navn: {
+                fornavn: 'Truls',
+                mellomnavn: null,
+                etternavn: 'Tøffel'
+            },
+            vergesakstype: 'Fremtidsfullmakt',
+            omfang: 'Ivareta personens interesser innenfor det økonomiske området',
             embete: 'Fylkesmannen i Troms og Finnmark',
             gyldighetstidspunkt: '2016-03-27' as LocalDate,
             opphoerstidspunkt: '2017-06-30' as LocalDate

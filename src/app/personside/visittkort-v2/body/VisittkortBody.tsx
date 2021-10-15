@@ -9,6 +9,7 @@ import { Kolonne, VisittkortBodyWrapper } from './VisittkortStyles';
 import DeltBosted from './deltBosted/DeltBosted';
 import Foreldreansvar from './foreldreansvar/Foreldreansvar';
 import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
+import Vergemal from './vergemal/Vergemal';
 
 interface Props {
     person: Person;
@@ -24,8 +25,8 @@ function SingleColumnLayout({ person }: { person: Person }) {
             <Foreldreansvar foreldreansvar={person.foreldreansvar} />
             {/*<NavKontorSeksjon />*/}
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
-            {/* <Vergemal vergemal={person.vergemal} />
-            <Sikkerhetstiltak person={person} />
+            <Vergemal vergemal={person.vergemal} />
+            {/* <Sikkerhetstiltak person={person} />
             <LenkeBrukerprofilContainer person={person} /> */}
         </Kolonne>
     );
