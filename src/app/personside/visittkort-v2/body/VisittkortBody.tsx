@@ -12,6 +12,7 @@ import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtK
 import Vergemal from './vergemal/Vergemal';
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 import LenkeBrukerprofil from './lenkebrukerprofil/LenkeBrukerprofil';
+import { useEffect, useState } from 'react';
 
 interface Props {
     person: Person;
@@ -34,36 +35,83 @@ function SingleColumnLayout({ person }: { person: Person }) {
     );
 }
 
+function DoubleColumnLayout(person: Person) {
+    return (
+        <>
+            <Kolonne>
+                <Kontaktinformasjon person={person} />
+                <Fullmakter fullmakter={person.fullmakt} />
+                <Familie person={person} />
+                <DeltBosted deltBosted={person.deltBosted} />
+                <Foreldreansvar foreldreansvar={person.foreldreansvar} />
+            </Kolonne>
+            <Kolonne>
+                {/* {<NavKontorSeksjon />} */}
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
+                <Vergemal vergemal={person.vergemal} />
+                <Sikkerhetstiltak sikkerhetstiltak={person.sikkerhetstiltak} />
+                <LenkeBrukerprofil />
+            </Kolonne>
+        </>
+    );
+}
+
+function TripleColumnLayout(person: Person) {
+    return (
+        <>
+            <Kolonne>
+                <Kontaktinformasjon person={person} />
+                <Fullmakter fullmakter={person.fullmakt} />
+            </Kolonne>
+            <Kolonne>
+                <Familie person={person} />
+                <Foreldreansvar foreldreansvar={person.foreldreansvar} />
+                <DeltBosted deltBosted={person.deltBosted} />
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
+                <Vergemal vergemal={person.vergemal} />
+            </Kolonne>
+            <Kolonne>
+                {/* <NavKontorSeksjon /> */}
+                <Sikkerhetstiltak sikkerhetstiltak={person.sikkerhetstiltak} />
+                <LenkeBrukerprofil />
+            </Kolonne>
+        </>
+    );
+}
+
 function VisittkortBody({ person }: Props) {
-    const visittKortBodyRef = React.createRef<HTMLDivElement>();
+    const [width, setWidth] = useState(0);
 
-    // function getComponentWidth(): number {
-    //     return visittKortBodyRef.current ? visittKortBodyRef.current.clientWidth : 0;
-    // }
+    useEffect(() => {
+        function updateWidth() {
+            setWidth(window.innerWidth);
+        }
+        window.addEventListener('resize', updateWidth);
+        updateWidth();
+        return () => window.removeEventListener('resize', updateWidth);
+    }, []);
 
-    // function getColumnLayout(antallKolonner: number) {
-    //     switch (antallKolonner) {
-    //         case 1:
-    //             return SingleColumnLayout({ person });
-    //         default:
-    //             return null;
-    //         // case 2:
-    //         //     return DoubleColumnLayout(person);
-    //         // default:
-    //         //     return TripleColumnLayout(person);
-    //     }
-    // }
+    function getColumnLayout(antallKolonner: number) {
+        switch (antallKolonner) {
+            case 0:
+            case 1:
+                return SingleColumnLayout({ person });
+            case 2:
+                return DoubleColumnLayout(person);
+            default:
+                return TripleColumnLayout(person);
+        }
+    }
 
-    // const componentWidth = getComponentWidth();
-    // const maxColumnWidth = 275;
-    // const numberOfColumns = Math.floor(componentWidth / maxColumnWidth);
-    // const columnLayOut = getColumnLayout(numberOfColumns);
+    const maxColumnWidth = 275;
+    const numberOfColumns = Math.floor(width / maxColumnWidth);
+    const columnLayOut = getColumnLayout(numberOfColumns);
 
     return (
         <ErrorBoundary>
-            <VisittkortBodyWrapper role="region" aria-label="Visittkortdetaljer" ref={visittKortBodyRef}>
+            <VisittkortBodyWrapper role="region" aria-label="Visittkortdetaljer">
                 <VisuallyHiddenAutoFokusHeader tittel="Visittkortdetaljer" />
-                <SingleColumnLayout person={person} />
+                {columnLayOut}
             </VisittkortBodyWrapper>
         </ErrorBoundary>
     );
