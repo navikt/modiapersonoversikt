@@ -236,11 +236,11 @@ export enum SivilstandType {
 }
 
 export enum SikkerhetstiltakType {
-    FYUS = 'FYUS',
-    TFUS = 'TFUS',
-    FTUS = 'FTUS',
-    DIUS = 'DIUS',
-    TOAN = 'TOAN'
+    FYUS = 'Fysisk utestengelse',
+    TFUS = 'Telefonisk utestengelse',
+    FTUS = 'Fysisk/telefonisk utestengelse',
+    DIUS = 'Digital utestengelse',
+    TOAN = 'To ansatte i samtale'
 }
 
 export enum Skifteform {

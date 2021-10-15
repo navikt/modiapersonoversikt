@@ -10,6 +10,7 @@ import DeltBosted from './deltBosted/DeltBosted';
 import Foreldreansvar from './foreldreansvar/Foreldreansvar';
 import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
 import Vergemal from './vergemal/Vergemal';
+import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 
 interface Props {
     person: Person;
@@ -26,8 +27,8 @@ function SingleColumnLayout({ person }: { person: Person }) {
             {/*<NavKontorSeksjon />*/}
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
             <Vergemal vergemal={person.vergemal} />
-            {/* <Sikkerhetstiltak person={person} />
-            <LenkeBrukerprofilContainer person={person} /> */}
+            <Sikkerhetstiltak sikkerhetstiltak={person.sikkerhetstiltak} />
+            {/* <LenkeBrukerprofilContainer person={person} /> */}
         </Kolonne>
     );
 }

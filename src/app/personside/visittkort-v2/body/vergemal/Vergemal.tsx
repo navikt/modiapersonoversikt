@@ -1,24 +1,13 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
-
 import { Normaltekst } from 'nav-frontend-typografi';
-
 import VisittkortElement from '../VisittkortElement';
 import { Verge as VergeInterface } from '../../PersondataDomain';
-import { formaterDato } from '../../../../../utils/string-utils';
 import VergemalLogo from '../../../../../svg/Utropstegn';
 import EtikettGraa from '../../../../../components/EtikettGraa';
-import { ENDASH } from '../../../../../utils/string-utils';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import { Element } from 'nav-frontend-typografi';
-import { hentNavn } from '../../utils-visittkort';
-
-function getPeriodeTekst(gyldighetstidspunkt: string | null, opphoerstidspunkt?: string | null) {
-    const fom = gyldighetstidspunkt ? formaterDato(gyldighetstidspunkt) : '';
-    const tom = opphoerstidspunkt ? formaterDato(opphoerstidspunkt) : '';
-
-    return `${fom} ${ENDASH} ${tom}`;
-}
+import { hentNavn, hentPeriodeTekst } from '../../utils-visittkort';
 
 const Vergeinformasjon = styled.div`
     margin-bottom: 5px;
@@ -43,7 +32,7 @@ function Verge(props: { verge: VergeInterface }) {
             <EtikettGraa>
                 {verge.embete ? verge.embete : ''}
                 {verge.embete ? <br /> : ''}
-                {getPeriodeTekst(verge.gyldighetstidspunkt, verge.opphoerstidspunkt)}
+                {hentPeriodeTekst(verge.gyldighetstidspunkt, verge.opphoerstidspunkt)}
             </EtikettGraa>
         </VisittkortElement>
     );

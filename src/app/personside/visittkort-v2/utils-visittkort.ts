@@ -1,3 +1,4 @@
+import { ENDASH, formaterDato } from '../../../utils/string-utils';
 import { erDod } from './person-utils';
 import { ForelderBarnRelasjon, Navn, Person, PersonStatus } from './PersondataDomain';
 
@@ -25,4 +26,11 @@ export function hentAlderEllerDodRelasjon(relasjon: ForelderBarnRelasjon): strin
 export function relasjonErDod(relasjon: ForelderBarnRelasjon): boolean {
     const personstatus = relasjon.personstatus.firstOrNull();
     return !!personstatus && personstatus.kode === PersonStatus.DOD;
+}
+
+export function hentPeriodeTekst(gyldighetstidspunkt: string | null, opphorstidspunkt?: string | null) {
+    const fom = gyldighetstidspunkt ? formaterDato(gyldighetstidspunkt) : '';
+    const tom = opphorstidspunkt ? formaterDato(opphorstidspunkt) : '';
+
+    return `${fom} ${ENDASH} ${tom}`;
 }
