@@ -11,6 +11,7 @@ import Foreldreansvar from './foreldreansvar/Foreldreansvar';
 import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtKommunikasjon';
 import Vergemal from './vergemal/Vergemal';
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
+import LenkeBrukerprofil from './lenkebrukerprofil/LenkeBrukerprofil';
 
 interface Props {
     person: Person;
@@ -28,7 +29,7 @@ function SingleColumnLayout({ person }: { person: Person }) {
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
             <Vergemal vergemal={person.vergemal} />
             <Sikkerhetstiltak sikkerhetstiltak={person.sikkerhetstiltak} />
-            {/* <LenkeBrukerprofilContainer person={person} /> */}
+            <LenkeBrukerprofil />
         </Kolonne>
     );
 }
