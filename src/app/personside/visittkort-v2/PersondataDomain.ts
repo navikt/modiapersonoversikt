@@ -164,7 +164,7 @@ export interface Verge {
     opphoerstidspunkt: LocalDate | null;
 }
 
-interface Foreldreansvar {
+export interface Foreldreansvar {
     ansvar: string;
     ansvarlig: Navn | null;
     ansvarsubject: Navn | null;
