@@ -24,6 +24,8 @@ import {
 } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { temagruppeTekst, TemaPlukkbare } from '../../../../models/temagrupper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 const SubmitKnapp = styled(Hovedknapp)`
     white-space: normal;
@@ -61,6 +63,7 @@ export const tekstMaksLengde = 5000;
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;
     const personinformasjon = useRestResource(resources => resources.personinformasjon).resource;
+    const usingSFBackend: boolean = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
     const temagrupperITraad = props.traad.meldinger.map(it => it.temagruppe);
 
     const navn = isLoadedPerson(personinformasjon)
@@ -100,17 +103,30 @@ function FortsettDialog(props: Props) {
                 erSamtalereferat={erSamtalereferat}
             />
             <Margin>
-                <UnmountClosed isOpened={girVarselKanIkkeSvare}>
+                <UnmountClosed isOpened={!usingSFBackend && girVarselKanIkkeSvare}>
                     <AlertStripeInfo>Gir varsel, bruker kan ikke svare</AlertStripeInfo>
                 </UnmountClosed>
-                <UnmountClosed isOpened={girIkkeVarsel}>
+                <UnmountClosed isOpened={!usingSFBackend && girIkkeVarsel}>
                     <AlertStripeInfo>Gir ikke varsel</AlertStripeInfo>
                 </UnmountClosed>
-                <UnmountClosed isOpened={brukerKanSvareValg}>
+                <UnmountClosed isOpened={!usingSFBackend && brukerKanSvareValg}>
+                    <AlertStripeInfo>Gir varsel, bruker kan svare</AlertStripeInfo>
                     <BrukerKanSvare
                         formState={state}
                         updateFormState={updateState}
                         visVelgSak={!erEldsteMeldingJournalfort(props.traad) && !erOksosTraad}
+                    />
+                </UnmountClosed>
+                <UnmountClosed isOpened={usingSFBackend && !erSamtalereferat}>
+                    <AlertStripeInfo>Gir varsel, bruker kan svare.</AlertStripeInfo>
+                    <BrukerKanSvare
+                        formState={state}
+                        updateFormState={updateState}
+                        visVelgSak={
+                            !erEldsteMeldingJournalfort(props.traad) &&
+                            !erOksosTraad &&
+                            state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE
+                        }
                     />
                 </UnmountClosed>
                 <UnmountClosed isOpened={erDelsvar}>
