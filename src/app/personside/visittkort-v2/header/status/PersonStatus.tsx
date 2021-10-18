@@ -46,8 +46,10 @@ function Fodselsnummer({ person }: PersonProps) {
 }
 
 function Dodsdato({ person }: PersonProps) {
-    if (person.dodsdato.length > 0 && person.personstatus[0].kode === Status.DOD) {
-        const formatertDodsdato = formaterDato(person.dodsdato[0]);
+    const dodsdato = person.dodsdato.firstOrNull();
+    const personstatus = person.personstatus.firstOrNull();
+    if (dodsdato && personstatus?.kode === Status.DOD) {
+        const formatertDodsdato = formaterDato(dodsdato);
         return <span>Død {formatertDodsdato}</span>;
     } else {
         return null;
@@ -55,7 +57,7 @@ function Dodsdato({ person }: PersonProps) {
 }
 
 function Utvandret({ person }: PersonProps) {
-    if (person.personstatus[0] && person.personstatus[0].kode === Status.UTFLYTTET) {
+    if (person.personstatus.firstOrNull()?.kode === Status.UTFLYTTET) {
         return <span>Utvandret</span>;
     } else {
         return null;
@@ -71,8 +73,8 @@ function PersonStatus({ person }: PersonProps) {
                 <Utvandret person={person} />
             </Fodselsnummerlinje>
             <PersonStatusListe>
-                <Statsborgerskap statsborgerskap={person.statsborgerskap[0]} />
-                <Sivilstand sivilstand={person.sivilstand[0]} kjonn={person.kjonn[0].kode} />
+                <Statsborgerskap person={person} />
+                <Sivilstand person={person} />
                 <AntallBarn forelderBarnRelasjon={person.forelderBarnRelasjon} />
             </PersonStatusListe>
         </Normaltekst>

@@ -1,21 +1,25 @@
 import * as React from 'react';
-import { Kjonn, Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
+import { Kjonn, Person, Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
 
 interface Props {
-    sivilstand: SivilstandInterface;
-    kjonn: Kjonn;
+    person: Person;
 }
 
-function hentBeskrivelseForSivilstand(sivilstand: SivilstandInterface, kjonn: Kjonn) {
-    if (sivilstand.type.kode === SivilstandType.ENKE_ELLER_ENKEMANN) {
+function hentBeskrivelseForSivilstand(sivilstand: SivilstandInterface, kjonn: Kjonn | undefined) {
+    if (kjonn && sivilstand.type.kode === SivilstandType.ENKE_ELLER_ENKEMANN) {
         return kjonn === Kjonn.M ? 'Enkemann' : 'Enke';
     } else {
         return sivilstand.type.beskrivelse;
     }
 }
 
-export function Sivilstand({ sivilstand, kjonn }: Props) {
-    const sivilstandBeskrivelse = hentBeskrivelseForSivilstand(sivilstand, kjonn);
+export function Sivilstand({ person }: Props) {
+    const sivilstand = person.sivilstand.firstOrNull();
+    const kjonn = person.kjonn.firstOrNull();
+    if (!sivilstand) {
+        return null;
+    }
+    const sivilstandBeskrivelse = hentBeskrivelseForSivilstand(sivilstand, kjonn?.kode);
 
     return <li title="Sivilstand">{sivilstandBeskrivelse}</li>;
 }

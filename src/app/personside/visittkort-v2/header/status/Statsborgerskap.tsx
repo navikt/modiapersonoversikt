@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Statsborgerskap as StatsborgerskapInterface } from '../../PersondataDomain';
+import { Person } from '../../PersondataDomain';
 
 interface Props {
-    statsborgerskap: StatsborgerskapInterface;
+    person: Person;
 }
 
 function uppercaseForsteBokstav(ord: string) {
@@ -20,7 +20,11 @@ function formaterStatsborgerskapMedRiktigCasing(statsborgerskap: string): string
         .join('-');
 }
 
-function Statsborgerskap({ statsborgerskap }: Props) {
+function Statsborgerskap({ person }: Props) {
+    const statsborgerskap = person.statsborgerskap.firstOrNull();
+    if (!statsborgerskap) {
+        return null;
+    }
     const formatertStatsborgerskap = formaterStatsborgerskapMedRiktigCasing(statsborgerskap.land.beskrivelse);
 
     return <li title="Statsborgerskap">{formatertStatsborgerskap}</li>;
