@@ -219,6 +219,7 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  min-width: 35%;
 }
 
 .c10 {

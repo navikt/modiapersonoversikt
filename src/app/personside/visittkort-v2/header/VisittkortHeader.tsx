@@ -40,6 +40,7 @@ const StyledContent = styled.div`
 
 const VenstreFelt = styled.section`
     display: flex;
+    min-width: 35%;
 `;
 
 const HoyreFelt = styled.div`
