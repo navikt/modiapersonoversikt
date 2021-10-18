@@ -28,11 +28,11 @@ function lagAdvarselOmDodtBarn(barn: ForelderBarnRelasjon[]): React.ReactNode {
 
 export function AntallBarn({ forelderBarnRelasjon }: Props) {
     const barn = hentBarn(forelderBarnRelasjon);
-    if (barn.length === 0) {
+    if (barn.isEmpty()) {
         return null;
     }
     const barnUnder21 = hentBarnUnder21(barn);
-    if (barnUnder21.length === 0) {
+    if (barnUnder21.isEmpty()) {
         return <li title="Barn under 21 år">Ingen barn under 21 år</li>;
     }
     const advarselOmDodtBarn = lagAdvarselOmDodtBarn(barnUnder21);

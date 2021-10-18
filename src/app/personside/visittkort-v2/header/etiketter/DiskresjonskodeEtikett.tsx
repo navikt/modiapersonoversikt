@@ -7,7 +7,6 @@ interface Props {
 }
 
 function DiskresjonskodeEtikett({ adressebeskyttelse }: Props) {
-    // TODO: Skal ugradert ha noe?
     switch (adressebeskyttelse) {
         case AdresseBeskyttelse.KODE6:
             return <EtikettBase type={'advarsel'}>Kode 6</EtikettBase>;
