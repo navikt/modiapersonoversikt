@@ -1,13 +1,14 @@
 import * as React from 'react';
 import EtikettBase from 'nav-frontend-etiketter';
-import { AdresseBeskyttelse } from '../../PersondataDomain';
+import { AdresseBeskyttelse, KodeBeskrivelse } from '../../PersondataDomain';
 
 interface Props {
-    adressebeskyttelse: AdresseBeskyttelse;
+    adressebeskyttelser: KodeBeskrivelse<AdresseBeskyttelse>[];
 }
 
-function DiskresjonskodeEtikett({ adressebeskyttelse }: Props) {
-    switch (adressebeskyttelse) {
+function DiskresjonskodeEtikett({ adressebeskyttelser }: Props) {
+    const adressebeskyttelse = adressebeskyttelser.firstOrNull();
+    switch (adressebeskyttelse?.kode) {
         case AdresseBeskyttelse.KODE6:
             return <EtikettBase type={'advarsel'}>Kode 6</EtikettBase>;
         case AdresseBeskyttelse.KODE6_UTLAND:

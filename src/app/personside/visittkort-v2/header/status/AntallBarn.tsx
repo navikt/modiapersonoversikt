@@ -19,7 +19,12 @@ const AdvarselIkon = styled(AdvarselIkonSvg)`
 `;
 
 function lagAdvarselOmDodtBarn(barn: ForelderBarnRelasjon[]): React.ReactNode {
-    const dode = barn.some(barn => barn.personstatus[0].kode === PersonStatus.DOD);
+    const dode = barn.some(barn => {
+        if (barn.personstatus.isEmpty()) {
+            return false;
+        }
+        return barn.personstatus[0].kode === PersonStatus.DOD;
+    });
     if (dode) {
         return <AdvarselIkon title="Ett eller flere av barnene har status som død" />;
     }
