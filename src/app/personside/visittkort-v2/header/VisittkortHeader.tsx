@@ -107,7 +107,7 @@ function VisittkortHeader(props: Props) {
                                 {hentNavn(navn)} ({hentAlderEllerDod(props.persondata.person)})
                             </span>
                         </Undertittel>
-                        <span className="visually-hidden">{kjonn?.beskrivelse}</span>
+                        <span className="visually-hidden">{kjonn.beskrivelse}</span>
                         <PersonStatus person={props.persondata.person} />
                     </GrunninfoDiv>
                 </VenstreFelt>
