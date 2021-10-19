@@ -47,11 +47,7 @@ export function harDiskresjonskode(adressebeskyttelse: KodeBeskrivelse<AdresseBe
 }
 
 export function hentPartner(sivilstand: Sivilstand[]) {
-    const aktuelleRelasjoner = [
-        SivilstandType.GIFT,
-        SivilstandType.REGISTRERT_PARTNER,
-        SivilstandType.GJENLEVENDE_PARTNER // TODO: Hva er denne?
-    ];
+    const aktuelleRelasjoner = [SivilstandType.GIFT, SivilstandType.REGISTRERT_PARTNER];
     return sivilstand.find(relasjon => aktuelleRelasjoner.includes(relasjon.type.kode));
 }
 

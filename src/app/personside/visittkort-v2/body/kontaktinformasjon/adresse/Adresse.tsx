@@ -10,42 +10,27 @@ interface Props {
     person: Person;
 }
 
+function AdresseElement(props: { adresse: PersonAdresse | null; beskrivelse: string }) {
+    return (
+        <VisittkortElement beskrivelse={props.beskrivelse} ikon={<LocationPin />}>
+            {!props.adresse ? (
+                <Normaltekst>Ikke registrert</Normaltekst>
+            ) : (
+                <>
+                    <Adresseinfo adresse={props.adresse} />
+                    <Endringstekst sistEndret={props.adresse.sistEndret} />
+                </>
+            )}
+        </VisittkortElement>
+    );
+}
+
 function Adresse({ person }: Props) {
     return (
         <>
-            {hentBostedAdresse(person.bostedAdresse[0])}
-            {hentKontaktAdresse(person.kontaktAdresse[0])}
+            <AdresseElement adresse={person.bostedAdresse.firstOrNull()} beskrivelse={'Bostedsadresse'} />
+            <AdresseElement adresse={person.kontaktAdresse.firstOrNull()} beskrivelse={'Kontaktadresse'} />
         </>
-    );
-}
-
-function formaterAdresse(personAdresse: PersonAdresse) {
-    const adresse =
-        personAdresse != null ? (
-            <>
-                <Adresseinfo adresse={personAdresse} />
-                <Endringstekst sistEndret={personAdresse.sistEndret} />
-            </>
-        ) : (
-            <Normaltekst>Ikke registrert</Normaltekst>
-        );
-
-    return adresse;
-}
-
-function hentBostedAdresse(adresse: PersonAdresse) {
-    return (
-        <VisittkortElement beskrivelse="Bostedsadresse" ikon={<LocationPin />}>
-            {formaterAdresse(adresse)}
-        </VisittkortElement>
-    );
-}
-
-function hentKontaktAdresse(adresse: PersonAdresse) {
-    return (
-        <VisittkortElement beskrivelse="Kontaktadresse" ikon={<LocationPin />}>
-            {formaterAdresse(adresse)}
-        </VisittkortElement>
     );
 }
 

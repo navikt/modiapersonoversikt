@@ -327,13 +327,13 @@ const barnMock: ForelderBarnRelasjon[] = [
         rolle: ForelderBarnRelasjonRolle.MOR,
         navn: [
             {
-                fornavn: 'BARN1',
+                fornavn: 'MOR',
                 mellomnavn: null,
-                etternavn: 'BARNESEN'
+                etternavn: 'MORSAN'
             }
         ],
-        fodselsdato: ['2008-03-15' as LocalDate],
-        alder: 13,
+        fodselsdato: ['1971-03-15' as LocalDate],
+        alder: 50,
         kjonn: [
             {
                 kode: Kjonn.K,
@@ -367,7 +367,7 @@ const barnMock: ForelderBarnRelasjon[] = [
         rolle: ForelderBarnRelasjonRolle.BARN,
         navn: [
             {
-                fornavn: 'BARN2',
+                fornavn: 'BARN1',
                 mellomnavn: null,
                 etternavn: 'BARNESEN'
             }
@@ -438,7 +438,7 @@ const barnMock: ForelderBarnRelasjon[] = [
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.UGRADERT,
-                beskrivelse: 'Sperret adresse, strengt fortrolig utland'
+                beskrivelse: 'UGRADERT'
             }
         ],
         bostedAdresse: [

@@ -24,31 +24,6 @@ const AdresseStyle = styled.div`
     margin-top: 0.5rem;
 `;
 
-function KontaktinformasjonDodsbo(props: Props) {
-    const dodsboListe = props.person.dodsbo;
-
-    if (dodsboListe.length === 0) {
-        return null;
-    }
-
-    return (
-        <>
-            {dodsboListe.map((dodsbo, index) => {
-                return (
-                    <VisittkortElement key={index} beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
-                        <Adressatinfo adressat={dodsbo.adressat} />
-                        <AdresseStyle>
-                            <Adresseinfo adresse={dodsbo.adresse} />
-                        </AdresseStyle>
-                        {/* TODO: Her ble det tidligere brukt dodsbo.registrert. Hva ønsker vi å bruke? */}
-                        <Endringstekst sistEndret={dodsbo.sistEndret} />
-                    </VisittkortElement>
-                );
-            })}
-        </>
-    );
-}
-
 function Adressatinfo({ adressat }: { adressat: Adressat }) {
     if (adressat.advokatSomAdressat) {
         return <AdvokatSomAdressatInfo adressat={adressat.advokatSomAdressat} />;
@@ -103,6 +78,31 @@ function PersonSomAdressatInfo({ adressat }: { adressat: PersonSomAdressat }) {
             {navn}
             {fnr}
             {fodselsdato}
+        </>
+    );
+}
+
+function KontaktinformasjonDodsbo({ person }: Props) {
+    const dodsboListe = person.dodsbo;
+
+    if (dodsboListe.isEmpty()) {
+        return null;
+    }
+
+    return (
+        <>
+            {dodsboListe.map((dodsbo, index) => {
+                return (
+                    <VisittkortElement key={index} beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
+                        <Adressatinfo adressat={dodsbo.adressat} />
+                        <AdresseStyle>
+                            <Adresseinfo adresse={dodsbo.adresse} />
+                        </AdresseStyle>
+                        {/* TODO: Her ble det tidligere brukt dodsbo.registrert. Hva ønsker vi å bruke? */}
+                        <Endringstekst sistEndret={dodsbo.sistEndret} />
+                    </VisittkortElement>
+                );
+            })}
         </>
     );
 }

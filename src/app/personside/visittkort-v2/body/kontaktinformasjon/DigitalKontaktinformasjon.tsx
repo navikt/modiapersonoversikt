@@ -22,7 +22,6 @@ function DigitalKontaktinformasjon({ reservasjon, kontaktinformasjonVerdi, sistO
         return (
             <>
                 <Normaltekst>{kontaktinformasjonVerdi}</Normaltekst>
-                {/* TODO: Kunne vi fått brukt Endringstekst.tsx på noen måte her? */}
                 <EtikettGraa>Endret {sistOppdatert} i Kontakt- og reservasjonsregisteret</EtikettGraa>
             </>
         );
