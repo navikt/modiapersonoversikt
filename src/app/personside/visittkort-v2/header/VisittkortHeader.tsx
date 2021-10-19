@@ -83,7 +83,7 @@ function VisittkortHeader(props: Props) {
     const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
 
     useOnMount(() => {
-        if (props.persondata.person.sikkerhetstiltak.length > 0) {
+        if (!props.persondata.person.sikkerhetstiltak.isEmpty()) {
             return;
         }
         if (jobberMedSTO) {
