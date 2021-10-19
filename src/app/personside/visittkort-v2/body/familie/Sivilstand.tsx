@@ -4,8 +4,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import HeartIkon from '../../../../../svg/Heart';
 import { Person, Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
-import { harDiskresjonskode, hentPartner } from '../../person-utils';
-import { hentNavn } from '../../utils-visittkort';
+import { harDiskresjonskode, hentNavn, hentPartner } from '../../visittkort-utils';
 import Diskresjonskode from './common/Diskresjonskode';
 
 interface Props {

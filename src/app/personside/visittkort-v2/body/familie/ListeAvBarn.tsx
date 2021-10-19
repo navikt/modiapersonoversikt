@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ForelderBarnRelasjon, Kjonn } from '../../PersondataDomain';
-import { harDiskresjonskode, hentBarnUnder21 } from '../../person-utils';
 import ForelderBarnRelasjonVisning from './ForelderBarnRelasjon';
 import { capitalizeName } from '../../../../../utils/string-utils';
+import { harDiskresjonskode, hentBarnUnder21 } from '../../visittkort-utils';
 
 interface Props {
     relasjoner: ForelderBarnRelasjon[];

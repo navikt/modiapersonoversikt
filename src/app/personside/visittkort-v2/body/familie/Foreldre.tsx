@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ForelderBarnRelasjon } from '../../PersondataDomain';
-import { hentForeldre } from '../../person-utils';
 import { capitalizeName } from '../../../../../utils/string-utils';
 import ForelderBarnRelasjonVisning from './ForelderBarnRelasjon';
+import { hentForeldre } from '../../visittkort-utils';
 
 interface Props {
     forelderBarnRelasjon: ForelderBarnRelasjon[];

@@ -1,8 +1,7 @@
 import { Normaltekst } from 'nav-frontend-typografi';
 import * as React from 'react';
-import { harDiskresjonskode } from '../../person-utils';
 import { ForelderBarnRelasjon } from '../../PersondataDomain';
-import { hentAlderEllerDodRelasjon, hentNavn } from '../../utils-visittkort';
+import { harDiskresjonskode, hentAlderEllerDodRelasjon, hentNavn } from '../../visittkort-utils';
 import VisittkortElement from '../VisittkortElement';
 import BostedForRelasjon from './common/BostedForRelasjon';
 import Diskresjonskode from './common/Diskresjonskode';

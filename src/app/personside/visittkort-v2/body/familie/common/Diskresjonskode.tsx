@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { AdresseBeskyttelse, KodeBeskrivelse } from '../../../PersondataDomain';
-import { harDiskresjonskode } from '../../../person-utils';
+import { harDiskresjonskode } from '../../../visittkort-utils';
 
 interface Props {
     adressebeskyttelse: KodeBeskrivelse<AdresseBeskyttelse>[];

@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import VisittkortElement from '../../VisittkortElement';
 import LocationPin from '../../../../../../svg/LocationPin';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { hentNavn } from '../../../utils-visittkort';
+import { hentNavn } from '../../../visittkort-utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { formaterDato } from '../../../../../../utils/string-utils';
 import {

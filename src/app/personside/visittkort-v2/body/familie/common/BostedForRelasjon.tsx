@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ForelderBarnRelasjon } from '../../../PersondataDomain';
-import { relasjonErDod } from '../../../utils-visittkort';
+import { relasjonErDod } from '../../../visittkort-utils';
 
 interface Props {
     relasjon: ForelderBarnRelasjon;

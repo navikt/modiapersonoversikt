@@ -5,7 +5,7 @@ import { VisittkortGruppe } from '../VisittkortStyles';
 import Fullmaktlogo from '../../../../../svg/Utropstegn';
 import { formaterDato } from '../../../../../utils/string-utils';
 import { Fullmakt as FullmaktInterface } from '../../PersondataDomain';
-import { hentNavn } from '../../utils-visittkort';
+import { hentNavn } from '../../visittkort-utils';
 
 interface Props {
     fullmakter: FullmaktInterface[];

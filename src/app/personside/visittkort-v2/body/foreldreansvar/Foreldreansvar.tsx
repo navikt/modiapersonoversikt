@@ -4,7 +4,7 @@ import VisittkortElement from '../VisittkortElement';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Infotegn from '../../../../../svg/Info';
 import { Foreldreansvar } from '../../PersondataDomain';
-import { hentNavn } from '../../utils-visittkort';
+import { hentNavn } from '../../visittkort-utils';
 
 interface Props {
     foreldreansvar: Foreldreansvar[];

@@ -6,7 +6,7 @@ import Guttebarn from '../../../../../../svg/Guttebarn';
 import Jentebarn from '../../../../../../svg/Jentebarn';
 import { ForelderBarnRelasjon, Kjonn } from '../../../PersondataDomain';
 import UkjentKjonn from '../../../../../../svg/UkjentKjonn';
-import { harDiskresjonskode } from '../../../person-utils';
+import { harDiskresjonskode } from '../../../visittkort-utils';
 
 interface Props {
     relasjon: ForelderBarnRelasjon;

@@ -5,7 +5,7 @@ import VisittkortHeader from './VisittkortHeader';
 import { aremark } from '../../../../mock/persondata/aremark';
 import { Data as PersonData, LocalDate, Person, SikkerhetstiltakType } from '../PersondataDomain';
 import { mount } from '../../../../test/enzyme-container';
-import { hentNavn } from '../utils-visittkort';
+import { hentNavn } from '../visittkort-utils';
 
 function lagPersondataForAremark(): PersonData {
     const person = aremark;

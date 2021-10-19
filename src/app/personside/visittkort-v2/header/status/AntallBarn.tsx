@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { ReactComponent as AdvarselIkonSvg } from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll.svg';
 import { ForelderBarnRelasjon, PersonStatus } from '../../PersondataDomain';
-import { hentBarn, hentBarnUnder21 } from '../../person-utils';
+import { hentBarn, hentBarnUnder21 } from '../../visittkort-utils';
 
 interface Props {
     forelderBarnRelasjon: ForelderBarnRelasjon[];

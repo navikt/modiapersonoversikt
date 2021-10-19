@@ -4,7 +4,7 @@ import SikkerhetsTiltakIkon from '../../../../../svg/Sikkerhetstiltak';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import VisittkortElement from '../VisittkortElement';
 import { Sikkerhetstiltak as SikkerhetstiltakInterface } from '../../PersondataDomain';
-import { hentPeriodeTekst } from '../../utils-visittkort';
+import { hentPeriodeTekst } from '../../visittkort-utils';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 
 interface Props {

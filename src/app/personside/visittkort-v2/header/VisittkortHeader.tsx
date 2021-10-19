@@ -3,7 +3,7 @@ import { Data as Persondata, Kjonn, KodeBeskrivelse } from '../PersondataDomain'
 import { Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
-import { hentAlderEllerDod, hentNavn } from '../utils-visittkort';
+import { hentAlderEllerDod, hentNavn } from '../visittkort-utils';
 import { useRef } from 'react';
 import PersonStatus from './status/PersonStatus';
 import Etiketter from './etiketter/Etiketter';

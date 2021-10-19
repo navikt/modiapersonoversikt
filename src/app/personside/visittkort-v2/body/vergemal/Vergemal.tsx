@@ -7,7 +7,7 @@ import VergemalLogo from '../../../../../svg/Utropstegn';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import { Element } from 'nav-frontend-typografi';
-import { hentNavn, hentPeriodeTekst } from '../../utils-visittkort';
+import { hentNavn, hentPeriodeTekst } from '../../visittkort-utils';
 
 const Vergeinformasjon = styled.div`
     margin-bottom: 5px;
