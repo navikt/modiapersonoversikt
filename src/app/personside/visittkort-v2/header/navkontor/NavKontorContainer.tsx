@@ -14,19 +14,12 @@ const NavKontorSection = styled.section`
 `;
 
 function NavKontorContainer({ person }: Props) {
-    if (!person.navEnhet) {
-        return (
-            <NavKontorSection aria-label="Nav kontor">
-                <Element tag="h2">NAV-kontor / Ingen enhet</Element>
-            </NavKontorSection>
-        );
-    }
-
+    const navKontorInfo = person.navEnhet
+        ? `NAV-kontor / ${person.navEnhet.id} ${person.navEnhet.navn}`
+        : 'NAV-kontor / Ingen enhet';
     return (
         <NavKontorSection aria-label="Nav kontor">
-            <Element tag="h2">
-                NAV-kontor / {person.navEnhet.id} {person.navEnhet.navn}
-            </Element>
+            <Element tag="h2">{navKontorInfo}</Element>
         </NavKontorSection>
     );
 }

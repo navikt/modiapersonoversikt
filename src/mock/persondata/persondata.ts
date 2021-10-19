@@ -68,7 +68,7 @@ function lagPersondata(fnr: string): PersonData {
             {
                 land: {
                     kode: 'NOR',
-                    beskrivelse: 'Norsk statsborger'
+                    beskrivelse: 'NORSK STATSBORGER'
                 },
                 gyldigFraOgMed: '2000-02-02' as LocalDate,
                 gyldigTilOgMed: '2018-06-07' as LocalDate

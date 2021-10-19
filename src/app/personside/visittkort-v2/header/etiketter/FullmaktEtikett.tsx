@@ -7,7 +7,7 @@ interface Props {
 }
 
 function FullmaktEtikett({ fullmakt }: Props) {
-    if (fullmakt.length === 0) {
+    if (fullmakt.isEmpty()) {
         return null;
     }
 

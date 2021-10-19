@@ -7,7 +7,7 @@ interface Props {
 }
 
 function DoedsboEtikett({ dodsbo }: Props) {
-    if (dodsbo.length === 0) {
+    if (dodsbo.isEmpty()) {
         return null;
     }
 

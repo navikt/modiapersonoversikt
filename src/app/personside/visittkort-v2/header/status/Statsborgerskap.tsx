@@ -1,22 +1,19 @@
 import * as React from 'react';
+import { capitalizeName } from '../../../../../utils/string-utils';
 import { Person } from '../../PersondataDomain';
 
 interface Props {
     person: Person;
 }
 
-function uppercaseForsteBokstav(ord: string) {
-    return ord.substring(0, 1).toUpperCase() + ord.substring(1, ord.length);
-}
-
 function formaterStatsborgerskapMedRiktigCasing(statsborgerskap: string): string {
     return statsborgerskap
         .toLowerCase()
         .split(' ')
-        .map(uppercaseForsteBokstav)
+        .map(capitalizeName)
         .join(' ')
         .split('-')
-        .map(uppercaseForsteBokstav)
+        .map(capitalizeName)
         .join('-');
 }
 
