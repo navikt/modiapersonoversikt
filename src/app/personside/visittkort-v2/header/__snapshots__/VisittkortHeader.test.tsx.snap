@@ -219,6 +219,7 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  min-width: 35%;
 }
 
 .c10 {
@@ -504,10 +505,7 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
         <h2
           className="typo-element"
         >
-          NAV-kontor / 
-          0219
-           
-          NAV Bærum
+          NAV-kontor / 0219 NAV Bærum
         </h2>
       </section>
     </div>

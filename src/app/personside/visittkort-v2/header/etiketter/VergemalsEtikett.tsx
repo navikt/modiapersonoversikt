@@ -7,7 +7,7 @@ interface Props {
 }
 
 function VergemalsEtikett({ vergemal }: Props) {
-    if (vergemal.length === 0) {
+    if (vergemal.isEmpty()) {
         return null;
     }
 

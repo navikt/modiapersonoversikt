@@ -29,7 +29,7 @@ function Etiketter({ person }: Props) {
     return (
         <ErrorBoundary boundaryName="Etiketter">
             <StyledEtikketter role="region" aria-label="etiketter">
-                <DiskresjonskodeEtikett adressebeskyttelse={person.adressebeskyttelse[0].kode} />
+                <DiskresjonskodeEtikett adressebeskyttelser={person.adressebeskyttelse} />
                 <EgenAnsattEtikett erEgenansatt={person.erEgenAnsatt} />
                 <SikkerhetstiltakEtikett sikkerhetstiltak={person.sikkerhetstiltak} />
                 <ReservertIKRREtikett kontaktOgReservasjon={person.kontaktOgReservasjon} />

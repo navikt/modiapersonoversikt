@@ -40,6 +40,7 @@ const StyledContent = styled.div`
 
 const VenstreFelt = styled.section`
     display: flex;
+    min-width: 35%;
 `;
 
 const HoyreFelt = styled.div`
@@ -82,7 +83,7 @@ function VisittkortHeader(props: Props) {
     const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
 
     useOnMount(() => {
-        if (props.persondata.person.sikkerhetstiltak.length > 0) {
+        if (!props.persondata.person.sikkerhetstiltak.isEmpty()) {
             return;
         }
         if (jobberMedSTO) {
@@ -106,7 +107,7 @@ function VisittkortHeader(props: Props) {
                                 {hentNavn(navn)} ({hentAlderEllerDod(props.persondata.person)})
                             </span>
                         </Undertittel>
-                        <span className="visually-hidden">{kjonn?.beskrivelse}</span>
+                        <span className="visually-hidden">{kjonn.beskrivelse}</span>
                         <PersonStatus person={props.persondata.person} />
                     </GrunninfoDiv>
                 </VenstreFelt>

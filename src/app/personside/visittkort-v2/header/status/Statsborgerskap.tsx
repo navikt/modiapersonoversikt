@@ -1,26 +1,27 @@
 import * as React from 'react';
-import { Statsborgerskap as StatsborgerskapInterface } from '../../PersondataDomain';
+import { capitalizeName } from '../../../../../utils/string-utils';
+import { Person } from '../../PersondataDomain';
 
 interface Props {
-    statsborgerskap: StatsborgerskapInterface;
-}
-
-function uppercaseForsteBokstav(ord: string) {
-    return ord.substring(0, 1).toUpperCase() + ord.substring(1, ord.length);
+    person: Person;
 }
 
 function formaterStatsborgerskapMedRiktigCasing(statsborgerskap: string): string {
     return statsborgerskap
         .toLowerCase()
         .split(' ')
-        .map(uppercaseForsteBokstav)
+        .map(capitalizeName)
         .join(' ')
         .split('-')
-        .map(uppercaseForsteBokstav)
+        .map(capitalizeName)
         .join('-');
 }
 
-function Statsborgerskap({ statsborgerskap }: Props) {
+function Statsborgerskap({ person }: Props) {
+    const statsborgerskap = person.statsborgerskap.firstOrNull();
+    if (!statsborgerskap) {
+        return null;
+    }
     const formatertStatsborgerskap = formaterStatsborgerskapMedRiktigCasing(statsborgerskap.land.beskrivelse);
 
     return <li title="Statsborgerskap">{formatertStatsborgerskap}</li>;

@@ -25,7 +25,7 @@ function SikkerhetstiltakEtikett({ sikkerhetstiltak }: Props) {
     const etikettRef = React.createRef<HTMLDivElement>();
     useFocusOnMount(etikettRef);
 
-    if (sikkerhetstiltak.length === 0) {
+    if (sikkerhetstiltak.isEmpty()) {
         return null;
     }
 

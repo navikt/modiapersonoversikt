@@ -19,7 +19,12 @@ const AdvarselIkon = styled(AdvarselIkonSvg)`
 `;
 
 function lagAdvarselOmDodtBarn(barn: ForelderBarnRelasjon[]): React.ReactNode {
-    const dode = barn.some(barn => barn.personstatus[0].kode === PersonStatus.DOD);
+    const dode = barn.some(barn => {
+        if (barn.personstatus.isEmpty()) {
+            return false;
+        }
+        return barn.personstatus[0].kode === PersonStatus.DOD;
+    });
     if (dode) {
         return <AdvarselIkon title="Ett eller flere av barnene har status som død" />;
     }
@@ -28,11 +33,11 @@ function lagAdvarselOmDodtBarn(barn: ForelderBarnRelasjon[]): React.ReactNode {
 
 export function AntallBarn({ forelderBarnRelasjon }: Props) {
     const barn = hentBarn(forelderBarnRelasjon);
-    if (barn.length === 0) {
+    if (barn.isEmpty()) {
         return null;
     }
     const barnUnder21 = hentBarnUnder21(barn);
-    if (barnUnder21.length === 0) {
+    if (barnUnder21.isEmpty()) {
         return <li title="Barn under 21 år">Ingen barn under 21 år</li>;
     }
     const advarselOmDodtBarn = lagAdvarselOmDodtBarn(barnUnder21);
