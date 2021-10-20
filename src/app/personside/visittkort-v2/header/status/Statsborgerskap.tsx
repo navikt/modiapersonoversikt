@@ -22,9 +22,9 @@ function Statsborgerskap({ person }: Props) {
         return null;
     }
 
-    const gyldigeStatsborgerskap = person.statsborgerskap
-        .filter(statsborgerskap => !statsborgerskap.erHistorisk)
-        .map(statsborgerskap => formaterStatsborgerskapMedRiktigCasing(statsborgerskap.land.beskrivelse));
+    const gyldigeStatsborgerskap = person.statsborgerskap.map(statsborgerskap =>
+        formaterStatsborgerskapMedRiktigCasing(statsborgerskap.land.beskrivelse)
+    );
 
     if (gyldigeStatsborgerskap.length > 1) {
         return <li title="Statsborgerskap">Flere statsborgerskap: {gyldigeStatsborgerskap.join(', ')}</li>;

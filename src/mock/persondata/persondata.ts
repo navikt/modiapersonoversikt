@@ -71,8 +71,7 @@ function lagPersondata(fnr: string): PersonData {
                     beskrivelse: 'NORGE'
                 },
                 gyldigFraOgMed: '2000-02-02' as LocalDate,
-                gyldigTilOgMed: null,
-                erHistorisk: false
+                gyldigTilOgMed: null
             },
             {
                 land: {
@@ -80,8 +79,7 @@ function lagPersondata(fnr: string): PersonData {
                     beskrivelse: 'DANMARK'
                 },
                 gyldigFraOgMed: '2000-02-02' as LocalDate,
-                gyldigTilOgMed: null,
-                erHistorisk: true
+                gyldigTilOgMed: null
             },
             {
                 land: {
@@ -89,8 +87,7 @@ function lagPersondata(fnr: string): PersonData {
                     beskrivelse: 'FINLAND'
                 },
                 gyldigFraOgMed: '2000-02-02' as LocalDate,
-                gyldigTilOgMed: null,
-                erHistorisk: true
+                gyldigTilOgMed: null
             }
         ],
         adressebeskyttelse: [
