@@ -41,7 +41,7 @@ function Verge(props: { verge: VergeInterface }) {
 function Vergesakstype({ vergemal }: Props) {
     const alleVergesakstyper = vergemal.map(verge => verge.vergesakstype);
     const unikeVergessakstyper = Array.from(new Set(alleVergesakstyper)).join(', ');
-    return <Normaltekst>{unikeVergessakstyper}</Normaltekst>;
+    return <Normaltekst>Vergesakstyper: {unikeVergessakstyper}</Normaltekst>;
 }
 
 function Vergemal({ vergemal }: Props) {
@@ -49,11 +49,12 @@ function Vergemal({ vergemal }: Props) {
         return null;
     }
 
-    const verger = vergemal.map((verge, index) => <Verge verge={verge} key={index} />);
     return (
         <VisittkortGruppe ikon={<VergemalLogo />} tittel="Bruker er under vergemål">
             <Vergesakstype vergemal={vergemal} />
-            {verger}
+            {vergemal.map((verge, index) => (
+                <Verge verge={verge} key={index} />
+            ))}
         </VisittkortGruppe>
     );
 }

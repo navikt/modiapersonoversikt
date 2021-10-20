@@ -24,7 +24,6 @@ function Fullmakt(props: { fullmakt: FullmaktInterface }) {
     const beskrivelse = `${props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver'}
     : ${motpartsPersonNavn} (${props.fullmakt.motpartsPersonident})`;
 
-    // TODO: Vil vi vise fullmakter som er utgått eller løser PDL dette? Påvirker også etikett
     return (
         <VisittkortElement beskrivelse={beskrivelse}>
             <Normaltekst>Gyldig fra og med {formaterDato(props.fullmakt.gyldigFraOgMed)}</Normaltekst>

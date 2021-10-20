@@ -7,18 +7,20 @@ import Infotegn from '../../../../../svg/Info';
 import { DeltBosted } from '../../PersondataDomain';
 import { Adresseinfo } from '../AdresseInfo';
 
+interface Props {
+    deltBosted: DeltBosted[];
+}
+
 function DeltBostedElement(props: { deltBosted: DeltBosted }) {
     if (!props.deltBosted.adresse) {
         return null;
     }
 
-    const startdato = props.deltBosted.startdatoForKontrakt
-        ? formaterDato(props.deltBosted.startdatoForKontrakt)
-        : 'dato ikke funnet';
+    const startdato = formaterDato(props.deltBosted.startdatoForKontrakt);
     const sluttdato = props.deltBosted.sluttdatoForKontrakt
         ? formaterDato(props.deltBosted.sluttdatoForKontrakt)
-        : 'dato ikke funnet';
-    // TODO: Bør vi håndtere ukjent bosted her også og ikke kun i backend?
+        : 'ukjent dato';
+
     return (
         <VisittkortElement>
             <Adresseinfo adresse={props.deltBosted.adresse} />
@@ -28,14 +30,14 @@ function DeltBostedElement(props: { deltBosted: DeltBosted }) {
     );
 }
 
-function DeltBostedWrapper(props: { deltBosted: DeltBosted[] }) {
-    if (props.deltBosted.isEmpty()) {
+function DeltBostedWrapper({ deltBosted }: Props) {
+    if (deltBosted.isEmpty()) {
         return null;
     }
 
     return (
         <VisittkortGruppe tittel={'Delt Bosted'} ikon={<Infotegn />}>
-            {props.deltBosted.map((deltBosted, index) => (
+            {deltBosted.map((deltBosted, index) => (
                 <DeltBostedElement key={index} deltBosted={deltBosted} />
             ))}
         </VisittkortGruppe>
