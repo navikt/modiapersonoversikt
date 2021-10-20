@@ -20,7 +20,12 @@ const AdvarselIkon = styled(AdvarselIkonSvg)`
 function lagAdvarsel(barn: Familierelasjon[]): React.ReactNode {
     const dode = barn.some(b => erDod(b.tilPerson.personstatus));
     if (dode) {
-        return <AdvarselIkon title="Ett eller flere av barnene har status som død" />;
+        return (
+            <AdvarselIkon
+                title="Ett eller flere av barna har status som død"
+                aria-label="Advarsel: Ett eller flere av barna har status som død"
+            />
+        );
     }
     return null;
 }

@@ -80,10 +80,29 @@ function lagPersondata(fnr: string): PersonData {
             {
                 land: {
                     kode: 'NOR',
-                    beskrivelse: 'NORSK STATSBORGER'
+                    beskrivelse: 'NORGE'
                 },
                 gyldigFraOgMed: '2000-02-02' as LocalDate,
-                gyldigTilOgMed: '2018-06-07' as LocalDate
+                gyldigTilOgMed: null,
+                erHistorisk: false
+            },
+            {
+                land: {
+                    kode: 'DNK',
+                    beskrivelse: 'DANMARK'
+                },
+                gyldigFraOgMed: '2000-02-02' as LocalDate,
+                gyldigTilOgMed: null,
+                erHistorisk: true
+            },
+            {
+                land: {
+                    kode: 'FIN',
+                    beskrivelse: 'FINLAND'
+                },
+                gyldigFraOgMed: '2000-02-02' as LocalDate,
+                gyldigTilOgMed: null,
+                erHistorisk: true
             }
         ],
         adressebeskyttelse: [

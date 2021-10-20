@@ -110,7 +110,8 @@ export const aremark: Person = {
                 beskrivelse: 'NORGE'
             },
             gyldigFraOgMed: '1980-10-10' as LocalDate,
-            gyldigTilOgMed: null
+            gyldigTilOgMed: null,
+            erHistorisk: false
         }
     ],
     adressebeskyttelse: [
