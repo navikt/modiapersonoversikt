@@ -1015,6 +1015,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       <p
         className="typo-normal"
       >
+        Vergesakstyper: 
         Voksen, Fremtidsfullmakt
       </p>
       <div
