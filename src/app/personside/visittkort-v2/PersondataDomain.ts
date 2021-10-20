@@ -49,6 +49,7 @@ export interface Statsborgerskap {
     land: KodeBeskrivelse<string>;
     gyldigFraOgMed: LocalDate | null;
     gyldigTilOgMed: LocalDate | null;
+    erHistorisk: boolean;
 }
 
 export interface Sivilstand {

@@ -18,13 +18,18 @@ function formaterStatsborgerskapMedRiktigCasing(statsborgerskap: string): string
 }
 
 function Statsborgerskap({ person }: Props) {
-    const statsborgerskap = person.statsborgerskap.firstOrNull();
-    if (!statsborgerskap) {
+    if (person.statsborgerskap.isEmpty()) {
         return null;
     }
-    const formatertStatsborgerskap = formaterStatsborgerskapMedRiktigCasing(statsborgerskap.land.beskrivelse);
 
-    return <li title="Statsborgerskap">{formatertStatsborgerskap}</li>;
+    const gyldigeStatsborgerskap = person.statsborgerskap
+        .filter(statsborgerskap => !statsborgerskap.erHistorisk)
+        .map(statsborgerskap => formaterStatsborgerskapMedRiktigCasing(statsborgerskap.land.beskrivelse));
+
+    if (gyldigeStatsborgerskap.length > 1) {
+        return <li title="Statsborgerskap">Flere statsborgerskap: {gyldigeStatsborgerskap.join(', ')}</li>;
+    }
+    return <li title="Statsborgerskap">{gyldigeStatsborgerskap}</li>;
 }
 
 export default Statsborgerskap;
