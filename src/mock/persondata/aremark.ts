@@ -98,7 +98,7 @@ export const aremark: Person = {
     adressebeskyttelse: [
         {
             kode: AdresseBeskyttelse.KODE6,
-            beskrivelse: 'Ingen'
+            beskrivelse: 'Kode 6'
         }
     ],
     sikkerhetstiltak: [
