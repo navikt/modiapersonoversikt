@@ -5,7 +5,7 @@ import { VisittkortGruppe } from '../VisittkortStyles';
 import * as React from 'react';
 import Infotegn from '../../../../../svg/Info';
 import { DeltBosted } from '../../PersondataDomain';
-import { Adresseinfo } from '../AdresseInfo';
+import Adresseinfo from '../AdresseInfo';
 
 interface Props {
     deltBosted: DeltBosted[];

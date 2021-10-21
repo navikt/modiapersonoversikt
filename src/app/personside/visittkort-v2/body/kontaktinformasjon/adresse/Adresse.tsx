@@ -3,7 +3,7 @@ import VisittkortElement from '../../VisittkortElement';
 import LocationPin from '../../../../../../svg/LocationPin';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Adresse as PersonAdresse, Person } from '../../../PersondataDomain';
-import { Adresseinfo } from '../../AdresseInfo';
+import Adresseinfo from '../../AdresseInfo';
 import Endringstekst from '../../Endringstekst';
 
 interface Props {

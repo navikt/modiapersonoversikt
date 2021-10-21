@@ -13,7 +13,7 @@ import {
     OrganisasjonSomAdressat,
     PersonSomAdressat
 } from '../../../PersondataDomain';
-import { Adresseinfo } from '../../AdresseInfo';
+import Adresseinfo from '../../AdresseInfo';
 import Endringstekst from '../../Endringstekst';
 
 interface Props {
