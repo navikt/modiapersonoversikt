@@ -13,6 +13,7 @@ import Vergemal from './vergemal/Vergemal';
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 import LenkeBrukerprofil from './lenkebrukerprofil/LenkeBrukerprofil';
 import { useEffect, useState } from 'react';
+import NavKontor from './navkontor/NavKontor';
 
 interface Props {
     person: Person;
@@ -26,7 +27,7 @@ function SingleColumnLayout(person: Person) {
             <Familie person={person} />
             <DeltBosted deltBosted={person.deltBosted} />
             <Foreldreansvar foreldreansvar={person.foreldreansvar} />
-            {/*<NavKontorSeksjon />*/}
+            <NavKontor navEnhet={person.navEnhet} />
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
             <Vergemal vergemal={person.vergemal} />
             <Sikkerhetstiltak sikkerhetstiltak={person.sikkerhetstiltak} />
@@ -46,7 +47,7 @@ function DoubleColumnLayout(person: Person) {
                 <Foreldreansvar foreldreansvar={person.foreldreansvar} />
             </Kolonne>
             <Kolonne>
-                {/* {<NavKontorSeksjon />} */}
+                <NavKontor navEnhet={person.navEnhet} />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
                 <Vergemal vergemal={person.vergemal} />
                 <Sikkerhetstiltak sikkerhetstiltak={person.sikkerhetstiltak} />
@@ -71,7 +72,7 @@ function TripleColumnLayout(person: Person) {
                 <Vergemal vergemal={person.vergemal} />
             </Kolonne>
             <Kolonne>
-                {/* <NavKontorSeksjon /> */}
+                <NavKontor navEnhet={person.navEnhet} />
                 <Sikkerhetstiltak sikkerhetstiltak={person.sikkerhetstiltak} />
                 <LenkeBrukerprofil />
             </Kolonne>

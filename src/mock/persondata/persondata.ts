@@ -74,7 +74,81 @@ function lagPersondata(fnr: string): PersonData {
         ],
         navEnhet: {
             id: '0219',
-            navn: 'NAV Bærum'
+            navn: 'NAV Bærum',
+            publikumsmottak: [
+                {
+                    besoksadresse: {
+                        linje1: 'Adressevei 1',
+                        linje2: '0000 AREMARK',
+                        linje3: null,
+                        sistEndret: null
+                    },
+                    apningstider: [
+                        {
+                            ukedag: 'Mandag',
+                            apentFra: {
+                                time: '09',
+                                minutt: '00',
+                                sekund: null
+                            },
+                            apentTil: {
+                                time: '17',
+                                minutt: '00',
+                                sekund: null
+                            }
+                        },
+                        {
+                            ukedag: 'Tirsdag',
+                            apentFra: {
+                                time: '09',
+                                minutt: '00',
+                                sekund: null
+                            },
+                            apentTil: {
+                                time: '17',
+                                minutt: '00',
+                                sekund: null
+                            }
+                        },
+                        {
+                            ukedag: 'Onsdag',
+                            apentFra: {
+                                time: '09',
+                                minutt: '00',
+                                sekund: null
+                            },
+                            apentTil: {
+                                time: '15',
+                                minutt: '00',
+                                sekund: null
+                            }
+                        }
+                    ]
+                },
+                {
+                    besoksadresse: {
+                        linje1: 'Adressevei 1',
+                        linje2: '0000 AREMARK',
+                        linje3: null,
+                        sistEndret: null
+                    },
+                    apningstider: [
+                        {
+                            ukedag: 'Mandag',
+                            apentFra: {
+                                time: '09',
+                                minutt: '00',
+                                sekund: null
+                            },
+                            apentTil: {
+                                time: '17',
+                                minutt: '00',
+                                sekund: null
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         statsborgerskap: [
             {

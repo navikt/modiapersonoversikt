@@ -102,11 +102,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   margin-top: 0.5rem;
 }
 
-.c9 {
+.c10 {
   margin-bottom: 5px;
 }
 
-.c10 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -123,6 +123,32 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+}
+
+.c9 {
+  margin: initial;
+  padding: initial;
+  list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.c9 dt {
+  -webkit-flex: 1 1 50%;
+  -ms-flex: 1 1 50%;
+  flex: 1 1 50%;
+}
+
+.c9 dd {
+  -webkit-flex: 2 2 50%;
+  -ms-flex: 2 2 50%;
+  flex: 2 2 50%;
+  margin: 0;
 }
 
 <section
@@ -932,6 +958,166 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       <div
         className="c2"
       >
+        
+        <h3
+          className="typo-undertittel"
+        >
+          NAV-kontor
+        </h3>
+      </div>
+      <div
+        className="c3"
+      />
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              className="prefix__navLogo"
+              viewBox="0 0 269 169"
+              width={90}
+            >
+              <g
+                fill="none"
+                fillRule="evenodd"
+              >
+                <path
+                  d="M125.3 169a84.5 84.5 0 110-169 84.5 84.5 0 010 169zM0 121.3l17.3-42.8h16.6l-17.3 42.8zm213 0l17-42.8h9.1l-17 42.8z"
+                  fill="#C30000"
+                />
+                <path
+                  d="M.6 43.4L17.6.7h4.8l-17 42.7z"
+                  fill="#C30000"
+                  mask="url(#prefix__b)"
+                  transform="translate(246 78)"
+                />
+                <path
+                  d="M197.4 78.6h-15s-1 0-1.5 1l-8.3 25.4-8.3-25.5c-.3-.9-1.4-.9-1.4-.9h-28.8c-.7 0-1.2.6-1.2 1.2v8.6c0-6.8-7.3-9.8-11.6-9.8-9.5 0-16 6.3-18 15.9 0-6.3-.6-8.6-2.3-11a11 11 0 00-3.1-2.9c-2.6-1.4-4.9-2-9.8-2h-5.7s-1 0-1.5 1l-5.2 13V79.8c0-.6-.5-1.2-1.1-1.2H61.2s-1 0-1.4 1L54.3 93s-.5 1.3.7 1.3h5.2v25.8c0 .7.5 1.2 1.1 1.2h13.3c.6 0 1.1-.5 1.1-1.2V94.4h5.2c3 0 3.5.1 4.7.6.7.3 1.3.8 1.7 1.4.7 1.4.8 3 .8 7.6v16.2c0 .7.5 1.2 1.2 1.2H102s1.4 0 2-1.5l2.8-7c3.7 5.3 9.9 8.5 17.5 8.5h1.7s1.4 0 2-1.5l4.9-12v12.3c0 .7.5 1.2 1.2 1.2H147s1.4 0 2-1.5l5.2-13c.2-1-1.1-1-1.1-1h-4.7V84l14.6 36c.6 1.5 2 1.5 2 1.5h15.3s1.4 0 2-1.5l16.1-40c.6-1.4-1-1.4-1-1.4zM132.9 106h-8.7a6.3 6.3 0 110-12.5h2.4c3.5 0 6.3 2.8 6.3 6.2v6.3z"
+                  fill="#FEFEFE"
+                />
+              </g>
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            0219 NAV Bærum
+          </h4>
+        </div>
+        <div>
+          <br />
+          <div
+            className="c7"
+          >
+            <p
+              className="typo-undertekst"
+            >
+              Besøksadresse
+            </p>
+          </div>
+          <p
+            className="typo-normal"
+          >
+            Adressevei 1
+          </p>
+          <p
+            className="typo-normal"
+          >
+            0000 AREMARK
+          </p>
+          <br />
+          <div
+            className="c7"
+          >
+            <p
+              className="typo-undertekst"
+            >
+              Åpningstider
+            </p>
+          </div>
+          <dl
+            className="c9"
+          >
+            <dt>
+              <p
+                className="typo-normal"
+              >
+                Mandag
+              </p>
+            </dt>
+            <dd>
+              <p
+                className="typo-normal"
+              >
+                09.00
+                 
+                –
+                 
+                17.00
+              </p>
+            </dd>
+            <dt>
+              <p
+                className="typo-normal"
+              >
+                Tirsdag
+              </p>
+            </dt>
+            <dd>
+              <p
+                className="typo-normal"
+              >
+                09.00
+                 
+                –
+                 
+                17.00
+              </p>
+            </dd>
+            <dt>
+              <p
+                className="typo-normal"
+              >
+                Onsdag
+              </p>
+            </dt>
+            <dd>
+              <p
+                className="typo-normal"
+              >
+                09.00
+                 
+                –
+                 
+                15.00
+              </p>
+            </dd>
+          </dl>
+          <br />
+        </div>
+        <a
+          className="lenke"
+          href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0219"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span
+            className="typo-normal"
+          >
+            Mer informasjon om kontoret
+          </span>
+        </a>
+      </div>
+    </section>
+    <section>
+      <div
+        className="c2"
+      >
         <div
           className="c5"
         >
@@ -1063,7 +1249,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c9"
+          className="c10"
         >
           <p
             className="typo-normal"
@@ -1112,7 +1298,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c9"
+          className="c10"
         >
           <p
             className="typo-normal"
@@ -1234,7 +1420,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </section>
     <div
-      className="c10"
+      className="c11"
     >
       <a
         className="lenke"

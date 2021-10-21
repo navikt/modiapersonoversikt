@@ -88,6 +88,24 @@ export interface Adresse {
 export interface Enhet {
     id: string;
     navn: string;
+    publikumsmottak: Array<Publikumsmottak>;
+}
+
+export interface Publikumsmottak {
+    besoksadresse: Adresse;
+    apningstider: Array<ApningsTid>;
+}
+
+interface ApningsTid {
+    ukedag: string;
+    apentFra: Klokkeslett;
+    apentTil: Klokkeslett;
+}
+
+export interface Klokkeslett {
+    time: string | null;
+    minutt: string | null;
+    sekund: string | null;
 }
 
 export interface Dodsbo {
