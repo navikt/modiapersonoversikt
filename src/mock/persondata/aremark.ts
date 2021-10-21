@@ -278,12 +278,15 @@ export const aremark: Person = {
         {
             retningsnummer: {
                 kode: '+47',
-                beskrivelse: 'retningsnummer er norsk'
+                beskrivelse: 'Norge'
             },
             identifikator: '99009900',
-            sistEndret: '2017-10-10T10:15:30' as LocalDateTime,
-            sistEndretAv: 'TESTFAMILIEN AREMARK',
-            prioritet: 1
+            sistEndret: {
+                ident: '11223344',
+                tidspunkt: '2018-06-14T00:00:00' as LocalDateTime,
+                system: 'BD06'
+            },
+            prioritet: -1
         }
     ],
     kontaktOgReservasjon: {

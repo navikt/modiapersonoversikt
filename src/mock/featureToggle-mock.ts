@@ -8,7 +8,7 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
         case FeatureToggles.BrukSalesforceDialoger:
             return false;
         case FeatureToggles.BrukV2Visittkort:
-            return false;
+            return true;
         default:
             return Math.random() > 0.5;
     }

@@ -483,6 +483,37 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c2"
         >
+          
+          <h4
+            className="typo-element"
+          >
+            Telefon til bruk for NAV
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          +47 990 09 900
+        </p>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Endret 
+            14.06.2018
+             
+            av bruker
+          </p>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
           <div
             className="c5"
           >

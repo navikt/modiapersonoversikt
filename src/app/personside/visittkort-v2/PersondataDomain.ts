@@ -147,11 +147,10 @@ export interface Fullmakt {
     gyldigTilOgMed: LocalDate;
 }
 
-interface Telefon {
+export interface Telefon {
     retningsnummer: KodeBeskrivelse<string> | null;
     identifikator: string;
-    sistEndret: LocalDateTime | null;
-    sistEndretAv: string | null;
+    sistEndret: SistEndret | null;
     prioritet: number;
 }
 
