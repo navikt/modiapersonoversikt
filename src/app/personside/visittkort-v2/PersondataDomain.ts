@@ -122,7 +122,7 @@ export interface OrganisasjonSomAdressat {
     organisasjonsnummer: string | null;
 }
 
-interface Bankkonto {
+export interface Bankkonto {
     kontonummer: string;
     banknavn: string;
     sistEndret: SistEndret;

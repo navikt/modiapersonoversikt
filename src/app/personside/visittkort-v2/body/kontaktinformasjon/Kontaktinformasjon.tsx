@@ -15,12 +15,12 @@ interface Props {
 export default function Kontaktinformasjon({ person }: Props) {
     return (
         <VisittkortGruppe tittel={'Kontaktinformasjon'}>
-            <KontaktinformasjonDodsbo person={person} />
+            <KontaktinformasjonDodsbo dodsbo={person.dodsbo} />
             <Adresse person={person} />
-            <Epost person={person} />
-            <Telefon person={person} />
+            <Epost kontaktinformasjon={person.kontaktOgReservasjon} />
+            <Telefon kontaktinformasjon={person.kontaktOgReservasjon} />
             <NavKontaktinformasjon telefonnummer={person.telefonnummer} />
-            <Bankkonto person={person} />
+            <Bankkonto bankkonto={person.bankkonto} />
         </VisittkortGruppe>
     );
 }

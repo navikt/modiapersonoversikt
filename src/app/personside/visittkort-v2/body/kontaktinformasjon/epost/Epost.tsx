@@ -1,17 +1,15 @@
 import * as React from 'react';
 import EmailIkon from '../../../../../../svg/Email';
 import VisittkortElement from '../../VisittkortElement';
-import { Person } from '../../../PersondataDomain';
+import { DigitalKontaktinformasjon as DigitalKontaktinformasjonInterface } from '../../../PersondataDomain';
 import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
 import { formaterDato } from '../../../../../../utils/string-utils';
 
 interface Props {
-    person: Person;
+    kontaktinformasjon: DigitalKontaktinformasjonInterface | null;
 }
 
-function Epost({ person }: Props) {
-    const kontaktinformasjon = person.kontaktOgReservasjon;
-
+function Epost({ kontaktinformasjon }: Props) {
     if (!kontaktinformasjon) {
         return null;
     }

@@ -3,29 +3,29 @@ import VisittkortElement from '../../VisittkortElement';
 import CoinsIkon from '../../../../../../svg/Coins';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
-import { Person } from '../../../PersondataDomain';
+import { Bankkonto as BankkontoInterface } from '../../../PersondataDomain';
 import Endringstekst from '../../Endringstekst';
 
 interface Props {
-    person: Person;
+    bankkonto: BankkontoInterface | null;
 }
 
-function Bankkonto({ person }: Props) {
+function Bankkonto({ bankkonto }: Props) {
     let beskrivelse = 'Kontonummer';
-    if (person.bankkonto && person.bankkonto.landkode && person.bankkonto.landkode.kode !== 'NOR') {
+    if (bankkonto && bankkonto.landkode && bankkonto.landkode.kode !== 'NOR') {
         beskrivelse += 'utland';
     }
 
-    if (!person.bankkonto) {
+    if (!bankkonto) {
         return <Normaltekst>Ikke registrert</Normaltekst>;
     }
 
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={<CoinsIkon />}>
             <Normaltekst>
-                <FormatertKontonummer kontonummer={person.bankkonto.kontonummer} />
+                <FormatertKontonummer kontonummer={bankkonto.kontonummer} />
             </Normaltekst>
-            <Endringstekst sistEndret={person.bankkonto.sistEndret} />
+            <Endringstekst sistEndret={bankkonto.sistEndret} />
         </VisittkortElement>
     );
 }

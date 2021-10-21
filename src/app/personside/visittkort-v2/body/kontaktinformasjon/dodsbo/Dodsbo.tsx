@@ -9,15 +9,15 @@ import { formaterDato } from '../../../../../../utils/string-utils';
 import {
     Adressat,
     AdvokatSomAdressat,
+    Dodsbo,
     OrganisasjonSomAdressat,
-    Person,
     PersonSomAdressat
 } from '../../../PersondataDomain';
 import { Adresseinfo } from '../../AdresseInfo';
 import Endringstekst from '../../Endringstekst';
 
 interface Props {
-    person: Person;
+    dodsbo: Dodsbo[];
 }
 
 const AdresseStyle = styled.div`
@@ -82,16 +82,14 @@ function PersonSomAdressatInfo({ adressat }: { adressat: PersonSomAdressat }) {
     );
 }
 
-function KontaktinformasjonDodsbo({ person }: Props) {
-    const dodsboListe = person.dodsbo;
-
-    if (dodsboListe.isEmpty()) {
+function KontaktinformasjonDodsbo({ dodsbo }: Props) {
+    if (dodsbo.isEmpty()) {
         return null;
     }
 
     return (
         <>
-            {dodsboListe.map((dodsbo, index) => {
+            {dodsbo.map((dodsbo, index) => {
                 return (
                     <VisittkortElement key={index} beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
                         <Adressatinfo adressat={dodsbo.adressat} />

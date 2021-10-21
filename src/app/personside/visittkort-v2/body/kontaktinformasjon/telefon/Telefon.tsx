@@ -1,18 +1,16 @@
 import * as React from 'react';
 import PhoneIkon from '../../../../../../svg/Phone';
 import VisittkortElement from '../../VisittkortElement';
-import { Person } from '../../../PersondataDomain';
+import { DigitalKontaktinformasjon as DigitalKontaktinformasjonInterface } from '../../../PersondataDomain';
 import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
 import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
 import { formaterDato } from '../../../../../../utils/string-utils';
 
 interface Props {
-    person: Person;
+    kontaktinformasjon: DigitalKontaktinformasjonInterface | null;
 }
 
-function Telefon({ person }: Props) {
-    const kontaktinformasjon = person.kontaktOgReservasjon;
-
+function Telefon({ kontaktinformasjon }: Props) {
     if (!kontaktinformasjon) {
         return null;
     }
