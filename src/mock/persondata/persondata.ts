@@ -93,7 +93,7 @@ function lagPersondata(fnr: string): PersonData {
         adressebeskyttelse: [
             {
                 kode: visEtiketter ? AdresseBeskyttelse.KODE6 : AdresseBeskyttelse.UGRADERT,
-                beskrivelse: 'Ingen'
+                beskrivelse: visEtiketter ? 'Kode 6' : ''
             }
         ],
         sikkerhetstiltak: visEtiketter
