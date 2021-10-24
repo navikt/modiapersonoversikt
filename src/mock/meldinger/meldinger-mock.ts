@@ -108,6 +108,7 @@ function getMelding(temagruppe: Temagruppe): Melding {
         ferdigstiltUtenSvarAv: ferdigstilUtenSvar ? getSaksbehandler() : undefined,
         kontorsperretAv: visKontrosperre ? getSaksbehandler() : undefined,
         kontorsperretEnhet: visKontrosperre ? faker.company.companyName() : undefined,
+        sendtTilSladding: sladdingNiva !== 0,
         markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined,
         erDokumentMelding: meldingstype === Meldingstype.DOKUMENT_VARSEL
     };

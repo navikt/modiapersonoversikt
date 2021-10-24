@@ -50,6 +50,7 @@ enum MerkOperasjon {
     FEILSENDT = 'FEILSENDT',
     BISYS = 'BISYS',
     KONTORSPERRET = 'KONTORSPERRET',
+    SLADDING = 'SLADDING',
     AVSLUTT = 'AVSLUTT',
     SLETT = 'SLETT',
     FERDIGSTILL = 'FERDIGSTILL'
@@ -75,6 +76,7 @@ const MERK_AVSLUTT_URL = `${apiBaseUri}/dialogmerking/avslutt`;
 const MERK_BISYS_URL = `${apiBaseUri}/dialogmerking/bidrag`;
 const MERK_FEILSENDT_URL = `${apiBaseUri}/dialogmerking/feilsendt`;
 const MERK_SLETT_URL = `${apiBaseUri}/dialogmerking/slett`;
+const MERK_SLADDING_URL = `${apiBaseUri}/dialogmerking/sladding`;
 const MERK_TVUNGEN_FERDIGSTILL_URL = `${apiBaseUri}/dialogmerking/tvungenferdigstill`;
 
 function lagBehandlingskjede(traad: Traad) {
@@ -235,6 +237,13 @@ function MerkPanel(props: Props) {
                 break;
             case MerkOperasjon.KONTORSPERRET: // Håndteres i egen funksjon
                 break;
+            case MerkOperasjon.SLADDING:
+                merkPostUtenOppgaveFerdigstilling(
+                    MERK_SLADDING_URL,
+                    { fnr: valgtBrukersFnr, traadId: valgtTraad.traadId },
+                    'Sladding'
+                );
+                break;
             case MerkOperasjon.SLETT:
                 merkPostUtenOppgaveFerdigstilling(
                     MERK_SLETT_URL,
@@ -310,6 +319,14 @@ function MerkPanel(props: Props) {
         ];
         if (visSletting) {
             radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT });
+        }
+        if (usingSFBackend) {
+            const kontorsperreIndex = radioprops.findIndex(it => it.value === MerkOperasjon.KONTORSPERRET);
+            radioprops[kontorsperreIndex] = {
+                label: 'Send til sladding',
+                value: MerkOperasjon.SLADDING,
+                disabled: melding.sendtTilSladding
+            };
         }
         return (
             <form onSubmit={submitHandler} ref={formRef}>
