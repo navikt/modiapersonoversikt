@@ -65,10 +65,22 @@ function getMelding(temagruppe: Temagruppe): Melding {
     const ferdigstilUtenSvar = navfaker.random.vektetSjanse(0.1);
     const visMarkertSomFeilsendt = navfaker.random.vektetSjanse(0.1);
     const meldingstype = navfaker.random.arrayElement(Object.entries(Meldingstype))[0];
+    const sladdingNiva = navfaker.random.arrayElement([0, 0, 0, 0, 1, 1, 1, 1, 2]);
 
-    const tekstFraNav = navfaker.random.arrayElement(
-        Object.entries(standardTeksterMock).map(it => it[1].innhold.nb_NO)
-    );
+    let tekstFraNav = navfaker.random.arrayElement(Object.entries(standardTeksterMock).map(it => it[1].innhold.nb_NO));
+
+    if (sladdingNiva === 2) {
+        tekstFraNav = tekstFraNav.replace(/./g, '*');
+    } else if (sladdingNiva === 1) {
+        const paragrafer = tekstFraNav.split('\r\n\r\n');
+        if (paragrafer.length > 2) {
+            paragrafer[0] = sensorerEnkeltOrd(paragrafer[0]);
+            paragrafer[1] = paragrafer[1].replace(/\S/g, '*');
+            paragrafer[2] = sensorerEnkeltOrd(paragrafer[0]);
+        }
+        tekstFraNav = paragrafer.join('\r\n\r\n');
+    }
+
     const fritekst = erMeldingFraNav(meldingstype)
         ? autofullfor(tekstFraNav, getMockAutoFullførMap())
         : faker.lorem.sentences(faker.random.number(15));
@@ -99,6 +111,13 @@ function getMelding(temagruppe: Temagruppe): Melding {
         markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined,
         erDokumentMelding: meldingstype === Meldingstype.DOKUMENT_VARSEL
     };
+}
+
+function sensorerEnkeltOrd(tekst: string): string {
+    const ord = tekst.split(' ');
+    const sensorOrd = navfaker.random.arrayElement(ord.filter(it => it.length > 2));
+    const sensorering = '*'.repeat(sensorOrd.length);
+    return ord.map(it => (it === sensorOrd ? sensorering : it)).join(' ');
 }
 
 function getSaksbehandler(): Saksbehandler {
