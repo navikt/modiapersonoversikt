@@ -11,7 +11,8 @@ import { datoStigende, formatterDatoMedMaanedsnavn, formatterDatoTid } from '../
 import styled from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
 import { formaterDato } from '../string-utils';
-import Tekstomrade from 'nav-frontend-tekstomrade';
+import Tekstomrade, { defaultRules } from 'nav-frontend-tekstomrade';
+import { rule as sladdRule } from '../sladdrule';
 
 interface Props {
     valgtTraad: Traad;
@@ -82,7 +83,7 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
             </Flex>
             <StyledInnhold>
                 <Element>Innhold:</Element>
-                <Tekstomrade>{melding.fritekst}</Tekstomrade>
+                <Tekstomrade rules={[sladdRule, ...defaultRules]}>{melding.fritekst}</Tekstomrade>
             </StyledInnhold>
         </StyledEnkeltMelding>
     );

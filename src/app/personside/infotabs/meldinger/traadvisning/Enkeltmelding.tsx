@@ -15,6 +15,7 @@ import { formatterDatoTid } from '../../../../../utils/date-utils';
 import { formaterDato } from '../../../../../utils/string-utils';
 import styled from 'styled-components/macro';
 import Tekstomrade, { createDynamicHighlightingRule, defaultRules, Rule } from 'nav-frontend-tekstomrade';
+import { rule as sladdRule } from '../../../../../utils/sladdrule';
 import Etikett from 'nav-frontend-etiketter';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { guid } from 'nav-frontend-js-utils';
@@ -185,7 +186,9 @@ function EnkeltMelding(props: Props) {
                             <LestDato melding={props.melding} />
                             <Avsender melding={props.melding} rule={highlightRule} />
                         </Topptekst>
-                        <Tekstomrade rules={[highlightRule, ...defaultRules]}>{props.melding.fritekst}</Tekstomrade>
+                        <Tekstomrade rules={[sladdRule, highlightRule, ...defaultRules]}>
+                            {props.melding.fritekst}
+                        </Tekstomrade>
                         <Journalforing melding={props.melding} />
                     </SnakkebobleWrapper>
                 </Snakkeboble>

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components/macro';
-import Tekstomrade from 'nav-frontend-tekstomrade';
+import Tekstomrade, { defaultRules } from 'nav-frontend-tekstomrade';
+import { rule as sladdRule } from '../../../../../utils/sladdrule';
 import { Element, Undertekst } from 'nav-frontend-typografi';
 import { Melding } from '../../../../../models/meldinger/meldinger';
 import { formatterDatoTidMedMaanedsnavn } from '../../../../../utils/date-utils';
@@ -50,7 +51,7 @@ function EnkeltMelding(props: Props) {
 
     return (
         <StyledEkspanderbartpanelBase tittel={header} apen={apen} onClick={() => setApen(!apen)} border={false}>
-            <StyledTekstomrade>{props.melding.fritekst}</StyledTekstomrade>
+            <StyledTekstomrade rules={[sladdRule, ...defaultRules]}>{props.melding.fritekst}</StyledTekstomrade>
         </StyledEkspanderbartpanelBase>
     );
 }
