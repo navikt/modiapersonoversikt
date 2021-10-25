@@ -1054,11 +1054,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               <p
                 className="typo-normal"
               >
-                09.00
-                 
-                –
-                 
-                17.00
+                09.00 - 15.00
               </p>
             </dd>
             <dt>
@@ -1072,11 +1068,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               <p
                 className="typo-normal"
               >
-                09.00
-                 
-                –
-                 
-                17.00
+                09.00 - 15.00
               </p>
             </dd>
             <dt>
@@ -1090,11 +1082,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               <p
                 className="typo-normal"
               >
-                09.00
-                 
-                –
-                 
-                15.00
+                10.00 - 16.00
               </p>
             </dd>
           </dl>
