@@ -75,6 +75,10 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         );
     }
 
+    if (melding.sendtTilSladding) {
+        return <AlertStripeInfo>Tråden ligger til behandling for sladding</AlertStripeInfo>;
+    }
+
     const handleNyMelding = () => {
         valgtTraad && dispatch(setValgtTraadDialogpanel(valgtTraad));
         dispatch(toggleDialogpanel(true));
