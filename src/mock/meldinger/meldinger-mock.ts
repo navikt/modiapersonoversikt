@@ -76,7 +76,7 @@ function getMelding(temagruppe: Temagruppe): Melding {
         if (paragrafer.length > 2) {
             paragrafer[0] = sensorerEnkeltOrd(paragrafer[0]);
             paragrafer[1] = paragrafer[1].replace(/\S/g, '*');
-            paragrafer[2] = sensorerEnkeltOrd(paragrafer[0]);
+            paragrafer[2] = sensorerEnkeltOrd(paragrafer[2]);
         }
         tekstFraNav = paragrafer.join('\r\n\r\n');
     }
