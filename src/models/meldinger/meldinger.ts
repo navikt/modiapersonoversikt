@@ -28,6 +28,7 @@ export interface Melding {
     ferdigstiltUtenSvarAv?: Saksbehandler;
     kontorsperretEnhet?: string;
     kontorsperretAv?: Saksbehandler;
+    sendtTilSladding: boolean;
     markertSomFeilsendtAv?: Saksbehandler;
     erDokumentMelding: boolean;
     ferdigstiltUtenSvarDato?: string;
