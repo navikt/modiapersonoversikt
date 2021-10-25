@@ -113,42 +113,15 @@ export const aremark: Person = {
                 apningstider: [
                     {
                         ukedag: 'Mandag',
-                        apentFra: {
-                            time: '09',
-                            minutt: '00',
-                            sekund: null
-                        },
-                        apentTil: {
-                            time: '17',
-                            minutt: '00',
-                            sekund: null
-                        }
+                        apningstid: '09.00 - 15.00'
                     },
                     {
                         ukedag: 'Tirsdag',
-                        apentFra: {
-                            time: '09',
-                            minutt: '00',
-                            sekund: null
-                        },
-                        apentTil: {
-                            time: '17',
-                            minutt: '00',
-                            sekund: null
-                        }
+                        apningstid: '09.00 - 15.00'
                     },
                     {
                         ukedag: 'Onsdag',
-                        apentFra: {
-                            time: '09',
-                            minutt: '00',
-                            sekund: null
-                        },
-                        apentTil: {
-                            time: '15',
-                            minutt: '00',
-                            sekund: null
-                        }
+                        apningstid: '10.00 - 16.00'
                     }
                 ]
             }

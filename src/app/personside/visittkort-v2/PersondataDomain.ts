@@ -98,14 +98,7 @@ export interface Publikumsmottak {
 
 interface ApningsTid {
     ukedag: string;
-    apentFra: Klokkeslett;
-    apentTil: Klokkeslett;
-}
-
-export interface Klokkeslett {
-    time: string | null;
-    minutt: string | null;
-    sekund: string | null;
+    apningstid: string | null;
 }
 
 export interface Dodsbo {

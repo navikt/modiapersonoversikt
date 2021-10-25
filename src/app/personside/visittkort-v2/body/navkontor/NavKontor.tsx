@@ -6,9 +6,8 @@ import EtikettGraa from '../../../../../components/EtikettGraa';
 import VisittkortElement from '../VisittkortElement';
 import NavLogo from '../../../../../svg/NavLogo';
 import { hentBaseUrl } from '../../../../../redux/restReducers/baseurls';
-import { ENDASH } from '../../../../../utils/string-utils';
 import { VisittkortGruppe } from '../VisittkortStyles';
-import { Enhet, Klokkeslett, Publikumsmottak as PublikumsmottakInterface } from '../../PersondataDomain';
+import { Enhet, Publikumsmottak as PublikumsmottakInterface } from '../../PersondataDomain';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import AdresseInfo from '../AdresseInfo';
 import { capitalizeName } from '../../../../../utils/string-utils';
@@ -32,17 +31,9 @@ interface Props {
     navEnhet: Enhet | null;
 }
 
-function padMedNull(streng: string | null) {
-    return streng && streng.length === 1 ? `0${streng}` : streng;
-}
-
-function klokkeslettToString(klokkeslett: Klokkeslett) {
-    return `${padMedNull(klokkeslett.time)}.${padMedNull(klokkeslett.minutt)}`;
-}
-
 function PublikumsmottakKontaktInfo(props: { publikumsmottak: PublikumsmottakInterface }) {
     const apningstider = props.publikumsmottak.apningstider.map(apningstid => {
-        if (!apningstid.apentFra.time || !apningstid.apentTil.time) {
+        if (!apningstid.apningstid) {
             return null;
         }
 
@@ -52,9 +43,7 @@ function PublikumsmottakKontaktInfo(props: { publikumsmottak: PublikumsmottakInt
                     <Normaltekst>{capitalizeName(apningstid.ukedag)}</Normaltekst>
                 </dt>
                 <dd>
-                    <Normaltekst>
-                        {klokkeslettToString(apningstid.apentFra)} {ENDASH} {klokkeslettToString(apningstid.apentTil)}
-                    </Normaltekst>
+                    <Normaltekst>{apningstid.apningstid}</Normaltekst>
                 </dd>
             </Fragment>
         );
