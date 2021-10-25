@@ -30,7 +30,7 @@ function NavKontaktinformasjon({ telefonnummer }: Props) {
             {telefonnummer
                 .sort((nr1, nr2) => nr1.prioritet - nr2.prioritet)
                 .map(telefonnummer => (
-                    <Telefon telefonnummer={telefonnummer} />
+                    <Telefon telefonnummer={telefonnummer} key={telefonnummer.identifikator} />
                 ))}
         </VisittkortElement>
     );
