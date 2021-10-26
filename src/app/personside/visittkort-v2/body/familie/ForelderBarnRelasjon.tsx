@@ -1,7 +1,7 @@
 import { Normaltekst } from 'nav-frontend-typografi';
 import * as React from 'react';
 import { ForelderBarnRelasjon } from '../../PersondataDomain';
-import { harDiskresjonskode, hentAlderEllerDodRelasjon, hentNavn } from '../../visittkort-utils';
+import { hentAlderEllerDodRelasjon, hentNavn } from '../../visittkort-utils';
 import VisittkortElement from '../VisittkortElement';
 import BostedForRelasjon from './common/BostedForRelasjon';
 import Diskresjonskode from './common/Diskresjonskode';
@@ -14,17 +14,14 @@ interface Props {
 }
 
 function ForelderBarnRelasjonVisning({ relasjon, beskrivelse, erBarn }: Props) {
-    const adressebeskyttet: boolean = harDiskresjonskode(relasjon.adressebeskyttelse);
     const alder = `(${hentAlderEllerDodRelasjon(relasjon)})`;
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}>
             <Diskresjonskode adressebeskyttelse={relasjon.adressebeskyttelse} />
-            {!adressebeskyttet && (
-                <Normaltekst>
-                    {hentNavn(relasjon.navn.firstOrNull())} {alder}
-                </Normaltekst>
-            )}
-            {!adressebeskyttet && <Normaltekst>{relasjon.ident}</Normaltekst>}
+            <Normaltekst>
+                {hentNavn(relasjon.navn.firstOrNull())} {alder}
+            </Normaltekst>
+            <Normaltekst>{relasjon.ident}</Normaltekst>
             <Normaltekst>
                 <BostedForRelasjon relasjon={relasjon} />
             </Normaltekst>

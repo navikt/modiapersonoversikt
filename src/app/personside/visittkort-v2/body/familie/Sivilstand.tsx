@@ -4,7 +4,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import HeartIkon from '../../../../../svg/Heart';
 import { Person, Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
-import { harDiskresjonskode, hentNavn, hentPartner } from '../../visittkort-utils';
+import { hentNavn, hentPartner } from '../../visittkort-utils';
 import Diskresjonskode from './common/Diskresjonskode';
 
 interface Props {
@@ -31,9 +31,8 @@ function Partner(props: { partner: SivilstandInterface }) {
     if (!partnerRelasjon) {
         return null;
     }
-    const adressebeskyttet = harDiskresjonskode(partnerRelasjon.adressebeskyttelse);
     const navn = partnerRelasjon.navn.firstOrNull() ?? null;
-    const alder = adressebeskyttet ? '' : `(${partnerRelasjon.alder})`;
+    const alder = partnerRelasjon.alder ? `(${partnerRelasjon.alder})` : null;
     return (
         <>
             <Normaltekst>
@@ -44,7 +43,7 @@ function Partner(props: { partner: SivilstandInterface }) {
                 {hentNavn(navn)}
                 {alder}
             </Normaltekst>
-            {!adressebeskyttet && <Normaltekst>{partnerRelasjon.fnr || ''}</Normaltekst>}
+            <Normaltekst>{partnerRelasjon.fnr}</Normaltekst>
             <Normaltekst>
                 {partnerRelasjon.harSammeAdresse ? <>Bor med bruker</> : <>Bor ikke med bruker</>}
             </Normaltekst>

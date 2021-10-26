@@ -53,7 +53,7 @@ export interface Statsborgerskap {
 }
 
 export interface SivilstandRelasjon {
-    fnr: string | null;
+    fnr: string;
     navn: Array<Navn>;
     alder: number | null;
     adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
