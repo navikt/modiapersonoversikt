@@ -33,10 +33,6 @@ interface Props {
 
 function PublikumsmottakKontaktInfo(props: { publikumsmottak: PublikumsmottakInterface }) {
     const apningstider = props.publikumsmottak.apningstider.map(apningstid => {
-        if (!apningstid.apningstid) {
-            return null;
-        }
-
         return (
             <Fragment key={apningstid.ukedag}>
                 <dt>

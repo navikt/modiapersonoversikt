@@ -98,7 +98,7 @@ export interface Publikumsmottak {
 
 interface ApningsTid {
     ukedag: string;
-    apningstid: string | null;
+    apningstid: string;
 }
 
 export interface Dodsbo {
