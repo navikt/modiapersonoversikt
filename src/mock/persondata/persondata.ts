@@ -419,14 +419,6 @@ const barnMock: ForelderBarnRelasjon[] = [
                 beskrivelse: 'Militær'
             }
         ],
-        bostedAdresse: [
-            {
-                linje1: 'Gatenavn 1',
-                linje2: '0000 AREMARK',
-                linje3: 'Norge',
-                sistEndret: null
-            }
-        ],
         harSammeAdresse: true,
         personstatus: [
             {
@@ -459,7 +451,6 @@ const barnMock: ForelderBarnRelasjon[] = [
                 beskrivelse: 'Pendler'
             }
         ],
-        bostedAdresse: [],
         harSammeAdresse: false,
         personstatus: [
             {
@@ -481,7 +472,6 @@ const barnMock: ForelderBarnRelasjon[] = [
                 beskrivelse: 'Sperret adresse, strengt fortrolig'
             }
         ],
-        bostedAdresse: [],
         harSammeAdresse: false,
         personstatus: [
             {
@@ -514,14 +504,6 @@ const barnMock: ForelderBarnRelasjon[] = [
                 beskrivelse: 'UGRADERT'
             }
         ],
-        bostedAdresse: [
-            {
-                linje1: 'Gatenavn 22',
-                linje2: '0000 AREMARK',
-                linje3: 'Sverige',
-                sistEndret: null
-            }
-        ],
         harSammeAdresse: true,
         personstatus: [
             {
@@ -543,7 +525,6 @@ const barnMock: ForelderBarnRelasjon[] = [
                 beskrivelse: 'Sperret adresse, fortrolig'
             }
         ],
-        bostedAdresse: [],
         harSammeAdresse: false,
         personstatus: [
             {

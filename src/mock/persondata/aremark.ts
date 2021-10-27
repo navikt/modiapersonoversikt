@@ -39,14 +39,6 @@ export const barnAremark: ForelderBarnRelasjon[] = [
                 beskrivelse: 'UGRADERT'
             }
         ],
-        bostedAdresse: [
-            {
-                linje1: 'Islandsgate 49',
-                linje2: '7693 Hovedøya',
-                linje3: 'Norge',
-                sistEndret: null
-            }
-        ],
         harSammeAdresse: false,
         personstatus: [
             {
