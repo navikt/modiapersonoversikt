@@ -1,11 +1,11 @@
 import * as React from 'react';
-import dayjs from 'dayjs';
 import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import HeartIkon from '../../../../../svg/Heart';
 import { Person, Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
 import { hentNavn, hentPartner } from '../../visittkort-utils';
 import Diskresjonskode from './common/Diskresjonskode';
+import { formaterDato } from '../../../../../utils/string-utils';
 
 interface Props {
     person: Person;
@@ -16,8 +16,8 @@ function Sivilstand(props: { sivilstand: SivilstandInterface }) {
         return <>{props.sivilstand.type.beskrivelse}</>;
     }
     const relasjonFraOgMed = props.sivilstand.gyldigFraOgMed
-        ? `(${dayjs(props.sivilstand.gyldigFraOgMed).format('DD.MM.YYYY')})`
-        : '';
+        ? `(${formaterDato(props.sivilstand.gyldigFraOgMed)})`
+        : null;
 
     return (
         <>
