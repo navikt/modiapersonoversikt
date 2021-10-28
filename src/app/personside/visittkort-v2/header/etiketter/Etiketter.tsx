@@ -8,7 +8,7 @@ import SikkerhetstiltakEtikett from './SikkerhetstiltakEtikett';
 import ReservertIKRREtikett from './ReservertIKRREtikett';
 import VergemalsEtikett from './VergemalsEtikett';
 import TilrettelagtKommunikasjonsEtiketter from './TilrettelagtKommunikasjonsEtiketter';
-import DoedsboEtikett from './DoedsboEtikett';
+import DodsboEtikett from './DodsboEtikett';
 import FullmaktEtikett from './FullmaktEtikett';
 
 interface Props {
@@ -35,7 +35,7 @@ function Etiketter({ person }: Props) {
                 <ReservertIKRREtikett kontaktOgReservasjon={person.kontaktOgReservasjon} />
                 <VergemalsEtikett vergemal={person.vergemal} />
                 <TilrettelagtKommunikasjonsEtiketter tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
-                <DoedsboEtikett dodsbo={person.dodsbo} />
+                <DodsboEtikett dodsbo={person.dodsbo} />
                 <FullmaktEtikett fullmakt={person.fullmakt} />
             </StyledEtikketter>
         </ErrorBoundary>

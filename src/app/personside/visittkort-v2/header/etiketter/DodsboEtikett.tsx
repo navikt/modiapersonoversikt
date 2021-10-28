@@ -6,7 +6,7 @@ interface Props {
     dodsbo: Dodsbo[];
 }
 
-function DoedsboEtikett({ dodsbo }: Props) {
+function DodsboEtikett({ dodsbo }: Props) {
     if (dodsbo.isEmpty()) {
         return null;
     }
@@ -14,4 +14,4 @@ function DoedsboEtikett({ dodsbo }: Props) {
     return <EtikettBase type={'fokus'}>Dødsbo</EtikettBase>;
 }
 
-export default DoedsboEtikett;
+export default DodsboEtikett;
