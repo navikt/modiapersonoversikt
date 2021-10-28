@@ -126,14 +126,13 @@ export const aremark: Person = {
                 beskrivelse: 'NORGE'
             },
             gyldigFraOgMed: '1980-10-10' as LocalDate,
-            gyldigTilOgMed: null,
-            erHistorisk: false
+            gyldigTilOgMed: null
         }
     ],
     adressebeskyttelse: [
         {
             kode: AdresseBeskyttelse.KODE6,
-            beskrivelse: 'Ingen'
+            beskrivelse: 'Kode 6'
         }
     ],
     sikkerhetstiltak: [

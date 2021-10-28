@@ -32,11 +32,11 @@ const Fodselsnummerlinje = styled.span`
     }
 `;
 
-interface PersonProps {
+interface Props {
     person: Person;
 }
 
-function Fodselsnummer({ person }: PersonProps) {
+function Fodselsnummer({ person }: Props) {
     return (
         <span title="Fødselsnummer">
             <span>{person.fnr}</span>
@@ -45,7 +45,7 @@ function Fodselsnummer({ person }: PersonProps) {
     );
 }
 
-function Dodsdato({ person }: PersonProps) {
+function Dodsdato({ person }: Props) {
     const dodsdato = person.dodsdato.firstOrNull();
     const personstatus = person.personstatus.firstOrNull();
     if (dodsdato && personstatus?.kode === Status.DOD) {
@@ -56,7 +56,7 @@ function Dodsdato({ person }: PersonProps) {
     }
 }
 
-function Utvandret({ person }: PersonProps) {
+function Utvandret({ person }: Props) {
     if (person.personstatus.firstOrNull()?.kode === Status.UTFLYTTET) {
         return <span>Utvandret</span>;
     } else {
@@ -64,7 +64,7 @@ function Utvandret({ person }: PersonProps) {
     }
 }
 
-function PersonStatus({ person }: PersonProps) {
+function PersonStatus({ person }: Props) {
     return (
         <Normaltekst tag="span">
             <Fodselsnummerlinje>

@@ -82,8 +82,10 @@ function VisittkortHeader(props: Props) {
     const navneLinjeRef = useRef<HTMLSpanElement>(null);
     const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
 
+    const person = props.persondata.person;
+
     useOnMount(() => {
-        if (!props.persondata.person.sikkerhetstiltak.isEmpty()) {
+        if (!person.sikkerhetstiltak.isEmpty()) {
             return;
         }
         if (jobberMedSTO) {
@@ -93,8 +95,8 @@ function VisittkortHeader(props: Props) {
         navneLinjeRef.current?.focus();
     });
 
-    const kjonn = props.persondata.person.kjonn.firstOrNull() ?? ukjentKjonn;
-    const navn = props.persondata.person.navn.firstOrNull();
+    const kjonn = person.kjonn.firstOrNull() ?? ukjentKjonn;
+    const navn = person.navn.firstOrNull();
 
     return (
         <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={props.toggleApen}>
@@ -104,16 +106,16 @@ function VisittkortHeader(props: Props) {
                     <GrunninfoDiv>
                         <Undertittel tag="h1">
                             <span ref={navneLinjeRef} tabIndex={-1} /* for at focus skal funke */>
-                                {hentNavn(navn)} ({hentAlderEllerDod(props.persondata.person)})
+                                {hentNavn(navn)} ({hentAlderEllerDod(person)})
                             </span>
                         </Undertittel>
                         <span className="visually-hidden">{kjonn.beskrivelse}</span>
-                        <PersonStatus person={props.persondata.person} />
+                        <PersonStatus person={person} />
                     </GrunninfoDiv>
                 </VenstreFelt>
                 <HoyreFelt>
-                    <Etiketter person={props.persondata.person} />
-                    <NavKontorContainer person={props.persondata.person} />
+                    <Etiketter person={person} />
+                    <NavKontorContainer person={person} />
                 </HoyreFelt>
             </StyledContent>
             <ChevronStyling>

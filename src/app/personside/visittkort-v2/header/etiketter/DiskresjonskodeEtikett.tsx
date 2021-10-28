@@ -10,11 +10,11 @@ function DiskresjonskodeEtikett({ adressebeskyttelser }: Props) {
     const adressebeskyttelse = adressebeskyttelser.firstOrNull();
     switch (adressebeskyttelse?.kode) {
         case AdresseBeskyttelse.KODE6:
-            return <EtikettBase type={'advarsel'}>Kode 6</EtikettBase>;
+            return <EtikettBase type={'advarsel'}>{adressebeskyttelse?.beskrivelse}</EtikettBase>;
         case AdresseBeskyttelse.KODE6_UTLAND:
-            return <EtikettBase type={'advarsel'}>Kode 6 Utland</EtikettBase>;
+            return <EtikettBase type={'advarsel'}>{adressebeskyttelse?.beskrivelse}</EtikettBase>;
         case AdresseBeskyttelse.KODE7:
-            return <EtikettBase type={'advarsel'}>Kode 7</EtikettBase>;
+            return <EtikettBase type={'advarsel'}>{adressebeskyttelse?.beskrivelse}</EtikettBase>;
         default:
             return null;
     }

@@ -416,7 +416,6 @@ exports[`viser info om bruker i visittkort-header 1`] = `
               title="Barn under 21 år"
             >
               <svg
-                aria-label="Advarsel: Ett eller flere av barna har status som død"
                 className="c10"
                 title="Ett eller flere av barna har status som død"
               >
