@@ -66,7 +66,8 @@ export interface Sivilstand {
 }
 
 export interface Sikkerhetstiltak {
-    type: SikkerhetstiltakType;
+    type: string;
+    beskrivelse: string;
     gyldigFraOgMed: LocalDate;
     gyldigTilOgMed: LocalDate;
 }
@@ -242,14 +243,6 @@ export enum SivilstandType {
     SEPARERT_PARTNER = 'SEPARERT_PARTNER',
     SKILT_PARTNER = 'SKILT_PARTNER',
     GJENLEVENDE_PARTNER = 'GJENLEVENDE_PARTNER'
-}
-
-export enum SikkerhetstiltakType {
-    FYUS = 'Fysisk utestengelse',
-    TFUS = 'Telefonisk utestengelse',
-    FTUS = 'Fysisk/telefonisk utestengelse',
-    DIUS = 'Digital utestengelse',
-    TOAN = 'To ansatte i samtale'
 }
 
 export enum Skifteform {

@@ -23,7 +23,7 @@ function Sikkerhetstiltak({ sikkerhetstiltak }: Props) {
                         <EtikettGraa>
                             Gyldig: {hentPeriodeTekst(sikkerhetstiltak.gyldigFraOgMed, sikkerhetstiltak.gyldigTilOgMed)}
                         </EtikettGraa>
-                        <Normaltekst>{sikkerhetstiltak.type}</Normaltekst>
+                        <Normaltekst>{sikkerhetstiltak.beskrivelse}</Normaltekst>
                     </div>
                 ))}
             </VisittkortElement>

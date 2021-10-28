@@ -9,7 +9,6 @@ import {
     LocalDateTime,
     Person,
     PersonStatus,
-    SikkerhetstiltakType,
     SivilstandType,
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
@@ -137,7 +136,8 @@ export const aremark: Person = {
     ],
     sikkerhetstiltak: [
         {
-            type: SikkerhetstiltakType.TFUS,
+            type: 'TFUS',
+            beskrivelse: 'Telefonisk utestengelse',
             gyldigFraOgMed: '2005-02-13' as LocalDate,
             gyldigTilOgMed: '2030-02-15' as LocalDate
         }

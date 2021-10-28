@@ -3,7 +3,7 @@ import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../test/Testprovider';
 import VisittkortHeader from './VisittkortHeader';
 import { aremark } from '../../../../mock/persondata/aremark';
-import { Data as PersonData, LocalDate, Person, SikkerhetstiltakType } from '../PersondataDomain';
+import { Data as PersonData, LocalDate, Person } from '../PersondataDomain';
 import { mount } from '../../../../test/enzyme-container';
 import { hentNavn } from '../visittkort-utils';
 
@@ -51,7 +51,8 @@ describe('Tester visittkort-header sin funksjonalitet', () => {
             ...aremark,
             sikkerhetstiltak: [
                 {
-                    type: SikkerhetstiltakType.TFUS,
+                    type: 'TFUS',
+                    beskrivelse: 'Telefonisk utestengelse',
                     gyldigFraOgMed: '2020-01-01' as LocalDate,
                     gyldigTilOgMed: '2023-01-01' as LocalDate
                 }

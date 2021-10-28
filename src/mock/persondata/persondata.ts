@@ -11,7 +11,6 @@ import {
     LocalDateTime,
     Person,
     PersonStatus,
-    SikkerhetstiltakType,
     SivilstandType,
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
@@ -149,7 +148,8 @@ function lagPersondata(fnr: string): PersonData {
         sikkerhetstiltak: visEtiketter
             ? [
                   {
-                      type: SikkerhetstiltakType.TFUS,
+                      type: 'TFUS',
+                      beskrivelse: 'Telefonisk utestengelse',
                       gyldigFraOgMed: '2005-02-13' as LocalDate,
                       gyldigTilOgMed: visEtiketter ? ('2030-02-15' as LocalDate) : ('2010-02-15' as LocalDate)
                   }
