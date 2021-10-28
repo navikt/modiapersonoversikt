@@ -5,10 +5,21 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import UtropstegnIkon from '../../../../../svg/Utropstegn';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import VisittkortElement from '../VisittkortElement';
-import { TilrettelagtKommunikasjon as TilrettelagtKommunikasjonInterface } from '../../PersondataDomain';
+import {
+    KodeBeskrivelse,
+    TilrettelagtKommunikasjon as TilrettelagtKommunikasjonInterface
+} from '../../PersondataDomain';
 
 interface Props {
     tilrettelagtKommunikasjon: TilrettelagtKommunikasjonInterface;
+}
+
+function tilrettelagtKommunikasjonTekst(beskrivelse: string, tilrettelagtKommunikasjon: KodeBeskrivelse<string>[]) {
+    return tilrettelagtKommunikasjon.map(element => (
+        <Normaltekst key={element.kode}>
+            {beskrivelse}: {element.beskrivelse} ({element.kode})
+        </Normaltekst>
+    ));
 }
 
 function TilrettelagtKommunikasjon({ tilrettelagtKommunikasjon }: Props) {
@@ -16,22 +27,11 @@ function TilrettelagtKommunikasjon({ tilrettelagtKommunikasjon }: Props) {
         return null;
     }
 
-    const tilrettelagtKommunikasjonTegnsprakTekst = tilrettelagtKommunikasjon.tegnsprak.map(tegnsprak => (
-        <Normaltekst key={tegnsprak.kode}>
-            Tegnspråktolk: {tegnsprak.beskrivelse} ({tegnsprak.kode})
-        </Normaltekst>
-    ));
-
-    const tilrettelagtKommunikasjonTalesprakTekst = tilrettelagtKommunikasjon.talesprak.map(talesprak => (
-        <Normaltekst key={talesprak.kode}>
-            Talespråktolk: {talesprak.beskrivelse} ({talesprak.kode})
-        </Normaltekst>
-    ));
-
     return (
         <VisittkortGruppe tittel="Tilrettelagt kommunikasjon" ikon={<UtropstegnIkon />}>
             <VisittkortElement>
-                {tilrettelagtKommunikasjonTegnsprakTekst} {tilrettelagtKommunikasjonTalesprakTekst}
+                {tilrettelagtKommunikasjonTekst('Tegnspråk', tilrettelagtKommunikasjon.tegnsprak)}
+                {tilrettelagtKommunikasjonTekst('Talespråk', tilrettelagtKommunikasjon.talesprak)}
             </VisittkortElement>
         </VisittkortGruppe>
     );

@@ -1156,17 +1156,18 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
-          Tegnspråktolk: 
+          Tegnspråk
+          : 
           Norsk
            (
           NO
           )
         </p>
-         
         <p
           className="typo-normal"
         >
-          Talespråktolk: 
+          Talespråk
+          : 
           Norsk
            (
           NO
