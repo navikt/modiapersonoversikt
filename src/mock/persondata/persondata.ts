@@ -252,7 +252,7 @@ function lagPersondata(fnr: string): PersonData {
                           etternavn: 'Navnesen'
                       },
                       motpartsRolle: FullmaktsRolle.FULLMEKTIG,
-                      omraade: ['*'],
+                      omrade: ['*'],
                       gyldigFraOgMed: '2015-01-01' as LocalDate,
                       gyldigTilOgMed: '2017-12-12' as LocalDate
                   }
@@ -271,7 +271,7 @@ function lagPersondata(fnr: string): PersonData {
                       omfang: 'Ivareta personens interesser innenfor det personlige og økonomiske området',
                       embete: 'Fylkesmannen i Troms og Finnmark',
                       gyldighetstidspunkt: '2016-03-27' as LocalDate,
-                      opphoerstidspunkt: '2017-06-30' as LocalDate
+                      opphorstidspunkt: '2017-06-30' as LocalDate
                   },
                   {
                       ident: '123456799',
@@ -284,7 +284,7 @@ function lagPersondata(fnr: string): PersonData {
                       omfang: 'Ivareta personens interesser innenfor det økonomiske området',
                       embete: 'Fylkesmannen i Troms og Finnmark',
                       gyldighetstidspunkt: '2016-03-27' as LocalDate,
-                      opphoerstidspunkt: '2017-06-30' as LocalDate
+                      opphorstidspunkt: '2017-06-30' as LocalDate
                   }
               ]
             : [],

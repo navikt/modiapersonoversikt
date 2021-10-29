@@ -28,7 +28,7 @@ function Fullmakt(props: { fullmakt: FullmaktInterface }) {
         <VisittkortElement beskrivelse={beskrivelse}>
             <Normaltekst>Gyldig fra og med {formaterDato(props.fullmakt.gyldigFraOgMed)}</Normaltekst>
             <Normaltekst>Gyldig til og med {formaterDato(props.fullmakt.gyldigTilOgMed)}</Normaltekst>
-            <Normaltekst>Gjelder {getOmrade(props.fullmakt.omraade)}</Normaltekst>
+            <Normaltekst>Gjelder {getOmrade(props.fullmakt.omrade)}</Normaltekst>
         </VisittkortElement>
     );
 }

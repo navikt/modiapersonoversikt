@@ -32,7 +32,7 @@ function Verge(props: { verge: VergeInterface }) {
             <EtikettGraa>
                 {verge.embete ? verge.embete : ''}
                 {verge.embete ? <br /> : ''}
-                {hentPeriodeTekst(verge.gyldighetstidspunkt, verge.opphoerstidspunkt)}
+                {hentPeriodeTekst(verge.gyldighetstidspunkt, verge.opphorstidspunkt)}
             </EtikettGraa>
         </VisittkortElement>
     );

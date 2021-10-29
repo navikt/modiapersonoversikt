@@ -153,7 +153,7 @@ export interface Fullmakt {
     motpartsPersonident: string;
     motpartsPersonNavn: Navn;
     motpartsRolle: FullmaktsRolle;
-    omraade: Array<string>;
+    omrade: Array<string>;
     gyldigFraOgMed: LocalDate;
     gyldigTilOgMed: LocalDate;
 }
@@ -172,7 +172,7 @@ export interface Verge {
     omfang: string | null;
     embete: string | null;
     gyldighetstidspunkt: LocalDate | null;
-    opphoerstidspunkt: LocalDate | null;
+    opphorstidspunkt: LocalDate | null;
 }
 
 export interface Foreldreansvar {
