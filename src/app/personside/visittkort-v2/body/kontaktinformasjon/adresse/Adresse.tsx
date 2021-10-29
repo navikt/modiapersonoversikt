@@ -11,16 +11,18 @@ interface Props {
 }
 
 function AdresseElement(props: { adresse: PersonAdresse | null; beskrivelse: string }) {
+    if (!props.adresse) {
+        return (
+            <VisittkortElement beskrivelse={props.beskrivelse} ikon={<LocationPin />}>
+                <Normaltekst>Ikke registrert</Normaltekst>
+            </VisittkortElement>
+        );
+    }
+
     return (
         <VisittkortElement beskrivelse={props.beskrivelse} ikon={<LocationPin />}>
-            {!props.adresse ? (
-                <Normaltekst>Ikke registrert</Normaltekst>
-            ) : (
-                <>
-                    <Adresseinfo adresse={props.adresse} />
-                    <Endringstekst sistEndret={props.adresse.sistEndret} />
-                </>
-            )}
+            <Adresseinfo adresse={props.adresse} />
+            <Endringstekst sistEndret={props.adresse.sistEndret} />
         </VisittkortElement>
     );
 }
