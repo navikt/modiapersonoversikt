@@ -51,26 +51,54 @@ export interface Statsborgerskap {
     gyldigTilOgMed: LocalDate | null;
 }
 
+export interface SivilstandRelasjon {
+    fnr: string;
+    navn: Array<Navn>;
+    alder: number | null;
+    adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
+    harSammeAdresse: boolean;
+}
+
 export interface Sivilstand {
     type: KodeBeskrivelse<SivilstandType>;
     gyldigFraOgMed: LocalDate | null;
+    sivilstandRelasjon: SivilstandRelasjon | null;
 }
 
 export interface Sikkerhetstiltak {
-    type: SikkerhetstiltakType;
+    type: string;
+    beskrivelse: string;
     gyldigFraOgMed: LocalDate;
     gyldigTilOgMed: LocalDate;
 }
 
-interface Adresse {
+export interface SistEndret {
+    ident: string;
+    tidspunkt: LocalDateTime;
+    system: string;
+}
+
+export interface Adresse {
     linje1: string;
     linje2: string | null;
     linje3: string | null;
+    sistEndret: SistEndret | null;
 }
 
 export interface Enhet {
     id: string;
     navn: string;
+    publikumsmottak: Array<Publikumsmottak>;
+}
+
+export interface Publikumsmottak {
+    besoksadresse: Adresse;
+    apningstider: Array<ApningsTid>;
+}
+
+interface ApningsTid {
+    ukedag: string;
+    apningstid: string;
 }
 
 export interface Dodsbo {
@@ -78,38 +106,37 @@ export interface Dodsbo {
     adresse: Adresse;
     registrert: LocalDate;
     skifteform: Skifteform;
+    sistEndret: SistEndret | null;
 }
 
-interface Adressat {
+export interface Adressat {
     advokatSomAdressat: AdvokatSomAdressat | null;
     personSomAdressat: PersonSomAdressat | null;
     organisasjonSomAdressat: OrganisasjonSomAdressat | null;
 }
 
-interface AdvokatSomAdressat {
+export interface AdvokatSomAdressat {
     kontaktperson: Navn;
     organisasjonsnavn: string | null;
     organisasjonsnummer: string | null;
 }
 
-interface PersonSomAdressat {
+export interface PersonSomAdressat {
     fnr: string | null;
     navn: Navn | null;
     fodselsdato: LocalDate | null;
 }
 
-interface OrganisasjonSomAdressat {
+export interface OrganisasjonSomAdressat {
     kontaktperson: Navn | null;
     organisasjonsnavn: string;
     organisasjonsnummer: string | null;
 }
 
-interface Bankkonto {
+export interface Bankkonto {
     kontonummer: string;
     banknavn: string;
-    sistEndret: LocalDateTime;
-    sistEndretAv: string;
-
+    sistEndret: SistEndret;
     bankkode: string | null;
     swift: string | null;
     landkode: KodeBeskrivelse<string> | null;
@@ -131,11 +158,10 @@ export interface Fullmakt {
     gyldigTilOgMed: LocalDate;
 }
 
-interface Telefon {
+export interface Telefon {
     retningsnummer: KodeBeskrivelse<string> | null;
     identifikator: string;
-    sistEndret: LocalDateTime | null;
-    sistEndretAv: string | null;
+    sistEndret: SistEndret | null;
     prioritet: number;
 }
 
@@ -149,26 +175,27 @@ export interface Verge {
     opphoerstidspunkt: LocalDate | null;
 }
 
-interface Foreldreansvar {
+export interface Foreldreansvar {
     ansvar: string;
     ansvarlig: Navn | null;
     ansvarsubject: Navn | null;
 }
 
-interface DeltBosted {
+export interface DeltBosted {
     startdatoForKontrakt: LocalDate;
     sluttdatoForKontrakt: LocalDate | null;
     adresse: Adresse | null;
 }
 
 export interface ForelderBarnRelasjon {
-    ident: String;
+    ident: string;
     rolle: ForelderBarnRelasjonRolle;
     navn: Array<Navn>;
     fodselsdato: Array<LocalDate>;
+    kjonn: Array<KodeBeskrivelse<Kjonn>>;
     alder: number | null;
     adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
-    bostedAdresse: Array<Adresse>;
+    harSammeAdresse: boolean;
     personstatus: Array<KodeBeskrivelse<PersonStatus>>;
 }
 
@@ -218,14 +245,6 @@ export enum SivilstandType {
     GJENLEVENDE_PARTNER = 'GJENLEVENDE_PARTNER'
 }
 
-export enum SikkerhetstiltakType {
-    FYUS = 'FYUS',
-    TFUS = 'TFUS',
-    FTUS = 'FTUS',
-    DIUS = 'DIUS',
-    TOAN = 'TOAN'
-}
-
 export enum Skifteform {
     OFFENTLIG = 'OFFENTLIG',
     ANNET = 'ANNET',
@@ -256,13 +275,13 @@ export interface DigitalKontaktinformasjon {
     mobiltelefonnummer: MobilTelefon | null;
 }
 
-interface Epostadresse {
+export interface Epostadresse {
     value: string | null;
     sistOppdatert: LocalDate | null;
     sistVerifisert: LocalDate | null;
 }
 
-interface MobilTelefon {
+export interface MobilTelefon {
     value: string | null;
     sistOppdatert: LocalDate | null;
     sistVerifisert: LocalDate | null;

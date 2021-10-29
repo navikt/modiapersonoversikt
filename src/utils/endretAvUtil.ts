@@ -12,11 +12,19 @@ export function endretAvTekst(rawString: string): string {
         return 'av NAV';
     } else if (rawString.match('AAA2101, SKD')) {
         return 'av Skatteetaten';
-    } else if (rawString.match(FOLKEREGISTERET)) {
+    } else if (endretIFolkeregisteret(rawString)) {
         return 'i Folkeregisteret';
     } else {
         return rawString;
     }
+}
+
+function endretIFolkeregisteret(rawString: string) {
+    return (
+        rawString.match(FOLKEREGISTERET) ||
+        rawString.toLowerCase() === 'folkeregisteret' ||
+        rawString.toLowerCase() === 'freg'
+    );
 }
 
 function endretIFagsystem(rawString: string) {

@@ -11,7 +11,6 @@ import {
     LocalDateTime,
     Person,
     PersonStatus,
-    SikkerhetstiltakType,
     SivilstandType,
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
@@ -26,6 +25,8 @@ export function setupPersondataMock(mock: FetchMock) {
 // Til bruk under testing av funksjonalitet
 const erDod = false;
 const visEtiketter = true;
+const erReservert = false;
+const ikkeRegistrert = false;
 
 function lagPersondata(fnr: string): PersonData {
     const person: Person = {
@@ -50,19 +51,67 @@ function lagPersondata(fnr: string): PersonData {
             {
                 linje1: 'Adressevei 1',
                 linje2: '0000 AREMARK',
-                linje3: 'Norge'
+                linje3: 'Norge',
+                sistEndret: {
+                    ident: 'Folkeregisteret',
+                    tidspunkt: '2020-01-01T10:15:30' as LocalDateTime,
+                    system: 'Folkeregisteret'
+                }
             }
         ],
         kontaktAdresse: [
             {
                 linje1: 'Kontaktadresse 1',
                 linje2: '0320 HEI',
-                linje3: null
+                linje3: null,
+                sistEndret: {
+                    ident: 'D159000',
+                    tidspunkt: '2021-10-10T10:15:30' as LocalDateTime,
+                    system: 'NAV'
+                }
             }
         ],
         navEnhet: {
             id: '0219',
-            navn: 'NAV Bærum'
+            navn: 'NAV Bærum',
+            publikumsmottak: [
+                {
+                    besoksadresse: {
+                        linje1: 'Adressevei 1',
+                        linje2: '0000 AREMARK',
+                        linje3: null,
+                        sistEndret: null
+                    },
+                    apningstider: [
+                        {
+                            ukedag: 'Mandag',
+                            apningstid: '09.00 - 15.00'
+                        },
+                        {
+                            ukedag: 'Tirsdag',
+                            apningstid: '09.00 - 15.00'
+                        },
+                        {
+                            ukedag: 'Onsdag',
+                            apningstid: '09.00 - 14.00'
+                        }
+                    ]
+                },
+                {
+                    besoksadresse: {
+                        linje1: 'Adressevei 1',
+                        linje2: '0000 AREMARK',
+                        linje3: null,
+                        sistEndret: null
+                    },
+                    apningstider: [
+                        {
+                            ukedag: 'Mandag',
+                            apningstid: '09.00 - 15.00'
+                        }
+                    ]
+                }
+            ]
         },
         statsborgerskap: [
             {
@@ -99,7 +148,8 @@ function lagPersondata(fnr: string): PersonData {
         sikkerhetstiltak: visEtiketter
             ? [
                   {
-                      type: SikkerhetstiltakType.TFUS,
+                      type: 'TFUS',
+                      beskrivelse: 'Telefonisk utestengelse',
                       gyldigFraOgMed: '2005-02-13' as LocalDate,
                       gyldigTilOgMed: visEtiketter ? ('2030-02-15' as LocalDate) : ('2010-02-15' as LocalDate)
                   }
@@ -115,10 +165,22 @@ function lagPersondata(fnr: string): PersonData {
         sivilstand: [
             {
                 type: {
-                    kode: SivilstandType.SKILT,
-                    beskrivelse: 'Skilt'
+                    kode: SivilstandType.GIFT,
+                    beskrivelse: 'Gift'
                 },
-                gyldigFraOgMed: '2010-03-06' as LocalDate
+                gyldigFraOgMed: '2010-03-06' as LocalDate,
+                sivilstandRelasjon: {
+                    fnr: '',
+                    navn: [],
+                    alder: null,
+                    adressebeskyttelse: [
+                        {
+                            kode: AdresseBeskyttelse.KODE6,
+                            beskrivelse: 'Sperret adresse, strengt fortrolig'
+                        }
+                    ],
+                    harSammeAdresse: false
+                }
             }
         ],
         foreldreansvar: [
@@ -143,7 +205,8 @@ function lagPersondata(fnr: string): PersonData {
                 adresse: {
                     linje1: `Adresseveien 1`,
                     linje2: '0000 Aremark',
-                    linje3: null
+                    linje3: null,
+                    sistEndret: null
                 }
             }
         ],
@@ -164,12 +227,18 @@ function lagPersondata(fnr: string): PersonData {
                           personSomAdressat: null
                       },
                       adresse: {
-                          linje1: 'Elgelia 20, 0000 Aremark',
-                          linje2: null,
-                          linje3: null
+                          linje1: 'Elgelia 20',
+                          linje2: '0000 Aremark',
+                          linje3: null,
+                          sistEndret: null
                       },
                       registrert: '2010-02-02' as LocalDate,
-                      skifteform: Skifteform.OFFENTLIG
+                      skifteform: Skifteform.OFFENTLIG,
+                      sistEndret: {
+                          ident: 'Folkeregisteret',
+                          tidspunkt: '2015-01-01T10:15:30' as LocalDateTime,
+                          system: 'Folkeregisteret'
+                      }
                   }
               ]
             : [],
@@ -198,8 +267,21 @@ function lagPersondata(fnr: string): PersonData {
                           mellomnavn: null,
                           etternavn: 'Solli'
                       },
-                      vergesakstype: 'voksen',
-                      omfang: 'personligeOgOekonomiskeInteresser',
+                      vergesakstype: 'Voksen',
+                      omfang: 'Ivareta personens interesser innenfor det personlige og økonomiske området',
+                      embete: 'Fylkesmannen i Troms og Finnmark',
+                      gyldighetstidspunkt: '2016-03-27' as LocalDate,
+                      opphoerstidspunkt: '2017-06-30' as LocalDate
+                  },
+                  {
+                      ident: '123456799',
+                      navn: {
+                          fornavn: 'Truls',
+                          mellomnavn: null,
+                          etternavn: 'Tøffel'
+                      },
+                      vergesakstype: 'Fremtidsfullmakt',
+                      omfang: 'Ivareta personens interesser innenfor det økonomiske området',
                       embete: 'Fylkesmannen i Troms og Finnmark',
                       gyldighetstidspunkt: '2016-03-27' as LocalDate,
                       opphoerstidspunkt: '2017-06-30' as LocalDate
@@ -228,41 +310,75 @@ function lagPersondata(fnr: string): PersonData {
             {
                 retningsnummer: {
                     kode: '+47',
-                    beskrivelse: 'retningsnummer er norsk'
+                    beskrivelse: 'Norge'
                 },
                 identifikator: '99009900',
-                sistEndret: '2017-10-10T10:15:30' as LocalDateTime,
-                sistEndretAv: 'TESTFAMILIEN AREMARK',
+                sistEndret: {
+                    ident: '11223344',
+                    tidspunkt: '2018-06-01T00:00:00' as LocalDateTime,
+                    system: 'BD06'
+                },
                 prioritet: 1
+            },
+            {
+                retningsnummer: {
+                    kode: '+47',
+                    beskrivelse: 'Norge'
+                },
+                identifikator: '55003399',
+                sistEndret: {
+                    ident: '11223344',
+                    tidspunkt: '2011-06-14T00:00:00' as LocalDateTime,
+                    system: ''
+                },
+                prioritet: -1
             }
         ],
-        kontaktOgReservasjon: {
-            personident: '10108000398',
-            reservasjon: visEtiketter ? 'true' : 'false',
-            epostadresse: {
-                value: 'epost@nav.no',
-                sistOppdatert: null,
-                sistVerifisert: '2013-01-01' as LocalDate
-            },
-            mobiltelefonnummer: {
-                value: '90000000',
-                sistOppdatert: null,
-                sistVerifisert: null
-            }
-        },
+        kontaktOgReservasjon: ikkeRegistrert
+            ? {
+                  personident: '10108000398',
+                  reservasjon: erReservert ? 'true' : 'false',
+                  epostadresse: {
+                      value: null,
+                      sistOppdatert: null,
+                      sistVerifisert: null
+                  },
+                  mobiltelefonnummer: {
+                      value: null,
+                      sistOppdatert: null,
+                      sistVerifisert: null
+                  }
+              }
+            : {
+                  personident: '10108000398',
+                  reservasjon: erReservert ? 'true' : 'false',
+                  epostadresse: {
+                      value: 'epost@nav.no',
+                      sistOppdatert: '2013-01-01' as LocalDate,
+                      sistVerifisert: '2013-01-01' as LocalDate
+                  },
+                  mobiltelefonnummer: {
+                      value: '90000000',
+                      sistOppdatert: '2015-02-01' as LocalDate,
+                      sistVerifisert: null
+                  }
+              },
         bankkonto: {
-            kontonummer: '1234567890',
+            kontonummer: '12345678910',
             banknavn: 'DNB ASA',
-            sistEndret: '2006-03-15T00:00:00' as LocalDateTime,
-            sistEndretAv: '1010800 BD03',
-
+            sistEndret: {
+                ident: '1010800 BD03',
+                tidspunkt: '2006-03-15T00:00:00' as LocalDateTime,
+                system: ''
+            },
             bankkode: null,
             swift: 'DNBANOKKXXX',
             landkode: null,
             adresse: {
                 linje1: 'Bankveien 1,',
                 linje2: '0357 Bankestad',
-                linje3: null
+                linje3: null,
+                sistEndret: null
             },
             valuta: {
                 kode: 'NOK',
@@ -278,29 +394,29 @@ function lagPersondata(fnr: string): PersonData {
 const barnMock: ForelderBarnRelasjon[] = [
     {
         ident: '12345678910',
-        rolle: ForelderBarnRelasjonRolle.BARN,
+        rolle: ForelderBarnRelasjonRolle.MOR,
         navn: [
             {
-                fornavn: 'BARN1',
+                fornavn: 'MOR',
                 mellomnavn: null,
-                etternavn: 'BARNESEN'
+                etternavn: 'MORSAN'
             }
         ],
-        fodselsdato: ['2008-03-15' as LocalDate],
-        alder: 13,
+        fodselsdato: ['1971-03-15' as LocalDate],
+        alder: 50,
+        kjonn: [
+            {
+                kode: Kjonn.K,
+                beskrivelse: 'Kvinne'
+            }
+        ],
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.UGRADERT,
-                beskrivelse: 'UGRADERT'
+                beskrivelse: 'Militær'
             }
         ],
-        bostedAdresse: [
-            {
-                linje1: 'Gatenavn 1',
-                linje2: '0000 AREMARK',
-                linje3: 'Norge'
-            }
-        ],
+        harSammeAdresse: true,
         personstatus: [
             {
                 kode: PersonStatus.BOSATT,
@@ -313,20 +429,26 @@ const barnMock: ForelderBarnRelasjon[] = [
         rolle: ForelderBarnRelasjonRolle.BARN,
         navn: [
             {
-                fornavn: 'BARN2',
+                fornavn: 'BARN1',
                 mellomnavn: null,
                 etternavn: 'BARNESEN'
             }
         ],
         fodselsdato: ['2010-04-21' as LocalDate],
         alder: null,
+        kjonn: [
+            {
+                kode: Kjonn.M,
+                beskrivelse: 'Mann'
+            }
+        ],
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.UGRADERT,
-                beskrivelse: 'UGRADERT'
+                beskrivelse: 'Pendler'
             }
         ],
-        bostedAdresse: [],
+        harSammeAdresse: false,
         personstatus: [
             {
                 kode: PersonStatus.DOD,
@@ -335,30 +457,19 @@ const barnMock: ForelderBarnRelasjon[] = [
         ]
     },
     {
-        ident: '12345678912',
-        rolle: ForelderBarnRelasjonRolle.BARN,
-        navn: [
-            {
-                fornavn: 'BARN3',
-                mellomnavn: null,
-                etternavn: 'BARNESEN'
-            }
-        ],
-        fodselsdato: ['2012-06-05' as LocalDate],
-        alder: 9,
+        ident: '',
+        rolle: ForelderBarnRelasjonRolle.FAR,
+        navn: [],
+        fodselsdato: [],
+        alder: null,
+        kjonn: [],
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.KODE6,
-                beskrivelse: 'KODE 6'
+                beskrivelse: 'Sperret adresse, strengt fortrolig'
             }
         ],
-        bostedAdresse: [
-            {
-                linje1: 'Gatenavn 22',
-                linje2: '0000 AREMARK',
-                linje3: 'Norge'
-            }
-        ],
+        harSammeAdresse: false,
         personstatus: [
             {
                 kode: PersonStatus.BOSATT,
@@ -378,19 +489,19 @@ const barnMock: ForelderBarnRelasjon[] = [
         ],
         fodselsdato: ['1998-04-09' as LocalDate],
         alder: 23,
+        kjonn: [
+            {
+                kode: Kjonn.U,
+                beskrivelse: 'Ukjent kjønn'
+            }
+        ],
         adressebeskyttelse: [
             {
-                kode: AdresseBeskyttelse.KODE6_UTLAND,
-                beskrivelse: 'KODE 6 UTLAND'
+                kode: AdresseBeskyttelse.UGRADERT,
+                beskrivelse: 'UGRADERT'
             }
         ],
-        bostedAdresse: [
-            {
-                linje1: 'Gatenavn 22',
-                linje2: '0000 AREMARK',
-                linje3: 'Sverige'
-            }
-        ],
+        harSammeAdresse: true,
         personstatus: [
             {
                 kode: PersonStatus.UTFLYTTET,
@@ -399,30 +510,19 @@ const barnMock: ForelderBarnRelasjon[] = [
         ]
     },
     {
-        ident: '12345678914',
+        ident: '',
         rolle: ForelderBarnRelasjonRolle.BARN,
-        navn: [
-            {
-                fornavn: 'BARN5',
-                mellomnavn: null,
-                etternavn: 'BARNESEN'
-            }
-        ],
-        fodselsdato: ['1998-04-09' as LocalDate],
-        alder: 23,
+        navn: [],
+        fodselsdato: [],
+        alder: null,
+        kjonn: [],
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.KODE7,
-                beskrivelse: 'KODE 7'
+                beskrivelse: 'Sperret adresse, fortrolig'
             }
         ],
-        bostedAdresse: [
-            {
-                linje1: 'Gatenavn 22',
-                linje2: '0000 AREMARK',
-                linje3: 'Norge'
-            }
-        ],
+        harSammeAdresse: false,
         personstatus: [
             {
                 kode: PersonStatus.BOSATT,

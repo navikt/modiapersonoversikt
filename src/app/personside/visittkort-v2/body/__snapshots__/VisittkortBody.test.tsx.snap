@@ -85,47 +85,25 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   margin: 10px 0 0 0;
 }
 
-.c6 {
+.c8 span:not(:last-child):after {
+  content: '.';
+}
+
+.c7 {
   color: #645f5a;
   margin-top: 3px;
 }
 
-.c6 .typo-etikett-liten {
+.c7 .typo-etikett-liten {
   line-height: 1rem;
 }
 
-.c7 span:not(:last-child):after {
-  content: '.';
+.c6 {
+  margin-top: 0.5rem;
 }
 
-.c9 {
-  text-transform: capitalize;
-}
-
-.c8 {
-  margin: initial;
-  padding: initial;
-  list-style: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-}
-
-.c8 dt {
-  -webkit-flex: 1 1 50%;
-  -ms-flex: 1 1 50%;
-  flex: 1 1 50%;
-}
-
-.c8 dd {
-  -webkit-flex: 2 2 50%;
-  -ms-flex: 2 2 50%;
-  flex: 2 2 50%;
-  margin: 0;
+.c10 {
+  margin-bottom: 5px;
 }
 
 .c11 {
@@ -147,8 +125,30 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   flex-grow: 1;
 }
 
-.c10 {
-  margin-bottom: 5px;
+.c9 {
+  margin: initial;
+  padding: initial;
+  list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.c9 dt {
+  -webkit-flex: 1 1 50%;
+  -ms-flex: 1 1 50%;
+  flex: 1 1 50%;
+}
+
+.c9 dd {
+  -webkit-flex: 2 2 50%;
+  -ms-flex: 2 2 50%;
+  flex: 2 2 50%;
+  margin: 0;
 }
 
 <section
@@ -224,29 +224,43 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <h4
             className="typo-element"
           >
-            Bostedsadresse
+            Kontaktinformasjon for dødsbo
           </h4>
         </div>
-        <div>
+        <p
+          className="typo-normal"
+        >
+          Advokat Navnesen
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Advokatfirma 
+          Advokatkontoret Aremark
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Org. nr: 
+          01234567891011
+        </p>
+        <div
+          className="c6"
+        >
           <p
             className="typo-normal"
           >
-            Islandsgate 49
-          </p>
-          <p
-            className="typo-normal"
-          >
-            7693 Hovedøya
+            Elgelia 20, 0000 Aremark
           </p>
         </div>
         <div
-          className="c6"
+          className="c7"
         >
           <p
             className="typo-undertekst"
           >
             Endret 
-            25.11.2017
+            01.01.2020
              
             i Folkeregisteret
           </p>
@@ -297,29 +311,103 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <h4
             className="typo-element"
           >
-            Midlertidig adresse
+            Bostedsadresse
           </h4>
         </div>
-        <div>
-          <p
-            className="typo-normal"
-          >
-            Postboksnummer 9698
-          </p>
-          <p
-            className="typo-normal"
-          >
-            7705 Færder fyr
-          </p>
-        </div>
+        <p
+          className="typo-normal"
+        >
+          Islandsgate 49
+        </p>
+        <p
+          className="typo-normal"
+        >
+          7693 Hovedøya
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Norge
+        </p>
         <div
-          className="c6"
+          className="c7"
         >
           <p
             className="typo-undertekst"
           >
             Endret 
-            10.04.2018
+            20.02.2010
+             
+            i Folkeregisteret
+          </p>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              height={24}
+              viewBox="0 0 24 24"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                fill="#C6C2BF"
+              >
+                <defs>
+                  <mask
+                    id="locationpinmask"
+                  >
+                    <rect
+                      fill="#fff"
+                      height="100%"
+                      width="100%"
+                    />
+                    <circle
+                      cx={12}
+                      cy={8}
+                      fill="#000"
+                      r={4}
+                    />
+                  </mask>
+                </defs>
+                <path
+                  d="M19.5 8c0 4.1-7.5 15.5-7.5 15.5S4.5 12.1 4.5 8a7.5 7.5 0 1 1 15 0z"
+                  mask="url(#locationpinmask)"
+                />
+              </g>
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            Kontaktadresse
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Aremarkveien 1
+        </p>
+        <p
+          className="typo-normal"
+        >
+          0320 Aremark
+        </p>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Endret 
+            01.01.2020
              
             i Folkeregisteret
           </p>
@@ -360,17 +448,15 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
-          aremark@testfamilien.no
+          Reservert
         </p>
         <div
-          className="c6"
+          className="c7"
         >
           <p
             className="typo-undertekst"
           >
-            Endret 
-            15.05.2014
-             i Kontakt-og reservasjonsregisteret
+            I Kontakt- og reservasjonsregisteret
           </p>
         </div>
       </div>
@@ -405,17 +491,15 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
-          112 23 344
+          Reservert
         </p>
         <div
-          className="c6"
+          className="c7"
         >
           <p
             className="typo-undertekst"
           >
-            Endret 
-            15.05.2014
-             i Kontakt- og reservasjonsregisteret
+            I Kontakt- og reservasjonsregisteret
           </p>
         </div>
       </div>
@@ -435,39 +519,18 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
-          +47 998 87 766
-           
-          
+          +47 990 09 900
         </p>
         <div
-          className="c6"
+          className="c7"
         >
           <p
             className="typo-undertekst"
           >
             Endret 
-            21.06.2014
+            14.06.2018
              
             av bruker
-          </p>
-        </div>
-        <p
-          className="typo-normal"
-        >
-           998 87 767
-           
-          
-        </p>
-        <div
-          className="c6"
-        >
-          <p
-            className="typo-undertekst"
-          >
-            Endret 
-            21.05.2014
-             
-            av NAV
           </p>
         </div>
       </div>
@@ -548,29 +611,23 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-normal"
         >
           <span
-            className="c7"
+            className="c8"
           >
             <span>
-              1234
-            </span>
-            <span>
-              56
-            </span>
-            <span>
-              78911
+              1234567890
             </span>
           </span>
         </p>
         <div
-          className="c6"
+          className="c7"
         >
           <p
             className="typo-undertekst"
           >
             Endret 
-            12.12.2005
+            15.03.2006
              
-            z9910
+            av bruker
           </p>
         </div>
       </div>
@@ -629,20 +686,20 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-element"
           >
             Fullmektig
-    : Navn Navensen(12345678)
+    : Navn Navnesen (123456789)
           </h4>
         </div>
         <p
           className="typo-normal"
         >
           Gyldig fra og med 
-          01.01.2019
+          01.01.2015
         </p>
         <p
           className="typo-normal"
         >
           Gyldig til og med 
-          12.12.2022
+          12.12.2017
         </p>
         <p
           className="typo-normal"
@@ -698,248 +755,19 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-normal"
         >
           Gift
-           (
-          12.12.2005
-          )
-        </p>
-        <p
-          className="typo-normal"
-        >
-          Sperret adresse, strengt fortrolig
-        </p>
-        <p
-          className="typo-normal"
-        >
-          
            
-           
+          (12.12.2005)
         </p>
         <p
           className="typo-normal"
         >
-          
+          BAREMARK TESTFAMILIEN
+          (40)
         </p>
         <p
           className="typo-normal"
         >
-          Bor ikke med bruker
-        </p>
-      </div>
-      <div
-        className="c4"
-      >
-        <div
-          className="c2"
-        >
-          <div
-            className="c5"
-          >
-            <svg
-              alt="Kjønn skjult av diskresjonskode"
-              aria-label="Kjønn skjult av diskresjonskode"
-              height={64}
-              viewBox="0 0 64 64"
-              width={64}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M32 0a32 32 0 1 0 0 64 32 32 0 0 0 0-64zm0 8a3.9 3.9 0 1 1 0 7.7 3.9 3.9 0 0 1 0-7.8zm10 15.5v10.8c0 .9-.7 1.6-1.6 1.6-1 0-1.8-.7-1.8-1.6v-8.9c0-.4-.3-.8-.7-.8-.4 0-.7.3-.7.7v28.5a2.2 2.2 0 1 1-4.5 0v-18a.7.7 0 0 0-1.4 0v18a2.2 2.2 0 0 1-4.4 0V25.4a.7.7 0 0 0-1.5 0V34.3c0 .9-.8 1.6-1.8 1.6s-1.7-.7-1.7-1.6V23.5v-.7c0-3.4 3.6-5.8 7-6H35c3.4.2 7 2.6 7 6v.7z"
-                fill="#C6C2BF"
-              />
-            </svg>
-          </div>
-          <h4
-            className="typo-element"
-          >
-            Barn
-          </h4>
-        </div>
-        <p
-          className="typo-normal"
-        >
-          Sperret adresse, fortrolig
-        </p>
-        <p
-          className="typo-normal"
-        >
-          
-           
-           
-        </p>
-        <p
-          className="typo-normal"
-        >
-          
-        </p>
-        <p
-          className="typo-normal"
-        />
-      </div>
-      <div
-        className="c4"
-      >
-        <div
-          className="c2"
-        >
-          <div
-            className="c5"
-          >
-            <svg
-              alt="Kjønn skjult av diskresjonskode"
-              aria-label="Kjønn skjult av diskresjonskode"
-              height={64}
-              viewBox="0 0 64 64"
-              width={64}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M32 0a32 32 0 1 0 0 64 32 32 0 0 0 0-64zm0 8a3.9 3.9 0 1 1 0 7.7 3.9 3.9 0 0 1 0-7.8zm10 15.5v10.8c0 .9-.7 1.6-1.6 1.6-1 0-1.8-.7-1.8-1.6v-8.9c0-.4-.3-.8-.7-.8-.4 0-.7.3-.7.7v28.5a2.2 2.2 0 1 1-4.5 0v-18a.7.7 0 0 0-1.4 0v18a2.2 2.2 0 0 1-4.4 0V25.4a.7.7 0 0 0-1.5 0V34.3c0 .9-.8 1.6-1.8 1.6s-1.7-.7-1.7-1.6V23.5v-.7c0-3.4 3.6-5.8 7-6H35c3.4.2 7 2.6 7 6v.7z"
-                fill="#C6C2BF"
-              />
-            </svg>
-          </div>
-          <h4
-            className="typo-element"
-          >
-            Barn
-          </h4>
-        </div>
-        <p
-          className="typo-normal"
-        >
-          Sperret adresse, strengt fortrolig
-        </p>
-        <p
-          className="typo-normal"
-        >
-          
-           
-           
-        </p>
-        <p
-          className="typo-normal"
-        >
-          
-        </p>
-        <p
-          className="typo-normal"
-        />
-      </div>
-      <div
-        className="c4"
-      >
-        <div
-          className="c2"
-        >
-          <div
-            className="c5"
-          >
-            <svg
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <mask
-                  id="jentebarnmask"
-                >
-                  <circle
-                    cx={10}
-                    cy={10}
-                    fill="#FFF"
-                    r={10}
-                  />
-                  <path
-                    d="M11.4 13.47v2.85c0 .32-.27.58-.59.58a.58.58 0 0 1-.58-.58v-2.85h-.4v2.85c0 .32-.25.58-.57.58a.58.58 0 0 1-.59-.58v-2.85H7.43l.69-3.76-.97 1.53a.56.56 0 1 1-.9-.66l1.6-2.5c.33-.45.5-.56 1.28-.56h1.82c.78 0 .95.1 1.27.55l1.61 2.51a.56.56 0 0 1-.42.93c-.2 0-.38-.11-.47-.27l-.98-1.53.69 3.76h-1.26zM12.1 5.31a2.07 2.07 0 0 1-4.13 0 1.35 1.35 0 0 1-1.92.76 1.35 1.35 0 0 1 1.96-1.29 2.07 2.07 0 0 1 4.05 0 1.35 1.35 0 0 1 1.95 1.29 1.35 1.35 0 0 1-1.91-.76z"
-                    fill="#000"
-                  />
-                </mask>
-              </defs>
-              <rect
-                fill="#C86151"
-                height="20"
-                mask="url(#jentebarnmask)"
-                width="20"
-              />
-            </svg>
-          </div>
-          <h4
-            className="typo-element"
-          >
-            Jente
-          </h4>
-        </div>
-        <p
-          className="typo-normal"
-        >
-          NAVN
-           
-          (Død)
-           
-        </p>
-        <p
-          className="typo-normal"
-        >
-          10011100001
-        </p>
-        <p
-          className="typo-normal"
-        />
-      </div>
-      <div
-        className="c4"
-      >
-        <div
-          className="c2"
-        >
-          <div
-            className="c5"
-          >
-            <svg
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <mask
-                  id="jentebarnmask"
-                >
-                  <circle
-                    cx={10}
-                    cy={10}
-                    fill="#FFF"
-                    r={10}
-                  />
-                  <path
-                    d="M11.4 13.47v2.85c0 .32-.27.58-.59.58a.58.58 0 0 1-.58-.58v-2.85h-.4v2.85c0 .32-.25.58-.57.58a.58.58 0 0 1-.59-.58v-2.85H7.43l.69-3.76-.97 1.53a.56.56 0 1 1-.9-.66l1.6-2.5c.33-.45.5-.56 1.28-.56h1.82c.78 0 .95.1 1.27.55l1.61 2.51a.56.56 0 0 1-.42.93c-.2 0-.38-.11-.47-.27l-.98-1.53.69 3.76h-1.26zM12.1 5.31a2.07 2.07 0 0 1-4.13 0 1.35 1.35 0 0 1-1.92.76 1.35 1.35 0 0 1 1.96-1.29 2.07 2.07 0 0 1 4.05 0 1.35 1.35 0 0 1 1.95 1.29 1.35 1.35 0 0 1-1.91-.76z"
-                    fill="#000"
-                  />
-                </mask>
-              </defs>
-              <rect
-                fill="#C86151"
-                height="20"
-                mask="url(#jentebarnmask)"
-                width="20"
-              />
-            </svg>
-          </div>
-          <h4
-            className="typo-element"
-          >
-            Jente
-          </h4>
-        </div>
-        <p
-          className="typo-normal"
-        >
-          Siri Bellomnavn Aremark
-           
-          (15)
-           
-        </p>
-        <p
-          className="typo-normal"
-        >
-          10117100000
+          12345555555
         </p>
         <p
           className="typo-normal"
@@ -962,7 +790,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             >
               <defs>
                 <mask
-                  id="guttebarnmask"
+                  id="jentebarnmask"
                 >
                   <circle
                     cx={10}
@@ -971,15 +799,15 @@ exports[`viser info om bruker i visittkortbody 1`] = `
                     r={10}
                   />
                   <path
-                    d="M11.382 12.963v3.4a.58.58 0 0 1-.582.583.58.58 0 0 1-.583-.582v-3.4H9.83v3.4a.58.58 0 0 1-.582.582.58.58 0 0 1-.582-.582v-3.4h-.548V9.195l-.97 1.537a.558.558 0 1 1-.894-.661l1.606-2.509c.319-.446.498-.557 1.274-.557h1.861c.777 0 .956.111 1.274.557l1.607 2.509a.56.56 0 1 1-.894.661l-.97-1.537v3.767h-.629zM10.023 6.795a2.07 2.07 0 0 0 2.069-2.068c0-1.14-.928-2.07-2.069-2.07-1.14 0-2.068.93-2.068 2.07a2.07 2.07 0 0 0 2.068 2.068"
+                    d="M11.4 13.47v2.85c0 .32-.27.58-.59.58a.58.58 0 0 1-.58-.58v-2.85h-.4v2.85c0 .32-.25.58-.57.58a.58.58 0 0 1-.59-.58v-2.85H7.43l.69-3.76-.97 1.53a.56.56 0 1 1-.9-.66l1.6-2.5c.33-.45.5-.56 1.28-.56h1.82c.78 0 .95.1 1.27.55l1.61 2.51a.56.56 0 0 1-.42.93c-.2 0-.38-.11-.47-.27l-.98-1.53.69 3.76h-1.26zM12.1 5.31a2.07 2.07 0 0 1-4.13 0 1.35 1.35 0 0 1-1.92.76 1.35 1.35 0 0 1 1.96-1.29 2.07 2.07 0 0 1 4.05 0 1.35 1.35 0 0 1 1.95 1.29 1.35 1.35 0 0 1-1.91-.76z"
                     fill="#000"
                   />
                 </mask>
               </defs>
               <rect
-                fill="#3385D1"
+                fill="#C86151"
                 height="20"
-                mask="url(#guttebarnmask)"
+                mask="url(#jentebarnmask)"
                 width="20"
               />
             </svg>
@@ -987,20 +815,20 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <h4
             className="typo-element"
           >
-            Gutt
+            Jente
           </h4>
         </div>
         <p
           className="typo-normal"
         >
-          Ola Ballomnavn Aremark
+          BARN1 BARNESEN
            
-           
+          (13)
         </p>
         <p
           className="typo-normal"
         >
-          10117100100
+          12345678910
         </p>
         <p
           className="typo-normal"
@@ -1048,39 +876,27 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         >
           
         </div>
-        <div>
-          <p
-            className="typo-normal"
-          >
-            Adresseveien 1
-          </p>
-          <p
-            className="typo-normal"
-          >
-            
-          </p>
-          <p
-            className="typo-normal"
-          >
-            0661 (1) AREMARKSTAD
-          </p>
-          <p
-            className="typo-normal"
-          >
-            
-          </p>
-        </div>
+        <p
+          className="typo-normal"
+        >
+          Adresseveien 1
+        </p>
+        <p
+          className="typo-normal"
+        >
+          0000 Aremark
+        </p>
         <p
           className="typo-normal"
         >
           Gyldig fra og med 
-          12.12.2020
+          10.10.2000
         </p>
         <p
           className="typo-normal"
         >
           Gyldig til og med 
-          12.12.2023
+          07.05.2005
         </p>
       </div>
     </section>
@@ -1126,7 +942,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
-          Ola Normann
+          Test Testesen
           (
           felles
           )
@@ -1134,24 +950,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
-          Gjelder for: Pål Askeladden
-        </p>
-      </div>
-      <div
-        className="c4"
-      >
-        <div
-          className="c2"
-        >
-          
-        </div>
-        <p
-          className="typo-normal"
-        >
-          Petter Pettersen
-          (
-          far
-          )
+          Gjelder for: Barn Barnesen
         </p>
       </div>
     </section>
@@ -1207,13 +1006,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <h4
             className="typo-element"
           >
-            0118 NAV Aremark
+            0219 NAV Bærum
           </h4>
         </div>
         <div>
           <br />
           <div
-            className="c6"
+            className="c7"
           >
             <p
               className="typo-undertekst"
@@ -1224,17 +1023,16 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-normal"
           >
-            
-            Rådhuset 6A
+            Adressevei 1
           </p>
           <p
             className="typo-normal"
           >
-            1798 Aremark
+            0000 AREMARK
           </p>
           <br />
           <div
-            className="c6"
+            className="c7"
           >
             <p
               className="typo-undertekst"
@@ -1243,116 +1041,48 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </p>
           </div>
           <dl
-            className="c8"
+            className="c9"
           >
             <dt>
               <p
                 className="typo-normal"
               >
-                <span
-                  className="c9"
-                >
-                  mandag
-                </span>
+                Mandag
               </p>
             </dt>
             <dd>
               <p
                 className="typo-normal"
               >
-                09.00
-                 
-                –
-                 
-                14.30
+                09.00 - 15.00
               </p>
             </dd>
             <dt>
               <p
                 className="typo-normal"
               >
-                <span
-                  className="c9"
-                >
-                  tirsdag
-                </span>
+                Tirsdag
               </p>
             </dt>
             <dd>
               <p
                 className="typo-normal"
               >
-                09.00
-                 
-                –
-                 
-                14.30
+                09.00 - 15.00
               </p>
             </dd>
             <dt>
               <p
                 className="typo-normal"
               >
-                <span
-                  className="c9"
-                >
-                  onsdag
-                </span>
+                Onsdag
               </p>
             </dt>
             <dd>
               <p
                 className="typo-normal"
               >
-                09.00
-                 
-                –
-                 
-                14.30
-              </p>
-            </dd>
-            <dt>
-              <p
-                className="typo-normal"
-              >
-                <span
-                  className="c9"
-                >
-                  torsdag
-                </span>
-              </p>
-            </dt>
-            <dd>
-              <p
-                className="typo-normal"
-              >
-                09.00
-                 
-                –
-                 
-                14.30
-              </p>
-            </dd>
-            <dt>
-              <p
-                className="typo-normal"
-              >
-                <span
-                  className="c9"
-                >
-                  fredag
-                </span>
-              </p>
-            </dt>
-            <dd>
-              <p
-                className="typo-normal"
-              >
-                09.00
-                 
-                –
-                 
-                14.30
+                10.00 - 16.00
               </p>
             </dd>
           </dl>
@@ -1360,7 +1090,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </div>
         <a
           className="lenke"
-          href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0118"
+          href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0219"
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -1426,18 +1156,22 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
-          Talespråktolk
-          :
-           
-          Svensk
+          Tegnspråk
+          : 
+          Norsk
            (
-          SV
+          NO
           )
         </p>
         <p
           className="typo-normal"
         >
-          Tegnspråktolk
+          Talespråk
+          : 
+          Norsk
+           (
+          NO
+          )
         </p>
       </div>
     </section>
@@ -1487,7 +1221,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       <p
         className="typo-normal"
       >
-        Voksen
+        Vergesakstyper: 
+        Voksen, Fremtidsfullmakt
       </p>
       <div
         className="c4"
@@ -1508,12 +1243,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           <p
             className="typo-normal"
           >
-            LUNKEN KOPP
+            Simen Solli
           </p>
           <p
             className="typo-normal"
           >
-            12076918951
+            21042900076
           </p>
         </div>
         <p
@@ -1527,14 +1262,63 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Ivareta personens interesser innenfor det personlige og økonomiske området
         </p>
         <div
-          className="c6"
+          className="c7"
         >
           <p
             className="typo-undertekst"
           >
             Fylkesmannen i Troms og Finnmark
             <br />
-            15.02.2021 – 
+            27.03.2016 – 30.06.2017
+          </p>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+          <h4
+            className="typo-element"
+          >
+            Verge
+          </h4>
+        </div>
+        <div
+          className="c10"
+        >
+          <p
+            className="typo-normal"
+          >
+            Truls Tøffel
+          </p>
+          <p
+            className="typo-normal"
+          >
+            123456799
+          </p>
+        </div>
+        <p
+          className="typo-element"
+        >
+          Omfang
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Ivareta personens interesser innenfor det økonomiske området
+        </p>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Fylkesmannen i Troms og Finnmark
+            <br />
+            27.03.2016 – 30.06.2017
           </p>
         </div>
       </div>
@@ -1605,23 +1389,23 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         >
           
         </div>
-        <div
-          className="c6"
-        >
-          <p
-            className="typo-undertekst"
+        <div>
+          <div
+            className="c7"
           >
-            Gyldig: 
-            12.12.2005
-             - 
-            12.12.2025
+            <p
+              className="typo-undertekst"
+            >
+              Gyldig: 
+              13.02.2005 – 15.02.2030
+            </p>
+          </div>
+          <p
+            className="typo-normal"
+          >
+            Telefonisk utestengelse
           </p>
         </div>
-        <p
-          className="typo-normal"
-        >
-          Får verken møte opp på NAV-kontor eller ringe på telefon grunnet truende oppførsel og språk.
-        </p>
       </div>
     </section>
     <div
