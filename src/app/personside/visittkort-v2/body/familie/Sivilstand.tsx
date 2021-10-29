@@ -31,7 +31,7 @@ function Partner(props: { partner: SivilstandInterface }) {
     if (!partnerRelasjon) {
         return null;
     }
-    const navn = partnerRelasjon.navn.firstOrNull() ?? null;
+    const navn = partnerRelasjon.navn.firstOrNull();
     const alder = partnerRelasjon.alder ? `(${partnerRelasjon.alder})` : null;
     return (
         <>
@@ -40,7 +40,7 @@ function Partner(props: { partner: SivilstandInterface }) {
             </Normaltekst>
             <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
             <Normaltekst>
-                {hentNavn(navn)}
+                {navn && hentNavn(navn)}
                 {alder}
             </Normaltekst>
             <Normaltekst>{partnerRelasjon.fnr}</Normaltekst>

@@ -14,12 +14,13 @@ interface Props {
 }
 
 function ForelderBarnRelasjonVisning({ relasjon, beskrivelse, erBarn }: Props) {
-    const alder = `(${hentAlderEllerDodRelasjon(relasjon)})`;
+    const alder = hentAlderEllerDodRelasjon(relasjon) ? `(${hentAlderEllerDodRelasjon(relasjon)})` : null;
+    const navn = relasjon.navn.firstOrNull();
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}>
             <Diskresjonskode adressebeskyttelse={relasjon.adressebeskyttelse} />
             <Normaltekst>
-                {hentNavn(relasjon.navn.firstOrNull())} {alder}
+                {navn && hentNavn(navn)} {alder}
             </Normaltekst>
             <Normaltekst>{relasjon.ident}</Normaltekst>
             <Normaltekst>
