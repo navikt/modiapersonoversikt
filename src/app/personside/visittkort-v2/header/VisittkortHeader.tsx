@@ -1,0 +1,138 @@
+import * as React from 'react';
+import { Data as Persondata, Kjonn, KodeBeskrivelse } from '../PersondataDomain';
+import { Undertittel } from 'nav-frontend-typografi';
+import styled from 'styled-components/macro';
+import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
+import { hentAlderEllerDod, hentNavn } from '../utils-visittkort';
+import { useRef } from 'react';
+import PersonStatus from './status/PersonStatus';
+import Etiketter from './etiketter/Etiketter';
+import VisMerChevron from '../../../../components/VisMerChevron';
+import NavKontorContainer from './navkontor/NavKontorContainer';
+import { useAppState, useOnMount } from '../../../../utils/customHooks';
+import KjonnIkon from './KjonnIkon';
+
+interface Props {
+    persondata: Persondata;
+    erApen: boolean;
+    toggleApen: () => void;
+}
+
+const VisittkortHeaderDiv = styled.section`
+    background-color: white;
+    padding: ${theme.margin.layout};
+    padding-right: 0;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    cursor: pointer;
+`;
+
+const StyledContent = styled.div`
+    flex-grow: 1;
+    display: flex;
+    flex-flow: row wrap;
+    > * {
+        flex: 1 1 15rem;
+    }
+`;
+
+const VenstreFelt = styled.section`
+    display: flex;
+    min-width: 35%;
+`;
+
+const HoyreFelt = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    text-align: right;
+    box-sizing: border-box;
+`;
+
+const GrunninfoDiv = styled.section`
+    flex: 1 1;
+    text-align: left;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    word-break: break-word;
+    *:focus {
+        ${theme.focus}
+    }
+    > *:first-child {
+        margin-bottom: 0.2em !important;
+    }
+`;
+
+const ChevronStyling = styled.div`
+    padding: ${pxToRem(10)};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+const ukjentKjonn: KodeBeskrivelse<Kjonn> = {
+    kode: Kjonn.U,
+    beskrivelse: 'Ukjent kjønn'
+};
+
+function VisittkortHeader(props: Props) {
+    const navneLinjeRef = useRef<HTMLSpanElement>(null);
+    const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
+
+    const person = props.persondata.person;
+
+    useOnMount(() => {
+        if (!person.sikkerhetstiltak.isEmpty()) {
+            return;
+        }
+        if (jobberMedSTO) {
+            // Fokus skal havne i meldingsliste
+            return;
+        }
+        navneLinjeRef.current?.focus();
+    });
+
+    const kjonn = person.kjonn.firstOrNull() ?? ukjentKjonn;
+    const navn = person.navn.firstOrNull();
+
+    return (
+        <VisittkortHeaderDiv role="region" aria-label="Visittkort-hode" onClick={props.toggleApen}>
+            <StyledContent>
+                <VenstreFelt>
+                    <KjonnIkon kjonn={kjonn.kode} />
+                    <GrunninfoDiv>
+                        <Undertittel tag="h1">
+                            <span ref={navneLinjeRef} tabIndex={-1} /* for at focus skal funke */>
+                                {hentNavn(navn)} ({hentAlderEllerDod(person)})
+                            </span>
+                        </Undertittel>
+                        <span className="visually-hidden">{kjonn.beskrivelse}</span>
+                        <PersonStatus person={person} />
+                    </GrunninfoDiv>
+                </VenstreFelt>
+                <HoyreFelt>
+                    <Etiketter person={person} />
+                    <NavKontorContainer person={person} />
+                </HoyreFelt>
+            </StyledContent>
+            <ChevronStyling>
+                <VisMerChevron
+                    onClick={e => {
+                        e.stopPropagation();
+                        props.toggleApen();
+                    }}
+                    open={props.erApen}
+                    title={(props.erApen ? 'Lukk' : 'Åpne') + ' visittkort (Alt + N)'}
+                    focusOnRelativeParent={true}
+                >
+                    <span className="visually-hidden">{props.erApen ? 'Lukk visittkort' : 'Ekspander visittkort'}</span>
+                </VisMerChevron>
+            </ChevronStyling>
+        </VisittkortHeaderDiv>
+    );
+}
+
+export default VisittkortHeader;
