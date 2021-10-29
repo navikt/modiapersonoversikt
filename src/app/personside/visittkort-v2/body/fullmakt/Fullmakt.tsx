@@ -20,12 +20,13 @@ function getOmrade(omrader: string[]): string {
 
 function Fullmakt(props: { fullmakt: FullmaktInterface }) {
     const motpartsPersonNavn = hentNavn(props.fullmakt.motpartsPersonNavn);
-
-    const beskrivelse = `${props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver'}
-    : ${motpartsPersonNavn} (${props.fullmakt.motpartsPersonident})`;
+    const beskrivelse = props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver';
 
     return (
         <VisittkortElement beskrivelse={beskrivelse}>
+            <Normaltekst>
+                {motpartsPersonNavn} {`(${props.fullmakt.motpartsPersonident})`}
+            </Normaltekst>
             <Normaltekst>Gyldig fra og med {formaterDato(props.fullmakt.gyldigFraOgMed)}</Normaltekst>
             <Normaltekst>Gyldig til og med {formaterDato(props.fullmakt.gyldigTilOgMed)}</Normaltekst>
             <Normaltekst>Gjelder {getOmrade(props.fullmakt.omrade)}</Normaltekst>
