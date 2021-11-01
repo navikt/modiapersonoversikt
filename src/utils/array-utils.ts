@@ -4,6 +4,7 @@ declare global {
     interface Array<T> {
         firstOrNull(): T | null;
         isEmpty(): boolean;
+        isNotEmpty(): boolean;
     }
 }
 
@@ -13,4 +14,8 @@ Array.prototype.firstOrNull = function() {
 
 Array.prototype.isEmpty = function() {
     return this.length === 0;
+};
+
+Array.prototype.isNotEmpty = function() {
+    return this.length > 0;
 };

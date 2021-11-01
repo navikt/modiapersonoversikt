@@ -98,9 +98,15 @@ exports[`viser fullmakt 1`] = `
         className="typo-element"
       >
         Fullmektig
-    : Navn Navnesen (123456789)
       </h4>
     </div>
+    <p
+      className="typo-normal"
+    >
+      Navn Navnesen
+       
+      (123456789)
+    </p>
     <p
       className="typo-normal"
     >

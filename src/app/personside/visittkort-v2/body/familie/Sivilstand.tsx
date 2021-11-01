@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import HeartIkon from '../../../../../svg/Heart';
-import { Person, Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
+import { Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
 import { hentNavn, hentPartner } from '../../visittkort-utils';
 import Diskresjonskode from './common/Diskresjonskode';
 import { formaterDato } from '../../../../../utils/string-utils';
 
 interface Props {
-    person: Person;
+    sivilstandListe: SivilstandInterface[];
 }
 
 function Sivilstand(props: { sivilstand: SivilstandInterface }) {
@@ -31,7 +31,7 @@ function Partner(props: { partner: SivilstandInterface }) {
     if (!partnerRelasjon) {
         return null;
     }
-    const navn = partnerRelasjon.navn.firstOrNull() ?? null;
+    const navn = partnerRelasjon.navn.firstOrNull();
     const alder = partnerRelasjon.alder ? `(${partnerRelasjon.alder})` : null;
     return (
         <>
@@ -40,7 +40,7 @@ function Partner(props: { partner: SivilstandInterface }) {
             </Normaltekst>
             <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
             <Normaltekst>
-                {hentNavn(navn)}
+                {navn && hentNavn(navn)}
                 {alder}
             </Normaltekst>
             <Normaltekst>{partnerRelasjon.fnr}</Normaltekst>
@@ -51,9 +51,9 @@ function Partner(props: { partner: SivilstandInterface }) {
     );
 }
 
-function SivilstandWrapper({ person }: Props) {
-    const partner = hentPartner(person.sivilstand);
-    const sivilstand = person.sivilstand.firstOrNull();
+function SivilstandWrapper({ sivilstandListe }: Props) {
+    const partner = hentPartner(sivilstandListe);
+    const sivilstand = sivilstandListe.firstOrNull();
 
     if (!sivilstand?.sivilstandRelasjon) {
         return null;

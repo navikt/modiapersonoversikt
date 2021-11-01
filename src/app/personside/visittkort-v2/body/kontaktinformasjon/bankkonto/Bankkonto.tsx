@@ -17,7 +17,11 @@ function Bankkonto({ bankkonto }: Props) {
     }
 
     if (!bankkonto) {
-        return <Normaltekst>Ikke registrert</Normaltekst>;
+        return (
+            <VisittkortElement beskrivelse={beskrivelse} ikon={<CoinsIkon />}>
+                <Normaltekst>Ikke registrert</Normaltekst>
+            </VisittkortElement>
+        );
     }
 
     return (
