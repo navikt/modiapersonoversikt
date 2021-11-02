@@ -28,18 +28,7 @@ export const personDod: Person = {
     fodselsdato: ['1974-07-28' as LocalDate],
     alder: 47,
     dodsdato: ['2018-08-28' as LocalDate],
-    bostedAdresse: [
-        {
-            linje1: 'Melingsvegen 23',
-            linje2: '5430 BREMNES',
-            linje3: '4613',
-            sistEndret: {
-                ident: 'Folkeregisteret',
-                tidspunkt: '2021-10-28T15:10:06' as LocalDateTime,
-                system: 'FREG'
-            }
-        }
-    ],
+    bostedAdresse: [],
     kontaktAdresse: [],
     navEnhet: {
         id: '1219',

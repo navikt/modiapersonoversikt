@@ -269,17 +269,12 @@ export const personKode6: Person = {
                 }
             ],
             alder: 1,
-            adressebeskyttelse: [
-                {
-                    kode: AdresseBeskyttelse.KODE6_UTLAND,
-                    beskrivelse: 'Sperret adresse, strengt fortrolig'
-                }
-            ],
+            adressebeskyttelse: [],
             harSammeAdresse: false,
             personstatus: [
                 {
-                    kode: PersonStatus.BOSATT,
-                    beskrivelse: 'Bosatt'
+                    kode: PersonStatus.DOD,
+                    beskrivelse: 'Død'
                 }
             ]
         },

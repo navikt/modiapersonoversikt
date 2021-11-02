@@ -12,7 +12,7 @@ import {
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 
 export const personEgenAnsatt: Person = {
-    fnr: '04016516057',
+    fnr: '05018811814',
     navn: [
         {
             fornavn: 'SNILL',
@@ -51,6 +51,14 @@ export const personEgenAnsatt: Person = {
             },
             gyldigFraOgMed: '1965-11-02' as LocalDate,
             gyldigTilOgMed: '2017-04-25' as LocalDate
+        },
+        {
+            land: {
+                kode: 'NOR',
+                beskrivelse: 'NORGE'
+            },
+            gyldigFraOgMed: '1974-07-28' as LocalDate,
+            gyldigTilOgMed: null
         }
     ],
     adressebeskyttelse: [],

@@ -11,7 +11,7 @@ import {
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 
 export const personKode7: Person = {
-    fnr: '28077405285',
+    fnr: '09057118773',
     navn: [
         {
             fornavn: 'ABSURD',

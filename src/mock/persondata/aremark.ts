@@ -45,6 +45,33 @@ export const barnAremark: ForelderBarnRelasjon[] = [
                 beskrivelse: 'BOSATT'
             }
         ]
+    },
+    {
+        ident: '12345678911',
+        rolle: ForelderBarnRelasjonRolle.BARN,
+        navn: [
+            {
+                fornavn: 'BARN1',
+                mellomnavn: null,
+                etternavn: 'BARNESEN'
+            }
+        ],
+        fodselsdato: ['2008-03-15' as LocalDate],
+        alder: null,
+        kjonn: [
+            {
+                kode: Kjonn.K,
+                beskrivelse: 'Kvinne'
+            }
+        ],
+        adressebeskyttelse: [],
+        harSammeAdresse: false,
+        personstatus: [
+            {
+                kode: PersonStatus.DOD,
+                beskrivelse: 'DØD'
+            }
+        ]
     }
 ];
 
@@ -74,7 +101,7 @@ export const aremark: Person = {
             sistEndret: {
                 ident: 'Folkeregisteret',
                 tidspunkt: '2010-02-20T10:15:30' as LocalDateTime,
-                system: 'Folkeregisteret'
+                system: 'FREG'
             }
         }
     ],
@@ -86,7 +113,7 @@ export const aremark: Person = {
             sistEndret: {
                 ident: 'Folkeregisteret',
                 tidspunkt: '2020-01-01T10:15:30' as LocalDateTime,
-                system: 'Folkeregisteret'
+                system: 'FREG'
             }
         }
     ],
@@ -313,9 +340,9 @@ export const aremark: Person = {
             sistVerifisert: '2013-01-01' as LocalDate
         },
         mobiltelefonnummer: {
-            value: '90000000',
-            sistOppdatert: null,
-            sistVerifisert: null
+            value: '12345678',
+            sistOppdatert: '2021-11-02' as LocalDate,
+            sistVerifisert: '2021-11-02' as LocalDate
         }
     },
     bankkonto: {
