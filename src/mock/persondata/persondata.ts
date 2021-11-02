@@ -15,6 +15,7 @@ import {
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 import { aremark } from './aremark';
+import { personDeltBosted } from './personDeltBosted';
 import { personDod } from './personDod';
 import { personEgenAnsatt } from './personEgenAnsatt';
 import { personKode6 } from './personKode6';
@@ -40,15 +41,17 @@ export function hentPersondata(fodselsnummer: string): PersonData | null {
         return { feilendeSystemer: [], person: personKode7 };
     } else if (fodselsnummer === personEgenAnsatt.fnr) {
         return { feilendeSystemer: [], person: personEgenAnsatt };
+    } else if (fodselsnummer === personDeltBosted.fnr) {
+        return { feilendeSystemer: [], person: personDeltBosted };
     } else if (!erGyldigFødselsnummer(fodselsnummer)) {
         return null;
     } else {
-        return lagPersondata(fodselsnummer);
+        return { feilendeSystemer: [], person: lagPerson(fodselsnummer) };
     }
 }
 
-function lagPersondata(fnr: string): PersonData {
-    const person: Person = {
+function lagPerson(fnr: string): Person {
+    return {
         fnr: fnr,
         navn: [
             {
@@ -406,8 +409,6 @@ function lagPersondata(fnr: string): PersonData {
         },
         forelderBarnRelasjon: forelderBarnMock
     };
-
-    return { feilendeSystemer: [], person };
 }
 
 const forelderBarnMock: ForelderBarnRelasjon[] = [
