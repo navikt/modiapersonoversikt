@@ -1,4 +1,4 @@
-import FetchMock from 'yet-another-fetch-mock';
+import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import {
     AdresseBeskyttelse,
     Data as PersonData,
@@ -14,19 +14,38 @@ import {
     SivilstandType,
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
-import { apiBaseUri } from '../../api/config';
-
-export function setupPersondataMock(mock: FetchMock) {
-    mock.get(apiBaseUri + '/v2/person/:fodselsnummer', (req, res, ctx) =>
-        res(ctx.json(lagPersondata(req.pathParams.fodselsnummer)))
-    );
-}
+import { aremark } from './aremark';
+import { personDod } from './personDod';
+import { personEgenAnsatt } from './personEgenAnsatt';
+import { personKode6 } from './personKode6';
+import { personKode6Utland } from './personKode6Utland';
+import { personKode7 } from './personKode7';
 
 // Til bruk under testing av funksjonalitet
 const erDod = false;
 const visEtiketter = true;
 const erReservert = false;
 const ikkeRegistrert = false;
+
+export function hentPersondata(fodselsnummer: string): PersonData | null {
+    if (fodselsnummer === aremark.fnr) {
+        return { feilendeSystemer: [], person: aremark };
+    } else if (fodselsnummer === personDod.fnr) {
+        return { feilendeSystemer: [], person: personDod };
+    } else if (fodselsnummer === personKode6.fnr) {
+        return { feilendeSystemer: [], person: personKode6 };
+    } else if (fodselsnummer === personKode6Utland.fnr) {
+        return { feilendeSystemer: [], person: personKode6Utland };
+    } else if (fodselsnummer === personKode7.fnr) {
+        return { feilendeSystemer: [], person: personKode7 };
+    } else if (fodselsnummer === personEgenAnsatt.fnr) {
+        return { feilendeSystemer: [], person: personEgenAnsatt };
+    } else if (!erGyldigFødselsnummer(fodselsnummer)) {
+        return null;
+    } else {
+        return lagPersondata(fodselsnummer);
+    }
+}
 
 function lagPersondata(fnr: string): PersonData {
     const person: Person = {
@@ -385,13 +404,13 @@ function lagPersondata(fnr: string): PersonData {
                 beskrivelse: 'Norske kroner'
             }
         },
-        forelderBarnRelasjon: barnMock
+        forelderBarnRelasjon: forelderBarnMock
     };
 
     return { feilendeSystemer: [], person };
 }
 
-const barnMock: ForelderBarnRelasjon[] = [
+const forelderBarnMock: ForelderBarnRelasjon[] = [
     {
         ident: '12345678910',
         rolle: ForelderBarnRelasjonRolle.MOR,

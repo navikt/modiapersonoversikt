@@ -49,7 +49,7 @@ import { setupSFDialogMock } from './dialoger/sf-dialoger-mock';
 import { setupHenvendelseDialogMock } from './dialoger/henvendelse-dialoger-mock';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 import { getAktorId } from './aktorid-mock';
-import { setupPersondataMock } from './persondata/persondata';
+import { hentPersondata } from './persondata/persondata';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -109,6 +109,17 @@ function setupPersonMock(mock: FetchMock) {
             randomDelay(),
             fodselsNummerErGyldigStatus,
             mockGeneratorMedFodselsnummer(fodselsnummer => getPerson(fodselsnummer))
+        )
+    );
+}
+
+function setupPersondataMock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/v2/person/:fodselsnummer',
+        withDelayedResponse(
+            randomDelay(),
+            fodselsNummerErGyldigStatus,
+            mockGeneratorMedFodselsnummer(fodselsnummer => hentPersondata(fodselsnummer))
         )
     );
 }
@@ -483,8 +494,11 @@ const mock = FetchMock.configure({
 });
 
 setupInnloggetSaksbehandlerMock(mock);
-setupPersonMock(mock);
-setupPersondataMock(mock);
+if (mockFeatureToggle(FeatureToggles.BrukV2Visittkort)) {
+    setupPersondataMock(mock);
+} else {
+    setupPersonMock(mock);
+}
 setupTilgangskontroll(mock);
 setupEgenAnsattMock(mock);
 setupKontaktinformasjonMock(mock);
