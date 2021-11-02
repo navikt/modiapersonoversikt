@@ -40,8 +40,7 @@ function Partner(props: { partner: SivilstandInterface }) {
             </Normaltekst>
             <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
             <Normaltekst>
-                {navn && hentNavn(navn)}
-                {alder}
+                {navn && hentNavn(navn)} {alder}
             </Normaltekst>
             <Normaltekst>{partnerRelasjon.fnr}</Normaltekst>
             <Normaltekst>
