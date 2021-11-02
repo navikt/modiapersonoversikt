@@ -1,37 +1,37 @@
 name: Publish gh-pages
 
 on:
-  push:
-    branches:
-      - dev
+    push:
+        branches:
+            - feat/flere-persondata-mock
 env:
-  CI: true
-  TZ: Europe/Oslo
+    CI: true
+    TZ: Europe/Oslo
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Install dependencies
-        run: npm ci
-      - name: Switch to gh-dev build
-        run: |
-          echo 'REACT_APP_USE_HASH_ROUTER=true' >> .env.development
-          mv .env.development .env.production.local
-      - name: Build
-        run: npm run build
-      - name: Deploy
-        if: success()
-        uses: crazy-max/ghaction-github-pages@v2
-        with:
-          build_dir: build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - uses: actions/cache@v1
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+            - name: Install dependencies
+              run: npm ci
+            - name: Switch to gh-dev build
+              run: |
+                  echo 'REACT_APP_USE_HASH_ROUTER=true' >> .env.development
+                  mv .env.development .env.production.local
+            - name: Build
+              run: npm run build
+            - name: Deploy
+              if: success()
+              uses: crazy-max/ghaction-github-pages@v2
+              with:
+                  build_dir: build
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
