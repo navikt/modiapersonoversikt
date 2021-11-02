@@ -10,7 +10,7 @@ import {
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 
-export const personKode7: Person = {
+export const personDod: Person = {
     fnr: '28077405285',
     navn: [
         {
@@ -113,7 +113,11 @@ export const personKode7: Person = {
     foreldreansvar: [
         {
             ansvar: 'felles',
-            ansvarlig: null,
+            ansvarlig: {
+                fornavn: 'GØYAL',
+                mellomnavn: 'MÅPENDE',
+                etternavn: 'TRANFLASKE'
+            },
             ansvarsubject: {
                 fornavn: 'LITEN',
                 mellomnavn: 'GYNGENDE',

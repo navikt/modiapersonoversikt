@@ -27,7 +27,7 @@ export const personKode7: Person = {
     ],
     fodselsdato: ['1974-07-28' as LocalDate],
     alder: 47,
-    dodsdato: ['2018-08-28' as LocalDate],
+    dodsdato: [],
     bostedAdresse: [
         {
             linje1: 'Melingsvegen 23',
@@ -89,8 +89,8 @@ export const personKode7: Person = {
     erEgenAnsatt: EgenAnsatt.NEI,
     personstatus: [
         {
-            kode: PersonStatus.DOD,
-            beskrivelse: 'Død'
+            kode: PersonStatus.BOSATT,
+            beskrivelse: 'Bosatt'
         }
     ],
     sivilstand: [
@@ -131,7 +131,12 @@ export const personKode7: Person = {
     fullmakt: [],
     vergemal: [],
     tilrettelagtKommunikasjon: {
-        talesprak: [],
+        talesprak: [
+            {
+                kode: 'NO',
+                beskrivelse: 'Norsk'
+            }
+        ],
         tegnsprak: []
     },
     telefonnummer: [
