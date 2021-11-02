@@ -47,7 +47,7 @@ export const personDeltBosted: Person = {
             {
                 besoksadresse: {
                     linje1: 'Bergvikveien 11',
-                    linje2: '8533 BOGEN I OFOTEN',
+                    linje2: '8533 BOGEN I LOFOTEN',
                     linje3: null,
                     sistEndret: null
                 },

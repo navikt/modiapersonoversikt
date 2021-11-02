@@ -30,18 +30,7 @@ export const personKode6: Person = {
     alder: 56,
     dodsdato: [],
     bostedAdresse: [],
-    kontaktAdresse: [
-        {
-            linje1: 'Blåsbortveien 2 D',
-            linje2: '0873 OSLO',
-            linje3: '030108 0301',
-            sistEndret: {
-                ident: 'Folkeregisteret',
-                tidspunkt: '2021-11-02T08:12:55' as LocalDateTime,
-                system: 'FREG'
-            }
-        }
-    ],
+    kontaktAdresse: [],
     navEnhet: null,
     statsborgerskap: [
         {

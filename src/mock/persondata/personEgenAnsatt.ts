@@ -87,13 +87,8 @@ export const personEgenAnsatt: Person = {
                     }
                 ],
                 alder: 60,
-                adressebeskyttelse: [
-                    {
-                        kode: AdresseBeskyttelse.KODE6,
-                        beskrivelse: 'Sperret adresse, strengt fortrolig'
-                    }
-                ],
-                harSammeAdresse: false
+                adressebeskyttelse: [],
+                harSammeAdresse: true
             }
         }
     ],
