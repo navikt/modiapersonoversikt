@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Systemtittel } from 'nav-frontend-typografi';
-import Tekstomrade, { defaultRules, Rule } from 'nav-frontend-tekstomrade';
+import Tekstomrade, { defaultRules, Rule } from '../../../../../../components/Tekstomrade';
 import styled from 'styled-components';
 import { Knapp } from 'nav-frontend-knapper';
 import { parseTekst } from '@navikt/tag-input';
@@ -21,7 +21,7 @@ const Tag = styled(({ highlight, ...rest }) => <Knapp {...rest} />)`
     padding: 0.25rem 0.5rem;
     margin-right: 0.25rem;
     &:hover {
-        color: ${props => (props.highlight ? theme.color.lenke : '#ffffff')};
+        color: ${(props) => (props.highlight ? theme.color.lenke : '#ffffff')};
     }
 `;
 
@@ -41,12 +41,12 @@ function Tags({ valgtTekst, sokefelt }: { valgtTekst?: StandardTekster.Tekst; so
     }
 
     const { tags: queryTags } = parseTekst(sokefelt.input.value);
-    const tags = queryTags.map(tag => tag.toLowerCase());
+    const tags = queryTags.map((tag) => tag.toLowerCase());
 
     const tagElements = valgtTekst.tags
-        .filter(tag => tag.length > 0)
+        .filter((tag) => tag.length > 0)
         .filter((tag, index, list) => list.indexOf(tag) === index)
-        .map(tag => {
+        .map((tag) => {
             const highlight = tags.includes(tag.toLowerCase());
             return (
                 <Tag
