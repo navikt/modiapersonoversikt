@@ -57,6 +57,13 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   display: inline-flex;
 }
 
+.c10 {
+  width: 1rem;
+  margin-top: -0.125rem;
+  margin-left: 0.125rem;
+  margin-right: 0.125rem;
+}
+
 .c8 {
   margin: 0;
   padding: 0;
@@ -85,18 +92,18 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   margin: 0 0.5rem;
 }
 
-.c12 {
+.c13 {
   display: inline-block;
   -webkit-animation: cKnfBw 0.3s 1s 6 alternate;
   animation: cKnfBw 0.3s 1s 6 alternate;
 }
 
-.c12:focus {
+.c13:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c11 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -111,12 +118,12 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   align-items: center;
 }
 
-.c11 > * {
+.c12 > * {
   margin: 6px 0 0 6px;
   white-space: nowrap;
 }
 
-.c15 {
+.c16 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -124,17 +131,17 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   border-radius: 0.5em;
 }
 
-.c15:focus {
+.c16:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c15:focus {
+.c16:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c15:focus::after {
+.c16:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -145,7 +152,7 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   pointer-events: none;
 }
 
-.c13 {
+.c14 {
   margin: 0.5rem 0 0 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -222,7 +229,7 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   min-width: 35%;
 }
 
-.c10 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -266,7 +273,7 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   margin-bottom: 0.2em !important;
 }
 
-.c14 {
+.c15 {
   padding: 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -394,7 +401,13 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
               className="c9"
               title="Barn under 21 år"
             >
-              1
+              <svg
+                className="c10"
+                title="Ett eller flere av barnene har status som død"
+              >
+                advarsel-sirkel-fyll.svg
+              </svg>
+              2
                barn under 21 år
             </span>
           </ul>
@@ -402,11 +415,11 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
       </section>
     </section>
     <div
-      className="c10"
+      className="c11"
     >
       <section
         aria-label="etiketter"
-        className="c11"
+        className="c12"
         role="region"
       >
         <div
@@ -429,7 +442,7 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
         </div>
         <div
           aria-live="assertive"
-          className="c12"
+          className="c13"
           role="alert"
           tabIndex={-1}
         >
@@ -500,7 +513,7 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
       </section>
       <section
         aria-label="Nav kontor"
-        className="c13"
+        className="c14"
       >
         <h2
           className="typo-element"
@@ -511,12 +524,12 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
     </div>
   </div>
   <div
-    className="c14"
+    className="c15"
   >
     <button
       aria-expanded={false}
       aria-label="Åpne visittkort (Alt + N)"
-      className="c15"
+      className="c16"
       onClick={[Function]}
       title="Åpne visittkort (Alt + N)"
     >
