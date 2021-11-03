@@ -5,7 +5,7 @@ import theme from '../../../styles/personOversiktTheme';
 import EtikettGraa from '../../../components/EtikettGraa';
 import { formatterDatoTid } from '../../../utils/date-utils';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import Tekstomrade from 'nav-frontend-tekstomrade';
+import Tekstomrade from '../../../components/Tekstomrade';
 import { useSendtMelding } from './useSendtMelding';
 import { SendNyMeldingStatus } from './sendMelding/SendNyMeldingTypes';
 

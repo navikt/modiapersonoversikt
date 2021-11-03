@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Tekstomrade, { LinebreakRule, ParagraphRule, Rule } from 'nav-frontend-tekstomrade';
+import Tekstomrade, { LinebreakRule, ParagraphRule, Rule } from '../../../../../../components/Tekstomrade';
 import * as StandardTekster from '../domain';
 import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
 
