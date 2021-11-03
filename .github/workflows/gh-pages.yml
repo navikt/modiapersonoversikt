@@ -3,7 +3,7 @@ name: Publish gh-pages
 on:
     push:
         branches:
-            - feat/flere-persondata-mock
+            - dev
 env:
     CI: true
     TZ: Europe/Oslo
