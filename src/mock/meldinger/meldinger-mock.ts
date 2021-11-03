@@ -115,6 +115,9 @@ function getMelding(temagruppe: Temagruppe): Melding {
 }
 
 function sensorerEnkeltOrd(tekst: string): string {
+    if (tekst.trim().length === 0) {
+        return tekst;
+    }
     const ord = tekst.split(' ');
     const sensorOrd = navfaker.random.arrayElement(ord.filter(it => it.length > 2));
     const sensorering = '*'.repeat(sensorOrd.length);

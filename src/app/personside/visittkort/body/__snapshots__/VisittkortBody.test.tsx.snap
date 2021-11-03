@@ -735,6 +735,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="c5"
           >
             <svg
+              alt="Kjønn skjult av diskresjonskode"
+              aria-label="Kjønn skjult av diskresjonskode"
               height={64}
               viewBox="0 0 64 64"
               width={64}
@@ -783,6 +785,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="c5"
           >
             <svg
+              alt="Kjønn skjult av diskresjonskode"
+              aria-label="Kjønn skjult av diskresjonskode"
               height={64}
               viewBox="0 0 64 64"
               width={64}

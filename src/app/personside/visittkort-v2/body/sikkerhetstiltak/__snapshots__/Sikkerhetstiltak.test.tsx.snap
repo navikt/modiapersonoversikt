@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`viser sikkerhetstiltak 1`] = `
+.c0 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1 {
+  position: absolute;
+  left: -3.125rem;
+  width: 3.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c1 > svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+.c2 {
+  margin-bottom: 1rem;
+}
+
+.c3 {
+  margin: 10px 0 20px 0;
+}
+
+.c3:last-child {
+  margin: 10px 0 0 0;
+}
+
+.c4 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c4 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+<section>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      <svg
+        height={100}
+        viewBox="0 0 100 100"
+        width={100}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <mask
+            id="sikkerhetstiltakmask"
+          >
+            <rect
+              fill="#fff"
+              height="100%"
+              width="100%"
+            />
+            <line
+              stroke="#000"
+              strokeLinecap="round"
+              strokeWidth="4"
+              x1="50"
+              x2="50"
+              y1="35"
+              y2="67"
+            />
+            <circle
+              cx="50"
+              cy="82"
+              fill="#000"
+              r="4.5"
+            />
+          </mask>
+        </defs>
+        <polygon
+          fill="#BA3A26"
+          mask="url(#sikkerhetstiltakmask)"
+          points="50,5 95,95 5,95"
+          stroke="#BA3A26"
+          strokeLinejoin="round"
+          strokeWidth="4"
+        />
+      </svg>
+    </div>
+    <h3
+      className="typo-undertittel"
+    >
+      Sikkerhetstiltak
+    </h3>
+  </div>
+  <div
+    className="c2"
+  />
+  <div
+    className="c3"
+  >
+    <div
+      className="c0"
+    >
+      
+    </div>
+    <div>
+      <div
+        className="c4"
+      >
+        <p
+          className="typo-undertekst"
+        >
+          Gyldig: 
+          13.02.2005 – 15.02.2030
+        </p>
+      </div>
+      <p
+        className="typo-normal"
+      >
+        Telefonisk utestengelse
+      </p>
+    </div>
+  </div>
+</section>
+`;

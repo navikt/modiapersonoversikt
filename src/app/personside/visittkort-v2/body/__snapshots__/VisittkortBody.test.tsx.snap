@@ -1,0 +1,1495 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`viser info om bruker i visittkortbody 1`] = `
+.c2 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c5 {
+  position: absolute;
+  left: -3.125rem;
+  width: 3.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c5 > svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+.c0 {
+  background-color: white;
+  padding: .5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0.2rem;
+}
+
+.c0:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c0 > * {
+  -webkit-flex: 1 1 50%;
+  -ms-flex: 1 1 50%;
+  flex: 1 1 50%;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  margin-left: 3.125rem;
+  margin-right: 3.125rem;
+}
+
+.c1:last-child {
+  margin-right: 1.25rem;
+}
+
+.c1 > *:not(:last-child) {
+  margin-bottom: 2.5rem;
+}
+
+.c3 {
+  margin-bottom: 1rem;
+}
+
+.c4 {
+  margin: 10px 0 20px 0;
+}
+
+.c4:last-child {
+  margin: 10px 0 0 0;
+}
+
+.c8 span:not(:last-child):after {
+  content: '.';
+}
+
+.c7 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c7 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c6 {
+  margin-top: 0.5rem;
+}
+
+.c10 {
+  margin-bottom: 5px;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c9 {
+  margin: initial;
+  padding: initial;
+  list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.c9 dt {
+  -webkit-flex: 1 1 50%;
+  -ms-flex: 1 1 50%;
+  flex: 1 1 50%;
+}
+
+.c9 dd {
+  -webkit-flex: 2 2 50%;
+  -ms-flex: 2 2 50%;
+  flex: 2 2 50%;
+  margin: 0;
+}
+
+<section
+  aria-label="Visittkortdetaljer"
+  className="c0"
+  role="region"
+>
+  <h2
+    className="visually-hidden"
+    tabIndex={-1}
+  >
+    Visittkortdetaljer
+  </h2>
+  <div
+    className="c1"
+  >
+    <section>
+      <div
+        className="c2"
+      >
+        
+        <h3
+          className="typo-undertittel"
+        >
+          Kontaktinformasjon
+        </h3>
+      </div>
+      <div
+        className="c3"
+      />
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              height={24}
+              viewBox="0 0 24 24"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                fill="#C6C2BF"
+              >
+                <defs>
+                  <mask
+                    id="locationpinmask"
+                  >
+                    <rect
+                      fill="#fff"
+                      height="100%"
+                      width="100%"
+                    />
+                    <circle
+                      cx={12}
+                      cy={8}
+                      fill="#000"
+                      r={4}
+                    />
+                  </mask>
+                </defs>
+                <path
+                  d="M19.5 8c0 4.1-7.5 15.5-7.5 15.5S4.5 12.1 4.5 8a7.5 7.5 0 1 1 15 0z"
+                  mask="url(#locationpinmask)"
+                />
+              </g>
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            Kontaktinformasjon for dødsbo
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Advokat Navnesen
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Advokatfirma 
+          Advokatkontoret Aremark
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Org. nr: 
+          01234567891011
+        </p>
+        <div
+          className="c6"
+        >
+          <p
+            className="typo-normal"
+          >
+            Elgelia 20, 0000 Aremark
+          </p>
+        </div>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Endret 
+            01.01.2020
+             
+            i Folkeregisteret
+          </p>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              height={24}
+              viewBox="0 0 24 24"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                fill="#C6C2BF"
+              >
+                <defs>
+                  <mask
+                    id="locationpinmask"
+                  >
+                    <rect
+                      fill="#fff"
+                      height="100%"
+                      width="100%"
+                    />
+                    <circle
+                      cx={12}
+                      cy={8}
+                      fill="#000"
+                      r={4}
+                    />
+                  </mask>
+                </defs>
+                <path
+                  d="M19.5 8c0 4.1-7.5 15.5-7.5 15.5S4.5 12.1 4.5 8a7.5 7.5 0 1 1 15 0z"
+                  mask="url(#locationpinmask)"
+                />
+              </g>
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            Bostedsadresse
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Islandsgate 49
+        </p>
+        <p
+          className="typo-normal"
+        >
+          7693 Hovedøya
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Norge
+        </p>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Endret 
+            20.02.2010
+             
+            i Folkeregisteret
+          </p>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              height={24}
+              viewBox="0 0 24 24"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                fill="#C6C2BF"
+              >
+                <defs>
+                  <mask
+                    id="locationpinmask"
+                  >
+                    <rect
+                      fill="#fff"
+                      height="100%"
+                      width="100%"
+                    />
+                    <circle
+                      cx={12}
+                      cy={8}
+                      fill="#000"
+                      r={4}
+                    />
+                  </mask>
+                </defs>
+                <path
+                  d="M19.5 8c0 4.1-7.5 15.5-7.5 15.5S4.5 12.1 4.5 8a7.5 7.5 0 1 1 15 0z"
+                  mask="url(#locationpinmask)"
+                />
+              </g>
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            Kontaktadresse
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Aremarkveien 1
+        </p>
+        <p
+          className="typo-normal"
+        >
+          0320 Aremark
+        </p>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Endret 
+            01.01.2020
+             
+            i Folkeregisteret
+          </p>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              height={24}
+              viewBox="0 0 24 24"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M23.5 18c0 .8-.7 1.5-1.5 1.5H2c-.8 0-1.5-.7-1.5-1.5V6c0-.8.7-1.5 1.5-1.5h20c.8 0 1.5.7 1.5 1.5v12zm-3-9.5L12 14 3.5 8.5"
+                fill="#C6C2BF"
+                stroke="white"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeMiterlimit={10}
+                strokeWidth="1.4"
+              />
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            E-post
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Reservert
+        </p>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            I Kontakt- og reservasjonsregisteret
+          </p>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              height={24}
+              viewBox="0 0 24 24"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.6 7.9c.9-.9.9-2.4 0-3.3L6 2.2c-.9-1-2.3-1-3.2 0L1.5 3.5A3.5 3.5 0 0 0 1.1 8c3.9 5.9 9.1 11.1 15 15 1.4 1 3.2.8 4.4-.4l1.3-1.4c1-.9 1-2.3 0-3.2l-2.4-2.5c-1-.9-2.4-.9-3.3 0l-.8.8a54.9 54.9 0 0 1-7.5-7.5l.8-.8z"
+                fill="#C6C2BF"
+                stroke="none"
+              />
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            Telefon
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Reservert
+        </p>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            I Kontakt- og reservasjonsregisteret
+          </p>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+          <h4
+            className="typo-element"
+          >
+            Telefon til bruk for NAV
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          +47 990 09 900
+        </p>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Endret 
+            14.06.2018
+             
+            av bruker
+          </p>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              viewBox="0 0 22 22"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g
+                transform="translate(0 8.3)"
+              >
+                <path
+                  d="M7.3 3.7h1.2c2-.9 5-1 6.2-1v-2c-1.7.9-5.1 1.1-7.4 1.1-2.2 0-5.7-.2-7.3-1.1v1.6c0 .5 2.8 1.4 7.3 1.4"
+                  fill="#C6C2BF"
+                />
+              </g>
+              <g
+                transform="translate(0 2.8)"
+              >
+                <path
+                  d="M14.7 2.3V.7c-1.7.9-5.1 1.1-7.4 1.1-2.2 0-5.7-.2-7.3-1.1v1.6c0 .5 2.8 1.4 7.3 1.4 4.6 0 7.3-1 7.4-1.4z"
+                  fill="#C6C2BF"
+                />
+              </g>
+              <g
+                transform="translate(0 12)"
+              >
+                <path
+                  d="M0 1.5c0 .4 2.5 1.1 6.7 1.3v-.5c0-.5.3-.9.6-1.2C5 1 1.6.8 0 0v1.5z"
+                  fill="#C6C2BF"
+                />
+              </g>
+              <path
+                d="M7.3 3.7c4.6 0 7.3-1 7.4-1.4C14.7.7 10.9 0 7.3 0 3.8 0 0 .7 0 2.3c0 .5 2.8 1.4 7.3 1.4"
+                fill="#C6C2BF"
+              />
+              <g
+                transform="translate(0 5.5)"
+              >
+                <path
+                  d="M7.3 3.7c4.6 0 7.3-1 7.4-1.4V.7c-1.7.9-5.1 1.1-7.4 1.1-2.2 0-5.7-.2-7.3-1.1v1.6c0 .5 2.8 1.4 7.3 1.4"
+                  fill="#C6C2BF"
+                />
+              </g>
+              <g
+                transform="translate(0 13.8)"
+              >
+                <path
+                  d="M0 2.3c0 1.4 3.2 2.2 6.4 2.3V1.8c-2.2 0-5-.3-6.4-1.1v1.6z"
+                  fill="#C6C2BF"
+                />
+              </g>
+              <path
+                d="M7.3 14.2c.2.5 3.2 1.4 7.4 1.4 4.1 0 7.1-1 7.3-1.4 0-2-5.3-2.3-7.3-2.3s-7.4.3-7.4 2.3M7.3 18v1.7c0 2 5.4 2.3 7.4 2.3s7.3-.3 7.3-2.3v-1.6c-1.8 1-5.7 1.1-7.3 1.1-1.7 0-5.6-.2-7.4-1.1"
+                fill="#C6C2BF"
+              />
+              <path
+                d="M14.7 16.5c-1.7 0-5.6-.2-7.4-1.2V17c.2.4 3.2 1.3 7.4 1.3 4.1 0 7.1-.9 7.3-1.4v-1.6c-1.8 1-5.7 1.2-7.3 1.2"
+                fill="#C6C2BF"
+              />
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            Kontonummer
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          <span
+            className="c8"
+          >
+            <span>
+              1234567890
+            </span>
+          </span>
+        </p>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Endret 
+            15.03.2006
+             
+            av bruker
+          </p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div
+        className="c2"
+      >
+        <div
+          className="c5"
+        >
+          <svg
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="50"
+              cy="50"
+              fill="#FFB249"
+              r="50"
+            />
+            <line
+              stroke="#3E3832"
+              strokeLinecap="round"
+              strokeWidth="4"
+              x1="50"
+              x2="50"
+              y1="25"
+              y2="57"
+            />
+            <circle
+              cx="50"
+              cy="72"
+              fill="#3E3832"
+              r="4.5"
+            />
+          </svg>
+        </div>
+        <h3
+          className="typo-undertittel"
+        >
+          Fullmakter
+        </h3>
+      </div>
+      <div
+        className="c3"
+      />
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+          <h4
+            className="typo-element"
+          >
+            Fullmektig
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Navn Navnesen
+           
+          (123456789)
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Gyldig fra og med 
+          01.01.2015
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Gyldig til og med 
+          12.12.2017
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Gjelder 
+          alle ytelser
+        </p>
+      </div>
+    </section>
+    <section>
+      <div
+        className="c2"
+      >
+        
+        <h3
+          className="typo-undertittel"
+        >
+          Familie
+        </h3>
+      </div>
+      <div
+        className="c3"
+      />
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              height={24}
+              viewBox="0 0 24 24"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 22.4s10.5-8.1 10.5-15.8S13.2-1.7 12 6C10.8-1.7 1.5-1.1 1.5 7.2 1.5 15.4 12 22.4 12 22.4z"
+                fill="#C6C2BF"
+                stroke="none"
+              />
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            Sivilstand
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Gift
+           
+          (12.12.2005)
+        </p>
+        <p
+          className="typo-normal"
+        >
+          BAREMARK TESTFAMILIEN
+           
+          (40)
+        </p>
+        <p
+          className="typo-normal"
+        >
+          12345555555
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Bor med bruker
+        </p>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <mask
+                  id="jentebarnmask"
+                >
+                  <circle
+                    cx={10}
+                    cy={10}
+                    fill="#FFF"
+                    r={10}
+                  />
+                  <path
+                    d="M11.4 13.47v2.85c0 .32-.27.58-.59.58a.58.58 0 0 1-.58-.58v-2.85h-.4v2.85c0 .32-.25.58-.57.58a.58.58 0 0 1-.59-.58v-2.85H7.43l.69-3.76-.97 1.53a.56.56 0 1 1-.9-.66l1.6-2.5c.33-.45.5-.56 1.28-.56h1.82c.78 0 .95.1 1.27.55l1.61 2.51a.56.56 0 0 1-.42.93c-.2 0-.38-.11-.47-.27l-.98-1.53.69 3.76h-1.26zM12.1 5.31a2.07 2.07 0 0 1-4.13 0 1.35 1.35 0 0 1-1.92.76 1.35 1.35 0 0 1 1.96-1.29 2.07 2.07 0 0 1 4.05 0 1.35 1.35 0 0 1 1.95 1.29 1.35 1.35 0 0 1-1.91-.76z"
+                    fill="#000"
+                  />
+                </mask>
+              </defs>
+              <rect
+                fill="#C86151"
+                height="20"
+                mask="url(#jentebarnmask)"
+                width="20"
+              />
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            Jente
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          BARN1 BARNESEN
+           
+          (13)
+        </p>
+        <p
+          className="typo-normal"
+        >
+          12345678910
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Bor ikke med bruker
+        </p>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <mask
+                  id="jentebarnmask"
+                >
+                  <circle
+                    cx={10}
+                    cy={10}
+                    fill="#FFF"
+                    r={10}
+                  />
+                  <path
+                    d="M11.4 13.47v2.85c0 .32-.27.58-.59.58a.58.58 0 0 1-.58-.58v-2.85h-.4v2.85c0 .32-.25.58-.57.58a.58.58 0 0 1-.59-.58v-2.85H7.43l.69-3.76-.97 1.53a.56.56 0 1 1-.9-.66l1.6-2.5c.33-.45.5-.56 1.28-.56h1.82c.78 0 .95.1 1.27.55l1.61 2.51a.56.56 0 0 1-.42.93c-.2 0-.38-.11-.47-.27l-.98-1.53.69 3.76h-1.26zM12.1 5.31a2.07 2.07 0 0 1-4.13 0 1.35 1.35 0 0 1-1.92.76 1.35 1.35 0 0 1 1.96-1.29 2.07 2.07 0 0 1 4.05 0 1.35 1.35 0 0 1 1.95 1.29 1.35 1.35 0 0 1-1.91-.76z"
+                    fill="#000"
+                  />
+                </mask>
+              </defs>
+              <rect
+                fill="#C86151"
+                height="20"
+                mask="url(#jentebarnmask)"
+                width="20"
+              />
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            Jente
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          BARN1 BARNESEN
+           
+          (Død)
+        </p>
+        <p
+          className="typo-normal"
+        >
+          12345678911
+        </p>
+        <p
+          className="typo-normal"
+        />
+      </div>
+    </section>
+    <section>
+      <div
+        className="c2"
+      >
+        <div
+          className="c5"
+        >
+          <svg
+            fill="none"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zM9 19v-2h2v-5H9v-2h4v7h2v2H9zm3-14a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"
+              fill="#0067C5"
+              fillRule="evenodd"
+            />
+          </svg>
+        </div>
+        <h3
+          className="typo-undertittel"
+        >
+          Delt Bosted
+        </h3>
+      </div>
+      <div
+        className="c3"
+      />
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Adresseveien 1
+        </p>
+        <p
+          className="typo-normal"
+        >
+          0000 Aremark
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Gyldig fra og med 
+          10.10.2000
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Gyldig til og med 
+          07.05.2005
+        </p>
+      </div>
+    </section>
+    <section>
+      <div
+        className="c2"
+      >
+        <div
+          className="c5"
+        >
+          <svg
+            fill="none"
+            height="1em"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zM9 19v-2h2v-5H9v-2h4v7h2v2H9zm3-14a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"
+              fill="#0067C5"
+              fillRule="evenodd"
+            />
+          </svg>
+        </div>
+        <h3
+          className="typo-undertittel"
+        >
+          Foreldreansvar
+        </h3>
+      </div>
+      <div
+        className="c3"
+      />
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Test Testesen
+          (
+          felles
+          )
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Gjelder for: Barn Barnesen
+        </p>
+      </div>
+    </section>
+    <section>
+      <div
+        className="c2"
+      >
+        
+        <h3
+          className="typo-undertittel"
+        >
+          NAV-kontor
+        </h3>
+      </div>
+      <div
+        className="c3"
+      />
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              className="prefix__navLogo"
+              viewBox="0 0 269 169"
+              width={90}
+            >
+              <g
+                fill="none"
+                fillRule="evenodd"
+              >
+                <path
+                  d="M125.3 169a84.5 84.5 0 110-169 84.5 84.5 0 010 169zM0 121.3l17.3-42.8h16.6l-17.3 42.8zm213 0l17-42.8h9.1l-17 42.8z"
+                  fill="#C30000"
+                />
+                <path
+                  d="M.6 43.4L17.6.7h4.8l-17 42.7z"
+                  fill="#C30000"
+                  mask="url(#prefix__b)"
+                  transform="translate(246 78)"
+                />
+                <path
+                  d="M197.4 78.6h-15s-1 0-1.5 1l-8.3 25.4-8.3-25.5c-.3-.9-1.4-.9-1.4-.9h-28.8c-.7 0-1.2.6-1.2 1.2v8.6c0-6.8-7.3-9.8-11.6-9.8-9.5 0-16 6.3-18 15.9 0-6.3-.6-8.6-2.3-11a11 11 0 00-3.1-2.9c-2.6-1.4-4.9-2-9.8-2h-5.7s-1 0-1.5 1l-5.2 13V79.8c0-.6-.5-1.2-1.1-1.2H61.2s-1 0-1.4 1L54.3 93s-.5 1.3.7 1.3h5.2v25.8c0 .7.5 1.2 1.1 1.2h13.3c.6 0 1.1-.5 1.1-1.2V94.4h5.2c3 0 3.5.1 4.7.6.7.3 1.3.8 1.7 1.4.7 1.4.8 3 .8 7.6v16.2c0 .7.5 1.2 1.2 1.2H102s1.4 0 2-1.5l2.8-7c3.7 5.3 9.9 8.5 17.5 8.5h1.7s1.4 0 2-1.5l4.9-12v12.3c0 .7.5 1.2 1.2 1.2H147s1.4 0 2-1.5l5.2-13c.2-1-1.1-1-1.1-1h-4.7V84l14.6 36c.6 1.5 2 1.5 2 1.5h15.3s1.4 0 2-1.5l16.1-40c.6-1.4-1-1.4-1-1.4zM132.9 106h-8.7a6.3 6.3 0 110-12.5h2.4c3.5 0 6.3 2.8 6.3 6.2v6.3z"
+                  fill="#FEFEFE"
+                />
+              </g>
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            0219 NAV Bærum
+          </h4>
+        </div>
+        <div>
+          <br />
+          <div
+            className="c7"
+          >
+            <p
+              className="typo-undertekst"
+            >
+              Besøksadresse
+            </p>
+          </div>
+          <p
+            className="typo-normal"
+          >
+            Adressevei 1
+          </p>
+          <p
+            className="typo-normal"
+          >
+            0000 AREMARK
+          </p>
+          <br />
+          <div
+            className="c7"
+          >
+            <p
+              className="typo-undertekst"
+            >
+              Åpningstider
+            </p>
+          </div>
+          <dl
+            className="c9"
+          >
+            <dt>
+              <p
+                className="typo-normal"
+              >
+                Mandag
+              </p>
+            </dt>
+            <dd>
+              <p
+                className="typo-normal"
+              >
+                09.00 - 15.00
+              </p>
+            </dd>
+            <dt>
+              <p
+                className="typo-normal"
+              >
+                Tirsdag
+              </p>
+            </dt>
+            <dd>
+              <p
+                className="typo-normal"
+              >
+                09.00 - 15.00
+              </p>
+            </dd>
+            <dt>
+              <p
+                className="typo-normal"
+              >
+                Onsdag
+              </p>
+            </dt>
+            <dd>
+              <p
+                className="typo-normal"
+              >
+                10.00 - 16.00
+              </p>
+            </dd>
+          </dl>
+          <br />
+        </div>
+        <a
+          className="lenke"
+          href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0219"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span
+            className="typo-normal"
+          >
+            Mer informasjon om kontoret
+          </span>
+        </a>
+      </div>
+    </section>
+    <section>
+      <div
+        className="c2"
+      >
+        <div
+          className="c5"
+        >
+          <svg
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="50"
+              cy="50"
+              fill="#FFB249"
+              r="50"
+            />
+            <line
+              stroke="#3E3832"
+              strokeLinecap="round"
+              strokeWidth="4"
+              x1="50"
+              x2="50"
+              y1="25"
+              y2="57"
+            />
+            <circle
+              cx="50"
+              cy="72"
+              fill="#3E3832"
+              r="4.5"
+            />
+          </svg>
+        </div>
+        <h3
+          className="typo-undertittel"
+        >
+          Tilrettelagt kommunikasjon
+        </h3>
+      </div>
+      <div
+        className="c3"
+      />
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Tegnspråk
+          : 
+          Norsk
+           (
+          NO
+          )
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Talespråk
+          : 
+          Norsk
+           (
+          NO
+          )
+        </p>
+      </div>
+    </section>
+    <section>
+      <div
+        className="c2"
+      >
+        <div
+          className="c5"
+        >
+          <svg
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="50"
+              cy="50"
+              fill="#FFB249"
+              r="50"
+            />
+            <line
+              stroke="#3E3832"
+              strokeLinecap="round"
+              strokeWidth="4"
+              x1="50"
+              x2="50"
+              y1="25"
+              y2="57"
+            />
+            <circle
+              cx="50"
+              cy="72"
+              fill="#3E3832"
+              r="4.5"
+            />
+          </svg>
+        </div>
+        <h3
+          className="typo-undertittel"
+        >
+          Bruker er under vergemål
+        </h3>
+      </div>
+      <div
+        className="c3"
+      />
+      <p
+        className="typo-normal"
+      >
+        Vergesakstyper: 
+        Voksen, Fremtidsfullmakt
+      </p>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+          <h4
+            className="typo-element"
+          >
+            Verge
+          </h4>
+        </div>
+        <div
+          className="c10"
+        >
+          <p
+            className="typo-normal"
+          >
+            Simen Solli
+          </p>
+          <p
+            className="typo-normal"
+          >
+            21042900076
+          </p>
+        </div>
+        <p
+          className="typo-element"
+        >
+          Omfang
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Ivareta personens interesser innenfor det personlige og økonomiske området
+        </p>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Fylkesmannen i Troms og Finnmark
+            <br />
+            27.03.2016 – 30.06.2017
+          </p>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+          <h4
+            className="typo-element"
+          >
+            Verge
+          </h4>
+        </div>
+        <div
+          className="c10"
+        >
+          <p
+            className="typo-normal"
+          >
+            Truls Tøffel
+          </p>
+          <p
+            className="typo-normal"
+          >
+            123456799
+          </p>
+        </div>
+        <p
+          className="typo-element"
+        >
+          Omfang
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Ivareta personens interesser innenfor det økonomiske området
+        </p>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Fylkesmannen i Troms og Finnmark
+            <br />
+            27.03.2016 – 30.06.2017
+          </p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div
+        className="c2"
+      >
+        <div
+          className="c5"
+        >
+          <svg
+            height={100}
+            viewBox="0 0 100 100"
+            width={100}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <mask
+                id="sikkerhetstiltakmask"
+              >
+                <rect
+                  fill="#fff"
+                  height="100%"
+                  width="100%"
+                />
+                <line
+                  stroke="#000"
+                  strokeLinecap="round"
+                  strokeWidth="4"
+                  x1="50"
+                  x2="50"
+                  y1="35"
+                  y2="67"
+                />
+                <circle
+                  cx="50"
+                  cy="82"
+                  fill="#000"
+                  r="4.5"
+                />
+              </mask>
+            </defs>
+            <polygon
+              fill="#BA3A26"
+              mask="url(#sikkerhetstiltakmask)"
+              points="50,5 95,95 5,95"
+              stroke="#BA3A26"
+              strokeLinejoin="round"
+              strokeWidth="4"
+            />
+          </svg>
+        </div>
+        <h3
+          className="typo-undertittel"
+        >
+          Sikkerhetstiltak
+        </h3>
+      </div>
+      <div
+        className="c3"
+      />
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+        </div>
+        <div>
+          <div
+            className="c7"
+          >
+            <p
+              className="typo-undertekst"
+            >
+              Gyldig: 
+              13.02.2005 – 15.02.2030
+            </p>
+          </div>
+          <p
+            className="typo-normal"
+          >
+            Telefonisk utestengelse
+          </p>
+        </div>
+      </div>
+    </section>
+    <div
+      className="c11"
+    >
+      <a
+        className="lenke"
+        href="https://pdl-web.dev.intern.nav.no/?aktoerId=00010108000398000"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        <span
+          className="typo-normal"
+        >
+          Endre personopplysninger
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+`;

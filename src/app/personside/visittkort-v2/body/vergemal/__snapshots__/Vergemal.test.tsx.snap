@@ -1,0 +1,208 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`viser vergemål 1`] = `
+.c0 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1 {
+  position: absolute;
+  left: -3.125rem;
+  width: 3.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c1 > svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+.c3 {
+  margin: 10px 0 20px 0;
+}
+
+.c3:last-child {
+  margin: 10px 0 0 0;
+}
+
+.c5 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c5 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c2 {
+  margin-bottom: 1rem;
+}
+
+.c4 {
+  margin-bottom: 5px;
+}
+
+<section>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      <svg
+        viewBox="0 0 100 100"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="50"
+          cy="50"
+          fill="#FFB249"
+          r="50"
+        />
+        <line
+          stroke="#3E3832"
+          strokeLinecap="round"
+          strokeWidth="4"
+          x1="50"
+          x2="50"
+          y1="25"
+          y2="57"
+        />
+        <circle
+          cx="50"
+          cy="72"
+          fill="#3E3832"
+          r="4.5"
+        />
+      </svg>
+    </div>
+    <h3
+      className="typo-undertittel"
+    >
+      Bruker er under vergemål
+    </h3>
+  </div>
+  <div
+    className="c2"
+  />
+  <p
+    className="typo-normal"
+  >
+    Vergesakstyper: 
+    Voksen, Fremtidsfullmakt
+  </p>
+  <div
+    className="c3"
+  >
+    <div
+      className="c0"
+    >
+      
+      <h4
+        className="typo-element"
+      >
+        Verge
+      </h4>
+    </div>
+    <div
+      className="c4"
+    >
+      <p
+        className="typo-normal"
+      >
+        Simen Solli
+      </p>
+      <p
+        className="typo-normal"
+      >
+        21042900076
+      </p>
+    </div>
+    <p
+      className="typo-element"
+    >
+      Omfang
+    </p>
+    <p
+      className="typo-normal"
+    >
+      Ivareta personens interesser innenfor det personlige og økonomiske området
+    </p>
+    <div
+      className="c5"
+    >
+      <p
+        className="typo-undertekst"
+      >
+        Fylkesmannen i Troms og Finnmark
+        <br />
+        27.03.2016 – 30.06.2017
+      </p>
+    </div>
+  </div>
+  <div
+    className="c3"
+  >
+    <div
+      className="c0"
+    >
+      
+      <h4
+        className="typo-element"
+      >
+        Verge
+      </h4>
+    </div>
+    <div
+      className="c4"
+    >
+      <p
+        className="typo-normal"
+      >
+        Truls Tøffel
+      </p>
+      <p
+        className="typo-normal"
+      >
+        123456799
+      </p>
+    </div>
+    <p
+      className="typo-element"
+    >
+      Omfang
+    </p>
+    <p
+      className="typo-normal"
+    >
+      Ivareta personens interesser innenfor det økonomiske området
+    </p>
+    <div
+      className="c5"
+    >
+      <p
+        className="typo-undertekst"
+      >
+        Fylkesmannen i Troms og Finnmark
+        <br />
+        27.03.2016 – 30.06.2017
+      </p>
+    </div>
+  </div>
+</section>
+`;
