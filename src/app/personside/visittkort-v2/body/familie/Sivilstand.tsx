@@ -3,7 +3,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import HeartIkon from '../../../../../svg/Heart';
 import { Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
-import { hentNavn, hentPartner } from '../../visittkort-utils';
+import { harDiskresjonskode, hentNavn, hentPartner } from '../../visittkort-utils';
 import Diskresjonskode from './common/Diskresjonskode';
 import { formaterDato } from '../../../../../utils/string-utils';
 
@@ -33,6 +33,7 @@ function Partner(props: { partner: SivilstandInterface }) {
     }
     const navn = partnerRelasjon.navn.firstOrNull();
     const alder = partnerRelasjon.alder ? `(${partnerRelasjon.alder})` : null;
+    const fnr = harDiskresjonskode(partnerRelasjon.adressebeskyttelse) ? null : partnerRelasjon.fnr;
     return (
         <>
             <Normaltekst>
@@ -42,7 +43,7 @@ function Partner(props: { partner: SivilstandInterface }) {
             <Normaltekst>
                 {navn && hentNavn(navn)} {alder}
             </Normaltekst>
-            <Normaltekst>{partnerRelasjon.fnr}</Normaltekst>
+            <Normaltekst>{fnr}</Normaltekst>
             <Normaltekst>
                 {partnerRelasjon.harSammeAdresse ? <>Bor med bruker</> : <>Bor ikke med bruker</>}
             </Normaltekst>
