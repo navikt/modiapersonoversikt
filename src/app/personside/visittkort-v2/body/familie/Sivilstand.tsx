@@ -54,7 +54,7 @@ function SivilstandWrapper({ sivilstandListe }: Props) {
     const partner = hentPartner(sivilstandListe);
     const sivilstand = sivilstandListe.firstOrNull();
 
-    if (!sivilstand?.sivilstandRelasjon) {
+    if (!sivilstand) {
         return null;
     }
 

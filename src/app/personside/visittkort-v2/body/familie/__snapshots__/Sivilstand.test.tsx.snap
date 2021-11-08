@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`viser sivilstand 1`] = `
+.c1 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c2 {
+  position: absolute;
+  left: -3.125rem;
+  width: 3.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c2 > svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+.c0 {
+  margin: 10px 0 20px 0;
+}
+
+.c0:last-child {
+  margin: 10px 0 0 0;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <svg
+        height={24}
+        viewBox="0 0 24 24"
+        width={24}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 22.4s10.5-8.1 10.5-15.8S13.2-1.7 12 6C10.8-1.7 1.5-1.1 1.5 7.2 1.5 15.4 12 22.4 12 22.4z"
+          fill="#C6C2BF"
+          stroke="none"
+        />
+      </svg>
+    </div>
+    <h4
+      className="typo-element"
+    >
+      Sivilstand
+    </h4>
+  </div>
+  <p
+    className="typo-normal"
+  >
+    Gift
+     
+    (12.12.2005)
+  </p>
+  <p
+    className="typo-normal"
+  >
+    BAREMARK TESTFAMILIEN
+     
+    (40)
+  </p>
+  <p
+    className="typo-normal"
+  >
+    12345555555
+  </p>
+  <p
+    className="typo-normal"
+  >
+    Bor med bruker
+  </p>
+</div>
+`;
