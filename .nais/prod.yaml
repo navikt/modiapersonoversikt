@@ -65,3 +65,5 @@ spec:
       object-src blob:;\
       frame-src blob: https://*.hotjar.com https://*.hotjar.io;\
       report-uri /frontendlogger/api/warn;"
+    - name: REFERRER_POLICY
+      value: "no-referrer"
