@@ -11,7 +11,7 @@ import { datoStigende, formatterDatoMedMaanedsnavn, formatterDatoTid } from '../
 import styled from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
 import { formaterDato } from '../string-utils';
-import Tekstomrade, { defaultRules } from '../../components/Tekstomrade';
+import Tekstomrade, { defaultRules } from 'nav-frontend-tekstomrade';
 import { rule as sladdRule } from '../sladdrule';
 
 interface Props {
@@ -103,8 +103,8 @@ function MeldingerPrintMarkup(props: Props) {
     );
     const kontorsperre = melding.kontorsperretAv && <Element>Kontorsperret for {melding.kontorsperretEnhet}</Element>;
     const enkeltmeldinger = props.valgtTraad.meldinger
-        .sort(datoStigende((melding) => melding.opprettetDato))
-        .map((melding) => <EnkeltMeldingMarkup melding={melding} key={melding.id} />);
+        .sort(datoStigende(melding => melding.opprettetDato))
+        .map(melding => <EnkeltMeldingMarkup melding={melding} key={melding.id} />);
     return (
         <StyledTraad>
             <Topptekst>

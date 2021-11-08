@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { createDynamicHighlightingRule } from '../../../../../../components/Tekstomrade';
+import { createDynamicHighlightingRule } from 'nav-frontend-tekstomrade';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import styled from 'styled-components/macro';
 import { parseTekst } from '@navikt/tag-input';

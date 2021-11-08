@@ -14,7 +14,7 @@ import {
 import { formatterDatoTid } from '../../../../../utils/date-utils';
 import { formaterDato } from '../../../../../utils/string-utils';
 import styled from 'styled-components/macro';
-import Tekstomrade, { createDynamicHighlightingRule, defaultRules, Rule } from '../../../../../components/Tekstomrade';
+import Tekstomrade, { createDynamicHighlightingRule, defaultRules, Rule } from 'nav-frontend-tekstomrade';
 import { rule as sladdRule } from '../../../../../utils/sladdrule';
 import Etikett from 'nav-frontend-etiketter';
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';

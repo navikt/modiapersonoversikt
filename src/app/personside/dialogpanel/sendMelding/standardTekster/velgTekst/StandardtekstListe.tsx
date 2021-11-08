@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Element } from 'nav-frontend-typografi';
-import { Rule } from '../../../../../../components/Tekstomrade';
+import { Rule } from 'nav-frontend-tekstomrade';
 import theme, { pxToRem } from '../../../../../../styles/personOversiktTheme';
 import * as StandardTekster from '../domain';
 import TekstListeElement from './TekstListeElement';
