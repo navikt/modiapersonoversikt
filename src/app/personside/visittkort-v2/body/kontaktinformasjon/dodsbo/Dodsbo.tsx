@@ -71,7 +71,7 @@ function OrganisasjonSomAdressatInfo({ adressat }: { adressat: OrganisasjonSomAd
 function PersonSomAdressatInfo({ adressat }: { adressat: PersonSomAdressat }) {
     const fnr = adressat.fnr ? <Normaltekst>{adressat.fnr}</Normaltekst> : null;
     const fodselsdato = adressat.fodselsdato ? <Normaltekst>{formaterDato(adressat.fodselsdato)}</Normaltekst> : null;
-    const navn = adressat.navn ? <Normaltekst>{hentNavn(adressat.navn)}</Normaltekst> : null;
+    const navn = adressat.navn ? <Normaltekst>{hentNavn(adressat.navn.firstOrNull())}</Normaltekst> : null;
 
     return (
         <>

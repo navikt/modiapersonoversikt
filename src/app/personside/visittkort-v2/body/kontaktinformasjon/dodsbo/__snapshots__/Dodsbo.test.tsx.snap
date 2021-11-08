@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`viser dodsbo 1`] = `
+.c1 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c2 {
+  position: absolute;
+  left: -3.125rem;
+  width: 3.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c2 > svg {
+  height: 1.5rem;
+  width: auto;
+}
+
+.c0 {
+  margin: 10px 0 20px 0;
+}
+
+.c0:last-child {
+  margin: 10px 0 0 0;
+}
+
+.c4 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c4 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c3 {
+  margin-top: 0.5rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <svg
+        height={24}
+        viewBox="0 0 24 24"
+        width={24}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g
+          fill="#C6C2BF"
+        >
+          <defs>
+            <mask
+              id="locationpinmask"
+            >
+              <rect
+                fill="#fff"
+                height="100%"
+                width="100%"
+              />
+              <circle
+                cx={12}
+                cy={8}
+                fill="#000"
+                r={4}
+              />
+            </mask>
+          </defs>
+          <path
+            d="M19.5 8c0 4.1-7.5 15.5-7.5 15.5S4.5 12.1 4.5 8a7.5 7.5 0 1 1 15 0z"
+            mask="url(#locationpinmask)"
+          />
+        </g>
+      </svg>
+    </div>
+    <h4
+      className="typo-element"
+    >
+      Kontaktinformasjon for dødsbo
+    </h4>
+  </div>
+  <p
+    className="typo-normal"
+  >
+    Advokat Navnesen
+  </p>
+  <p
+    className="typo-normal"
+  >
+    Advokatfirma 
+    Advokatkontoret Aremark
+  </p>
+  <p
+    className="typo-normal"
+  >
+    Org. nr: 
+    01234567891011
+  </p>
+  <div
+    className="c3"
+  >
+    <p
+      className="typo-normal"
+    >
+      Elgelia 20, 0000 Aremark
+    </p>
+  </div>
+  <div
+    className="c4"
+  >
+    <p
+      className="typo-undertekst"
+    >
+      Endret 
+      01.01.2020
+       
+      i Folkeregisteret
+    </p>
+  </div>
+</div>
+`;
