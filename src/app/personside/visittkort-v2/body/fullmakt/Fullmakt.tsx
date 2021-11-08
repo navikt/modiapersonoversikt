@@ -4,18 +4,18 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Fullmaktlogo from '../../../../../svg/Utropstegn';
 import { formaterDato } from '../../../../../utils/string-utils';
-import { Fullmakt as FullmaktInterface } from '../../PersondataDomain';
+import { Fullmakt as FullmaktInterface, KodeBeskrivelse } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
 
 interface Props {
     fullmakter: FullmaktInterface[];
 }
 
-function getOmrade(omrader: string[]): string {
-    if (omrader.includes('*')) {
+function getOmrade(omrader: KodeBeskrivelse<string>[]): string {
+    if (omrader.map((omrade) => omrade.kode).includes('*')) {
         return 'alle ytelser';
     }
-    return omrader.join(', ');
+    return omrader.map((omrade) => omrade.beskrivelse).join(', ');
 }
 
 function Fullmakt(props: { fullmakt: FullmaktInterface }) {

@@ -274,7 +274,12 @@ function lagPerson(fnr: string): Person {
                           etternavn: 'Navnesen'
                       },
                       motpartsRolle: FullmaktsRolle.FULLMEKTIG,
-                      omrade: ['*'],
+                      omrade: [
+                          {
+                              kode: '*',
+                              beskrivelse: ''
+                          }
+                      ],
                       gyldigFraOgMed: '2015-01-01' as LocalDate,
                       gyldigTilOgMed: '2017-12-12' as LocalDate
                   }

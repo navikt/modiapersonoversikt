@@ -132,7 +132,12 @@ export const personKode6Utland: Person = {
                 etternavn: 'KNOTT'
             },
             motpartsRolle: FullmaktsRolle.FULLMEKTIG,
-            omrade: ['AAP'],
+            omrade: [
+                {
+                    kode: 'AAP',
+                    beskrivelse: 'Arbeidsavklaringspenger'
+                }
+            ],
             gyldigFraOgMed: '2021-10-28' as LocalDate,
             gyldigTilOgMed: '2021-12-28' as LocalDate
         }
