@@ -123,7 +123,7 @@ export interface AdvokatSomAdressat {
 
 export interface PersonSomAdressat {
     fnr: string | null;
-    navn: Navn | null;
+    navn: Array<Navn>;
     fodselsdato: LocalDate | null;
 }
 
