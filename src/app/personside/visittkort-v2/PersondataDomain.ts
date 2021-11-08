@@ -153,7 +153,7 @@ export interface Fullmakt {
     motpartsPersonident: string;
     motpartsPersonNavn: Navn;
     motpartsRolle: FullmaktsRolle;
-    omrade: Array<string>;
+    omrade: Array<KodeBeskrivelse<string>>;
     gyldigFraOgMed: LocalDate;
     gyldigTilOgMed: LocalDate;
 }
