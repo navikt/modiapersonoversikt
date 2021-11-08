@@ -139,7 +139,12 @@ export const personKode6: Person = {
                 etternavn: 'SNERK'
             },
             motpartsRolle: FullmaktsRolle.FULLMEKTIG,
-            omrade: ['Barnetrygd'],
+            omrade: [
+                {
+                    kode: 'BAR',
+                    beskrivelse: 'Barnetrygd'
+                }
+            ],
             gyldigFraOgMed: '2020-03-02' as LocalDate,
             gyldigTilOgMed: '2025-11-13' as LocalDate
         }
@@ -153,8 +158,7 @@ export const personKode6: Person = {
                 etternavn: 'LAPP'
             },
             vergesakstype: 'Voksen',
-            omfang:
-                'Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken (kun for EMA)',
+            omfang: 'Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken (kun for EMA)',
             embete: 'Fylkesmannen i Møre og Romsdal',
             gyldighetstidspunkt: '2021-11-02' as LocalDate,
             opphorstidspunkt: null
