@@ -168,8 +168,8 @@ export interface Telefon {
 export interface Verge {
     ident: string | null;
     navn: Navn | null;
-    vergesakstype: string | null;
-    omfang: string | null;
+    vergesakstype: string;
+    omfang: string;
     embete: string | null;
     gyldighetstidspunkt: LocalDate | null;
     opphorstidspunkt: LocalDate | null;
