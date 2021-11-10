@@ -136,7 +136,7 @@ export interface OrganisasjonSomAdressat {
 export interface Bankkonto {
     kontonummer: string;
     banknavn: string | null;
-    sistEndret: SistEndret;
+    sistEndret: SistEndret | null;
     bankkode: string | null;
     swift: string | null;
     landkode: KodeBeskrivelse<string> | null;
