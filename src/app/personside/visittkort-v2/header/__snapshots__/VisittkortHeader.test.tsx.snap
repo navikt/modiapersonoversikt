@@ -399,16 +399,16 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
             </li>
             <span
               className="c9"
-              title="Barn under 21 år"
+              title="Barn under 22 år"
             >
               <svg
                 className="c10"
-                title="Ett eller flere av barnene har status som død"
+                title="Ett eller flere av barna har status som død"
               >
                 advarsel-sirkel-fyll.svg
               </svg>
               2
-               barn under 21 år
+               barn under 22 år
             </span>
           </ul>
         </span>
