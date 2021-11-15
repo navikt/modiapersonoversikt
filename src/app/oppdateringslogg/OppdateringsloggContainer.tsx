@@ -8,6 +8,8 @@ import useSisteLestOppdateringLogg from './useSisteLestOppdateringLogg';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
 import { OppdateringsloggConfig } from './config/config';
 import './oppdateringsloggKnapp.less';
+import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 export const DecoratorButtonId = 'oppdateringslogg';
 export interface EnOppdateringslogg {
@@ -67,7 +69,10 @@ function useApneOppdateringsLoggModal(
 }
 
 function OppdateringsloggContainer() {
-    const oppdateringslogg: EnOppdateringslogg[] = OppdateringsloggConfig.filter(innslag => innslag.aktiv);
+    const brukerVisittkortV2 = useFeatureToggle(FeatureToggles.BrukV2Visittkort).isOn ?? false;
+    const oppdateringslogg: EnOppdateringslogg[] = OppdateringsloggConfig(brukerVisittkortV2).filter(
+        innslag => innslag.aktiv
+    );
 
     const [apen, settApen] = useState(false);
     const [sistLesteId, settSistLesteId] = useSisteLestOppdateringLogg();
