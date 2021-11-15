@@ -203,21 +203,14 @@ export const aremark: Person = {
             }
         }
     ],
-    foreldreansvar: [
-        {
-            ansvar: 'felles',
-            ansvarlig: {
-                fornavn: 'Test',
-                etternavn: 'Testesen',
-                mellomnavn: null
-            },
-            ansvarsubject: {
-                fornavn: 'Barn',
-                etternavn: 'Barnesen',
-                mellomnavn: null
-            }
+    foreldreansvar: barnAremark.map(barn => ({
+        ansvar: 'felles',
+        ansvarlig: null,
+        ansvarsubject: {
+            navn: barn.navn.firstOrNull(),
+            ident: barn.ident
         }
-    ],
+    })),
     deltBosted: [
         {
             startdatoForKontrakt: '2000-10-10' as LocalDate,

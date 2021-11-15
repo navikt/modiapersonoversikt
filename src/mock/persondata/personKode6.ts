@@ -11,6 +11,196 @@ import {
     SivilstandType
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 
+const forelderBarnRelasjonMock = [
+    {
+        ident: '25075405645',
+        rolle: ForelderBarnRelasjonRolle.MOR,
+        navn: [
+            {
+                fornavn: 'RASK',
+                mellomnavn: 'SLØVENDE',
+                etternavn: 'BUSK'
+            }
+        ],
+        fodselsdato: ['1954-07-25' as LocalDate],
+        kjonn: [
+            {
+                kode: Kjonn.K,
+                beskrivelse: 'Kvinne'
+            }
+        ],
+        alder: 67,
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.KODE6_UTLAND,
+                beskrivelse: 'Sperret adresse, strengt fortrolig'
+            }
+        ],
+        harSammeAdresse: false,
+        personstatus: [
+            {
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'Bosatt'
+            }
+        ]
+    },
+    {
+        ident: '13022081416',
+        rolle: ForelderBarnRelasjonRolle.BARN,
+        navn: [
+            {
+                fornavn: 'GØYAL',
+                mellomnavn: 'TIKKENDE',
+                etternavn: 'MULDVARP'
+            }
+        ],
+        fodselsdato: ['2020-02-13' as LocalDate],
+        kjonn: [
+            {
+                kode: Kjonn.K,
+                beskrivelse: 'Kvinne'
+            }
+        ],
+        alder: 1,
+        adressebeskyttelse: [],
+        harSammeAdresse: false,
+        personstatus: [
+            {
+                kode: PersonStatus.DOD,
+                beskrivelse: 'Død'
+            }
+        ]
+    },
+    {
+        ident: '03060777011',
+        rolle: ForelderBarnRelasjonRolle.BARN,
+        navn: [
+            {
+                fornavn: 'ARTIG',
+                mellomnavn: 'SKJELVENDE',
+                etternavn: 'RHODODENRON'
+            }
+        ],
+        fodselsdato: ['2007-06-03' as LocalDate],
+        kjonn: [
+            {
+                kode: Kjonn.K,
+                beskrivelse: 'Kvinne'
+            }
+        ],
+        alder: 14,
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.KODE6,
+                beskrivelse: 'Sperret adresse, strengt fortrolig'
+            }
+        ],
+        harSammeAdresse: false,
+        personstatus: [
+            {
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'Bosatt'
+            }
+        ]
+    },
+    {
+        ident: '26115122184',
+        rolle: ForelderBarnRelasjonRolle.FAR,
+        navn: [
+            {
+                fornavn: 'LUGUBER',
+                mellomnavn: 'LURENDE',
+                etternavn: 'KAMELEON'
+            }
+        ],
+        fodselsdato: ['1951-11-26' as LocalDate],
+        kjonn: [
+            {
+                kode: Kjonn.M,
+                beskrivelse: 'Mann'
+            }
+        ],
+        alder: 69,
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.KODE6_UTLAND,
+                beskrivelse: 'Sperret adresse, strengt fortrolig'
+            }
+        ],
+        harSammeAdresse: false,
+        personstatus: [
+            {
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'Bosatt'
+            }
+        ]
+    },
+    {
+        ident: '10050550120',
+        rolle: ForelderBarnRelasjonRolle.BARN,
+        navn: [
+            {
+                fornavn: 'ROBUST',
+                mellomnavn: 'DANSENDE',
+                etternavn: 'VEPS'
+            }
+        ],
+        fodselsdato: ['2005-05-10' as LocalDate],
+        kjonn: [
+            {
+                kode: Kjonn.M,
+                beskrivelse: 'Mann'
+            }
+        ],
+        alder: 16,
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.KODE7,
+                beskrivelse: 'Sperret adresse, fortrolig'
+            }
+        ],
+        harSammeAdresse: false,
+        personstatus: [
+            {
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'Bosatt'
+            }
+        ]
+    },
+    {
+        ident: '23060450188',
+        rolle: ForelderBarnRelasjonRolle.BARN,
+        navn: [
+            {
+                fornavn: 'TRIVIELL',
+                mellomnavn: 'DRØVTYGGENDE',
+                etternavn: 'VEPS'
+            }
+        ],
+        fodselsdato: ['2004-06-23' as LocalDate],
+        kjonn: [
+            {
+                kode: Kjonn.M,
+                beskrivelse: 'Mann'
+            }
+        ],
+        alder: 17,
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.KODE6,
+                beskrivelse: 'Sperret adresse, strengt fortrolig'
+            }
+        ],
+        harSammeAdresse: false,
+        personstatus: [
+            {
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'Bosatt'
+            }
+        ]
+    }
+];
+
 export const personKode6: Person = {
     fnr: '03016516057',
     navn: [
@@ -90,44 +280,16 @@ export const personKode6: Person = {
             }
         }
     ],
-    foreldreansvar: [
-        {
+    foreldreansvar: forelderBarnRelasjonMock
+        .filter(relasjon => relasjon.rolle === ForelderBarnRelasjonRolle.BARN)
+        .map(barn => ({
             ansvar: 'felles',
             ansvarlig: null,
             ansvarsubject: {
-                fornavn: 'ARTIG',
-                mellomnavn: 'SKJELVENDE',
-                etternavn: 'RHODODENRON'
+                navn: barn.navn.firstOrNull(),
+                ident: barn.ident
             }
-        },
-        {
-            ansvar: 'felles',
-            ansvarlig: null,
-            ansvarsubject: {
-                fornavn: 'ROBUST',
-                mellomnavn: 'DANSENDE',
-                etternavn: 'VEPS'
-            }
-        },
-        {
-            ansvar: 'felles',
-            ansvarlig: null,
-            ansvarsubject: {
-                fornavn: 'GØYAL',
-                mellomnavn: 'TIKKENDE',
-                etternavn: 'MULDVARP'
-            }
-        },
-        {
-            ansvar: 'felles',
-            ansvarlig: null,
-            ansvarsubject: {
-                fornavn: 'TRIVIELL',
-                mellomnavn: 'DRØVTYGGENDE',
-                etternavn: 'VEPS'
-            }
-        }
-    ],
+        })),
     deltBosted: [],
     dodsbo: [],
     fullmakt: [
@@ -158,7 +320,8 @@ export const personKode6: Person = {
                 etternavn: 'LAPP'
             },
             vergesakstype: 'Voksen',
-            omfang: 'Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken (kun for EMA)',
+            omfang:
+                'Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken (kun for EMA)',
             embete: 'Fylkesmannen i Møre og Romsdal',
             gyldighetstidspunkt: '2021-11-02' as LocalDate,
             opphorstidspunkt: null
@@ -211,193 +374,5 @@ export const personKode6: Person = {
         }
     },
     bankkonto: null,
-    forelderBarnRelasjon: [
-        {
-            ident: '25075405645',
-            rolle: ForelderBarnRelasjonRolle.MOR,
-            navn: [
-                {
-                    fornavn: 'RASK',
-                    mellomnavn: 'SLØVENDE',
-                    etternavn: 'BUSK'
-                }
-            ],
-            fodselsdato: ['1954-07-25' as LocalDate],
-            kjonn: [
-                {
-                    kode: Kjonn.K,
-                    beskrivelse: 'Kvinne'
-                }
-            ],
-            alder: 67,
-            adressebeskyttelse: [
-                {
-                    kode: AdresseBeskyttelse.KODE6_UTLAND,
-                    beskrivelse: 'Sperret adresse, strengt fortrolig'
-                }
-            ],
-            harSammeAdresse: false,
-            personstatus: [
-                {
-                    kode: PersonStatus.BOSATT,
-                    beskrivelse: 'Bosatt'
-                }
-            ]
-        },
-        {
-            ident: '13022081416',
-            rolle: ForelderBarnRelasjonRolle.BARN,
-            navn: [
-                {
-                    fornavn: 'GØYAL',
-                    mellomnavn: 'TIKKENDE',
-                    etternavn: 'MULDVARP'
-                }
-            ],
-            fodselsdato: ['2020-02-13' as LocalDate],
-            kjonn: [
-                {
-                    kode: Kjonn.K,
-                    beskrivelse: 'Kvinne'
-                }
-            ],
-            alder: 1,
-            adressebeskyttelse: [],
-            harSammeAdresse: false,
-            personstatus: [
-                {
-                    kode: PersonStatus.DOD,
-                    beskrivelse: 'Død'
-                }
-            ]
-        },
-        {
-            ident: '03060777011',
-            rolle: ForelderBarnRelasjonRolle.BARN,
-            navn: [
-                {
-                    fornavn: 'ARTIG',
-                    mellomnavn: 'SKJELVENDE',
-                    etternavn: 'RHODODENRON'
-                }
-            ],
-            fodselsdato: ['2007-06-03' as LocalDate],
-            kjonn: [
-                {
-                    kode: Kjonn.K,
-                    beskrivelse: 'Kvinne'
-                }
-            ],
-            alder: 14,
-            adressebeskyttelse: [
-                {
-                    kode: AdresseBeskyttelse.KODE6,
-                    beskrivelse: 'Sperret adresse, strengt fortrolig'
-                }
-            ],
-            harSammeAdresse: false,
-            personstatus: [
-                {
-                    kode: PersonStatus.BOSATT,
-                    beskrivelse: 'Bosatt'
-                }
-            ]
-        },
-        {
-            ident: '26115122184',
-            rolle: ForelderBarnRelasjonRolle.FAR,
-            navn: [
-                {
-                    fornavn: 'LUGUBER',
-                    mellomnavn: 'LURENDE',
-                    etternavn: 'KAMELEON'
-                }
-            ],
-            fodselsdato: ['1951-11-26' as LocalDate],
-            kjonn: [
-                {
-                    kode: Kjonn.M,
-                    beskrivelse: 'Mann'
-                }
-            ],
-            alder: 69,
-            adressebeskyttelse: [
-                {
-                    kode: AdresseBeskyttelse.KODE6_UTLAND,
-                    beskrivelse: 'Sperret adresse, strengt fortrolig'
-                }
-            ],
-            harSammeAdresse: false,
-            personstatus: [
-                {
-                    kode: PersonStatus.BOSATT,
-                    beskrivelse: 'Bosatt'
-                }
-            ]
-        },
-        {
-            ident: '10050550120',
-            rolle: ForelderBarnRelasjonRolle.BARN,
-            navn: [
-                {
-                    fornavn: 'ROBUST',
-                    mellomnavn: 'DANSENDE',
-                    etternavn: 'VEPS'
-                }
-            ],
-            fodselsdato: ['2005-05-10' as LocalDate],
-            kjonn: [
-                {
-                    kode: Kjonn.M,
-                    beskrivelse: 'Mann'
-                }
-            ],
-            alder: 16,
-            adressebeskyttelse: [
-                {
-                    kode: AdresseBeskyttelse.KODE7,
-                    beskrivelse: 'Sperret adresse, fortrolig'
-                }
-            ],
-            harSammeAdresse: false,
-            personstatus: [
-                {
-                    kode: PersonStatus.BOSATT,
-                    beskrivelse: 'Bosatt'
-                }
-            ]
-        },
-        {
-            ident: '23060450188',
-            rolle: ForelderBarnRelasjonRolle.BARN,
-            navn: [
-                {
-                    fornavn: 'TRIVIELL',
-                    mellomnavn: 'DRØVTYGGENDE',
-                    etternavn: 'VEPS'
-                }
-            ],
-            fodselsdato: ['2004-06-23' as LocalDate],
-            kjonn: [
-                {
-                    kode: Kjonn.M,
-                    beskrivelse: 'Mann'
-                }
-            ],
-            alder: 17,
-            adressebeskyttelse: [
-                {
-                    kode: AdresseBeskyttelse.KODE6,
-                    beskrivelse: 'Sperret adresse, strengt fortrolig'
-                }
-            ],
-            harSammeAdresse: false,
-            personstatus: [
-                {
-                    kode: PersonStatus.BOSATT,
-                    beskrivelse: 'Bosatt'
-                }
-            ]
-        }
-    ]
+    forelderBarnRelasjon: forelderBarnRelasjonMock
 };

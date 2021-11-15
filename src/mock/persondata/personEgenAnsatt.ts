@@ -11,6 +11,68 @@ import {
     SivilstandType
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 
+const forelderBarnRelasjonMock = [
+    {
+        ident: '',
+        rolle: ForelderBarnRelasjonRolle.MOR,
+        navn: [],
+        fodselsdato: [],
+        kjonn: [],
+        alder: null,
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.KODE6_UTLAND,
+                beskrivelse: 'Sperret adresse, strengt fortrolig'
+            }
+        ],
+        harSammeAdresse: false,
+        personstatus: []
+    },
+    {
+        ident: '26115122184',
+        rolle: ForelderBarnRelasjonRolle.FAR,
+        navn: [
+            {
+                fornavn: 'LUGUBER',
+                mellomnavn: 'LURENDE',
+                etternavn: 'KAMELEON'
+            }
+        ],
+        fodselsdato: ['1951-11-26' as LocalDate],
+        kjonn: [
+            {
+                kode: Kjonn.M,
+                beskrivelse: 'Mann'
+            }
+        ],
+        alder: 69,
+        adressebeskyttelse: [],
+        harSammeAdresse: false,
+        personstatus: [
+            {
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'Bosatt'
+            }
+        ]
+    },
+    {
+        ident: '',
+        rolle: ForelderBarnRelasjonRolle.BARN,
+        navn: [],
+        fodselsdato: [],
+        kjonn: [],
+        alder: null,
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.KODE6,
+                beskrivelse: 'Sperret adresse, strengt fortrolig'
+            }
+        ],
+        harSammeAdresse: false,
+        personstatus: []
+    }
+];
+
 export const personEgenAnsatt: Person = {
     fnr: '05018811814',
     navn: [
@@ -92,17 +154,16 @@ export const personEgenAnsatt: Person = {
             }
         }
     ],
-    foreldreansvar: [
-        {
+    foreldreansvar: forelderBarnRelasjonMock
+        .filter(relasjon => relasjon.rolle === ForelderBarnRelasjonRolle.BARN)
+        .map(barn => ({
             ansvar: 'felles',
             ansvarlig: null,
             ansvarsubject: {
-                fornavn: 'ARTIG',
-                mellomnavn: 'SKJELVENDE',
-                etternavn: 'RHODODENRON'
+                navn: barn.navn.firstOrNull(),
+                ident: barn.ident
             }
-        }
-    ],
+        })),
     deltBosted: [],
     dodsbo: [],
     fullmakt: [
@@ -133,7 +194,8 @@ export const personEgenAnsatt: Person = {
                 etternavn: 'LAPP'
             },
             vergesakstype: 'Voksen',
-            omfang: 'Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken (kun for EMA)',
+            omfang:
+                'Ivareta personens interesser innenfor det personlige og økonomiske området herunder utlendingssaken (kun for EMA)',
             embete: 'Fylkesmannen i Møre og Romsdal',
             gyldighetstidspunkt: '2021-11-02' as LocalDate,
             opphorstidspunkt: null
@@ -196,65 +258,5 @@ export const personEgenAnsatt: Person = {
         }
     },
     bankkonto: null,
-    forelderBarnRelasjon: [
-        {
-            ident: '',
-            rolle: ForelderBarnRelasjonRolle.MOR,
-            navn: [],
-            fodselsdato: [],
-            kjonn: [],
-            alder: null,
-            adressebeskyttelse: [
-                {
-                    kode: AdresseBeskyttelse.KODE6_UTLAND,
-                    beskrivelse: 'Sperret adresse, strengt fortrolig'
-                }
-            ],
-            harSammeAdresse: false,
-            personstatus: []
-        },
-        {
-            ident: '26115122184',
-            rolle: ForelderBarnRelasjonRolle.FAR,
-            navn: [
-                {
-                    fornavn: 'LUGUBER',
-                    mellomnavn: 'LURENDE',
-                    etternavn: 'KAMELEON'
-                }
-            ],
-            fodselsdato: ['1951-11-26' as LocalDate],
-            kjonn: [
-                {
-                    kode: Kjonn.M,
-                    beskrivelse: 'Mann'
-                }
-            ],
-            alder: 69,
-            adressebeskyttelse: [],
-            harSammeAdresse: false,
-            personstatus: [
-                {
-                    kode: PersonStatus.BOSATT,
-                    beskrivelse: 'Bosatt'
-                }
-            ]
-        },
-        {
-            ident: '',
-            rolle: ForelderBarnRelasjonRolle.BARN,
-            navn: [],
-            fodselsdato: [],
-            kjonn: [],
-            alder: null,
-            adressebeskyttelse: [
-                {
-                    kode: AdresseBeskyttelse.KODE6,
-                    beskrivelse: 'Sperret adresse, strengt fortrolig'
-                }
-            ],
-            harSammeAdresse: false,
-            personstatus: []
-        }
-    ]
+    forelderBarnRelasjon: forelderBarnRelasjonMock
 };
