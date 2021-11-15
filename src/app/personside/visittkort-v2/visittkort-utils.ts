@@ -17,7 +17,7 @@ function erDod(person: Person) {
 }
 
 export function hentBarnUnder22(forelderBarnRelasjon: ForelderBarnRelasjon[]) {
-    return forelderBarnRelasjon.filter(barn => hentAlderOrDefault(barn) <= 21);
+    return hentBarn(forelderBarnRelasjon).filter(barn => hentAlderOrDefault(barn) <= 21);
 }
 
 export function hentBarn(forelderBarnRelasjon: ForelderBarnRelasjon[]) {
