@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ForelderBarnRelasjon, Kjonn } from '../../PersondataDomain';
 import ForelderBarnRelasjonVisning from './ForelderBarnRelasjon';
 import { capitalizeName } from '../../../../../utils/string-utils';
-import { harDiskresjonskode, hentBarnUnder21 } from '../../visittkort-utils';
+import { harDiskresjonskode, hentBarnUnder22 } from '../../visittkort-utils';
 
 interface Props {
     relasjoner: ForelderBarnRelasjon[];
@@ -25,11 +25,11 @@ function hentKjonnBeskrivelseForBarn(barn: ForelderBarnRelasjon) {
 }
 
 function ListeAvBarn({ relasjoner }: Props) {
-    const barnUnder21 = hentBarnUnder21(relasjoner);
+    const barnUnder22 = hentBarnUnder22(relasjoner);
 
     return (
         <>
-            {barnUnder21.map((barn, index) => (
+            {barnUnder22.map((barn, index) => (
                 <ForelderBarnRelasjonVisning
                     key={barn.ident ? barn.ident : index}
                     beskrivelse={capitalizeName(hentKjonnBeskrivelseForBarn(barn))}

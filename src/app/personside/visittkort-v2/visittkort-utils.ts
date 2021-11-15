@@ -16,7 +16,7 @@ function erDod(person: Person) {
     return !person.dodsdato.isEmpty() || (personstatus && personstatus.kode === PersonStatus.DOD);
 }
 
-export function hentBarnUnder21(forelderBarnRelasjon: ForelderBarnRelasjon[]) {
+export function hentBarnUnder22(forelderBarnRelasjon: ForelderBarnRelasjon[]) {
     return forelderBarnRelasjon.filter(barn => hentAlderOrDefault(barn) <= 21);
 }
 
