@@ -15,6 +15,7 @@ export interface Person {
     dodsdato: Array<LocalDate>;
     bostedAdresse: Array<Adresse>;
     kontaktAdresse: Array<Adresse>;
+    oppholdsAdresse: Array<Adresse>;
     navEnhet: Enhet | null;
     statsborgerskap: Array<Statsborgerskap>;
     adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
@@ -83,6 +84,12 @@ export interface Adresse {
     linje2: string | null;
     linje3: string | null;
     sistEndret: SistEndret | null;
+    gyldighetsPeriode: GyldighetsPeriode | null;
+}
+
+export interface GyldighetsPeriode {
+    gyldigFraOgMed: LocalDate | LocalDateTime | null;
+    gyldigTilOgMed: LocalDate | LocalDateTime | null;
 }
 
 export interface Enhet {
