@@ -30,11 +30,12 @@ function AdresseElement(props: { adresse: PersonAdresse | null; beskrivelse: str
 }
 
 function Adresse({ person }: Props) {
+    const oppholdsAdresse = person.oppholdsAdresse.firstOrNull();
     return (
         <>
             <AdresseElement adresse={person.bostedAdresse.firstOrNull()} beskrivelse={'Bostedsadresse'} />
             <AdresseElement adresse={person.kontaktAdresse.firstOrNull()} beskrivelse={'Kontaktadresse'} />
-            <AdresseElement adresse={person.oppholdsAdresse.firstOrNull()} beskrivelse={'Oppholdsadresse'} />
+            {oppholdsAdresse && <AdresseElement adresse={oppholdsAdresse} beskrivelse={'Oppholdsadresse'} />}
         </>
     );
 }
