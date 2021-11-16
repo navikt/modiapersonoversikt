@@ -2,12 +2,13 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
-import { Verge as VergeInterface } from '../../PersondataDomain';
+import { GyldighetsPeriode as GyldighetsPeriodeInterface, Verge as VergeInterface } from '../../PersondataDomain';
 import VergemalLogo from '../../../../../svg/Utropstegn';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import { Element } from 'nav-frontend-typografi';
-import { hentNavn, hentPeriodeTekst } from '../../visittkort-utils';
+import { hentNavn } from '../../visittkort-utils';
+import GyldighetsPeriode from '../GyldighetsPeriode';
 
 const Vergeinformasjon = styled.div`
     margin-bottom: 5px;
@@ -19,6 +20,10 @@ interface Props {
 
 function Verge(props: { verge: VergeInterface }) {
     const { verge } = props;
+    const gyldighetsPeriode: GyldighetsPeriodeInterface = {
+        gyldigFraOgMed: verge.gyldighetstidspunkt,
+        gyldigTilOgMed: verge.opphorstidspunkt
+    };
 
     return (
         <VisittkortElement beskrivelse={'Verge'}>
@@ -32,8 +37,8 @@ function Verge(props: { verge: VergeInterface }) {
             <EtikettGraa>
                 {verge.embete ? verge.embete : ''}
                 {verge.embete ? <br /> : ''}
-                {hentPeriodeTekst(verge.gyldighetstidspunkt, verge.opphorstidspunkt)}
             </EtikettGraa>
+            <GyldighetsPeriode gyldighetsPeriode={gyldighetsPeriode} />
         </VisittkortElement>
     );
 }

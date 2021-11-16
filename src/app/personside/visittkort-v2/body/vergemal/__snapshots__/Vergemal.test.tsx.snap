@@ -151,6 +151,15 @@ exports[`viser vergemål 1`] = `
       >
         Fylkesmannen i Troms og Finnmark
         <br />
+      </p>
+    </div>
+    <div
+      className="c5"
+    >
+      <p
+        className="typo-undertekst"
+      >
+        Gyldig: 
         27.03.2016 – 30.06.2017
       </p>
     </div>
@@ -200,6 +209,15 @@ exports[`viser vergemål 1`] = `
       >
         Fylkesmannen i Troms og Finnmark
         <br />
+      </p>
+    </div>
+    <div
+      className="c5"
+    >
+      <p
+        className="typo-undertekst"
+      >
+        Gyldig: 
         27.03.2016 – 30.06.2017
       </p>
     </div>

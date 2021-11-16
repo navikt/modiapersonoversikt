@@ -1,11 +1,10 @@
 import VisittkortElement from '../VisittkortElement';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { formaterDato } from '../../../../../utils/string-utils';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import * as React from 'react';
 import Infotegn from '../../../../../svg/Info';
-import { DeltBosted } from '../../PersondataDomain';
+import { DeltBosted, GyldighetsPeriode as GyldighetsPeriodeInterface } from '../../PersondataDomain';
 import Adresseinfo from '../AdresseInfo';
+import GyldighetsPeriode from '../GyldighetsPeriode';
 
 interface Props {
     deltBosted: DeltBosted[];
@@ -16,16 +15,15 @@ function DeltBostedElement(props: { deltBosted: DeltBosted }) {
         return null;
     }
 
-    const startdato = formaterDato(props.deltBosted.startdatoForKontrakt);
-    const sluttdato = props.deltBosted.sluttdatoForKontrakt
-        ? formaterDato(props.deltBosted.sluttdatoForKontrakt)
-        : 'ukjent dato';
+    const gyldighetsPeriode: GyldighetsPeriodeInterface = {
+        gyldigFraOgMed: props.deltBosted.startdatoForKontrakt,
+        gyldigTilOgMed: props.deltBosted.sluttdatoForKontrakt
+    };
 
     return (
         <VisittkortElement>
             <Adresseinfo adresse={props.deltBosted.adresse} />
-            <Normaltekst>Gyldig fra og med {startdato}</Normaltekst>
-            <Normaltekst>Gyldig til og med {sluttdato}</Normaltekst>
+            <GyldighetsPeriode gyldighetsPeriode={gyldighetsPeriode} />
         </VisittkortElement>
     );
 }

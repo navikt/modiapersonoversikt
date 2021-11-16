@@ -15,12 +15,6 @@ import {
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 import { aremark } from './aremark';
-import { personDeltBosted } from './personDeltBosted';
-import { personDod } from './personDod';
-import { personEgenAnsatt } from './personEgenAnsatt';
-import { personKode6 } from './personKode6';
-import { personKode6Utland } from './personKode6Utland';
-import { personKode7 } from './personKode7';
 
 // Til bruk under testing av funksjonalitet
 const erDod = false;
@@ -31,18 +25,6 @@ const ikkeRegistrert = false;
 export function hentPersondata(fodselsnummer: string): PersonData | null {
     if (fodselsnummer === aremark.fnr) {
         return { feilendeSystemer: [], person: aremark };
-    } else if (fodselsnummer === personDod.fnr) {
-        return { feilendeSystemer: [], person: personDod };
-    } else if (fodselsnummer === personKode6.fnr) {
-        return { feilendeSystemer: [], person: personKode6 };
-    } else if (fodselsnummer === personKode6Utland.fnr) {
-        return { feilendeSystemer: [], person: personKode6Utland };
-    } else if (fodselsnummer === personKode7.fnr) {
-        return { feilendeSystemer: [], person: personKode7 };
-    } else if (fodselsnummer === personEgenAnsatt.fnr) {
-        return { feilendeSystemer: [], person: personEgenAnsatt };
-    } else if (fodselsnummer === personDeltBosted.fnr) {
-        return { feilendeSystemer: [], person: personDeltBosted };
     } else if (!erGyldigFødselsnummer(fodselsnummer)) {
         return null;
     } else {
@@ -78,6 +60,10 @@ function lagPerson(fnr: string): Person {
                     ident: 'Folkeregisteret',
                     tidspunkt: '2020-01-01T10:15:30' as LocalDateTime,
                     system: 'Folkeregisteret'
+                },
+                gyldighetsPeriode: {
+                    gyldigFraOgMed: '2021-01-01T10:15:30' as LocalDateTime,
+                    gyldigTilOgMed: '2022-04-01T10:15:30' as LocalDateTime
                 }
             }
         ],
@@ -90,6 +76,19 @@ function lagPerson(fnr: string): Person {
                     ident: 'D159000',
                     tidspunkt: '2021-10-10T10:15:30' as LocalDateTime,
                     system: 'NAV'
+                },
+                gyldighetsPeriode: null
+            }
+        ],
+        oppholdsAdresse: [
+            {
+                linje1: 'Oppholdsadresse 1',
+                linje2: '0000 AREMARK',
+                linje3: null,
+                sistEndret: null,
+                gyldighetsPeriode: {
+                    gyldigFraOgMed: '2021-02-01T10:15:30' as LocalDateTime,
+                    gyldigTilOgMed: '2022-05-01T10:15:30' as LocalDateTime
                 }
             }
         ],
@@ -102,7 +101,8 @@ function lagPerson(fnr: string): Person {
                         linje1: 'Adressevei 1',
                         linje2: '0000 AREMARK',
                         linje3: null,
-                        sistEndret: null
+                        sistEndret: null,
+                        gyldighetsPeriode: null
                     },
                     apningstider: [
                         {
@@ -124,7 +124,8 @@ function lagPerson(fnr: string): Person {
                         linje1: 'Adressevei 1',
                         linje2: '0000 AREMARK',
                         linje3: null,
-                        sistEndret: null
+                        sistEndret: null,
+                        gyldighetsPeriode: null
                     },
                     apningstider: [
                         {
@@ -228,7 +229,8 @@ function lagPerson(fnr: string): Person {
                     linje1: `Adresseveien 1`,
                     linje2: '0000 Aremark',
                     linje3: null,
-                    sistEndret: null
+                    sistEndret: null,
+                    gyldighetsPeriode: null
                 }
             }
         ],
@@ -252,7 +254,8 @@ function lagPerson(fnr: string): Person {
                           linje1: 'Elgelia 20',
                           linje2: '0000 Aremark',
                           linje3: null,
-                          sistEndret: null
+                          sistEndret: null,
+                          gyldighetsPeriode: null
                       },
                       registrert: '2010-02-02' as LocalDate,
                       skifteform: Skifteform.OFFENTLIG,
@@ -405,7 +408,8 @@ function lagPerson(fnr: string): Person {
                 linje1: 'Bankveien 1,',
                 linje2: '0357 Bankestad',
                 linje3: null,
-                sistEndret: null
+                sistEndret: null,
+                gyldighetsPeriode: null
             },
             valuta: {
                 kode: 'NOK',
