@@ -6,7 +6,7 @@ import { Systemtittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import useSisteLestOppdateringLogg from './useSisteLestOppdateringLogg';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
-import { OppdateringsloggConfig } from './config/config';
+import { lagOppdateringsloggConfig } from './config/config';
 import './oppdateringsloggKnapp.less';
 import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
@@ -70,7 +70,7 @@ function useApneOppdateringsLoggModal(
 
 function OppdateringsloggContainer() {
     const brukerVisittkortV2 = useFeatureToggle(FeatureToggles.BrukV2Visittkort).isOn ?? false;
-    const oppdateringslogg: EnOppdateringslogg[] = OppdateringsloggConfig(brukerVisittkortV2).filter(
+    const oppdateringslogg: EnOppdateringslogg[] = lagOppdateringsloggConfig(brukerVisittkortV2).filter(
         innslag => innslag.aktiv
     );
 

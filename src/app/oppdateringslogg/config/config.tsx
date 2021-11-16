@@ -13,7 +13,7 @@ import KassertDokumentBilde from './img/kassert.jpg';
 import VisittkortV2 from './img/visittkortV2.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export function OppdateringsloggConfig(skalVisesBakFT: boolean): EnOppdateringslogg[] {
+export function lagOppdateringsloggConfig(skalVisesBakFT: boolean): EnOppdateringslogg[] {
     return [
         {
             id: 1,
