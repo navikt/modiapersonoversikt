@@ -16,12 +16,6 @@ import {
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
 import { aremark } from './aremark';
-import { personDeltBosted } from './personDeltBosted';
-import { personDod } from './personDod';
-import { personEgenAnsatt } from './personEgenAnsatt';
-import { personKode6 } from './personKode6';
-import { personKode6Utland } from './personKode6Utland';
-import { personKode7 } from './personKode7';
 
 // Til bruk under testing av funksjonalitet
 const erDod = false;
@@ -32,18 +26,6 @@ const ikkeRegistrert = false;
 export function hentPersondata(fodselsnummer: string): PersonData | null {
     if (fodselsnummer === aremark.fnr) {
         return { feilendeSystemer: [], person: aremark };
-    } else if (fodselsnummer === personDod.fnr) {
-        return { feilendeSystemer: [], person: personDod };
-    } else if (fodselsnummer === personKode6.fnr) {
-        return { feilendeSystemer: [], person: personKode6 };
-    } else if (fodselsnummer === personKode6Utland.fnr) {
-        return { feilendeSystemer: [], person: personKode6Utland };
-    } else if (fodselsnummer === personKode7.fnr) {
-        return { feilendeSystemer: [], person: personKode7 };
-    } else if (fodselsnummer === personEgenAnsatt.fnr) {
-        return { feilendeSystemer: [], person: personEgenAnsatt };
-    } else if (fodselsnummer === personDeltBosted.fnr) {
-        return { feilendeSystemer: [], person: personDeltBosted };
     } else if (!erGyldigFødselsnummer(fodselsnummer)) {
         return null;
     } else {
@@ -68,7 +50,7 @@ function lagPerson(fnr: string): Person {
             }
         ],
         fodselsdato: ['2000-02-02' as LocalDate],
-        alder: 21,
+        alder: 40,
         dodsdato: erDod ? ['2018-06-07' as LocalDate] : [],
         bostedAdresse: [
             {
@@ -165,7 +147,7 @@ function lagPerson(fnr: string): Person {
         adressebeskyttelse: [
             {
                 kode: visEtiketter ? AdresseBeskyttelse.KODE6 : AdresseBeskyttelse.UGRADERT,
-                beskrivelse: visEtiketter ? 'Kode 6' : ''
+                beskrivelse: visEtiketter ? 'Sperret adresse, strengt fortrolig' : 'UGRADERT'
             }
         ],
         sikkerhetstiltak: visEtiketter
@@ -516,12 +498,17 @@ const forelderBarnMock: ForelderBarnRelasjon[] = [
                 beskrivelse: 'Ukjent kjønn'
             }
         ],
-        adressebeskyttelse: [],
+        adressebeskyttelse: [
+            {
+                kode: AdresseBeskyttelse.UGRADERT,
+                beskrivelse: 'UGRADERT'
+            }
+        ],
         harSammeAdresse: true,
         personstatus: [
             {
-                kode: PersonStatus.BOSATT,
-                beskrivelse: 'BOSATT'
+                kode: PersonStatus.UTFLYTTET,
+                beskrivelse: 'UTFLYTTET'
             }
         ]
     },

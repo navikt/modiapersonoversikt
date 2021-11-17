@@ -12,6 +12,7 @@ import {
     SivilstandType,
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
+import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
 
 export const barnAremark: ForelderBarnRelasjon[] = [
     {
@@ -207,7 +208,7 @@ export const aremark: Person = {
         ansvar: 'felles',
         ansvarlig: null,
         ansvarsubject: {
-            navn: barn.navn.firstOrNull(),
+            navn: harDiskresjonskode(barn.adressebeskyttelse) ? null : barn.navn.firstOrNull(),
             ident: barn.ident
         }
     })),
