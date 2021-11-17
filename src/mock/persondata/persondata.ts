@@ -14,6 +14,7 @@ import {
     SivilstandType,
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
+import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
 import { aremark } from './aremark';
 import { personDeltBosted } from './personDeltBosted';
 import { personDod } from './personDod';
@@ -205,21 +206,16 @@ function lagPerson(fnr: string): Person {
                 }
             }
         ],
-        foreldreansvar: [
-            {
+        foreldreansvar: forelderBarnMock
+            .filter(relasjon => relasjon.rolle === ForelderBarnRelasjonRolle.BARN)
+            .map(barn => ({
                 ansvar: 'felles',
-                ansvarlig: {
-                    fornavn: 'Test',
-                    etternavn: 'Testesen',
-                    mellomnavn: null
-                },
+                ansvarlig: null,
                 ansvarsubject: {
-                    fornavn: 'Barn',
-                    etternavn: 'Barnesen',
-                    mellomnavn: null
+                    navn: harDiskresjonskode(barn.adressebeskyttelse) ? null : barn.navn.firstOrNull(),
+                    ident: barn.ident
                 }
-            }
-        ],
+            })),
         deltBosted: [
             {
                 startdatoForKontrakt: '2000-10-10' as LocalDate,
@@ -513,24 +509,19 @@ const forelderBarnMock: ForelderBarnRelasjon[] = [
             }
         ],
         fodselsdato: ['1998-04-09' as LocalDate],
-        alder: 23,
+        alder: 13,
         kjonn: [
             {
                 kode: Kjonn.U,
                 beskrivelse: 'Ukjent kjønn'
             }
         ],
-        adressebeskyttelse: [
-            {
-                kode: AdresseBeskyttelse.UGRADERT,
-                beskrivelse: 'UGRADERT'
-            }
-        ],
+        adressebeskyttelse: [],
         harSammeAdresse: true,
         personstatus: [
             {
-                kode: PersonStatus.UTFLYTTET,
-                beskrivelse: 'UTFLYTTET'
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'BOSATT'
             }
         ]
     },

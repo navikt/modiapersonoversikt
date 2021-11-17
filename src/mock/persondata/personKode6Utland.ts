@@ -11,6 +11,36 @@ import {
     SivilstandType
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 
+const forelderBarnRelasjonMock = [
+    {
+        ident: '05031577278',
+        rolle: ForelderBarnRelasjonRolle.BARN,
+        navn: [
+            {
+                fornavn: 'NOBEL',
+                mellomnavn: 'SLØVENDE',
+                etternavn: 'POTET'
+            }
+        ],
+        fodselsdato: ['2015-03-05' as LocalDate],
+        kjonn: [
+            {
+                kode: Kjonn.K,
+                beskrivelse: 'Kvinne'
+            }
+        ],
+        alder: 6,
+        adressebeskyttelse: [],
+        harSammeAdresse: true,
+        personstatus: [
+            {
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'Bosatt'
+            }
+        ]
+    }
+];
+
 export const personKode6Utland: Person = {
     fnr: '27118410268',
     navn: [
@@ -110,17 +140,16 @@ export const personKode6Utland: Person = {
             }
         }
     ],
-    foreldreansvar: [
-        {
+    foreldreansvar: forelderBarnRelasjonMock
+        .filter(relasjon => relasjon.rolle === ForelderBarnRelasjonRolle.BARN)
+        .map(barn => ({
             ansvar: 'felles',
             ansvarlig: null,
             ansvarsubject: {
-                fornavn: 'NOBEL',
-                mellomnavn: 'SLØVENDE',
-                etternavn: 'POTET'
+                navn: barn.navn.firstOrNull(),
+                ident: barn.ident
             }
-        }
-    ],
+        })),
     deltBosted: [],
     dodsbo: [],
     fullmakt: [
@@ -183,33 +212,5 @@ export const personKode6Utland: Person = {
         mobiltelefonnummer: null
     },
     bankkonto: null,
-    forelderBarnRelasjon: [
-        {
-            ident: '05031577278',
-            rolle: ForelderBarnRelasjonRolle.BARN,
-            navn: [
-                {
-                    fornavn: 'NOBEL',
-                    mellomnavn: 'SLØVENDE',
-                    etternavn: 'POTET'
-                }
-            ],
-            fodselsdato: ['2015-03-05' as LocalDate],
-            kjonn: [
-                {
-                    kode: Kjonn.K,
-                    beskrivelse: 'Kvinne'
-                }
-            ],
-            alder: 6,
-            adressebeskyttelse: [],
-            harSammeAdresse: true,
-            personstatus: [
-                {
-                    kode: PersonStatus.BOSATT,
-                    beskrivelse: 'Bosatt'
-                }
-            ]
-        }
-    ]
+    forelderBarnRelasjon: forelderBarnRelasjonMock
 };
