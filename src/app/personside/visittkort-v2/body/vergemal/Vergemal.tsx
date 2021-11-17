@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
-import { GyldighetsPeriode as GyldighetsPeriodeInterface, Verge as VergeInterface } from '../../PersondataDomain';
+import { Verge as VergeInterface } from '../../PersondataDomain';
 import VergemalLogo from '../../../../../svg/Utropstegn';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import { VisittkortGruppe } from '../VisittkortStyles';
@@ -20,10 +20,6 @@ interface Props {
 
 function Verge(props: { verge: VergeInterface }) {
     const { verge } = props;
-    const gyldighetsPeriode: GyldighetsPeriodeInterface = {
-        gyldigFraOgMed: verge.gyldighetstidspunkt,
-        gyldigTilOgMed: verge.opphorstidspunkt
-    };
 
     return (
         <VisittkortElement beskrivelse={'Verge'}>
@@ -38,7 +34,7 @@ function Verge(props: { verge: VergeInterface }) {
                 {verge.embete ? verge.embete : ''}
                 {verge.embete ? <br /> : ''}
             </EtikettGraa>
-            <GyldighetsPeriode gyldighetsPeriode={gyldighetsPeriode} />
+            <GyldighetsPeriode gyldighetsPeriode={verge.gyldighetsPeriode} />
         </VisittkortElement>
     );
 }

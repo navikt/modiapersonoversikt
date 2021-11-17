@@ -3,11 +3,7 @@ import VisittkortElement from '../VisittkortElement';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Fullmaktlogo from '../../../../../svg/Utropstegn';
-import {
-    Fullmakt as FullmaktInterface,
-    GyldighetsPeriode as GyldighetsPeriodeInterface,
-    KodeBeskrivelse
-} from '../../PersondataDomain';
+import { Fullmakt as FullmaktInterface, KodeBeskrivelse } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
 
@@ -25,10 +21,6 @@ function getOmrade(omrader: KodeBeskrivelse<string>[]): string {
 function Fullmakt(props: { fullmakt: FullmaktInterface }) {
     const motpartsPersonNavn = hentNavn(props.fullmakt.motpartsPersonNavn);
     const beskrivelse = props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver';
-    const gyldighetsPeriode: GyldighetsPeriodeInterface = {
-        gyldigFraOgMed: props.fullmakt.gyldigFraOgMed,
-        gyldigTilOgMed: props.fullmakt.gyldigTilOgMed
-    };
 
     return (
         <VisittkortElement beskrivelse={beskrivelse}>
@@ -36,7 +28,7 @@ function Fullmakt(props: { fullmakt: FullmaktInterface }) {
                 {motpartsPersonNavn} {`(${props.fullmakt.motpartsPersonident})`}
             </Normaltekst>
             <Normaltekst>Gjelder {getOmrade(props.fullmakt.omrade)}</Normaltekst>
-            <GyldighetsPeriode gyldighetsPeriode={gyldighetsPeriode} />
+            <GyldighetsPeriode gyldighetsPeriode={props.fullmakt.gyldighetsPeriode} />
         </VisittkortElement>
     );
 }

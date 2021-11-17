@@ -48,8 +48,7 @@ export interface Navn {
 
 export interface Statsborgerskap {
     land: KodeBeskrivelse<string>;
-    gyldigFraOgMed: LocalDate | null;
-    gyldigTilOgMed: LocalDate | null;
+    gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
 export interface SivilstandRelasjon {
@@ -69,8 +68,7 @@ export interface Sivilstand {
 export interface Sikkerhetstiltak {
     type: string;
     beskrivelse: string;
-    gyldigFraOgMed: LocalDate;
-    gyldigTilOgMed: LocalDate;
+    gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
 export interface SistEndret {
@@ -88,8 +86,8 @@ export interface Adresse {
 }
 
 export interface GyldighetsPeriode {
-    gyldigFraOgMed: LocalDate | LocalDateTime | null;
-    gyldigTilOgMed: LocalDate | LocalDateTime | null;
+    gyldigFraOgMed: LocalDate | null;
+    gyldigTilOgMed: LocalDate | null;
 }
 
 export interface Enhet {
@@ -161,8 +159,7 @@ export interface Fullmakt {
     motpartsPersonNavn: Navn;
     motpartsRolle: FullmaktsRolle;
     omrade: Array<KodeBeskrivelse<string>>;
-    gyldigFraOgMed: LocalDate;
-    gyldigTilOgMed: LocalDate;
+    gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
 export interface Telefon {
@@ -178,8 +175,7 @@ export interface Verge {
     vergesakstype: string;
     omfang: string;
     embete: string | null;
-    gyldighetstidspunkt: LocalDate | null;
-    opphorstidspunkt: LocalDate | null;
+    gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
 export interface Foreldreansvar {
@@ -189,9 +185,8 @@ export interface Foreldreansvar {
 }
 
 export interface DeltBosted {
-    startdatoForKontrakt: LocalDate;
-    sluttdatoForKontrakt: LocalDate | null;
     adresse: Adresse | null;
+    gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
 export interface ForelderBarnRelasjon {

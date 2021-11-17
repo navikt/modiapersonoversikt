@@ -3,10 +3,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import SikkerhetsTiltakIkon from '../../../../../svg/Sikkerhetstiltak';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import VisittkortElement from '../VisittkortElement';
-import {
-    GyldighetsPeriode as GyldighetsPeriodeInterface,
-    Sikkerhetstiltak as SikkerhetstiltakInterface
-} from '../../PersondataDomain';
+import { Sikkerhetstiltak as SikkerhetstiltakInterface } from '../../PersondataDomain';
 import GyldighetsPeriode from '../GyldighetsPeriode';
 
 interface Props {
@@ -22,13 +19,9 @@ function Sikkerhetstiltak({ sikkerhetstiltak }: Props) {
         <VisittkortGruppe tittel="Sikkerhetstiltak" ikon={<SikkerhetsTiltakIkon />}>
             <VisittkortElement>
                 {sikkerhetstiltak.map((sikkerhetstiltak, index) => {
-                    const gyldighetsPeriode: GyldighetsPeriodeInterface = {
-                        gyldigFraOgMed: sikkerhetstiltak.gyldigFraOgMed,
-                        gyldigTilOgMed: sikkerhetstiltak.gyldigTilOgMed
-                    };
                     return (
                         <div key={index}>
-                            <GyldighetsPeriode gyldighetsPeriode={gyldighetsPeriode} />
+                            <GyldighetsPeriode gyldighetsPeriode={sikkerhetstiltak.gyldighetsPeriode} />
                             <Normaltekst>{sikkerhetstiltak.beskrivelse}</Normaltekst>
                         </div>
                     );

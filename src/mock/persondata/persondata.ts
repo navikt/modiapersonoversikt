@@ -62,8 +62,8 @@ function lagPerson(fnr: string): Person {
                     system: 'Folkeregisteret'
                 },
                 gyldighetsPeriode: {
-                    gyldigFraOgMed: '2021-01-01T10:15:30' as LocalDateTime,
-                    gyldigTilOgMed: '2022-04-01T10:15:30' as LocalDateTime
+                    gyldigFraOgMed: '2021-02-01' as LocalDate,
+                    gyldigTilOgMed: '2022-05-01' as LocalDate
                 }
             }
         ],
@@ -87,8 +87,8 @@ function lagPerson(fnr: string): Person {
                 linje3: null,
                 sistEndret: null,
                 gyldighetsPeriode: {
-                    gyldigFraOgMed: '2021-02-01T10:15:30' as LocalDateTime,
-                    gyldigTilOgMed: '2022-05-01T10:15:30' as LocalDateTime
+                    gyldigFraOgMed: '2021-02-01' as LocalDate,
+                    gyldigTilOgMed: '2022-05-01' as LocalDate
                 }
             }
         ],
@@ -142,24 +142,30 @@ function lagPerson(fnr: string): Person {
                     kode: 'NOR',
                     beskrivelse: 'NORGE'
                 },
-                gyldigFraOgMed: '2000-02-02' as LocalDate,
-                gyldigTilOgMed: null
+                gyldighetsPeriode: {
+                    gyldigFraOgMed: '2021-02-01' as LocalDate,
+                    gyldigTilOgMed: '2022-05-01' as LocalDate
+                }
             },
             {
                 land: {
                     kode: 'DNK',
                     beskrivelse: 'DANMARK'
                 },
-                gyldigFraOgMed: '2000-02-02' as LocalDate,
-                gyldigTilOgMed: null
+                gyldighetsPeriode: {
+                    gyldigFraOgMed: '2021-02-01' as LocalDate,
+                    gyldigTilOgMed: null
+                }
             },
             {
                 land: {
                     kode: 'FIN',
                     beskrivelse: 'FINLAND'
                 },
-                gyldigFraOgMed: '2000-02-02' as LocalDate,
-                gyldigTilOgMed: null
+                gyldighetsPeriode: {
+                    gyldigFraOgMed: '2021-02-01' as LocalDate,
+                    gyldigTilOgMed: '2022-05-01' as LocalDate
+                }
             }
         ],
         adressebeskyttelse: [
@@ -173,8 +179,10 @@ function lagPerson(fnr: string): Person {
                   {
                       type: 'TFUS',
                       beskrivelse: 'Telefonisk utestengelse',
-                      gyldigFraOgMed: '2005-02-13' as LocalDate,
-                      gyldigTilOgMed: visEtiketter ? ('2030-02-15' as LocalDate) : ('2010-02-15' as LocalDate)
+                      gyldighetsPeriode: {
+                          gyldigFraOgMed: '2021-02-01' as LocalDate,
+                          gyldigTilOgMed: visEtiketter ? ('2030-02-15' as LocalDate) : ('2010-02-15' as LocalDate)
+                      }
                   }
               ]
             : [],
@@ -223,8 +231,10 @@ function lagPerson(fnr: string): Person {
         ],
         deltBosted: [
             {
-                startdatoForKontrakt: '2000-10-10' as LocalDate,
-                sluttdatoForKontrakt: '2005-05-07' as LocalDate,
+                gyldighetsPeriode: {
+                    gyldigFraOgMed: '2021-02-01' as LocalDate,
+                    gyldigTilOgMed: '2022-05-01' as LocalDate
+                },
                 adresse: {
                     linje1: `Adresseveien 1`,
                     linje2: '0000 Aremark',
@@ -283,8 +293,10 @@ function lagPerson(fnr: string): Person {
                               beskrivelse: ''
                           }
                       ],
-                      gyldigFraOgMed: '2015-01-01' as LocalDate,
-                      gyldigTilOgMed: '2017-12-12' as LocalDate
+                      gyldighetsPeriode: {
+                          gyldigFraOgMed: '2021-02-01' as LocalDate,
+                          gyldigTilOgMed: '2022-05-01' as LocalDate
+                      }
                   }
               ]
             : [],
@@ -300,8 +312,10 @@ function lagPerson(fnr: string): Person {
                       vergesakstype: 'Voksen',
                       omfang: 'Ivareta personens interesser innenfor det personlige og økonomiske området',
                       embete: 'Fylkesmannen i Troms og Finnmark',
-                      gyldighetstidspunkt: '2016-03-27' as LocalDate,
-                      opphorstidspunkt: '2017-06-30' as LocalDate
+                      gyldighetsPeriode: {
+                          gyldigFraOgMed: '2021-02-01' as LocalDate,
+                          gyldigTilOgMed: '2022-05-01' as LocalDate
+                      }
                   },
                   {
                       ident: '123456799',
@@ -313,8 +327,10 @@ function lagPerson(fnr: string): Person {
                       vergesakstype: 'Fremtidsfullmakt',
                       omfang: 'Ivareta personens interesser innenfor det økonomiske området',
                       embete: 'Fylkesmannen i Troms og Finnmark',
-                      gyldighetstidspunkt: '2016-03-27' as LocalDate,
-                      opphorstidspunkt: '2017-06-30' as LocalDate
+                      gyldighetsPeriode: {
+                          gyldigFraOgMed: '2021-02-01' as LocalDate,
+                          gyldigTilOgMed: '2022-05-01' as LocalDate
+                      }
                   }
               ]
             : [],
