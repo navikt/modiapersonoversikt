@@ -99,21 +99,7 @@ export const personDod: Person = {
             }
         }
     ],
-    foreldreansvar: [
-        {
-            ansvar: 'felles',
-            ansvarlig: {
-                fornavn: 'GØYAL',
-                mellomnavn: 'MÅPENDE',
-                etternavn: 'TRANFLASKE'
-            },
-            ansvarsubject: {
-                fornavn: 'LITEN',
-                mellomnavn: 'GYNGENDE',
-                etternavn: 'VEGGPRYD'
-            }
-        }
-    ],
+    foreldreansvar: [],
     deltBosted: [],
     dodsbo: [
         {

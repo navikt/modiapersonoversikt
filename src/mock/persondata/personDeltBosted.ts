@@ -1,5 +1,6 @@
 import {
     EgenAnsatt,
+    ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
     Kjonn,
     LocalDate,
@@ -8,6 +9,63 @@ import {
     PersonStatus,
     SivilstandType
 } from '../../app/personside/visittkort-v2/PersondataDomain';
+
+const forelderBarnRelasjonMock: ForelderBarnRelasjon[] = [
+    {
+        ident: '24835498561',
+        rolle: ForelderBarnRelasjonRolle.FAR,
+        navn: [
+            {
+                fornavn: 'ALFABETISK',
+                mellomnavn: null,
+                etternavn: 'KLASSE'
+            }
+        ],
+        fodselsdato: ['1954-03-24' as LocalDate],
+        kjonn: [
+            {
+                kode: Kjonn.M,
+                beskrivelse: 'Mann'
+            }
+        ],
+        alder: 67,
+        adressebeskyttelse: [],
+        harSammeAdresse: true,
+        personstatus: [
+            {
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'Bosatt'
+            }
+        ]
+    },
+    {
+        ident: '09884397631',
+        rolle: ForelderBarnRelasjonRolle.MOR,
+        navn: [
+            {
+                fornavn: 'LATTERMILD',
+                mellomnavn: null,
+                etternavn: 'HAKKE'
+            }
+        ],
+        fodselsdato: ['1943-08-09' as LocalDate],
+        kjonn: [
+            {
+                kode: Kjonn.K,
+                beskrivelse: 'Kvinne'
+            }
+        ],
+        alder: 78,
+        adressebeskyttelse: [],
+        harSammeAdresse: false,
+        personstatus: [
+            {
+                kode: PersonStatus.BOSATT,
+                beskrivelse: 'Bosatt'
+            }
+        ]
+    }
+];
 
 export const personDeltBosted: Person = {
     fnr: '01021865210',
@@ -120,18 +178,16 @@ export const personDeltBosted: Person = {
             sivilstandRelasjon: null
         }
     ],
-    foreldreansvar: [
-        {
+    foreldreansvar: forelderBarnRelasjonMock
+        .filter(relasjon => relasjon.rolle !== ForelderBarnRelasjonRolle.BARN)
+        .map(forelder => ({
             ansvar: 'felles',
-            ansvarlig: null,
+            ansvarlig: {
+                navn: forelder.navn.firstOrNull(),
+                ident: forelder.ident
+            },
             ansvarsubject: null
-        },
-        {
-            ansvar: 'felles',
-            ansvarlig: null,
-            ansvarsubject: null
-        }
-    ],
+        })),
     deltBosted: [
         {
             startdatoForKontrakt: '2021-02-10' as LocalDate,
@@ -188,60 +244,5 @@ export const personDeltBosted: Person = {
             beskrivelse: 'Norske kroner'
         }
     },
-    forelderBarnRelasjon: [
-        {
-            ident: '24835498561',
-            rolle: ForelderBarnRelasjonRolle.FAR,
-            navn: [
-                {
-                    fornavn: 'ALFABETISK',
-                    mellomnavn: null,
-                    etternavn: 'KLASSE'
-                }
-            ],
-            fodselsdato: ['1954-03-24' as LocalDate],
-            kjonn: [
-                {
-                    kode: Kjonn.M,
-                    beskrivelse: 'Mann'
-                }
-            ],
-            alder: 67,
-            adressebeskyttelse: [],
-            harSammeAdresse: true,
-            personstatus: [
-                {
-                    kode: PersonStatus.BOSATT,
-                    beskrivelse: 'Bosatt'
-                }
-            ]
-        },
-        {
-            ident: '09884397631',
-            rolle: ForelderBarnRelasjonRolle.MOR,
-            navn: [
-                {
-                    fornavn: 'LATTERMILD',
-                    mellomnavn: null,
-                    etternavn: 'HAKKE'
-                }
-            ],
-            fodselsdato: ['1943-08-09' as LocalDate],
-            kjonn: [
-                {
-                    kode: Kjonn.K,
-                    beskrivelse: 'Kvinne'
-                }
-            ],
-            alder: 78,
-            adressebeskyttelse: [],
-            harSammeAdresse: false,
-            personstatus: [
-                {
-                    kode: PersonStatus.BOSATT,
-                    beskrivelse: 'Bosatt'
-                }
-            ]
-        }
-    ]
+    forelderBarnRelasjon: forelderBarnRelasjonMock
 };
