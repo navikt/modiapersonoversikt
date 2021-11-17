@@ -92,16 +92,6 @@ exports[`viser deltbosted 1`] = `
     >
       
     </div>
-    <p
-      className="typo-normal"
-    >
-      Adresseveien 1
-    </p>
-    <p
-      className="typo-normal"
-    >
-      0000 Aremark
-    </p>
     <div
       className="c4"
     >
@@ -112,6 +102,16 @@ exports[`viser deltbosted 1`] = `
         01.02.2021 – 01.05.2022
       </p>
     </div>
+    <p
+      className="typo-normal"
+    >
+      Adresseveien 1
+    </p>
+    <p
+      className="typo-normal"
+    >
+      0000 Aremark
+    </p>
   </div>
 </section>
 `;

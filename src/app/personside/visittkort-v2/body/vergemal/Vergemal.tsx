@@ -22,19 +22,19 @@ function Verge(props: { verge: VergeInterface }) {
     const { verge } = props;
 
     return (
-        <VisittkortElement beskrivelse={'Verge'}>
+        <VisittkortElement>
+            <GyldighetsPeriode gyldighetsPeriode={verge.gyldighetsPeriode} />
+            <Element tag="h4">Verge</Element>
             <Vergeinformasjon>
                 <Normaltekst>{verge.navn ? hentNavn(verge.navn) : 'Navn ikke tilgjengelig'}</Normaltekst>
                 <Normaltekst>{verge.ident || ''}</Normaltekst>
             </Vergeinformasjon>
-
             <Element>Omfang</Element>
             <Normaltekst>{verge.omfang}</Normaltekst>
             <EtikettGraa>
                 {verge.embete ? verge.embete : ''}
                 {verge.embete ? <br /> : ''}
             </EtikettGraa>
-            <GyldighetsPeriode gyldighetsPeriode={verge.gyldighetsPeriode} />
         </VisittkortElement>
     );
 }

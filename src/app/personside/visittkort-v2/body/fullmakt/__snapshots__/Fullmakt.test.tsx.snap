@@ -103,12 +103,22 @@ exports[`viser fullmakt 1`] = `
       className="c0"
     >
       
-      <h4
-        className="typo-element"
-      >
-        Fullmektig
-      </h4>
     </div>
+    <div
+      className="c4"
+    >
+      <p
+        className="typo-undertekst"
+      >
+        Gyldig: 
+        01.06.2021 – 01.05.2022
+      </p>
+    </div>
+    <h4
+      className="typo-element"
+    >
+      Fullmektig
+    </h4>
     <p
       className="typo-normal"
     >
@@ -122,16 +132,6 @@ exports[`viser fullmakt 1`] = `
       Gjelder 
       alle ytelser
     </p>
-    <div
-      className="c4"
-    >
-      <p
-        className="typo-undertekst"
-      >
-        Gyldig: 
-        01.06.2021 – 01.05.2022
-      </p>
-    </div>
   </div>
 </section>
 `;

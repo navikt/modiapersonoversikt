@@ -17,8 +17,8 @@ function DeltBostedElement(props: { deltBosted: DeltBosted }) {
 
     return (
         <VisittkortElement>
-            <Adresseinfo adresse={props.deltBosted.adresse} />
             <GyldighetsPeriode gyldighetsPeriode={props.deltBosted.gyldighetsPeriode} />
+            <Adresseinfo adresse={props.deltBosted.adresse} />
         </VisittkortElement>
     );
 }
