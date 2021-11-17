@@ -12,6 +12,7 @@ import {
     SivilstandType,
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
+import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
 
 export const barnAremark: ForelderBarnRelasjon[] = [
     {
@@ -222,21 +223,14 @@ export const aremark: Person = {
             }
         }
     ],
-    foreldreansvar: [
-        {
-            ansvar: 'felles',
-            ansvarlig: {
-                fornavn: 'Test',
-                etternavn: 'Testesen',
-                mellomnavn: null
-            },
-            ansvarsubject: {
-                fornavn: 'Barn',
-                etternavn: 'Barnesen',
-                mellomnavn: null
-            }
+    foreldreansvar: barnAremark.map(barn => ({
+        ansvar: 'felles',
+        ansvarlig: null,
+        ansvarsubject: {
+            navn: harDiskresjonskode(barn.adressebeskyttelse) ? null : barn.navn.firstOrNull(),
+            ident: barn.ident
         }
-    ],
+    })),
     deltBosted: [
         {
             gyldighetsPeriode: {

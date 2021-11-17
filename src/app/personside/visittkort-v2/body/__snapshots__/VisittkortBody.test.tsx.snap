@@ -1073,15 +1073,35 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
-          Test Testesen
-          (
+          Ansvar: 
           felles
-          )
         </p>
         <p
           className="typo-normal"
         >
-          Gjelder for: Barn Barnesen
+          Gjelder for: 
+          BARN1 BARNESEN (12345678910)
+        </p>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Ansvar: 
+          felles
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Gjelder for: 
+          BARN1 BARNESEN (12345678911)
         </p>
       </div>
     </section>

@@ -14,6 +14,7 @@ import {
     SivilstandType,
     Skifteform
 } from '../../app/personside/visittkort-v2/PersondataDomain';
+import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
 import { aremark } from './aremark';
 
 // Til bruk under testing av funksjonalitet
@@ -49,7 +50,7 @@ function lagPerson(fnr: string): Person {
             }
         ],
         fodselsdato: ['2000-02-02' as LocalDate],
-        alder: 21,
+        alder: 40,
         dodsdato: erDod ? ['2018-06-07' as LocalDate] : [],
         bostedAdresse: [
             {
@@ -171,7 +172,7 @@ function lagPerson(fnr: string): Person {
         adressebeskyttelse: [
             {
                 kode: visEtiketter ? AdresseBeskyttelse.KODE6 : AdresseBeskyttelse.UGRADERT,
-                beskrivelse: visEtiketter ? 'Kode 6' : ''
+                beskrivelse: visEtiketter ? 'Sperret adresse, strengt fortrolig' : 'UGRADERT'
             }
         ],
         sikkerhetstiltak: visEtiketter
@@ -214,21 +215,16 @@ function lagPerson(fnr: string): Person {
                 }
             }
         ],
-        foreldreansvar: [
-            {
+        foreldreansvar: forelderBarnMock
+            .filter(relasjon => relasjon.rolle === ForelderBarnRelasjonRolle.BARN)
+            .map(barn => ({
                 ansvar: 'felles',
-                ansvarlig: {
-                    fornavn: 'Test',
-                    etternavn: 'Testesen',
-                    mellomnavn: null
-                },
+                ansvarlig: null,
                 ansvarsubject: {
-                    fornavn: 'Barn',
-                    etternavn: 'Barnesen',
-                    mellomnavn: null
+                    navn: harDiskresjonskode(barn.adressebeskyttelse) ? null : barn.navn.firstOrNull(),
+                    ident: barn.ident
                 }
-            }
-        ],
+            })),
         deltBosted: [
             {
                 gyldighetsPeriode: {
@@ -533,7 +529,7 @@ const forelderBarnMock: ForelderBarnRelasjon[] = [
             }
         ],
         fodselsdato: ['1998-04-09' as LocalDate],
-        alder: 23,
+        alder: 13,
         kjonn: [
             {
                 kode: Kjonn.U,

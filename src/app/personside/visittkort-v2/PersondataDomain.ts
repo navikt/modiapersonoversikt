@@ -180,8 +180,13 @@ export interface Verge {
 
 export interface Foreldreansvar {
     ansvar: string;
-    ansvarlig: Navn | null;
-    ansvarsubject: Navn | null;
+    ansvarlig: NavnOgIdent | null;
+    ansvarsubject: NavnOgIdent | null;
+}
+
+export interface NavnOgIdent {
+    navn: Navn | null;
+    ident: string | null;
 }
 
 export interface DeltBosted {
