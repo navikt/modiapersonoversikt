@@ -51,9 +51,9 @@ export function hentPartner(sivilstand: Sivilstand[]) {
     return sivilstand.find(relasjon => aktuelleRelasjoner.includes(relasjon.type.kode));
 }
 
-export function hentNavn(navn: Navn | null): string {
+export function hentNavn(navn: Navn | null, feilmelding: string = 'Ukjent navn'): string {
     if (!navn) {
-        return 'Ukjent navn';
+        return feilmelding;
     }
     return navn.fornavn + (navn.mellomnavn ? ' ' + navn.mellomnavn + ' ' : ' ') + navn.etternavn;
 }

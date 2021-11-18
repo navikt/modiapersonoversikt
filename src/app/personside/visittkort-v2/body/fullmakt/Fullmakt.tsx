@@ -1,6 +1,6 @@
 import * as React from 'react';
 import VisittkortElement from '../VisittkortElement';
-import { Normaltekst, Element } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Fullmaktlogo from '../../../../../svg/Utropstegn';
 import { Fullmakt as FullmaktInterface, KodeBeskrivelse } from '../../PersondataDomain';
@@ -23,13 +23,12 @@ function Fullmakt(props: { fullmakt: FullmaktInterface }) {
     const beskrivelse = props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver';
 
     return (
-        <VisittkortElement>
-            <GyldighetsPeriode gyldighetsPeriode={props.fullmakt.gyldighetsPeriode} />
-            <Element tag="h4">{beskrivelse}</Element>
+        <VisittkortElement beskrivelse={beskrivelse}>
             <Normaltekst>
                 {motpartsPersonNavn} {`(${props.fullmakt.motpartsPersonident})`}
             </Normaltekst>
             <Normaltekst>Gjelder {getOmrade(props.fullmakt.omrade)}</Normaltekst>
+            <GyldighetsPeriode gyldighetsPeriode={props.fullmakt.gyldighetsPeriode} />
         </VisittkortElement>
     );
 }
