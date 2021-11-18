@@ -85,10 +85,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   margin: 10px 0 0 0;
 }
 
-.c8 span:not(:last-child):after {
-  content: '.';
-}
-
 .c7 {
   color: #645f5a;
   margin-top: 3px;
@@ -96,6 +92,10 @@ exports[`viser info om bruker i visittkortbody 1`] = `
 
 .c7 .typo-etikett-liten {
   line-height: 1rem;
+}
+
+.c8 span:not(:last-child):after {
+  content: '.';
 }
 
 .c6 {
@@ -428,6 +428,75 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               width={24}
               xmlns="http://www.w3.org/2000/svg"
             >
+              <g
+                fill="#C6C2BF"
+              >
+                <defs>
+                  <mask
+                    id="locationpinmask"
+                  >
+                    <rect
+                      fill="#fff"
+                      height="100%"
+                      width="100%"
+                    />
+                    <circle
+                      cx={12}
+                      cy={8}
+                      fill="#000"
+                      r={4}
+                    />
+                  </mask>
+                </defs>
+                <path
+                  d="M19.5 8c0 4.1-7.5 15.5-7.5 15.5S4.5 12.1 4.5 8a7.5 7.5 0 1 1 15 0z"
+                  mask="url(#locationpinmask)"
+                />
+              </g>
+            </svg>
+          </div>
+          <h4
+            className="typo-element"
+          >
+            Oppholdsadresse
+          </h4>
+        </div>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Gyldig: 
+            01.02.2021 – 01.05.2022
+          </p>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Oppholdsadresse 1
+        </p>
+        <p
+          className="typo-normal"
+        >
+          0000 AREMARK
+        </p>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              height={24}
+              viewBox="0 0 24 24"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 d="M23.5 18c0 .8-.7 1.5-1.5 1.5H2c-.8 0-1.5-.7-1.5-1.5V6c0-.8.7-1.5 1.5-1.5h20c.8 0 1.5.7 1.5 1.5v12zm-3-9.5L12 14 3.5 8.5"
                 fill="#C6C2BF"
@@ -698,21 +767,19 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
-          Gyldig fra og med 
-          01.01.2015
-        </p>
-        <p
-          className="typo-normal"
-        >
-          Gyldig til og med 
-          12.12.2017
-        </p>
-        <p
-          className="typo-normal"
-        >
           Gjelder 
           alle ytelser
         </p>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Gyldig: 
+            01.06.2021 – 01.05.2022
+          </p>
+        </div>
       </div>
     </section>
     <section>
@@ -942,6 +1009,16 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         >
           
         </div>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Gyldig: 
+            01.02.2021 – 01.05.2022
+          </p>
+        </div>
         <p
           className="typo-normal"
         >
@@ -951,18 +1028,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-normal"
         >
           0000 Aremark
-        </p>
-        <p
-          className="typo-normal"
-        >
-          Gyldig fra og med 
-          10.10.2000
-        </p>
-        <p
-          className="typo-normal"
-        >
-          Gyldig til og med 
-          07.05.2005
         </p>
       </div>
     </section>
@@ -1355,7 +1420,16 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           >
             Fylkesmannen i Troms og Finnmark
             <br />
-            27.03.2016 – 30.06.2017
+          </p>
+        </div>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Gyldig: 
+            01.06.2021 – 10.05.2022
           </p>
         </div>
       </div>
@@ -1404,7 +1478,16 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           >
             Fylkesmannen i Troms og Finnmark
             <br />
-            27.03.2016 – 30.06.2017
+          </p>
+        </div>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Gyldig: 
+            10.02.2021 – 01.05.2022
           </p>
         </div>
       </div>
@@ -1483,7 +1566,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               className="typo-undertekst"
             >
               Gyldig: 
-              13.02.2005 – 15.02.2030
+              01.02.2021 – 01.05.2022
             </p>
           </div>
           <p

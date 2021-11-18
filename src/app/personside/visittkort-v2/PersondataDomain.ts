@@ -15,6 +15,7 @@ export interface Person {
     dodsdato: Array<LocalDate>;
     bostedAdresse: Array<Adresse>;
     kontaktAdresse: Array<Adresse>;
+    oppholdsAdresse: Array<Adresse>;
     navEnhet: Enhet | null;
     statsborgerskap: Array<Statsborgerskap>;
     adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
@@ -47,8 +48,7 @@ export interface Navn {
 
 export interface Statsborgerskap {
     land: KodeBeskrivelse<string>;
-    gyldigFraOgMed: LocalDate | null;
-    gyldigTilOgMed: LocalDate | null;
+    gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
 export interface SivilstandRelasjon {
@@ -68,8 +68,7 @@ export interface Sivilstand {
 export interface Sikkerhetstiltak {
     type: string;
     beskrivelse: string;
-    gyldigFraOgMed: LocalDate;
-    gyldigTilOgMed: LocalDate;
+    gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
 export interface SistEndret {
@@ -83,6 +82,12 @@ export interface Adresse {
     linje2: string | null;
     linje3: string | null;
     sistEndret: SistEndret | null;
+    gyldighetsPeriode: GyldighetsPeriode | null;
+}
+
+export interface GyldighetsPeriode {
+    gyldigFraOgMed: LocalDate | null;
+    gyldigTilOgMed: LocalDate | null;
 }
 
 export interface Enhet {
@@ -154,8 +159,7 @@ export interface Fullmakt {
     motpartsPersonNavn: Navn;
     motpartsRolle: FullmaktsRolle;
     omrade: Array<KodeBeskrivelse<string>>;
-    gyldigFraOgMed: LocalDate;
-    gyldigTilOgMed: LocalDate;
+    gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
 export interface Telefon {
@@ -171,8 +175,7 @@ export interface Verge {
     vergesakstype: string;
     omfang: string;
     embete: string | null;
-    gyldighetstidspunkt: LocalDate | null;
-    opphorstidspunkt: LocalDate | null;
+    gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
 export interface Foreldreansvar {
@@ -187,9 +190,8 @@ export interface NavnOgIdent {
 }
 
 export interface DeltBosted {
-    startdatoForKontrakt: LocalDate;
-    sluttdatoForKontrakt: LocalDate | null;
     adresse: Adresse | null;
+    gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
 export interface ForelderBarnRelasjon {
