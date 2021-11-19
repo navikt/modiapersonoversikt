@@ -1419,7 +1419,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-undertekst"
           >
             Fylkesmannen i Troms og Finnmark
-            <br />
           </p>
         </div>
         <div
@@ -1477,7 +1476,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             className="typo-undertekst"
           >
             Fylkesmannen i Troms og Finnmark
-            <br />
           </p>
         </div>
         <div
