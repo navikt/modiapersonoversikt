@@ -33,7 +33,7 @@ export function hentPersondata(fodselsnummer: string): PersonData | null {
     }
 }
 
-function lagPerson(fnr: string): Person {
+export function lagPerson(fnr: string): Person {
     return {
         fnr: fnr,
         navn: [

@@ -2,7 +2,8 @@ import * as React from 'react';
 import { TabsPure } from 'nav-frontend-tabs';
 import { TabProps } from 'nav-frontend-tabs/lib/tab';
 import SaksoversiktLamell from './SaksoversiktLamell';
-import { aremark } from '../../mock/person/aremark';
+import { aremark } from '../../mock/persondata/aremark';
+import { lagPerson } from '../../mock/persondata/persondata';
 import VisittkortStandAlone from './VisittKort';
 import styled from 'styled-components/macro';
 import BrukerprofilStandalone from './Brukerprofil';
@@ -12,7 +13,6 @@ import PleiepengerLamell from './Pleiepenger/PleiepengerLamell';
 import ForeldrepengerLamell from './Foreldrepenger/ForeldrepengerLamell';
 import SakerFullscreen from '../../app/personside/infotabs/saksoversikt/SakerFullscreen';
 import theme from '../../styles/personOversiktTheme';
-import { moss } from '../../mock/person/moss';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import OppfolgingLamell from './OppfolgingLamell';
 import { paths } from '../../app/routes/routing';
@@ -84,7 +84,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Utbetalinger:
             return <UtbetalingsLamell fnr={props.fnr} />;
         case Komponenter.Pleiepenger:
-            return <PleiepengerLamell fnr={aremark.fødselsnummer} barnetsFnr={moss.fødselsnummer} />;
+            return <PleiepengerLamell fnr={aremark.fnr} barnetsFnr={lagPerson('12345678910')?.fnr} />;
         case Komponenter.Foreldrepenger:
             return <ForeldrepengerLamell fnr={props.fnr} />;
         case Komponenter.Visittkort:
@@ -92,7 +92,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Oppfølging:
             return <OppfolgingLamell fnr={props.fnr} />;
         case Komponenter.Sykepenger:
-            return <SykepengerLamell fnr={aremark.fødselsnummer} sykmeldtFraOgMed="2019-02-06" />;
+            return <SykepengerLamell fnr={aremark.fnr} sykmeldtFraOgMed="2019-02-06" />;
         case Komponenter.Varsler:
             return <VarslerLamell fnr={props.fnr} />;
         case Komponenter.Dialogpanel:
@@ -106,7 +106,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Standardtekster:
             return <StandardTekstModal appendTekst={tekst => alert(tekst)} />;
         case Komponenter.BesvarFlere:
-            return <BesvarFlere traader={getMockTraader(aremark.fødselsnummer).slice(0, 3)} lukkModal={() => null} />;
+            return <BesvarFlere traader={getMockTraader(aremark.fnr).slice(0, 3)} lukkModal={() => null} />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }
@@ -114,7 +114,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
 
 function StandAloneKomponenter(props: RouteComponentProps<{ fnr: string; component: string }>) {
     const routeFnr = props.match.params.fnr;
-    const fnr = routeFnr || aremark.fødselsnummer;
+    const fnr = routeFnr || aremark.fnr;
     const routeComponent = props.match.params.component;
     const valgtTab = Komponenter[routeComponent] || Komponenter.Visittkort;
     const updatePath = (komponent: string) => props.history.push(`${paths.standaloneKomponenter}/${komponent}/${fnr}`);

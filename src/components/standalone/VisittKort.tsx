@@ -1,5 +1,4 @@
 import * as React from 'react';
-import VisittkortLaster from './VisittKortLaster';
 import ErrorBoundary from '../ErrorBoundary';
 import Kontrollsporsmal from '../../app/personside/kontrollsporsmal/Kontrollsporsmal';
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
@@ -10,6 +9,7 @@ import TilbakemeldingFab from './Tilbakemelding/TilbakemeldingFab';
 import { FeatureToggles } from '../featureToggle/toggleIDs';
 import IfFeatureToggleOn from '../featureToggle/IfFeatureToggleOn';
 import FetchSessionInfoOgLeggIRedux from '../../app/FetchSessionInfoOgLeggIRedux';
+import Visittkort from '../../app/personside/visittkort-v2/Visittkort';
 
 interface Props {
     fnr: string;
@@ -36,7 +36,7 @@ class VisittkortStandAlone extends React.Component<Props> {
                     <SetFnrIRedux fnr={this.props.fnr} />
                     <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
                     <Kontrollsporsmal />
-                    <VisittkortLaster />
+                    <Visittkort />
 
                     <IfFeatureToggleOn toggleID={FeatureToggles.VisTilbakemelding}>
                         <TilbakemeldingFab temaId={temaId} sporsmal={sporsmal} kommentarLabel={kommentarLabel} />
