@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRef } from 'react';
 import DialogPanel from './dialogpanel/DialogPanel';
 import HentOppgaveKnapp from './dialogpanel/HentOppgaveKnapp';
-import Visittkort from './VisittkortSwitcher';
+import Visittkort from './visittkort-v2/Visittkort';
 import { toggleDialogpanel } from '../../redux/uiReducers/UIReducer';
 import { AppState } from '../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
