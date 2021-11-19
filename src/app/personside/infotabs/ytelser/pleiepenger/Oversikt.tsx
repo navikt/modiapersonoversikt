@@ -5,7 +5,7 @@ import DescriptionList from '../../../../../components/DescriptionList';
 import { getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
 import { formaterDato } from '../../../../../utils/string-utils';
 import { utledKjonnFraFodselsnummer } from '../../../../../utils/fnr-utils';
-import { Kjonn } from '../../../../../models/person/person';
+import { Kjonn } from '../../../visittkort-v2/PersondataDomain';
 import styled from 'styled-components/macro';
 import ArbeidsForholdListe from './arbeidsforhold/ArbeidsforholdListe';
 import theme from '../../../../../styles/personOversiktTheme';
@@ -24,14 +24,14 @@ const OversiktStyling = styled.div`
     }
 `;
 
-function getKjønnString(fnr: string): string {
+function getKjonnString(fnr: string): string {
     switch (utledKjonnFraFodselsnummer(fnr)) {
-        case Kjonn.Mann:
+        case Kjonn.M:
             return 'gutt';
-        case Kjonn.Kvinne:
+        case Kjonn.K:
             return 'jente';
-        case Kjonn.Diskresjonskode:
-            return 'diskresjonskode';
+        case Kjonn.U:
+            return 'ukjent';
         default:
             return '';
     }
@@ -39,13 +39,13 @@ function getKjønnString(fnr: string): string {
 
 function Oversikt({ pleiepenger }: Props) {
     const gjeldeneVedtak = getSisteVedtakForPleiepengerettighet(pleiepenger);
-    const kjønn = getKjønnString(pleiepenger.barnet);
+    const kjonn = getKjonnString(pleiepenger.barnet);
 
     const omPleiepengerettenEntries = {
         'Fra og med': gjeldeneVedtak ? formaterDato(gjeldeneVedtak.periode.fom) : '',
         'Til og med': gjeldeneVedtak ? formaterDato(gjeldeneVedtak.periode.tom) : '',
         Pleiepengegrad: gjeldeneVedtak ? gjeldeneVedtak.pleiepengegrad + '%' : '',
-        ['Barnet (' + kjønn + ')']: pleiepenger.barnet,
+        ['Barnet (' + kjonn + ')']: pleiepenger.barnet,
         'Annen forelder': pleiepenger.andreOmsorgsperson
     };
 

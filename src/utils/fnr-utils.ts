@@ -1,4 +1,4 @@
-import { Kjonn } from '../models/person/person';
+import { Kjonn } from '../app/personside/visittkort-v2/PersondataDomain';
 
 export function getFodselsdatoFraFnr(fnr: string): Date {
     if (fnr.length !== 11) {
@@ -41,9 +41,9 @@ function getFiresifretAr(fnr: string): number {
 
 export function utledKjonnFraFodselsnummer(fnr?: string): Kjonn {
     if (!fnr) {
-        return Kjonn.Diskresjonskode;
+        return Kjonn.U;
     }
-    return Number(fnr.charAt(8)) % 2 === 1 ? Kjonn.Mann : Kjonn.Kvinne;
+    return Number(fnr.charAt(8)) % 2 === 1 ? Kjonn.M : Kjonn.K;
 }
 
 export function erDnummer(fnr: string) {
