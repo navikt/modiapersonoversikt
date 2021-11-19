@@ -8,7 +8,6 @@ import Temavelger from '../component/Temavelger';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 import DialogpanelVelgSak from './DialogpanelVelgSak';
-import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
 import { capitalizeName } from '../../../../utils/string-utils';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { NyMeldingValidator } from './validatorer';
@@ -20,10 +19,11 @@ import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import theme from '../../../../styles/personOversiktTheme';
 import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import { Temagruppe, TemaSamtalereferat } from '../../../../models/temagrupper';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { guid } from 'nav-frontend-js-utils';
 import ReflowBoundry from '../ReflowBoundry';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import { hasError, isPending } from '@nutgaard/use-fetch';
+import { useHentPersondata } from '../../../../utils/customHooks';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -89,12 +89,13 @@ function Feilmelding(props: { sendNyMeldingPanelState: SendNyMeldingStatus }) {
 function SendNyMelding(props: Props) {
     const updateState = props.updateState;
     const state = props.state;
-    const personinformasjon = useRestResource(resources => resources.personinformasjon);
+    const personResponse = useHentPersondata();
     const tittelId = useRef(guid());
 
-    const navn = isLoadedPerson(personinformasjon.resource)
-        ? capitalizeName(personinformasjon.resource.data.navn.fornavn || '')
-        : 'bruker';
+    const navn =
+        isPending(personResponse) || hasError(personResponse)
+            ? 'bruker'
+            : capitalizeName(personResponse.data.person.navn.firstOrNull()?.fornavn || '');
 
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSporsmaal = NyMeldingValidator.erSporsmal(state);

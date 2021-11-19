@@ -5,8 +5,6 @@ import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
 import VelgDialogType from './VelgDialogType';
 import TekstFelt from '../sendMelding/TekstFelt';
-import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
-import { capitalizeName } from '../../../../utils/string-utils';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Temavelger from '../component/Temavelger';
@@ -23,9 +21,12 @@ import {
     erMeldingstypeSamtalereferat
 } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { temagruppeTekst, TemaPlukkbare } from '../../../../models/temagrupper';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
+import { useHentPersondata } from '../../../../utils/customHooks';
+import { isPending } from '@nutgaard/use-async';
+import { hasError } from '@nutgaard/use-fetch';
+import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
+import { capitalizeName } from '../../../../utils/string-utils';
 
 const SubmitKnapp = styled(Hovedknapp)`
     white-space: normal;
@@ -62,13 +63,14 @@ export const tekstMaksLengde = 5000;
 
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;
-    const personinformasjon = useRestResource(resources => resources.personinformasjon).resource;
+    const personResponse = useHentPersondata();
     const usingSFBackend: boolean = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
     const temagrupperITraad = props.traad.meldinger.map(it => it.temagruppe);
 
-    const navn = isLoadedPerson(personinformasjon)
-        ? capitalizeName(personinformasjon.data.navn.fornavn || '')
-        : 'bruker';
+    const navn =
+        isPending(personResponse) || hasError(personResponse)
+            ? 'bruker'
+            : capitalizeName(personResponse.data.person.navn.firstOrNull()?.fornavn || '');
 
     const erDelsvar = state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
     const girIkkeVarsel = [Meldingstype.SVAR_OPPMOTE, Meldingstype.SVAR_TELEFON].includes(state.dialogType);
