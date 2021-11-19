@@ -103,7 +103,8 @@ export const aremark: Person = {
                 ident: 'Folkeregisteret',
                 tidspunkt: '2010-02-20T10:15:30' as LocalDateTime,
                 system: 'FREG'
-            }
+            },
+            gyldighetsPeriode: null
         }
     ],
     kontaktAdresse: [
@@ -115,6 +116,19 @@ export const aremark: Person = {
                 ident: 'Folkeregisteret',
                 tidspunkt: '2020-01-01T10:15:30' as LocalDateTime,
                 system: 'FREG'
+            },
+            gyldighetsPeriode: null
+        }
+    ],
+    oppholdsAdresse: [
+        {
+            linje1: 'Oppholdsadresse 1',
+            linje2: '0000 AREMARK',
+            linje3: null,
+            sistEndret: null,
+            gyldighetsPeriode: {
+                gyldigFraOgMed: '2021-02-01' as LocalDate,
+                gyldigTilOgMed: '2022-05-01' as LocalDate
             }
         }
     ],
@@ -127,7 +141,8 @@ export const aremark: Person = {
                     linje1: 'Adressevei 1',
                     linje2: '0000 AREMARK',
                     linje3: null,
-                    sistEndret: null
+                    sistEndret: null,
+                    gyldighetsPeriode: null
                 },
                 apningstider: [
                     {
@@ -152,8 +167,10 @@ export const aremark: Person = {
                 kode: 'NOR',
                 beskrivelse: 'NORGE'
             },
-            gyldigFraOgMed: '1980-10-10' as LocalDate,
-            gyldigTilOgMed: null
+            gyldighetsPeriode: {
+                gyldigFraOgMed: '2021-02-01' as LocalDate,
+                gyldigTilOgMed: '2022-05-01' as LocalDate
+            }
         }
     ],
     adressebeskyttelse: [
@@ -166,8 +183,10 @@ export const aremark: Person = {
         {
             type: 'TFUS',
             beskrivelse: 'Telefonisk utestengelse',
-            gyldigFraOgMed: '2005-02-13' as LocalDate,
-            gyldigTilOgMed: '2030-02-15' as LocalDate
+            gyldighetsPeriode: {
+                gyldigFraOgMed: '2021-02-01' as LocalDate,
+                gyldigTilOgMed: '2022-05-01' as LocalDate
+            }
         }
     ],
     erEgenAnsatt: EgenAnsatt.JA,
@@ -214,13 +233,16 @@ export const aremark: Person = {
     })),
     deltBosted: [
         {
-            startdatoForKontrakt: '2000-10-10' as LocalDate,
-            sluttdatoForKontrakt: '2005-05-07' as LocalDate,
+            gyldighetsPeriode: {
+                gyldigFraOgMed: '2021-02-01' as LocalDate,
+                gyldigTilOgMed: '2022-05-01' as LocalDate
+            },
             adresse: {
                 linje1: `Adresseveien 1`,
                 linje2: '0000 Aremark',
                 linje3: null,
-                sistEndret: null
+                sistEndret: null,
+                gyldighetsPeriode: null
             }
         }
     ],
@@ -243,7 +265,8 @@ export const aremark: Person = {
                 linje1: 'Elgelia 20, 0000 Aremark',
                 linje2: null,
                 linje3: null,
-                sistEndret: null
+                sistEndret: null,
+                gyldighetsPeriode: null
             },
             registrert: '2010-02-02' as LocalDate,
             skifteform: Skifteform.OFFENTLIG,
@@ -269,8 +292,10 @@ export const aremark: Person = {
                     beskrivelse: ''
                 }
             ],
-            gyldigFraOgMed: '2015-01-01' as LocalDate,
-            gyldigTilOgMed: '2017-12-12' as LocalDate
+            gyldighetsPeriode: {
+                gyldigFraOgMed: '2021-06-01' as LocalDate,
+                gyldigTilOgMed: '2022-05-01' as LocalDate
+            }
         }
     ],
     vergemal: [
@@ -284,8 +309,10 @@ export const aremark: Person = {
             vergesakstype: 'Voksen',
             omfang: 'Ivareta personens interesser innenfor det personlige og økonomiske området',
             embete: 'Fylkesmannen i Troms og Finnmark',
-            gyldighetstidspunkt: '2016-03-27' as LocalDate,
-            opphorstidspunkt: '2017-06-30' as LocalDate
+            gyldighetsPeriode: {
+                gyldigFraOgMed: '2021-06-01' as LocalDate,
+                gyldigTilOgMed: '2022-05-10' as LocalDate
+            }
         },
         {
             ident: '123456799',
@@ -297,8 +324,10 @@ export const aremark: Person = {
             vergesakstype: 'Fremtidsfullmakt',
             omfang: 'Ivareta personens interesser innenfor det økonomiske området',
             embete: 'Fylkesmannen i Troms og Finnmark',
-            gyldighetstidspunkt: '2016-03-27' as LocalDate,
-            opphorstidspunkt: '2017-06-30' as LocalDate
+            gyldighetsPeriode: {
+                gyldigFraOgMed: '2021-02-10' as LocalDate,
+                gyldigTilOgMed: '2022-05-01' as LocalDate
+            }
         }
     ],
     tilrettelagtKommunikasjon: {
@@ -359,7 +388,8 @@ export const aremark: Person = {
             linje1: 'Bankveien 1,',
             linje2: '0357 Bankestad',
             linje3: null,
-            sistEndret: null
+            sistEndret: null,
+            gyldighetsPeriode: null
         },
         valuta: {
             kode: 'NOK',

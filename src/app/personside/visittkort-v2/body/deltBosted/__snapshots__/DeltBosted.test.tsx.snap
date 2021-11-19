@@ -44,6 +44,15 @@ exports[`viser deltbosted 1`] = `
   margin-bottom: 1rem;
 }
 
+.c4 {
+  color: #645f5a;
+  margin-top: 3px;
+}
+
+.c4 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 <section>
   <div
     className="c0"
@@ -83,6 +92,16 @@ exports[`viser deltbosted 1`] = `
     >
       
     </div>
+    <div
+      className="c4"
+    >
+      <p
+        className="typo-undertekst"
+      >
+        Gyldig: 
+        01.02.2021 – 01.05.2022
+      </p>
+    </div>
     <p
       className="typo-normal"
     >
@@ -92,18 +111,6 @@ exports[`viser deltbosted 1`] = `
       className="typo-normal"
     >
       0000 Aremark
-    </p>
-    <p
-      className="typo-normal"
-    >
-      Gyldig fra og med 
-      10.10.2000
-    </p>
-    <p
-      className="typo-normal"
-    >
-      Gyldig til og med 
-      07.05.2005
     </p>
   </div>
 </section>

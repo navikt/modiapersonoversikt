@@ -7,7 +7,8 @@ import VergemalLogo from '../../../../../svg/Utropstegn';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import { Element } from 'nav-frontend-typografi';
-import { hentNavn, hentPeriodeTekst } from '../../visittkort-utils';
+import { hentNavn } from '../../visittkort-utils';
+import GyldighetsPeriode from '../GyldighetsPeriode';
 
 const Vergeinformasjon = styled.div`
     margin-bottom: 5px;
@@ -21,19 +22,15 @@ function Verge(props: { verge: VergeInterface }) {
     const { verge } = props;
 
     return (
-        <VisittkortElement beskrivelse={'Verge'}>
+        <VisittkortElement beskrivelse="Verge">
             <Vergeinformasjon>
-                <Normaltekst>{verge.navn ? hentNavn(verge.navn) : 'Navn ikke tilgjengelig'}</Normaltekst>
-                <Normaltekst>{verge.ident || ''}</Normaltekst>
+                <Normaltekst>{hentNavn(verge.navn, 'Navn ikke tilgjengelig')}</Normaltekst>
+                <Normaltekst>{verge.ident}</Normaltekst>
             </Vergeinformasjon>
-
             <Element>Omfang</Element>
             <Normaltekst>{verge.omfang}</Normaltekst>
-            <EtikettGraa>
-                {verge.embete ? verge.embete : ''}
-                {verge.embete ? <br /> : ''}
-                {hentPeriodeTekst(verge.gyldighetstidspunkt, verge.opphorstidspunkt)}
-            </EtikettGraa>
+            <EtikettGraa>{verge.embete}</EtikettGraa>
+            <GyldighetsPeriode gyldighetsPeriode={verge.gyldighetsPeriode} />
         </VisittkortElement>
     );
 }
