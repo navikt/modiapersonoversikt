@@ -1,6 +1,5 @@
 import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
 import tilgangskontrollReducer from './tilgangskontroll';
-import personinformasjonReducer from './personinformasjon';
 import navkontorReducer from './navkontor';
 import kontaktinformasjonReducer from './kontaktinformasjon';
 import egenAnsattReducer from './egenansatt';
@@ -21,7 +20,6 @@ import saksoversiktReducer from './saksoversikt';
 import varselReducer from './varsel';
 import meldingerReducer from './meldinger/meldinger';
 import oppgaveGsakTemaReducer from './meldinger/gsakTema';
-import { PersonRespons } from '../../models/person/person';
 import { NavKontorResponse } from '../../models/navkontor';
 import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
 import { Egenansatt } from '../../models/egenansatt';
@@ -50,7 +48,6 @@ export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>; // TODO denne kan fjernes, eller evt erstattes med kall til modiacontextholder
     saksbehandlersEnheter: RestResource<SaksbehandlersEnheter>; // TODO denne bør fjernes, eller evt erstattes med kall til modiacontextholder
     tilgangskontroll: RestResource<TilgangDTO>;
-    personinformasjon: RestResource<PersonRespons>;
     brukersNavKontor: RestResource<NavKontorResponse>;
     tildelteOppgaver: RestResource<Oppgave[]>;
     kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
@@ -80,7 +77,6 @@ export default combineResettableReducers<RestEndepunkter>(
         innloggetSaksbehandler: innloggetSaksbehandlerReducer,
         tilgangskontroll: tilgangskontrollReducer,
         saksbehandlersEnheter: saksbehandlersEnheter,
-        personinformasjon: personinformasjonReducer,
         brukersNavKontor: navkontorReducer,
         tildelteOppgaver: tildelteOppgaver,
         kontaktinformasjon: kontaktinformasjonReducer,
