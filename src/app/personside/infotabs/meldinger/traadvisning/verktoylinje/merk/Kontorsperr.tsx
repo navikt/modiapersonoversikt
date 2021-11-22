@@ -8,10 +8,11 @@ import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { MerkKontorsperrRequest } from '../../../../../../../models/meldinger/merk';
 import styled from 'styled-components/macro';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { useHentPersondata } from '../../../../../../../utils/customHooks';
+import { hasError, isPending } from '@nutgaard/use-fetch';
 
 interface Props {
     valgtTraad: Traad;
@@ -31,7 +32,7 @@ const Margin = styled.div`
 `;
 
 function getMerkKontrorsperretRequest(fnr: String, enhet: string, traad: Traad): MerkKontorsperrRequest {
-    const meldingsidListe = traad.meldinger.map(melding => melding.id);
+    const meldingsidListe = traad.meldinger.map((melding) => melding.id);
     return {
         fnr: fnr,
         enhet: enhet,
@@ -42,8 +43,10 @@ function getMerkKontrorsperretRequest(fnr: String, enhet: string, traad: Traad):
 export function Kontorsperr(props: Props) {
     const [opprettOppgave, settOpprettOppgave] = useState(true);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const brukersKontor = useRestResource(resource => resource.brukersNavKontor);
-    const brukersEnhetID = brukersKontor.data?.enhetId ? brukersKontor.data.enhetId : '';
+    const hentPersondata = useHentPersondata();
+    const brukersNavEnhet =
+        isPending(hentPersondata) || hasError(hentPersondata) ? null : hentPersondata.data.person.navEnhet;
+    const brukersEnhetID = brukersNavEnhet?.id ? brukersNavEnhet.id : '';
     const [error, setError] = useState(false);
 
     const kontorsperr = () => {
@@ -68,7 +71,7 @@ export function Kontorsperr(props: Props) {
             <Checkbox
                 label={'Opprett oppgave'}
                 checked={opprettOppgave}
-                onChange={_ => settOpprettOppgave(!opprettOppgave)}
+                onChange={(_) => settOpprettOppgave(!opprettOppgave)}
             />
             <UnmountClosed isOpened={opprettOppgave}>
                 <OpprettOppgaveContainer
