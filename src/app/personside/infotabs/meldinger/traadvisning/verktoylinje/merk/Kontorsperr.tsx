@@ -11,8 +11,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { useHentPersondata } from '../../../../../../../utils/customHooks';
-import { hasError, isPending } from '@nutgaard/use-fetch';
+import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 
 interface Props {
     valgtTraad: Traad;
@@ -43,10 +42,9 @@ function getMerkKontrorsperretRequest(fnr: String, enhet: string, traad: Traad):
 export function Kontorsperr(props: Props) {
     const [opprettOppgave, settOpprettOppgave] = useState(true);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const hentPersondata = useHentPersondata();
-    const brukersNavEnhet =
-        isPending(hentPersondata) || hasError(hentPersondata) ? null : hentPersondata.data.person.navEnhet;
-    const brukersEnhetID = brukersNavEnhet?.id ? brukersNavEnhet.id : '';
+    const brukersNavEnhetTPS = useRestResource((resource) => resource.brukersNavKontor);
+    const brukersEnhetID = brukersNavEnhetTPS.data?.enhetId ? brukersNavEnhetTPS.data?.enhetId : '';
+
     const [error, setError] = useState(false);
 
     const kontorsperr = () => {
@@ -71,7 +69,7 @@ export function Kontorsperr(props: Props) {
             <Checkbox
                 label={'Opprett oppgave'}
                 checked={opprettOppgave}
-                onChange={(_) => settOpprettOppgave(!opprettOppgave)}
+                onChange={() => settOpprettOppgave(!opprettOppgave)}
             />
             <UnmountClosed isOpened={opprettOppgave}>
                 <OpprettOppgaveContainer

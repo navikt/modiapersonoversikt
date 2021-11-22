@@ -16,6 +16,9 @@ import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMelding
 import { guid } from 'nav-frontend-js-utils';
 import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
+import { useOnMount } from '../../utils/customHooks';
+import { isNotStarted } from '../../rest/utils/restResource';
+import { useRestResource } from '../../rest/consumer/useRestResource';
 
 const Scrollbar = styled.div`
     overflow-y: auto;
@@ -23,11 +26,23 @@ const Scrollbar = styled.div`
     flex-shrink: 1;
 `;
 
+function useBrukersNavKontor() {
+    const resource = useRestResource((resource) => resource.brukersNavKontor).resource;
+    const dispatch = useDispatch();
+
+    useOnMount(() => {
+        if (isNotStarted(resource)) {
+            dispatch(resource.actions.fetch);
+        }
+    });
+}
+
 function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
     const dispatch = useDispatch();
     const tittelId = useRef(guid());
     const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
+    useBrukersNavKontor();
 
     const ekspanderDialogpanelHandler = () => {
         if (!UI.dialogPanel.ekspandert) {
