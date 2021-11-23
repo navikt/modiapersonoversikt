@@ -12,6 +12,10 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
+import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
+import { useHentPersondata } from '../../../../../../../utils/customHooks';
+import { hasError, isPending } from '@nutgaard/use-fetch';
 
 interface Props {
     valgtTraad: Traad;
@@ -42,8 +46,13 @@ function getMerkKontrorsperretRequest(fnr: String, enhet: string, traad: Traad):
 export function Kontorsperr(props: Props) {
     const [opprettOppgave, settOpprettOppgave] = useState(true);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
+    const brukerNyttVisittkort = useFeatureToggle(FeatureToggles.BrukV2Visittkort).isOn ?? false;
+    const hentPersondata = useHentPersondata();
     const brukersNavEnhetTPS = useRestResource((resource) => resource.brukersNavKontor);
-    const brukersEnhetID = brukersNavEnhetTPS.data?.enhetId ? brukersNavEnhetTPS.data?.enhetId : '';
+    const brukersNavEnhetPDL = isPending(hentPersondata) || hasError(hentPersondata) ? null : hentPersondata.data.person.navEnhet;
+    const brukersNavEnhetIDTPS = brukersNavEnhetTPS.data?.enhetId ? brukersNavEnhetTPS.data?.enhetId : '';
+    const brukersNavEnhetIDPDL = brukersNavEnhetPDL?.id ? brukersNavEnhetPDL.id : '';
+    const brukersEnhetID = brukerNyttVisittkort ? brukersNavEnhetIDPDL : brukersNavEnhetIDTPS;
 
     const [error, setError] = useState(false);
 
@@ -52,7 +61,7 @@ export function Kontorsperr(props: Props) {
             setError(!error);
             return;
         }
-        props.merkPost(
+        props.merkPost
             MERK_KONTORSPERRET_URL,
             getMerkKontrorsperretRequest(valgtBrukersFnr, brukersEnhetID, props.valgtTraad),
             'Kontorsperring'
