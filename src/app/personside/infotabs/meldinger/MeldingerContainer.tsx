@@ -6,7 +6,7 @@ import { pxToRem } from '../../../../styles/personOversiktTheme';
 import TraadListe from './traadliste/TraadListe';
 import { huskSokAction, setSkjulVarslerAction } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
-import { useAppState, useOnMount, usePrevious } from '../../../../utils/customHooks';
+import { useAppState, usePrevious } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useHistory, withRouter } from 'react-router';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -17,7 +17,6 @@ import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import DelayRender from '../../../../components/DelayRender';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
-import { isNotStarted } from '../../../../rest/utils/restResource';
 
 const meldingerMediaTreshold = pxToRem(800);
 
@@ -78,17 +77,6 @@ function useReloadOnEnhetChange() {
     }, [forrigeEnhet, enhet, meldingerResource, dispatch]);
 }
 
-function useBrukersNavKontor() {
-    const resource = useAppState((state) => state.restResources.brukersNavKontor);
-    const dispatch = useDispatch();
-
-    useOnMount(() => {
-        if (isNotStarted(resource)) {
-            dispatch(resource.actions.fetch);
-        }
-    });
-}
-
 function MeldingerContainer() {
     const dispatch = useDispatch();
     const traaderResource = useRestResource((resources) => resources.traader, undefined, true);
@@ -102,7 +90,6 @@ function MeldingerContainer() {
         skjulVarsler ? filtrerBortVarsel(traad) : true
     );
     const valgtTraad = useValgtTraadIUrl() || traaderEtterSokOgFiltrering[0];
-    useBrukersNavKontor();
     useKeepQueryParams();
     useSyncSøkMedVisning(traaderFørSøk, traaderEtterSokOgFiltrering, valgtTraad);
     useHuskSokeord(sokeord);
