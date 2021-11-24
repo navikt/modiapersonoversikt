@@ -12,6 +12,7 @@ import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner'
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
+import { PersonRespons } from '../../models/person/person';
 
 const onError = (
     <FillCenterAndFadeIn>
@@ -32,18 +33,24 @@ function Personoversikt() {
 
     return (
         <RestResourceConsumer<TilgangDTO>
-            getResource={resources => resources.tilgangskontroll}
+            getResource={(resources) => resources.tilgangskontroll}
             returnOnPending={BigCenteredLazySpinner}
             returnOnError={onError}
         >
-            {data => {
+            {(data) => {
                 if (!data.harTilgang) {
                     return <BegrensetTilgangSide tilgangsData={data} />;
                 }
                 return (
                     <>
                         <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
-                        <MainLayout />
+                        <RestResourceConsumer<PersonRespons>
+                            getResource={(restResources) => restResources.personinformasjon}
+                            returnOnPending={BigCenteredLazySpinner}
+                            returnOnError={onError}
+                        >
+                            {() => <MainLayout />}
+                        </RestResourceConsumer>
                     </>
                 );
             }}

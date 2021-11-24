@@ -63,9 +63,9 @@ function useHuskSokeord(sokeord: string) {
 
 function useReloadOnEnhetChange() {
     const dispatch = useDispatch();
-    const enhet = useAppState(state => state.session.valgtEnhetId);
+    const enhet = useAppState((state) => state.session.valgtEnhetId);
     const forrigeEnhet = usePrevious(enhet);
-    const meldingerResource = useRestResource(resources => resources.traader);
+    const meldingerResource = useRestResource((resources) => resources.traader);
 
     useEffect(() => {
         if (!forrigeEnhet) {
@@ -79,18 +79,17 @@ function useReloadOnEnhetChange() {
 
 function MeldingerContainer() {
     const dispatch = useDispatch();
-    const traaderResource = useRestResource(resources => resources.traader, undefined, true);
-    const skjulVarsler = useAppState(state => state.meldinger.skjulVarsler);
+    const traaderResource = useRestResource((resources) => resources.traader, undefined, true);
+    const skjulVarsler = useAppState((state) => state.meldinger.skjulVarsler);
     const setSkjulVarsler = (skjul: boolean) => dispatch(setSkjulVarslerAction(skjul));
-    const forrigeSok = useAppState(state => state.meldinger.forrigeSok);
+    const forrigeSok = useAppState((state) => state.meldinger.forrigeSok);
     const [sokeord, setSokeord] = useState(forrigeSok);
 
     const traaderFørSøk = traaderResource.data ? traaderResource.data : [];
-    const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderFørSøk, sokeord).filter(traad =>
+    const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderFørSøk, sokeord).filter((traad) =>
         skjulVarsler ? filtrerBortVarsel(traad) : true
     );
     const valgtTraad = useValgtTraadIUrl() || traaderEtterSokOgFiltrering[0];
-
     useKeepQueryParams();
     useSyncSøkMedVisning(traaderFørSøk, traaderEtterSokOgFiltrering, valgtTraad);
     useHuskSokeord(sokeord);
