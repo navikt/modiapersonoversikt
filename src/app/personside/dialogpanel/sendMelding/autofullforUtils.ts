@@ -1,4 +1,3 @@
-import { NavKontorResponse } from '../../../../models/navkontor';
 import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/string-utils';
@@ -15,7 +14,6 @@ export type AutofullforData = {
     enhet?: Enhet;
     person?: PersonData;
     saksbehandler?: InnloggetSaksbehandler;
-    kontor?: NavKontorResponse;
 };
 
 export type AutofullforMap = {
@@ -70,7 +68,6 @@ export function byggAutofullforMap(
     locale: string,
     enhet?: Enhet,
     persondata?: PersonData,
-    navKontor?: NavKontorResponse,
     saksbehandler?: InnloggetSaksbehandler
 ): AutofullforMap {
     let personData = {
@@ -89,7 +86,7 @@ export function byggAutofullforMap(
             'bruker.fnr': person.fnr,
             'bruker.fornavn': capitalizeName(person.navn.firstOrNull()?.fornavn || ''),
             'bruker.etternavn': capitalizeName(
-                [person.navn.firstOrNull()?.mellomnavn, person.navn.firstOrNull()?.etternavn].filter(v => v).join(' ')
+                [person.navn.firstOrNull()?.mellomnavn, person.navn.firstOrNull()?.etternavn].filter((v) => v).join(' ')
             ),
             'bruker.navn': hentNavn(person.navn.firstOrNull()),
             'bruker.subjekt': kjonn && subjectPronomen(kjonn, locale),
@@ -100,7 +97,7 @@ export function byggAutofullforMap(
     return {
         ...personData,
         'saksbehandler.enhet': enhet?.navn || '[saksbehandler.enhet]',
-        'bruker.navkontor': navKontor?.enhetNavn || 'Ukjent kontor',
+        'bruker.navkontor': persondata?.person.navEnhet?.navn || 'Ukjent kontor',
         'saksbehandler.fornavn': saksbehandler?.fornavn || '[saksbehandler.fornavn]',
         'saksbehandler.etternavn': saksbehandler?.etternavn || '[saksbehandler.etternavn]',
         'saksbehandler.navn': saksbehandler?.navn || '[saksbehandler.navn]'
@@ -121,16 +118,14 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
 
 export function useAutoFullforData(): AutofullforData | undefined {
     const personResponse = useHentPersondata();
-    const saksbehandler = useRestResource(resources => resources.innloggetSaksbehandler);
-    const navKontorResource = useRestResource(resources => resources.brukersNavKontor);
-    const enheter = useRestResource(resources => resources.saksbehandlersEnheter);
+    const saksbehandler = useRestResource((resources) => resources.innloggetSaksbehandler);
+    const enheter = useRestResource((resources) => resources.saksbehandlersEnheter);
     const valgtEnhetId = useAppState(selectValgtEnhet);
-    const valgtEnhet = enheter.data?.enhetliste?.find(enhet => enhet.enhetId === valgtEnhetId);
+    const valgtEnhet = enheter.data?.enhetliste?.find((enhet) => enhet.enhetId === valgtEnhetId);
 
     return {
         enhet: valgtEnhet,
         person: hasError(personResponse) || isPending(personResponse) ? undefined : personResponse.data,
-        kontor: navKontorResource.data,
         saksbehandler: saksbehandler.data
     };
 }
