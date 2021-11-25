@@ -264,7 +264,6 @@ function autoFullfor(autofullforData: AutofullforData, parsedText: string) {
         Locale.nb_NO,
         autofullforData.enhet,
         autofullforData.person,
-        autofullforData.kontor,
         autofullforData.saksbehandler
     );
 
