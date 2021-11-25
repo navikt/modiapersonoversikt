@@ -7,9 +7,11 @@ import { lukkKontrollSporsmal, roterKontrollSporsmal } from '../../../redux/kont
 import { loggEvent } from '../../../utils/logger/frontendLogger';
 import KnappBase from 'nav-frontend-knapper';
 import { AppState } from '../../../redux/reducers';
-import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
 import { settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie } from './cookie-utils';
 import { KontrollSporsmalState } from '../../../redux/kontrollSporsmal/types';
+import { useHentPersondata } from '../../../utils/customHooks';
+import { Person } from '../visittkort-v2/PersondataDomain';
+import { hasError, isPending } from '@nutgaard/use-fetch';
 
 interface DispatchProps {
     lukkKontrollSporsmal: () => void;
@@ -17,7 +19,6 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    fnr?: string;
     kontrollSporsmal: KontrollSporsmalState;
 }
 
@@ -32,9 +33,17 @@ const KnapperStyling = styled.div`
     }
 `;
 
+function HentPersondata(): Person | null {
+    const persondata = useHentPersondata();
+    return isPending(persondata) || hasError(persondata) ? null : persondata.data.person;
+}
+
 class KontrollSporsmalKnapper extends React.PureComponent<Props> {
+    persondata: Person | null = null;
+
     constructor(props: Props) {
         super(props);
+        this.persondata = HentPersondata();
         this.handleNyttSporsmalClick = this.handleNyttSporsmalClick.bind(this);
         this.handleLukkClick = this.handleLukkClick.bind(this);
     }
@@ -51,10 +60,10 @@ class KontrollSporsmalKnapper extends React.PureComponent<Props> {
     }
 
     skjulPaTversAvVinduer() {
-        if (!this.props.fnr) {
+        if (!this.persondata || !this.persondata.fnr) {
             return;
         }
-        settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie(this.props.fnr);
+        settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie(this.persondata.fnr);
     }
 
     visNyttKnapp() {
@@ -79,7 +88,6 @@ class KontrollSporsmalKnapper extends React.PureComponent<Props> {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        fnr: getFnrFromPerson(state.restResources.personinformasjon),
         kontrollSporsmal: state.kontrollSporsmal
     };
 }
