@@ -3,7 +3,6 @@ import thunkMiddleware from 'redux-thunk';
 import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import reducers, { AppState } from '../redux/reducers';
 import { mockBaseUrls } from '../mock/baseUrls-mock';
-import { mockTilrettelagtKommunikasjonKodeverk } from '../mock/kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-mock';
 import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
@@ -22,7 +21,6 @@ import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUt
 import { SaksbehandlerRoller } from '../app/personside/dialogpanel/RollerUtils';
 import { apiBaseUri } from '../api/config';
 import { aremark } from '../mock/persondata/aremark';
-import { hentPersondata } from '../mock/persondata/persondata';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -31,11 +29,9 @@ export function getTestStore(): Store<AppState> {
 
     const dispatch = testStore.dispatch as Dispatch<any>;
     dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
-    dispatch(hentPersondata(aremarkFnr));
     dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
     dispatch(restResources.baseUrl.actions.setData(mockBaseUrls()));
     dispatch(restResources.veilederRoller.actions.setData({ roller: [SaksbehandlerRoller.HentOppgave] }));
-    dispatch(restResources.tilrettelagtKommunikasjonKodeverk.actions.setData(mockTilrettelagtKommunikasjonKodeverk()));
     dispatch(restResources.retningsnummer.actions.setData(mockRetningsnummereKodeverk()));
     dispatch(restResources.postnummer.actions.setData(mockPostnummere()));
     dispatch(restResources.land.actions.setData(mockLandKodeverk()));
@@ -70,6 +66,7 @@ export function setupFetchCache() {
             }
         } as RequestInit);
 
+    cache.putResolved(createCacheKey(`${apiBaseUri}/v2/person/${aremark.fnr}`), aremark);
     cache.putResolved(createCacheKey(`${apiBaseUri}/varsler/${aremark.fnr}`), statiskVarselMock);
     cache.putResolved(
         createCacheKey(`/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all`, fnrheader(aremark.fnr)),
