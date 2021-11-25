@@ -2,11 +2,6 @@ import { applyMiddleware, createStore, Dispatch, Store } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import reducers, { AppState } from '../redux/reducers';
-import { aremark } from '../mock/person/aremark';
-import { getPerson } from '../mock/person/personMock';
-import { getMockNavKontor } from '../mock/navkontor-mock';
-import { getMockKontaktinformasjon } from '../mock/person/krrKontaktinformasjon/kontaktinformasjon-mock';
-import { erEgenAnsatt } from '../mock/egenansatt-mock';
 import { mockBaseUrls } from '../mock/baseUrls-mock';
 import { mockTilrettelagtKommunikasjonKodeverk } from '../mock/kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-mock';
@@ -26,19 +21,18 @@ import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
 import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUtbetalingRespons';
 import { SaksbehandlerRoller } from '../app/personside/dialogpanel/RollerUtils';
 import { apiBaseUri } from '../api/config';
+import { aremark } from '../mock/persondata/aremark';
+import { hentPersondata } from '../mock/persondata/persondata';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
     const restResources = testStore.getState().restResources;
-    const aremarkFnr = aremark.fødselsnummer;
+    const aremarkFnr = aremark.fnr;
 
     const dispatch = testStore.dispatch as Dispatch<any>;
     dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
-    dispatch(restResources.personinformasjon.actions.setData(getPerson(aremarkFnr)));
+    dispatch(hentPersondata(aremarkFnr));
     dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
-    dispatch(restResources.brukersNavKontor.actions.setData(getMockNavKontor('0118', undefined)));
-    dispatch(restResources.kontaktinformasjon.actions.setData(getMockKontaktinformasjon(aremarkFnr)));
-    dispatch(restResources.egenAnsatt.actions.setData(erEgenAnsatt(aremarkFnr)));
     dispatch(restResources.baseUrl.actions.setData(mockBaseUrls()));
     dispatch(restResources.veilederRoller.actions.setData({ roller: [SaksbehandlerRoller.HentOppgave] }));
     dispatch(restResources.tilrettelagtKommunikasjonKodeverk.actions.setData(mockTilrettelagtKommunikasjonKodeverk()));
@@ -76,23 +70,17 @@ export function setupFetchCache() {
             }
         } as RequestInit);
 
-    cache.putResolved(createCacheKey(`${apiBaseUri}/varsler/${aremark.fødselsnummer}`), statiskVarselMock);
+    cache.putResolved(createCacheKey(`${apiBaseUri}/varsler/${aremark.fnr}`), statiskVarselMock);
     cache.putResolved(
-        createCacheKey(
-            `/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all`,
-            fnrheader(aremark.fødselsnummer)
-        ),
+        createCacheKey(`/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all`, fnrheader(aremark.fnr)),
         statiskDittnavEventVarselMock
     );
     cache.putResolved(
-        createCacheKey(
-            `/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/beskjed/all`,
-            fnrheader(aremark.fødselsnummer)
-        ),
+        createCacheKey(`/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/beskjed/all`, fnrheader(aremark.fnr)),
         statiskDittnavEventVarselMock
     );
     cache.putResolved(
-        createCacheKey(`${apiBaseUri}/person/${aremark.fødselsnummer}/aktorid`),
-        (`000${aremark.fødselsnummer}000` as unknown) as object
+        createCacheKey(`${apiBaseUri}/person/${aremark.fnr}/aktorid`),
+        `000${aremark.fnr}000` as unknown as object
     );
 }
