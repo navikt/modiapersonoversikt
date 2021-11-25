@@ -8,7 +8,7 @@ import { getBehandlingskjeder } from './behandlingskjeder-mock';
 import { getJournalposter } from './journalpost-mock';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { getAremarkSakstemaListe } from './aremark-saksoversikt-mock';
-import { aremark } from '../person/aremark';
+import { aremark } from '../persondata/aremark';
 
 const temaarray = [
     ['AAP', 'Arbeidsavklaringspenger'],
@@ -26,7 +26,7 @@ const temaarray = [
 ];
 
 export function getMockSaksoversikt(fødselsnummer: string): SakstemaResponse {
-    if (fødselsnummer === aremark.fødselsnummer) {
+    if (fødselsnummer === aremark.fnr) {
         return {
             resultat: getAremarkSakstemaListe()
         };

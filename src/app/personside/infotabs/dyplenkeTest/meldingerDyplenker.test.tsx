@@ -7,11 +7,11 @@ import { INFOTABS } from '../InfoTabEnum';
 import { getAktivTab, meldingerTest } from './utils-dyplenker-test';
 import { getTestStore } from '../../../../test/testStore';
 import { getMockTraader } from '../../../../mock/meldinger/meldinger-mock';
-import { aremark } from '../../../../mock/person/aremark';
+import { aremark } from '../../../../mock/persondata/aremark';
 
 test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyplenke fra oversikt', () => {
     const store = getTestStore();
-    store.dispatch(store.getState().restResources.traader.actions.setData(getMockTraader(aremark.fødselsnummer)));
+    store.dispatch(store.getState().restResources.traader.actions.setData(getMockTraader(aremark.fnr)));
     const infoTabs = mount(
         <TestProvider customStore={store}>
             <BrowserRouter>

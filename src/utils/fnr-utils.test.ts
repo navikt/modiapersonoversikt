@@ -1,8 +1,8 @@
+import { aremark } from '../mock/persondata/aremark';
 import { erDnummer } from './fnr-utils';
-import { aremark } from '../mock/person/aremark';
 
 it('Sjekker at aremark har vanlig fødselsnummer', () => {
-    expect(erDnummer(aremark.fødselsnummer)).toBe(false);
+    expect(erDnummer(aremark.fnr)).toBe(false);
 });
 
 it('Sjekker at dnummer blir tolket som dnummer', () => {

@@ -1,13 +1,13 @@
+import { aremark } from '../../../../../mock/persondata/aremark';
 import {
     getForeldrepengerperiodeMock,
     getForeldrepengerettighetMock
 } from '../../../../../mock/ytelse/foreldrepenger-mock';
-import { aremark } from '../../../../../mock/person/aremark';
 import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
 import { utledFraDatoForRettighet, sorterArbeidsforholdEtterRefusjonTom } from './foreldrePengerUtils';
 
-const randomForeldrepengerettighet = getForeldrepengerettighetMock(aremark.fødselsnummer);
-const randomForeldrepengerettighetPeriode = getForeldrepengerperiodeMock(aremark.fødselsnummer);
+const randomForeldrepengerettighet = getForeldrepengerettighetMock(aremark.fnr);
+const randomForeldrepengerettighetPeriode = getForeldrepengerperiodeMock(aremark.fnr);
 
 test('finner "rettighet fra dato" fra foreldrepengerettighet', () => {
     const foreldrepengeRettighet: Foreldrepengerettighet = {
