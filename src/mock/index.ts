@@ -4,23 +4,18 @@ import Cookies from 'js-cookie';
 import FetchMock, { Middleware, MiddlewareUtils, MockHandler, MockRequest } from 'yet-another-fetch-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { apiBaseUri } from '../api/config';
-import { getPerson } from './person/personMock';
-import { getMockKontaktinformasjon } from './person/krrKontaktinformasjon/kontaktinformasjon-mock';
 import {
     mockGeneratorMedEnhetId,
     mockGeneratorMedFodselsnummer,
     verify,
     withDelayedResponse
 } from './utils/fetch-utils';
-import { getMockNavKontor } from './navkontor-mock';
-import { erEgenAnsatt } from './egenansatt-mock';
 import { mockBaseUrls } from './baseUrls-mock';
 import { getMockVeilederRoller } from './veilderRoller-mock';
 import { mockRetningsnummereKodeverk } from './kodeverk/retningsnummer-mock';
 import { mockPostnummere } from './kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
-import { mockVergemal } from './person/vergemal/vergemalMock';
 import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
 import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
@@ -32,7 +27,7 @@ import { getDittNavVarsler, getMockVarsler } from './varsler/varsel-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { saker } from './journalforing/journalforing-mock';
-import { mockPersonsokResponse, mockStaticPersonsokRequest } from './person/personsokMock';
+import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
 import standardTekster from './standardTeksterMock.js';
 import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
@@ -101,17 +96,6 @@ function setupTilgangskontroll(mock: FetchMock) {
     );
 }
 
-function setupPersonMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/person/:fodselsnummer',
-        withDelayedResponse(
-            randomDelay(),
-            fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer((fodselsnummer) => getPerson(fodselsnummer))
-        )
-    );
-}
-
 function setupPersondataMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/v2/person/:fodselsnummer',
@@ -130,28 +114,6 @@ function setupAktorIdMock(mock: FetchMock) {
             randomDelay(),
             fodselsNummerErGyldigStatus,
             mockGeneratorMedFodselsnummer((fodselsnummer) => getAktorId(fodselsnummer))
-        )
-    );
-}
-
-function setupEgenAnsattMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/egenansatt/:fodselsnummer',
-        withDelayedResponse(
-            randomDelay(),
-            fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer((fodselsnummer) => erEgenAnsatt(fodselsnummer))
-        )
-    );
-}
-
-function setupKontaktinformasjonMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/person/:fodselsnummer/kontaktinformasjon',
-        withDelayedResponse(
-            randomDelay(),
-            fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockKontaktinformasjon(fodselsnummer))
         )
     );
 }
@@ -295,23 +257,6 @@ function setupAnsattePaaEnhetMock(mock: FetchMock) {
     );
 }
 
-function setupGeografiskTilknytningMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/enheter',
-        withDelayedResponse(
-            randomDelay(),
-            (args: MockRequest) => {
-                if (isNaN(args.queryParams.gt) && !args.queryParams.dkode) {
-                    return 404;
-                } else {
-                    return 200;
-                }
-            },
-            (args: MockRequest) => getMockNavKontor(args.queryParams.gt, args.queryParams.dkode)
-        )
-    );
-}
-
 function setupPersonsokMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/personsok',
@@ -352,17 +297,6 @@ function setupLeggTilbakeOppgaveMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/oppgaver/legg-tilbake',
         withDelayedResponse(randomDelay(), STATUS_OK, (request) => oppgaveBackendMock.leggTilbake(request.body))
-    );
-}
-
-function setupVergemalMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/person/:fodselsnummer/vergemal',
-        withDelayedResponse(
-            randomDelay(),
-            fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer((fodselsnummer) => mockVergemal(fodselsnummer))
-        )
     );
 }
 
@@ -486,15 +420,8 @@ const mock = FetchMock.configure({
 });
 
 setupInnloggetSaksbehandlerMock(mock);
-if (mockFeatureToggle(FeatureToggles.BrukV2Visittkort)) {
-    setupPersondataMock(mock);
-} else {
-    setupPersonMock(mock);
-}
+setupPersondataMock(mock);
 setupTilgangskontroll(mock);
-setupEgenAnsattMock(mock);
-setupKontaktinformasjonMock(mock);
-setupGeografiskTilknytningMock(mock);
 setupSaksoversiktMock(mock);
 setupUtbetalingerMock(mock);
 setupSykepengerMock(mock);
@@ -511,7 +438,6 @@ if (mockFeatureToggle(FeatureToggles.BrukSalesforceDialoger)) {
 
 setupTildelteOppgaverMock(mock);
 setupLeggTilbakeOppgaveMock(mock);
-setupVergemalMock(mock);
 setupBaseUrlsMock(mock);
 setupFeatureToggleMock(mock);
 setupVeilederRollerMock(mock);
