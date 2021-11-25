@@ -7,7 +7,6 @@ import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
 import PersonsokDatovelger from './PersonsokDatovelger';
-import { Kjonn } from '../../models/person/person';
 import LenkeDrek, { DrekProps } from './LenkeDrek';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../components/common-styled-components';
@@ -19,6 +18,7 @@ import { guid } from 'nav-frontend-js-utils';
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { FeilmeldingOppsummering } from '../../components/FeilmeldingOppsummering';
 import { Values } from '@nutgaard/use-formstate';
+import { Kjonn } from '../personside/visittkort-v2/PersondataDomain';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -86,7 +86,7 @@ function PersonsokSkjema(props: Props) {
 
         const request: PersonsokRequest = lagRequest(values);
         return fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok`, postConfig(request))
-            .then(response => {
+            .then((response) => {
                 props.setPosting(false);
                 props.setResponse(response);
             })
@@ -199,10 +199,10 @@ function PersonsokSkjema(props: Props) {
                             <option value={''} key={''}>
                                 Velg Kjønn
                             </option>
-                            <option value={Kjonn.Kvinne} key={'K'}>
+                            <option value={Kjonn.K} key={'K'}>
                                 K - Kvinne
                             </option>
-                            <option value={Kjonn.Mann} key={'M'}>
+                            <option value={Kjonn.M} key={'M'}>
                                 M - Mann
                             </option>
                         </Select>

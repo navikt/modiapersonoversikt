@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Brukerinfo, NorskIdent, PersonsokResponse, UtenlandskID } from '../../models/person/personsok';
+import { Brukerinfo, Navn, NorskIdent, PersonsokResponse, UtenlandskID } from '../../models/person/personsok';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { Navn } from '../../models/person/person';
 import { Kodeverk } from '../../models/kodeverk';
 
 export function IdentCelle(props: { ident: NorskIdent }) {
@@ -66,9 +65,11 @@ export function BostedCelle(props: { brukerinfo: Brukerinfo | null }) {
 }
 
 export function UtenlandskIDCelle(props: { utenlandskID: UtenlandskID[] | null }) {
-    const harUtenlandskID = props.utenlandskID?.some(utenlandskID => utenlandskID.identifikasjonsnummer !== undefined);
+    const harUtenlandskID = props.utenlandskID?.some(
+        (utenlandskID) => utenlandskID.identifikasjonsnummer !== undefined
+    );
     if (harUtenlandskID) {
-        const celletekst = props.utenlandskID?.map(utenlandskID => {
+        const celletekst = props.utenlandskID?.map((utenlandskID) => {
             const celletekst = `(${utenlandskID.utstederland}) ${utenlandskID.identifikasjonsnummer} `;
             return <Normaltekst key={utenlandskID.identifikasjonsnummer}>{celletekst}</Normaltekst>;
         });
