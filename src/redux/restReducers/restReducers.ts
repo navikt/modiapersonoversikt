@@ -1,7 +1,5 @@
 import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
 import tilgangskontrollReducer from './tilgangskontroll';
-import kontaktinformasjonReducer from './kontaktinformasjon';
-import egenAnsattReducer from './egenansatt';
 import baseUrlReducer from './baseurls';
 import veilederRollerReducer from './veilederRoller';
 import retningsnummereReducer from './kodeverk/retningsnummereReducer';
@@ -18,8 +16,6 @@ import saksoversiktReducer from './saksoversikt';
 import varselReducer from './varsel';
 import meldingerReducer from './meldinger/meldinger';
 import oppgaveGsakTemaReducer from './meldinger/gsakTema';
-import { KRRKontaktinformasjon } from '../../models/kontaktinformasjon';
-import { Egenansatt } from '../../models/egenansatt';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { KodeverkResponse } from '../../models/kodeverk';
 import { BaseUrlsResponse } from '../../models/baseurls';
@@ -46,8 +42,6 @@ export interface RestEndepunkter {
     saksbehandlersEnheter: RestResource<SaksbehandlersEnheter>; // TODO denne bør fjernes, eller evt erstattes med kall til modiacontextholder
     tilgangskontroll: RestResource<TilgangDTO>;
     tildelteOppgaver: RestResource<Oppgave[]>;
-    kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
-    egenAnsatt: RestResource<Egenansatt>;
     baseUrl: RestResource<BaseUrlsResponse>;
     veilederRoller: RestResource<VeilederRoller>;
     retningsnummer: RestResource<KodeverkResponse>;
@@ -73,8 +67,6 @@ export default combineResettableReducers<RestEndepunkter>(
         tilgangskontroll: tilgangskontrollReducer,
         saksbehandlersEnheter: saksbehandlersEnheter,
         tildelteOppgaver: tildelteOppgaver,
-        kontaktinformasjon: kontaktinformasjonReducer,
-        egenAnsatt: egenAnsattReducer,
         baseUrl: baseUrlReducer,
         veilederRoller: veilederRollerReducer,
         retningsnummer: retningsnummereReducer,
