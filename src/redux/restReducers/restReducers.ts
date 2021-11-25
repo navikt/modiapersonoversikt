@@ -5,7 +5,6 @@ import egenAnsattReducer from './egenansatt';
 import baseUrlReducer from './baseurls';
 import veilederRollerReducer from './veilederRoller';
 import retningsnummereReducer from './kodeverk/retningsnummereReducer';
-import tilrettelagtKommunikasjonKodeverkReducer from './kodeverk/tilrettelagtKommunikasjonReducer';
 import valutaKodeverkReducer from './kodeverk/valutaKodeverk';
 import landKodeverkReducer from './kodeverk/landKodeverk';
 import postnummerReducer from './kodeverk/postnummerReducer';
@@ -52,7 +51,6 @@ export interface RestEndepunkter {
     baseUrl: RestResource<BaseUrlsResponse>;
     veilederRoller: RestResource<VeilederRoller>;
     retningsnummer: RestResource<KodeverkResponse>;
-    tilrettelagtKommunikasjonKodeverk: RestResource<KodeverkResponse>;
     postnummer: RestResource<KodeverkResponse>;
     valuta: RestResource<KodeverkResponse>;
     land: RestResource<KodeverkResponse>;
@@ -80,7 +78,6 @@ export default combineResettableReducers<RestEndepunkter>(
         baseUrl: baseUrlReducer,
         veilederRoller: veilederRollerReducer,
         retningsnummer: retningsnummereReducer,
-        tilrettelagtKommunikasjonKodeverk: tilrettelagtKommunikasjonKodeverkReducer,
         postnummer: postnummerReducer,
         valuta: valutaKodeverkReducer,
         land: landKodeverkReducer,

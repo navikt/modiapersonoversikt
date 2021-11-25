@@ -17,7 +17,6 @@ import { erEgenAnsatt } from './egenansatt-mock';
 import { mockBaseUrls } from './baseUrls-mock';
 import { getMockVeilederRoller } from './veilderRoller-mock';
 import { mockRetningsnummereKodeverk } from './kodeverk/retningsnummer-mock';
-import { mockTilrettelagtKommunikasjonKodeverk } from './kodeverk/tilrettelagt-kommunikasjon-kodeverk-mock';
 import { mockPostnummere } from './kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
@@ -108,7 +107,7 @@ function setupPersonMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer(fodselsnummer => getPerson(fodselsnummer))
+            mockGeneratorMedFodselsnummer((fodselsnummer) => getPerson(fodselsnummer))
         )
     );
 }
@@ -119,7 +118,7 @@ function setupPersondataMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer(fodselsnummer => hentPersondata(fodselsnummer))
+            mockGeneratorMedFodselsnummer((fodselsnummer) => hentPersondata(fodselsnummer))
         )
     );
 }
@@ -130,7 +129,7 @@ function setupAktorIdMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer(fodselsnummer => getAktorId(fodselsnummer))
+            mockGeneratorMedFodselsnummer((fodselsnummer) => getAktorId(fodselsnummer))
         )
     );
 }
@@ -141,7 +140,7 @@ function setupEgenAnsattMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer(fodselsnummer => erEgenAnsatt(fodselsnummer))
+            mockGeneratorMedFodselsnummer((fodselsnummer) => erEgenAnsatt(fodselsnummer))
         )
     );
 }
@@ -152,7 +151,7 @@ function setupKontaktinformasjonMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer(fodselsnummer => getMockKontaktinformasjon(fodselsnummer))
+            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockKontaktinformasjon(fodselsnummer))
         )
     );
 }
@@ -174,7 +173,7 @@ function setupSaksoversiktMock(mock: FetchMock) {
 function setupUtbetalingerMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/utbetaling/:fodselsnummer',
-        withDelayedResponse(randomDelay(), fodselsNummerErGyldigStatus, args =>
+        withDelayedResponse(randomDelay(), fodselsNummerErGyldigStatus, (args) =>
             getMockUtbetalinger(args.pathParams.fodselsnummer, args.queryParams.startDato, args.queryParams.sluttDato)
         )
     );
@@ -186,7 +185,7 @@ function setupSykepengerMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer(fodselsnummer => getMockSykepengerRespons(fodselsnummer))
+            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockSykepengerRespons(fodselsnummer))
         )
     );
 }
@@ -197,7 +196,7 @@ function setupForeldrepengerMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer(fodselsnummer => getMockForeldrepenger(fodselsnummer))
+            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockForeldrepenger(fodselsnummer))
         )
     );
 }
@@ -208,7 +207,7 @@ function setupPleiepengerMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer(fodselsnummer => getMockPleiepenger(fodselsnummer))
+            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockPleiepenger(fodselsnummer))
         )
     );
 }
@@ -219,7 +218,7 @@ function setupOppfolgingMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer(fodselsnummer => getMockOppfolging(fodselsnummer))
+            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockOppfolging(fodselsnummer))
         )
     );
 }
@@ -230,7 +229,7 @@ function setupYtelserOgKontrakter(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer(fodselsnummer => getMockYtelserOgKontrakter(fodselsnummer))
+            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockYtelserOgKontrakter(fodselsnummer))
         )
     );
 }
@@ -241,7 +240,7 @@ function setupVarselMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer(fodselsnummer => getMockVarsler(fodselsnummer))
+            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockVarsler(fodselsnummer))
         )
     );
 
@@ -291,7 +290,7 @@ function setupAnsattePaaEnhetMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             STATUS_OK,
-            mockGeneratorMedEnhetId(enhetId => getMockAnsatte(enhetId))
+            mockGeneratorMedEnhetId((enhetId) => getMockAnsatte(enhetId))
         )
     );
 }
@@ -352,7 +351,7 @@ function setupTildelteOppgaverMock(mock: FetchMock) {
 function setupLeggTilbakeOppgaveMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/oppgaver/legg-tilbake',
-        withDelayedResponse(randomDelay(), STATUS_OK, request => oppgaveBackendMock.leggTilbake(request.body))
+        withDelayedResponse(randomDelay(), STATUS_OK, (request) => oppgaveBackendMock.leggTilbake(request.body))
     );
 }
 
@@ -362,7 +361,7 @@ function setupVergemalMock(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer(fodselsnummer => mockVergemal(fodselsnummer))
+            mockGeneratorMedFodselsnummer((fodselsnummer) => mockVergemal(fodselsnummer))
         )
     );
 }
@@ -399,13 +398,6 @@ function setupRetningsnummerKodeverkMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/kodeverk/Retningsnumre',
         withDelayedResponse(randomDelay(), STATUS_OK, () => mockRetningsnummereKodeverk())
-    );
-}
-
-function setupTilrettelagtKommunikasjonKodeverkMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/kodeverk/TilrettelagtKommunikasjon',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => mockTilrettelagtKommunikasjonKodeverk())
     );
 }
 
@@ -524,7 +516,6 @@ setupBaseUrlsMock(mock);
 setupFeatureToggleMock(mock);
 setupVeilederRollerMock(mock);
 setupRetningsnummerKodeverkMock(mock);
-setupTilrettelagtKommunikasjonKodeverkMock(mock);
 setupPostnummerKodeverk(mock);
 setupWsControlAndMock(mock);
 setupLandKodeverk(mock);
