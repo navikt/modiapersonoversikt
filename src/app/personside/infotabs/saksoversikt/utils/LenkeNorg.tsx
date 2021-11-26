@@ -5,29 +5,29 @@ import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import * as React from 'react';
 import { hasData, RestResource } from '../../../../../rest/utils/restResource';
-import { PersonRespons } from '../../../../../models/person/person';
 import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
+import { useHentPersondata } from '../../../../../utils/customHooks';
+import { hasError, isPending } from '@nutgaard/use-async';
 
 interface OwnProps {
     valgtSakstema?: Sakstema;
+    geografistTilknytning?: string | null;
 }
 
 interface StateProps {
     baseUrl: string;
-    geografistTilknytning?: string;
 }
 
 type Props = OwnProps & StateProps;
 
 function lenkeNorg2Frontend(props: Props): string {
-    const temakodeTilNorgoppslag = props.valgtSakstema ? byggSøkestrengTilNorgTemaOppslag(props.valgtSakstema) : '';
+    const temakodeTilNorgoppslag = props.valgtSakstema ? byggSokestrengTilNorgTemaOppslag(props.valgtSakstema) : '';
     return `${props.baseUrl}/#/startsok?tema=${temakodeTilNorgoppslag}&gt=${props.geografistTilknytning}`;
 }
 
-function byggSøkestrengTilNorgTemaOppslag(sakstema: Sakstema) {
+function byggSokestrengTilNorgTemaOppslag(sakstema: Sakstema) {
     if (sakstema.temakode !== sakstemakodeAlle) {
         return sakstema.temakode;
     }
@@ -46,12 +46,11 @@ function hentNorg2Url(baseUrlResource: RestResource<BaseUrlsResponse>) {
     return hasData(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
 }
 
-function hentGeografiskTilknytning(personResource: RestResource<PersonRespons>) {
-    return isLoadedPerson(personResource) ? personResource.data.geografiskTilknytning : '';
-}
-
 function LenkeNorg(props: Props) {
-    const norgUrl = lenkeNorg2Frontend(props);
+    const persondata = useHentPersondata();
+    const geografistTilknytning =
+        isPending(persondata) || hasError(persondata) ? null : persondata.data.person.geografiskTilknytning;
+    const norgUrl = lenkeNorg2Frontend({ geografistTilknytning: geografistTilknytning, ...props });
 
     return (
         <a className="lenke" target={'_blank'} rel={'noopener noreferrer'} href={norgUrl}>
@@ -62,8 +61,7 @@ function LenkeNorg(props: Props) {
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        baseUrl: hentNorg2Url(state.restResources.baseUrl),
-        geografistTilknytning: hentGeografiskTilknytning(state.restResources.personinformasjon)
+        baseUrl: hentNorg2Url(state.restResources.baseUrl)
     };
 }
 
