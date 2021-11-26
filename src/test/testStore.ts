@@ -27,6 +27,8 @@ export function getTestStore(): Store<AppState> {
     const restResources = testStore.getState().restResources;
     const aremarkFnr = aremark.fnr;
 
+    setupFetchCache();
+
     const dispatch = testStore.dispatch as Dispatch<any>;
     dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
     dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
@@ -51,8 +53,6 @@ export function getTestStore(): Store<AppState> {
     dispatch(restResources.pleiepenger.actions.setData({ pleiepenger: [pleiepengerTestData] }));
     dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));
     dispatch(restResources.sykepenger.actions.setData({ sykepenger: [statiskSykepengerMock] }));
-
-    setupFetchCache();
 
     return testStore;
 }
