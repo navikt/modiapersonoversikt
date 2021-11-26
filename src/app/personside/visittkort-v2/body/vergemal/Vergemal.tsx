@@ -29,17 +29,14 @@ function Verge(props: { verge: VergeInterface }) {
             </Vergeinformasjon>
             <Element>Omfang</Element>
             <Normaltekst>{verge.omfang}</Normaltekst>
-            <EtikettGraa>
-                {verge.embete}
-                {verge.embete ? <br /> : ''}
-            </EtikettGraa>
+            <EtikettGraa>{verge.embete}</EtikettGraa>
             <GyldighetsPeriode gyldighetsPeriode={verge.gyldighetsPeriode} />
         </VisittkortElement>
     );
 }
 
 function Vergesakstype({ vergemal }: Props) {
-    const alleVergesakstyper = vergemal.map(verge => verge.vergesakstype);
+    const alleVergesakstyper = vergemal.map((verge) => verge.vergesakstype);
     const unikeVergessakstyper = Array.from(new Set(alleVergesakstyper)).join(', ');
     return <Normaltekst>Vergesakstyper: {unikeVergessakstyper}</Normaltekst>;
 }

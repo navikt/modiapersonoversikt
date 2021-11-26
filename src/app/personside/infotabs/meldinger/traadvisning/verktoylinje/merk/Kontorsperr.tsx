@@ -71,7 +71,7 @@ export function Kontorsperr(props: Props) {
             <Checkbox
                 label={'Opprett oppgave'}
                 checked={opprettOppgave}
-                onChange={(_) => settOpprettOppgave(!opprettOppgave)}
+                onChange={() => settOpprettOppgave(!opprettOppgave)}
             />
             <UnmountClosed isOpened={opprettOppgave}>
                 <OpprettOppgaveContainer

@@ -6,8 +6,8 @@ import { AppState } from '../redux/reducers';
 import { erKontaktsenter } from './enheter-utils';
 import Hotjar, { HotjarTriggers } from './hotjar';
 import useFetch, { FetchResult } from '@nutgaard/use-fetch';
-import { Data as Persondata } from '../app/personside/visittkort-v2/PersondataDomain';
 import { apiBaseUri } from '../api/config';
+import { Data as Persondata } from '../app/personside/visittkort-v2/PersondataDomain';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
     useOnMount(() => {
@@ -71,19 +71,14 @@ export function useAppState<T>(selector: (state: AppState) => T) {
 }
 
 export function useFodselsnummer() {
-    return useAppState(state => state.gjeldendeBruker.fødselsnummer);
-}
-
-export function useHentPersondata(): FetchResult<Persondata> {
-    const fnr = useFodselsnummer();
-    return useFetch<Persondata>(`${apiBaseUri}/v2/person/${fnr}`);
+    return useAppState((state) => state.gjeldendeBruker.fødselsnummer);
 }
 
 export function useTriggerHotjarForLokalKontor() {
-    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+    const valgtEnhet = useAppState((state) => state.session.valgtEnhetId);
 
     useJustOnceEffect(
-        done => {
+        (done) => {
             if (valgtEnhet && !erKontaktsenter(valgtEnhet)) {
                 Hotjar.trigger(HotjarTriggers.BRUKSMONSTER);
                 done();
@@ -91,4 +86,9 @@ export function useTriggerHotjarForLokalKontor() {
         },
         [valgtEnhet]
     );
+}
+
+export function useHentPersondata(): FetchResult<Persondata> {
+    const fnr = useFodselsnummer();
+    return useFetch<Persondata>(`${apiBaseUri}/v2/person/${fnr}`);
 }
