@@ -50,6 +50,7 @@ function lagPerson(fnr: string): Person {
             }
         ],
         fodselsdato: ['2000-02-02' as LocalDate],
+        geografiskTilknytning: '1234',
         alder: 40,
         dodsdato: erDod ? ['2018-06-07' as LocalDate] : [],
         bostedAdresse: [
@@ -216,8 +217,8 @@ function lagPerson(fnr: string): Person {
             }
         ],
         foreldreansvar: forelderBarnMock
-            .filter(relasjon => relasjon.rolle === ForelderBarnRelasjonRolle.BARN)
-            .map(barn => ({
+            .filter((relasjon) => relasjon.rolle === ForelderBarnRelasjonRolle.BARN)
+            .map((barn) => ({
                 ansvar: 'felles',
                 ansvarlig: null,
                 ansvarsubject: {
