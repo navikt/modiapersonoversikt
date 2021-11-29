@@ -4,11 +4,13 @@ import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import DescriptionList from '../../../../../components/DescriptionList';
 import { getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
 import { formaterDato } from '../../../../../utils/string-utils';
-import { utledKjonnFraFodselsnummer } from '../../../../../utils/fnr-utils';
-import { Kjonn } from '../../../visittkort-v2/PersondataDomain';
+import { Data as Persondata, Kjonn } from '../../../visittkort-v2/PersondataDomain';
 import styled from 'styled-components/macro';
 import ArbeidsForholdListe from './arbeidsforhold/ArbeidsforholdListe';
 import theme from '../../../../../styles/personOversiktTheme';
+import { useHentPersondata } from '../../../../../utils/customHooks';
+import { hasError, isPending } from '@nutgaard/use-async';
+import { FetchResult } from '@nutgaard/use-fetch';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;
@@ -24,8 +26,8 @@ const OversiktStyling = styled.div`
     }
 `;
 
-function getKjonnString(fnr: string): string {
-    switch (utledKjonnFraFodselsnummer(fnr)) {
+function getKjonnString(kjonn: Kjonn | undefined): string {
+    switch (kjonn) {
         case Kjonn.M:
             return 'gutt';
         case Kjonn.K:
@@ -37,9 +39,20 @@ function getKjonnString(fnr: string): string {
     }
 }
 
+function hentKjonnTilBarn(persondata: FetchResult<Persondata>, barnFnr: string): string {
+    const person = isPending(persondata) || hasError(persondata) ? null : persondata.data.person;
+    const barn = person?.forelderBarnRelasjon.filter((relasjon) => relasjon.ident === barnFnr) ?? null;
+    if (!barn || barn.isEmpty()) {
+        return '';
+    }
+    const kjonnTilBarn = barn[0].kjonn.firstOrNull()?.kode;
+    return getKjonnString(kjonnTilBarn);
+}
+
 function Oversikt({ pleiepenger }: Props) {
     const gjeldeneVedtak = getSisteVedtakForPleiepengerettighet(pleiepenger);
-    const kjonn = getKjonnString(pleiepenger.barnet);
+    const persondata = useHentPersondata();
+    const kjonn = hentKjonnTilBarn(persondata, pleiepenger.barnet);
 
     const omPleiepengerettenEntries = {
         'Fra og med': gjeldeneVedtak ? formaterDato(gjeldeneVedtak.periode.fom) : '',
