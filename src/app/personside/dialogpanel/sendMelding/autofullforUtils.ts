@@ -6,7 +6,7 @@ import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { Enhet } from '../../../../models/saksbehandlersEnheter';
 import { useAppState, useHentPersondata } from '../../../../utils/customHooks';
 import { selectValgtEnhet } from '../../../../redux/session/session';
-import { hasError, isPending } from '@nutgaard/use-fetch';
+import { hasData } from '@nutgaard/use-fetch';
 import { Data as PersonData, Kjonn } from '../../visittkort-v2/PersondataDomain';
 import { hentNavn } from '../../visittkort-v2/visittkort-utils';
 
@@ -125,7 +125,7 @@ export function useAutoFullforData(): AutofullforData | undefined {
 
     return {
         enhet: valgtEnhet,
-        person: hasError(personResponse) || isPending(personResponse) ? undefined : personResponse.data,
+        person: hasData(personResponse) ? personResponse.data : undefined,
         saksbehandler: saksbehandler.data
     };
 }

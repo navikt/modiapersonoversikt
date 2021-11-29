@@ -11,7 +11,7 @@ import { settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie } from './cook
 import { KontrollSporsmalState } from '../../../redux/kontrollSporsmal/types';
 import { useHentPersondata } from '../../../utils/customHooks';
 import { Person } from '../visittkort-v2/PersondataDomain';
-import { hasError, isPending } from '@nutgaard/use-fetch';
+import { hasData } from '@nutgaard/use-fetch';
 
 interface DispatchProps {
     lukkKontrollSporsmal: () => void;
@@ -35,7 +35,7 @@ const KnapperStyling = styled.div`
 
 function HentPersondata(): Person | null {
     const persondata = useHentPersondata();
-    return isPending(persondata) || hasError(persondata) ? null : persondata.data.person;
+    return hasData(persondata) ? persondata.data.person : null;
 }
 
 class KontrollSporsmalKnapper extends React.PureComponent<Props> {

@@ -21,7 +21,7 @@ import { useInfotabsDyplenker } from '../../dyplenker';
 import DokumentLenke from './DokumentLenke';
 import { guid } from 'nav-frontend-js-utils';
 import { useHentPersondata } from '../../../../../utils/customHooks';
-import { isPending, hasError } from '@nutgaard/use-async';
+import { hasData } from '@nutgaard/use-fetch';
 import { hentNavn } from '../../../visittkort-v2/visittkort-utils';
 
 interface Props {
@@ -31,7 +31,7 @@ interface Props {
 }
 
 const StyledArticle = styled.article<{ valgt: boolean }>`
-    ${props =>
+    ${(props) =>
         props.valgt &&
         css`
             background-color: rgba(0, 0, 0, 0.09);
@@ -131,10 +131,7 @@ function JournalpostLiseElement(props: Props) {
     };
 
     const journalpost = props.journalpost;
-    const brukersNavn =
-        isPending(brukerResponse) || hasError(brukerResponse)
-            ? ''
-            : hentNavn(brukerResponse.data.person.navn.firstOrNull());
+    const brukersNavn = hasData(brukerResponse) ? hentNavn(brukerResponse.data.person.navn.firstOrNull()) : '';
 
     const saksid = journalpost.tilhørendeFagsaksid ? journalpost.tilhørendeFagsaksid : journalpost.tilhørendeSaksid;
     const saksvisning =

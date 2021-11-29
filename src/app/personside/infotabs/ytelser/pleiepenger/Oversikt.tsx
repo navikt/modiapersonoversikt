@@ -9,8 +9,7 @@ import styled from 'styled-components/macro';
 import ArbeidsForholdListe from './arbeidsforhold/ArbeidsforholdListe';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useHentPersondata } from '../../../../../utils/customHooks';
-import { hasError, isPending } from '@nutgaard/use-async';
-import { FetchResult } from '@nutgaard/use-fetch';
+import { FetchResult, hasData } from '@nutgaard/use-fetch';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;
@@ -40,7 +39,7 @@ function getKjonnString(kjonn: Kjonn | undefined): string {
 }
 
 function hentKjonnTilBarn(persondata: FetchResult<Persondata>, barnFnr: string): string {
-    const person = isPending(persondata) || hasError(persondata) ? null : persondata.data.person;
+    const person = hasData(persondata) ? persondata.data.person : null;
     const barn = person?.forelderBarnRelasjon.filter((relasjon) => relasjon.ident === barnFnr) ?? null;
     if (!barn || barn.isEmpty()) {
         return '';

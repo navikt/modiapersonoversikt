@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { useHentPersondata } from '../../../../../../../utils/customHooks';
-import { hasError, isPending } from '@nutgaard/use-async';
+import { hasData } from '@nutgaard/use-fetch';
 
 interface Props {
     valgtTraad: Traad;
@@ -45,7 +45,7 @@ export function Kontorsperr(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
 
     const persondata = useHentPersondata();
-    const brukersKontor = isPending(persondata) || hasError(persondata) ? null : persondata.data.person.navEnhet;
+    const brukersKontor = hasData(persondata) ? persondata.data.person.navEnhet : null;
     const brukersEnhetID = brukersKontor?.id ? brukersKontor.id : '';
     const [error, setError] = useState(false);
 

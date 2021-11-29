@@ -9,7 +9,7 @@ import { AppState } from '../../../../../redux/reducers';
 import { connect } from 'react-redux';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useHentPersondata } from '../../../../../utils/customHooks';
-import { hasError, isPending } from '@nutgaard/use-async';
+import { hasData as hasDataUseFetch } from '@nutgaard/use-fetch';
 
 interface OwnProps {
     valgtSakstema?: Sakstema;
@@ -48,8 +48,7 @@ function hentNorg2Url(baseUrlResource: RestResource<BaseUrlsResponse>) {
 
 function LenkeNorg(props: Props) {
     const persondata = useHentPersondata();
-    const geografiskTilknytning =
-        isPending(persondata) || hasError(persondata) ? null : persondata.data.person.geografiskTilknytning;
+    const geografiskTilknytning = hasDataUseFetch(persondata) ? persondata.data.person.geografiskTilknytning : null;
     const norgUrl = lenkeNorg2Frontend({ geografiskTilknytning: geografiskTilknytning, ...props });
 
     return (

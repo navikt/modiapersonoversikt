@@ -22,7 +22,7 @@ import { Temagruppe, TemaSamtalereferat } from '../../../../models/temagrupper';
 import { guid } from 'nav-frontend-js-utils';
 import ReflowBoundry from '../ReflowBoundry';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
-import { hasError, isPending } from '@nutgaard/use-fetch';
+import { hasData } from '@nutgaard/use-fetch';
 import { useHentPersondata } from '../../../../utils/customHooks';
 
 export enum OppgavelisteValg {
@@ -92,10 +92,9 @@ function SendNyMelding(props: Props) {
     const personResponse = useHentPersondata();
     const tittelId = useRef(guid());
 
-    const navn =
-        isPending(personResponse) || hasError(personResponse)
-            ? 'bruker'
-            : capitalizeName(personResponse.data.person.navn.firstOrNull()?.fornavn || '');
+    const navn = hasData(personResponse)
+        ? capitalizeName(personResponse.data.person.navn.firstOrNull()?.fornavn || '')
+        : 'bruker';
 
     const erReferat = NyMeldingValidator.erReferat(state);
     const erSporsmaal = NyMeldingValidator.erSporsmal(state);
@@ -110,19 +109,19 @@ function SendNyMelding(props: Props) {
                         tekst={state.tekst}
                         navn={navn}
                         tekstMaksLengde={tekstMaksLengde}
-                        updateTekst={tekst => updateState({ tekst })}
+                        updateTekst={(tekst) => updateState({ tekst })}
                         feilmelding={
                             !NyMeldingValidator.tekst(state) && state.visFeilmeldinger
                                 ? `Du må skrive en tekst på mellom 1 og ${tekstMaksLengde} tegn`
                                 : undefined
                         }
                     />
-                    <VelgDialogType formState={state} updateDialogType={dialogType => updateState({ dialogType })} />
+                    <VelgDialogType formState={state} updateDialogType={(dialogType) => updateState({ dialogType })} />
                     <Margin>
                         <UnmountClosed isOpened={erReferat}>
                             {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                             <Temavelger
-                                setTema={tema => updateState({ tema: tema })}
+                                setTema={(tema) => updateState({ tema: tema })}
                                 valgtTema={state.tema}
                                 visFeilmelding={!NyMeldingValidator.tema(state) && state.visFeilmeldinger}
                                 temavalg={TemaSamtalereferat}
@@ -130,17 +129,15 @@ function SendNyMelding(props: Props) {
                             <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
                         </UnmountClosed>
                         <UnmountClosed isOpened={erSporsmaal || erInfomelding}>
-                            <DialogpanelVelgSak setValgtSak={sak => updateState({ sak })} valgtSak={state.sak} />
+                            <DialogpanelVelgSak setValgtSak={(sak) => updateState({ sak })} valgtSak={state.sak} />
                             {visFeilmelding ? (
                                 <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding>
-                            ) : (
-                                undefined
-                            )}
+                            ) : undefined}
                             {erSporsmaal ? (
                                 <>
                                     <Oppgaveliste
                                         oppgaveliste={state.oppgaveListe}
-                                        setOppgaveliste={oppgaveliste => updateState({ oppgaveListe: oppgaveliste })}
+                                        setOppgaveliste={(oppgaveliste) => updateState({ oppgaveListe: oppgaveliste })}
                                     />
                                     <StyledAlertStripeInfo>Gir varsel, bruker må svare</StyledAlertStripeInfo>
                                 </>

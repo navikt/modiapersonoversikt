@@ -10,7 +10,7 @@ import { shuffle } from './list-utils';
 import { loggEvent } from '../../../utils/logger/frontendLogger';
 import { Person } from '../visittkort-v2/PersondataDomain';
 import { useHentPersondata } from '../../../utils/customHooks';
-import { hasError, isPending } from '@nutgaard/use-async';
+import { hasData } from '@nutgaard/use-fetch';
 
 interface StateProps {
     kontrollSporsmal: KontrollSporsmalState;
@@ -24,7 +24,7 @@ type Props = StateProps & DispatchProps;
 
 function HentPersondata(): Person | null {
     const persondata = useHentPersondata();
-    return isPending(persondata) || hasError(persondata) ? null : persondata.data.person;
+    return hasData(persondata) ? persondata.data.person : null;
 }
 
 class SporsmalOgSvarContainer extends React.PureComponent<Props> {
