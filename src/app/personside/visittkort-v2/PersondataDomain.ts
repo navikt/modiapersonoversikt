@@ -11,6 +11,7 @@ export interface Person {
     navn: Array<Navn>;
     kjonn: Array<KodeBeskrivelse<Kjonn>>;
     fodselsdato: Array<LocalDate>;
+    geografiskTilknytning: string | null;
     alder: number | null;
     dodsdato: Array<LocalDate>;
     bostedAdresse: Array<Adresse>;

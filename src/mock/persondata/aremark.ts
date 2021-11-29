@@ -92,6 +92,7 @@ export const aremark: Person = {
         }
     ],
     fodselsdato: ['1980-10-10' as LocalDate],
+    geografiskTilknytning: '1234',
     alder: 41,
     dodsdato: [],
     bostedAdresse: [
@@ -223,7 +224,7 @@ export const aremark: Person = {
             }
         }
     ],
-    foreldreansvar: barnAremark.map(barn => ({
+    foreldreansvar: barnAremark.map((barn) => ({
         ansvar: 'felles',
         ansvarlig: null,
         ansvarsubject: {
