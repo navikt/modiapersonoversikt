@@ -4,7 +4,6 @@ import { cache, createCacheKey } from '@nutgaard/use-fetch';
 import reducers, { AppState } from '../redux/reducers';
 import { mockBaseUrls } from '../mock/baseUrls-mock';
 import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-mock';
-import { mockPostnummere } from '../mock/kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from '../mock/kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from '../mock/kodeverk/valuta-kodeverk-mock';
 import { getStaticMockSaksoversikt } from '../mock/saksoversikt/saksoversikt-mock';
@@ -33,7 +32,6 @@ export function getTestStore(): Store<AppState> {
     dispatch(restResources.baseUrl.actions.setData(mockBaseUrls()));
     dispatch(restResources.veilederRoller.actions.setData({ roller: [SaksbehandlerRoller.HentOppgave] }));
     dispatch(restResources.retningsnummer.actions.setData(mockRetningsnummereKodeverk()));
-    dispatch(restResources.postnummer.actions.setData(mockPostnummere()));
     dispatch(restResources.land.actions.setData(mockLandKodeverk()));
     dispatch(restResources.valuta.actions.setData(mockValutaKodeverk()));
     dispatch(restResources.utbetalinger.actions.setData(statiskMockUtbetalingRespons));

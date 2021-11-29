@@ -13,7 +13,6 @@ import {
 import { mockBaseUrls } from './baseUrls-mock';
 import { getMockVeilederRoller } from './veilderRoller-mock';
 import { mockRetningsnummereKodeverk } from './kodeverk/retningsnummer-mock';
-import { mockPostnummere } from './kodeverk/postnummer-kodeverk-mock';
 import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
 import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
 import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
@@ -335,13 +334,6 @@ function setupRetningsnummerKodeverkMock(mock: FetchMock) {
     );
 }
 
-function setupPostnummerKodeverk(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/kodeverk/Postnummer',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => mockPostnummere())
-    );
-}
-
 function setupLandKodeverk(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/kodeverk/Landkoder',
@@ -442,7 +434,6 @@ setupBaseUrlsMock(mock);
 setupFeatureToggleMock(mock);
 setupVeilederRollerMock(mock);
 setupRetningsnummerKodeverkMock(mock);
-setupPostnummerKodeverk(mock);
 setupWsControlAndMock(mock);
 setupLandKodeverk(mock);
 setupValutaKodeverk(mock);

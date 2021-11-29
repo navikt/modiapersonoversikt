@@ -5,7 +5,6 @@ import veilederRollerReducer from './veilederRoller';
 import retningsnummereReducer from './kodeverk/retningsnummereReducer';
 import valutaKodeverkReducer from './kodeverk/valutaKodeverk';
 import landKodeverkReducer from './kodeverk/landKodeverk';
-import postnummerReducer from './kodeverk/postnummerReducer';
 import utbetalingerReducer from './utbetalinger';
 import sykepengerReducer from './ytelser/sykepenger';
 import pleiepengerReducer from './ytelser/pleiepenger';
@@ -45,7 +44,6 @@ export interface RestEndepunkter {
     baseUrl: RestResource<BaseUrlsResponse>;
     veilederRoller: RestResource<VeilederRoller>;
     retningsnummer: RestResource<KodeverkResponse>;
-    postnummer: RestResource<KodeverkResponse>;
     valuta: RestResource<KodeverkResponse>;
     land: RestResource<KodeverkResponse>;
     utbetalinger: RestResource<UtbetalingerResponse>;
@@ -70,7 +68,6 @@ export default combineResettableReducers<RestEndepunkter>(
         baseUrl: baseUrlReducer,
         veilederRoller: veilederRollerReducer,
         retningsnummer: retningsnummereReducer,
-        postnummer: postnummerReducer,
         valuta: valutaKodeverkReducer,
         land: landKodeverkReducer,
         utbetalinger: utbetalingerReducer,
@@ -85,14 +82,5 @@ export default combineResettableReducers<RestEndepunkter>(
         traader: meldingerReducer,
         oppgaveGsakTema: oppgaveGsakTemaReducer
     },
-    [
-        'innloggetSaksbehandler',
-        'veilederRoller',
-        'baseUrl',
-        'postnummer',
-        'valuta',
-        'land',
-        'featureToggles',
-        'saksbehandlersEnheter'
-    ]
+    ['innloggetSaksbehandler', 'veilederRoller', 'baseUrl', 'valuta', 'land', 'featureToggles', 'saksbehandlersEnheter']
 );
