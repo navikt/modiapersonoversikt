@@ -13,7 +13,7 @@ import { hasError, isPending } from '@nutgaard/use-async';
 
 interface OwnProps {
     valgtSakstema?: Sakstema;
-    geografistTilknytning?: string | null;
+    geografiskTilknytning?: string | null;
 }
 
 interface StateProps {
@@ -24,7 +24,7 @@ type Props = OwnProps & StateProps;
 
 function lenkeNorg2Frontend(props: Props): string {
     const temakodeTilNorgoppslag = props.valgtSakstema ? byggSokestrengTilNorgTemaOppslag(props.valgtSakstema) : '';
-    return `${props.baseUrl}/#/startsok?tema=${temakodeTilNorgoppslag}&gt=${props.geografistTilknytning}`;
+    return `${props.baseUrl}/#/startsok?tema=${temakodeTilNorgoppslag}&gt=${props.geografiskTilknytning}`;
 }
 
 function byggSokestrengTilNorgTemaOppslag(sakstema: Sakstema) {
@@ -48,9 +48,9 @@ function hentNorg2Url(baseUrlResource: RestResource<BaseUrlsResponse>) {
 
 function LenkeNorg(props: Props) {
     const persondata = useHentPersondata();
-    const geografistTilknytning =
+    const geografiskTilknytning =
         isPending(persondata) || hasError(persondata) ? null : persondata.data.person.geografiskTilknytning;
-    const norgUrl = lenkeNorg2Frontend({ geografistTilknytning: geografistTilknytning, ...props });
+    const norgUrl = lenkeNorg2Frontend({ geografiskTilknytning: geografiskTilknytning, ...props });
 
     return (
         <a className="lenke" target={'_blank'} rel={'noopener noreferrer'} href={norgUrl}>
