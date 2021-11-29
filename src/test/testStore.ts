@@ -27,8 +27,6 @@ export function getTestStore(): Store<AppState> {
     const restResources = testStore.getState().restResources;
     const aremarkFnr = aremark.fnr;
 
-    setupFetchCache();
-
     const dispatch = testStore.dispatch as Dispatch<any>;
     dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
     dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
@@ -54,6 +52,8 @@ export function getTestStore(): Store<AppState> {
     dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));
     dispatch(restResources.sykepenger.actions.setData({ sykepenger: [statiskSykepengerMock] }));
 
+    setupFetchCache();
+
     return testStore;
 }
 
@@ -66,7 +66,10 @@ export function setupFetchCache() {
             }
         } as RequestInit);
 
-    cache.putResolved(createCacheKey(`${apiBaseUri}/v2/person/${aremark.fnr}`), aremark);
+    cache.putResolved(createCacheKey(`${apiBaseUri}/v2/person/${aremark.fnr}`), {
+        feiledeSystemer: [],
+        person: aremark
+    });
     cache.putResolved(createCacheKey(`${apiBaseUri}/varsler/${aremark.fnr}`), statiskVarselMock);
     cache.putResolved(
         createCacheKey(`/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all`, fnrheader(aremark.fnr)),
