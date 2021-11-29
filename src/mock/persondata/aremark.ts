@@ -94,7 +94,7 @@ export const aremark: Person = {
         }
     ],
     fodselsdato: ['1980-10-10' as LocalDate],
-    geografiskTilknytning: '1234',
+    geografiskTilknytning: '0118',
     alder: 41,
     dodsdato: [],
     bostedAdresse: [
