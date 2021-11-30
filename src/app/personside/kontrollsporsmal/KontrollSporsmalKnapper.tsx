@@ -10,7 +10,6 @@ import { AppState } from '../../../redux/reducers';
 import { settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie } from './cookie-utils';
 import { KontrollSporsmalState } from '../../../redux/kontrollSporsmal/types';
 import { useHentPersondata } from '../../../utils/customHooks';
-import { Person } from '../visittkort-v2/PersondataDomain';
 import { hasData } from '@nutgaard/use-fetch';
 
 interface DispatchProps {
@@ -33,57 +32,44 @@ const KnapperStyling = styled.div`
     }
 `;
 
-function HentPersondata(): Person | null {
+function KontrollSporsmalKnapper(props: Props) {
     const persondata = useHentPersondata();
-    return hasData(persondata) ? persondata.data.person : null;
-}
+    const person = hasData(persondata) ? persondata.data.person : null;
 
-class KontrollSporsmalKnapper extends React.PureComponent<Props> {
-    persondata: Person | null = null;
-
-    constructor(props: Props) {
-        super(props);
-        this.persondata = HentPersondata();
-        this.handleNyttSporsmalClick = this.handleNyttSporsmalClick.bind(this);
-        this.handleLukkClick = this.handleLukkClick.bind(this);
-    }
-
-    handleNyttSporsmalClick() {
+    function handleNyttSporsmalClick() {
         loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Nytt' });
-        this.props.nyttSporsmal();
+        props.nyttSporsmal();
     }
 
-    handleLukkClick() {
+    function handleLukkClick() {
         loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Lukk' });
-        this.skjulPaTversAvVinduer();
-        this.props.lukkKontrollSporsmal();
+        skjulPaTversAvVinduer();
+        props.lukkKontrollSporsmal();
     }
 
-    skjulPaTversAvVinduer() {
-        if (!this.persondata || !this.persondata.fnr) {
+    function skjulPaTversAvVinduer() {
+        if (!person) {
             return;
         }
-        settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie(this.persondata.fnr);
+        settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie(person.fnr);
     }
 
-    visNyttKnapp() {
-        return this.props.kontrollSporsmal.sporsmal && this.props.kontrollSporsmal.sporsmal.length !== 0;
+    function visNyttKnapp() {
+        return props.kontrollSporsmal.sporsmal && props.kontrollSporsmal.sporsmal.isNotEmpty();
     }
 
-    render() {
-        return (
-            <KnapperStyling>
-                <KnappBase aria-label={'Lukk spørsmålspanel'} type="standard" onClick={this.handleLukkClick}>
-                    Lukk
+    return (
+        <KnapperStyling>
+            <KnappBase aria-label={'Lukk spørsmålspanel'} type="standard" onClick={() => handleLukkClick()}>
+                Lukk
+            </KnappBase>
+            {visNyttKnapp() ? (
+                <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={() => handleNyttSporsmalClick()}>
+                    Nytt
                 </KnappBase>
-                {this.visNyttKnapp() ? (
-                    <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={this.handleNyttSporsmalClick}>
-                        Nytt
-                    </KnappBase>
-                ) : null}
-            </KnapperStyling>
-        );
-    }
+            ) : null}
+        </KnapperStyling>
+    );
 }
 
 function mapStateToProps(state: AppState): StateProps {
