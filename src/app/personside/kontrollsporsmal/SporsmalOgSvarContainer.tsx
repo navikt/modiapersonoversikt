@@ -8,9 +8,9 @@ import { connect } from 'react-redux';
 import { kontaktInformasjonSporsmal, personInformasjonSporsmal, SporsmalsExtractor } from './SporsmalExtractors';
 import { shuffle } from './list-utils';
 import { loggEvent } from '../../../utils/logger/frontendLogger';
-import { Person } from '../visittkort-v2/PersondataDomain';
 import { useHentPersondata } from '../../../utils/customHooks';
 import { hasData } from '@nutgaard/use-fetch';
+import { useEffect } from 'react';
 
 interface StateProps {
     kontrollSporsmal: KontrollSporsmalState;
@@ -22,59 +22,46 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps;
 
-function HentPersondata(): Person | null {
+function SporsmalOgSvarContainer(props: Props) {
     const persondata = useHentPersondata();
-    return hasData(persondata) ? persondata.data.person : null;
-}
+    const person = hasData(persondata) ? persondata.data.person : null;
 
-class SporsmalOgSvarContainer extends React.PureComponent<Props> {
-    persondata: Person | null = null;
-
-    componentDidMount() {
-        this.persondata = HentPersondata();
-        this.props.setSporsmal(this.lagSporsmal());
+    useEffect(() => {
+        oppdaterSporsmal();
         loggEvent('Visning', 'Kontrollsporsmal', undefined);
-    }
+    });
 
-    componentDidUpdate() {
-        this.oppdaterSporsmal();
-    }
-
-    oppdaterSporsmal() {
-        const sporsmal = this.lagSporsmal();
-        const nyeSporsmal = sporsmal.filter((spm) => !this.sporsmalEksisterer(spm));
+    function oppdaterSporsmal() {
+        const sporsmal = lagSporsmal();
+        const nyeSporsmal = sporsmal.filter((spm) => !sporsmalEksisterer(spm));
         if (nyeSporsmal.length > 0) {
-            this.props.setSporsmal(sporsmal);
+            props.setSporsmal(sporsmal);
         }
     }
 
-    lagSporsmal(): Sporsmal[] {
+    function lagSporsmal(): Sporsmal[] {
         let sporsmal: Sporsmal[] = [];
 
-        sporsmal = sporsmal.concat(extractSporsmal(this.persondata, personInformasjonSporsmal));
-        sporsmal = sporsmal.concat(
-            extractSporsmal(this.persondata?.kontaktOgReservasjon ?? null, kontaktInformasjonSporsmal)
-        );
+        sporsmal = sporsmal.concat(extractSporsmal(person, personInformasjonSporsmal));
+        sporsmal = sporsmal.concat(extractSporsmal(person?.kontaktOgReservasjon ?? null, kontaktInformasjonSporsmal));
 
         shuffle(sporsmal);
 
         return sporsmal;
     }
 
-    sporsmalEksisterer(sporsmal: Sporsmal) {
-        if (this.props.kontrollSporsmal.sporsmal) {
-            return this.props.kontrollSporsmal.sporsmal.some((stateSpm) => erSporsmalLike(stateSpm, sporsmal));
+    function sporsmalEksisterer(sporsmal: Sporsmal) {
+        if (props.kontrollSporsmal.sporsmal) {
+            return props.kontrollSporsmal.sporsmal.some((stateSpm) => erSporsmalLike(stateSpm, sporsmal));
         }
         return false;
     }
 
-    render() {
-        if (!this.props.kontrollSporsmal.sporsmal || this.props.kontrollSporsmal.sporsmal.isEmpty()) {
-            return <FeilTekst />;
-        }
-
-        return <SporsmalOgSvar sporsmal={this.props.kontrollSporsmal.sporsmal[0]} />;
+    if (!props.kontrollSporsmal.sporsmal || props.kontrollSporsmal.sporsmal.isEmpty()) {
+        return <FeilTekst />;
     }
+
+    return <SporsmalOgSvar sporsmal={props.kontrollSporsmal.sporsmal[0]} />;
 }
 
 function extractSporsmal<T>(data: T | null, sporsmalExtractors: SporsmalsExtractor<T>[]): Sporsmal[] {
