@@ -12,7 +12,7 @@ import {
 import { hentEpost, hentFodselsdatoBarn, hentGiftedato } from './SporsmalExtractors';
 
 describe('hentGiftedato', () => {
-    const GIFTEDATO = '2011-11-11';
+    const GIFTEDATO = '11.11.2011';
 
     it('Gir korrekt navn og dato', () => {
         let person = lagMockGiftPerson();

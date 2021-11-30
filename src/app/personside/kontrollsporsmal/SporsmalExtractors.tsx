@@ -80,7 +80,7 @@ export function hentGiftedato(person: Person) {
         return '';
     }
 
-    const dato = sivilstand.gyldigFraOgMed;
+    const dato = formatterDato(sivilstand.gyldigFraOgMed?.toString() || '');
     if (!dato) {
         return '';
     }
