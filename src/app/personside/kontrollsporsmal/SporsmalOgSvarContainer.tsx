@@ -5,16 +5,14 @@ import SporsmalOgSvar, { FeilTekst } from './SporsmalOgSvar';
 import { AsyncDispatch } from '../../../redux/ThunkTypes';
 import { setKontrollSporsmal } from '../../../redux/kontrollSporsmal/actions';
 import { connect } from 'react-redux';
-import { PersonRespons } from '../../../models/person/person';
-import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
 import { kontaktInformasjonSporsmal, personInformasjonSporsmal, SporsmalsExtractor } from './SporsmalExtractors';
 import { shuffle } from './list-utils';
 import { loggEvent } from '../../../utils/logger/frontendLogger';
-import { hasData, RestResource } from '../../../rest/utils/restResource';
+import { Person } from '../visittkort-v2/PersondataDomain';
+import { useHentPersondata } from '../../../utils/customHooks';
+import { hasData } from '@nutgaard/use-fetch';
 
 interface StateProps {
-    personinformasjon: RestResource<PersonRespons>;
-    kontaktinformasjon: RestResource<KRRKontaktinformasjon>;
     kontrollSporsmal: KontrollSporsmalState;
 }
 
@@ -24,8 +22,16 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps;
 
+function HentPersondata(): Person | null {
+    const persondata = useHentPersondata();
+    return hasData(persondata) ? persondata.data.person : null;
+}
+
 class SporsmalOgSvarContainer extends React.PureComponent<Props> {
+    persondata: Person | null = null;
+
     componentDidMount() {
+        this.persondata = HentPersondata();
         this.props.setSporsmal(this.lagSporsmal());
         loggEvent('Visning', 'Kontrollsporsmal', undefined);
     }
@@ -36,7 +42,7 @@ class SporsmalOgSvarContainer extends React.PureComponent<Props> {
 
     oppdaterSporsmal() {
         const sporsmal = this.lagSporsmal();
-        const nyeSporsmal = sporsmal.filter(spm => !this.sporsmalEksisterer(spm));
+        const nyeSporsmal = sporsmal.filter((spm) => !this.sporsmalEksisterer(spm));
         if (nyeSporsmal.length > 0) {
             this.props.setSporsmal(sporsmal);
         }
@@ -45,8 +51,10 @@ class SporsmalOgSvarContainer extends React.PureComponent<Props> {
     lagSporsmal(): Sporsmal[] {
         let sporsmal: Sporsmal[] = [];
 
-        sporsmal = sporsmal.concat(extractSporsmal(this.props.personinformasjon, personInformasjonSporsmal));
-        sporsmal = sporsmal.concat(extractSporsmal(this.props.kontaktinformasjon, kontaktInformasjonSporsmal));
+        sporsmal = sporsmal.concat(extractSporsmal(this.persondata, personInformasjonSporsmal));
+        sporsmal = sporsmal.concat(
+            extractSporsmal(this.persondata?.kontaktOgReservasjon ?? null, kontaktInformasjonSporsmal)
+        );
 
         shuffle(sporsmal);
 
@@ -55,13 +63,13 @@ class SporsmalOgSvarContainer extends React.PureComponent<Props> {
 
     sporsmalEksisterer(sporsmal: Sporsmal) {
         if (this.props.kontrollSporsmal.sporsmal) {
-            return this.props.kontrollSporsmal.sporsmal.some(stateSpm => erSporsmalLike(stateSpm, sporsmal));
+            return this.props.kontrollSporsmal.sporsmal.some((stateSpm) => erSporsmalLike(stateSpm, sporsmal));
         }
         return false;
     }
 
     render() {
-        if (!this.props.kontrollSporsmal.sporsmal || this.props.kontrollSporsmal.sporsmal.length === 0) {
+        if (!this.props.kontrollSporsmal.sporsmal || this.props.kontrollSporsmal.sporsmal.isEmpty()) {
             return <FeilTekst />;
         }
 
@@ -69,17 +77,16 @@ class SporsmalOgSvarContainer extends React.PureComponent<Props> {
     }
 }
 
-function extractSporsmal<T>(restRessurs: RestResource<T>, sporsmalExtractors: SporsmalsExtractor<T>[]): Sporsmal[] {
-    if (hasData(restRessurs)) {
-        const data = restRessurs.data;
+function extractSporsmal<T>(data: T | null, sporsmalExtractors: SporsmalsExtractor<T>[]): Sporsmal[] {
+    if (data) {
         return sporsmalExtractors
-            .map(extractor => {
+            .map((extractor) => {
                 return {
                     sporsmal: extractor.sporsmal,
                     svar: extractor.extractSvar(data)
                 };
             })
-            .filter(spm => !erTom(spm));
+            .filter((spm) => !erTom(spm));
     }
     return [];
 }
@@ -89,14 +96,12 @@ function erSporsmalLike(sporsmal1: Sporsmal, sporsmal2: Sporsmal): boolean {
 }
 
 function erTom(spm: Sporsmal): boolean {
-    return spm.svar.every(enkeltSvar => enkeltSvar.tekst === '');
+    return spm.svar.every((enkeltSvar) => enkeltSvar.tekst === '');
 }
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        kontrollSporsmal: state.kontrollSporsmal,
-        kontaktinformasjon: state.restResources.kontaktinformasjon,
-        personinformasjon: state.restResources.personinformasjon
+        kontrollSporsmal: state.kontrollSporsmal
     };
 }
 

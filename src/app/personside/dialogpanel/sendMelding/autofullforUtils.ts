@@ -1,19 +1,19 @@
-import { erPersonResponsAvTypePerson, Kjonn, PersonRespons } from '../../../../models/person/person';
-import { NavKontorResponse } from '../../../../models/navkontor';
 import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/string-utils';
 import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { Enhet } from '../../../../models/saksbehandlersEnheter';
-import { useAppState } from '../../../../utils/customHooks';
+import { useAppState, useHentPersondata } from '../../../../utils/customHooks';
 import { selectValgtEnhet } from '../../../../redux/session/session';
+import { hasData } from '@nutgaard/use-fetch';
+import { Data as PersonData, Kjonn } from '../../visittkort-v2/PersondataDomain';
+import { hentNavn } from '../../visittkort-v2/visittkort-utils';
 
 export type AutofullforData = {
     enhet?: Enhet;
-    person?: PersonRespons;
+    person?: PersonData;
     saksbehandler?: InnloggetSaksbehandler;
-    kontor?: NavKontorResponse;
 };
 
 export type AutofullforMap = {
@@ -31,12 +31,12 @@ export type AutofullforMap = {
 };
 
 const subjectPronomenMap = {
-    [Kjonn.Mann]: {
+    [Kjonn.M]: {
         [Locale.nb_NO]: 'han',
         [Locale.nn_NO]: 'han',
         [Locale.en_US]: 'he'
     },
-    [Kjonn.Kvinne]: {
+    [Kjonn.K]: {
         [Locale.nb_NO]: 'hun',
         [Locale.nn_NO]: 'ho',
         [Locale.en_US]: 'she'
@@ -44,12 +44,12 @@ const subjectPronomenMap = {
 };
 
 const objektPronomenMap = {
-    [Kjonn.Mann]: {
+    [Kjonn.M]: {
         [Locale.nb_NO]: 'ham',
         [Locale.nn_NO]: 'han',
         [Locale.en_US]: 'him'
     },
-    [Kjonn.Kvinne]: {
+    [Kjonn.K]: {
         [Locale.nb_NO]: 'henne',
         [Locale.nn_NO]: 'ho',
         [Locale.en_US]: 'her'
@@ -67,8 +67,7 @@ function subjectPronomen(kjonn: Kjonn, locale: string) {
 export function byggAutofullforMap(
     locale: string,
     enhet?: Enhet,
-    person?: PersonRespons,
-    navKontor?: NavKontorResponse,
+    persondata?: PersonData,
     saksbehandler?: InnloggetSaksbehandler
 ): AutofullforMap {
     let personData = {
@@ -80,25 +79,25 @@ export function byggAutofullforMap(
         'bruker.objekt': '[bruker.objekt]'
     };
 
-    if (person && erPersonResponsAvTypePerson(person)) {
+    if (persondata) {
+        const { person } = persondata;
+        const kjonn = person.kjonn.firstOrNull()?.kode;
         personData = {
-            'bruker.fnr': person.fødselsnummer,
-            'bruker.fornavn': capitalizeName(person.navn.fornavn || ''),
+            'bruker.fnr': person.fnr,
+            'bruker.fornavn': capitalizeName(person.navn.firstOrNull()?.fornavn || ''),
             'bruker.etternavn': capitalizeName(
-                [person.navn.mellomnavn, person.navn.etternavn].filter(v => v).join(' ')
+                [person.navn.firstOrNull()?.mellomnavn, person.navn.firstOrNull()?.etternavn].filter((v) => v).join(' ')
             ),
-            'bruker.navn': capitalizeName(
-                [person.navn.fornavn, person.navn.mellomnavn, person.navn.etternavn].filter(v => v).join(' ')
-            ),
-            'bruker.subjekt': subjectPronomen(person.kjønn, locale),
-            'bruker.objekt': objektPronomen(person.kjønn, locale)
+            'bruker.navn': hentNavn(person.navn.firstOrNull()),
+            'bruker.subjekt': kjonn && subjectPronomen(kjonn, locale),
+            'bruker.objekt': kjonn && objektPronomen(kjonn, locale)
         };
     }
 
     return {
         ...personData,
         'saksbehandler.enhet': enhet?.navn || '[saksbehandler.enhet]',
-        'bruker.navkontor': navKontor?.enhetNavn || 'Ukjent kontor',
+        'bruker.navkontor': persondata?.person.navEnhet?.navn || 'Ukjent kontor',
         'saksbehandler.fornavn': saksbehandler?.fornavn || '[saksbehandler.fornavn]',
         'saksbehandler.etternavn': saksbehandler?.etternavn || '[saksbehandler.etternavn]',
         'saksbehandler.navn': saksbehandler?.navn || '[saksbehandler.navn]'
@@ -118,17 +117,15 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
 }
 
 export function useAutoFullforData(): AutofullforData | undefined {
-    const personResource = useRestResource(resources => resources.personinformasjon);
-    const saksbehandler = useRestResource(resources => resources.innloggetSaksbehandler);
-    const navKontorResource = useRestResource(resources => resources.brukersNavKontor);
-    const enheter = useRestResource(resources => resources.saksbehandlersEnheter);
+    const personResponse = useHentPersondata();
+    const saksbehandler = useRestResource((resources) => resources.innloggetSaksbehandler);
+    const enheter = useRestResource((resources) => resources.saksbehandlersEnheter);
     const valgtEnhetId = useAppState(selectValgtEnhet);
-    const valgtEnhet = enheter.data?.enhetliste?.find(enhet => enhet.enhetId === valgtEnhetId);
+    const valgtEnhet = enheter.data?.enhetliste?.find((enhet) => enhet.enhetId === valgtEnhetId);
 
     return {
         enhet: valgtEnhet,
-        person: personResource.data,
-        kontor: navKontorResource.data,
+        person: hasData(personResponse) ? personResponse.data : undefined,
         saksbehandler: saksbehandler.data
     };
 }

@@ -19,7 +19,8 @@ import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullforData } 
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import AriaNotification from '../../../../../components/AriaNotification';
-import { usePrevious } from '../../../../../utils/customHooks';
+import { useHentPersondata, usePrevious } from '../../../../../utils/customHooks';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
     sokefelt: FieldState;
@@ -64,7 +65,7 @@ function useDefaultValgtTekst(tekster: Array<StandardTeksterModels.Tekst>, valgt
         if (valgt.input.value === '' && tekster.length > 0) {
             valgt.setValue(tekster[0].id);
         } else {
-            const harValgtTekst = tekster.map(tekst => tekst.id).includes(valgt.input.value);
+            const harValgtTekst = tekster.map((tekst) => tekst.id).includes(valgt.input.value);
             if (!harValgtTekst && tekster.length > 0) {
                 valgt.setValue(tekster[0].id);
             }
@@ -100,7 +101,6 @@ function velgTekst(
                     locale,
                     autofullforData.enhet,
                     autofullforData.person,
-                    autofullforData.kontor,
                     autofullforData.saksbehandler
                 );
                 const ferdigTekst = captitalize(autofullfor(localeTekst, nokler));
@@ -121,9 +121,9 @@ function StandardTekster(props: Props) {
     );
     const valgt = useFieldState('');
     const valgtLocale = useFieldState('');
-    const valgtTekst = filtrerteTekster.find(tekst => tekst.id === valgt.input.value);
-    const personResource = useRestResource(resources => resources.personinformasjon, undefined, true);
-    const enheterResource = useRestResource(resources => resources.saksbehandlersEnheter, undefined, true);
+    const valgtTekst = filtrerteTekster.find((tekst) => tekst.id === valgt.input.value);
+    const persondata = useHentPersondata();
+    const enheterResource = useRestResource((resources) => resources.saksbehandlersEnheter, undefined, true);
     const autofullforData = useAutoFullforData();
     const sokeFeltId = useRef(guid());
     const [ariaNotification, setAriaNotification] = useState('');
@@ -145,14 +145,14 @@ function StandardTekster(props: Props) {
 
     useEffect(() => {
         if (sokRef.current?.contains(document.activeElement)) {
-            const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
+            const index = filtrerteTekster.findIndex((tekst) => tekst.id === valgt.input.value);
             const ariaTekst = `${index + 1} ${valgtTekst?.overskrift}: ${valgtTekst?.innhold[valgtLocale.input.value]}`;
             valgtTekst && setAriaNotification(ariaTekst);
         }
     }, [valgtLocale, valgtTekst, filtrerteTekster, valgt]);
 
     const velg = (offset: number) => () => {
-        const index = filtrerteTekster.findIndex(tekst => tekst.id === valgt.input.value);
+        const index = filtrerteTekster.findIndex((tekst) => tekst.id === valgt.input.value);
         if (index !== -1) {
             const nextIndex = cyclicClamp(index + offset, filtrerteTekster.length);
             const nextTekst = filtrerteTekster[nextIndex];
@@ -181,8 +181,10 @@ function StandardTekster(props: Props) {
         );
     }
 
-    if (!personResource.data) {
-        return personResource.placeholder;
+    if (isPending(persondata)) {
+        return <LazySpinner type={'M'} />;
+    } else if (hasError(persondata)) {
+        return <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
     }
 
     if (!enheterResource.data) {

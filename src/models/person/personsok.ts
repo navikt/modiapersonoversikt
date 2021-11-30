@@ -1,5 +1,4 @@
 import { Kodeverk } from '../kodeverk';
-import { Navn } from './person';
 
 export interface PersonsokResponse {
     diskresjonskode?: Kodeverk | null;
@@ -11,6 +10,13 @@ export interface PersonsokResponse {
     ident: NorskIdent;
     brukerinfo: Brukerinfo | null;
     utenlandskID: UtenlandskID[] | null;
+}
+
+export interface Navn {
+    sammensatt: string;
+    fornavn: string | null;
+    mellomnavn: string | null;
+    etternavn: string | null;
 }
 
 export interface UtenlandskID {

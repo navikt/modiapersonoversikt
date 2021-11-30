@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRef } from 'react';
 import DialogPanel from './dialogpanel/DialogPanel';
 import HentOppgaveKnapp from './dialogpanel/HentOppgaveKnapp';
-import Visittkort from './VisittkortSwitcher';
+import Visittkort from './visittkort-v2/Visittkort';
 import { toggleDialogpanel } from '../../redux/uiReducers/UIReducer';
 import { AppState } from '../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,8 +16,6 @@ import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMelding
 import { guid } from 'nav-frontend-js-utils';
 import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
-import { useAppState, useOnMount } from '../../utils/customHooks';
-import { isNotStarted } from '../../rest/utils/restResource';
 
 const Scrollbar = styled.div`
     overflow-y: auto;
@@ -25,24 +23,11 @@ const Scrollbar = styled.div`
     flex-shrink: 1;
 `;
 
-function useBrukersNavKontor() {
-    const resource = useAppState((state) => state.restResources.brukersNavKontor);
-    const dispatch = useDispatch();
-
-    useOnMount(() => {
-        if (isNotStarted(resource)) {
-            dispatch(resource.actions.fetch);
-        }
-    });
-}
-
 function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
     const dispatch = useDispatch();
     const tittelId = useRef(guid());
     const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
-
-    useBrukersNavKontor();
 
     const ekspanderDialogpanelHandler = () => {
         if (!UI.dialogPanel.ekspandert) {

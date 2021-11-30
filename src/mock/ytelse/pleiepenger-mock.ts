@@ -11,18 +11,18 @@ import {
     Vedtak
 } from '../../models/ytelse/pleiepenger';
 import { fyllRandomListe } from '../utils/mock-utils';
-import { aremark } from '../person/aremark';
-import { moss } from '../person/moss';
 import { pleiepengerTestData } from '../../app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
 import { backendDatoformat } from '../../utils/date-utils';
+import { aremark } from '../persondata/aremark';
+import { lagPerson } from '../persondata/persondata';
 
 export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse {
-    if (fødselsnummer === aremark.fødselsnummer) {
+    if (fødselsnummer === aremark.fnr) {
         return {
             pleiepenger: [
                 {
                     ...pleiepengerTestData,
-                    barnet: moss.fødselsnummer
+                    barnet: lagPerson('12345678910').fnr
                 }
             ]
         };

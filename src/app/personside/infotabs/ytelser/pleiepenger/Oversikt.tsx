@@ -4,11 +4,12 @@ import YtelserInfoGruppe from '../felles-styling/YtelserInfoGruppe';
 import DescriptionList from '../../../../../components/DescriptionList';
 import { getSisteVedtakForPleiepengerettighet } from './pleiepengerUtils';
 import { formaterDato } from '../../../../../utils/string-utils';
-import { utledKjonnFraFodselsnummer } from '../../../../../utils/fnr-utils';
-import { Kjonn } from '../../../../../models/person/person';
+import { Data as Persondata, Kjonn } from '../../../visittkort-v2/PersondataDomain';
 import styled from 'styled-components/macro';
 import ArbeidsForholdListe from './arbeidsforhold/ArbeidsforholdListe';
 import theme from '../../../../../styles/personOversiktTheme';
+import { useHentPersondata } from '../../../../../utils/customHooks';
+import { FetchResult, hasData } from '@nutgaard/use-fetch';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;
@@ -24,28 +25,39 @@ const OversiktStyling = styled.div`
     }
 `;
 
-function getKjønnString(fnr: string): string {
-    switch (utledKjonnFraFodselsnummer(fnr)) {
-        case Kjonn.Mann:
+function getKjonnString(kjonn: Kjonn | undefined): string {
+    switch (kjonn) {
+        case Kjonn.M:
             return 'gutt';
-        case Kjonn.Kvinne:
+        case Kjonn.K:
             return 'jente';
-        case Kjonn.Diskresjonskode:
-            return 'diskresjonskode';
+        case Kjonn.U:
+            return 'ukjent';
         default:
             return '';
     }
 }
 
+function hentKjonnTilBarn(persondata: FetchResult<Persondata>, barnFnr: string): string {
+    const person = hasData(persondata) ? persondata.data.person : null;
+    const barn = person?.forelderBarnRelasjon.filter((relasjon) => relasjon.ident === barnFnr) ?? null;
+    if (!barn || barn.isEmpty()) {
+        return '';
+    }
+    const kjonnTilBarn = barn[0].kjonn.firstOrNull()?.kode;
+    return getKjonnString(kjonnTilBarn);
+}
+
 function Oversikt({ pleiepenger }: Props) {
     const gjeldeneVedtak = getSisteVedtakForPleiepengerettighet(pleiepenger);
-    const kjønn = getKjønnString(pleiepenger.barnet);
+    const persondata = useHentPersondata();
+    const kjonn = hentKjonnTilBarn(persondata, pleiepenger.barnet);
 
     const omPleiepengerettenEntries = {
         'Fra og med': gjeldeneVedtak ? formaterDato(gjeldeneVedtak.periode.fom) : '',
         'Til og med': gjeldeneVedtak ? formaterDato(gjeldeneVedtak.periode.tom) : '',
         Pleiepengegrad: gjeldeneVedtak ? gjeldeneVedtak.pleiepengegrad + '%' : '',
-        ['Barnet (' + kjønn + ')']: pleiepenger.barnet,
+        ['Barnet (' + kjonn + ')']: pleiepenger.barnet,
         'Annen forelder': pleiepenger.andreOmsorgsperson
     };
 

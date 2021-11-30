@@ -11,7 +11,8 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
+import { useHentPersondata } from '../../../../../../../utils/customHooks';
+import { hasData } from '@nutgaard/use-fetch';
 
 interface Props {
     valgtTraad: Traad;
@@ -42,9 +43,10 @@ function getMerkKontrorsperretRequest(fnr: String, enhet: string, traad: Traad):
 export function Kontorsperr(props: Props) {
     const [opprettOppgave, settOpprettOppgave] = useState(true);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const brukersNavEnhetTPS = useRestResource((resource) => resource.brukersNavKontor);
-    const brukersEnhetID = brukersNavEnhetTPS.data?.enhetId ? brukersNavEnhetTPS.data?.enhetId : '';
 
+    const persondata = useHentPersondata();
+    const brukersKontor = hasData(persondata) ? persondata.data.person.navEnhet : null;
+    const brukersEnhetID = brukersKontor?.id ? brukersKontor.id : '';
     const [error, setError] = useState(false);
 
     const kontorsperr = () => {

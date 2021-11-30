@@ -3,14 +3,14 @@ import navfaker from 'nav-faker';
 import { DittNavEvent, Varsel, Varselmelding, Varseltype } from '../../models/varsel';
 import { fyllRandomListe } from '../utils/mock-utils';
 import dayjs from 'dayjs';
-import { aremark } from '../person/aremark';
 import { statiskVarselMock } from './statiskVarselMock';
 import { backendDatoformat } from '../../utils/date-utils';
+import { aremark } from '../persondata/aremark';
 
 export function getMockVarsler(fnr: string): Varsel[] {
     faker.seed(Number(fnr));
     navfaker.seed(fnr + 'varsel');
-    if (fnr === aremark.fødselsnummer) {
+    if (fnr === aremark.fnr) {
         return statiskVarselMock;
     }
 

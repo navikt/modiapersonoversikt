@@ -4,7 +4,6 @@ import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
-import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
@@ -68,7 +67,7 @@ function Innhold() {
 function SakerFullscreen(props: Props) {
     const dispatch = useDispatch();
     const fnr = useFodselsnummer();
-    const saksoversiktResource = useRestResource(resources => resources.sakstema);
+    const saksoversiktResource = useRestResource((resources) => resources.sakstema);
 
     useOnMount(() => {
         loggEvent('Sidevisning', 'SakerFullscreen');
@@ -84,7 +83,6 @@ function SakerFullscreen(props: Props) {
     return (
         <>
             <SetFnrIRedux fnr={props.fnr} />
-            <LyttPåNyttFnrIReduxOgHentPersoninfo />
             <FetchFeatureToggles />
             <Innhold />
         </>

@@ -1,7 +1,7 @@
 import { Pleiepengerettighet } from '../../../../../models/ytelse/pleiepenger';
 
 export const pleiepengerTestData: Pleiepengerettighet = {
-    barnet: '08031815240',
+    barnet: '12345678910',
     omsorgsperson: '12076632144',
     andreOmsorgsperson: '26087625779',
     restDagerFomIMorgen: 678,
