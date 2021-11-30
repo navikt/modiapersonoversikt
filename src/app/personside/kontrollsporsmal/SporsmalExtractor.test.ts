@@ -76,7 +76,7 @@ describe('hentFødselsdatoBarn', () => {
 
         const tekst = hentFodselsdatoBarn(person);
 
-        expect(tekst).toEqual({ beskrivelse: 'Aremark Sitt Barn', tekst: '2001-01-01' });
+        expect(tekst).toEqual({ beskrivelse: 'Aremark Sitt Barn', tekst: '01.01.2001' });
     });
 
     it('Barn over 21 skal ikke returnerest', () => {

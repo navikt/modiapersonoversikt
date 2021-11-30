@@ -377,7 +377,7 @@ export const aremark: Person = {
         }
     },
     bankkonto: {
-        kontonummer: '1234567890',
+        kontonummer: '12345678900',
         banknavn: 'DNB ASA',
         sistEndret: {
             ident: '1010800 BD03',

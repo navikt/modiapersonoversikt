@@ -9,6 +9,7 @@ import { shuffle } from './list-utils';
 import { Svar } from '../../../redux/kontrollSporsmal/types';
 import { formatertKontonummerString } from '../../../utils/FormatertKontonummer';
 import { harDiskresjonskode, hentBarnUnder22, hentNavn, hentPartner } from '../visittkort-v2/visittkort-utils';
+import { formatterDato } from '../../../utils/date-utils';
 
 export interface SporsmalsExtractor<T> {
     sporsmal: string;
@@ -19,7 +20,7 @@ export const personInformasjonSporsmal: SporsmalsExtractor<Person>[] = [
     {
         sporsmal: 'Hva er bankkontonummeret ditt?',
         extractSvar: (personinformasjon) => {
-            const bankkonto = (personinformasjon as Person).bankkonto;
+            const bankkonto = personinformasjon.bankkonto;
             return [
                 {
                     tekst: bankkonto ? formatertKontonummerString(bankkonto.kontonummer) : ''
@@ -28,17 +29,15 @@ export const personInformasjonSporsmal: SporsmalsExtractor<Person>[] = [
         }
     },
     {
-        sporsmal: 'Hva er fødselsdatoen til ditt barn _______',
+        sporsmal: 'Hva er fødselsdatoen til ditt barn?',
         extractSvar: (personinformasjon) => {
-            const person = personinformasjon as Person;
-            return [hentFodselsdatoBarn(person)];
+            return [hentFodselsdatoBarn(personinformasjon)];
         }
     },
     {
         sporsmal: 'Hvilken dato giftet du deg?',
         extractSvar: (personinformasjon) => {
-            const person = personinformasjon as Person;
-            return [{ tekst: hentGiftedato(person) }];
+            return [{ tekst: hentGiftedato(personinformasjon) }];
         }
     }
 ];
@@ -65,7 +64,7 @@ export function hentFodselsdatoBarn(person: Person): Svar {
     const barnet = ettTilfeldigBarn(gyldigeBarn);
 
     return {
-        tekst: barnet.fodselsdato.firstOrNull() || '',
+        tekst: formatterDato(barnet.fodselsdato.firstOrNull() || ''),
         beskrivelse: hentNavn(barnet.navn.firstOrNull())
     };
 }
