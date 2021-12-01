@@ -4,7 +4,6 @@ import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import FetchFeatureToggles from '../../app/PersonOppslagHandler/FetchFeatureToggles';
-import LyttPåNyttFnrIReduxOgHentPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentPersoninfo';
 import { MemoryRouter, Route } from 'react-router';
 import { useInfotabsDyplenker } from '../../app/personside/infotabs/dyplenker';
 import ErrorBoundary from '../ErrorBoundary';
@@ -34,7 +33,6 @@ function SaksoversiktLamell(props: Props) {
             <MemoryRouter>
                 <Styles>
                     <SetFnrIRedux fnr={props.fnr} />
-                    <LyttPåNyttFnrIReduxOgHentPersoninfo />
                     <FetchFeatureToggles />
                     <Routing />
                 </Styles>

@@ -13,9 +13,8 @@ import {
     Ytelseskomponent
 } from '../../models/utbetalinger';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
-import { getBedriftsNavn, getMockNavn } from '../person/personMock';
-import { aremark } from '../person/aremark';
 import { backendDatoformat } from '../../utils/date-utils';
+import { aremark } from '../persondata/aremark';
 
 export function getMockUtbetalinger(fødselsnummer: string, startDato: string, sluttDato: string): UtbetalingerResponse {
     faker.seed(Number(fødselsnummer));
@@ -31,26 +30,24 @@ export function getMockUtbetalinger(fødselsnummer: string, startDato: string, s
 }
 
 const fjernDuplikatePosteringsdato = (utbetaling: Utbetaling, index: number, list: Utbetaling[]) =>
-    list.findIndex(u => u.posteringsdato === utbetaling.posteringsdato) === index;
+    list.findIndex((u) => u.posteringsdato === utbetaling.posteringsdato) === index;
 
 function getUtbetalinger(fødselsnummer: string) {
-    if (fødselsnummer === aremark.fødselsnummer) {
-        return [...new Array(5)].map(() => getMockUtbetaling(fødselsnummer));
+    if (fødselsnummer === aremark.fnr) {
+        return [...new Array(5)].map(() => getMockUtbetaling());
     }
     if (navfaker.random.vektetSjanse(0.2)) {
         return [];
     }
 
-    return fyllRandomListe(() => getMockUtbetaling(fødselsnummer), 50).filter(fjernDuplikatePosteringsdato);
+    return fyllRandomListe(() => getMockUtbetaling(), 50).filter(fjernDuplikatePosteringsdato);
 }
 
 function randomDato(seededFaker: Faker.FakerStatic) {
-    return dayjs(seededFaker.date.past(1.5))
-        .startOf('day')
-        .format(backendDatoformat);
+    return dayjs(seededFaker.date.past(1.5)).startOf('day').format(backendDatoformat);
 }
 
-export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
+export function getMockUtbetaling(): Utbetaling {
     const status = randomStatus();
     const utbetalingsDato = status === 'Utbetalt' ? randomDato(faker) : null;
     const ytelser = fyllRandomListe(() => getMockYtelse(), navfaker.random.vektetSjanse(0.7) ? 1 : 3);
@@ -60,9 +57,7 @@ export function getMockUtbetaling(fødselsnummer?: string): Utbetaling {
 
     const posteringsdato = randomDato(faker);
     return {
-        utbetaltTil: utbetaltTilPerson
-            ? getMockNavn(fødselsnummer || '').sammensatt
-            : getBedriftsNavn(Math.random().toString()),
+        utbetaltTil: utbetaltTilPerson ? 'Person SomMottok Betaling' : 'Mottaker AS',
         erUtbetaltTilPerson: utbetaltTilPerson,
         erUtbetaltTilOrganisasjon: !utbetaltTilPerson,
         erUtbetaltTilSamhandler: !utbetaltTilPerson,

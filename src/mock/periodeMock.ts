@@ -1,7 +1,7 @@
-import { Periode } from '../../models/tid';
-import { getSistOppdatert } from '../utils/mock-utils';
 import dayjs from 'dayjs';
-import { backendDatoformat } from '../../utils/date-utils';
+import { Periode } from '../models/tid';
+import { backendDatoformat } from '../utils/date-utils';
+import { getSistOppdatert } from './utils/mock-utils';
 
 export function getPeriode(): Periode {
     return {

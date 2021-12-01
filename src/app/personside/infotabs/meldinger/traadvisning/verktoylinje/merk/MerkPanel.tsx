@@ -31,8 +31,7 @@ import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-fronte
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
 import { useAppState } from '../../../../../../../utils/customHooks';
-import { hasData, isPending } from '@nutgaard/use-async';
-import useFetch, { FetchResult } from '@nutgaard/use-fetch';
+import useFetch, { FetchResult, hasData, isPending } from '@nutgaard/use-fetch';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-focus-on-first-focusable';
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
@@ -80,7 +79,7 @@ const MERK_SLADDING_URL = `${apiBaseUri}/dialogmerking/sladding`;
 const MERK_TVUNGEN_FERDIGSTILL_URL = `${apiBaseUri}/dialogmerking/tvungenferdigstill`;
 
 function lagBehandlingskjede(traad: Traad) {
-    return traad.meldinger.filter(melding => !erMeldingFeilsendt(melding)).map(melding => melding.id);
+    return traad.meldinger.filter((melding) => !erMeldingFeilsendt(melding)).map((melding) => melding.id);
 }
 
 function visStandardvalg(valgtTraad: Traad) {
@@ -102,7 +101,7 @@ function visFerdigstillUtenSvar(meldingstype: Meldingstype, valgtTraad: Traad) {
 }
 
 function visTvungenFerdigstillelse(valgtTraad: Traad, tildelteOppgaver: Oppgave[]) {
-    const oppgavenTildeltBruker = tildelteOppgaver.find(it => it.traadId === valgtTraad.traadId);
+    const oppgavenTildeltBruker = tildelteOppgaver.find((it) => it.traadId === valgtTraad.traadId);
     return erBehandlet(valgtTraad) && oppgavenTildeltBruker && oppgavenTildeltBruker.erSTOOppgave;
 }
 
@@ -141,12 +140,12 @@ function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestM
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
     const saksbehandlerKanSletteFetch: FetchResult<Boolean> = useFetch<Boolean>(MERK_SLETT_URL, includeCredentials);
-    const tråderResource = useRestResource(resources => resources.traader);
+    const tråderResource = useRestResource((resources) => resources.traader);
     const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
 
     const reloadMeldinger = tråderResource.actions.reload;
-    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
-    const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
+    const reloadTildelteOppgaver = useRestResource((resources) => resources.tildelteOppgaver).actions.reload;
+    const dialogpanelTraad = useAppState((state) => state.oppgaver.dialogpanelTraad);
     const tildelteOppgaver = useTildelteOppgaver();
 
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
@@ -154,7 +153,7 @@ function MerkPanel(props: Props) {
     const [submitting, setSubmitting] = useState(false);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const valgtTraad = props.valgtTraad;
-    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+    const valgtEnhet = useAppState((state) => state.session.valgtEnhetId);
     const formRef = useRef<HTMLFormElement>(null);
 
     useFocusOnFirstFocusable(formRef);
@@ -321,7 +320,7 @@ function MerkPanel(props: Props) {
             radioprops.push({ label: 'Merk for sletting', value: MerkOperasjon.SLETT });
         }
         if (usingSFBackend) {
-            const kontorsperreIndex = radioprops.findIndex(it => it.value === MerkOperasjon.KONTORSPERRET);
+            const kontorsperreIndex = radioprops.findIndex((it) => it.value === MerkOperasjon.KONTORSPERRET);
             radioprops[kontorsperreIndex] = {
                 label: 'Send til sladding',
                 value: MerkOperasjon.SLADDING,

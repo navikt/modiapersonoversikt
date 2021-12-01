@@ -14,67 +14,69 @@ import {
 } from '../../app/personside/visittkort-v2/PersondataDomain';
 import { harDiskresjonskode } from '../../app/personside/visittkort-v2/visittkort-utils';
 
-export const barnAremark: ForelderBarnRelasjon[] = [
-    {
-        ident: '12345678910',
-        rolle: ForelderBarnRelasjonRolle.BARN,
-        navn: [
-            {
-                fornavn: 'BARN1',
-                mellomnavn: null,
-                etternavn: 'BARNESEN'
-            }
-        ],
-        fodselsdato: ['2008-03-15' as LocalDate],
-        alder: 13,
-        kjonn: [
-            {
-                kode: Kjonn.K,
-                beskrivelse: 'Kvinne'
-            }
-        ],
-        adressebeskyttelse: [
-            {
-                kode: AdresseBeskyttelse.UGRADERT,
-                beskrivelse: 'UGRADERT'
-            }
-        ],
-        harSammeAdresse: false,
-        personstatus: [
-            {
-                kode: PersonStatus.BOSATT,
-                beskrivelse: 'BOSATT'
-            }
-        ]
-    },
-    {
-        ident: '12345678911',
-        rolle: ForelderBarnRelasjonRolle.BARN,
-        navn: [
-            {
-                fornavn: 'BARN1',
-                mellomnavn: null,
-                etternavn: 'BARNESEN'
-            }
-        ],
-        fodselsdato: ['2008-03-15' as LocalDate],
-        alder: null,
-        kjonn: [
-            {
-                kode: Kjonn.K,
-                beskrivelse: 'Kvinne'
-            }
-        ],
-        adressebeskyttelse: [],
-        harSammeAdresse: false,
-        personstatus: [
-            {
-                kode: PersonStatus.DOD,
-                beskrivelse: 'DØD'
-            }
-        ]
-    }
-];
+export function hentBarnAremark(): ForelderBarnRelasjon[] {
+    return [
+        {
+            ident: '12345678910',
+            rolle: ForelderBarnRelasjonRolle.BARN,
+            navn: [
+                {
+                    fornavn: 'BARN1',
+                    mellomnavn: null,
+                    etternavn: 'BARNESEN'
+                }
+            ],
+            fodselsdato: ['2008-03-15' as LocalDate],
+            alder: 13,
+            kjonn: [
+                {
+                    kode: Kjonn.K,
+                    beskrivelse: 'Kvinne'
+                }
+            ],
+            adressebeskyttelse: [
+                {
+                    kode: AdresseBeskyttelse.UGRADERT,
+                    beskrivelse: 'UGRADERT'
+                }
+            ],
+            harSammeAdresse: false,
+            personstatus: [
+                {
+                    kode: PersonStatus.BOSATT,
+                    beskrivelse: 'BOSATT'
+                }
+            ]
+        },
+        {
+            ident: '12345678911',
+            rolle: ForelderBarnRelasjonRolle.BARN,
+            navn: [
+                {
+                    fornavn: 'BARN1',
+                    mellomnavn: null,
+                    etternavn: 'BARNESEN'
+                }
+            ],
+            fodselsdato: ['2008-03-15' as LocalDate],
+            alder: null,
+            kjonn: [
+                {
+                    kode: Kjonn.K,
+                    beskrivelse: 'Kvinne'
+                }
+            ],
+            adressebeskyttelse: [],
+            harSammeAdresse: false,
+            personstatus: [
+                {
+                    kode: PersonStatus.DOD,
+                    beskrivelse: 'DØD'
+                }
+            ]
+        }
+    ];
+}
 
 export const aremark: Person = {
     fnr: '10108000398',
@@ -92,7 +94,7 @@ export const aremark: Person = {
         }
     ],
     fodselsdato: ['1980-10-10' as LocalDate],
-    geografiskTilknytning: '1234',
+    geografiskTilknytning: '0118',
     alder: 41,
     dodsdato: [],
     bostedAdresse: [
@@ -224,7 +226,7 @@ export const aremark: Person = {
             }
         }
     ],
-    foreldreansvar: barnAremark.map((barn) => ({
+    foreldreansvar: hentBarnAremark().map((barn) => ({
         ansvar: 'felles',
         ansvarlig: null,
         ansvarsubject: {
@@ -375,7 +377,7 @@ export const aremark: Person = {
         }
     },
     bankkonto: {
-        kontonummer: '1234567890',
+        kontonummer: '12345678900',
         banknavn: 'DNB ASA',
         sistEndret: {
             ident: '1010800 BD03',
@@ -397,5 +399,5 @@ export const aremark: Person = {
             beskrivelse: 'Norske kroner'
         }
     },
-    forelderBarnRelasjon: barnAremark
+    forelderBarnRelasjon: hentBarnAremark()
 };

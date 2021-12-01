@@ -1,19 +1,19 @@
 import {
     Brukerinfo,
+    Navn,
     NorskIdent,
     PersonsokRequest,
     PersonsokResponse,
     UtenlandskID
 } from '../../models/person/personsok';
-import { aremark } from './aremark';
-import { moss } from './moss';
 import faker from 'faker/locale/nb_NO';
 
 import navfaker from 'nav-faker/dist/index';
 import { Kodeverk } from '../../models/kodeverk';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
-import { getMockNavn } from './personMock';
 import md5 from 'md5';
+import { aremark } from '../persondata/aremark';
+import { Person } from '../../app/personside/visittkort-v2/PersondataDomain';
 
 export function mockPersonsokResponse(request: PersonsokRequest): PersonsokResponse[] {
     navfaker.seed(md5(JSON.stringify(request)));
@@ -97,6 +97,38 @@ function getDiskresjonskode(): Kodeverk {
     };
 }
 
+function parseAremarkNavn(aremark: Person): Navn {
+    const aremarkNavn = aremark.navn[0];
+    return {
+        ...aremarkNavn,
+        sammensatt: `${aremarkNavn.fornavn} ${aremarkNavn.mellomnavn} ${aremarkNavn.etternavn}`
+    };
+}
+
+function getMockNavn(fodselsnummer: string): Navn {
+    if (fodselsnummer === aremark.fnr) {
+        return parseAremarkNavn(aremark);
+    }
+    faker.seed(Number(fodselsnummer));
+    const fornavn = getFornavn(faker, fodselsnummer).toUpperCase();
+    const etternavn = faker.name.lastName().toUpperCase();
+    const mellomnavn = vektetSjanse(faker, 0.5) ? faker.name.lastName().toUpperCase() : '';
+    return {
+        fornavn: fornavn,
+        etternavn: etternavn,
+        mellomnavn: mellomnavn,
+        sammensatt: `${fornavn} ${mellomnavn} ${etternavn}`
+    };
+}
+
+function getFornavn(seededFaker: Faker.FakerStatic, fødselsnummer: string): string {
+    if (Number(fødselsnummer.charAt(8)) % 2 === 0) {
+        return seededFaker.name.firstName(1);
+    } else {
+        return seededFaker.name.firstName(0);
+    }
+}
+
 function getKjonn(): Kodeverk {
     if (vektetSjanse(faker, 0.5)) {
         return {
@@ -162,13 +194,13 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                 kodeRef: 'M',
                 beskrivelse: 'Mann'
             },
-            navn: aremark.navn,
+            navn: parseAremarkNavn(aremark),
             status: {
                 kodeRef: 'A',
                 beskrivelse: 'Aktiv'
             },
             ident: {
-                ident: aremark.fødselsnummer,
+                ident: aremark.fnr,
                 type: {
                     kodeRef: 'F',
                     beskrivelse: 'Fødsesnummer'
@@ -181,36 +213,6 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                     beskrivelse: 'Postadresse'
                 },
                 midlertidigPostadresse: 'Svingen 3 4321 Bergen'
-            },
-            utenlandskID: null
-        },
-        {
-            diskresjonskode: null,
-            bostedsadresse: 'Solgaten 1, Reykjavik',
-            postadresse: null,
-            kjonn: {
-                kodeRef: 'K',
-                beskrivelse: 'Kvinne'
-            },
-            navn: moss.navn,
-            status: {
-                kodeRef: 'A',
-                beskrivelse: 'Aktiv'
-            },
-            ident: {
-                ident: moss.fødselsnummer,
-                type: {
-                    kodeRef: 'F',
-                    beskrivelse: 'Fødsesnummer'
-                }
-            },
-            brukerinfo: {
-                ansvarligEnhet: '1234',
-                gjeldendePostadresseType: {
-                    kodeRef: 'P',
-                    beskrivelse: 'Postadresse'
-                },
-                midlertidigPostadresse: '23rd street New York USA'
             },
             utenlandskID: null
         }

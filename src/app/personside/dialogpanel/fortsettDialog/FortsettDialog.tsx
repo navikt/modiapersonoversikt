@@ -5,8 +5,6 @@ import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
 import VelgDialogType from './VelgDialogType';
 import TekstFelt from '../sendMelding/TekstFelt';
-import { isLoadedPerson } from '../../../../redux/restReducers/personinformasjon';
-import { capitalizeName } from '../../../../utils/string-utils';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Temavelger from '../component/Temavelger';
@@ -23,9 +21,11 @@ import {
     erMeldingstypeSamtalereferat
 } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { temagruppeTekst, TemaPlukkbare } from '../../../../models/temagrupper';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
+import { useHentPersondata } from '../../../../utils/customHooks';
+import { hasData } from '@nutgaard/use-fetch';
+import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
+import { capitalizeName } from '../../../../utils/string-utils';
 
 const SubmitKnapp = styled(Hovedknapp)`
     white-space: normal;
@@ -62,12 +62,12 @@ export const tekstMaksLengde = 5000;
 
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;
-    const personinformasjon = useRestResource(resources => resources.personinformasjon).resource;
+    const personResponse = useHentPersondata();
     const usingSFBackend: boolean = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
-    const temagrupperITraad = props.traad.meldinger.map(it => it.temagruppe);
+    const temagrupperITraad = props.traad.meldinger.map((it) => it.temagruppe);
 
-    const navn = isLoadedPerson(personinformasjon)
-        ? capitalizeName(personinformasjon.data.navn.fornavn || '')
+    const navn = hasData(personResponse)
+        ? capitalizeName(personResponse.data.person.navn.firstOrNull()?.fornavn || '')
         : 'bruker';
 
     const erDelsvar = state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
@@ -75,7 +75,7 @@ function FortsettDialog(props: Props) {
     const girVarselKanIkkeSvare = Meldingstype.SVAR_SKRIFTLIG === state.dialogType;
     const brukerKanSvareValg = state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
     const delMedBrukerTekst = props.erTilknyttetOppgave ? `Del med ${navn} og avslutt oppgave` : `Del med ${navn}`;
-    const erOksosTraad = props.traad.meldinger.some(it => it.temagruppe === 'OKSOS');
+    const erOksosTraad = props.traad.meldinger.some((it) => it.temagruppe === 'OKSOS');
 
     const melding = eldsteMelding(props.traad);
     const erSamtalereferat = erMeldingstypeSamtalereferat(melding.meldingstype);
@@ -86,7 +86,7 @@ function FortsettDialog(props: Props) {
                 tekst={state.tekst}
                 navn={navn}
                 tekstMaksLengde={tekstMaksLengde}
-                updateTekst={tekst => updateState({ tekst: tekst })}
+                updateTekst={(tekst) => updateState({ tekst: tekst })}
                 feilmelding={
                     !FortsettDialogValidator.tekst(state) && state.visFeilmeldinger
                         ? `Du må skrive en tekst på mellom 1 og ${tekstMaksLengde} tegn`
@@ -95,7 +95,7 @@ function FortsettDialog(props: Props) {
             />
             <VelgDialogType
                 formState={state}
-                updateDialogType={dialogType => updateState({ dialogType: dialogType })}
+                updateDialogType={(dialogType) => updateState({ dialogType: dialogType })}
                 erTilknyttetOppgave={props.erTilknyttetOppgave}
                 erSTOOppgave={props.erSTOOppgave}
                 erDelvisBesvart={erDelvisBesvart(props.traad)}
@@ -132,10 +132,10 @@ function FortsettDialog(props: Props) {
                 <UnmountClosed isOpened={erDelsvar}>
                     {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                     <Temavelger
-                        setTema={tema => updateState({ temagruppe: tema })}
+                        setTema={(tema) => updateState({ temagruppe: tema })}
                         valgtTema={state.temagruppe}
                         visFeilmelding={!FortsettDialogValidator.tema(state) && state.visFeilmeldinger}
-                        temavalg={TemaPlukkbare.filter(it => !temagrupperITraad.includes(it))}
+                        temavalg={TemaPlukkbare.filter((it) => !temagrupperITraad.includes(it))}
                     />
                 </UnmountClosed>
             </Margin>

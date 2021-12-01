@@ -16,12 +16,13 @@ import DokumentIkon from '../../../../../svg/DokumentIkon';
 import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import EtikettGraa from '../../../../../components/EtikettGraa';
-import { isLoadedPerson } from '../../../../../redux/restReducers/personinformasjon';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import DokumentLenke from './DokumentLenke';
-import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import { guid } from 'nav-frontend-js-utils';
+import { useHentPersondata } from '../../../../../utils/customHooks';
+import { hasData } from '@nutgaard/use-fetch';
+import { hentNavn } from '../../../visittkort-v2/visittkort-utils';
 
 interface Props {
     journalpost: Journalpost;
@@ -30,7 +31,7 @@ interface Props {
 }
 
 const StyledArticle = styled.article<{ valgt: boolean }>`
-    ${props =>
+    ${(props) =>
         props.valgt &&
         css`
             background-color: rgba(0, 0, 0, 0.09);
@@ -108,7 +109,7 @@ function getDokumentIkon(harTilgang: boolean) {
 function JournalpostLiseElement(props: Props) {
     const vedleggLinkRef = React.createRef<HTMLUListElement>();
     const hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
-    const bruker = useRestResource(resources => resources.personinformasjon);
+    const brukerResponse = useHentPersondata();
     const dyplenker = useInfotabsDyplenker();
     const tittelId = useRef(guid());
 
@@ -130,7 +131,7 @@ function JournalpostLiseElement(props: Props) {
     };
 
     const journalpost = props.journalpost;
-    const brukersNavn = isLoadedPerson(bruker.resource) ? bruker.resource.data.navn.sammensatt : '';
+    const brukersNavn = hasData(brukerResponse) ? hentNavn(brukerResponse.data.person.navn.firstOrNull()) : '';
 
     const saksid = journalpost.tilhørendeFagsaksid ? journalpost.tilhørendeFagsaksid : journalpost.tilhørendeSaksid;
     const saksvisning =

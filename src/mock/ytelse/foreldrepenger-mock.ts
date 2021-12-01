@@ -6,17 +6,17 @@ import {
     ForeldrepengerResponse,
     Foreldrepengerettighet
 } from '../../models/ytelse/foreldrepenger';
-import { getPeriode } from '../person/periodeMock';
 import { fyllRandomListe, vektetSjanse } from '../utils/mock-utils';
 import { getKommendeUtbetaling } from './ytelse-utbetalinger-mock';
 import { KommendeUtbetaling } from '../../models/ytelse/ytelse-utbetalinger';
 import { Arbeidsforhold } from '../../models/ytelse/arbeidsforhold';
-import { aremark } from '../person/aremark';
 import { statiskForeldrepengeMock } from './statiskForeldrepengeMock';
 import { backendDatoformat } from '../../utils/date-utils';
+import { aremark } from '../persondata/aremark';
+import { getPeriode } from '../periodeMock';
 
 export function getMockForeldrepenger(fødselsnummer: string): ForeldrepengerResponse {
-    if (fødselsnummer === aremark.fødselsnummer) {
+    if (fødselsnummer === aremark.fnr) {
         return {
             foreldrepenger: [statiskForeldrepengeMock]
         };
@@ -58,7 +58,7 @@ export function getForeldrepengerettighetMock(fødselsnummer: string, seed?: num
         foreldreAvSammeKjønn: vektetSjanse(faker, 0.5) ? 'Begge er pappaer' : null,
         periode: fyllRandomListe<Foreldrepengerperiode>(() => getForeldrepengerperiodeMock(fødselsnummer), 5),
         slutt: vektetSjanse(faker, 0.5) ? dayjs(faker.date.recent()).format(backendDatoformat) : null,
-        arbeidsforhold: fyllRandomListe<Arbeidsforhold>(() => getArbeidsforholdMock(fødselsnummer), 5),
+        arbeidsforhold: fyllRandomListe<Arbeidsforhold>(() => getArbeidsforholdMock(), 5),
         erArbeidsgiverperiode: vektetSjanse(faker, 0.5) ? faker.random.boolean() : null,
         arbeidskategori: vektetSjanse(faker, 0.5) ? 'Arbeidstaker' : null,
         omsorgsovertakelse: !erFødsel ? dayjs(faker.date.past(2)).format(backendDatoformat) : undefined,
@@ -91,7 +91,7 @@ export function getForeldrepengerperiodeMock(fødselsnummer: string): Foreldrepe
     };
 }
 
-function getArbeidsforholdMock(fødselsnummer: string): Arbeidsforhold {
+function getArbeidsforholdMock(): Arbeidsforhold {
     return {
         arbeidsgiverNavn: faker.company.companyName(),
         arbeidsgiverKontonr: Number(faker.finance.account(11)).toString(),

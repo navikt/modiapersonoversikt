@@ -4,14 +4,14 @@ import theme from '../../../styles/personOversiktTheme';
 import KontrollSporsmalKnapper from './KontrollSporsmalKnapper';
 import SporsmalOgSvar from './SporsmalOgSvarContainer';
 import HandleKontrollSporsmalHotkeys from './HandleKontrollSporsmalHotkeys';
-import { useAppState, useFodselsnummer } from '../../../utils/customHooks';
+import { useAppState, useFodselsnummer, useHentPersondata } from '../../../utils/customHooks';
 import LazySpinner from '../../../components/LazySpinner';
-import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import { useErKontaktsenter } from '../../../utils/enheter-utils';
-import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { kontrollsporsmalHarBlittLukketForBruker } from './cookie-utils';
 import useFeatureToggle from '../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
+import { hasError, isPending } from '@nutgaard/use-fetch';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 const KontrollSporsmalStyling = styled.section`
     background-color: white;
@@ -34,25 +34,12 @@ const KontrollSporsmalStyling = styled.section`
     }
 `;
 
-const SpinnerWrapper = styled(FillCenterAndFadeIn)`
-    background-color: white;
-    height: 7rem;
-    margin-bottom: 0.5rem;
-`;
-
-const Placeholder = (
-    <SpinnerWrapper>
-        <LazySpinner />
-    </SpinnerWrapper>
-);
-
-const placeholderProps = { returnOnPending: Placeholder };
 function Kontrollsporsmal() {
-    const visKontrollSporsmal = useAppState(state => state.kontrollSporsmal.open);
+    const visKontrollSporsmal = useAppState((state) => state.kontrollSporsmal.open);
     const fnr = useFodselsnummer();
-    const personResource = useRestResource(resources => resources.personinformasjon, placeholderProps);
+    const persondata = useHentPersondata();
     const erKontaktsenter = useErKontaktsenter();
-    const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
+    const jobberMedSTO = useAppState((state) => state.session.jobberMedSTO);
     const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
 
     if (
@@ -65,8 +52,10 @@ function Kontrollsporsmal() {
         return null;
     }
 
-    if (!personResource.data) {
-        return personResource.placeholder;
+    if (isPending(persondata)) {
+        return <LazySpinner type={'M'} />;
+    } else if (hasError(persondata)) {
+        return <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
     }
 
     return (

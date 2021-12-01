@@ -7,9 +7,10 @@ import { lukkKontrollSporsmal, roterKontrollSporsmal } from '../../../redux/kont
 import { loggEvent } from '../../../utils/logger/frontendLogger';
 import KnappBase from 'nav-frontend-knapper';
 import { AppState } from '../../../redux/reducers';
-import { getFnrFromPerson } from '../../../redux/restReducers/personinformasjon';
 import { settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie } from './cookie-utils';
 import { KontrollSporsmalState } from '../../../redux/kontrollSporsmal/types';
+import { useHentPersondata } from '../../../utils/customHooks';
+import { hasData } from '@nutgaard/use-fetch';
 
 interface DispatchProps {
     lukkKontrollSporsmal: () => void;
@@ -17,7 +18,6 @@ interface DispatchProps {
 }
 
 interface StateProps {
-    fnr?: string;
     kontrollSporsmal: KontrollSporsmalState;
 }
 
@@ -32,54 +32,48 @@ const KnapperStyling = styled.div`
     }
 `;
 
-class KontrollSporsmalKnapper extends React.PureComponent<Props> {
-    constructor(props: Props) {
-        super(props);
-        this.handleNyttSporsmalClick = this.handleNyttSporsmalClick.bind(this);
-        this.handleLukkClick = this.handleLukkClick.bind(this);
-    }
+function KontrollSporsmalKnapper(props: Props) {
+    const persondata = useHentPersondata();
+    const person = hasData(persondata) ? persondata.data.person : null;
 
-    handleNyttSporsmalClick() {
+    function handleNyttSporsmalClick() {
         loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Nytt' });
-        this.props.nyttSporsmal();
+        props.nyttSporsmal();
     }
 
-    handleLukkClick() {
+    function handleLukkClick() {
         loggEvent('Knapp', 'Kontrollsporsmal', { type: 'Lukk' });
-        this.skjulPaTversAvVinduer();
-        this.props.lukkKontrollSporsmal();
+        skjulPaTversAvVinduer();
+        props.lukkKontrollSporsmal();
     }
 
-    skjulPaTversAvVinduer() {
-        if (!this.props.fnr) {
+    function skjulPaTversAvVinduer() {
+        if (!person) {
             return;
         }
-        settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie(this.props.fnr);
+        settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie(person.fnr);
     }
 
-    visNyttKnapp() {
-        return this.props.kontrollSporsmal.sporsmal && this.props.kontrollSporsmal.sporsmal.length !== 0;
+    function visNyttKnapp() {
+        return props.kontrollSporsmal.sporsmal && props.kontrollSporsmal.sporsmal.isNotEmpty();
     }
 
-    render() {
-        return (
-            <KnapperStyling>
-                <KnappBase aria-label={'Lukk spørsmålspanel'} type="standard" onClick={this.handleLukkClick}>
-                    Lukk
+    return (
+        <KnapperStyling>
+            <KnappBase aria-label={'Lukk spørsmålspanel'} type="standard" onClick={() => handleLukkClick()}>
+                Lukk
+            </KnappBase>
+            {visNyttKnapp() ? (
+                <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={() => handleNyttSporsmalClick()}>
+                    Nytt
                 </KnappBase>
-                {this.visNyttKnapp() ? (
-                    <KnappBase aria-label={'Nytt spørsmål'} type="standard" onClick={this.handleNyttSporsmalClick}>
-                        Nytt
-                    </KnappBase>
-                ) : null}
-            </KnapperStyling>
-        );
-    }
+            ) : null}
+        </KnapperStyling>
+    );
 }
 
 function mapStateToProps(state: AppState): StateProps {
     return {
-        fnr: getFnrFromPerson(state.restResources.personinformasjon),
         kontrollSporsmal: state.kontrollSporsmal
     };
 }

@@ -36,7 +36,7 @@ function Verge(props: { verge: VergeInterface }) {
 }
 
 function Vergesakstype({ vergemal }: Props) {
-    const alleVergesakstyper = vergemal.map(verge => verge.vergesakstype);
+    const alleVergesakstyper = vergemal.map((verge) => verge.vergesakstype);
     const unikeVergessakstyper = Array.from(new Set(alleVergesakstyper)).join(', ');
     return <Normaltekst>Vergesakstyper: {unikeVergessakstyper}</Normaltekst>;
 }

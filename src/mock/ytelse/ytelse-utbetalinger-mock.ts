@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { KommendeUtbetaling, UtbetalingPåVent } from '../../models/ytelse/ytelse-utbetalinger';
-import { getPeriodeRange } from '../person/periodeMock';
 import { backendDatoformat } from '../../utils/date-utils';
+import { getPeriodeRange } from '../periodeMock';
 
 export function getKommendeUtbetaling(faker: Faker.FakerStatic): KommendeUtbetaling {
     return {

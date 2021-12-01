@@ -1,31 +1,26 @@
 import {
-    erDod,
-    Familierelasjon,
-    getBarnUnder21,
-    getNavn,
-    getPartner,
+    DigitalKontaktinformasjon,
+    ForelderBarnRelasjon,
     Person,
-    PersonRespons,
-    SivilstandTyper
-} from '../../../models/person/person';
-import { KRRKontaktinformasjon } from '../../../models/kontaktinformasjon';
-import { formaterDato } from '../../../utils/string-utils';
+    PersonStatus,
+    SivilstandType
+} from '../visittkort-v2/PersondataDomain';
 import { shuffle } from './list-utils';
 import { Svar } from '../../../redux/kontrollSporsmal/types';
-import dayjs from 'dayjs';
 import { formatertKontonummerString } from '../../../utils/FormatertKontonummer';
-import { getFodselsdatoFraFnr } from '../../../utils/fnr-utils';
+import { harDiskresjonskode, hentBarnUnder22, hentNavn, hentPartner } from '../visittkort-v2/visittkort-utils';
+import { formatterDato } from '../../../utils/date-utils';
 
 export interface SporsmalsExtractor<T> {
     sporsmal: string;
     extractSvar: (data: T) => Svar[];
 }
 
-export const personInformasjonSporsmal: SporsmalsExtractor<PersonRespons>[] = [
+export const personInformasjonSporsmal: SporsmalsExtractor<Person>[] = [
     {
         sporsmal: 'Hva er bankkontonummeret ditt?',
-        extractSvar: personinformasjon => {
-            const bankkonto = (personinformasjon as Person).bankkonto;
+        extractSvar: (personinformasjon) => {
+            const bankkonto = personinformasjon.bankkonto;
             return [
                 {
                     tekst: bankkonto ? formatertKontonummerString(bankkonto.kontonummer) : ''
@@ -34,111 +29,78 @@ export const personInformasjonSporsmal: SporsmalsExtractor<PersonRespons>[] = [
         }
     },
     {
-        sporsmal: 'Hva er fødselsdatoen til ditt barn _______',
-        extractSvar: personinformasjon => {
-            const person = personinformasjon as Person;
-            return [hentFodselsdatoBarn(person)];
+        sporsmal: 'Hva er fødselsdatoen til ditt barn?',
+        extractSvar: (personinformasjon) => {
+            return [hentFodselsdatoBarn(personinformasjon)];
         }
     },
     {
         sporsmal: 'Hvilken dato giftet du deg?',
-        extractSvar: personinformasjon => {
-            const person = personinformasjon as Person;
-            return [{ tekst: hentGiftedato(person) }];
+        extractSvar: (personinformasjon) => {
+            return [{ tekst: hentGiftedato(personinformasjon) }];
         }
     }
 ];
 
-export const kontaktInformasjonSporsmal: SporsmalsExtractor<KRRKontaktinformasjon>[] = [
+export const kontaktInformasjonSporsmal: SporsmalsExtractor<DigitalKontaktinformasjon>[] = [
     {
         sporsmal: 'Hva er din e-post adresse?',
-        extractSvar: kontaktinformasjon => {
+        extractSvar: (kontaktinformasjon) => {
             return [hentEpost(kontaktinformasjon)];
         }
     }
 ];
 
 export function hentFodselsdatoBarn(person: Person): Svar {
-    const gyldigeBarn = getBarnUnder21(person.familierelasjoner)
-        .filter(barn => barn.harSammeBosted)
-        .filter(barn => !barn.tilPerson.diskresjonskode)
-        .filter(barn => !erDod(barn.tilPerson.personstatus))
-        .filter(barn => !harDodsDato(barn));
+    const gyldigeBarn = hentBarnUnder22(person.forelderBarnRelasjon)
+        .filter((barn) => !harDiskresjonskode(barn.adressebeskyttelse))
+        .filter((barn) => barn.harSammeAdresse)
+        .filter((barn) => barn.personstatus.firstOrNull()?.kode !== PersonStatus.DOD);
 
-    if (gyldigeBarn.length === 0) {
+    if (gyldigeBarn.isEmpty()) {
         return { tekst: '' };
     }
 
     const barnet = ettTilfeldigBarn(gyldigeBarn);
 
     return {
-        tekst: hentFodselsdato(barnet),
-        beskrivelse: barnet.tilPerson.navn ? getNavn(barnet.tilPerson.navn) : undefined
+        tekst: formatterDato(barnet.fodselsdato.firstOrNull() || ''),
+        beskrivelse: hentNavn(barnet.navn.firstOrNull())
     };
 }
 
-function hentFodselsdato(barn: Familierelasjon): string {
-    if (barn.tilPerson.fødselsnummer) {
-        return utledFodselsdato(barn.tilPerson.fødselsnummer);
-    }
-    return '';
-}
-
-function utledFodselsdato(fnr: string): string {
-    return formaterDato(getFodselsdatoFraFnr(fnr));
-}
-
-function ettTilfeldigBarn(barn: Familierelasjon[]): Familierelasjon {
+function ettTilfeldigBarn(barn: ForelderBarnRelasjon[]): ForelderBarnRelasjon {
     return shuffle(barn)[0];
 }
 
 export function hentGiftedato(person: Person) {
-    if (person.sivilstand.kodeRef !== SivilstandTyper.Gift) {
+    const sivilstand = person.sivilstand.firstOrNull();
+    const partner = hentPartner(person.sivilstand);
+    if (sivilstand?.type.kode !== SivilstandType.GIFT) {
         return '';
     }
 
-    const dato = hentDato(person);
-    if (dato === '') {
+    const dato = formatterDato(sivilstand.gyldigFraOgMed?.toString() || '');
+    if (!dato) {
         return '';
     }
 
-    if (partnerHarDiskresjonskode(person)) {
+    if (
+        partner?.sivilstandRelasjon?.adressebeskyttelse &&
+        harDiskresjonskode(partner?.sivilstandRelasjon?.adressebeskyttelse)
+    ) {
         return '';
     }
-    const partnerNavn = hentPartnerNavn(person);
-    return dato + partnerNavn;
+
+    const partnerNavn = partner?.sivilstandRelasjon?.navn
+        ? hentNavn(partner?.sivilstandRelasjon?.navn.firstOrNull())
+        : '';
+    return `${dato} (${partnerNavn})`;
 }
 
-function hentDato(person: Person): string {
-    const relasjonFraOgMed = dayjs(person.sivilstand.fraOgMed).format('DD.MM.YYYY');
-    const nullDatoFraTPS = '01.01.9999';
-
-    if (relasjonFraOgMed === nullDatoFraTPS) {
-        return '';
-    }
-    return relasjonFraOgMed;
-}
-
-function partnerHarDiskresjonskode(person: Person) {
-    const partner = getPartner(person);
-    return partner && partner.tilPerson.diskresjonskode;
-}
-
-function hentPartnerNavn(person: Person) {
-    const partner = getPartner(person);
-    if (!partner || !partner.tilPerson.navn) {
-        return '';
-    }
-    return ' (' + getNavn(partner.tilPerson.navn) + ')';
-}
-
-export function hentEpost(kontaktinformasjon: KRRKontaktinformasjon) {
+export function hentEpost(kontaktinformasjon: DigitalKontaktinformasjon) {
     if (kontaktinformasjon.reservasjon === 'true') {
         return { tekst: '' };
     }
-    return { tekst: kontaktinformasjon.epost ? kontaktinformasjon.epost.value : '' };
-}
-
-export function harDodsDato(barn: Familierelasjon): Boolean {
-    return !!barn.tilPerson.personstatus.dødsdato;
+    return { tekst: kontaktinformasjon.epostadresse?.value ? kontaktinformasjon.epostadresse.value : '' };
 }

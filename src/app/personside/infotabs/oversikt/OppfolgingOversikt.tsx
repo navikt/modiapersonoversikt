@@ -7,8 +7,8 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import theme from '../../../../styles/personOversiktTheme';
 import { usePaths } from '../../../routes/routing';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import CopyToClipboard from '../../visittkort/header/status/CopyToClipboard';
 import { getOppfolgingEnhet, getVeileder } from '../oppfolging/oppfolging-utils';
+import CopyToClipboard from '../../visittkort-v2/header/status/CopyToClipboard';
 
 interface Props {
     detaljertOppfolging: DetaljertOppfolging;
@@ -18,10 +18,10 @@ const onPendingSpinner = <CenteredLazySpinner padding={theme.margin.layout} />;
 function OppfolgingOversikt() {
     return (
         <RestResourceConsumer<DetaljertOppfolging>
-            getResource={restResources => restResources.oppfolging}
+            getResource={(restResources) => restResources.oppfolging}
             returnOnPending={onPendingSpinner}
         >
-            {data => <OppfolgingPanel detaljertOppfolging={data} />}
+            {(data) => <OppfolgingPanel detaljertOppfolging={data} />}
         </RestResourceConsumer>
     );
 }
@@ -45,9 +45,9 @@ function YtelserForBruker({ detaljertOppfolging }: { detaljertOppfolging: Detalj
         return null;
     }
     const ytelser = detaljertOppfolging.ytelser
-        .filter(ytelse => ytelse.status !== 'Avsluttet')
-        .filter(ytelse => ytelse.status !== 'Lukket')
-        .map(ytelse => ytelse.type + ' : ' + ytelse.status);
+        .filter((ytelse) => ytelse.status !== 'Avsluttet')
+        .filter((ytelse) => ytelse.status !== 'Lukket')
+        .map((ytelse) => ytelse.type + ' : ' + ytelse.status);
     const filtrerteYtelser = ytelser.filter((item, index) => ytelser.indexOf(item) === index).join(', ');
     return (
         <>

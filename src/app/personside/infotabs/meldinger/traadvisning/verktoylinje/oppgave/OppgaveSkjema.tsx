@@ -21,7 +21,7 @@ import { feilmelding } from './validering';
 import { Select, Textarea } from 'nav-frontend-skjema';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
 import AutoComplete from './AutoComplete';
-import { hasData } from '@nutgaard/use-async';
+import { hasData } from '@nutgaard/use-fetch';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 import useForeslatteEnheter from './useForeslåtteEnheter';
 import { useNormalPrioritet } from './oppgave-utils';
@@ -68,7 +68,7 @@ function populerCacheMedTomAnsattliste() {
     cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
 }
 
-const useFormstate = formstateFactory<OppgaveSkjemaForm>(values => {
+const useFormstate = formstateFactory<OppgaveSkjemaForm>((values) => {
     const valgtTema = values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
     const valgtOppgavetype = values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;
     const beskrivelse = values.beskrivelse.length === 0 ? 'Du må skrive beskrivelse' : undefined;
@@ -93,12 +93,12 @@ function OppgaveSkjema(props: OppgaveProps) {
     populerCacheMedTomAnsattliste();
 
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
-    const saksbehandlerIdent = useRestResource(state => state.innloggetSaksbehandler);
+    const saksbehandlersEnhet = useAppState((state) => state.session.valgtEnhetId);
+    const saksbehandlerIdent = useRestResource((state) => state.innloggetSaksbehandler);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const state = useFormstate(initialValues);
 
-    const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
+    const valgtTema = props.gsakTema.find((gsakTema) => gsakTema.kode === state.fields.valgtTema?.input.value);
     useNormalPrioritet(state, valgtTema);
 
     const enhetliste: FetchResult<Array<Enhet>> = useFetch<Array<Enhet>>(
@@ -160,7 +160,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         );
     }
     const settTilSaksbehandlerOppgaveListe = async () => {
-        const enhet = hasData(enhetliste) ? enhetliste.data.find(e => e.enhetId === saksbehandlersEnhet) : undefined;
+        const enhet = hasData(enhetliste) ? enhetliste.data.find((e) => e.enhetId === saksbehandlersEnhet) : undefined;
         const enhetValue = enhet ? `${enhet.enhetId} ${enhet.enhetNavn}` : '';
 
         const ansatt = saksbehandlerIdent.data;
@@ -207,10 +207,10 @@ function OppgaveSkjema(props: OppgaveProps) {
                         </>
                     }
                     suggestions={
-                        hasData(enhetliste) ? enhetliste.data.map(enhet => `${enhet.enhetId} ${enhet.enhetNavn}`) : []
+                        hasData(enhetliste) ? enhetliste.data.map((enhet) => `${enhet.enhetId} ${enhet.enhetNavn}`) : []
                     }
                     topSuggestions={foreslatteEnheter.foreslatteEnheter.map(
-                        enhet => `${enhet.enhetId} ${enhet.enhetNavn}`
+                        (enhet) => `${enhet.enhetId} ${enhet.enhetNavn}`
                     )}
                     topSuggestionsLabel="Foreslåtte enheter"
                     otherSuggestionsLabel="Andre enheter"
@@ -220,7 +220,7 @@ function OppgaveSkjema(props: OppgaveProps) {
                 <AutoComplete
                     label="Velg ansatt"
                     suggestions={ansattliste.ansatte.map(
-                        ansatt => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`
+                        (ansatt) => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`
                     )}
                     input={state.fields.valgtAnsatt.input}
                 />
