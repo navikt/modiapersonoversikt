@@ -3,7 +3,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import HeartIkon from '../../../../../svg/Heart';
 import { Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
-import { hentNavn, hentPartner } from '../../visittkort-utils';
+import { erPartner, hentNavn } from '../../visittkort-utils';
 import Diskresjonskode from './common/Diskresjonskode';
 import { formaterDato } from '../../../../../utils/string-utils';
 
@@ -51,7 +51,6 @@ function Partner(props: { partner: SivilstandInterface }) {
 }
 
 function SivilstandWrapper({ sivilstandListe }: Props) {
-    const partner = hentPartner(sivilstandListe);
     const sivilstand = sivilstandListe.firstOrNull();
 
     if (!sivilstand) {
@@ -60,8 +59,8 @@ function SivilstandWrapper({ sivilstandListe }: Props) {
 
     return (
         <VisittkortElement beskrivelse="Sivilstand" ikon={<HeartIkon />}>
-            {partner ? (
-                <Partner partner={partner} />
+            {erPartner(sivilstand) ? (
+                <Partner partner={sivilstand} />
             ) : (
                 <Normaltekst>
                     <Sivilstand sivilstand={sivilstand} />
