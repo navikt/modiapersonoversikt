@@ -17,11 +17,11 @@ function erDod(person: Person) {
 }
 
 export function hentBarnUnder22(forelderBarnRelasjon: ForelderBarnRelasjon[]) {
-    return hentBarn(forelderBarnRelasjon).filter(barn => hentAlderOrDefault(barn) <= 21);
+    return hentBarn(forelderBarnRelasjon).filter((barn) => hentAlderOrDefault(barn) <= 21);
 }
 
 export function hentBarn(forelderBarnRelasjon: ForelderBarnRelasjon[]) {
-    return forelderBarnRelasjon.filter(relasjon => relasjon.rolle === ForelderBarnRelasjonRolle.BARN);
+    return forelderBarnRelasjon.filter((relasjon) => relasjon.rolle === ForelderBarnRelasjonRolle.BARN);
 }
 
 function hentAlderOrDefault(relasjon: ForelderBarnRelasjon) {
@@ -30,7 +30,7 @@ function hentAlderOrDefault(relasjon: ForelderBarnRelasjon) {
 
 export function hentForeldre(relasjoner: ForelderBarnRelasjon[]) {
     return relasjoner.filter(
-        relasjon =>
+        (relasjon) =>
             relasjon.rolle === ForelderBarnRelasjonRolle.FAR ||
             relasjon.rolle === ForelderBarnRelasjonRolle.MOR ||
             relasjon.rolle === ForelderBarnRelasjonRolle.MEDMOR
@@ -39,16 +39,16 @@ export function hentForeldre(relasjoner: ForelderBarnRelasjon[]) {
 
 export function harDiskresjonskode(adressebeskyttelse: KodeBeskrivelse<AdresseBeskyttelse>[]) {
     return adressebeskyttelse.some(
-        beskyttelse =>
+        (beskyttelse) =>
             beskyttelse.kode === AdresseBeskyttelse.KODE6 ||
             beskyttelse.kode === AdresseBeskyttelse.KODE6_UTLAND ||
             beskyttelse.kode === AdresseBeskyttelse.KODE7
     );
 }
 
-export function hentPartner(sivilstand: Sivilstand[]) {
+export function erPartner(sivilstand: Sivilstand): boolean {
     const aktuelleRelasjoner = [SivilstandType.GIFT, SivilstandType.REGISTRERT_PARTNER];
-    return sivilstand.find(relasjon => aktuelleRelasjoner.includes(relasjon.type.kode));
+    return sivilstand?.type && aktuelleRelasjoner.includes(sivilstand?.type.kode);
 }
 
 export function hentNavn(navn: Navn | null, feilmelding: string = 'Ukjent navn'): string {

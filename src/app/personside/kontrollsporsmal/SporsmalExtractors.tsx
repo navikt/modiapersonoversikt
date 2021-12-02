@@ -2,13 +2,12 @@ import {
     DigitalKontaktinformasjon,
     ForelderBarnRelasjon,
     Person,
-    PersonStatus,
-    SivilstandType
+    PersonStatus
 } from '../visittkort-v2/PersondataDomain';
 import { shuffle } from './list-utils';
 import { Svar } from '../../../redux/kontrollSporsmal/types';
 import { formatertKontonummerString } from '../../../utils/FormatertKontonummer';
-import { harDiskresjonskode, hentBarnUnder22, hentNavn, hentPartner } from '../visittkort-v2/visittkort-utils';
+import { erPartner, harDiskresjonskode, hentBarnUnder22, hentNavn } from '../visittkort-v2/visittkort-utils';
 import { formatterDato } from '../../../utils/date-utils';
 
 export interface SporsmalsExtractor<T> {
@@ -75,8 +74,7 @@ function ettTilfeldigBarn(barn: ForelderBarnRelasjon[]): ForelderBarnRelasjon {
 
 export function hentGiftedato(person: Person) {
     const sivilstand = person.sivilstand.firstOrNull();
-    const partner = hentPartner(person.sivilstand);
-    if (sivilstand?.type.kode !== SivilstandType.GIFT) {
+    if (!sivilstand || !erPartner(sivilstand)) {
         return '';
     }
 
@@ -86,14 +84,14 @@ export function hentGiftedato(person: Person) {
     }
 
     if (
-        partner?.sivilstandRelasjon?.adressebeskyttelse &&
-        harDiskresjonskode(partner?.sivilstandRelasjon?.adressebeskyttelse)
+        sivilstand?.sivilstandRelasjon?.adressebeskyttelse &&
+        harDiskresjonskode(sivilstand?.sivilstandRelasjon?.adressebeskyttelse)
     ) {
         return '';
     }
 
-    const partnerNavn = partner?.sivilstandRelasjon?.navn
-        ? hentNavn(partner?.sivilstandRelasjon?.navn.firstOrNull())
+    const partnerNavn = sivilstand?.sivilstandRelasjon?.navn
+        ? hentNavn(sivilstand?.sivilstandRelasjon?.navn.firstOrNull())
         : '';
     return `${dato} (${partnerNavn})`;
 }
