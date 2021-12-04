@@ -29,7 +29,7 @@ export function kanBesvares(usingSFBackend: boolean, traad?: Traad): boolean {
 
     if (usingSFBackend) {
         if (erMeldingstypeSamtalereferat(melding.meldingstype)) {
-            return true;
+            return false;
         } else {
             /**
              * For meldingskjeder i salesforce er det kun mulig å sende oppfølgingsmeldinger
