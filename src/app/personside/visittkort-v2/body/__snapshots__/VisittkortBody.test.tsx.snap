@@ -964,7 +964,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         >
           BARN1 BARNESEN
            
-          (Død)
         </p>
         <p
           className="typo-normal"
@@ -973,7 +972,9 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         </p>
         <p
           className="typo-normal"
-        />
+        >
+          Bor ikke med bruker
+        </p>
       </div>
     </section>
     <section>

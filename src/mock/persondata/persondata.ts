@@ -459,12 +459,7 @@ const forelderBarnMock: ForelderBarnRelasjon[] = [
             }
         ],
         harSammeAdresse: true,
-        personstatus: [
-            {
-                kode: PersonStatus.BOSATT,
-                beskrivelse: 'BOSATT'
-            }
-        ]
+        dodsdato: []
     },
     {
         ident: '12345678911',
@@ -491,20 +486,15 @@ const forelderBarnMock: ForelderBarnRelasjon[] = [
             }
         ],
         harSammeAdresse: false,
-        personstatus: [
-            {
-                kode: PersonStatus.DOD,
-                beskrivelse: 'DØD'
-            }
-        ]
+        dodsdato: []
     },
     {
         ident: '',
         rolle: ForelderBarnRelasjonRolle.FAR,
         navn: [],
         fodselsdato: [],
-        alder: null,
-        kjonn: [],
+        alder: null
+,        kjonn: [],
         adressebeskyttelse: [
             {
                 kode: AdresseBeskyttelse.KODE6,
@@ -512,12 +502,7 @@ const forelderBarnMock: ForelderBarnRelasjon[] = [
             }
         ],
         harSammeAdresse: false,
-        personstatus: [
-            {
-                kode: PersonStatus.BOSATT,
-                beskrivelse: 'BOSATT'
-            }
-        ]
+        dodsdato: []
     },
     {
         ident: '12345678913',
@@ -544,12 +529,7 @@ const forelderBarnMock: ForelderBarnRelasjon[] = [
             }
         ],
         harSammeAdresse: true,
-        personstatus: [
-            {
-                kode: PersonStatus.UTFLYTTET,
-                beskrivelse: 'UTFLYTTET'
-            }
-        ]
+        dodsdato: []
     },
     {
         ident: '',
@@ -565,11 +545,6 @@ const forelderBarnMock: ForelderBarnRelasjon[] = [
             }
         ],
         harSammeAdresse: false,
-        personstatus: [
-            {
-                kode: PersonStatus.BOSATT,
-                beskrivelse: 'BOSATT'
-            }
-        ]
+        dodsdato: []
     }
 ];

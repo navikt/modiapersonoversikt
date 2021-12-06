@@ -204,7 +204,7 @@ export interface ForelderBarnRelasjon {
     alder: number | null;
     adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
     harSammeAdresse: boolean;
-    personstatus: Array<KodeBeskrivelse<PersonStatus>>;
+    dodsdato: Array<LocalDate>;
 }
 
 export enum Kjonn {

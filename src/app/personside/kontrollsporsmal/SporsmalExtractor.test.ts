@@ -6,7 +6,6 @@ import {
     KodeBeskrivelse,
     LocalDate,
     Person,
-    PersonStatus,
     SivilstandType
 } from '../visittkort-v2/PersondataDomain';
 import { hentEpost, hentFodselsdatoBarn, hentGiftedato } from './SporsmalExtractors';
@@ -223,11 +222,6 @@ function lagMockBarnDiskresjonskode() {
 
 function LagMockBarnDød() {
     let barn = hentBarnAremark();
-    barn[0].personstatus = [
-        {
-            kode: PersonStatus.DOD,
-            beskrivelse: 'DØD'
-        }
-    ];
+    barn[0].dodsdato = ['2020-01-01' as LocalDate];
     return barn;
 }
