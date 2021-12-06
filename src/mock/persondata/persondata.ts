@@ -486,7 +486,7 @@ const forelderBarnMock: ForelderBarnRelasjon[] = [
             }
         ],
         harSammeAdresse: false,
-        dodsdato: []
+        dodsdato: ['2014-01-01' as LocalDate]
     },
     {
         ident: '',

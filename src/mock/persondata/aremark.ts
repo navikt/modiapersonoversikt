@@ -63,7 +63,7 @@ export function hentBarnAremark(): ForelderBarnRelasjon[] {
             ],
             adressebeskyttelse: [],
             harSammeAdresse: false,
-            dodsdato: []
+            dodsdato: [ '2010-01-01' as LocalDate]
         }
     ];
 }
