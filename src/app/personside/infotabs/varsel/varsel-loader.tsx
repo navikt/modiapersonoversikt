@@ -1,6 +1,13 @@
 import * as React from 'react';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import { DittNavBeskjed, DittNavOppgave, isDittNavEvent, UnifiedVarsel, Varsel } from '../../../../models/varsel';
+import {
+    DittNavBeskjed,
+    DittNavInnboks,
+    DittNavOppgave,
+    isDittNavEvent,
+    UnifiedVarsel,
+    Varsel
+} from '../../../../models/varsel';
 import { useGjeldendeBruker } from '../../../../redux/gjeldendeBruker/types';
 import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../api/config';
@@ -45,18 +52,23 @@ function VarslerLoader<P>(props: VarselLoaderProps<P>) {
         '/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all',
         options
     );
+    const innboks = useFetch<DittNavInnboks[]>(
+        '/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/innboks/all',
+        options
+    );
     const varsler = useFetch<Varsel[]>(`${apiBaseUri}/varsler/${fnr}`);
 
     const ressurser = [
         { navn: 'beskjeder', ressurs: beskjeder },
         { navn: 'oppgaver', ressurs: oppgaver },
+        { navn: 'innboks', ressurs: innboks },
         { navn: 'varsler', ressurs: varsler }
     ];
 
-    const venterPaRessurser: boolean = ressurser.some(config => isPending(config.ressurs));
+    const venterPaRessurser: boolean = ressurser.some((config) => isPending(config.ressurs));
     const ressurserMedFeil: Array<string> = ressurser
-        .filter(config => hasError(config.ressurs))
-        .map(config => config.navn);
+        .filter((config) => hasError(config.ressurs))
+        .map((config) => config.navn);
 
     if (venterPaRessurser) {
         return <LazySpinner type="M" />;
@@ -74,10 +86,11 @@ function VarslerLoader<P>(props: VarselLoaderProps<P>) {
     const varselElementer = [
         ...(hasData(varsler) ? varsler.data : []),
         ...(hasData(beskjeder) ? beskjeder.data : []),
-        ...(hasData(oppgaver) ? oppgaver.data : [])
+        ...(hasData(oppgaver) ? oppgaver.data : []),
+        ...(hasData(innboks) ? innboks.data : [])
     ].sort(datoSynkende(datoExtractor));
     const { component, ...extraProps } = props;
-    const pProps = (extraProps as unknown) as P;
+    const pProps = extraProps as unknown as P;
 
     return React.createElement(component, { ...pProps, varsler: varselElementer, feilmelding });
 }

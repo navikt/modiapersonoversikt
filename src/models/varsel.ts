@@ -16,6 +16,7 @@ export interface DittNavBeskjed extends DittNavEvent {
 }
 
 export interface DittNavOppgave extends DittNavEvent {}
+export interface DittNavInnboks extends DittNavEvent {}
 
 export interface Varsel {
     varselType: string;
