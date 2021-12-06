@@ -3,15 +3,15 @@ import {
     AdresseBeskyttelse,
     ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
-    KodeBeskrivelse,
+    KodeBeskrivelse, LocalDate,
     Navn,
     Person,
     Sivilstand,
     SivilstandType
 } from './PersondataDomain';
 
-function erDod(person: Person) {
-    return !person.dodsdato.isEmpty();
+export function erDod(dodsdato: Array<LocalDate>) {
+    return dodsdato.isNotEmpty();
 }
 
 export function hentBarnUnder22(forelderBarnRelasjon: ForelderBarnRelasjon[]) {
@@ -57,21 +57,17 @@ export function hentNavn(navn: Navn | null, feilmelding: string = 'Ukjent navn')
 }
 
 export function hentAlderEllerDod(person: Person): string | undefined {
-    if (erDod(person)) {
+    if (erDod(person.dodsdato)) {
         return 'Død';
     }
     return person.alder?.toString();
 }
 
 export function hentAlderEllerDodRelasjon(relasjon: ForelderBarnRelasjon): string | undefined {
-    if (relasjonErDod(relasjon)) {
+    if (erDod(relasjon.dodsdato)) {
         return 'Død';
     }
     return relasjon.alder?.toString();
-}
-
-export function relasjonErDod(relasjon: ForelderBarnRelasjon): boolean {
-    return !relasjon.dodsdato.isEmpty();
 }
 
 export function hentPeriodeTekst(gyldighetstidspunkt: string | null, opphorstidspunkt?: string | null) {

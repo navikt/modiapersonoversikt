@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { ReactComponent as AdvarselIkonSvg } from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll.svg';
 import { ForelderBarnRelasjon } from '../../PersondataDomain';
-import { hentBarn, hentBarnUnder22 } from '../../visittkort-utils';
+import { erDod, hentBarn, hentBarnUnder22 } from '../../visittkort-utils';
 
 interface Props {
     forelderBarnRelasjon: ForelderBarnRelasjon[];
@@ -20,7 +20,7 @@ const AdvarselIkon = styled(AdvarselIkonSvg)`
 
 function lagAdvarselOmDodtBarn(barn: ForelderBarnRelasjon[]): React.ReactNode {
     const dode = barn.some(barn => {
-        if (!barn.dodsdato.isEmpty()) {
+        if (erDod(barn.dodsdato)) {
             return true;
         }
         return false;
