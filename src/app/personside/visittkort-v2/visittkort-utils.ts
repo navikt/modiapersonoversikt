@@ -6,14 +6,12 @@ import {
     KodeBeskrivelse,
     Navn,
     Person,
-    PersonStatus,
     Sivilstand,
     SivilstandType
 } from './PersondataDomain';
 
 function erDod(person: Person) {
-    const personstatus = person.personstatus.firstOrNull();
-    return !person.dodsdato.isEmpty() || (personstatus && personstatus.kode === PersonStatus.DOD);
+    return !person.dodsdato.isEmpty();
 }
 
 export function hentBarnUnder22(forelderBarnRelasjon: ForelderBarnRelasjon[]) {
@@ -73,8 +71,7 @@ export function hentAlderEllerDodRelasjon(relasjon: ForelderBarnRelasjon): strin
 }
 
 export function relasjonErDod(relasjon: ForelderBarnRelasjon): boolean {
-    const personstatus = relasjon.personstatus.firstOrNull();
-    return !!personstatus && personstatus.kode === PersonStatus.DOD;
+    return !relasjon.dodsdato.isEmpty();
 }
 
 export function hentPeriodeTekst(gyldighetstidspunkt: string | null, opphorstidspunkt?: string | null) {
