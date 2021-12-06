@@ -13,7 +13,7 @@ import KassertDokumentBilde from './img/kassert.jpg';
 import VisittkortV2 from './img/visittkortV2.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export function lagOppdateringsloggConfig(skalVisesBakFT: boolean): EnOppdateringslogg[] {
+export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
     return [
         {
             id: 1,
@@ -167,7 +167,7 @@ export function lagOppdateringsloggConfig(skalVisesBakFT: boolean): EnOppdaterin
             id: 9,
             tittel: 'Endret kilde for informasjon i visittkortet',
             dato: new Date('2021-11-17 10:00'),
-            aktiv: skalVisesBakFT,
+            aktiv: true,
             ingress: (
                 <Normaltekst>
                     Visittkortet i Modia Personoversikt har frem til nå basert seg på NAVs eget personregister.
