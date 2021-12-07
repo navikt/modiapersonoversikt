@@ -78,7 +78,7 @@ export function setupFetchCache() {
         statiskDittnavEventVarselMock
     );
     cache.putResolved(
-        createCacheKey(`${apiBaseUri}/person/${aremark.fnr}/aktorid`),
+        createCacheKey(`${apiBaseUri}/v2/person/${aremark.fnr}/aktorid`),
         `000${aremark.fnr}000` as unknown as object
     );
 }
