@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { ReactComponent as AdvarselIkonSvg } from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll.svg';
-import { ForelderBarnRelasjon, PersonStatus } from '../../PersondataDomain';
-import { hentBarn, hentBarnUnder22 } from '../../visittkort-utils';
+import { ForelderBarnRelasjon } from '../../PersondataDomain';
+import { erDod, hentBarn, hentBarnUnder22 } from '../../visittkort-utils';
 
 interface Props {
     forelderBarnRelasjon: ForelderBarnRelasjon[];
@@ -19,12 +19,7 @@ const AdvarselIkon = styled(AdvarselIkonSvg)`
 `;
 
 function lagAdvarselOmDodtBarn(barn: ForelderBarnRelasjon[]): React.ReactNode {
-    const dode = barn.some(barn => {
-        if (barn.personstatus.isEmpty()) {
-            return false;
-        }
-        return barn.personstatus[0].kode === PersonStatus.DOD;
-    });
+    const dode = barn.some(barn => erDod(barn.dodsdato));
     if (dode) {
         return <AdvarselIkon title="Ett eller flere av barna har status som død" />;
     }

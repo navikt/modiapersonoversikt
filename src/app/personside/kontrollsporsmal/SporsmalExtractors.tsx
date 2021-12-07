@@ -1,8 +1,7 @@
 import {
     DigitalKontaktinformasjon,
     ForelderBarnRelasjon,
-    Person,
-    PersonStatus
+    Person
 } from '../visittkort-v2/PersondataDomain';
 import { shuffle } from './list-utils';
 import { Svar } from '../../../redux/kontrollSporsmal/types';
@@ -54,7 +53,7 @@ export function hentFodselsdatoBarn(person: Person): Svar {
     const gyldigeBarn = hentBarnUnder22(person.forelderBarnRelasjon)
         .filter((barn) => !harDiskresjonskode(barn.adressebeskyttelse))
         .filter((barn) => barn.harSammeAdresse)
-        .filter((barn) => barn.personstatus.firstOrNull()?.kode !== PersonStatus.DOD);
+        .filter((barn) => barn.dodsdato.isEmpty());
 
     if (gyldigeBarn.isEmpty()) {
         return { tekst: '' };

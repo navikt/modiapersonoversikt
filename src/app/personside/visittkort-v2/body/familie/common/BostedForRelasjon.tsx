@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { ForelderBarnRelasjon } from '../../../PersondataDomain';
-import { relasjonErDod } from '../../../visittkort-utils';
+import { erDod } from '../../../visittkort-utils';
 
 interface Props {
     relasjon: ForelderBarnRelasjon;
 }
 
 function BostedForRelasjon({ relasjon }: Props) {
-    if (relasjonErDod(relasjon)) {
+    if (erDod(relasjon.dodsdato)) {
         return null;
     } else if (relasjon.harSammeAdresse) {
         return <>Bor med bruker</>;
