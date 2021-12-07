@@ -8,8 +8,6 @@ import useSisteLestOppdateringLogg from './useSisteLestOppdateringLogg';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
 import { lagOppdateringsloggConfig } from './config/config';
 import './oppdateringsloggKnapp.less';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 export const DecoratorButtonId = 'oppdateringslogg';
 export interface EnOppdateringslogg {
@@ -34,7 +32,7 @@ const StyledSystemtittel = styled(Systemtittel)`
 `;
 
 function harUleste(sistLesteId: number, oppdateringslogg: EnOppdateringslogg[]): boolean {
-    return oppdateringslogg.some(innslag => innslag.id > sistLesteId);
+    return oppdateringslogg.some((innslag) => innslag.id > sistLesteId);
 }
 
 function useHoldUlestIndikatorOppdatert(
@@ -59,7 +57,7 @@ function useApneOppdateringsLoggModal(
     settSistLesteId: (id: number) => void
 ) {
     const listener = useCallback(() => {
-        const nyesteId: number | undefined = oppdateringslogg.map(innslag => innslag.id).sort((a, b) => b - a)[0];
+        const nyesteId: number | undefined = oppdateringslogg.map((innslag) => innslag.id).sort((a, b) => b - a)[0];
 
         settSistLesteId(nyesteId ?? -1);
         settApen(true);
@@ -69,10 +67,7 @@ function useApneOppdateringsLoggModal(
 }
 
 function OppdateringsloggContainer() {
-    const brukerVisittkortV2 = useFeatureToggle(FeatureToggles.BrukV2Visittkort).isOn ?? false;
-    const oppdateringslogg: EnOppdateringslogg[] = lagOppdateringsloggConfig(brukerVisittkortV2).filter(
-        innslag => innslag.aktiv
-    );
+    const oppdateringslogg: EnOppdateringslogg[] = lagOppdateringsloggConfig().filter((innslag) => innslag.aktiv);
 
     const [apen, settApen] = useState(false);
     const [sistLesteId, settSistLesteId] = useSisteLestOppdateringLogg();
