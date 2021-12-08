@@ -108,7 +108,7 @@ function setupPersondataMock(mock: FetchMock) {
 
 function setupAktorIdMock(mock: FetchMock) {
     mock.get(
-        apiBaseUri + '/person/:fodselsnummer/aktorid',
+        apiBaseUri + '/v2/person/:fodselsnummer/aktorid',
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
