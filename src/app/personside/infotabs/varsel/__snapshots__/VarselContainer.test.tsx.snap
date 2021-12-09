@@ -537,6 +537,76 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
         </article>
       </div>
     </li>
+    <li>
+      <div
+        className="panel c3"
+      >
+        <article
+          aria-labelledby="Helt tilfeldig ID"
+        >
+          <div
+            className="c4"
+            onClick={[Function]}
+          >
+            <p
+              className="typo-normal"
+            >
+              01.03.2018
+            </p>
+            <h4
+              className="typo-element"
+              id="Helt tilfeldig ID"
+            >
+              Tekst her
+            </h4>
+            <ul
+              aria-label="Kommunikasjonskanaler"
+              className="c5"
+            >
+              <li
+                className="typo-normal"
+              >
+                NOTIFIKASJON 
+                
+              </li>
+            </ul>
+            <button
+              aria-expanded={false}
+              aria-label="Vis mer informasjon om notifikasjon"
+              className="c6"
+              onClick={[Function]}
+              title="Vis mer informasjon om notifikasjon"
+            >
+              <span
+                className="nav-frontend-chevron chevronboks chevron--ned"
+              />
+            </button>
+          </div>
+          <dl
+            className="c9"
+          >
+            <dt>
+              Produsert av:
+            </dt>
+            <dd>
+              
+            </dd>
+            <dt>
+              Tekst:
+            </dt>
+            <dd>
+              Tekst her
+            </dd>
+            <dt>
+              Link:
+            </dt>
+            <dd>
+              
+            </dd>
+          </dl>
+        </article>
+      </div>
+    </li>
   </ol>
 </div>
 `;

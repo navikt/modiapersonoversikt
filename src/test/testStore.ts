@@ -78,6 +78,10 @@ export function setupFetchCache() {
         statiskDittnavEventVarselMock
     );
     cache.putResolved(
+        createCacheKey(`/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/innboks/all`, fnrheader(aremark.fnr)),
+        statiskDittnavEventVarselMock
+    );
+    cache.putResolved(
         createCacheKey(`${apiBaseUri}/v2/person/${aremark.fnr}/aktorid`),
         `000${aremark.fnr}000` as unknown as object
     );
