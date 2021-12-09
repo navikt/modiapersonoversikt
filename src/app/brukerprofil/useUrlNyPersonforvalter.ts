@@ -5,10 +5,10 @@ import { useFodselsnummer } from '../../utils/customHooks';
 import { apiBaseUri, includeCredentials } from '../../api/config';
 
 function useUrlNyPersonforvalter() {
-    const baseUrlReosurce = useRestResource(resources => resources.baseUrl);
+    const baseUrlReosurce = useRestResource((resources) => resources.baseUrl);
     const fnr = useFodselsnummer();
     const aktorIdResponse: FetchResult<string | null> = useFetch(
-        `${apiBaseUri}/person/${fnr}/aktorid`,
+        `${apiBaseUri}/v2/person/${fnr}/aktorid`,
         includeCredentials
     );
 

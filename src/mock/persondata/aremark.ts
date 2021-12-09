@@ -41,12 +41,7 @@ export function hentBarnAremark(): ForelderBarnRelasjon[] {
                 }
             ],
             harSammeAdresse: false,
-            personstatus: [
-                {
-                    kode: PersonStatus.BOSATT,
-                    beskrivelse: 'BOSATT'
-                }
-            ]
+            dodsdato: []
         },
         {
             ident: '12345678911',
@@ -68,12 +63,7 @@ export function hentBarnAremark(): ForelderBarnRelasjon[] {
             ],
             adressebeskyttelse: [],
             harSammeAdresse: false,
-            personstatus: [
-                {
-                    kode: PersonStatus.DOD,
-                    beskrivelse: 'DØD'
-                }
-            ]
+            dodsdato: [ '2010-01-01' as LocalDate]
         }
     ];
 }
