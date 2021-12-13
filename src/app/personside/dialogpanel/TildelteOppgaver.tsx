@@ -20,6 +20,12 @@ import Panel from 'nav-frontend-paneler';
 
 const Wrapper = styled.div`
     position: relative;
+    ${(props: { standalone: boolean }) =>
+        props.standalone &&
+        `
+    padding: ${theme.margin.layout};
+    border-bottom: ${theme.border.skilleSvak};
+    `}
 `;
 
 const StyledPanel = styled(Panel)`
@@ -55,7 +61,7 @@ const JustifyRight = styled.div`
 `;
 
 function OppgaverDropdown(props: { lukk: () => void }) {
-    const traaderResource = useRestResource(resources => resources.traader);
+    const traaderResource = useRestResource((resources) => resources.traader);
     const dyplenker = useInfotabsDyplenker();
     const tildelteOppgaver = useTildelteOppgaver();
     const oppgaverPaaBruker = tildelteOppgaver.paaBruker;
@@ -67,8 +73,8 @@ function OppgaverDropdown(props: { lukk: () => void }) {
 
     const traader = traaderResource.data;
 
-    const oppgaver = oppgaverPaaBruker.map(oppgave => {
-        const traad = traader.find(traad => traad.traadId === oppgave.traadId);
+    const oppgaver = oppgaverPaaBruker.map((oppgave) => {
+        const traad = traader.find((traad) => traad.traadId === oppgave.traadId);
         if (!traad) {
             const error = new Error(`Kunne ikke finne tråd tilknyttet oppgave: ${oppgave.oppgaveId}`);
             loggError(error);
@@ -98,7 +104,7 @@ function OppgaverDropdown(props: { lukk: () => void }) {
     );
 }
 
-function TildelteOppgaver() {
+function TildelteOppgaver(props: { standalone?: boolean }) {
     const ref = createRef<HTMLDivElement>();
     const [visOppgaver, setVisOppgaver] = useState(false);
     useClickOutside(ref, () => setVisOppgaver(false));
@@ -107,8 +113,12 @@ function TildelteOppgaver() {
     const oppgaverPaaBruker = tildelteOppgaver.paaBruker;
 
     const antallOppgaver = oppgaverPaaBruker.length;
+    if (props.standalone && antallOppgaver === 0) {
+        return null;
+    }
+
     return (
-        <Wrapper ref={ref}>
+        <Wrapper ref={ref} standalone={props.standalone || false}>
             {antallOppgaver >= 2 && <AlertStripeInfo>Flere oppgaver på bruker</AlertStripeInfo>}
             <JustifyRight>
                 {antallOppgaver > 0 && (
