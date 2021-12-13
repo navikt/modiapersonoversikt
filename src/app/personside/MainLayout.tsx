@@ -16,6 +16,7 @@ import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMelding
 import { guid } from 'nav-frontend-js-utils';
 import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
+import TildelteOppgaver from './dialogpanel/TildelteOppgaver';
 
 const Scrollbar = styled.div`
     overflow-y: auto;
@@ -56,6 +57,7 @@ function MainLayout() {
                     <Scrollbar>
                         <BrukerHarUbesvarteMeldinger />
                         {!usingSFBackend && <HentOppgaveKnapp />}
+                        {usingSFBackend && <TildelteOppgaver standalone />}
                         <DialogPanel />
                     </Scrollbar>
                     <EkspanderDilaogpanelKnapp />
