@@ -364,7 +364,7 @@ exports[`viser send ny melding 1`] = `
                             mvhks + mellomrom: Signatur fra KS
                           </li>
                           <li>
-                            hei + mellomrom: Hei bruker
+                            hei + mellomrom: Hei, bruker
                           </li>
                           <li>
                             vint + mellomrom: Videreformidle Internt (vinten for engelsk)

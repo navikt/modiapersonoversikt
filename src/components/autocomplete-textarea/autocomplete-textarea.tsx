@@ -45,8 +45,8 @@ function useRules(): Regler {
     const navKontorSignaturReferanse = 'b4b67323-f57d-47a2-ac19-7ba4b62fe156';
     const signaturReferanse = erKontaktsenter ? nksSignaturReferanse : navKontorSignaturReferanse;
     return [
-        { type: 'internal', regex: /^hei,?$/i, replacement: () => 'Hei [bruker.fornavn],\n' },
-        { type: 'internal', regex: /^hi,?$/i, replacement: () => 'Hi [bruker.fornavn], ' },
+        { type: 'internal', regex: /^hei,?$/i, replacement: () => 'Hei, [bruker.fornavn]\n' },
+        { type: 'internal', regex: /^hi,?$/i, replacement: () => 'Hi, [bruker.fornavn]\n' },
         { type: 'internal', regex: /^foet$/i, replacement: () => '[bruker.navn] ' },
 
         { type: 'external', regex: /^mvh$/i, externalId: signaturReferanse },
@@ -206,7 +206,7 @@ function AutoTekstTips() {
                     <li>foet + mellomrom: Brukers fulle navn</li>
                     <li>mvh + mellomrom: Signatur</li>
                     <li>mvhks + mellomrom: Signatur fra KS</li>
-                    <li>hei + mellomrom: Hei bruker</li>
+                    <li>hei + mellomrom: Hei, bruker</li>
                     <li>vint + mellomrom: Videreformidle Internt (vinten for engelsk)</li>
                     <li>AAP + mellomrom: arbeidsavklaringspenger</li>
                     <li>sbt + mellomrom: saksbehandlingstid</li>
