@@ -11,6 +11,7 @@ import ForeldreansvarBilde from './img/foreldreansvar1.png';
 import MarkeringDodeBarnBilde from './img/markering-dode-barn.png';
 import KassertDokumentBilde from './img/kassert.jpg';
 import VisittkortV2 from './img/visittkortV2.png';
+import AutofullforBarnetrygd from './img/autofullfor-barnetrygd.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
@@ -180,6 +181,22 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
                 </Normaltekst>
             ),
             src: VisittkortV2
+        },
+        {
+            id: 10,
+            tittel: 'Forkortelser for barnetrygd i autofullfør',
+            dato: new Date('2021-12-17 09:00'),
+            aktiv: true,
+            ingress: (
+                <Normaltekst>Vi har lagt til to forkortelser for barnetrygd når man skal sende en melding.</Normaltekst>
+            ),
+            beskrivelse: (
+                <Normaltekst>
+                    Forkortelsene er BAUT og BAOR for hhv. utvidet barnetrygd og ordinær barnetrygd. Trykk på
+                    spørsmålstegnet i meldingsboksen for mer informasjon.
+                </Normaltekst>
+            ),
+            src: AutofullforBarnetrygd
         }
     ];
 }

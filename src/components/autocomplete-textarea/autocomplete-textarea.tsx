@@ -180,6 +180,16 @@ function useRules(): Regler {
             type: 'internal',
             regex: /^info$/i,
             replacement: () => 'informasjon '
+        },
+        {
+            type: 'internal',
+            regex: /^baut$/i,
+            replacement: () => 'utvidet barnetrygd '
+        },
+        {
+            type: 'internal',
+            regex: /^baor$/i,
+            replacement: () => 'ordinær barnetrygd '
         }
     ];
 }
@@ -230,6 +240,8 @@ function AutoTekstTips() {
                     <li>sp + mellomrom: sykepenger</li>
                     <li>sosp + mellomrom: søknad om sykepenger</li>
                     <li>info + mellomrom: informasjon</li>
+                    <li>baut + mellomrom: utvidet barnetrygd</li>
+                    <li>baor + mellomrom: ordinær barnetrygd</li>
                 </ul>
             </Hjelpetekst>
         </HjelpetekstStyle>

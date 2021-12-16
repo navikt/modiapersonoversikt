@@ -435,6 +435,12 @@ exports[`viser send ny melding 1`] = `
                           <li>
                             info + mellomrom: informasjon
                           </li>
+                          <li>
+                            baut + mellomrom: utvidet barnetrygd
+                          </li>
+                          <li>
+                            baor + mellomrom: ordinær barnetrygd
+                          </li>
                         </ul>
                       </div>
                     </div>
