@@ -2,9 +2,6 @@ import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
 import tilgangskontrollReducer from './tilgangskontroll';
 import baseUrlReducer from './baseurls';
 import veilederRollerReducer from './veilederRoller';
-import retningsnummereReducer from './kodeverk/retningsnummereReducer';
-import valutaKodeverkReducer from './kodeverk/valutaKodeverk';
-import landKodeverkReducer from './kodeverk/landKodeverk';
 import utbetalingerReducer from './utbetalinger';
 import sykepengerReducer from './ytelser/sykepenger';
 import pleiepengerReducer from './ytelser/pleiepenger';
@@ -16,7 +13,6 @@ import varselReducer from './varsel';
 import meldingerReducer from './meldinger/meldinger';
 import oppgaveGsakTemaReducer from './meldinger/gsakTema';
 import { VeilederRoller } from '../../models/veilederRoller';
-import { KodeverkResponse } from '../../models/kodeverk';
 import { BaseUrlsResponse } from '../../models/baseurls';
 import { RestResource } from '../../rest/utils/restResource';
 import { UtbetalingerResponse } from '../../models/utbetalinger';
@@ -43,9 +39,6 @@ export interface RestEndepunkter {
     tildelteOppgaver: RestResource<Oppgave[]>;
     baseUrl: RestResource<BaseUrlsResponse>;
     veilederRoller: RestResource<VeilederRoller>;
-    retningsnummer: RestResource<KodeverkResponse>;
-    valuta: RestResource<KodeverkResponse>;
-    land: RestResource<KodeverkResponse>;
     utbetalinger: RestResource<UtbetalingerResponse>;
     utbetalingerOversikt: RestResource<UtbetalingerResponse>;
     sykepenger: RestResource<SykepengerResponse>;
@@ -67,9 +60,6 @@ export default combineResettableReducers<RestEndepunkter>(
         tildelteOppgaver: tildelteOppgaver,
         baseUrl: baseUrlReducer,
         veilederRoller: veilederRollerReducer,
-        retningsnummer: retningsnummereReducer,
-        valuta: valutaKodeverkReducer,
-        land: landKodeverkReducer,
         utbetalinger: utbetalingerReducer,
         utbetalingerOversikt: utbetalingerOversikt,
         sykepenger: sykepengerReducer,
@@ -82,5 +72,5 @@ export default combineResettableReducers<RestEndepunkter>(
         traader: meldingerReducer,
         oppgaveGsakTema: oppgaveGsakTemaReducer
     },
-    ['innloggetSaksbehandler', 'veilederRoller', 'baseUrl', 'valuta', 'land', 'featureToggles', 'saksbehandlersEnheter']
+    ['innloggetSaksbehandler', 'veilederRoller', 'baseUrl', 'featureToggles', 'saksbehandlersEnheter']
 );

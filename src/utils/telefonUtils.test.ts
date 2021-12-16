@@ -1,10 +1,4 @@
-import {
-    formaterMobiltelefonnummer,
-    formaterTelefonnummer,
-    gyldigTelefonnummer,
-    sorterRetningsnummerMedNorgeFørst
-} from './telefon-utils';
-import { mockRetningsnummereKodeverk } from '../mock/kodeverk/retningsnummer-mock';
+import { formaterMobiltelefonnummer, formaterTelefonnummer, gyldigTelefonnummer } from './telefon-utils';
 
 it('returnerer formatert mobiltelefon', () => {
     const telefonnummer = '90000000';
@@ -36,15 +30,6 @@ it('returnerer formatert hustelefon basert på første siffer', () => {
     const formatertTelefonnummer = formaterTelefonnummer(telefonnummer);
 
     expect(formatertTelefonnummer).toEqual('20 00 00 00');
-});
-
-test('sorterer retningsnummer med norge først', () => {
-    var kodeverkRepsonse = mockRetningsnummereKodeverk();
-
-    const sorterteRetningsnummer = sorterRetningsnummerMedNorgeFørst(kodeverkRepsonse);
-
-    expect(sorterteRetningsnummer.kodeverk[0].kodeRef).toBe('+47');
-    expect(sorterteRetningsnummer.kodeverk[1].kodeRef).toBe('+54');
 });
 
 test('validerer et gyldig telefonnummer', () => {
