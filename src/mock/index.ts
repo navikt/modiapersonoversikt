@@ -12,9 +12,6 @@ import {
 } from './utils/fetch-utils';
 import { mockBaseUrls } from './baseUrls-mock';
 import { getMockVeilederRoller } from './veilderRoller-mock';
-import { mockRetningsnummereKodeverk } from './kodeverk/retningsnummer-mock';
-import { mockLandKodeverk } from './kodeverk/land-kodeverk-mock';
-import { mockValutaKodeverk } from './kodeverk/valuta-kodeverk-mock';
 import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
 import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
@@ -327,27 +324,6 @@ function setupVeilederRollerMock(mock: FetchMock) {
     );
 }
 
-function setupRetningsnummerKodeverkMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/kodeverk/Retningsnumre',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => mockRetningsnummereKodeverk())
-    );
-}
-
-function setupLandKodeverk(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/kodeverk/Landkoder',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => mockLandKodeverk())
-    );
-}
-
-function setupValutaKodeverk(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/kodeverk/Valutaer',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => mockValutaKodeverk())
-    );
-}
-
 function setupJournalforingMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/',
@@ -433,10 +409,7 @@ setupLeggTilbakeOppgaveMock(mock);
 setupBaseUrlsMock(mock);
 setupFeatureToggleMock(mock);
 setupVeilederRollerMock(mock);
-setupRetningsnummerKodeverkMock(mock);
 setupWsControlAndMock(mock);
-setupLandKodeverk(mock);
-setupValutaKodeverk(mock);
 setupOppfolgingMock(mock);
 setupGsakTemaMock(mock);
 setupOppgaveEnhetMock(mock);
