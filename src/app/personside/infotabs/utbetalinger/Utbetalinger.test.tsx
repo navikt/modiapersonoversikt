@@ -7,8 +7,8 @@ const filterState: UtbetalingFilterState = {
     periode: {
         radioValg: PeriodeValg.SISTE_30_DAGER,
         egendefinertPeriode: {
-            fra: new Date(0),
-            til: new Date(0)
+            fra: new Date(0).toISOString(),
+            til: new Date(0).toISOString()
         }
     },
     utbetaltTil: ['Bruker'],
