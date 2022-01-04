@@ -10,7 +10,7 @@ interface Props {
 }
 
 function Familie({ person }: Props) {
-    const erUnder22 = !!person.alder && person.alder <= 21;
+    const erUnder22 = person.alder !== null && person.alder <= 21;
 
     return (
         <VisittkortGruppe tittel={'Familie'}>
