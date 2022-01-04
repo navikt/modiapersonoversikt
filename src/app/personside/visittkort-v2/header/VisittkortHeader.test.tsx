@@ -53,8 +53,10 @@ describe('Tester visittkort-header sin funksjonalitet', () => {
                 {
                     type: 'TFUS',
                     beskrivelse: 'Telefonisk utestengelse',
-                    gyldigFraOgMed: '2020-01-01' as LocalDate,
-                    gyldigTilOgMed: '2023-01-01' as LocalDate
+                    gyldighetsPeriode: {
+                        gyldigFraOgMed: '2020-01-01' as LocalDate,
+                        gyldigTilOgMed: '2023-01-01' as LocalDate
+                    }
                 }
             ]
         };
