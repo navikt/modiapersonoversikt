@@ -19,6 +19,8 @@ import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { FeilmeldingOppsummering } from '../../components/FeilmeldingOppsummering';
 import { Values } from '@nutgaard/use-formstate';
 import { Kjonn } from '../personside/visittkort-v2/PersondataDomain';
+import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -74,6 +76,7 @@ const initialValues: PersonSokFormState = {
 };
 
 function PersonsokSkjema(props: Props) {
+    const usePdlPersonsok = useFeatureToggle(FeatureToggles.BrukPdlPersonsok)?.isOn ?? false;
     const formstate = useFormstate(initialValues);
     const hjelpetekstID = useRef(guid());
 
@@ -85,7 +88,8 @@ function PersonsokSkjema(props: Props) {
         }
 
         const request: PersonsokRequest = lagRequest(values);
-        return fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok`, postConfig(request))
+        const url = usePdlPersonsok ? `${apiBaseUri}/personsok/v2` : `${apiBaseUri}/personsok`;
+        return fetchToJson<PersonsokResponse[]>(url, postConfig(request))
             .then((response) => {
                 props.setPosting(false);
                 props.setResponse(response);
