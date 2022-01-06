@@ -197,6 +197,20 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
                 </Normaltekst>
             ),
             src: AutofullforBarnetrygd
+        },
+        {
+            id: 11,
+            tittel: 'Forkortelse for arbeidstaker og arbeidsgiver registeret',
+            dato: new Date('2022-01-06 12:00'),
+            aktiv: true,
+            ingress: <Normaltekst>Vi har lagt til en ny forkortelse for AA registeret</Normaltekst>,
+            beskrivelse: (
+                <Normaltekst>
+                    Forkortelsen er AAREG, som gir tekten "arbeidstaker og arbeidsgiver registeret". Trykk på
+                    spørsmålstegnet i meldingsboksen for mer informasjon.
+                </Normaltekst>
+            ),
+            src: AutofullforBarnetrygd
         }
     ];
 }
