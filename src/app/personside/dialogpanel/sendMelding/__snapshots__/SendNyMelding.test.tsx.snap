@@ -441,6 +441,9 @@ exports[`viser send ny melding 1`] = `
                           <li>
                             baor + mellomrom: ordinær barnetrygd
                           </li>
+                          <li>
+                            aareg + mellomrom: arbeidstaker og arbeidsgiver registeret
+                          </li>
                         </ul>
                       </div>
                     </div>
