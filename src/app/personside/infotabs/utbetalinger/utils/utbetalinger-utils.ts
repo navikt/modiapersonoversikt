@@ -32,28 +32,17 @@ export function trekkBelopAscComparator(a: Trekk, b: Trekk) {
 
 export function getUtbetalingerForSiste30DagerDatoer() {
     return {
-        fra: dayjs()
-            .subtract(30, 'day')
-            .startOf('day')
-            .toDate(),
-        til: dayjs()
-            .add(100, 'day')
-            .endOf('day')
-            .toDate()
+        fra: dayjs().subtract(30, 'day').startOf('day').toDate(),
+        til: dayjs().add(100, 'day').endOf('day').toDate()
     };
 }
 
 export function getFraDateFromFilter(filter: UtbetalingFilterState): Date {
     switch (filter.periode.radioValg) {
         case PeriodeValg.INNEVERENDE_AR:
-            return dayjs()
-                .startOf('year')
-                .toDate();
+            return dayjs().startOf('year').toDate();
         case PeriodeValg.I_FJOR:
-            return dayjs()
-                .subtract(1, 'year')
-                .startOf('year')
-                .toDate();
+            return dayjs().subtract(1, 'year').startOf('year').toDate();
         case PeriodeValg.EGENDEFINERT:
             return dayjs(filter.periode.egendefinertPeriode.fra, ISO_DATE_STRING_FORMAT).toDate();
         case PeriodeValg.SISTE_30_DAGER:
@@ -65,10 +54,7 @@ export function getFraDateFromFilter(filter: UtbetalingFilterState): Date {
 export function getTilDateFromFilter(filter: UtbetalingFilterState): Date {
     switch (filter.periode.radioValg) {
         case PeriodeValg.I_FJOR:
-            return dayjs()
-                .subtract(1, 'year')
-                .endOf('year')
-                .toDate();
+            return dayjs().subtract(1, 'year').endOf('year').toDate();
         case PeriodeValg.EGENDEFINERT:
             return dayjs(filter.periode.egendefinertPeriode.til, ISO_DATE_STRING_FORMAT).toDate();
         case PeriodeValg.INNEVERENDE_AR:
@@ -129,7 +115,7 @@ export function summertBeløpStringFraUtbetalinger(
             }, 0);
 
         return formaterNOK(sum);
-    } catch (e) {
+    } catch (e: unknown) {
         return 'Manglende data';
     }
 }
@@ -146,7 +132,7 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
             return [...acc, ...utbetaling.ytelser];
         }, []);
         return ytelser;
-    } catch (e) {
+    } catch (e: any) {
         console.error('Feil med data i utbetalinger, kunne ikke finne ytelser for alle utbetalinger', e.message);
         return [];
     }
