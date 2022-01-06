@@ -190,6 +190,11 @@ function useRules(): Regler {
             type: 'internal',
             regex: /^baor$/i,
             replacement: () => 'ordinær barnetrygd '
+        },
+        {
+            type: 'internal',
+            regex: /^aareg$/i,
+            replacement: () => 'arbeidstaker og arbeidsgiver registeret '
         }
     ];
 }
@@ -242,6 +247,7 @@ function AutoTekstTips() {
                     <li>info + mellomrom: informasjon</li>
                     <li>baut + mellomrom: utvidet barnetrygd</li>
                     <li>baor + mellomrom: ordinær barnetrygd</li>
+                    <li>aareg + mellomrom: arbeidstaker og arbeidsgiver registeret</li>
                 </ul>
             </Hjelpetekst>
         </HjelpetekstStyle>
