@@ -6,7 +6,7 @@ import { Melding, Traad } from '../../../models/meldinger/meldinger';
 import { loggError } from '../../../utils/logger/frontendLogger';
 
 export function useSendtMelding(fritekst: string) {
-    const traaderResource = useRestResource(resources => resources.traader);
+    const traaderResource = useRestResource((resources) => resources.traader);
     const [pending, setPending] = useState(true);
     const [melding, setMelding] = useState<Melding | undefined>();
     const [traad, setTraad] = useState<Traad | undefined>();
@@ -29,7 +29,7 @@ export function useSendtMelding(fritekst: string) {
                     setMelding(sisteMelding);
                     setTraad(sisteTraad);
                 }
-            } catch (e) {
+            } catch (e: any) {
                 loggError(e, 'Kunne ikke finne sendt melding', { traader: JSON.stringify(traaderResource.data) });
                 throw e;
             }

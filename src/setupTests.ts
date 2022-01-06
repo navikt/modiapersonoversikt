@@ -1,5 +1,5 @@
 import { configure } from 'enzyme';
-import EnzymeReactAdapter from 'enzyme-adapter-react-16';
+import EnzymeReactAdapter17 from '@wojtekmaj/enzyme-adapter-react-17';
 import * as EnzymeContainer from './test/enzyme-container';
 import MockDate from 'mockdate';
 import dayjs from 'dayjs';
@@ -9,7 +9,7 @@ import 'jest-styled-components';
 import './extra-polyfills';
 dayjs.locale('nb');
 
-configure({ adapter: new EnzymeReactAdapter() });
+configure({ adapter: new EnzymeReactAdapter17() });
 
 const globalAny: any = global;
 globalAny._mockEnabled = 'true';
@@ -26,7 +26,7 @@ window['frontendlogger'] = { info: () => null, warn: () => null, error: () => nu
 jest.mock('react-collapse', () => {
     return {
         // @ts-ignore
-        UnmountClosed: props => props.children
+        UnmountClosed: (props) => props.children
     };
 });
 
