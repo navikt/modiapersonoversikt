@@ -22,7 +22,7 @@ async function getErrorMessage(response: Response): Promise<string> {
             return content.message;
         }
         return response.statusText;
-    } catch (e) {
+    } catch (e: unknown) {
         return response.statusText;
     }
 }
@@ -39,7 +39,7 @@ export async function fetchToJson<T>(input: RequestInfo, request?: RequestInit):
         }
         const json = await response.json();
         return { status: response.status, data: json };
-    } catch (e) {
-        return { status: 500, message: e };
+    } catch (e: any) {
+        return { status: 500, message: e.toString() };
     }
 }

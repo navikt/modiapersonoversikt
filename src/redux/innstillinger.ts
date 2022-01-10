@@ -92,7 +92,7 @@ export function fetchInnstillinger(): ThunkAction<void, AppState, void, Actions>
                 const data = await response.json();
                 dispatch({ type: Typekeys.HENT_INNSTILLINGER_OK, data });
             }
-        } catch (error) {
+        } catch (error: any) {
             dispatch({ type: Typekeys.HENT_INNSTILLINGER_ERROR, data: error });
         }
     };
@@ -101,7 +101,7 @@ export function fetchInnstillinger(): ThunkAction<void, AppState, void, Actions>
 export function oppdaterInnstillinger(
     innstillinger: Innstillinger
 ): ThunkAction<Promise<SaksbehandlerInnstillinger>, AppState, null, Actions> {
-    return async dispatch => {
+    return async (dispatch) => {
         try {
             const response = await fetch(
                 '/modiapersonoversikt-innstillinger/api/innstillinger',
@@ -110,7 +110,7 @@ export function oppdaterInnstillinger(
             const data = await response.json();
             dispatch({ type: Typekeys.HENT_INNSTILLINGER_OK, data });
             return data;
-        } catch (error) {
+        } catch (error: any) {
             dispatch({ type: Typekeys.HENT_INNSTILLINGER_ERROR, data: { error } });
             return Promise.reject(error);
         }

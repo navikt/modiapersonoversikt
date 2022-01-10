@@ -18,8 +18,8 @@ const DatovelgerStyle = styled.div<{ top: number; left: number }>`
 
     .nav-datovelger__kalenderPortal {
         position: fixed;
-        top: ${props => props.top}px;
-        left: ${props => props.left}px;
+        top: ${(props) => props.top}px;
+        left: ${(props) => props.left}px;
         transform: translateX(-85%);
     }
 `;
@@ -36,7 +36,7 @@ const Flex = styled.div`
     display: flex;
 `;
 
-function beregnDropdownCoordinate(clientRect: ClientRect) {
+function beregnDropdownCoordinate(clientRect: DOMRect) {
     return {
         top: clientRect.top + clientRect.height,
         left: clientRect.left + clientRect.width
@@ -49,7 +49,7 @@ interface Props extends Pick<FieldState, 'input'> {
 }
 
 function transformProps(props: Props): OriginalProps {
-    const onChange: OriginalOnChange = value => {
+    const onChange: OriginalOnChange = (value) => {
         const target = { name: props.input.name, value } as HTMLInputElement;
         const event = { target, currentTarget: target } as ChangeEvent<HTMLInputElement>;
         props.input.onChange(event);
