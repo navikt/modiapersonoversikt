@@ -200,13 +200,13 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
         },
         {
             id: 11,
-            tittel: 'Forkortelse for arbeidstaker og arbeidsgiver registeret',
+            tittel: 'Forkortelse for arbeidsgiver- og arbeidstakerregisteret',
             dato: new Date('2022-01-06 12:00'),
             aktiv: true,
-            ingress: <Normaltekst>Vi har lagt til en ny forkortelse for AA registeret</Normaltekst>,
+            ingress: <Normaltekst>Vi har lagt til en ny forkortelse for Aa-registeret.</Normaltekst>,
             beskrivelse: (
                 <Normaltekst>
-                    Forkortelsen er AAREG, som gir tekten "arbeidstaker og arbeidsgiver registeret". Trykk på
+                    Forkortelsen er AAREG, som gir teksten "arbeidsgiver- og arbeidstakerregisteret". Trykk på
                     spørsmålstegnet i meldingsboksen for mer informasjon.
                 </Normaltekst>
             ),
