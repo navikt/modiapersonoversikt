@@ -453,7 +453,7 @@ exports[`viser dialogpanel 1`] = `
                               baor + mellomrom: ordinær barnetrygd
                             </li>
                             <li>
-                              aareg + mellomrom: arbeidstaker og arbeidsgiver registeret
+                              aareg + mellomrom: arbeidsgiver- og arbeidstakerregisteret
                             </li>
                           </ul>
                         </div>
