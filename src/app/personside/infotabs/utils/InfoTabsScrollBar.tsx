@@ -4,6 +4,7 @@ import React, { ReactNode, useRef } from 'react';
 import useKeepScroll from '../../../../utils/hooks/useKeepScroll';
 
 export const scrollBarContainerStyle = (minWidth: string) => css`
+    overflow: hidden;
     @media (min-width: ${minWidth}) {
         max-height: 100%;
         max-width: 100%;
