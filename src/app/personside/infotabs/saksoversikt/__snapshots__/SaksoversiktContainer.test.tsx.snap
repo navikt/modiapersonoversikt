@@ -384,6 +384,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
 }
 
 .c0 {
+  overflow: hidden;
   position: relative;
 }
 

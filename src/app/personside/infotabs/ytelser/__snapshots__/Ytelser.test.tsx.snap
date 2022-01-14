@@ -270,6 +270,10 @@ exports[`Om Ytelser matcher snapshot 1`] = `
   margin-bottom: 0.5rem;
 }
 
+.c1 {
+  overflow: hidden;
+}
+
 .c0 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
