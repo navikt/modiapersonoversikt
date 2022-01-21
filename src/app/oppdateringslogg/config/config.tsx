@@ -12,9 +12,10 @@ import MarkeringDodeBarnBilde from './img/markering-dode-barn.png';
 import KassertDokumentBilde from './img/kassert.jpg';
 import VisittkortV2 from './img/visittkortV2.png';
 import AutofullforBarnetrygd from './img/autofullfor-barnetrygd.png';
+import AvansertsokPdlsok from './img/avansertsok-pdlsok.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
+export function lagOppdateringsloggConfig(usePdlPersonsok: boolean): EnOppdateringslogg[] {
     return [
         {
             id: 1,
@@ -211,6 +212,24 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
                 </Normaltekst>
             ),
             src: AutofullforBarnetrygd
+        },
+        {
+            id: 12,
+            tittel: 'Endringer på avansert søk',
+            dato: new Date('2022-01-21 12:00'),
+            aktiv: usePdlPersonsok,
+            ingress: (
+                <Normaltekst>
+                    Hovedkilden til søket er endret, og dette kan medføre noen forskjeller på resultatet.
+                </Normaltekst>
+            ),
+            beskrivelse: (
+                <Normaltekst>
+                    Det vil ikke lengre være mulig å kombinere søk på kontonummer med andre felter. Det åpnes opp for å
+                    kombinere søk på utenlandsk id med andre felter.
+                </Normaltekst>
+            ),
+            src: AvansertsokPdlsok
         }
     ];
 }
