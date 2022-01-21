@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
-import { PersonSokFormState, lagRequest, useFormstate } from './personsok-utils';
+import { PersonSokFormState, lagRequest, validatorPersonsok, PersonSokFormProps } from './personsok-utils';
 import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
@@ -17,7 +17,7 @@ import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { FeilmeldingOppsummering } from '../../components/FeilmeldingOppsummering';
-import { Values } from '@nutgaard/use-formstate';
+import formstateFactory, { Values } from '@nutgaard/use-formstate';
 import { Kjonn } from '../personside/visittkort-v2/PersondataDomain';
 import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
@@ -75,9 +75,11 @@ const initialValues: PersonSokFormState = {
     _minimumskrav: ''
 };
 
+const useFormstate = formstateFactory<PersonSokFormState, PersonSokFormProps>(validatorPersonsok);
+
 function PersonsokSkjema(props: Props) {
     const usePdlPersonsok = useFeatureToggle(FeatureToggles.BrukPdlPersonsok)?.isOn ?? false;
-    const formstate = useFormstate(initialValues);
+    const formstate = useFormstate(initialValues, { usePdlPersonsok });
     const hjelpetekstID = useRef(guid());
 
     function submitHandler(values: Values<PersonSokFormState>): Promise<any> {

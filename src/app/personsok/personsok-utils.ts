@@ -3,7 +3,6 @@ import { Mapped, Values } from '@nutgaard/use-formstate';
 import { removeWhitespaceAndDot, validerKontonummer } from './kontonummer/kontonummerUtils';
 import { erTall } from '../../utils/string-utils';
 import dayjs from 'dayjs';
-import formstateFactory from '@nutgaard/use-formstate';
 
 export type PersonSokFormState = {
     fornavn: string;
@@ -22,8 +21,9 @@ export type PersonSokFormState = {
     kjonn: string;
     _minimumskrav: string;
 };
+export type PersonSokFormProps = { usePdlPersonsok: boolean };
 
-export function validatorPersonsok(values: PersonSokFormState) {
+export function validatorPersonsok(values: PersonSokFormState, props: PersonSokFormProps) {
     let fornavn = undefined;
     if (!values.fornavn && values.etternavn) {
         fornavn = 'Fornavn må være utfylt hvis etternavn er satt';
@@ -49,21 +49,31 @@ export function validatorPersonsok(values: PersonSokFormState) {
     const postnummer = !erTall(values.postnummer) ? 'Postnummer må være tall' : undefined;
 
     let kontonummer = undefined;
-    if (values.kontonummer && !validerKontonummer(values.kontonummer)) {
-        kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
-    }
+    let utenlandskID = undefined;
+    const andreFelterErSatt = [
+        values.fornavn,
+        values.etternavn,
+        values.gatenavn,
+        values.husnummer,
+        values.husbokstav,
+        values.postnummer,
+        values.kontonummer
+    ].some((it) => it.length > 0);
 
-    let utenlandskID =
-        values.utenlandskID &&
-        (values.fornavn ||
-            values.etternavn ||
-            values.gatenavn ||
-            values.husnummer ||
-            values.husbokstav ||
-            values.postnummer ||
-            values.kontonummer)
-            ? 'Kan ikke kombinere søk på utenlandsk ID med andre felt'
-            : undefined;
+    if (props.usePdlPersonsok) {
+        if (values.kontonummer && !validerKontonummer(values.kontonummer)) {
+            kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
+        } else if (values.kontonummer && andreFelterErSatt) {
+            kontonummer = 'Kan ikke kombinere søk på kontonummer med andre felt';
+        }
+    } else {
+        if (values.kontonummer && !validerKontonummer(values.kontonummer)) {
+            kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
+        }
+        if (values.utenlandskID && andreFelterErSatt) {
+            utenlandskID = 'Kan ikke kombinere søk på utenlandsk ID med andre felt';
+        }
+    }
 
     const kommunenummer =
         !erTall(values.kommunenummer) && values.kommunenummer.length !== 4
@@ -113,8 +123,6 @@ export function validatorPersonsok(values: PersonSokFormState) {
         _minimumskrav
     };
 }
-
-export const useFormstate = formstateFactory<PersonSokFormState>(validatorPersonsok);
 
 export function stringToNumber(input: string): number | undefined {
     if (input.length === 0) {
