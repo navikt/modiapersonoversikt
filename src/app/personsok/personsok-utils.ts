@@ -50,23 +50,20 @@ export function validatorPersonsok(values: PersonSokFormState, props: PersonSokF
 
     let kontonummer = undefined;
     let utenlandskID = undefined;
-    const andreFelterErSatt = [
-        values.fornavn,
-        values.etternavn,
-        values.gatenavn,
-        values.husnummer,
-        values.husbokstav,
-        values.postnummer,
-        values.kontonummer
-    ].some((it) => it.length > 0);
+    const navnFelter = [values.fornavn, values.etternavn];
+    const adresseFelter = [values.gatenavn, values.husnummer, values.husbokstav, values.postnummer];
 
     if (props.usePdlPersonsok) {
+        const andreFelter = navnFelter.concat(adresseFelter).concat([values.utenlandskID]);
+        const andreFelterErSatt = andreFelter.some((it) => it.length > 0);
         if (values.kontonummer && !validerKontonummer(values.kontonummer)) {
             kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
         } else if (values.kontonummer && andreFelterErSatt) {
             kontonummer = 'Kan ikke kombinere søk på kontonummer med andre felt';
         }
     } else {
+        const andreFelter = navnFelter.concat(adresseFelter).concat([values.kontonummer]);
+        const andreFelterErSatt = andreFelter.some((it) => it.length > 0);
         if (values.kontonummer && !validerKontonummer(values.kontonummer)) {
             kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
         }

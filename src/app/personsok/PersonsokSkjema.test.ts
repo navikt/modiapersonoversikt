@@ -105,6 +105,13 @@ test('Valider kontonummer må være eneste felt om pdl-søk er aktivert', () => 
     });
 });
 
+test('Valider søk på kontonummer passerer validering', () => {
+    const validator = validatorPersonsok({ ...initialValues, kontonummer: '12345678911' }, { usePdlPersonsok: true });
+    expect(validator).toEqual({
+        ...ingenFeil
+    });
+});
+
 test('Valider krav om gatenavn ved husnummer', () => {
     const validator = validatorPersonsok(
         { ...initialValues, husnummer: '10', fornavn: 'Aremark' },
