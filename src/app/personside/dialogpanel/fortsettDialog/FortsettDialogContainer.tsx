@@ -50,6 +50,7 @@ export type FortsettDialogType =
 
 interface Props {
     traad: Traad;
+    defaultOppgaveDestinasjon: OppgavelisteValg;
 }
 
 const StyledArticle = styled.article`
@@ -73,27 +74,31 @@ export function finnPlukketOppgaveForTraad(
 }
 
 function FortsettDialogContainer(props: Props) {
-    const initialState = {
-        tekst: '',
-        dialogType: Meldingstype.SVAR_SKRIFTLIG as FortsettDialogType,
-        tema: undefined,
-        visFeilmeldinger: false,
-        sak: undefined,
-        oppgaveListe: OppgavelisteValg.MinListe
-    };
+    const initialState = useMemo(
+        () => ({
+            tekst: '',
+            dialogType: Meldingstype.SVAR_SKRIFTLIG as FortsettDialogType,
+            tema: undefined,
+            visFeilmeldinger: false,
+            sak: undefined,
+            oppgaveListe: props.defaultOppgaveDestinasjon
+        }),
+        [props.defaultOppgaveDestinasjon]
+    );
 
     const fnr = useFodselsnummer();
     const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const valgtEnhet = useAppState(selectValgtEnhet);
     const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
-    const draftLoader = useCallback((draft: Draft) => setState(current => ({ ...current, tekst: draft.content })), [
-        setState
-    ]);
+    const draftLoader = useCallback(
+        (draft: Draft) => setState((current) => ({ ...current, tekst: draft.content })),
+        [setState]
+    );
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
     const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
-    const reloadMeldinger = useRestResource(resources => resources.traader).actions.reload;
-    const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
+    const reloadMeldinger = useRestResource((resources) => resources.traader).actions.reload;
+    const tildelteOppgaverResource = useRestResource((resources) => resources.tildelteOppgaver);
     const tildelteOppgaver = tildelteOppgaverResource.resource;
     const reloadTildelteOppgaver = tildelteOppgaverResource.actions.reload;
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
@@ -102,7 +107,7 @@ function FortsettDialogContainer(props: Props) {
     const dispatch = useDispatch();
     const updateState = useCallback(
         (change: Partial<FortsettDialogState>) =>
-            setState(currentState => {
+            setState((currentState) => {
                 if (change.tekst !== undefined) {
                     updateDraft(change.tekst);
                 }
@@ -239,7 +244,7 @@ function FortsettDialogContainer(props: Props) {
         }
     };
 
-    const meldingMedTemagruppe = props.traad.meldinger.find(melding => melding.temagruppe);
+    const meldingMedTemagruppe = props.traad.meldinger.find((melding) => melding.temagruppe);
     const temagruppe = meldingMedTemagruppe ? meldingMedTemagruppe.temagruppe : undefined;
 
     return (
