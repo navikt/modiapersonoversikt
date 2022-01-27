@@ -49,7 +49,7 @@ const AutomatiskeTagsLabel = (
 );
 const OppgaveDestinasjonLabel = (
     <Label>
-        <b>Oppgave destinasjon ved svar</b>
+        <b>Destinasjon for oppgave ved svar</b>
         <Hjelpetekst id="OppgaveDestinasjonLabel" type={PopoverOrientering.UnderVenstre}>
             Setter standardvalget for hvor oppgaver skal sendes når bruker svarer. Det vil fortsatt være mulig å
             overstyre dette ved utsending.
