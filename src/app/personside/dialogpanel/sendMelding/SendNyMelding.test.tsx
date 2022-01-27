@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../test/Testprovider';
 import SendNyMeldingContainer from './SendNyMeldingContainer';
+import { OppgavelisteValg } from './SendNyMelding';
 
 beforeEach(() => {
     Date.prototype.getTime = jest.fn(() => 0);
@@ -11,7 +12,7 @@ beforeEach(() => {
 test('viser send ny melding', () => {
     const dialogPanelBody = renderer.create(
         <TestProvider>
-            <SendNyMeldingContainer />
+            <SendNyMeldingContainer defaultOppgaveDestinasjon={OppgavelisteValg.MinListe} />
         </TestProvider>
     );
 

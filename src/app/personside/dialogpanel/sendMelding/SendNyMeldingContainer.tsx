@@ -25,30 +25,37 @@ import { feilMeldinger } from './FeilMeldinger';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { selectValgtEnhet } from '../../../../redux/session/session';
 
-const initialState: SendNyMeldingState = {
-    tekst: '',
-    dialogType: Meldingstype.SAMTALEREFERAT_TELEFON,
-    tema: undefined,
-    sak: undefined,
-    oppgaveListe: OppgavelisteValg.MinListe,
-    visFeilmeldinger: false
-};
+interface Props {
+    defaultOppgaveDestinasjon: OppgavelisteValg;
+}
 
-function SendNyMeldingContainer() {
+function SendNyMeldingContainer(props: Props) {
+    const initialState: SendNyMeldingState = useMemo(
+        () => ({
+            tekst: '',
+            dialogType: Meldingstype.SAMTALEREFERAT_TELEFON,
+            tema: undefined,
+            sak: undefined,
+            oppgaveListe: props.defaultOppgaveDestinasjon,
+            visFeilmeldinger: false
+        }),
+        [props.defaultOppgaveDestinasjon]
+    );
     const dispatch = useDispatch();
     const fnr = useFodselsnummer();
-    const reloadMeldinger = useRestResource(resources => resources.traader).actions.reload;
+    const reloadMeldinger = useRestResource((resources) => resources.traader).actions.reload;
 
     const valgtEnhet = useAppState(selectValgtEnhet);
     const [state, setState] = useState<SendNyMeldingState>(initialState);
-    const draftLoader = useCallback((draft: Draft) => setState(current => ({ ...current, tekst: draft.content })), [
-        setState
-    ]);
+    const draftLoader = useCallback(
+        (draft: Draft) => setState((current) => ({ ...current, tekst: draft.content })),
+        [setState]
+    );
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
     const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
     const updateState = useCallback(
         (change: Partial<SendNyMeldingState>) =>
-            setState(currentState => {
+            setState((currentState) => {
                 if (change.tekst !== undefined) {
                     updateDraft(change.tekst);
                 }
@@ -120,7 +127,7 @@ function SendNyMeldingContainer() {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: request });
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error('Send-Referat feilet', error);
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR, fritekst: request.fritekst });
                 });
@@ -138,7 +145,7 @@ function SendNyMeldingContainer() {
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: request.fritekst });
                 })
-                .catch(error => {
+                .catch((error) => {
                     callback();
                     console.error('Send-Sporsmal feilet', error);
                     setSendNyMeldingStatus({
@@ -162,7 +169,7 @@ function SendNyMeldingContainer() {
                         fritekst: request.fritekst
                     });
                 })
-                .catch(error => {
+                .catch((error) => {
                     callback();
                     setSendNyMeldingStatus({
                         type: SendNyMeldingStatus.ERROR,

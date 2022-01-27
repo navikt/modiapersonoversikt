@@ -17,6 +17,7 @@ import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUt
 import { SaksbehandlerRoller } from '../app/personside/dialogpanel/RollerUtils';
 import { apiBaseUri } from '../api/config';
 import { aremark } from '../mock/persondata/aremark';
+import { setInnstillingerData } from '../redux/innstillinger';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -25,6 +26,12 @@ export function getTestStore(): Store<AppState> {
 
     const dispatch = testStore.dispatch as Dispatch<any>;
     dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
+    dispatch(
+        setInnstillingerData({
+            sistLagret: new Date().toISOString(),
+            innstillinger: {}
+        })
+    );
     dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
     dispatch(restResources.baseUrl.actions.setData(mockBaseUrls()));
     dispatch(restResources.veilederRoller.actions.setData({ roller: [SaksbehandlerRoller.HentOppgave] }));
@@ -43,7 +50,6 @@ export function getTestStore(): Store<AppState> {
     dispatch(restResources.pleiepenger.actions.setData({ pleiepenger: [pleiepengerTestData] }));
     dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));
     dispatch(restResources.sykepenger.actions.setData({ sykepenger: [statiskSykepengerMock] }));
-
     setupFetchCache();
 
     return testStore;

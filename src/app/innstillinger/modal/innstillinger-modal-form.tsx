@@ -31,10 +31,12 @@ const Label = styled.span`
 `;
 
 const defaultInnstillinger: Innstillinger = {
-    defaultTagsStandardtekster: 'na'
+    defaultTagsStandardtekster: 'na',
+    defaultOppgaveDestinasjon: 'MinListe'
 };
 const useFormState = formstateFactory<Innstillinger>({
-    defaultTagsStandardtekster: () => undefined
+    defaultTagsStandardtekster: () => undefined,
+    defaultOppgaveDestinasjon: () => undefined
 });
 
 const AutomatiskeTagsLabel = (
@@ -42,6 +44,15 @@ const AutomatiskeTagsLabel = (
         <b>Automatiske tags</b>
         <Hjelpetekst id="AutomatiskeTagsLabel" type={PopoverOrientering.UnderVenstre}>
             Vil legge til henholdsvis #sto og #samref automatisk når man bruker standardtekstene-søket (alt + c).
+        </Hjelpetekst>
+    </Label>
+);
+const OppgaveDestinasjonLabel = (
+    <Label>
+        <b>Destinasjon for oppgave ved svar</b>
+        <Hjelpetekst id="OppgaveDestinasjonLabel" type={PopoverOrientering.UnderVenstre}>
+            Setter standardvalget for hvor oppgaver skal sendes når bruker svarer. Det vil fortsatt være mulig å
+            overstyre dette ved utsending.
         </Hjelpetekst>
     </Label>
 );
@@ -64,7 +75,7 @@ function InnstillingerModalForm(props: Props) {
     const onSubmitHandler = (nyeInnstillinger: Innstillinger): Promise<any> => {
         return props.actions
             .oppdaterInnstillinger({ ...innstillinger.data.innstillinger, ...nyeInnstillinger })
-            .then(oppdaterteInnstillinger => {
+            .then((oppdaterteInnstillinger) => {
                 state.reinitialize(oppdaterteInnstillinger.innstillinger);
                 settInnsendingFeilet(false);
             })
@@ -79,10 +90,22 @@ function InnstillingerModalForm(props: Props) {
                 <Undertekst className="blokk-xxs">
                     Sist oppdatert: {new Date(props.innstillinger.data.sistLagret).toLocaleString('nb')}
                 </Undertekst>
-                <Select label={AutomatiskeTagsLabel} {...state.fields.defaultTagsStandardtekster.input}>
+                <Select
+                    className="blokk-s"
+                    label={AutomatiskeTagsLabel}
+                    {...state.fields.defaultTagsStandardtekster.input}
+                >
                     <option value="na">Ikke valgt</option>
                     <option value="sto">Skriv til oss (#sto)</option>
                     <option value="samref">Samtalereferat (#samref)</option>
+                </Select>
+                <Select
+                    className="blokk-s"
+                    label={OppgaveDestinasjonLabel}
+                    {...state.fields.defaultOppgaveDestinasjon.input}
+                >
+                    <option value="MinListe">Svar skal til min oppgaveliste hos valgt enhet</option>
+                    <option value="Enhetensliste">Svar skal til valgt enhet sin oppgaveliste</option>
                 </Select>
             </ModalContent>
             {innsendingFeilet && (
