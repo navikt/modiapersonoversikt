@@ -81,6 +81,9 @@ const GraattDefinisjonsListe = styled.dl`
         margin-left: 7.125rem;
     }
 `;
+const DatoSpan = styled.span`
+    display: block;
+`;
 
 function getVarselTekst(varsel: VarselModell) {
     const varselTekst = Varseltype[varsel.varselType];
@@ -95,7 +98,7 @@ function getVarselTekst(varsel: VarselModell) {
 }
 
 function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
-    const open = useAppState(state => state.varsler.aapneVarsler).includes(varsel);
+    const open = useAppState((state) => state.varsler.aapneVarsler).includes(varsel);
     const dispatch = useDispatch();
     const setOpen = (open: boolean) => dispatch(toggleVisVarsel(varsel, open));
     const toggleOpen = () => setOpen(!open);
@@ -140,18 +143,18 @@ function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
 }
 
 function Varsel({ varsel }: { varsel: VarselModell }) {
-    const open = useAppState(state => state.varsler.aapneVarsler).includes(varsel);
+    const open = useAppState((state) => state.varsler.aapneVarsler).includes(varsel);
     const dispatch = useDispatch();
     const setOpen = (open: boolean) => dispatch(toggleVisVarsel(varsel, open));
-    const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende(melding => melding.utsendingsTidspunkt));
+    const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende((melding) => melding.utsendingsTidspunkt));
     const tittelId = useRef(guid());
 
     const toggleOpen = () => setOpen(!open);
 
-    const distinkteKommunikasjonsKanaler = new Set(sortertMeldingsliste.map(melding => melding.kanal));
+    const distinkteKommunikasjonsKanaler = new Set(sortertMeldingsliste.map((melding) => melding.kanal));
     const kommunikasjonskanaler = (
         <Kommaliste aria-label="Kommunikasjonskanaler">
-            {Array.from(distinkteKommunikasjonsKanaler).map(kanal => (
+            {Array.from(distinkteKommunikasjonsKanaler).map((kanal) => (
                 <Normaltekst tag="li" key={kanal}>
                     {kanal}
                 </Normaltekst>
@@ -160,12 +163,15 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
     );
 
     const varselTekst = getVarselTekst(varsel);
+    const utsendingDatoListe = Array.from(
+        new Set(sortertMeldingsliste.map((melding) => formaterDato(melding.utsendingsTidspunkt)))
+    ).map((dato) => <DatoSpan key={dato}>{dato}</DatoSpan>);
     return (
         <li>
             <StyledPanel>
                 <article aria-labelledby={tittelId.current}>
                     <HeaderStyle onClick={toggleOpen}>
-                        <Normaltekst>{formaterDato(varsel.mottattTidspunkt)}</Normaltekst>
+                        <Normaltekst>{utsendingDatoListe}</Normaltekst>
                         <Element id={tittelId.current} tag="h4">
                             {varselTekst}
                         </Element>
