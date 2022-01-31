@@ -13,6 +13,7 @@ import KassertDokumentBilde from './img/kassert.jpg';
 import VisittkortV2 from './img/visittkortV2.png';
 import AutofullforBarnetrygd from './img/autofullfor-barnetrygd.png';
 import AvansertsokPdlsok from './img/avansertsok-pdlsok.png';
+import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(usePdlPersonsok: boolean): EnOppdateringslogg[] {
@@ -230,6 +231,19 @@ export function lagOppdateringsloggConfig(usePdlPersonsok: boolean): EnOppdateri
                 </Normaltekst>
             ),
             src: AvansertsokPdlsok
+        },
+        {
+            id: 13,
+            tittel: 'Ny innstilling tilgjengelig',
+            dato: new Date('2022-01-31 12:00'),
+            aktiv: true,
+            ingress: (
+                <Normaltekst>
+                    Du kan nå velge standardvalget for hvor oppgave skal sendes når bruker svarer.
+                </Normaltekst>
+            ),
+            beskrivelse: <Normaltekst>Det vil fortsatt være mulig å overstyre dette ved utsending.</Normaltekst>,
+            src: OppgaveDestinasjon
         }
     ];
 }
