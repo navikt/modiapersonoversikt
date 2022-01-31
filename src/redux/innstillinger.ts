@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { STATUS } from '../rest/utils/utils';
+import { Pending, STATUS } from '../rest/utils/utils';
 import { assertUnreachable } from '../utils/assertUnreachable';
 import { ThunkAction } from 'redux-thunk';
 import { AppState } from './reducers';
@@ -118,12 +118,27 @@ export function oppdaterInnstillinger(
 }
 
 export const sliceSelector = (state: AppState) => state.innstillinger;
-export function getInnstilling(appState: AppState, key: InnstillingerKeys, defaultValue: string): string {
+export function getInnstilling<T extends string>(appState: AppState, key: InnstillingerKeys, defaultValue: T): T {
     const state = sliceSelector(appState);
     if (isOk(state)) {
-        return state.data.innstillinger[key] || defaultValue;
+        return (state.data.innstillinger[key] as T) || defaultValue;
     } else {
         return defaultValue;
+    }
+}
+
+export function getInnstillingPending<T extends string>(
+    appState: AppState,
+    key: InnstillingerKeys,
+    defaultValue: T
+): Pending<T> {
+    const state = sliceSelector(appState);
+    if (isOk(state)) {
+        return { pending: false, data: (state.data.innstillinger[key] as T) || defaultValue };
+    } else if (hasError(state)) {
+        return { pending: false, data: defaultValue };
+    } else {
+        return { pending: true };
     }
 }
 
@@ -141,4 +156,8 @@ export function isOk(state: State): state is OkState {
 }
 export function hasError(state: State): state is ErrorState {
     return [STATUS.FAILED, STATUS.FORBIDDEN, STATUS.NOT_FOUND].includes(state.status);
+}
+
+export function setInnstillingerData(innstillinger: SaksbehandlerInnstillinger): HentInnstillingerOk {
+    return { type: Typekeys.HENT_INNSTILLINGER_OK, data: innstillinger };
 }

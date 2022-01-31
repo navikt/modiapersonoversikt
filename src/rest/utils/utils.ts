@@ -18,6 +18,7 @@ export enum STATUS {
     FAILED = 'FAILED',
     FORBIDDEN = 'FORBIDDEN'
 }
+export type Pending<T> = { pending: true } | { pending: false; data: T };
 
 export interface FetchSuccess<T> extends Action {
     data: T;
