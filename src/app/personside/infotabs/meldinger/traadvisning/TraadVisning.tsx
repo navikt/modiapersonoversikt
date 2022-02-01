@@ -39,7 +39,7 @@ const KnappWrapper = styled.div`
 
 function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
     const meldingskomponenter = traad.meldinger
-        .sort(datoSynkende(melding => melding.opprettetDato))
+        .sort(datoSynkende((melding) => melding.opprettetDato))
         .map((melding, index) => {
             const meldingnummer = traad.meldinger.length - index;
             return (
@@ -52,7 +52,7 @@ function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
 
 function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dispatch = useDispatch();
-    const dialogpanelTraad = useAppState(state => state.oppgaver.dialogpanelTraad);
+    const dialogpanelTraad = useAppState((state) => state.oppgaver.dialogpanelTraad);
     const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
 
     const traadKanBesvares = kanBesvares(usingSFBackend, valgtTraad);
@@ -77,6 +77,9 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 
     if (melding.sendtTilSladding) {
         return <AlertStripeInfo>Tråden ligger til behandling for sladding</AlertStripeInfo>;
+    }
+    if (usingSFBackend && melding.avsluttetDato !== undefined) {
+        return <AlertStripeInfo>Henvendelsen er avsluttet</AlertStripeInfo>;
     }
 
     const handleNyMelding = () => {
