@@ -95,21 +95,21 @@ function getOppgavetyper(): GsakTemaOppgavetype[] {
 }
 
 function getPrioriteterUtenNormal(): GsakTemaPrioritet[] {
-    return getPrioriteter().filter(it => !it.kode.includes('NORM'));
+    return getPrioriteter().filter((it) => !it.kode.includes('NORM'));
 }
 
 function getPrioriteter(): GsakTemaPrioritet[] {
     return [
         {
-            kode: 'HOY_TEMA',
+            kode: 'HOY',
             tekst: 'Høy'
         },
         {
-            kode: 'NORM_TEMA',
+            kode: 'NORM',
             tekst: 'Normal'
         },
         {
-            kode: 'LAV_TEMA',
+            kode: 'LAV',
             tekst: 'Lav'
         }
     ];
