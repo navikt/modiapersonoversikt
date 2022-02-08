@@ -122,7 +122,7 @@ function OppgaveSkjema(props: OppgaveProps) {
             props.gsakTema,
             props.valgtTraad
         );
-        return post(`${apiBaseUri}/dialogoppgave/opprett`, request, 'OpprettOppgave')
+        return post(`${apiBaseUri}/dialogoppgave/v2/opprett`, request, 'OpprettOppgave')
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 props.onSuccessCallback && props.onSuccessCallback();

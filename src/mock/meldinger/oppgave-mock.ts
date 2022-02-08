@@ -118,12 +118,12 @@ function getPrioriteter(): GsakTemaPrioritet[] {
 function getUnderkategorier(): GsakTemaUnderkategori[] {
     return [
         {
-            kode: 'ENDR_INST',
-            tekst: 'Endring i institusjonsopphold',
+            kode: 'ab0094:',
+            tekst: 'Pleiepenger pårørende',
             erGyldig: true
         },
         {
-            kode: 'ANKE',
+            kode: ':ae0173',
             tekst: 'Anke',
             erGyldig: true
         }
