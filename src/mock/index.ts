@@ -344,14 +344,14 @@ function setupJournalforingMock(mock: FetchMock) {
 
 function opprettOppgaveMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/dialogoppgave/opprett',
+        apiBaseUri + '/dialogoppgave/v2/opprett',
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
 
 function opprettSkjermetOppgaveMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/dialogoppgave/opprettskjermetoppgave',
+        apiBaseUri + '/dialogoppgave/v2/opprettskjermetoppgave',
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
