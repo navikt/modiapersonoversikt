@@ -3,7 +3,7 @@ import { createRestResourceReducerAndActions } from '../../../rest/utils/restRes
 import { GsakTema } from '../../../models/meldinger/oppgave';
 
 function getGsakTemaFetchUri(): string {
-    return `${apiBaseUri}/dialogoppgave/tema`;
+    return `${apiBaseUri}/dialogoppgave/v2/tema`;
 }
 
 export default createRestResourceReducerAndActions<GsakTema[]>('oppgaverGsakTema', getGsakTemaFetchUri);

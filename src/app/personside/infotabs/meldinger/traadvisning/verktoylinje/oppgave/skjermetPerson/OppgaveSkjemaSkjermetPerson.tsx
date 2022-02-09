@@ -40,7 +40,7 @@ const AlertStyling = styled.div`
     }
 `;
 
-const validator = formstateFactory<SkjermetOppgaveSkjemaForm>(values => {
+const validator = formstateFactory<SkjermetOppgaveSkjemaForm>((values) => {
     const valgtTema = values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
     const valgtUnderkategori = undefined;
     const valgtOppgavetype = values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;
@@ -52,7 +52,7 @@ const validator = formstateFactory<SkjermetOppgaveSkjemaForm>(values => {
 
 function OppgaveSkjemaSkjermetPerson(props: SkjermetOppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
+    const saksbehandlersEnhet = useAppState((state) => state.session.valgtEnhetId);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
 
     const initialValues: SkjermetOppgaveSkjemaForm = {
@@ -65,12 +65,12 @@ function OppgaveSkjemaSkjermetPerson(props: SkjermetOppgaveProps) {
 
     const state = validator(initialValues);
 
-    const valgtTema = props.gsakTema.find(gsakTema => gsakTema.kode === state.fields.valgtTema?.input.value);
+    const valgtTema = props.gsakTema.find((gsakTema) => gsakTema.kode === state.fields.valgtTema?.input.value);
     useNormalPrioritet(state, valgtTema);
 
     function submitHandler(values: Values<SkjermetOppgaveSkjemaForm>): Promise<any> {
         const request = lagSkjermetOppgaveRequest(props, values, valgtBrukersFnr, saksbehandlersEnhet || '');
-        return post(`${apiBaseUri}/dialogoppgave/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
+        return post(`${apiBaseUri}/dialogoppgave/v2/opprettskjermetoppgave`, request, 'OpprettOppgaveSkjermetPerson')
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 props.onSuccessCallback && props.onSuccessCallback();
