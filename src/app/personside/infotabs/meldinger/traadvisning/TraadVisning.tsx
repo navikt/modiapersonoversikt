@@ -78,7 +78,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     if (melding.sendtTilSladding) {
         return <AlertStripeInfo>Tråden ligger til behandling for sladding</AlertStripeInfo>;
     }
-    if (usingSFBackend && melding.avsluttetDato) {
+    if (usingSFBackend && melding.avsluttetDato && !traadKanBesvares) {
         return <AlertStripeInfo>Henvendelsen er avsluttet</AlertStripeInfo>;
     }
 
