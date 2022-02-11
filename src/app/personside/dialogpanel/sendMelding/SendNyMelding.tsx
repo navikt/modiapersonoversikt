@@ -24,6 +24,7 @@ import ReflowBoundry from '../ReflowBoundry';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import { hasData } from '@nutgaard/use-fetch';
 import { useHentPersondata } from '../../../../utils/customHooks';
+import SfBugInfo from '../../../../components/SfBugInfo';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -104,6 +105,7 @@ function SendNyMelding(props: Props) {
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>
                 <StyledUndertittel id={tittelId.current}>Send ny melding</StyledUndertittel>
+                <SfBugInfo />
                 <FormStyle onSubmit={props.handleSubmit}>
                     <TekstFelt
                         tekst={state.tekst}

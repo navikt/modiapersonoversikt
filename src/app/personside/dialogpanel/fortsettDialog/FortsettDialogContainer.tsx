@@ -38,6 +38,7 @@ import { hasData, RestResource } from '../../../../rest/utils/restResource';
 import { selectValgtEnhet } from '../../../../redux/session/session';
 import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
+import SfBugInfo from '../../../../components/SfBugInfo';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -251,6 +252,7 @@ function FortsettDialogContainer(props: Props) {
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>
                 <Undertittel id={tittelId.current}>Fortsett dialog</Undertittel>
+                <SfBugInfo />
                 <FortsettDialog
                     handleAvbryt={handleAvbryt}
                     state={state}
