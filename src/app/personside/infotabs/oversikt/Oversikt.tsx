@@ -10,6 +10,7 @@ import MeldingerOversikt from './MeldingerOversikt';
 import { INFOTABS } from '../InfoTabEnum';
 import SakerOversikt from './SakerOversikt';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
+import SfFullLockdown from '../../../../components/SfFullLockdown';
 
 const oversiktMediaThreshold = pxToRem(750);
 
@@ -66,7 +67,7 @@ function Oversikt() {
                     <Oversiktskomponent
                         infotabPath={INFOTABS.MELDINGER}
                         tittel={'Meldinger'}
-                        component={MeldingerOversikt}
+                        component={window.sfFullLockdown ? SfFullLockdown : MeldingerOversikt}
                         hurtigtast={'M'}
                     />
                     <Oversiktskomponent

@@ -17,6 +17,7 @@ import { guid } from 'nav-frontend-js-utils';
 import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import TildelteOppgaver from './dialogpanel/TildelteOppgaver';
+import SfFullLockdown from '../../components/SfFullLockdown';
 
 const Scrollbar = styled.div`
     overflow-y: auto;
@@ -58,7 +59,7 @@ function MainLayout() {
                         <BrukerHarUbesvarteMeldinger />
                         {!usingSFBackend && <HentOppgaveKnapp />}
                         {usingSFBackend && <TildelteOppgaver standalone />}
-                        <DialogPanel />
+                        {window.sfFullLockdown ? <SfFullLockdown /> : <DialogPanel />}
                     </Scrollbar>
                     <EkspanderDilaogpanelKnapp />
                 </HoyreKolonne>
