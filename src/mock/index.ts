@@ -237,7 +237,7 @@ function setupOppgaveEnhetMock(mock: FetchMock) {
 
 function setupForeslatteEnheterMock(mock: FetchMock) {
     mock.get(
-        apiBaseUri + '/enheter/oppgavebehandlere/foreslatte',
+        apiBaseUri + '/enheter/oppgavebehandlere/v2/foreslatte',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getForeslattEnhet())
     );
 }
