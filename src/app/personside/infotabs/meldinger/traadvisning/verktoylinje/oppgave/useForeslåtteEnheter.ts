@@ -21,16 +21,16 @@ function useForeslatteEnheter(temakode?: string, typekode?: string, underkategor
             underkategori: underkategori
         };
         const queryParams = Object.entries(request)
-            .filter(entry => entry[1])
-            .map(entry => entry[0] + '=' + entry[1])
+            .filter((entry) => entry[1])
+            .map((entry) => entry[0] + '=' + entry[1])
             .join('&');
 
         setPending(true);
         loggEvent('Fetch', 'LagOppgave-ForeslåtteEnheter');
-        fetch(`${apiBaseUri}/enheter/oppgavebehandlere/foreslatte?${queryParams}`, includeCredentials)
-            .then(response => response.json())
+        fetch(`${apiBaseUri}/enheter/oppgavebehandlere/v2/foreslatte?${queryParams}`, includeCredentials)
+            .then((response) => response.json())
             .then(setForeslatteEnheter)
-            .catch(e => loggError(e, 'Feil ved henting av foreslåtte enheter'))
+            .catch((e) => loggError(e, 'Feil ved henting av foreslåtte enheter'))
             .finally(() => setPending(false));
     }, [temakode, typekode, underkategori, fnr]);
 

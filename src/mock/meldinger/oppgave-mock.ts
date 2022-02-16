@@ -95,21 +95,21 @@ function getOppgavetyper(): GsakTemaOppgavetype[] {
 }
 
 function getPrioriteterUtenNormal(): GsakTemaPrioritet[] {
-    return getPrioriteter().filter(it => !it.kode.includes('NORM'));
+    return getPrioriteter().filter((it) => !it.kode.includes('NORM'));
 }
 
 function getPrioriteter(): GsakTemaPrioritet[] {
     return [
         {
-            kode: 'HOY_TEMA',
+            kode: 'HOY',
             tekst: 'Høy'
         },
         {
-            kode: 'NORM_TEMA',
+            kode: 'NORM',
             tekst: 'Normal'
         },
         {
-            kode: 'LAV_TEMA',
+            kode: 'LAV',
             tekst: 'Lav'
         }
     ];
@@ -118,12 +118,12 @@ function getPrioriteter(): GsakTemaPrioritet[] {
 function getUnderkategorier(): GsakTemaUnderkategori[] {
     return [
         {
-            kode: 'ENDR_INST',
-            tekst: 'Endring i institusjonsopphold',
+            kode: 'ab0094:',
+            tekst: 'Pleiepenger pårørende',
             erGyldig: true
         },
         {
-            kode: 'ANKE',
+            kode: ':ae0173',
             tekst: 'Anke',
             erGyldig: true
         }

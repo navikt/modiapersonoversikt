@@ -223,7 +223,7 @@ function setupVarselMock(mock: FetchMock) {
 
 function setupGsakTemaMock(mock: FetchMock) {
     mock.get(
-        apiBaseUri + '/dialogoppgave/tema',
+        apiBaseUri + '/dialogoppgave/v2/tema',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getMockGsakTema())
     );
 }
@@ -237,7 +237,7 @@ function setupOppgaveEnhetMock(mock: FetchMock) {
 
 function setupForeslatteEnheterMock(mock: FetchMock) {
     mock.get(
-        apiBaseUri + '/enheter/oppgavebehandlere/foreslatte',
+        apiBaseUri + '/enheter/oppgavebehandlere/v2/foreslatte',
         withDelayedResponse(randomDelay(), STATUS_OK, () => getForeslattEnhet())
     );
 }
@@ -344,14 +344,14 @@ function setupJournalforingMock(mock: FetchMock) {
 
 function opprettOppgaveMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/dialogoppgave/opprett',
+        apiBaseUri + '/dialogoppgave/v2/opprett',
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
 
 function opprettSkjermetOppgaveMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/dialogoppgave/opprettskjermetoppgave',
+        apiBaseUri + '/dialogoppgave/v2/opprettskjermetoppgave',
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
