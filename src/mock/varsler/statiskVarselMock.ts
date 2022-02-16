@@ -52,10 +52,10 @@ export const statiskDittnavEventVarselMock: DittNavEvent[] = [
         fodselsnummer: '',
         grupperingsId: '',
         eventId: '',
-        eventTidspunkt: '',
+        eventTidspunkt: '2018-03-01',
         produsent: '',
         sikkerhetsnivaa: 4,
-        sistOppdatert: '2018-03-01',
+        sistOppdatert: '2018-04-01',
         tekst: 'Tekst her',
         link: '',
         aktiv: true
