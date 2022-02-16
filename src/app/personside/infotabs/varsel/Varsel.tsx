@@ -110,7 +110,7 @@ function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
             <StyledPanel>
                 <article aria-labelledby={tittelId.current}>
                     <HeaderStyle onClick={toggleOpen}>
-                        <Normaltekst>{formaterDato(varsel.sistOppdatert)}</Normaltekst>
+                        <Normaltekst>{formaterDato(varsel.eventTidspunkt)}</Normaltekst>
                         <Element id={tittelId.current} tag="h4">
                             {varsel.tekst}
                         </Element>
