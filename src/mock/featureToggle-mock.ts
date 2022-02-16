@@ -6,7 +6,7 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
         case FeatureToggles.VisTilbakemelding:
             return true;
         case FeatureToggles.BrukSalesforceDialoger:
-            return false;
+            return true;
         case FeatureToggles.BrukPdlPersonsok:
             return true;
         default:
