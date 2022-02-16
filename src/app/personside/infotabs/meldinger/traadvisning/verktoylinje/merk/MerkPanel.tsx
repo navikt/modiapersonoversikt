@@ -27,7 +27,7 @@ import {
     MerkRequestMedTraadId,
     MerkTvungenFerdigstillRequest
 } from '../../../../../../../models/meldinger/merk';
-import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeAdvarsel, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Resultat } from '../utils/VisPostResultat';
 import { Kontorsperr } from './Kontorsperr';
 import { useAppState } from '../../../../../../../utils/customHooks';
@@ -68,6 +68,7 @@ const AlertStyling = styled.div`
 `;
 
 const InfoStyling = styled.div`
+    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 `;
 
@@ -342,6 +343,11 @@ function MerkPanel(props: Props) {
                             Dersom oppgaven allerede er besvart og avsluttet kan man benytte overstyrt ferdigstillelse
                             av oppgave
                         </AlertStripeInfo>
+                    </InfoStyling>
+                )}
+                {valgtOperasjon === MerkOperasjon.SLADDING && (
+                    <InfoStyling>
+                        <AlertStripeAdvarsel>Årsak må meldes i porten</AlertStripeAdvarsel>
                     </InfoStyling>
                 )}
                 <KnappStyle>
