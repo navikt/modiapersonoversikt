@@ -14,8 +14,6 @@ import { eldsteMelding, kanBesvares, meldingstittel, nyesteMelding, saksbehandle
 import { formaterDato } from '../../../../../utils/string-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/print/usePrinter';
-import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     valgtTraad: Traad;
@@ -53,9 +51,8 @@ function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
 function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dispatch = useDispatch();
     const dialogpanelTraad = useAppState((state) => state.oppgaver.dialogpanelTraad);
-    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
 
-    const traadKanBesvares = kanBesvares(usingSFBackend, valgtTraad);
+    const traadKanBesvares = kanBesvares(valgtTraad);
     const melding = eldsteMelding(valgtTraad);
     if (melding.erFerdigstiltUtenSvar) {
         return (
@@ -78,7 +75,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     if (melding.sendtTilSladding) {
         return <AlertStripeInfo>Tråden ligger til behandling for sladding</AlertStripeInfo>;
     }
-    if (usingSFBackend && melding.avsluttetDato && !traadKanBesvares) {
+    if (melding.avsluttetDato && !traadKanBesvares) {
         return <AlertStripeInfo>Henvendelsen er avsluttet</AlertStripeInfo>;
     }
 

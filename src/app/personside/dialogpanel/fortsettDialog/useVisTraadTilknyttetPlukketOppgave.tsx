@@ -8,8 +8,6 @@ import { useHistory } from 'react-router';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { eldsteMelding, kanBesvares } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { useJustOnceEffect } from '../../../../utils/customHooks';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 interface Pending {
     pending: true;
@@ -23,8 +21,7 @@ interface Success {
 type Response = Pending | Success;
 
 function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response {
-    const traaderResource = useRestResource(resources => resources.traader);
-    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
+    const traaderResource = useRestResource((resources) => resources.traader);
     const tildelteOppgaver = useTildelteOppgaver();
     const dispatch = useDispatch();
     const dyplenker = useInfotabsDyplenker();
@@ -37,8 +34,8 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
             if (!åpneTrådIFortsettDialogpanel || !traaderResource.data) {
                 return;
             }
-            const traadTilknyttetOppgave = traaderResource.data.find(traad => traad.traadId === oppgave.traadId);
-            const kanTraadBesvares = kanBesvares(usingSFBackend, traadTilknyttetOppgave);
+            const traadTilknyttetOppgave = traaderResource.data.find((traad) => traad.traadId === oppgave.traadId);
+            const kanTraadBesvares = kanBesvares(traadTilknyttetOppgave);
 
             if (traadTilknyttetOppgave && kanTraadBesvares) {
                 dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));

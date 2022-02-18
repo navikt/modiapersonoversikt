@@ -1,6 +1,5 @@
 import * as React from 'react';
 import ErrorBoundary from '../ErrorBoundary';
-import Kontrollsporsmal from '../../app/personside/kontrollsporsmal/Kontrollsporsmal';
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../../app/PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
 import SetFnrIRedux from '../../app/PersonOppslagHandler/SetFnrIRedux';
 import theme from '../../styles/personOversiktTheme';
@@ -35,7 +34,6 @@ class VisittkortStandAlone extends React.Component<Props> {
                     <FetchSessionInfoOgLeggIRedux />
                     <SetFnrIRedux fnr={this.props.fnr} />
                     <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
-                    <Kontrollsporsmal />
                     <Visittkort />
 
                     <IfFeatureToggleOn toggleID={FeatureToggles.VisTilbakemelding}>

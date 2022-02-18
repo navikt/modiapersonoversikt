@@ -24,8 +24,6 @@ import JournalforingPanel from '../../app/personside/infotabs/meldinger/traadvis
 import PersonsokStandAloneKomponent from './PersonsokStandAloneKomponent';
 import TidligereMeldinger from '../../app/personside/dialogpanel/fortsettDialog/tidligereMeldinger/TidligereMeldinger';
 import { statiskTraadMock } from '../../mock/meldinger/statiskTraadMock';
-import BesvarFlere from '../../app/personside/infotabs/meldinger/traadliste/besvarflere/BesvarFlere';
-import { getMockTraader } from '../../mock/meldinger/meldinger-mock';
 import StandardTekstModal from '../../app/personside/dialogpanel/sendMelding/standardTekster/StandardTekstModal';
 
 enum Komponenter {
@@ -43,10 +41,7 @@ enum Komponenter {
     Dialogpanel,
     Personsok,
     JournalforingPanel,
-    TraadVisningDialogpanel,
-    BesvarFlere,
-    HurtigTasterHjelp,
-    OppgaveSkjermetPerson
+    TraadVisningDialogpanel
 }
 
 const Style = styled.div`
@@ -104,9 +99,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.TraadVisningDialogpanel:
             return <TidligereMeldinger traad={statiskTraadMock} />;
         case Komponenter.Standardtekster:
-            return <StandardTekstModal appendTekst={tekst => alert(tekst)} />;
-        case Komponenter.BesvarFlere:
-            return <BesvarFlere traader={getMockTraader(aremark.fnr).slice(0, 3)} lukkModal={() => null} />;
+            return <StandardTekstModal appendTekst={(tekst) => alert(tekst)} />;
         default:
             return <AlertStripeInfo>Ingenting her</AlertStripeInfo>;
     }

@@ -1,4 +1,3 @@
-import { LeggTilbakeOppgaveRequest } from '../../../../models/leggTilbakeOppgave';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
@@ -34,12 +33,7 @@ interface SvarSendtSuccess extends DialogStatusInterface {
     kvitteringsData: KvitteringsData;
 }
 
-interface LeggTilbakeOppgaveSuccess extends DialogStatusInterface {
-    type: DialogPanelStatus.OPPGAVE_LAGT_TILBAKE;
-    payload: LeggTilbakeOppgaveRequest;
-}
-
-export type FortsettDialogPanelState = UnderArbeid | SvarSendtSuccess | LeggTilbakeOppgaveSuccess;
+export type FortsettDialogPanelState = UnderArbeid | SvarSendtSuccess;
 
 export interface FortsettDialogState {
     tekst: string;

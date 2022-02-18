@@ -7,12 +7,7 @@ import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions
 import { useAppState, useFodselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
-import LeggTilbakepanel from './leggTilbakePanel/LeggTilbakepanel';
-import {
-    DelsvarRegistrertKvittering,
-    OppgaveLagtTilbakeKvittering,
-    SvarSendtKvittering
-} from './FortsettDialogKvittering';
+import { SvarSendtKvittering } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { loggError } from '../../../../utils/logger/frontendLogger';
@@ -36,8 +31,6 @@ import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
 import { hasData, RestResource } from '../../../../rest/utils/restResource';
 import { selectValgtEnhet } from '../../../../redux/session/session';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -90,7 +83,6 @@ function FortsettDialogContainer(props: Props) {
     const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
     const valgtEnhet = useAppState(selectValgtEnhet);
-    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
     const draftLoader = useCallback(
         (draft: Draft) => setState((current) => ({ ...current, tekst: draft.content })),
         [setState]
@@ -120,12 +112,6 @@ function FortsettDialogContainer(props: Props) {
 
     if (dialogStatus.type === DialogPanelStatus.SVAR_SENDT) {
         return <SvarSendtKvittering kvitteringsData={dialogStatus.kvitteringsData} />;
-    }
-    if (dialogStatus.type === DialogPanelStatus.DELSVAR_SENDT) {
-        return <DelsvarRegistrertKvittering kvitteringsData={dialogStatus.kvitteringsData} />;
-    }
-    if (dialogStatus.type === DialogPanelStatus.OPPGAVE_LAGT_TILBAKE) {
-        return <OppgaveLagtTilbakeKvittering payload={dialogStatus.payload} />;
     }
 
     if (opprettHenvendelse.success === false) {
@@ -244,9 +230,6 @@ function FortsettDialogContainer(props: Props) {
         }
     };
 
-    const meldingMedTemagruppe = props.traad.meldinger.find((melding) => melding.temagruppe);
-    const temagruppe = meldingMedTemagruppe ? meldingMedTemagruppe.temagruppe : undefined;
-
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>
@@ -262,15 +245,6 @@ function FortsettDialogContainer(props: Props) {
                     erTilknyttetOppgave={!!oppgaveId}
                     erSTOOppgave={erSTOOppgave}
                 />
-                {!usingSFBackend && oppgaveId && erSTOOppgave && (
-                    <LeggTilbakepanel
-                        oppgaveId={oppgaveId}
-                        traadId={props.traad.traadId}
-                        status={dialogStatus}
-                        setDialogStatus={setDialogStatus}
-                        temagruppe={temagruppe}
-                    />
-                )}
             </ReflowBoundry>
         </StyledArticle>
     );

@@ -8,7 +8,6 @@ import { Checkbox, Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import TraadListeElement from './TraadListeElement';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
-import SlaaSammenOppgaverKnapp from './besvarflere/SlåSammenOppgaverKnapp';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { guid } from 'nav-frontend-js-utils';
@@ -16,8 +15,6 @@ import usePrinter from '../../../../../utils/print/usePrinter';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import MeldingerPrintMarkup from '../../../../../utils/print/MeldingerPrintMarkup';
 import Panel from 'nav-frontend-paneler';
-import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     traader: Traad[];
@@ -95,7 +92,7 @@ function PrintAlleMeldinger({ traader }: { traader: Traad[] }) {
         <>
             <PrintKnapp tittel={'Skriv ut alle meldinger'} onClick={() => printer?.triggerPrint()} />
             <PrinterWrapper>
-                {traader.map(traad => (
+                {traader.map((traad) => (
                     <MeldingerPrintMarkup key={traad.traadId} valgtTraad={traad} />
                 ))}
             </PrinterWrapper>
@@ -103,7 +100,6 @@ function PrintAlleMeldinger({ traader }: { traader: Traad[] }) {
     );
 }
 function TraadListe(props: Props) {
-    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
     const inputRef = React.useRef<HTMLInputElement>();
     const paginering = usePaginering(props.traaderEtterSokOgFiltrering, 50, 'melding', props.valgtTraad);
     const sokTittelId = useRef(guid());
@@ -155,7 +151,6 @@ function TraadListe(props: Props) {
     return (
         <nav aria-label="Velg melding">
             <StyledPanel>
-                {!usingSFBackend && <SlaaSammenOppgaverKnapp traader={props.traader} />}
                 <article aria-labelledby={sokTittelId.current}>
                     <h3 id={sokTittelId.current} className="sr-only">
                         Filtrer meldinger
@@ -192,7 +187,7 @@ function TraadListe(props: Props) {
                 </h3>
                 {paginering.pageSelect && <PagineringStyling>{paginering.pageSelect}</PagineringStyling>}
                 <StyledOl aria-labelledby={listeId.current} tabIndex={-1} ref={traadListeRef}>
-                    {paginering.currentPage.map(traad => (
+                    {paginering.currentPage.map((traad) => (
                         <TraadListeElement
                             traad={traad}
                             key={traad.traadId}

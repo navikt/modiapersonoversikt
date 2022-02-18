@@ -4,9 +4,7 @@ import { FortsettDialogType } from './FortsettDialogContainer';
 import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
 import { FortsettDialogState } from './FortsettDialogTypes';
-import { useAppState, useJustOnceEffect } from '../../../../utils/customHooks';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
+import { useJustOnceEffect } from '../../../../utils/customHooks';
 
 interface Props {
     formState: FortsettDialogState;
@@ -19,17 +17,13 @@ interface Props {
 }
 
 function VelgDialogType(props: Props) {
-    const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
-    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
     useJustOnceEffect(
-        done => {
-            if (usingSFBackend) {
-                const type = props.erSamtalereferat ? Meldingstype.SAMTALEREFERAT_TELEFON : Meldingstype.SVAR_SKRIFTLIG;
-                props.updateDialogType(type);
-                done();
-            }
+        (done) => {
+            const type = props.erSamtalereferat ? Meldingstype.SAMTALEREFERAT_TELEFON : Meldingstype.SVAR_SKRIFTLIG;
+            props.updateDialogType(type);
+            done();
         },
-        [usingSFBackend, props.erSamtalereferat]
+        [props.erSamtalereferat]
     );
 
     function lagRadio(label: string, type: FortsettDialogType) {
@@ -45,70 +39,24 @@ function VelgDialogType(props: Props) {
 
     const svar = lagRadio('Svar', Meldingstype.SVAR_SKRIFTLIG);
     const spørsmål = lagRadio('Spørsmål', Meldingstype.SPORSMAL_MODIA_UTGAAENDE);
-    const delvisSvar = lagRadio('Delvis svar', Meldingstype.DELVIS_SVAR_SKRIFTLIG);
-    const svarTelefon = lagRadio('Svar telefon', Meldingstype.SVAR_TELEFON);
-    const svarOppmote = lagRadio('Svar oppmøte', Meldingstype.SVAR_OPPMOTE);
     const referatTelefon = lagRadio('Referat telefon', Meldingstype.SAMTALEREFERAT_TELEFON);
     const referatOppmote = lagRadio('Referat oppmøte', Meldingstype.SAMTALEREFERAT_OPPMOTE);
-
-    if (usingSFBackend) {
-        if (props.erSamtalereferat) {
-            return (
-                <VelgDialogtypeStyle>
-                    {referatTelefon}
-                    {referatOppmote}
-                </VelgDialogtypeStyle>
-            );
-        } else {
-            return (
-                <VelgDialogtypeStyle>
-                    {svar}
-                    {spørsmål}
-                </VelgDialogtypeStyle>
-            );
-        }
-    }
-
-    if (props.erDelvisBesvart) {
-        return (
-            <VelgDialogtypeStyle>
-                {svar}
-                {!usingSFBackend && !props.erOksosTraad && delvisSvar}
-            </VelgDialogtypeStyle>
-        );
-    }
 
     if (props.erSamtalereferat) {
         return (
             <VelgDialogtypeStyle>
                 {referatTelefon}
                 {referatOppmote}
-                {svar}
-                {spørsmål}
             </VelgDialogtypeStyle>
         );
-    }
-
-    if (props.erTilknyttetOppgave && !props.erSamtalereferat) {
+    } else {
         return (
             <VelgDialogtypeStyle>
                 {svar}
                 {spørsmål}
-                {!usingSFBackend && props.erSTOOppgave && !props.erOksosTraad && delvisSvar}
-                {!jobberMedSTO && svarTelefon}
-                {!jobberMedSTO && svarOppmote}
             </VelgDialogtypeStyle>
         );
     }
-
-    return (
-        <VelgDialogtypeStyle>
-            {svar}
-            {spørsmål}
-            {svarTelefon}
-            {svarOppmote}
-        </VelgDialogtypeStyle>
-    );
 }
 
 export default VelgDialogType;
