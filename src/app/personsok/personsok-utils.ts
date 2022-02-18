@@ -21,9 +21,8 @@ export type PersonSokFormState = {
     kjonn: string;
     _minimumskrav: string;
 };
-export type PersonSokFormProps = { usePdlPersonsok: boolean };
 
-export function validatorPersonsok(values: PersonSokFormState, props: PersonSokFormProps) {
+export function validatorPersonsok(values: PersonSokFormState) {
     let fornavn = undefined;
     if (!values.fornavn && values.etternavn) {
         fornavn = 'Fornavn må være utfylt hvis etternavn er satt';
@@ -53,23 +52,12 @@ export function validatorPersonsok(values: PersonSokFormState, props: PersonSokF
     const navnFelter = [values.fornavn, values.etternavn];
     const adresseFelter = [values.gatenavn, values.husnummer, values.husbokstav, values.postnummer];
 
-    if (props.usePdlPersonsok) {
-        const andreFelter = navnFelter.concat(adresseFelter).concat([values.utenlandskID]);
-        const andreFelterErSatt = andreFelter.some((it) => it.length > 0);
-        if (values.kontonummer && !validerKontonummer(values.kontonummer)) {
-            kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
-        } else if (values.kontonummer && andreFelterErSatt) {
-            kontonummer = 'Kan ikke kombinere søk på kontonummer med andre felt';
-        }
-    } else {
-        const andreFelter = navnFelter.concat(adresseFelter).concat([values.kontonummer]);
-        const andreFelterErSatt = andreFelter.some((it) => it.length > 0);
-        if (values.kontonummer && !validerKontonummer(values.kontonummer)) {
-            kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
-        }
-        if (values.utenlandskID && andreFelterErSatt) {
-            utenlandskID = 'Kan ikke kombinere søk på utenlandsk ID med andre felt';
-        }
+    const andreFelter = navnFelter.concat(adresseFelter).concat([values.utenlandskID]);
+    const andreFelterErSatt = andreFelter.some((it) => it.length > 0);
+    if (values.kontonummer && !validerKontonummer(values.kontonummer)) {
+        kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
+    } else if (values.kontonummer && andreFelterErSatt) {
+        kontonummer = 'Kan ikke kombinere søk på kontonummer med andre felt';
     }
 
     const kommunenummer =
