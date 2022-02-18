@@ -22,7 +22,7 @@ import { setInnstillingerData } from '../redux/innstillinger';
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
     const restResources = testStore.getState().restResources;
-    const aremarkFnr = aremark.fnr;
+    const aremarkFnr = aremark.personIdent;
 
     const dispatch = testStore.dispatch as Dispatch<any>;
     dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
@@ -64,25 +64,34 @@ export function setupFetchCache() {
             }
         } as RequestInit);
 
-    cache.putResolved(createCacheKey(`${apiBaseUri}/v2/person/${aremark.fnr}`), {
+    cache.putResolved(createCacheKey(`${apiBaseUri}/v2/person/${aremark.personIdent}`), {
         feiledeSystemer: [],
         person: aremark
     });
-    cache.putResolved(createCacheKey(`${apiBaseUri}/varsler/${aremark.fnr}`), statiskVarselMock);
+    cache.putResolved(createCacheKey(`${apiBaseUri}/varsler/${aremark.personIdent}`), statiskVarselMock);
     cache.putResolved(
-        createCacheKey(`/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all`, fnrheader(aremark.fnr)),
+        createCacheKey(
+            `/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all`,
+            fnrheader(aremark.personIdent)
+        ),
         statiskDittnavEventVarselMock
     );
     cache.putResolved(
-        createCacheKey(`/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/beskjed/all`, fnrheader(aremark.fnr)),
+        createCacheKey(
+            `/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/beskjed/all`,
+            fnrheader(aremark.personIdent)
+        ),
         statiskDittnavEventVarselMock
     );
     cache.putResolved(
-        createCacheKey(`/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/innboks/all`, fnrheader(aremark.fnr)),
+        createCacheKey(
+            `/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/innboks/all`,
+            fnrheader(aremark.personIdent)
+        ),
         statiskDittnavEventVarselMock
     );
     cache.putResolved(
-        createCacheKey(`${apiBaseUri}/v2/person/${aremark.fnr}/aktorid`),
-        `000${aremark.fnr}000` as unknown as object
+        createCacheKey(`${apiBaseUri}/v2/person/${aremark.personIdent}/aktorid`),
+        `000${aremark.personIdent}000` as unknown as object
     );
 }

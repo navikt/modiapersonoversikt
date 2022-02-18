@@ -23,7 +23,7 @@ export function getMockSykepengerRespons(fødselsnummer: string): SykepengerResp
     faker.seed(Number(fødselsnummer));
     navfaker.seed(fødselsnummer + 'sykepenger');
 
-    if (fødselsnummer === aremark.fnr) {
+    if (fødselsnummer === aremark.personIdent) {
         return {
             sykepenger: [statiskSykepengerMock]
         };

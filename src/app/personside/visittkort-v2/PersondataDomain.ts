@@ -7,7 +7,7 @@ export type LocalDate = string & { __type__: 'LocalDate' };
 export type LocalDateTime = string & { __type__: 'LocalDateTime' };
 
 export interface Person {
-    fnr: string;
+    personIdent: string;
     navn: Array<Navn>;
     kjonn: Array<KodeBeskrivelse<Kjonn>>;
     fodselsdato: Array<LocalDate>;
