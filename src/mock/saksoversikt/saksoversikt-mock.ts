@@ -26,7 +26,7 @@ const temaarray = [
 ];
 
 export function getMockSaksoversikt(fødselsnummer: string): SakstemaResponse {
-    if (fødselsnummer === aremark.fnr) {
+    if (fødselsnummer === aremark.personIdent) {
         return {
             resultat: getAremarkSakstemaListe()
         };

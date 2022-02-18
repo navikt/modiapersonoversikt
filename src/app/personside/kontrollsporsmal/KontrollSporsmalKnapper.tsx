@@ -51,7 +51,7 @@ function KontrollSporsmalKnapper(props: Props) {
         if (!person) {
             return;
         }
-        settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie(person.fnr);
+        settSkjulKontrollsporsmalPaTversAvVinduerForBrukerCookie(person.personIdent);
     }
 
     function visNyttKnapp() {

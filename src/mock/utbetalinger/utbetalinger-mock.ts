@@ -33,7 +33,7 @@ const fjernDuplikatePosteringsdato = (utbetaling: Utbetaling, index: number, lis
     list.findIndex((u) => u.posteringsdato === utbetaling.posteringsdato) === index;
 
 function getUtbetalinger(fødselsnummer: string) {
-    if (fødselsnummer === aremark.fnr) {
+    if (fødselsnummer === aremark.personIdent) {
         return [...new Array(5)].map(() => getMockUtbetaling());
     }
     if (navfaker.random.vektetSjanse(0.2)) {

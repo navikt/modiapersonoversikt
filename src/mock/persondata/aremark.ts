@@ -63,13 +63,13 @@ export function hentBarnAremark(): ForelderBarnRelasjon[] {
             ],
             adressebeskyttelse: [],
             harSammeAdresse: false,
-            dodsdato: [ '2010-01-01' as LocalDate]
+            dodsdato: ['2010-01-01' as LocalDate]
         }
     ];
 }
 
 export const aremark: Person = {
-    fnr: '10108000398',
+    personIdent: '10108000398',
     navn: [
         {
             fornavn: 'AREMARK',

@@ -39,8 +39,8 @@ interface Props {
 function Fodselsnummer({ person }: Props) {
     return (
         <span title="Fødselsnummer">
-            <span>{person.fnr}</span>
-            <CopyToClipboard ariaLabel="Kopier fødselsnummer" stringToCopy={person.fnr} />
+            <span>{person.personIdent}</span>
+            <CopyToClipboard ariaLabel="Kopier fødselsnummer" stringToCopy={person.personIdent} />
         </span>
     );
 }
