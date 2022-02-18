@@ -14,11 +14,11 @@ export const KanBesvaresMeldingstyper = [
 ];
 
 export function nyesteMelding(traad: Traad) {
-    return [...traad.meldinger].sort(datoSynkende(melding => melding.opprettetDato))[0];
+    return [...traad.meldinger].sort(datoSynkende((melding) => melding.opprettetDato))[0];
 }
 
 export function eldsteMelding(traad: Traad) {
-    return [...traad.meldinger].sort(datoStigende(melding => melding.opprettetDato))[0];
+    return [...traad.meldinger].sort(datoStigende((melding) => melding.opprettetDato))[0];
 }
 
 export function kanBesvares(usingSFBackend: boolean, traad?: Traad): boolean {
@@ -42,8 +42,8 @@ export function kanBesvares(usingSFBackend: boolean, traad?: Traad): boolean {
 }
 
 export function erMonolog(traad: Traad) {
-    const bareSaksbehandler: boolean = traad.meldinger.some(melding => erMeldingFraNav(melding.meldingstype));
-    const bareBruker: boolean = traad.meldinger.some(melding => erMeldingFraBruker(melding.meldingstype));
+    const bareSaksbehandler: boolean = traad.meldinger.some((melding) => erMeldingFraNav(melding.meldingstype));
+    const bareBruker: boolean = traad.meldinger.some((melding) => erMeldingFraBruker(melding.meldingstype));
 
     return bareSaksbehandler !== bareBruker;
 }
@@ -81,7 +81,7 @@ export function erMeldingFraBruker(meldingstype: Meldingstype) {
     return [Meldingstype.SPORSMAL_SKRIFTLIG, Meldingstype.SVAR_SBL_INNGAAENDE].includes(meldingstype);
 }
 
-export function erUbesvartHenvendelseFraBruker(traad: Traad) {
+export function erUbesvartHenvendelseFraBruker(traad: Traad): boolean {
     if (traad.meldinger.length > 1) {
         return false;
     }
@@ -89,7 +89,8 @@ export function erUbesvartHenvendelseFraBruker(traad: Traad) {
     if (!erMeldingFraBruker(melding.meldingstype)) {
         return false;
     }
-    return !melding.erFerdigstiltUtenSvar;
+
+    return !melding.avsluttetDato && !melding.erFerdigstiltUtenSvar;
 }
 
 export function erMeldingFraNav(meldingstype: Meldingstype) {
@@ -149,7 +150,7 @@ export function erMeldingFeilsendt(melding: Melding): boolean {
 }
 
 export function erBehandlet(traad: Traad): boolean {
-    const minstEnMeldingErFraNav: boolean = traad.meldinger.some(melding => erMeldingFraNav(melding.meldingstype));
+    const minstEnMeldingErFraNav: boolean = traad.meldinger.some((melding) => erMeldingFraNav(melding.meldingstype));
     const erFerdigstiltUtenSvar: boolean = eldsteMelding(traad).erFerdigstiltUtenSvar;
 
     return minstEnMeldingErFraNav || erFerdigstiltUtenSvar;
@@ -180,22 +181,22 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
     return useMemo(() => {
         const words = debouncedQuery.split(' ');
         return traader
-            .filter(traad => {
-                return traad.meldinger.some(melding => {
+            .filter((traad) => {
+                return traad.meldinger.some((melding) => {
                     const fritekst = melding.fritekst;
                     const tittel = meldingstittel(melding);
                     const saksbehandler = melding.skrevetAvTekst;
                     const datotekst = getFormattertMeldingsDato(melding);
                     const sokbarTekst = (fritekst + tittel + saksbehandler + datotekst).toLowerCase();
-                    return words.every(word => sokbarTekst.includes(word.toLowerCase()));
+                    return words.every((word) => sokbarTekst.includes(word.toLowerCase()));
                 });
             })
-            .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato));
+            .sort(datoSynkende((traad) => nyesteMelding(traad).opprettetDato));
     }, [debouncedQuery, traader]);
 }
 
 export function nyesteTraad(traader: Traad[]) {
-    return traader.sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato))[0];
+    return traader.sort(datoSynkende((traad) => nyesteMelding(traad).opprettetDato))[0];
 }
 
 export function filtrerBortVarsel(traad: Traad): boolean {
