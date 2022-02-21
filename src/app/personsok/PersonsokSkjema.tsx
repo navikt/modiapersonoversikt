@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
-import { PersonSokFormState, lagRequest, validatorPersonsok, PersonSokFormProps } from './personsok-utils';
+import { PersonSokFormState, lagRequest, validatorPersonsok } from './personsok-utils';
 import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
@@ -19,8 +19,6 @@ import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { FeilmeldingOppsummering } from '../../components/FeilmeldingOppsummering';
 import formstateFactory, { Values } from '@nutgaard/use-formstate';
 import { Kjonn } from '../personside/visittkort-v2/PersondataDomain';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -75,11 +73,10 @@ const initialValues: PersonSokFormState = {
     _minimumskrav: ''
 };
 
-const useFormstate = formstateFactory<PersonSokFormState, PersonSokFormProps>(validatorPersonsok);
+const useFormstate = formstateFactory<PersonSokFormState>(validatorPersonsok);
 
 function PersonsokSkjema(props: Props) {
-    const usePdlPersonsok = useFeatureToggle(FeatureToggles.BrukPdlPersonsok)?.isOn ?? false;
-    const formstate = useFormstate(initialValues, { usePdlPersonsok });
+    const formstate = useFormstate(initialValues);
     const hjelpetekstID = useRef(guid());
 
     function submitHandler(values: Values<PersonSokFormState>): Promise<any> {
@@ -90,8 +87,7 @@ function PersonsokSkjema(props: Props) {
         }
 
         const request: PersonsokRequest = lagRequest(values);
-        const url = usePdlPersonsok ? `${apiBaseUri}/personsok/v2` : `${apiBaseUri}/personsok`;
-        return fetchToJson<PersonsokResponse[]>(url, postConfig(request))
+        return fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok/v2`, postConfig(request))
             .then((response) => {
                 props.setPosting(false);
                 props.setResponse(response);
