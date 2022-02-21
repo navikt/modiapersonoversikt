@@ -16,7 +16,7 @@ import AvansertsokPdlsok from './img/avansertsok-pdlsok.png';
 import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export function lagOppdateringsloggConfig(usePdlPersonsok: boolean): EnOppdateringslogg[] {
+export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
     return [
         {
             id: 1,
@@ -218,7 +218,7 @@ export function lagOppdateringsloggConfig(usePdlPersonsok: boolean): EnOppdateri
             id: 12,
             tittel: 'Endringer på avansert søk',
             dato: new Date('2022-01-21 12:00'),
-            aktiv: usePdlPersonsok,
+            aktiv: true,
             ingress: (
                 <Normaltekst>
                     Hovedkilden til søket er endret, og dette kan medføre noen forskjeller på resultatet.
