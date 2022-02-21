@@ -106,7 +106,7 @@ function parseAremarkNavn(aremark: Person): Navn {
 }
 
 function getMockNavn(fodselsnummer: string): Navn {
-    if (fodselsnummer === aremark.fnr) {
+    if (fodselsnummer === aremark.personIdent) {
         return parseAremarkNavn(aremark);
     }
     faker.seed(Number(fodselsnummer));
@@ -200,7 +200,7 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
                 beskrivelse: 'Aktiv'
             },
             ident: {
-                ident: aremark.fnr,
+                ident: aremark.personIdent,
                 type: {
                     kodeRef: 'F',
                     beskrivelse: 'Fødsesnummer'

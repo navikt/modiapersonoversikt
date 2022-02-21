@@ -83,7 +83,7 @@ export function byggAutofullforMap(
         const { person } = persondata;
         const kjonn = person.kjonn.firstOrNull()?.kode;
         personData = {
-            'bruker.fnr': person.fnr,
+            'bruker.fnr': person.personIdent,
             'bruker.fornavn': capitalizeName(person.navn.firstOrNull()?.fornavn || ''),
             'bruker.etternavn': capitalizeName(
                 [person.navn.firstOrNull()?.mellomnavn, person.navn.firstOrNull()?.etternavn].filter((v) => v).join(' ')
