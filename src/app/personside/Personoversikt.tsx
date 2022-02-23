@@ -2,7 +2,7 @@ import * as React from 'react';
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
 import MainLayout from './MainLayout';
 import { useFodselsnummer, useOnMount } from '../../utils/customHooks';
-import { erGydligishFnr } from '../../utils/fnr-utils';
+import { erGyldigishFnr } from '../../utils/fnr-utils';
 import { useHistory } from 'react-router';
 import { paths } from '../routes/routing';
 import { loggInfo } from '../../utils/logger/frontendLogger';
@@ -24,7 +24,7 @@ function Personoversikt() {
     const history = useHistory();
 
     useOnMount(() => {
-        if (!erGydligishFnr(fnr)) {
+        if (!erGyldigishFnr(fnr)) {
             loggInfo('Ugyldig fnr, redirecter til startside');
             history.push(`${paths.basePath}?sokFnr=${fnr}`);
         }

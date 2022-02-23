@@ -6,7 +6,7 @@ import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
 import formstateFactory from '@nutgaard/use-formstate';
 import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
-import { fnr } from '@navikt/fnrvalidator';
+import { FnrValidationError, validerIdent } from '../../utils/fnr-utils';
 
 const Form = styled.form`
     margin-top: 2rem;
@@ -28,23 +28,20 @@ type PersonSokForm = {
     fødselsnummer: string;
 };
 
-function lagFeilmelding(error: ErrorReason): string {
+function lagFeilmelding(error: FnrValidationError | undefined): string | undefined {
     switch (error) {
-        case 'fnr or dnr must consist of 11 digits':
+        case FnrValidationError.LENGTH:
+        case FnrValidationError.NUMBERS_ONLY:
             return 'Fødselsnummeret må inneholde 11 siffer';
-        case "checksums don't match":
-        case 'invalid date':
+        case FnrValidationError.CONTROL_FAILED:
             return 'Fødselsnummeret er ikke gyldig';
+        default:
+            return undefined;
     }
 }
 
-const validering = formstateFactory<PersonSokForm>(values => {
-    const fnrValidation = fnr(values.fødselsnummer);
-    if (fnrValidation.status === 'invalid') {
-        return { fødselsnummer: lagFeilmelding(fnrValidation.reasons[0]) };
-    } else {
-        return { fødselsnummer: undefined };
-    }
+const validering = formstateFactory<PersonSokForm>((values) => {
+    return { fødselsnummer: lagFeilmelding(validerIdent(values.fødselsnummer)) };
 });
 
 function PersonSokInput() {
