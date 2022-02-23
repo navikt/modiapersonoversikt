@@ -13,12 +13,20 @@ import styled from 'styled-components/macro';
 import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMeldinger';
 import { guid } from 'nav-frontend-js-utils';
 import TildelteOppgaver from './dialogpanel/TildelteOppgaver';
+import IfFeatureToggleOn from '../../components/featureToggle/IfFeatureToggleOn';
+import TilbakemeldingFab from '../../components/Tilbakemelding/TilbakemeldingFab';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 const Scrollbar = styled.div`
     overflow-y: auto;
     flex-grow: 1;
     flex-shrink: 1;
 `;
+
+const temaId = 'sporsamtalePilot';
+const sporsmal = 'Synes du «Spor samtale» er en effektiv måte å dokumentere samtale med bruker?';
+const kommentarLabel =
+    'Hva er bra, hva kunne vært bedre og er det noe du savner? Andre tilbakemelding? Alle tilbakemeldinger er anonyme.';
 
 function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
@@ -57,6 +65,9 @@ function MainLayout() {
                 </HoyreKolonne>
             )}
             <SmallScreenToggleButton UI={UI} toggleDialogpanel={() => dispatch(toggleDialogpanel())} />
+            <IfFeatureToggleOn toggleID={FeatureToggles.VisTilbakemelding}>
+                <TilbakemeldingFab temaId={temaId} sporsmal={sporsmal} kommentarLabel={kommentarLabel} />
+            </IfFeatureToggleOn>
         </LayoutWrapper>
     );
 }

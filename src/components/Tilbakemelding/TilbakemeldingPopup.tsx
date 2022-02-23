@@ -1,16 +1,18 @@
 import React, { useState, FormEvent, useRef } from 'react';
 import styled from 'styled-components/macro';
 import { Innholdstittel, Normaltekst, Element } from 'nav-frontend-typografi';
-import theme, { pxToRem } from '../../../styles/personOversiktTheme';
+import theme, { pxToRem } from '../../styles/personOversiktTheme';
 import TilbakemeldingValg from './TilbakemeldingValg';
 import { Textarea } from 'nav-frontend-skjema';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { smilies } from './TilbakemeldingIkoner';
-import { useFocusOnMount } from '../../../utils/customHooks';
-import { LenkeKnapp } from '../../common-styled-components';
-import Panel from 'nav-frontend-paneler';
+import { useFocusOnMount } from '../../utils/customHooks';
+import { LenkeKnapp } from '../common-styled-components';
 
-const TilbakemeldingPopupContainer = styled(Panel)`
+const TilbakemeldingPopupContainer = styled.div`
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: 1px solid ${theme.color.graaSkrift};
     width: ${pxToRem(350)};
     position: fixed;
     right: ${pxToRem(25)};
@@ -25,6 +27,7 @@ const TilbakemeldingPopupContainer = styled(Panel)`
 const KnappWrapper = styled.div`
     display: flex;
     justify-content: space-between;
+    margin-top: 0.5rem;
 `;
 const TakkForTilbakemeldingenContainer = styled(TilbakemeldingPopupContainer)`
     background-color: #98d0b0;
@@ -52,7 +55,7 @@ function Kommentar(props: InternalProps) {
         <>
             <Textarea
                 value={props.kommentar}
-                onChange={e => props.settKommentar(e.currentTarget.value)}
+                onChange={(e) => props.settKommentar(e.currentTarget.value)}
                 label={props.kommentarLabel}
                 maxLength={750}
             />
