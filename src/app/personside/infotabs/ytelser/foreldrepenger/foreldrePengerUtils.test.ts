@@ -6,8 +6,8 @@ import {
 import { Foreldrepengerettighet } from '../../../../../models/ytelse/foreldrepenger';
 import { utledFraDatoForRettighet, sorterArbeidsforholdEtterRefusjonTom } from './foreldrePengerUtils';
 
-const randomForeldrepengerettighet = getForeldrepengerettighetMock(aremark.fnr);
-const randomForeldrepengerettighetPeriode = getForeldrepengerperiodeMock(aremark.fnr);
+const randomForeldrepengerettighet = getForeldrepengerettighetMock(aremark.personIdent);
+const randomForeldrepengerettighetPeriode = getForeldrepengerperiodeMock(aremark.personIdent);
 
 test('finner "rettighet fra dato" fra foreldrepengerettighet', () => {
     const foreldrepengeRettighet: Foreldrepengerettighet = {

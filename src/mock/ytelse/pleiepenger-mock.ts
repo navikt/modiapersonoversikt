@@ -17,12 +17,12 @@ import { aremark } from '../persondata/aremark';
 import { lagPerson } from '../persondata/persondata';
 
 export function getMockPleiepenger(fødselsnummer: string): PleiepengerResponse {
-    if (fødselsnummer === aremark.fnr) {
+    if (fødselsnummer === aremark.personIdent) {
         return {
             pleiepenger: [
                 {
                     ...pleiepengerTestData,
-                    barnet: lagPerson('12345678910').fnr
+                    barnet: lagPerson('12345678910').personIdent
                 }
             ]
         };

@@ -79,7 +79,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Utbetalinger:
             return <UtbetalingsLamell fnr={props.fnr} />;
         case Komponenter.Pleiepenger:
-            return <PleiepengerLamell fnr={aremark.fnr} barnetsFnr={lagPerson('12345678910')?.fnr} />;
+            return <PleiepengerLamell fnr={aremark.personIdent} barnetsFnr={lagPerson('12345678910')?.personIdent} />;
         case Komponenter.Foreldrepenger:
             return <ForeldrepengerLamell fnr={props.fnr} />;
         case Komponenter.Visittkort:
@@ -87,7 +87,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
         case Komponenter.Oppfølging:
             return <OppfolgingLamell fnr={props.fnr} />;
         case Komponenter.Sykepenger:
-            return <SykepengerLamell fnr={aremark.fnr} sykmeldtFraOgMed="2019-02-06" />;
+            return <SykepengerLamell fnr={aremark.personIdent} sykmeldtFraOgMed="2019-02-06" />;
         case Komponenter.Varsler:
             return <VarslerLamell fnr={props.fnr} />;
         case Komponenter.Dialogpanel:
@@ -107,7 +107,7 @@ function GjeldendeKomponent(props: { valgtTab: Komponenter; fnr: string }) {
 
 function StandAloneKomponenter(props: RouteComponentProps<{ fnr: string; component: string }>) {
     const routeFnr = props.match.params.fnr;
-    const fnr = routeFnr || aremark.fnr;
+    const fnr = routeFnr || aremark.personIdent;
     const routeComponent = props.match.params.component;
     const valgtTab = Komponenter[routeComponent] || Komponenter.Visittkort;
     const updatePath = (komponent: string) => props.history.push(`${paths.standaloneKomponenter}/${komponent}/${fnr}`);

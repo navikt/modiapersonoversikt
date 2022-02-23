@@ -24,7 +24,7 @@ const erReservert = false;
 const ikkeRegistrert = false;
 
 export function hentPersondata(fodselsnummer: string): PersonData | null {
-    if (fodselsnummer === aremark.fnr) {
+    if (fodselsnummer === aremark.personIdent) {
         return { feilendeSystemer: [], person: aremark };
     } else if (!erGyldigFødselsnummer(fodselsnummer)) {
         return null;
@@ -35,7 +35,7 @@ export function hentPersondata(fodselsnummer: string): PersonData | null {
 
 export function lagPerson(fnr: string): Person {
     return {
-        fnr: fnr,
+        personIdent: fnr,
         navn: [
             {
                 fornavn: 'TESTFAMILIE',

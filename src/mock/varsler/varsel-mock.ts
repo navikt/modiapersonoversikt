@@ -10,7 +10,7 @@ import { aremark } from '../persondata/aremark';
 export function getMockVarsler(fnr: string): Varsel[] {
     faker.seed(Number(fnr));
     navfaker.seed(fnr + 'varsel');
-    if (fnr === aremark.fnr) {
+    if (fnr === aremark.personIdent) {
         return statiskVarselMock;
     }
 
