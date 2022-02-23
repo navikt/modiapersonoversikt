@@ -50,7 +50,7 @@ function MainLayout() {
                     </h1>
                     <Scrollbar>
                         <BrukerHarUbesvarteMeldinger />
-                        <TildelteOppgaver standalone />
+                        <TildelteOppgaver />
                         <DialogPanel />
                     </Scrollbar>
                     <EkspanderDilaogpanelKnapp />

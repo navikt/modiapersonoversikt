@@ -20,12 +20,8 @@ import Panel from 'nav-frontend-paneler';
 
 const Wrapper = styled.div`
     position: relative;
-    ${(props: { standalone: boolean }) =>
-        props.standalone &&
-        `
     padding: ${theme.margin.layout};
     border-bottom: ${theme.border.skilleSvak};
-    `}
 `;
 
 const StyledPanel = styled(Panel)`
@@ -104,7 +100,7 @@ function OppgaverDropdown(props: { lukk: () => void }) {
     );
 }
 
-function TildelteOppgaver(props: { standalone?: boolean }) {
+function TildelteOppgaver() {
     const ref = createRef<HTMLDivElement>();
     const [visOppgaver, setVisOppgaver] = useState(false);
     useClickOutside(ref, () => setVisOppgaver(false));
@@ -113,12 +109,12 @@ function TildelteOppgaver(props: { standalone?: boolean }) {
     const oppgaverPaaBruker = tildelteOppgaver.paaBruker;
 
     const antallOppgaver = oppgaverPaaBruker.length;
-    if (props.standalone && antallOppgaver === 0) {
+    if (antallOppgaver === 0) {
         return null;
     }
 
     return (
-        <Wrapper ref={ref} standalone={props.standalone || false}>
+        <Wrapper ref={ref}>
             {antallOppgaver >= 2 && <AlertStripeInfo>Flere oppgaver på bruker</AlertStripeInfo>}
             <JustifyRight>
                 {antallOppgaver > 0 && (

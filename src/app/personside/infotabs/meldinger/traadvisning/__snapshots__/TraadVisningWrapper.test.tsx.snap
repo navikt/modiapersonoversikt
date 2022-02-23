@@ -67,7 +67,6 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 .c19 {
-  margin-top: 0.5rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1127,7 +1126,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       >
         <fieldset
           aria-invalid={false}
-          className="skjemagruppe inputPanelGruppe"
+          className="skjemagruppe inputPanelGruppe blokk-xxs"
         >
           
           <div
