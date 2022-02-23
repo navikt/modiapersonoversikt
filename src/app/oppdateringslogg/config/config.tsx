@@ -14,6 +14,7 @@ import VisittkortV2 from './img/visittkortV2.png';
 import AutofullforBarnetrygd from './img/autofullfor-barnetrygd.png';
 import AvansertsokPdlsok from './img/avansertsok-pdlsok.png';
 import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
+import FortlopendeJournalforing from './img/fortlopende-journalforing.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
@@ -244,6 +245,26 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             ),
             beskrivelse: <Normaltekst>Det vil fortsatt være mulig å overstyre dette ved utsending.</Normaltekst>,
             src: OppgaveDestinasjon
+        },
+        {
+            id: 14,
+            tittel: 'Fortløpende journalføring',
+            dato: new Date('2022-02-23 08:00'),
+            aktiv: true,
+            ingress: (
+                <Normaltekst>
+                    Salesforce åpner opp for fortløpende journalføring og oppretting av dokumenter.
+                </Normaltekst>
+            ),
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Når en tråd blir journalført vil dokumenter bli tilgjengelig i Gosys etter kort tid. Mens en
+                        tråd er åpen for videre meldinger vil dokumenttypen være "Notat"/"N".
+                    </Normaltekst>
+                </>
+            ),
+            src: FortlopendeJournalforing
         }
     ];
 }
