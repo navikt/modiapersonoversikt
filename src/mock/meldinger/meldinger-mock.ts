@@ -9,11 +9,10 @@ import {
     erMeldingFraNav,
     saksbehandlerTekst
 } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
-import { Temagruppe, TemaPlukkbare } from '../../models/temagrupper';
+import { Temagruppe, TemaSamtalereferat } from '../../models/temagrupper';
 import standardTeksterMock from '../standardTeksterMock';
 import { autofullfor, AutofullforMap } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
 import { backendDatoTidformat } from '../../utils/date-utils';
-import { SlaaSammenResponse } from '../../app/personside/infotabs/meldinger/traadliste/besvarflere/BesvarFlere';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)
 export const MOCKED_TRAADID_1 = '123';
@@ -34,7 +33,7 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
         traadArray[2].traadId = MOCKED_TRAADID_3;
     }
 
-    return traadArray.map(traad => {
+    return traadArray.map((traad) => {
         const meldinger = traad.meldinger;
         meldinger[0].id = traad.traadId; // Første melding i en tråd har alltid id === traadId
         return {
@@ -45,13 +44,13 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
 }
 
 function getMockTraad(): Traad {
-    const temagruppe = navfaker.random.arrayElement([...TemaPlukkbare, null, Temagruppe.InnholdSlettet]);
+    const temagruppe = navfaker.random.arrayElement([...TemaSamtalereferat, null, Temagruppe.InnholdSlettet]);
     const meldinger = Array(navfaker.random.integer(4, 1))
         .fill(null)
         .map(() => getMelding(temagruppe));
 
     const enkeltStaaendeMelding = meldinger.find(
-        melding => erVarselMelding(melding.meldingstype) || erMeldingstypeSamtalereferat(melding.meldingstype)
+        (melding) => erVarselMelding(melding.meldingstype) || erMeldingstypeSamtalereferat(melding.meldingstype)
     );
 
     return {
@@ -67,7 +66,9 @@ function getMelding(temagruppe: Temagruppe): Melding {
     const meldingstype = navfaker.random.arrayElement(Object.entries(Meldingstype))[0];
     const sladdingNiva = navfaker.random.arrayElement([0, 0, 0, 0, 1, 1, 1, 1, 2]);
 
-    let tekstFraNav = navfaker.random.arrayElement(Object.entries(standardTeksterMock).map(it => it[1].innhold.nb_NO));
+    let tekstFraNav = navfaker.random.arrayElement(
+        Object.entries(standardTeksterMock).map((it) => it[1].innhold.nb_NO)
+    );
 
     if (sladdingNiva === 2) {
         tekstFraNav = tekstFraNav.replace(/./g, '*');
@@ -119,9 +120,9 @@ function sensorerEnkeltOrd(tekst: string): string {
         return tekst;
     }
     const ord = tekst.split(' ');
-    const sensorOrd = navfaker.random.arrayElement(ord.filter(it => it.length > 2));
+    const sensorOrd = navfaker.random.arrayElement(ord.filter((it) => it.length > 2));
     const sensorering = '*'.repeat(sensorOrd.length);
-    return ord.map(it => (it === sensorOrd ? sensorering : it)).join(' ');
+    return ord.map((it) => (it === sensorOrd ? sensorering : it)).join(' ');
 }
 
 function getSaksbehandler(): Saksbehandler {
@@ -129,15 +130,6 @@ function getSaksbehandler(): Saksbehandler {
         ident: faker.random.alphaNumeric(6),
         fornavn: faker.name.firstName(),
         etternavn: faker.name.lastName()
-    };
-}
-
-export function getMockSlaaSammen(fødselsnummer: string): SlaaSammenResponse {
-    const traader = getMockTraader(fødselsnummer);
-
-    return {
-        nyTraadId: MOCKED_TRAADID_1,
-        traader: traader
     };
 }
 

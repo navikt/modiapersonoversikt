@@ -23,13 +23,12 @@ function HurtigtastHjelp() {
         { tast: 'Alt + S', beskrivelse: 'Vis saker' },
         { tast: 'Alt + Y', beskrivelse: 'Vis ytelser' },
         { tast: 'Alt + V', beskrivelse: 'Vis varsler' },
-        { tast: 'Alt + L', beskrivelse: 'Lukk kontrollsporsmal' },
         { tast: 'Alt + N', beskrivelse: 'Åpne/lukke visitkort' },
         { tast: 'Alt + C', beskrivelse: 'Åpne samtalemaler' },
         { tast: 'Alt + B', beskrivelse: 'Gå til personforvalter' },
         { tast: 'Alt + G', beskrivelse: 'Gå til gosys' }
     ];
-    const tableRows = taster.map(hurtigtast => [hurtigtast.tast, hurtigtast.beskrivelse]);
+    const tableRows = taster.map((hurtigtast) => [hurtigtast.tast, hurtigtast.beskrivelse]);
     return (
         <>
             <StyledInnholdstittel>Hurtigtaster i Modia</StyledInnholdstittel>

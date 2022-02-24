@@ -1,42 +1,6 @@
 import { LestStatus, Melding, Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
-import {
-    erKommunaleTjenester,
-    erMeldingFraBruker,
-    erMeldingFraNav,
-    erMeldingSpørsmål,
-    erPlukkbar,
-    erUbesvartHenvendelseFraBruker,
-    erVarselMelding,
-    kanLeggesTilbake
-} from './meldingerUtils';
+import { erMeldingFraBruker, erMeldingFraNav, erUbesvartHenvendelseFraBruker, erVarselMelding } from './meldingerUtils';
 import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
-
-describe('Temagrupper', () => {
-    const pensjon = Temagruppe.Pensjon;
-    const arbeid = Temagruppe.Arbeid;
-    const forskuddDagpenger = Temagruppe.ForskuddDagpenger;
-    const økonomiskSosial = Temagruppe.ØkonomiskSosial;
-
-    it('gir at arbeid kan legges tilbake', function () {
-        expect(kanLeggesTilbake(arbeid)).toBe(true);
-    });
-
-    it('gir at arbeid er plukkbar', function () {
-        expect(erPlukkbar(arbeid)).toBe(true);
-    });
-
-    it('gir at forskudd dagpenger er plukkbar', function () {
-        expect(erPlukkbar(forskuddDagpenger)).toBe(true);
-    });
-
-    it('gir at økonomiskSosial er kommunale tjenester', function () {
-        expect(erKommunaleTjenester(økonomiskSosial)).toBe(true);
-    });
-
-    it('gir at pensjon ikke er kommunale tjenester', function () {
-        expect(erKommunaleTjenester(pensjon)).toBe(false);
-    });
-});
 
 describe('Meldingstyper', () => {
     const spørsmålSkriftlig = Meldingstype.SPORSMAL_SKRIFTLIG;
@@ -53,10 +17,6 @@ describe('Meldingstyper', () => {
 
     it('gir at dokumentvarsel er et varsel', function () {
         expect(erVarselMelding(dokumentvarsel)).toBe(true);
-    });
-
-    it('gir at spørsmål skriftlig er et spørsmål', function () {
-        expect(erMeldingSpørsmål(spørsmålSkriftlig)).toBe(true);
     });
 });
 describe('Dokumentvarsler', () => {

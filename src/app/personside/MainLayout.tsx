@@ -1,21 +1,17 @@
 import * as React from 'react';
 import { useRef } from 'react';
 import DialogPanel from './dialogpanel/DialogPanel';
-import HentOppgaveKnapp from './dialogpanel/HentOppgaveKnapp';
 import Visittkort from './visittkort-v2/Visittkort';
 import { toggleDialogpanel } from '../../redux/uiReducers/UIReducer';
 import { AppState } from '../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { LayoutWrapper } from './MainLayoutStyles';
 import { HoyreKolonne, SmallScreenToggleButton, VenstreKolonne } from './ResponsiveMainLayoutStyles';
-import Kontrollsporsmal from './kontrollsporsmal/Kontrollsporsmal';
 import InfoTabs from './infotabs/InfoTabs';
 import EkspanderDilaogpanelKnapp from './EkspanderDilaogpanelKnapp';
 import styled from 'styled-components/macro';
 import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMeldinger';
 import { guid } from 'nav-frontend-js-utils';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import TildelteOppgaver from './dialogpanel/TildelteOppgaver';
 
 const Scrollbar = styled.div`
@@ -28,7 +24,6 @@ function MainLayout() {
     const UI = useSelector((state: AppState) => state.ui);
     const dispatch = useDispatch();
     const tittelId = useRef(guid());
-    const usingSFBackend = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
 
     const ekspanderDialogpanelHandler = () => {
         if (!UI.dialogPanel.ekspandert) {
@@ -40,7 +35,6 @@ function MainLayout() {
         <LayoutWrapper>
             <VenstreKolonne dialogPanelEkspandert={UI.dialogPanel.ekspandert}>
                 <Scrollbar>
-                    <Kontrollsporsmal />
                     <Visittkort />
                 </Scrollbar>
                 <InfoTabs />
@@ -56,8 +50,7 @@ function MainLayout() {
                     </h1>
                     <Scrollbar>
                         <BrukerHarUbesvarteMeldinger />
-                        {!usingSFBackend && <HentOppgaveKnapp />}
-                        {usingSFBackend && <TildelteOppgaver standalone />}
+                        <TildelteOppgaver />
                         <DialogPanel />
                     </Scrollbar>
                     <EkspanderDilaogpanelKnapp />
