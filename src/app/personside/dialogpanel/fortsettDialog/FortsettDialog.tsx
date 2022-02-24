@@ -7,7 +7,6 @@ import VelgDialogType from './VelgDialogType';
 import TekstFelt from '../sendMelding/TekstFelt';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import Temavelger from '../component/Temavelger';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
 import BrukerKanSvare from './BrukerKanSvare';
@@ -20,11 +19,8 @@ import {
     erEldsteMeldingJournalfort,
     erMeldingstypeSamtalereferat
 } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { temagruppeTekst, TemaPlukkbare } from '../../../../models/temagrupper';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 import { useHentPersondata } from '../../../../utils/customHooks';
 import { hasData } from '@nutgaard/use-fetch';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
 import { capitalizeName } from '../../../../utils/string-utils';
 
 const SubmitKnapp = styled(Hovedknapp)`
@@ -63,17 +59,11 @@ export const tekstMaksLengde = 5000;
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;
     const personResponse = useHentPersondata();
-    const usingSFBackend: boolean = useFeatureToggle(FeatureToggles.BrukSalesforceDialoger).isOn ?? false;
-    const temagrupperITraad = props.traad.meldinger.map((it) => it.temagruppe);
 
     const navn = hasData(personResponse)
         ? capitalizeName(personResponse.data.person.navn.firstOrNull()?.fornavn || '')
         : 'bruker';
 
-    const erDelsvar = state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
-    const girIkkeVarsel = [Meldingstype.SVAR_OPPMOTE, Meldingstype.SVAR_TELEFON].includes(state.dialogType);
-    const girVarselKanIkkeSvare = Meldingstype.SVAR_SKRIFTLIG === state.dialogType;
-    const brukerKanSvareValg = state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
     const delMedBrukerTekst = props.erTilknyttetOppgave ? `Del med ${navn} og avslutt oppgave` : `Del med ${navn}`;
     const erOksosTraad = props.traad.meldinger.some((it) => it.temagruppe === 'OKSOS');
 
@@ -103,21 +93,7 @@ function FortsettDialog(props: Props) {
                 erSamtalereferat={erSamtalereferat}
             />
             <Margin>
-                <UnmountClosed isOpened={!usingSFBackend && girVarselKanIkkeSvare}>
-                    <AlertStripeInfo>Gir varsel, bruker kan ikke svare</AlertStripeInfo>
-                </UnmountClosed>
-                <UnmountClosed isOpened={!usingSFBackend && girIkkeVarsel}>
-                    <AlertStripeInfo>Gir ikke varsel</AlertStripeInfo>
-                </UnmountClosed>
-                <UnmountClosed isOpened={!usingSFBackend && brukerKanSvareValg}>
-                    <AlertStripeInfo>Gir varsel, bruker kan svare</AlertStripeInfo>
-                    <BrukerKanSvare
-                        formState={state}
-                        updateFormState={updateState}
-                        visVelgSak={!erEldsteMeldingJournalfort(props.traad) && !erOksosTraad}
-                    />
-                </UnmountClosed>
-                <UnmountClosed isOpened={usingSFBackend && !erSamtalereferat}>
+                <UnmountClosed isOpened={!erSamtalereferat}>
                     <AlertStripeInfo>Gir varsel, bruker kan svare.</AlertStripeInfo>
                     <BrukerKanSvare
                         formState={state}
@@ -129,23 +105,10 @@ function FortsettDialog(props: Props) {
                         }
                     />
                 </UnmountClosed>
-                <UnmountClosed isOpened={erDelsvar}>
-                    {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
-                    <Temavelger
-                        setTema={(tema) => updateState({ temagruppe: tema })}
-                        valgtTema={state.temagruppe}
-                        visFeilmelding={!FortsettDialogValidator.tema(state) && state.visFeilmeldinger}
-                        temavalg={TemaPlukkbare.filter((it) => !temagrupperITraad.includes(it))}
-                    />
-                </UnmountClosed>
             </Margin>
             <Feilmelding status={props.fortsettDialogPanelState.type} />
             <SubmitKnapp htmlType="submit" spinner={props.fortsettDialogPanelState.type === DialogPanelStatus.POSTING}>
-                {erDelsvar
-                    ? `Skriv delsvar og legg tilbake på ${
-                          state.temagruppe ? temagruppeTekst(state.temagruppe).toLowerCase() : 'tema'
-                      }`
-                    : delMedBrukerTekst}
+                {delMedBrukerTekst}
             </SubmitKnapp>
             {!props.erTilknyttetOppgave && (
                 <StyledKnappMedBekreftPopup

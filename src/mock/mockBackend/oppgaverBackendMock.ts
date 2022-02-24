@@ -1,18 +1,7 @@
-import { getTilfeldigeOppgaver } from '../oppgave-mock';
-import { LeggTilbakeOppgaveRequest } from '../../models/leggTilbakeOppgave';
 import { Oppgave } from '../../models/meldinger/oppgave';
 
 export class OppgaverBackendMock {
     private tildelteOppgaver: Oppgave[] = [];
-
-    public plukkOppgave(): Oppgave[] {
-        if (this.tildelteOppgaver.length > 0) {
-            return this.tildelteOppgaver;
-        }
-        const tilfeldigeOppgaver = getTilfeldigeOppgaver();
-        this.tildelteOppgaver = tilfeldigeOppgaver;
-        return tilfeldigeOppgaver;
-    }
 
     public getTildelteOppgaver(): Oppgave[] {
         return this.tildelteOppgaver;
@@ -22,12 +11,7 @@ export class OppgaverBackendMock {
         this.fjernOppgave(oppgaveId);
     }
 
-    public leggTilbake(body: LeggTilbakeOppgaveRequest) {
-        this.fjernOppgave(body.oppgaveId);
-        return {};
-    }
-
     private fjernOppgave(oppgaveId: string) {
-        this.tildelteOppgaver = this.tildelteOppgaver.filter(oppgave => oppgave.oppgaveId !== oppgaveId);
+        this.tildelteOppgaver = this.tildelteOppgaver.filter((oppgave) => oppgave.oppgaveId !== oppgaveId);
     }
 }

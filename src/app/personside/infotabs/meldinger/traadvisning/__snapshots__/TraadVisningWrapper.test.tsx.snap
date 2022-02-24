@@ -66,6 +66,17 @@ exports[`Viser traad med verktøylinje 1`] = `
   border-color: #0067c5;
 }
 
+.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
 .c16 {
   position: relative;
 }
@@ -118,18 +129,6 @@ exports[`Viser traad med verktøylinje 1`] = `
 
 .c18 button {
   margin: 0;
-}
-
-.c19 {
-  margin-top: 0.5rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
 }
 
 .c6 {
@@ -1127,7 +1126,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       >
         <fieldset
           aria-invalid={false}
-          className="skjemagruppe inputPanelGruppe"
+          className="skjemagruppe inputPanelGruppe blokk-xxs"
         >
           
           <div
@@ -1159,7 +1158,7 @@ exports[`Viser traad med verktøylinje 1`] = `
               </span>
             </label>
             <label
-              className="inputPanel radioPanel inputPanel--disabled"
+              className="inputPanel radioPanel"
               htmlFor="Helt tilfeldig ID"
             >
               <input
@@ -1168,94 +1167,19 @@ exports[`Viser traad med verktøylinje 1`] = `
                 aria-invalid={false}
                 checked={false}
                 className="inputPanel__field"
-                disabled={true}
+                disabled={false}
                 id="Helt tilfeldig ID"
                 name="merk"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
                 type="radio"
-                value="BISYS"
+                value="SLADDING"
               />
               <span
                 className="inputPanel__label"
               >
-                Kopiert inn i Bisys
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel inputPanel--disabled"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                aria-errormessage="Helt tilfeldig ID"
-                aria-invalid={false}
-                checked={false}
-                className="inputPanel__field"
-                disabled={true}
-                id="Helt tilfeldig ID"
-                name="merk"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="KONTORSPERRET"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Kontorsperret
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel inputPanel--disabled"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                aria-errormessage="Helt tilfeldig ID"
-                aria-invalid={false}
-                checked={false}
-                className="inputPanel__field"
-                disabled={true}
-                id="Helt tilfeldig ID"
-                name="merk"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="AVSLUTT"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Avslutt uten å svare bruker
-              </span>
-            </label>
-            <label
-              className="inputPanel radioPanel inputPanel--disabled"
-              htmlFor="Helt tilfeldig ID"
-            >
-              <input
-                aria-checked={false}
-                aria-errormessage="Helt tilfeldig ID"
-                aria-invalid={false}
-                checked={false}
-                className="inputPanel__field"
-                disabled={true}
-                id="Helt tilfeldig ID"
-                name="merk"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                type="radio"
-                value="FERDIGSTILL"
-              />
-              <span
-                className="inputPanel__label"
-              >
-                Overstyrt ferdigstillelse av oppgave
+                Send til sladding
               </span>
             </label>
           </div>

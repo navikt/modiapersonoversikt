@@ -3,15 +3,7 @@ import { meldingstypeTekst } from './meldingstekster';
 import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/date-utils';
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
-import { Temagruppe, temagruppeTekst, TemaPlukkbare, TemaKommunaleTjenester } from '../../../../../models/temagrupper';
-
-export const KanBesvaresMeldingstyper = [
-    Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
-    Meldingstype.SPORSMAL_SKRIFTLIG,
-    Meldingstype.INFOMELDING_MODIA_UTGAAENDE,
-    Meldingstype.SAMTALEREFERAT_TELEFON,
-    Meldingstype.SAMTALEREFERAT_OPPMOTE
-];
+import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
 
 export function nyesteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoSynkende((melding) => melding.opprettetDato))[0];
@@ -21,24 +13,21 @@ export function eldsteMelding(traad: Traad) {
     return [...traad.meldinger].sort(datoStigende((melding) => melding.opprettetDato))[0];
 }
 
-export function kanBesvares(usingSFBackend: boolean, traad?: Traad): boolean {
+export function kanBesvares(traad?: Traad): boolean {
     if (!traad) {
         return false;
     }
     const melding = eldsteMelding(traad);
 
-    if (usingSFBackend) {
-        if (erMeldingstypeSamtalereferat(melding.meldingstype)) {
-            return true;
-        } else {
-            /**
-             * For meldingskjeder i salesforce er det kun mulig å sende oppfølgingsmeldinger
-             * før tråden blir avsluttet. På dette tidspunktet vil tråden bli journalført og låst.
-             */
-            return !melding.avsluttetDato;
-        }
+    if (erMeldingstypeSamtalereferat(melding.meldingstype)) {
+        return true;
+    } else {
+        /**
+         * For meldingskjeder i salesforce er det kun mulig å sende oppfølgingsmeldinger
+         * før tråden blir avsluttet. På dette tidspunktet vil tråden bli journalført og låst.
+         */
+        return !melding.avsluttetDato;
     }
-    return KanBesvaresMeldingstyper.includes(melding.meldingstype);
 }
 
 export function erMonolog(traad: Traad) {
@@ -60,21 +49,6 @@ export function meldingstittel(melding: Melding): string {
 
 export function erMeldingstypeSamtalereferat(meldingstype: Meldingstype) {
     return [Meldingstype.SAMTALEREFERAT_OPPMOTE, Meldingstype.SAMTALEREFERAT_TELEFON].includes(meldingstype);
-}
-
-export function kanLeggesTilbake(temagruppe: Temagruppe) {
-    return TemaPlukkbare.includes(temagruppe);
-}
-
-export function erPlukkbar(temagruppe: Temagruppe) {
-    return TemaPlukkbare.includes(temagruppe);
-}
-
-export function erKommunaleTjenester(temagruppe: Temagruppe | null) {
-    if (!temagruppe) {
-        return false;
-    }
-    return TemaKommunaleTjenester.includes(temagruppe);
 }
 
 export function erMeldingFraBruker(meldingstype: Meldingstype) {
@@ -112,10 +86,6 @@ export function erVarselMelding(meldingstype: Meldingstype) {
     return [Meldingstype.OPPGAVE_VARSEL, Meldingstype.DOKUMENT_VARSEL].includes(meldingstype);
 }
 
-export function erMeldingSpørsmål(meldingstype: Meldingstype) {
-    return [Meldingstype.SPORSMAL_MODIA_UTGAAENDE, Meldingstype.SPORSMAL_SKRIFTLIG].includes(meldingstype);
-}
-
 export function erKontorsperret(traad: Traad): boolean {
     return !!eldsteMelding(traad).kontorsperretEnhet;
 }
@@ -128,8 +98,7 @@ export function kanTraadJournalfores(traad: Traad): boolean {
         !erFeilsendt(traad) &&
         !erJournalfort(nyesteMeldingITraad) &&
         erBehandlet(traad) &&
-        !erDelsvar(nyesteMeldingITraad) &&
-        !erKommunaleTjenester(nyesteMeldingITraad.temagruppe)
+        !erDelsvar(nyesteMeldingITraad)
     );
 }
 
@@ -158,10 +127,6 @@ export function erBehandlet(traad: Traad): boolean {
 
 export function erDelsvar(melding: Melding): boolean {
     return melding.meldingstype === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
-}
-
-export function harDelsvar(traad: Traad): boolean {
-    return traad.meldinger.some(erDelsvar);
 }
 
 export function erDelvisBesvart(traad: Traad): boolean {
