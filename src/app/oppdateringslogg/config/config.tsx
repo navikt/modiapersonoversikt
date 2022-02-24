@@ -259,8 +259,8 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             beskrivelse: (
                 <>
                     <Normaltekst>
-                        Når en tråd blir journalført vil dokumenter bli tilgjengelig i Gosys etter kort tid. Mens en
-                        tråd er åpen for videre meldinger vil dokumenttypen være "Notat"/"N".
+                        Når en dialog blir journalført vil dokumenter bli tilgjengelig i Gosys etter kort tid. Mens en
+                        dialog er åpen for videre meldinger vil dokumenttypen være "Notat"/"N".
                     </Normaltekst>
                 </>
             ),
