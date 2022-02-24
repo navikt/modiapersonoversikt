@@ -92,17 +92,6 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   margin: 0 0.5rem;
 }
 
-.c13 {
-  display: inline-block;
-  -webkit-animation: cKnfBw 0.3s 1s 6 alternate;
-  animation: cKnfBw 0.3s 1s 6 alternate;
-}
-
-.c13:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
 .c12 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -123,7 +112,7 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   white-space: nowrap;
 }
 
-.c16 {
+.c15 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -131,17 +120,17 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   border-radius: 0.5em;
 }
 
-.c16:focus {
+.c15:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c16:focus {
+.c15:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c16:focus::after {
+.c15:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -152,7 +141,7 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   pointer-events: none;
 }
 
-.c14 {
+.c13 {
   margin: 0.5rem 0 0 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -273,7 +262,7 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
   margin-bottom: 0.2em !important;
 }
 
-.c15 {
+.c14 {
   padding: 0.625rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -441,20 +430,13 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
           </span>
         </div>
         <div
-          aria-live="assertive"
-          className="c13"
-          role="alert"
-          tabIndex={-1}
+          className="etikett etikett--advarsel"
         >
-          <div
-            className="etikett etikett--advarsel"
+          <span
+            className="typo-normal"
           >
-            <span
-              className="typo-normal"
-            >
-              Sikkerhetstiltak
-            </span>
-          </div>
+            Sikkerhetstiltak
+          </span>
         </div>
         <div
           className="etikett etikett--fokus"
@@ -513,7 +495,7 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
       </section>
       <section
         aria-label="Nav kontor"
-        className="c14"
+        className="c13"
       >
         <h2
           className="typo-element"
@@ -524,12 +506,12 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
     </div>
   </div>
   <div
-    className="c15"
+    className="c14"
   >
     <button
       aria-expanded={false}
       aria-label="Åpne visittkort (Alt + N)"
-      className="c16"
+      className="c15"
       onClick={[Function]}
       title="Åpne visittkort (Alt + N)"
     >
