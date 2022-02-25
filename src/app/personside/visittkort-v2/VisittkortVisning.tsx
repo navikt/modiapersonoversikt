@@ -7,7 +7,7 @@ import VisittkortBody from './body/VisittkortBody';
 import VisittkortHeader from './header/VisittkortHeader';
 import useHotkey from '../../../utils/hooks/use-hotkey';
 import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
-import SikkerhetstiltakModal from './header/sikkerhetstiltak-modal';
+import SikkerhetstiltakModal from './header/SikkerhetstiltakModal';
 
 interface Props {
     persondata: Persondata;
