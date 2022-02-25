@@ -24,7 +24,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 1,
             tittel: 'Modia personoversikt har fått oppdateringslogg',
             dato: new Date('2020-09-25 08:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: (
                 <Normaltekst>
                     Ved å trykke på bjelleikonet <img src={BjelleikonBilde} alt="bjelleikon" width="20em" /> vil du se
