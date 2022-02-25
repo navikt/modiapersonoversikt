@@ -278,8 +278,8 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             beskrivelse: (
                 <>
                     <Normaltekst>
-                        Vinduet vil inneholde hvilke sikkerhetstiltak bruker har og deres gyldighetsperiode.
-                        Informasjonen om sikkerhetstiltakene vil fortsatt være tilgjengelig.
+                        Vinduet vil inneholde hvilke sikkerhetstiltak bruker har og gyldighetsperiode. Informasjonen om
+                        sikkerhetstiltakene vil fortsatt være tilgjengelig.
                     </Normaltekst>
                 </>
             ),
