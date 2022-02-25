@@ -43,10 +43,8 @@ function SikkerhetstiltakModal(props: Props) {
                 Sikkerhetstiltak
             </Systemtittel>
 
-            <div className="noncenter">
-                <Normaltekst className="blokk-m">
-                    <ul>{sikkerhetstiltak}</ul>
-                </Normaltekst>
+            <div className="noncenter typo-normal blokk-m">
+                <ul>{sikkerhetstiltak}</ul>
             </div>
 
             <Knapp type="hoved" className="blokk-xxxs" onClick={() => setOpen(false)}>
