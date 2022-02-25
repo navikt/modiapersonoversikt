@@ -17,25 +17,22 @@ interface Props {
     mode: DisplayWhenToggleIs;
 }
 
+function shouldDisplay(mode: DisplayWhenToggleIs, featureToggleIsOn: boolean): boolean {
+    switch (mode) {
+        case DisplayWhenToggleIs.ON:
+            return featureToggleIsOn;
+        case DisplayWhenToggleIs.OFF:
+            return !featureToggleIsOn;
+    }
+}
+
 function FeatureToggle(props: Props) {
     const featureToggleIsOn = useSelector((state: AppState) => featureIsOnSelector(state, props.toggleID));
-
-    function shouldDisplay() {
-        if (props.mode === DisplayWhenToggleIs.ON && featureToggleIsOn) {
-            return true;
-        }
-        if (props.mode === DisplayWhenToggleIs.OFF && !featureToggleIsOn) {
-            return true;
-        }
-        return false;
-    }
-
-    const pending = featureToggleIsOn === undefined;
-    if (pending) {
+    if (featureToggleIsOn === undefined) {
         return <LazySpinner type="S" delay={1000} />;
     }
 
-    if (shouldDisplay()) {
+    if (shouldDisplay(props.mode, featureToggleIsOn)) {
         return <>{props.children}</>;
     }
 

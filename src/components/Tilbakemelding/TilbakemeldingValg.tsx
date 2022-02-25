@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { smilies } from './TilbakemeldingIkoner';
-import theme from '../../../styles/personOversiktTheme';
+import theme from '../../styles/personOversiktTheme';
 
 const TilbakemeldingValgWrapper = styled.article<{ ikkePabegynt: boolean }>`
     display: flex;
@@ -9,7 +9,7 @@ const TilbakemeldingValgWrapper = styled.article<{ ikkePabegynt: boolean }>`
     margin-bottom: 1rem;
 
     input + img {
-        opacity: ${props => (props.ikkePabegynt ? '1' : '0.6')};
+        opacity: ${(props) => (props.ikkePabegynt ? '1' : '0.6')};
     }
 `;
 const Label = styled.label`
