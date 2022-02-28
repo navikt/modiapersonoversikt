@@ -15,6 +15,7 @@ import AutofullforBarnetrygd from './img/autofullfor-barnetrygd.png';
 import AvansertsokPdlsok from './img/avansertsok-pdlsok.png';
 import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
 import FortlopendeJournalforing from './img/fortlopende-journalforing.png';
+import VisningSikkerhetstiltak from './img/sikkerhetstiltakt-popup.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
@@ -23,7 +24,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 1,
             tittel: 'Modia personoversikt har fått oppdateringslogg',
             dato: new Date('2020-09-25 08:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: (
                 <Normaltekst>
                     Ved å trykke på bjelleikonet <img src={BjelleikonBilde} alt="bjelleikon" width="20em" /> vil du se
@@ -265,6 +266,24 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
                 </>
             ),
             src: FortlopendeJournalforing
+        },
+        {
+            id: 15,
+            tittel: 'Visning av sikkerhetstiltak',
+            dato: new Date('2022-02-25 16:00'),
+            aktiv: true,
+            ingress: (
+                <Normaltekst>Ved oppslag av bruker med sikkerhetstiltak vil det dukke opp et popup-vindu.</Normaltekst>
+            ),
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Vinduet vil inneholde hvilke sikkerhetstiltak bruker har og gyldighetsperiode. Informasjonen om
+                        sikkerhetstiltakene vil fortsatt være tilgjengelig i visittkortet.
+                    </Normaltekst>
+                </>
+            ),
+            src: VisningSikkerhetstiltak
         }
     ];
 }
