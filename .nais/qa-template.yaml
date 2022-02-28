@@ -22,24 +22,17 @@ spec:
     path: /modiapersonoversikt/internal/metrics
   resources:
     requests:
-      cpu: 200m
-      memory: 512Mi
+      cpu: 100m
+      memory: 128Mi
     limits:
-      cpu: 3000m
-      memory: 1024Mi
+      cpu: 200m
+      memory: 192Mi
   ingresses:
     - https://app-{{ namespace }}.adeo.no/modiapersonoversikt
   replicas:
     min: 2
     max: 4
     cpuThresholdPercentage: 60
-  vault:
-    enabled: true
-    paths:
-      - kvPath: /credential/data/dev/isso-rp-user-{{ namespace }}
-        mountPath: /var/run/secrets/nais.io/isso-rp-user
-      - kvPath: /serviceuser/data/dev/srvmodiapersonoversikt
-        mountPath: /var/run/secrets/nais.io/service_user
   env:
     - name: APP_NAME
       value: "modiapersonoversikt"
