@@ -279,7 +279,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
                 <>
                     <Normaltekst>
                         Vinduet vil inneholde hvilke sikkerhetstiltak bruker har og gyldighetsperiode. Informasjonen om
-                        sikkerhetstiltakene vil fortsatt være tilgjengelig.
+                        sikkerhetstiltakene vil fortsatt være tilgjengelig i visittkortet.
                     </Normaltekst>
                 </>
             ),
