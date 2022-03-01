@@ -8,6 +8,7 @@ import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
 import { restoreScroll } from '../../../../../utils/restoreScroll';
 import { Knapp } from 'nav-frontend-knapper';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { AppState } from '../../../../../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { oppdaterFilter } from '../../../../../redux/utbetalinger/actions';
@@ -18,6 +19,7 @@ import EgendefinertDatoInputs from './EgendefinertDatoInputs';
 import Panel from 'nav-frontend-paneler';
 import dayjs from 'dayjs';
 import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
+import MediaQueryAwareRenderer from '../../../../../components/MediaQueryAwareRenderer';
 
 const FiltreringsPanel = styled(Panel)`
     padding: ${pxToRem(15)};
@@ -100,7 +102,7 @@ function Filtrering() {
         dispatch(reloadUtbetalingerAction);
     }, [dispatch, reloadUtbetalingerAction, filter.periode]);
 
-    const radios = Object.keys(PeriodeValg).map(key => {
+    const radios = Object.keys(PeriodeValg).map((key) => {
         const label = PeriodeValg[key];
         const checked = filter.periode.radioValg === label;
         return (
@@ -162,14 +164,34 @@ function Filtrering() {
 
     return (
         <nav>
-            <FiltreringsPanel onClick={restoreScroll} aria-label="Filtrering utbetalinger">
-                <Undertittel>Filtrering</Undertittel>
+            <MediaQueryAwareRenderer
+                alternatives={{
+                    [`(min-width: ${theme.media.utbetalinger.minWidth})`]: () => (
+                        <FiltreringsPanel onClick={restoreScroll} aria-label="Filtrering utbetalinger">
+                            <Undertittel>Filtrering</Undertittel>
 
-                <WrapOnSmallScreen>
-                    {hentUtbetalingerPanel}
-                    {checkBokser}
-                </WrapOnSmallScreen>
-            </FiltreringsPanel>
+                            <WrapOnSmallScreen>
+                                {hentUtbetalingerPanel}
+                                {checkBokser}
+                            </WrapOnSmallScreen>
+                        </FiltreringsPanel>
+                    ),
+                    screen: () => (
+                        <Ekspanderbartpanel
+                            tittel="Filtrering"
+                            onClick={restoreScroll}
+                            aria-label="Filtrering utbetalinger"
+                            apen
+                            border={false}
+                        >
+                            <WrapOnSmallScreen>
+                                {hentUtbetalingerPanel}
+                                {checkBokser}
+                            </WrapOnSmallScreen>
+                        </Ekspanderbartpanel>
+                    )
+                }}
+            />
         </nav>
     );
 }
