@@ -11,18 +11,25 @@ import {
     erEldsteMeldingJournalfort,
     erFeilsendt,
     erKontorsperret,
-    erMeldingFeilsendt
+    erMeldingFeilsendt,
+    erMeldingstypeSamtalereferat,
+    kanBesvares
 } from '../../../utils/meldingerUtils';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { RadioPanelGruppe, RadioPanelProps } from 'nav-frontend-skjema';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
-import { MerkRequestMedBehandlingskjede } from '../../../../../../../models/meldinger/merk';
-import { AlertStripeFeil, AlertStripeAdvarsel, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import {
+    MerkLukkTraadRequest,
+    MerkRequestMedBehandlingskjede,
+    SendTilSladdingRequest
+} from '../../../../../../../models/meldinger/merk';
+import { AlertStripeFeil, AlertStripeInfo, AlertStripeAdvarsel, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Resultat } from '../utils/VisPostResultat';
 import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-focus-on-first-focusable';
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
+import { useAppState } from '../../../../../../../utils/customHooks';
 
 interface Props {
     lukkPanel: () => void;
@@ -31,7 +38,8 @@ interface Props {
 
 enum MerkOperasjon {
     FEILSENDT = 'FEILSENDT',
-    SLADDING = 'SLADDING'
+    SLADDING = 'SLADDING',
+    LUKK = 'LUKK'
 }
 
 const KnappStyle = styled.div`
@@ -41,24 +49,41 @@ const KnappStyle = styled.div`
 
 const MERK_FEILSENDT_URL = `${apiBaseUri}/dialogmerking/feilsendt`;
 const MERK_SLADDING_URL = `${apiBaseUri}/dialogmerking/sladding`;
+const LUKK_TRAAD_URL = `${apiBaseUri}/dialogmerking/lukk-traad`;
 
 function lagBehandlingskjede(traad: Traad) {
     return traad.meldinger.filter((melding) => !erMeldingFeilsendt(melding)).map((melding) => melding.id);
 }
 
-function visStandardvalg(valgtTraad: Traad) {
-    return (
-        !erEldsteMeldingJournalfort(valgtTraad) &&
-        !erFeilsendt(valgtTraad) &&
-        erBehandlet(valgtTraad) &&
-        !erKontorsperret(valgtTraad)
-    );
+function visStandardvalg(traad: Traad): boolean {
+    return !erEldsteMeldingJournalfort(traad) && !erFeilsendt(traad) && erBehandlet(traad) && !erKontorsperret(traad);
+}
+
+function traadKanLukkes(traad: Traad): boolean {
+    const melding = eldsteMelding(traad);
+    return kanBesvares(traad) && !erMeldingstypeSamtalereferat(melding.meldingstype);
 }
 
 function getMerkBehandlingskjedeRequest(fnr: string, traad: Traad): MerkRequestMedBehandlingskjede {
     return {
         fnr: fnr,
         behandlingsidListe: lagBehandlingskjede(traad)
+    };
+}
+
+function getSendTilSladdingRequest(fnr: string, traad: Traad): SendTilSladdingRequest {
+    return {
+        fnr,
+        traadId: traad.traadId
+    };
+}
+
+function getLukkTraadRequest(fnr: string, traad: Traad, valgtEnhet: string): MerkLukkTraadRequest {
+    return {
+        fnr: fnr,
+        saksbehandlerValgtEnhet: valgtEnhet,
+        oppgaveId: eldsteMelding(traad).oppgaveId,
+        traadId: traad.traadId
     };
 }
 
@@ -74,13 +99,12 @@ function MerkPanel(props: Props) {
     const [submitting, setSubmitting] = useState(false);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const valgtTraad = props.valgtTraad;
+    const valgtEnhet = useAppState((state) => state.session.valgtEnhetId);
     const formRef = useRef<HTMLFormElement>(null);
 
     useFocusOnFirstFocusable(formRef);
 
     const melding = eldsteMelding(valgtTraad);
-    const disableStandardvalg = !visStandardvalg(valgtTraad);
-
     const merkPost = (url: string, object: any, name: string) => {
         post(url, object, 'MerkPanel-' + name)
             .then(() => {
@@ -108,8 +132,14 @@ function MerkPanel(props: Props) {
                 merkPost(MERK_FEILSENDT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Feilsendt');
                 break;
             case MerkOperasjon.SLADDING:
-                merkPost(MERK_SLADDING_URL, { fnr: valgtBrukersFnr, traadId: valgtTraad.traadId }, 'Sladding');
+                merkPost(MERK_SLADDING_URL, getSendTilSladdingRequest(valgtBrukersFnr, valgtTraad), 'Sladding');
                 break;
+            case MerkOperasjon.LUKK:
+                merkPost(
+                    LUKK_TRAAD_URL,
+                    getLukkTraadRequest(valgtBrukersFnr, valgtTraad, valgtEnhet || ''),
+                    'Lukk-traad'
+                );
         }
     };
 
@@ -132,12 +162,17 @@ function MerkPanel(props: Props) {
         {
             label: 'Feilsendt post',
             value: MerkOperasjon.FEILSENDT,
-            disabled: disableStandardvalg
+            disabled: !visStandardvalg(valgtTraad)
         },
         {
             label: 'Send til sladding',
             value: MerkOperasjon.SLADDING,
             disabled: melding.sendtTilSladding
+        },
+        {
+            label: 'Avslutt dialog',
+            value: MerkOperasjon.LUKK,
+            disabled: !traadKanLukkes(valgtTraad)
         }
     ];
 
@@ -153,6 +188,11 @@ function MerkPanel(props: Props) {
             />
             {valgtOperasjon === MerkOperasjon.SLADDING && (
                 <AlertStripeAdvarsel className="blokk-xxs">Årsak må meldes i porten</AlertStripeAdvarsel>
+            )}
+            {valgtOperasjon === MerkOperasjon.LUKK && (
+                <AlertStripeInfo className="blokk-xxs">
+                    Ved avslutting blir dialogen låst. Det er ikke mulig å sende flere meldinger i ettertid.
+                </AlertStripeInfo>
             )}
             <KnappStyle>
                 <Hovedknapp htmlType="submit" spinner={submitting} autoDisableVedSpinner>

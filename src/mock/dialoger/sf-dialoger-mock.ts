@@ -2,7 +2,6 @@ import FetchMock, { MockRequest } from 'yet-another-fetch-mock';
 import { apiBaseUri } from '../../api/config';
 import { mockGeneratorMedFodselsnummer, verify, withDelayedResponse } from '../utils/fetch-utils';
 import { randomDelay } from '../index';
-import { mockTilgangTilSlett } from '../meldinger/merk-mock';
 import { MeldingerBackendMock } from '../mockBackend/meldingerBackendMock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { Melding, Meldingstype, Traad } from '../../models/meldinger/meldinger';
@@ -14,8 +13,7 @@ import {
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
-const STATUS_SERVER_ERROR = () => 500;
-let meldingerBackendMock: MeldingerBackendMock = (null as unknown) as MeldingerBackendMock;
+let meldingerBackendMock: MeldingerBackendMock = null as unknown as MeldingerBackendMock;
 
 const harEnhetIdSomQueryParam = (req: MockRequest) => {
     const enhetQueryParam = req.queryParams.enhet;
@@ -36,7 +34,7 @@ function setupMeldingerMock(mock: FetchMock) {
             withDelayedResponse(
                 randomDelay(),
                 fodselsNummerErGyldigStatus,
-                mockGeneratorMedFodselsnummer(fodselsnummer =>
+                mockGeneratorMedFodselsnummer((fodselsnummer) =>
                     simulateSf(meldingerBackendMock.getMeldinger(fodselsnummer))
                 )
             )
@@ -72,24 +70,19 @@ function simulateSf(trader: Traad[]): Traad[] {
     return trader;
 }
 
-function setupSlasammenMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fodselsnummer/slaasammen',
-        withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
-    );
-}
-
 function setupOpprettHenvendelseMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fnr/fortsett/opprett',
-        withDelayedResponse(randomDelay(), STATUS_OK, request => meldingerBackendMock.opprettHenvendelse(request.body))
+        withDelayedResponse(randomDelay(), STATUS_OK, (request) =>
+            meldingerBackendMock.opprettHenvendelse(request.body)
+        )
     );
 }
 
 function setupFerdigstillHenvendelseMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fnr/fortsett/ferdigstill',
-        withDelayedResponse(randomDelay(), STATUS_OK, request => {
+        withDelayedResponse(randomDelay(), STATUS_OK, (request) => {
             meldingerBackendMock.ferdigstillHenvendelse(request.body);
             return {};
         })
@@ -99,7 +92,7 @@ function setupFerdigstillHenvendelseMock(mock: FetchMock) {
 function setupSendReferatMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendreferat',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, (request) => {
             return meldingerBackendMock.sendReferat(request.body);
         })
     );
@@ -108,7 +101,7 @@ function setupSendReferatMock(mock: FetchMock) {
 function setupSendSporsmalMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendsporsmal',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, (request) => {
             meldingerBackendMock.sendSporsmal(request.body);
             return {};
         })
@@ -118,7 +111,7 @@ function setupSendSporsmalMock(mock: FetchMock) {
 function setupSendInfomeldingMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendinfomelding',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, (request) => {
             meldingerBackendMock.sendInfomelding(request.body);
             return {};
         })
@@ -134,20 +127,6 @@ function setupSendSvarMock(mock: FetchMock) {
     );
 }
 
-function setupSendDelsvarMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fnr/delvis-svar',
-        withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
-    );
-}
-
-function merkBidragMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/bidrag',
-        withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
-    );
-}
-
 function merkFeilsendtMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialogmerking/feilsendt',
@@ -155,24 +134,10 @@ function merkFeilsendtMock(mock: FetchMock) {
     );
 }
 
-function merkKontorsperretMock(mock: FetchMock) {
+function sladdingMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/dialogmerking/kontorsperret',
+        apiBaseUri + '/dialogmerking/sladding',
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
-function merkSlettMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/slett',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
-function setupTilgangTilSlettMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/dialogmerking/slett',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => mockTilgangTilSlett())
     );
 }
 
@@ -183,17 +148,10 @@ function setupAvsluttOppgaveGosysMock(mock: FetchMock) {
     );
 }
 
-function merkAvsluttMock(mock: FetchMock) {
+function lukkTraadMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/dialogmerking/avslutt',
-        withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
-    );
-}
-
-function merkTvungenAvsluttning(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/tvungenferdigstill',
-        withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
+        apiBaseUri + '/dialogmerking/lukk-traad',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
 
@@ -203,18 +161,12 @@ export function setupSFDialogMock(mock: FetchMock, backend: MeldingerBackendMock
     setupMeldingerMock(mock);
     setupOpprettHenvendelseMock(mock);
     setupFerdigstillHenvendelseMock(mock);
-    setupSendDelsvarMock(mock);
-    setupTilgangTilSlettMock(mock);
     setupSendReferatMock(mock);
     setupSendSporsmalMock(mock);
     setupSendInfomeldingMock(mock);
     setupSendSvarMock(mock);
-    setupSlasammenMock(mock);
-    merkAvsluttMock(mock);
-    merkBidragMock(mock);
     merkFeilsendtMock(mock);
-    merkKontorsperretMock(mock);
-    merkSlettMock(mock);
-    merkTvungenAvsluttning(mock);
+    sladdingMock(mock);
+    lukkTraadMock(mock);
     setupAvsluttOppgaveGosysMock(mock);
 }
