@@ -28,9 +28,7 @@ export class FortsettDialogValidator {
             (this.sak(state) || erEldsteMeldingJournalfort(traad))
         );
     }
-    public static erGyldigDelsvar(state: FortsettDialogState) {
-        return state.dialogType === Meldingstype.DELVIS_SVAR_SKRIFTLIG && this.tekst(state) && this.tema(state);
-    }
+
     public static erGyldigSvarOppmote(state: FortsettDialogState) {
         return state.dialogType === Meldingstype.SVAR_OPPMOTE && this.tekst(state);
     }

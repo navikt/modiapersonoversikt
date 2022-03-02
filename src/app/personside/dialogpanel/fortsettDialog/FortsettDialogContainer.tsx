@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FormEvent, useRef, useState, useCallback, useMemo } from 'react';
 import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
-import { ForsettDialogRequest, Meldingstype, SendDelsvarRequest, Traad } from '../../../../models/meldinger/meldinger';
+import { ForsettDialogRequest, Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { useAppState, useFodselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
@@ -34,7 +34,6 @@ import { selectValgtEnhet } from '../../../../redux/session/session';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
-    | Meldingstype.DELVIS_SVAR_SKRIFTLIG
     | Meldingstype.SVAR_OPPMOTE
     | Meldingstype.SVAR_TELEFON
     | Meldingstype.SPORSMAL_MODIA_UTGAAENDE
@@ -197,30 +196,6 @@ function FortsettDialogContainer(props: Props) {
                     JournalforingUtils.slettCacheForSaker(fnr);
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
-                })
-                .catch(() => {
-                    setDialogStatus({ type: DialogPanelStatus.ERROR });
-                });
-        } else if (FortsettDialogValidator.erGyldigDelsvar(state) && oppgaveId && state.temagruppe) {
-            setDialogStatus({ type: DialogPanelStatus.POSTING });
-            const request: SendDelsvarRequest = {
-                enhet: valgtEnhet,
-                fritekst: state.tekst,
-                traadId: props.traad.traadId,
-                oppgaveId: oppgaveId,
-                temagruppe: state.temagruppe,
-                behandlingsId: opprettHenvendelse.henvendelse.behandlingsId
-            };
-            post(`${apiBaseUri}/dialog/${fnr}/delvis-svar`, request, 'Send-Delsvar')
-                .then(() => {
-                    callback();
-                    const kvitteringsData: KvitteringsData = {
-                        fritekst: request.fritekst,
-                        meldingstype: Meldingstype.DELVIS_SVAR_SKRIFTLIG,
-                        temagruppe: request.temagruppe,
-                        traad: props.traad
-                    };
-                    setDialogStatus({ type: DialogPanelStatus.DELSVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });

@@ -58,7 +58,7 @@ export const statiskTraadMock: Traad = {
         },
         {
             id: '90l2nkx0',
-            meldingstype: Meldingstype.DELVIS_SVAR_SKRIFTLIG,
+            meldingstype: Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
             temagruppe: Temagruppe.Arbeid,
             skrevetAvTekst: saksbehandlerTekst({ ident: 'xy70r8', fornavn: 'Kristoffer', etternavn: 'Fredriksen' }),
             journalfortAv: { ident: 'p0jh0d', fornavn: 'Jenny', etternavn: 'Berg' },

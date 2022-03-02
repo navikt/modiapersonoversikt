@@ -15,7 +15,7 @@ import {
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
 const STATUS_SERVER_ERROR = () => 500;
-let meldingerBackendMock: MeldingerBackendMock = (null as unknown) as MeldingerBackendMock;
+let meldingerBackendMock: MeldingerBackendMock = null as unknown as MeldingerBackendMock;
 
 const harEnhetIdSomQueryParam = (req: MockRequest) => {
     const enhetQueryParam = req.queryParams.enhet;
@@ -36,7 +36,7 @@ function setupMeldingerMock(mock: FetchMock) {
             withDelayedResponse(
                 randomDelay(),
                 fodselsNummerErGyldigStatus,
-                mockGeneratorMedFodselsnummer(fodselsnummer =>
+                mockGeneratorMedFodselsnummer((fodselsnummer) =>
                     simulateSf(meldingerBackendMock.getMeldinger(fodselsnummer))
                 )
             )
@@ -82,14 +82,16 @@ function setupSlasammenMock(mock: FetchMock) {
 function setupOpprettHenvendelseMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fnr/fortsett/opprett',
-        withDelayedResponse(randomDelay(), STATUS_OK, request => meldingerBackendMock.opprettHenvendelse(request.body))
+        withDelayedResponse(randomDelay(), STATUS_OK, (request) =>
+            meldingerBackendMock.opprettHenvendelse(request.body)
+        )
     );
 }
 
 function setupFerdigstillHenvendelseMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fnr/fortsett/ferdigstill',
-        withDelayedResponse(randomDelay(), STATUS_OK, request => {
+        withDelayedResponse(randomDelay(), STATUS_OK, (request) => {
             meldingerBackendMock.ferdigstillHenvendelse(request.body);
             return {};
         })
@@ -99,7 +101,7 @@ function setupFerdigstillHenvendelseMock(mock: FetchMock) {
 function setupSendReferatMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendreferat',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, (request) => {
             return meldingerBackendMock.sendReferat(request.body);
         })
     );
@@ -108,7 +110,7 @@ function setupSendReferatMock(mock: FetchMock) {
 function setupSendSporsmalMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendsporsmal',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, (request) => {
             meldingerBackendMock.sendSporsmal(request.body);
             return {};
         })
@@ -118,7 +120,7 @@ function setupSendSporsmalMock(mock: FetchMock) {
 function setupSendInfomeldingMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendinfomelding',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, request => {
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, (request) => {
             meldingerBackendMock.sendInfomelding(request.body);
             return {};
         })
@@ -131,13 +133,6 @@ function setupSendSvarMock(mock: FetchMock) {
         withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
             return {};
         })
-    );
-}
-
-function setupSendDelsvarMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fnr/delvis-svar',
-        withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
     );
 }
 
@@ -203,7 +198,6 @@ export function setupSFDialogMock(mock: FetchMock, backend: MeldingerBackendMock
     setupMeldingerMock(mock);
     setupOpprettHenvendelseMock(mock);
     setupFerdigstillHenvendelseMock(mock);
-    setupSendDelsvarMock(mock);
     setupTilgangTilSlettMock(mock);
     setupSendReferatMock(mock);
     setupSendSporsmalMock(mock);

@@ -679,7 +679,7 @@ exports[`Viser Traadliste 1`] = `
             <p
               className="typo-ingress"
             >
-              Delsvar - Arbeid
+              Spørsmål fra NAV - Arbeid
             </p>
             <div
               className="c8"
@@ -694,7 +694,7 @@ exports[`Viser Traadliste 1`] = `
                   className="typo-element"
                 >
                   Type: 
-                  DELVIS_SVAR_SKRIFTLIG
+                  SPORSMAL_MODIA_UTGAAENDE
                 </p>
                 <p
                   className="typo-element"
@@ -841,7 +841,7 @@ exports[`Viser Traadliste 1`] = `
                   <p
                     className="typo-element order-second"
                   >
-                    Delsvar - Arbeid
+                    Spørsmål fra NAV - Arbeid
                   </p>
                   <p
                     className="typo-normal order-first"
@@ -859,15 +859,6 @@ exports[`Viser Traadliste 1`] = `
                       className="typo-normal"
                     >
                       Under arbeid
-                    </span>
-                  </div>
-                  <div
-                    className="etikett etikett--info"
-                  >
-                    <span
-                      className="typo-normal"
-                    >
-                      Delvis besvart
                     </span>
                   </div>
                 </div>

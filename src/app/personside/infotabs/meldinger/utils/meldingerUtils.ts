@@ -77,7 +77,6 @@ export function erMeldingFraNav(meldingstype: Meldingstype) {
         Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
         Meldingstype.DOKUMENT_VARSEL,
         Meldingstype.OPPGAVE_VARSEL,
-        Meldingstype.DELVIS_SVAR_SKRIFTLIG,
         Meldingstype.INFOMELDING_MODIA_UTGAAENDE
     ].includes(meldingstype);
 }
@@ -97,8 +96,7 @@ export function kanTraadJournalfores(traad: Traad): boolean {
         !erKontorsperret(traad) &&
         !erFeilsendt(traad) &&
         !erJournalfort(nyesteMeldingITraad) &&
-        erBehandlet(traad) &&
-        !erDelsvar(nyesteMeldingITraad)
+        erBehandlet(traad)
     );
 }
 
@@ -123,14 +121,6 @@ export function erBehandlet(traad: Traad): boolean {
     const erFerdigstiltUtenSvar: boolean = eldsteMelding(traad).erFerdigstiltUtenSvar;
 
     return minstEnMeldingErFraNav || erFerdigstiltUtenSvar;
-}
-
-export function erDelsvar(melding: Melding): boolean {
-    return melding.meldingstype === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
-}
-
-export function erDelvisBesvart(traad: Traad): boolean {
-    return erDelsvar(nyesteMelding(traad));
 }
 
 export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {

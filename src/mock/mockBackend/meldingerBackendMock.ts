@@ -5,7 +5,6 @@ import {
     Meldingstype,
     OpprettHenvendelseRequest,
     OpprettHenvendelseResponse,
-    SendDelsvarRequest,
     SendInfomeldingRequest,
     SendReferatRequest,
     SendSpørsmålRequest,
@@ -42,10 +41,10 @@ export class MeldingerBackendMock {
 
         const alleTråder = [...this.sendteNyeMeldinger, ...mockTraader];
 
-        const traaderMedSvar: Traad[] = alleTråder.map(traad => {
+        const traaderMedSvar: Traad[] = alleTråder.map((traad) => {
             const tilhørendeSvar = this.sendteSvar
-                .filter(svar => svar.traadId === traad.traadId)
-                .flatMap(traad => traad.meldinger);
+                .filter((svar) => svar.traadId === traad.traadId)
+                .flatMap((traad) => traad.meldinger);
             return {
                 traadId: traad.traadId,
                 meldinger: [...tilhørendeSvar, ...traad.meldinger]
@@ -108,24 +107,8 @@ export class MeldingerBackendMock {
         });
     }
 
-    public sendDelsvar(request: SendDelsvarRequest) {
-        if (request.oppgaveId) {
-            this.oppgaveBackendMock.ferdigStillOppgave(request.oppgaveId);
-        }
-        const melding: Melding = {
-            ...getMockMelding(),
-            fritekst: request.fritekst,
-            meldingstype: Meldingstype.DELVIS_SVAR_SKRIFTLIG,
-            temagruppe: request.temagruppe
-        };
-        this.sendteSvar.unshift({
-            traadId: request.traadId,
-            meldinger: [melding]
-        });
-    }
-
     public opprettHenvendelse(request: OpprettHenvendelseRequest): OpprettHenvendelseResponse {
-        const oppgave = this.oppgaveBackendMock.getTildelteOppgaver().find(it => it.traadId === request.traadId);
+        const oppgave = this.oppgaveBackendMock.getTildelteOppgaver().find((it) => it.traadId === request.traadId);
         return {
             behandlingsId: guid(),
             oppgaveId: oppgave?.oppgaveId

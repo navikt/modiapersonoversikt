@@ -8,8 +8,6 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
             return 'Spørsmål fra bruker';
         case Meldingstype.SAMTALEREFERAT_OPPMOTE:
             return 'Samtalereferat oppmøte';
-        case Meldingstype.DELVIS_SVAR_SKRIFTLIG:
-            return 'Delsvar';
         case Meldingstype.DOKUMENT_VARSEL:
             return 'Dokument-varsel';
         case Meldingstype.OPPGAVE_VARSEL:

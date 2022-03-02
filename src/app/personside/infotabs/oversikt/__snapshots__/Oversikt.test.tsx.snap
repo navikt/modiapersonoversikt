@@ -953,7 +953,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         <p
                           className="typo-element order-second"
                         >
-                          Delsvar - Arbeid
+                          Spørsmål fra NAV - Arbeid
                         </p>
                         <p
                           className="typo-normal order-first"
@@ -973,15 +973,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
                             Under arbeid
                           </span>
                         </div>
-                        <div
-                          className="etikett etikett--info"
-                        >
-                          <span
-                            className="typo-normal"
-                          >
-                            Delvis besvart
-                          </span>
-                        </div>
                       </div>
                       <p
                         className="typo-normal c22 order-second"
@@ -992,7 +983,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   </div>
                 </div>
                 <button
-                  aria-label="Vis meldinger for Delsvar - Arbeid"
+                  aria-label="Vis meldinger for Spørsmål fra NAV - Arbeid"
                   aria-selected={false}
                   className="c10"
                 >

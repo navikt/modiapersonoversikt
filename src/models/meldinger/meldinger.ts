@@ -48,7 +48,6 @@ export enum Meldingstype {
     SVAR_SKRIFTLIG = 'SVAR_SKRIFTLIG',
     SVAR_OPPMOTE = 'SVAR_OPPMOTE',
     SVAR_TELEFON = 'SVAR_TELEFON',
-    DELVIS_SVAR_SKRIFTLIG = 'DELVIS_SVAR_SKRIFTLIG',
     SAMTALEREFERAT_OPPMOTE = 'SAMTALEREFERAT_OPPMOTE',
     SAMTALEREFERAT_TELEFON = 'SAMTALEREFERAT_TELEFON',
     SPORSMAL_MODIA_UTGAAENDE = 'SPORSMAL_MODIA_UTGAAENDE',
@@ -91,15 +90,6 @@ export interface ForsettDialogRequest {
     erOppgaveTilknyttetAnsatt: boolean;
     meldingstype: Meldingstype;
     oppgaveId?: string;
-}
-
-export interface SendDelsvarRequest {
-    enhet: string;
-    traadId: string;
-    behandlingsId: string;
-    fritekst: string;
-    temagruppe: Temagruppe;
-    oppgaveId: string;
 }
 
 export interface OpprettHenvendelseRequest {
