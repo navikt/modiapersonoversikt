@@ -63,20 +63,23 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         );
     }
 
-    if (melding.markertSomFeilsendtAv) {
+    if (melding.markertSomFeilsendtAv || melding.sendtTilSladding || (melding.avsluttetDato && !traadKanBesvares)) {
         return (
-            <AlertStripeInfo>
-                Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}{' '}
-                {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
-            </AlertStripeInfo>
+            <>
+                {melding.markertSomFeilsendtAv && (
+                    <AlertStripeInfo>
+                        Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}{' '}
+                        {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
+                    </AlertStripeInfo>
+                )}
+                {melding.sendtTilSladding && (
+                    <AlertStripeInfo>Tråden ligger til behandling for sladding</AlertStripeInfo>
+                )}
+                {melding.avsluttetDato && !traadKanBesvares && (
+                    <AlertStripeInfo>Henvendelsen er avsluttet</AlertStripeInfo>
+                )}
+            </>
         );
-    }
-
-    if (melding.sendtTilSladding) {
-        return <AlertStripeInfo>Tråden ligger til behandling for sladding</AlertStripeInfo>;
-    }
-    if (melding.avsluttetDato && !traadKanBesvares) {
-        return <AlertStripeInfo>Henvendelsen er avsluttet</AlertStripeInfo>;
     }
 
     const handleNyMelding = () => {
