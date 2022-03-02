@@ -126,7 +126,6 @@ function getMockMelding(): Melding {
         status: LestStatus.IkkeLest,
         opprettetDato: dayjs().format(backendDatoTidformat),
         erFerdigstiltUtenSvar: false,
-        sendtTilSladding: false,
-        erDokumentMelding: false
+        sendtTilSladding: false
     };
 }

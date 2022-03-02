@@ -29,13 +29,6 @@ export class FortsettDialogValidator {
         );
     }
 
-    public static erGyldigSvarOppmote(state: FortsettDialogState) {
-        return state.dialogType === Meldingstype.SVAR_OPPMOTE && this.tekst(state);
-    }
-    public static erGyldigSvarTelefon(state: FortsettDialogState) {
-        return state.dialogType === Meldingstype.SVAR_TELEFON && this.tekst(state);
-    }
-
     public static erGyldigSamtalereferat(state: FortsettDialogState) {
         return (
             [Meldingstype.SAMTALEREFERAT_TELEFON, Meldingstype.SAMTALEREFERAT_OPPMOTE].includes(state.dialogType) &&

@@ -1,11 +1,4 @@
-import { MeldingerActionTypes, SetSkjulVarsler, HuskSok } from './types';
-
-export function setSkjulVarslerAction(skjul: boolean): SetSkjulVarsler {
-    return {
-        type: MeldingerActionTypes.SkjulVarsler,
-        skjul: skjul
-    };
-}
+import { MeldingerActionTypes, HuskSok } from './types';
 
 export function huskSokAction(sok: string): HuskSok {
     return {

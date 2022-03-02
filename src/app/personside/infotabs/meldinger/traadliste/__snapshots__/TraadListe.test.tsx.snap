@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser Traadliste 1`] = `
-.c16 {
+.c15 {
   position: relative;
 }
 
-.c16 svg {
+.c15 svg {
   height: 1.5625rem;
   width: 1.5625rem;
   opacity: 0.4;
 }
 
-.c17 {
+.c16 {
   position: absolute;
   top: -0.1875rem;
   right: -0.5rem;
@@ -34,7 +34,7 @@ exports[`Viser Traadliste 1`] = `
   border-radius: 50%;
 }
 
-.c18 {
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -51,25 +51,25 @@ exports[`Viser Traadliste 1`] = `
   overflow-wrap: break-word;
 }
 
-.c18 .order-first {
+.c17 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c18 .order-second {
+.c17 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c18 .order-third {
+.c17 .order-third {
   -webkit-order: 3;
   -ms-flex-order: 3;
   order: 3;
 }
 
-.c20 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -84,12 +84,12 @@ exports[`Viser Traadliste 1`] = `
   margin-top: 0.2rem;
 }
 
-.c20 > *:not(:last-child) {
+.c19 > *:not(:last-child) {
   margin-bottom: 0.2rem;
   margin-right: 0.2rem;
 }
 
-.c19 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -99,39 +99,39 @@ exports[`Viser Traadliste 1`] = `
   flex-direction: column;
 }
 
-.c19 .order-first {
+.c18 .order-first {
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
 }
 
-.c19 .order-second {
+.c18 .order-second {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 1;
 }
 
-.c15 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c15 > *:last-child {
+.c14 > *:last-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c21 {
+.c20 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.c13 {
+.c12 {
   padding: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -140,24 +140,24 @@ exports[`Viser Traadliste 1`] = `
   cursor: pointer;
 }
 
-.c14 {
+.c13 {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
-.c12 {
+.c11 {
   background-color: #cce1f3;
 }
 
-.c12:focus-within {
+.c11:focus-within {
   position: relative;
   outline: none;
   box-shadow: none;
 }
 
-.c12:focus-within::after {
+.c11:focus-within::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -168,33 +168,33 @@ exports[`Viser Traadliste 1`] = `
   pointer-events: none;
 }
 
-.c12 .hover-animation {
+.c11 .hover-animation {
   -webkit-transition: -webkit-transform 0.3s;
   -webkit-transition: transform 0.3s;
   transition: transform 0.3s;
 }
 
-.c12:hover {
+.c11:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
 
-.c12:hover .hover-animation {
+.c11:hover .hover-animation {
   -webkit-transform: translateX(0.5rem);
   -ms-transform: translateX(0.5rem);
   transform: translateX(0.5rem);
 }
 
-.c22 {
+.c21 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
 }
 
-.c22 .nav-frontend-chevron {
+.c21 .nav-frontend-chevron {
   width: 1.5625rem;
 }
 
-.c4 {
+.c3 {
   border: none;
   background-color: transparent;
   padding: 0.1rem 0.2rem;
@@ -207,28 +207,28 @@ exports[`Viser Traadliste 1`] = `
   color: #0067c5;
 }
 
-.c4 svg {
+.c3 svg {
   margin-left: 0.5rem;
   height: 1.2rem;
   width: 1.2rem;
 }
 
-.c4:focus {
+.c3:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c4:hover {
+.c3:hover {
   opacity: 0.8;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c6 {
+.c5 {
   margin-bottom: 2rem;
 }
 
-.c8 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -240,11 +240,11 @@ exports[`Viser Traadliste 1`] = `
   margin: 1rem 0rem;
 }
 
-.c9 > * {
+.c8 > * {
   margin-bottom: 1rem !important;
 }
 
-.c7 {
+.c6 {
   margin-bottom: 2rem;
   border-bottom: solid 0.0625rem #78706a;
   page-break-inside: avoid;
@@ -258,7 +258,7 @@ exports[`Viser Traadliste 1`] = `
   list-style: none;
 }
 
-.c10 {
+.c9 {
   padding: 0 .5rem .5rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -274,25 +274,18 @@ exports[`Viser Traadliste 1`] = `
 }
 
 .c2 {
-  padding: .5rem .5rem 0 0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  padding: 0.5rem;
 }
 
-.c11 > * {
+.c2 button {
+  padding: 0;
+}
+
+.c10 > * {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c11:focus {
+.c10:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
@@ -316,19 +309,14 @@ exports[`Viser Traadliste 1`] = `
   clip: rect(1px,1px,1px,1px);
 }
 
-.c3 {
-  padding: .5rem;
-  margin-bottom: 0 !important;
-}
-
 @media print {
-  .c4 {
+  .c3 {
     display: none;
   }
 }
 
 @media not print {
-  .c5 {
+  .c4 {
     display: none;
   }
 }
@@ -374,27 +362,9 @@ exports[`Viser Traadliste 1`] = `
       <div
         className="c2"
       >
-        <div
-          className="skjemaelement c3"
-        >
-          <input
-            aria-invalid={false}
-            checked={false}
-            className="skjemaelement__input checkboks"
-            id="Helt tilfeldig ID"
-            onChange={[Function]}
-            type="checkbox"
-          />
-          <label
-            className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
-          >
-            Skjul varsler
-          </label>
-        </div>
         <button
           aria-label="Skriv ut"
-          className="c4"
+          className="c3"
           onClick={[Function]}
         >
           <span
@@ -420,10 +390,10 @@ exports[`Viser Traadliste 1`] = `
           </svg>
         </button>
         <div
-          className="c5"
+          className="c4"
         >
           <div
-            className="c6"
+            className="c5"
           >
             <p
               className="typo-element"
@@ -434,7 +404,7 @@ exports[`Viser Traadliste 1`] = `
             </p>
           </div>
           <div
-            className="c7"
+            className="c6"
           >
             <p
               className="typo-ingress"
@@ -442,7 +412,7 @@ exports[`Viser Traadliste 1`] = `
               Samtalereferat oppmøte - Arbeid
             </p>
             <div
-              className="c8"
+              className="c7"
             >
               <div>
                 <p
@@ -497,7 +467,7 @@ exports[`Viser Traadliste 1`] = `
               </div>
             </div>
             <div
-              className="c9"
+              className="c8"
             >
               <p
                 className="typo-element"
@@ -514,7 +484,7 @@ exports[`Viser Traadliste 1`] = `
             </div>
           </div>
           <div
-            className="c7"
+            className="c6"
           >
             <p
               className="typo-ingress"
@@ -522,7 +492,7 @@ exports[`Viser Traadliste 1`] = `
               Spørsmål fra bruker - Arbeid
             </p>
             <div
-              className="c8"
+              className="c7"
             >
               <div>
                 <p
@@ -577,7 +547,7 @@ exports[`Viser Traadliste 1`] = `
               </div>
             </div>
             <div
-              className="c9"
+              className="c8"
             >
               <p
                 className="typo-element"
@@ -594,7 +564,7 @@ exports[`Viser Traadliste 1`] = `
             </div>
           </div>
           <div
-            className="c7"
+            className="c6"
           >
             <p
               className="typo-ingress"
@@ -602,7 +572,7 @@ exports[`Viser Traadliste 1`] = `
               Spørsmål fra bruker - Helse
             </p>
             <div
-              className="c8"
+              className="c7"
             >
               <div>
                 <p
@@ -657,7 +627,7 @@ exports[`Viser Traadliste 1`] = `
               </div>
             </div>
             <div
-              className="c9"
+              className="c8"
             >
               <p
                 className="typo-element"
@@ -674,7 +644,7 @@ exports[`Viser Traadliste 1`] = `
             </div>
           </div>
           <div
-            className="c7"
+            className="c6"
           >
             <p
               className="typo-ingress"
@@ -682,7 +652,7 @@ exports[`Viser Traadliste 1`] = `
               Spørsmål fra NAV - Arbeid
             </p>
             <div
-              className="c8"
+              className="c7"
             >
               <div>
                 <p
@@ -737,7 +707,7 @@ exports[`Viser Traadliste 1`] = `
               </div>
             </div>
             <div
-              className="c9"
+              className="c8"
             >
               <p
                 className="typo-element"
@@ -756,7 +726,7 @@ exports[`Viser Traadliste 1`] = `
         </div>
       </div>
       <div
-        className="c10"
+        className="c9"
       >
         <p
           aria-live="assertive"
@@ -775,11 +745,11 @@ exports[`Viser Traadliste 1`] = `
     </h3>
     <ol
       aria-labelledby="Helt tilfeldig ID"
-      className="c11"
+      className="c10"
       tabIndex={-1}
     >
       <li
-        className="c12"
+        className="c11"
       >
         <input
           checked={true}
@@ -791,14 +761,14 @@ exports[`Viser Traadliste 1`] = `
           value="sg838exr"
         />
         <label
-          className="c13"
+          className="c12"
           htmlFor="Helt tilfeldig ID"
         >
           <div
-            className="c14"
+            className="c13"
           >
             <div
-              className="c15"
+              className="c14"
             >
               <span
                 className="sr-only"
@@ -808,7 +778,7 @@ exports[`Viser Traadliste 1`] = `
                 )
               </span>
               <span
-                className="c16"
+                className="c15"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -827,16 +797,16 @@ exports[`Viser Traadliste 1`] = `
                 </svg>
                 <p
                   aria-hidden="true"
-                  className="typo-undertekst c17"
+                  className="typo-undertekst c16"
                 >
                   4
                 </p>
               </span>
               <div
-                className="c18"
+                className="c17"
               >
                 <div
-                  className="c19 order-first"
+                  className="c18 order-first"
                 >
                   <p
                     className="typo-element order-second"
@@ -850,7 +820,7 @@ exports[`Viser Traadliste 1`] = `
                   </p>
                 </div>
                 <div
-                  className="c20 order-third"
+                  className="c19 order-third"
                 >
                   <div
                     className="etikett etikett--fokus"
@@ -863,7 +833,7 @@ exports[`Viser Traadliste 1`] = `
                   </div>
                 </div>
                 <p
-                  className="typo-normal c21 order-second"
+                  className="typo-normal c20 order-second"
                 >
                   Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                 </p>
@@ -871,7 +841,7 @@ exports[`Viser Traadliste 1`] = `
             </div>
           </div>
           <div
-            className="c22 hover-animation"
+            className="c21 hover-animation"
           >
             <span
               className="nav-frontend-chevron chevronboks chevron--hoyre"

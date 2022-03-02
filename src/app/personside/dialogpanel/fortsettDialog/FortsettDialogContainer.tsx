@@ -34,8 +34,6 @@ import { selectValgtEnhet } from '../../../../redux/session/session';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
-    | Meldingstype.SVAR_OPPMOTE
-    | Meldingstype.SVAR_TELEFON
     | Meldingstype.SPORSMAL_MODIA_UTGAAENDE
     | Meldingstype.SAMTALEREFERAT_OPPMOTE
     | Meldingstype.SAMTALEREFERAT_TELEFON;
@@ -147,8 +145,6 @@ function FortsettDialogContainer(props: Props) {
         };
         if (
             FortsettDialogValidator.erGyldigSvarSkriftlig(state) ||
-            FortsettDialogValidator.erGyldigSvarOppmote(state) ||
-            FortsettDialogValidator.erGyldigSvarTelefon(state) ||
             FortsettDialogValidator.erGyldigSamtalereferat(state)
         ) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });

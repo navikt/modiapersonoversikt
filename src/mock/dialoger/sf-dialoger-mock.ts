@@ -65,8 +65,6 @@ function simulateSf(trader: Traad[]): Traad[] {
             melding.erFerdigstiltUtenSvar = false;
             melding.ferdigstiltUtenSvarDato = undefined;
             melding.ferdigstiltUtenSvarAv = undefined;
-
-            melding.erDokumentMelding = false;
         });
     });
     return trader;
