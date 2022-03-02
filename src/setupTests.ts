@@ -22,6 +22,15 @@ JSutils.getScrollParents = () => [];
 
 window['frontendlogger'] = { info: () => null, warn: () => null, error: () => null, event: () => null };
 
+window.matchMedia = (query: string) => {
+    const querylist = {
+        matches: true,
+        addEventListener() {},
+        removeEventListener() {}
+    };
+    return querylist as unknown as MediaQueryList;
+};
+
 // Mock react collapse sin UnmountClosed
 jest.mock('react-collapse', () => {
     return {
