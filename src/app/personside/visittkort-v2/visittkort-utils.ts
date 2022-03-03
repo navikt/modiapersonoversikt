@@ -3,9 +3,10 @@ import {
     AdresseBeskyttelse,
     ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
-    KodeBeskrivelse, LocalDate,
+    KodeBeskrivelse,
+    LocalDate,
     Navn,
-    Person,
+    PersonMedAlderOgDodsdato,
     Sivilstand,
     SivilstandType
 } from './PersondataDomain';
@@ -56,18 +57,11 @@ export function hentNavn(navn: Navn | null, feilmelding: string = 'Ukjent navn')
     return navn.fornavn + (navn.mellomnavn ? ' ' + navn.mellomnavn + ' ' : ' ') + navn.etternavn;
 }
 
-export function hentAlderEllerDod(person: Person): string | undefined {
+export function hentAlderEllerDod(person: PersonMedAlderOgDodsdato): string | undefined {
     if (erDod(person.dodsdato)) {
         return 'Død';
     }
     return person.alder?.toString();
-}
-
-export function hentAlderEllerDodRelasjon(relasjon: ForelderBarnRelasjon): string | undefined {
-    if (erDod(relasjon.dodsdato)) {
-        return 'Død';
-    }
-    return relasjon.alder?.toString();
 }
 
 export function hentPeriodeTekst(gyldighetstidspunkt: string | null, opphorstidspunkt?: string | null) {
