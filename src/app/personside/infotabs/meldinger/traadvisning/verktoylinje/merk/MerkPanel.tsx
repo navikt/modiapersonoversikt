@@ -30,6 +30,8 @@ import { useRestResource } from '../../../../../../../rest/consumer/useRestResou
 import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-focus-on-first-focusable';
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../../../utils/customHooks';
+import { hasData, RestResource } from '../../../../../../../rest/utils/restResource';
+import { Oppgave } from '../../../../../../../models/meldinger/oppgave';
 
 interface Props {
     lukkPanel: () => void;
@@ -78,29 +80,35 @@ function getSendTilSladdingRequest(fnr: string, traad: Traad): SendTilSladdingRe
     };
 }
 
-function getLukkTraadRequest(fnr: string, traad: Traad, valgtEnhet: string): MerkLukkTraadRequest {
+function getLukkTraadRequest(fnr: string, valgtEnhet: string, traad: Traad, oppgave?: Oppgave): MerkLukkTraadRequest {
     return {
         fnr: fnr,
         saksbehandlerValgtEnhet: valgtEnhet,
-        oppgaveId: eldsteMelding(traad).oppgaveId,
-        traadId: traad.traadId
+        traadId: traad.traadId,
+        oppgaveId: oppgave?.oppgaveId
     };
+}
+
+function finnOppgaveForTraad(traad: Traad, tildelteOppgaver: RestResource<Oppgave[]>): Oppgave | undefined {
+    if (hasData(tildelteOppgaver)) {
+        return tildelteOppgaver.data.find((it) => it.traadId === traad.traadId);
+    }
+    return undefined;
 }
 
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
+    const valgtTraad = props.valgtTraad;
     const traderResource = useRestResource((resources) => resources.traader);
-
-    const reloadMeldinger = traderResource.actions.reload;
-    const reloadTildelteOppgaver = useRestResource((resources) => resources.tildelteOppgaver).actions.reload;
+    const tildelteOppgaverResource = useRestResource((resources) => resources.tildelteOppgaver);
 
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [submitting, setSubmitting] = useState(false);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const valgtTraad = props.valgtTraad;
     const valgtEnhet = useAppState((state) => state.session.valgtEnhetId);
     const formRef = useRef<HTMLFormElement>(null);
+    const oppgaveTilknyttning = finnOppgaveForTraad(valgtTraad, tildelteOppgaverResource.resource);
 
     useFocusOnFirstFocusable(formRef);
 
@@ -110,8 +118,8 @@ function MerkPanel(props: Props) {
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
-                dispatch(reloadMeldinger);
-                dispatch(reloadTildelteOppgaver);
+                dispatch(traderResource.actions.reload);
+                dispatch(tildelteOppgaverResource.actions.reload);
                 dispatch(setIngenValgtTraadDialogpanel());
             })
             .catch(() => {
@@ -137,7 +145,7 @@ function MerkPanel(props: Props) {
             case MerkOperasjon.LUKK:
                 merkPost(
                     LUKK_TRAAD_URL,
-                    getLukkTraadRequest(valgtBrukersFnr, valgtTraad, valgtEnhet || ''),
+                    getLukkTraadRequest(valgtBrukersFnr, valgtEnhet || '', valgtTraad, oppgaveTilknyttning),
                     'Lukk-traad'
                 );
         }
@@ -191,7 +199,8 @@ function MerkPanel(props: Props) {
             )}
             {valgtOperasjon === MerkOperasjon.LUKK && (
                 <AlertStripeInfo className="blokk-xxs">
-                    Ved avslutting blir dialogen låst. Det er ikke mulig å sende flere meldinger i ettertid.
+                    Ved avslutting blir dialogen låst og oppgave ferdigstilt. Det er ikke mulig å sende flere meldinger
+                    i ettertid.
                 </AlertStripeInfo>
             )}
             <KnappStyle>
