@@ -212,7 +212,8 @@ export const aremark: Person = {
                         beskrivelse: 'UGRADERT'
                     }
                 ],
-                harSammeAdresse: true
+                harSammeAdresse: true,
+                dodsdato: ['2022-01-01' as LocalDate]
             }
         }
     ],
