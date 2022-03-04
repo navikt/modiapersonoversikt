@@ -125,7 +125,6 @@ function getMockMelding(): Melding {
         fritekst: 'Dette er en mock-melding',
         status: LestStatus.IkkeLest,
         opprettetDato: dayjs().format(backendDatoTidformat),
-        erFerdigstiltUtenSvar: false,
         sendtTilSladding: false
     };
 }

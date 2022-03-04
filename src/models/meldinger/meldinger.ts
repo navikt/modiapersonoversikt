@@ -8,7 +8,6 @@ export interface Traad {
 
 export interface Melding {
     id: string;
-    oppgaveId?: string;
     meldingstype: Meldingstype;
     temagruppe: Temagruppe | null;
     skrevetAvTekst: string;
@@ -20,17 +19,13 @@ export interface Melding {
     fritekst: string;
     lestDato?: string;
     status: LestStatus;
-    statusTekst?: string;
     opprettetDato: string;
     ferdigstiltDato?: string;
     avsluttetDato?: string;
-    erFerdigstiltUtenSvar: boolean;
-    ferdigstiltUtenSvarAv?: Saksbehandler;
     kontorsperretEnhet?: string;
     kontorsperretAv?: Saksbehandler;
     sendtTilSladding: boolean;
     markertSomFeilsendtAv?: Saksbehandler;
-    ferdigstiltUtenSvarDato?: string;
 }
 
 export interface Saksbehandler {

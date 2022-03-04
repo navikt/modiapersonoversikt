@@ -54,14 +54,6 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 
     const traadKanBesvares = kanBesvares(valgtTraad);
     const melding = eldsteMelding(valgtTraad);
-    if (melding.erFerdigstiltUtenSvar) {
-        return (
-            <AlertStripeInfo>
-                Henvendelsen er avsluttet uten å svare bruker av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
-                {melding.ferdigstiltUtenSvarDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltUtenSvarDato)}
-            </AlertStripeInfo>
-        );
-    }
 
     if (melding.markertSomFeilsendtAv) {
         return (
