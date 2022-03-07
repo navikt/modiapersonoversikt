@@ -200,7 +200,7 @@ function MerkPanel(props: Props) {
             {valgtOperasjon === MerkOperasjon.LUKK && (
                 <AlertStripeInfo className="blokk-xxs">
                     Ved avslutting blir dialogen låst og oppgave ferdigstilt. Det er ikke mulig å sende flere meldinger
-                    i ettertid.
+                    i denne dialogen i ettertid.
                 </AlertStripeInfo>
             )}
             <KnappStyle>
