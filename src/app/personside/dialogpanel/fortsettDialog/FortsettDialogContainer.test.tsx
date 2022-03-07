@@ -10,12 +10,13 @@ function restResource<Response>(status: STATUS.NOT_STARTED | STATUS.SUCCESS, dat
         status,
         data
     };
-    return (resource as unknown) as RestResource<Response>;
+    return resource as unknown as RestResource<Response>;
 }
 function lagTraad(traadId: string): Traad {
     return {
         traadId,
-        meldinger: []
+        meldinger: [],
+        journalposter: []
     };
 }
 function lagOppgave({ oppgaveId, traadId, erSTOOppgave }: Omit<Oppgave, 'fødselsnummer'>): Oppgave {
