@@ -46,7 +46,6 @@ function simulateSf(trader: Traad[]): Traad[] {
     trader.forEach((trad: Traad) => {
         trad.meldinger.forEach((melding: Melding, index: number) => {
             melding.id = guid(); // Denne informasjonen får vi ikke, og autogenereres derfor på backend
-            melding.oppgaveId = undefined; // Denne informasjonen får vi ikke
 
             // SF har bare samtalereferat og meldingskjede, så vi utleder de gamle typene etter beste evne.
             melding.meldingstype = (() => {
@@ -58,11 +57,6 @@ function simulateSf(trader: Traad[]): Traad[] {
                     return index === 0 ? Meldingstype.SPORSMAL_MODIA_UTGAAENDE : Meldingstype.SVAR_SKRIFTLIG;
                 }
             })();
-            melding.statusTekst = undefined;
-            // ferdigstilt finnes ikke i SF
-            melding.erFerdigstiltUtenSvar = false;
-            melding.ferdigstiltUtenSvarDato = undefined;
-            melding.ferdigstiltUtenSvarAv = undefined;
         });
     });
     return trader;

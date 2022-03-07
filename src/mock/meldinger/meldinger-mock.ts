@@ -52,7 +52,6 @@ function getMockTraad(): Traad {
 
 function getMelding(temagruppe: Temagruppe): Melding {
     const visKontrosperre = navfaker.random.vektetSjanse(0.1);
-    const ferdigstilUtenSvar = navfaker.random.vektetSjanse(0.1);
     const visMarkertSomFeilsendt = navfaker.random.vektetSjanse(0.1);
     const meldingstype = navfaker.random.arrayElement(Object.entries(Meldingstype))[0];
     const sladdingNiva = navfaker.random.arrayElement([0, 0, 0, 0, 1, 1, 1, 1, 2]);
@@ -93,11 +92,6 @@ function getMelding(temagruppe: Temagruppe): Melding {
         status: navfaker.random.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
         opprettetDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
         ferdigstiltDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
-        erFerdigstiltUtenSvar: ferdigstilUtenSvar,
-        ferdigstiltUtenSvarDato: ferdigstilUtenSvar
-            ? dayjs(faker.date.recent(40)).format(backendDatoTidformat)
-            : undefined,
-        ferdigstiltUtenSvarAv: ferdigstilUtenSvar ? getSaksbehandler() : undefined,
         kontorsperretAv: visKontrosperre ? getSaksbehandler() : undefined,
         kontorsperretEnhet: visKontrosperre ? faker.company.companyName() : undefined,
         sendtTilSladding: sladdingNiva !== 0,

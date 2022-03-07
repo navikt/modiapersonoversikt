@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { datoSynkende, formatterDatoMedMaanedsnavn, formatterDatoTid } from '../../../../../utils/date-utils';
+import { datoSynkende, formatterDatoTid } from '../../../../../utils/date-utils';
 import EnkeltMelding from './Enkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
@@ -54,14 +54,6 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 
     const traadKanBesvares = kanBesvares(valgtTraad);
     const melding = eldsteMelding(valgtTraad);
-    if (melding.erFerdigstiltUtenSvar) {
-        return (
-            <AlertStripeInfo>
-                Henvendelsen er avsluttet uten å svare bruker av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
-                {melding.ferdigstiltUtenSvarDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltUtenSvarDato)}
-            </AlertStripeInfo>
-        );
-    }
 
     if (melding.markertSomFeilsendtAv || melding.sendtTilSladding || (melding.avsluttetDato && !traadKanBesvares)) {
         return (

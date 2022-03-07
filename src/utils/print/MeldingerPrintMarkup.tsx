@@ -7,7 +7,7 @@ import {
     meldingstittel
 } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
-import { datoStigende, formatterDatoMedMaanedsnavn, formatterDatoTid } from '../date-utils';
+import { datoStigende, formatterDatoTid } from '../date-utils';
 import styled from 'styled-components';
 import theme from '../../styles/personOversiktTheme';
 import { formaterDato } from '../string-utils';
@@ -92,23 +92,16 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
 function MeldingerPrintMarkup(props: Props) {
     const melding = eldsteMelding(props.valgtTraad);
 
-    const ferdigstiltUtenSvar = melding.erFerdigstiltUtenSvar && (
-        <Element>
-            Henvendelsen er avsluttet uten å svare bruker{' '}
-            {melding.ferdigstiltUtenSvarDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltUtenSvarDato)}{' '}
-        </Element>
-    );
     const feilsendt = melding.markertSomFeilsendtAv && (
         <Element> Markert som feilsendt av {melding.markertSomFeilsendtAv.ident?.toUpperCase()}</Element>
     );
     const kontorsperre = melding.kontorsperretAv && <Element>Kontorsperret for {melding.kontorsperretEnhet}</Element>;
     const enkeltmeldinger = props.valgtTraad.meldinger
-        .sort(datoStigende(melding => melding.opprettetDato))
-        .map(melding => <EnkeltMeldingMarkup melding={melding} key={melding.id} />);
+        .sort(datoStigende((melding) => melding.opprettetDato))
+        .map((melding) => <EnkeltMeldingMarkup melding={melding} key={melding.id} />);
     return (
         <StyledTraad>
             <Topptekst>
-                {ferdigstiltUtenSvar}
                 {feilsendt}
                 {kontorsperre}
             </Topptekst>

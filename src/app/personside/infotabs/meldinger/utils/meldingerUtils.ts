@@ -61,7 +61,7 @@ export function erUbesvartHenvendelseFraBruker(traad: Traad): boolean {
         return false;
     }
 
-    return !melding.avsluttetDato && !melding.erFerdigstiltUtenSvar;
+    return !melding.avsluttetDato;
 }
 
 export function erMeldingFraNav(meldingstype: Meldingstype) {
@@ -100,10 +100,7 @@ export function erMeldingFeilsendt(melding: Melding): boolean {
 }
 
 export function erBehandlet(traad: Traad): boolean {
-    const minstEnMeldingErFraNav: boolean = traad.meldinger.some((melding) => erMeldingFraNav(melding.meldingstype));
-    const erFerdigstiltUtenSvar: boolean = eldsteMelding(traad).erFerdigstiltUtenSvar;
-
-    return minstEnMeldingErFraNav || erFerdigstiltUtenSvar;
+    return traad.meldinger.some((melding) => erMeldingFraNav(melding.meldingstype));
 }
 
 export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
