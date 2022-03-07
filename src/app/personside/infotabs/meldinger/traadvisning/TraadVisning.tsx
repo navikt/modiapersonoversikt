@@ -75,9 +75,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
                 {melding.sendtTilSladding && (
                     <AlertStripeInfo>Tråden ligger til behandling for sladding</AlertStripeInfo>
                 )}
-                {melding.avsluttetDato && !traadKanBesvares && (
-                    <AlertStripeInfo>Henvendelsen er avsluttet</AlertStripeInfo>
-                )}
+                {melding.avsluttetDato && !traadKanBesvares && <AlertStripeInfo>Dialogen er avsluttet</AlertStripeInfo>}
             </>
         );
     }
