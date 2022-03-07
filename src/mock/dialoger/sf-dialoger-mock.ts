@@ -2,7 +2,6 @@ import FetchMock, { MockRequest } from 'yet-another-fetch-mock';
 import { apiBaseUri } from '../../api/config';
 import { mockGeneratorMedFodselsnummer, verify, withDelayedResponse } from '../utils/fetch-utils';
 import { randomDelay } from '../index';
-import { mockTilgangTilSlett } from '../meldinger/merk-mock';
 import { MeldingerBackendMock } from '../mockBackend/meldingerBackendMock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { Melding, Meldingstype, Traad } from '../../models/meldinger/meldinger';
@@ -14,7 +13,6 @@ import {
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
-const STATUS_SERVER_ERROR = () => 500;
 let meldingerBackendMock: MeldingerBackendMock = null as unknown as MeldingerBackendMock;
 
 const harEnhetIdSomQueryParam = (req: MockRequest) => {
@@ -68,13 +66,6 @@ function simulateSf(trader: Traad[]): Traad[] {
         });
     });
     return trader;
-}
-
-function setupSlasammenMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fodselsnummer/slaasammen',
-        withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
-    );
 }
 
 function setupOpprettHenvendelseMock(mock: FetchMock) {
@@ -134,13 +125,6 @@ function setupSendSvarMock(mock: FetchMock) {
     );
 }
 
-function merkBidragMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/bidrag',
-        withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
-    );
-}
-
 function merkFeilsendtMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialogmerking/feilsendt',
@@ -148,24 +132,10 @@ function merkFeilsendtMock(mock: FetchMock) {
     );
 }
 
-function merkKontorsperretMock(mock: FetchMock) {
+function sladdingMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/dialogmerking/kontorsperret',
+        apiBaseUri + '/dialogmerking/sladding',
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
-function merkSlettMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/slett',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
-    );
-}
-
-function setupTilgangTilSlettMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/dialogmerking/slett',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => mockTilgangTilSlett())
     );
 }
 
@@ -176,17 +146,10 @@ function setupAvsluttOppgaveGosysMock(mock: FetchMock) {
     );
 }
 
-function merkAvsluttMock(mock: FetchMock) {
+function lukkTraadMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/dialogmerking/avslutt',
-        withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
-    );
-}
-
-function merkTvungenAvsluttning(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialogmerking/tvungenferdigstill',
-        withDelayedResponse(randomDelay(), STATUS_SERVER_ERROR, () => null)
+        apiBaseUri + '/dialogmerking/lukk-traad',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
 }
 
@@ -196,17 +159,12 @@ export function setupSFDialogMock(mock: FetchMock, backend: MeldingerBackendMock
     setupMeldingerMock(mock);
     setupOpprettHenvendelseMock(mock);
     setupFerdigstillHenvendelseMock(mock);
-    setupTilgangTilSlettMock(mock);
     setupSendReferatMock(mock);
     setupSendSporsmalMock(mock);
     setupSendInfomeldingMock(mock);
     setupSendSvarMock(mock);
-    setupSlasammenMock(mock);
-    merkAvsluttMock(mock);
-    merkBidragMock(mock);
     merkFeilsendtMock(mock);
-    merkKontorsperretMock(mock);
-    merkSlettMock(mock);
-    merkTvungenAvsluttning(mock);
+    sladdingMock(mock);
+    lukkTraadMock(mock);
     setupAvsluttOppgaveGosysMock(mock);
 }

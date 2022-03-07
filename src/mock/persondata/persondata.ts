@@ -212,7 +212,8 @@ export function lagPerson(fnr: string): Person {
                             beskrivelse: 'Sperret adresse, strengt fortrolig'
                         }
                     ],
-                    harSammeAdresse: false
+                    harSammeAdresse: false,
+                    dodsdato: []
                 }
             }
         ],

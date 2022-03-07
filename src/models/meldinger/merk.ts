@@ -3,6 +3,18 @@ export interface MerkRequestMedBehandlingskjede {
     behandlingsidListe: string[];
 }
 
+export interface SendTilSladdingRequest {
+    fnr: string;
+    traadId: string;
+}
+
+export interface MerkLukkTraadRequest {
+    fnr: string;
+    saksbehandlerValgtEnhet: string;
+    traadId: string;
+    oppgaveId?: string;
+}
+
 export interface AvsluttGosysOppgaveRequest {
     fnr: string;
     oppgaveid: string;

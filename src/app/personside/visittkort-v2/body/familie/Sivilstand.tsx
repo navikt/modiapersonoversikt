@@ -3,7 +3,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import HeartIkon from '../../../../../svg/Heart';
 import { Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
-import { erPartner, hentNavn } from '../../visittkort-utils';
+import { erPartner, hentAlderEllerDod, hentNavn } from '../../visittkort-utils';
 import Diskresjonskode from './common/Diskresjonskode';
 import { formaterDato } from '../../../../../utils/string-utils';
 
@@ -32,7 +32,6 @@ function Partner(props: { partner: SivilstandInterface }) {
         return null;
     }
     const navn = partnerRelasjon.navn.firstOrNull();
-    const alder = partnerRelasjon.alder ? `(${partnerRelasjon.alder})` : null;
     return (
         <>
             <Normaltekst>
@@ -40,7 +39,7 @@ function Partner(props: { partner: SivilstandInterface }) {
             </Normaltekst>
             <Diskresjonskode adressebeskyttelse={partnerRelasjon.adressebeskyttelse} />
             <Normaltekst>
-                {navn && hentNavn(navn)} {alder}
+                {navn && hentNavn(navn)} ({hentAlderEllerDod(partnerRelasjon)})
             </Normaltekst>
             <Normaltekst>{partnerRelasjon.fnr}</Normaltekst>
             <Normaltekst>
