@@ -16,6 +16,7 @@ import AvansertsokPdlsok from './img/avansertsok-pdlsok.png';
 import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
 import FortlopendeJournalforing from './img/fortlopende-journalforing.png';
 import VisningSikkerhetstiltak from './img/sikkerhetstiltakt-popup.png';
+import AvsluttDialog from './img/avslutt-dialog.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
@@ -284,6 +285,22 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
                 </>
             ),
             src: VisningSikkerhetstiltak
+        },
+        {
+            id: 16,
+            tittel: 'Avslutt dialog',
+            dato: new Date('2022-03-04 14:00'),
+            aktiv: true,
+            ingress: <Normaltekst>Dialoger bestående av spørsmål og svar kan nå manuelt avsluttes.</Normaltekst>,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Ved avslutting vil det ikke være mulig å skrive flere meldinger i dialogen for verken Nav eller
+                        bruker.
+                    </Normaltekst>
+                </>
+            ),
+            src: AvsluttDialog
         }
     ];
 }
