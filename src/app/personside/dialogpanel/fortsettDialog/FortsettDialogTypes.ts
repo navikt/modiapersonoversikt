@@ -8,9 +8,7 @@ export enum DialogPanelStatus {
     UNDER_ARBEID,
     POSTING,
     ERROR,
-    SVAR_SENDT,
-    DELSVAR_SENDT,
-    OPPGAVE_LAGT_TILBAKE
+    SVAR_SENDT
 }
 
 export type KvitteringsData = {
@@ -29,7 +27,7 @@ interface UnderArbeid extends DialogStatusInterface {
 }
 
 interface SvarSendtSuccess extends DialogStatusInterface {
-    type: DialogPanelStatus.SVAR_SENDT | DialogPanelStatus.DELSVAR_SENDT;
+    type: DialogPanelStatus.SVAR_SENDT;
     kvitteringsData: KvitteringsData;
 }
 

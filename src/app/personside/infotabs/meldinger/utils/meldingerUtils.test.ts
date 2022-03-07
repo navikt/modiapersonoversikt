@@ -1,22 +1,17 @@
 import { LestStatus, Melding, Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
-import { erMeldingFraBruker, erMeldingFraNav, erUbesvartHenvendelseFraBruker, erVarselMelding } from './meldingerUtils';
+import { erMeldingFraBruker, erMeldingFraNav, erUbesvartHenvendelseFraBruker } from './meldingerUtils';
 import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
 
 describe('Meldingstyper', () => {
-    const spørsmålSkriftlig = Meldingstype.SPORSMAL_SKRIFTLIG;
+    const sporsmalSkriflig = Meldingstype.SPORSMAL_SKRIFTLIG;
     const svarSkriftlig = Meldingstype.SVAR_SKRIFTLIG;
-    const dokumentvarsel = Meldingstype.DOKUMENT_VARSEL;
 
     it('gir at spørsmål skriftlig er fra bruker', function () {
-        expect(erMeldingFraBruker(spørsmålSkriftlig)).toBe(true);
+        expect(erMeldingFraBruker(sporsmalSkriflig)).toBe(true);
     });
 
     it('gir at svar skriftlig er fra NAV', function () {
         expect(erMeldingFraNav(svarSkriftlig)).toBe(true);
-    });
-
-    it('gir at dokumentvarsel er et varsel', function () {
-        expect(erVarselMelding(dokumentvarsel)).toBe(true);
     });
 });
 describe('Dokumentvarsler', () => {
@@ -40,7 +35,6 @@ describe('Dokumentvarsler', () => {
 
 describe('erUbesvartHenvendelseFraBruker', () => {
     const baseMelding: Melding = {
-        erDokumentMelding: false,
         erFerdigstiltUtenSvar: false,
         fritekst: '',
         id: '1234',

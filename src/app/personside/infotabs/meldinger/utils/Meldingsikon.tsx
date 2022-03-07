@@ -2,8 +2,6 @@ import * as React from 'react';
 import { Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
 import OppmoteIkon from '../../../../../svg/OppmoteIkon';
 import TelefonIkon from '../../../../../svg/TelefonIkon';
-import OppgaveIkon from '../../../../../svg/OppgaveIkon';
-import DokumentIkon from '../../../../../svg/DokumentIkon';
 import MonologIkon from '../../../../../svg/MonologIkon';
 import DialogIkon from '../../../../../svg/DialogIkon';
 import styled from 'styled-components/macro';
@@ -54,10 +52,6 @@ function Ikon({ props }: { props: MeldingsikonProps }) {
             return <OppmoteIkon />;
         case Meldingstype.SAMTALEREFERAT_TELEFON:
             return <TelefonIkon />;
-        case Meldingstype.OPPGAVE_VARSEL:
-            return <OppgaveIkon />;
-        case Meldingstype.DOKUMENT_VARSEL:
-            return <DokumentIkon />;
         default: {
             if (erUbesvartHenvendelseFraBruker(props.traad)) {
                 return (

@@ -1,21 +1,13 @@
 export interface MeldingerState {
-    skjulVarsler: boolean;
     forrigeSok: string;
 }
 
 export const initialState: MeldingerState = {
-    skjulVarsler: false,
     forrigeSok: ''
 };
 
 export enum MeldingerActionTypes {
-    SkjulVarsler = 'SkjulVarsler',
     HuskSok = 'HuskSok'
-}
-
-export interface SetSkjulVarsler {
-    type: MeldingerActionTypes.SkjulVarsler;
-    skjul: boolean;
 }
 
 export interface HuskSok {
@@ -23,4 +15,4 @@ export interface HuskSok {
     sok: string;
 }
 
-export type MeldingerActions = SetSkjulVarsler | HuskSok;
+export type MeldingerActions = HuskSok;

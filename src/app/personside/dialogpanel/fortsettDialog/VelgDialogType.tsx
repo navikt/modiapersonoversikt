@@ -11,7 +11,6 @@ interface Props {
     updateDialogType: (dialogType: FortsettDialogType) => void;
     erTilknyttetOppgave: boolean;
     erSTOOppgave: boolean;
-    erDelvisBesvart: boolean;
     erOksosTraad: boolean;
     erSamtalereferat: boolean;
 }

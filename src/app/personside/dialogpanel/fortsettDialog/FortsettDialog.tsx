@@ -15,7 +15,6 @@ import { FortsettDialogValidator } from './validatorer';
 import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';
 import {
     eldsteMelding,
-    erDelvisBesvart,
     erEldsteMeldingJournalfort,
     erMeldingstypeSamtalereferat
 } from '../../infotabs/meldinger/utils/meldingerUtils';
@@ -88,7 +87,6 @@ function FortsettDialog(props: Props) {
                 updateDialogType={(dialogType) => updateState({ dialogType: dialogType })}
                 erTilknyttetOppgave={props.erTilknyttetOppgave}
                 erSTOOppgave={props.erSTOOppgave}
-                erDelvisBesvart={erDelvisBesvart(props.traad)}
                 erOksosTraad={erOksosTraad}
                 erSamtalereferat={erSamtalereferat}
             />

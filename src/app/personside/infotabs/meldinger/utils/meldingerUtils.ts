@@ -38,9 +38,6 @@ export function erMonolog(traad: Traad) {
 }
 
 export function meldingstittel(melding: Melding): string {
-    if ([Meldingstype.DOKUMENT_VARSEL, Meldingstype.OPPGAVE_VARSEL].includes(melding.meldingstype)) {
-        return melding.statusTekst || meldingstypeTekst(melding.meldingstype);
-    }
     if (melding.temagruppe === Temagruppe.InnholdSlettet) {
         return meldingstypeTekst(melding.meldingstype);
     }
@@ -70,20 +67,11 @@ export function erUbesvartHenvendelseFraBruker(traad: Traad): boolean {
 export function erMeldingFraNav(meldingstype: Meldingstype) {
     return [
         Meldingstype.SVAR_SKRIFTLIG,
-        Meldingstype.SVAR_OPPMOTE,
-        Meldingstype.SVAR_TELEFON,
         Meldingstype.SAMTALEREFERAT_TELEFON,
         Meldingstype.SAMTALEREFERAT_OPPMOTE,
         Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
-        Meldingstype.DOKUMENT_VARSEL,
-        Meldingstype.OPPGAVE_VARSEL,
-        Meldingstype.DELVIS_SVAR_SKRIFTLIG,
         Meldingstype.INFOMELDING_MODIA_UTGAAENDE
     ].includes(meldingstype);
-}
-
-export function erVarselMelding(meldingstype: Meldingstype) {
-    return [Meldingstype.OPPGAVE_VARSEL, Meldingstype.DOKUMENT_VARSEL].includes(meldingstype);
 }
 
 export function erKontorsperret(traad: Traad): boolean {
@@ -92,14 +80,7 @@ export function erKontorsperret(traad: Traad): boolean {
 
 export function kanTraadJournalfores(traad: Traad): boolean {
     const nyesteMeldingITraad = nyesteMelding(traad);
-    return (
-        !erVarselMelding(nyesteMeldingITraad.meldingstype) &&
-        !erKontorsperret(traad) &&
-        !erFeilsendt(traad) &&
-        !erJournalfort(nyesteMeldingITraad) &&
-        erBehandlet(traad) &&
-        !erDelsvar(nyesteMeldingITraad)
-    );
+    return !erKontorsperret(traad) && !erFeilsendt(traad) && !erJournalfort(nyesteMeldingITraad) && erBehandlet(traad);
 }
 
 export function erEldsteMeldingJournalfort(traad: Traad): boolean {
@@ -123,14 +104,6 @@ export function erBehandlet(traad: Traad): boolean {
     const erFerdigstiltUtenSvar: boolean = eldsteMelding(traad).erFerdigstiltUtenSvar;
 
     return minstEnMeldingErFraNav || erFerdigstiltUtenSvar;
-}
-
-export function erDelsvar(melding: Melding): boolean {
-    return melding.meldingstype === Meldingstype.DELVIS_SVAR_SKRIFTLIG;
-}
-
-export function erDelvisBesvart(traad: Traad): boolean {
-    return erDelsvar(nyesteMelding(traad));
 }
 
 export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
@@ -162,13 +135,6 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
 
 export function nyesteTraad(traader: Traad[]) {
     return traader.sort(datoSynkende((traad) => nyesteMelding(traad).opprettetDato))[0];
-}
-
-export function filtrerBortVarsel(traad: Traad): boolean {
-    if (traad.meldinger.length > 1) {
-        return true;
-    }
-    return !erVarselMelding(nyesteMelding(traad).meldingstype);
 }
 
 function removeWhiteSpaces(text: string) {

@@ -14,8 +14,6 @@ test('Viser Traadliste', () => {
         <TestProvider customStore={store}>
             <TraadListe
                 traader={traader}
-                setSkjulVarsler={() => null}
-                skjulVarsler={false}
                 sokeord={''}
                 valgtTraad={traader[0]}
                 setSokeord={() => null}
