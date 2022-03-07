@@ -18,7 +18,6 @@ export const statiskTraadMock: Traad = {
             opprettetDato: '2019-07-30',
             journalfortDato: '2019-07-11',
             ferdigstiltDato: '2019-07-07',
-            erFerdigstiltUtenSvar: true,
             sendtTilSladding: false
         },
         {
@@ -34,7 +33,6 @@ export const statiskTraadMock: Traad = {
             opprettetDato: '2019-08-10',
             journalfortDato: '2019-07-21',
             ferdigstiltDato: '2019-07-16',
-            erFerdigstiltUtenSvar: true,
             sendtTilSladding: false
         },
         {
@@ -50,7 +48,6 @@ export const statiskTraadMock: Traad = {
             opprettetDato: '2019-08-06',
             journalfortDato: '2019-08-12',
             ferdigstiltDato: '2019-07-12',
-            erFerdigstiltUtenSvar: true,
             sendtTilSladding: false
         },
         {
@@ -66,7 +63,6 @@ export const statiskTraadMock: Traad = {
             opprettetDato: '2019-08-13',
             journalfortDato: '2019-07-30',
             ferdigstiltDato: '2019-07-27',
-            erFerdigstiltUtenSvar: false,
             sendtTilSladding: false
         }
     ]

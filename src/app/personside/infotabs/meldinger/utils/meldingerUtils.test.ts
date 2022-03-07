@@ -35,7 +35,6 @@ describe('Dokumentvarsler', () => {
 
 describe('erUbesvartHenvendelseFraBruker', () => {
     const baseMelding: Melding = {
-        erFerdigstiltUtenSvar: false,
         fritekst: '',
         id: '1234',
         meldingstype: Meldingstype.SPORSMAL_SKRIFTLIG,
@@ -64,10 +63,6 @@ describe('erUbesvartHenvendelseFraBruker', () => {
         expect(erUbesvartHenvendelseFraBruker(traad)).toBe(false);
     });
 
-    it('Tråder som er markert med "avslutt uten å svare" skal ikke regnes som ubesvarte', () => {
-        const traad: Traad = { traadId: '', meldinger: [{ ...baseMelding, erFerdigstiltUtenSvar: true }] };
-        expect(erUbesvartHenvendelseFraBruker(traad)).toBe(false);
-    });
     it('Tråder som er avsluttet skal ikke regnes som ubesvarte', () => {
         const traad: Traad = {
             traadId: '',
