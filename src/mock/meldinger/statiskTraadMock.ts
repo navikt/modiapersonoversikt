@@ -19,8 +19,7 @@ export const statiskTraadMock: Traad = {
             journalfortDato: '2019-07-11',
             ferdigstiltDato: '2019-07-07',
             erFerdigstiltUtenSvar: true,
-            sendtTilSladding: false,
-            erDokumentMelding: false
+            sendtTilSladding: false
         },
         {
             id: 'q1i6ndyj',
@@ -36,8 +35,7 @@ export const statiskTraadMock: Traad = {
             journalfortDato: '2019-07-21',
             ferdigstiltDato: '2019-07-16',
             erFerdigstiltUtenSvar: true,
-            sendtTilSladding: false,
-            erDokumentMelding: false
+            sendtTilSladding: false
         },
         {
             id: 'q57oayxa',
@@ -53,12 +51,11 @@ export const statiskTraadMock: Traad = {
             journalfortDato: '2019-08-12',
             ferdigstiltDato: '2019-07-12',
             erFerdigstiltUtenSvar: true,
-            sendtTilSladding: false,
-            erDokumentMelding: false
+            sendtTilSladding: false
         },
         {
             id: '90l2nkx0',
-            meldingstype: Meldingstype.DELVIS_SVAR_SKRIFTLIG,
+            meldingstype: Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
             temagruppe: Temagruppe.Arbeid,
             skrevetAvTekst: saksbehandlerTekst({ ident: 'xy70r8', fornavn: 'Kristoffer', etternavn: 'Fredriksen' }),
             journalfortAv: { ident: 'p0jh0d', fornavn: 'Jenny', etternavn: 'Berg' },
@@ -70,8 +67,7 @@ export const statiskTraadMock: Traad = {
             journalfortDato: '2019-07-30',
             ferdigstiltDato: '2019-07-27',
             erFerdigstiltUtenSvar: false,
-            sendtTilSladding: false,
-            erDokumentMelding: false
+            sendtTilSladding: false
         }
     ]
 };

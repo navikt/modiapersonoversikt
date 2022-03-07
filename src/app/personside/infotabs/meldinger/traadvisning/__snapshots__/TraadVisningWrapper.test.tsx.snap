@@ -703,7 +703,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             <p
               className="typo-ingress"
             >
-              Delsvar - Arbeid
+              Spørsmål fra NAV - Arbeid
             </p>
             <div
               className="c11"
@@ -718,7 +718,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                   className="typo-element"
                 >
                   Type: 
-                  DELVIS_SVAR_SKRIFTLIG
+                  SPORSMAL_MODIA_UTGAAENDE
                 </p>
                 <p
                   className="typo-element"
@@ -1283,7 +1283,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       aria-live="polite"
       className="sr-only"
     >
-      Delsvar - Arbeid
+      Spørsmål fra NAV - Arbeid
        
       13.08.2019 00:00
     </h3>
@@ -1336,16 +1336,16 @@ exports[`Viser traad med verktøylinje 1`] = `
                         <div
                           className="c24"
                         >
-                          Delsvar - Arbeid
+                          Spørsmål fra NAV - Arbeid
                         </div>
                       </h4>
                       <div
-                        className="etikett etikett--info"
+                        className="etikett etikett--suksess"
                       >
                         <span
                           className="typo-normal"
                         >
-                          Delsvar
+                          Lest
                         </span>
                       </div>
                     </div>

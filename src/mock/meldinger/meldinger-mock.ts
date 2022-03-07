@@ -3,12 +3,7 @@ import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import dayjs from 'dayjs';
 import { fyllRandomListe } from '../utils/mock-utils';
-import {
-    erMeldingstypeSamtalereferat,
-    erVarselMelding,
-    erMeldingFraNav,
-    saksbehandlerTekst
-} from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { erMeldingFraNav, saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import { Temagruppe, TemaSamtalereferat } from '../../models/temagrupper';
 import standardTeksterMock from '../standardTeksterMock';
 import { autofullfor, AutofullforMap } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
@@ -49,13 +44,9 @@ function getMockTraad(): Traad {
         .fill(null)
         .map(() => getMelding(temagruppe));
 
-    const enkeltStaaendeMelding = meldinger.find(
-        (melding) => erVarselMelding(melding.meldingstype) || erMeldingstypeSamtalereferat(melding.meldingstype)
-    );
-
     return {
         traadId: faker.random.alphaNumeric(8),
-        meldinger: enkeltStaaendeMelding ? [enkeltStaaendeMelding] : meldinger
+        meldinger: meldinger
     };
 }
 
@@ -110,8 +101,7 @@ function getMelding(temagruppe: Temagruppe): Melding {
         kontorsperretAv: visKontrosperre ? getSaksbehandler() : undefined,
         kontorsperretEnhet: visKontrosperre ? faker.company.companyName() : undefined,
         sendtTilSladding: sladdingNiva !== 0,
-        markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined,
-        erDokumentMelding: meldingstype === Meldingstype.DOKUMENT_VARSEL
+        markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined
     };
 }
 

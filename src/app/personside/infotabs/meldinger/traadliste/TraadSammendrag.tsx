@@ -1,16 +1,10 @@
 import { Melding, Traad } from '../../../../../models/meldinger/meldinger';
-import {
-    erDelvisBesvart,
-    erFeilsendt,
-    getFormattertMeldingsDato,
-    meldingstittel,
-    nyesteMelding
-} from '../utils/meldingerUtils';
+import { erFeilsendt, getFormattertMeldingsDato, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
 import { useAppState } from '../../../../../utils/customHooks';
 import Meldingsikon from '../utils/Meldingsikon';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { UnmountClosed } from 'react-collapse';
-import { EtikettAdvarsel, EtikettFokus, EtikettInfo, EtikettSuksess } from 'nav-frontend-etiketter';
+import { EtikettAdvarsel, EtikettFokus, EtikettSuksess } from 'nav-frontend-etiketter';
 import * as React from 'react';
 import useTildelteOppgaver from '../../../../../utils/hooks/useTildelteOppgaver';
 import { Temagruppe } from '../../../../../models/temagrupper';
@@ -72,7 +66,7 @@ const PreviewStyle = styled(Normaltekst)`
 
 function TraadSammendrag(props: { traad: Traad }) {
     const sisteMelding = nyesteMelding(props.traad);
-    const underArbeid = useAppState(state => state.oppgaver.dialogpanelTraad === props.traad);
+    const underArbeid = useAppState((state) => state.oppgaver.dialogpanelTraad === props.traad);
     const datoTekst = getFormattertMeldingsDato(sisteMelding);
     const tittel = meldingstittel(sisteMelding);
     return (
@@ -88,7 +82,6 @@ function TraadSammendrag(props: { traad: Traad }) {
                     <UnmountClosed isOpened={underArbeid}>
                         <EtikettFokus>Under arbeid</EtikettFokus>
                     </UnmountClosed>
-                    {erDelvisBesvart(props.traad) && <EtikettInfo>Delvis besvart</EtikettInfo>}
                     <TildeltSaksbehandlerEtikett traadId={props.traad.traadId} />
                     <SlettetEtikett melding={sisteMelding} />
                     <FeilsendtEtikett traad={props.traad} />
@@ -102,7 +95,7 @@ function TraadSammendrag(props: { traad: Traad }) {
 function TildeltSaksbehandlerEtikett({ traadId }: { traadId: string }) {
     const tildelteOppgaver = useTildelteOppgaver();
 
-    if (tildelteOppgaver.paaBruker.map(oppgave => oppgave.traadId).includes(traadId)) {
+    if (tildelteOppgaver.paaBruker.map((oppgave) => oppgave.traadId).includes(traadId)) {
         return <EtikettSuksess>Tildelt meg</EtikettSuksess>;
     }
 

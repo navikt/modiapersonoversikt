@@ -4,7 +4,7 @@ import { Traad } from '../../../../../models/meldinger/meldinger';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components/macro';
 import theme from '../../../../../styles/personOversiktTheme';
-import { Checkbox, Input } from 'nav-frontend-skjema';
+import { Input } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import TraadListeElement from './TraadListeElement';
 import { LenkeKnapp } from '../../../../../components/common-styled-components';
@@ -22,8 +22,6 @@ interface Props {
     valgtTraad: Traad;
     sokeord: string;
     setSokeord: (newSokeord: string) => void;
-    skjulVarsler: boolean;
-    setSkjulVarsler: (skjul: boolean) => void;
 }
 
 const StyledPanel = styled(Panel)`
@@ -41,10 +39,10 @@ const SokVerktøyStyle = styled.div`
 `;
 
 const SpaceBetween = styled.div`
-    padding: ${theme.margin.layout} ${theme.margin.layout} 0 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    padding: 0.5rem;
+    button {
+        padding: 0;
+    }
 `;
 const StyledOl = styled.ol`
     > * {
@@ -75,11 +73,6 @@ const PagineringStyling = styled.div`
 const PrevNextButtonsStyling = styled.div`
     padding: ${theme.margin.layout};
     border-top: ${theme.border.skilleSvak};
-`;
-
-const StyledCheckbox = styled(Checkbox)`
-    padding: ${theme.margin.layout};
-    margin-bottom: 0 !important;
 `;
 
 export const valgtMeldingKlasse = 'valgt_melding';
@@ -143,11 +136,6 @@ function TraadListe(props: Props) {
         props.setSokeord(sokeOrd);
     };
 
-    const handleSkjulVarsler = () => {
-        !props.skjulVarsler && loggEvent('SkjulVarsler', 'Meldinger');
-        props.setSkjulVarsler(!props.skjulVarsler);
-    };
-
     return (
         <nav aria-label="Velg melding">
             <StyledPanel>
@@ -170,11 +158,6 @@ function TraadListe(props: Props) {
                         />
                     </InputStyle>
                     <SpaceBetween>
-                        <StyledCheckbox
-                            label="Skjul varsler"
-                            checked={props.skjulVarsler}
-                            onChange={handleSkjulVarsler}
-                        />
                         <PrintAlleMeldinger traader={props.traader} />
                     </SpaceBetween>
                     <SokVerktøyStyle>
