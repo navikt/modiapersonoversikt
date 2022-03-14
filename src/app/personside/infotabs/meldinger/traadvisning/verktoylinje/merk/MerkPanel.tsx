@@ -195,7 +195,17 @@ function MerkPanel(props: Props) {
                 onChange={(_, value) => settValgtOperasjon(MerkOperasjon[value])}
             />
             {valgtOperasjon === MerkOperasjon.SLADDING && (
-                <AlertStripeAdvarsel className="blokk-xxs">Årsak må meldes i porten</AlertStripeAdvarsel>
+                <AlertStripeAdvarsel className="blokk-xxs">
+                    Årsak må meldes i{' '}
+                    <a
+                        href="https://jira.adeo.no/plugins/servlet/desk/portal/541/create/1481"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        porten
+                    </a>
+                    .
+                </AlertStripeAdvarsel>
             )}
             {valgtOperasjon === MerkOperasjon.LUKK && (
                 <AlertStripeInfo className="blokk-xxs">
