@@ -21,6 +21,7 @@ import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import Ytelser from './ytelser/Ytelser';
 import { guid } from 'nav-frontend-js-utils';
 import { useOpenTab } from './utils/useOpenTab';
+import SakstemaContextProvider from './saksoversikt/SakstemaContext';
 
 const StyledArticle = styled.article`
     display: flex;
@@ -78,15 +79,17 @@ function InfoTabs() {
                     >
                         {openTab.tittel} - Fane
                     </h2>
-                    <Switch location={location}>
-                        <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
-                        <Route path={paths.oppfolging} component={OppfolgingContainer} />
-                        <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
-                        <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
-                        <Route path={dyplenker.ytelser.route} component={Ytelser} />
-                        <Route path={paths.varsler} component={VarslerContainer} />
-                        <Route path={''} component={Oversikt} />
-                    </Switch>
+                    <SakstemaContextProvider>
+                        <Switch location={location}>
+                            <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
+                            <Route path={paths.oppfolging} component={OppfolgingContainer} />
+                            <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
+                            <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
+                            <Route path={dyplenker.ytelser.route} component={Ytelser} />
+                            <Route path={paths.varsler} component={VarslerContainer} />
+                            <Route path={''} component={Oversikt} />
+                        </Switch>
+                    </SakstemaContextProvider>
                 </StyledArticle>
             </ErrorBoundary>
         </ErrorBoundary>
