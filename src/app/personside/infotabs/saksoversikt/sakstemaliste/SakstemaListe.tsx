@@ -1,20 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import SakstemaListeElement from './SakstemaListeElement';
+import { SakstemaListeElementCheckbox } from './SakstemaListeElement';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { getUnikSakstemaKey, hentDatoForSisteHendelse, useAgregerteSaker } from '../utils/saksoversiktUtils';
-import { datoSynkende } from '../../../../../utils/date-utils';
-import LazySpinner from '../../../../../components/LazySpinner';
-import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
+import { Knapp } from 'nav-frontend-knapper';
+import { getUnikSakstemaKey } from '../utils/saksoversiktUtils';
+import { useSakstemaer } from '../SakstemaContext';
 
 interface Props {
-    valgtSakstema?: Sakstema;
+    valgteSakstemaer: Sakstema[];
+    sortertSakstemaListe: Sakstema[];
 }
 
 export const sakstemakodeAlle = 'ALLE';
@@ -41,54 +40,58 @@ const TittelWrapper = styled.div`
     }
 `;
 
-function GrupperteTema(props: { sakstema: Sakstema[]; valgtSakstema?: Sakstema }) {
-    const sakstemakomponenter = props.sakstema
-        .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
-        .map(sakstema => {
-            return (
-                <SakstemaListeElement
-                    sakstema={sakstema}
-                    key={getUnikSakstemaKey(sakstema)}
-                    erValgt={
-                        props.valgtSakstema
-                            ? getUnikSakstemaKey(sakstema) === getUnikSakstemaKey(props.valgtSakstema)
-                            : false
-                    }
-                />
-            );
-        });
-    return <SakstemaListeStyle>{sakstemakomponenter}</SakstemaListeStyle>;
-}
+const KnappeSeksjon = styled.section`
+    width: 100%;
+    padding: 0 ${pxToRem(15)} ${pxToRem(15)} ${pxToRem(15)};
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+`;
 
 function SakstemaListe(props: Props) {
-    const sakstemaResource = useRestResource(resources => resources.sakstema);
-    const agregerteSaker = useAgregerteSaker();
+    const { filtrerPaTema } = useSakstemaer();
     const tittelId = useRef(guid());
 
-    if (!sakstemaResource.data || !agregerteSaker) {
-        return <LazySpinner />;
+    function velgAlleTema() {
+        filtrerPaTema(props.sortertSakstemaListe);
     }
 
-    const sakstema = sakstemaResource.data.resultat;
-
-    if (sakstema.length === 0) {
-        return <AlertStripeInfo>Det finnes ingen saker for bruker.</AlertStripeInfo>;
+    function velgIngenTema() {
+        filtrerPaTema([]);
     }
-
-    const sortertSakstema = sakstema.sort(datoSynkende(sakstema => hentDatoForSisteHendelse(sakstema)));
 
     return (
         <nav>
             <StyledPanel aria-labelledby={tittelId.current}>
                 <TittelWrapper>
                     <Undertittel id={tittelId.current}>Tema</Undertittel>
-                    <Normaltekst>({sortertSakstema.length} saker)</Normaltekst>
+                    <Normaltekst>({props.sortertSakstemaListe.length} saker)</Normaltekst>
                 </TittelWrapper>
+                <KnappeSeksjon>
+                    <Knapp key={'Velg alle'} onClick={() => velgAlleTema()} htmlType="button" kompakt={true}>
+                        Velg alle
+                    </Knapp>
+                    <Knapp key={'Velg ingen'} onClick={() => velgIngenTema()} htmlType="button" kompakt={true}>
+                        Velg ingen
+                    </Knapp>
+                </KnappeSeksjon>
                 <nav aria-label="Velg sakstema">
-                    <GrupperteTema
-                        sakstema={[agregerteSaker, ...sortertSakstema]}
-                        valgtSakstema={props.valgtSakstema}
-                    />
+                    <SakstemaListeStyle>
+                        {props.sortertSakstemaListe
+                            .filter(
+                                (sakstema) =>
+                                    sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0
+                            )
+                            .map((sakstema) => {
+                                return (
+                                    <SakstemaListeElementCheckbox
+                                        sakstema={sakstema}
+                                        key={getUnikSakstemaKey(sakstema)}
+                                        erValgt={props.valgteSakstemaer.includes(sakstema) ?? false}
+                                    />
+                                );
+                            })}
+                    </SakstemaListeStyle>
                 </nav>
             </StyledPanel>
         </nav>

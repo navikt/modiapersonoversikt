@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useLocation } from 'react-router';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
@@ -13,23 +12,23 @@ import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types'
 import LenkeNorg from '../utils/LenkeNorg';
 import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import { datoSynkende } from '../../../../../utils/date-utils';
-import DropDownMenu from '../../../../../components/DropDownMenu';
 import JournalpostLiseElement from './JournalpostLiseElement';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import SakstemaListe from '../sakstemaliste/SakstemaListe';
 import { useEffect, useRef } from 'react';
 import usePaginering from '../../../../../utils/hooks/usePaginering';
 import { useAppState, usePrevious } from '../../../../../utils/customHooks';
 import { KategoriSkille } from '../../../dialogpanel/fellesStyling';
 import { useDispatch } from 'react-redux';
 import { oppdaterAvsenderfilter } from '../../../../../redux/saksoversikt/actions';
-import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
+import { aggregertSakstema } from '../utils/saksoversiktUtils';
 
 interface Props {
-    valgtSakstema: Sakstema;
+    valgteSakstemaer: Sakstema[];
+    alleSakstema: Sakstema[];
+    sakstemaListeDropdown?: JSX.Element;
 }
 
 interface JournalpostGruppeProps {
@@ -105,7 +104,7 @@ const TittelWrapperStyling = styled.div`
 
 function JournalpostGruppe({ gruppe, harTilgang, valgtSakstema }: JournalpostGruppeProps) {
     const tittelId = useRef(guid());
-    const journalposter = gruppe.array.map(journalpost => (
+    const journalposter = gruppe.array.map((journalpost) => (
         <JournalpostLiseElement
             journalpost={journalpost}
             harTilgangTilSakstema={harTilgang}
@@ -188,29 +187,29 @@ const PrevNextButtonsStyling = styled.div`
 `;
 
 function JournalPoster(props: Props) {
-    const pathname = useLocation().pathname;
     const tittelRef = React.createRef<HTMLDivElement>();
-    const avsenderFilter = useAppState(state => state.saksoversikt.avsenderFilter);
-    const filtrerteJournalposter = props.valgtSakstema.dokumentMetadata
-        .filter(journalpost => hentRiktigAvsenderfilter(journalpost.avsender, avsenderFilter))
-        .sort(datoSynkende(journalpost => saksdatoSomDate(journalpost.dato)));
+    const avsenderFilter = useAppState((state) => state.saksoversikt.avsenderFilter);
+    const valgtSakstema = aggregertSakstema(props.alleSakstema, props.valgteSakstemaer);
+    const filtrerteJournalposter = valgtSakstema.dokumentMetadata
+        .filter((journalpost) => hentRiktigAvsenderfilter(journalpost.avsender, avsenderFilter))
+        .sort(datoSynkende((journalpost) => saksdatoSomDate(journalpost.dato)));
     const paginering = usePaginering(filtrerteJournalposter, 50, 'journalpost');
     const dispatch = useDispatch();
     const handleOppdaterAvsenderFilter = (filter: Partial<DokumentAvsenderFilter>) => {
         dispatch(oppdaterAvsenderfilter(filter));
     };
 
-    const prevSakstema = usePrevious(props.valgtSakstema);
+    const prevSakstema = usePrevious(valgtSakstema);
     useEffect(
         function scrollToTopVedNyttSakstema() {
-            if (!props.valgtSakstema || !prevSakstema) {
+            if (!valgtSakstema || !prevSakstema) {
                 return;
             }
-            if (prevSakstema !== props.valgtSakstema) {
+            if (prevSakstema !== valgtSakstema) {
                 tittelRef.current && tittelRef.current.focus();
             }
         },
-        [props.valgtSakstema, tittelRef, prevSakstema]
+        [valgtSakstema, tittelRef, prevSakstema]
     );
 
     const filterCheckboxer = (
@@ -233,35 +232,33 @@ function JournalPoster(props: Props) {
         </Form>
     );
 
-    const tittel = <Undertittel className={sakerTest.dokument}>{props.valgtSakstema.temanavn}</Undertittel>;
-    const valgtSakstemaTittel = erSakerFullscreen(pathname) ? (
-        <DropDownMenu header={tittel}>
-            <SakstemaListe valgtSakstema={props.valgtSakstema} />
-        </DropDownMenu>
-    ) : (
-        tittel
-    );
+    const tittel =
+        props.sakstemaListeDropdown !== undefined ? (
+            props.sakstemaListeDropdown
+        ) : (
+            <Undertittel className={sakerTest.dokument}>{valgtSakstema.temanavn || 'Ingen sakstema valgt'}</Undertittel>
+        );
 
     return (
         <div>
             <article>
-                <StyledPanel aria-label={'Saksdokumenter for ' + props.valgtSakstema.temanavn}>
+                <StyledPanel aria-label={'Saksdokumenter for ' + valgtSakstema.temanavn}>
                     <InfoOgFilterPanel>
                         <div>
                             <TittelWrapperStyling ref={tittelRef} tabIndex={-1}>
-                                {valgtSakstemaTittel}
+                                {tittel}
                                 <Normaltekst>({filtrerteJournalposter.length} journalposter)</Normaltekst>
                             </TittelWrapperStyling>
                             {filterCheckboxer}
                         </div>
                         <div>
-                            <LenkeNorg valgtSakstema={props.valgtSakstema} />
-                            <ToggleViktigAaViteKnapp valgtSakstema={props.valgtSakstema} />
+                            <LenkeNorg valgtSakstema={valgtSakstema} />
+                            <ToggleViktigAaViteKnapp valgtSakstema={valgtSakstema} />
                         </div>
                     </InfoOgFilterPanel>
                     {paginering.pageSelect && <PaginatorStyling>{paginering.pageSelect}</PaginatorStyling>}
-                    <ViktigÅVite valgtSakstema={props.valgtSakstema} />
-                    <JournalpostListe sakstema={props.valgtSakstema} filtrerteJournalposter={paginering.currentPage} />
+                    <ViktigÅVite valgtSakstema={valgtSakstema} />
+                    <JournalpostListe sakstema={valgtSakstema} filtrerteJournalposter={paginering.currentPage} />
                     {paginering.prevNextButtons && (
                         <PrevNextButtonsStyling>{paginering.prevNextButtons}</PrevNextButtonsStyling>
                     )}

@@ -1,10 +1,10 @@
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { useMemo } from 'react';
-import { useInfotabsDyplenker } from '../../dyplenker';
-import { useAgregerteSaker } from './saksoversiktUtils';
+import { aggregertSakstema } from './saksoversiktUtils';
 import { useSakerRouting } from './saksoversiktRoutingUtils';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
+import { useInfotabsDyplenker } from '../../dyplenker';
 
 export interface SaksoversiktValg {
     sakstema?: Sakstema;
@@ -28,20 +28,20 @@ export function useSaksoversiktValg(): SaksoversiktValg {
 }
 
 function useValgtJournalpostIUrl(): Journalpost | undefined {
-    const saker = useRestResource(resources => resources.sakstema);
+    const saker = useRestResource((resources) => resources.sakstema);
     const sakerRouting = useSakerRouting();
     return useMemo(() => {
         if (!saker.data) {
             return undefined;
         }
 
-        const journalPoster = saker.data.resultat.flatMap(it => it.dokumentMetadata);
-        return journalPoster.find(it => sakerRouting.erValgtJournalpost(it));
+        const journalPoster = saker.data.resultat.flatMap((it) => it.dokumentMetadata);
+        return journalPoster.find((it) => sakerRouting.erValgtJournalpost(it));
     }, [saker, sakerRouting]);
 }
 
 function useValgtSaksdokumentIUrl(): Dokument | undefined {
-    const saker = useRestResource(resources => resources.sakstema);
+    const saker = useRestResource((resources) => resources.sakstema);
     const sakerRouting = useSakerRouting();
 
     return useMemo(() => {
@@ -50,22 +50,21 @@ function useValgtSaksdokumentIUrl(): Dokument | undefined {
         }
 
         const saksDokumenter = saker.data.resultat
-            .flatMap(it => it.dokumentMetadata)
-            .flatMap(it => [it.hoveddokument, ...it.vedlegg]);
-        return saksDokumenter.find(it => sakerRouting.erValgtSaksdokument(it));
+            .flatMap((it) => it.dokumentMetadata)
+            .flatMap((it) => [it.hoveddokument, ...it.vedlegg]);
+        return saksDokumenter.find((it) => sakerRouting.erValgtSaksdokument(it));
     }, [sakerRouting, saker]);
 }
 
-function useValgtSakstemaIUrl(): Sakstema | undefined {
+export function useValgtSakstemaIUrl(): Sakstema | undefined {
     const dyplenker = useInfotabsDyplenker();
-    const sakstemaResource = useRestResource(resources => resources.sakstema);
-    const agregerteSaker = useAgregerteSaker();
+    const sakstemaResource = useRestResource((resources) => resources.sakstema);
 
     return useMemo(() => {
-        if (!sakstemaResource.data || !agregerteSaker) {
+        if (!sakstemaResource.data) {
             return undefined;
         }
-        const alleSakstema = [agregerteSaker, ...sakstemaResource.data.resultat];
-        return alleSakstema.find(dyplenker.saker.erValgtSakstema) || agregerteSaker;
-    }, [dyplenker, sakstemaResource, agregerteSaker]);
+        const valgteSakstemaer = sakstemaResource.data.resultat.filter(dyplenker.saker.erValgtSakstema);
+        return aggregertSakstema(sakstemaResource.data.resultat, valgteSakstemaer);
+    }, [dyplenker.saker, sakstemaResource]);
 }

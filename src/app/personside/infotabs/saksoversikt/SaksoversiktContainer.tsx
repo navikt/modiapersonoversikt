@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
@@ -13,6 +13,7 @@ import JournalPoster from './saksdokumenter/JournalPoster';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
 import SakerFullscreenLenke from './SakerFullscreenLenke';
+import { useSakstemaer } from './SakstemaContext';
 
 const saksoversiktMediaTreshold = '65rem';
 
@@ -25,7 +26,6 @@ const SaksoversiktStyle = styled.div`
         > *:first-child {
             min-width: 19rem;
             flex-basis: 19rem;
-            flex-grow: 0.5;
         }
         > *:last-child {
             flex-grow: 1;
@@ -40,8 +40,10 @@ const SaksoversiktStyle = styled.div`
 `;
 
 function SaksoversiktContainer() {
-    const state = useSaksoversiktValg();
     useKeepQueryParams();
+
+    const state = useSaksoversiktValg();
+    const { valgteSakstemaer, alleSakstemaer } = useSakstemaer();
 
     if (state.saksdokument) {
         return <DokumentOgVedlegg {...state} />;
@@ -50,11 +52,11 @@ function SaksoversiktContainer() {
             <ErrorBoundary boundaryName="Saksoversikt">
                 <SaksoversiktStyle>
                     <RestResourceConsumer<SakstemaResponse>
-                        getResource={restResources => restResources.sakstema}
+                        getResource={(restResources) => restResources.sakstema}
                         returnOnPending={BigCenteredLazySpinner}
                     >
-                        {sakstema => {
-                            if (sakstema.resultat.length === 0) {
+                        {(sakstema) => {
+                            if (sakstema.resultat.isEmpty()) {
                                 return <AlertStripeInfo>Brukeren har ingen saker</AlertStripeInfo>;
                             }
                             return (
@@ -62,13 +64,19 @@ function SaksoversiktContainer() {
                                     <ScrollBar keepScrollId="saker-sakstema">
                                         <ErrorBoundary boundaryName="Sakstemaliste">
                                             <SakerFullscreenLenke {...state} />
-                                            <SakstemaListe valgtSakstema={state.sakstema} />
+                                            <SakstemaListe
+                                                valgteSakstemaer={valgteSakstemaer}
+                                                sortertSakstemaListe={alleSakstemaer}
+                                            />
                                         </ErrorBoundary>
                                     </ScrollBar>
                                     <ScrollBar keepScrollId="saker-saksdokumenter">
-                                        {state.sakstema ? (
+                                        {valgteSakstemaer.isNotEmpty() ? (
                                             <ErrorBoundary boundaryName="Journalposter">
-                                                <JournalPoster valgtSakstema={state.sakstema} />
+                                                <JournalPoster
+                                                    valgteSakstemaer={valgteSakstemaer}
+                                                    alleSakstema={alleSakstemaer}
+                                                />
                                             </ErrorBoundary>
                                         ) : (
                                             <AlertStripeInfo>Ingen sakstema valgt</AlertStripeInfo>

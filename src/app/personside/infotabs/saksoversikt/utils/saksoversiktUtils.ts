@@ -1,33 +1,36 @@
 import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { Behandlingskjede, Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import dayjs from 'dayjs';
 import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
-import { useMemo } from 'react';
-import { useRestResource } from '../../../../../rest/consumer/useRestResource';
+import { formatterDato } from '../../../../../utils/date-utils';
 
-export function aggregertSakstema(alleSakstema: Sakstema[]): Sakstema {
-    const alleBehandlingskjeder = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.behandlingskjeder);
-    const alleJournalposter = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.dokumentMetadata);
-    const alleTilhørendeSaker = aggregerSakstemaGenerisk(alleSakstema, sakstema => sakstema.tilhørendeSaker);
+export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sakstema[]): Sakstema {
+    const sakstema = valgteSakstema !== undefined ? valgteSakstema : alleSakstema;
+    const behandlingskjeder = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.behandlingskjeder);
+    const journalposter = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.dokumentMetadata);
+    const tilhorendeSaker = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.tilhørendeSaker);
+
+    const erAlleSakstema = alleSakstema.length === sakstema.length;
 
     return {
-        temanavn: 'Alle tema',
-        temakode: sakstemakodeAlle,
+        temanavn: erAlleSakstema ? 'Alle tema' : aggregertTemanavn(sakstema),
+        temakode: erAlleSakstema ? sakstemakodeAlle : aggregertTemakode(sakstema),
         harTilgang: true,
-        behandlingskjeder: alleBehandlingskjeder,
-        dokumentMetadata: alleJournalposter,
-        tilhørendeSaker: alleTilhørendeSaker,
+        behandlingskjeder: behandlingskjeder,
+        dokumentMetadata: journalposter,
+        tilhørendeSaker: tilhorendeSaker,
         erGruppert: false,
         feilkoder: []
     };
 }
 
-export function useAgregerteSaker(): Sakstema | undefined {
-    const sakstemaResource = useRestResource(resources => resources.sakstema);
-    return useMemo(() => (sakstemaResource.data ? aggregertSakstema(sakstemaResource.data.resultat) : undefined), [
-        sakstemaResource
-    ]);
+function aggregertTemanavn(valgteSakstema: Sakstema[]): string {
+    return valgteSakstema.map((tema) => tema.temanavn).join(', ');
+}
+
+function aggregertTemakode(valgteSakstema: Sakstema[]): string {
+    const nyTemakode = valgteSakstema.map((tema) => tema.temakode).join('-');
+    return nyTemakode !== '' ? nyTemakode : 'INGEN';
 }
 
 function aggregerSakstemaGenerisk<T>(alleSakstema: Sakstema[], getGeneriskElement: (saksTema: Sakstema) => T[]): T[] {
@@ -65,10 +68,6 @@ function hentSenesteDatoForBehandling(behandlingskjede: Behandlingskjede[]) {
     }, new Date(0));
 }
 
-function formatterDato(date: Date) {
-    return dayjs(date).format('DD.MM.YYYY');
-}
-
 export function getUnikSakstemaKey(sakstema: Sakstema) {
-    return sakstema.temakode + Math.floor(hentDatoForSisteHendelse(sakstema).getTime() / 1000); // TODO bør skrives om til å bruke dato for første hendelse for permanente lenker
+    return sakstema.temakode + '-' + Math.floor(hentDatoForSisteHendelse(sakstema).getTime() / 1000); // TODO bør skrives om til å bruke dato for første hendelse for permanente lenker
 }
