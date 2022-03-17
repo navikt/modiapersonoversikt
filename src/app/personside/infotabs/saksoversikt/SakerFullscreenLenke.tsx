@@ -4,7 +4,8 @@ import { useInfotabsDyplenker } from '../dyplenker';
 import styled from 'styled-components';
 import LenkepanelPersonoversikt from '../../../../utils/LenkepanelPersonoversikt';
 import theme from '../../../../styles/personOversiktTheme';
-import { SaksoversiktValg } from './utils/useSaksoversiktValg';
+import { Sakstema } from '../../../../models/saksoversikt/sakstema';
+import { Dokument } from '../../../../models/saksoversikt/journalpost';
 
 const StyledLenkepanelPersonoversikt = styled(LenkepanelPersonoversikt)`
     margin-bottom: ${theme.margin.layout};
@@ -15,13 +16,18 @@ function reactrouterLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
     return <Link to={href!} {...rest} target="_blank" />;
 }
 
-function SakerFullscreenLenke(props: SaksoversiktValg) {
+interface Props {
+    valgtSakstema: Sakstema;
+    valgtSaksdokument?: Dokument; // TODO: Ikke optional
+}
+
+function SakerFullscreenLenke(props: Props) {
     const dyplenker = useInfotabsDyplenker();
 
     return (
         <StyledLenkepanelPersonoversikt
             linkCreator={reactrouterLink}
-            url={dyplenker.saker.link(props.sakstema, props.saksdokument, true)}
+            url={dyplenker.saker.link(props.valgtSakstema, props.valgtSaksdokument, true)}
         >
             Åpne i fullscreen
         </StyledLenkepanelPersonoversikt>

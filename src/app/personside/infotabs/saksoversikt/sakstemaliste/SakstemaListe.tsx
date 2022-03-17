@@ -11,11 +11,6 @@ import { Knapp } from 'nav-frontend-knapper';
 import { getUnikSakstemaKey } from '../utils/saksoversiktUtils';
 import { useSakstemaer } from '../SakstemaContext';
 
-interface Props {
-    valgteSakstemaer: Sakstema[];
-    sortertSakstemaListe: Sakstema[];
-}
-
 export const sakstemakodeAlle = 'ALLE';
 
 const SakstemaListeStyle = styled.ol`
@@ -48,6 +43,11 @@ const KnappeSeksjon = styled.section`
     justify-content: space-evenly;
 `;
 
+interface Props {
+    valgtSakstema: Sakstema;
+    sortertSakstemaListe: Sakstema[];
+}
+
 function SakstemaListe(props: Props) {
     const { filtrerPaTema } = useSakstemaer();
     const tittelId = useRef(guid());
@@ -58,6 +58,16 @@ function SakstemaListe(props: Props) {
 
     function velgIngenTema() {
         filtrerPaTema([]);
+    }
+
+    function sakstemaErValgt(sakstema: Sakstema): boolean {
+        if (
+            props.valgtSakstema.temakode.split('-').includes(sakstema.temakode.split('-')[0]) ||
+            props.valgtSakstema.temakode.split('-')[0] === sakstemakodeAlle
+        ) {
+            return true;
+        }
+        return false;
     }
 
     return (
@@ -87,7 +97,7 @@ function SakstemaListe(props: Props) {
                                     <SakstemaListeElementCheckbox
                                         sakstema={sakstema}
                                         key={getUnikSakstemaKey(sakstema)}
-                                        erValgt={props.valgteSakstemaer.includes(sakstema) ?? false}
+                                        erValgt={sakstemaErValgt(sakstema)}
                                     />
                                 );
                             })}

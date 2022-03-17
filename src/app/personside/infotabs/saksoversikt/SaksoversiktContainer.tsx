@@ -43,7 +43,7 @@ function SaksoversiktContainer() {
     useKeepQueryParams();
 
     const state = useSaksoversiktValg();
-    const { valgteSakstemaer, alleSakstemaer } = useSakstemaer();
+    const { valgtSakstema, alleSakstemaer } = useSakstemaer();
 
     if (state.saksdokument) {
         return <DokumentOgVedlegg {...state} />;
@@ -63,18 +63,21 @@ function SaksoversiktContainer() {
                                 <>
                                     <ScrollBar keepScrollId="saker-sakstema">
                                         <ErrorBoundary boundaryName="Sakstemaliste">
-                                            <SakerFullscreenLenke {...state} />
+                                            <SakerFullscreenLenke
+                                                valgtSakstema={valgtSakstema}
+                                                valgtSaksdokument={state.saksdokument}
+                                            />
                                             <SakstemaListe
-                                                valgteSakstemaer={valgteSakstemaer}
+                                                valgtSakstema={valgtSakstema}
                                                 sortertSakstemaListe={alleSakstemaer}
                                             />
                                         </ErrorBoundary>
                                     </ScrollBar>
                                     <ScrollBar keepScrollId="saker-saksdokumenter">
-                                        {valgteSakstemaer.isNotEmpty() ? (
+                                        {valgtSakstema ? (
                                             <ErrorBoundary boundaryName="Journalposter">
                                                 <JournalPoster
-                                                    valgteSakstemaer={valgteSakstemaer}
+                                                    valgtSakstema={valgtSakstema}
                                                     alleSakstema={alleSakstemaer}
                                                 />
                                             </ErrorBoundary>

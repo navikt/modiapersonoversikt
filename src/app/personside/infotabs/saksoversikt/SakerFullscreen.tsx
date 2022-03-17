@@ -10,9 +10,14 @@ import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
 import LazySpinner from '../../../../components/LazySpinner';
 import FillCenterAndFadeIn from '../../../../components/FillCenterAndFadeIn';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
-import JournalPoster from './saksdokumenter/JournalPoster';
 import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import JournalPoster from './saksdokumenter/JournalPoster';
+import DropDownMenu from '../../../../components/DropDownMenu';
+import { Undertittel } from 'nav-frontend-typografi';
+import { sakerTest } from '../dyplenkeTest/utils-dyplenker-test';
+import SakstemaListe from './sakstemaliste/SakstemaListe';
+import { useSakstemaer } from './SakstemaContext';
 
 interface Props {
     fnr: string;
@@ -43,12 +48,13 @@ const SaksoversiktArticle = styled.article`
 
 function Innhold() {
     const state = useSaksoversiktValg();
+    const { valgtSakstema, alleSakstemaer } = useSakstemaer();
 
     useEffect(() => {
         loggEvent('VisDokument', 'SakerFullscreen');
     }, [state.saksdokument]);
 
-    if (!state.sakstema) {
+    if (!valgtSakstema) {
         return (
             <FillCenterAndFadeIn>
                 <LazySpinner />
@@ -56,9 +62,20 @@ function Innhold() {
         );
     }
 
+    const tittel = <Undertittel className={sakerTest.dokument}>{valgtSakstema.temanavn}</Undertittel>;
+    const sakstemaListeDropdown = (
+        <DropDownMenu header={tittel}>
+            <SakstemaListe valgtSakstema={valgtSakstema} sortertSakstemaListe={alleSakstemaer} />
+        </DropDownMenu>
+    );
+
     return (
         <SaksoversiktArticle>
-            <JournalPoster valgtSakstema={state.sakstema} />
+            <JournalPoster
+                valgtSakstema={valgtSakstema}
+                alleSakstema={alleSakstemaer}
+                sakstemaListeDropdown={sakstemaListeDropdown}
+            />
             <DokumentOgVedlegg {...state} />
         </SaksoversiktArticle>
     );

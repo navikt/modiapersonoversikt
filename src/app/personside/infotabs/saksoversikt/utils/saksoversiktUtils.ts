@@ -25,7 +25,8 @@ export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sak
 }
 
 function aggregertTemanavn(valgteSakstema: Sakstema[]): string {
-    return valgteSakstema.map((tema) => tema.temanavn).join(', ');
+    const nyttTemanavn = valgteSakstema.map((tema) => tema.temanavn).join(', ');
+    return nyttTemanavn !== '' ? nyttTemanavn : 'Ingen tema valgt';
 }
 
 function aggregertTemakode(valgteSakstema: Sakstema[]): string {

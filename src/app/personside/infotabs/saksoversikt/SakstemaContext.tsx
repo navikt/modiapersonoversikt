@@ -8,22 +8,30 @@ import { aggregertSakstema, hentDatoForSisteHendelse } from './utils/saksoversik
 
 interface SakstemaContextType {
     alleSakstemaer: Sakstema[];
-    valgteSakstemaer: Sakstema[];
-    setValgteSakstemaer: (sakstemaer: Sakstema[]) => void;
+    valgtSakstema: Sakstema;
     filtrerPaTema: (temaEndringer: Sakstema[]) => void;
 }
 
+const defaultSakstema: Sakstema = {
+    harTilgang: false,
+    temakode: '',
+    temanavn: '',
+    erGruppert: false,
+    behandlingskjeder: [],
+    dokumentMetadata: [],
+    tilhørendeSaker: [],
+    feilkoder: []
+};
+
 export const SakstemaContext = createContext<SakstemaContextType>({
     alleSakstemaer: [],
-    valgteSakstemaer: [],
-    setValgteSakstemaer: () => {},
+    valgtSakstema: defaultSakstema,
     filtrerPaTema: () => {}
 });
 
 export function useSakstemaer() {
     return useContext(SakstemaContext);
 }
-
 interface Props {
     children: React.ReactNode;
 }
@@ -31,6 +39,7 @@ interface Props {
 function SakstemaContextProvider({ children }: Props) {
     const sakstemaResource = useRestResource((resources) => resources.sakstema);
     const [sakstemaer, setSakstemaer] = useState<Sakstema[]>([]);
+    const [valgtSakstema, setValgtSakstema] = useState<Sakstema>(defaultSakstema);
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
     const alleSakstemaer = useMemo(() => {
@@ -39,7 +48,7 @@ function SakstemaContextProvider({ children }: Props) {
         return alleSakstema.sort(datoSynkende((sakstema) => hentDatoForSisteHendelse(sakstema)));
     }, [sakstemaResource.data]);
 
-    const setValgteSakstemaer = useCallback((sakstemaer: Sakstema[]) => setSakstemaer(sakstemaer), [setSakstemaer]);
+    // TODO: Mangler dokument
 
     const filtrerPaTema = useCallback(
         (temaEndringer: Sakstema[]) => {
@@ -52,11 +61,12 @@ function SakstemaContextProvider({ children }: Props) {
                     ? sakstemaer.filter((tema) => tema !== temaEndring)
                     : [...sakstemaer, temaEndring];
             }
-            setValgteSakstemaer(nyTemaliste);
+            setSakstemaer(nyTemaliste);
             const nyttAggregertSakstema = aggregertSakstema(alleSakstemaer, nyTemaliste);
+            setValgtSakstema(nyttAggregertSakstema);
             history.push(dyplenker.saker.link(nyttAggregertSakstema));
         },
-        [dyplenker.saker, history, sakstemaer, alleSakstemaer, setValgteSakstemaer]
+        [dyplenker.saker, history, sakstemaer, alleSakstemaer, setSakstemaer]
     );
 
     useEffect(() => {
@@ -74,12 +84,13 @@ function SakstemaContextProvider({ children }: Props) {
             valgteSakstemaer = alleSakstema;
         }
 
-        setValgteSakstemaer(valgteSakstemaer);
-    }, [sakstemaResource.data, setValgteSakstemaer, dyplenker]);
+        setSakstemaer(valgteSakstemaer);
+        setValgtSakstema(aggregertSakstema(alleSakstema, valgteSakstemaer));
+    }, [sakstemaResource.data, setSakstemaer, dyplenker]);
 
     const value = useMemo(
-        () => ({ alleSakstemaer, valgteSakstemaer: sakstemaer, setValgteSakstemaer, filtrerPaTema }),
-        [alleSakstemaer, sakstemaer, setValgteSakstemaer, filtrerPaTema]
+        () => ({ alleSakstemaer, valgtSakstema, filtrerPaTema }),
+        [alleSakstemaer, valgtSakstema, filtrerPaTema]
     );
 
     return <SakstemaContext.Provider value={value}>{children}</SakstemaContext.Provider>;
