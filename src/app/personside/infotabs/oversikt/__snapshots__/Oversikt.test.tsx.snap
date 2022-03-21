@@ -750,7 +750,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </p>
                       </div>
                       <p
-                        className="typo-normal"
+                        className="typo-normal metadata"
                       >
                         1
                          
@@ -820,7 +820,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         </p>
                       </div>
                       <p
-                        className="typo-normal"
+                        className="typo-normal metadata"
                       >
                         1
                          
@@ -830,7 +830,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         .
                       </p>
                       <p
-                        className="typo-normal"
+                        className="typo-normal metadata"
                       >
                         2
                          

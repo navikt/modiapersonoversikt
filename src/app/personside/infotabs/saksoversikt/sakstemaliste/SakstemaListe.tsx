@@ -61,13 +61,8 @@ function SakstemaListe(props: Props) {
     }
 
     function sakstemaErValgt(sakstema: Sakstema): boolean {
-        if (
-            props.valgtSakstema.temakode.split('-').includes(sakstema.temakode.split('-')[0]) ||
-            props.valgtSakstema.temakode.split('-')[0] === sakstemakodeAlle
-        ) {
-            return true;
-        }
-        return false;
+        const valgteTemakoder = props.valgtSakstema.temakode.split('-');
+        return valgteTemakoder.includes(sakstema.temakode.split('-')[0]) || valgteTemakoder[0] === sakstemakodeAlle;
     }
 
     return (

@@ -39,7 +39,6 @@ interface Props {
 function SakstemaContextProvider({ children }: Props) {
     const sakstemaResource = useRestResource((resources) => resources.sakstema);
     const [sakstemaer, setSakstemaer] = useState<Sakstema[]>([]);
-    const [valgtSakstema, setValgtSakstema] = useState<Sakstema>(defaultSakstema);
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
     const alleSakstemaer = useMemo(() => {
@@ -47,6 +46,7 @@ function SakstemaContextProvider({ children }: Props) {
             sakstemaResource.data && sakstemaResource.data.resultat.isNotEmpty() ? sakstemaResource.data.resultat : [];
         return alleSakstema.sort(datoSynkende((sakstema) => hentDatoForSisteHendelse(sakstema)));
     }, [sakstemaResource.data]);
+    const [valgtSakstema, setValgtSakstema] = useState<Sakstema>(aggregertSakstema(alleSakstemaer));
 
     // TODO: Mangler dokument
 
@@ -70,9 +70,7 @@ function SakstemaContextProvider({ children }: Props) {
     );
 
     useEffect(() => {
-        const alleSakstema =
-            sakstemaResource.data && sakstemaResource.data.resultat.isNotEmpty() ? sakstemaResource.data.resultat : [];
-        const sakstemaerFraLink = alleSakstema.filter(dyplenker.saker.erValgtSakstema);
+        const sakstemaerFraLink = alleSakstemaer.filter(dyplenker.saker.erValgtSakstema);
         const ingenSakValgt = dyplenker.saker.erIngenSakstemaValgt;
 
         let valgteSakstemaer: Sakstema[];
@@ -81,12 +79,12 @@ function SakstemaContextProvider({ children }: Props) {
         } else if (sakstemaerFraLink.isNotEmpty()) {
             valgteSakstemaer = sakstemaerFraLink;
         } else {
-            valgteSakstemaer = alleSakstema;
+            valgteSakstemaer = alleSakstemaer;
         }
 
         setSakstemaer(valgteSakstemaer);
-        setValgtSakstema(aggregertSakstema(alleSakstema, valgteSakstemaer));
-    }, [sakstemaResource.data, setSakstemaer, dyplenker]);
+        setValgtSakstema(aggregertSakstema(alleSakstemaer, valgteSakstemaer));
+    }, [alleSakstemaer, sakstemaResource.data, setSakstemaer, dyplenker]);
 
     const value = useMemo(
         () => ({ alleSakstemaer, valgtSakstema, filtrerPaTema }),
