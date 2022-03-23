@@ -8,10 +8,7 @@ import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { Knapp } from 'nav-frontend-knapper';
-import { getUnikSakstemaKey } from '../utils/saksoversiktUtils';
-import { useSakstemaer } from '../SakstemaContext';
-
-export const sakstemakodeAlle = 'ALLE';
+import { useHentAlleSakstemaFraResource, useSakstemaURLState } from '../useSakstemaURLState';
 
 const SakstemaListeStyle = styled.ol`
     > * {

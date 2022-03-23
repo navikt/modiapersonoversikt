@@ -1,12 +1,11 @@
 import { useMemo } from 'react';
 import { useLocation } from 'react-router';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import { getUnikSakstemaKey } from './saksoversiktUtils';
 import { usePaths } from '../../../../routes/routing';
 import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { useQueryParams } from '../../../../../utils/url-utils';
 import { erSakerFullscreen } from './erSakerFullscreen';
-import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
+import { sakstemakodeAlle, sakstemakodeIngen } from './saksoversiktUtils';
 
 interface QueryParamsForSak {
     dokument?: string;
@@ -40,7 +39,7 @@ export function useSakerRouting(): SakerRouting {
                 false,
             erValgtSaksdokument: (dokument) => dokument.dokumentreferanse === queryParams.dokument,
             erValgtJournalpost: (journalpost) => inneholderValgtDokument(journalpost, queryParams.dokument),
-            erIngenSakstemaValgt: queryParams.sakstema?.includes('INGEN') ?? false
+            erIngenSakstemaValgt: queryParams.sakstema?.includes(sakstemakodeIngen) ?? false
         }),
         [paths, pathname, queryParams]
     );
@@ -58,9 +57,7 @@ function inneholderValgtDokument(journalpost: Journalpost, dokumentId?: string):
 
 function getSaksoversiktQueryParametere(dokument?: Dokument, valgtSakstema?: Sakstema) {
     const sakstemaQuery =
-        valgtSakstema !== undefined && valgtSakstema.temakode !== ''
-            ? `sakstema=${getUnikSakstemaKey(valgtSakstema)}`
-            : '';
+        valgtSakstema !== undefined && valgtSakstema.temakode !== '' ? `sakstema=${valgtSakstema.temakode}` : '';
     const dokumentQuery = dokument ? `dokument=${dokument.dokumentreferanse}` : '';
     return [sakstemaQuery, dokumentQuery].filter((it) => it).join('&');
 }

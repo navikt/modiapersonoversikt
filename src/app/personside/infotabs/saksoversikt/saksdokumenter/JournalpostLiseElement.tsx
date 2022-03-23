@@ -14,7 +14,6 @@ import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
 import DokumentIkon from '../../../../../svg/DokumentIkon';
 import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
-import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { useInfotabsDyplenker } from '../../dyplenker';
@@ -23,6 +22,7 @@ import { guid } from 'nav-frontend-js-utils';
 import { useHentPersondata } from '../../../../../utils/customHooks';
 import { hasData } from '@nutgaard/use-fetch';
 import { hentNavn } from '../../../visittkort-v2/visittkort-utils';
+import { sakstemakodeAlle } from '../utils/saksoversiktUtils';
 
 interface Props {
     journalpost: Journalpost;
@@ -75,12 +75,12 @@ const VedleggStyle = styled.div`
     }
 `;
 
-function tekstBasertPåRetning(brukernavn: string, dokument: Journalpost) {
+function tekstBasertPaRetning(brukernavn: string, dokument: Journalpost) {
     switch (dokument.retning) {
         case Kommunikasjonsretning.Inn:
             return dokument.avsender === Entitet.Sluttbruker ? `Fra ${brukernavn}` : `Fra ${dokument.navn}`;
         case Kommunikasjonsretning.Ut:
-            return utgåendeTekst(dokument.mottaker, dokument.navn);
+            return utgaendeTekst(dokument.mottaker, dokument.navn);
         case Kommunikasjonsretning.Intern:
             return 'Notat';
         default:
@@ -88,14 +88,14 @@ function tekstBasertPåRetning(brukernavn: string, dokument: Journalpost) {
     }
 }
 
-function utgåendeTekst(mottaker: Entitet, mottakernavn: string) {
+function utgaendeTekst(mottaker: Entitet, mottakernavn: string) {
     const dokumentmottaker = mottaker === Entitet.Sluttbruker ? '' : `(Sendt til ${mottakernavn})`;
     return `Fra NAV ${dokumentmottaker}`;
 }
 
 function formaterDatoOgAvsender(brukernavn: string, dokument: Journalpost) {
     const dato = dayjs(saksdatoSomDate(dokument.dato)).format('DD.MM.YYYY');
-    return `${dato} / ${tekstBasertPåRetning(brukernavn, dokument)}`;
+    return `${dato} / ${tekstBasertPaRetning(brukernavn, dokument)}`;
 }
 
 function getDokumentIkon(harTilgang: boolean) {

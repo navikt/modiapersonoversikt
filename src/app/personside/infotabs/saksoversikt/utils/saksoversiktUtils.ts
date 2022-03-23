@@ -1,8 +1,10 @@
 import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { Behandlingskjede, Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { formatterDato } from '../../../../../utils/date-utils';
+
+export const sakstemakodeAlle = 'ALLE';
+export const sakstemakodeIngen = 'INGEN';
 
 export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sakstema[]): Sakstema {
     const sakstema = valgteSakstema !== undefined ? valgteSakstema : alleSakstema;
@@ -24,14 +26,14 @@ export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sak
     };
 }
 
-function aggregertTemanavn(valgteSakstema: Sakstema[]): string {
+export function aggregertTemanavn(valgteSakstema: Sakstema[]): string {
     const nyttTemanavn = valgteSakstema.map((tema) => tema.temanavn).join(', ');
     return nyttTemanavn !== '' ? nyttTemanavn : 'Ingen tema valgt';
 }
 
 function aggregertTemakode(valgteSakstema: Sakstema[]): string {
     const nyTemakode = valgteSakstema.map((tema) => tema.temakode).join('-');
-    return nyTemakode !== '' ? nyTemakode : 'INGEN';
+    return nyTemakode !== '' ? nyTemakode : sakstemakodeIngen;
 }
 
 function aggregerSakstemaGenerisk<T>(alleSakstema: Sakstema[], getGeneriskElement: (saksTema: Sakstema) => T[]): T[] {
@@ -67,8 +69,4 @@ function hentSenesteDatoForBehandling(behandlingskjede: Behandlingskjede[]) {
     return behandlingskjede.reduce((acc: Date, kjede: Behandlingskjede) => {
         return acc > saksdatoSomDate(kjede.sistOppdatert) ? acc : saksdatoSomDate(kjede.sistOppdatert);
     }, new Date(0));
-}
-
-export function getUnikSakstemaKey(sakstema: Sakstema) {
-    return sakstema.temakode + '-' + Math.floor(hentDatoForSisteHendelse(sakstema).getTime() / 1000); // TODO bør skrives om til å bruke dato for første hendelse for permanente lenker
 }
