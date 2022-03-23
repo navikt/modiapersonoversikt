@@ -300,3 +300,18 @@ export interface MobilTelefon {
     sistOppdatert: LocalDate | null;
     sistVerifisert: LocalDate | null;
 }
+
+/**
+ * Feilende systemer
+ */
+
+export enum InformasjonElement {
+    PDL_GT = 'PDL_GT',
+    PDL_TREDJEPARTSPERSONER = 'PDL_TREDJEPARTSPERSONER',
+    EGEN_ANSATT = 'EGEN_ANSATT',
+    DKIF = 'DKIF',
+    BANKKONTO = 'BANKKONTO',
+    VEILEDER_ROLLER = 'VEILEDER_ROLLER',
+    NORG_NAVKONTOR = 'NORG_NAVKONTOR',
+    NORG_KONTAKTINFORMASJON = 'NORG_KONTAKTINFORMASJON'
+}

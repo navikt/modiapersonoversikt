@@ -6,6 +6,7 @@ import {
     ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
     FullmaktsRolle,
+    InformasjonElement,
     Kjonn,
     LocalDate,
     LocalDateTime,
@@ -26,6 +27,13 @@ const ikkeRegistrert = false;
 export function hentPersondata(fodselsnummer: string): PersonData | null {
     if (fodselsnummer === aremark.personIdent) {
         return { feilendeSystemer: [], person: aremark };
+    } else if (fodselsnummer === '05117608222') {
+        return { feilendeSystemer: [InformasjonElement.DKIF], person: lagPerson(fodselsnummer) };
+    } else if (fodselsnummer === '15068215851') {
+        return {
+            feilendeSystemer: [InformasjonElement.EGEN_ANSATT, InformasjonElement.BANKKONTO],
+            person: lagPerson(fodselsnummer)
+        };
     } else if (!erGyldigFødselsnummer(fodselsnummer)) {
         return null;
     } else {

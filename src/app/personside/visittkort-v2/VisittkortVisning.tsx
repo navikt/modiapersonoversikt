@@ -8,6 +8,7 @@ import VisittkortHeader from './header/VisittkortHeader';
 import useHotkey from '../../../utils/hooks/use-hotkey';
 import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
 import SikkerhetstiltakModal from './header/SikkerhetstiltakModal';
+import FeilendeSystemerModal from './header/FeilendeSystemerModal';
 
 interface Props {
     persondata: Persondata;
@@ -35,6 +36,7 @@ function VisittkortVisning(props: Props) {
             <article role="region" aria-label="Visittkort" aria-expanded={erApen}>
                 <VisittkortHeader persondata={props.persondata} erApen={erApen} toggleApen={toggleApen} />
                 <SikkerhetstiltakModal sikkerhetstiltak={props.persondata.person.sikkerhetstiltak} />
+                <FeilendeSystemerModal feilendeSystemer={props.persondata.feilendeSystemer} />
                 <UnmountClosed isOpened={erApen}>
                     <VisittkortBody person={props.persondata.person} />
                 </UnmountClosed>
