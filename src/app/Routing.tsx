@@ -7,7 +7,6 @@ import Personoversikt from './personside/Personoversikt';
 import Startbilde from './startbilde/Startbilde';
 import { useFodselsnummer, useTriggerHotjarForLokalKontor } from '../utils/customHooks';
 import { CenteredLazySpinner } from '../components/LazySpinner';
-import SakstemaContextProvider from './personside/infotabs/saksoversikt/SakstemaContext';
 
 function Routing() {
     const fnr = useFodselsnummer();
@@ -18,11 +17,7 @@ function Routing() {
             <Switch key={fnr}>
                 <Route
                     path={`${paths.sakerFullscreen}/:fodselsnummer/`}
-                    render={(routeProps) => (
-                        <SakstemaContextProvider>
-                            <SakerFullscreen fnr={routeProps.match.params.fodselsnummer} />
-                        </SakstemaContextProvider>
-                    )}
+                    render={(routeProps) => <SakerFullscreen fnr={routeProps.match.params.fodselsnummer} />}
                 />
                 <Route
                     path={`${paths.saksdokumentEgetVindu}/:fodselsnummer/`}

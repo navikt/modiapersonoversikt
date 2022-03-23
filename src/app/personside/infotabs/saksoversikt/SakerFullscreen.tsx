@@ -7,8 +7,6 @@ import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
-import LazySpinner from '../../../../components/LazySpinner';
-import FillCenterAndFadeIn from '../../../../components/FillCenterAndFadeIn';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
@@ -17,7 +15,8 @@ import DropDownMenu from '../../../../components/DropDownMenu';
 import { Undertittel } from 'nav-frontend-typografi';
 import { sakerTest } from '../dyplenkeTest/utils-dyplenker-test';
 import SakstemaListe from './sakstemaliste/SakstemaListe';
-import { useSakstemaer } from './SakstemaContext';
+import { useHentAlleSakstemaFraResource, useSakstemaURLState } from './useSakstemaURLState';
+import { aggregertTemanavn } from './utils/saksoversiktUtils';
 
 interface Props {
     fnr: string;
@@ -48,34 +47,23 @@ const SaksoversiktArticle = styled.article`
 
 function Innhold() {
     const state = useSaksoversiktValg();
-    const { valgtSakstema, alleSakstemaer } = useSakstemaer();
+    const alleSakstema = useHentAlleSakstemaFraResource();
+    const { valgteSakstemaer } = useSakstemaURLState(alleSakstema);
 
     useEffect(() => {
         loggEvent('VisDokument', 'SakerFullscreen');
     }, [state.saksdokument]);
 
-    if (!valgtSakstema) {
-        return (
-            <FillCenterAndFadeIn>
-                <LazySpinner />
-            </FillCenterAndFadeIn>
-        );
-    }
-
-    const tittel = <Undertittel className={sakerTest.dokument}>{valgtSakstema.temanavn}</Undertittel>;
+    const tittel = <Undertittel className={sakerTest.dokument}>{aggregertTemanavn(valgteSakstemaer)}</Undertittel>;
     const sakstemaListeDropdown = (
         <DropDownMenu header={tittel}>
-            <SakstemaListe valgtSakstema={valgtSakstema} sortertSakstemaListe={alleSakstemaer} />
+            <SakstemaListe />
         </DropDownMenu>
     );
 
     return (
         <SaksoversiktArticle>
-            <JournalPoster
-                valgtSakstema={valgtSakstema}
-                alleSakstema={alleSakstemaer}
-                sakstemaListeDropdown={sakstemaListeDropdown}
-            />
+            <JournalPoster sakstemaListeDropdown={sakstemaListeDropdown} />
             <DokumentOgVedlegg {...state} />
         </SaksoversiktArticle>
     );

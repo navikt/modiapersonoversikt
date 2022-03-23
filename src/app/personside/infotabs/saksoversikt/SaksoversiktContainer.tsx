@@ -13,7 +13,6 @@ import JournalPoster from './saksdokumenter/JournalPoster';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
 import SakerFullscreenLenke from './SakerFullscreenLenke';
-import { useSakstemaer } from './SakstemaContext';
 
 const saksoversiktMediaTreshold = '65rem';
 
@@ -43,7 +42,6 @@ function SaksoversiktContainer() {
     useKeepQueryParams();
 
     const state = useSaksoversiktValg();
-    const { valgtSakstema, alleSakstemaer } = useSakstemaer();
 
     if (state.saksdokument) {
         return <DokumentOgVedlegg {...state} />;
@@ -63,27 +61,14 @@ function SaksoversiktContainer() {
                                 <>
                                     <ScrollBar keepScrollId="saker-sakstema">
                                         <ErrorBoundary boundaryName="Sakstemaliste">
-                                            <SakerFullscreenLenke
-                                                valgtSakstema={valgtSakstema}
-                                                valgtSaksdokument={state.saksdokument}
-                                            />
-                                            <SakstemaListe
-                                                valgtSakstema={valgtSakstema}
-                                                sortertSakstemaListe={alleSakstemaer}
-                                            />
+                                            <SakerFullscreenLenke valgtSaksdokument={state.saksdokument} />
+                                            <SakstemaListe />
                                         </ErrorBoundary>
                                     </ScrollBar>
                                     <ScrollBar keepScrollId="saker-saksdokumenter">
-                                        {valgtSakstema ? (
-                                            <ErrorBoundary boundaryName="Journalposter">
-                                                <JournalPoster
-                                                    valgtSakstema={valgtSakstema}
-                                                    alleSakstema={alleSakstemaer}
-                                                />
-                                            </ErrorBoundary>
-                                        ) : (
-                                            <AlertStripeInfo>Ingen sakstema valgt</AlertStripeInfo>
-                                        )}
+                                        <ErrorBoundary boundaryName="Journalposter">
+                                            <JournalPoster />
+                                        </ErrorBoundary>
                                     </ScrollBar>
                                 </>
                             );

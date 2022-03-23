@@ -4,13 +4,12 @@ import styled from 'styled-components/macro';
 import { pxToRem, theme } from '../../../../../styles/personOversiktTheme';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
-import { hentFormattertDatoForSisteHendelse } from '../utils/saksoversiktUtils';
+import { hentFormattertDatoForSisteHendelse, sakstemakodeAlle } from '../utils/saksoversiktUtils';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
-import { sakstemakodeAlle } from './SakstemaListe';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { Checkbox } from 'nav-frontend-skjema';
-import { useSakstemaer } from '../SakstemaContext';
+import { useHentAlleSakstemaFraResource, useSakstemaURLState } from '../useSakstemaURLState';
 
 interface Props {
     sakstema: Sakstema;
@@ -64,8 +63,7 @@ function visAntallSakerSomHarBehandlingsstatus(sakstema: Sakstema, sjekkMotStatu
         (behandlingskjede) => behandlingskjede.status === sjekkMotStatus
     ).length;
 
-    // Skal ikke vises på det aggregerte sakstemaet
-    if (antallUnderbehandling === 0 || sakstema.temakode === sakstemakodeAlle) {
+    if (antallUnderbehandling === 0) {
         return null;
     }
 
@@ -87,11 +85,16 @@ function saksikon(harTilgang: boolean) {
 
 interface CheckBoxProps {
     sakstema: Sakstema;
-    erValgt: boolean;
 }
 
 export const SakstemaListeElementCheckbox = React.memo(function SakstemaListeElementCheckbox(props: CheckBoxProps) {
-    const { filtrerPaTema } = useSakstemaer();
+    const alleSakstemaer = useHentAlleSakstemaFraResource();
+    const { valgteSakstemaer, toggleValgtSakstema } = useSakstemaURLState(alleSakstemaer);
+
+    function sakstemaErValgt(sakstema: Sakstema): boolean {
+        const valgteTemakoder: string[] = valgteSakstemaer.map((sakstema) => sakstema.temakode);
+        return valgteTemakoder.includes(sakstema.temakode) || valgteTemakoder[0] === sakstemakodeAlle;
+    }
 
     const sakerUnderBehandling = visAntallSakerSomHarBehandlingsstatus(
         props.sakstema,
@@ -114,8 +117,8 @@ export const SakstemaListeElementCheckbox = React.memo(function SakstemaListeEle
                         key={props.sakstema.temakode}
                         label={props.sakstema.temanavn}
                         className={'checkbox ' + sakerTest.oversikt}
-                        checked={props.erValgt}
-                        onChange={() => filtrerPaTema([props.sakstema])}
+                        checked={sakstemaErValgt(props.sakstema)}
+                        onChange={() => toggleValgtSakstema(props.sakstema)}
                     />
                     {sakerUnderBehandling}
                     {sakerFerdigBehandlet}

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { SakstemaListeElementCheckbox } from './SakstemaListeElement';
@@ -40,58 +39,35 @@ const KnappeSeksjon = styled.section`
     justify-content: space-evenly;
 `;
 
-interface Props {
-    valgtSakstema: Sakstema;
-    sortertSakstemaListe: Sakstema[];
-}
-
-function SakstemaListe(props: Props) {
-    const { filtrerPaTema } = useSakstemaer();
+function SakstemaListe() {
+    const alleSakstema = useHentAlleSakstemaFraResource();
+    const { setAlleValgte, setIngenValgte } = useSakstemaURLState(alleSakstema);
     const tittelId = useRef(guid());
-
-    function velgAlleTema() {
-        filtrerPaTema(props.sortertSakstemaListe);
-    }
-
-    function velgIngenTema() {
-        filtrerPaTema([]);
-    }
-
-    function sakstemaErValgt(sakstema: Sakstema): boolean {
-        const valgteTemakoder = props.valgtSakstema.temakode.split('-');
-        return valgteTemakoder.includes(sakstema.temakode.split('-')[0]) || valgteTemakoder[0] === sakstemakodeAlle;
-    }
 
     return (
         <nav>
             <StyledPanel aria-labelledby={tittelId.current}>
                 <TittelWrapper>
                     <Undertittel id={tittelId.current}>Tema</Undertittel>
-                    <Normaltekst>({props.sortertSakstemaListe.length} saker)</Normaltekst>
+                    <Normaltekst>({alleSakstema.length} saker)</Normaltekst>
                 </TittelWrapper>
                 <KnappeSeksjon>
-                    <Knapp key={'Velg alle'} onClick={() => velgAlleTema()} htmlType="button" kompakt={true}>
+                    <Knapp key={'Velg alle'} onClick={() => setAlleValgte()} htmlType="button" kompakt={true}>
                         Velg alle
                     </Knapp>
-                    <Knapp key={'Velg ingen'} onClick={() => velgIngenTema()} htmlType="button" kompakt={true}>
+                    <Knapp key={'Velg ingen'} onClick={() => setIngenValgte()} htmlType="button" kompakt={true}>
                         Velg ingen
                     </Knapp>
                 </KnappeSeksjon>
                 <nav aria-label="Velg sakstema">
                     <SakstemaListeStyle>
-                        {props.sortertSakstemaListe
+                        {alleSakstema
                             .filter(
                                 (sakstema) =>
                                     sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0
                             )
                             .map((sakstema) => {
-                                return (
-                                    <SakstemaListeElementCheckbox
-                                        sakstema={sakstema}
-                                        key={getUnikSakstemaKey(sakstema)}
-                                        erValgt={sakstemaErValgt(sakstema)}
-                                    />
-                                );
+                                return <SakstemaListeElementCheckbox sakstema={sakstema} key={sakstema.temakode} />;
                             })}
                     </SakstemaListeStyle>
                 </nav>
