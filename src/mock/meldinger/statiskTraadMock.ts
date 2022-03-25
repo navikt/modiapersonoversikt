@@ -65,5 +65,27 @@ export const statiskTraadMock: Traad = {
             ferdigstiltDato: '2019-07-27',
             sendtTilSladding: false
         }
+    ],
+    journalposter: [
+        {
+            journalfortTema: 'DAG',
+            journalfortTemanavn: 'Dagpenger',
+            journalfortSaksid: undefined,
+            journalfortDato: '2019-07-30T12:12:12.000',
+            journalfortAv: {
+                ident: 'p0jh0d',
+                navn: 'Jenny Berg'
+            }
+        },
+        {
+            journalfortTema: 'AAP',
+            journalfortTemanavn: 'Arbeidsavklaringspenger',
+            journalfortSaksid: undefined,
+            journalfortDato: '2019-07-28T14:12:12.000',
+            journalfortAv: {
+                ident: 'p0jh0d',
+                navn: 'Jenny Berg'
+            }
+        }
     ]
 };

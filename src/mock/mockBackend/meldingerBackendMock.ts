@@ -47,7 +47,8 @@ export class MeldingerBackendMock {
                 .flatMap((traad) => traad.meldinger);
             return {
                 traadId: traad.traadId,
-                meldinger: [...tilhørendeSvar, ...traad.meldinger]
+                meldinger: [...tilhørendeSvar, ...traad.meldinger],
+                journalposter: traad.journalposter
             };
         });
 
@@ -63,7 +64,8 @@ export class MeldingerBackendMock {
         };
         this.sendteNyeMeldinger.unshift({
             traadId: guid(),
-            meldinger: [melding]
+            meldinger: [melding],
+            journalposter: []
         });
         return melding.id;
     }
@@ -76,7 +78,8 @@ export class MeldingerBackendMock {
         };
         this.sendteNyeMeldinger.unshift({
             traadId: guid(),
-            meldinger: [melding]
+            meldinger: [melding],
+            journalposter: []
         });
     }
 
@@ -88,7 +91,8 @@ export class MeldingerBackendMock {
         };
         this.sendteNyeMeldinger.unshift({
             traadId: guid(),
-            meldinger: [melding]
+            meldinger: [melding],
+            journalposter: []
         });
     }
 
@@ -103,7 +107,8 @@ export class MeldingerBackendMock {
         };
         this.sendteSvar.unshift({
             traadId: request.traadId,
-            meldinger: [melding]
+            meldinger: [melding],
+            journalposter: []
         });
     }
 

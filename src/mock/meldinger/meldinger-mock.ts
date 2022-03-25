@@ -1,4 +1,11 @@
-import { LestStatus, Melding, Saksbehandler, Traad, Meldingstype } from '../../models/meldinger/meldinger';
+import {
+    LestStatus,
+    Melding,
+    Saksbehandler,
+    Traad,
+    Meldingstype,
+    MeldingJournalpost
+} from '../../models/meldinger/meldinger';
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import dayjs from 'dayjs';
@@ -46,7 +53,8 @@ function getMockTraad(): Traad {
 
     return {
         traadId: faker.random.alphaNumeric(8),
-        meldinger: meldinger
+        meldinger: meldinger,
+        journalposter: fyllRandomListe(lagJournalpost, 3, false)
     };
 }
 
@@ -96,6 +104,27 @@ function getMelding(temagruppe: Temagruppe): Melding {
         kontorsperretEnhet: visKontrosperre ? faker.company.companyName() : undefined,
         sendtTilSladding: sladdingNiva !== 0,
         markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined
+    };
+}
+
+const temaMap = {
+    AAP: 'Arbeidsavklaringspenger',
+    DAG: 'Dagpenger',
+    BID: 'Bidrag',
+    PEN: 'Pensjon'
+};
+function lagJournalpost(): MeldingJournalpost {
+    const tema = navfaker.random.arrayElement(['DAG', 'BID', 'AAP', 'PEN']);
+    const saksbehandler = getSaksbehandler();
+    return {
+        journalfortDato: faker.date.recent(40).toISOString(),
+        journalfortSaksid: faker.random.alphaNumeric(5),
+        journalfortTema: tema,
+        journalfortTemanavn: temaMap[tema],
+        journalfortAv: {
+            ident: saksbehandler.ident!,
+            navn: `${saksbehandler.fornavn} ${saksbehandler.etternavn}`
+        }
     };
 }
 

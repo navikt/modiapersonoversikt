@@ -46,19 +46,20 @@ describe('erUbesvartHenvendelseFraBruker', () => {
     };
 
     it('Tråder som er initiert av bruker skal regnes som ubesvarte', () => {
-        const traad: Traad = { traadId: '', meldinger: [baseMelding] };
+        const traad: Traad = { traadId: '', meldinger: [baseMelding], journalposter: [] };
         expect(erUbesvartHenvendelseFraBruker(traad)).toBe(true);
     });
 
     it('Tråder med mer enn en melding skal ikke regnes som ubesvarte', () => {
-        const traad: Traad = { traadId: '', meldinger: [baseMelding, baseMelding] };
+        const traad: Traad = { traadId: '', meldinger: [baseMelding, baseMelding], journalposter: [] };
         expect(erUbesvartHenvendelseFraBruker(traad)).toBe(false);
     });
 
     it('Tråder som ikke er initiert av bruker skal ikke regnes som ubesvarte', () => {
         const traad: Traad = {
             traadId: '',
-            meldinger: [{ ...baseMelding, meldingstype: Meldingstype.SPORSMAL_MODIA_UTGAAENDE }]
+            meldinger: [{ ...baseMelding, meldingstype: Meldingstype.SPORSMAL_MODIA_UTGAAENDE }],
+            journalposter: []
         };
         expect(erUbesvartHenvendelseFraBruker(traad)).toBe(false);
     });
@@ -66,7 +67,8 @@ describe('erUbesvartHenvendelseFraBruker', () => {
     it('Tråder som er avsluttet skal ikke regnes som ubesvarte', () => {
         const traad: Traad = {
             traadId: '',
-            meldinger: [{ ...baseMelding, avsluttetDato: '2022-01-01T12:00:00.000z' }]
+            meldinger: [{ ...baseMelding, avsluttetDato: '2022-01-01T12:00:00.000z' }],
+            journalposter: []
         };
         expect(erUbesvartHenvendelseFraBruker(traad)).toBe(false);
     });
