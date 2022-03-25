@@ -4,6 +4,7 @@ import { Temagruppe } from '../temagrupper';
 export interface Traad {
     traadId: string;
     meldinger: Melding[];
+    journalposter: Array<MeldingJournalpost>;
 }
 
 export interface Melding {
@@ -26,6 +27,19 @@ export interface Melding {
     kontorsperretAv?: Saksbehandler;
     sendtTilSladding: boolean;
     markertSomFeilsendtAv?: Saksbehandler;
+}
+
+export interface MeldingJournalpost {
+    journalfortAv?: Veileder;
+    journalfortDato: string;
+    journalfortTema: string;
+    journalfortTemanavn: string;
+    journalfortSaksid?: string;
+}
+
+export interface Veileder {
+    ident: string;
+    navn: string;
 }
 
 export interface Saksbehandler {
