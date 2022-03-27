@@ -11,8 +11,8 @@ import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import JournalPoster from './saksdokumenter/JournalPoster';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
-import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
 import SakerFullscreenLenke from './SakerFullscreenLenke';
+import { useHentAlleSakstemaFraResource, useSakstemaURLState } from './useSakstemaURLState';
 
 const saksoversiktMediaTreshold = '65rem';
 
@@ -41,10 +41,17 @@ const SaksoversiktStyle = styled.div`
 function SaksoversiktContainer() {
     useKeepQueryParams();
 
-    const state = useSaksoversiktValg();
+    const alleSakstema = useHentAlleSakstemaFraResource();
+    const { valgtDokument, valgtJournalpost, valgteSakstemaer } = useSakstemaURLState(alleSakstema);
 
-    if (state.saksdokument) {
-        return <DokumentOgVedlegg {...state} />;
+    if (valgtDokument) {
+        return (
+            <DokumentOgVedlegg
+                valgtDokument={valgtDokument}
+                valgtJournalpost={valgtJournalpost}
+                valgteSakstemaer={valgteSakstemaer}
+            />
+        );
     } else {
         return (
             <ErrorBoundary boundaryName="Saksoversikt">
@@ -61,7 +68,7 @@ function SaksoversiktContainer() {
                                 <>
                                     <ScrollBar keepScrollId="saker-sakstema">
                                         <ErrorBoundary boundaryName="Sakstemaliste">
-                                            <SakerFullscreenLenke valgtSaksdokument={state.saksdokument} />
+                                            <SakerFullscreenLenke />
                                             <SakstemaListe />
                                         </ErrorBoundary>
                                     </ScrollBar>

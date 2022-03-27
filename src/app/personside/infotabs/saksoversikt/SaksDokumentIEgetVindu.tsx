@@ -20,14 +20,14 @@ const Sentring = styled.div`
 `;
 
 function SaksDokumentEgetVindu(props: Props) {
-    const queryParams = useQueryParams<{ dokumenturl?: string }>();
+    const queryParams = useQueryParams<{ dokument?: string }>();
 
     useOnMount(() => {
         loggEvent('Sidevisning', 'SaksDokumentEgetVindu');
         document.title = 'Dokument';
     });
 
-    if (!queryParams.dokumenturl) {
+    if (!queryParams.dokument) {
         return (
             <Sentring>
                 <AlertStripeFeil>Mangler dokumentURL</AlertStripeFeil>
@@ -37,7 +37,7 @@ function SaksDokumentEgetVindu(props: Props) {
     return (
         <>
             <SetFnrIRedux fnr={props.fnr} />
-            <DokumentVisning url={queryParams.dokumenturl} />
+            <DokumentVisning url={queryParams.dokument} />
         </>
     );
 }

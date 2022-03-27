@@ -8,7 +8,6 @@ import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggl
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
-import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import JournalPoster from './saksdokumenter/JournalPoster';
 import DropDownMenu from '../../../../components/DropDownMenu';
@@ -46,15 +45,18 @@ const SaksoversiktArticle = styled.article`
 `;
 
 function Innhold() {
-    const state = useSaksoversiktValg();
     const alleSakstema = useHentAlleSakstemaFraResource();
-    const { valgteSakstemaer } = useSakstemaURLState(alleSakstema);
+    const { valgteSakstemaer, valgtDokument, valgtJournalpost } = useSakstemaURLState(alleSakstema);
 
     useEffect(() => {
         loggEvent('VisDokument', 'SakerFullscreen');
-    }, [state.saksdokument]);
+    }, [valgtDokument]);
 
-    const tittel = <Undertittel className={sakerTest.dokument}>{aggregertTemanavn(valgteSakstemaer)}</Undertittel>;
+    const tittel = (
+        <Undertittel className={sakerTest.dokument}>
+            {aggregertTemanavn(valgteSakstemaer, valgteSakstemaer.length === alleSakstema.length)}
+        </Undertittel>
+    );
     const sakstemaListeDropdown = (
         <DropDownMenu header={tittel}>
             <SakstemaListe />
@@ -64,7 +66,11 @@ function Innhold() {
     return (
         <SaksoversiktArticle>
             <JournalPoster sakstemaListeDropdown={sakstemaListeDropdown} />
-            <DokumentOgVedlegg {...state} />
+            <DokumentOgVedlegg
+                valgtDokument={valgtDokument}
+                valgtJournalpost={valgtJournalpost}
+                valgteSakstemaer={valgteSakstemaer}
+            />
         </SaksoversiktArticle>
     );
 }

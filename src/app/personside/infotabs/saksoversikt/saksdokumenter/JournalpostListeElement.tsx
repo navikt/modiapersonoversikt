@@ -106,7 +106,7 @@ function getDokumentIkon(harTilgang: boolean) {
     }
 }
 
-function JournalpostLiseElement(props: Props) {
+function JournalpostListeElement(props: Props) {
     const vedleggLinkRef = React.createRef<HTMLUListElement>();
     const hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
     const brukerResponse = useHentPersondata();
@@ -167,10 +167,7 @@ function JournalpostLiseElement(props: Props) {
 
     return (
         <li>
-            <StyledArticle
-                valgt={dyplenker.saker.erValgtJournalpost(props.journalpost)}
-                aria-labelledby={tittelId.current}
-            >
+            <StyledArticle valgt={dyplenker.saker.erValgtJournalpost(journalpost)} aria-labelledby={tittelId.current}>
                 <IkonWrapper>{getDokumentIkon(harTilgangTilJournalpost(journalpost))}</IkonWrapper>
                 <InnholdWrapper>
                     <UUcustomOrder id={tittelId.current}>
@@ -194,4 +191,4 @@ function JournalpostLiseElement(props: Props) {
     );
 }
 
-export default JournalpostLiseElement;
+export default JournalpostListeElement;

@@ -15,7 +15,7 @@ export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sak
     const erAlleSakstema = alleSakstema.length === sakstema.length;
 
     return {
-        temanavn: erAlleSakstema ? 'Alle tema' : aggregertTemanavn(sakstema),
+        temanavn: aggregertTemanavn(sakstema, erAlleSakstema),
         temakode: erAlleSakstema ? sakstemakodeAlle : aggregertTemakode(sakstema),
         harTilgang: true,
         behandlingskjeder: behandlingskjeder,
@@ -26,8 +26,8 @@ export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sak
     };
 }
 
-export function aggregertTemanavn(valgteSakstema: Sakstema[]): string {
-    const nyttTemanavn = valgteSakstema.map((tema) => tema.temanavn).join(', ');
+export function aggregertTemanavn(valgteSakstema: Sakstema[], erAlleSakstema: boolean): string {
+    const nyttTemanavn = erAlleSakstema ? 'Alle tema' : valgteSakstema.map((tema) => tema.temanavn).join(', ');
     return nyttTemanavn !== '' ? nyttTemanavn : 'Ingen tema valgt';
 }
 

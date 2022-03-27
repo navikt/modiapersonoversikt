@@ -7,7 +7,6 @@ import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useFocusOnMount, useFodselsnummer } from '../../../../../utils/customHooks';
 import ErrorBoundary from '../../../../../components/ErrorBoundary';
-import { SaksoversiktValg } from '../utils/useSaksoversiktValg';
 import { useInfotabsDyplenker } from '../../dyplenker';
 import { useHistory, useLocation } from 'react-router';
 import { Hovedknapp } from 'nav-frontend-knapper';
@@ -16,6 +15,10 @@ import DokumentVisning from './SaksDokumentVisning';
 import { getSaksdokumentUrl } from './getSaksdokumentUrl';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import Panel from 'nav-frontend-paneler';
+import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
+import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import { aggregertSakstema } from '../utils/saksoversiktUtils';
+import { useHentAlleSakstemaFraResource } from '../useSakstemaURLState';
 
 const Content = styled(Panel)`
     flex-grow: 1;
@@ -48,17 +51,24 @@ const HeaderStyle = styled(Panel)`
     padding: ${pxToRem(15)};
 `;
 
-function DokumentOgVedlegg(props: SaksoversiktValg) {
+interface Props {
+    valgteSakstemaer: Sakstema[];
+    valgtDokument: Dokument | undefined;
+    valgtJournalpost: Journalpost | undefined;
+}
+
+function DokumentOgVedlegg(props: Props) {
     const ref = React.createRef<HTMLDivElement>();
     const location = useLocation();
     const fullscreen = erSakerFullscreen(location.pathname);
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
-    const fødselsnummer = useFodselsnummer();
+    const fodselsnummer = useFodselsnummer();
+    const alleSakstema = useHentAlleSakstemaFraResource();
 
     useFocusOnMount(ref);
 
-    if (!props.saksdokument || !props.journalpost) {
+    if (!props.valgtDokument || !props.valgtJournalpost) {
         return (
             <AlertWrapper>
                 <AlertStripeInfo>Ingen dokument valgt.</AlertStripeInfo>
@@ -67,23 +77,25 @@ function DokumentOgVedlegg(props: SaksoversiktValg) {
     }
 
     const tabs = [
-        props.journalpost.hoveddokument,
-        ...props.journalpost.vedlegg.filter(vedlegg => !vedlegg.logiskDokument)
+        props.valgtJournalpost.hoveddokument,
+        ...props.valgtJournalpost.vedlegg.filter((vedlegg) => !vedlegg.logiskDokument)
     ];
-    const tabProps: TabProps[] = tabs.map(tab => {
+    const tabProps: TabProps[] = tabs.map((tab) => {
         return {
             label: tab.tittel,
-            aktiv: tab === props.saksdokument
+            aktiv: tab === props.valgtDokument
         };
     });
 
-    const handleTabChange = (_: any, index: number) => history.push(dyplenker.saker.link(props.sakstema, tabs[index]));
+    const aggregertSak = aggregertSakstema(alleSakstema, props.valgteSakstemaer);
+
+    const handleTabChange = (_: any, index: number) => history.push(dyplenker.saker.link(aggregertSak, tabs[index]));
 
     const tabsHeader = !fullscreen && (
         <Header>
             <TabsPure tabs={tabProps} onChange={handleTabChange} />
             <KnappWrapper>
-                <Hovedknapp onClick={() => history.push(dyplenker.saker.link(props.sakstema))}>
+                <Hovedknapp onClick={() => history.push(dyplenker.saker.link(aggregertSak))}>
                     <TilbakePil>Tilbake til saker</TilbakePil>
                 </Hovedknapp>
             </KnappWrapper>
@@ -91,19 +103,19 @@ function DokumentOgVedlegg(props: SaksoversiktValg) {
     );
 
     const saksdokumentUrl = getSaksdokumentUrl(
-        fødselsnummer,
-        props.journalpost.journalpostId,
-        props.saksdokument.dokumentreferanse
+        fodselsnummer,
+        props.valgtJournalpost.journalpostId,
+        props.valgtDokument.dokumentreferanse
     );
     return (
         <ErrorBoundary boundaryName="Dokumentvisning">
             <Content>
                 <HeaderStyle ref={() => ref} tabIndex={-1} className={!fullscreen ? 'sr-only' : undefined}>
-                    <Undertittel>{props.saksdokument.tittel}</Undertittel>
+                    <Undertittel>{props.valgtDokument.tittel}</Undertittel>
                 </HeaderStyle>
                 {tabsHeader}
 
-                <DokumentVisning key={props.saksdokument.dokumentreferanse} url={saksdokumentUrl} />
+                <DokumentVisning key={props.valgtDokument.dokumentreferanse} url={saksdokumentUrl} />
             </Content>
         </ErrorBoundary>
     );
