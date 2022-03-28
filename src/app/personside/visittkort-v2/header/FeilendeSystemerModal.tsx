@@ -3,7 +3,7 @@ import { useState } from 'react';
 import RawModal from 'nav-frontend-modal';
 import KnappBase from 'nav-frontend-knapper';
 import styled from 'styled-components/macro';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Systemtittel } from 'nav-frontend-typografi';
 import { ReactComponent as ErrorIkon } from '../../../../svg/alvorlig-advarsel.svg';
 import { InformasjonElement } from '../PersondataDomain';
 
@@ -21,63 +21,23 @@ interface Props {
 
 function FeilendeSystemerModal(props: Props) {
     const [open, setOpen] = useState(props.feilendeSystemer.isNotEmpty());
-    const feilendeSystem = props.feilendeSystemer.map((it, index) => {
-        if (it === InformasjonElement.EGEN_ANSATT) {
-            return (
-                <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet informasjon om Egen Ansatt.</Normaltekst>
-                </li>
-            );
-        } else if (it === InformasjonElement.BANKKONTO) {
-            return (
-                <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet informasjon om bankkonto.</Normaltekst>
-                </li>
-            );
-        } else if (it === InformasjonElement.DKIF) {
-            return (
-                <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet digital kontaktinformasjon.</Normaltekst>
-                </li>
-            );
-        } else if (it === InformasjonElement.PDL_GT) {
-            return (
-                <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet informasjon om geografisk tilknytning.</Normaltekst>
-                </li>
-            );
-        } else if (it === InformasjonElement.NORG_KONTAKTINFORMASJON) {
-            return (
-                <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet kontaktinformasjonen.</Normaltekst>
-                </li>
-            );
-        } else if (it === InformasjonElement.NORG_NAVKONTOR) {
-            return (
-                <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet informasjon om NAV-kontor.</Normaltekst>
-                </li>
-            );
-        } else if (it === InformasjonElement.VEILEDER_ROLLER) {
-            return (
-                <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet informasjon om veileders roller.</Normaltekst>
-                </li>
-            );
-        } else if (it === InformasjonElement.PDL_TREDJEPARTSPERSONER) {
-            return (
-                <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet informasjon om foreldre/barn/ektefelle/advokat/etc.</Normaltekst>
-                </li>
-            );
-        } else {
-            return (
-                <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet informasjon om {it}.</Normaltekst>
-                </li>
-            );
-        }
-    });
+    const tekster = {
+        [InformasjonElement.EGEN_ANSATT]: 'Vi fikk ikke hentet ut informasjon om egen ansatt',
+        [InformasjonElement.PDL_TREDJEPARTSPERSONER]:
+            'Vi får ikke hentet informasjon om foreldre/barn/ektefelle/advokat/etc',
+        [InformasjonElement.DKIF]: 'Vi får ikke hentet digital kontaktinformasjon',
+        [InformasjonElement.PDL_GT]: 'Vi får ikke hentet informasjon om geografisk tilknytning',
+        [InformasjonElement.BANKKONTO]: 'Vi får ikke hentet informasjon om bankkonto',
+        [InformasjonElement.VEILEDER_ROLLER]: 'Vi får ikke hentet informasjon om veileders roller',
+        [InformasjonElement.NORG_KONTAKTINFORMASJON]: 'Vi får ikke hentet kontaktinformasjonen',
+        [InformasjonElement.NORG_NAVKONTOR]: 'Vi får ikke hentet informasjon om NAV-kontor'
+    };
+    const feilendeSystem = props.feilendeSystemer.map((it) => (
+        <li key={it} className="blokk-xxs">
+            {tekster[it]}
+        </li>
+    ));
+
     return (
         <Modal
             isOpen={open}
