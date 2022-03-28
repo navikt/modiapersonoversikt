@@ -25,37 +25,37 @@ function FeilendeSystemerModal(props: Props) {
         if (it === InformasjonElement.EGEN_ANSATT) {
             return (
                 <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet informasjon om Egen Ansatt fra NOM.</Normaltekst>
+                    <Normaltekst>Vi får ikke hentet informasjon om Egen Ansatt.</Normaltekst>
                 </li>
             );
         } else if (it === InformasjonElement.BANKKONTO) {
             return (
                 <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet informasjon om bankkonto fra TPS.</Normaltekst>
+                    <Normaltekst>Vi får ikke hentet informasjon om bankkonto.</Normaltekst>
                 </li>
             );
         } else if (it === InformasjonElement.DKIF) {
             return (
                 <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet digital kontaktinformasjon fra DKIF.</Normaltekst>
+                    <Normaltekst>Vi får ikke hentet digital kontaktinformasjon.</Normaltekst>
                 </li>
             );
         } else if (it === InformasjonElement.PDL_GT) {
             return (
                 <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet informasjon om geografisk tilknytning fra PDL.</Normaltekst>
+                    <Normaltekst>Vi får ikke hentet informasjon om geografisk tilknytning.</Normaltekst>
                 </li>
             );
         } else if (it === InformasjonElement.NORG_KONTAKTINFORMASJON) {
             return (
                 <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet kontaktinformasjonen fra NORG.</Normaltekst>
+                    <Normaltekst>Vi får ikke hentet kontaktinformasjonen.</Normaltekst>
                 </li>
             );
         } else if (it === InformasjonElement.NORG_NAVKONTOR) {
             return (
                 <li key={index} className="blokk-xxs">
-                    <Normaltekst>Vi får ikke hentet informasjon om NAV kontor fra NORG.</Normaltekst>
+                    <Normaltekst>Vi får ikke hentet informasjon om NAV-kontor.</Normaltekst>
                 </li>
             );
         } else if (it === InformasjonElement.VEILEDER_ROLLER) {
@@ -67,10 +67,7 @@ function FeilendeSystemerModal(props: Props) {
         } else if (it === InformasjonElement.PDL_TREDJEPARTSPERSONER) {
             return (
                 <li key={index} className="blokk-xxs">
-                    <Normaltekst>
-                        Vi får ikke hentet informasjon om tredjepartsperson (foreldre/barn/ektefelle/advokat/etc) fra
-                        PDL.
-                    </Normaltekst>
+                    <Normaltekst>Vi får ikke hentet informasjon om foreldre/barn/ektefelle/advokat/etc.</Normaltekst>
                 </li>
             );
         } else {
