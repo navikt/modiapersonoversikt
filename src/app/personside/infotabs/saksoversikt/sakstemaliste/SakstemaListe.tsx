@@ -1,19 +1,16 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { SakstemaListeElementCheckbox } from './SakstemaListeElement';
+import { pxToRem } from '../../../../../styles/personOversiktTheme';
+import SakstemaListeElementCheckboks from './SakstemaListeElementCheckboks';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { Knapp } from 'nav-frontend-knapper';
 import { useHentAlleSakstemaFraResource, useSakstemaURLState } from '../useSakstemaURLState';
-
-const SakstemaListeStyle = styled.ol`
-    > * {
-        border-top: ${theme.border.skille};
-    }
-`;
+import { CheckboksPanelGruppe, CheckboksPanelProps } from 'nav-frontend-skjema';
+import { aggregertSakstema, sakstemakodeAlle } from '../utils/saksoversiktUtils';
+import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 
 const StyledPanel = styled(Panel)`
     padding: 0rem;
@@ -39,10 +36,48 @@ const KnappeSeksjon = styled.section`
     justify-content: space-evenly;
 `;
 
+const StyledCheckboksPanelGruppe = styled(CheckboksPanelGruppe)`
+    label {
+        border: 0;
+        border-top: 1px solid #6a6a6a;
+        border-radius: 0;
+
+        &.inputPanel--checked {
+            background-color: transparent;
+        }
+
+        &.inputPanel:not(:last-child) {
+            margin-bottom: 0;
+        }
+
+        &.inputPanel:hover:not(.inputPanel--disabled):not(.bekreftCheckboksPanel) {
+            border: 0;
+            border-top: 1px solid #6a6a6a;
+            box-shadow: none;
+        }
+    }
+`;
+
 function SakstemaListe() {
     const alleSakstema = useHentAlleSakstemaFraResource();
-    const { setAlleValgte, setIngenValgte } = useSakstemaURLState(alleSakstema);
+    const { setAlleValgte, setIngenValgte, toggleValgtSakstema, valgteSakstemaer } = useSakstemaURLState(alleSakstema);
     const tittelId = useRef(guid());
+
+    function sakstemaErValgt(sakstema: Sakstema): boolean {
+        const valgteTemakoder: string[] = valgteSakstemaer.map((sakstema) => sakstema.temakode);
+        return valgteTemakoder.includes(sakstema.temakode) || valgteTemakoder[0] === sakstemakodeAlle;
+    }
+
+    const checkbokser = alleSakstema
+        .filter((sakstema) => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
+        .map((sakstema) => {
+            return {
+                label: <SakstemaListeElementCheckboks sakstema={sakstema} key={sakstema.temakode} />,
+                value: sakstema.temakode,
+                id: sakstema.temakode,
+                checked: sakstemaErValgt(sakstema)
+            } as CheckboksPanelProps;
+        });
 
     return (
         <nav>
@@ -60,16 +95,17 @@ function SakstemaListe() {
                     </Knapp>
                 </KnappeSeksjon>
                 <nav aria-label="Velg sakstema">
-                    <SakstemaListeStyle>
-                        {alleSakstema
-                            .filter(
-                                (sakstema) =>
-                                    sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0
-                            )
-                            .map((sakstema) => {
-                                return <SakstemaListeElementCheckbox sakstema={sakstema} key={sakstema.temakode} />;
-                            })}
-                    </SakstemaListeStyle>
+                    <ol>
+                        <StyledCheckboksPanelGruppe
+                            checkboxes={checkbokser}
+                            onChange={(_, value) => {
+                                toggleValgtSakstema(
+                                    alleSakstema.find((sakstema) => sakstema.temakode === value) ??
+                                        aggregertSakstema(alleSakstema)
+                                );
+                            }}
+                        />
+                    </ol>
                 </nav>
             </StyledPanel>
         </nav>

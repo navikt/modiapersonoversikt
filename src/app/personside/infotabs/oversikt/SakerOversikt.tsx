@@ -3,7 +3,7 @@ import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/saks
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
-import { SakstemaListeElementKnapp } from '../saksoversikt/sakstemaliste/SakstemaListeElement';
+import SakstemaListeElementKnapp from '../saksoversikt/sakstemaliste/SakstemaListeElementKnapp';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { ReactNode } from 'react';
