@@ -1,12 +1,14 @@
 import dayjs from 'dayjs';
 import { usePaths } from '../../routes/routing';
 import { Utbetaling } from '../../../models/utbetalinger';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { Traad } from '../../../models/meldinger/meldinger';
 import { useMemo } from 'react';
-import { SakerRouting, useSakerRouting } from './saksoversikt/utils/saksoversiktRoutingUtils';
 import { useQueryParams } from '../../../utils/url-utils';
 import { getUnikYtelseKey, Ytelse } from '../../../models/ytelse/ytelse-utils';
+import { Dokument } from '../../../models/saksoversikt/journalpost';
+import { Sakstema } from '../../../models/saksoversikt/sakstema';
+import { erSakerFullscreen } from './saksoversikt/utils/erSakerFullscreen';
 
 interface Dyplenker {
     utbetaling: {
@@ -19,7 +21,10 @@ interface Dyplenker {
         route: string;
         erValgt: (traad: Traad) => boolean;
     };
-    saker: SakerRouting;
+    saker: {
+        link: (sakstema?: Sakstema, valgtDokument?: Dokument, standalone?: boolean) => string;
+        route: string;
+    };
     ytelser: {
         link: (ytelse: Ytelse) => string;
         route: string;
@@ -42,7 +47,7 @@ export function useInfotabsDyplenker(): Dyplenker {
 
     const queryParams = useQueryParams<DyplenkerQueryParams>();
     const paths = usePaths();
-    const sakerRouting = useSakerRouting();
+    const pathname = useLocation().pathname;
 
     return useMemo(
         () => ({
@@ -50,7 +55,7 @@ export function useInfotabsDyplenker(): Dyplenker {
                 link: (utbetaling: Utbetaling) => `${paths.utbetlainger}/${dayjs(utbetaling.posteringsdato).unix()}`,
                 route: `${paths.utbetlainger}/:posteringsdato?`,
                 erValgt: (utbetaling: Utbetaling) => {
-                    const posteringsdatoFraUrl = dayjs.unix((posteringsdato as unknown) as number);
+                    const posteringsdatoFraUrl = dayjs.unix(posteringsdato as unknown as number);
                     return dayjs(utbetaling.posteringsdato).isSame(posteringsdatoFraUrl);
                 }
             },
@@ -59,13 +64,26 @@ export function useInfotabsDyplenker(): Dyplenker {
                 route: `${paths.meldinger}`,
                 erValgt: (traad: Traad) => traad.traadId === queryParams.traadId
             },
-            saker: sakerRouting,
+            saker: {
+                link: (sakstema, valgtDokumentId, standalone) =>
+                    `${
+                        standalone || erSakerFullscreen(pathname) ? paths.sakerFullscreen : paths.saker
+                    }?${getSaksoversiktQueryParametere(valgtDokumentId, sakstema)}`,
+                route: `${paths.saker}`
+            },
             ytelser: {
                 link: (ytelse: Ytelse) => `${paths.ytelser}?ytelse=${getUnikYtelseKey(ytelse)}`,
                 route: `${paths.ytelser}`,
                 erValgt: (ytelse: Ytelse) => getUnikYtelseKey(ytelse) === queryParams.ytelse
             }
         }),
-        [paths, posteringsdato, sakerRouting, queryParams]
+        [pathname, paths, posteringsdato, queryParams]
     );
+}
+
+function getSaksoversiktQueryParametere(dokument?: Dokument, valgtSakstema?: Sakstema) {
+    const sakstemaQuery =
+        valgtSakstema !== undefined && valgtSakstema.temakode !== '' ? `sakstema=${valgtSakstema.temakode}` : '';
+    const dokumentQuery = dokument ? `dokument=${dokument.dokumentreferanse}` : '';
+    return [sakstemaQuery, dokumentQuery].filter((it) => it).join('&');
 }

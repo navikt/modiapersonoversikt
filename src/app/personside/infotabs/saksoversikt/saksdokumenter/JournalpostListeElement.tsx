@@ -16,13 +16,13 @@ import DokumentIkon from '../../../../../svg/DokumentIkon';
 import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import { useInfotabsDyplenker } from '../../dyplenker';
 import DokumentLenke from './DokumentLenke';
 import { guid } from 'nav-frontend-js-utils';
 import { useHentPersondata } from '../../../../../utils/customHooks';
 import { hasData } from '@nutgaard/use-fetch';
 import { hentNavn } from '../../../visittkort-v2/visittkort-utils';
 import { sakstemakodeAlle } from '../utils/saksoversiktUtils';
+import { useHentAlleSakstemaFraResource, useSakstemaURLState } from '../useSakstemaURLState';
 
 interface Props {
     journalpost: Journalpost;
@@ -107,10 +107,11 @@ function getDokumentIkon(harTilgang: boolean) {
 }
 
 function JournalpostListeElement(props: Props) {
+    const alleSakstema = useHentAlleSakstemaFraResource();
+    const { valgtJournalpost } = useSakstemaURLState(alleSakstema);
     const vedleggLinkRef = React.createRef<HTMLUListElement>();
     const hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
     const brukerResponse = useHentPersondata();
-    const dyplenker = useInfotabsDyplenker();
     const tittelId = useRef(guid());
 
     const dokumentKanVises = (dokument: Enkeltdokument, journalpost: Journalpost) => {
@@ -167,7 +168,7 @@ function JournalpostListeElement(props: Props) {
 
     return (
         <li>
-            <StyledArticle valgt={dyplenker.saker.erValgtJournalpost(journalpost)} aria-labelledby={tittelId.current}>
+            <StyledArticle valgt={journalpost === valgtJournalpost} aria-labelledby={tittelId.current}>
                 <IkonWrapper>{getDokumentIkon(harTilgangTilJournalpost(journalpost))}</IkonWrapper>
                 <InnholdWrapper>
                     <UUcustomOrder id={tittelId.current}>
