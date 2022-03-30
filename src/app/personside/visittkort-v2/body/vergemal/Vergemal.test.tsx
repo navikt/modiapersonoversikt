@@ -7,7 +7,7 @@ import Vergemal from './Vergemal';
 test('viser vergemål', () => {
     const visittkortbody = renderer.create(
         <TestProvider>
-            <Vergemal vergemal={aremark.vergemal} />
+            <Vergemal feilendeSystem={false} vergemal={aremark.vergemal} />
         </TestProvider>
     );
 
