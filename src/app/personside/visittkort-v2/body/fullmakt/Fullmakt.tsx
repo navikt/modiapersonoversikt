@@ -6,24 +6,30 @@ import Fullmaktlogo from '../../../../../svg/Utropstegn';
 import { Fullmakt as FullmaktInterface, KodeBeskrivelse } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
+import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
+    feilendeSystem: boolean;
     fullmakter: FullmaktInterface[];
 }
 
 function getOmrade(omrader: KodeBeskrivelse<string>[]): string {
-    if (omrader.map(omrade => omrade.kode).includes('*')) {
+    if (omrader.map((omrade) => omrade.kode).includes('*')) {
         return 'alle ytelser';
     }
-    return omrader.map(omrade => omrade.beskrivelse).join(', ');
+    return omrader.map((omrade) => omrade.beskrivelse).join(', ');
 }
 
-function Fullmakt(props: { fullmakt: FullmaktInterface }) {
+function Fullmakt(props: { fullmakt: FullmaktInterface; feilendeSystem: boolean }) {
     const motpartsPersonNavn = hentNavn(props.fullmakt.motpartsPersonNavn);
     const beskrivelse = props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver';
+    const harFeilendeSystem = props.feilendeSystem ? (
+        <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthenting av navn'} />
+    ) : null;
 
     return (
         <VisittkortElement beskrivelse={beskrivelse}>
+            {harFeilendeSystem}
             <Normaltekst>
                 {motpartsPersonNavn} {`(${props.fullmakt.motpartsPersonident})`}
             </Normaltekst>
@@ -33,7 +39,7 @@ function Fullmakt(props: { fullmakt: FullmaktInterface }) {
     );
 }
 
-function Fullmakter({ fullmakter }: Props) {
+function Fullmakter({ feilendeSystem, fullmakter }: Props) {
     if (fullmakter.isEmpty()) {
         return null;
     }
@@ -41,7 +47,7 @@ function Fullmakter({ fullmakter }: Props) {
     return (
         <VisittkortGruppe tittel={'Fullmakter'} ikon={<Fullmaktlogo />}>
             {fullmakter.map((fullmakt, index) => (
-                <Fullmakt key={index} fullmakt={fullmakt} />
+                <Fullmakt key={index} fullmakt={fullmakt} feilendeSystem={feilendeSystem} />
             ))}
         </VisittkortGruppe>
     );
