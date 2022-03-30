@@ -5,12 +5,24 @@ import { DigitalKontaktinformasjon as DigitalKontaktinformasjonInterface } from 
 import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
 import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
 import { formaterDato } from '../../../../../../utils/string-utils';
+import FeilendeSystemAdvarsel from '../../../FeilendeSystemAdvarsel';
 
 interface Props {
+    feilendeSystem: boolean;
     kontaktinformasjon: DigitalKontaktinformasjonInterface | null;
 }
 
-function Telefon({ kontaktinformasjon }: Props) {
+function Telefon({ feilendeSystem, kontaktinformasjon }: Props) {
+    if (feilendeSystem) {
+        return (
+            <VisittkortElement beskrivelse="Telefon" ikon={<PhoneIkon />}>
+                <FeilendeSystemAdvarsel
+                    beskrivelse={'Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret'}
+                />
+            </VisittkortElement>
+        );
+    }
+
     if (!kontaktinformasjon) {
         return null;
     }

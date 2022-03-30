@@ -11,6 +11,7 @@ import { Enhet, Publikumsmottak as PublikumsmottakInterface } from '../../Person
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import AdresseInfo from '../AdresseInfo';
 import { capitalizeName } from '../../../../../utils/string-utils';
+import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 const ApningstiderListe = styled.dl`
     margin: initial;
@@ -28,11 +29,12 @@ const ApningstiderListe = styled.dl`
 `;
 
 interface Props {
+    feilendeSystem: boolean;
     navEnhet: Enhet | null;
 }
 
 function PublikumsmottakKontaktInfo(props: { publikumsmottak: PublikumsmottakInterface }) {
-    const apningstider = props.publikumsmottak.apningstider.map(apningstid => {
+    const apningstider = props.publikumsmottak.apningstider.map((apningstid) => {
         return (
             <Fragment key={apningstid.ukedag}>
                 <dt>
@@ -80,9 +82,19 @@ function Publikumsmottak(props: { publikumsmottak: PublikumsmottakInterface[] })
     );
 }
 
-function NavKontor({ navEnhet }: Props) {
-    const baseUrlResource = useRestResource(resources => resources.baseUrl);
+function NavKontor({ feilendeSystem, navEnhet }: Props) {
+    const baseUrlResource = useRestResource((resources) => resources.baseUrl);
     const baseUrl = baseUrlResource.data ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
+
+    if (feilendeSystem) {
+        return (
+            <VisittkortGruppe tittel={'NAV-kontor'}>
+                <VisittkortElement beskrivelse={'Ukjent NAV-kontor'} ikon={<NavLogo />}>
+                    <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthetning av informasjon om NAV-kontor'} />
+                </VisittkortElement>
+            </VisittkortGruppe>
+        );
+    }
 
     if (!navEnhet) {
         return null;

@@ -7,7 +7,7 @@ import SivilstandWrapper from './Sivilstand';
 test('viser sivilstand', () => {
     const sivilstand = renderer.create(
         <TestProvider>
-            <SivilstandWrapper sivilstandListe={aremark.sivilstand} />
+            <SivilstandWrapper feilendeSystem={false} sivilstandListe={aremark.sivilstand} />
         </TestProvider>
     );
 

@@ -4,12 +4,23 @@ import VisittkortElement from '../../VisittkortElement';
 import { DigitalKontaktinformasjon as DigitalKontaktinformasjonInterface } from '../../../PersondataDomain';
 import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
 import { formaterDato } from '../../../../../../utils/string-utils';
+import FeilendeSystemAdvarsel from '../../../FeilendeSystemAdvarsel';
 
 interface Props {
+    feilendeSystem: boolean;
     kontaktinformasjon: DigitalKontaktinformasjonInterface | null;
 }
 
-function Epost({ kontaktinformasjon }: Props) {
+function Epost({ feilendeSystem, kontaktinformasjon }: Props) {
+    if (feilendeSystem) {
+        return (
+            <VisittkortElement beskrivelse="E-post" ikon={<EmailIkon />}>
+                <FeilendeSystemAdvarsel
+                    beskrivelse={'Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret'}
+                />
+            </VisittkortElement>
+        );
+    }
     if (!kontaktinformasjon) {
         return null;
     }

@@ -6,8 +6,10 @@ import { Sivilstand as SivilstandInterface, SivilstandType } from '../../Persond
 import { erPartner, hentAlderEllerDod, hentNavn } from '../../visittkort-utils';
 import Diskresjonskode from './common/Diskresjonskode';
 import { formaterDato } from '../../../../../utils/string-utils';
+import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
+    feilendeSystem: boolean;
     sivilstandListe: SivilstandInterface[];
 }
 
@@ -26,7 +28,18 @@ function Sivilstand(props: { sivilstand: SivilstandInterface }) {
     );
 }
 
-function Partner(props: { partner: SivilstandInterface }) {
+function Partner(props: { partner: SivilstandInterface; feilendeSystem: boolean }) {
+    if (props.feilendeSystem) {
+        return (
+            <>
+                <Normaltekst>
+                    <Sivilstand sivilstand={props.partner} />
+                </Normaltekst>
+                <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthetning av informasjon om partner'} />
+            </>
+        );
+    }
+
     const partnerRelasjon = props.partner.sivilstandRelasjon;
     if (!partnerRelasjon) {
         return null;
@@ -49,7 +62,7 @@ function Partner(props: { partner: SivilstandInterface }) {
     );
 }
 
-function SivilstandWrapper({ sivilstandListe }: Props) {
+function SivilstandWrapper({ feilendeSystem, sivilstandListe }: Props) {
     const sivilstand = sivilstandListe.firstOrNull();
 
     if (!sivilstand) {
@@ -59,7 +72,7 @@ function SivilstandWrapper({ sivilstandListe }: Props) {
     return (
         <VisittkortElement beskrivelse="Sivilstand" ikon={<HeartIkon />}>
             {erPartner(sivilstand) ? (
-                <Partner partner={sivilstand} />
+                <Partner feilendeSystem={feilendeSystem} partner={sivilstand} />
             ) : (
                 <Normaltekst>
                     <Sivilstand sivilstand={sivilstand} />

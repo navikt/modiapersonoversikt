@@ -4,8 +4,10 @@ import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Telefon as TelefonInterface } from '../../PersondataDomain';
 import Endringstekst from '../Endringstekst';
+import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
+    feilendeSystem: boolean;
     telefonnummer: TelefonInterface[];
 }
 
@@ -20,7 +22,14 @@ function Telefon(props: { telefonnummer: TelefonInterface }) {
     );
 }
 
-function NavKontaktinformasjon({ telefonnummer }: Props) {
+function NavKontaktinformasjon({ feilendeSystem, telefonnummer }: Props) {
+    if (feilendeSystem) {
+        return (
+            <VisittkortElement beskrivelse="Telefon til bruk for NAV">
+                <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthenting av kontaktinformasjon'} />
+            </VisittkortElement>
+        );
+    }
     if (telefonnummer.isEmpty()) {
         return null;
     }
@@ -29,7 +38,7 @@ function NavKontaktinformasjon({ telefonnummer }: Props) {
         <VisittkortElement beskrivelse="Telefon til bruk for NAV">
             {telefonnummer
                 .sort((nr1, nr2) => nr1.prioritet - nr2.prioritet)
-                .map(telefonnummer => (
+                .map((telefonnummer) => (
                     <Telefon telefonnummer={telefonnummer} key={telefonnummer.identifikator} />
                 ))}
         </VisittkortElement>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Person } from '../../PersondataDomain';
+import { Data as PersonData, InformasjonElement } from '../../PersondataDomain';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Bankkonto from './bankkonto/Bankkonto';
 import KontaktinformasjonDodsbo from './dodsbo/Dodsbo';
@@ -7,20 +7,36 @@ import Adresse from './adresse/Adresse';
 import Epost from './epost/Epost';
 import Telefon from './telefon/Telefon';
 import NavKontaktinformasjon from './NavKontaktinformasjon';
+import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 
 interface Props {
-    person: Person;
+    persondata: PersonData;
 }
 
-export default function Kontaktinformasjon({ person }: Props) {
+export default function Kontaktinformasjon({ persondata }: Props) {
     return (
         <VisittkortGruppe tittel={'Kontaktinformasjon'}>
-            <KontaktinformasjonDodsbo dodsbo={person.dodsbo} />
-            <Adresse person={person} />
-            <Epost kontaktinformasjon={person.kontaktOgReservasjon} />
-            <Telefon kontaktinformasjon={person.kontaktOgReservasjon} />
-            <NavKontaktinformasjon telefonnummer={person.telefonnummer} />
-            <Bankkonto bankkonto={person.bankkonto} />
+            <KontaktinformasjonDodsbo
+                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                dodsbo={persondata.person.dodsbo}
+            />
+            <Adresse person={persondata.person} />
+            <Epost
+                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.DKIF)}
+                kontaktinformasjon={persondata.person.kontaktOgReservasjon}
+            />
+            <Telefon
+                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.DKIF)}
+                kontaktinformasjon={persondata.person.kontaktOgReservasjon}
+            />
+            <NavKontaktinformasjon
+                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_KONTAKTINFORMASJON)}
+                telefonnummer={persondata.person.telefonnummer}
+            />
+            <Bankkonto
+                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.BANKKONTO)}
+                bankkonto={persondata.person.bankkonto}
+            />
         </VisittkortGruppe>
     );
 }

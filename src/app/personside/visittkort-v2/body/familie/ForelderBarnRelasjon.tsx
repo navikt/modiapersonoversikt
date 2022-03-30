@@ -6,14 +6,28 @@ import VisittkortElement from '../VisittkortElement';
 import BostedForRelasjon from './common/BostedForRelasjon';
 import Diskresjonskode from './common/Diskresjonskode';
 import FamilierelasjonIkon from './common/FamilierelasjonIkon';
+import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
+    feilendeSystem: boolean;
     relasjon: ForelderBarnRelasjon;
     beskrivelse: string;
     erBarn: boolean;
 }
 
-function ForelderBarnRelasjonVisning({ relasjon, beskrivelse, erBarn }: Props) {
+function ForelderBarnRelasjonVisning({ feilendeSystem, relasjon, beskrivelse, erBarn }: Props) {
+    if (feilendeSystem) {
+        return (
+            <VisittkortElement
+                beskrivelse={beskrivelse}
+                ikon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}
+            >
+                <FeilendeSystemAdvarsel
+                    beskrivelse={`Feilet ved uthenting av informasjon om ${relasjon.rolle.toLowerCase()}`}
+                />
+            </VisittkortElement>
+        );
+    }
     const alder = hentAlderEllerDod(relasjon) ? `(${hentAlderEllerDod(relasjon)})` : null;
     const navn = relasjon.navn.firstOrNull();
     return (

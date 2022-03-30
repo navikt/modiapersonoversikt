@@ -5,15 +5,25 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
 import { Bankkonto as BankkontoInterface } from '../../../PersondataDomain';
 import Endringstekst from '../../Endringstekst';
+import FeilendeSystemAdvarsel from '../../../FeilendeSystemAdvarsel';
 
 interface Props {
+    feilendeSystem: boolean;
     bankkonto: BankkontoInterface | null;
 }
 
-function Bankkonto({ bankkonto }: Props) {
+function Bankkonto({ feilendeSystem, bankkonto }: Props) {
     let beskrivelse = 'Kontonummer';
     if (bankkonto && bankkonto.landkode && bankkonto.landkode.kode !== 'NOR') {
         beskrivelse += 'utland';
+    }
+
+    if (feilendeSystem) {
+        return (
+            <VisittkortElement beskrivelse={beskrivelse} ikon={<CoinsIkon />}>
+                <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthenting av kontonummer'} />
+            </VisittkortElement>
+        );
     }
 
     if (!bankkonto) {

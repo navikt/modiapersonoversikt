@@ -9,22 +9,30 @@ import { VisittkortGruppe } from '../VisittkortStyles';
 import { Element } from 'nav-frontend-typografi';
 import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
+import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 const Vergeinformasjon = styled.div`
     margin-bottom: 5px;
 `;
 
 interface Props {
+    feilendeSystem: boolean;
     vergemal: VergeInterface[];
 }
 
-function Verge(props: { verge: VergeInterface }) {
+function Verge(props: { feilendeSystem: boolean; verge: VergeInterface }) {
     const { verge } = props;
+    const harFeilendeSystemOgIngenNavn =
+        props.feilendeSystem && !verge.navn ? (
+            <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthetning av navn på verge'} />
+        ) : (
+            <Normaltekst>{hentNavn(verge.navn, 'Navn ikke tilgjengelig')}</Normaltekst>
+        );
 
     return (
         <VisittkortElement beskrivelse="Verge">
             <Vergeinformasjon>
-                <Normaltekst>{hentNavn(verge.navn, 'Navn ikke tilgjengelig')}</Normaltekst>
+                {harFeilendeSystemOgIngenNavn}
                 <Normaltekst>{verge.ident}</Normaltekst>
             </Vergeinformasjon>
             <Element>Omfang</Element>
@@ -35,13 +43,13 @@ function Verge(props: { verge: VergeInterface }) {
     );
 }
 
-function Vergesakstype({ vergemal }: Props) {
-    const alleVergesakstyper = vergemal.map((verge) => verge.vergesakstype);
+function Vergesakstype(props: { vergemal: VergeInterface[] }) {
+    const alleVergesakstyper = props.vergemal.map((verge) => verge.vergesakstype);
     const unikeVergessakstyper = Array.from(new Set(alleVergesakstyper)).join(', ');
     return <Normaltekst>Vergesakstyper: {unikeVergessakstyper}</Normaltekst>;
 }
 
-function Vergemal({ vergemal }: Props) {
+function Vergemal({ feilendeSystem, vergemal }: Props) {
     if (vergemal.isEmpty()) {
         return null;
     }
@@ -50,7 +58,7 @@ function Vergemal({ vergemal }: Props) {
         <VisittkortGruppe ikon={<VergemalLogo />} tittel="Bruker er under vergemål">
             <Vergesakstype vergemal={vergemal} />
             {vergemal.map((verge, index) => (
-                <Verge verge={verge} key={index} />
+                <Verge feilendeSystem={feilendeSystem} verge={verge} key={index} />
             ))}
         </VisittkortGruppe>
     );

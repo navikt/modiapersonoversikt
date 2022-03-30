@@ -5,8 +5,10 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import Infotegn from '../../../../../svg/Info';
 import { Foreldreansvar, NavnOgIdent } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
+import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
+    feilendeSystem: boolean;
     foreldreansvar: Foreldreansvar[];
 }
 
@@ -18,8 +20,17 @@ function kombinerNavnOgIdent(personInfo: NavnOgIdent | null): string | null {
     return personInfo.navn ? `${navn} (${personInfo.ident})` : navn;
 }
 
-function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {
+function ForeldreansvarElement(props: { feilendeSystem: boolean; foreldreansvar: Foreldreansvar }) {
     const { foreldreansvar } = props;
+
+    if (props.feilendeSystem) {
+        return (
+            <VisittkortElement>
+                <Normaltekst>Ansvar: {foreldreansvar.ansvar}</Normaltekst>
+                <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthetning av informasjon om barn'} />
+            </VisittkortElement>
+        );
+    }
     const ansvarlig = kombinerNavnOgIdent(foreldreansvar.ansvarlig);
     const ansvarsubject = kombinerNavnOgIdent(foreldreansvar.ansvarsubject);
 
@@ -32,7 +43,7 @@ function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {
     );
 }
 
-function ForendreansvarWrapper({ foreldreansvar }: Props) {
+function ForendreansvarWrapper({ feilendeSystem, foreldreansvar }: Props) {
     if (foreldreansvar.isEmpty()) {
         return null;
     }
@@ -40,7 +51,7 @@ function ForendreansvarWrapper({ foreldreansvar }: Props) {
     return (
         <VisittkortGruppe ikon={<Infotegn />} tittel="Foreldreansvar">
             {foreldreansvar.map((foreldreansvar, index) => (
-                <ForeldreansvarElement key={index} foreldreansvar={foreldreansvar} />
+                <ForeldreansvarElement key={index} feilendeSystem={feilendeSystem} foreldreansvar={foreldreansvar} />
             ))}
         </VisittkortGruppe>
     );

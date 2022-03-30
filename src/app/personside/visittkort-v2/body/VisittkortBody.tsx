@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
-import { Person } from '../PersondataDomain';
+import { Data as PersonData, InformasjonElement } from '../PersondataDomain';
 import Familie from './familie/Familie';
 import Fullmakter from './fullmakt/Fullmakt';
 import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
@@ -12,75 +13,120 @@ import TilrettelagtKommunikasjon from './tilrettelagtkommunikasjon/TilrettelagtK
 import Vergemal from './vergemal/Vergemal';
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 import LenkeBrukerprofil from './lenkebrukerprofil/LenkeBrukerprofil';
-import { useEffect, useState } from 'react';
 import NavKontor from './navkontor/NavKontor';
+import { harFeilendeSystemer } from '../harFeilendeSystemer';
 
 interface Props {
-    person: Person;
+    persondata: PersonData;
 }
 
-function SingleColumnLayout(person: Person) {
+function SingleColumnLayout(persondata: PersonData) {
     return (
         <Kolonne>
-            <Kontaktinformasjon person={person} />
-            <Fullmakter fullmakter={person.fullmakt} />
-            <Familie person={person} />
-            <DeltBosted deltBosted={person.deltBosted} />
-            <Foreldreansvar foreldreansvar={person.foreldreansvar} />
-            <NavKontor navEnhet={person.navEnhet} />
-            <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
-            <Vergemal vergemal={person.vergemal} />
-            <Sikkerhetstiltak sikkerhetstiltak={person.sikkerhetstiltak} />
+            <Kontaktinformasjon persondata={persondata} />
+            <Fullmakter
+                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                fullmakter={persondata.person.fullmakt}
+            />
+            <Familie
+                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                person={persondata.person}
+            />
+            <DeltBosted deltBosted={persondata.person.deltBosted} />
+            <Foreldreansvar
+                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                foreldreansvar={persondata.person.foreldreansvar}
+            />
+            <NavKontor
+                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_NAVKONTOR)}
+                navEnhet={persondata.person.navEnhet}
+            />
+            <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
+            <Vergemal
+                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                vergemal={persondata.person.vergemal}
+            />
+            <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
             <LenkeBrukerprofil />
         </Kolonne>
     );
 }
 
-function DoubleColumnLayout(person: Person) {
+function DoubleColumnLayout(persondata: PersonData) {
     return (
         <>
             <Kolonne>
-                <Kontaktinformasjon person={person} />
-                <Fullmakter fullmakter={person.fullmakt} />
-                <Familie person={person} />
-                <DeltBosted deltBosted={person.deltBosted} />
-                <Foreldreansvar foreldreansvar={person.foreldreansvar} />
+                <Kontaktinformasjon persondata={persondata} />
+                <Fullmakter
+                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    fullmakter={persondata.person.fullmakt}
+                />
+                <Familie
+                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    person={persondata.person}
+                />
+                <DeltBosted deltBosted={persondata.person.deltBosted} />
+                <Foreldreansvar
+                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    foreldreansvar={persondata.person.foreldreansvar}
+                />
             </Kolonne>
             <Kolonne>
-                <NavKontor navEnhet={person.navEnhet} />
-                <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
-                <Vergemal vergemal={person.vergemal} />
-                <Sikkerhetstiltak sikkerhetstiltak={person.sikkerhetstiltak} />
+                <NavKontor
+                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_NAVKONTOR)}
+                    navEnhet={persondata.person.navEnhet}
+                />
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
+                <Vergemal
+                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    vergemal={persondata.person.vergemal}
+                />
+                <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
                 <LenkeBrukerprofil />
             </Kolonne>
         </>
     );
 }
 
-function TripleColumnLayout(person: Person) {
+function TripleColumnLayout(persondata: PersonData) {
     return (
         <>
             <Kolonne>
-                <Kontaktinformasjon person={person} />
-                <Fullmakter fullmakter={person.fullmakt} />
+                <Kontaktinformasjon persondata={persondata} />
+                <Fullmakter
+                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    fullmakter={persondata.person.fullmakt}
+                />
             </Kolonne>
             <Kolonne>
-                <Familie person={person} />
-                <Foreldreansvar foreldreansvar={person.foreldreansvar} />
-                <DeltBosted deltBosted={person.deltBosted} />
-                <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
-                <Vergemal vergemal={person.vergemal} />
+                <Familie
+                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    person={persondata.person}
+                />
+                <Foreldreansvar
+                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    foreldreansvar={persondata.person.foreldreansvar}
+                />
+                <DeltBosted deltBosted={persondata.person.deltBosted} />
+                <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
+                <Vergemal
+                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    vergemal={persondata.person.vergemal}
+                />
             </Kolonne>
             <Kolonne>
-                <NavKontor navEnhet={person.navEnhet} />
-                <Sikkerhetstiltak sikkerhetstiltak={person.sikkerhetstiltak} />
+                <NavKontor
+                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_NAVKONTOR)}
+                    navEnhet={persondata.person.navEnhet}
+                />
+                <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
                 <LenkeBrukerprofil />
             </Kolonne>
         </>
     );
 }
 
-function VisittkortBody({ person }: Props) {
+function VisittkortBody({ persondata }: Props) {
     const [width, setWidth] = useState(0);
 
     useEffect(() => {
@@ -94,11 +140,11 @@ function VisittkortBody({ person }: Props) {
 
     function getColumnLayout(antallKolonner: number) {
         if (antallKolonner <= 1) {
-            return SingleColumnLayout(person);
+            return SingleColumnLayout(persondata);
         } else if (antallKolonner === 2) {
-            return DoubleColumnLayout(person);
+            return DoubleColumnLayout(persondata);
         }
-        return TripleColumnLayout(person);
+        return TripleColumnLayout(persondata);
     }
 
     const maxColumnWidth = 275;
