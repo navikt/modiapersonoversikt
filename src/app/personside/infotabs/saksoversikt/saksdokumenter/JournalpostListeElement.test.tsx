@@ -1,5 +1,5 @@
 import * as React from 'react';
-import JournalpostLiseElement from './JournalpostLiseElement';
+import JournalpostListeElement from './JournalpostListeElement';
 import TestProvider from '../../../../../test/Testprovider';
 import { getStaticMockSaksoversikt } from '../../../../../mock/saksoversikt/saksoversikt-mock';
 import { getTestStore } from '../../../../../test/testStore';
@@ -24,7 +24,7 @@ describe('JournalpostListeElement', () => {
 
         const wrapper = mount(
             <TestProvider customStore={testStore}>
-                <JournalpostLiseElement
+                <JournalpostListeElement
                     journalpost={journalposter}
                     harTilgangTilSakstema={true}
                     valgtSakstema={valgtSakstema}
@@ -39,7 +39,7 @@ describe('JournalpostListeElement', () => {
 
         const wrapper = mount(
             <TestProvider customStore={testStore}>
-                <JournalpostLiseElement
+                <JournalpostListeElement
                     valgtSakstema={valgtSakstema}
                     journalpost={journalposter}
                     harTilgangTilSakstema={false}
@@ -68,7 +68,7 @@ describe('JournalpostListeElement', () => {
 
         const wrapper = mount(
             <TestProvider customStore={testStore}>
-                <JournalpostLiseElement
+                <JournalpostListeElement
                     journalpost={journalposter}
                     harTilgangTilSakstema={true}
                     valgtSakstema={valgtSakstema}
@@ -85,7 +85,7 @@ describe('JournalpostListeElement', () => {
 
         const wrapper = mount(
             <TestProvider customStore={testStore}>
-                <JournalpostLiseElement
+                <JournalpostListeElement
                     journalpost={journalposter}
                     harTilgangTilSakstema={true}
                     valgtSakstema={valgtSakstema}

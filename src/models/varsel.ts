@@ -105,5 +105,4 @@ export enum Varseltype {
     'SyfomoteNyetidspunkt' = 'Forespørsel om nye tidspunkt for møte',
     'NaermesteLederMoteAvbrutt' = 'Møteforespørsel avbrutt',
     'SyfoMoteForesporsel' = 'Dialogmøte'
-    
 }
