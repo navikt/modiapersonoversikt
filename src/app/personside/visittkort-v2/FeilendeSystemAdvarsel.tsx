@@ -3,18 +3,18 @@ import styled from 'styled-components/macro';
 import { ReactNode } from 'react';
 import theme from '../../../styles/personOversiktTheme';
 
-const BeskrivelseDiv = styled.div`
+const StyledBeskrivelse = styled.div`
     color: ${theme.color.redError};
     font-size: 0.875rem;
     font-weight: 600;
 `;
 
 interface Props {
-    beskrivelse: ReactNode;
+    children: ReactNode;
 }
 
 function FeilendeSystemAdvarsel(props: Props) {
-    return <BeskrivelseDiv>{props.beskrivelse}</BeskrivelseDiv>;
+    return <StyledBeskrivelse>{props.children}</StyledBeskrivelse>;
 }
 
 export default FeilendeSystemAdvarsel;
