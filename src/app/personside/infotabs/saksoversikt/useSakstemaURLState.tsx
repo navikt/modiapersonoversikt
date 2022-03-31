@@ -11,7 +11,6 @@ interface SakstemaURLState {
     valgteSakstemaer: Sakstema[];
     valgtDokument: Dokument | undefined;
     valgtJournalpost: Journalpost | undefined;
-    setDokument(): void;
     setIngenValgte(): void;
     setAlleValgte(): void;
     toggleValgtSakstema(sakstema: Sakstema): void;
@@ -71,20 +70,13 @@ export function useSakstemaURLState(alleSakstemaer: Sakstema[]): SakstemaURLStat
             }
         };
 
-        const setDokument = () => {
-            history.push({
-                search: valgtDokument ? `dokument=${valgtDokument.dokumentreferanse}` : ''
-            });
-        };
-
         return {
             valgteSakstemaer,
             valgtDokument,
             valgtJournalpost,
             setAlleValgte,
             setIngenValgte,
-            toggleValgtSakstema,
-            setDokument
+            toggleValgtSakstema
         };
     }, [history, queryParams, alleSakstemaer]);
 }
