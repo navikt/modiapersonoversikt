@@ -5,7 +5,6 @@ import {
     Meldingstype,
     OpprettHenvendelseRequest,
     OpprettHenvendelseResponse,
-    SendDelsvarRequest,
     SendInfomeldingRequest,
     SendReferatRequest,
     SendSpørsmålRequest,
@@ -42,13 +41,14 @@ export class MeldingerBackendMock {
 
         const alleTråder = [...this.sendteNyeMeldinger, ...mockTraader];
 
-        const traaderMedSvar: Traad[] = alleTråder.map(traad => {
+        const traaderMedSvar: Traad[] = alleTråder.map((traad) => {
             const tilhørendeSvar = this.sendteSvar
-                .filter(svar => svar.traadId === traad.traadId)
-                .flatMap(traad => traad.meldinger);
+                .filter((svar) => svar.traadId === traad.traadId)
+                .flatMap((traad) => traad.meldinger);
             return {
                 traadId: traad.traadId,
-                meldinger: [...tilhørendeSvar, ...traad.meldinger]
+                meldinger: [...tilhørendeSvar, ...traad.meldinger],
+                journalposter: traad.journalposter
             };
         });
 
@@ -64,7 +64,8 @@ export class MeldingerBackendMock {
         };
         this.sendteNyeMeldinger.unshift({
             traadId: guid(),
-            meldinger: [melding]
+            meldinger: [melding],
+            journalposter: []
         });
         return melding.id;
     }
@@ -77,7 +78,8 @@ export class MeldingerBackendMock {
         };
         this.sendteNyeMeldinger.unshift({
             traadId: guid(),
-            meldinger: [melding]
+            meldinger: [melding],
+            journalposter: []
         });
     }
 
@@ -89,7 +91,8 @@ export class MeldingerBackendMock {
         };
         this.sendteNyeMeldinger.unshift({
             traadId: guid(),
-            meldinger: [melding]
+            meldinger: [melding],
+            journalposter: []
         });
     }
 
@@ -104,28 +107,13 @@ export class MeldingerBackendMock {
         };
         this.sendteSvar.unshift({
             traadId: request.traadId,
-            meldinger: [melding]
-        });
-    }
-
-    public sendDelsvar(request: SendDelsvarRequest) {
-        if (request.oppgaveId) {
-            this.oppgaveBackendMock.ferdigStillOppgave(request.oppgaveId);
-        }
-        const melding: Melding = {
-            ...getMockMelding(),
-            fritekst: request.fritekst,
-            meldingstype: Meldingstype.DELVIS_SVAR_SKRIFTLIG,
-            temagruppe: request.temagruppe
-        };
-        this.sendteSvar.unshift({
-            traadId: request.traadId,
-            meldinger: [melding]
+            meldinger: [melding],
+            journalposter: []
         });
     }
 
     public opprettHenvendelse(request: OpprettHenvendelseRequest): OpprettHenvendelseResponse {
-        const oppgave = this.oppgaveBackendMock.getTildelteOppgaver().find(it => it.traadId === request.traadId);
+        const oppgave = this.oppgaveBackendMock.getTildelteOppgaver().find((it) => it.traadId === request.traadId);
         return {
             behandlingsId: guid(),
             oppgaveId: oppgave?.oppgaveId
@@ -142,8 +130,6 @@ function getMockMelding(): Melding {
         fritekst: 'Dette er en mock-melding',
         status: LestStatus.IkkeLest,
         opprettetDato: dayjs().format(backendDatoTidformat),
-        erFerdigstiltUtenSvar: false,
-        sendtTilSladding: false,
-        erDokumentMelding: false
+        sendtTilSladding: false
     };
 }

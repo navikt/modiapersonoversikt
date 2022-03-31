@@ -14,8 +14,11 @@ function kombinerNavnOgIdent(personInfo: NavnOgIdent | null): string | null {
     if (!personInfo) {
         return null;
     }
+
     const navn = hentNavn(personInfo.navn);
-    return personInfo.navn ? `${navn} (${personInfo.ident})` : navn;
+    const ident = personInfo.ident ? personInfo.ident : 'Ukjent fnr/dnr';
+
+    return personInfo.navn ? `${navn} (${ident})` : navn;
 }
 
 function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {

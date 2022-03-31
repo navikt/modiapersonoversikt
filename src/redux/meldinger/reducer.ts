@@ -2,11 +2,6 @@ import { initialState, MeldingerActions, MeldingerActionTypes, MeldingerState } 
 
 export function meldingerReducer(state: MeldingerState = initialState, action: MeldingerActions): MeldingerState {
     switch (action.type) {
-        case MeldingerActionTypes.SkjulVarsler:
-            return {
-                ...state,
-                skjulVarsler: action.skjul
-            };
         case MeldingerActionTypes.HuskSok:
             return {
                 ...state,

@@ -1,7 +1,7 @@
 import { Normaltekst } from 'nav-frontend-typografi';
 import * as React from 'react';
 import { ForelderBarnRelasjon } from '../../PersondataDomain';
-import { hentAlderEllerDodRelasjon, hentNavn } from '../../visittkort-utils';
+import { hentAlderEllerDod, hentNavn } from '../../visittkort-utils';
 import VisittkortElement from '../VisittkortElement';
 import BostedForRelasjon from './common/BostedForRelasjon';
 import Diskresjonskode from './common/Diskresjonskode';
@@ -14,7 +14,7 @@ interface Props {
 }
 
 function ForelderBarnRelasjonVisning({ relasjon, beskrivelse, erBarn }: Props) {
-    const alder = hentAlderEllerDodRelasjon(relasjon) ? `(${hentAlderEllerDodRelasjon(relasjon)})` : null;
+    const alder = hentAlderEllerDod(relasjon) ? `(${hentAlderEllerDod(relasjon)})` : null;
     const navn = relasjon.navn.firstOrNull();
     return (
         <VisittkortElement beskrivelse={beskrivelse} ikon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}>

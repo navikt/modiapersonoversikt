@@ -1,14 +1,16 @@
-import { LestStatus, Melding, Saksbehandler, Traad, Meldingstype } from '../../models/meldinger/meldinger';
+import {
+    LestStatus,
+    Melding,
+    Saksbehandler,
+    Traad,
+    Meldingstype,
+    MeldingJournalpost
+} from '../../models/meldinger/meldinger';
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import dayjs from 'dayjs';
 import { fyllRandomListe } from '../utils/mock-utils';
-import {
-    erMeldingstypeSamtalereferat,
-    erVarselMelding,
-    erMeldingFraNav,
-    saksbehandlerTekst
-} from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { erMeldingFraNav, saksbehandlerTekst } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import { Temagruppe, TemaSamtalereferat } from '../../models/temagrupper';
 import standardTeksterMock from '../standardTeksterMock';
 import { autofullfor, AutofullforMap } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
@@ -49,19 +51,15 @@ function getMockTraad(): Traad {
         .fill(null)
         .map(() => getMelding(temagruppe));
 
-    const enkeltStaaendeMelding = meldinger.find(
-        (melding) => erVarselMelding(melding.meldingstype) || erMeldingstypeSamtalereferat(melding.meldingstype)
-    );
-
     return {
         traadId: faker.random.alphaNumeric(8),
-        meldinger: enkeltStaaendeMelding ? [enkeltStaaendeMelding] : meldinger
+        meldinger: meldinger,
+        journalposter: fyllRandomListe(lagJournalpost, 3, false)
     };
 }
 
 function getMelding(temagruppe: Temagruppe): Melding {
     const visKontrosperre = navfaker.random.vektetSjanse(0.1);
-    const ferdigstilUtenSvar = navfaker.random.vektetSjanse(0.1);
     const visMarkertSomFeilsendt = navfaker.random.vektetSjanse(0.1);
     const meldingstype = navfaker.random.arrayElement(Object.entries(Meldingstype))[0];
     const sladdingNiva = navfaker.random.arrayElement([0, 0, 0, 0, 1, 1, 1, 1, 2]);
@@ -102,16 +100,31 @@ function getMelding(temagruppe: Temagruppe): Melding {
         status: navfaker.random.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
         opprettetDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
         ferdigstiltDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
-        erFerdigstiltUtenSvar: ferdigstilUtenSvar,
-        ferdigstiltUtenSvarDato: ferdigstilUtenSvar
-            ? dayjs(faker.date.recent(40)).format(backendDatoTidformat)
-            : undefined,
-        ferdigstiltUtenSvarAv: ferdigstilUtenSvar ? getSaksbehandler() : undefined,
         kontorsperretAv: visKontrosperre ? getSaksbehandler() : undefined,
         kontorsperretEnhet: visKontrosperre ? faker.company.companyName() : undefined,
         sendtTilSladding: sladdingNiva !== 0,
-        markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined,
-        erDokumentMelding: meldingstype === Meldingstype.DOKUMENT_VARSEL
+        markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined
+    };
+}
+
+const temaMap = {
+    AAP: 'Arbeidsavklaringspenger',
+    DAG: 'Dagpenger',
+    BID: 'Bidrag',
+    PEN: 'Pensjon'
+};
+function lagJournalpost(): MeldingJournalpost {
+    const tema = navfaker.random.arrayElement(['DAG', 'BID', 'AAP', 'PEN']);
+    const saksbehandler = getSaksbehandler();
+    return {
+        journalfortDato: faker.date.recent(40).toISOString(),
+        journalfortSaksid: faker.random.alphaNumeric(5),
+        journalfortTema: tema,
+        journalfortTemanavn: temaMap[tema],
+        journalfortAv: {
+            ident: saksbehandler.ident!,
+            navn: `${saksbehandler.fornavn} ${saksbehandler.etternavn}`
+        }
     };
 }
 

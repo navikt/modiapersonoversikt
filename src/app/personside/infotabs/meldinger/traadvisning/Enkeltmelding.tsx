@@ -4,7 +4,6 @@ import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
 import { Normaltekst, UndertekstBold } from 'nav-frontend-typografi';
 import {
-    erDelsvar,
     erJournalfort,
     erMeldingFraBruker,
     erMeldingFraNav,
@@ -125,9 +124,6 @@ function Journalforing({ melding }: { melding: Melding }) {
 function MeldingLestEtikett({ melding }: { melding: Melding }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
-    }
-    if (erDelsvar(melding)) {
-        return <Etikett type="info">Delsvar</Etikett>;
     }
     if (melding.status === LestStatus.Lest) {
         return <Etikett type="suksess">Lest</Etikett>;

@@ -4,11 +4,11 @@ import { Temagruppe } from '../temagrupper';
 export interface Traad {
     traadId: string;
     meldinger: Melding[];
+    journalposter: Array<MeldingJournalpost>;
 }
 
 export interface Melding {
     id: string;
-    oppgaveId?: string;
     meldingstype: Meldingstype;
     temagruppe: Temagruppe | null;
     skrevetAvTekst: string;
@@ -20,18 +20,26 @@ export interface Melding {
     fritekst: string;
     lestDato?: string;
     status: LestStatus;
-    statusTekst?: string;
     opprettetDato: string;
     ferdigstiltDato?: string;
     avsluttetDato?: string;
-    erFerdigstiltUtenSvar: boolean;
-    ferdigstiltUtenSvarAv?: Saksbehandler;
     kontorsperretEnhet?: string;
     kontorsperretAv?: Saksbehandler;
     sendtTilSladding: boolean;
     markertSomFeilsendtAv?: Saksbehandler;
-    erDokumentMelding: boolean;
-    ferdigstiltUtenSvarDato?: string;
+}
+
+export interface MeldingJournalpost {
+    journalfortAv?: Veileder;
+    journalfortDato: string;
+    journalfortTema: string;
+    journalfortTemanavn: string;
+    journalfortSaksid?: string;
+}
+
+export interface Veileder {
+    ident: string;
+    navn: string;
 }
 
 export interface Saksbehandler {
@@ -41,14 +49,8 @@ export interface Saksbehandler {
 }
 
 export enum Meldingstype {
-    DOKUMENT_VARSEL = 'DOKUMENT_VARSEL',
-    OPPGAVE_VARSEL = 'OPPGAVE_VARSEL',
     SPORSMAL_SKRIFTLIG = 'SPORSMAL_SKRIFTLIG',
-    SPORSMAL_SKRIFTLIG_DIREKTE = 'SPORSMAL_SKRIFTLIG_DIREKTE',
     SVAR_SKRIFTLIG = 'SVAR_SKRIFTLIG',
-    SVAR_OPPMOTE = 'SVAR_OPPMOTE',
-    SVAR_TELEFON = 'SVAR_TELEFON',
-    DELVIS_SVAR_SKRIFTLIG = 'DELVIS_SVAR_SKRIFTLIG',
     SAMTALEREFERAT_OPPMOTE = 'SAMTALEREFERAT_OPPMOTE',
     SAMTALEREFERAT_TELEFON = 'SAMTALEREFERAT_TELEFON',
     SPORSMAL_MODIA_UTGAAENDE = 'SPORSMAL_MODIA_UTGAAENDE',
@@ -91,15 +93,6 @@ export interface ForsettDialogRequest {
     erOppgaveTilknyttetAnsatt: boolean;
     meldingstype: Meldingstype;
     oppgaveId?: string;
-}
-
-export interface SendDelsvarRequest {
-    enhet: string;
-    traadId: string;
-    behandlingsId: string;
-    fritekst: string;
-    temagruppe: Temagruppe;
-    oppgaveId: string;
 }
 
 export interface OpprettHenvendelseRequest {

@@ -41,7 +41,7 @@ test('Sjekke søk i meldinger basert på fritekst', () => {
 
 test('Sjekke søk i meldinger basert på tittel', () => {
     const traader: Traad[] = [
-        getMockSoketraad('', { meldingtype: Meldingstype.SVAR_TELEFON, temagruppe: Temagruppe.Arbeid }),
+        getMockSoketraad('', { meldingtype: Meldingstype.SVAR_SKRIFTLIG, temagruppe: Temagruppe.Arbeid }),
         getMockSoketraad('', { meldingtype: Meldingstype.SVAR_SKRIFTLIG, temagruppe: Temagruppe.AndreSosiale })
     ];
     const renderer = renderHook(() => useSokEtterMeldinger(traader, 'Arbeid'));

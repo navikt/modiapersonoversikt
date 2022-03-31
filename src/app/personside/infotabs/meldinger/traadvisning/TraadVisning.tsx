@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { datoSynkende, formatterDatoMedMaanedsnavn, formatterDatoTid } from '../../../../../utils/date-utils';
+import { datoSynkende, formatterDato, formatterDatoTid } from '../../../../../utils/date-utils';
 import EnkeltMelding from './Enkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
@@ -14,6 +14,10 @@ import { eldsteMelding, kanBesvares, meldingstittel, nyesteMelding, saksbehandle
 import { formaterDato } from '../../../../../utils/string-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/print/usePrinter';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { Normaltekst, UndertekstBold } from 'nav-frontend-typografi';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     valgtTraad: Traad;
@@ -54,29 +58,22 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 
     const traadKanBesvares = kanBesvares(valgtTraad);
     const melding = eldsteMelding(valgtTraad);
-    if (melding.erFerdigstiltUtenSvar) {
-        return (
-            <AlertStripeInfo>
-                Henvendelsen er avsluttet uten å svare bruker av {saksbehandlerTekst(melding.ferdigstiltUtenSvarAv)}{' '}
-                {melding.ferdigstiltUtenSvarDato && formatterDatoMedMaanedsnavn(melding.ferdigstiltUtenSvarDato)}
-            </AlertStripeInfo>
-        );
-    }
 
-    if (melding.markertSomFeilsendtAv) {
+    if (melding.markertSomFeilsendtAv || melding.sendtTilSladding || (melding.avsluttetDato && !traadKanBesvares)) {
         return (
-            <AlertStripeInfo>
-                Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}{' '}
-                {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
-            </AlertStripeInfo>
+            <>
+                {melding.markertSomFeilsendtAv && (
+                    <AlertStripeInfo>
+                        Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}{' '}
+                        {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
+                    </AlertStripeInfo>
+                )}
+                {melding.sendtTilSladding && (
+                    <AlertStripeInfo>Tråden ligger til behandling for sladding</AlertStripeInfo>
+                )}
+                {melding.avsluttetDato && !traadKanBesvares && <AlertStripeInfo>Dialogen er avsluttet</AlertStripeInfo>}
+            </>
         );
-    }
-
-    if (melding.sendtTilSladding) {
-        return <AlertStripeInfo>Tråden ligger til behandling for sladding</AlertStripeInfo>;
-    }
-    if (melding.avsluttetDato && !traadKanBesvares) {
-        return <AlertStripeInfo>Henvendelsen er avsluttet</AlertStripeInfo>;
     }
 
     const handleNyMelding = () => {
@@ -104,8 +101,48 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     }
 }
 
+const StyledJournalforingPanel = styled(Ekspanderbartpanel)`
+    margin-top: 0.5rem;
+    .ekspanderbartPanel__hode,
+    .ekspanderbartPanel__innhold {
+        padding: 0.3rem 1rem;
+    }
+    .ekspanderbartPanel__tittel {
+        color: ${theme.color.lenke};
+    }
+    @media print {
+        display: none;
+    }
+`;
+
+function Journalposter(props: { traad: Traad }) {
+    const journalposter = props.traad.journalposter;
+    if (journalposter.isEmpty()) {
+        return null;
+    }
+
+    const content = journalposter.map((journalpost) => {
+        const navn = journalpost.journalfortAv?.navn ?? 'ukjent';
+        const dato = formatterDato(journalpost.journalfortDato);
+        const tema = journalpost.journalfortTemanavn;
+        const saksid = journalpost.journalfortSaksid ? `saksid ${journalpost.journalfortSaksid}` : 'ukjent saksid';
+
+        return <Normaltekst>{`${dato}: Knyttet til ${tema} (${saksid}) av ${navn}`}</Normaltekst>;
+    });
+
+    return (
+        <StyledJournalforingPanel
+            tittel={<UndertekstBold>Dialogen er knyttet til {journalposter.length} sak(er)</UndertekstBold>}
+            border={false}
+        >
+            {content}
+        </StyledJournalforingPanel>
+    );
+}
+
 function TraadVisning(props: Props) {
     const sisteMelding = nyesteMelding(props.valgtTraad);
+    const visAlleJournalposter = useFeatureToggle(FeatureToggles.VisAlleJournalposter)?.isOn ?? false;
 
     return (
         <VisningStyle>
@@ -113,6 +150,7 @@ function TraadVisning(props: Props) {
             <h3 className="sr-only" aria-live="polite">
                 {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
             </h3>
+            {visAlleJournalposter && <Journalposter traad={props.valgtTraad} />}
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>
     );

@@ -79,8 +79,9 @@ exports[`viser sivilstand 1`] = `
     className="typo-normal"
   >
     BAREMARK TESTFAMILIEN
-     
-    (40)
+     (
+    Død
+    )
   </p>
   <p
     className="typo-normal"

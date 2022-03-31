@@ -6,7 +6,7 @@ export interface Data {
 export type LocalDate = string & { __type__: 'LocalDate' };
 export type LocalDateTime = string & { __type__: 'LocalDateTime' };
 
-export interface Person {
+export interface Person extends PersonMedAlderOgDodsdato {
     personIdent: string;
     navn: Array<Navn>;
     kjonn: Array<KodeBeskrivelse<Kjonn>>;
@@ -36,6 +36,11 @@ export interface Person {
     forelderBarnRelasjon: Array<ForelderBarnRelasjon>;
 }
 
+export interface PersonMedAlderOgDodsdato {
+    alder: number | null;
+    dodsdato: Array<LocalDate>;
+}
+
 export interface KodeBeskrivelse<T> {
     kode: T;
     beskrivelse: string;
@@ -52,12 +57,13 @@ export interface Statsborgerskap {
     gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
-export interface SivilstandRelasjon {
+export interface SivilstandRelasjon extends PersonMedAlderOgDodsdato {
     fnr: string;
     navn: Array<Navn>;
     alder: number | null;
     adressebeskyttelse: Array<KodeBeskrivelse<AdresseBeskyttelse>>;
     harSammeAdresse: boolean;
+    dodsdato: Array<LocalDate>;
 }
 
 export interface Sivilstand {
@@ -195,7 +201,7 @@ export interface DeltBosted {
     gyldighetsPeriode: GyldighetsPeriode | null;
 }
 
-export interface ForelderBarnRelasjon {
+export interface ForelderBarnRelasjon extends PersonMedAlderOgDodsdato {
     ident: string;
     rolle: ForelderBarnRelasjonRolle;
     navn: Array<Navn>;

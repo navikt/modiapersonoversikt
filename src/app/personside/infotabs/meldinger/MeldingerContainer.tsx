@@ -4,14 +4,14 @@ import { Traad } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components/macro';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import TraadListe from './traadliste/TraadListe';
-import { huskSokAction, setSkjulVarslerAction } from '../../../../redux/meldinger/actions';
+import { huskSokAction } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
 import { useAppState, usePrevious } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useHistory, withRouter } from 'react-router';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
-import { filtrerBortVarsel, useSokEtterMeldinger } from './utils/meldingerUtils';
+import { useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
@@ -78,17 +78,12 @@ function useReloadOnEnhetChange() {
 }
 
 function MeldingerContainer() {
-    const dispatch = useDispatch();
     const traaderResource = useRestResource((resources) => resources.traader, undefined, true);
-    const skjulVarsler = useAppState((state) => state.meldinger.skjulVarsler);
-    const setSkjulVarsler = (skjul: boolean) => dispatch(setSkjulVarslerAction(skjul));
     const forrigeSok = useAppState((state) => state.meldinger.forrigeSok);
     const [sokeord, setSokeord] = useState(forrigeSok);
 
     const traaderFørSøk = traaderResource.data ? traaderResource.data : [];
-    const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderFørSøk, sokeord).filter((traad) =>
-        skjulVarsler ? filtrerBortVarsel(traad) : true
-    );
+    const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderFørSøk, sokeord);
     const valgtTraad = useValgtTraadIUrl() || traaderEtterSokOgFiltrering[0];
     useKeepQueryParams();
     useSyncSøkMedVisning(traaderFørSøk, traaderEtterSokOgFiltrering, valgtTraad);
@@ -120,8 +115,6 @@ function MeldingerContainer() {
                     traader={traaderFørSøk}
                     traaderEtterSokOgFiltrering={traaderEtterSokOgFiltrering}
                     valgtTraad={valgtTraad}
-                    skjulVarsler={skjulVarsler}
-                    setSkjulVarsler={setSkjulVarsler}
                 />
             </ScrollBar>
             <ScrollBar keepScrollId="meldinger-trådvisning">

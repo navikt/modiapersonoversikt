@@ -1,22 +1,17 @@
 import { LestStatus, Melding, Meldingstype, Traad } from '../../../../../models/meldinger/meldinger';
-import { erMeldingFraBruker, erMeldingFraNav, erUbesvartHenvendelseFraBruker, erVarselMelding } from './meldingerUtils';
+import { erMeldingFraBruker, erMeldingFraNav, erUbesvartHenvendelseFraBruker } from './meldingerUtils';
 import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
 
 describe('Meldingstyper', () => {
-    const spørsmålSkriftlig = Meldingstype.SPORSMAL_SKRIFTLIG;
+    const sporsmalSkriflig = Meldingstype.SPORSMAL_SKRIFTLIG;
     const svarSkriftlig = Meldingstype.SVAR_SKRIFTLIG;
-    const dokumentvarsel = Meldingstype.DOKUMENT_VARSEL;
 
     it('gir at spørsmål skriftlig er fra bruker', function () {
-        expect(erMeldingFraBruker(spørsmålSkriftlig)).toBe(true);
+        expect(erMeldingFraBruker(sporsmalSkriflig)).toBe(true);
     });
 
     it('gir at svar skriftlig er fra NAV', function () {
         expect(erMeldingFraNav(svarSkriftlig)).toBe(true);
-    });
-
-    it('gir at dokumentvarsel er et varsel', function () {
-        expect(erVarselMelding(dokumentvarsel)).toBe(true);
     });
 });
 describe('Dokumentvarsler', () => {
@@ -40,8 +35,6 @@ describe('Dokumentvarsler', () => {
 
 describe('erUbesvartHenvendelseFraBruker', () => {
     const baseMelding: Melding = {
-        erDokumentMelding: false,
-        erFerdigstiltUtenSvar: false,
         fritekst: '',
         id: '1234',
         meldingstype: Meldingstype.SPORSMAL_SKRIFTLIG,
@@ -53,31 +46,29 @@ describe('erUbesvartHenvendelseFraBruker', () => {
     };
 
     it('Tråder som er initiert av bruker skal regnes som ubesvarte', () => {
-        const traad: Traad = { traadId: '', meldinger: [baseMelding] };
+        const traad: Traad = { traadId: '', meldinger: [baseMelding], journalposter: [] };
         expect(erUbesvartHenvendelseFraBruker(traad)).toBe(true);
     });
 
     it('Tråder med mer enn en melding skal ikke regnes som ubesvarte', () => {
-        const traad: Traad = { traadId: '', meldinger: [baseMelding, baseMelding] };
+        const traad: Traad = { traadId: '', meldinger: [baseMelding, baseMelding], journalposter: [] };
         expect(erUbesvartHenvendelseFraBruker(traad)).toBe(false);
     });
 
     it('Tråder som ikke er initiert av bruker skal ikke regnes som ubesvarte', () => {
         const traad: Traad = {
             traadId: '',
-            meldinger: [{ ...baseMelding, meldingstype: Meldingstype.SPORSMAL_MODIA_UTGAAENDE }]
+            meldinger: [{ ...baseMelding, meldingstype: Meldingstype.SPORSMAL_MODIA_UTGAAENDE }],
+            journalposter: []
         };
         expect(erUbesvartHenvendelseFraBruker(traad)).toBe(false);
     });
 
-    it('Tråder som er markert med "avslutt uten å svare" skal ikke regnes som ubesvarte', () => {
-        const traad: Traad = { traadId: '', meldinger: [{ ...baseMelding, erFerdigstiltUtenSvar: true }] };
-        expect(erUbesvartHenvendelseFraBruker(traad)).toBe(false);
-    });
     it('Tråder som er avsluttet skal ikke regnes som ubesvarte', () => {
         const traad: Traad = {
             traadId: '',
-            meldinger: [{ ...baseMelding, avsluttetDato: '2022-01-01T12:00:00.000z' }]
+            meldinger: [{ ...baseMelding, avsluttetDato: '2022-01-01T12:00:00.000z' }],
+            journalposter: []
         };
         expect(erUbesvartHenvendelseFraBruker(traad)).toBe(false);
     });
