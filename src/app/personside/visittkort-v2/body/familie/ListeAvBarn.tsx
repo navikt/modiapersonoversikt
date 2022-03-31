@@ -5,7 +5,7 @@ import { capitalizeName } from '../../../../../utils/string-utils';
 import { harDiskresjonskode, hentBarnUnder22 } from '../../visittkort-utils';
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     relasjoner: ForelderBarnRelasjon[];
 }
 
@@ -25,7 +25,7 @@ function hentKjonnBeskrivelseForBarn(barn: ForelderBarnRelasjon) {
     }
 }
 
-function ListeAvBarn({ feilendeSystem, relasjoner }: Props) {
+function ListeAvBarn({ harFeilendeSystem, relasjoner }: Props) {
     const barnUnder22 = hentBarnUnder22(relasjoner);
 
     return (
@@ -33,7 +33,7 @@ function ListeAvBarn({ feilendeSystem, relasjoner }: Props) {
             {barnUnder22.map((barn, index) => (
                 <ForelderBarnRelasjonVisning
                     key={barn.ident ? barn.ident : index}
-                    feilendeSystem={feilendeSystem}
+                    harFeilendeSystem={harFeilendeSystem}
                     beskrivelse={capitalizeName(hentKjonnBeskrivelseForBarn(barn))}
                     relasjon={barn}
                     erBarn={true}

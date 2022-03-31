@@ -7,7 +7,7 @@ import KontaktinformasjonDodsbo from './Dodsbo';
 test('viser dodsbo', () => {
     const dodsbo = renderer.create(
         <TestProvider>
-            <KontaktinformasjonDodsbo feilendeSystem={false} dodsbo={aremark.dodsbo} />
+            <KontaktinformasjonDodsbo harFeilendeSystem={false} dodsbo={aremark.dodsbo} />
         </TestProvider>
     );
 

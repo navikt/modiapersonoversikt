@@ -9,14 +9,14 @@ import FamilierelasjonIkon from './common/FamilierelasjonIkon';
 import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     relasjon: ForelderBarnRelasjon;
     beskrivelse: string;
     erBarn: boolean;
 }
 
-function ForelderBarnRelasjonVisning({ feilendeSystem, relasjon, beskrivelse, erBarn }: Props) {
-    if (feilendeSystem) {
+function ForelderBarnRelasjonVisning({ harFeilendeSystem, relasjon, beskrivelse, erBarn }: Props) {
+    if (harFeilendeSystem) {
         return (
             <VisittkortElement
                 beskrivelse={beskrivelse}

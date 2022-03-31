@@ -9,7 +9,7 @@ import { formaterDato } from '../../../../../utils/string-utils';
 import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     sivilstandListe: SivilstandInterface[];
 }
 
@@ -28,8 +28,8 @@ function Sivilstand(props: { sivilstand: SivilstandInterface }) {
     );
 }
 
-function Partner(props: { partner: SivilstandInterface; feilendeSystem: boolean }) {
-    if (props.feilendeSystem) {
+function Partner(props: { partner: SivilstandInterface; harFeilendeSystem: boolean }) {
+    if (props.harFeilendeSystem) {
         return (
             <>
                 <Normaltekst>
@@ -62,7 +62,7 @@ function Partner(props: { partner: SivilstandInterface; feilendeSystem: boolean 
     );
 }
 
-function SivilstandWrapper({ feilendeSystem, sivilstandListe }: Props) {
+function SivilstandWrapper({ harFeilendeSystem, sivilstandListe }: Props) {
     const sivilstand = sivilstandListe.firstOrNull();
 
     if (!sivilstand) {
@@ -72,7 +72,7 @@ function SivilstandWrapper({ feilendeSystem, sivilstandListe }: Props) {
     return (
         <VisittkortElement beskrivelse="Sivilstand" ikon={<HeartIkon />}>
             {erPartner(sivilstand) ? (
-                <Partner feilendeSystem={feilendeSystem} partner={sivilstand} />
+                <Partner harFeilendeSystem={harFeilendeSystem} partner={sivilstand} />
             ) : (
                 <Normaltekst>
                     <Sivilstand sivilstand={sivilstand} />

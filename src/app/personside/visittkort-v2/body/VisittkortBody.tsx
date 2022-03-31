@@ -25,25 +25,25 @@ function SingleColumnLayout(persondata: PersonData) {
         <Kolonne>
             <Kontaktinformasjon persondata={persondata} />
             <Fullmakter
-                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
                 fullmakter={persondata.person.fullmakt}
             />
             <Familie
-                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
                 person={persondata.person}
             />
             <DeltBosted deltBosted={persondata.person.deltBosted} />
             <Foreldreansvar
-                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
                 foreldreansvar={persondata.person.foreldreansvar}
             />
             <NavKontor
-                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_NAVKONTOR)}
+                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_NAVKONTOR)}
                 navEnhet={persondata.person.navEnhet}
             />
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
             <Vergemal
-                feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
                 vergemal={persondata.person.vergemal}
             />
             <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
@@ -58,27 +58,27 @@ function DoubleColumnLayout(persondata: PersonData) {
             <Kolonne>
                 <Kontaktinformasjon persondata={persondata} />
                 <Fullmakter
-                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
                     fullmakter={persondata.person.fullmakt}
                 />
                 <Familie
-                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
                     person={persondata.person}
                 />
                 <DeltBosted deltBosted={persondata.person.deltBosted} />
                 <Foreldreansvar
-                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
                     foreldreansvar={persondata.person.foreldreansvar}
                 />
             </Kolonne>
             <Kolonne>
                 <NavKontor
-                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_NAVKONTOR)}
+                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_NAVKONTOR)}
                     navEnhet={persondata.person.navEnhet}
                 />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
                 <Vergemal
-                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
                     vergemal={persondata.person.vergemal}
                 />
                 <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
@@ -94,29 +94,29 @@ function TripleColumnLayout(persondata: PersonData) {
             <Kolonne>
                 <Kontaktinformasjon persondata={persondata} />
                 <Fullmakter
-                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
                     fullmakter={persondata.person.fullmakt}
                 />
             </Kolonne>
             <Kolonne>
                 <Familie
-                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
                     person={persondata.person}
                 />
                 <Foreldreansvar
-                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
                     foreldreansvar={persondata.person.foreldreansvar}
                 />
                 <DeltBosted deltBosted={persondata.person.deltBosted} />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
                 <Vergemal
-                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
                     vergemal={persondata.person.vergemal}
                 />
             </Kolonne>
             <Kolonne>
                 <NavKontor
-                    feilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_NAVKONTOR)}
+                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_NAVKONTOR)}
                     navEnhet={persondata.person.navEnhet}
                 />
                 <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />

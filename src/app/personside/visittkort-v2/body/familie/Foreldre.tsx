@@ -5,18 +5,18 @@ import ForelderBarnRelasjonVisning from './ForelderBarnRelasjon';
 import { hentForeldre } from '../../visittkort-utils';
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     forelderBarnRelasjon: ForelderBarnRelasjon[];
 }
 
-function Foreldre({ feilendeSystem, forelderBarnRelasjon }: Props) {
+function Foreldre({ harFeilendeSystem, forelderBarnRelasjon }: Props) {
     const foreldre = hentForeldre(forelderBarnRelasjon);
 
     return (
         <>
             {foreldre.map((relasjon, index) => (
                 <ForelderBarnRelasjonVisning
-                    feilendeSystem={feilendeSystem}
+                    harFeilendeSystem={harFeilendeSystem}
                     key={relasjon.ident ? relasjon.ident : index}
                     beskrivelse={capitalizeName(relasjon.rolle)}
                     relasjon={relasjon}

@@ -7,12 +7,12 @@ import { formaterDato } from '../../../../../../utils/string-utils';
 import FeilendeSystemAdvarsel from '../../../FeilendeSystemAdvarsel';
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     kontaktinformasjon: DigitalKontaktinformasjonInterface | null;
 }
 
-function Epost({ feilendeSystem, kontaktinformasjon }: Props) {
-    if (feilendeSystem) {
+function Epost({ harFeilendeSystem, kontaktinformasjon }: Props) {
+    if (harFeilendeSystem) {
         return (
             <VisittkortElement beskrivelse="E-post" ikon={<EmailIkon />}>
                 <FeilendeSystemAdvarsel>

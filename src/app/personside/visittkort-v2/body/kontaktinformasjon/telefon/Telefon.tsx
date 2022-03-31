@@ -8,12 +8,12 @@ import { formaterDato } from '../../../../../../utils/string-utils';
 import FeilendeSystemAdvarsel from '../../../FeilendeSystemAdvarsel';
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     kontaktinformasjon: DigitalKontaktinformasjonInterface | null;
 }
 
-function Telefon({ feilendeSystem, kontaktinformasjon }: Props) {
-    if (feilendeSystem) {
+function Telefon({ harFeilendeSystem, kontaktinformasjon }: Props) {
+    if (harFeilendeSystem) {
         return (
             <VisittkortElement beskrivelse="Telefon" ikon={<PhoneIkon />}>
                 <FeilendeSystemAdvarsel>

@@ -7,7 +7,7 @@ import Endringstekst from '../Endringstekst';
 import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     telefonnummer: TelefonInterface[];
 }
 
@@ -22,8 +22,8 @@ function Telefon(props: { telefonnummer: TelefonInterface }) {
     );
 }
 
-function NavKontaktinformasjon({ feilendeSystem, telefonnummer }: Props) {
-    if (feilendeSystem) {
+function NavKontaktinformasjon({ harFeilendeSystem, telefonnummer }: Props) {
+    if (harFeilendeSystem) {
         return (
             <VisittkortElement beskrivelse="Telefon til bruk for NAV">
                 <FeilendeSystemAdvarsel>Feilet ved uthenting av kontaktinformasjon</FeilendeSystemAdvarsel>

@@ -8,7 +8,7 @@ import { hentNavn } from '../../visittkort-utils';
 import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     foreldreansvar: Foreldreansvar[];
 }
 
@@ -20,10 +20,10 @@ function kombinerNavnOgIdent(personInfo: NavnOgIdent | null): string | null {
     return personInfo.navn ? `${navn} (${personInfo.ident})` : navn;
 }
 
-function ForeldreansvarElement(props: { feilendeSystem: boolean; foreldreansvar: Foreldreansvar }) {
+function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansvar: Foreldreansvar }) {
     const { foreldreansvar } = props;
 
-    if (props.feilendeSystem) {
+    if (props.harFeilendeSystem) {
         return (
             <VisittkortElement>
                 <Normaltekst>Ansvar: {foreldreansvar.ansvar}</Normaltekst>
@@ -43,7 +43,7 @@ function ForeldreansvarElement(props: { feilendeSystem: boolean; foreldreansvar:
     );
 }
 
-function ForendreansvarWrapper({ feilendeSystem, foreldreansvar }: Props) {
+function ForendreansvarWrapper({ harFeilendeSystem, foreldreansvar }: Props) {
     if (foreldreansvar.isEmpty()) {
         return null;
     }
@@ -51,7 +51,11 @@ function ForendreansvarWrapper({ feilendeSystem, foreldreansvar }: Props) {
     return (
         <VisittkortGruppe ikon={<Infotegn />} tittel="Foreldreansvar">
             {foreldreansvar.map((foreldreansvar, index) => (
-                <ForeldreansvarElement key={index} feilendeSystem={feilendeSystem} foreldreansvar={foreldreansvar} />
+                <ForeldreansvarElement
+                    key={index}
+                    harFeilendeSystem={harFeilendeSystem}
+                    foreldreansvar={foreldreansvar}
+                />
             ))}
         </VisittkortGruppe>
     );

@@ -16,14 +16,14 @@ const Vergeinformasjon = styled.div`
 `;
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     vergemal: VergeInterface[];
 }
 
-function Verge(props: { feilendeSystem: boolean; verge: VergeInterface }) {
+function Verge(props: { harFeilendeSystem: boolean; verge: VergeInterface }) {
     const { verge } = props;
     const harFeilendeSystemOgIngenNavn =
-        props.feilendeSystem && !verge.navn ? (
+        props.harFeilendeSystem && !verge.navn ? (
             <FeilendeSystemAdvarsel>Feilet ved uthenting av navn på verge</FeilendeSystemAdvarsel>
         ) : (
             <Normaltekst>{hentNavn(verge.navn, 'Navn ikke tilgjengelig')}</Normaltekst>
@@ -49,7 +49,7 @@ function Vergesakstype(props: { vergemal: VergeInterface[] }) {
     return <Normaltekst>Vergesakstyper: {unikeVergessakstyper}</Normaltekst>;
 }
 
-function Vergemal({ feilendeSystem, vergemal }: Props) {
+function Vergemal({ harFeilendeSystem, vergemal }: Props) {
     if (vergemal.isEmpty()) {
         return null;
     }
@@ -58,7 +58,7 @@ function Vergemal({ feilendeSystem, vergemal }: Props) {
         <VisittkortGruppe ikon={<VergemalLogo />} tittel="Bruker er under vergemål">
             <Vergesakstype vergemal={vergemal} />
             {vergemal.map((verge, index) => (
-                <Verge feilendeSystem={feilendeSystem} verge={verge} key={index} />
+                <Verge harFeilendeSystem={harFeilendeSystem} verge={verge} key={index} />
             ))}
         </VisittkortGruppe>
     );

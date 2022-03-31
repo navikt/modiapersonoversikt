@@ -6,19 +6,19 @@ import Sivilstand from './Sivilstand';
 import ListeAvBarn from './ListeAvBarn';
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     person: Person;
 }
 
-function Familie({ feilendeSystem, person }: Props) {
+function Familie({ harFeilendeSystem, person }: Props) {
     const erUnder22 = person.alder !== null && person.alder <= 21;
 
     return (
         <VisittkortGruppe tittel={'Familie'}>
-            <Sivilstand feilendeSystem={feilendeSystem} sivilstandListe={person.sivilstand} />
-            <ListeAvBarn feilendeSystem={feilendeSystem} relasjoner={person.forelderBarnRelasjon} />
+            <Sivilstand harFeilendeSystem={harFeilendeSystem} sivilstandListe={person.sivilstand} />
+            <ListeAvBarn harFeilendeSystem={harFeilendeSystem} relasjoner={person.forelderBarnRelasjon} />
             {erUnder22 && (
-                <Foreldre feilendeSystem={feilendeSystem} forelderBarnRelasjon={person.forelderBarnRelasjon} />
+                <Foreldre harFeilendeSystem={harFeilendeSystem} forelderBarnRelasjon={person.forelderBarnRelasjon} />
             )}
         </VisittkortGruppe>
     );

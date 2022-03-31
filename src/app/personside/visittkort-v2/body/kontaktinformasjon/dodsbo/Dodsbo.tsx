@@ -18,7 +18,7 @@ import Endringstekst from '../../Endringstekst';
 import FeilendeSystemAdvarsel from '../../../FeilendeSystemAdvarsel';
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     dodsbo: Dodsbo[];
 }
 
@@ -26,13 +26,13 @@ const AdresseStyle = styled.div`
     margin-top: 0.5rem;
 `;
 
-function Adressatinfo({ feilendeSystem, adressat }: { feilendeSystem: boolean; adressat: Adressat }) {
+function Adressatinfo({ harFeilendeSystem, adressat }: { harFeilendeSystem: boolean; adressat: Adressat }) {
     if (adressat.advokatSomAdressat) {
         return <AdvokatSomAdressatInfo adressat={adressat.advokatSomAdressat} />;
     } else if (adressat.organisasjonSomAdressat) {
         return <OrganisasjonSomAdressatInfo adressat={adressat.organisasjonSomAdressat} />;
     } else if (adressat.personSomAdressat) {
-        return <PersonSomAdressatInfo feilendeSystem={feilendeSystem} adressat={adressat.personSomAdressat} />;
+        return <PersonSomAdressatInfo harFeilendeSystem={harFeilendeSystem} adressat={adressat.personSomAdressat} />;
     } else {
         return <AlertStripeFeil>Ingen adressat funnet</AlertStripeFeil>;
     }
@@ -70,8 +70,14 @@ function OrganisasjonSomAdressatInfo({ adressat }: { adressat: OrganisasjonSomAd
     );
 }
 
-function PersonSomAdressatInfo({ feilendeSystem, adressat }: { feilendeSystem: boolean; adressat: PersonSomAdressat }) {
-    const harFeilendeSystem = feilendeSystem ? (
+function PersonSomAdressatInfo({
+    harFeilendeSystem,
+    adressat
+}: {
+    harFeilendeSystem: boolean;
+    adressat: PersonSomAdressat;
+}) {
+    const manglerData = harFeilendeSystem ? (
         <FeilendeSystemAdvarsel>Feilet ved uthenting av navn</FeilendeSystemAdvarsel>
     ) : null;
     const fnr = adressat.fnr ? <Normaltekst>{adressat.fnr}</Normaltekst> : null;
@@ -80,7 +86,7 @@ function PersonSomAdressatInfo({ feilendeSystem, adressat }: { feilendeSystem: b
 
     return (
         <>
-            {harFeilendeSystem}
+            {manglerData}
             {navn}
             {fnr}
             {fodselsdato}
@@ -88,7 +94,7 @@ function PersonSomAdressatInfo({ feilendeSystem, adressat }: { feilendeSystem: b
     );
 }
 
-function KontaktinformasjonDodsbo({ feilendeSystem, dodsbo }: Props) {
+function KontaktinformasjonDodsbo({ harFeilendeSystem, dodsbo }: Props) {
     if (dodsbo.isEmpty()) {
         return null;
     }
@@ -98,7 +104,7 @@ function KontaktinformasjonDodsbo({ feilendeSystem, dodsbo }: Props) {
             {dodsbo.map((dodsbo, index) => {
                 return (
                     <VisittkortElement key={index} beskrivelse={'Kontaktinformasjon for dødsbo'} ikon={<LocationPin />}>
-                        <Adressatinfo feilendeSystem={feilendeSystem} adressat={dodsbo.adressat} />
+                        <Adressatinfo harFeilendeSystem={harFeilendeSystem} adressat={dodsbo.adressat} />
                         <AdresseStyle>
                             <Adresseinfo adresse={dodsbo.adresse} />
                         </AdresseStyle>

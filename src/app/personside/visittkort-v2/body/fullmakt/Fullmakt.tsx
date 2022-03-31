@@ -9,7 +9,7 @@ import GyldighetsPeriode from '../GyldighetsPeriode';
 import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     fullmakter: FullmaktInterface[];
 }
 
@@ -20,10 +20,10 @@ function getOmrade(omrader: KodeBeskrivelse<string>[]): string {
     return omrader.map((omrade) => omrade.beskrivelse).join(', ');
 }
 
-function Fullmakt(props: { fullmakt: FullmaktInterface; feilendeSystem: boolean }) {
+function Fullmakt(props: { fullmakt: FullmaktInterface; harFeilendeSystem: boolean }) {
     const motpartsPersonNavn = hentNavn(props.fullmakt.motpartsPersonNavn);
     const beskrivelse = props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver';
-    const harFeilendeSystem = props.feilendeSystem ? (
+    const harFeilendeSystem = props.harFeilendeSystem ? (
         <FeilendeSystemAdvarsel>Feilet ved uthenting av navn</FeilendeSystemAdvarsel>
     ) : null;
 
@@ -39,7 +39,7 @@ function Fullmakt(props: { fullmakt: FullmaktInterface; feilendeSystem: boolean 
     );
 }
 
-function Fullmakter({ feilendeSystem, fullmakter }: Props) {
+function Fullmakter({ harFeilendeSystem, fullmakter }: Props) {
     if (fullmakter.isEmpty()) {
         return null;
     }
@@ -47,7 +47,7 @@ function Fullmakter({ feilendeSystem, fullmakter }: Props) {
     return (
         <VisittkortGruppe tittel={'Fullmakter'} ikon={<Fullmaktlogo />}>
             {fullmakter.map((fullmakt, index) => (
-                <Fullmakt key={index} fullmakt={fullmakt} feilendeSystem={feilendeSystem} />
+                <Fullmakt key={index} fullmakt={fullmakt} harFeilendeSystem={harFeilendeSystem} />
             ))}
         </VisittkortGruppe>
     );

@@ -29,7 +29,7 @@ const ApningstiderListe = styled.dl`
 `;
 
 interface Props {
-    feilendeSystem: boolean;
+    harFeilendeSystem: boolean;
     navEnhet: Enhet | null;
 }
 
@@ -82,11 +82,11 @@ function Publikumsmottak(props: { publikumsmottak: PublikumsmottakInterface[] })
     );
 }
 
-function NavKontor({ feilendeSystem, navEnhet }: Props) {
+function NavKontor({ harFeilendeSystem, navEnhet }: Props) {
     const baseUrlResource = useRestResource((resources) => resources.baseUrl);
     const baseUrl = baseUrlResource.data ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
 
-    if (feilendeSystem) {
+    if (harFeilendeSystem) {
         return (
             <VisittkortGruppe tittel={'NAV-kontor'}>
                 <VisittkortElement beskrivelse={'Ukjent NAV-kontor'} ikon={<NavLogo />}>
