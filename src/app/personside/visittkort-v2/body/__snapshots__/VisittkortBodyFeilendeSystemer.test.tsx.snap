@@ -816,7 +816,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c8"
         >
-          Feilet ved uthenting av informasjon om barn
+          Feilet ved uthenting av informasjon om 
+          barn
         </div>
       </div>
       <div
@@ -865,7 +866,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <div
           className="c8"
         >
-          Feilet ved uthenting av informasjon om barn
+          Feilet ved uthenting av informasjon om 
+          barn
         </div>
       </div>
     </section>
