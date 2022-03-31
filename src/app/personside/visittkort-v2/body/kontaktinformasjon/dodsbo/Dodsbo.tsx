@@ -72,7 +72,7 @@ function OrganisasjonSomAdressatInfo({ adressat }: { adressat: OrganisasjonSomAd
 
 function PersonSomAdressatInfo({ feilendeSystem, adressat }: { feilendeSystem: boolean; adressat: PersonSomAdressat }) {
     const harFeilendeSystem = feilendeSystem ? (
-        <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthenting av navn'} />
+        <FeilendeSystemAdvarsel>Feilet ved uthenting av navn</FeilendeSystemAdvarsel>
     ) : null;
     const fnr = adressat.fnr ? <Normaltekst>{adressat.fnr}</Normaltekst> : null;
     const fodselsdato = adressat.fodselsdato ? <Normaltekst>{formaterDato(adressat.fodselsdato)}</Normaltekst> : null;

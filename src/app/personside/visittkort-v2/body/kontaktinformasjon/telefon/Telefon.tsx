@@ -16,9 +16,9 @@ function Telefon({ feilendeSystem, kontaktinformasjon }: Props) {
     if (feilendeSystem) {
         return (
             <VisittkortElement beskrivelse="Telefon" ikon={<PhoneIkon />}>
-                <FeilendeSystemAdvarsel
-                    beskrivelse={'Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret'}
-                />
+                <FeilendeSystemAdvarsel>
+                    Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret
+                </FeilendeSystemAdvarsel>
             </VisittkortElement>
         );
     }

@@ -15,9 +15,9 @@ function Epost({ feilendeSystem, kontaktinformasjon }: Props) {
     if (feilendeSystem) {
         return (
             <VisittkortElement beskrivelse="E-post" ikon={<EmailIkon />}>
-                <FeilendeSystemAdvarsel
-                    beskrivelse={'Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret'}
-                />
+                <FeilendeSystemAdvarsel>
+                    Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret
+                </FeilendeSystemAdvarsel>
             </VisittkortElement>
         );
     }

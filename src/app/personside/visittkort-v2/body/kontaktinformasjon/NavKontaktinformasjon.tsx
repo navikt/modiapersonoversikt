@@ -26,7 +26,7 @@ function NavKontaktinformasjon({ feilendeSystem, telefonnummer }: Props) {
     if (feilendeSystem) {
         return (
             <VisittkortElement beskrivelse="Telefon til bruk for NAV">
-                <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthenting av kontaktinformasjon'} />
+                <FeilendeSystemAdvarsel>Feilet ved uthenting av kontaktinformasjon</FeilendeSystemAdvarsel>
             </VisittkortElement>
         );
     }

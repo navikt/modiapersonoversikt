@@ -24,7 +24,7 @@ function Fullmakt(props: { fullmakt: FullmaktInterface; feilendeSystem: boolean 
     const motpartsPersonNavn = hentNavn(props.fullmakt.motpartsPersonNavn);
     const beskrivelse = props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver';
     const harFeilendeSystem = props.feilendeSystem ? (
-        <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthenting av navn'} />
+        <FeilendeSystemAdvarsel>Feilet ved uthenting av navn</FeilendeSystemAdvarsel>
     ) : null;
 
     return (

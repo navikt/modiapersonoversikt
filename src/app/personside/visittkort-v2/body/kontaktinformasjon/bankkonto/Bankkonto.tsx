@@ -21,7 +21,7 @@ function Bankkonto({ feilendeSystem, bankkonto }: Props) {
     if (feilendeSystem) {
         return (
             <VisittkortElement beskrivelse={beskrivelse} ikon={<CoinsIkon />}>
-                <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthenting av kontonummer'} />
+                <FeilendeSystemAdvarsel>Feilet ved uthenting av kontonummer</FeilendeSystemAdvarsel>
             </VisittkortElement>
         );
     }

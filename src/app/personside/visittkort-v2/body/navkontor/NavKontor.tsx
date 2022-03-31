@@ -90,7 +90,7 @@ function NavKontor({ feilendeSystem, navEnhet }: Props) {
         return (
             <VisittkortGruppe tittel={'NAV-kontor'}>
                 <VisittkortElement beskrivelse={'Ukjent NAV-kontor'} ikon={<NavLogo />}>
-                    <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthenting av informasjon om NAV-kontor'} />
+                    <FeilendeSystemAdvarsel>Feilet ved uthenting av informasjon om NAV-kontor</FeilendeSystemAdvarsel>
                 </VisittkortElement>
             </VisittkortGruppe>
         );
