@@ -37,8 +37,8 @@ function EgenAnsattFeilendeSystemModal(props: Props) {
             </Systemtittel>
 
             <div className="noncenter typo-normal blokk-m">
-                <p>{'Feilet ved uthenting av informasjon om egen ansatt.'}</p>
-                <p>{'Vær obs på at etikett vil mangle på egen ansatt.'}</p>
+                <p>Feilet ved uthenting av informasjon om egen ansatt.</p>
+                <p>Vær obs på at etikett vil mangle på egen ansatt.</p>
             </div>
 
             <Knapp type="hoved" className="blokk-xxxs" onClick={() => setOpen(false)}>
