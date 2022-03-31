@@ -15,6 +15,7 @@ import AutofullforBarnetrygd from './img/autofullfor-barnetrygd.png';
 import AvansertsokPdlsok from './img/avansertsok-pdlsok.png';
 import OppgaveDestinasjon from './img/oppgave-destinasjon.png';
 import FortlopendeJournalforing from './img/fortlopende-journalforing.png';
+import FiltreringSakstema from './img/filtrering-sakstema.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
@@ -46,7 +47,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 2,
             tittel: 'Modia personoversikt har fått infomelding',
             dato: new Date('2020-10-12 10:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: (
                 <Normaltekst>
                     Infomelding er melding til bruker sin innboks. Det er ikke mulig for bruker å svare på denne
@@ -65,7 +66,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 3,
             tittel: 'Modia personoversikt har fått et nytt tema Helse',
             dato: new Date('2020-11-13 08:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: <Normaltekst>Tema Helse er tilsvarende tema Syk i skriv til oss på ditt NAV.</Normaltekst>,
             beskrivelse: (
                 <Normaltekst>
@@ -265,6 +266,22 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
                 </>
             ),
             src: FortlopendeJournalforing
+        },
+        {
+            id: 15,
+            tittel: 'Filtrering på sakstema',
+            dato: new Date('2022-03-30 08:00'),
+            aktiv: true,
+            ingress: <Normaltekst>Du kan nå filtrere på flere ulike sakstemaer.</Normaltekst>,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Det gjør det mulig å se journalposter fra flere sakstemaer samtidig ved å huke av på flere
+                        sakstemaer i menyen til venstre.
+                    </Normaltekst>
+                </>
+            ),
+            src: FiltreringSakstema
         }
     ];
 }
