@@ -23,7 +23,7 @@ function ForelderBarnRelasjonVisning({ feilendeSystem, relasjon, beskrivelse, er
                 ikon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}
             >
                 <FeilendeSystemAdvarsel>
-                    Feilet ved uthenting av informasjon om ${relasjon.rolle.toLowerCase()}
+                    Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}
                 </FeilendeSystemAdvarsel>
             </VisittkortElement>
         );
