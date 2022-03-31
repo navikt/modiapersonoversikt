@@ -1,5 +1,5 @@
 export interface Data {
-    feilendeSystemer: Array<string>;
+    feilendeSystemer: Array<InformasjonElement>;
     person: Person;
 }
 
