@@ -9,6 +9,7 @@ import useHotkey from '../../../utils/hooks/use-hotkey';
 import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
 import SikkerhetstiltakModal from './header/SikkerhetstiltakModal';
 import EgenAnsattFeilendeSystemModal from './header/EgenAnsattFeilendeSystemModal';
+import { harFeilendeSystemer } from './harFeilendeSystemer';
 
 interface Props {
     persondata: Persondata;
@@ -37,9 +38,7 @@ function VisittkortVisning(props: Props) {
                 <VisittkortHeader persondata={props.persondata} erApen={erApen} toggleApen={toggleApen} />
                 <SikkerhetstiltakModal sikkerhetstiltak={props.persondata.person.sikkerhetstiltak} />
                 <EgenAnsattFeilendeSystemModal
-                    egenAnsattFeiler={props.persondata.feilendeSystemer
-                        .map((system) => system === InformasjonElement.EGEN_ANSATT)
-                        .includes(true)}
+                    egenAnsattFeiler={harFeilendeSystemer(props.persondata, InformasjonElement.EGEN_ANSATT)}
                 />
                 <UnmountClosed isOpened={erApen}>
                     <VisittkortBody persondata={props.persondata} />
