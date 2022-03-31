@@ -35,7 +35,7 @@ function Partner(props: { partner: SivilstandInterface; feilendeSystem: boolean 
                 <Normaltekst>
                     <Sivilstand sivilstand={props.partner} />
                 </Normaltekst>
-                <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthetning av informasjon om partner'} />
+                <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthenting av informasjon om partner'} />
             </>
         );
     }

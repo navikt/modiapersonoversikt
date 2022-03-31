@@ -27,7 +27,7 @@ function ForeldreansvarElement(props: { feilendeSystem: boolean; foreldreansvar:
         return (
             <VisittkortElement>
                 <Normaltekst>Ansvar: {foreldreansvar.ansvar}</Normaltekst>
-                <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthetning av informasjon om barn'} />
+                <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthenting av informasjon om barn'} />
             </VisittkortElement>
         );
     }

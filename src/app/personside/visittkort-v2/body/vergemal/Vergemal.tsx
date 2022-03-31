@@ -24,7 +24,7 @@ function Verge(props: { feilendeSystem: boolean; verge: VergeInterface }) {
     const { verge } = props;
     const harFeilendeSystemOgIngenNavn =
         props.feilendeSystem && !verge.navn ? (
-            <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthetning av navn på verge'} />
+            <FeilendeSystemAdvarsel beskrivelse={'Feilet ved uthenting av navn på verge'} />
         ) : (
             <Normaltekst>{hentNavn(verge.navn, 'Navn ikke tilgjengelig')}</Normaltekst>
         );
