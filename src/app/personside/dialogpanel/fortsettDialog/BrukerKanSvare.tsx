@@ -5,11 +5,13 @@ import styled from 'styled-components/macro';
 import { FortsettDialogValidator } from './validatorer';
 import { FortsettDialogState } from './FortsettDialogTypes';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import { JournalforingsSakIdentifikator } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
 
 interface Props {
     formState: FortsettDialogState;
     updateFormState: (change: Partial<FortsettDialogState>) => void;
     visVelgSak: boolean;
+    eksisterendeSaker: Array<JournalforingsSakIdentifikator>;
 }
 
 const Style = styled.div`
@@ -24,14 +26,15 @@ function BrukerKanSvare(props: Props) {
         <Style>
             <Oppgaveliste
                 oppgaveliste={props.formState.oppgaveListe}
-                setOppgaveliste={oppgaveliste => props.updateFormState({ oppgaveListe: oppgaveliste })}
+                setOppgaveliste={(oppgaveliste) => props.updateFormState({ oppgaveListe: oppgaveliste })}
             />
             {props.visVelgSak && (
                 <>
                     <DialogpanelVelgSak
-                        setValgtSak={sak => props.updateFormState({ sak: sak })}
+                        setValgtSak={(sak) => props.updateFormState({ sak: sak })}
                         valgtSak={props.formState.sak}
                         visFeilmelding={visFeilmelding}
+                        eksisterendeSaker={props.eksisterendeSaker}
                     />
                     {visFeilmelding ? <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding> : null}
                 </>
