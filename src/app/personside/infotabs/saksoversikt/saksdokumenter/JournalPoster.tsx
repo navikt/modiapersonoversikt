@@ -235,7 +235,7 @@ function JournalPoster(props: Props) {
         props.sakstemaListeDropdown !== undefined ? (
             props.sakstemaListeDropdown
         ) : (
-            <Undertittel className={sakerTest.dokument}>{aggregertSak.temanavn || 'Ingen sakstema valgt'}</Undertittel>
+            <Undertittel className={sakerTest.dokument}>{aggregertSak.temanavn}</Undertittel>
         );
 
     return (

@@ -11,6 +11,7 @@ import { useHentAlleSakstemaFraResource, useSakstemaURLState } from '../useSakst
 import { CheckboksPanelGruppe, CheckboksPanelProps } from 'nav-frontend-skjema';
 import { aggregertSakstema, sakstemakodeAlle } from '../utils/saksoversiktUtils';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import { filtrerSakstemaerUtenData } from './SakstemaListeUtils';
 
 const StyledPanel = styled(Panel)`
     padding: 0rem;
@@ -68,23 +69,21 @@ function SakstemaListe() {
         return valgteTemakoder.includes(sakstema.temakode) || valgteTemakoder[0] === sakstemakodeAlle;
     }
 
-    const checkbokser = alleSakstema
-        .filter((sakstema) => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
-        .map((sakstema) => {
-            return {
-                label: <SakstemaListeElementCheckboks sakstema={sakstema} key={sakstema.temakode} />,
-                value: sakstema.temakode,
-                id: sakstema.temakode,
-                checked: sakstemaErValgt(sakstema)
-            } as CheckboksPanelProps;
-        });
+    const checkbokser = filtrerSakstemaerUtenData(alleSakstema).map((sakstema) => {
+        return {
+            label: <SakstemaListeElementCheckboks sakstema={sakstema} key={sakstema.temakode} />,
+            value: sakstema.temakode,
+            id: sakstema.temakode,
+            checked: sakstemaErValgt(sakstema)
+        } as CheckboksPanelProps;
+    });
 
     return (
         <nav>
             <StyledPanel aria-labelledby={tittelId.current}>
                 <TittelWrapper>
                     <Undertittel id={tittelId.current}>Tema</Undertittel>
-                    <Normaltekst>({alleSakstema.length} saker)</Normaltekst>
+                    <Normaltekst>({checkbokser.length} saker)</Normaltekst>
                 </TittelWrapper>
                 <KnappeSeksjon>
                     <Knapp key={'Velg alle'} onClick={() => setAlleValgte()} htmlType="button" kompakt={true}>

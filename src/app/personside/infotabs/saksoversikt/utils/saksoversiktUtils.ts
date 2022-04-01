@@ -2,17 +2,19 @@ import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import { Behandlingskjede, Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { formatterDato } from '../../../../../utils/date-utils';
+import { filtrerSakstemaerUtenData } from '../sakstemaliste/SakstemaListeUtils';
 
 export const sakstemakodeAlle = 'ALLE';
 export const sakstemakodeIngen = 'INGEN';
 
 export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sakstema[]): Sakstema {
-    const sakstema = valgteSakstema !== undefined ? valgteSakstema : alleSakstema;
+    const alleSakstemaFiltrert = filtrerSakstemaerUtenData(alleSakstema);
+    const sakstema = valgteSakstema !== undefined ? filtrerSakstemaerUtenData(valgteSakstema) : alleSakstemaFiltrert;
     const behandlingskjeder = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.behandlingskjeder);
     const journalposter = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.dokumentMetadata);
     const tilhorendeSaker = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.tilhørendeSaker);
 
-    const erAlleSakstema = alleSakstema.length === sakstema.length;
+    const erAlleSakstema = alleSakstemaFiltrert.length === sakstema.length;
 
     return {
         temanavn: aggregertTemanavn(sakstema, erAlleSakstema),

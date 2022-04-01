@@ -6,6 +6,7 @@ import { datoSynkende } from '../../../../utils/date-utils';
 import { hentDatoForSisteHendelse, sakstemakodeAlle, sakstemakodeIngen } from './utils/saksoversiktUtils';
 import { useQueryParams } from '../../../../utils/url-utils';
 import { Dokument, Journalpost } from '../../../../models/saksoversikt/journalpost';
+import { filtrerSakstemaerUtenData } from './sakstemaliste/SakstemaListeUtils';
 
 interface SakstemaURLState {
     valgteSakstemaer: Sakstema[];
@@ -22,15 +23,16 @@ interface QueryParamsForSak {
 }
 
 export function useSakstemaURLState(alleSakstemaer: Sakstema[]): SakstemaURLState {
+    const filtrertAlleSakstemaer = filtrerSakstemaerUtenData(alleSakstemaer);
     const history = useHistory();
     const queryParams = useQueryParams<QueryParamsForSak>(); //SYK-BAR-AAP
     return useMemo(() => {
         const sakstemaerFraUrl: string[] = queryParams.sakstema?.split('-') ?? [sakstemakodeAlle];
         const valgteSakstemaer: Sakstema[] = sakstemaerFraUrl.includes(sakstemakodeAlle)
-            ? alleSakstemaer
-            : alleSakstemaer.filter((sakstema) => sakstemaerFraUrl.includes(sakstema.temakode));
+            ? filtrertAlleSakstemaer
+            : filtrertAlleSakstemaer.filter((sakstema) => sakstemaerFraUrl.includes(sakstema.temakode));
 
-        const journalposter = alleSakstemaer.flatMap((sakstema) => sakstema.dokumentMetadata);
+        const journalposter = filtrertAlleSakstemaer.flatMap((sakstema) => sakstema.dokumentMetadata);
         const dokumenter = journalposter.flatMap((journalpost) => [journalpost.hoveddokument, ...journalpost.vedlegg]);
         const dokumentReferanseFraUrl = queryParams.dokument ?? '';
         const valgtDokument = dokumenter.find((dokument) => dokument.dokumentreferanse === dokumentReferanseFraUrl);
@@ -57,7 +59,7 @@ export function useSakstemaURLState(alleSakstemaer: Sakstema[]): SakstemaURLStat
 
             if (nyTemaliste.isEmpty()) {
                 setIngenValgte();
-            } else if (nyTemaliste.length === alleSakstemaer.length) {
+            } else if (nyTemaliste.length === filtrertAlleSakstemaer.length) {
                 setAlleValgte();
             } else {
                 const nyURL = nyTemaliste
@@ -78,7 +80,7 @@ export function useSakstemaURLState(alleSakstemaer: Sakstema[]): SakstemaURLStat
             setIngenValgte,
             toggleValgtSakstema
         };
-    }, [history, queryParams, alleSakstemaer]);
+    }, [history, queryParams, filtrertAlleSakstemaer]);
 }
 
 export function useHentAlleSakstemaFraResource(): Sakstema[] {

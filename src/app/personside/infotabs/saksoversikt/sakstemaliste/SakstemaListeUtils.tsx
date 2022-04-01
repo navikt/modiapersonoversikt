@@ -41,3 +41,9 @@ export function saksikon(harTilgang: boolean) {
         return <SakIkkeTilgangIkon />;
     }
 }
+
+export function filtrerSakstemaerUtenData(sakstemaer: Sakstema[]): Sakstema[] {
+    return sakstemaer.filter(
+        (sakstema) => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0
+    );
+}
