@@ -1,29 +1,29 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
-import { Verge as VergeInterface } from '../../PersondataDomain';
+import { InformasjonElement, Verge as VergeInterface } from '../../PersondataDomain';
 import VergemalLogo from '../../../../../svg/Utropstegn';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import { VisittkortGruppe } from '../VisittkortStyles';
-import { Element } from 'nav-frontend-typografi';
 import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
 import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
+import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 
 const Vergeinformasjon = styled.div`
     margin-bottom: 5px;
 `;
 
 interface Props {
-    harFeilendeSystem: boolean;
+    feilendeSystemer: Array<InformasjonElement>;
     vergemal: VergeInterface[];
 }
 
-function Verge(props: { harFeilendeSystem: boolean; verge: VergeInterface }) {
+function Verge(props: { feilendeSystemer: Array<InformasjonElement>; verge: VergeInterface }) {
     const { verge } = props;
     const harFeilendeSystemOgIngenNavn =
-        props.harFeilendeSystem && !verge.navn ? (
+        harFeilendeSystemer(props.feilendeSystemer, InformasjonElement.PDL_TREDJEPARTSPERSONER) && !verge.navn ? (
             <FeilendeSystemAdvarsel>Feilet ved uthenting av navn på verge</FeilendeSystemAdvarsel>
         ) : (
             <Normaltekst>{hentNavn(verge.navn, 'Navn ikke tilgjengelig')}</Normaltekst>
@@ -49,7 +49,7 @@ function Vergesakstype(props: { vergemal: VergeInterface[] }) {
     return <Normaltekst>Vergesakstyper: {unikeVergessakstyper}</Normaltekst>;
 }
 
-function Vergemal({ harFeilendeSystem, vergemal }: Props) {
+function Vergemal({ feilendeSystemer, vergemal }: Props) {
     if (vergemal.isEmpty()) {
         return null;
     }
@@ -58,7 +58,7 @@ function Vergemal({ harFeilendeSystem, vergemal }: Props) {
         <VisittkortGruppe ikon={<VergemalLogo />} tittel="Bruker er under vergemål">
             <Vergesakstype vergemal={vergemal} />
             {vergemal.map((verge, index) => (
-                <Verge harFeilendeSystem={harFeilendeSystem} verge={verge} key={index} />
+                <Verge feilendeSystemer={feilendeSystemer} verge={verge} key={index} />
             ))}
         </VisittkortGruppe>
     );

@@ -1,5 +1,5 @@
-import { Data as PersonData, InformasjonElement } from './PersondataDomain';
+import { InformasjonElement } from './PersondataDomain';
 
-export function harFeilendeSystemer(persondata: PersonData, system: InformasjonElement): boolean {
-    return persondata.feilendeSystemer.includes(system);
+export function harFeilendeSystemer(feilendeSystemer: Array<InformasjonElement>, system: InformasjonElement): boolean {
+    return feilendeSystemer.includes(system);
 }

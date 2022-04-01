@@ -7,7 +7,7 @@ import Fullmakter from './Fullmakt';
 test('viser fullmakt', () => {
     const visittkortbody = renderer.create(
         <TestProvider>
-            <Fullmakter harFeilendeSystem={false} fullmakter={aremark.fullmakt} />
+            <Fullmakter feilendeSystemer={[]} fullmakter={aremark.fullmakt} />
         </TestProvider>
     );
 

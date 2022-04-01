@@ -38,7 +38,10 @@ function VisittkortVisning(props: Props) {
                 <VisittkortHeader persondata={props.persondata} erApen={erApen} toggleApen={toggleApen} />
                 <SikkerhetstiltakModal sikkerhetstiltak={props.persondata.person.sikkerhetstiltak} />
                 <EgenAnsattFeilendeSystemModal
-                    egenAnsattFeiler={harFeilendeSystemer(props.persondata, InformasjonElement.EGEN_ANSATT)}
+                    egenAnsattFeiler={harFeilendeSystemer(
+                        props.persondata.feilendeSystemer,
+                        InformasjonElement.EGEN_ANSATT
+                    )}
                 />
                 <UnmountClosed isOpened={erApen}>
                     <VisittkortBody persondata={props.persondata} />

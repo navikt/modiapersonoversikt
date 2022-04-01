@@ -17,24 +17,30 @@ export default function Kontaktinformasjon({ persondata }: Props) {
     return (
         <VisittkortGruppe tittel={'Kontaktinformasjon'}>
             <KontaktinformasjonDodsbo
-                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                harFeilendeSystem={harFeilendeSystemer(
+                    persondata.feilendeSystemer,
+                    InformasjonElement.PDL_TREDJEPARTSPERSONER
+                )}
                 dodsbo={persondata.person.dodsbo}
             />
             <Adresse person={persondata.person} />
             <Epost
-                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.DKIF)}
+                harFeilendeSystem={harFeilendeSystemer(persondata.feilendeSystemer, InformasjonElement.DKIF)}
                 kontaktinformasjon={persondata.person.kontaktOgReservasjon}
             />
             <Telefon
-                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.DKIF)}
+                harFeilendeSystem={harFeilendeSystemer(persondata.feilendeSystemer, InformasjonElement.DKIF)}
                 kontaktinformasjon={persondata.person.kontaktOgReservasjon}
             />
             <NavKontaktinformasjon
-                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_KONTAKTINFORMASJON)}
+                harFeilendeSystem={harFeilendeSystemer(
+                    persondata.feilendeSystemer,
+                    InformasjonElement.NORG_KONTAKTINFORMASJON
+                )}
                 telefonnummer={persondata.person.telefonnummer}
             />
             <Bankkonto
-                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.BANKKONTO)}
+                harFeilendeSystem={harFeilendeSystemer(persondata.feilendeSystemer, InformasjonElement.BANKKONTO)}
                 bankkonto={persondata.person.bankkonto}
             />
         </VisittkortGruppe>

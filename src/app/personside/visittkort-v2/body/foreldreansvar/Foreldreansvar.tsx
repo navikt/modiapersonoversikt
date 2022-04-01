@@ -3,12 +3,13 @@ import { VisittkortGruppe } from '../VisittkortStyles';
 import VisittkortElement from '../VisittkortElement';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Infotegn from '../../../../../svg/Info';
-import { Foreldreansvar, NavnOgIdent } from '../../PersondataDomain';
+import { Foreldreansvar, InformasjonElement, NavnOgIdent } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
 import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
+import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 
 interface Props {
-    harFeilendeSystem: boolean;
+    feilendeSystemer: Array<InformasjonElement>;
     foreldreansvar: Foreldreansvar[];
 }
 
@@ -43,7 +44,7 @@ function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansv
     );
 }
 
-function ForendreansvarWrapper({ harFeilendeSystem, foreldreansvar }: Props) {
+function ForendreansvarWrapper({ feilendeSystemer, foreldreansvar }: Props) {
     if (foreldreansvar.isEmpty()) {
         return null;
     }
@@ -53,7 +54,10 @@ function ForendreansvarWrapper({ harFeilendeSystem, foreldreansvar }: Props) {
             {foreldreansvar.map((foreldreansvar, index) => (
                 <ForeldreansvarElement
                     key={index}
-                    harFeilendeSystem={harFeilendeSystem}
+                    harFeilendeSystem={harFeilendeSystemer(
+                        feilendeSystemer,
+                        InformasjonElement.PDL_TREDJEPARTSPERSONER
+                    )}
                     foreldreansvar={foreldreansvar}
                 />
             ))}

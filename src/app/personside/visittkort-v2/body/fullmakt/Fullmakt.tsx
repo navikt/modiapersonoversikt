@@ -3,13 +3,14 @@ import VisittkortElement from '../VisittkortElement';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Fullmaktlogo from '../../../../../svg/Utropstegn';
-import { Fullmakt as FullmaktInterface, KodeBeskrivelse } from '../../PersondataDomain';
+import { Fullmakt as FullmaktInterface, InformasjonElement, KodeBeskrivelse } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
 import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
+import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 
 interface Props {
-    harFeilendeSystem: boolean;
+    feilendeSystemer: Array<InformasjonElement>;
     fullmakter: FullmaktInterface[];
 }
 
@@ -39,7 +40,7 @@ function Fullmakt(props: { fullmakt: FullmaktInterface; harFeilendeSystem: boole
     );
 }
 
-function Fullmakter({ harFeilendeSystem, fullmakter }: Props) {
+function Fullmakter({ feilendeSystemer, fullmakter }: Props) {
     if (fullmakter.isEmpty()) {
         return null;
     }
@@ -47,7 +48,14 @@ function Fullmakter({ harFeilendeSystem, fullmakter }: Props) {
     return (
         <VisittkortGruppe tittel={'Fullmakter'} ikon={<Fullmaktlogo />}>
             {fullmakter.map((fullmakt, index) => (
-                <Fullmakt key={index} fullmakt={fullmakt} harFeilendeSystem={harFeilendeSystem} />
+                <Fullmakt
+                    key={index}
+                    fullmakt={fullmakt}
+                    harFeilendeSystem={harFeilendeSystemer(
+                        feilendeSystemer,
+                        InformasjonElement.PDL_TREDJEPARTSPERSONER
+                    )}
+                />
             ))}
         </VisittkortGruppe>
     );

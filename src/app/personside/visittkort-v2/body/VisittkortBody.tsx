@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import VisuallyHiddenAutoFokusHeader from '../../../../components/VisuallyHiddenAutoFokusHeader';
-import { Data as PersonData, InformasjonElement } from '../PersondataDomain';
+import { Data as PersonData } from '../PersondataDomain';
 import Familie from './familie/Familie';
 import Fullmakter from './fullmakt/Fullmakt';
 import Kontaktinformasjon from './kontaktinformasjon/Kontaktinformasjon';
@@ -14,7 +14,6 @@ import Vergemal from './vergemal/Vergemal';
 import Sikkerhetstiltak from './sikkerhetstiltak/Sikkerhetstiltak';
 import LenkeBrukerprofil from './lenkebrukerprofil/LenkeBrukerprofil';
 import NavKontor from './navkontor/NavKontor';
-import { harFeilendeSystemer } from '../harFeilendeSystemer';
 
 interface Props {
     persondata: PersonData;
@@ -24,28 +23,16 @@ function SingleColumnLayout(persondata: PersonData) {
     return (
         <Kolonne>
             <Kontaktinformasjon persondata={persondata} />
-            <Fullmakter
-                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
-                fullmakter={persondata.person.fullmakt}
-            />
-            <Familie
-                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
-                person={persondata.person}
-            />
+            <Fullmakter feilendeSystemer={persondata.feilendeSystemer} fullmakter={persondata.person.fullmakt} />
+            <Familie feilendeSystemer={persondata.feilendeSystemer} person={persondata.person} />
             <DeltBosted deltBosted={persondata.person.deltBosted} />
             <Foreldreansvar
-                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                feilendeSystemer={persondata.feilendeSystemer}
                 foreldreansvar={persondata.person.foreldreansvar}
             />
-            <NavKontor
-                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_NAVKONTOR)}
-                navEnhet={persondata.person.navEnhet}
-            />
+            <NavKontor feilendeSystemer={persondata.feilendeSystemer} navEnhet={persondata.person.navEnhet} />
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
-            <Vergemal
-                harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
-                vergemal={persondata.person.vergemal}
-            />
+            <Vergemal feilendeSystemer={persondata.feilendeSystemer} vergemal={persondata.person.vergemal} />
             <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
             <LenkeBrukerprofil />
         </Kolonne>
@@ -57,30 +44,18 @@ function DoubleColumnLayout(persondata: PersonData) {
         <>
             <Kolonne>
                 <Kontaktinformasjon persondata={persondata} />
-                <Fullmakter
-                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
-                    fullmakter={persondata.person.fullmakt}
-                />
-                <Familie
-                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
-                    person={persondata.person}
-                />
+                <Fullmakter feilendeSystemer={persondata.feilendeSystemer} fullmakter={persondata.person.fullmakt} />
+                <Familie feilendeSystemer={persondata.feilendeSystemer} person={persondata.person} />
                 <DeltBosted deltBosted={persondata.person.deltBosted} />
                 <Foreldreansvar
-                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    feilendeSystemer={persondata.feilendeSystemer}
                     foreldreansvar={persondata.person.foreldreansvar}
                 />
             </Kolonne>
             <Kolonne>
-                <NavKontor
-                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_NAVKONTOR)}
-                    navEnhet={persondata.person.navEnhet}
-                />
+                <NavKontor feilendeSystemer={persondata.feilendeSystemer} navEnhet={persondata.person.navEnhet} />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
-                <Vergemal
-                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
-                    vergemal={persondata.person.vergemal}
-                />
+                <Vergemal feilendeSystemer={persondata.feilendeSystemer} vergemal={persondata.person.vergemal} />
                 <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
                 <LenkeBrukerprofil />
             </Kolonne>
@@ -93,32 +68,20 @@ function TripleColumnLayout(persondata: PersonData) {
         <>
             <Kolonne>
                 <Kontaktinformasjon persondata={persondata} />
-                <Fullmakter
-                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
-                    fullmakter={persondata.person.fullmakt}
-                />
+                <Fullmakter feilendeSystemer={persondata.feilendeSystemer} fullmakter={persondata.person.fullmakt} />
             </Kolonne>
             <Kolonne>
-                <Familie
-                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
-                    person={persondata.person}
-                />
+                <Familie feilendeSystemer={persondata.feilendeSystemer} person={persondata.person} />
                 <Foreldreansvar
-                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
+                    feilendeSystemer={persondata.feilendeSystemer}
                     foreldreansvar={persondata.person.foreldreansvar}
                 />
                 <DeltBosted deltBosted={persondata.person.deltBosted} />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
-                <Vergemal
-                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.PDL_TREDJEPARTSPERSONER)}
-                    vergemal={persondata.person.vergemal}
-                />
+                <Vergemal feilendeSystemer={persondata.feilendeSystemer} vergemal={persondata.person.vergemal} />
             </Kolonne>
             <Kolonne>
-                <NavKontor
-                    harFeilendeSystem={harFeilendeSystemer(persondata, InformasjonElement.NORG_NAVKONTOR)}
-                    navEnhet={persondata.person.navEnhet}
-                />
+                <NavKontor feilendeSystemer={persondata.feilendeSystemer} navEnhet={persondata.person.navEnhet} />
                 <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
                 <LenkeBrukerprofil />
             </Kolonne>

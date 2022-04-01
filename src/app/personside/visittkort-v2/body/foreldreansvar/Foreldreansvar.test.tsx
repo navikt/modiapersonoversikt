@@ -7,7 +7,7 @@ import Foreldreansvar from './Foreldreansvar';
 test('viser foreldreansvar', () => {
     const visittkortbody = renderer.create(
         <TestProvider>
-            <Foreldreansvar harFeilendeSystem={false} foreldreansvar={aremark.foreldreansvar} />
+            <Foreldreansvar feilendeSystemer={[]} foreldreansvar={aremark.foreldreansvar} />
         </TestProvider>
     );
 

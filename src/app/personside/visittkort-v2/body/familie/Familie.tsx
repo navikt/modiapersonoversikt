@@ -1,17 +1,19 @@
 import * as React from 'react';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Foreldre from './Foreldre';
-import { Person } from '../../PersondataDomain';
+import { InformasjonElement, Person } from '../../PersondataDomain';
 import Sivilstand from './Sivilstand';
 import ListeAvBarn from './ListeAvBarn';
+import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 
 interface Props {
-    harFeilendeSystem: boolean;
+    feilendeSystemer: Array<InformasjonElement>;
     person: Person;
 }
 
-function Familie({ harFeilendeSystem, person }: Props) {
+function Familie({ feilendeSystemer, person }: Props) {
     const erUnder22 = person.alder !== null && person.alder <= 21;
+    const harFeilendeSystem = harFeilendeSystemer(feilendeSystemer, InformasjonElement.PDL_TREDJEPARTSPERSONER);
 
     return (
         <VisittkortGruppe tittel={'Familie'}>
