@@ -14,8 +14,8 @@ import DropDownMenu from '../../../../components/DropDownMenu';
 import { Undertittel } from 'nav-frontend-typografi';
 import { sakerTest } from '../dyplenkeTest/utils-dyplenker-test';
 import SakstemaListe from './sakstemaliste/SakstemaListe';
-import { useHentAlleSakstemaFraResource, useSakstemaURLState } from './useSakstemaURLState';
 import { aggregertTemanavn } from './utils/saksoversiktUtils';
+import { useHentAlleSakstemaFraResource, useSakstemaURLState } from './useSakstemaURLState';
 
 interface Props {
     fnr: string;
