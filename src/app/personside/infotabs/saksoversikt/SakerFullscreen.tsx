@@ -14,8 +14,9 @@ import DropDownMenu from '../../../../components/DropDownMenu';
 import { Undertittel } from 'nav-frontend-typografi';
 import { sakerTest } from '../dyplenkeTest/utils-dyplenker-test';
 import SakstemaListe from './sakstemaliste/SakstemaListe';
-import { aggregertTemanavn } from './utils/saksoversiktUtils';
+import { aggregertTemanavn, forkortetTemanavn } from './utils/saksoversiktUtils';
 import { useHentAlleSakstemaFraResource, useSakstemaURLState } from './useSakstemaURLState';
+import { filtrerSakstemaerUtenData } from './sakstemaliste/SakstemaListeUtils';
 
 interface Props {
     fnr: string;
@@ -54,7 +55,12 @@ function Innhold() {
 
     const tittel = (
         <Undertittel className={sakerTest.dokument}>
-            {aggregertTemanavn(valgteSakstemaer, valgteSakstemaer.length === alleSakstema.length)}
+            {forkortetTemanavn(
+                aggregertTemanavn(
+                    valgteSakstemaer,
+                    valgteSakstemaer.length === filtrerSakstemaerUtenData(alleSakstema).length
+                )
+            )}
         </Undertittel>
     );
     const sakstemaListeDropdown = (
