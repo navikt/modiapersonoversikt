@@ -5,7 +5,9 @@ import { formatterDato } from '../../../../../utils/date-utils';
 import { filtrerSakstemaerUtenData } from '../sakstemaliste/SakstemaListeUtils';
 
 export const sakstemakodeAlle = 'ALLE';
+export const sakstemanavnAlle = 'Alle tema';
 export const sakstemakodeIngen = 'INGEN';
+export const sakstemanavnIngen = 'Ingen tema valgt';
 
 export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sakstema[]): Sakstema {
     const alleSakstemaFiltrert = filtrerSakstemaerUtenData(alleSakstema);
@@ -29,13 +31,23 @@ export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sak
 }
 
 export function aggregertTemanavn(valgteSakstema: Sakstema[], erAlleSakstema: boolean): string {
-    const nyttTemanavn = erAlleSakstema ? 'Alle tema' : valgteSakstema.map((tema) => tema.temanavn).join(', ');
-    return nyttTemanavn !== '' ? nyttTemanavn : 'Ingen tema valgt';
+    const nyttTemanavn = erAlleSakstema ? sakstemanavnAlle : valgteSakstema.map((tema) => tema.temanavn).join(', ');
+    return nyttTemanavn !== '' ? nyttTemanavn : sakstemanavnIngen;
 }
 
 function aggregertTemakode(valgteSakstema: Sakstema[]): string {
     const nyTemakode = valgteSakstema.map((tema) => tema.temakode).join('-');
     return nyTemakode !== '' ? nyTemakode : sakstemakodeIngen;
+}
+
+export function forkortetTemanavn(temanavn: string): string {
+    if (temanavn === sakstemanavnAlle || temanavn === sakstemanavnIngen) {
+        return temanavn;
+    }
+    const temanavnListe = temanavn.split(',');
+    return temanavnListe.length <= 3
+        ? temanavn
+        : `${temanavnListe.slice(0, 2).join(', ')} og ${temanavnListe.length - 2} andre sakstemaer`;
 }
 
 function aggregerSakstemaGenerisk<T>(alleSakstema: Sakstema[], getGeneriskElement: (saksTema: Sakstema) => T[]): T[] {

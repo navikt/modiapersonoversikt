@@ -24,7 +24,7 @@ import { oppdaterAvsenderfilter } from '../../../../../redux/saksoversikt/action
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { useHentAlleSakstemaFraResource, useSakstemaURLState } from '../useSakstemaURLState';
-import { aggregertSakstema } from '../utils/saksoversiktUtils';
+import { aggregertSakstema, forkortetTemanavn } from '../utils/saksoversiktUtils';
 
 const StyledPanel = styled(Panel)`
     padding: 0rem;
@@ -235,7 +235,7 @@ function JournalPoster(props: Props) {
         props.sakstemaListeDropdown !== undefined ? (
             props.sakstemaListeDropdown
         ) : (
-            <Undertittel className={sakerTest.dokument}>{aggregertSak.temanavn}</Undertittel>
+            <Undertittel className={sakerTest.dokument}>{forkortetTemanavn(aggregertSak.temanavn)}</Undertittel>
         );
 
     return (
