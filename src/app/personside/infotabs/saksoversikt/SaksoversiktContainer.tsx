@@ -6,7 +6,7 @@ import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import SakstemaListe from './sakstemaliste/SakstemaListe';
-import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
+import { ScrollBar } from '../utils/InfoTabsScrollBar';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import JournalPoster from './saksdokumenter/JournalPoster';
@@ -14,14 +14,17 @@ import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 import SakerFullscreenLenke from './SakerFullscreenLenke';
 import { useHentAlleSakstemaFraResource, useSakstemaURLState } from './useSakstemaURLState';
 
-const saksoversiktMediaTreshold = '65rem';
+const saksoversiktMediaTreshold = '70rem';
 
 const SaksoversiktStyle = styled.div`
-    ${scrollBarContainerStyle(saksoversiktMediaTreshold)};
+    display: flex;
+    flex-direction: column;
+    overflow: unset;
+    max-height: none;
     @media (min-width: ${saksoversiktMediaTreshold}) {
+        flex-direction: row;
         height: 0; /* IE11 */
         flex-grow: 1; /* IE11 */
-        display: flex;
         > *:first-child {
             min-width: 19rem;
             flex-basis: 19rem;
@@ -34,7 +37,6 @@ const SaksoversiktStyle = styled.div`
     .visually-hidden {
         ${theme.visuallyHidden}
     }
-    position: relative;
     ${theme.visitedLinkPurple};
 `;
 
