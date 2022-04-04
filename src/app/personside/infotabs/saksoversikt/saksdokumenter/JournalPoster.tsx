@@ -184,7 +184,7 @@ interface Props {
 }
 
 function JournalPoster(props: Props) {
-    const alleSakstema = useHentAlleSakstemaFraResource();
+    const { alleSakstema } = useHentAlleSakstemaFraResource();
     const { valgteSakstemaer } = useSakstemaURLState(alleSakstema);
     const tittelRef = React.createRef<HTMLDivElement>();
     const avsenderFilter = useAppState((state) => state.saksoversikt.avsenderFilter);

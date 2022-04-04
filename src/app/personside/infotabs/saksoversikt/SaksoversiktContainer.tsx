@@ -41,7 +41,7 @@ const SaksoversiktStyle = styled.div`
 function SaksoversiktContainer() {
     useKeepQueryParams();
 
-    const alleSakstema = useHentAlleSakstemaFraResource();
+    const { alleSakstema } = useHentAlleSakstemaFraResource();
     const { valgtDokument, valgtJournalpost, valgteSakstemaer } = useSakstemaURLState(alleSakstema);
 
     if (valgtDokument) {

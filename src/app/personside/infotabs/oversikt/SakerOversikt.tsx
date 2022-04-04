@@ -9,6 +9,7 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { ReactNode } from 'react';
 import { useOnMount } from '../../../../utils/customHooks';
 import { Normaltekst } from 'nav-frontend-typografi';
+import { filtrerSakstemaerUtenData } from '../saksoversikt/sakstemaliste/SakstemaListeUtils';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -33,8 +34,7 @@ function SakerOversikt(props: Props) {
 }
 
 function SakerPanel(props: { sakstema: Sakstema[] } & Props) {
-    const sakstemakomponenter = props.sakstema
-        .filter((sakstema) => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
+    const sakstemakomponenter = filtrerSakstemaerUtenData(props.sakstema)
         .slice(0, 2)
         .map((sakstema, index) => <SakstemaListeElementKnapp sakstema={sakstema} key={index} erValgt={false} />);
 

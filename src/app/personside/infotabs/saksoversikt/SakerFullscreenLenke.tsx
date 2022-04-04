@@ -17,7 +17,7 @@ function reactrouterLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
 }
 
 function SakerFullscreenLenke() {
-    const alleSakstema = useHentAlleSakstemaFraResource();
+    const { alleSakstema } = useHentAlleSakstemaFraResource();
     const { valgteSakstemaer, valgtDokument } = useSakstemaURLState(alleSakstema);
     const dyplenker = useInfotabsDyplenker();
     const aggregertSak = aggregertSakstema(alleSakstema, valgteSakstemaer);

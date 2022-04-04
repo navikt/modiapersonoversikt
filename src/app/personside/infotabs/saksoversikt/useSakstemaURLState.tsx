@@ -22,6 +22,11 @@ interface QueryParamsForSak {
     dokument?: string;
 }
 
+interface SakstemaResource {
+    alleSakstema: Sakstema[];
+    isLoading: boolean;
+}
+
 export function useSakstemaURLState(alleSakstemaer: Sakstema[]): SakstemaURLState {
     const filtrertAlleSakstemaer = filtrerSakstemaerUtenData(alleSakstemaer);
     const history = useHistory();
@@ -83,13 +88,20 @@ export function useSakstemaURLState(alleSakstemaer: Sakstema[]): SakstemaURLStat
     }, [history, queryParams, filtrertAlleSakstemaer]);
 }
 
-export function useHentAlleSakstemaFraResource(): Sakstema[] {
+export function useHentAlleSakstemaFraResource(): SakstemaResource {
     const sakstemaResource = useRestResource((resources) => resources.sakstema);
     return useMemo(() => {
         const alleSakstema =
             sakstemaResource.data && sakstemaResource.data.resultat.isNotEmpty() ? sakstemaResource.data.resultat : [];
-        return alleSakstema.sort(datoSynkende((sakstema) => hentDatoForSisteHendelse(sakstema)));
-    }, [sakstemaResource.data]);
+        if (sakstemaResource.isLoading || alleSakstema.isEmpty()) {
+            return { alleSakstema: [], isLoading: true };
+        } else {
+            return {
+                alleSakstema: alleSakstema.sort(datoSynkende((sakstema) => hentDatoForSisteHendelse(sakstema))),
+                isLoading: false
+            };
+        }
+    }, [sakstemaResource]);
 }
 
 function inneholderValgtDokument(journalpost: Journalpost, dokumentId?: string): boolean {

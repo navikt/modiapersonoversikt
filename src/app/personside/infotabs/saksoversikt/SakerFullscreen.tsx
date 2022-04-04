@@ -17,6 +17,7 @@ import SakstemaListe from './sakstemaliste/SakstemaListe';
 import { aggregertTemanavn, forkortetTemanavn } from './utils/saksoversiktUtils';
 import { useHentAlleSakstemaFraResource, useSakstemaURLState } from './useSakstemaURLState';
 import { filtrerSakstemaerUtenData } from './sakstemaliste/SakstemaListeUtils';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 
 interface Props {
     fnr: string;
@@ -46,12 +47,16 @@ const SaksoversiktArticle = styled.article`
 `;
 
 function Innhold() {
-    const alleSakstema = useHentAlleSakstemaFraResource();
+    const { alleSakstema, isLoading } = useHentAlleSakstemaFraResource();
     const { valgteSakstemaer, valgtDokument, valgtJournalpost } = useSakstemaURLState(alleSakstema);
 
     useEffect(() => {
         loggEvent('VisDokument', 'SakerFullscreen');
     }, [valgtDokument]);
+
+    if (isLoading) {
+        return <CenteredLazySpinner />;
+    }
 
     const tittel = (
         <Undertittel className={sakerTest.dokument}>

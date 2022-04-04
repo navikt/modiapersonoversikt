@@ -107,7 +107,7 @@ function getDokumentIkon(harTilgang: boolean) {
 }
 
 function JournalpostListeElement(props: Props) {
-    const alleSakstema = useHentAlleSakstemaFraResource();
+    const { alleSakstema } = useHentAlleSakstemaFraResource();
     const { valgtJournalpost } = useSakstemaURLState(alleSakstema);
     const vedleggLinkRef = React.createRef<HTMLUListElement>();
     const hoveddokumentLinkRef = React.createRef<HTMLDivElement>();

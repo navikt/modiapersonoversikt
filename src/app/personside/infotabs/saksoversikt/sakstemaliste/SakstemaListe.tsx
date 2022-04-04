@@ -60,7 +60,7 @@ const StyledCheckboksPanelGruppe = styled(CheckboksPanelGruppe)`
 `;
 
 function SakstemaListe() {
-    const alleSakstema = useHentAlleSakstemaFraResource();
+    const { alleSakstema } = useHentAlleSakstemaFraResource();
     const { setAlleValgte, setIngenValgte, toggleValgtSakstema, valgteSakstemaer } = useSakstemaURLState(alleSakstema);
     const tittelId = useRef(guid());
 

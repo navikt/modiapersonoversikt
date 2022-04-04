@@ -64,7 +64,7 @@ function DokumentOgVedlegg(props: Props) {
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
     const fodselsnummer = useFodselsnummer();
-    const alleSakstema = useHentAlleSakstemaFraResource();
+    const { alleSakstema } = useHentAlleSakstemaFraResource();
 
     useFocusOnMount(ref);
 
