@@ -52,8 +52,8 @@ function DokumentVisning(props: Props) {
 }
 
 function byggDokumentVisningUrl(url: string, fodselsnummer: string): string {
-    const { journalpostId, dokumentId } = parseQueryString(url); // Format til url: 'journalpost=etcoicxr&dokument=q90p8dnw'
-    return `/modiapersonoversikt-api/rest/saker/${fodselsnummer}/dokument/${journalpostId}/${dokumentId}`;
+    const { journalpost, dokument } = parseQueryString(url); // Format til url: 'journalpost=etcoicxr&dokument=q90p8dnw'
+    return `/modiapersonoversikt-api/rest/saker/${fodselsnummer}/dokument/${journalpost}/${dokument}`;
 }
 
 function feilmelding(statusKode: number) {
