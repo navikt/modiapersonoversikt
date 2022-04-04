@@ -8,6 +8,7 @@ import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFe
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import styled from 'styled-components';
 import { getMockableUrl } from './mockable-dokument-url';
+import { parseQueryString } from '../../../../../utils/url-utils';
 
 interface Props {
     url: string;
@@ -51,7 +52,7 @@ function DokumentVisning(props: Props) {
 }
 
 function byggDokumentVisningUrl(url: string, fodselsnummer: string): string {
-    const [journalpostId, dokumentId] = url.split('&').map((queryParam) => queryParam.split('=').slice(-1)[0]); // Format til url: 'journalpost=etcoicxr&dokument=q90p8dnw'
+    const { journalpostId, dokumentId } = parseQueryString(url); // Format til url: 'journalpost=etcoicxr&dokument=q90p8dnw'
     return `/modiapersonoversikt-api/rest/saker/${fodselsnummer}/dokument/${journalpostId}/${dokumentId}`;
 }
 
