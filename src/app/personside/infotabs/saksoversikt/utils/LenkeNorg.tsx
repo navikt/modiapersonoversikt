@@ -1,7 +1,6 @@
 import { BaseUrlsResponse } from '../../../../../models/baseurls';
 import { hentBaseUrl } from '../../../../../redux/restReducers/baseurls';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import * as React from 'react';
 import { hasData, RestResource } from '../../../../../rest/utils/restResource';
@@ -10,6 +9,7 @@ import { connect } from 'react-redux';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useHentPersondata } from '../../../../../utils/customHooks';
 import { hasData as hasDataUseFetch } from '@nutgaard/use-fetch';
+import { sakstemakodeAlle } from './saksoversiktUtils';
 
 interface OwnProps {
     valgtSakstema?: Sakstema;

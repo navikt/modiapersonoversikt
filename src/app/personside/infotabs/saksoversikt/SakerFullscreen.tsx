@@ -7,12 +7,17 @@ import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
-import LazySpinner from '../../../../components/LazySpinner';
-import FillCenterAndFadeIn from '../../../../components/FillCenterAndFadeIn';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
-import JournalPoster from './saksdokumenter/JournalPoster';
-import { useSaksoversiktValg } from './utils/useSaksoversiktValg';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
+import JournalPoster from './saksdokumenter/JournalPoster';
+import DropDownMenu from '../../../../components/DropDownMenu';
+import { Undertittel } from 'nav-frontend-typografi';
+import { sakerTest } from '../dyplenkeTest/utils-dyplenker-test';
+import SakstemaListe from './sakstemaliste/SakstemaListe';
+import { aggregertTemanavn, forkortetTemanavn } from './utils/saksoversiktUtils';
+import { useHentAlleSakstemaFraResource, useSakstemaURLState } from './useSakstemaURLState';
+import { filtrerSakstemaerUtenData } from './sakstemaliste/SakstemaListeUtils';
+import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 
 interface Props {
     fnr: string;
@@ -42,24 +47,41 @@ const SaksoversiktArticle = styled.article`
 `;
 
 function Innhold() {
-    const state = useSaksoversiktValg();
+    const { alleSakstema, isLoading } = useHentAlleSakstemaFraResource();
+    const { valgteSakstemaer, valgtDokument, valgtJournalpost } = useSakstemaURLState(alleSakstema);
 
     useEffect(() => {
         loggEvent('VisDokument', 'SakerFullscreen');
-    }, [state.saksdokument]);
+    }, [valgtDokument]);
 
-    if (!state.sakstema) {
-        return (
-            <FillCenterAndFadeIn>
-                <LazySpinner />
-            </FillCenterAndFadeIn>
-        );
+    if (isLoading) {
+        return <CenteredLazySpinner />;
     }
+
+    const tittel = (
+        <Undertittel className={sakerTest.dokument}>
+            {forkortetTemanavn(
+                aggregertTemanavn(
+                    valgteSakstemaer,
+                    valgteSakstemaer.length === filtrerSakstemaerUtenData(alleSakstema).length
+                )
+            )}
+        </Undertittel>
+    );
+    const sakstemaListeDropdown = (
+        <DropDownMenu header={tittel}>
+            <SakstemaListe />
+        </DropDownMenu>
+    );
 
     return (
         <SaksoversiktArticle>
-            <JournalPoster valgtSakstema={state.sakstema} />
-            <DokumentOgVedlegg {...state} />
+            <JournalPoster sakstemaListeDropdown={sakstemaListeDropdown} />
+            <DokumentOgVedlegg
+                valgtDokument={valgtDokument}
+                valgtJournalpost={valgtJournalpost}
+                valgteSakstemaer={valgteSakstemaer}
+            />
         </SaksoversiktArticle>
     );
 }

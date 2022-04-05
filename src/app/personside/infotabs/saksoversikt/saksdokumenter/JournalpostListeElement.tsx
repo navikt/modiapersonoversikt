@@ -14,15 +14,15 @@ import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
 import DokumentIkon from '../../../../../svg/DokumentIkon';
 import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
-import { sakstemakodeAlle } from '../sakstemaliste/SakstemaListe';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import { useInfotabsDyplenker } from '../../dyplenker';
 import DokumentLenke from './DokumentLenke';
 import { guid } from 'nav-frontend-js-utils';
 import { useHentPersondata } from '../../../../../utils/customHooks';
 import { hasData } from '@nutgaard/use-fetch';
 import { hentNavn } from '../../../visittkort-v2/visittkort-utils';
+import { sakstemakodeAlle } from '../utils/saksoversiktUtils';
+import { useHentAlleSakstemaFraResource, useSakstemaURLState } from '../useSakstemaURLState';
 
 interface Props {
     journalpost: Journalpost;
@@ -75,12 +75,12 @@ const VedleggStyle = styled.div`
     }
 `;
 
-function tekstBasertPåRetning(brukernavn: string, dokument: Journalpost) {
+function tekstBasertPaRetning(brukernavn: string, dokument: Journalpost) {
     switch (dokument.retning) {
         case Kommunikasjonsretning.Inn:
             return dokument.avsender === Entitet.Sluttbruker ? `Fra ${brukernavn}` : `Fra ${dokument.navn}`;
         case Kommunikasjonsretning.Ut:
-            return utgåendeTekst(dokument.mottaker, dokument.navn);
+            return utgaendeTekst(dokument.mottaker, dokument.navn);
         case Kommunikasjonsretning.Intern:
             return 'Notat';
         default:
@@ -88,14 +88,14 @@ function tekstBasertPåRetning(brukernavn: string, dokument: Journalpost) {
     }
 }
 
-function utgåendeTekst(mottaker: Entitet, mottakernavn: string) {
+function utgaendeTekst(mottaker: Entitet, mottakernavn: string) {
     const dokumentmottaker = mottaker === Entitet.Sluttbruker ? '' : `(Sendt til ${mottakernavn})`;
     return `Fra NAV ${dokumentmottaker}`;
 }
 
 function formaterDatoOgAvsender(brukernavn: string, dokument: Journalpost) {
     const dato = dayjs(saksdatoSomDate(dokument.dato)).format('DD.MM.YYYY');
-    return `${dato} / ${tekstBasertPåRetning(brukernavn, dokument)}`;
+    return `${dato} / ${tekstBasertPaRetning(brukernavn, dokument)}`;
 }
 
 function getDokumentIkon(harTilgang: boolean) {
@@ -106,11 +106,12 @@ function getDokumentIkon(harTilgang: boolean) {
     }
 }
 
-function JournalpostLiseElement(props: Props) {
+function JournalpostListeElement(props: Props) {
+    const { alleSakstema } = useHentAlleSakstemaFraResource();
+    const { valgtJournalpost } = useSakstemaURLState(alleSakstema);
     const vedleggLinkRef = React.createRef<HTMLUListElement>();
     const hoveddokumentLinkRef = React.createRef<HTMLDivElement>();
     const brukerResponse = useHentPersondata();
-    const dyplenker = useInfotabsDyplenker();
     const tittelId = useRef(guid());
 
     const dokumentKanVises = (dokument: Enkeltdokument, journalpost: Journalpost) => {
@@ -167,10 +168,7 @@ function JournalpostLiseElement(props: Props) {
 
     return (
         <li>
-            <StyledArticle
-                valgt={dyplenker.saker.erValgtJournalpost(props.journalpost)}
-                aria-labelledby={tittelId.current}
-            >
+            <StyledArticle valgt={journalpost === valgtJournalpost} aria-labelledby={tittelId.current}>
                 <IkonWrapper>{getDokumentIkon(harTilgangTilJournalpost(journalpost))}</IkonWrapper>
                 <InnholdWrapper>
                     <UUcustomOrder id={tittelId.current}>
@@ -194,4 +192,4 @@ function JournalpostLiseElement(props: Props) {
     );
 }
 
-export default JournalpostLiseElement;
+export default JournalpostListeElement;

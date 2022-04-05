@@ -41,18 +41,18 @@ const dokumentTekst = (dokument: Dokument) => {
 };
 
 function getUrlSaksdokumentEgetVindu(
-    fødselsnummer: string,
+    fodselsnummer: string,
     journalpostId: string | null,
     dokumentReferanse: string | null
 ) {
-    const saksdokumentUrl = getSaksdokumentUrl(fødselsnummer, journalpostId, dokumentReferanse);
+    const saksdokumentUrl = getSaksdokumentUrl(fodselsnummer, journalpostId, dokumentReferanse);
 
-    return `${paths.saksdokumentEgetVindu}/${fødselsnummer}?dokumenturl=${saksdokumentUrl}`;
+    return `${paths.saksdokumentEgetVindu}/${fodselsnummer}?${saksdokumentUrl}`;
 }
 
 function DokumentLenke(props: Props) {
     const pathname = useLocation().pathname;
-    const fødselsnummer = useFodselsnummer();
+    const fodselsnummer = useFodselsnummer();
     const dyplenker = useInfotabsDyplenker();
 
     if (!props.kanVises) {
@@ -72,10 +72,10 @@ function DokumentLenke(props: Props) {
     }
 
     const url = apneDokumentINyttVindu
-        ? getUrlSaksdokumentEgetVindu(fødselsnummer, journalpostId, dokumentReferanse)
+        ? getUrlSaksdokumentEgetVindu(fodselsnummer, journalpostId, dokumentReferanse)
         : dyplenker.saker.link(props.valgtSakstema, props.dokument);
 
-    const saksdokumentUrl = getSaksdokumentUrl(fødselsnummer, journalpostId, dokumentReferanse);
+    const saksdokumentUrl = getSaksdokumentUrl(fodselsnummer, journalpostId, dokumentReferanse);
     return (
         <>
             <Link to={url} target={apneDokumentINyttVindu ? '_blank' : undefined} className="lenke typo-element">

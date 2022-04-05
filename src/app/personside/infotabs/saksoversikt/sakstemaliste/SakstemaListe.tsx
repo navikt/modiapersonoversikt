@@ -1,29 +1,17 @@
-import * as React from 'react';
-import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import React from 'react';
 import styled from 'styled-components/macro';
-import theme, { pxToRem } from '../../../../../styles/personOversiktTheme';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import SakstemaListeElement from './SakstemaListeElement';
+import { pxToRem } from '../../../../../styles/personOversiktTheme';
+import SakstemaListeElementCheckboks from './SakstemaListeElementCheckboks';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { getUnikSakstemaKey, hentDatoForSisteHendelse, useAgregerteSaker } from '../utils/saksoversiktUtils';
-import { datoSynkende } from '../../../../../utils/date-utils';
-import LazySpinner from '../../../../../components/LazySpinner';
-import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
-
-interface Props {
-    valgtSakstema?: Sakstema;
-}
-
-export const sakstemakodeAlle = 'ALLE';
-
-const SakstemaListeStyle = styled.ol`
-    > * {
-        border-top: ${theme.border.skille};
-    }
-`;
+import { Knapp } from 'nav-frontend-knapper';
+import { useHentAlleSakstemaFraResource, useSakstemaURLState } from '../useSakstemaURLState';
+import { CheckboksPanelGruppe, CheckboksPanelProps } from 'nav-frontend-skjema';
+import { aggregertSakstema, sakstemakodeAlle } from '../utils/saksoversiktUtils';
+import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import { filtrerSakstemaerUtenData } from './SakstemaListeUtils';
 
 const StyledPanel = styled(Panel)`
     padding: 0rem;
@@ -41,54 +29,82 @@ const TittelWrapper = styled.div`
     }
 `;
 
-function GrupperteTema(props: { sakstema: Sakstema[]; valgtSakstema?: Sakstema }) {
-    const sakstemakomponenter = props.sakstema
-        .filter(sakstema => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0)
-        .map(sakstema => {
-            return (
-                <SakstemaListeElement
-                    sakstema={sakstema}
-                    key={getUnikSakstemaKey(sakstema)}
-                    erValgt={
-                        props.valgtSakstema
-                            ? getUnikSakstemaKey(sakstema) === getUnikSakstemaKey(props.valgtSakstema)
-                            : false
-                    }
-                />
-            );
-        });
-    return <SakstemaListeStyle>{sakstemakomponenter}</SakstemaListeStyle>;
-}
+const KnappeSeksjon = styled.section`
+    width: 100%;
+    padding: 0 ${pxToRem(15)} ${pxToRem(15)} ${pxToRem(15)};
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+`;
 
-function SakstemaListe(props: Props) {
-    const sakstemaResource = useRestResource(resources => resources.sakstema);
-    const agregerteSaker = useAgregerteSaker();
+const StyledCheckboksPanelGruppe = styled(CheckboksPanelGruppe)`
+    label {
+        border: 0;
+        border-top: 1px solid #6a6a6a;
+        border-radius: 0;
+
+        &.inputPanel--checked {
+            background-color: transparent;
+        }
+
+        &.inputPanel:not(:last-child) {
+            margin-bottom: 0;
+        }
+
+        &.inputPanel:hover:not(.inputPanel--disabled):not(.bekreftCheckboksPanel) {
+            border: 0;
+            border-top: 1px solid #6a6a6a;
+            box-shadow: none;
+        }
+    }
+`;
+
+function SakstemaListe() {
+    const { alleSakstema } = useHentAlleSakstemaFraResource();
+    const { setAlleValgte, setIngenValgte, toggleValgtSakstema, valgteSakstemaer } = useSakstemaURLState(alleSakstema);
     const tittelId = useRef(guid());
 
-    if (!sakstemaResource.data || !agregerteSaker) {
-        return <LazySpinner />;
+    function sakstemaErValgt(sakstema: Sakstema): boolean {
+        const valgteTemakoder: string[] = valgteSakstemaer.map((sakstema) => sakstema.temakode);
+        return valgteTemakoder.includes(sakstema.temakode) || valgteTemakoder[0] === sakstemakodeAlle;
     }
 
-    const sakstema = sakstemaResource.data.resultat;
-
-    if (sakstema.length === 0) {
-        return <AlertStripeInfo>Det finnes ingen saker for bruker.</AlertStripeInfo>;
-    }
-
-    const sortertSakstema = sakstema.sort(datoSynkende(sakstema => hentDatoForSisteHendelse(sakstema)));
+    const checkbokser = filtrerSakstemaerUtenData(alleSakstema).map((sakstema) => {
+        return {
+            label: <SakstemaListeElementCheckboks sakstema={sakstema} key={sakstema.temakode} />,
+            value: sakstema.temakode,
+            id: sakstema.temakode,
+            checked: sakstemaErValgt(sakstema)
+        } as CheckboksPanelProps;
+    });
 
     return (
         <nav>
             <StyledPanel aria-labelledby={tittelId.current}>
                 <TittelWrapper>
                     <Undertittel id={tittelId.current}>Tema</Undertittel>
-                    <Normaltekst>({sortertSakstema.length} saker)</Normaltekst>
+                    <Normaltekst>({checkbokser.length} saker)</Normaltekst>
                 </TittelWrapper>
+                <KnappeSeksjon>
+                    <Knapp key={'Velg alle'} onClick={() => setAlleValgte()} htmlType="button" kompakt={true}>
+                        Velg alle
+                    </Knapp>
+                    <Knapp key={'Velg ingen'} onClick={() => setIngenValgte()} htmlType="button" kompakt={true}>
+                        Velg ingen
+                    </Knapp>
+                </KnappeSeksjon>
                 <nav aria-label="Velg sakstema">
-                    <GrupperteTema
-                        sakstema={[agregerteSaker, ...sortertSakstema]}
-                        valgtSakstema={props.valgtSakstema}
-                    />
+                    <ol>
+                        <StyledCheckboksPanelGruppe
+                            checkboxes={checkbokser}
+                            onChange={(_, value) => {
+                                toggleValgtSakstema(
+                                    alleSakstema.find((sakstema) => sakstema.temakode === value) ??
+                                        aggregertSakstema(alleSakstema)
+                                );
+                            }}
+                        />
+                    </ol>
                 </nav>
             </StyledPanel>
         </nav>

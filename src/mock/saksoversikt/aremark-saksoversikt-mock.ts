@@ -679,6 +679,16 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                 }
             ],
             feilkoder: []
+        },
+        {
+            harTilgang: true,
+            temakode: 'BID',
+            temanavn: 'Bidrag',
+            erGruppert: false,
+            behandlingskjeder: [],
+            dokumentMetadata: [],
+            tilhørendeSaker: [],
+            feilkoder: []
         }
     ];
 }

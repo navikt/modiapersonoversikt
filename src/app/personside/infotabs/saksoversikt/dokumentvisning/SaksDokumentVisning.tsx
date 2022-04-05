@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router';
-import { useOnMount } from '../../../../../utils/customHooks';
+import { useFodselsnummer, useOnMount } from '../../../../../utils/customHooks';
 import { default as React, useCallback, useEffect, useState } from 'react';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { erIE11 } from '../../../../../utils/erIE11';
@@ -8,6 +8,7 @@ import { ObjectHttpFeilHandtering } from '../../../../../components/ObjectHttpFe
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import styled from 'styled-components';
 import { getMockableUrl } from './mockable-dokument-url';
+import { parseQueryString } from '../../../../../utils/url-utils';
 
 interface Props {
     url: string;
@@ -23,6 +24,7 @@ function DokumentVisning(props: Props) {
     const pathname = useLocation().pathname;
     const [errMsg, setErrMsg] = useState('');
     const onError = useCallback((statusKode: number) => setErrMsg(feilmelding(statusKode)), [setErrMsg]);
+    const fodselsnummer = useFodselsnummer();
 
     useEffect(() => {
         loggEvent('VisSaksdokument', 'Saker', { standalone: erSakerFullscreen(pathname) });
@@ -37,7 +39,8 @@ function DokumentVisning(props: Props) {
     if (erIE11()) {
         return <AlertStripeInfo>Kan ikke vise dokumenter i Internet Explorer. Prøv chrome</AlertStripeInfo>;
     }
-    const url = getMockableUrl(props.url);
+
+    const url = getMockableUrl(byggDokumentVisningUrl(props.url, fodselsnummer));
 
     return (
         <ObjectHttpFeilHandtering type="application/pdf" url={url} width="100%" height="100%" onError={onError}>
@@ -46,6 +49,11 @@ function DokumentVisning(props: Props) {
             </ErrorStyle>
         </ObjectHttpFeilHandtering>
     );
+}
+
+function byggDokumentVisningUrl(url: string, fodselsnummer: string): string {
+    const { journalpost, dokument } = parseQueryString(url); // Format til url: 'journalpost=etcoicxr&dokument=q90p8dnw'
+    return `/modiapersonoversikt-api/rest/saker/${fodselsnummer}/dokument/${journalpost}/${dokument}`;
 }
 
 function feilmelding(statusKode: number) {
