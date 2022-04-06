@@ -26,8 +26,8 @@ const SaksoversiktStyle = styled.div`
         height: 0; /* IE11 */
         flex-grow: 1; /* IE11 */
         > *:first-child {
-            min-width: 19rem;
-            flex-basis: 19rem;
+            min-width: 20rem;
+            flex-basis: 20rem;
         }
         > *:last-child {
             flex-grow: 1;
