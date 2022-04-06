@@ -3,7 +3,7 @@ name: Publish gh-pages
 on:
     push:
         branches:
-            - dev
+            - fix/listevisning-skjermleser
 env:
     CI: true
     TZ: Europe/Oslo

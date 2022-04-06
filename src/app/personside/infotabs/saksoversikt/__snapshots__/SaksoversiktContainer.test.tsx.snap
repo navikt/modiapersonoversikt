@@ -350,10 +350,10 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   }
 
   .c0 > *:first-child {
-    min-width: 19rem;
-    -webkit-flex-basis: 19rem;
-    -ms-flex-preferred-size: 19rem;
-    flex-basis: 19rem;
+    min-width: 20rem;
+    -webkit-flex-basis: 20rem;
+    -ms-flex-preferred-size: 20rem;
+    flex-basis: 20rem;
   }
 
   .c0 > *:last-child {
