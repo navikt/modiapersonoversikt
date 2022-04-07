@@ -85,18 +85,20 @@ export function fjernSakerSomAlleredeErTilknyttet(
     saker: Array<JournalforingsSak>,
     eksisterendeSaker: Array<JournalforingsSakIdentifikator>
 ): Array<JournalforingsSak> {
-    const temagrupperte = eksisterendeSaker
-        .filter((it) => it.saksId !== undefined)
+    const eksisterendeSakerMap: Group<string> = eksisterendeSaker
+        .filter((it) => it.fagsystemSaksId !== undefined)
+        .map((it) => it.fagsystemSaksId as string)
         .reduce(
-            groupBy((it) => it.temaKode),
+            groupBy((it) => it),
             {}
         );
 
     return saker.filter((sak) => {
-        const tema = sak.temaKode;
-        const temasaker: JournalforingsSakIdentifikator[] = temagrupperte[tema] ?? [];
-        const erJournalfortPaSak = temasaker.find((it) => it.saksId === sak.saksId);
-        return !erJournalfortPaSak;
+        if (sak.fagsystemSaksId) {
+            return eksisterendeSakerMap[sak.fagsystemSaksId] === undefined;
+        } else {
+            return true;
+        }
     });
 }
 

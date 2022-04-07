@@ -1,8 +1,8 @@
 import { fjernSakerSomAlleredeErTilknyttet, fordelSaker } from './VelgSak';
 import { JournalforingsSak, JournalforingsSakIdentifikator, SakKategori } from './JournalforingPanel';
 
-function sak(sakstype: 'GEN' | 'FAG', temaKode: string, saksId?: string): JournalforingsSak {
-    return { sakstype, temaKode, temaNavn: temaKode, saksId } as JournalforingsSak;
+function sak(sakstype: 'GEN' | 'FAG', temaKode: string, fagsystemSaksId?: string): JournalforingsSak {
+    return { sakstype, temaKode, temaNavn: temaKode, fagsystemSaksId } as JournalforingsSak;
 }
 
 describe('fordelSaker', () => {
@@ -41,7 +41,9 @@ describe('fjernSakerSomAlleredeErTilknyttet', () => {
     ];
 
     it('skal fjerne sak som allerede er journalført på', () => {
-        const eksisterendeSaker: Array<JournalforingsSakIdentifikator> = [{ temaKode: 'DAG', saksId: 'DAG_ID_2' }];
+        const eksisterendeSaker: Array<JournalforingsSakIdentifikator> = [
+            { temaKode: 'DAG', fagsystemSaksId: 'DAG_ID_2' }
+        ];
 
         const lovligeSaker = fjernSakerSomAlleredeErTilknyttet(saker, eksisterendeSaker);
 
@@ -57,5 +59,16 @@ describe('fjernSakerSomAlleredeErTilknyttet', () => {
 
         const lovligeSaker = fjernSakerSomAlleredeErTilknyttet(saker, eksisterendeSaker);
         expect(lovligeSaker).toHaveLength(4);
+    });
+
+    it('skal fjerne saker på tvers av ulike tema', () => {
+        const eksisterendeSaker: Array<JournalforingsSakIdentifikator> = [
+            { temaKode: 'AAP', fagsystemSaksId: 'DAG_ID_2' }
+        ];
+
+        const lovligeSaker = fjernSakerSomAlleredeErTilknyttet(saker, eksisterendeSaker);
+
+        expect(lovligeSaker).not.toContainEqual(sak('FAG', 'DAG', 'DAG_ID_2'));
+        expect(lovligeSaker).toHaveLength(3);
     });
 });
