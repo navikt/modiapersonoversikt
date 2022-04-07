@@ -6,6 +6,7 @@ import {
     ForelderBarnRelasjon,
     ForelderBarnRelasjonRolle,
     FullmaktsRolle,
+    InformasjonElement,
     Kjonn,
     LocalDate,
     LocalDateTime,
@@ -26,6 +27,24 @@ const ikkeRegistrert = false;
 export function hentPersondata(fodselsnummer: string): PersonData | null {
     if (fodselsnummer === aremark.personIdent) {
         return { feilendeSystemer: [], person: aremark };
+    } else if (fodselsnummer === '05117608222') {
+        return {
+            feilendeSystemer: [
+                InformasjonElement.DKIF,
+                InformasjonElement.BANKKONTO,
+                InformasjonElement.PDL_GT,
+                InformasjonElement.NORG_NAVKONTOR,
+                InformasjonElement.NORG_KONTAKTINFORMASJON,
+                InformasjonElement.VEILEDER_ROLLER,
+                InformasjonElement.PDL_TREDJEPARTSPERSONER
+            ],
+            person: lagPerson(fodselsnummer)
+        };
+    } else if (fodselsnummer === '15068215851') {
+        return {
+            feilendeSystemer: [InformasjonElement.EGEN_ANSATT, InformasjonElement.BANKKONTO],
+            person: lagPerson(fodselsnummer)
+        };
     } else if (!erGyldigFødselsnummer(fodselsnummer)) {
         return null;
     } else {
@@ -246,17 +265,19 @@ export function lagPerson(fnr: string): Person {
             ? [
                   {
                       adressat: {
-                          advokatSomAdressat: {
-                              kontaktperson: {
-                                  fornavn: 'Advokat',
-                                  mellomnavn: null,
-                                  etternavn: 'Navnesen'
-                              },
-                              organisasjonsnavn: 'Advokatkontoret Aremark',
-                              organisasjonsnummer: '01234567891011'
-                          },
+                          advokatSomAdressat: null,
                           organisasjonSomAdressat: null,
-                          personSomAdressat: null
+                          personSomAdressat: {
+                              fnr: '10108000398',
+                              navn: [
+                                  {
+                                      fornavn: '',
+                                      mellomnavn: null,
+                                      etternavn: ''
+                                  }
+                              ],
+                              fodselsdato: '10.10.1980' as LocalDate
+                          }
                       },
                       adresse: {
                           linje1: 'Elgelia 20',
@@ -302,11 +323,7 @@ export function lagPerson(fnr: string): Person {
             ? [
                   {
                       ident: '21042900076',
-                      navn: {
-                          fornavn: 'Simen',
-                          mellomnavn: null,
-                          etternavn: 'Solli'
-                      },
+                      navn: null,
                       vergesakstype: 'Voksen',
                       omfang: 'Ivareta personens interesser innenfor det personlige og økonomiske området',
                       embete: 'Fylkesmannen i Troms og Finnmark',

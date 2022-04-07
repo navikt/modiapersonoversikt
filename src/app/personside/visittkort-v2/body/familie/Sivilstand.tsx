@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import HeartIkon from '../../../../../svg/Heart';
 import { Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
@@ -8,6 +8,7 @@ import Diskresjonskode from './common/Diskresjonskode';
 import { formaterDato } from '../../../../../utils/string-utils';
 
 interface Props {
+    harFeilendeSystem: boolean;
     sivilstandListe: SivilstandInterface[];
 }
 
@@ -26,7 +27,18 @@ function Sivilstand(props: { sivilstand: SivilstandInterface }) {
     );
 }
 
-function Partner(props: { partner: SivilstandInterface }) {
+function Partner(props: { partner: SivilstandInterface; harFeilendeSystem: boolean }) {
+    if (props.harFeilendeSystem) {
+        return (
+            <>
+                <Normaltekst>
+                    <Sivilstand sivilstand={props.partner} />
+                </Normaltekst>
+                <Feilmelding>Feilet ved uthenting av informasjon om partner</Feilmelding>
+            </>
+        );
+    }
+
     const partnerRelasjon = props.partner.sivilstandRelasjon;
     if (!partnerRelasjon) {
         return null;
@@ -49,7 +61,7 @@ function Partner(props: { partner: SivilstandInterface }) {
     );
 }
 
-function SivilstandWrapper({ sivilstandListe }: Props) {
+function SivilstandWrapper({ harFeilendeSystem, sivilstandListe }: Props) {
     const sivilstand = sivilstandListe.firstOrNull();
 
     if (!sivilstand) {
@@ -59,7 +71,7 @@ function SivilstandWrapper({ sivilstandListe }: Props) {
     return (
         <VisittkortElement beskrivelse="Sivilstand" ikon={<HeartIkon />}>
             {erPartner(sivilstand) ? (
-                <Partner partner={sivilstand} />
+                <Partner harFeilendeSystem={harFeilendeSystem} partner={sivilstand} />
             ) : (
                 <Normaltekst>
                     <Sivilstand sivilstand={sivilstand} />

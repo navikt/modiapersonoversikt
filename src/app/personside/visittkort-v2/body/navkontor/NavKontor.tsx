@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { Fragment } from 'react';
 import styled from 'styled-components/macro';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import VisittkortElement from '../VisittkortElement';
 import NavLogo from '../../../../../svg/NavLogo';
 import { hentBaseUrl } from '../../../../../redux/restReducers/baseurls';
 import { VisittkortGruppe } from '../VisittkortStyles';
-import { Enhet, Publikumsmottak as PublikumsmottakInterface } from '../../PersondataDomain';
+import { Enhet, InformasjonElement, Publikumsmottak as PublikumsmottakInterface } from '../../PersondataDomain';
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import AdresseInfo from '../AdresseInfo';
 import { capitalizeName } from '../../../../../utils/string-utils';
+import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 
 const ApningstiderListe = styled.dl`
     margin: initial;
@@ -28,11 +29,12 @@ const ApningstiderListe = styled.dl`
 `;
 
 interface Props {
+    feilendeSystemer: Array<InformasjonElement>;
     navEnhet: Enhet | null;
 }
 
 function PublikumsmottakKontaktInfo(props: { publikumsmottak: PublikumsmottakInterface }) {
-    const apningstider = props.publikumsmottak.apningstider.map(apningstid => {
+    const apningstider = props.publikumsmottak.apningstider.map((apningstid) => {
         return (
             <Fragment key={apningstid.ukedag}>
                 <dt>
@@ -80,9 +82,19 @@ function Publikumsmottak(props: { publikumsmottak: PublikumsmottakInterface[] })
     );
 }
 
-function NavKontor({ navEnhet }: Props) {
-    const baseUrlResource = useRestResource(resources => resources.baseUrl);
+function NavKontor({ feilendeSystemer, navEnhet }: Props) {
+    const baseUrlResource = useRestResource((resources) => resources.baseUrl);
     const baseUrl = baseUrlResource.data ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
+
+    if (harFeilendeSystemer(feilendeSystemer, InformasjonElement.NORG_NAVKONTOR)) {
+        return (
+            <VisittkortGruppe tittel={'NAV-kontor'}>
+                <VisittkortElement beskrivelse={'Ukjent NAV-kontor'} ikon={<NavLogo />}>
+                    <Feilmelding>Feilet ved uthenting av informasjon om NAV-kontor</Feilmelding>
+                </VisittkortElement>
+            </VisittkortGruppe>
+        );
+    }
 
     if (!navEnhet) {
         return null;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Data as Persondata } from './PersondataDomain';
+import { Data as Persondata, InformasjonElement } from './PersondataDomain';
 import AriaNotification from '../../../components/AriaNotification';
 import { UnmountClosed } from 'react-collapse';
 import useToggle from '../../../utils/hooks/use-toggle';
@@ -8,6 +8,8 @@ import VisittkortHeader from './header/VisittkortHeader';
 import useHotkey from '../../../utils/hooks/use-hotkey';
 import useUrlNyPersonforvalter from '../../brukerprofil/useUrlNyPersonforvalter';
 import SikkerhetstiltakModal from './header/SikkerhetstiltakModal';
+import EgenAnsattFeilendeSystemModal from './header/EgenAnsattFeilendeSystemModal';
+import { harFeilendeSystemer } from './harFeilendeSystemer';
 
 interface Props {
     persondata: Persondata;
@@ -35,8 +37,14 @@ function VisittkortVisning(props: Props) {
             <article role="region" aria-label="Visittkort" aria-expanded={erApen}>
                 <VisittkortHeader persondata={props.persondata} erApen={erApen} toggleApen={toggleApen} />
                 <SikkerhetstiltakModal sikkerhetstiltak={props.persondata.person.sikkerhetstiltak} />
+                <EgenAnsattFeilendeSystemModal
+                    egenAnsattFeiler={harFeilendeSystemer(
+                        props.persondata.feilendeSystemer,
+                        InformasjonElement.EGEN_ANSATT
+                    )}
+                />
                 <UnmountClosed isOpened={erApen}>
-                    <VisittkortBody person={props.persondata.person} />
+                    <VisittkortBody persondata={props.persondata} />
                 </UnmountClosed>
             </article>
         </>
