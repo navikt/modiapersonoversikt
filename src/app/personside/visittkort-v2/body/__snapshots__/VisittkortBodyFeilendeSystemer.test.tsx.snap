@@ -85,12 +85,6 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   margin: 10px 0 0 0;
 }
 
-.c8 {
-  color: #ba3a26;
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
 .c7 {
   color: #645f5a;
   margin-top: 3px;
@@ -104,11 +98,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   margin-top: 0.5rem;
 }
 
-.c9 {
+.c8 {
   margin-bottom: 5px;
 }
 
-.c10 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -490,11 +484,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             E-post
           </h4>
         </div>
-        <div
-          className="c8"
+        <p
+          className="typo-feilmelding"
         >
           Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret
-        </div>
+        </p>
       </div>
       <div
         className="c4"
@@ -524,11 +518,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Telefon
           </h4>
         </div>
-        <div
-          className="c8"
+        <p
+          className="typo-feilmelding"
         >
           Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret
-        </div>
+        </p>
       </div>
       <div
         className="c4"
@@ -543,11 +537,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Telefon til bruk for NAV
           </h4>
         </div>
-        <div
-          className="c8"
+        <p
+          className="typo-feilmelding"
         >
           Feilet ved uthenting av kontaktinformasjon
-        </div>
+        </p>
       </div>
       <div
         className="c4"
@@ -622,11 +616,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Kontonummer
           </h4>
         </div>
-        <div
-          className="c8"
+        <p
+          className="typo-feilmelding"
         >
           Feilet ved uthenting av kontonummer
-        </div>
+        </p>
       </div>
     </section>
     <section>
@@ -685,11 +679,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Fullmektig
           </h4>
         </div>
-        <div
-          className="c8"
+        <p
+          className="typo-feilmelding"
         >
           Feilet ved uthenting av navn
-        </div>
+        </p>
         <p
           className="typo-normal"
         >
@@ -764,11 +758,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
            
           (12.12.2005)
         </p>
-        <div
-          className="c8"
+        <p
+          className="typo-feilmelding"
         >
           Feilet ved uthenting av informasjon om partner
-        </div>
+        </p>
       </div>
       <div
         className="c4"
@@ -813,12 +807,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Jente
           </h4>
         </div>
-        <div
-          className="c8"
+        <p
+          className="typo-feilmelding"
         >
           Feilet ved uthenting av informasjon om 
           barn
-        </div>
+        </p>
       </div>
       <div
         className="c4"
@@ -863,12 +857,12 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Jente
           </h4>
         </div>
-        <div
-          className="c8"
+        <p
+          className="typo-feilmelding"
         >
           Feilet ved uthenting av informasjon om 
           barn
-        </div>
+        </p>
       </div>
     </section>
     <section>
@@ -977,11 +971,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Ansvar: 
           felles
         </p>
-        <div
-          className="c8"
+        <p
+          className="typo-feilmelding"
         >
           Feilet ved uthenting av informasjon om barn
-        </div>
+        </p>
       </div>
       <div
         className="c4"
@@ -997,11 +991,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Ansvar: 
           felles
         </p>
-        <div
-          className="c8"
+        <p
+          className="typo-feilmelding"
         >
           Feilet ved uthenting av informasjon om barn
-        </div>
+        </p>
       </div>
     </section>
     <section>
@@ -1059,11 +1053,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             Ukjent NAV-kontor
           </h4>
         </div>
-        <div
-          className="c8"
+        <p
+          className="typo-feilmelding"
         >
           Feilet ved uthenting av informasjon om NAV-kontor
-        </div>
+        </p>
       </div>
     </section>
     <section>
@@ -1202,7 +1196,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c9"
+          className="c8"
         >
           <p
             className="typo-normal"
@@ -1259,7 +1253,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c9"
+          className="c8"
         >
           <p
             className="typo-normal"
@@ -1389,7 +1383,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </section>
     <div
-      className="c10"
+      className="c9"
     >
       <a
         className="lenke"
