@@ -1,19 +1,28 @@
 import * as React from 'react';
 import VisittkortElement from '../../VisittkortElement';
 import CoinsIkon from '../../../../../../svg/Coins';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
 import { Bankkonto as BankkontoInterface } from '../../../PersondataDomain';
 import Endringstekst from '../../Endringstekst';
 
 interface Props {
+    harFeilendeSystem: boolean;
     bankkonto: BankkontoInterface | null;
 }
 
-function Bankkonto({ bankkonto }: Props) {
+function Bankkonto({ harFeilendeSystem, bankkonto }: Props) {
     let beskrivelse = 'Kontonummer';
     if (bankkonto && bankkonto.landkode && bankkonto.landkode.kode !== 'NOR') {
         beskrivelse += 'utland';
+    }
+
+    if (harFeilendeSystem) {
+        return (
+            <VisittkortElement beskrivelse={beskrivelse} ikon={<CoinsIkon />}>
+                <Feilmelding>Feilet ved uthenting av kontonummer</Feilmelding>
+            </VisittkortElement>
+        );
     }
 
     if (!bankkonto) {

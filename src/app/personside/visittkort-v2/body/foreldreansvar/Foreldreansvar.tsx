@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import VisittkortElement from '../VisittkortElement';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import Infotegn from '../../../../../svg/Info';
-import { Foreldreansvar, NavnOgIdent } from '../../PersondataDomain';
+import { Foreldreansvar, InformasjonElement, NavnOgIdent } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
+import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 
 interface Props {
+    feilendeSystemer: Array<InformasjonElement>;
     foreldreansvar: Foreldreansvar[];
 }
 
@@ -21,8 +23,17 @@ function kombinerNavnOgIdent(personInfo: NavnOgIdent | null): string | null {
     return personInfo.navn ? `${navn} (${ident})` : navn;
 }
 
-function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {
+function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansvar: Foreldreansvar }) {
     const { foreldreansvar } = props;
+
+    if (props.harFeilendeSystem) {
+        return (
+            <VisittkortElement>
+                <Normaltekst>Ansvar: {foreldreansvar.ansvar}</Normaltekst>
+                <Feilmelding>Feilet ved uthenting av informasjon om barn</Feilmelding>
+            </VisittkortElement>
+        );
+    }
     const ansvarlig = kombinerNavnOgIdent(foreldreansvar.ansvarlig);
     const ansvarsubject = kombinerNavnOgIdent(foreldreansvar.ansvarsubject);
 
@@ -35,7 +46,7 @@ function ForeldreansvarElement(props: { foreldreansvar: Foreldreansvar }) {
     );
 }
 
-function ForendreansvarWrapper({ foreldreansvar }: Props) {
+function ForendreansvarWrapper({ feilendeSystemer, foreldreansvar }: Props) {
     if (foreldreansvar.isEmpty()) {
         return null;
     }
@@ -43,7 +54,14 @@ function ForendreansvarWrapper({ foreldreansvar }: Props) {
     return (
         <VisittkortGruppe ikon={<Infotegn />} tittel="Foreldreansvar">
             {foreldreansvar.map((foreldreansvar, index) => (
-                <ForeldreansvarElement key={index} foreldreansvar={foreldreansvar} />
+                <ForeldreansvarElement
+                    key={index}
+                    harFeilendeSystem={harFeilendeSystemer(
+                        feilendeSystemer,
+                        InformasjonElement.PDL_TREDJEPARTSPERSONER
+                    )}
+                    foreldreansvar={foreldreansvar}
+                />
             ))}
         </VisittkortGruppe>
     );

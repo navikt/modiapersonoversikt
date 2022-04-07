@@ -1,11 +1,12 @@
 import * as React from 'react';
 import VisittkortElement from '../VisittkortElement';
 import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { Telefon as TelefonInterface } from '../../PersondataDomain';
 import Endringstekst from '../Endringstekst';
 
 interface Props {
+    harFeilendeSystem: boolean;
     telefonnummer: TelefonInterface[];
 }
 
@@ -20,7 +21,14 @@ function Telefon(props: { telefonnummer: TelefonInterface }) {
     );
 }
 
-function NavKontaktinformasjon({ telefonnummer }: Props) {
+function NavKontaktinformasjon({ harFeilendeSystem, telefonnummer }: Props) {
+    if (harFeilendeSystem) {
+        return (
+            <VisittkortElement beskrivelse="Telefon til bruk for NAV">
+                <Feilmelding>Feilet ved uthenting av kontaktinformasjon</Feilmelding>
+            </VisittkortElement>
+        );
+    }
     if (telefonnummer.isEmpty()) {
         return null;
     }
@@ -29,7 +37,7 @@ function NavKontaktinformasjon({ telefonnummer }: Props) {
         <VisittkortElement beskrivelse="Telefon til bruk for NAV">
             {telefonnummer
                 .sort((nr1, nr2) => nr1.prioritet - nr2.prioritet)
-                .map(telefonnummer => (
+                .map((telefonnummer) => (
                     <Telefon telefonnummer={telefonnummer} key={telefonnummer.identifikator} />
                 ))}
         </VisittkortElement>
