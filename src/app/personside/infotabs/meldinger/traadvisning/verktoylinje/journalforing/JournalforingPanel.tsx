@@ -38,7 +38,7 @@ export interface JournalforingsSak {
 
 export interface JournalforingsSakIdentifikator {
     temaKode: string;
-    saksId?: string;
+    fagsystemSaksId?: string;
 }
 
 export type Result = { saker: Array<JournalforingsSak>; feiledeSystemer: Array<string> };
@@ -69,7 +69,7 @@ function JournalforingPanel(props: Props) {
     const kanJournalforeFlere = useFeatureToggle(FeatureToggles.KanJournalforeFlere)?.isOn ?? false;
     const eksisterendeJournalposter: Array<JournalforingsSakIdentifikator> = props.traad.journalposter.map((jp) => ({
         temaKode: jp.journalfortTema,
-        saksId: jp.journalfortSaksid
+        fagsystemSaksId: jp.journalfortSaksid
     }));
 
     const kanJournalfores = kanTraadJournalfores(props.traad, kanJournalforeFlere);
