@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import HeartIkon from '../../../../../svg/Heart';
 import { Sivilstand as SivilstandInterface, SivilstandType } from '../../PersondataDomain';
 import { erPartner, hentAlderEllerDod, hentNavn } from '../../visittkort-utils';
 import Diskresjonskode from './common/Diskresjonskode';
 import { formaterDato } from '../../../../../utils/string-utils';
-import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
     harFeilendeSystem: boolean;
@@ -35,7 +34,7 @@ function Partner(props: { partner: SivilstandInterface; harFeilendeSystem: boole
                 <Normaltekst>
                     <Sivilstand sivilstand={props.partner} />
                 </Normaltekst>
-                <FeilendeSystemAdvarsel>Feilet ved uthenting av informasjon om partner</FeilendeSystemAdvarsel>
+                <Feilmelding>Feilet ved uthenting av informasjon om partner</Feilmelding>
             </>
         );
     }

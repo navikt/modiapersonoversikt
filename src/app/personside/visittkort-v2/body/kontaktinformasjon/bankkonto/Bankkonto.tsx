@@ -1,11 +1,10 @@
 import * as React from 'react';
 import VisittkortElement from '../../VisittkortElement';
 import CoinsIkon from '../../../../../../svg/Coins';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
 import { Bankkonto as BankkontoInterface } from '../../../PersondataDomain';
 import Endringstekst from '../../Endringstekst';
-import FeilendeSystemAdvarsel from '../../../FeilendeSystemAdvarsel';
 
 interface Props {
     harFeilendeSystem: boolean;
@@ -21,7 +20,7 @@ function Bankkonto({ harFeilendeSystem, bankkonto }: Props) {
     if (harFeilendeSystem) {
         return (
             <VisittkortElement beskrivelse={beskrivelse} ikon={<CoinsIkon />}>
-                <FeilendeSystemAdvarsel>Feilet ved uthenting av kontonummer</FeilendeSystemAdvarsel>
+                <Feilmelding>Feilet ved uthenting av kontonummer</Feilmelding>
             </VisittkortElement>
         );
     }

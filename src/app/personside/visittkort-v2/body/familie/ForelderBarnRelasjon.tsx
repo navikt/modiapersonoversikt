@@ -1,4 +1,4 @@
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import * as React from 'react';
 import { ForelderBarnRelasjon } from '../../PersondataDomain';
 import { hentAlderEllerDod, hentNavn } from '../../visittkort-utils';
@@ -6,7 +6,6 @@ import VisittkortElement from '../VisittkortElement';
 import BostedForRelasjon from './common/BostedForRelasjon';
 import Diskresjonskode from './common/Diskresjonskode';
 import FamilierelasjonIkon from './common/FamilierelasjonIkon';
-import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
     harFeilendeSystem: boolean;
@@ -22,9 +21,7 @@ function ForelderBarnRelasjonVisning({ harFeilendeSystem, relasjon, beskrivelse,
                 beskrivelse={beskrivelse}
                 ikon={<FamilierelasjonIkon relasjon={relasjon} erBarn={erBarn} />}
             >
-                <FeilendeSystemAdvarsel>
-                    Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}
-                </FeilendeSystemAdvarsel>
+                <Feilmelding>Feilet ved uthenting av informasjon om {relasjon.rolle.toLowerCase()}</Feilmelding>
             </VisittkortElement>
         );
     }

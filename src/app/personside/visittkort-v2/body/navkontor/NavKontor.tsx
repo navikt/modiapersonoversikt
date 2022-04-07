@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Fragment } from 'react';
 import styled from 'styled-components/macro';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import VisittkortElement from '../VisittkortElement';
 import NavLogo from '../../../../../svg/NavLogo';
@@ -11,7 +11,6 @@ import { Enhet, InformasjonElement, Publikumsmottak as PublikumsmottakInterface 
 import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import AdresseInfo from '../AdresseInfo';
 import { capitalizeName } from '../../../../../utils/string-utils';
-import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 
 const ApningstiderListe = styled.dl`
@@ -91,7 +90,7 @@ function NavKontor({ feilendeSystemer, navEnhet }: Props) {
         return (
             <VisittkortGruppe tittel={'NAV-kontor'}>
                 <VisittkortElement beskrivelse={'Ukjent NAV-kontor'} ikon={<NavLogo />}>
-                    <FeilendeSystemAdvarsel>Feilet ved uthenting av informasjon om NAV-kontor</FeilendeSystemAdvarsel>
+                    <Feilmelding>Feilet ved uthenting av informasjon om NAV-kontor</Feilmelding>
                 </VisittkortElement>
             </VisittkortGruppe>
         );

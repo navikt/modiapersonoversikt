@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import VisittkortElement from '../../VisittkortElement';
 import LocationPin from '../../../../../../svg/LocationPin';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { hentNavn } from '../../../visittkort-utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { formaterDato } from '../../../../../../utils/string-utils';
@@ -15,7 +15,6 @@ import {
 } from '../../../PersondataDomain';
 import Adresseinfo from '../../AdresseInfo';
 import Endringstekst from '../../Endringstekst';
-import FeilendeSystemAdvarsel from '../../../FeilendeSystemAdvarsel';
 
 interface Props {
     harFeilendeSystem: boolean;
@@ -77,9 +76,7 @@ function PersonSomAdressatInfo({
     harFeilendeSystem: boolean;
     adressat: PersonSomAdressat;
 }) {
-    const manglerData = harFeilendeSystem ? (
-        <FeilendeSystemAdvarsel>Feilet ved uthenting av navn</FeilendeSystemAdvarsel>
-    ) : null;
+    const manglerData = harFeilendeSystem ? <Feilmelding>Feilet ved uthenting av navn</Feilmelding> : null;
     const fnr = adressat.fnr ? <Normaltekst>{adressat.fnr}</Normaltekst> : null;
     const fodselsdato = adressat.fodselsdato ? <Normaltekst>{formaterDato(adressat.fodselsdato)}</Normaltekst> : null;
     const navn = adressat.navn ? <Normaltekst>{hentNavn(adressat.navn.firstOrNull())}</Normaltekst> : null;

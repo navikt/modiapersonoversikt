@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import VisittkortElement from '../VisittkortElement';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import Infotegn from '../../../../../svg/Info';
 import { Foreldreansvar, InformasjonElement, NavnOgIdent } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
-import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 
 interface Props {
@@ -28,7 +27,7 @@ function ForeldreansvarElement(props: { harFeilendeSystem: boolean; foreldreansv
         return (
             <VisittkortElement>
                 <Normaltekst>Ansvar: {foreldreansvar.ansvar}</Normaltekst>
-                <FeilendeSystemAdvarsel>Feilet ved uthenting av informasjon om barn</FeilendeSystemAdvarsel>
+                <Feilmelding>Feilet ved uthenting av informasjon om barn</Feilmelding>
             </VisittkortElement>
         );
     }

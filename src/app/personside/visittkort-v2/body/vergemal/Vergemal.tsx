@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Element, Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import VisittkortElement from '../VisittkortElement';
 import { InformasjonElement, Verge as VergeInterface } from '../../PersondataDomain';
 import VergemalLogo from '../../../../../svg/Utropstegn';
@@ -8,7 +8,6 @@ import EtikettGraa from '../../../../../components/EtikettGraa';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
-import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 
 const Vergeinformasjon = styled.div`
@@ -24,7 +23,7 @@ function Verge(props: { feilendeSystemer: Array<InformasjonElement>; verge: Verg
     const { verge } = props;
     const harFeilendeSystemOgIngenNavn =
         harFeilendeSystemer(props.feilendeSystemer, InformasjonElement.PDL_TREDJEPARTSPERSONER) && !verge.navn ? (
-            <FeilendeSystemAdvarsel>Feilet ved uthenting av navn på verge</FeilendeSystemAdvarsel>
+            <Feilmelding>Feilet ved uthenting av navn på verge</Feilmelding>
         ) : (
             <Normaltekst>{hentNavn(verge.navn, 'Navn ikke tilgjengelig')}</Normaltekst>
         );

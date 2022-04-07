@@ -4,7 +4,7 @@ import VisittkortElement from '../../VisittkortElement';
 import { DigitalKontaktinformasjon as DigitalKontaktinformasjonInterface } from '../../../PersondataDomain';
 import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
 import { formaterDato } from '../../../../../../utils/string-utils';
-import FeilendeSystemAdvarsel from '../../../FeilendeSystemAdvarsel';
+import { Feilmelding } from 'nav-frontend-typografi';
 
 interface Props {
     harFeilendeSystem: boolean;
@@ -15,9 +15,7 @@ function Epost({ harFeilendeSystem, kontaktinformasjon }: Props) {
     if (harFeilendeSystem) {
         return (
             <VisittkortElement beskrivelse="E-post" ikon={<EmailIkon />}>
-                <FeilendeSystemAdvarsel>
-                    Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret
-                </FeilendeSystemAdvarsel>
+                <Feilmelding>Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret</Feilmelding>
             </VisittkortElement>
         );
     }

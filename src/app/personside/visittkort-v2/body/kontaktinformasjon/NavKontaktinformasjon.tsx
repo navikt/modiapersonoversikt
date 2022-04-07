@@ -1,10 +1,9 @@
 import * as React from 'react';
 import VisittkortElement from '../VisittkortElement';
 import { formaterMobiltelefonnummer } from '../../../../../utils/telefon-utils';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { Telefon as TelefonInterface } from '../../PersondataDomain';
 import Endringstekst from '../Endringstekst';
-import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 
 interface Props {
     harFeilendeSystem: boolean;
@@ -26,7 +25,7 @@ function NavKontaktinformasjon({ harFeilendeSystem, telefonnummer }: Props) {
     if (harFeilendeSystem) {
         return (
             <VisittkortElement beskrivelse="Telefon til bruk for NAV">
-                <FeilendeSystemAdvarsel>Feilet ved uthenting av kontaktinformasjon</FeilendeSystemAdvarsel>
+                <Feilmelding>Feilet ved uthenting av kontaktinformasjon</Feilmelding>
             </VisittkortElement>
         );
     }

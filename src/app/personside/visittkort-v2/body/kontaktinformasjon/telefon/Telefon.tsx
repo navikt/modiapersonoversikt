@@ -5,7 +5,7 @@ import { DigitalKontaktinformasjon as DigitalKontaktinformasjonInterface } from 
 import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
 import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
 import { formaterDato } from '../../../../../../utils/string-utils';
-import FeilendeSystemAdvarsel from '../../../FeilendeSystemAdvarsel';
+import { Feilmelding } from 'nav-frontend-typografi';
 
 interface Props {
     harFeilendeSystem: boolean;
@@ -16,9 +16,7 @@ function Telefon({ harFeilendeSystem, kontaktinformasjon }: Props) {
     if (harFeilendeSystem) {
         return (
             <VisittkortElement beskrivelse="Telefon" ikon={<PhoneIkon />}>
-                <FeilendeSystemAdvarsel>
-                    Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret
-                </FeilendeSystemAdvarsel>
+                <Feilmelding>Feilet ved uthenting av data fra Kontakt- og reservasjonsregisteret</Feilmelding>
             </VisittkortElement>
         );
     }

@@ -1,12 +1,11 @@
 import * as React from 'react';
 import VisittkortElement from '../VisittkortElement';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import Fullmaktlogo from '../../../../../svg/Utropstegn';
 import { Fullmakt as FullmaktInterface, InformasjonElement, KodeBeskrivelse } from '../../PersondataDomain';
 import { hentNavn } from '../../visittkort-utils';
 import GyldighetsPeriode from '../GyldighetsPeriode';
-import FeilendeSystemAdvarsel from '../../FeilendeSystemAdvarsel';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 
 interface Props {
@@ -24,9 +23,7 @@ function getOmrade(omrader: KodeBeskrivelse<string>[]): string {
 function Fullmakt(props: { fullmakt: FullmaktInterface; harFeilendeSystem: boolean }) {
     const motpartsPersonNavn = hentNavn(props.fullmakt.motpartsPersonNavn);
     const beskrivelse = props.fullmakt.motpartsRolle === 'FULLMEKTIG' ? 'Fullmektig' : 'Fullmaktsgiver';
-    const harFeilendeSystem = props.harFeilendeSystem ? (
-        <FeilendeSystemAdvarsel>Feilet ved uthenting av navn</FeilendeSystemAdvarsel>
-    ) : null;
+    const harFeilendeSystem = props.harFeilendeSystem ? <Feilmelding>Feilet ved uthenting av navn</Feilmelding> : null;
 
     return (
         <VisittkortElement beskrivelse={beskrivelse}>
