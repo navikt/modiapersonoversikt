@@ -1,8 +1,8 @@
-import { fordelSaker } from './VelgSak';
-import { JournalforingsSak, SakKategori } from './JournalforingPanel';
+import { fjernSakerSomAlleredeErTilknyttet, fordelSaker } from './VelgSak';
+import { JournalforingsSak, JournalforingsSakIdentifikator, SakKategori } from './JournalforingPanel';
 
-function sak(sakstype: 'GEN' | 'FAG', temaKode: string): JournalforingsSak {
-    return { sakstype, temaKode, temaNavn: temaKode } as JournalforingsSak;
+function sak(sakstype: 'GEN' | 'FAG', temaKode: string, saksId?: string): JournalforingsSak {
+    return { sakstype, temaKode, temaNavn: temaKode, saksId } as JournalforingsSak;
 }
 
 describe('fordelSaker', () => {
@@ -29,5 +29,33 @@ describe('fordelSaker', () => {
         const saker = [...generelleSaker, sak('FAG', 'AAP')];
         expect(fordelSaker(saker)[SakKategori.FAG].length).toBe(1);
         expect(fordelSaker(saker)[SakKategori.GEN].length).toBe(generelleSaker.length);
+    });
+});
+
+describe('fjernSakerSomAlleredeErTilknyttet', () => {
+    const saker: Array<JournalforingsSak> = [
+        sak('FAG', 'DAG', 'DAG_ID_1'),
+        sak('FAG', 'DAG', 'DAG_ID_2'),
+        sak('FAG', 'DAG', 'DAG_ID_3'),
+        sak('GEN', 'DAG')
+    ];
+
+    it('skal fjerne sak som allerede er journalført på', () => {
+        const eksisterendeSaker: Array<JournalforingsSakIdentifikator> = [{ temaKode: 'DAG', saksId: 'DAG_ID_2' }];
+
+        const lovligeSaker = fjernSakerSomAlleredeErTilknyttet(saker, eksisterendeSaker);
+
+        expect(lovligeSaker).toContainEqual(sak('FAG', 'DAG', 'DAG_ID_1'));
+        expect(lovligeSaker).not.toContainEqual(sak('FAG', 'DAG', 'DAG_ID_2'));
+        expect(lovligeSaker).toContainEqual(sak('FAG', 'DAG', 'DAG_ID_3'));
+        expect(lovligeSaker).toContainEqual(sak('GEN', 'DAG'));
+        expect(lovligeSaker).toHaveLength(3);
+    });
+
+    it('skal ikke fjerne generelle saker', () => {
+        const eksisterendeSaker: Array<JournalforingsSakIdentifikator> = [{ temaKode: 'DAG' }];
+
+        const lovligeSaker = fjernSakerSomAlleredeErTilknyttet(saker, eksisterendeSaker);
+        expect(lovligeSaker).toHaveLength(4);
     });
 });

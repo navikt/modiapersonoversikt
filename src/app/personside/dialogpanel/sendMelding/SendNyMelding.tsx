@@ -129,7 +129,11 @@ function SendNyMelding(props: Props) {
                             <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
                         </UnmountClosed>
                         <UnmountClosed isOpened={erSporsmaal || erInfomelding}>
-                            <DialogpanelVelgSak setValgtSak={(sak) => updateState({ sak })} valgtSak={state.sak} />
+                            <DialogpanelVelgSak
+                                setValgtSak={(sak) => updateState({ sak })}
+                                valgtSak={state.sak}
+                                eksisterendeSaker={[]}
+                            />
                             {visFeilmelding ? (
                                 <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding>
                             ) : undefined}

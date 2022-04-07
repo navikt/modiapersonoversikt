@@ -1,6 +1,13 @@
 import React from 'react';
 import { FetchResult, hasError, isPending } from '@nutgaard/use-fetch';
-import { JournalforingsSak, Kategorier, Result, SakKategori, Tema } from './JournalforingPanel';
+import {
+    JournalforingsSak,
+    JournalforingsSakIdentifikator,
+    Kategorier,
+    Result,
+    SakKategori,
+    Tema
+} from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio, RadioProps } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
@@ -39,6 +46,7 @@ function SakgruppeRadio(props: FieldState & RadioProps & { label: SakKategori })
 
 interface Props {
     velgSak: (sak: JournalforingsSak) => void;
+    eksisterendeSaker: Array<JournalforingsSakIdentifikator>;
     valgtSak?: JournalforingsSak;
 }
 
@@ -46,11 +54,11 @@ export function fordelSaker(saker: JournalforingsSak[]): Kategorier {
     const kategoriGruppert = saker.reduce(groupBy(sakKategori), { [SakKategori.FAG]: [], [SakKategori.GEN]: [] });
 
     const temaGruppertefagSaker: Group<JournalforingsSak> = kategoriGruppert[SakKategori.FAG].reduce(
-        groupBy(sak => sak.temaNavn),
+        groupBy((sak) => sak.temaNavn),
         {}
     );
     const temaGrupperteGenerelleSaker: Group<JournalforingsSak> = kategoriGruppert[SakKategori.GEN].reduce(
-        groupBy(sak => sak.temaNavn),
+        groupBy((sak) => sak.temaNavn),
         {}
     );
 
@@ -73,6 +81,25 @@ export function sakKategori(sak: JournalforingsSak): SakKategori {
     return sak.sakstype === 'GEN' ? SakKategori.GEN : SakKategori.FAG;
 }
 
+export function fjernSakerSomAlleredeErTilknyttet(
+    saker: Array<JournalforingsSak>,
+    eksisterendeSaker: Array<JournalforingsSakIdentifikator>
+): Array<JournalforingsSak> {
+    const temagrupperte = eksisterendeSaker
+        .filter((it) => it.saksId !== undefined)
+        .reduce(
+            groupBy((it) => it.temaKode),
+            {}
+        );
+
+    return saker.filter((sak) => {
+        const tema = sak.temaKode;
+        const temasaker: JournalforingsSakIdentifikator[] = temagrupperte[tema] ?? [];
+        const erJournalfortPaSak = temasaker.find((it) => it.saksId === sak.saksId);
+        return !erJournalfortPaSak;
+    });
+}
+
 function VelgSak(props: Props) {
     const fnr = useSelector(fnrSelector);
     const valgtKategori = useFieldState(SakKategori.FAG);
@@ -85,9 +112,10 @@ function VelgSak(props: Props) {
     }
 
     const { saker, feiledeSystemer } = result.data;
-    const fordelteSaker = fordelSaker(saker);
+    const filtrerteSaker = fjernSakerSomAlleredeErTilknyttet(saker, props.eksisterendeSaker);
+    const fordelteSaker = fordelSaker(filtrerteSaker);
 
-    const feiledeSystemerAlerts = feiledeSystemer.map(system => (
+    const feiledeSystemerAlerts = feiledeSystemer.map((system) => (
         <AlertStripeAdvarsel className="blokk-xxxs" key={system}>
             Feil ved uthenting av saker fra saker fra {system}
         </AlertStripeAdvarsel>

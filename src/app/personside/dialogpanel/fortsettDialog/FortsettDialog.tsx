@@ -65,6 +65,10 @@ function FortsettDialog(props: Props) {
 
     const delMedBrukerTekst = props.erTilknyttetOppgave ? `Del med ${navn} og avslutt oppgave` : `Del med ${navn}`;
     const erOksosTraad = props.traad.meldinger.some((it) => it.temagruppe === 'OKSOS');
+    const eksisterendeSaker = props.traad.journalposter.map((jp) => ({
+        temaKode: jp.journalfortTema,
+        saksId: jp.journalfortSaksid
+    }));
 
     const melding = eldsteMelding(props.traad);
     const erSamtalereferat = erMeldingstypeSamtalereferat(melding.meldingstype);
@@ -101,6 +105,7 @@ function FortsettDialog(props: Props) {
                             !erOksosTraad &&
                             state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE
                         }
+                        eksisterendeSaker={eksisterendeSaker}
                     />
                 </UnmountClosed>
             </Margin>
