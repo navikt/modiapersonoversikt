@@ -8,6 +8,7 @@ import NavFrontendSpinner from 'nav-frontend-spinner';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import { useSendtMelding } from './useSendtMelding';
 import { SendNyMeldingStatus } from './sendMelding/SendNyMeldingTypes';
+import { Traad } from '../../../models/meldinger/meldinger';
 
 const PreviewStyle = styled.article`
     padding: 1rem;
@@ -24,10 +25,11 @@ interface Props {
     tittel: string;
     fritekst: string;
     meldingstatus: SendNyMeldingStatus;
+    traad?: Traad;
 }
 
 function Preview(props: Props) {
-    const sendtMelding = useSendtMelding(props.fritekst);
+    const sendtMelding = useSendtMelding(props.fritekst, props.traad);
 
     let opprettetDato = null;
     if (sendtMelding.melding) {
@@ -40,7 +42,7 @@ function Preview(props: Props) {
         <PreviewStyle>
             <Normaltekst>{props.tittel}</Normaltekst>
             {opprettetDato}
-            <Tekstomrade>{sendtMelding.melding?.fritekst || props.fritekst}</Tekstomrade>
+            <Tekstomrade>{props.fritekst}</Tekstomrade>
         </PreviewStyle>
     );
 }

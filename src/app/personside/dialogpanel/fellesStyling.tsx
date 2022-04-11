@@ -53,8 +53,8 @@ const StyledVerktøylinje = styled(Verktoylinje)`
     border: ${theme.border.skille};
 `;
 
-function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
-    const sendtMelding = useSendtMelding(props.fritekst);
+function MeldingSendtVerktoyLinje(props: { fritekst: string; traad: Traad | undefined }) {
+    const sendtMelding = useSendtMelding(props.fritekst, props.traad);
 
     if (sendtMelding.pending) {
         return (
@@ -75,8 +75,7 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string }) {
 function VarselTilBrukerOmStatus(props: { meldingstatus: SendNyMeldingStatus; tittle: string }) {
     if (props.meldingstatus === SendNyMeldingStatus.ERROR) {
         return <DialogpanelFeilmelding />;
-    }   
-    else { 
+    } else {
         return <AlertStripeSuksess>{props.tittle}</AlertStripeSuksess>;
     }
 }
@@ -94,7 +93,7 @@ export function DialogpanelKvittering(props: {
             <DialogpanelKvitteringStyling>
                 <VisuallyHiddenAutoFokusHeader tittel={props.tittel} />
                 <VarselTilBrukerOmStatus meldingstatus={props.meldingstatus} tittle={props.tittel} />
-                {props.traad && (
+                {props.traad && props.traad.meldinger.length > 1 && (
                     <ErrorBoundary boundaryName="Tidligere meldinger Dialogpanelkvittering">
                         <TidligereMeldinger traad={props.traad} />
                     </ErrorBoundary>
@@ -104,11 +103,12 @@ export function DialogpanelKvittering(props: {
                         fritekst={props.fritekst}
                         tittel={meldingstypeTekst(props.meldingstype)}
                         meldingstatus={props.meldingstatus}
+                        traad={props.traad}
                     />
                 </ErrorBoundary>
                 {props.meldingstatus !== SendNyMeldingStatus.ERROR && (
                     <ErrorBoundary boundaryName="Sendt melding verktøylinje">
-                        <MeldingSendtVerktoyLinje fritekst={props.fritekst} />
+                        <MeldingSendtVerktoyLinje fritekst={props.fritekst} traad={props.traad} />
                     </ErrorBoundary>
                 )}
                 <KnappBase type="standard" onClick={props.lukk}>
