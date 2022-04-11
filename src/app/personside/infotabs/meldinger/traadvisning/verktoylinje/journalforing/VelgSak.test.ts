@@ -60,15 +60,4 @@ describe('fjernSakerSomAlleredeErTilknyttet', () => {
         const lovligeSaker = fjernSakerSomAlleredeErTilknyttet(saker, eksisterendeSaker);
         expect(lovligeSaker).toHaveLength(4);
     });
-
-    it('skal fjerne saker på tvers av ulike tema', () => {
-        const eksisterendeSaker: Array<JournalforingsSakIdentifikator> = [
-            { temaKode: 'AAP', fagsystemSaksId: 'DAG_ID_2' }
-        ];
-
-        const lovligeSaker = fjernSakerSomAlleredeErTilknyttet(saker, eksisterendeSaker);
-
-        expect(lovligeSaker).not.toContainEqual(sak('FAG', 'DAG', 'DAG_ID_2'));
-        expect(lovligeSaker).toHaveLength(3);
-    });
 });
