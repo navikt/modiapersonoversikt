@@ -6,7 +6,8 @@ import {
     Meldingstype,
     SendInfomeldingRequest,
     SendReferatRequest,
-    SendSpørsmålRequest
+    SendSporsmalRequest,
+    Traad
 } from '../../../../models/meldinger/meldinger';
 import { useAppState, useFodselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
@@ -18,7 +19,7 @@ import {
 } from './SendNyMeldingKvittering';
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
-import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
+import { KvitteringNyMelding, SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import useDraft, { Draft } from '../use-draft';
 import { feilMeldinger } from './FeilMeldinger';
@@ -73,14 +74,30 @@ function SendNyMeldingContainer(props: Props) {
     };
 
     if (sendNyMeldingStatus.type === SendNyMeldingStatus.REFERAT_SENDT) {
-        return <ReferatSendtKvittering request={sendNyMeldingStatus.request} lukk={lukkSendtKvittering} />;
+        return (
+            <ReferatSendtKvittering
+                kvitteringNyMelding={sendNyMeldingStatus.kvitteringNyMelding}
+                request={sendNyMeldingStatus.request}
+                lukk={lukkSendtKvittering}
+            />
+        );
     }
 
     if (sendNyMeldingStatus.type === SendNyMeldingStatus.SPORSMAL_SENDT) {
-        return <SporsmalSendtKvittering fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
+        return (
+            <SporsmalSendtKvittering
+                kvitteringNyMelding={sendNyMeldingStatus.kvitteringNyMelding}
+                lukk={lukkSendtKvittering}
+            />
+        );
     }
     if (sendNyMeldingStatus.type === SendNyMeldingStatus.INFORMELDING_SENDT) {
-        return <InfomeldingSendtKvittering fritekst={sendNyMeldingStatus.fritekst} lukk={lukkSendtKvittering} />;
+        return (
+            <InfomeldingSendtKvittering
+                kvitteringNyMelding={sendNyMeldingStatus.kvitteringNyMelding}
+                lukk={lukkSendtKvittering}
+            />
+        );
     }
 
     if (sendNyMeldingStatus.type === SendNyMeldingStatus.ERROR) {
@@ -122,10 +139,14 @@ function SendNyMeldingContainer(props: Props) {
                 meldingstype: state.dialogType,
                 temagruppe: state.tema
             };
-            post(`${apiBaseUri}/dialog/${fnr}/sendreferat`, request, 'Send-Referat')
-                .then(() => {
+            post<Traad>(`${apiBaseUri}/dialog/${fnr}/sendreferat`, request, 'Send-Referat')
+                .then((traad) => {
+                    const kvitteringNyMelding: KvitteringNyMelding = {
+                        fritekst: request.fritekst,
+                        traad: traad
+                    };
                     callback();
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request: request });
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request, kvitteringNyMelding });
                 })
                 .catch((error) => {
                     console.error('Send-Referat feilet', error);
@@ -133,17 +154,21 @@ function SendNyMeldingContainer(props: Props) {
                 });
         } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
-            const request: SendSpørsmålRequest = {
+            const request: SendSporsmalRequest = {
                 enhet: valgtEnhet,
                 fritekst: state.tekst,
                 sak: state.sak,
                 erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
             };
-            post(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, request, 'Send-Sporsmal')
-                .then(() => {
+            post<Traad>(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, request, 'Send-Sporsmal')
+                .then((traad) => {
+                    const kvitteringNyMelding: KvitteringNyMelding = {
+                        fritekst: request.fritekst,
+                        traad: traad
+                    };
                     JournalforingUtils.slettCacheForSaker(fnr);
                     callback();
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, fritekst: request.fritekst });
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, kvitteringNyMelding });
                 })
                 .catch((error) => {
                     callback();
@@ -161,12 +186,16 @@ function SendNyMeldingContainer(props: Props) {
                 fritekst: state.tekst,
                 sak: state.sak
             };
-            post(`${apiBaseUri}/dialog/${fnr}/sendinfomelding`, request, 'Send-Infomelding')
-                .then(() => {
+            post<Traad>(`${apiBaseUri}/dialog/${fnr}/sendinfomelding`, request, 'Send-Infomelding')
+                .then((traad) => {
+                    const kvitteringNyMelding: KvitteringNyMelding = {
+                        fritekst: request.fritekst,
+                        traad: traad
+                    };
                     callback();
                     setSendNyMeldingStatus({
                         type: SendNyMeldingStatus.INFORMELDING_SENDT,
-                        fritekst: request.fritekst
+                        kvitteringNyMelding
                     });
                 })
                 .catch((error) => {
