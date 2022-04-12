@@ -6,6 +6,8 @@ import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { erEldsteMeldingJournalfort, kanTraadJournalfores } from '../../../utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
+import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
 
 export enum SakKategori {
     FAG = 'Fagsaker',
@@ -34,6 +36,11 @@ export interface JournalforingsSak {
     syntetisk?: boolean | null;
 }
 
+export interface JournalforingsSakIdentifikator {
+    temaKode: string;
+    fagsystemSaksId?: string;
+}
+
 export type Result = { saker: Array<JournalforingsSak>; feiledeSystemer: Array<string> };
 export type Tema = { tema: string; saker: Array<JournalforingsSak> };
 export type Kategorier = { [key in SakKategori]: Tema[] };
@@ -59,7 +66,13 @@ function JournalforingPanel(props: Props) {
     const [aktivtVindu, setAktivtVindu] = useState<AktivtVindu>(AktivtVindu.SAKLISTE);
     const [valgtSak, setValgtSak] = useState<JournalforingsSak>();
     const erJournalfort = erEldsteMeldingJournalfort(props.traad);
-    const kanJournalfores = kanTraadJournalfores(props.traad);
+    const kanJournalforeFlere = useFeatureToggle(FeatureToggles.KanJournalforeFlere)?.isOn ?? false;
+    const eksisterendeJournalposter: Array<JournalforingsSakIdentifikator> = props.traad.journalposter.map((jp) => ({
+        temaKode: jp.journalfortTema,
+        fagsystemSaksId: jp.journalfortSaksid
+    }));
+
+    const kanJournalfores = kanTraadJournalfores(props.traad, kanJournalforeFlere);
     function velgSak(sak: JournalforingsSak) {
         setAktivtVindu(AktivtVindu.SAKVISNING);
         setValgtSak(sak);
@@ -83,7 +96,7 @@ function JournalforingPanel(props: Props) {
     if (aktivtVindu === AktivtVindu.SAKVISNING && valgtSak !== undefined) {
         return <JournalforSak traad={props.traad} sak={valgtSak} tilbake={tilbake} lukkPanel={props.lukkPanel} />;
     } else {
-        return <VelgSak velgSak={velgSak} valgtSak={valgtSak} />;
+        return <VelgSak velgSak={velgSak} valgtSak={valgtSak} eksisterendeSaker={eksisterendeJournalposter} />;
     }
 }
 

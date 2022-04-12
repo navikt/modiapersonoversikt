@@ -7,6 +7,8 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return false;
         case FeatureToggles.VisAlleJournalposter:
             return true;
+        case FeatureToggles.KanJournalforeFlere:
+            return true;
         default:
             return Math.random() > 0.5;
     }
