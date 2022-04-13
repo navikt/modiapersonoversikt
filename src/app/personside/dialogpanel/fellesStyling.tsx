@@ -48,13 +48,13 @@ export function DialogpanelFeilmelding() {
     return <AlertStripeFeil>Det skjedde en feil ved sending av melding</AlertStripeFeil>;
 }
 
-const StyledVerktøylinje = styled(Verktoylinje)`
+const StyledVerktoylinje = styled(Verktoylinje)`
     box-shadow: none;
     border: ${theme.border.skille};
 `;
 
-function MeldingSendtVerktoyLinje(props: { fritekst: string; traad: Traad | undefined }) {
-    const sendtMelding = useSendtMelding(props.fritekst, props.traad);
+function MeldingSendtVerktoyLinje(props: { traad: Traad | undefined }) {
+    const sendtMelding = useSendtMelding(props.traad);
 
     if (sendtMelding.pending) {
         return (
@@ -69,7 +69,7 @@ function MeldingSendtVerktoyLinje(props: { fritekst: string; traad: Traad | unde
     if (!sendtMelding.traad) {
         return <AlertStripeInfo>Kunne ikke vise journalføring/merk/oppgave-panel</AlertStripeInfo>;
     }
-    return <StyledVerktøylinje valgtTraad={sendtMelding.traad} />;
+    return <StyledVerktoylinje valgtTraad={sendtMelding.traad} />;
 }
 
 function VarselTilBrukerOmStatus(props: { meldingstatus: SendNyMeldingStatus; tittle: string }) {
@@ -108,7 +108,7 @@ export function DialogpanelKvittering(props: {
                 </ErrorBoundary>
                 {props.meldingstatus !== SendNyMeldingStatus.ERROR && (
                     <ErrorBoundary boundaryName="Sendt melding verktøylinje">
-                        <MeldingSendtVerktoyLinje fritekst={props.fritekst} traad={props.traad} />
+                        <MeldingSendtVerktoyLinje traad={props.traad} />
                     </ErrorBoundary>
                 )}
                 <KnappBase type="standard" onClick={props.lukk}>

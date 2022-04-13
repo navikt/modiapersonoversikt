@@ -29,7 +29,7 @@ interface Props {
 }
 
 function Preview(props: Props) {
-    const sendtMelding = useSendtMelding(props.fritekst, props.traad);
+    const sendtMelding = useSendtMelding(props.traad);
 
     let opprettetDato = null;
     if (sendtMelding.melding) {
