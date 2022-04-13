@@ -1,11 +1,11 @@
 import { erMaks10MinSiden } from '../../../utils/date-utils';
-import { erSammefritekstSomIMelding, nyesteMelding, nyesteTraad } from '../infotabs/meldinger/utils/meldingerUtils';
+import { nyesteMelding, nyesteTraad } from '../infotabs/meldinger/utils/meldingerUtils';
 import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { useEffect, useMemo, useState } from 'react';
 import { Melding, Traad } from '../../../models/meldinger/meldinger';
 import { loggError } from '../../../utils/logger/frontendLogger';
 
-export function useSendtMelding(fritekst: string) {
+export function useSendtMelding(opprettetTraad: Traad | undefined) {
     const traaderResource = useRestResource((resources) => resources.traader);
     const [pending, setPending] = useState(true);
     const [melding, setMelding] = useState<Melding | undefined>();
@@ -23,8 +23,7 @@ export function useSendtMelding(fritekst: string) {
                 const sisteTraad = nyesteTraad(traaderResource.data);
                 const sisteMelding = nyesteMelding(sisteTraad);
                 const erRiktigMelding =
-                    erSammefritekstSomIMelding(fritekst, sisteMelding) && erMaks10MinSiden(sisteMelding.opprettetDato);
-                //Sjekker om nyeste meldingen hentet ut er samme som ble sendt når det er vanskelig å få ut traadUd / behandlingsId fra backend
+                    sisteTraad.traadId === opprettetTraad?.traadId && erMaks10MinSiden(sisteMelding.opprettetDato);
                 if (erRiktigMelding) {
                     setMelding(sisteMelding);
                     setTraad(sisteTraad);
@@ -34,7 +33,7 @@ export function useSendtMelding(fritekst: string) {
                 throw e;
             }
         }
-    }, [traaderResource, fritekst, traad, melding]);
+    }, [opprettetTraad?.traadId, traaderResource, traad, melding]);
 
     return useMemo(
         () => ({

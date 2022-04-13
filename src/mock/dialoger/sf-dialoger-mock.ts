@@ -75,8 +75,7 @@ function setupFerdigstillHenvendelseMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fnr/fortsett/ferdigstill',
         withDelayedResponse(randomDelay(), STATUS_OK, (request) => {
-            meldingerBackendMock.ferdigstillHenvendelse(request.body);
-            return {};
+            return meldingerBackendMock.ferdigstillHenvendelse(request.body);
         })
     );
 }
@@ -94,8 +93,7 @@ function setupSendSporsmalMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendsporsmal',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, (request) => {
-            meldingerBackendMock.sendSporsmal(request.body);
-            return {};
+            return meldingerBackendMock.sendSporsmal(request.body);
         })
     );
 }
@@ -104,17 +102,7 @@ function setupSendInfomeldingMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialog/:fodselsnummer/sendinfomelding',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, (request) => {
-            meldingerBackendMock.sendInfomelding(request.body);
-            return {};
-        })
-    );
-}
-
-function setupSendSvarMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/dialog/:fodselsnummer/sendsvar',
-        withDelayedResponse(randomDelay() * 2, STATUS_OK, () => {
-            return {};
+            return meldingerBackendMock.sendInfomelding(request.body);
         })
     );
 }
@@ -156,7 +144,6 @@ export function setupSFDialogMock(mock: FetchMock, backend: MeldingerBackendMock
     setupSendReferatMock(mock);
     setupSendSporsmalMock(mock);
     setupSendInfomeldingMock(mock);
-    setupSendSvarMock(mock);
     merkFeilsendtMock(mock);
     sladdingMock(mock);
     lukkTraadMock(mock);

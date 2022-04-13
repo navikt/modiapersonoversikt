@@ -1,4 +1,4 @@
-import { SendReferatRequest } from '../../../../models/meldinger/meldinger';
+import { SendReferatRequest, Traad } from '../../../../models/meldinger/meldinger';
 
 export enum SendNyMeldingStatus {
     UNDER_ARBEID,
@@ -21,16 +21,17 @@ interface UnderArbeid extends SendNyMeldingStatusInterface {
 interface ReferatSendtSuccess extends SendNyMeldingStatusInterface {
     type: SendNyMeldingStatus.REFERAT_SENDT;
     request: SendReferatRequest;
+    kvitteringNyMelding: KvitteringNyMelding;
 }
 
 interface SporsmalSendtSuccess extends SendNyMeldingStatusInterface {
     type: SendNyMeldingStatus.SPORSMAL_SENDT;
-    fritekst: string;
+    kvitteringNyMelding: KvitteringNyMelding;
 }
 
 interface InfomeldingSendtSuccess extends SendNyMeldingStatusInterface {
     type: SendNyMeldingStatus.INFORMELDING_SENDT;
-    fritekst: string;
+    kvitteringNyMelding: KvitteringNyMelding;
 }
 
 interface SporsmalSendtError extends SendNyMeldingStatusInterface {
@@ -44,3 +45,8 @@ export type SendNyMeldingPanelState =
     | SporsmalSendtSuccess
     | SporsmalSendtError
     | InfomeldingSendtSuccess;
+
+export type KvitteringNyMelding = {
+    fritekst: string;
+    traad: Traad;
+};
