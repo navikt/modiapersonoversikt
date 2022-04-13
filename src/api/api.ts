@@ -4,20 +4,24 @@ import { confirm } from '../components/popup-boxes/popup-boxes';
 
 const CONFLICT = 409;
 
-export async function post(uri: string, body: object | string, loggLocation: string): Promise<object> {
+export async function post<TYPE extends object = object>(
+    uri: string,
+    body: object | string,
+    loggLocation: string
+): Promise<TYPE> {
     loggEvent('Post', loggLocation);
     const response = await fetch(uri, postConfig(body));
-    return handleResponse(response, loggLocation);
+    return handleResponse<TYPE>(response, loggLocation);
 }
 
 export class RespectConflictError extends Error {}
 
-export async function postWithConflictVerification(
+export async function postWithConflictVerification<TYPE extends object = object>(
     uri: string,
     body: object | string,
     loggLocation: string,
     conflictMessage: string = 'Det oppstod en konflikt. Vil du overstyre?'
-): Promise<object> {
+): Promise<TYPE> {
     loggEvent('Post', loggLocation);
     const config = postConfig(body);
     let response = await fetch(uri, config);
@@ -32,24 +36,24 @@ export async function postWithConflictVerification(
     return handleResponse(response, loggLocation);
 }
 
-function handleResponse(response: Response, loggLocation: string): Promise<object> {
+function handleResponse<TYPE extends object = object>(response: Response, loggLocation: string): Promise<TYPE> {
     // Ignore-Conflict
     if (!response.ok || response.redirected) {
-        return parseError(response, loggLocation);
+        return parseError<TYPE>(response, loggLocation);
     }
-    return parseResponse(response);
+    return parseResponse<TYPE>(response);
 }
 
-function parseResponse(response: Response): Promise<object> {
+function parseResponse<TYPE extends object = object>(response: Response): Promise<TYPE> {
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.indexOf('application/json') !== -1) {
         return response.json();
     } else {
-        return Promise.resolve({});
+        return Promise.resolve({} as TYPE);
     }
 }
 
-async function parseError(response: Response, loggLocation: string): Promise<object> {
+async function parseError<TYPE extends object = object>(response: Response, loggLocation: string): Promise<TYPE> {
     const text = await response.text();
     loggError(
         Error(`Post failed in ${loggLocation} on: ${response.url}`),

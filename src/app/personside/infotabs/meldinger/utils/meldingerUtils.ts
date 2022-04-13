@@ -139,16 +139,6 @@ export function nyesteTraad(traader: Traad[]) {
     return traader.sort(datoSynkende((traad) => nyesteMelding(traad).opprettetDato))[0];
 }
 
-function removeWhiteSpaces(text: string) {
-    return text.replace(/\s+/g, '');
-}
-
-export function erSammefritekstSomIMelding(fritekst: string, melding: Melding): boolean {
-    const fritekstFraNyesteMeldingITraad = removeWhiteSpaces(melding.fritekst.toLowerCase());
-    const fritekstFraMelding = removeWhiteSpaces(fritekst.toLowerCase());
-    return fritekstFraNyesteMeldingITraad.includes(fritekstFraMelding);
-}
-
 export function getFormattertMeldingsDato(melding: Melding) {
     return formatterDatoTid(melding?.ferdigstiltDato || melding.opprettetDato);
 }

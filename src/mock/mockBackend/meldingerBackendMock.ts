@@ -7,7 +7,7 @@ import {
     OpprettHenvendelseResponse,
     SendInfomeldingRequest,
     SendReferatRequest,
-    SendSpørsmålRequest,
+    SendSporsmalRequest,
     Traad
 } from '../../models/meldinger/meldinger';
 import { guid } from 'nav-frontend-js-utils';
@@ -16,6 +16,7 @@ import { getMockTraader } from '../meldinger/meldinger-mock';
 import { Temagruppe } from '../../models/temagrupper';
 import { OppgaverBackendMock } from './oppgaverBackendMock';
 import { backendDatoTidformat } from '../../utils/date-utils';
+import { nyesteMelding } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 
 export class MeldingerBackendMock {
     private sendteNyeMeldinger: Traad[] = [];
@@ -39,64 +40,67 @@ export class MeldingerBackendMock {
         this.clearSendteMeldingerOnNewFnr(fnr);
         const mockTraader = getMockTraader(fnr);
 
-        const alleTråder = [...this.sendteNyeMeldinger, ...mockTraader];
+        const alleTraader = [...this.sendteNyeMeldinger, ...mockTraader];
 
-        const traaderMedSvar: Traad[] = alleTråder.map((traad) => {
-            const tilhørendeSvar = this.sendteSvar
+        return alleTraader.map((traad) => {
+            const tilhorendeSvar = this.sendteSvar
                 .filter((svar) => svar.traadId === traad.traadId)
                 .flatMap((traad) => traad.meldinger);
-            return {
+            return maskerMeldingVedManglendeTilgang({
                 traadId: traad.traadId,
-                meldinger: [...tilhørendeSvar, ...traad.meldinger],
+                meldinger: [...tilhorendeSvar, ...traad.meldinger],
                 journalposter: traad.journalposter
-            };
+            });
         });
-
-        return traaderMedSvar;
     }
 
-    public sendReferat(request: SendReferatRequest): string {
+    public sendReferat(request: SendReferatRequest): Traad {
         const melding: Melding = {
             ...getMockMelding(),
             meldingstype: request.meldingstype,
             temagruppe: request.temagruppe,
             fritekst: request.fritekst
         };
-        this.sendteNyeMeldinger.unshift({
+        const traad = {
             traadId: guid(),
             meldinger: [melding],
             journalposter: []
-        });
-        return melding.id;
+        };
+        this.sendteNyeMeldinger.unshift(traad);
+        return traad;
     }
 
-    public sendSporsmal(request: SendSpørsmålRequest) {
+    public sendSporsmal(request: SendSporsmalRequest): Traad {
         const melding: Melding = {
             ...getMockMelding(),
             meldingstype: Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
             fritekst: request.fritekst
         };
-        this.sendteNyeMeldinger.unshift({
+        const traad = {
             traadId: guid(),
             meldinger: [melding],
             journalposter: []
-        });
+        };
+        this.sendteNyeMeldinger.unshift(traad);
+        return traad;
     }
 
-    public sendInfomelding(request: SendInfomeldingRequest) {
+    public sendInfomelding(request: SendInfomeldingRequest): Traad {
         const melding: Melding = {
             ...getMockMelding(),
             meldingstype: Meldingstype.INFOMELDING_MODIA_UTGAAENDE,
             fritekst: request.fritekst
         };
-        this.sendteNyeMeldinger.unshift({
+        const traad = {
             traadId: guid(),
             meldinger: [melding],
             journalposter: []
-        });
+        };
+        this.sendteNyeMeldinger.unshift(traad);
+        return traad;
     }
 
-    public ferdigstillHenvendelse(request: ForsettDialogRequest) {
+    public ferdigstillHenvendelse(request: ForsettDialogRequest): Traad {
         if (request.oppgaveId) {
             this.oppgaveBackendMock.ferdigStillOppgave(request.oppgaveId);
         }
@@ -105,11 +109,13 @@ export class MeldingerBackendMock {
             fritekst: request.fritekst,
             meldingstype: request.meldingstype
         };
-        this.sendteSvar.unshift({
+        const traad = {
             traadId: request.traadId,
             meldinger: [melding],
             journalposter: []
-        });
+        };
+        this.sendteSvar.unshift(traad);
+        return traad;
     }
 
     public opprettHenvendelse(request: OpprettHenvendelseRequest): OpprettHenvendelseResponse {
@@ -132,4 +138,20 @@ function getMockMelding(): Melding {
         opprettetDato: dayjs().format(backendDatoTidformat),
         sendtTilSladding: false
     };
+}
+
+function maskerMeldingVedManglendeTilgang(traad: Traad): Traad {
+    const sisteMelding = nyesteMelding(traad);
+    if (sisteMelding.temagruppe === Temagruppe.Arbeid) {
+        // Simulerer at en melding blir sendt på et tema saksbehandler ikke har tilgang på tema Arbeid
+        const nyMelding: Melding = {
+            ...sisteMelding,
+            fritekst:
+                'Du kan ikke se innholdet i denne henvendelsen fordi tråden er journalført på Arbeid. Dette er hardkodet i mocken.'
+        };
+        const nyeMeldinger = [nyMelding, ...traad.meldinger.filter((melding) => melding !== sisteMelding)];
+        return { ...traad, meldinger: nyeMeldinger };
+    } else {
+        return traad;
+    }
 }
