@@ -1,8 +1,8 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: modiapersonoversikt
-  namespace: {{ namespace }}
+  name: modiapersonoversikt-{{q_env}}
+  namespace: personoversikt
   cluster: dev-fss
   labels:
     team: personoversikt
@@ -28,7 +28,7 @@ spec:
       cpu: 200m
       memory: 192Mi
   ingresses:
-    - https://app-{{ namespace }}.adeo.no/modiapersonoversikt
+    - https://app-{{ q_env }}.adeo.no/modiapersonoversikt
   replicas:
     min: 2
     max: 4
@@ -41,20 +41,20 @@ spec:
     - name: IDP_DISCOVERY_URL
       value: "https://isso-q.adeo.no/isso/oauth2/.well-known/openid-configuration"
     - name: IDP_CLIENT_ID
-      value: "modialogin-{{ namespace }}"
+      value: "modialogin-{{ q_env }}"
     - name: DELEGATED_LOGIN_URL
-      value: "https://app-{{ namespace }}.adeo.no/modialogin/api/start"
+      value: "https://app-{{ q_env }}.adeo.no/modialogin/api/start"
     - name: AUTH_TOKEN_RESOLVER
       value: "modia_ID_token"
     - name: APP_ADEO_DOMAIN
-      value: "https://app-{{ namespace}}.adeo.no"
+      value: "https://app-{{ q_env}}.adeo.no"
     - name: CSP_DIRECTIVES
       value: "default-src 'self';\
       script-src 'self' 'unsafe-inline' jsagent.adeo.no https://*.hotjar.com https://*.hotjar.io;\
       style-src 'self' 'unsafe-inline';\
       img-src 'self' data: https://*.hotjar.com https://*.hotjar.io;\
       font-src 'self' data: https://*.hotjar.com https://*.hotjar.io;\
-      connect-src 'self' eumgw.adeo.no wss://veilederflatehendelser-{{ namespace }}.adeo.no https://*.hotjar.com https://*.hotjar.io;\
+      connect-src 'self' eumgw.adeo.no wss://veilederflatehendelser-{{ q_env }}.adeo.no https://*.hotjar.com https://*.hotjar.io;\
       object-src blob:;\
       frame-src blob: https://*.hotjar.com https://*.hotjar.io;\
       report-uri /frontendlogger/api/warn;"
