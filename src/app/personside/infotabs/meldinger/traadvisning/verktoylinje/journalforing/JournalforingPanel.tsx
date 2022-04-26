@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import VelgSak from './VelgSak';
 import { JournalforSak } from './JournalforSak';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
-import { erEldsteMeldingJournalfort, kanTraadJournalfores } from '../../../utils/meldingerUtils';
+import { kanTraadJournalfores } from '../../../utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
@@ -65,7 +65,6 @@ const Margin = styled.div`
 function JournalforingPanel(props: Props) {
     const [aktivtVindu, setAktivtVindu] = useState<AktivtVindu>(AktivtVindu.SAKLISTE);
     const [valgtSak, setValgtSak] = useState<JournalforingsSak>();
-    const erJournalfort = erEldsteMeldingJournalfort(props.traad);
     const kanJournalforeFlere = useFeatureToggle(FeatureToggles.KanJournalforeFlere)?.isOn ?? false;
     const eksisterendeJournalposter: Array<JournalforingsSakIdentifikator> = props.traad.journalposter.map((jp) => ({
         temaKode: jp.journalfortTema,
@@ -85,9 +84,7 @@ function JournalforingPanel(props: Props) {
     if (!kanJournalfores) {
         return (
             <Margin>
-                <AlertStripeInfo>
-                    {erJournalfort ? 'Tråden er journalført' : 'Tråden kan ikke journalføres'}
-                </AlertStripeInfo>
+                <AlertStripeInfo>Tråden kan ikke journalføres</AlertStripeInfo>
                 <Hovedknapp onClick={props.lukkPanel}>Lukk</Hovedknapp>
             </Margin>
         );
