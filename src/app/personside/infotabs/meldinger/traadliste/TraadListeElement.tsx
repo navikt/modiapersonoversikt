@@ -33,7 +33,7 @@ const StyledLi = styled.li<{ valgt: boolean }>`
     &:focus-within {
         ${theme.focusOverlay};
     }
-    ${props =>
+    ${(props) =>
         props.valgt &&
         css`
             background-color: ${theme.color.kategori};
@@ -80,7 +80,7 @@ function TraadListeElement(props: Props) {
                 onChange={handleChange}
                 checked={props.erValgt}
             />
-            <StyledLabel htmlFor={id.current}>
+            <StyledLabel htmlFor={id.current} aria-hidden={true}>
                 {props.tillegskomponent}
                 <FlexGrow>
                     <TraadSammendrag traad={props.traad} />
