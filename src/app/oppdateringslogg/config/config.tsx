@@ -18,9 +18,10 @@ import FortlopendeJournalforing from './img/fortlopende-journalforing.png';
 import VisningSikkerhetstiltak from './img/sikkerhetstiltakt-popup.png';
 import AvsluttDialog from './img/avslutt-dialog.png';
 import FiltreringSakstema from './img/filtrering-sakstema.png';
+import JournalforFlere from './img/journalfor-flere.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
+export function lagOppdateringsloggConfig(journalforeFlere: boolean): EnOppdateringslogg[] {
     return [
         {
             id: 1,
@@ -84,7 +85,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 4,
             tittel: 'Nå kan du søke på Utenlandsk ID i Modia Personoversikt',
             dato: new Date('2020-11-20 11:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: <Normaltekst>Nå kan det gjøres søk på Utenlandsk ID i Avansert Søk.</Normaltekst>,
             beskrivelse: (
                 <Normaltekst>
@@ -98,7 +99,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 5,
             tittel: 'Visning av foreldreansvar',
             dato: new Date('2021-04-08 13:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: <Normaltekst>Nå vises foreldreansvar i visittkortet</Normaltekst>,
             beskrivelse: (
                 <Normaltekst>
@@ -124,7 +125,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 6,
             tittel: 'Oppdatert oppdateringslogg-varslingen',
             dato: new Date('2021-05-03 15:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: <Normaltekst>Oppdateringsloggen har fått fikset problemet med varsling.</Normaltekst>,
             beskrivelse: (
                 <Normaltekst>
@@ -318,6 +319,23 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
                 </>
             ),
             src: FiltreringSakstema
+        },
+        {
+            id: 18,
+            tittel: 'Journalføring på flere saker',
+            dato: new Date('2022-05-01 08:00'),
+            aktiv: journalforeFlere,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Det vil nå være mulig å journalføre en dialog selvom den allerede er journalført. Endringen
+                        medfører at informasjonen om journalføring er flyttet fra bunnen av hver melding til toppen av
+                        selve tråden, og at det nå vises alle de ulike sakene tråden er journalført på.
+                    </Normaltekst>
+                </>
+            ),
+            src: JournalforFlere
         }
     ];
 }
