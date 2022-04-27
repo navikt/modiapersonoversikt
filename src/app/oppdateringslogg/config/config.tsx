@@ -323,15 +323,17 @@ export function lagOppdateringsloggConfig(journalforeFlere: boolean): EnOppdater
         {
             id: 18,
             tittel: 'Journalføring på flere saker',
-            dato: new Date('2022-05-01 08:00'),
+            dato: new Date('2022-04-27 14:00'),
             aktiv: journalforeFlere,
             ingress: null,
             beskrivelse: (
                 <>
                     <Normaltekst>
-                        Det vil nå være mulig å journalføre en dialog selvom den allerede er journalført. Endringen
-                        medfører at informasjonen om journalføring er flyttet fra bunnen av hver melding til toppen av
-                        selve tråden, og at det nå vises alle de ulike sakene tråden er journalført på.
+                        Det vil nå være mulig å journalføre en dialog selv om den allerede er journalført.
+                    </Normaltekst>
+                    <Normaltekst>
+                        Informasjon om at melding er journalført er flyttet fra bunnen av melding til toppen av
+                        meldingslisten.
                     </Normaltekst>
                 </>
             ),
