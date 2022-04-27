@@ -828,7 +828,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             <div
               className="typo-normal alertstripe__tekst"
             >
-              Tråden er journalført
+              Tråden kan ikke journalføres
             </div>
           </div>
           <button

@@ -127,12 +127,12 @@ function Journalposter(props: { traad: Traad }) {
         const tema = journalpost.journalfortTemanavn;
         const saksid = journalpost.journalfortSaksid ? `saksid ${journalpost.journalfortSaksid}` : 'ukjent saksid';
 
-        return <Normaltekst>{`${dato}: Knyttet til ${tema} (${saksid}) av ${navn}`}</Normaltekst>;
+        return <Normaltekst>{`${dato}: Journalført på ${tema} (${saksid}) av ${navn}`}</Normaltekst>;
     });
 
     return (
         <StyledJournalforingPanel
-            tittel={<UndertekstBold>Dialogen er knyttet til {journalposter.length} sak(er)</UndertekstBold>}
+            tittel={<UndertekstBold>Dialogen er journalfort på {journalposter.length} sak(er)</UndertekstBold>}
             border={false}
         >
             {content}
