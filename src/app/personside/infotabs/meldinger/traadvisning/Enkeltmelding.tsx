@@ -21,6 +21,8 @@ import { guid } from 'nav-frontend-js-utils';
 import theme from '../../../../../styles/personOversiktTheme';
 import './enkeltmelding.less';
 import { SpaceBetween } from '../../../../../components/common-styled-components';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     melding: Melding;
@@ -164,6 +166,7 @@ function EnkeltMelding(props: Props) {
         ? formatterDatoTid(props.melding.ferdigstiltDato)
         : formatterDatoTid(props.melding.opprettetDato);
     const highlightRule = createDynamicHighlightingRule(props.sokeord.split(' '));
+    const viserAlleJournalposter = useFeatureToggle(FeatureToggles.VisAlleJournalposter)?.isOn ?? false;
 
     return (
         <StyledLi className="snakkeboble_ikoner">
@@ -185,7 +188,7 @@ function EnkeltMelding(props: Props) {
                         <Tekstomrade rules={[sladdRule, highlightRule, ...defaultRules]}>
                             {props.melding.fritekst}
                         </Tekstomrade>
-                        <Journalforing melding={props.melding} />
+                        {!viserAlleJournalposter && <Journalforing melding={props.melding} />}
                     </SnakkebobleWrapper>
                 </Snakkeboble>
             </article>
