@@ -394,7 +394,23 @@ exports[`Viser Traadliste 1`] = `
         >
           <div
             className="c5"
-          />
+          >
+            <p
+              className="typo-element"
+            >
+              Journalført:
+            </p>
+            <p
+              className="typo-normal"
+            >
+              30.07.2019: Dagpenger (ukjent saksid)
+            </p>
+            <p
+              className="typo-normal"
+            >
+              28.07.2019: Arbeidsavklaringspenger (ukjent saksid)
+            </p>
+          </div>
           <div
             className="c6"
           >
@@ -423,18 +439,6 @@ exports[`Viser Traadliste 1`] = `
                 >
                   Temagruppe: 
                   ARBD
-                </p>
-                <p
-                  className="typo-element"
-                >
-                   Journalført: 
-                  11.07.2019
-                   
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Journalført med team: 
                 </p>
               </div>
               <div>
@@ -504,18 +508,6 @@ exports[`Viser Traadliste 1`] = `
                   Temagruppe: 
                   ARBD
                 </p>
-                <p
-                  className="typo-element"
-                >
-                   Journalført: 
-                  12.08.2019
-                   
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Journalført med team: 
-                </p>
               </div>
               <div>
                 <p
@@ -584,18 +576,6 @@ exports[`Viser Traadliste 1`] = `
                   Temagruppe: 
                   HELSE
                 </p>
-                <p
-                  className="typo-element"
-                >
-                   Journalført: 
-                  21.07.2019
-                   
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Journalført med team: 
-                </p>
               </div>
               <div>
                 <p
@@ -663,18 +643,6 @@ exports[`Viser Traadliste 1`] = `
                 >
                   Temagruppe: 
                   ARBD
-                </p>
-                <p
-                  className="typo-element"
-                >
-                   Journalført: 
-                  30.07.2019
-                   
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Journalført med team: 
                 </p>
               </div>
               <div>
