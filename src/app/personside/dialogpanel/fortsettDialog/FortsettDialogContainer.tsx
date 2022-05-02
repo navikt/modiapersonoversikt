@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import { SvarSendtKvittering } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
-import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
+import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
@@ -166,9 +166,9 @@ function FortsettDialogContainer(props: Props) {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else if (FortsettDialogValidator.erGyldigSporsmaalSkriftlig(state, props.traad)) {
-            const erJournalfort = erEldsteMeldingJournalfort(props.traad);
+            const tradErJournalfort = erJournalfort(props.traad);
             const erOksos = props.traad.meldinger[0].temagruppe === Temagruppe.ØkonomiskSosial;
-            if (!state.sak && !erJournalfort && !erOksos) {
+            if (!state.sak && !tradErJournalfort && !erOksos) {
                 const error = Error(
                     'For å opprette spørsmål må meldingen være journalført, sak må være valgt, eller være på temagruppen OKSOS'
                 );
