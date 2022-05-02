@@ -83,11 +83,8 @@ export function kanTraadJournalfores(traad: Traad): boolean {
 }
 
 export function erEldsteMeldingJournalfort(traad: Traad): boolean {
-    return erJournalfort(eldsteMelding(traad));
-}
-
-export function erJournalfort(melding: Melding) {
-    return !!melding.journalfortDato;
+    // TODO rename
+    return traad.journalposter.isNotEmpty();
 }
 
 export function erFeilsendt(traad: Traad): boolean {
