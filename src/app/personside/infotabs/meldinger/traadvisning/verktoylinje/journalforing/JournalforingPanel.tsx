@@ -6,8 +6,6 @@ import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { kanTraadJournalfores } from '../../../utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
-import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
 
 export enum SakKategori {
     FAG = 'Fagsaker',
@@ -65,13 +63,12 @@ const Margin = styled.div`
 function JournalforingPanel(props: Props) {
     const [aktivtVindu, setAktivtVindu] = useState<AktivtVindu>(AktivtVindu.SAKLISTE);
     const [valgtSak, setValgtSak] = useState<JournalforingsSak>();
-    const kanJournalforeFlere = useFeatureToggle(FeatureToggles.KanJournalforeFlere)?.isOn ?? false;
     const eksisterendeJournalposter: Array<JournalforingsSakIdentifikator> = props.traad.journalposter.map((jp) => ({
         temaKode: jp.journalfortTema,
         fagsystemSaksId: jp.journalfortSaksid
     }));
 
-    const kanJournalfores = kanTraadJournalfores(props.traad, kanJournalforeFlere);
+    const kanJournalfores = kanTraadJournalfores(props.traad);
     function velgSak(sak: JournalforingsSak) {
         setAktivtVindu(AktivtVindu.SAKVISNING);
         setValgtSak(sak);

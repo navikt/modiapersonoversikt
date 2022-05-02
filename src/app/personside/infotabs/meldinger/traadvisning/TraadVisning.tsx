@@ -16,8 +16,6 @@ import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/print/usePrinter';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Normaltekst, UndertekstBold } from 'nav-frontend-typografi';
-import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     valgtTraad: Traad;
@@ -142,7 +140,6 @@ function Journalposter(props: { traad: Traad }) {
 
 function TraadVisning(props: Props) {
     const sisteMelding = nyesteMelding(props.valgtTraad);
-    const visAlleJournalposter = useFeatureToggle(FeatureToggles.VisAlleJournalposter)?.isOn ?? false;
 
     return (
         <VisningStyle>
@@ -150,7 +147,7 @@ function TraadVisning(props: Props) {
             <h3 className="sr-only" aria-live="polite">
                 {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
             </h3>
-            {visAlleJournalposter && <Journalposter traad={props.valgtTraad} />}
+            <Journalposter traad={props.valgtTraad} />
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>
     );

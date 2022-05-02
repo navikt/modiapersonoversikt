@@ -1,28 +1,18 @@
 import * as React from 'react';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { LestStatus, Melding } from '../../../../../models/meldinger/meldinger';
 import Snakkeboble from 'nav-frontend-snakkeboble';
-import { Normaltekst, UndertekstBold } from 'nav-frontend-typografi';
-import {
-    erJournalfort,
-    erMeldingFraBruker,
-    erMeldingFraNav,
-    meldingstittel,
-    saksbehandlerTekst
-} from '../utils/meldingerUtils';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { erMeldingFraBruker, erMeldingFraNav, meldingstittel } from '../utils/meldingerUtils';
 import { formatterDatoTid } from '../../../../../utils/date-utils';
-import { formaterDato } from '../../../../../utils/string-utils';
 import styled from 'styled-components/macro';
 import Tekstomrade, { createDynamicHighlightingRule, defaultRules, Rule } from 'nav-frontend-tekstomrade';
 import { rule as sladdRule } from '../../../../../utils/sladdrule';
 import Etikett from 'nav-frontend-etiketter';
-import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import { guid } from 'nav-frontend-js-utils';
 import theme from '../../../../../styles/personOversiktTheme';
 import './enkeltmelding.less';
 import { SpaceBetween } from '../../../../../components/common-styled-components';
-import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     melding: Melding;
@@ -77,51 +67,11 @@ const SnakkebobleWrapper = styled.div`
     }
 `;
 
-const JournalforingLabel = styled(UndertekstBold)`
-    color: ${theme.color.lenke};
-`;
-
 const StyledTekstomrade = styled(Tekstomrade)`
     p {
         margin-bottom: 0 !important;
     }
 `;
-
-const StyledJournalforingPanel = styled(EkspanderbartpanelBase)`
-    .ekspanderbartPanel__hode,
-    .ekspanderbartPanel__innhold {
-        padding: 0.3rem 0;
-    }
-    @media print {
-        display: none;
-    }
-`;
-
-function JournalfortAvTekst(melding: Melding) {
-    const navn = melding.journalfortAv ? saksbehandlerTekst(melding.journalfortAv) : 'ukjent';
-    const dato = melding.journalfortDato ? formaterDato(melding.journalfortDato) : 'ukjent dato';
-    const tema = melding.journalfortTemanavn ? `tema ${melding.journalfortTemanavn}` : 'ukjent tema';
-    const saksid = melding.journalfortSaksid ? `saksid ${melding.journalfortSaksid}` : 'ukjent saksid';
-    return `Journalført av ${navn} ${dato} på ${tema} med ${saksid}`;
-}
-
-function Journalforing({ melding }: { melding: Melding }) {
-    const [open, setOpen] = useState(false);
-    if (!erJournalfort(melding)) {
-        return null;
-    }
-
-    return (
-        <StyledJournalforingPanel
-            tittel={<JournalforingLabel>Meldingen er journalført</JournalforingLabel>}
-            apen={open}
-            onClick={() => setOpen(!open)}
-            border={false}
-        >
-            {JournalfortAvTekst(melding)}
-        </StyledJournalforingPanel>
-    );
-}
 
 function MeldingLestEtikett({ melding }: { melding: Melding }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
@@ -166,7 +116,6 @@ function EnkeltMelding(props: Props) {
         ? formatterDatoTid(props.melding.ferdigstiltDato)
         : formatterDatoTid(props.melding.opprettetDato);
     const highlightRule = createDynamicHighlightingRule(props.sokeord.split(' '));
-    const viserAlleJournalposter = useFeatureToggle(FeatureToggles.VisAlleJournalposter)?.isOn ?? false;
 
     return (
         <StyledLi className="snakkeboble_ikoner">
@@ -188,7 +137,6 @@ function EnkeltMelding(props: Props) {
                         <Tekstomrade rules={[sladdRule, highlightRule, ...defaultRules]}>
                             {props.melding.fritekst}
                         </Tekstomrade>
-                        {!viserAlleJournalposter && <Journalforing melding={props.melding} />}
                     </SnakkebobleWrapper>
                 </Snakkeboble>
             </article>
