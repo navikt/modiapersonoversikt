@@ -1,6 +1,6 @@
 import { tekstMaksLengde } from '../sendMelding/SendNyMelding';
 import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
-import { erEldsteMeldingJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
+import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { FortsettDialogState } from './FortsettDialogTypes';
 import { Temagruppe } from '../../../../models/temagrupper';
 
@@ -25,7 +25,7 @@ export class FortsettDialogValidator {
         return (
             state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE &&
             this.tekst(state) &&
-            (this.sak(state) || erEldsteMeldingJournalfort(traad))
+            (this.sak(state) || erJournalfort(traad))
         );
     }
 
