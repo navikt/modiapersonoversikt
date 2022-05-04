@@ -11,7 +11,6 @@ export interface DittNavEvent {
     aktiv: boolean;
 }
 export interface DittNavBeskjed extends DittNavEvent {
-    uid: string;
     synligFremTil?: string;
 }
 
