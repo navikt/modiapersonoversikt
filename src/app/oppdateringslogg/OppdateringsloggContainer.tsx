@@ -8,8 +8,6 @@ import useSisteLestOppdateringLogg from './useSisteLestOppdateringLogg';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
 import { lagOppdateringsloggConfig } from './config/config';
 import './oppdateringsloggKnapp.less';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
 
 export const DecoratorButtonId = 'oppdateringslogg';
 export interface EnOppdateringslogg {
@@ -69,11 +67,7 @@ function useApneOppdateringsLoggModal(
 }
 
 function OppdateringsloggContainer() {
-    const kanJournalforeFlere = useFeatureToggle(FeatureToggles.KanJournalforeFlere).isOn ?? false;
-    console.log('kanJournalforeFlere', kanJournalforeFlere);
-    const oppdateringslogg: EnOppdateringslogg[] = lagOppdateringsloggConfig(kanJournalforeFlere).filter(
-        (innslag) => innslag.aktiv
-    );
+    const oppdateringslogg: EnOppdateringslogg[] = lagOppdateringsloggConfig().filter((innslag) => innslag.aktiv);
 
     const [apen, settApen] = useState(false);
     const [sistLesteId, settSistLesteId] = useSisteLestOppdateringLogg();

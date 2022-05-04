@@ -89,12 +89,6 @@ function getMelding(temagruppe: Temagruppe): Melding {
         meldingstype: meldingstype,
         temagruppe: temagruppe,
         skrevetAvTekst: saksbehandlerTekst(getSaksbehandler()),
-        journalfortAv: getSaksbehandler(),
-        journalfortDato: navfaker.random.vektetSjanse(0.5)
-            ? dayjs(faker.date.recent(50)).format(backendDatoTidformat)
-            : undefined,
-        journalfortSaksid: faker.random.alphaNumeric(5),
-        journalfortTemanavn: navfaker.random.arrayElement(['Dagpenger', 'Arbeid', 'Pensjon', 'Bidrag']),
         fritekst: fritekst,
         lestDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
         status: navfaker.random.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),

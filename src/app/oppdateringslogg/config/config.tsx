@@ -21,7 +21,7 @@ import FiltreringSakstema from './img/filtrering-sakstema.png';
 import JournalforFlere from './img/journalfor-flere.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export function lagOppdateringsloggConfig(journalforeFlere: boolean): EnOppdateringslogg[] {
+export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
     return [
         {
             id: 1,
@@ -324,7 +324,7 @@ export function lagOppdateringsloggConfig(journalforeFlere: boolean): EnOppdater
             id: 18,
             tittel: 'Journalføring på flere saker',
             dato: new Date('2022-04-27 14:00'),
-            aktiv: journalforeFlere,
+            aktiv: true,
             ingress: null,
             beskrivelse: (
                 <>

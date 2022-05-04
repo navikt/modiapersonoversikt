@@ -7,10 +7,6 @@ exports[`Viser traad med verktøylinje 1`] = `
   padding-top: 1rem;
 }
 
-.c14 > * {
-  margin-top: 1rem;
-}
-
 .c24 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -66,56 +62,6 @@ exports[`Viser traad med verktøylinje 1`] = `
   border-color: #0067c5;
 }
 
-.c19 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c16 {
-  position: relative;
-}
-
-.c17 {
-  position: relative;
-}
-
-.c17 .skjemaelement {
-  margin-bottom: 0;
-}
-
-.c15 {
-  padding-top: 1rem;
-}
-
-.c15 .inputPanelGruppe__inner {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c15 .inputPanelGruppe__inner > * {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c15 label {
-  font-weight: 600;
-  margin-bottom: 0.1rem;
-}
-
-.c15 .skjemaelement {
-  margin-bottom: 0.7rem;
-}
-
 .c18 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -127,7 +73,57 @@ exports[`Viser traad med verktøylinje 1`] = `
   justify-content: space-between;
 }
 
-.c18 button {
+.c15 {
+  position: relative;
+}
+
+.c16 {
+  position: relative;
+}
+
+.c16 .skjemaelement {
+  margin-bottom: 0;
+}
+
+.c14 {
+  padding-top: 1rem;
+}
+
+.c14 .inputPanelGruppe__inner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c14 .inputPanelGruppe__inner > * {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c14 label {
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+.c14 .skjemaelement {
+  margin-bottom: 0.7rem;
+}
+
+.c17 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c17 button {
   margin: 0;
 }
 
@@ -270,20 +266,11 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-bottom: 0.5rem;
 }
 
-.c28 {
-  color: #0067c5;
-}
-
 .c26 p {
   margin-bottom: 0 !important;
 }
 
-.c27 .ekspanderbartPanel__hode,
-.c27 .ekspanderbartPanel__innhold {
-  padding: 0.3rem 0;
-}
-
-.c20 {
+.c19 {
   padding: .5rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -291,11 +278,11 @@ exports[`Viser traad med verktøylinje 1`] = `
   flex-grow: 1;
 }
 
-.c20 > *:last-child {
+.c19 > *:last-child {
   margin-top: .5rem;
 }
 
-.c21 {
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -307,6 +294,19 @@ exports[`Viser traad med verktøylinje 1`] = `
   -webkit-box-align: flex-end;
   -ms-flex-align: flex-end;
   align-items: flex-end;
+}
+
+.c21 {
+  margin-top: 0.5rem;
+}
+
+.c21 .ekspanderbartPanel__hode,
+.c21 .ekspanderbartPanel__innhold {
+  padding: 0.3rem 1rem;
+}
+
+.c21 .ekspanderbartPanel__tittel {
+  color: #0067c5;
 }
 
 .c0 {
@@ -352,7 +352,7 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c27 {
+  .c21 {
     display: none;
   }
 }
@@ -462,7 +462,23 @@ exports[`Viser traad med verktøylinje 1`] = `
         >
           <div
             className="c9"
-          />
+          >
+            <p
+              className="typo-element"
+            >
+              Journalført:
+            </p>
+            <p
+              className="typo-normal"
+            >
+              30.07.2019: Dagpenger (ukjent saksid)
+            </p>
+            <p
+              className="typo-normal"
+            >
+              28.07.2019: Arbeidsavklaringspenger (ukjent saksid)
+            </p>
+          </div>
           <div
             className="c10"
           >
@@ -491,18 +507,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                 >
                   Temagruppe: 
                   ARBD
-                </p>
-                <p
-                  className="typo-element"
-                >
-                   Journalført: 
-                  11.07.2019
-                   
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Journalført med team: 
                 </p>
               </div>
               <div>
@@ -572,18 +576,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                   Temagruppe: 
                   ARBD
                 </p>
-                <p
-                  className="typo-element"
-                >
-                   Journalført: 
-                  12.08.2019
-                   
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Journalført med team: 
-                </p>
               </div>
               <div>
                 <p
@@ -651,18 +643,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                 >
                   Temagruppe: 
                   HELSE
-                </p>
-                <p
-                  className="typo-element"
-                >
-                   Journalført: 
-                  21.07.2019
-                   
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Journalført med team: 
                 </p>
               </div>
               <div>
@@ -732,18 +712,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                   Temagruppe: 
                   ARBD
                 </p>
-                <p
-                  className="typo-element"
-                >
-                   Journalført: 
-                  30.07.2019
-                   
-                </p>
-                <p
-                  className="typo-element"
-                >
-                  Journalført med team: 
-                </p>
               </div>
               <div>
                 <p
@@ -788,61 +756,42 @@ exports[`Viser traad med verktøylinje 1`] = `
       <section
         className="c13"
       >
-        <div
-          className="c14"
+        <svg
+          aria-label="Laster innhold"
+          className="spinner spinner--xl"
+          focusable="false"
+          height={32}
+          kind="spinner-negativ"
+          preserveAspectRatio="xMidYMid"
+          viewBox="0 0 50 50"
+          width={32}
         >
-          <div
-            className="alertstripe alertstripe--info"
-          >
-            <span
-              className="alertstripe__ikon"
-            >
-              <span
-                className="sr-only"
-              >
-                info
-              </span>
-              <svg
-                aria-label="info-ikon"
-                focusable="false"
-                height="1.5em"
-                kind="info-sirkel-fyll"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-              >
-                <g
-                  fill="none"
-                >
-                  <path
-                    d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                    fill="#337C9B"
-                  />
-                  <path
-                    d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-                    fill="#FFF"
-                  />
-                </g>
-              </svg>
-            </span>
-            <div
-              className="typo-normal alertstripe__tekst"
-            >
-              Tråden kan ikke journalføres
-            </div>
-          </div>
-          <button
-            className="knapp knapp--hoved"
-            disabled={false}
-            onClick={[Function]}
-            type="submit"
-          >
-            Lukk
-          </button>
-        </div>
+          <title>
+            Venter...
+          </title>
+          <circle
+            cx="25"
+            cy="25"
+            fill="none"
+            r="20"
+            stroke="#eee"
+            strokeWidth="5"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+          <circle
+            cx="25"
+            cy="25"
+            fill="none"
+            r="20"
+            stroke="#888"
+            strokeDasharray="50 155"
+            strokeLinecap="round"
+            strokeWidth="5"
+          />
+        </svg>
       </section>
       <div
-        className="c15"
+        className="c14"
       >
         <form
           onSubmit={[Function]}
@@ -965,11 +914,11 @@ exports[`Viser traad med verktøylinje 1`] = `
             aria-haspopup="listbox"
             aria-labelledby="downshift-0-label"
             aria-owns={null}
-            className="c16"
+            className="c15"
             role="combobox"
           >
             <div
-              className="c17"
+              className="c16"
             >
               <div
                 className="skjemaelement"
@@ -1007,11 +956,11 @@ exports[`Viser traad med verktøylinje 1`] = `
             aria-haspopup="listbox"
             aria-labelledby="downshift-1-label"
             aria-owns={null}
-            className="c16"
+            className="c15"
             role="combobox"
           >
             <div
-              className="c17"
+              className="c16"
             >
               <div
                 className="skjemaelement"
@@ -1108,7 +1057,7 @@ exports[`Viser traad med verktøylinje 1`] = `
             />
           </div>
           <div
-            className="c18"
+            className="c17"
           >
             <button
               className="knapp knapp--hoved"
@@ -1220,7 +1169,7 @@ exports[`Viser traad med verktøylinje 1`] = `
           />
         </fieldset>
         <div
-          className="c19"
+          className="c18"
         >
           <button
             className="knapp knapp--hoved"
@@ -1241,10 +1190,10 @@ exports[`Viser traad med verktøylinje 1`] = `
     </div>
   </article>
   <section
-    className="c20"
+    className="c19"
   >
     <div
-      className="c21"
+      className="c20"
     >
       <button
         className="knapp knapp--hoved"
@@ -1263,6 +1212,57 @@ exports[`Viser traad med verktøylinje 1`] = `
        
       13.08.2019 00:00
     </h3>
+    <div
+      className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
+    >
+      <button
+        aria-controls="Helt tilfeldig ID"
+        className="ekspanderbartPanel__hode"
+        id="Helt tilfeldig ID"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        type="button"
+      >
+        <div
+          className="ekspanderbartPanel__flex-wrapper"
+        >
+          <span
+            className="ekspanderbartPanel__tittel"
+          >
+            <p
+              className="typo-undertekst-bold"
+            >
+              Dialogen er journalfort på 
+              2
+               sak(er)
+            </p>
+          </span>
+          <span
+            className="ekspanderbartPanel__indikator"
+          />
+        </div>
+      </button>
+      <div
+        aria-labelledby="Helt tilfeldig ID"
+        id="Helt tilfeldig ID"
+        role="region"
+      >
+        <div
+          className="ekspanderbartPanel__innhold"
+        >
+          <p
+            className="typo-normal"
+          >
+            30.07.2019: Journalført på Dagpenger (ukjent saksid) av Jenny Berg
+          </p>
+          <p
+            className="typo-normal"
+          >
+            28.07.2019: Journalført på Arbeidsavklaringspenger (ukjent saksid) av Jenny Berg
+          </p>
+        </div>
+      </div>
+    </div>
     <ol
       aria-label="Dialog"
     >
@@ -1346,47 +1346,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                       Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                     </p>
                   </div>
-                  <div
-                    className="ekspanderbartPanel c27 ekspanderbartPanel--lukket"
-                  >
-                    <button
-                      aria-controls="Helt tilfeldig ID"
-                      aria-expanded={false}
-                      className="ekspanderbartPanel__hode"
-                      id="Helt tilfeldig ID"
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      type="button"
-                    >
-                      <div
-                        className="ekspanderbartPanel__flex-wrapper"
-                      >
-                        <span
-                          className="ekspanderbartPanel__tittel"
-                        >
-                          <p
-                            className="typo-undertekst-bold c28"
-                          >
-                            Meldingen er journalført
-                          </p>
-                        </span>
-                        <span
-                          className="ekspanderbartPanel__indikator"
-                        />
-                      </div>
-                    </button>
-                    <div
-                      aria-labelledby="Helt tilfeldig ID"
-                      id="Helt tilfeldig ID"
-                      role="region"
-                    >
-                      <div
-                        className="ekspanderbartPanel__innhold"
-                      >
-                        Journalført av Jenny Berg (p0jh0d) 30.07.2019 på ukjent tema med ukjent saksid
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -1454,47 +1413,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                       Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
                     </p>
                   </div>
-                  <div
-                    className="ekspanderbartPanel c27 ekspanderbartPanel--lukket"
-                  >
-                    <button
-                      aria-controls="Helt tilfeldig ID"
-                      aria-expanded={false}
-                      className="ekspanderbartPanel__hode"
-                      id="Helt tilfeldig ID"
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      type="button"
-                    >
-                      <div
-                        className="ekspanderbartPanel__flex-wrapper"
-                      >
-                        <span
-                          className="ekspanderbartPanel__tittel"
-                        >
-                          <p
-                            className="typo-undertekst-bold c28"
-                          >
-                            Meldingen er journalført
-                          </p>
-                        </span>
-                        <span
-                          className="ekspanderbartPanel__indikator"
-                        />
-                      </div>
-                    </button>
-                    <div
-                      aria-labelledby="Helt tilfeldig ID"
-                      id="Helt tilfeldig ID"
-                      role="region"
-                    >
-                      <div
-                        className="ekspanderbartPanel__innhold"
-                      >
-                        Journalført av Emil Nguyen (ly4pps) 21.07.2019 på ukjent tema med ukjent saksid
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -1561,47 +1479,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                     >
                       Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
                     </p>
-                  </div>
-                  <div
-                    className="ekspanderbartPanel c27 ekspanderbartPanel--lukket"
-                  >
-                    <button
-                      aria-controls="Helt tilfeldig ID"
-                      aria-expanded={false}
-                      className="ekspanderbartPanel__hode"
-                      id="Helt tilfeldig ID"
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      type="button"
-                    >
-                      <div
-                        className="ekspanderbartPanel__flex-wrapper"
-                      >
-                        <span
-                          className="ekspanderbartPanel__tittel"
-                        >
-                          <p
-                            className="typo-undertekst-bold c28"
-                          >
-                            Meldingen er journalført
-                          </p>
-                        </span>
-                        <span
-                          className="ekspanderbartPanel__indikator"
-                        />
-                      </div>
-                    </button>
-                    <div
-                      aria-labelledby="Helt tilfeldig ID"
-                      id="Helt tilfeldig ID"
-                      role="region"
-                    >
-                      <div
-                        className="ekspanderbartPanel__innhold"
-                      >
-                        Journalført av Victoria Andresen (3t55yt) 12.08.2019 på ukjent tema med ukjent saksid
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -1688,47 +1565,6 @@ exports[`Viser traad med verktøylinje 1`] = `
                     >
                       Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
                     </p>
-                  </div>
-                  <div
-                    className="ekspanderbartPanel c27 ekspanderbartPanel--lukket"
-                  >
-                    <button
-                      aria-controls="Helt tilfeldig ID"
-                      aria-expanded={false}
-                      className="ekspanderbartPanel__hode"
-                      id="Helt tilfeldig ID"
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      type="button"
-                    >
-                      <div
-                        className="ekspanderbartPanel__flex-wrapper"
-                      >
-                        <span
-                          className="ekspanderbartPanel__tittel"
-                        >
-                          <p
-                            className="typo-undertekst-bold c28"
-                          >
-                            Meldingen er journalført
-                          </p>
-                        </span>
-                        <span
-                          className="ekspanderbartPanel__indikator"
-                        />
-                      </div>
-                    </button>
-                    <div
-                      aria-labelledby="Helt tilfeldig ID"
-                      id="Helt tilfeldig ID"
-                      role="region"
-                    >
-                      <div
-                        className="ekspanderbartPanel__innhold"
-                      >
-                        Journalført av Adrian Pettersen (vlzaiw) 11.07.2019 på ukjent tema med ukjent saksid
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

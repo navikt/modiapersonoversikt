@@ -12,11 +12,6 @@ export interface Melding {
     meldingstype: Meldingstype;
     temagruppe: Temagruppe | null;
     skrevetAvTekst: string;
-    journalfortAv?: Saksbehandler;
-    journalfortDato?: string;
-    journalfortTema?: string;
-    journalfortTemanavn?: string;
-    journalfortSaksid?: string;
     fritekst: string;
     lestDato?: string;
     status: LestStatus;

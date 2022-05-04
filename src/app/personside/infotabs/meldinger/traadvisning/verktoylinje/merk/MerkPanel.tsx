@@ -8,7 +8,7 @@ import { AppState } from '../../../../../../../redux/reducers';
 import {
     eldsteMelding,
     erBehandlet,
-    erEldsteMeldingJournalfort,
+    erJournalfort,
     erFeilsendt,
     erKontorsperret,
     erMeldingFeilsendt,
@@ -58,7 +58,7 @@ function lagBehandlingskjede(traad: Traad) {
 }
 
 function visStandardvalg(traad: Traad): boolean {
-    return !erEldsteMeldingJournalfort(traad) && !erFeilsendt(traad) && erBehandlet(traad) && !erKontorsperret(traad);
+    return !erJournalfort(traad) && !erFeilsendt(traad) && erBehandlet(traad) && !erKontorsperret(traad);
 }
 
 function traadKanLukkes(traad: Traad): boolean {

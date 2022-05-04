@@ -15,7 +15,7 @@ import { FortsettDialogValidator } from './validatorer';
 import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';
 import {
     eldsteMelding,
-    erEldsteMeldingJournalfort,
+    erJournalfort,
     erMeldingstypeSamtalereferat
 } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { useHentPersondata } from '../../../../utils/customHooks';
@@ -101,7 +101,7 @@ function FortsettDialog(props: Props) {
                         formState={state}
                         updateFormState={updateState}
                         visVelgSak={
-                            !erEldsteMeldingJournalfort(props.traad) &&
+                            !erJournalfort(props.traad) &&
                             !erOksosTraad &&
                             state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE
                         }

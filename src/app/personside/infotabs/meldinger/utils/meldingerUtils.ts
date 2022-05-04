@@ -78,22 +78,12 @@ export function erKontorsperret(traad: Traad): boolean {
     return !!eldsteMelding(traad).kontorsperretEnhet;
 }
 
-export function kanTraadJournalfores(traad: Traad, kanJournalforeFlere: boolean): boolean {
-    const nyesteMeldingITraad = nyesteMelding(traad);
-    return (
-        !erKontorsperret(traad) &&
-        !erFeilsendt(traad) &&
-        (!erJournalfort(nyesteMeldingITraad) || kanJournalforeFlere) &&
-        erBehandlet(traad)
-    );
+export function kanTraadJournalfores(traad: Traad): boolean {
+    return !erKontorsperret(traad) && !erFeilsendt(traad) && erBehandlet(traad);
 }
 
-export function erEldsteMeldingJournalfort(traad: Traad): boolean {
-    return erJournalfort(eldsteMelding(traad));
-}
-
-export function erJournalfort(melding: Melding) {
-    return !!melding.journalfortDato;
+export function erJournalfort(traad: Traad): boolean {
+    return traad.journalposter.isNotEmpty();
 }
 
 export function erFeilsendt(traad: Traad): boolean {
