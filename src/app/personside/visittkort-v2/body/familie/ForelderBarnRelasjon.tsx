@@ -33,7 +33,7 @@ function ForelderBarnRelasjonVisning({ harFeilendeSystem, relasjon, beskrivelse,
             <Normaltekst>
                 {navn && hentNavn(navn)} {alder}
             </Normaltekst>
-            <Normaltekst>{relasjon.ident}</Normaltekst>
+            <Normaltekst>{relasjon.ident ? relasjon.ident : 'Ukjent'}</Normaltekst>
             <Normaltekst>
                 <BostedForRelasjon relasjon={relasjon} />
             </Normaltekst>
