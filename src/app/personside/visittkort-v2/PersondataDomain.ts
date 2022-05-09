@@ -202,7 +202,7 @@ export interface DeltBosted {
 }
 
 export interface ForelderBarnRelasjon extends PersonMedAlderOgDodsdato {
-    ident: string;
+    ident: string | null;
     rolle: ForelderBarnRelasjonRolle;
     navn: Array<Navn>;
     fodselsdato: Array<LocalDate>;
