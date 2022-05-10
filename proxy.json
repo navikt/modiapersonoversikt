@@ -1,0 +1,7 @@
+[
+    {
+        "prefix": "proxy/dittnav-eventer-modia",
+        "url": "$env{APP_ADEO_DOMAIN}/dittnav-eventer-modia",
+        "rewriteDirectives": ["SET_HEADER Cookie 'ID_token=$cookie{modia_ID_token}'"]
+    }
+]
