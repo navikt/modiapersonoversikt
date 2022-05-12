@@ -6,7 +6,7 @@ env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/modiapersonoversikt:${{ github.sha }}
   CI: true
   TZ: Europe/Oslo
-  Q1_TEST_BRANCH: refs/heads/kotlin-host-image
+  Q1_TEST_BRANCH: refs/heads/branch_name
 
 jobs:
   build:
