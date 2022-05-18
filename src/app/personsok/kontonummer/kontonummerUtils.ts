@@ -21,10 +21,7 @@ export function erGyldigNorskKontonummer(kontonummer?: string): boolean {
     }
 
     kontonummer = removeWhitespaceAndDot(kontonummer);
-    return (
-        kontonummer !== undefined &&
-        parseInt(kontonummer.charAt(kontonummer.length - 1), 10) === mod11FraTallMedKontrollsiffer(kontonummer)
-    );
+    return parseInt(kontonummer.charAt(kontonummer.length - 1), 10) === mod11FraTallMedKontrollsiffer(kontonummer);
 }
 
 function inneholderBokstaver(kontonummer: string): boolean {
