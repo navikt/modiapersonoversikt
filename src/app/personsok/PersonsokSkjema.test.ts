@@ -107,7 +107,12 @@ test('Valider krav om gatenavn ved husbokstav', () => {
     expect(validator).toEqual({ ...ingenFeil, gatenavn: 'Gatenavn må være satt hvis husbokstav er satt' });
 });
 
+test('Valider krav om korrekt lengde på kontonummer', () => {
+    const validator = validatorPersonsok({ ...initialValues, kontonummer: '123' });
+    expect(validator).toEqual({ ...ingenFeil, kontonummer: 'Kontonummer må kun bestå av tall og være 11 siffer' });
+});
+
 test('Valider krav om korrekt kontonummer', () => {
     const validator = validatorPersonsok({ ...initialValues, kontonummer: '12345678910' });
-    expect(validator).toEqual({ ...ingenFeil, kontonummer: 'Kontonummer må kun bestå av tall og være 11 siffer' });
+    expect(validator).toEqual({ ...ingenFeil, kontonummer: 'Kontonummer må være et gyldig norsk kontonummer' });
 });

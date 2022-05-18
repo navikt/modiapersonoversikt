@@ -1,18 +1,34 @@
-export function validerKontonummer(kontonummer?: string) {
+export function validerLengdeOgTallPaKontonummer(kontonummer?: string): boolean {
     if (!kontonummer) {
         return false;
     }
 
     kontonummer = removeWhitespaceAndDot(kontonummer);
-    if (kontonummer.length !== 11) {
+    if (inneholderBokstaver(kontonummer)) {
         return false;
     }
 
-    return parseInt(kontonummer.charAt(kontonummer.length - 1), 10) === mod11FraTallMedKontrollsiffer(kontonummer);
+    return kontonummer.length === 11;
 }
 
 export function removeWhitespaceAndDot(kontonummer: string): string {
     return kontonummer.toString().replace(/[. ]/g, '');
+}
+
+export function erGyldigNorskKontonummer(kontonummer?: string): boolean {
+    if (!kontonummer) {
+        return false;
+    }
+
+    kontonummer = removeWhitespaceAndDot(kontonummer);
+    return (
+        kontonummer !== undefined &&
+        parseInt(kontonummer.charAt(kontonummer.length - 1), 10) === mod11FraTallMedKontrollsiffer(kontonummer)
+    );
+}
+
+function inneholderBokstaver(kontonummer: string): boolean {
+    return /[a-zA-Z]/i.test(kontonummer);
 }
 
 function mod11FraTallMedKontrollsiffer(kontonummer: string) {
