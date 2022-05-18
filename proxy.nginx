@@ -1,0 +1,7 @@
+location  /modiapersonoversikt/proxy/dittnav-eventer-modia/ {
+    # dittnav-eventer-modia forventer ID_token, så bytter navn på cookie her.
+    proxy_set_header Cookie "ID_token=$cookie_modia_ID_token;";
+    # Sender det så videre til riktig domene.
+    # APP_ADEO_DOMAIN er definert som en miljøvariabel i nais.yaml, og blir injected inn av modialogin-imaget.
+    proxy_pass "${APP_ADEO_DOMAIN}/dittnav-eventer-modia/";
+}
