@@ -1,4 +1,4 @@
 export enum FeatureToggles {
     VisTilbakemelding = 'vis-tilbakemelding',
-    SvarLukkerDialog = 'svar.lukker.dialog'
+    SvarLukkerDialog = 'modiabrukerdialog.svar.lukker.dialog'
 }
