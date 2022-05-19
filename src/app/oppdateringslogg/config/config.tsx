@@ -19,9 +19,10 @@ import VisningSikkerhetstiltak from './img/sikkerhetstiltakt-popup.png';
 import AvsluttDialog from './img/avslutt-dialog.png';
 import FiltreringSakstema from './img/filtrering-sakstema.png';
 import JournalforFlere from './img/journalfor-flere.png';
+import SvarAvslutterDialog from './img/svar-avslutter-dialog.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
+export function lagOppdateringsloggConfig(svarAvslutterDialogFeatureToggle: boolean): EnOppdateringslogg[] {
     return [
         {
             id: 1,
@@ -338,6 +339,25 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
                 </>
             ),
             src: JournalforFlere
+        },
+        {
+            id: 19,
+            tittel: 'Avslutt dialog ved svar',
+            dato: new Date('2022-05-20 08:00'),
+            aktiv: svarAvslutterDialogFeatureToggle,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Ved bruk av "svar" vil dialogen automatisk avsluttes, og ingen flere meldinger kan sendes i
+                        dialogen. Dette gjelder både ved bruk av svar fra bruker og fra veileder/saksbehandler.
+                    </Normaltekst>
+                    <Normaltekst>
+                        Det vil ikke bli opprettet "svar ikke mottatt" oppgaver for denne dialogen.
+                    </Normaltekst>
+                </>
+            ),
+            src: SvarAvslutterDialog
         }
     ];
 }
