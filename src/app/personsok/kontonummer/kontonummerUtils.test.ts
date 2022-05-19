@@ -1,19 +1,25 @@
-import { validerKontonummer } from './kontonummerUtils';
+import { erGyldigNorskKontonummer, removeWhitespaceAndDot, validerLengdeOgTallPaKontonummer } from './kontonummerUtils';
 
-it('Validerer gyldig kontonummer', () => {
+it('Validerer gyldig norsk kontonummer', () => {
     const kontonummer = '12345678911';
 
-    expect(validerKontonummer(kontonummer)).toBe(true);
+    expect(erGyldigNorskKontonummer(kontonummer)).toBe(true);
 });
 
-it('Validerer gyldig kontonummer med punktum og mellomrom', () => {
-    const kontonummer = '12345.67 8911';
+it('Validerer fjerning av punktum og whitespace', () => {
+    const kontonummer = '1234.56 78911';
 
-    expect(validerKontonummer(kontonummer)).toBe(true);
+    expect(removeWhitespaceAndDot(kontonummer)).toHaveLength(11);
 });
 
-it('Validerer ikke ugyldig kontonummer', () => {
+it('Validerer ugyldig når bokstaver i kontonummer', () => {
+    const kontonummer = '12345.67 891a';
+
+    expect(validerLengdeOgTallPaKontonummer(kontonummer)).toBe(false);
+});
+
+it('Validerer ugyldig kontonummer', () => {
     const kontonummer = '12345678910';
 
-    expect(validerKontonummer(kontonummer)).toBe(false);
+    expect(erGyldigNorskKontonummer(kontonummer)).toBe(false);
 });
