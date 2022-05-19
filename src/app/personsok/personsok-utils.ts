@@ -1,6 +1,10 @@
 import { PersonsokRequest } from '../../models/person/personsok';
 import { Mapped, Values } from '@nutgaard/use-formstate';
-import { removeWhitespaceAndDot, validerKontonummer } from './kontonummer/kontonummerUtils';
+import {
+    erGyldigNorskKontonummer,
+    removeWhitespaceAndDot,
+    validerLengdeOgTallPaKontonummer
+} from './kontonummer/kontonummerUtils';
 import { erTall } from '../../utils/string-utils';
 import dayjs from 'dayjs';
 
@@ -54,8 +58,10 @@ export function validatorPersonsok(values: PersonSokFormState) {
 
     const andreFelter = navnFelter.concat(adresseFelter).concat([values.utenlandskID]);
     const andreFelterErSatt = andreFelter.some((it) => it.length > 0);
-    if (values.kontonummer && !validerKontonummer(values.kontonummer)) {
+    if (values.kontonummer && !validerLengdeOgTallPaKontonummer(values.kontonummer)) {
         kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
+    } else if (values.kontonummer && !erGyldigNorskKontonummer(values.kontonummer)) {
+        kontonummer = 'Kontonummer må være et gyldig norsk kontonummer';
     } else if (values.kontonummer && andreFelterErSatt) {
         kontonummer = 'Kan ikke kombinere søk på kontonummer med andre felt';
     }
