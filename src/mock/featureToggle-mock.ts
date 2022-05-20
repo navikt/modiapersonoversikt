@@ -5,8 +5,6 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
     switch (toggleId) {
         case FeatureToggles.VisTilbakemelding:
             return false;
-        case FeatureToggles.SvarLukkerDialog:
-            return true;
         default:
             return Math.random() > 0.5;
     }

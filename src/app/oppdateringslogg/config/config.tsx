@@ -22,7 +22,7 @@ import JournalforFlere from './img/journalfor-flere.png';
 import SvarAvslutterDialog from './img/svar-avslutter-dialog.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export function lagOppdateringsloggConfig(svarAvslutterDialogFeatureToggle: boolean): EnOppdateringslogg[] {
+export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
     return [
         {
             id: 1,
@@ -344,7 +344,7 @@ export function lagOppdateringsloggConfig(svarAvslutterDialogFeatureToggle: bool
             id: 19,
             tittel: 'Avslutt dialog ved svar',
             dato: new Date('2022-05-20 08:00'),
-            aktiv: svarAvslutterDialogFeatureToggle,
+            aktiv: true,
             ingress: null,
             beskrivelse: (
                 <>
