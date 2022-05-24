@@ -2,7 +2,7 @@ export interface DittNavEvent {
     fodselsnummer: string;
     grupperingsId: string;
     eventId: string;
-    eventTidspunkt: string;
+    forstBehandlet: string;
     produsent: string;
     sikkerhetsnivaa: number;
     sistOppdatert: string;
