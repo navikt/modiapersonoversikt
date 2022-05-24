@@ -28,7 +28,7 @@ function lagFetchOptions(fnr: string): RequestInit {
 
 function datoExtractor(varsel: UnifiedVarsel) {
     if (isDittNavEvent(varsel)) {
-        return varsel.eventTidspunkt;
+        return varsel.forstBehandlet;
     }
     return varsel.mottattTidspunkt;
 }
