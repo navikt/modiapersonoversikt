@@ -167,6 +167,7 @@ export interface Fullmakt {
     motpartsRolle: FullmaktsRolle;
     omrade: Array<KodeBeskrivelse<string>>;
     gyldighetsPeriode: GyldighetsPeriode | null;
+    digitalKontaktinformasjonTredjepartsperson: DigitalKontaktinformasjonTredjepartsperson | null;
 }
 
 export interface Telefon {
@@ -299,6 +300,11 @@ export interface MobilTelefon {
     value: string | null;
     sistOppdatert: LocalDate | null;
     sistVerifisert: LocalDate | null;
+}
+
+export interface DigitalKontaktinformasjonTredjepartsperson {
+    reservasjon: string | null;
+    mobiltelefonnummer: string | null;
 }
 
 /**

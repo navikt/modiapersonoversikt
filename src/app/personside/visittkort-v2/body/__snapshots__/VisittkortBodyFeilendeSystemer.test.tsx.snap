@@ -94,15 +94,24 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   line-height: 1rem;
 }
 
+.c8 {
+  color: #645f5a;
+  margin-top: -0.275rem;
+}
+
+.c8 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 .c6 {
   margin-top: 0.5rem;
 }
 
-.c8 {
+.c9 {
   margin-bottom: 5px;
 }
 
-.c9 {
+.c10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -697,6 +706,78 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Gjelder 
           alle ytelser
         </p>
+        <p
+          className="typo-normal"
+        >
+          Telefon: 
+          909 09 090
+        </p>
+        <div
+          className="c8"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            I Kontakt- og reservasjonsregisteret
+          </p>
+        </div>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Gyldig: 
+            01.06.2021 – 01.05.2022
+          </p>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+          <h4
+            className="typo-element"
+          >
+            Fullmektig
+          </h4>
+        </div>
+        <p
+          className="typo-feilmelding"
+        >
+          Feilet ved uthenting av navn
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Navn2 Navnesen2
+           
+          (12345678111)
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Gjelder 
+          alle ytelser
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Telefon: 
+          Reservert
+        </p>
+        <div
+          className="c8"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            I Kontakt- og reservasjonsregisteret
+          </p>
+        </div>
         <div
           className="c7"
         >
@@ -1196,7 +1277,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c8"
+          className="c9"
         >
           <p
             className="typo-normal"
@@ -1253,7 +1334,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c8"
+          className="c9"
         >
           <p
             className="typo-normal"
@@ -1383,7 +1464,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </section>
     <div
-      className="c9"
+      className="c10"
     >
       <a
         className="lenke"
