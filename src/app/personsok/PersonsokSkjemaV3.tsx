@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
+import { PersonsokRequestV3, PersonsokResponse } from '../../models/person/personsok';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
-import { PersonSokFormState, lagRequest, validatorPersonsok } from './personsok-utils';
+import { lagRequestV3, PersonSokFormStateV3, validatorPersonsokV3 } from './personsokV3-utils';
 import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
-import PersonsokDatovelger from './PersonsokDatovelger';
 import LenkeDrek, { DrekProps } from './LenkeDrek';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../components/common-styled-components';
@@ -19,6 +18,7 @@ import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { FeilmeldingOppsummering } from '../../components/FeilmeldingOppsummering';
 import formstateFactory, { Values } from '@nutgaard/use-formstate';
 import { Kjonn } from '../personside/visittkort-v2/PersondataDomain';
+import PersonsokDatovelger from './PersonsokDatovelger';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -55,39 +55,35 @@ const InputLinje = styled.div`
     }
 `;
 
-const initialValues: PersonSokFormState = {
+const initialValues: PersonSokFormStateV3 = {
     fornavn: '',
     etternavn: '',
-    gatenavn: '',
-    husnummer: '',
-    husbokstav: '',
-    postnummer: '',
     kontonummer: '',
     utenlandskID: '',
-    kommunenummer: '',
     fodselsdatoFra: '',
     fodselsdatoTil: '',
     alderFra: '',
     alderTil: '',
     kjonn: '',
+    adresse: '',
     _minimumskrav: ''
 };
 
-const useFormstate = formstateFactory<PersonSokFormState>(validatorPersonsok);
+const useFormstate = formstateFactory<PersonSokFormStateV3>(validatorPersonsokV3);
 
-function PersonsokSkjema(props: Props) {
+function PersonsokSkjemaV3(props: Props) {
     const formstate = useFormstate(initialValues);
     const hjelpetekstID = useRef(guid());
 
-    function submitHandler(values: Values<PersonSokFormState>): Promise<any> {
+    function submitHandler(values: Values<PersonSokFormStateV3>): Promise<any> {
         props.setPosting(true);
 
         if (values.utenlandskID.length > 0) {
             loggEvent('PersonsokUtenlandsId', 'Personsok');
         }
 
-        const request: PersonsokRequest = lagRequest(values);
-        return fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok/v2`, postConfig(request))
+        const request: PersonsokRequestV3 = lagRequestV3(values);
+        return fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok/v3`, postConfig(request))
             .then((response) => {
                 props.setPosting(false);
                 props.setResponse(response);
@@ -107,6 +103,14 @@ function PersonsokSkjema(props: Props) {
     const utenlandskIDTittel = [
         'Utenlandsk ID ',
         <Hjelpetekst id={hjelpetekstID.current}>Husk å inkludere alle tegn. Eksempel: 010101-12345</Hjelpetekst>
+    ];
+
+    const adresseTittel = [
+        'Adresse ',
+        <Hjelpetekst id={hjelpetekstID.current}>
+            Dersom du er helt sikker på hvordan deler av ett navn staves så kan en benytte "" rundt det ordet du er
+            sikker på og søkeløsningen vil prøve å finne eksakt match for dette ordet
+        </Hjelpetekst>
     ];
 
     return (
@@ -138,26 +142,11 @@ function PersonsokSkjema(props: Props) {
                                 feil={feilmelding(formstate.fields.etternavn)}
                             />
                         </InputLinje>
-                        <InputLinje>
-                            <Input
-                                bredde={'L'}
-                                label={'Gatenavn'}
-                                {...formstate.fields.gatenavn.input}
-                                feil={feilmelding(formstate.fields.gatenavn)}
-                            />
-                            <Input
-                                bredde={'M'}
-                                label={'Husnummer'}
-                                {...formstate.fields.husnummer.input}
-                                feil={feilmelding(formstate.fields.husnummer)}
-                            />
-                            <Input bredde={'M'} label={'Husbokstav'} {...formstate.fields.husbokstav.input} />
-                        </InputLinje>
                         <Input
-                            bredde={'M'}
-                            label={'Postnummer'}
-                            {...formstate.fields.postnummer.input}
-                            feil={feilmelding(formstate.fields.postnummer)}
+                            bredde={'XL'}
+                            label={adresseTittel}
+                            {...formstate.fields.adresse.input}
+                            feil={feilmelding(formstate.fields.adresse)}
                         />
                         <Input
                             bredde={'L'}
@@ -174,12 +163,6 @@ function PersonsokSkjema(props: Props) {
                     </section>
                     <section aria-label={'Begrens søket'}>
                         <Systemtittel tag={'h2'}>Begrens søket</Systemtittel>
-                        <Input
-                            bredde={'M'}
-                            label={'Bosted'}
-                            {...formstate.fields.kommunenummer.input}
-                            feil={feilmelding(formstate.fields.kommunenummer)}
-                        />
                         <InputLinje>
                             <PersonsokDatovelger form={formstate.fields} />
                         </InputLinje>
@@ -220,4 +203,4 @@ function PersonsokSkjema(props: Props) {
     );
 }
 
-export default PersonsokSkjema;
+export default PersonsokSkjemaV3;
