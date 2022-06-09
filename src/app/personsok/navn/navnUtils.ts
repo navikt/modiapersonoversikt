@@ -4,6 +4,6 @@ export function splitNavn(navn?: string) {
     return { fornavn, etternavn };
 }
 
-export function beholdKunBokstaverOgMellomrom(navn?: string) {
+export function fjernAnforselstegn(navn?: string) {
     return navn?.replace(/[""]+/gi, '');
 }
