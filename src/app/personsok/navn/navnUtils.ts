@@ -5,5 +5,5 @@ export function splitNavn(navn?: string) {
 }
 
 export function fjernAnforselstegn(navn?: string) {
-    return navn?.replace(/[""]+/gi, '');
+    return navn?.replaceAll('"', '');
 }
