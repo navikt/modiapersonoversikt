@@ -53,8 +53,7 @@ export interface PersonsokRequest {
 }
 
 export interface PersonsokRequestV3 {
-    fornavn?: string;
-    etternavn?: string;
+    navn?: string;
     kontonummer?: string;
     utenlandskID?: string;
     alderFra?: number;
