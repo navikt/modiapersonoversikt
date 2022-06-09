@@ -6,7 +6,7 @@ import { lagRequestV3, PersonSokFormStateV3, validatorPersonsokV3 } from './pers
 import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
-import LenkeDrek, { DrekProps } from './LenkeDrek';
+import LenkeDrekV2, { DrekPropsV2 } from './LenkeDrekV2';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../components/common-styled-components';
 import styled from 'styled-components/macro';
@@ -56,8 +56,7 @@ const InputLinje = styled.div`
 `;
 
 const initialValues: PersonSokFormStateV3 = {
-    fornavn: '',
-    etternavn: '',
+    navn: '',
     kontonummer: '',
     utenlandskID: '',
     fodselsdatoFra: '',
@@ -93,9 +92,8 @@ function PersonsokSkjemaV3(props: Props) {
             });
     }
 
-    const drekProps: DrekProps = {
-        fornavn: formstate.fields.fornavn.input.value,
-        etternavn: formstate.fields.etternavn.input.value,
+    const drekProps: DrekPropsV2 = {
+        navn: formstate.fields.navn.input.value,
         fodselsdatoFra: formstate.fields.fodselsdatoFra.input.value,
         kjonn: formstate.fields.kjonn.input.value
     };
@@ -103,6 +101,14 @@ function PersonsokSkjemaV3(props: Props) {
     const utenlandskIDTittel = [
         'Utenlandsk ID ',
         <Hjelpetekst id={hjelpetekstID.current}>Husk å inkludere alle tegn. Eksempel: 010101-12345</Hjelpetekst>
+    ];
+
+    const navnTittel = [
+        'Navn (Fonetisk søk) ',
+        <Hjelpetekst id={hjelpetekstID.current}>
+            Dersom du er helt sikker på hvordan deler av ett navn staves så kan en benytte "" rundt det ordet du er
+            sikker på og søkeløsningen vil prøve å finne eksakt match for dette ordet
+        </Hjelpetekst>
     ];
 
     const adresseTittel = [
@@ -128,20 +134,12 @@ function PersonsokSkjemaV3(props: Props) {
                             tittel={'For å kunne søke må du rett opp i følgende:'}
                         />
                         <Systemtittel tag={'h2'}>Søkekriterier</Systemtittel>
-                        <InputLinje>
-                            <Input
-                                bredde={'XL'}
-                                label={'Fornavn (Fonetisk søk)'}
-                                {...formstate.fields.fornavn.input}
-                                feil={feilmelding(formstate.fields.fornavn)}
-                            />
-                            <Input
-                                bredde={'XL'}
-                                label={'Etternavn (Fonetisk søk)'}
-                                {...formstate.fields.etternavn.input}
-                                feil={feilmelding(formstate.fields.etternavn)}
-                            />
-                        </InputLinje>
+                        <Input
+                            bredde={'XL'}
+                            label={navnTittel}
+                            {...formstate.fields.navn.input}
+                            feil={feilmelding(formstate.fields.navn)}
+                        />
                         <Input
                             bredde={'XL'}
                             label={adresseTittel}
@@ -193,7 +191,7 @@ function PersonsokSkjemaV3(props: Props) {
                         </Select>
                     </section>
                 </SectionStyle>
-                <LenkeDrek props={drekProps} />
+                <LenkeDrekV2 props={drekProps} />
                 <KnappStyle>
                     <Hovedknapp htmlType="submit">Søk</Hovedknapp>
                     <LenkeKnapp type="reset">Nullstill</LenkeKnapp>

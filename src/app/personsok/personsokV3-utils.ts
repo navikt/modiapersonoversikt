@@ -9,8 +9,7 @@ import { erTall } from '../../utils/string-utils';
 import dayjs from 'dayjs';
 
 export type PersonSokFormStateV3 = {
-    fornavn: string;
-    etternavn: string;
+    navn: string;
     kontonummer: string;
     utenlandskID: string;
     fodselsdatoFra: string;
@@ -23,18 +22,21 @@ export type PersonSokFormStateV3 = {
 };
 
 export function validatorPersonsokV3(values: PersonSokFormStateV3) {
-    let fornavn = undefined;
-    if (!values.fornavn && values.etternavn) {
-        fornavn = 'Fornavn må være utfylt hvis etternavn er satt';
-    }
-
-    const etternavn = undefined;
+    let navn = undefined;
     let adresse = undefined;
     let kontonummer = undefined;
     let utenlandskID = undefined;
-    const navnFelter = [values.fornavn, values.etternavn];
 
-    const andreFelter = navnFelter.concat([values.adresse]).concat([values.utenlandskID]);
+    const andreFelter = [
+        values.navn,
+        values.adresse,
+        values.utenlandskID,
+        values.alderFra,
+        values.alderTil,
+        values.fodselsdatoFra,
+        values.fodselsdatoTil,
+        values.kjonn
+    ];
     const andreFelterErSatt = andreFelter.some((it) => it.length > 0);
     if (values.kontonummer && !validerLengdeOgTallPaKontonummer(values.kontonummer)) {
         kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
@@ -60,9 +62,9 @@ export function validatorPersonsokV3(values: PersonSokFormStateV3) {
 
     let _minimumskrav = undefined;
     if (!values.utenlandskID) {
-        if (!values.adresse && !values.kontonummer && !values.fornavn) {
+        if (!values.adresse && !values.kontonummer && !values.navn) {
             _minimumskrav = 'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk';
-            fornavn = '';
+            navn = '';
             adresse = '';
             kontonummer = '';
             utenlandskID = '';
@@ -70,8 +72,7 @@ export function validatorPersonsokV3(values: PersonSokFormStateV3) {
     }
 
     return {
-        fornavn,
-        etternavn,
+        navn,
         kontonummer,
         utenlandskID,
         fodselsdatoFra,
@@ -100,8 +101,7 @@ function emptyString(input: string): string | undefined {
 
 export function lagRequestV3(form: Mapped<Values<PersonSokFormStateV3>, string>): PersonsokRequestV3 {
     return {
-        fornavn: emptyString(form.fornavn),
-        etternavn: emptyString(form.etternavn),
+        navn: emptyString(form.navn),
         kontonummer: emptyString(removeWhitespaceAndDot(form.kontonummer)),
         utenlandskID: emptyString(form.utenlandskID),
         fodselsdatoFra: emptyString(form.fodselsdatoFra),

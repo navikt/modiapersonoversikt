@@ -1,8 +1,7 @@
 import { PersonSokFormStateV3, validatorPersonsokV3 } from './personsokV3-utils';
 
 const initialValues: PersonSokFormStateV3 = {
-    fornavn: '',
-    etternavn: '',
+    navn: '',
     kontonummer: '',
     utenlandskID: '',
     fodselsdatoFra: '',
@@ -15,8 +14,7 @@ const initialValues: PersonSokFormStateV3 = {
 };
 
 const ingenFeil = {
-    fornavn: undefined,
-    etternavn: undefined,
+    navn: undefined,
     kontonummer: undefined,
     utenlandskID: undefined,
     fodselsdatoFra: undefined,
@@ -49,14 +47,14 @@ test('Validerer minimumskrav for personsøk', () => {
         ...ingenFeil,
         _minimumskrav: 'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk',
         kontonummer: '',
-        fornavn: '',
+        navn: '',
         adresse: '',
         utenlandskID: ''
     });
 });
 
 test('Valider utenlandskID kan søkes på sammen med navn om pdl-søk er aktivert', () => {
-    const validator = validatorPersonsokV3({ ...initialValues, utenlandskID: '1231', fornavn: 'Aremark' });
+    const validator = validatorPersonsokV3({ ...initialValues, utenlandskID: '1231', navn: 'Aremark' });
     expect(validator).toEqual({
         ...ingenFeil,
         utenlandskID: undefined
@@ -64,7 +62,7 @@ test('Valider utenlandskID kan søkes på sammen med navn om pdl-søk er aktiver
 });
 
 test('Valider kontonummer må være eneste felt om pdl-søk er aktivert', () => {
-    const validator = validatorPersonsokV3({ ...initialValues, kontonummer: '12345678911', fornavn: 'Aremark' });
+    const validator = validatorPersonsokV3({ ...initialValues, kontonummer: '12345678911', navn: 'Aremark' });
     expect(validator).toEqual({
         ...ingenFeil,
         kontonummer: 'Kan ikke kombinere søk på kontonummer med andre felt'

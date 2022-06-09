@@ -7,7 +7,7 @@ import { loggError, loggEvent } from '../../../utils/logger/frontendLogger';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
 import PersonsokDatovelger from '../PersonsokDatovelger';
-import LenkeDrek, { DrekProps } from '../LenkeDrek';
+import LenkeDrek, { DrekProps } from './LenkeDrek';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../../components/common-styled-components';
 import styled from 'styled-components/macro';
