@@ -94,6 +94,15 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   line-height: 1rem;
 }
 
+.c9 {
+  color: #645f5a;
+  margin-top: -0.275rem;
+}
+
+.c9 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
 .c8 span:not(:last-child):after {
   content: '.';
 }
@@ -102,11 +111,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   margin-top: 0.5rem;
 }
 
-.c10 {
+.c11 {
   margin-bottom: 5px;
 }
 
-.c11 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -125,7 +134,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   flex-grow: 1;
 }
 
-.c9 {
+.c10 {
   margin: initial;
   padding: initial;
   list-style: none;
@@ -138,13 +147,13 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   flex-flow: row wrap;
 }
 
-.c9 dt {
+.c10 dt {
   -webkit-flex: 1 1 50%;
   -ms-flex: 1 1 50%;
   flex: 1 1 50%;
 }
 
-.c9 dd {
+.c10 dd {
   -webkit-flex: 2 2 50%;
   -ms-flex: 2 2 50%;
   flex: 2 2 50%;
@@ -776,6 +785,73 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           Gjelder 
           alle ytelser
         </p>
+        <p
+          className="typo-normal"
+        >
+          Telefon: 
+          909 09 090
+        </p>
+        <div
+          className="c9"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            I Kontakt- og reservasjonsregisteret
+          </p>
+        </div>
+        <div
+          className="c7"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            Gyldig: 
+            01.06.2021 – 01.05.2022
+          </p>
+        </div>
+      </div>
+      <div
+        className="c4"
+      >
+        <div
+          className="c2"
+        >
+          
+          <h4
+            className="typo-element"
+          >
+            Fullmektig
+          </h4>
+        </div>
+        <p
+          className="typo-normal"
+        >
+          Navn2 Navnesen2
+           
+          (12345678111)
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Gjelder 
+          alle ytelser
+        </p>
+        <p
+          className="typo-normal"
+        >
+          Telefon: 
+          Reservert
+        </p>
+        <div
+          className="c9"
+        >
+          <p
+            className="typo-undertekst"
+          >
+            I Kontakt- og reservasjonsregisteret
+          </p>
+        </div>
         <div
           className="c7"
         >
@@ -1199,7 +1275,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             </p>
           </div>
           <dl
-            className="c9"
+            className="c10"
           >
             <dt>
               <p
@@ -1396,7 +1472,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c10"
+          className="c11"
         >
           <p
             className="typo-normal"
@@ -1453,7 +1529,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c10"
+          className="c11"
         >
           <p
             className="typo-normal"
@@ -1583,7 +1659,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </section>
     <div
-      className="c11"
+      className="c12"
     >
       <a
         className="lenke"

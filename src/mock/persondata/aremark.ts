@@ -169,7 +169,7 @@ export const aremark: Person = {
     adressebeskyttelse: [
         {
             kode: AdresseBeskyttelse.KODE6,
-            beskrivelse: 'Kode 6'
+            beskrivelse: 'Sperret adresse, strengt fortrolig'
         }
     ],
     sikkerhetstiltak: [
@@ -289,6 +289,33 @@ export const aremark: Person = {
             gyldighetsPeriode: {
                 gyldigFraOgMed: '2021-06-01' as LocalDate,
                 gyldigTilOgMed: '2022-05-01' as LocalDate
+            },
+            digitalKontaktinformasjonTredjepartsperson: {
+                mobiltelefonnummer: '90909090',
+                reservasjon: 'false'
+            }
+        },
+        {
+            motpartsPersonident: '12345678111',
+            motpartsPersonNavn: {
+                fornavn: 'Navn2',
+                mellomnavn: null,
+                etternavn: 'Navnesen2'
+            },
+            motpartsRolle: FullmaktsRolle.FULLMEKTIG,
+            omrade: [
+                {
+                    kode: '*',
+                    beskrivelse: ''
+                }
+            ],
+            gyldighetsPeriode: {
+                gyldigFraOgMed: '2021-06-01' as LocalDate,
+                gyldigTilOgMed: '2022-05-01' as LocalDate
+            },
+            digitalKontaktinformasjonTredjepartsperson: {
+                mobiltelefonnummer: null,
+                reservasjon: 'true'
             }
         }
     ],
