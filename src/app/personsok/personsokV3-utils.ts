@@ -27,7 +27,16 @@ export function validatorPersonsokV3(values: PersonSokFormStateV3) {
     let kontonummer = undefined;
     let utenlandskID = undefined;
 
-    const andreFelter = [values.navn].concat([values.adresse]).concat([values.utenlandskID]);
+    const andreFelter = [
+        values.navn,
+        values.adresse,
+        values.utenlandskID,
+        values.alderFra,
+        values.alderTil,
+        values.fodselsdatoFra,
+        values.fodselsdatoTil,
+        values.kjonn
+    ];
     const andreFelterErSatt = andreFelter.some((it) => it.length > 0);
     if (values.kontonummer && !validerLengdeOgTallPaKontonummer(values.kontonummer)) {
         kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
