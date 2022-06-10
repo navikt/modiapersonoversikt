@@ -49,7 +49,15 @@ export function erMeldingstypeSamtalereferat(meldingstype: Meldingstype) {
 }
 
 export function erMeldingFraBruker(meldingstype: Meldingstype) {
-    return [Meldingstype.SPORSMAL_SKRIFTLIG, Meldingstype.SVAR_SBL_INNGAAENDE].includes(meldingstype);
+    return [
+        Meldingstype.SPORSMAL_SKRIFTLIG,
+        Meldingstype.SVAR_SBL_INNGAAENDE,
+        Meldingstype.CHATMELDING_FRA_BRUKER
+    ].includes(meldingstype);
+}
+
+export function erChatMelding(meldingstype: Meldingstype) {
+    return [Meldingstype.CHATMELDING_FRA_BRUKER, Meldingstype.CHATMELDING_FRA_NAV].includes(meldingstype);
 }
 
 export function erUbesvartHenvendelseFraBruker(traad: Traad): boolean {
@@ -70,7 +78,8 @@ export function erMeldingFraNav(meldingstype: Meldingstype) {
         Meldingstype.SAMTALEREFERAT_TELEFON,
         Meldingstype.SAMTALEREFERAT_OPPMOTE,
         Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
-        Meldingstype.INFOMELDING_MODIA_UTGAAENDE
+        Meldingstype.INFOMELDING_MODIA_UTGAAENDE,
+        Meldingstype.CHATMELDING_FRA_NAV
     ].includes(meldingstype);
 }
 

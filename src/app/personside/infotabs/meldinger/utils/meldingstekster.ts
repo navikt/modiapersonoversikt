@@ -16,6 +16,10 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
             return 'Svar skriftlig';
         case Meldingstype.INFOMELDING_MODIA_UTGAAENDE:
             return 'Infomelding';
+        case Meldingstype.CHATMELDING_FRA_BRUKER:
+            return 'Chatmelding fra bruker';
+        case Meldingstype.CHATMELDING_FRA_NAV:
+            return 'Chatmelding fra NAV';
         default:
             return 'Ukjent meldingstype: ' + meldingstype;
     }
