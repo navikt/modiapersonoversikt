@@ -56,8 +56,12 @@ export function erMeldingFraBruker(meldingstype: Meldingstype) {
     ].includes(meldingstype);
 }
 
-export function erChatMelding(meldingstype: Meldingstype) {
+export function erChatMelding(meldingstype: Meldingstype): boolean {
     return [Meldingstype.CHATMELDING_FRA_BRUKER, Meldingstype.CHATMELDING_FRA_NAV].includes(meldingstype);
+}
+
+export function erChatTraad(traad: Traad): boolean {
+    return erChatMelding(nyesteMelding(traad).meldingstype);
 }
 
 export function erUbesvartHenvendelseFraBruker(traad: Traad): boolean {
