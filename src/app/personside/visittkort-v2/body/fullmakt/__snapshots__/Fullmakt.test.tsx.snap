@@ -44,9 +44,18 @@ exports[`viser fullmakt 1`] = `
   margin-bottom: 1rem;
 }
 
-.c4 {
+.c5 {
   color: #645f5a;
   margin-top: 3px;
+}
+
+.c5 .typo-etikett-liten {
+  line-height: 1rem;
+}
+
+.c4 {
+  color: #645f5a;
+  margin-top: -0.275rem;
 }
 
 .c4 .typo-etikett-liten {
@@ -122,8 +131,75 @@ exports[`viser fullmakt 1`] = `
       Gjelder 
       alle ytelser
     </p>
+    <p
+      className="typo-normal"
+    >
+      Telefon: 
+      909 09 090
+    </p>
     <div
       className="c4"
+    >
+      <p
+        className="typo-undertekst"
+      >
+        I Kontakt- og reservasjonsregisteret
+      </p>
+    </div>
+    <div
+      className="c5"
+    >
+      <p
+        className="typo-undertekst"
+      >
+        Gyldig: 
+        01.06.2021 – 01.05.2022
+      </p>
+    </div>
+  </div>
+  <div
+    className="c3"
+  >
+    <div
+      className="c0"
+    >
+      
+      <h4
+        className="typo-element"
+      >
+        Fullmektig
+      </h4>
+    </div>
+    <p
+      className="typo-normal"
+    >
+      Navn2 Navnesen2
+       
+      (12345678111)
+    </p>
+    <p
+      className="typo-normal"
+    >
+      Gjelder 
+      alle ytelser
+    </p>
+    <p
+      className="typo-normal"
+    >
+      Telefon: 
+      Reservert
+    </p>
+    <div
+      className="c4"
+    >
+      <p
+        className="typo-undertekst"
+      >
+        I Kontakt- og reservasjonsregisteret
+      </p>
+    </div>
+    <div
+      className="c5"
     >
       <p
         className="typo-undertekst"
