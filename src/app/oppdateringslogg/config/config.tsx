@@ -23,7 +23,7 @@ import SvarAvslutterDialog from './img/svar-avslutter-dialog.png';
 import ForbedretAvansertSok from './img/forbedret-avansertsok.jpg';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export function lagOppdateringsloggConfig(brukPdlSokV3FeatureToggle: boolean): EnOppdateringslogg[] {
+export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
     return [
         {
             id: 1,
@@ -364,7 +364,7 @@ export function lagOppdateringsloggConfig(brukPdlSokV3FeatureToggle: boolean): E
             id: 20,
             tittel: 'Forbedret Avansert Søk',
             dato: new Date('2022-06-13 08:00'),
-            aktiv: brukPdlSokV3FeatureToggle,
+            aktiv: true,
             ingress: null,
             beskrivelse: (
                 <Normaltekst>
