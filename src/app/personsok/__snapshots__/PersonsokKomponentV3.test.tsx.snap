@@ -1,0 +1,748 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`viser personsøkV3-komponent 1`] = `
+.c8 {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: .35rem;
+  cursor: pointer;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #0067c5;
+}
+
+.c8:after {
+  border-bottom: 1px #b7b1a9 solid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c8:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.1875rem #254b6d;
+}
+
+.c8:hover {
+  opacity: 0.8;
+}
+
+.c8:hover:after {
+  content: '';
+  border-color: #0067c5;
+}
+
+.c5 {
+  margin-right: 0.5em;
+  margin-bottom: 1em;
+  line-height: 1.375rem;
+}
+
+.c5 .nav-datovelger__kalenderPortal {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  -webkit-transform: translateX(-85%);
+  -ms-transform: translateX(-85%);
+  transform: translateX(-85%);
+}
+
+.c6 {
+  margin-bottom: 0.5em;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c0 {
+  padding: .5rem;
+}
+
+.c0 .skjemaelement {
+  margin-bottom: 0.5rem;
+}
+
+.c0 .skjemaelement__label {
+  margin-bottom: 0rem;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.c1 > *:first-child {
+  margin-right: 10rem;
+}
+
+.c7 {
+  padding-top: .5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c2 .skjemaelement {
+  padding-right: 0.5em;
+}
+
+<form
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <article
+    className="c0"
+  >
+    <section
+      className="c1"
+    >
+      <section
+        aria-label="Søkekriterier"
+      >
+        <h2
+          className="typo-systemtittel"
+        >
+          Søkekriterier
+        </h2>
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="navn"
+          >
+            Navn (Fonetisk søk) 
+            <div
+              className="hjelpetekst"
+            >
+              <button
+                aria-controls="Helt tilfeldig ID"
+                aria-expanded={false}
+                aria-haspopup="dialog"
+                className="hjelpetekst__apneknapp"
+                id="Helt tilfeldig ID"
+                onClick={[Function]}
+                title="Hjelp"
+                type="button"
+              >
+                <svg
+                  className="hjelpetekst__ikon"
+                  focusable="false"
+                  height={32}
+                  kind="help-circle"
+                  viewBox="0 0 18.2 18.2"
+                  width={32}
+                >
+                  <path
+                    d="M9.1 0C4.1 0 0 4.1 0 9.1s4.1 9.1 9.1 9.1 9.1-4.1 9.1-9.1S14.1 0 9.1 0zm0 17.2C4.6 17.2 1 13.6 1 9.1S4.6 1 9.1 1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1z"
+                  />
+                  <circle
+                    cx="9.1"
+                    cy="13.8"
+                    r=".9"
+                  />
+                  <path
+                    d="M9.1 11.5c-.3 0-.5-.2-.5-.5V8.6c0-.3.2-.5.5-.5 1 0 1.9-.8 1.9-1.9s-.8-1.9-1.9-1.9c-1 0-1.9.8-1.9 1.9 0 .3-.2.5-.5.5s-.5-.2-.5-.4c0-1.6 1.3-2.9 2.9-2.9S12 4.7 12 6.3c0 1.4-1 2.6-2.4 2.8V11c0 .3-.2.5-.5.5z"
+                  />
+                </svg>
+                <span
+                  className="sr-only"
+                >
+                  Hjelp
+                </span>
+              </button>
+              <div
+                className="popover popover--controlled popover--hidden popover--over"
+                id="Helt tilfeldig ID"
+                onClick={[Function]}
+                role="tooltip"
+                style={
+                  Object {
+                    "transform": "translate3d(0px, 0px, 0)",
+                  }
+                }
+                tabIndex={0}
+              >
+                <div
+                  className="popover__content-inner"
+                >
+                  <div
+                    className="hjelpetekst__innhold"
+                  >
+                    Dersom du er helt sikker på hvordan deler av ett navn staves så kan en benytte "" rundt det ordet du er sikker på og søkeløsningen vil prøve å finne eksakt match for dette ordet
+                  </div>
+                </div>
+                <span
+                  className="popover__pil"
+                  style={
+                    Object {
+                      "left": undefined,
+                    }
+                  }
+                />
+              </div>
+            </div>
+          </label>
+          <input
+            aria-invalid={false}
+            className="skjemaelement__input input--xl"
+            id="navn"
+            name="navn"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="adresse"
+          >
+            Adresse 
+            <div
+              className="hjelpetekst"
+            >
+              <button
+                aria-controls="Helt tilfeldig ID"
+                aria-expanded={false}
+                aria-haspopup="dialog"
+                className="hjelpetekst__apneknapp"
+                id="Helt tilfeldig ID"
+                onClick={[Function]}
+                title="Hjelp"
+                type="button"
+              >
+                <svg
+                  className="hjelpetekst__ikon"
+                  focusable="false"
+                  height={32}
+                  kind="help-circle"
+                  viewBox="0 0 18.2 18.2"
+                  width={32}
+                >
+                  <path
+                    d="M9.1 0C4.1 0 0 4.1 0 9.1s4.1 9.1 9.1 9.1 9.1-4.1 9.1-9.1S14.1 0 9.1 0zm0 17.2C4.6 17.2 1 13.6 1 9.1S4.6 1 9.1 1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1z"
+                  />
+                  <circle
+                    cx="9.1"
+                    cy="13.8"
+                    r=".9"
+                  />
+                  <path
+                    d="M9.1 11.5c-.3 0-.5-.2-.5-.5V8.6c0-.3.2-.5.5-.5 1 0 1.9-.8 1.9-1.9s-.8-1.9-1.9-1.9c-1 0-1.9.8-1.9 1.9 0 .3-.2.5-.5.5s-.5-.2-.5-.4c0-1.6 1.3-2.9 2.9-2.9S12 4.7 12 6.3c0 1.4-1 2.6-2.4 2.8V11c0 .3-.2.5-.5.5z"
+                  />
+                </svg>
+                <span
+                  className="sr-only"
+                >
+                  Hjelp
+                </span>
+              </button>
+              <div
+                className="popover popover--controlled popover--hidden popover--over"
+                id="Helt tilfeldig ID"
+                onClick={[Function]}
+                role="tooltip"
+                style={
+                  Object {
+                    "transform": "translate3d(0px, 0px, 0)",
+                  }
+                }
+                tabIndex={0}
+              >
+                <div
+                  className="popover__content-inner"
+                >
+                  <div
+                    className="hjelpetekst__innhold"
+                  >
+                    Dersom du er helt sikker på hvordan deler av en adresse staves så kan en benytte "" rundt det ordet for å si at nøyaktig dette ordet må være med i adressen for å gi treff
+                  </div>
+                </div>
+                <span
+                  className="popover__pil"
+                  style={
+                    Object {
+                      "left": undefined,
+                    }
+                  }
+                />
+              </div>
+            </div>
+          </label>
+          <input
+            aria-invalid={false}
+            className="skjemaelement__input input--xl"
+            id="adresse"
+            name="adresse"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="kontonummer"
+          >
+            Kontonummer (Norske nummer)
+          </label>
+          <input
+            aria-invalid={false}
+            className="skjemaelement__input input--l"
+            id="kontonummer"
+            name="kontonummer"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="utenlandskID"
+          >
+            Utenlandsk ID 
+            <div
+              className="hjelpetekst"
+            >
+              <button
+                aria-controls="Helt tilfeldig ID"
+                aria-expanded={false}
+                aria-haspopup="dialog"
+                className="hjelpetekst__apneknapp"
+                id="Helt tilfeldig ID"
+                onClick={[Function]}
+                title="Hjelp"
+                type="button"
+              >
+                <svg
+                  className="hjelpetekst__ikon"
+                  focusable="false"
+                  height={32}
+                  kind="help-circle"
+                  viewBox="0 0 18.2 18.2"
+                  width={32}
+                >
+                  <path
+                    d="M9.1 0C4.1 0 0 4.1 0 9.1s4.1 9.1 9.1 9.1 9.1-4.1 9.1-9.1S14.1 0 9.1 0zm0 17.2C4.6 17.2 1 13.6 1 9.1S4.6 1 9.1 1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1z"
+                  />
+                  <circle
+                    cx="9.1"
+                    cy="13.8"
+                    r=".9"
+                  />
+                  <path
+                    d="M9.1 11.5c-.3 0-.5-.2-.5-.5V8.6c0-.3.2-.5.5-.5 1 0 1.9-.8 1.9-1.9s-.8-1.9-1.9-1.9c-1 0-1.9.8-1.9 1.9 0 .3-.2.5-.5.5s-.5-.2-.5-.4c0-1.6 1.3-2.9 2.9-2.9S12 4.7 12 6.3c0 1.4-1 2.6-2.4 2.8V11c0 .3-.2.5-.5.5z"
+                  />
+                </svg>
+                <span
+                  className="sr-only"
+                >
+                  Hjelp
+                </span>
+              </button>
+              <div
+                className="popover popover--controlled popover--hidden popover--over"
+                id="Helt tilfeldig ID"
+                onClick={[Function]}
+                role="tooltip"
+                style={
+                  Object {
+                    "transform": "translate3d(0px, 0px, 0)",
+                  }
+                }
+                tabIndex={0}
+              >
+                <div
+                  className="popover__content-inner"
+                >
+                  <div
+                    className="hjelpetekst__innhold"
+                  >
+                    Husk å inkludere alle tegn. Eksempel: 010101-12345
+                  </div>
+                </div>
+                <span
+                  className="popover__pil"
+                  style={
+                    Object {
+                      "left": undefined,
+                    }
+                  }
+                />
+              </div>
+            </div>
+          </label>
+          <input
+            aria-invalid={false}
+            className="skjemaelement__input input--l"
+            id="utenlandskID"
+            name="utenlandskID"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+        </div>
+      </section>
+      <section
+        aria-label="Begrens søket"
+      >
+        <h2
+          className="typo-systemtittel"
+        >
+          Begrens søket
+        </h2>
+        <div
+          className="c2"
+        >
+          <div
+            className="c3"
+          >
+            <div
+              className="c4"
+            >
+              <div
+                className="c5"
+              >
+                <label
+                  className="c6 skjemaelement__label"
+                  htmlFor="fodselsdatoFra"
+                >
+                  <p
+                    className="typo-normal"
+                  >
+                    Fødselsdato fra
+                  </p>
+                </label>
+                <div
+                  onBlur={[Function]}
+                  onKeyDown={[Function]}
+                >
+                  <div
+                    className="nav-datovelger"
+                  >
+                    <div
+                      className="nav-datovelger__inputContainer"
+                    >
+                      <input
+                        aria-invalid={false}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        className="nav-datovelger__input"
+                        id="fodselsdatoFra"
+                        inputMode="text"
+                        maxLength={10}
+                        name="fodselsdatoFra"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        type="text"
+                        value=""
+                      />
+                      <button
+                        aria-expanded={false}
+                        className="nav-datovelger__kalenderknapp"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span
+                          className="sr-only"
+                        >
+                          Kalender
+                        </span>
+                        <span
+                          aria-hidden={true}
+                          className="nav-datovelger__kalenderknapp__icon"
+                        >
+                          <svg
+                            focusable={false}
+                            height={16}
+                            role="presentation"
+                            style={
+                              Object {
+                                "pointerEvents": "none",
+                              }
+                            }
+                            viewBox="0 0 18 18"
+                            width={16}
+                          >
+                            <title>
+                              Kalenderikon
+                            </title>
+                            <g
+                              fill="none"
+                              fillRule="evenodd"
+                              stroke="#0067C5"
+                            >
+                              <path
+                                d="M4 2.667H1.333v14h15.334v-14H14"
+                              />
+                              <path
+                                d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="c5"
+              >
+                <label
+                  className="c6 skjemaelement__label"
+                  htmlFor="fodselsdatoTil"
+                >
+                  <p
+                    className="typo-normal"
+                  >
+                    Fødselsdato til
+                  </p>
+                </label>
+                <div
+                  onBlur={[Function]}
+                  onKeyDown={[Function]}
+                >
+                  <div
+                    className="nav-datovelger"
+                  >
+                    <div
+                      className="nav-datovelger__inputContainer"
+                    >
+                      <input
+                        aria-invalid={false}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        className="nav-datovelger__input"
+                        id="fodselsdatoTil"
+                        inputMode="text"
+                        maxLength={10}
+                        name="fodselsdatoTil"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        type="text"
+                        value=""
+                      />
+                      <button
+                        aria-expanded={false}
+                        className="nav-datovelger__kalenderknapp"
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <span
+                          className="sr-only"
+                        >
+                          Kalender
+                        </span>
+                        <span
+                          aria-hidden={true}
+                          className="nav-datovelger__kalenderknapp__icon"
+                        >
+                          <svg
+                            focusable={false}
+                            height={16}
+                            role="presentation"
+                            style={
+                              Object {
+                                "pointerEvents": "none",
+                              }
+                            }
+                            viewBox="0 0 18 18"
+                            width={16}
+                          >
+                            <title>
+                              Kalenderikon
+                            </title>
+                            <g
+                              fill="none"
+                              fillRule="evenodd"
+                              stroke="#0067C5"
+                            >
+                              <path
+                                d="M4 2.667H1.333v14h15.334v-14H14"
+                              />
+                              <path
+                                d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div />
+          </div>
+        </div>
+        <div
+          className="c2"
+        >
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="alderFra"
+            >
+              Alder fra
+            </label>
+            <input
+              aria-invalid={false}
+              className="skjemaelement__input input--m"
+              id="alderFra"
+              name="alderFra"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="skjemaelement"
+          >
+            <label
+              className="skjemaelement__label"
+              htmlFor="alderTil"
+            >
+              Alder til
+            </label>
+            <input
+              aria-invalid={false}
+              className="skjemaelement__input input--m"
+              id="alderTil"
+              name="alderTil"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="skjemaelement"
+        >
+          <label
+            className="skjemaelement__label"
+            htmlFor="kjonn"
+          >
+            Kjønn
+          </label>
+          <div
+            className="selectContainer input--fullbredde"
+          >
+            <select
+              aria-invalid={false}
+              className="skjemaelement__input"
+              disabled={false}
+              id="kjonn"
+              name="kjonn"
+              onBlur={[Function]}
+              onChange={[Function]}
+              value=""
+            >
+              <option
+                value=""
+              >
+                Velg Kjønn
+              </option>
+              <option
+                value="K"
+              >
+                K - Kvinne
+              </option>
+              <option
+                value="M"
+              >
+                M - Mann
+              </option>
+            </select>
+          </div>
+        </div>
+      </section>
+    </section>
+    <a
+      className="lenke"
+      href="https://drek.nais.preprod.local/?fornavn=&etternavn=&foedselsdato=&kjoenn="
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <p
+        className="typo-normal"
+      >
+        Rekvirer D-nummer fra Folkeregisteret
+      </p>
+    </a>
+    <div
+      className="c7"
+    >
+      <button
+        className="knapp knapp--hoved"
+        disabled={false}
+        type="submit"
+      >
+        Søk
+      </button>
+      <button
+        className="c8"
+        type="reset"
+      >
+        Nullstill
+      </button>
+    </div>
+  </article>
+</form>
+`;
