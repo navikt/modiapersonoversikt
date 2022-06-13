@@ -1,11 +1,11 @@
-import { PersonsokRequest } from '../../models/person/personsok';
+import { PersonsokRequest } from '../../../models/person/personsok';
 import { Mapped, Values } from '@nutgaard/use-formstate';
 import {
     erGyldigNorskKontonummer,
     removeWhitespaceAndDot,
     validerLengdeOgTallPaKontonummer
-} from './kontonummer/kontonummerUtils';
-import { erTall } from '../../utils/string-utils';
+} from '../kontonummer/kontonummerUtils';
+import { erTall } from '../../../utils/string-utils';
 import dayjs from 'dayjs';
 
 export type PersonSokFormState = {

@@ -51,3 +51,15 @@ export interface PersonsokRequest {
     husbokstav?: string;
     postnummer?: string;
 }
+
+export interface PersonsokRequestV3 {
+    navn?: string;
+    kontonummer?: string;
+    utenlandskID?: string;
+    alderFra?: number;
+    alderTil?: number;
+    fodselsdatoFra?: string;
+    fodselsdatoTil?: string;
+    kjonn?: string;
+    adresse?: string;
+}
