@@ -13,7 +13,8 @@ import {
     erKontorsperret,
     erMeldingFeilsendt,
     erMeldingstypeSamtalereferat,
-    kanBesvares
+    kanBesvares,
+    erChatTraad
 } from '../../../utils/meldingerUtils';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { RadioPanelGruppe, RadioPanelProps } from 'nav-frontend-skjema';
@@ -58,7 +59,13 @@ function lagBehandlingskjede(traad: Traad) {
 }
 
 function visStandardvalg(traad: Traad): boolean {
-    return !erJournalfort(traad) && !erFeilsendt(traad) && erBehandlet(traad) && !erKontorsperret(traad);
+    return (
+        !erJournalfort(traad) &&
+        !erFeilsendt(traad) &&
+        erBehandlet(traad) &&
+        !erKontorsperret(traad) &&
+        !erChatTraad(traad)
+    );
 }
 
 function traadKanLukkes(traad: Traad): boolean {

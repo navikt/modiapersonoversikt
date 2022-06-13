@@ -21,9 +21,9 @@ export const MOCKED_TRAADID_1 = '123';
 export const MOCKED_TRAADID_2 = '321';
 export const MOCKED_TRAADID_3 = '987';
 
-export function getMockTraader(fødselsnummer: string): Traad[] {
-    faker.seed(Number(fødselsnummer));
-    navfaker.seed(fødselsnummer + 'meldinger');
+export function getMockTraader(fodselsnummer: string): Traad[] {
+    faker.seed(Number(fodselsnummer));
+    navfaker.seed(fodselsnummer + 'meldinger');
 
     const traadArray = navfaker.random.vektetSjanse(0.2)
         ? fyllRandomListe(getMockTraad, 300, true)
@@ -35,14 +35,16 @@ export function getMockTraader(fødselsnummer: string): Traad[] {
         traadArray[2].traadId = MOCKED_TRAADID_3;
     }
 
-    return traadArray.map((traad) => {
-        const meldinger = traad.meldinger;
-        meldinger[0].id = traad.traadId; // Første melding i en tråd har alltid id === traadId
-        return {
-            ...traad,
-            meldinger
-        };
-    });
+    return traadArray
+        .map((traad) => {
+            const meldinger = traad.meldinger;
+            meldinger[0].id = traad.traadId; // Første melding i en tråd har alltid id === traadId
+            return {
+                ...traad,
+                meldinger
+            };
+        })
+        .concat(getChatTraad());
 }
 
 function getMockTraad(): Traad {
@@ -59,7 +61,7 @@ function getMockTraad(): Traad {
 }
 
 function getMelding(temagruppe: Temagruppe): Melding {
-    const visKontrosperre = navfaker.random.vektetSjanse(0.1);
+    const visKontorsperre = navfaker.random.vektetSjanse(0.1);
     const visMarkertSomFeilsendt = navfaker.random.vektetSjanse(0.1);
     const meldingstype = navfaker.random.arrayElement(Object.entries(Meldingstype))[0];
     const sladdingNiva = navfaker.random.arrayElement([0, 0, 0, 0, 1, 1, 1, 1, 2]);
@@ -81,7 +83,7 @@ function getMelding(temagruppe: Temagruppe): Melding {
     }
 
     const fritekst = erMeldingFraNav(meldingstype)
-        ? autofullfor(tekstFraNav, getMockAutoFullførMap())
+        ? autofullfor(tekstFraNav, getMockAutoFullforMap())
         : faker.lorem.sentences(faker.random.number(15));
 
     return {
@@ -94,12 +96,66 @@ function getMelding(temagruppe: Temagruppe): Melding {
         status: navfaker.random.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
         opprettetDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
         ferdigstiltDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
-        kontorsperretAv: visKontrosperre ? getSaksbehandler() : undefined,
-        kontorsperretEnhet: visKontrosperre ? faker.company.companyName() : undefined,
+        kontorsperretAv: visKontorsperre ? getSaksbehandler() : undefined,
+        kontorsperretEnhet: visKontorsperre ? faker.company.companyName() : undefined,
         sendtTilSladding: sladdingNiva !== 0,
         markertSomFeilsendtAv: visMarkertSomFeilsendt ? getSaksbehandler() : undefined
     };
 }
+
+function getChatTraad(): Traad {
+    const temagruppe = navfaker.random.arrayElement([...TemaSamtalereferat, null, Temagruppe.InnholdSlettet]);
+    const meldinger = Array(navfaker.random.integer(10, 3))
+        .fill(null)
+        .map(() => getChatMelding(temagruppe));
+
+    return {
+        traadId: meldinger[0].id,
+        meldinger: meldinger,
+        journalposter: fyllRandomListe(lagJournalpost, 3, true)
+    };
+}
+
+function getChatMelding(temagruppe: Temagruppe): Melding {
+    const meldingstype = navfaker.random.arrayElement([
+        Meldingstype.CHATMELDING_FRA_NAV,
+        Meldingstype.CHATMELDING_FRA_BRUKER
+    ]);
+
+    let tekstFraNav = navfaker.random.arrayElement(mockChatMeldinger);
+
+    const fritekst = erMeldingFraNav(meldingstype)
+        ? autofullfor(tekstFraNav, getMockAutoFullforMap())
+        : faker.lorem.sentences(faker.random.number(2));
+
+    return {
+        id: faker.random.alphaNumeric(8),
+        meldingstype: meldingstype,
+        temagruppe: temagruppe,
+        skrevetAvTekst: saksbehandlerTekst(getSaksbehandler()),
+        fritekst: fritekst,
+        lestDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
+        status: navfaker.random.arrayElement([LestStatus.IkkeLest, LestStatus.Lest]),
+        opprettetDato: dayjs(faker.date.recent(1)).format(backendDatoTidformat),
+        ferdigstiltDato: dayjs(faker.date.recent(40)).format(backendDatoTidformat),
+        kontorsperretAv: undefined,
+        kontorsperretEnhet: undefined,
+        sendtTilSladding: false,
+        markertSomFeilsendtAv: undefined,
+        avsluttetDato: dayjs(faker.date.recent(10)).format(backendDatoTidformat)
+    };
+}
+
+const mockChatMeldinger = [
+    'Hvis du logger inn her, så kan jeg se litt på saken.',
+    'Hei:)',
+    'Et øyeblikk:)',
+    'Ja, det går an.',
+    'Ha en fin dag videre.',
+    'Ja, i søknaden din ser jeg at du har krysset for dette.',
+    'Ok, da kan du sende bekreftelse på det, og en ny søknad.',
+    'Ja, du har rett på dagpenger.'
+];
 
 const temaMap = {
     AAP: 'Arbeidsavklaringspenger',
@@ -140,7 +196,7 @@ function getSaksbehandler(): Saksbehandler {
     };
 }
 
-function getMockAutoFullførMap(): AutofullforMap {
+function getMockAutoFullforMap(): AutofullforMap {
     return {
         'bruker.fnr': '10108000398',
         'bruker.fornavn': 'Aremark',

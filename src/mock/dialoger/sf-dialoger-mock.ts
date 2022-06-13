@@ -7,6 +7,7 @@ import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpe
 import { Melding, Meldingstype, Traad } from '../../models/meldinger/meldinger';
 import { guid } from 'nav-frontend-js-utils';
 import {
+    erChatMelding,
     erMeldingFraBruker,
     erMeldingstypeSamtalereferat
 } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
@@ -51,6 +52,8 @@ function simulateSf(trader: Traad[]): Traad[] {
             melding.meldingstype = (() => {
                 if (erMeldingstypeSamtalereferat(melding.meldingstype)) {
                     return Meldingstype.SAMTALEREFERAT_TELEFON;
+                } else if (erChatMelding(melding.meldingstype)) {
+                    return melding.meldingstype;
                 } else if (erMeldingFraBruker(melding.meldingstype)) {
                     return index === 0 ? Meldingstype.SPORSMAL_SKRIFTLIG : Meldingstype.SVAR_SBL_INNGAAENDE;
                 } else {
