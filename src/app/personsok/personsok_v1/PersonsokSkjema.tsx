@@ -1,24 +1,24 @@
 import * as React from 'react';
-import { PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
-import { apiBaseUri, postConfig } from '../../api/config';
-import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
+import { PersonsokRequest, PersonsokResponse } from '../../../models/person/personsok';
+import { apiBaseUri, postConfig } from '../../../api/config';
+import { FetchResponse, fetchToJson } from '../../../utils/fetchToJson';
 import { PersonSokFormState, lagRequest, validatorPersonsok } from './personsok-utils';
-import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
+import { loggError, loggEvent } from '../../../utils/logger/frontendLogger';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Input, Select } from 'nav-frontend-skjema';
-import PersonsokDatovelger from './PersonsokDatovelger';
+import PersonsokDatovelger from '../PersonsokDatovelger';
 import LenkeDrek, { DrekProps } from './LenkeDrek';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { LenkeKnapp } from '../../components/common-styled-components';
+import { LenkeKnapp } from '../../../components/common-styled-components';
 import styled from 'styled-components/macro';
-import theme from '../../styles/personOversiktTheme';
-import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
+import theme from '../../../styles/personOversiktTheme';
+import { feilmelding } from '../../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
-import { FeilmeldingOppsummering } from '../../components/FeilmeldingOppsummering';
+import { FeilmeldingOppsummering } from '../../../components/FeilmeldingOppsummering';
 import formstateFactory, { Values } from '@nutgaard/use-formstate';
-import { Kjonn } from '../personside/visittkort-v2/PersondataDomain';
+import { Kjonn } from '../../personside/visittkort-v2/PersondataDomain';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -121,7 +121,7 @@ function PersonsokSkjema(props: Props) {
                     <section aria-label={'Søkekriterier'}>
                         <FeilmeldingOppsummering
                             formstate={formstate}
-                            tittel={'For å kunne søke må du rett opp i følgende:'}
+                            tittel={'For å kunne søke må du rette opp i følgende:'}
                         />
                         <Systemtittel tag={'h2'}>Søkekriterier</Systemtittel>
                         <InputLinje>

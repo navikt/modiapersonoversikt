@@ -20,10 +20,11 @@ import AvsluttDialog from './img/avslutt-dialog.png';
 import FiltreringSakstema from './img/filtrering-sakstema.png';
 import JournalforFlere from './img/journalfor-flere.png';
 import SvarAvslutterDialog from './img/svar-avslutter-dialog.png';
+import ForbedretAvansertSok from './img/forbedret-avansertsok.jpg';
 import ChatModia from './img/chat-modia.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
+export function lagOppdateringsloggConfig(brukPdlSokV3FeatureToggle: boolean): EnOppdateringslogg[] {
     return [
         {
             id: 1,
@@ -362,8 +363,23 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
         },
         {
             id: 20,
+            tittel: 'Forbedret Avansert Søk',
+            dato: new Date('2022-06-13 08:00'),
+            aktiv: brukPdlSokV3FeatureToggle,
+            ingress: null,
+            beskrivelse: (
+                <Normaltekst>
+                    Ved å sette anførselstegn rundt de delene av navn/adresse du er sikker på kan du nå avgrense søk på
+                    navn/adresse. Eksempel på søk på navn med det nye søket er: "Ola" Normann. Her spesifiserer du da at
+                    navnet må inneholde Ola, og unngår å få opp treff på liknende navn.
+                </Normaltekst>
+            ),
+            src: ForbedretAvansertSok
+        },
+        {
+            id: 21,
             tittel: 'Chat i Modia Personoversikt',
-            dato: new Date('2022-06-10 08:00'),
+            dato: new Date('2022-06-13 11:00'),
             aktiv: true,
             ingress: null,
             beskrivelse: (

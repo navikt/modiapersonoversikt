@@ -315,6 +315,10 @@ export function lagPerson(fnr: string): Person {
                       gyldighetsPeriode: {
                           gyldigFraOgMed: '2021-02-01' as LocalDate,
                           gyldigTilOgMed: '2022-05-01' as LocalDate
+                      },
+                      digitalKontaktinformasjonTredjepartsperson: {
+                          mobiltelefonnummer: '90909090',
+                          reservasjon: 'false'
                       }
                   }
               ]

@@ -1,18 +1,18 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../test/Testprovider';
-import PersonsokSkjema from './personsok_v1/PersonsokSkjema';
 import PersonsokResultat from './PersonsokResultat';
+import PersonsokSkjemaV3 from './PersonsokSkjemaV3';
 
-test('viser personsøk-komponent', () => {
-    const personsokKomponent = renderer.create(
+test('viser personsøkV3-komponent', () => {
+    const personsokKomponentV3 = renderer.create(
         <TestProvider>
             <>
-                <PersonsokSkjema setPosting={() => {}} setResponse={() => {}} />
+                <PersonsokSkjemaV3 setPosting={() => {}} setResponse={() => {}} />
                 <PersonsokResultat posting={false} response={undefined} onClose={() => {}} />
             </>
         </TestProvider>
     );
 
-    expect(personsokKomponent.toJSON()).toMatchSnapshot();
+    expect(personsokKomponentV3.toJSON()).toMatchSnapshot();
 });
