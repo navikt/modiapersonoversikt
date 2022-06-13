@@ -121,7 +121,7 @@ function PersonsokSkjema(props: Props) {
                     <section aria-label={'Søkekriterier'}>
                         <FeilmeldingOppsummering
                             formstate={formstate}
-                            tittel={'For å kunne søke må du rett opp i følgende:'}
+                            tittel={'For å kunne søke må du rette opp i følgende:'}
                         />
                         <Systemtittel tag={'h2'}>Søkekriterier</Systemtittel>
                         <InputLinje>
