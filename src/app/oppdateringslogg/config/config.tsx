@@ -21,6 +21,7 @@ import FiltreringSakstema from './img/filtrering-sakstema.png';
 import JournalforFlere from './img/journalfor-flere.png';
 import SvarAvslutterDialog from './img/svar-avslutter-dialog.png';
 import ForbedretAvansertSok from './img/forbedret-avansertsok.jpg';
+import ChatModia from './img/chat-modia.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(brukPdlSokV3FeatureToggle: boolean): EnOppdateringslogg[] {
@@ -374,6 +375,23 @@ export function lagOppdateringsloggConfig(brukPdlSokV3FeatureToggle: boolean): E
                 </Normaltekst>
             ),
             src: ForbedretAvansertSok
+        },
+        {
+            id: 21,
+            tittel: 'Chat i Modia Personoversikt',
+            dato: new Date('2022-06-13 11:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>Det er nå mulig å se chatmeldinger fra Salesforce i Modia Personoversikt.</Normaltekst>
+                    <Normaltekst>
+                        Disse kan ikke besvares fra Modia, men man kan journalføre, opprette oppgave og sende til
+                        sladding.
+                    </Normaltekst>
+                </>
+            ),
+            src: ChatModia
         }
     ];
 }
