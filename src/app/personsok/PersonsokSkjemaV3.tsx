@@ -114,8 +114,8 @@ function PersonsokSkjemaV3(props: Props) {
     const adresseTittel = [
         'Adresse ',
         <Hjelpetekst id={hjelpetekstID.current}>
-            Dersom du er helt sikker på hvordan deler av ett navn staves så kan en benytte "" rundt det ordet du er
-            sikker på og søkeløsningen vil prøve å finne eksakt match for dette ordet
+            Dersom du er helt sikker på hvordan deler av en adresse staves så kan en benytte "" rundt det ordet for å si
+            at nøyaktig dette ordet må være med i adressen for å gi treff
         </Hjelpetekst>
     ];
 
@@ -131,7 +131,7 @@ function PersonsokSkjemaV3(props: Props) {
                     <section aria-label={'Søkekriterier'}>
                         <FeilmeldingOppsummering
                             formstate={formstate}
-                            tittel={'For å kunne søke må du rett opp i følgende:'}
+                            tittel={'For å kunne søke må du rette opp i følgende:'}
                         />
                         <Systemtittel tag={'h2'}>Søkekriterier</Systemtittel>
                         <Input
