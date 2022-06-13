@@ -6,7 +6,6 @@ import { ChangeEvent, useRef } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { pxToRem } from '../../styles/personOversiktTheme';
 import useBoundingRect from '../../utils/hooks/use-bounding-rect';
-import { PersonSokFormState } from './personsok_v1/personsok-utils';
 import { PersonSokFormStateV3 } from './personsokV3-utils';
 import { FieldState, Mapped, Values } from '@nutgaard/use-formstate';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
@@ -83,7 +82,7 @@ function getDatoFeilmelding(fra: Date, til: Date) {
     return null;
 }
 
-function PersonsokDatovelger(props: { form: Mapped<Values<PersonSokFormState | PersonSokFormStateV3>, FieldState> }) {
+function PersonsokDatovelger(props: { form: Mapped<Values<PersonSokFormStateV3>, FieldState> }) {
     const fraRef = useRef(React.createRef<HTMLDivElement>()).current;
     const tilRef = useRef(React.createRef<HTMLDivElement>()).current;
     const datovelgerFraRect = useBoundingRect(fraRef);

@@ -257,7 +257,7 @@ function setupPersonsokMock(mock: FetchMock) {
         withDelayedResponse(randomDelay(), STATUS_OK, () => mockPersonsokResponse(mockStaticPersonsokRequest()))
     );
     mock.post(
-        apiBaseUri + '/personsok/v2',
+        apiBaseUri + '/personsok/v3',
         withDelayedResponse(randomDelay(), STATUS_OK, () => mockPersonsokResponse(mockStaticPersonsokRequest()))
     );
 }
