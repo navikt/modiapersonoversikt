@@ -80,7 +80,8 @@ export function lagPerson(fnr: string): Person {
                 sistEndret: {
                     ident: 'Folkeregisteret',
                     tidspunkt: '2020-01-01T10:15:30' as LocalDateTime,
-                    system: 'Folkeregisteret'
+                    system: 'Folkeregisteret',
+                    kilde: erDod ? 'Tingretten' : ''
                 },
                 gyldighetsPeriode: {
                     gyldigFraOgMed: '2021-02-01' as LocalDate,
@@ -96,7 +97,8 @@ export function lagPerson(fnr: string): Person {
                 sistEndret: {
                     ident: 'D159000',
                     tidspunkt: '2021-10-10T10:15:30' as LocalDateTime,
-                    system: 'NAV'
+                    system: 'NAV',
+                    kilde: 'Bruker'
                 },
                 gyldighetsPeriode: null
             }
@@ -291,7 +293,8 @@ export function lagPerson(fnr: string): Person {
                       sistEndret: {
                           ident: 'Folkeregisteret',
                           tidspunkt: '2015-01-01T10:15:30' as LocalDateTime,
-                          system: 'Folkeregisteret'
+                          system: 'Folkeregisteret',
+                          kilde: 'Tingretten'
                       }
                   }
               ]
@@ -381,7 +384,8 @@ export function lagPerson(fnr: string): Person {
                 sistEndret: {
                     ident: '11223344',
                     tidspunkt: '2018-06-01T00:00:00' as LocalDateTime,
-                    system: 'BD06'
+                    system: 'BD06',
+                    kilde: 'Bruker'
                 },
                 prioritet: 1
             },
@@ -394,7 +398,8 @@ export function lagPerson(fnr: string): Person {
                 sistEndret: {
                     ident: '11223344',
                     tidspunkt: '2011-06-14T00:00:00' as LocalDateTime,
-                    system: ''
+                    system: '',
+                    kilde: ''
                 },
                 prioritet: -1
             }
@@ -434,7 +439,8 @@ export function lagPerson(fnr: string): Person {
             sistEndret: {
                 ident: '1010800 BD03',
                 tidspunkt: '2006-03-15T00:00:00' as LocalDateTime,
-                system: ''
+                system: '',
+                kilde: ''
             },
             bankkode: null,
             swift: 'DNBANOKKXXX',
