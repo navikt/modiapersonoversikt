@@ -35,23 +35,6 @@ export interface Brukerinfo {
     midlertidigPostadresse: string | null;
 }
 
-export interface PersonsokRequest {
-    fornavn?: string;
-    etternavn?: string;
-    gatenavn?: string;
-    kontonummer?: string;
-    utenlandskID?: string;
-    alderFra?: number;
-    alderTil?: number;
-    kommunenummer?: string;
-    fodselsdatoFra?: string;
-    fodselsdatoTil?: string;
-    kjonn?: string;
-    husnummer?: number;
-    husbokstav?: string;
-    postnummer?: string;
-}
-
 export interface PersonsokRequestV3 {
     navn?: string;
     kontonummer?: string;

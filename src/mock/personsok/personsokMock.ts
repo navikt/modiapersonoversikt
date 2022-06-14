@@ -2,7 +2,7 @@ import {
     Brukerinfo,
     Navn,
     NorskIdent,
-    PersonsokRequest,
+    PersonsokRequestV3,
     PersonsokResponse,
     UtenlandskID
 } from '../../models/person/personsok';
@@ -15,7 +15,7 @@ import md5 from 'md5';
 import { aremark } from '../persondata/aremark';
 import { Person } from '../../app/personside/visittkort-v2/PersondataDomain';
 
-export function mockPersonsokResponse(request: PersonsokRequest): PersonsokResponse[] {
+export function mockPersonsokResponse(request: PersonsokRequestV3): PersonsokResponse[] {
     navfaker.seed(md5(JSON.stringify(request)));
     const seednr = navfaker.personIdentifikator.fødselsnummer();
     faker.seed(Number(seednr));
@@ -219,8 +219,8 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
     ];
 }
 
-export function mockStaticPersonsokRequest(): PersonsokRequest {
+export function mockStaticPersonsokRequest(): PersonsokRequestV3 {
     return {
-        fornavn: 'Aremark'
+        navn: 'Aremark'
     };
 }
