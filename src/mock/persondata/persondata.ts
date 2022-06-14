@@ -385,7 +385,7 @@ export function lagPerson(fnr: string): Person {
                     ident: '11223344',
                     tidspunkt: '2018-06-01T00:00:00' as LocalDateTime,
                     system: 'BD06',
-                    kilde: 'Bruker'
+                    kilde: 'BRUKER'
                 },
                 prioritet: 1
             },

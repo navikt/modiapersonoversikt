@@ -273,7 +273,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
              
             i Folkeregisteret
              
-            (kilde: Tingretten)
+            (kilde: tingretten)
           </p>
         </div>
       </div>
@@ -351,7 +351,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
              
             i Folkeregisteret
              
-            (kilde: Bruker)
+            (kilde: bruker)
           </p>
         </div>
       </div>
@@ -424,7 +424,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
              
             i Folkeregisteret
              
-            (kilde: Bruker)
+            (kilde: bruker)
           </p>
         </div>
       </div>
@@ -616,7 +616,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
              
             av bruker
              
-            (kilde: Bruker)
+            (kilde: bruker)
           </p>
         </div>
       </div>
