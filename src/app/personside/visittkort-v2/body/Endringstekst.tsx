@@ -15,10 +15,11 @@ function Endringstekst({ sistEndret }: Props) {
 
     const formatertdato = formaterDato(new Date(sistEndret.tidspunkt));
     const endretAv = endretAvTekst(sistEndret.ident);
+    const kilde = sistEndret.kilde.length > 0 ? `(kilde: ${sistEndret.kilde})` : null;
 
     return (
         <EtikettGraa>
-            Endret {formatertdato} {endretAv}
+            Endret {formatertdato} {endretAv} {kilde}
         </EtikettGraa>
     );
 }

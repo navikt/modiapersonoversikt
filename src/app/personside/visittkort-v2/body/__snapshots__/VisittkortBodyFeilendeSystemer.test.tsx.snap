@@ -242,6 +242,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             01.01.2020
              
             i Folkeregisteret
+             
+            (kilde: Tingretten)
           </p>
         </div>
       </div>
@@ -318,6 +320,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             20.02.2010
              
             i Folkeregisteret
+             
+            (kilde: Bruker)
           </p>
         </div>
       </div>
@@ -389,6 +393,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
             01.01.2020
              
             i Folkeregisteret
+             
+            (kilde: Bruker)
           </p>
         </div>
       </div>
