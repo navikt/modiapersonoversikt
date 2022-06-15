@@ -143,7 +143,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 7,
             tittel: 'Markering ved døde barn',
             dato: new Date('2021-07-21 12:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: (
                 <Normaltekst className="blokk-xxs">
                     Ikonet gir en tidlig indikasjon på at man bør undersøke barns status nærmere.
@@ -165,7 +165,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 8,
             tittel: 'Viser at dokument er kassert',
             dato: new Date('2021-08-19 10:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: <Normaltekst>Vi viser nå at dokument er kassert i en sak.</Normaltekst>,
             beskrivelse: (
                 <Normaltekst>
@@ -178,7 +178,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 9,
             tittel: 'Endret kilde for informasjon i visittkortet',
             dato: new Date('2021-11-17 10:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: (
                 <Normaltekst>
                     Visittkortet i Modia Personoversikt har frem til nå basert seg på NAVs eget personregister.
@@ -196,7 +196,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 10,
             tittel: 'Forkortelser for barnetrygd i autofullfør',
             dato: new Date('2021-12-17 09:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: (
                 <Normaltekst>Vi har lagt til to forkortelser for barnetrygd når man skal sende en melding.</Normaltekst>
             ),
