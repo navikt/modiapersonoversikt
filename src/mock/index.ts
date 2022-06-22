@@ -19,7 +19,7 @@ import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { mockFeatureToggle } from './featureToggle-mock';
 import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 import { getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
-import { getDittNavVarsler, getMockVarsler } from './varsler/varsel-mock';
+import { getDittNavVarsler, getMockVarsler, getMockVarslerV2 } from './varsler/varsel-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { saker } from './journalforing/journalforing-mock';
@@ -199,6 +199,13 @@ function setupVarselMock(mock: FetchMock) {
             mockGeneratorMedFodselsnummer((fodselsnummer) => getMockVarsler(fodselsnummer))
         )
     );
+    mock.get(apiBaseUri + '/v2/varsler/:fodselsnummer', (req, res, ctx) => {
+        const fnr = req.pathParams.fodselsnummer;
+        if (!erGyldigFødselsnummer(fnr)) {
+            return res(ctx.status(400));
+        }
+        return res(ctx.status(200), ctx.json(getMockVarslerV2(fnr)));
+    });
 
     const dittnaveventHandler: MockHandler = (req, res, ctx) => {
         const headers: any = req.init?.headers;
@@ -215,6 +222,10 @@ function setupVarselMock(mock: FetchMock) {
     );
     mock.get(
         '/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all',
+        delayed(randomDelay(), dittnaveventHandler)
+    );
+    mock.get(
+        '/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/innboks/all',
         delayed(randomDelay(), dittnaveventHandler)
     );
 }
