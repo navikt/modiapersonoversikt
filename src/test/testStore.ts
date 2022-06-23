@@ -56,40 +56,19 @@ export function getTestStore(): Store<AppState> {
 }
 
 export function setupFetchCache() {
-    const fnrheader = (fnr: string) =>
-        ({
-            credentials: 'include',
-            headers: {
-                fodselsnummer: fnr
-            }
-        } as RequestInit);
-
     cache.putResolved(createCacheKey(`${apiBaseUri}/v2/person/${aremark.personIdent}`), {
         feiledeSystemer: [],
         person: aremark
     });
-    cache.putResolved(createCacheKey(`${apiBaseUri}/varsler/${aremark.personIdent}`), statiskVarselMock);
-    cache.putResolved(
-        createCacheKey(
-            `/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all`,
-            fnrheader(aremark.personIdent)
-        ),
-        statiskDittnavEventVarselMock
-    );
-    cache.putResolved(
-        createCacheKey(
-            `/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/beskjed/all`,
-            fnrheader(aremark.personIdent)
-        ),
-        statiskDittnavEventVarselMock
-    );
-    cache.putResolved(
-        createCacheKey(
-            `/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/innboks/all`,
-            fnrheader(aremark.personIdent)
-        ),
-        statiskDittnavEventVarselMock
-    );
+    cache.putResolved(createCacheKey(`${apiBaseUri}/v2/varsler/${aremark.personIdent}`), {
+        feil: [],
+        varsler: [
+            ...statiskVarselMock,
+            ...statiskDittnavEventVarselMock,
+            ...statiskDittnavEventVarselMock,
+            ...statiskDittnavEventVarselMock
+        ]
+    });
     cache.putResolved(
         createCacheKey(`${apiBaseUri}/v2/person/${aremark.personIdent}/aktorid`),
         `000${aremark.personIdent}000` as unknown as object

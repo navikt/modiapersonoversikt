@@ -1,7 +1,7 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
 import Cookies from 'js-cookie';
-import FetchMock, { Middleware, MiddlewareUtils, MockHandler, MockRequest } from 'yet-another-fetch-mock';
+import FetchMock, { Middleware, MiddlewareUtils, MockRequest } from 'yet-another-fetch-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { apiBaseUri } from '../api/config';
 import {
@@ -19,7 +19,7 @@ import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { mockFeatureToggle } from './featureToggle-mock';
 import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
 import { getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
-import { getDittNavVarsler, getMockVarsler } from './varsler/varsel-mock';
+import { getMockVarsler } from './varsler/varsel-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
 import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { saker } from './journalforing/journalforing-mock';
@@ -33,7 +33,6 @@ import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinge
 import { failurerateMiddleware } from './utils/failureMiddleware';
 import { setupDraftMock } from './draft-mock';
 import { authMock, tilgangskontrollMock } from './tilgangskontroll-mock';
-import { delayed } from './utils-mock';
 import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
 import { setupSFDialogMock } from './dialoger/sf-dialoger-mock';
 import { getAktorId } from './aktorid-mock';
@@ -191,32 +190,13 @@ function setupYtelserOgKontrakter(mock: FetchMock) {
 }
 
 function setupVarselMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/varsler/:fodselsnummer',
-        withDelayedResponse(
-            randomDelay(),
-            fodselsNummerErGyldigStatus,
-            mockGeneratorMedFodselsnummer((fodselsnummer) => getMockVarsler(fodselsnummer))
-        )
-    );
-
-    const dittnaveventHandler: MockHandler = (req, res, ctx) => {
-        const headers: any = req.init?.headers;
-        const fnr = headers.fodselsnummer;
+    mock.get(apiBaseUri + '/v2/varsler/:fodselsnummer', (req, res, ctx) => {
+        const fnr = req.pathParams.fodselsnummer;
         if (!erGyldigFødselsnummer(fnr)) {
             return res(ctx.status(400));
         }
-        return res(ctx.status(200), ctx.json(getDittNavVarsler(fnr)));
-    };
-
-    mock.get(
-        '/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/beskjed/all',
-        delayed(randomDelay(), dittnaveventHandler)
-    );
-    mock.get(
-        '/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all',
-        delayed(randomDelay(), dittnaveventHandler)
-    );
+        return res(ctx.status(200), ctx.json(getMockVarsler(fnr)));
+    });
 }
 
 function setupGsakTemaMock(mock: FetchMock) {
