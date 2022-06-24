@@ -95,8 +95,7 @@ export const aremark: Person = {
             sistEndret: {
                 ident: 'Folkeregisteret',
                 tidspunkt: '2010-02-20T10:15:30' as LocalDateTime,
-                system: 'folkeregisteret',
-                kilde: 'bruker'
+                system: 'FREG'
             },
             gyldighetsPeriode: null
         }
@@ -109,8 +108,7 @@ export const aremark: Person = {
             sistEndret: {
                 ident: 'Folkeregisteret',
                 tidspunkt: '2020-01-01T10:15:30' as LocalDateTime,
-                system: 'folkeregisteret',
-                kilde: 'bruker'
+                system: 'FREG'
             },
             gyldighetsPeriode: null
         }
@@ -269,8 +267,7 @@ export const aremark: Person = {
             sistEndret: {
                 ident: 'Folkeregisteret',
                 tidspunkt: '2020-01-01T10:15:30' as LocalDateTime,
-                system: 'folkeregisteret',
-                kilde: 'tingretten'
+                system: 'Folkeregisteret'
             }
         }
     ],
@@ -378,8 +375,7 @@ export const aremark: Person = {
             sistEndret: {
                 ident: '11223344',
                 tidspunkt: '2018-06-14T00:00:00' as LocalDateTime,
-                system: 'NAV',
-                kilde: 'bruker'
+                system: 'BD06'
             },
             prioritet: -1
         }
@@ -404,8 +400,7 @@ export const aremark: Person = {
         sistEndret: {
             ident: '1010800 BD03',
             tidspunkt: '2006-03-15T00:00:00' as LocalDateTime,
-            system: '',
-            kilde: ''
+            system: ''
         },
         bankkode: null,
         swift: 'DNBANOKKXXX',

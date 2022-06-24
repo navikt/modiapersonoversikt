@@ -82,7 +82,6 @@ export interface SistEndret {
     ident: string;
     tidspunkt: LocalDateTime;
     system: string;
-    kilde: string;
 }
 
 export interface Adresse {

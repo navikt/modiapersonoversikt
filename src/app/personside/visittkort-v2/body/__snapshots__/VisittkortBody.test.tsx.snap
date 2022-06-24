@@ -270,10 +270,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           >
             Endret 
             01.01.2020
-             av 
-            folkeregisteret
              
-            (kilde: tingretten)
+            i Folkeregisteret
           </p>
         </div>
       </div>
@@ -348,10 +346,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           >
             Endret 
             20.02.2010
-             av 
-            folkeregisteret
              
-            (kilde: bruker)
+            i Folkeregisteret
           </p>
         </div>
       </div>
@@ -421,10 +417,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           >
             Endret 
             01.01.2020
-             av 
-            folkeregisteret
              
-            (kilde: bruker)
+            i Folkeregisteret
           </p>
         </div>
       </div>
@@ -613,10 +607,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           >
             Endret 
             14.06.2018
-             av 
-            NAV
              
-            (kilde: bruker)
+            av bruker
           </p>
         </div>
       </div>
@@ -718,9 +710,8 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           >
             Endret 
             15.03.2006
-             av 
-            
              
+            av bruker
           </p>
         </div>
       </div>
