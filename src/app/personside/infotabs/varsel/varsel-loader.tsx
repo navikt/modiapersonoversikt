@@ -1,30 +1,11 @@
 import * as React from 'react';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-import {
-    DittNavBeskjed,
-    DittNavInnboks,
-    DittNavOppgave,
-    isDittNavEvent,
-    UnifiedVarsel,
-    Varsel
-} from '../../../../models/varsel';
+import { isDittNavEvent, UnifiedVarsel, VarslerResult } from '../../../../models/varsel';
 import { useGjeldendeBruker } from '../../../../redux/gjeldendeBruker/types';
-import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
+import useFetch, { hasError, isPending } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../../../api/config';
 import LazySpinner from '../../../../components/LazySpinner';
 import { datoSynkende } from '../../../../utils/date-utils';
-import freeze from '../../../../utils/freeze';
-
-function lagFetchOptions(fnr: string): RequestInit {
-    // freeze blir brukt for å forhindre at adrum.js legger til ekstra header-felter
-    // Da det fører til at ajax-kallene blir kjørt dobbelt
-    return freeze({
-        credentials: 'include',
-        headers: {
-            fodselsnummer: fnr
-        }
-    });
-}
 
 function datoExtractor(varsel: UnifiedVarsel) {
     if (isDittNavEvent(varsel)) {
@@ -42,53 +23,20 @@ type VarselLoaderProps<P> = P & { component: VarslerRenderer<P> };
 
 function VarslerLoader<P>(props: VarselLoaderProps<P>) {
     const fnr = useGjeldendeBruker();
+    const varslerResponse = useFetch<VarslerResult>(`${apiBaseUri}/v2/varsler/${fnr}`);
 
-    const options = React.useMemo(() => lagFetchOptions(fnr), [fnr]);
-    const beskjeder = useFetch<DittNavBeskjed[]>(
-        '/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/beskjed/all',
-        options
-    );
-    const oppgaver = useFetch<DittNavOppgave[]>(
-        '/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/oppgave/all',
-        options
-    );
-    const innboks = useFetch<DittNavInnboks[]>(
-        '/modiapersonoversikt/proxy/dittnav-eventer-modia/fetch/innboks/all',
-        options
-    );
-    const varsler = useFetch<Varsel[]>(`${apiBaseUri}/varsler/${fnr}`);
-
-    const ressurser = [
-        { navn: 'beskjeder', ressurs: beskjeder },
-        { navn: 'oppgaver', ressurs: oppgaver },
-        { navn: 'innboks', ressurs: innboks },
-        { navn: 'varsler', ressurs: varsler }
-    ];
-
-    const venterPaRessurser: boolean = ressurser.some((config) => isPending(config.ressurs));
-    const ressurserMedFeil: Array<string> = ressurser
-        .filter((config) => hasError(config.ressurs))
-        .map((config) => config.navn);
-
-    if (venterPaRessurser) {
+    if (isPending(varslerResponse)) {
         return <LazySpinner type="M" />;
+    } else if (hasError(varslerResponse)) {
+        return <AlertStripeFeil>Feil ved uthenting av brukers varsler og notifikasjoner.</AlertStripeFeil>;
     }
-
+    const varsler: VarslerResult = varslerResponse.data;
     let feilmelding = null;
-    if (ressurserMedFeil.length > 0) {
-        feilmelding = (
-            <AlertStripeFeil className="blokk-xs">
-                Feil ved uthenting av varsel-historikk fra: {ressurserMedFeil.join(', ')}
-            </AlertStripeFeil>
-        );
+    if (varsler.feil.length > 0) {
+        feilmelding = <AlertStripeFeil className="blokk-xs">{varsler.feil.join('. ')}</AlertStripeFeil>;
     }
 
-    const varselElementer = [
-        ...(hasData(varsler) ? varsler.data : []),
-        ...(hasData(beskjeder) ? beskjeder.data : []),
-        ...(hasData(oppgaver) ? oppgaver.data : []),
-        ...(hasData(innboks) ? innboks.data : [])
-    ].sort(datoSynkende(datoExtractor));
+    const varselElementer = varsler.varsler.sort(datoSynkende(datoExtractor));
     const { component, ...extraProps } = props;
     const pProps = extraProps as unknown as P;
 

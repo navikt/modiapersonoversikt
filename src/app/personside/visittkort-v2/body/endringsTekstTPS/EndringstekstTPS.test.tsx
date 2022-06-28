@@ -1,4 +1,4 @@
-import { endretAvTekst } from './endretAvUtil';
+import { endretAvTekst } from './EndringstekstTPS';
 
 it('Formaterer tom endretAv til ønsket visningsformat', () => {
     const rawString = '';

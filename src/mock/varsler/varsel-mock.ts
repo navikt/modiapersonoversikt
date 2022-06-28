@@ -1,24 +1,29 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
-import { DittNavEvent, Varsel, Varselmelding, Varseltype } from '../../models/varsel';
+import { DittNavEvent, Varsel, Varselmelding, Varseltype, VarslerResult } from '../../models/varsel';
 import { fyllRandomListe } from '../utils/mock-utils';
 import dayjs from 'dayjs';
-import { statiskVarselMock } from './statiskVarselMock';
+import { statiskDittnavEventVarselMock, statiskVarselMock } from './statiskVarselMock';
 import { backendDatoformat } from '../../utils/date-utils';
 import { aremark } from '../persondata/aremark';
 
-export function getMockVarsler(fnr: string): Varsel[] {
+export function getMockVarsler(fnr: string): VarslerResult {
     faker.seed(Number(fnr));
     navfaker.seed(fnr + 'varsel');
     if (fnr === aremark.personIdent) {
-        return statiskVarselMock;
+        return {
+            feil: ['Feil ved uthenting av varsler', 'Annen feilmelding fra backend'],
+            varsler: [...statiskVarselMock, ...statiskDittnavEventVarselMock]
+        };
     }
 
-    return fyllRandomListe(getVarsel, 10, true);
-}
-
-export function getDittNavVarsler(fnr: string): DittNavEvent[] {
-    return new Array(5).fill(0).map(() => genererDittNavEventVarsel(fnr));
+    return {
+        feil: [],
+        varsler: [
+            ...fyllRandomListe(getVarsel, 10, true),
+            ...fyllRandomListe(() => genererDittNavEventVarsel(fnr), 15, true)
+        ]
+    };
 }
 
 function genererDittNavEventVarsel(fnr: string): DittNavEvent {

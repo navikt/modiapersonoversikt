@@ -10,12 +10,6 @@ export interface DittNavEvent {
     link: string;
     aktiv: boolean;
 }
-export interface DittNavBeskjed extends DittNavEvent {
-    synligFremTil?: string;
-}
-
-export interface DittNavOppgave extends DittNavEvent {}
-export interface DittNavInnboks extends DittNavEvent {}
 
 export interface Varsel {
     varselType: string;
@@ -25,6 +19,10 @@ export interface Varsel {
 }
 
 export type UnifiedVarsel = Varsel | DittNavEvent;
+export interface VarslerResult {
+    feil: string[];
+    varsler: UnifiedVarsel[];
+}
 
 export function isDittNavEvent(varsel: UnifiedVarsel): varsel is DittNavEvent {
     return varsel.hasOwnProperty('eventId');

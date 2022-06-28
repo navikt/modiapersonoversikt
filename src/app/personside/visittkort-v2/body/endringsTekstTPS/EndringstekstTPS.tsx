@@ -1,4 +1,28 @@
-export const FOLKEREGISTERET = 'SKD';
+import * as React from 'react';
+import EtikettGraa from '../../../../../components/EtikettGraa';
+import { formaterDato } from '../../../../../utils/string-utils';
+import { SistEndret } from '../../PersondataDomain';
+
+interface Props {
+    sistEndret: SistEndret | null;
+}
+function EndringstekstTPS({ sistEndret }: Props) {
+    if (!sistEndret) {
+        return null;
+    }
+
+    const formatertdato = formaterDato(new Date(sistEndret.tidspunkt));
+    const endretAv = endretAvTekst(sistEndret.ident);
+
+    return (
+        <EtikettGraa>
+            Endret {formatertdato} {endretAv}
+        </EtikettGraa>
+    );
+}
+export default EndringstekstTPS;
+
+const FOLKEREGISTERET = 'SKD';
 
 export function endretAvTekst(rawString: string): string {
     if (endretAvBruker(rawString) || endretIPSelv(rawString)) {
@@ -10,7 +34,7 @@ export function endretAvTekst(rawString: string): string {
         endretAvKonvertItSystem(rawString)
     ) {
         return 'av NAV';
-    } else if (rawString.match('AAA2101, SKD')) {
+    } else if (rawString.match(`AAA2101, ${FOLKEREGISTERET}`)) {
         return 'av Skatteetaten';
     } else if (endretIFolkeregisteret(rawString)) {
         return 'i Folkeregisteret';
