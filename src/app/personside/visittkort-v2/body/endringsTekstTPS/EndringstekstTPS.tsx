@@ -22,7 +22,7 @@ function EndringstekstTPS({ sistEndret }: Props) {
 }
 export default EndringstekstTPS;
 
-export const FOLKEREGISTERET = 'SKD';
+const FOLKEREGISTERET = 'SKD';
 
 export function endretAvTekst(rawString: string): string {
     if (endretAvBruker(rawString) || endretIPSelv(rawString)) {
@@ -34,7 +34,7 @@ export function endretAvTekst(rawString: string): string {
         endretAvKonvertItSystem(rawString)
     ) {
         return 'av NAV';
-    } else if (rawString.match('AAA2101, SKD')) {
+    } else if (rawString.match(`AAA2101, ${FOLKEREGISTERET}`)) {
         return 'av Skatteetaten';
     } else if (endretIFolkeregisteret(rawString)) {
         return 'i Folkeregisteret';
