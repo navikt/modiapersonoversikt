@@ -70,10 +70,6 @@ function useDraftWS(context: DraftContext, ifPresent: (draft: Draft) => void = (
             }, 500),
         [context]
     );
-    // const update = useCallback((content: string) => {
-    //     const data: WsEvent = { type: "UPDATE", context, content };
-    //     wsRef.current?.send(JSON.stringify(data))
-    // }, [context]);
 
     const remove = useCallback(() => {
         const data: WsEvent = { type: 'DELETE', context, content: null };
