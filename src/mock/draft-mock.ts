@@ -3,6 +3,7 @@ import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { Draft, DraftContext } from '../app/personside/dialogpanel/use-draft';
 import { randomDelay } from './index';
 import { delayed } from './utils-mock';
+import MockWebsocket from './mock-websocket';
 
 const innloggetSaksbehandler = getMockInnloggetSaksbehandler();
 const storage = window.localStorage;
@@ -28,11 +29,11 @@ function matchContext(context: DraftContext, other: DraftContext, exact: boolean
     const otherKeys = Object.keys(other);
     if (exact && keys.length !== otherKeys.length) {
         return false;
-    } else if (exact && !keys.every(key => otherKeys.includes(key))) {
+    } else if (exact && !keys.every((key) => otherKeys.includes(key))) {
         return false;
     }
 
-    return otherKeys.every(key => {
+    return otherKeys.every((key) => {
         const value = context[key];
         const otherValue = other[key];
         return value === otherValue;
@@ -71,9 +72,16 @@ const deleteDraft: MockHandler = ({ body }, res, ctx) => {
     return res(ctx.status(200));
 };
 
+const generateUid: MockHandler = ({ body }, res, ctx) => {
+    return res(ctx.status(200), ctx.text('abba-acdc-1231-beef'));
+};
+
+MockWebsocket.setup();
+
 export function setupDraftMock(mock: FetchMock) {
     // console.log(findDrafts, updateDraft, deleteDraft);
     mock.get('/modiapersonoversikt-draft/api/draft', delayed(2 * randomDelay(), findDrafts));
     mock.post('/modiapersonoversikt-draft/api/draft', delayed(2 * randomDelay(), updateDraft));
     mock.delete('/modiapersonoversikt-draft/api/draft', delayed(2 * randomDelay(), deleteDraft));
+    mock.get('/modiapersonoversikt-draft/api/generate-uid', delayed(2 * randomDelay(), generateUid));
 }
