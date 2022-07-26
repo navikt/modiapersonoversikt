@@ -28,7 +28,7 @@ interface WsEvent {
 
 async function asyncDraftWS(): Promise<WebSocketImpl> {
     return retryAsync(3, async () => {
-        const uuid: string = await fetch(`/modiapersonoversikt-draft/api/generate-uid`).then((resp) => resp.text());
+        const uuid: string = await fetch(`/modiapersonoversikt-draft/api/generate-uid`).then((resp) => resp.json());
         const loc = window.location;
         const ws = new WebSocketImpl(`wss://${uuid}@${loc.host}/modiapersonoversikt-draft/api/draft/ws`, {
             onClose(event: CloseEvent, connection: WebSocketImpl) {

@@ -73,7 +73,7 @@ const deleteDraft: MockHandler = ({ body }, res, ctx) => {
 };
 
 const generateUid: MockHandler = ({ body }, res, ctx) => {
-    return res(ctx.status(200), ctx.text('abba-acdc-1231-beef'));
+    return res(ctx.status(200), ctx.json('abba-acdc-1231-beef'));
 };
 
 MockWebsocket.setup();
