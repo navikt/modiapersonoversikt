@@ -11,15 +11,7 @@ export const enheter = [
     { enhetId: '0602', navn: 'NAV Drammer' }
 ];
 
-class VoidWebSocket {
-    addEventListener() {}
-    removeEventListener() {}
-    send() {}
-    close() {}
-}
-
 export function setupWsControlAndMock(mock: FetchMock) {
-    (window as any).WebSocket = VoidWebSocket;
     const baseUrl = `https://${window.location.host}`;
 
     mock.post(baseUrl + '/modiacontextholder/api/context', ({ body }, res, ctx) => {
