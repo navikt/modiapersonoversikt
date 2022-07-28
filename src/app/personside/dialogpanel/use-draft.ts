@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import debounce from 'lodash.debounce';
 import { loggError } from '../../../utils/logger/frontendLogger';
-import WebSocketImpl from '../../../utils/websocket-impl';
-import { retryAsync } from '../../../utils/retry';
+import WebSocketImpl, { Status } from '../../../utils/websocket-impl';
 
 export interface DraftContext {
     [key: string]: string;
@@ -26,39 +25,26 @@ interface WsEvent {
     content: string | null;
 }
 
-async function asyncDraftWS(): Promise<WebSocketImpl> {
-    return retryAsync(3, async () => {
-        const uuid: string = await fetch(`/modiapersonoversikt-draft/api/generate-uid`).then((resp) => resp.json());
-        const loc = window.location;
-        const ws = new WebSocketImpl(`wss://${uuid}@${loc.host}/modiapersonoversikt-draft/api/draft/ws`, {
-            onClose(event: CloseEvent, connection: WebSocketImpl) {
-                connection.close();
-                throw Error(`Retry after error code: ${event.code}`);
-            }
-        });
-        ws.open();
-
-        // Add delay to allow closing to happen
-        await new Promise((resolve) => setTimeout(resolve, 500));
-
-        return ws;
-    });
-}
-
 function useDraftWS(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
     const wsRef = useRef<WebSocketImpl>();
     useEffect(() => {
-        const asyncWs = asyncDraftWS();
-        asyncWs.catch((error) => console.error(error));
-        asyncWs.then((ws) => {
-            wsRef.current = ws;
+        const urlProvider = async () => {
+            const uuid: string = await fetch(`/modiapersonoversikt-draft/api/generate-uid`).then((resp) => resp.json());
+            const loc = window.location;
+            return `wss://${uuid}@${loc.host}/modiapersonoversikt-draft/api/draft/ws`;
+        };
+        wsRef.current = new WebSocketImpl(urlProvider, {
+            onClose(event: CloseEvent, connection: WebSocketImpl) {
+                if (connection.getStatus() !== Status.CLOSE) {
+                    loggError(new Error(`Retry after error code: ${event.code}`));
+                }
+            }
         });
+        wsRef.current?.open();
 
         return () => {
-            asyncWs.then((ws) => {
-                ws.close();
-                wsRef.current = undefined;
-            });
+            wsRef.current?.close();
+            wsRef.current = undefined;
         };
     }, []);
 
