@@ -1,4 +1,4 @@
-(function(config) {
+(function (config) {
     window['adrum-start-time'] = new Date().getTime();
     var appKey = '';
     if (window.location.href.indexOf('app.adeo.no') > -1) {
@@ -22,6 +22,7 @@ if ('https:' === document.location.protocol) {
         unescape('%3Cscript') +
             " src='https://jsagent.adeo.no/adrum/adrum.js' " +
             " type='text/javascript' charset='UTF-8'" +
+            " crossorigin='anonymous'" +
             unescape('%3E%3C/script%3E')
     );
 } else {
@@ -29,6 +30,7 @@ if ('https:' === document.location.protocol) {
         unescape('%3Cscript') +
             " src='http://jsagent.adeo.no/adrum/adrum.js' " +
             " type='text/javascript' charset='UTF-8'" +
+            " crossorigin='anonymous'" +
             unescape('%3E%3C/script%3E')
     );
 }
