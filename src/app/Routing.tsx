@@ -5,12 +5,11 @@ import SakerFullscreen from './personside/infotabs/saksoversikt/SakerFullscreen'
 import SaksDokumentEgetVindu from './personside/infotabs/saksoversikt/SaksDokumentIEgetVindu';
 import Personoversikt from './personside/Personoversikt';
 import Startbilde from './startbilde/Startbilde';
-import { useFodselsnummer, useTriggerHotjarForLokalKontor } from '../utils/customHooks';
+import { useFodselsnummer } from '../utils/customHooks';
 import { CenteredLazySpinner } from '../components/LazySpinner';
 
 function Routing() {
     const fnr = useFodselsnummer();
-    useTriggerHotjarForLokalKontor();
 
     return (
         <Suspense fallback={<CenteredLazySpinner />}>
