@@ -31,7 +31,7 @@ function useDraftWS(context: DraftContext, ifPresent: (draft: Draft) => void = (
         const urlProvider = async () => {
             const uuid: string = await fetch(`/modiapersonoversikt-draft/api/generate-uid`).then((resp) => resp.json());
             const loc = window.location;
-            return `wss://${uuid}@${loc.host}/modiapersonoversikt-draft/api/draft/ws`;
+            return `wss://${loc.host}/modiapersonoversikt-draft/api/draft/ws/${uuid}`;
         };
         wsRef.current = new WebSocketImpl(urlProvider, {
             onClose(event: CloseEvent, connection: WebSocketImpl) {
