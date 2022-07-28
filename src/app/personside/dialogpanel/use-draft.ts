@@ -28,10 +28,16 @@ interface WsEvent {
 function useDraftWS(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
     const wsRef = useRef<WebSocketImpl>();
     useEffect(() => {
-        const urlProvider = async () => {
-            const uuid: string = await fetch(`/modiapersonoversikt-draft/api/generate-uid`).then((resp) => resp.json());
-            const loc = window.location;
-            return `wss://${loc.host}/modiapersonoversikt-draft/api/draft/ws/${uuid}`;
+        const urlProvider = async (ws: WebSocketImpl) => {
+            const response: Response = await fetch(`/modiapersonoversikt-draft/api/generate-uid`);
+            if (response.status === 401) {
+                ws.close();
+                return '\u0000';
+            } else {
+                const uuid: string = await response.json();
+                const loc = window.location;
+                return `wss://${loc.host}/modiapersonoversikt-draft/api/draft/ws/${uuid}`;
+            }
         };
         wsRef.current = new WebSocketImpl(urlProvider, {
             onClose(event: CloseEvent, connection: WebSocketImpl) {
