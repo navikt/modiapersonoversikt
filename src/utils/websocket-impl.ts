@@ -37,14 +37,14 @@ function createRetrytime(tryCount: number): number {
 
 class WebSocketImpl {
     private status: Status;
-    private readonly wsUrl: string | (() => Promise<string>);
+    private readonly wsUrl: string | ((ws: WebSocketImpl) => Promise<string>);
     private readonly listeners: Listeners;
     private connection?: WebSocket;
     private resettimer?: number | null;
     private retrytimer?: number | null;
     private retryCounter: number = 0;
 
-    constructor(wsUrl: string | (() => Promise<string>), listeners: Listeners) {
+    constructor(wsUrl: string | ((ws: WebSocketImpl) => Promise<string>), listeners: Listeners) {
         this.wsUrl = wsUrl;
         this.listeners = listeners;
         this.status = Status.INIT;
@@ -55,13 +55,15 @@ class WebSocketImpl {
             WebSocketImpl.print('Stopping creation of WS, since it is closed');
             return;
         }
-        const wsUrl = typeof this.wsUrl === 'string' ? this.wsUrl : await this.wsUrl();
-        WebSocketImpl.print('Opening WS', wsUrl);
-        this.connection = new WebSocket(wsUrl);
-        this.connection.addEventListener('open', this.onWSOpen.bind(this));
-        this.connection.addEventListener('message', this.onWSMessage.bind(this));
-        this.connection.addEventListener('error', this.onWSError.bind(this));
-        this.connection.addEventListener('close', this.onWSClose.bind(this));
+        const wsUrl = typeof this.wsUrl === 'string' ? this.wsUrl : await this.wsUrl(this);
+        if (wsUrl !== '\u0000') {
+            WebSocketImpl.print('Opening WS', wsUrl);
+            this.connection = new WebSocket(wsUrl);
+            this.connection.addEventListener('open', this.onWSOpen.bind(this));
+            this.connection.addEventListener('message', this.onWSMessage.bind(this));
+            this.connection.addEventListener('error', this.onWSError.bind(this));
+            this.connection.addEventListener('close', this.onWSClose.bind(this));
+        }
     }
 
     public close() {
