@@ -82,7 +82,7 @@ export function fetchInnstillinger(): ThunkAction<void, AppState, void, Actions>
             }
 
             dispatch({ type: Typekeys.HENT_INNSTILLINGER_REQUEST });
-            const response = await fetch('/modiapersonoversikt-innstillinger/api/innstillinger');
+            const response = await fetch('/proxy/modia-innstillinger/api/innstillinger');
             if (!response.ok) {
                 dispatch({
                     type: Typekeys.HENT_INNSTILLINGER_ERROR,
@@ -103,10 +103,7 @@ export function oppdaterInnstillinger(
 ): ThunkAction<Promise<SaksbehandlerInnstillinger>, AppState, null, Actions> {
     return async (dispatch) => {
         try {
-            const response = await fetch(
-                '/modiapersonoversikt-innstillinger/api/innstillinger',
-                postConfig(innstillinger)
-            );
+            const response = await fetch('/proxy/modia-innstillinger/api/innstillinger', postConfig(innstillinger));
             const data = await response.json();
             dispatch({ type: Typekeys.HENT_INNSTILLINGER_OK, data });
             return data;

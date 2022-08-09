@@ -114,7 +114,7 @@ function velgTekst(
 
 function StandardTekster(props: Props) {
     const sokRef = React.useRef<HTMLElement>(null);
-    const standardTekster = useFetch<StandardTeksterModels.Tekster>('/modiapersonoversikt-skrivestotte/skrivestotte');
+    const standardTekster = useFetch<StandardTeksterModels.Tekster>('/proxy/modia-skrivestotte/skrivestotte');
     const debouncedSokefelt = useDebounce(props.sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() =>
         sokEtterTekster(standardTekster, debouncedSokefelt)

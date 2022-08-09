@@ -312,7 +312,7 @@ function AutocompleteTextarea(props: TextareaProps) {
     const autofullforData = useAutoFullforData();
     const [feilmelding, settFeilmelding] = useState<string>();
     const standardtekster: FetchResult<StandardTeksterModels.Tekster> = useFetch<StandardTeksterModels.Tekster>(
-        '/modiapersonoversikt-skrivestotte/skrivestotte'
+        '/proxy/modia-skrivestotte/skrivestotte'
     );
     const rules = useRules();
     const onChange = props.onChange;
