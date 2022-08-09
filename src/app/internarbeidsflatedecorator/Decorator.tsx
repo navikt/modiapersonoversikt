@@ -93,7 +93,7 @@ function lagConfig(
         },
         // modiacontextholder kjører på samme domene som modiapersonoversikt.
         // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
-        useProxy: `https://${window.location.host}/proxy`
+        useProxy: `https://${window.location.host}/modiapersonoversikt/proxy`
     };
 }
 

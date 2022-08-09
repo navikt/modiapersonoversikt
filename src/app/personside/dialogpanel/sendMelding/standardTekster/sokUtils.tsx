@@ -3,7 +3,7 @@ import { parseTekst } from '@navikt/tag-input';
 import * as StandardTekster from './domain';
 
 export function rapporterBruk(tekst: StandardTekster.Tekst): void {
-    fetch(`/proxy/modia-skrivestotte/skrivestotte/statistikk/${tekst.id}`, { method: 'POST' });
+    fetch(`/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte/statistikk/${tekst.id}`, { method: 'POST' });
 }
 
 export function sokEtterTekster(

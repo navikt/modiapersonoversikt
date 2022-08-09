@@ -13,12 +13,12 @@ let innstillinger: SaksbehandlerInnstillinger =
 
 export function setupSaksbehandlerInnstillingerMock(mock: FetchMock) {
     mock.get(
-        '/proxy/modia-innstillinger/api/innstillinger',
+        '/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger',
         (req, res, ctx) => res(ctx.delay(500), ctx.json(innstillinger))
         // ResponseUtils.delayed(500, () => Promise.resolve({ status: 404 }))
     );
 
-    mock.post('/proxy/modia-innstillinger/api/innstillinger', (req, res, ctx) => {
+    mock.post('/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger', (req, res, ctx) => {
         innstillinger = {
             sistLagret: new Date().toISOString(),
             innstillinger: req.body
