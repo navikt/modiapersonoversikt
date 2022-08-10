@@ -20,13 +20,15 @@ spec:
   prometheus:
     enabled: true
     path: /modiapersonoversikt/internal/metrics
+  secureLogs:
+    enabled: true
   resources:
     requests:
-      cpu: 100m
-      memory: 256Mi
-    limits:
-      cpu: 2000m
+      cpu: 200m
       memory: 512Mi
+    limits:
+      cpu: 3000m
+      memory: 1536Mi
   ingresses:
     - https://app-{{ q_env }}.adeo.no/modiapersonoversikt
   replicas:
