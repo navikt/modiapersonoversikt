@@ -22,11 +22,11 @@ spec:
     path: /modiapersonoversikt/internal/metrics
   resources:
     requests:
-      cpu: 100m
-      memory: 256Mi
-    limits:
       cpu: 200m
       memory: 512Mi
+    limits:
+      cpu: 3000m
+      memory: 1536Mi
   ingresses:
     - https://app.adeo.no/modiapersonoversikt
   replicas:
