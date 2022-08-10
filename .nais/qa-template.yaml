@@ -20,6 +20,8 @@ spec:
   prometheus:
     enabled: true
     path: /modiapersonoversikt/internal/metrics
+  secureLogs:
+    enabled: true
   resources:
     requests:
       cpu: 200m
