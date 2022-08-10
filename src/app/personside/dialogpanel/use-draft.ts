@@ -29,7 +29,7 @@ function useDraftWS(context: DraftContext, ifPresent: (draft: Draft) => void = (
     const wsRef = useRef<WebSocketImpl>();
     useEffect(() => {
         const urlProvider = async (ws: WebSocketImpl) => {
-            const response: Response = await fetch(`/modiapersonoversikt-draft/api/generate-uid`);
+            const response: Response = await fetch(`/modiapersonoversikt/proxy/modia-draft/api/generate-uid`);
             if (response.status === 401) {
                 ws.close();
                 return '\u0000';
@@ -73,7 +73,7 @@ function useDraftWS(context: DraftContext, ifPresent: (draft: Draft) => void = (
             .map(([key, value]) => `${key}=${value}`)
             .join('&');
 
-        fetch(`/modiapersonoversikt-draft/api/draft?exact=true&${queryParams}`)
+        fetch(`/modiapersonoversikt/proxy/modia-draft/api/draft?exact=true&${queryParams}`)
             .then((resp) => resp.json())
             .then((json: Array<Draft>) => {
                 if (json.length > 0) {
@@ -92,7 +92,7 @@ export function useDraft(context: DraftContext, ifPresent: (draft: Draft) => voi
     const update = useMemo(
         () =>
             debounce((content: string) => {
-                fetch('/modiapersonoversikt-draft/api/draft', {
+                fetch('/modiapersonoversikt/proxy/modia-draft/api/draft', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -106,7 +106,7 @@ export function useDraft(context: DraftContext, ifPresent: (draft: Draft) => voi
     );
 
     const remove = useCallback(() => {
-        fetch('/modiapersonoversikt-draft/api/draft', {
+        fetch('/modiapersonoversikt/proxy/modia-draft/api/draft', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -122,7 +122,7 @@ export function useDraft(context: DraftContext, ifPresent: (draft: Draft) => voi
             .map(([key, value]) => `${key}=${value}`)
             .join('&');
 
-        fetch(`/modiapersonoversikt-draft/api/draft?exact=true&${queryParams}`)
+        fetch(`/modiapersonoversikt/proxy/modia-draft/api/draft?exact=true&${queryParams}`)
             .then((resp) => resp.json())
             .then((json: Array<Draft>) => {
                 if (json.length > 0) {

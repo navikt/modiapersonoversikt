@@ -42,8 +42,12 @@ spec:
       value: "https://isso.adeo.no/isso/oauth2/.well-known/openid-configuration"
     - name: IDP_CLIENT_ID
       value: "modialogin-p"
+    - name: IDP_ISSUER
+      value: "https://isso.adeo.no:443/isso/oauth2"
     - name: DELEGATED_LOGIN_URL
       value: "https://app.adeo.no/modialogin/api/start"
+    - name: DELEGATED_REFRESH_URL
+      value: "https://app.adeo.no/modialogin/api/refresh"
     - name: AUTH_TOKEN_RESOLVER
       value: "modia_ID_token"
     - name: APP_ADEO_DOMAIN

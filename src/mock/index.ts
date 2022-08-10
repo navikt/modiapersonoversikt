@@ -319,12 +319,12 @@ function opprettSkjermetOppgaveMock(mock: FetchMock) {
 
 function setupStandardteksterMock(mock: FetchMock) {
     mock.get(
-        '/modiapersonoversikt-skrivestotte/skrivestotte',
+        '/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte',
         withDelayedResponse(randomDelay(), STATUS_OK, () => standardTekster)
     );
 
     mock.post(
-        '/modiapersonoversikt-skrivestotte/skrivestotte/statistikk/:id',
+        '/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte/statistikk/:id',
         withDelayedResponse(randomDelay(), STATUS_OK, () => undefined)
     );
 }

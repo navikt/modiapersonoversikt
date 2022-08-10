@@ -3,5 +3,21 @@
         "prefix": "proxy/dittnav-eventer-modia",
         "url": "$env{APP_ADEO_DOMAIN}/dittnav-eventer-modia",
         "rewriteDirectives": ["SET_HEADER Cookie 'ID_token=$cookie{modia_ID_token}'"]
+    },
+    {
+        "prefix": "proxy/modia-skrivestotte",
+        "url": "$env{APP_ADEO_DOMAIN}/modiapersonoversikt-skrivestotte"
+    },
+    {
+        "prefix": "proxy/modia-draft",
+        "url": "$env{APP_ADEO_DOMAIN}/modiapersonoversikt-draft"
+    },
+    {
+        "prefix": "proxy/modia-innstillinger",
+        "url": "$env{APP_ADEO_DOMAIN}/modiapersonoversikt-innstillinger"
+    },
+    {
+        "prefix": "proxy/modiacontextholder",
+        "url": "$env{APP_ADEO_DOMAIN}/modiacontextholder"
     }
 ]

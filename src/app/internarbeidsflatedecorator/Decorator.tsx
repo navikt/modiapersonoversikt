@@ -93,7 +93,7 @@ function lagConfig(
         },
         // modiacontextholder kjører på samme domene som modiapersonoversikt.
         // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
-        useProxy: `https://${window.location.host}`
+        useProxy: `https://${window.location.host}/modiapersonoversikt/proxy`
     };
 }
 
@@ -129,7 +129,7 @@ function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null } {
 
 function Decorator() {
     const reduxErKlar = useVenterPaRedux();
-    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+    const valgtEnhet = useAppState((state) => state.session.valgtEnhetId);
     const history = useHistory();
     const dispatch = useDispatch();
     const queryParams = useQueryParams<{ sokFnr?: string }>();
