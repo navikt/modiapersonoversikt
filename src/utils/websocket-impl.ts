@@ -155,6 +155,11 @@ class WebSocketImpl {
         this.retryCounter = 0;
     }
 
+    public static Codes = {
+        NORMAL: 1000,
+        GOING_AWAY: 1001
+    };
+
     private static print(...args: any[]) {
         if (process.env.REACT_APP_MOCK_ENABLED === 'true') {
             console.log('WS:', ...args); // tslint:disable-line
