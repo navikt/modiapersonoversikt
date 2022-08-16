@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import debounce from 'lodash.debounce';
-import { loggError } from '../../../utils/logger/frontendLogger';
+import { loggError, loggInfo } from '../../../utils/logger/frontendLogger';
 import WebSocketImpl, { Status } from '../../../utils/websocket-impl';
 
 export interface DraftContext {
@@ -25,6 +25,8 @@ interface WsEvent {
     content: string | null;
 }
 
+const okCloseCodes = Object.values(WebSocketImpl.Codes);
+
 function useDraftWS(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
     const wsRef = useRef<WebSocketImpl>();
     useEffect(() => {
@@ -41,7 +43,9 @@ function useDraftWS(context: DraftContext, ifPresent: (draft: Draft) => void = (
         };
         wsRef.current = new WebSocketImpl(urlProvider, {
             onClose(event: CloseEvent, connection: WebSocketImpl) {
-                if (connection.getStatus() !== Status.CLOSE) {
+                if (okCloseCodes.includes(event.code)) {
+                    loggInfo('WS lukket som normalt, kobler til på nytt');
+                } else if (connection.getStatus() !== Status.CLOSE) {
                     loggError(new Error(`Retry after error code: ${event.code}`));
                 }
             }
