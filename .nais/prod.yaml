@@ -35,6 +35,10 @@ spec:
     min: 2
     max: 4
     cpuThresholdPercentage: 50
+  azure:
+    application:
+      enabled: true
+      tenant: nav.no
   env:
     - name: APP_NAME
       value: "modiapersonoversikt"
@@ -66,3 +70,5 @@ spec:
       report-uri /frontendlogger/api/warn;"
     - name: REFERRER_POLICY
       value: "no-referrer"
+    - name: DISABLE_AZURE_AD
+      value: "true"
