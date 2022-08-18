@@ -6,7 +6,10 @@
     },
     {
         "prefix": "proxy/modia-skrivestotte",
-        "url": "$env{APP_ADEO_DOMAIN}/modiapersonoversikt-skrivestotte"
+        "url": "$env{APP_ADEO_DOMAIN}/modiapersonoversikt-skrivestotte",
+        "rewriteDirectives": [
+            "SET_ON_BEHALF_OF_TOKEN $env{NAIS_CLUSTER_NAME} personoversikt modiapersonoversikt-skrivestotte"
+        ]
     },
     {
         "prefix": "proxy/modia-draft",
