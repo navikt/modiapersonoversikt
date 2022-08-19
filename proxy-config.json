@@ -6,18 +6,22 @@
     },
     {
         "prefix": "proxy/modia-skrivestotte",
-        "url": "http://modiapersonoversikt-skrivestotte.personoversikt.svc.nais.local/modiapersonoversikt-skrivestotte"
+        "url": "http://modiapersonoversikt-skrivestotte.personoversikt.svc.nais.local/modiapersonoversikt-skrivestotte",
+        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-fss personoversikt modiapersonoversikt-skrivestotte"]
     },
     {
         "prefix": "proxy/modia-draft",
-        "url": "http://modiapersonoversikt-draft.personoversikt.svc.nais.local/modiapersonoversikt-draft"
+        "url": "http://modiapersonoversikt-draft.personoversikt.svc.nais.local/modiapersonoversikt-draft",
+        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-fss personoversikt modiapersonoversikt-draft"]
     },
     {
         "prefix": "proxy/modia-innstillinger",
-        "url": "http://modiapersonoversikt-innstillinger.personoversikt.svc.nais.local/modiapersonoversikt-innstillinger"
+        "url": "http://modiapersonoversikt-innstillinger.personoversikt.svc.nais.local/modiapersonoversikt-innstillinger",
+        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-fss personoversikt modiapersonoversikt-innstillinger"]
     },
     {
         "prefix": "proxy/modiacontextholder",
-        "url": "http://modiacontextholder.personoversikt.svc.nais.local/modiacontextholder"
+        "url": "http://modiacontextholder.personoversikt.svc.nais.local/modiacontextholder",
+        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-fss personoversikt modiacontextholder$env{MILJO_SUFFIX}"]
     }
 ]
