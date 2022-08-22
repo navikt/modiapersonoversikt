@@ -17,6 +17,6 @@
     {
         "prefix": "proxy/modiacontextholder",
         "url": "http://modiacontextholder.personoversikt.svc.nais.local/modiacontextholder",
-        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-fss personoversikt modiacontextholder$env{MILJO_SUFFIX}"]
+        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-fss personoversikt modiacontextholder"]
     }
 ]
