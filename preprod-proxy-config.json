@@ -1,10 +1,5 @@
 [
     {
-        "prefix": "proxy/dittnav-eventer-modia",
-        "url": "$env{APP_ADEO_DOMAIN}/dittnav-eventer-modia",
-        "rewriteDirectives": ["SET_HEADER Cookie 'ID_token=$cookie{modia_ID_token}'"]
-    },
-    {
         "prefix": "proxy/modia-skrivestotte",
         "url": "http://modiapersonoversikt-skrivestotte.personoversikt.svc.nais.local/modiapersonoversikt-skrivestotte",
         "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN dev-fss personoversikt modiapersonoversikt-skrivestotte"]
