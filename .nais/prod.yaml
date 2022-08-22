@@ -70,3 +70,5 @@ spec:
       report-uri /frontendlogger/api/warn;"
     - name: REFERRER_POLICY
       value: "no-referrer"
+    - name: DISABLE_AZURE_AD
+      value: "true"
