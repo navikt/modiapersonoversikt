@@ -7,7 +7,7 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
             erUtbetaltTilPerson: true,
             erUtbetaltTilOrganisasjon: false,
             erUtbetaltTilSamhandler: false,
-            nettobeløp: 96152,
+            nettobelop: 96152,
             posteringsdato: '2018-04-01',
             utbetalingsdato: null,
             forfallsdato: null,
@@ -21,46 +21,46 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
                     ytelseskomponentListe: [
                         {
                             ytelseskomponenttype: 'Ball',
-                            satsbeløp: 264,
+                            satsbelop: 264,
                             satstype: 'Satstype',
                             satsantall: 5,
-                            ytelseskomponentbeløp: 1320
+                            ytelseskomponentbelop: 1320
                         },
                         {
                             ytelseskomponenttype: 'Ball',
-                            satsbeløp: 1674,
+                            satsbelop: 1674,
                             satstype: 'Satstype',
                             satsantall: 8,
-                            ytelseskomponentbeløp: 13392
+                            ytelseskomponentbelop: 13392
                         },
                         {
                             ytelseskomponenttype: 'Pants',
-                            satsbeløp: 876,
+                            satsbelop: 876,
                             satstype: 'Satstype',
                             satsantall: 4,
-                            ytelseskomponentbeløp: 3504
+                            ytelseskomponentbelop: 3504
                         },
                         {
                             ytelseskomponenttype: 'Bacon',
-                            satsbeløp: 1974,
+                            satsbelop: 1974,
                             satstype: 'Satstype',
                             satsantall: 9,
-                            ytelseskomponentbeløp: 17766
+                            ytelseskomponentbelop: 17766
                         },
                         {
                             ytelseskomponenttype: 'Bacon',
-                            satsbeløp: 1478,
+                            satsbelop: 1478,
                             satstype: 'Satstype',
                             satsantall: 10,
-                            ytelseskomponentbeløp: 14780
+                            ytelseskomponentbelop: 14780
                         }
                     ],
                     ytelseskomponentersum: 50762,
                     trekkListe: [],
                     trekksum: 0,
-                    skattListe: [{ skattebeløp: -1906 }],
+                    skattListe: [{ skattebelop: -1906 }],
                     skattsum: -1906,
-                    nettobeløp: 48856,
+                    nettobelop: 48856,
                     periode: { start: '2018-06-30', slutt: '2019-03-24' },
                     bilagsnummer: '0357522862',
                     arbeidsgiver: { navn: 'Fossum - Johansen', orgnr: '38223811790' }
@@ -70,39 +70,39 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
                     ytelseskomponentListe: [
                         {
                             ytelseskomponenttype: 'Ball',
-                            satsbeløp: 1572,
+                            satsbelop: 1572,
                             satstype: 'Satstype',
                             satsantall: 2,
-                            ytelseskomponentbeløp: 3144
+                            ytelseskomponentbelop: 3144
                         },
                         {
                             ytelseskomponenttype: 'Keyboard',
-                            satsbeløp: 1114,
+                            satsbelop: 1114,
                             satstype: 'Satstype',
                             satsantall: 7,
-                            ytelseskomponentbeløp: 7798
+                            ytelseskomponentbelop: 7798
                         },
                         {
                             ytelseskomponenttype: 'Ball',
-                            satsbeløp: 1490,
+                            satsbelop: 1490,
                             satstype: 'Satstype',
                             satsantall: 7,
-                            ytelseskomponentbeløp: 10430
+                            ytelseskomponentbelop: 10430
                         },
                         {
                             ytelseskomponenttype: 'Towels',
-                            satsbeløp: 1926,
+                            satsbelop: 1926,
                             satstype: 'Satstype',
                             satsantall: 1,
-                            ytelseskomponentbeløp: 1926
+                            ytelseskomponentbelop: 1926
                         }
                     ],
                     ytelseskomponentersum: 23298,
                     trekkListe: [],
                     trekksum: 0,
-                    skattListe: [{ skattebeløp: -92 }],
+                    skattListe: [{ skattebelop: -92 }],
                     skattsum: -92,
-                    nettobeløp: 23206,
+                    nettobelop: 23206,
                     periode: { start: '2019-09-27', slutt: '2019-08-09' },
                     bilagsnummer: '6238055181',
                     arbeidsgiver: { navn: 'Aas, Østli and Arnesen', orgnr: '10992728225' }
@@ -112,31 +112,31 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
                     ytelseskomponentListe: [
                         {
                             ytelseskomponenttype: 'Car',
-                            satsbeløp: 900,
+                            satsbelop: 900,
                             satstype: 'Satstype',
                             satsantall: 6,
-                            ytelseskomponentbeløp: 5400
+                            ytelseskomponentbelop: 5400
                         },
                         {
                             ytelseskomponenttype: 'Gloves',
-                            satsbeløp: 1300,
+                            satsbelop: 1300,
                             satstype: 'Satstype',
                             satsantall: 1,
-                            ytelseskomponentbeløp: 1300
+                            ytelseskomponentbelop: 1300
                         },
                         {
                             ytelseskomponenttype: 'Chair',
-                            satsbeløp: 1726,
+                            satsbelop: 1726,
                             satstype: 'Satstype',
                             satsantall: 10,
-                            ytelseskomponentbeløp: 17260
+                            ytelseskomponentbelop: 17260
                         },
                         {
                             ytelseskomponenttype: 'Shoes',
-                            satsbeløp: 26,
+                            satsbelop: 26,
                             satstype: 'Satstype',
                             satsantall: 5,
-                            ytelseskomponentbeløp: 130
+                            ytelseskomponentbelop: 130
                         }
                     ],
                     ytelseskomponentersum: 24090,
@@ -144,7 +144,7 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
                     trekksum: 0,
                     skattListe: [],
                     skattsum: 0,
-                    nettobeløp: 24090,
+                    nettobelop: 24090,
                     periode: { start: '2019-06-13', slutt: '2018-05-20' },
                     bilagsnummer: '0591501736',
                     arbeidsgiver: { navn: 'Svendsen - Pedersen', orgnr: '15109208748' }
@@ -156,7 +156,7 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
             erUtbetaltTilPerson: true,
             erUtbetaltTilOrganisasjon: false,
             erUtbetaltTilSamhandler: false,
-            nettobeløp: -1636,
+            nettobelop: -1636,
             posteringsdato: '2019-05-05',
             utbetalingsdato: null,
             forfallsdato: null,
@@ -170,30 +170,30 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
                     ytelseskomponentListe: [
                         {
                             ytelseskomponenttype: 'Car',
-                            satsbeløp: 1706,
+                            satsbelop: 1706,
                             satstype: 'Satstype',
                             satsantall: 1,
-                            ytelseskomponentbeløp: 1706
+                            ytelseskomponentbelop: 1706
                         }
                     ],
                     ytelseskomponentersum: 1706,
                     trekkListe: [
                         {
                             trekktype: 'Prosenttrekk',
-                            trekkbeløp: -924,
+                            trekkbelop: -924,
                             kreditor: 'Wold ASA'
                         },
                         {
                             trekktype: 'Prosenttrekk',
-                            trekkbeløp: -1046,
+                            trekkbelop: -1046,
                             kreditor: 'Wold - Haugen'
                         },
-                        { trekktype: 'Prosenttrekk', trekkbeløp: -1372, kreditor: null }
+                        { trekktype: 'Prosenttrekk', trekkbelop: -1372, kreditor: null }
                     ],
                     trekksum: -3342,
                     skattListe: [],
                     skattsum: 0,
-                    nettobeløp: -1636,
+                    nettobelop: -1636,
                     periode: { start: '2018-02-13', slutt: '2018-09-20' },
                     bilagsnummer: '6778314178',
                     arbeidsgiver: { navn: 'Østby, Fredriksen and Berge', orgnr: '27597075501' }
@@ -205,7 +205,7 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
             erUtbetaltTilPerson: true,
             erUtbetaltTilOrganisasjon: false,
             erUtbetaltTilSamhandler: false,
-            nettobeløp: -460,
+            nettobelop: -460,
             posteringsdato: '2018-05-09',
             utbetalingsdato: '2018-04-05',
             forfallsdato: '2019-07-13',
@@ -219,18 +219,18 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
                     ytelseskomponentListe: [
                         {
                             ytelseskomponenttype: 'Bike',
-                            satsbeløp: 202,
+                            satsbelop: 202,
                             satstype: 'Satstype',
                             satsantall: 4,
-                            ytelseskomponentbeløp: 808
+                            ytelseskomponentbelop: 808
                         }
                     ],
                     ytelseskomponentersum: 808,
-                    trekkListe: [{ trekktype: 'Prosenttrekk', trekkbeløp: -1268, kreditor: 'Østby - Mathisen' }],
+                    trekkListe: [{ trekktype: 'Prosenttrekk', trekkbelop: -1268, kreditor: 'Østby - Mathisen' }],
                     trekksum: -1268,
                     skattListe: [],
                     skattsum: 0,
-                    nettobeløp: -460,
+                    nettobelop: -460,
                     periode: { start: '2019-09-03', slutt: '2019-03-16' },
                     bilagsnummer: '3251204321',
                     arbeidsgiver: null
@@ -242,7 +242,7 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
             erUtbetaltTilPerson: true,
             erUtbetaltTilOrganisasjon: false,
             erUtbetaltTilSamhandler: false,
-            nettobeløp: 15762,
+            nettobelop: 15762,
             posteringsdato: '2018-09-15',
             utbetalingsdato: null,
             forfallsdato: null,
@@ -256,46 +256,46 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
                     ytelseskomponentListe: [
                         {
                             ytelseskomponenttype: 'Hat',
-                            satsbeløp: 1698,
+                            satsbelop: 1698,
                             satstype: 'Satstype',
                             satsantall: 2,
-                            ytelseskomponentbeløp: 3396
+                            ytelseskomponentbelop: 3396
                         },
                         {
                             ytelseskomponenttype: 'Gloves',
-                            satsbeløp: 850,
+                            satsbelop: 850,
                             satstype: 'Satstype',
                             satsantall: 2,
-                            ytelseskomponentbeløp: 1700
+                            ytelseskomponentbelop: 1700
                         },
                         {
                             ytelseskomponenttype: 'Keyboard',
-                            satsbeløp: 1296,
+                            satsbelop: 1296,
                             satstype: 'Satstype',
                             satsantall: 5,
-                            ytelseskomponentbeløp: 6480
+                            ytelseskomponentbelop: 6480
                         },
                         {
                             ytelseskomponenttype: 'Keyboard',
-                            satsbeløp: 698,
+                            satsbelop: 698,
                             satstype: 'Satstype',
                             satsantall: 3,
-                            ytelseskomponentbeløp: 2094
+                            ytelseskomponentbelop: 2094
                         },
                         {
                             ytelseskomponenttype: 'Mouse',
-                            satsbeløp: 1082,
+                            satsbelop: 1082,
                             satstype: 'Satstype',
                             satsantall: 3,
-                            ytelseskomponentbeløp: 3246
+                            ytelseskomponentbelop: 3246
                         }
                     ],
                     ytelseskomponentersum: 16916,
                     trekkListe: [],
                     trekksum: 0,
-                    skattListe: [{ skattebeløp: -200 }, { skattebeløp: -954 }],
+                    skattListe: [{ skattebelop: -200 }, { skattebelop: -954 }],
                     skattsum: -1154,
-                    nettobeløp: 15762,
+                    nettobelop: 15762,
                     periode: { start: '2018-02-01', slutt: '2017-11-22' },
                     bilagsnummer: '8569474503',
                     arbeidsgiver: null
@@ -307,7 +307,7 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
             erUtbetaltTilPerson: true,
             erUtbetaltTilOrganisasjon: false,
             erUtbetaltTilSamhandler: false,
-            nettobeløp: 48462,
+            nettobelop: 48462,
             posteringsdato: '2018-05-12',
             utbetalingsdato: null,
             forfallsdato: '2018-12-17',
@@ -321,46 +321,46 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
                     ytelseskomponentListe: [
                         {
                             ytelseskomponenttype: 'Keyboard',
-                            satsbeløp: 1834,
+                            satsbelop: 1834,
                             satstype: 'Satstype',
                             satsantall: 6,
-                            ytelseskomponentbeløp: 11004
+                            ytelseskomponentbelop: 11004
                         },
                         {
                             ytelseskomponenttype: 'Chicken',
-                            satsbeløp: 1636,
+                            satsbelop: 1636,
                             satstype: 'Satstype',
                             satsantall: 2,
-                            ytelseskomponentbeløp: 3272
+                            ytelseskomponentbelop: 3272
                         },
                         {
                             ytelseskomponenttype: 'Gloves',
-                            satsbeløp: 318,
+                            satsbelop: 318,
                             satstype: 'Satstype',
                             satsantall: 4,
-                            ytelseskomponentbeløp: 1272
+                            ytelseskomponentbelop: 1272
                         },
                         {
                             ytelseskomponenttype: 'Bike',
-                            satsbeløp: 1490,
+                            satsbelop: 1490,
                             satstype: 'Satstype',
                             satsantall: 4,
-                            ytelseskomponentbeløp: 5960
+                            ytelseskomponentbelop: 5960
                         },
                         {
                             ytelseskomponenttype: 'Pizza',
-                            satsbeløp: 1218,
+                            satsbelop: 1218,
                             satstype: 'Satstype',
                             satsantall: 1,
-                            ytelseskomponentbeløp: 1218
+                            ytelseskomponentbelop: 1218
                         }
                     ],
                     ytelseskomponentersum: 22726,
-                    trekkListe: [{ trekktype: 'Prosenttrekk', trekkbeløp: -1892, kreditor: 'Nordskaug Gruppen' }],
+                    trekkListe: [{ trekktype: 'Prosenttrekk', trekkbelop: -1892, kreditor: 'Nordskaug Gruppen' }],
                     trekksum: -1892,
                     skattListe: [],
                     skattsum: 0,
-                    nettobeløp: 20834,
+                    nettobelop: 20834,
                     periode: { start: '2019-04-21', slutt: '2018-10-07' },
                     bilagsnummer: '9155068417',
                     arbeidsgiver: null
@@ -370,32 +370,32 @@ export const statiskMockUtbetalingRespons: UtbetalingerResponse = {
                     ytelseskomponentListe: [
                         {
                             ytelseskomponenttype: 'Bike',
-                            satsbeløp: 1352,
+                            satsbelop: 1352,
                             satstype: 'Satstype',
                             satsantall: 3,
-                            ytelseskomponentbeløp: 4056
+                            ytelseskomponentbelop: 4056
                         },
                         {
                             ytelseskomponenttype: 'Chicken',
-                            satsbeløp: 914,
+                            satsbelop: 914,
                             satstype: 'Satstype',
                             satsantall: 7,
-                            ytelseskomponentbeløp: 6398
+                            ytelseskomponentbelop: 6398
                         },
                         {
                             ytelseskomponenttype: 'Fish',
-                            satsbeløp: 1948,
+                            satsbelop: 1948,
                             satstype: 'Satstype',
                             satsantall: 9,
-                            ytelseskomponentbeløp: 17532
+                            ytelseskomponentbelop: 17532
                         }
                     ],
                     ytelseskomponentersum: 27986,
                     trekkListe: [],
                     trekksum: 0,
-                    skattListe: [{ skattebeløp: -358 }],
+                    skattListe: [{ skattebelop: -358 }],
                     skattsum: -358,
-                    nettobeløp: 27628,
+                    nettobelop: 27628,
                     periode: { start: '2018-05-12', slutt: '2019-04-10' },
                     bilagsnummer: '6162839362',
                     arbeidsgiver: null

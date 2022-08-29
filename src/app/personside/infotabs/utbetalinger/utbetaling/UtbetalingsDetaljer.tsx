@@ -47,9 +47,9 @@ function utbetalingsDetaljerTable(ytelse: Ytelse) {
                 .map((ytelseskomponent: Ytelseskomponent) =>
                     tabellElementer.push([
                         ytelseskomponent.ytelseskomponenttype,
-                        ytelseskomponent.satsbeløp ? formaterNOK(ytelseskomponent.satsbeløp) : '',
+                        ytelseskomponent.satsbelop ? formaterNOK(ytelseskomponent.satsbelop) : '',
                         ytelseskomponent.satsantall,
-                        formaterNOK(ytelseskomponent.ytelseskomponentbeløp)
+                        formaterNOK(ytelseskomponent.ytelseskomponentbelop)
                     ])
                 );
         }
@@ -57,16 +57,16 @@ function utbetalingsDetaljerTable(ytelse: Ytelse) {
         if (ytelse.skattListe) {
             ytelse.skattListe
                 .sort(skattBelopAscComparator)
-                .map(skattElement =>
-                    tabellElementer.push(['Skattetrekk', '', '', formaterNOK(skattElement.skattebeløp)])
+                .map((skattElement) =>
+                    tabellElementer.push(['Skattetrekk', '', '', formaterNOK(skattElement.skattebelop)])
                 );
         }
 
         if (ytelse.trekkListe) {
             ytelse.trekkListe
                 .sort(trekkBelopAscComparator)
-                .map(trekkElement =>
-                    tabellElementer.push([trekkElement.trekktype, '', '', formaterNOK(trekkElement.trekkbeløp)])
+                .map((trekkElement) =>
+                    tabellElementer.push([trekkElement.trekktype, '', '', formaterNOK(trekkElement.trekkbelop)])
                 );
         }
 
@@ -87,7 +87,7 @@ function UtbetalingsDetaljer(props: Props) {
                     props.konto,
                     formaterNOK(ytelse.ytelseskomponentersum),
                     formaterNOK(ytelse.skattsum + ytelse.trekksum),
-                    formaterNOK(ytelse.nettobeløp)
+                    formaterNOK(ytelse.nettobelop)
                 ]
             ]}
         />

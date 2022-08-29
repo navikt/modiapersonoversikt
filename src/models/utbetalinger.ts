@@ -16,7 +16,7 @@ export interface Utbetaling {
     erUtbetaltTilPerson: boolean;
     erUtbetaltTilOrganisasjon: boolean;
     erUtbetaltTilSamhandler: boolean;
-    nettobeløp: number;
+    nettobelop: number;
     melding?: string;
     metode: string;
     status: string;
@@ -32,7 +32,7 @@ export interface Ytelse {
     trekksum: number;
     skattListe?: Skatt[];
     skattsum: number;
-    nettobeløp: number;
+    nettobelop: number;
     periode: YtelsePeriode;
     bilagsnummer?: string;
     arbeidsgiver: null | Arbeidsgiver;
@@ -40,20 +40,20 @@ export interface Ytelse {
 
 export interface Ytelseskomponent {
     ytelseskomponenttype: string;
-    satsbeløp?: number;
+    satsbelop?: number;
     satstype?: string;
     satsantall?: number;
-    ytelseskomponentbeløp: number;
+    ytelseskomponentbelop: number;
 }
 
 export interface Trekk {
     trekktype: string;
-    trekkbeløp: number;
+    trekkbelop: number;
     kreditor: string | null;
 }
 
 export interface Skatt {
-    skattebeløp: number;
+    skattebelop: number;
 }
 
 export interface YtelsePeriode {
