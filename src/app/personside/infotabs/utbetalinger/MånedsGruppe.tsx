@@ -24,9 +24,9 @@ const Wrapper = styled.li`
 `;
 
 function Månedsgruppe({ gruppe }: Props) {
-    const utbetalingsKomponenter = gruppe.array.map(utbetaling => (
+    const utbetalingsKomponenter = gruppe.array.map((utbetaling) => (
         <UtbetalingsKomponent
-            key={getGjeldendeDatoForUtbetaling(utbetaling) + utbetaling.nettobeløp}
+            key={getGjeldendeDatoForUtbetaling(utbetaling) + utbetaling.nettobelop}
             utbetaling={utbetaling}
         />
     ));

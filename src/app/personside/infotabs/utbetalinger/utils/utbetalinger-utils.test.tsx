@@ -128,11 +128,11 @@ test('summerer netto utbetaling riktig', () => {
     const ytelser: Ytelse[] = [
         {
             ...randomYtelse,
-            nettobeløp: 100
+            nettobelop: 100
         },
         {
             ...randomYtelse,
-            nettobeløp: 200
+            nettobelop: 200
         }
     ];
 
@@ -190,11 +190,11 @@ test('summerer beløp på tvers av utbetalinger', () => {
             ytelser: [
                 {
                     ...randomYtelse,
-                    nettobeløp: 200
+                    nettobelop: 200
                 },
                 {
                     ...randomYtelse,
-                    nettobeløp: 200
+                    nettobelop: 200
                 }
             ]
         },
@@ -203,7 +203,7 @@ test('summerer beløp på tvers av utbetalinger', () => {
             ytelser: [
                 {
                     ...randomYtelse,
-                    nettobeløp: 200
+                    nettobelop: 200
                 }
             ]
         },
@@ -213,7 +213,7 @@ test('summerer beløp på tvers av utbetalinger', () => {
             ytelser: [
                 {
                     ...randomYtelse,
-                    nettobeløp: 10000
+                    nettobelop: 10000
                 }
             ]
         }
@@ -248,18 +248,8 @@ test('henter riktig fra og til-date fra filter ved valg av "siste 30 dager"', ()
     const fraDate: Date = getFraDateFromFilter(filter);
     const tilDate: Date = getTilDateFromFilter(filter);
 
-    expect(dayjs(fraDate).toString()).toEqual(
-        dayjs()
-            .subtract(30, 'day')
-            .startOf('day')
-            .toString()
-    );
-    expect(dayjs(tilDate).toString()).toEqual(
-        dayjs()
-            .add(100, 'day')
-            .endOf('day')
-            .toString()
-    );
+    expect(dayjs(fraDate).toString()).toEqual(dayjs().subtract(30, 'day').startOf('day').toString());
+    expect(dayjs(tilDate).toString()).toEqual(dayjs().add(100, 'day').endOf('day').toString());
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "inneværende år', () => {
@@ -274,17 +264,8 @@ test('henter riktig fra og til-date fra filter ved valg av "inneværende år', (
     const fraDate: Date = getFraDateFromFilter(filter);
     const tilDate: Date = getTilDateFromFilter(filter);
 
-    expect(dayjs(fraDate).toString()).toEqual(
-        dayjs()
-            .startOf('year')
-            .toString()
-    );
-    expect(dayjs(tilDate).toString()).toEqual(
-        dayjs()
-            .add(100, 'day')
-            .endOf('day')
-            .toString()
-    );
+    expect(dayjs(fraDate).toString()).toEqual(dayjs().startOf('year').toString());
+    expect(dayjs(tilDate).toString()).toEqual(dayjs().add(100, 'day').endOf('day').toString());
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "i fjor', () => {
@@ -299,18 +280,8 @@ test('henter riktig fra og til-date fra filter ved valg av "i fjor', () => {
     const fraDate: Date = getFraDateFromFilter(filter);
     const tilDate: Date = getTilDateFromFilter(filter);
 
-    expect(dayjs(fraDate).toString()).toEqual(
-        dayjs()
-            .subtract(1, 'year')
-            .startOf('year')
-            .toString()
-    );
-    expect(dayjs(tilDate).toString()).toEqual(
-        dayjs()
-            .subtract(1, 'year')
-            .endOf('year')
-            .toString()
-    );
+    expect(dayjs(fraDate).toString()).toEqual(dayjs().subtract(1, 'year').startOf('year').toString());
+    expect(dayjs(tilDate).toString()).toEqual(dayjs().subtract(1, 'year').endOf('year').toString());
 });
 
 test('henter riktig fra og til-date fra filter ved valg av "egendefinert periode', () => {

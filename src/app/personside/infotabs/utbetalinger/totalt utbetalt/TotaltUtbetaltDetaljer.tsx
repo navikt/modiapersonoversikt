@@ -124,10 +124,10 @@ function getYtelsesKomponentSammendragListe(ytelser: Ytelse[]) {
     const alleYtelsesKomponenter = getAlleYtelsesKomponenterFraYtelser(ytelser);
     const ytelsesKomponenterGruppertPaaType = groupArray(
         alleYtelsesKomponenter,
-        ytelseskomponent => ytelseskomponent.ytelseskomponenttype
+        (ytelseskomponent) => ytelseskomponent.ytelseskomponenttype
     );
-    const listeKomponenter = ytelsesKomponenterGruppertPaaType.map(gruppe => {
-        const sum = gruppe.array.reduce((acc, ytelsesKomponent) => acc + ytelsesKomponent.ytelseskomponentbeløp, 0);
+    const listeKomponenter = ytelsesKomponenterGruppertPaaType.map((gruppe) => {
+        const sum = gruppe.array.reduce((acc, ytelsesKomponent) => acc + ytelsesKomponent.ytelseskomponentbelop, 0);
         return (
             <Fragment key={gruppe.category}>
                 <dt>{gruppe.category}</dt>
@@ -152,7 +152,7 @@ function getYtelserSammendrag(utbetalinger: Utbetaling[]) {
     const ytelserGruppertPaaTema = groupArray(alleUtbetalteYtelser, getTypeOgAarFromYtelse);
     const ytelsesSammendrag = ytelserGruppertPaaTema
         .sort((a, b) => sorterAlfabetisk(a.category, b.category))
-        .map(gruppe => {
+        .map((gruppe) => {
             const ytelser = gruppe.array;
             const ytelsesType = gruppe.category;
             const periode = getPeriodeFromYtelser(ytelser);

@@ -65,7 +65,7 @@ class DelUtbetaling extends React.PureComponent<Props> {
             <BulletPoint showBulletPoint={!this.props.erEkspandert} color={theme.color.kategori}>
                 <SpaceBetween>
                     <Element tag="h5">{ytelse.type}</Element>
-                    <Element>{formaterNOK(ytelse.nettobeløp)}</Element>
+                    <Element>{formaterNOK(ytelse.nettobelop)}</Element>
                 </SpaceBetween>
                 <Normaltekst>{periode}</Normaltekst>
             </BulletPoint>

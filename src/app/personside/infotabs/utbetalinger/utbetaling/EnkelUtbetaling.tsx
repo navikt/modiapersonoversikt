@@ -55,7 +55,7 @@ function EnkelUtbetaling(props: Props) {
     const utbetalingRef = useRef<HTMLLIElement>(null);
     const dispatch = useDispatch();
     const printer = usePrinter();
-    const utbetalingerState = useAppState(state => state.utbetalinger);
+    const utbetalingerState = useAppState((state) => state.utbetalinger);
     const erIFokus = utbetalingerState.ytelseIFokus === props.ytelse;
     const visDetaljer = utbetalingerState.ekspanderteYtelser.includes(props.ytelse);
     const ekspanderYtelse = (ekspander: boolean) => dispatch(setEkspanderYtelse(props.ytelse, ekspander));
@@ -95,7 +95,7 @@ function EnkelUtbetaling(props: Props) {
     };
 
     const dato = datoVerbose(getGjeldendeDatoForUtbetaling(props.utbetaling)).sammensatt;
-    const sum = formaterNOK(props.ytelse.nettobeløp);
+    const sum = formaterNOK(props.ytelse.nettobelop);
     const periode = periodeStringFromYtelse(props.ytelse);
     const forfallsInfo =
         props.utbetaling.forfallsdato && !props.utbetaling.utbetalingsdato ? `Forfallsdato: ${dato}` : '';
