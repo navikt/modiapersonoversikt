@@ -19,15 +19,15 @@ export function utbetalingDatoComparator(a: Utbetaling, b: Utbetaling) {
 }
 
 export function ytelseBelopDescComparator(a: Ytelseskomponent, b: Ytelseskomponent) {
-    return b.ytelseskomponentbeløp - a.ytelseskomponentbeløp;
+    return b.ytelseskomponentbelop - a.ytelseskomponentbelop;
 }
 
 export function skattBelopAscComparator(a: Skatt, b: Skatt) {
-    return a.skattebeløp - b.skattebeløp;
+    return a.skattebelop - b.skattebelop;
 }
 
 export function trekkBelopAscComparator(a: Trekk, b: Trekk) {
-    return a.trekkbeløp - b.trekkbeløp;
+    return a.trekkbelop - b.trekkbelop;
 }
 
 export function getUtbetalingerForSiste30DagerDatoer() {
@@ -75,7 +75,7 @@ export function periodeStringFromYtelse(ytelse: Ytelse): string {
 }
 
 export function getNettoSumYtelser(ytelser: Ytelse[]): number {
-    return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.nettobeløp, 0);
+    return ytelser.reduce((acc: number, ytelse: Ytelse) => acc + ytelse.nettobelop, 0);
 }
 
 export function getBruttoSumYtelser(ytelser: Ytelse[]): number {
