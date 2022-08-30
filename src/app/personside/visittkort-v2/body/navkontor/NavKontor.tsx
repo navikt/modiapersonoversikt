@@ -12,6 +12,7 @@ import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import AdresseInfo from '../AdresseInfo';
 import { capitalizeName } from '../../../../../utils/string-utils';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
+import { mapUgyldigGT } from '../../visittkort-utils';
 
 const ApningstiderListe = styled.dl`
     margin: initial;
@@ -31,6 +32,7 @@ const ApningstiderListe = styled.dl`
 interface Props {
     feilendeSystemer: Array<InformasjonElement>;
     navEnhet: Enhet | null;
+    geografiskTilknytning: string | null;
 }
 
 function PublikumsmottakKontaktInfo(props: { publikumsmottak: PublikumsmottakInterface }) {
@@ -82,7 +84,7 @@ function Publikumsmottak(props: { publikumsmottak: PublikumsmottakInterface[] })
     );
 }
 
-function NavKontor({ feilendeSystemer, navEnhet }: Props) {
+function NavKontor({ feilendeSystemer, navEnhet, geografiskTilknytning }: Props) {
     const baseUrlResource = useRestResource((resources) => resources.baseUrl);
     const baseUrl = baseUrlResource.data ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
 
@@ -97,7 +99,17 @@ function NavKontor({ feilendeSystemer, navEnhet }: Props) {
     }
 
     if (!navEnhet) {
-        return null;
+        if (!geografiskTilknytning) {
+            return null;
+        } else {
+            return (
+                <VisittkortGruppe tittel={'NAV-kontor'}>
+                    <VisittkortElement beskrivelse={mapUgyldigGT(geografiskTilknytning)} ikon={<NavLogo />}>
+                        <Feilmelding>Feilet ved uthenting av informasjon om NAV-kontor</Feilmelding>
+                    </VisittkortElement>
+                </VisittkortGruppe>
+            );
+        }
     }
 
     const beskrivelse = `${navEnhet?.id} ${navEnhet.navn}`;

@@ -70,3 +70,17 @@ export function hentPeriodeTekst(gyldighetstidspunkt: string | null, opphorstids
 
     return `${fom} ${ENDASH} ${tom}`;
 }
+
+export function mapUgyldigGT(gt: string): string {
+    if (gt === '0301') {
+        return 'Oslo';
+    } else if (gt === '4601') {
+        return 'Bergen';
+    } else if (gt === '5001') {
+        return 'Trondheim';
+    } else if (gt === '1103') {
+        return 'Stavanger';
+    } else {
+        return 'Ukjent';
+    }
+}
