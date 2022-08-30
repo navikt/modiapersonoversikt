@@ -74,7 +74,7 @@ export function hentPeriodeTekst(gyldighetstidspunkt: string | null, opphorstids
 const ugyldig_gt_map = {
     '0301': 'Oslo',
     '4601': 'Bergen',
-    '5001': 'Tronheim',
+    '5001': 'Trondheim',
     '1103': 'Stavanger'
 };
 export function mapUgyldigGT(gt: string): string {
