@@ -98,7 +98,9 @@ function NavKontor({ feilendeSystemer, navEnhet, geografiskTilknytning }: Props)
         );
     }
 
-    if (geografiskTilknytning && navEnhet === null) {
+    if (geografiskTilknytning === null) {
+        return null;
+    } else if (navEnhet === null) {
         return (
             <VisittkortGruppe tittel={'NAV-kontor'}>
                 <VisittkortElement beskrivelse={mapUgyldigGT(geografiskTilknytning)} ikon={<NavLogo />}>
@@ -106,8 +108,6 @@ function NavKontor({ feilendeSystemer, navEnhet, geografiskTilknytning }: Props)
                 </VisittkortElement>
             </VisittkortGruppe>
         );
-    } else if (navEnhet === null) {
-        return null;
     }
 
     const beskrivelse = `${navEnhet?.id} ${navEnhet.navn}`;
