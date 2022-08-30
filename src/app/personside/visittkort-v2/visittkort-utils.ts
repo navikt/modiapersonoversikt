@@ -71,16 +71,12 @@ export function hentPeriodeTekst(gyldighetstidspunkt: string | null, opphorstids
     return `${fom} ${ENDASH} ${tom}`;
 }
 
+const ugyldig_gt_map = {
+    '0301': 'Oslo',
+    '4601': 'Bergen',
+    '5001': 'Tronheim',
+    '1103': 'Stavanger'
+};
 export function mapUgyldigGT(gt: string): string {
-    if (gt === '0301') {
-        return 'Oslo';
-    } else if (gt === '4601') {
-        return 'Bergen';
-    } else if (gt === '5001') {
-        return 'Trondheim';
-    } else if (gt === '1103') {
-        return 'Stavanger';
-    } else {
-        return 'Ukjent';
-    }
+    return ugyldig_gt_map[gt] ?? 'Ukjent';
 }

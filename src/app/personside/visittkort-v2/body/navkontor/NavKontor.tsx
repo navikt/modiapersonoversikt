@@ -98,18 +98,16 @@ function NavKontor({ feilendeSystemer, navEnhet, geografiskTilknytning }: Props)
         );
     }
 
-    if (!navEnhet) {
-        if (!geografiskTilknytning) {
-            return null;
-        } else {
-            return (
-                <VisittkortGruppe tittel={'NAV-kontor'}>
-                    <VisittkortElement beskrivelse={mapUgyldigGT(geografiskTilknytning)} ikon={<NavLogo />}>
-                        <Feilmelding>Feilet ved uthenting av informasjon om NAV-kontor</Feilmelding>
-                    </VisittkortElement>
-                </VisittkortGruppe>
-            );
-        }
+    if (geografiskTilknytning && navEnhet === null) {
+        return (
+            <VisittkortGruppe tittel={'NAV-kontor'}>
+                <VisittkortElement beskrivelse={mapUgyldigGT(geografiskTilknytning)} ikon={<NavLogo />}>
+                    <Feilmelding>Fant ikke geografisk tilknyttning for bruker</Feilmelding>
+                </VisittkortElement>
+            </VisittkortGruppe>
+        );
+    } else if (navEnhet === null) {
+        return null;
     }
 
     const beskrivelse = `${navEnhet?.id} ${navEnhet.navn}`;
