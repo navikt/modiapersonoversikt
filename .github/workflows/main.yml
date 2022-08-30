@@ -55,6 +55,11 @@ jobs:
     strategy:
       matrix:
         q_env: [q0, q1]
+        include:
+          - q_env: q0
+            disable_azure_ad: false
+          - q_env: q1
+            disable_azure_ad: true
     steps:
       - uses: actions/checkout@v2
       - uses: nais/deploy/actions/deploy@v1
@@ -63,7 +68,7 @@ jobs:
           PRINT_PAYLOAD: true
           CLUSTER: dev-fss
           RESOURCE: .nais/qa-template.yaml
-          VAR: q_env=${{ matrix.q_env }},version=${{ github.sha }}
+          VAR: q_env=${{ matrix.q_env }},version=${{ github.sha }},disable_azure_ad=${{ matrix.disable_azure_ad }}
 
   deploy-prod:
     name: Deploy to prod
