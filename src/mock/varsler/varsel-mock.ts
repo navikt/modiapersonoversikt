@@ -42,9 +42,7 @@ function genererDittNavEventVarsel(fnr: string): DittNavEvent {
         link: faker.lorem.sentence(5 + faker.random.number(5)),
         aktiv: faker.random.boolean(),
         eksternVarslingSendt: eksternVarsel,
-        eksternVarslingKanaler: eksternVarsel
-            ? nArrayElement(['DITT_NAV', 'SMS', 'EPOST'], faker.random.number(3), false)
-            : []
+        eksternVarslingKanaler: eksternVarsel ? nArrayElement(['SMS', 'EPOST'], faker.random.number(2), false) : []
     };
 }
 

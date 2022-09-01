@@ -50,7 +50,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0 1rem;
 }
 
-.c31 {
+.c32 {
   padding: 0.7rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -58,28 +58,28 @@ exports[`Viser oversikt med alt innhold 1`] = `
   display: flex;
 }
 
-.c31 > *:first-child {
+.c32 > *:first-child {
   -webkit-flex: 0 0 20%;
   -ms-flex: 0 0 20%;
   flex: 0 0 20%;
 }
 
-.c31 > *:last-child {
+.c32 > *:last-child {
   max-width: 30rem;
 }
 
-.c30 {
+.c31 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c30 > *:not(:first-child) {
+.c31 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c29 {
+.c30 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -87,17 +87,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 0.5em;
 }
 
-.c29:focus {
+.c30:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c29:focus {
+.c30:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c29:focus::after {
+.c30:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -150,17 +150,23 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0.7rem;
 }
 
-.c28 li {
+.c29 li {
   display: inline-block;
 }
 
-.c28 li:not(:last-child):after {
+.c29 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
 
 .c27 {
   display: block;
+}
+
+.c28 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .c24 > *:not(:first-child) {
@@ -1162,14 +1168,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </span>
                     </p>
                     <h4
-                      className="typo-element"
+                      className="typo-element c28"
                       id="Helt tilfeldig ID"
                     >
                       Påminnelse om å sende meldekort
                     </h4>
                     <ul
                       aria-label="Kommunikasjonskanaler"
-                      className="c28"
+                      className="c29"
                     >
                       <li
                         className="typo-normal"
@@ -1184,10 +1190,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </ul>
                     <button
                       aria-expanded={false}
-                      aria-label="Vis meldinger"
-                      className="c29"
+                      aria-label="Vis mer informasjon om varsel/notifikasjon"
+                      className="c30"
                       onClick={[Function]}
-                      title="Vis meldinger"
+                      title="Vis mer informasjon om varsel/notifikasjon"
                     >
                       <span
                         className="nav-frontend-chevron chevronboks chevron--ned"
@@ -1196,11 +1202,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   </div>
                   <ol
                     aria-label="Meldinger"
-                    className="c30"
+                    className="c31"
                   >
                     <li
                       aria-label="EPOST"
-                      className="c31"
+                      className="c32"
                     >
                       <div>
                         <p
@@ -1237,7 +1243,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </li>
                     <li
                       aria-label="SMS"
-                      className="c31"
+                      className="c32"
                     >
                       <div>
                         <p
@@ -1290,14 +1296,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       </span>
                     </p>
                     <h4
-                      className="typo-element"
+                      className="typo-element c28"
                       id="Helt tilfeldig ID"
                     >
                       Påminnelse om å sende meldekort
                     </h4>
                     <ul
                       aria-label="Kommunikasjonskanaler"
-                      className="c28"
+                      className="c29"
                     >
                       <li
                         className="typo-normal"
@@ -1307,10 +1313,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </ul>
                     <button
                       aria-expanded={false}
-                      aria-label="Vis meldinger"
-                      className="c29"
+                      aria-label="Vis mer informasjon om varsel/notifikasjon"
+                      className="c30"
                       onClick={[Function]}
-                      title="Vis meldinger"
+                      title="Vis mer informasjon om varsel/notifikasjon"
                     >
                       <span
                         className="nav-frontend-chevron chevronboks chevron--ned"
@@ -1319,11 +1325,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
                   </div>
                   <ol
                     aria-label="Meldinger"
-                    className="c30"
+                    className="c31"
                   >
                     <li
                       aria-label="EPOST"
-                      className="c31"
+                      className="c32"
                     >
                       <div>
                         <p

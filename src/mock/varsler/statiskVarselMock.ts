@@ -56,9 +56,9 @@ export const statiskDittnavEventVarselMock: DittNavEvent[] = [
         produsent: '',
         sikkerhetsnivaa: 4,
         sistOppdatert: '2018-04-01',
-        tekst: 'Tekst her',
+        tekst: 'Tekst her, vi legger til en hel del mer tekst for så hva som skjer når det er mye tekst her.\nKan være greit å sjekke hvordan dette vil oppføre seg når det er flere linjes også.',
         link: '',
-        aktiv: true,
+        aktiv: false,
         eksternVarslingSendt: true,
         eksternVarslingKanaler: ['SMS', 'EPOST']
     }
