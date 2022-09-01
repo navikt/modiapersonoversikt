@@ -13,7 +13,7 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
 import VisMerChevron from '../../../../components/VisMerChevron';
-import { formaterDato } from '../../../../utils/string-utils';
+import { ENDASH, formaterDato } from '../../../../utils/string-utils';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisVarsel } from '../../../../redux/varsler/varslerReducer';
@@ -97,6 +97,13 @@ function getVarselTekst(varsel: VarselModell) {
     return varselTekst;
 }
 
+function emptyReplacement(text: string | null | undefined, replacement: string): string {
+    if (text === null || text === undefined || text === '') {
+        return replacement;
+    }
+    return text;
+}
+
 function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
     const open = useAppState((state) => state.varsler.aapneVarsler).includes(varsel);
     const dispatch = useDispatch();
@@ -127,13 +134,13 @@ function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
                     <UnmountClosed isOpened={open}>
                         <GraattDefinisjonsListe>
                             <dt>Produsert av:</dt>
-                            <dd>{varsel.produsent}</dd>
+                            <dd>{emptyReplacement(varsel.produsent, ENDASH)}</dd>
 
                             <dt>Tekst:</dt>
-                            <dd>{varsel.tekst}</dd>
+                            <dd>{emptyReplacement(varsel.tekst, ENDASH)}</dd>
 
                             <dt>Link:</dt>
-                            <dd>{varsel.link}</dd>
+                            <dd>{emptyReplacement(varsel.link, ENDASH)}</dd>
                         </GraattDefinisjonsListe>
                     </UnmountClosed>
                 </article>
