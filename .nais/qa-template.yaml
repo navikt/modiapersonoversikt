@@ -47,7 +47,7 @@ spec:
     - name: APP_VERSION
       value: "{{ version }}"
     - name: PROXY_CONFIG_FILE
-      value: "/{{ q_env }}-proxy-config.json"
+      value: "/preprod-proxy-config.json"
     - name: MILJO_SUFFIX
       value: "-{{ q_env }}"
     - name: IDP_DISCOVERY_URL
@@ -76,5 +76,3 @@ spec:
       report-uri /frontendlogger/api/warn;"
     - name: REFERRER_POLICY
       value: "no-referrer"
-    - name: DISABLE_AZURE_AD
-      value: "{{ disable_azure_ad }}"
