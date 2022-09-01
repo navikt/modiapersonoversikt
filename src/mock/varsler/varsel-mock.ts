@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { statiskDittnavEventVarselMock, statiskVarselMock } from './statiskVarselMock';
 import { backendDatoformat } from '../../utils/date-utils';
 import { aremark } from '../persondata/aremark';
+import { nArrayElement } from '../utils-mock';
 
 export function getMockVarsler(fnr: string): VarslerResult {
     faker.seed(Number(fnr));
@@ -28,6 +29,7 @@ export function getMockVarsler(fnr: string): VarslerResult {
 
 function genererDittNavEventVarsel(fnr: string): DittNavEvent {
     const tidspunkt = faker.date.recent(90);
+    const eksternVarsel = faker.random.boolean();
     return {
         fodselsnummer: fnr,
         grupperingsId: faker.random.uuid(),
@@ -38,7 +40,11 @@ function genererDittNavEventVarsel(fnr: string): DittNavEvent {
         sistOppdatert: dayjs(tidspunkt).format(backendDatoformat),
         tekst: faker.lorem.sentence(5 + faker.random.number(5)),
         link: faker.lorem.sentence(5 + faker.random.number(5)),
-        aktiv: faker.random.boolean()
+        aktiv: faker.random.boolean(),
+        eksternVarslingSendt: eksternVarsel,
+        eksternVarslingKanaler: eksternVarsel
+            ? nArrayElement(['DITT_NAV', 'SMS', 'EPOST'], faker.random.number(3), false)
+            : []
     };
 }
 

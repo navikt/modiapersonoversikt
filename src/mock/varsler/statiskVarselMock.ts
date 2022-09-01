@@ -58,6 +58,8 @@ export const statiskDittnavEventVarselMock: DittNavEvent[] = [
         sistOppdatert: '2018-04-01',
         tekst: 'Tekst her',
         link: '',
-        aktiv: true
+        aktiv: true,
+        eksternVarslingSendt: true,
+        eksternVarslingKanaler: ['SMS', 'EPOST']
     }
 ];
