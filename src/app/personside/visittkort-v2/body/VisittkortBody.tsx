@@ -30,7 +30,11 @@ function SingleColumnLayout(persondata: PersonData) {
                 feilendeSystemer={persondata.feilendeSystemer}
                 foreldreansvar={persondata.person.foreldreansvar}
             />
-            <NavKontor feilendeSystemer={persondata.feilendeSystemer} navEnhet={persondata.person.navEnhet} />
+            <NavKontor
+                feilendeSystemer={persondata.feilendeSystemer}
+                navEnhet={persondata.person.navEnhet}
+                geografiskTilknytning={persondata.person.geografiskTilknytning}
+            />
             <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
             <Vergemal feilendeSystemer={persondata.feilendeSystemer} vergemal={persondata.person.vergemal} />
             <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
@@ -53,7 +57,11 @@ function DoubleColumnLayout(persondata: PersonData) {
                 />
             </Kolonne>
             <Kolonne>
-                <NavKontor feilendeSystemer={persondata.feilendeSystemer} navEnhet={persondata.person.navEnhet} />
+                <NavKontor
+                    feilendeSystemer={persondata.feilendeSystemer}
+                    navEnhet={persondata.person.navEnhet}
+                    geografiskTilknytning={persondata.person.geografiskTilknytning}
+                />
                 <TilrettelagtKommunikasjon tilrettelagtKommunikasjon={persondata.person.tilrettelagtKommunikasjon} />
                 <Vergemal feilendeSystemer={persondata.feilendeSystemer} vergemal={persondata.person.vergemal} />
                 <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
@@ -81,7 +89,11 @@ function TripleColumnLayout(persondata: PersonData) {
                 <Vergemal feilendeSystemer={persondata.feilendeSystemer} vergemal={persondata.person.vergemal} />
             </Kolonne>
             <Kolonne>
-                <NavKontor feilendeSystemer={persondata.feilendeSystemer} navEnhet={persondata.person.navEnhet} />
+                <NavKontor
+                    feilendeSystemer={persondata.feilendeSystemer}
+                    navEnhet={persondata.person.navEnhet}
+                    geografiskTilknytning={persondata.person.geografiskTilknytning}
+                />
                 <Sikkerhetstiltak sikkerhetstiltak={persondata.person.sikkerhetstiltak} />
                 <LenkeBrukerprofil />
             </Kolonne>

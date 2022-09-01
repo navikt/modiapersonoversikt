@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Element } from 'nav-frontend-typografi';
 import { Person } from '../../PersondataDomain';
+import { mapUgyldigGT } from '../../visittkort-utils';
 
 interface Props {
     person: Person;
@@ -14,9 +15,15 @@ const NavKontorSection = styled.section`
 `;
 
 function NavKontorContainer({ person }: Props) {
-    const navKontorInfo = person.navEnhet
-        ? `NAV-kontor / ${person.navEnhet.id} ${person.navEnhet.navn}`
-        : 'NAV-kontor / Ingen enhet';
+    let navKontorInfo: string;
+    if (person.geografiskTilknytning === null) {
+        navKontorInfo = 'NAV-kontor / Ingen enhet';
+    } else if (person.navEnhet === null) {
+        navKontorInfo = `Nav-kontor / ${mapUgyldigGT(person.geografiskTilknytning)}`;
+    } else {
+        navKontorInfo = `NAV-kontor / ${person.navEnhet.id} ${person.navEnhet.navn}`;
+    }
+
     return (
         <NavKontorSection aria-label="Nav kontor">
             <Element tag="h2">{navKontorInfo}</Element>
