@@ -9,6 +9,8 @@ export interface DittNavEvent {
     tekst: string;
     link: string;
     aktiv: boolean;
+    eksternVarslingSendt: boolean;
+    eksternVarslingKanaler: Array<string>;
 }
 
 export interface Varsel {

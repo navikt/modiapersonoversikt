@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser varselcontainer med alt innhold 1`] = `
-.c9 {
+.c10 {
   padding: 0.7rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -9,28 +9,28 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   display: flex;
 }
 
-.c9 > *:first-child {
+.c10 > *:first-child {
   -webkit-flex: 0 0 20%;
   -ms-flex: 0 0 20%;
   flex: 0 0 20%;
 }
 
-.c9 > *:last-child {
+.c10 > *:last-child {
   max-width: 30rem;
 }
 
-.c8 {
+.c9 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c8 > *:not(:first-child) {
+.c9 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c7 {
+.c8 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -38,17 +38,17 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   border-radius: 0.5em;
 }
 
-.c7:focus {
+.c8:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c7:focus {
+.c8:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c7:focus::after {
+.c8:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -101,23 +101,23 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   padding: 0.7rem;
 }
 
-.c6 li {
+.c7 li {
   display: inline-block;
 }
 
-.c6 li:not(:last-child):after {
+.c7 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
 
-.c10 {
+.c11 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c10 dt {
+.c11 dt {
   float: left;
   clear: left;
   font-weight: bold;
@@ -125,7 +125,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   width: 7rem;
 }
 
-.c10 dd {
+.c11 dd {
   margin-bottom: 0.5rem;
   margin-left: 7.125rem;
 }
@@ -134,11 +134,18 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   display: block;
 }
 
+.c6 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .c1 {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 6rem 55% 1fr;
   grid-template-columns: 6rem minmax(35%,55%) 1fr;
+  padding: 0;
   margin-bottom: 1rem;
 }
 
@@ -152,6 +159,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 
 .c1 > *:nth-child(3) {
   -ms-grid-column: 3;
+}
+
+.c1 > * {
+  padding: 0.7rem;
 }
 
 .c2 > * {
@@ -214,14 +225,14 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </span>
             </p>
             <h4
-              className="typo-element"
+              className="typo-element c6"
               id="Helt tilfeldig ID"
             >
               Påminnelse om å sende meldekort
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c6"
+              className="c7"
             >
               <li
                 className="typo-normal"
@@ -236,10 +247,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </ul>
             <button
               aria-expanded={false}
-              aria-label="Vis meldinger"
-              className="c7"
+              aria-label="Vis mer informasjon om varsel/notifikasjon"
+              className="c8"
               onClick={[Function]}
-              title="Vis meldinger"
+              title="Vis mer informasjon om varsel/notifikasjon"
             >
               <span
                 className="nav-frontend-chevron chevronboks chevron--ned"
@@ -248,11 +259,11 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           </div>
           <ol
             aria-label="Meldinger"
-            className="c8"
+            className="c9"
           >
             <li
               aria-label="EPOST"
-              className="c9"
+              className="c10"
             >
               <div>
                 <p
@@ -289,7 +300,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </li>
             <li
               aria-label="SMS"
-              className="c9"
+              className="c10"
             >
               <div>
                 <p
@@ -342,14 +353,14 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </span>
             </p>
             <h4
-              className="typo-element"
+              className="typo-element c6"
               id="Helt tilfeldig ID"
             >
               Påminnelse om å sende meldekort
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c6"
+              className="c7"
             >
               <li
                 className="typo-normal"
@@ -359,10 +370,10 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </ul>
             <button
               aria-expanded={false}
-              aria-label="Vis meldinger"
-              className="c7"
+              aria-label="Vis mer informasjon om varsel/notifikasjon"
+              className="c8"
               onClick={[Function]}
-              title="Vis meldinger"
+              title="Vis mer informasjon om varsel/notifikasjon"
             >
               <span
                 className="nav-frontend-chevron chevronboks chevron--ned"
@@ -371,11 +382,11 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           </div>
           <ol
             aria-label="Meldinger"
-            className="c8"
+            className="c9"
           >
             <li
               aria-label="EPOST"
-              className="c9"
+              className="c10"
             >
               <div>
                 <p
@@ -428,31 +439,44 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <p
               className="typo-normal"
             >
-              01.03.2018
+              <span
+                className="c5"
+              >
+                01.03.2018
+              </span>
             </p>
             <h4
-              className="typo-element"
+              className="typo-element c6"
               id="Helt tilfeldig ID"
             >
-              Tekst her
+              Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c6"
+              className="c7"
             >
               <li
                 className="typo-normal"
               >
-                NOTIFIKASJON 
-                
+                DITT_NAV
+              </li>
+              <li
+                className="typo-normal"
+              >
+                SMS
+              </li>
+              <li
+                className="typo-normal"
+              >
+                EPOST
               </li>
             </ul>
             <button
               aria-expanded={false}
-              aria-label="Vis mer informasjon om notifikasjon"
-              className="c7"
+              aria-label="Vis mer informasjon om varsel/notifikasjon"
+              className="c8"
               onClick={[Function]}
-              title="Vis mer informasjon om notifikasjon"
+              title="Vis mer informasjon om varsel/notifikasjon"
             >
               <span
                 className="nav-frontend-chevron chevronboks chevron--ned"
@@ -460,25 +484,25 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </button>
           </div>
           <dl
-            className="c10"
+            className="c11"
           >
             <dt>
               Produsert av:
             </dt>
             <dd>
-              
+              sf-brukernotifikasjon
             </dd>
             <dt>
               Tekst:
             </dt>
             <dd>
-              Tekst her
+              Et nytt samtalereferat er tilgjengelig i din innboks
             </dd>
             <dt>
               Link:
             </dt>
             <dd>
-              
+              https://innboks.nav.no
             </dd>
           </dl>
         </article>
@@ -498,31 +522,44 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <p
               className="typo-normal"
             >
-              01.03.2018
+              <span
+                className="c5"
+              >
+                01.03.2018
+              </span>
             </p>
             <h4
-              className="typo-element"
+              className="typo-element c6"
               id="Helt tilfeldig ID"
             >
-              Tekst her
+              Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c6"
+              className="c7"
             >
               <li
                 className="typo-normal"
               >
-                NOTIFIKASJON 
-                
+                DITT_NAV
+              </li>
+              <li
+                className="typo-normal"
+              >
+                SMS
+              </li>
+              <li
+                className="typo-normal"
+              >
+                EPOST
               </li>
             </ul>
             <button
               aria-expanded={false}
-              aria-label="Vis mer informasjon om notifikasjon"
-              className="c7"
+              aria-label="Vis mer informasjon om varsel/notifikasjon"
+              className="c8"
               onClick={[Function]}
-              title="Vis mer informasjon om notifikasjon"
+              title="Vis mer informasjon om varsel/notifikasjon"
             >
               <span
                 className="nav-frontend-chevron chevronboks chevron--ned"
@@ -530,25 +567,25 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </button>
           </div>
           <dl
-            className="c10"
+            className="c11"
           >
             <dt>
               Produsert av:
             </dt>
             <dd>
-              
+              sf-brukernotifikasjon
             </dd>
             <dt>
               Tekst:
             </dt>
             <dd>
-              Tekst her
+              Et nytt samtalereferat er tilgjengelig i din innboks
             </dd>
             <dt>
               Link:
             </dt>
             <dd>
-              
+              https://innboks.nav.no
             </dd>
           </dl>
         </article>
@@ -568,31 +605,44 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <p
               className="typo-normal"
             >
-              01.03.2018
+              <span
+                className="c5"
+              >
+                01.03.2018
+              </span>
             </p>
             <h4
-              className="typo-element"
+              className="typo-element c6"
               id="Helt tilfeldig ID"
             >
-              Tekst her
+              Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c6"
+              className="c7"
             >
               <li
                 className="typo-normal"
               >
-                NOTIFIKASJON 
-                
+                DITT_NAV
+              </li>
+              <li
+                className="typo-normal"
+              >
+                SMS
+              </li>
+              <li
+                className="typo-normal"
+              >
+                EPOST
               </li>
             </ul>
             <button
               aria-expanded={false}
-              aria-label="Vis mer informasjon om notifikasjon"
-              className="c7"
+              aria-label="Vis mer informasjon om varsel/notifikasjon"
+              className="c8"
               onClick={[Function]}
-              title="Vis mer informasjon om notifikasjon"
+              title="Vis mer informasjon om varsel/notifikasjon"
             >
               <span
                 className="nav-frontend-chevron chevronboks chevron--ned"
@@ -600,25 +650,25 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </button>
           </div>
           <dl
-            className="c10"
+            className="c11"
           >
             <dt>
               Produsert av:
             </dt>
             <dd>
-              
+              sf-brukernotifikasjon
             </dd>
             <dt>
               Tekst:
             </dt>
             <dd>
-              Tekst her
+              Et nytt samtalereferat er tilgjengelig i din innboks
             </dd>
             <dt>
               Link:
             </dt>
             <dd>
-              
+              https://innboks.nav.no
             </dd>
           </dl>
         </article>

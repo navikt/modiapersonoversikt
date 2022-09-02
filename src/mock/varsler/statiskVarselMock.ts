@@ -53,11 +53,13 @@ export const statiskDittnavEventVarselMock: DittNavEvent[] = [
         grupperingsId: '',
         eventId: '',
         forstBehandlet: '2018-03-01',
-        produsent: '',
+        produsent: 'sf-brukernotifikasjon',
         sikkerhetsnivaa: 4,
         sistOppdatert: '2018-04-01',
-        tekst: 'Tekst her',
-        link: '',
-        aktiv: true
+        tekst: 'Et nytt samtalereferat er tilgjengelig i din innboks',
+        link: 'https://innboks.nav.no',
+        aktiv: false,
+        eksternVarslingSendt: true,
+        eksternVarslingKanaler: ['SMS', 'EPOST']
     }
 ];
