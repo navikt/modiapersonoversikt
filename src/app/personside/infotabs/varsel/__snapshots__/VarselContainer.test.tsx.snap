@@ -449,8 +449,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               className="typo-element c6"
               id="Helt tilfeldig ID"
             >
-              Notifikasjon (Ferdigstilt): Tekst her, vi legger til en hel del mer tekst for så hva som skjer når det er mye tekst her.
-Kan være greit å sjekke hvordan dette vil oppføre seg når det er flere linjes også.
+              Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
@@ -491,20 +490,19 @@ Kan være greit å sjekke hvordan dette vil oppføre seg når det er flere linje
               Produsert av:
             </dt>
             <dd>
-              –
+              sf-brukernotifikasjon
             </dd>
             <dt>
               Tekst:
             </dt>
             <dd>
-              Tekst her, vi legger til en hel del mer tekst for så hva som skjer når det er mye tekst her.
-Kan være greit å sjekke hvordan dette vil oppføre seg når det er flere linjes også.
+              Et nytt samtalereferat er tilgjengelig i din innboks
             </dd>
             <dt>
               Link:
             </dt>
             <dd>
-              –
+              https://innboks.nav.no
             </dd>
           </dl>
         </article>
@@ -534,8 +532,7 @@ Kan være greit å sjekke hvordan dette vil oppføre seg når det er flere linje
               className="typo-element c6"
               id="Helt tilfeldig ID"
             >
-              Notifikasjon (Ferdigstilt): Tekst her, vi legger til en hel del mer tekst for så hva som skjer når det er mye tekst her.
-Kan være greit å sjekke hvordan dette vil oppføre seg når det er flere linjes også.
+              Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
@@ -576,20 +573,19 @@ Kan være greit å sjekke hvordan dette vil oppføre seg når det er flere linje
               Produsert av:
             </dt>
             <dd>
-              –
+              sf-brukernotifikasjon
             </dd>
             <dt>
               Tekst:
             </dt>
             <dd>
-              Tekst her, vi legger til en hel del mer tekst for så hva som skjer når det er mye tekst her.
-Kan være greit å sjekke hvordan dette vil oppføre seg når det er flere linjes også.
+              Et nytt samtalereferat er tilgjengelig i din innboks
             </dd>
             <dt>
               Link:
             </dt>
             <dd>
-              –
+              https://innboks.nav.no
             </dd>
           </dl>
         </article>
@@ -619,8 +615,7 @@ Kan være greit å sjekke hvordan dette vil oppføre seg når det er flere linje
               className="typo-element c6"
               id="Helt tilfeldig ID"
             >
-              Notifikasjon (Ferdigstilt): Tekst her, vi legger til en hel del mer tekst for så hva som skjer når det er mye tekst her.
-Kan være greit å sjekke hvordan dette vil oppføre seg når det er flere linjes også.
+              Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
@@ -661,20 +656,19 @@ Kan være greit å sjekke hvordan dette vil oppføre seg når det er flere linje
               Produsert av:
             </dt>
             <dd>
-              –
+              sf-brukernotifikasjon
             </dd>
             <dt>
               Tekst:
             </dt>
             <dd>
-              Tekst her, vi legger til en hel del mer tekst for så hva som skjer når det er mye tekst her.
-Kan være greit å sjekke hvordan dette vil oppføre seg når det er flere linjes også.
+              Et nytt samtalereferat er tilgjengelig i din innboks
             </dd>
             <dt>
               Link:
             </dt>
             <dd>
-              –
+              https://innboks.nav.no
             </dd>
           </dl>
         </article>
