@@ -13,7 +13,7 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../styles/personOversiktTheme';
 import { UnmountClosed } from 'react-collapse';
 import VisMerChevron from '../../../../components/VisMerChevron';
-import { formaterDato } from '../../../../utils/string-utils';
+import { ENDASH, formaterDato } from '../../../../utils/string-utils';
 import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { toggleVisVarsel } from '../../../../redux/varsler/varslerReducer';
@@ -84,6 +84,11 @@ const GraattDefinisjonsListe = styled.dl`
 const DatoSpan = styled.span`
     display: block;
 `;
+const EllipsisElement = styled(Element)`
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+`;
 
 function getVarselTekst(varsel: VarselModell) {
     const varselTekst = Varseltype[varsel.varselType];
@@ -97,99 +102,91 @@ function getVarselTekst(varsel: VarselModell) {
     return varselTekst;
 }
 
-function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
-    const open = useAppState((state) => state.varsler.aapneVarsler).includes(varsel);
+function emptyReplacement(text: string | null | undefined, replacement: string): string {
+    if (text === null || text === undefined || text === '') {
+        return replacement;
+    }
+    return text;
+}
+
+interface VarselRowProps {
+    varsel: UnifiedVarselModell;
+    datoer: Array<string>;
+    tittel: string;
+    kanaler: Array<string>;
+    children: React.ReactNode;
+}
+function VarselRow(props: VarselRowProps) {
+    const tittelId = useRef(guid());
+    const open = useAppState((state) => state.varsler.aapneVarsler).includes(props.varsel);
     const dispatch = useDispatch();
-    const setOpen = (open: boolean) => dispatch(toggleVisVarsel(varsel, open));
+    const setOpen = (open: boolean) => dispatch(toggleVisVarsel(props.varsel, open));
     const toggleOpen = () => setOpen(!open);
 
-    const tittelId = useRef(guid());
-    const aktiv = varsel.aktiv ? '' : '(Ferdigstilt)';
+    const datoer = props.datoer.map((dato) => <DatoSpan key={dato}>{dato}</DatoSpan>);
+
     return (
         <li>
             <StyledPanel>
                 <article aria-labelledby={tittelId.current}>
                     <HeaderStyle onClick={toggleOpen}>
-                        <Normaltekst>{formaterDato(varsel.forstBehandlet)}</Normaltekst>
-                        <Element id={tittelId.current} tag="h4">
-                            {varsel.tekst}
-                        </Element>
+                        <Normaltekst>{datoer}</Normaltekst>
+                        <EllipsisElement id={tittelId.current} tag="h4">
+                            {props.tittel}
+                        </EllipsisElement>
                         <Kommaliste aria-label="Kommunikasjonskanaler">
-                            <Normaltekst tag="li">NOTIFIKASJON {aktiv}</Normaltekst>
+                            {props.kanaler.map((kanal) => (
+                                <Normaltekst tag="li" key={kanal}>
+                                    {kanal}
+                                </Normaltekst>
+                            ))}
                         </Kommaliste>
                         <VisMerChevron
                             focusOnRelativeParent={true}
                             onClick={toggleOpen}
                             open={open}
-                            title={(open ? 'Skjul' : 'Vis') + ' mer informasjon om notifikasjon'}
+                            title={(open ? 'Skjul' : 'Vis') + ' mer informasjon om varsel/notifikasjon'}
                         />
                     </HeaderStyle>
-                    <UnmountClosed isOpened={open}>
-                        <GraattDefinisjonsListe>
-                            <dt>Produsert av:</dt>
-                            <dd>{varsel.produsent}</dd>
-
-                            <dt>Tekst:</dt>
-                            <dd>{varsel.tekst}</dd>
-
-                            <dt>Link:</dt>
-                            <dd>{varsel.link}</dd>
-                        </GraattDefinisjonsListe>
-                    </UnmountClosed>
+                    <UnmountClosed isOpened={open}>{props.children}</UnmountClosed>
                 </article>
             </StyledPanel>
         </li>
     );
 }
 
-function Varsel({ varsel }: { varsel: VarselModell }) {
-    const open = useAppState((state) => state.varsler.aapneVarsler).includes(varsel);
-    const dispatch = useDispatch();
-    const setOpen = (open: boolean) => dispatch(toggleVisVarsel(varsel, open));
-    const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende((melding) => melding.utsendingsTidspunkt));
-    const tittelId = useRef(guid());
+function DittNavEventVarsel({ varsel }: { varsel: DittNavEvent }) {
+    const aktiv = varsel.aktiv ? '' : ' (Ferdigstilt)';
+    const datoer = [formaterDato(varsel.forstBehandlet)];
+    const tittel = `Notifikasjon${aktiv}: ${varsel.tekst}`;
+    const kanaler = ['DITT_NAV', ...varsel.eksternVarslingKanaler];
 
-    const toggleOpen = () => setOpen(!open);
-
-    const distinkteKommunikasjonsKanaler = new Set(sortertMeldingsliste.map((melding) => melding.kanal));
-    const kommunikasjonskanaler = (
-        <Kommaliste aria-label="Kommunikasjonskanaler">
-            {Array.from(distinkteKommunikasjonsKanaler).map((kanal) => (
-                <Normaltekst tag="li" key={kanal}>
-                    {kanal}
-                </Normaltekst>
-            ))}
-        </Kommaliste>
-    );
-
-    const varselTekst = getVarselTekst(varsel);
-    const utsendingDatoListe = Array.from(
-        new Set(sortertMeldingsliste.map((melding) => formaterDato(melding.utsendingsTidspunkt)))
-    ).map((dato) => <DatoSpan key={dato}>{dato}</DatoSpan>);
     return (
-        <li>
-            <StyledPanel>
-                <article aria-labelledby={tittelId.current}>
-                    <HeaderStyle onClick={toggleOpen}>
-                        <Normaltekst>{utsendingDatoListe}</Normaltekst>
-                        <Element id={tittelId.current} tag="h4">
-                            {varselTekst}
-                        </Element>
-                        {kommunikasjonskanaler}
+        <VarselRow datoer={datoer} tittel={tittel} kanaler={kanaler} varsel={varsel}>
+            <GraattDefinisjonsListe>
+                <dt>Produsert av:</dt>
+                <dd>{emptyReplacement(varsel.produsent, ENDASH)}</dd>
 
-                        <VisMerChevron
-                            focusOnRelativeParent={true}
-                            onClick={toggleOpen}
-                            open={open}
-                            title={(open ? 'Skul' : 'Vis') + ' meldinger'}
-                        />
-                    </HeaderStyle>
-                    <UnmountClosed isOpened={open}>
-                        <VarselMeldinger sortertMeldingsliste={sortertMeldingsliste} />
-                    </UnmountClosed>
-                </article>
-            </StyledPanel>
-        </li>
+                <dt>Tekst:</dt>
+                <dd>{emptyReplacement(varsel.tekst, ENDASH)}</dd>
+
+                <dt>Link:</dt>
+                <dd>{emptyReplacement(varsel.link, ENDASH)}</dd>
+            </GraattDefinisjonsListe>
+        </VarselRow>
+    );
+}
+
+function Varsel({ varsel }: { varsel: VarselModell }) {
+    const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende((melding) => melding.utsendingsTidspunkt));
+    const datoer = sortertMeldingsliste.map((melding) => formaterDato(melding.utsendingsTidspunkt)).unique();
+    const tittel = getVarselTekst(varsel);
+    const kanaler = sortertMeldingsliste.map((melding) => melding.kanal).unique();
+
+    return (
+        <VarselRow datoer={datoer} tittel={tittel} kanaler={kanaler} varsel={varsel}>
+            <VarselMeldinger sortertMeldingsliste={sortertMeldingsliste} />
+        </VarselRow>
     );
 }
 

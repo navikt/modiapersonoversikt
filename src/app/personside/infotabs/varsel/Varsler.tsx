@@ -23,6 +23,10 @@ const HeaderStyle = styled(Panel)`
     > *:nth-child(3) {
         -ms-grid-column: 3;
     }
+    > * {
+        padding: 0.7rem;
+    }
+    padding: 0;
     margin-bottom: 1rem;
 `;
 

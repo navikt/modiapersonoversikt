@@ -22,6 +22,7 @@ import JournalforFlere from './img/journalfor-flere.png';
 import SvarAvslutterDialog from './img/svar-avslutter-dialog.png';
 import ForbedretAvansertSok from './img/forbedret-avansertsok.jpg';
 import ChatModia from './img/chat-modia.png';
+import NotifikasjonKanal from './img/notifikasjon-kanal.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
@@ -392,6 +393,25 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
                 </>
             ),
             src: ChatModia
+        },
+        {
+            id: 22,
+            tittel: 'Vise kanaler for notifikasjoner',
+            dato: new Date('2022-09-02 14:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Notifikasjoner viser nå hvilke kanaler som har blitt brukt til å varsle bruker på lik linje som
+                        tidligere varsler.
+                    </Normaltekst>
+                    <Normaltekst>
+                        Informasjon om hvorvidt notifikasjonen er ferdigstilt er flyttet for å få plass til kanalene.
+                    </Normaltekst>
+                </>
+            ),
+            src: NotifikasjonKanal
         }
     ];
 }

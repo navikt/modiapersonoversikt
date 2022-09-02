@@ -5,17 +5,22 @@ declare global {
         firstOrNull(): T | null;
         isEmpty(): boolean;
         isNotEmpty(): boolean;
+        unique(): Array<T>;
     }
 }
 
-Array.prototype.firstOrNull = function() {
+Array.prototype.firstOrNull = function () {
     return this.isEmpty() ? null : this[0];
 };
 
-Array.prototype.isEmpty = function() {
+Array.prototype.isEmpty = function () {
     return this.length === 0;
 };
 
-Array.prototype.isNotEmpty = function() {
+Array.prototype.isNotEmpty = function () {
     return this.length > 0;
+};
+
+Array.prototype.unique = function () {
+    return Array.from(new Set(this));
 };
