@@ -406,6 +406,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
         <p
           className="typo-normal"
         >
+          C/O Annet navn
+        </p>
+        <p
+          className="typo-normal"
+        >
           Aremarkveien 1
         </p>
         <p

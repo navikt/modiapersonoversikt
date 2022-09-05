@@ -86,6 +86,7 @@ export interface SistEndret {
 }
 
 export interface Adresse {
+    coAdresse: string | null;
     linje1: string;
     linje2: string | null;
     linje3: string | null;
