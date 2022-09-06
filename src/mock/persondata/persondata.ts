@@ -74,6 +74,7 @@ export function lagPerson(fnr: string): Person {
         dodsdato: erDod ? ['2018-06-07' as LocalDate] : [],
         bostedAdresse: [
             {
+                coAdresse: 'C/O Annet Navn',
                 linje1: 'Adressevei 1',
                 linje2: '0000 AREMARK',
                 linje3: 'Norge',
@@ -91,6 +92,7 @@ export function lagPerson(fnr: string): Person {
         ],
         kontaktAdresse: [
             {
+                coAdresse: null,
                 linje1: 'Kontaktadresse 1',
                 linje2: '0320 HEI',
                 linje3: null,
@@ -105,6 +107,7 @@ export function lagPerson(fnr: string): Person {
         ],
         oppholdsAdresse: [
             {
+                coAdresse: null,
                 linje1: 'Oppholdsadresse 1',
                 linje2: '0000 AREMARK',
                 linje3: null,
@@ -121,6 +124,7 @@ export function lagPerson(fnr: string): Person {
             publikumsmottak: [
                 {
                     besoksadresse: {
+                        coAdresse: null,
                         linje1: 'Adressevei 1',
                         linje2: '0000 AREMARK',
                         linje3: null,
@@ -144,6 +148,7 @@ export function lagPerson(fnr: string): Person {
                 },
                 {
                     besoksadresse: {
+                        coAdresse: null,
                         linje1: 'Adressevei 1',
                         linje2: '0000 AREMARK',
                         linje3: null,
@@ -255,6 +260,7 @@ export function lagPerson(fnr: string): Person {
                     gyldigTilOgMed: '2022-05-01' as LocalDate
                 },
                 adresse: {
+                    coAdresse: null,
                     linje1: `Adresseveien 1`,
                     linje2: '0000 Aremark',
                     linje3: null,
@@ -282,6 +288,7 @@ export function lagPerson(fnr: string): Person {
                           }
                       },
                       adresse: {
+                          coAdresse: null,
                           linje1: 'Elgelia 20',
                           linje2: '0000 Aremark',
                           linje3: null,
@@ -446,6 +453,7 @@ export function lagPerson(fnr: string): Person {
             swift: 'DNBANOKKXXX',
             landkode: null,
             adresse: {
+                coAdresse: null,
                 linje1: 'Bankveien 1,',
                 linje2: '0357 Bankestad',
                 linje3: null,

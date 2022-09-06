@@ -89,6 +89,7 @@ export const aremark: Person = {
     dodsdato: [],
     bostedAdresse: [
         {
+            coAdresse: null,
             linje1: 'Islandsgate 49',
             linje2: '7693 Hovedøya',
             linje3: 'Norge',
@@ -103,6 +104,7 @@ export const aremark: Person = {
     ],
     kontaktAdresse: [
         {
+            coAdresse: 'C/O Annet navn',
             linje1: 'Aremarkveien 1',
             linje2: '0320 Aremark',
             linje3: null,
@@ -117,6 +119,7 @@ export const aremark: Person = {
     ],
     oppholdsAdresse: [
         {
+            coAdresse: null,
             linje1: 'Oppholdsadresse 1',
             linje2: '0000 AREMARK',
             linje3: null,
@@ -133,6 +136,7 @@ export const aremark: Person = {
         publikumsmottak: [
             {
                 besoksadresse: {
+                    coAdresse: null,
                     linje1: 'Adressevei 1',
                     linje2: '0000 AREMARK',
                     linje3: null,
@@ -234,6 +238,7 @@ export const aremark: Person = {
                 gyldigTilOgMed: '2022-05-01' as LocalDate
             },
             adresse: {
+                coAdresse: null,
                 linje1: `Adresseveien 1`,
                 linje2: '0000 Aremark',
                 linje3: null,
@@ -258,6 +263,7 @@ export const aremark: Person = {
                 personSomAdressat: null
             },
             adresse: {
+                coAdresse: null,
                 linje1: 'Elgelia 20, 0000 Aremark',
                 linje2: null,
                 linje3: null,
@@ -411,6 +417,7 @@ export const aremark: Person = {
         swift: 'DNBANOKKXXX',
         landkode: null,
         adresse: {
+            coAdresse: null,
             linje1: 'Bankveien 1,',
             linje2: '0357 Bankestad',
             linje3: null,
