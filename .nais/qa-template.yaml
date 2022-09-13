@@ -8,8 +8,6 @@ metadata:
     team: personoversikt
   annotations:
     nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
 spec:
   image: {{image}}
   port: 8080
