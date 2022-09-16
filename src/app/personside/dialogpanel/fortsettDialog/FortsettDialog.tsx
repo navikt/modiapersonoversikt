@@ -56,14 +56,9 @@ function Feilmelding(props: { status: DialogPanelStatus }) {
 }
 
 function useVarselInfotekst(meldingstype: Meldingstype): string {
-    const svarLukkerDialog = useFeatureToggle(FeatureToggles.SvarLukkerDialog).isOn ?? false;
-    if (!svarLukkerDialog) {
-        return 'Gir varsel, bruker kan svare.';
-    } else {
-        return meldingstype === Meldingstype.SVAR_SKRIFTLIG
-            ? 'Gir varsel, dialogen avsluttes. Det er ikke mulig å sende flere meldinger i denne dialogen i ettertid.'
-            : 'Gir varsel, bruker kan svare.';
-    }
+    return meldingstype === Meldingstype.SVAR_SKRIFTLIG
+        ? 'Gir varsel, dialogen avsluttes. Det er ikke mulig å sende flere meldinger i denne dialogen i ettertid.'
+        : 'Gir varsel, bruker kan svare.';
 }
 
 export const tekstMaksLengde = 5000;
