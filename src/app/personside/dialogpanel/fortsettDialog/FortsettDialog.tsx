@@ -21,8 +21,6 @@ import {
 import { useHentPersondata } from '../../../../utils/customHooks';
 import { hasData } from '@nutgaard/use-fetch';
 import { capitalizeName } from '../../../../utils/string-utils';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 const SubmitKnapp = styled(Hovedknapp)`
     white-space: normal;
@@ -56,14 +54,9 @@ function Feilmelding(props: { status: DialogPanelStatus }) {
 }
 
 function useVarselInfotekst(meldingstype: Meldingstype): string {
-    const svarLukkerDialog = useFeatureToggle(FeatureToggles.SvarLukkerDialog).isOn ?? false;
-    if (!svarLukkerDialog) {
-        return 'Gir varsel, bruker kan svare.';
-    } else {
-        return meldingstype === Meldingstype.SVAR_SKRIFTLIG
-            ? 'Gir varsel, dialogen avsluttes. Det er ikke mulig å sende flere meldinger i denne dialogen i ettertid.'
-            : 'Gir varsel, bruker kan svare.';
-    }
+    return meldingstype === Meldingstype.SVAR_SKRIFTLIG
+        ? 'Gir varsel, dialogen avsluttes. Det er ikke mulig å sende flere meldinger i denne dialogen i ettertid.'
+        : 'Gir varsel, bruker kan svare.';
 }
 
 export const tekstMaksLengde = 5000;
