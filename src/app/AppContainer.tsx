@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
+import Router from './../Router';
 import reducers from '../redux/reducers';
 import ModalWrapper from 'nav-frontend-modal';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -41,7 +41,7 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
 function App() {
     const loginState = usePersistentLogin();
-    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+    const valgtEnhet = useAppState((state) => state.session.valgtEnhetId);
 
     if (!valgtEnhet) {
         /**
@@ -67,13 +67,6 @@ function App() {
             </ContentStyle>
         </>
     );
-}
-
-function Router(props: { children?: React.ReactNode }) {
-    if (process.env.REACT_APP_USE_HASH_ROUTER === 'true') {
-        return <HashRouter>{props.children}</HashRouter>;
-    }
-    return <BrowserRouter basename={process.env.PUBLIC_URL}>{props.children}</BrowserRouter>;
 }
 
 function AppContainer() {
