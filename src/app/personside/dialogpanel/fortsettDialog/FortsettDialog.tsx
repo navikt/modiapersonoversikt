@@ -21,8 +21,6 @@ import {
 import { useHentPersondata } from '../../../../utils/customHooks';
 import { hasData } from '@nutgaard/use-fetch';
 import { capitalizeName } from '../../../../utils/string-utils';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 const SubmitKnapp = styled(Hovedknapp)`
     white-space: normal;
