@@ -1,6 +1,5 @@
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
-import { history } from './Router';
 
 if (process.env.NODE_ENV === 'production') {
     const isProd = window.location.host === 'app.adeo.no';
@@ -8,7 +7,7 @@ if (process.env.NODE_ENV === 'production') {
         dsn: 'https://5f3951672e1b49b5a8bca188bf4ad44f@sentry.gc.nav.no/148',
         integrations: [
             new BrowserTracing({
-                routingInstrumentation: Sentry.reactRouterV5Instrumentation(history)
+                routingInstrumentation: Sentry.reactRouterV5Instrumentation(window.history)
             })
         ],
         environment: isProd ? 'prod' : 'preprod',
