@@ -6,11 +6,11 @@ async function createReleaseAndUpload() {
         console.warn('GIT_COMMIT_HASH is not set');
         return;
     }
-    const cli = new SentryCli({
-        url: 'https://sentry.gc.nav.no/',
-        org: 'nav',
-        project: 'modiapersonoversikt'
-    });
+    if (!process.env.SENTRY_AUTH_TOKEN) {
+        throw new Error('"SENTRY_AUTH_TOKEN" er ikke satt');
+    }
+
+    const cli = new SentryCli();
     try {
         console.log('Creating sentry release ' + release);
         await cli.releases.new(release);

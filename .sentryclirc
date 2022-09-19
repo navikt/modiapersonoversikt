@@ -1,0 +1,4 @@
+[defaults]
+project=modiapersonoversikt
+url=https://sentry.gc.nav.no/
+org=nav
