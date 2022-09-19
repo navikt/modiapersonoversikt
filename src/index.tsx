@@ -1,13 +1,13 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 import './extra-polyfills';
+import './sentry';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import './index.less';
 import AppContainer from './app/AppContainer';
 import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
 import './window-variabler';
-
 setupTimeSpentMetrics();
 
 if (process.env.REACT_APP_MOCK_ENABLED === 'true') {
