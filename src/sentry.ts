@@ -54,6 +54,7 @@ function clientSideMasking(event: Sentry.Event): Sentry.Event {
 }
 
 if (process.env.NODE_ENV === 'production') {
+    const dynamicSampleRate = window.location.search.includes('sentry-sample') ? 1.0 : 0.0;
     const isProd = window.location.host === 'app.adeo.no';
     Sentry.init({
         dsn: 'https://5f3951672e1b49b5a8bca188bf4ad44f@sentry.gc.nav.no/148',
@@ -66,7 +67,7 @@ if (process.env.NODE_ENV === 'production') {
         release: '$env{APP_VERSION}',
         // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
         // We recommend adjusting this value in production
-        tracesSampleRate: 0.05,
+        tracesSampleRate: dynamicSampleRate,
         beforeSend: clientSideMasking,
         autoSessionTracking: false
     });
