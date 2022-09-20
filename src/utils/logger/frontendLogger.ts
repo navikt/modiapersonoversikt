@@ -1,4 +1,5 @@
 import { isDevelopment, isTest } from '../environment';
+import * as Sentry from '@sentry/react';
 import md5 from 'md5';
 import { detect } from 'detect-browser';
 import { useEffect } from 'react';
@@ -11,7 +12,7 @@ let ident = 'ikke satt';
 let enhet = 'ikke valgt';
 
 export function useInitializeLogger() {
-    const innloggetSaksbehResource = useRestResource(resources => resources.innloggetSaksbehandler);
+    const innloggetSaksbehResource = useRestResource((resources) => resources.innloggetSaksbehandler);
     const valgtEnhet = useAppState(selectValgtEnhet);
 
     useEffect(() => {
@@ -69,6 +70,7 @@ export function loggInfo(message: string, ekstraFelter?: ValuePairs) {
     };
     console.info(info);
     if (uselogger()) {
+        Sentry.captureMessage(message, { level: 'info', extra: ekstraFelter });
         window['frontendlogger'].info(info);
     }
 }
@@ -82,8 +84,9 @@ export function loggWarning(
         return;
     }
     const browser = detect();
+    const msg = `${message ? message + ': ' : ''} ${error.name} ${error.message}`;
     const info = {
-        message: `${message ? message + ': ' : ''} ${error.name} ${error.message}`,
+        message: msg,
         url: document.URL,
         error: error.stack,
         browser: (browser && browser.name) || undefined,
@@ -94,6 +97,7 @@ export function loggWarning(
     console.warn(info);
     if (uselogger()) {
         loggEvent('Warning', 'Logger', ekstraTagsLoggEvent);
+        Sentry.captureException(error, { level: 'warning', extra: ekstraFelter });
         window['frontendlogger'].warn(info);
     }
 }
@@ -115,6 +119,7 @@ export function loggError(error: Error, message?: string, ekstraFelter?: ValuePa
     console.error(info);
     if (uselogger()) {
         loggEvent('Error', 'Logger', ekstraTagsLoggEvent);
+        Sentry.captureException(error, { level: 'error', extra: { ...ekstraFelter, ...ekstraTagsLoggEvent } });
         window['frontendlogger'].error(info);
     }
 }

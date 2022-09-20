@@ -4,6 +4,7 @@ on: [push]
 
 env:
   IMAGE: ghcr.io/${{ github.repository }}/modiapersonoversikt:${{ github.sha }}
+  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
   CI: true
   TZ: Europe/Oslo
   Q1_TEST_BRANCH: refs/heads/branch_name
@@ -29,6 +30,9 @@ jobs:
         run: npm run test
       - name: Build
         run: npm run build
+      - name: Upload sourcemaps
+        if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master' || github.ref == env.Q1_TEST_BRANCH
+        run: npm run upload-sourcemaps
       - name: Publish Docker image
         if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master' || github.ref == env.Q1_TEST_BRANCH
         env:

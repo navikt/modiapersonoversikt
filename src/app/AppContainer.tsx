@@ -41,7 +41,7 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
 function App() {
     const loginState = usePersistentLogin();
-    const valgtEnhet = useAppState(state => state.session.valgtEnhetId);
+    const valgtEnhet = useAppState((state) => state.session.valgtEnhetId);
 
     if (!valgtEnhet) {
         /**

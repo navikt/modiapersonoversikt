@@ -70,9 +70,9 @@ spec:
       style-src 'self' 'unsafe-inline';\
       img-src 'self' data: https://*.hotjar.com https://*.hotjar.io;\
       font-src 'self' data: https://*.hotjar.com https://*.hotjar.io;\
-      connect-src 'self' eumgw.adeo.no wss://veilederflatehendelser-{{ q_env }}.adeo.no https://*.hotjar.com https://*.hotjar.io;\
+      connect-src 'self' eumgw.adeo.no wss://veilederflatehendelser-{{ q_env }}.adeo.no https://*.hotjar.com https://*.hotjar.io sentry.gc.nav.no;\
       object-src blob:;\
       frame-src blob: https://*.hotjar.com https://*.hotjar.io;\
-      report-uri /frontendlogger/api/warn;"
+      report-uri https://sentry.gc.nav.no/api/145/security/?sentry_key=b07212ac0fce4245b88145ad95706ce7&sentry_environment=preprod&sentry_release={{ version }};"
     - name: REFERRER_POLICY
       value: "no-referrer"

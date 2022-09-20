@@ -1,4 +1,5 @@
-import { Route, Switch } from 'react-router';
+import { Switch } from 'react-router';
+import { SentryRoute } from '../../sentry-route';
 import { paths } from '../routes/routing';
 import * as React from 'react';
 import SetFnrIRedux from './SetFnrIRedux';
@@ -6,16 +7,16 @@ import SetFnrIRedux from './SetFnrIRedux';
 function LyttPaaFnrIURLOgSettIRedux() {
     return (
         <Switch>
-            <Route
+            <SentryRoute
                 path={`${paths.standaloneKomponenter}/:module/:fodselsnummer/`}
-                render={routeProps => {
+                render={(routeProps) => {
                     // Trengs for å sikre at :fodselsnummer blir satt riktig ved standalone-visning
                     return <SetFnrIRedux fnr={routeProps.match.params.fodselsnummer} />;
                 }}
             />
-            <Route
+            <SentryRoute
                 path={`${paths.basePath}/:module/:fodselsnummer/`}
-                render={routeProps => {
+                render={(routeProps) => {
                     return <SetFnrIRedux fnr={routeProps.match.params.fodselsnummer} />;
                 }}
             />

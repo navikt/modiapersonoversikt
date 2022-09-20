@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
-import { Route, Switch } from 'react-router';
+import { Switch } from 'react-router';
+import { SentryRoute } from '../sentry-route';
 import { paths } from './routes/routing';
 import SakerFullscreen from './personside/infotabs/saksoversikt/SakerFullscreen';
 import SaksDokumentEgetVindu from './personside/infotabs/saksoversikt/SaksDokumentIEgetVindu';
@@ -14,16 +15,16 @@ function Routing() {
     return (
         <Suspense fallback={<CenteredLazySpinner />}>
             <Switch key={fnr}>
-                <Route
+                <SentryRoute
                     path={`${paths.sakerFullscreen}/:fodselsnummer/`}
                     render={(routeProps) => <SakerFullscreen fnr={routeProps.match.params.fodselsnummer} />}
                 />
-                <Route
+                <SentryRoute
                     path={`${paths.saksdokumentEgetVindu}/:fodselsnummer/`}
                     render={(routeProps) => <SaksDokumentEgetVindu fnr={routeProps.match.params.fodselsnummer} />}
                 />
-                <Route path={`${paths.personUri}/:fodselsnummer`} component={Personoversikt} />
-                <Route component={Startbilde} />
+                <SentryRoute path={`${paths.personUri}/:fodselsnummer`} component={Personoversikt} />
+                <SentryRoute component={Startbilde} />
             </Switch>
         </Suspense>
     );
