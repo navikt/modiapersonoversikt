@@ -5,7 +5,8 @@ import TabKnapper from './TabKnapper';
 import styled from 'styled-components/macro';
 import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
 import { usePaths } from '../../routes/routing';
-import { Route, Switch, useHistory, useLocation } from 'react-router';
+import { Switch, useHistory, useLocation } from 'react-router';
+import { SentryRoute } from '../../../sentry-route';
 import SaksoversiktContainer from './saksoversikt/SaksoversiktContainer';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import OppfolgingContainer from './oppfolging/OppfolgingContainer';
@@ -79,13 +80,13 @@ function InfoTabs() {
                         {openTab.tittel} - Fane
                     </h2>
                     <Switch location={location}>
-                        <Route path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
-                        <Route path={paths.oppfolging} component={OppfolgingContainer} />
-                        <Route path={dyplenker.meldinger.route} component={MeldingerContainer} />
-                        <Route path={dyplenker.saker.route} component={SaksoversiktContainer} />
-                        <Route path={dyplenker.ytelser.route} component={Ytelser} />
-                        <Route path={paths.varsler} component={VarslerContainer} />
-                        <Route path={''} component={Oversikt} />
+                        <SentryRoute path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
+                        <SentryRoute path={paths.oppfolging} component={OppfolgingContainer} />
+                        <SentryRoute path={dyplenker.meldinger.route} component={MeldingerContainer} />
+                        <SentryRoute path={dyplenker.saker.route} component={SaksoversiktContainer} />
+                        <SentryRoute path={dyplenker.ytelser.route} component={Ytelser} />
+                        <SentryRoute path={paths.varsler} component={VarslerContainer} />
+                        <SentryRoute path={''} component={Oversikt} />
                     </Switch>
                 </StyledArticle>
             </ErrorBoundary>
