@@ -23,10 +23,10 @@ export function tracingAwareKeyGenerator(url: string, option?: RequestInit) {
 }
 
 const fnrMask = /\d{11}/g;
-function clientSideMasking(event: Sentry.Event): Sentry.Event {
-    const serialized = JSON.stringify(event);
+function clientSideMasking<T>(data: T): T {
+    const serialized = JSON.stringify(data);
     const sanitized = serialized.replace(fnrMask, '***********');
-    return JSON.parse(sanitized) as Sentry.Event;
+    return JSON.parse(sanitized) as T;
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -44,6 +44,8 @@ if (process.env.NODE_ENV === 'production') {
         // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
         // We recommend adjusting this value in production
         tracesSampleRate: dynamicSampleRate,
+        maxBreadcrumbs: 10,
+        beforeBreadcrumb: clientSideMasking,
         beforeSend: clientSideMasking,
         autoSessionTracking: false
     });
