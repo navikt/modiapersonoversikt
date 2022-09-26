@@ -453,6 +453,15 @@ exports[`Tester visittkort-header sin funksjonalitet viser info om bruker i visi
           <span
             className="typo-normal"
           >
+            Manuell oppfølging
+          </span>
+        </div>
+        <div
+          className="etikett etikett--fokus"
+        >
+          <span
+            className="typo-normal"
+          >
             Vergemål
           </span>
         </div>
