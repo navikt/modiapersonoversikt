@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PhoneIkon from '../../../../../../svg/Phone';
 import VisittkortElement from '../../VisittkortElement';
-import { DigitalKontaktinformasjon as DigitalKontaktinformasjonInterface } from '../../../PersondataDomain';
+import { KontaktInformasjon } from '../../../PersondataDomain';
 import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
 import { formaterMobiltelefonnummer } from '../../../../../../utils/telefon-utils';
 import { formaterDato } from '../../../../../../utils/string-utils';
@@ -9,7 +9,7 @@ import { Feilmelding } from 'nav-frontend-typografi';
 
 interface Props {
     harFeilendeSystem: boolean;
-    kontaktinformasjon: DigitalKontaktinformasjonInterface | null;
+    kontaktinformasjon: KontaktInformasjon | null;
 }
 
 function Telefon({ harFeilendeSystem, kontaktinformasjon }: Props) {
@@ -25,15 +25,15 @@ function Telefon({ harFeilendeSystem, kontaktinformasjon }: Props) {
         return null;
     }
 
-    const telefonnummer = formaterMobiltelefonnummer(kontaktinformasjon.mobiltelefonnummer?.value ?? '');
-    const sistOppdatert = kontaktinformasjon.mobiltelefonnummer?.sistOppdatert
-        ? formaterDato(kontaktinformasjon.mobiltelefonnummer.sistOppdatert)
+    const telefonnummer = formaterMobiltelefonnummer(kontaktinformasjon.mobil?.value ?? '');
+    const sistOppdatert = kontaktinformasjon.mobil?.sistOppdatert
+        ? formaterDato(kontaktinformasjon.mobil.sistOppdatert)
         : null;
 
     return (
         <VisittkortElement beskrivelse="Telefon" ikon={<PhoneIkon />}>
             <DigitalKontaktinformasjon
-                reservasjon={kontaktinformasjon.reservasjon}
+                erReservert={kontaktinformasjon.erReservert}
                 kontaktinformasjonVerdi={telefonnummer}
                 sistOppdatert={sistOppdatert}
             />

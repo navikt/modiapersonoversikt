@@ -32,7 +32,7 @@ function Etiketter({ person }: Props) {
                 <DiskresjonskodeEtikett adressebeskyttelser={person.adressebeskyttelse} />
                 <EgenAnsattEtikett erEgenansatt={person.erEgenAnsatt} />
                 <SikkerhetstiltakEtikett sikkerhetstiltak={person.sikkerhetstiltak} />
-                <ReservertIKRREtikett kontaktOgReservasjon={person.kontaktOgReservasjon} />
+                <ReservertIKRREtikett kontaktInformasjon={person.kontaktInformasjon} />
                 <VergemalsEtikett vergemal={person.vergemal} />
                 <TilrettelagtKommunikasjonsEtiketter tilrettelagtKommunikasjon={person.tilrettelagtKommunikasjon} />
                 <DodsboEtikett dodsbo={person.dodsbo} />

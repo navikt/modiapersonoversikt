@@ -1,19 +1,16 @@
 import * as React from 'react';
 import EtikettBase from 'nav-frontend-etiketter';
-import { DigitalKontaktinformasjon } from '../../PersondataDomain';
+import { KontaktInformasjon } from '../../PersondataDomain';
 
 interface Props {
-    kontaktOgReservasjon: DigitalKontaktinformasjon | null;
+    kontaktInformasjon: KontaktInformasjon | null;
 }
 
-function ReservertIKRREtikett({ kontaktOgReservasjon }: Props) {
-    if (kontaktOgReservasjon?.reservasjon === 'true') {
+function ReservertIKRREtikett(props: Props) {
+    const { kontaktInformasjon } = props;
+    if (kontaktInformasjon?.erReservert) {
         return <EtikettBase type="fokus">Reservert i KRR</EtikettBase>;
-    } else if (
-        kontaktOgReservasjon &&
-        !kontaktOgReservasjon.epostadresse?.value &&
-        !kontaktOgReservasjon.mobiltelefonnummer?.value
-    ) {
+    } else if (kontaktInformasjon && !kontaktInformasjon.epost?.value && !kontaktInformasjon.mobil?.value) {
         return <EtikettBase type="fokus">Ikke registrert i KRR</EtikettBase>;
     }
     return null;

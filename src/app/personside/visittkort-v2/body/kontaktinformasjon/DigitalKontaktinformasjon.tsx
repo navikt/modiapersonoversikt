@@ -3,13 +3,13 @@ import * as React from 'react';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 
 interface Props {
-    reservasjon: string | null;
+    erReservert: boolean | null;
     kontaktinformasjonVerdi: string | null;
     sistOppdatert: string | null;
 }
 
-function DigitalKontaktinformasjon({ reservasjon, kontaktinformasjonVerdi, sistOppdatert }: Props) {
-    if (reservasjon === 'true') {
+function DigitalKontaktinformasjon({ erReservert, kontaktinformasjonVerdi, sistOppdatert }: Props) {
+    if (erReservert) {
         return (
             <>
                 <Normaltekst>Reservert</Normaltekst>

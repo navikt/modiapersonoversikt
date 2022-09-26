@@ -26,11 +26,11 @@ export default function Kontaktinformasjon({ persondata }: Props) {
             <Adresse person={persondata.person} />
             <Epost
                 harFeilendeSystem={harFeilendeSystemer(persondata.feilendeSystemer, InformasjonElement.DKIF)}
-                kontaktinformasjon={persondata.person.kontaktOgReservasjon}
+                kontaktinformasjon={persondata.person.kontaktInformasjon}
             />
             <Telefon
                 harFeilendeSystem={harFeilendeSystemer(persondata.feilendeSystemer, InformasjonElement.DKIF)}
-                kontaktinformasjon={persondata.person.kontaktOgReservasjon}
+                kontaktinformasjon={persondata.person.kontaktInformasjon}
             />
             <NavKontaktinformasjon
                 harFeilendeSystem={harFeilendeSystemer(
