@@ -411,34 +411,22 @@ export function lagPerson(fnr: string): Person {
                 prioritet: -1
             }
         ],
-        kontaktOgReservasjon: ikkeRegistrert
+        kontaktInformasjon: ikkeRegistrert
             ? {
-                  personident: '10108000398',
-                  reservasjon: erReservert ? 'true' : 'false',
-                  epostadresse: {
-                      value: null,
-                      sistOppdatert: null,
-                      sistVerifisert: null
-                  },
-                  mobiltelefonnummer: {
-                      value: null,
-                      sistOppdatert: null,
-                      sistVerifisert: null
-                  }
+                  erReservert,
+                  erManuell: true,
+                  epost: { value: null, sistOppdatert: null, sistVerifisert: null },
+                  mobil: { value: null, sistOppdatert: null, sistVerifisert: null }
               }
             : {
-                  personident: '10108000398',
-                  reservasjon: erReservert ? 'true' : 'false',
-                  epostadresse: {
+                  erReservert,
+                  erManuell: true,
+                  epost: {
                       value: 'epost@nav.no',
                       sistOppdatert: '2013-01-01' as LocalDate,
                       sistVerifisert: '2013-01-01' as LocalDate
                   },
-                  mobiltelefonnummer: {
-                      value: '90000000',
-                      sistOppdatert: '2015-02-01' as LocalDate,
-                      sistVerifisert: null
-                  }
+                  mobil: { value: '90000000', sistOppdatert: '2015-02-01' as LocalDate, sistVerifisert: null }
               },
         bankkonto: {
             kontonummer: '12345678910',

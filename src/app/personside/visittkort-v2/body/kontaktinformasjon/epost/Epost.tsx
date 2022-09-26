@@ -1,14 +1,14 @@
 import * as React from 'react';
 import EmailIkon from '../../../../../../svg/Email';
 import VisittkortElement from '../../VisittkortElement';
-import { DigitalKontaktinformasjon as DigitalKontaktinformasjonInterface } from '../../../PersondataDomain';
+import { KontaktInformasjon } from '../../../PersondataDomain';
 import DigitalKontaktinformasjon from '../DigitalKontaktinformasjon';
 import { formaterDato } from '../../../../../../utils/string-utils';
 import { Feilmelding } from 'nav-frontend-typografi';
 
 interface Props {
     harFeilendeSystem: boolean;
-    kontaktinformasjon: DigitalKontaktinformasjonInterface | null;
+    kontaktinformasjon: KontaktInformasjon | null;
 }
 
 function Epost({ harFeilendeSystem, kontaktinformasjon }: Props) {
@@ -22,15 +22,15 @@ function Epost({ harFeilendeSystem, kontaktinformasjon }: Props) {
     if (!kontaktinformasjon) {
         return null;
     }
-    const epost = kontaktinformasjon.epostadresse?.value ?? null;
-    const sistOppdatert = kontaktinformasjon.epostadresse?.sistOppdatert
-        ? formaterDato(kontaktinformasjon.epostadresse.sistOppdatert)
+    const epost = kontaktinformasjon.epost?.value ?? null;
+    const sistOppdatert = kontaktinformasjon.epost?.sistOppdatert
+        ? formaterDato(kontaktinformasjon.epost.sistOppdatert)
         : null;
 
     return (
         <VisittkortElement beskrivelse="E-post" ikon={<EmailIkon />}>
             <DigitalKontaktinformasjon
-                reservasjon={kontaktinformasjon.reservasjon}
+                erReservert={kontaktinformasjon.erReservert}
                 kontaktinformasjonVerdi={epost}
                 sistOppdatert={sistOppdatert}
             />

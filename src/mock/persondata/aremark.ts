@@ -390,15 +390,15 @@ export const aremark: Person = {
             prioritet: -1
         }
     ],
-    kontaktOgReservasjon: {
-        personident: '10108000398',
-        reservasjon: 'true',
-        epostadresse: {
+    kontaktInformasjon: {
+        erReservert: true,
+        erManuell: true,
+        epost: {
             value: 'epost@nav.no',
             sistOppdatert: null,
             sistVerifisert: '2013-01-01' as LocalDate
         },
-        mobiltelefonnummer: {
+        mobil: {
             value: '12345678',
             sistOppdatert: '2021-11-02' as LocalDate,
             sistVerifisert: '2021-11-02' as LocalDate
