@@ -31,7 +31,7 @@ export interface Person extends PersonMedAlderOgDodsdato {
     vergemal: Array<Verge>;
     tilrettelagtKommunikasjon: TilrettelagtKommunikasjon;
     telefonnummer: Array<Telefon>;
-    kontaktOgReservasjon: DigitalKontaktinformasjon | null;
+    kontaktInformasjon: KontaktInformasjon;
     bankkonto: Bankkonto | null;
     forelderBarnRelasjon: Array<ForelderBarnRelasjon>;
 }
@@ -282,23 +282,13 @@ export enum ForelderBarnRelasjonRolle {
     UKJENT = 'UKJENT'
 }
 
-/**
- * DKIF Data klasser
- */
-export interface DigitalKontaktinformasjon {
-    personident: string | null;
-    reservasjon: string | null;
-    epostadresse: Epostadresse | null;
-    mobiltelefonnummer: MobilTelefon | null;
+export interface KontaktInformasjon {
+    erManuell: boolean | null;
+    erReservert: boolean | null;
+    epost: DkifVerdi | null;
+    mobil: DkifVerdi | null;
 }
-
-export interface Epostadresse {
-    value: string | null;
-    sistOppdatert: LocalDate | null;
-    sistVerifisert: LocalDate | null;
-}
-
-export interface MobilTelefon {
+export interface DkifVerdi {
     value: string | null;
     sistOppdatert: LocalDate | null;
     sistVerifisert: LocalDate | null;
