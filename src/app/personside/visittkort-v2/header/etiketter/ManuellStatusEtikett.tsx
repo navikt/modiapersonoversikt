@@ -8,7 +8,9 @@ interface Props {
 
 function ManuellStatusEtikett(props: Props) {
     const { kontaktInformasjon } = props;
-    if (kontaktInformasjon?.erManuell) {
+    const erManuell = kontaktInformasjon?.erManuell ?? kontaktInformasjon?.erReservert;
+
+    if (erManuell) {
         return <EtikettBase type="fokus">Manuell oppfølging</EtikettBase>;
     } else {
         return null;
