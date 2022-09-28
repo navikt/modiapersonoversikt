@@ -11,7 +11,9 @@ const defaults: DefaultConfig = {
     ifError: <AlertStripe type="advarsel">Kunne ikke laste inn tema</AlertStripe>
 };
 
-export default {
+const resource = {
     useRenderer: (renderer: RendererOrConfig<GsakTema[]>) => useRest(url, applyDefaults(defaults, renderer)),
     usePreload: () => usePreload(url)
 };
+
+export default resource;
