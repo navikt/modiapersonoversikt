@@ -33,7 +33,6 @@ export function getTestStore(): Store<AppState> {
         })
     );
     dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
-    dispatch(restResources.baseUrl.actions.setData(mockBaseUrls()));
     dispatch(restResources.veilederRoller.actions.setData({ roller: [SaksbehandlerRoller.HentOppgave] }));
     dispatch(restResources.utbetalinger.actions.setData(statiskMockUtbetalingRespons));
     dispatch(restResources.utbetalingerOversikt.actions.setData(statiskMockUtbetalingRespons));
@@ -75,4 +74,5 @@ export function setupFetchCache() {
         createCacheKey(`${apiBaseUri}/saker/${aremark.personIdent}/sakstema`),
         getStaticMockSaksoversikt()
     );
+    cache.putResolved(createCacheKey(`${apiBaseUri}/baseurls`), mockBaseUrls());
 }
