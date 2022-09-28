@@ -40,7 +40,6 @@ export interface OpprettOppgaveRequest {
     beskrivelse: string;
     temaKode: string;
     underkategoriKode?: string;
-    brukerid: string;
     oppgaveTypeKode: string;
     prioritetKode: string;
     ansvarligEnhetId: string;
@@ -52,7 +51,6 @@ export interface OpprettSkjermetOppgaveRequest {
     beskrivelse: string;
     temaKode: string;
     underkategoriKode?: string;
-    brukerid: string;
     oppgaveTypeKode: string;
     prioritetKode: string;
     opprettetavenhetsnummer: string;

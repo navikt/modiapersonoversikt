@@ -40,7 +40,6 @@ export function getTestStore(): Store<AppState> {
     dispatch(restResources.sakstema.actions.setData(getStaticMockSaksoversikt()));
     dispatch(restResources.brukersVarsler.actions.setData(statiskVarselMock));
     dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
-    dispatch(restResources.oppgaveGsakTema.actions.setData(getMockGsakTema()));
     dispatch(
         restResources.featureToggles.actions.setData({
             toggleId: false
@@ -73,4 +72,5 @@ export function setupFetchCache() {
         createCacheKey(`${apiBaseUri}/v2/person/${aremark.personIdent}/aktorid`),
         `000${aremark.personIdent}000` as unknown as object
     );
+    cache.putResolved(createCacheKey(`${apiBaseUri}/dialogoppgave/v2/tema`), getMockGsakTema());
 }

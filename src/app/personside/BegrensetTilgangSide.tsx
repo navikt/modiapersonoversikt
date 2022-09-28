@@ -4,12 +4,10 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
 import { HarIkkeTilgang } from '../../redux/restReducers/tilgangskontroll';
 import OppgaveSkjemaSkjermetPerson from './infotabs/meldinger/traadvisning/verktoylinje/oppgave/skjermetPerson/OppgaveSkjemaSkjermetPerson';
-import { useRestResource } from '../../rest/consumer/useRestResource';
-import { useFodselsnummer } from '../../utils/customHooks';
 import styled from 'styled-components/macro';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { useState } from 'react';
-import { CenteredLazySpinner } from '../../components/LazySpinner';
+import { useState, useCallback } from 'react';
+import gsaktemaResource from '../../rest/resources/gsakTema';
 
 interface BegrensetTilgangProps {
     tilgangsData: HarIkkeTilgang;
@@ -26,30 +24,20 @@ const Wrapper = styled.div`
 `;
 
 function OpprettOppgaveAvvistTilgang() {
-    const gsakTemaResource = useRestResource(resources => resources.oppgaveGsakTema);
-    const gsakTema = gsakTemaResource?.data;
-    const fnr = useFodselsnummer();
     const [apen, setApen] = useState(false);
-
-    const lukk = () => {
-        setApen(!apen);
-    };
-
-    if (gsakTemaResource.isLoading) {
-        return <CenteredLazySpinner />;
-    }
-    if (!gsakTema) {
-        return (
-            <AlertStripe type={'info'}>Kunne ikke vise opprett oppgave panel. Vennligst last siden på nytt</AlertStripe>
-        );
-    }
-
-    return (
-        <Ekspanderbartpanel tittel={'Opprett oppgave'} apen={apen} onClick={() => setApen(!apen)}>
-            <OppgaveSkjemaSkjermetPerson gsakTema={gsakTema} gjeldendeBrukerFnr={fnr} lukkPanel={lukk} />
-        </Ekspanderbartpanel>
-    );
+    const togglePanel = useCallback(() => setApen((it) => !it), [setApen]);
+    return gsaktemaResource.useRenderer({
+        ifError: (
+            <AlertStripe type="info">Kunne ikke vise opprett oppgave panel. Vennligst last siden på nytt</AlertStripe>
+        ),
+        ifData: (gsaktema) => (
+            <Ekspanderbartpanel tittel={'Opprett oppgave'} apen={apen} onClick={togglePanel}>
+                <OppgaveSkjemaSkjermetPerson gsakTema={gsaktema} lukkPanel={togglePanel} />
+            </Ekspanderbartpanel>
+        )
+    });
 }
+
 function BegrensetTilgangSide(props: BegrensetTilgangProps) {
     return (
         <FillCenterAndFadeIn>

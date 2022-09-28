@@ -11,7 +11,6 @@ import featureToggleReducer from './featureToggles';
 import saksoversiktReducer from './saksoversikt';
 import varselReducer from './varsel';
 import meldingerReducer from './meldinger/meldinger';
-import oppgaveGsakTemaReducer from './meldinger/gsakTema';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { BaseUrlsResponse } from '../../models/baseurls';
 import { RestResource } from '../../rest/utils/restResource';
@@ -23,7 +22,7 @@ import { DetaljertOppfolging } from '../../models/oppfolging';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { Varsel } from '../../models/varsel';
 import { Traad } from '../../models/meldinger/meldinger';
-import { GsakTema, Oppgave } from '../../models/meldinger/oppgave';
+import { Oppgave } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
 import tildelteOppgaver from './tildelteOppgaver';
 import { combineResettableReducers } from '../reducer-utils';
@@ -49,7 +48,6 @@ export interface RestEndepunkter {
     featureToggles: RestResource<{ [name: string]: boolean }>;
     brukersVarsler: RestResource<Varsel[]>;
     traader: RestResource<Traad[]>;
-    oppgaveGsakTema: RestResource<GsakTema[]>;
 }
 
 export default combineResettableReducers<RestEndepunkter>(
@@ -69,8 +67,7 @@ export default combineResettableReducers<RestEndepunkter>(
         sakstema: saksoversiktReducer,
         featureToggles: featureToggleReducer,
         brukersVarsler: varselReducer,
-        traader: meldingerReducer,
-        oppgaveGsakTema: oppgaveGsakTemaReducer
+        traader: meldingerReducer
     },
     ['innloggetSaksbehandler', 'veilederRoller', 'baseUrl', 'featureToggles', 'saksbehandlersEnheter']
 );
