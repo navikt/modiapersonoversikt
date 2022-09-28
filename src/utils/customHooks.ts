@@ -34,7 +34,7 @@ export function useJustOnceEffect(effect: JustOnceEffectCallback, deps?: Depende
         if (!done.current) {
             return effect(setDone);
         }
-    }, deps); // eslint-disable-line react-resources/exhaustive-deps
+    }, deps); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export function useOnUpdate(effect: EffectCallback, deps: DependencyList) {

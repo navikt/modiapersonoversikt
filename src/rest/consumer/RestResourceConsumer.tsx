@@ -13,9 +13,9 @@ export type Props<T> = {
 function RestResourceConsumer<T>(props: Props<T>) {
     const { getResource, children, ...placeholderProps } = props;
     // Plukker hvert enkelt element fra `placeholderProps` slik at objektet ikke styrer memoiseringen
-    // eslint-disable-next-line react-resources/exhaustive-deps
     const memomizedPlaceholder = useMemo(
         () => placeholderProps,
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [
             placeholderProps.placeholderKey,
             placeholderProps.returnOnError,
