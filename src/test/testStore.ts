@@ -37,8 +37,6 @@ export function getTestStore(): Store<AppState> {
     dispatch(restResources.veilederRoller.actions.setData({ roller: [SaksbehandlerRoller.HentOppgave] }));
     dispatch(restResources.utbetalinger.actions.setData(statiskMockUtbetalingRespons));
     dispatch(restResources.utbetalingerOversikt.actions.setData(statiskMockUtbetalingRespons));
-    dispatch(restResources.sakstema.actions.setData(getStaticMockSaksoversikt()));
-    dispatch(restResources.brukersVarsler.actions.setData(statiskVarselMock));
     dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
     dispatch(
         restResources.featureToggles.actions.setData({
@@ -73,4 +71,8 @@ export function setupFetchCache() {
         `000${aremark.personIdent}000` as unknown as object
     );
     cache.putResolved(createCacheKey(`${apiBaseUri}/dialogoppgave/v2/tema`), getMockGsakTema());
+    cache.putResolved(
+        createCacheKey(`${apiBaseUri}/saker/${aremark.personIdent}/sakstema`),
+        getStaticMockSaksoversikt()
+    );
 }

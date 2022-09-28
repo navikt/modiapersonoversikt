@@ -8,8 +8,6 @@ import pleiepengerReducer from './ytelser/pleiepenger';
 import foreldrepengerReducer from './ytelser/foreldrepenger';
 import oppfolgingReducer from './oppfolging';
 import featureToggleReducer from './featureToggles';
-import saksoversiktReducer from './saksoversikt';
-import varselReducer from './varsel';
 import meldingerReducer from './meldinger/meldinger';
 import { VeilederRoller } from '../../models/veilederRoller';
 import { BaseUrlsResponse } from '../../models/baseurls';
@@ -19,8 +17,6 @@ import { SykepengerResponse } from '../../models/ytelse/sykepenger';
 import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { DetaljertOppfolging } from '../../models/oppfolging';
-import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
-import { Varsel } from '../../models/varsel';
 import { Traad } from '../../models/meldinger/meldinger';
 import { Oppgave } from '../../models/meldinger/oppgave';
 import { InnloggetSaksbehandler } from '../../models/innloggetSaksbehandler';
@@ -44,9 +40,7 @@ export interface RestEndepunkter {
     pleiepenger: RestResource<PleiepengerResponse>;
     foreldrepenger: RestResource<ForeldrepengerResponse>;
     oppfolging: RestResource<DetaljertOppfolging>;
-    sakstema: RestResource<SakstemaResponse>;
     featureToggles: RestResource<{ [name: string]: boolean }>;
-    brukersVarsler: RestResource<Varsel[]>;
     traader: RestResource<Traad[]>;
 }
 
@@ -64,9 +58,7 @@ export default combineResettableReducers<RestEndepunkter>(
         pleiepenger: pleiepengerReducer,
         foreldrepenger: foreldrepengerReducer,
         oppfolging: oppfolgingReducer,
-        sakstema: saksoversiktReducer,
         featureToggles: featureToggleReducer,
-        brukersVarsler: varselReducer,
         traader: meldingerReducer
     },
     ['innloggetSaksbehandler', 'veilederRoller', 'baseUrl', 'featureToggles', 'saksbehandlersEnheter']

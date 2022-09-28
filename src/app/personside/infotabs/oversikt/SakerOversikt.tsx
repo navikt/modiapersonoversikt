@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Sakstema, SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
-import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
+import { Sakstema } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import SakstemaListeElementKnapp from '../saksoversikt/sakstemaliste/SakstemaListeElementKnapp';
@@ -10,6 +9,7 @@ import { ReactNode } from 'react';
 import { useOnMount } from '../../../../utils/customHooks';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { filtrerSakstemaerUtenData } from '../saksoversikt/sakstemaliste/SakstemaListeUtils';
+import sakstemaResource from '../../../../rest/resources/sakstema';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -21,16 +21,11 @@ interface Props {
     setHeaderContent: (content: ReactNode) => void;
 }
 
-const onPendingSpinner = <CenteredLazySpinner padding={theme.margin.layout} />;
 function SakerOversikt(props: Props) {
-    return (
-        <RestResourceConsumer<SakstemaResponse>
-            getResource={(restResources) => restResources.sakstema}
-            returnOnPending={onPendingSpinner}
-        >
-            {(data) => <SakerPanel sakstema={data.resultat} {...props} />}
-        </RestResourceConsumer>
-    );
+    return sakstemaResource.useRenderer({
+        ifPending: <CenteredLazySpinner padding={theme.margin.layout} />,
+        ifData: (sakstema) => <SakerPanel sakstema={sakstema.resultat} {...props} />
+    });
 }
 
 function SakerPanel(props: { sakstema: Sakstema[] } & Props) {
