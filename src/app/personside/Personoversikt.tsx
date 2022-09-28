@@ -6,18 +6,8 @@ import { erGyldigishFnr } from '../../utils/fnr-utils';
 import { useHistory } from 'react-router';
 import { paths } from '../routes/routing';
 import { loggInfo } from '../../utils/logger/frontendLogger';
-import RestResourceConsumer from '../../rest/consumer/RestResourceConsumer';
-import { TilgangDTO } from '../../redux/restReducers/tilgangskontroll';
-import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner';
-import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
-import AlertStripe from 'nav-frontend-alertstriper';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
-
-const onError = (
-    <FillCenterAndFadeIn>
-        <AlertStripe type="advarsel">Beklager. Det skjedde en feil ved sjekking av tilgang til bruker.</AlertStripe>
-    </FillCenterAndFadeIn>
-);
+import tilgangskontroll from '../../rest/resources/tilgangskontroll';
 
 function Personoversikt() {
     const fnr = useFodselsnummer();
@@ -30,25 +20,17 @@ function Personoversikt() {
         }
     });
 
-    return (
-        <RestResourceConsumer<TilgangDTO>
-            getResource={(resources) => resources.tilgangskontroll}
-            returnOnPending={BigCenteredLazySpinner}
-            returnOnError={onError}
-        >
-            {(data) => {
-                if (!data.harTilgang) {
-                    return <BegrensetTilgangSide tilgangsData={data} />;
-                }
-                return (
-                    <>
-                        <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
-                        <MainLayout />
-                    </>
-                );
-            }}
-        </RestResourceConsumer>
-    );
+    return tilgangskontroll.useRenderer((data) => {
+        if (!data.harTilgang) {
+            return <BegrensetTilgangSide tilgangsData={data} />;
+        }
+        return (
+            <>
+                <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
+                <MainLayout />
+            </>
+        );
+    });
 }
 
 export default Personoversikt;

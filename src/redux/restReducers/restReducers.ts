@@ -1,5 +1,4 @@
 import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
-import tilgangskontrollReducer from './tilgangskontroll';
 import baseUrlReducer from './baseurls';
 import veilederRollerReducer from './veilederRoller';
 import utbetalingerReducer from './utbetalinger';
@@ -25,12 +24,10 @@ import { combineResettableReducers } from '../reducer-utils';
 import utbetalingerOversikt from './utbetalingerOversikt';
 import saksbehandlersEnheter from './saksbehandlersEnheter';
 import { SaksbehandlersEnheter } from '../../models/saksbehandlersEnheter';
-import { TilgangDTO } from './tilgangskontroll';
 
 export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>; // TODO denne kan fjernes, eller evt erstattes med kall til modiacontextholder
     saksbehandlersEnheter: RestResource<SaksbehandlersEnheter>; // TODO denne bør fjernes, eller evt erstattes med kall til modiacontextholder
-    tilgangskontroll: RestResource<TilgangDTO>;
     tildelteOppgaver: RestResource<Oppgave[]>;
     baseUrl: RestResource<BaseUrlsResponse>;
     veilederRoller: RestResource<VeilederRoller>;
@@ -47,7 +44,6 @@ export interface RestEndepunkter {
 export default combineResettableReducers<RestEndepunkter>(
     {
         innloggetSaksbehandler: innloggetSaksbehandlerReducer,
-        tilgangskontroll: tilgangskontrollReducer,
         saksbehandlersEnheter: saksbehandlersEnheter,
         tildelteOppgaver: tildelteOppgaver,
         baseUrl: baseUrlReducer,
