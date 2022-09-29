@@ -13,7 +13,7 @@ function url(fnr: string): string {
 
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
-    ifError: <AlertStripe type="advarsel">Kunne ikke laste inn sykepenger</AlertStripe>
+    ifError: <AlertStripe type="advarsel">Kunne ikke laste inn foreldrepenger</AlertStripe>
 };
 
 const resource = {
