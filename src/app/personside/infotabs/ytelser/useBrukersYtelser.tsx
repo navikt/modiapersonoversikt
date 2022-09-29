@@ -4,6 +4,7 @@ import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { getYtelseIdDato, Ytelse } from '../../../../models/ytelse/ytelse-utils';
 import sykepengerFetcher from '../../../../rest/resources/sykepenger';
+import pleiepengerFetcher from '../../../../rest/resources/pleiepenger';
 import { hasData, isPending, hasError, FetchResult } from '@nutgaard/use-fetch';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
@@ -48,25 +49,26 @@ function useBrukersYtelser(): Returns {
         foreldrepengerPlaceholder,
         true
     );
-    const pleiepengerResource = useRestResource((resources) => resources.pleiepenger, pleiepengerPlaceholder, true);
+    const pleiepengerResource = pleiepengerFetcher.useFetch();
     const sykepengerResource = sykepengerFetcher.useFetch();
 
     return useMemo(() => {
         const pending =
-            pleiepengerResource.isLoading || foreldrepengerResource.isLoading || isPending(sykepengerResource);
+            isPending(pleiepengerResource) || foreldrepengerResource.isLoading || isPending(sykepengerResource);
         const foreldrepenger = foreldrepengerResource.data?.foreldrepenger || [];
-        const pleiepenger = pleiepengerResource.data?.pleiepenger || [];
+        const pleiepenger = hasData(pleiepengerResource) ? pleiepengerResource.data.pleiepenger || [] : [];
         const sykepenger = hasData(sykepengerResource) ? sykepengerResource.data.sykepenger || [] : [];
 
         const ytelser = [...foreldrepenger, ...pleiepenger, ...sykepenger];
         const ytelserSortert = ytelser.sort(datoSynkende((ytelse: Ytelse) => getYtelseIdDato(ytelse)));
         const placeholders = [
             foreldrepengerResource.placeholder,
-            pleiepengerResource.placeholder,
+            placeholder(pleiepengerResource, pleiepengerPlaceholder),
             placeholder(sykepengerResource, sykepengerPlaceholder)
         ];
 
-        const harFeil = foreldrepengerResource.hasError || pleiepengerResource.hasError || hasError(sykepengerResource);
+        const harFeil =
+            foreldrepengerResource.hasError || hasError(pleiepengerResource) || hasError(sykepengerResource);
         return { ytelser: ytelserSortert, pending: pending, placeholders: placeholders, harFeil: harFeil };
     }, [foreldrepengerResource, pleiepengerResource, sykepengerResource]);
 }

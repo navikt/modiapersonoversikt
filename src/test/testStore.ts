@@ -42,7 +42,6 @@ export function getTestStore(): Store<AppState> {
         })
     );
     dispatch(restResources.traader.actions.setData([statiskTraadMock]));
-    dispatch(restResources.pleiepenger.actions.setData({ pleiepenger: [pleiepengerTestData] }));
     dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));
     setupFetchCache();
 
@@ -76,5 +75,8 @@ export function setupFetchCache() {
     cache.putResolved(createCacheKey(`${apiBaseUri}/veileder/roller`), { roller: [SaksbehandlerRoller.HentOppgave] });
     cache.putResolved(createCacheKey(`${apiBaseUri}/ytelse/sykepenger/${aremark.personIdent}`), {
         sykepenger: [statiskSykepengerMock]
+    });
+    cache.putResolved(createCacheKey(`${apiBaseUri}/ytelse/pleiepenger/${aremark.personIdent}`), {
+        pleiepenger: [pleiepengerTestData]
     });
 }
