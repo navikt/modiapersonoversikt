@@ -33,7 +33,6 @@ export function getTestStore(): Store<AppState> {
         })
     );
     dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
-    dispatch(restResources.veilederRoller.actions.setData({ roller: [SaksbehandlerRoller.HentOppgave] }));
     dispatch(restResources.utbetalinger.actions.setData(statiskMockUtbetalingRespons));
     dispatch(restResources.utbetalingerOversikt.actions.setData(statiskMockUtbetalingRespons));
     dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
@@ -43,9 +42,6 @@ export function getTestStore(): Store<AppState> {
         })
     );
     dispatch(restResources.traader.actions.setData([statiskTraadMock]));
-    dispatch(restResources.pleiepenger.actions.setData({ pleiepenger: [pleiepengerTestData] }));
-    dispatch(restResources.foreldrepenger.actions.setData({ foreldrepenger: [statiskForeldrepengeMock] }));
-    dispatch(restResources.sykepenger.actions.setData({ sykepenger: [statiskSykepengerMock] }));
     setupFetchCache();
 
     return testStore;
@@ -75,4 +71,14 @@ export function setupFetchCache() {
         getStaticMockSaksoversikt()
     );
     cache.putResolved(createCacheKey(`${apiBaseUri}/baseurls`), mockBaseUrls());
+    cache.putResolved(createCacheKey(`${apiBaseUri}/veileder/roller`), { roller: [SaksbehandlerRoller.HentOppgave] });
+    cache.putResolved(createCacheKey(`${apiBaseUri}/ytelse/sykepenger/${aremark.personIdent}`), {
+        sykepenger: [statiskSykepengerMock]
+    });
+    cache.putResolved(createCacheKey(`${apiBaseUri}/ytelse/pleiepenger/${aremark.personIdent}`), {
+        pleiepenger: [pleiepengerTestData]
+    });
+    cache.putResolved(createCacheKey(`${apiBaseUri}/ytelse/foreldrepenger/${aremark.personIdent}`), {
+        foreldrepenger: [statiskForeldrepengeMock]
+    });
 }
