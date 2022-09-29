@@ -1,6 +1,5 @@
 import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
 import utbetalingerReducer from './utbetalinger';
-import sykepengerReducer from './ytelser/sykepenger';
 import pleiepengerReducer from './ytelser/pleiepenger';
 import foreldrepengerReducer from './ytelser/foreldrepenger';
 import oppfolgingReducer from './oppfolging';
@@ -8,7 +7,6 @@ import featureToggleReducer from './featureToggles';
 import meldingerReducer from './meldinger/meldinger';
 import { RestResource } from '../../rest/utils/restResource';
 import { UtbetalingerResponse } from '../../models/utbetalinger';
-import { SykepengerResponse } from '../../models/ytelse/sykepenger';
 import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
 import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 import { DetaljertOppfolging } from '../../models/oppfolging';
@@ -27,7 +25,6 @@ export interface RestEndepunkter {
     tildelteOppgaver: RestResource<Oppgave[]>;
     utbetalinger: RestResource<UtbetalingerResponse>;
     utbetalingerOversikt: RestResource<UtbetalingerResponse>;
-    sykepenger: RestResource<SykepengerResponse>;
     pleiepenger: RestResource<PleiepengerResponse>;
     foreldrepenger: RestResource<ForeldrepengerResponse>;
     oppfolging: RestResource<DetaljertOppfolging>;
@@ -42,7 +39,6 @@ export default combineResettableReducers<RestEndepunkter>(
         tildelteOppgaver: tildelteOppgaver,
         utbetalinger: utbetalingerReducer,
         utbetalingerOversikt: utbetalingerOversikt,
-        sykepenger: sykepengerReducer,
         pleiepenger: pleiepengerReducer,
         foreldrepenger: foreldrepengerReducer,
         oppfolging: oppfolgingReducer,

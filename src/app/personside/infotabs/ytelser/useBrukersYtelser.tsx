@@ -1,7 +1,11 @@
+import * as React from 'react';
 import { ReactNode, useMemo } from 'react';
 import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { getYtelseIdDato, Ytelse } from '../../../../models/ytelse/ytelse-utils';
+import sykepengerFetcher from '../../../../rest/resources/sykepenger';
+import { hasData, isPending, hasError, FetchResult } from '@nutgaard/use-fetch';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Returns {
     ytelser: Ytelse[];
@@ -25,31 +29,44 @@ const sykepengerPlaceholder = {
     returnOnForbidden: 'Du har ikke tilgang til sykepenger'
 };
 
+type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
+function placeholder(resource: FetchResult<any>, tekster: Placeholder) {
+    if (resource.statusCode === 404) {
+        return <AlertStripeAdvarsel>{tekster.returnOnNotFound}</AlertStripeAdvarsel>;
+    } else if (resource.statusCode === 403) {
+        return <AlertStripeAdvarsel>{tekster.returnOnForbidden}</AlertStripeAdvarsel>;
+    } else if (hasError(resource)) {
+        return <AlertStripeAdvarsel>{tekster.returnOnError}</AlertStripeAdvarsel>;
+    } else {
+        return null;
+    }
+}
+
 function useBrukersYtelser(): Returns {
     const foreldrepengerResource = useRestResource(
-        resources => resources.foreldrepenger,
+        (resources) => resources.foreldrepenger,
         foreldrepengerPlaceholder,
         true
     );
-    const pleiepengerResource = useRestResource(resources => resources.pleiepenger, pleiepengerPlaceholder, true);
-    const sykepengerResource = useRestResource(resources => resources.sykepenger, sykepengerPlaceholder, true);
+    const pleiepengerResource = useRestResource((resources) => resources.pleiepenger, pleiepengerPlaceholder, true);
+    const sykepengerResource = sykepengerFetcher.useFetch();
 
     return useMemo(() => {
         const pending =
-            pleiepengerResource.isLoading || foreldrepengerResource.isLoading || sykepengerResource.isLoading;
+            pleiepengerResource.isLoading || foreldrepengerResource.isLoading || isPending(sykepengerResource);
         const foreldrepenger = foreldrepengerResource.data?.foreldrepenger || [];
         const pleiepenger = pleiepengerResource.data?.pleiepenger || [];
-        const sykepenger = sykepengerResource.data?.sykepenger || [];
+        const sykepenger = hasData(sykepengerResource) ? sykepengerResource.data.sykepenger || [] : [];
 
         const ytelser = [...foreldrepenger, ...pleiepenger, ...sykepenger];
-        const ytelserSortert = ytelser.sort(datoSynkende(rettighet => getYtelseIdDato(rettighet)));
+        const ytelserSortert = ytelser.sort(datoSynkende((ytelse: Ytelse) => getYtelseIdDato(ytelse)));
         const placeholders = [
             foreldrepengerResource.placeholder,
             pleiepengerResource.placeholder,
-            sykepengerResource.placeholder
+            placeholder(sykepengerResource, sykepengerPlaceholder)
         ];
 
-        const harFeil = foreldrepengerResource.hasError || pleiepengerResource.hasError || sykepengerResource.hasError;
+        const harFeil = foreldrepengerResource.hasError || pleiepengerResource.hasError || hasError(sykepengerResource);
         return { ytelser: ytelserSortert, pending: pending, placeholders: placeholders, harFeil: harFeil };
     }, [foreldrepengerResource, pleiepengerResource, sykepengerResource]);
 }
