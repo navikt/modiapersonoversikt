@@ -200,12 +200,9 @@ function setupVarselMock(mock: FetchMock) {
 }
 
 function setupGsakTemaMock(mock: FetchMock) {
-    // mock.get(
-    //     apiBaseUri + '/dialogoppgave/v2/tema',
-    //     withDelayedResponse(randomDelay(), STATUS_OK, () => getMockGsakTema())
-    // );
-    mock.get(apiBaseUri + '/dialogoppgave/v2/tema', (req, res, ctx) =>
-        res(ctx.delay(1000_000), ctx.json(getMockGsakTema()))
+    mock.get(
+        apiBaseUri + '/dialogoppgave/v2/tema',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockGsakTema())
     );
 }
 

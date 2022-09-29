@@ -2,12 +2,12 @@ import * as React from 'react';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
 import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
-import { HarIkkeTilgang } from '../../redux/restReducers/tilgangskontroll';
 import OppgaveSkjemaSkjermetPerson from './infotabs/meldinger/traadvisning/verktoylinje/oppgave/skjermetPerson/OppgaveSkjemaSkjermetPerson';
 import styled from 'styled-components/macro';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useState, useCallback } from 'react';
 import gsaktemaResource from '../../rest/resources/gsakTema';
+import { HarIkkeTilgang } from '../../rest/resources/tilgangskontroll';
 
 interface BegrensetTilgangProps {
     tilgangsData: HarIkkeTilgang;
@@ -26,6 +26,7 @@ const Wrapper = styled.div`
 function OpprettOppgaveAvvistTilgang() {
     const [apen, setApen] = useState(false);
     const togglePanel = useCallback(() => setApen((it) => !it), [setApen]);
+    console.log('gsaktemaResource', gsaktemaResource);
     return gsaktemaResource.useRenderer({
         ifError: (
             <AlertStripe type="info">Kunne ikke vise opprett oppgave panel. Vennligst last siden på nytt</AlertStripe>
