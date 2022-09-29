@@ -1,24 +1,20 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
-import { AppState } from '../../redux/reducers';
 import { useFetchFeatureTogglesOnNewFnr } from './FetchFeatureToggles';
 import { loggEvent } from '../../utils/logger/frontendLogger';
+import tildelteoppgaver from '../../rest/resources/tildelteoppgaver';
 
 function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     const dispatch = useDispatch();
     const fnr = useGjeldendeBruker();
-
-    const restResources = useSelector((state: AppState) => state.restResources);
-
-    const tildDelteOppgaverFetch = restResources.tildelteOppgaver.actions.fetch;
+    tildelteoppgaver.useFetch();
 
     useEffect(() => {
         if (fnr.length !== 0) {
             loggEvent('OppslagNyPerson', 'HentAllPersoninfo');
-            dispatch(tildDelteOppgaverFetch);
         }
-    }, [dispatch, fnr, tildDelteOppgaverFetch]);
+    }, [dispatch, fnr]);
     useFetchFeatureTogglesOnNewFnr();
     return null;
 }

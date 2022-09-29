@@ -31,8 +31,9 @@ import { useRestResource } from '../../../../../../../rest/consumer/useRestResou
 import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-focus-on-first-focusable';
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../../../utils/customHooks';
-import { hasData, RestResource } from '../../../../../../../rest/utils/restResource';
 import { Oppgave } from '../../../../../../../models/meldinger/oppgave';
+import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaver';
+import { FetchResult, hasData } from '@nutgaard/use-fetch';
 
 interface Props {
     lukkPanel: () => void;
@@ -96,7 +97,7 @@ function getLukkTraadRequest(fnr: string, valgtEnhet: string, traad: Traad, oppg
     };
 }
 
-function finnOppgaveForTraad(traad: Traad, tildelteOppgaver: RestResource<Oppgave[]>): Oppgave | undefined {
+function finnOppgaveForTraad(traad: Traad, tildelteOppgaver: FetchResult<Oppgave[]>): Oppgave | undefined {
     if (hasData(tildelteOppgaver)) {
         return tildelteOppgaver.data.find((it) => it.traadId === traad.traadId);
     }
@@ -107,7 +108,7 @@ function MerkPanel(props: Props) {
     const dispatch = useDispatch();
     const valgtTraad = props.valgtTraad;
     const traderResource = useRestResource((resources) => resources.traader);
-    const tildelteOppgaverResource = useRestResource((resources) => resources.tildelteOppgaver);
+    const tildelteOppgaverResource = tildelteoppgaver.useFetch();
 
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
@@ -115,7 +116,7 @@ function MerkPanel(props: Props) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const valgtEnhet = useAppState((state) => state.session.valgtEnhetId);
     const formRef = useRef<HTMLFormElement>(null);
-    const oppgaveTilknyttning = finnOppgaveForTraad(valgtTraad, tildelteOppgaverResource.resource);
+    const oppgaveTilknyttning = finnOppgaveForTraad(valgtTraad, tildelteOppgaverResource);
 
     useFocusOnFirstFocusable(formRef);
 
@@ -126,7 +127,7 @@ function MerkPanel(props: Props) {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
                 dispatch(traderResource.actions.reload);
-                dispatch(tildelteOppgaverResource.actions.reload);
+                tildelteOppgaverResource.rerun();
                 dispatch(setIngenValgtTraadDialogpanel());
             })
             .catch(() => {
