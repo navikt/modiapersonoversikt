@@ -1,27 +1,26 @@
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRest, useFetch } from '../useRest';
-import { apiBaseUri } from '../../api/config';
+import { FetchResult } from '@nutgaard/use-fetch';
 import { useFodselsnummer } from '../../utils/customHooks';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useFetch, useRest } from '../useRest';
+import { Oppgave } from '../../models/meldinger/oppgave';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import * as React from 'react';
-import { FetchResult } from '@nutgaard/use-fetch';
-import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
+import { apiBaseUri } from '../../api/config';
 
 function url(fnr: string): string {
-    return `${apiBaseUri}/ytelse/pleiepenger/${fnr}`;
+    return `${apiBaseUri}/oppgaver/tildelt/${fnr}`;
 }
-
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
-    ifError: <AlertStripe type="advarsel">Kunne ikke laste inn pleiepenger</AlertStripe>
+    ifError: <AlertStripe type="advarsel">Kunne ikke laste inn oppgaver</AlertStripe>
 };
 
 const resource = {
-    useFetch(): FetchResult<PleiepengerResponse> {
+    useFetch(): FetchResult<Oppgave[]> {
         const fnr = useFodselsnummer();
         return useFetch(url(fnr));
     },
-    useRenderer(renderer: RendererOrConfig<PleiepengerResponse>) {
+    useRenderer(renderer: RendererOrConfig<Oppgave[]>) {
         const fnr = useFodselsnummer();
         return useRest(url(fnr), applyDefaults(defaults, renderer));
     }

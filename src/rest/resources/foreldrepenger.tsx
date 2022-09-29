@@ -5,23 +5,23 @@ import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import { FetchResult } from '@nutgaard/use-fetch';
-import { PleiepengerResponse } from '../../models/ytelse/pleiepenger';
+import { ForeldrepengerResponse } from '../../models/ytelse/foreldrepenger';
 
 function url(fnr: string): string {
-    return `${apiBaseUri}/ytelse/pleiepenger/${fnr}`;
+    return `${apiBaseUri}/ytelse/foreldrepenger/${fnr}`;
 }
 
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
-    ifError: <AlertStripe type="advarsel">Kunne ikke laste inn pleiepenger</AlertStripe>
+    ifError: <AlertStripe type="advarsel">Kunne ikke laste inn foreldrepenger</AlertStripe>
 };
 
 const resource = {
-    useFetch(): FetchResult<PleiepengerResponse> {
+    useFetch(): FetchResult<ForeldrepengerResponse> {
         const fnr = useFodselsnummer();
         return useFetch(url(fnr));
     },
-    useRenderer(renderer: RendererOrConfig<PleiepengerResponse>) {
+    useRenderer(renderer: RendererOrConfig<ForeldrepengerResponse>) {
         const fnr = useFodselsnummer();
         return useRest(url(fnr), applyDefaults(defaults, renderer));
     }

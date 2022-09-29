@@ -29,8 +29,9 @@ import { Temagruppe } from '../../../../models/temagrupper';
 import useDraft, { Draft } from '../use-draft';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
-import { hasData, RestResource } from '../../../../rest/utils/restResource';
 import { selectValgtEnhet } from '../../../../redux/session/session';
+import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaver';
+import { FetchResult, hasData } from '@nutgaard/use-fetch';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -49,7 +50,7 @@ const StyledArticle = styled.article`
 
 export function finnPlukketOppgaveForTraad(
     traad: Traad,
-    resource: RestResource<Oppgave[]>
+    resource: FetchResult<Oppgave[]>
 ): { oppgave: Oppgave | undefined; erSTOOppgave: boolean } {
     if (!hasData(resource)) {
         return { oppgave: undefined, erSTOOppgave: false };
@@ -87,9 +88,7 @@ function FortsettDialogContainer(props: Props) {
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
     const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
     const reloadMeldinger = useRestResource((resources) => resources.traader).actions.reload;
-    const tildelteOppgaverResource = useRestResource((resources) => resources.tildelteOppgaver);
-    const tildelteOppgaver = tildelteOppgaverResource.resource;
-    const reloadTildelteOppgaver = tildelteOppgaverResource.actions.reload;
+    const tildelteOppgaverResource = tildelteoppgaver.useFetch();
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
     });
@@ -115,7 +114,7 @@ function FortsettDialogContainer(props: Props) {
         return opprettHenvendelse.placeholder;
     }
 
-    const { oppgave, erSTOOppgave } = finnPlukketOppgaveForTraad(props.traad, tildelteOppgaver);
+    const { oppgave, erSTOOppgave } = finnPlukketOppgaveForTraad(props.traad, tildelteOppgaverResource);
     const oppgaveId = oppgave ? oppgave.oppgaveId : opprettHenvendelse.henvendelse.oppgaveId;
 
     const handleAvbryt = () => {
@@ -130,7 +129,7 @@ function FortsettDialogContainer(props: Props) {
         }
         const callback = () => {
             removeDraft();
-            dispatch(reloadTildelteOppgaver);
+            tildelteOppgaverResource.rerun();
             dispatch(reloadMeldinger);
         };
 
