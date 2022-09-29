@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { ReactNode, useMemo } from 'react';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { getYtelseIdDato, Ytelse } from '../../../../models/ytelse/ytelse-utils';
 import sykepengerFetcher from '../../../../rest/resources/sykepenger';
+import pleiepengerFetcher from '../../../../rest/resources/pleiepenger';
+import foreldrepengerFetcher from '../../../../rest/resources/foreldrepenger';
 import { hasData, isPending, hasError, FetchResult } from '@nutgaard/use-fetch';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
@@ -43,30 +44,27 @@ function placeholder(resource: FetchResult<any>, tekster: Placeholder) {
 }
 
 function useBrukersYtelser(): Returns {
-    const foreldrepengerResource = useRestResource(
-        (resources) => resources.foreldrepenger,
-        foreldrepengerPlaceholder,
-        true
-    );
-    const pleiepengerResource = useRestResource((resources) => resources.pleiepenger, pleiepengerPlaceholder, true);
+    const foreldrepengerResource = foreldrepengerFetcher.useFetch();
+    const pleiepengerResource = pleiepengerFetcher.useFetch();
     const sykepengerResource = sykepengerFetcher.useFetch();
 
     return useMemo(() => {
         const pending =
-            pleiepengerResource.isLoading || foreldrepengerResource.isLoading || isPending(sykepengerResource);
-        const foreldrepenger = foreldrepengerResource.data?.foreldrepenger || [];
-        const pleiepenger = pleiepengerResource.data?.pleiepenger || [];
+            isPending(pleiepengerResource) || isPending(foreldrepengerResource) || isPending(sykepengerResource);
+        const foreldrepenger = hasData(foreldrepengerResource) ? foreldrepengerResource.data.foreldrepenger || [] : [];
+        const pleiepenger = hasData(pleiepengerResource) ? pleiepengerResource.data.pleiepenger || [] : [];
         const sykepenger = hasData(sykepengerResource) ? sykepengerResource.data.sykepenger || [] : [];
 
         const ytelser = [...foreldrepenger, ...pleiepenger, ...sykepenger];
         const ytelserSortert = ytelser.sort(datoSynkende((ytelse: Ytelse) => getYtelseIdDato(ytelse)));
         const placeholders = [
-            foreldrepengerResource.placeholder,
-            pleiepengerResource.placeholder,
+            placeholder(foreldrepengerResource, foreldrepengerPlaceholder),
+            placeholder(pleiepengerResource, pleiepengerPlaceholder),
             placeholder(sykepengerResource, sykepengerPlaceholder)
         ];
 
-        const harFeil = foreldrepengerResource.hasError || pleiepengerResource.hasError || hasError(sykepengerResource);
+        const harFeil =
+            hasError(foreldrepengerResource) || hasError(pleiepengerResource) || hasError(sykepengerResource);
         return { ytelser: ytelserSortert, pending: pending, placeholders: placeholders, harFeil: harFeil };
     }, [foreldrepengerResource, pleiepengerResource, sykepengerResource]);
 }
