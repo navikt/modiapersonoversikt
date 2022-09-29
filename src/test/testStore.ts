@@ -33,7 +33,6 @@ export function getTestStore(): Store<AppState> {
         })
     );
     dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
-    dispatch(restResources.veilederRoller.actions.setData({ roller: [SaksbehandlerRoller.HentOppgave] }));
     dispatch(restResources.utbetalinger.actions.setData(statiskMockUtbetalingRespons));
     dispatch(restResources.utbetalingerOversikt.actions.setData(statiskMockUtbetalingRespons));
     dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
@@ -75,4 +74,5 @@ export function setupFetchCache() {
         getStaticMockSaksoversikt()
     );
     cache.putResolved(createCacheKey(`${apiBaseUri}/baseurls`), mockBaseUrls());
+    cache.putResolved(createCacheKey(`${apiBaseUri}/veileder/roller`), { roller: [SaksbehandlerRoller.HentOppgave] });
 }

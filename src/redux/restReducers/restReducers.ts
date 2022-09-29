@@ -1,5 +1,4 @@
 import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
-import veilederRollerReducer from './veilederRoller';
 import utbetalingerReducer from './utbetalinger';
 import sykepengerReducer from './ytelser/sykepenger';
 import pleiepengerReducer from './ytelser/pleiepenger';
@@ -7,7 +6,6 @@ import foreldrepengerReducer from './ytelser/foreldrepenger';
 import oppfolgingReducer from './oppfolging';
 import featureToggleReducer from './featureToggles';
 import meldingerReducer from './meldinger/meldinger';
-import { VeilederRoller } from '../../models/veilederRoller';
 import { RestResource } from '../../rest/utils/restResource';
 import { UtbetalingerResponse } from '../../models/utbetalinger';
 import { SykepengerResponse } from '../../models/ytelse/sykepenger';
@@ -27,7 +25,6 @@ export interface RestEndepunkter {
     innloggetSaksbehandler: RestResource<InnloggetSaksbehandler>; // TODO denne kan fjernes, eller evt erstattes med kall til modiacontextholder
     saksbehandlersEnheter: RestResource<SaksbehandlersEnheter>; // TODO denne bør fjernes, eller evt erstattes med kall til modiacontextholder
     tildelteOppgaver: RestResource<Oppgave[]>;
-    veilederRoller: RestResource<VeilederRoller>;
     utbetalinger: RestResource<UtbetalingerResponse>;
     utbetalingerOversikt: RestResource<UtbetalingerResponse>;
     sykepenger: RestResource<SykepengerResponse>;
@@ -43,7 +40,6 @@ export default combineResettableReducers<RestEndepunkter>(
         innloggetSaksbehandler: innloggetSaksbehandlerReducer,
         saksbehandlersEnheter: saksbehandlersEnheter,
         tildelteOppgaver: tildelteOppgaver,
-        veilederRoller: veilederRollerReducer,
         utbetalinger: utbetalingerReducer,
         utbetalingerOversikt: utbetalingerOversikt,
         sykepenger: sykepengerReducer,
@@ -53,5 +49,5 @@ export default combineResettableReducers<RestEndepunkter>(
         featureToggles: featureToggleReducer,
         traader: meldingerReducer
     },
-    ['innloggetSaksbehandler', 'veilederRoller', 'featureToggles', 'saksbehandlersEnheter']
+    ['innloggetSaksbehandler', 'featureToggles', 'saksbehandlersEnheter']
 );
