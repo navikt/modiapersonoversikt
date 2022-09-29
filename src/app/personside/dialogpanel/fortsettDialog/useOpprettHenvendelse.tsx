@@ -8,9 +8,9 @@ import { useDispatch } from 'react-redux';
 import { apiBaseUri } from '../../../../api/config';
 import { postWithConflictVerification, RespectConflictError } from '../../../../api/api';
 import { useState } from 'react';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { selectValgtEnhet } from '../../../../redux/session/session';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
+import tildelteoppgaverResource from '../../../../rest/resources/tildelteoppgaver';
 
 interface NotFinishedOpprettHenvendelse {
     success: false;
@@ -28,7 +28,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
     const valgtEnhet = useAppState(selectValgtEnhet);
     const [error, setError] = useState(false);
     const [response, setResponse] = useState<OpprettHenvendelseResponse | undefined>();
-    const reloadTildelteOppgaver = useRestResource(resources => resources.tildelteOppgaver).actions.reload;
+    const tildelteoppgaver = tildelteoppgaverResource.useFetch();
     const dispatch = useDispatch();
     const fnr = useFodselsnummer();
 
@@ -40,9 +40,9 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
             'Opprett-henvendelse',
             'Oppgaven tilknyttet denne meldingen er allerede tilordnet en saksbehandler. Vil du overstyre dette?'
         )
-            .then(data => setResponse(data as OpprettHenvendelseResponse))
-            .then(() => dispatch(reloadTildelteOppgaver))
-            .catch(e => {
+            .then((data) => setResponse(data as OpprettHenvendelseResponse))
+            .then(() => tildelteoppgaver.rerun())
+            .catch((e) => {
                 if (e instanceof RespectConflictError) {
                     dispatch(setIngenValgtTraadDialogpanel());
                 } else {
