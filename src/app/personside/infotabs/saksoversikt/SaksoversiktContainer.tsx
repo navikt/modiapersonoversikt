@@ -58,7 +58,7 @@ function SaksoversiktContainer() {
         return sakstema.useRenderer({
             ifPending: BigCenteredLazySpinner,
             ifData: (data: SakstemaResponse) => {
-                if (data.resultat.length == 0) {
+                if (data.resultat.length === 0) {
                     return <AlertStripeInfo>Brukeren har ingen saker</AlertStripeInfo>;
                 }
                 return (
