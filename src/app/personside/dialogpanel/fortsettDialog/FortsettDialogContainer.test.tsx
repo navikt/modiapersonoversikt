@@ -1,16 +1,14 @@
 import { finnPlukketOppgaveForTraad } from './FortsettDialogContainer';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
 import { Traad } from '../../../../models/meldinger/meldinger';
-import { NotStarted, RestResource, Success } from '../../../../rest/utils/restResource';
-import { STATUS } from '../../../../rest/utils/utils';
+import { FetchResult, Status } from '@nutgaard/use-fetch';
 
-type UnifiedRestResource<Response> = NotStarted<Response> | Success<Response>;
-function restResource<Response>(status: STATUS.NOT_STARTED | STATUS.SUCCESS, data?: Response): RestResource<Response> {
-    const resource: Partial<UnifiedRestResource<Response>> = {
+function restResource<Response>(status: Status.INIT | Status.OK, data?: Response): FetchResult<Response> {
+    const resource = {
         status,
         data
     };
-    return resource as unknown as RestResource<Response>;
+    return resource as unknown as FetchResult<Response>;
 }
 function lagTraad(traadId: string): Traad {
     return {
@@ -31,14 +29,14 @@ function lagOppgave({ oppgaveId, traadId, erSTOOppgave }: Omit<Oppgave, 'fødsel
 describe('FortsettDialogContainer', () => {
     describe('finnPlukketOppgave', () => {
         it('skal returnere undefined/false om oppgaver ikke er lastet inn', () => {
-            const resource = restResource<Oppgave[]>(STATUS.NOT_STARTED);
+            const resource = restResource<Oppgave[]>(Status.INIT);
             const { oppgave, erSTOOppgave } = finnPlukketOppgaveForTraad(lagTraad('N/A'), resource);
             expect(oppgave).toBeUndefined();
             expect(erSTOOppgave).toBe(false);
         });
 
         it('skal returnere undefined/false om ingen oppgaver er tilknyttet tråd', () => {
-            const resource = restResource<Oppgave[]>(STATUS.SUCCESS, [
+            const resource = restResource<Oppgave[]>(Status.OK, [
                 lagOppgave({ oppgaveId: 'oid1', traadId: 'tid1', erSTOOppgave: false })
             ]);
             const { oppgave, erSTOOppgave } = finnPlukketOppgaveForTraad(lagTraad('N/A'), resource);
@@ -47,7 +45,7 @@ describe('FortsettDialogContainer', () => {
         });
 
         it('skal returnere oppgave som er tilknyttet nåværende tråd', () => {
-            const resource = restResource<Oppgave[]>(STATUS.SUCCESS, [
+            const resource = restResource<Oppgave[]>(Status.OK, [
                 lagOppgave({ oppgaveId: 'oid1', traadId: 'tid1', erSTOOppgave: true }),
                 lagOppgave({ oppgaveId: 'oid2', traadId: 'tid2', erSTOOppgave: true }),
                 lagOppgave({ oppgaveId: 'oid3', traadId: 'tid3', erSTOOppgave: false })
@@ -58,7 +56,7 @@ describe('FortsettDialogContainer', () => {
         });
 
         it('skal riktig identifisere at oppgave er SPM_OG_SVAR oppgave', () => {
-            const resource = restResource<Oppgave[]>(STATUS.SUCCESS, [
+            const resource = restResource<Oppgave[]>(Status.OK, [
                 lagOppgave({ oppgaveId: 'oid1', traadId: 'tid1', erSTOOppgave: false }),
                 lagOppgave({ oppgaveId: 'oid2', traadId: 'tid1', erSTOOppgave: false }),
                 lagOppgave({ oppgaveId: 'oid3', traadId: 'tid2', erSTOOppgave: true })
@@ -70,7 +68,7 @@ describe('FortsettDialogContainer', () => {
         });
 
         it('skal riktig identifisere at oppgave ikke er SPM_OG_SVAR oppgave', () => {
-            const resource = restResource<Oppgave[]>(STATUS.SUCCESS, [
+            const resource = restResource<Oppgave[]>(Status.OK, [
                 lagOppgave({ oppgaveId: 'oid1', traadId: 'tid1', erSTOOppgave: true }),
                 lagOppgave({ oppgaveId: 'oid2', traadId: 'tid1', erSTOOppgave: true }),
                 lagOppgave({ oppgaveId: 'oid3', traadId: 'tid2', erSTOOppgave: false })

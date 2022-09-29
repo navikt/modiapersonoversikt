@@ -4,7 +4,6 @@ import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
-import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import SakstemaListe from './sakstemaliste/SakstemaListe';
 import { ScrollBar } from '../utils/InfoTabsScrollBar';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
@@ -13,6 +12,7 @@ import JournalPoster from './saksdokumenter/JournalPoster';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 import SakerFullscreenLenke from './SakerFullscreenLenke';
 import { useHentAlleSakstemaFraResource, useSakstemaURLState } from './useSakstemaURLState';
+import sakstema from '../../../../rest/resources/sakstema';
 
 const saksoversiktMediaTreshold = '70rem';
 
@@ -55,37 +55,31 @@ function SaksoversiktContainer() {
             />
         );
     } else {
-        return (
-            <ErrorBoundary boundaryName="Saksoversikt">
-                <SaksoversiktStyle>
-                    <RestResourceConsumer<SakstemaResponse>
-                        getResource={(restResources) => restResources.sakstema}
-                        returnOnPending={BigCenteredLazySpinner}
-                    >
-                        {(sakstema) => {
-                            if (sakstema.resultat.isEmpty()) {
-                                return <AlertStripeInfo>Brukeren har ingen saker</AlertStripeInfo>;
-                            }
-                            return (
-                                <>
-                                    <ScrollBar keepScrollId="saker-sakstema">
-                                        <ErrorBoundary boundaryName="Sakstemaliste">
-                                            <SakerFullscreenLenke />
-                                            <SakstemaListe />
-                                        </ErrorBoundary>
-                                    </ScrollBar>
-                                    <ScrollBar keepScrollId="saker-saksdokumenter">
-                                        <ErrorBoundary boundaryName="Journalposter">
-                                            <JournalPoster />
-                                        </ErrorBoundary>
-                                    </ScrollBar>
-                                </>
-                            );
-                        }}
-                    </RestResourceConsumer>
-                </SaksoversiktStyle>
-            </ErrorBoundary>
-        );
+        return sakstema.useRenderer({
+            ifPending: BigCenteredLazySpinner,
+            ifData: (data: SakstemaResponse) => {
+                if (data.resultat.length === 0) {
+                    return <AlertStripeInfo>Brukeren har ingen saker</AlertStripeInfo>;
+                }
+                return (
+                    <ErrorBoundary boundaryName="Saksoversikt">
+                        <SaksoversiktStyle>
+                            <ScrollBar keepScrollId="saker-sakstema">
+                                <ErrorBoundary boundaryName="Sakstemaliste">
+                                    <SakerFullscreenLenke />
+                                    <SakstemaListe />
+                                </ErrorBoundary>
+                            </ScrollBar>
+                            <ScrollBar keepScrollId="saker-saksdokumenter">
+                                <ErrorBoundary boundaryName="Journalposter">
+                                    <JournalPoster />
+                                </ErrorBoundary>
+                            </ScrollBar>
+                        </SaksoversiktStyle>
+                    </ErrorBoundary>
+                );
+            }
+        });
     }
 }
 

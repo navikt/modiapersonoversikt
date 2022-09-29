@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useFetch, { isPending, hasError, FetchResult } from '@nutgaard/use-fetch';
+import useFetchHook, { isPending, hasError, FetchResult } from '@nutgaard/use-fetch';
 
 export interface Config<T> {
     ifPending: React.ReactElement | (() => React.ReactElement);
@@ -19,11 +19,11 @@ export function applyDefaults<T>(defaults: DefaultConfig, renderer: RendererOrCo
 }
 
 const includeCredentials: RequestInit = { credentials: 'include' };
-export function usePreload<T>(url: string): FetchResult<T> {
-    return useFetch<T>(url, includeCredentials);
+export function useFetch<T>(url: string): FetchResult<T> {
+    return useFetchHook<T>(url, includeCredentials);
 }
 export function useRest<T>(url: string, config: Config<T>): React.ReactElement {
-    const response: FetchResult<T> = usePreload<T>(url);
+    const response: FetchResult<T> = useFetch<T>(url);
     if (isPending(response)) {
         if (typeof config.ifPending === 'function') {
             return config.ifPending();

@@ -1,12 +1,13 @@
 import { useMemo } from 'react';
 import { useHistory } from 'react-router';
 import { Sakstema } from '../../../../models/saksoversikt/sakstema';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { hentDatoForSisteHendelse, sakstemakodeAlle, sakstemakodeIngen } from './utils/saksoversiktUtils';
 import { useQueryParams } from '../../../../utils/url-utils';
 import { Dokument, Journalpost } from '../../../../models/saksoversikt/journalpost';
+import sakstemaLoader from '../../../../rest/resources/sakstema';
 import { filtrerSakstemaerUtenData } from './sakstemaliste/SakstemaListeUtils';
+import { hasData } from '@nutgaard/use-fetch';
 
 interface SakstemaURLState {
     valgteSakstemaer: Sakstema[];
@@ -89,19 +90,17 @@ export function useSakstemaURLState(alleSakstemaer: Sakstema[]): SakstemaURLStat
 }
 
 export function useHentAlleSakstemaFraResource(): SakstemaResource {
-    const sakstemaResource = useRestResource((resources) => resources.sakstema);
+    const resource = sakstemaLoader.useFetch();
+
     return useMemo(() => {
-        const alleSakstema =
-            sakstemaResource.data && sakstemaResource.data.resultat.isNotEmpty() ? sakstemaResource.data.resultat : [];
-        if (sakstemaResource.isLoading || alleSakstema.isEmpty()) {
-            return { alleSakstema: [], isLoading: true };
-        } else {
+        if (hasData(resource)) {
             return {
-                alleSakstema: alleSakstema.sort(datoSynkende((sakstema) => hentDatoForSisteHendelse(sakstema))),
+                alleSakstema: resource.data.resultat.sort(datoSynkende((it) => hentDatoForSisteHendelse(it))),
                 isLoading: false
             };
         }
-    }, [sakstemaResource]);
+        return { alleSakstema: [], isLoading: true };
+    }, [resource]);
 }
 
 function inneholderValgtDokument(journalpost: Journalpost, dokumentId?: string): boolean {
