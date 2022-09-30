@@ -5,14 +5,14 @@ import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import EtikettGraa from '../../../../../components/EtikettGraa';
 import VisittkortElement from '../VisittkortElement';
 import NavLogo from '../../../../../svg/NavLogo';
-import { hentBaseUrl } from '../../../../../redux/restReducers/baseurls';
 import { VisittkortGruppe } from '../VisittkortStyles';
 import { Enhet, InformasjonElement, Publikumsmottak as PublikumsmottakInterface } from '../../PersondataDomain';
-import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import AdresseInfo from '../AdresseInfo';
 import { capitalizeName } from '../../../../../utils/string-utils';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 import { mapUgyldigGT } from '../../visittkort-utils';
+import baseurls, { hentBaseUrl } from '../../../../../rest/resources/baseurls';
+import { hasData } from '@nutgaard/use-fetch';
 
 const ApningstiderListe = styled.dl`
     margin: initial;
@@ -85,8 +85,8 @@ function Publikumsmottak(props: { publikumsmottak: PublikumsmottakInterface[] })
 }
 
 function NavKontor({ feilendeSystemer, navEnhet, geografiskTilknytning }: Props) {
-    const baseUrlResource = useRestResource((resources) => resources.baseUrl);
-    const baseUrl = baseUrlResource.data ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
+    const baseUrlResource = baseurls.usePreload();
+    const baseUrl = hasData(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
 
     if (harFeilendeSystemer(feilendeSystemer, InformasjonElement.NORG_NAVKONTOR)) {
         return (

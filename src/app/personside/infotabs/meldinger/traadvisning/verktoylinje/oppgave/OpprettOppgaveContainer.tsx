@@ -1,10 +1,10 @@
 import * as React from 'react';
-import RestResourceConsumer from '../../../../../../../rest/consumer/RestResourceConsumer';
-import { GsakTema } from '../../../../../../../models/meldinger/oppgave';
-import OppgaveSkjemaContainer from './OppgaveSkjemaContainer';
+// import NavFrontendSpinner from 'nav-frontend-spinner';
+import OppgaveSkjema from './OppgaveSkjema';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import ErrorBoundary from '../../../../../../../components/ErrorBoundary';
+import gsaktemaResource from '../../../../../../../rest/resources/gsakTema';
+import { CenteredLazySpinner } from '../../../../../../../components/LazySpinner';
 
 interface Props {
     lukkPanel: () => void;
@@ -12,25 +12,20 @@ interface Props {
     valgtTraad: Traad;
 }
 
-const onPendingSpinner = <NavFrontendSpinner aria-label={'Laster tema'} type={'S'} />;
 function OpprettOppgaveContainer(props: Props) {
-    return (
-        <ErrorBoundary boundaryName={'OpprettOppgaveContainer'}>
-            <RestResourceConsumer<GsakTema[]>
-                getResource={restResources => restResources.oppgaveGsakTema}
-                returnOnPending={onPendingSpinner}
-            >
-                {data => (
-                    <OppgaveSkjemaContainer
-                        gsakTema={data}
-                        lukkPanel={props.lukkPanel}
-                        onSuccessCallback={props.onSuccessCallback}
-                        valgtTraad={props.valgtTraad}
-                    />
-                )}
-            </RestResourceConsumer>
-        </ErrorBoundary>
-    );
+    return gsaktemaResource.useRenderer({
+        ifPending: <CenteredLazySpinner aria-label="Laster tema" type="L" />,
+        ifData: (gsaktema) => (
+            <ErrorBoundary boundaryName={'OpprettOppgaveContainer'}>
+                <OppgaveSkjema
+                    gsakTema={gsaktema}
+                    lukkPanel={props.lukkPanel}
+                    onSuccessCallback={props.onSuccessCallback}
+                    valgtTraad={props.valgtTraad}
+                />
+            </ErrorBoundary>
+        )
+    });
 }
 
 export default OpprettOppgaveContainer;

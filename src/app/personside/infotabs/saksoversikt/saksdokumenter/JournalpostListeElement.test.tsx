@@ -3,7 +3,6 @@ import JournalpostListeElement from './JournalpostListeElement';
 import TestProvider from '../../../../../test/Testprovider';
 import { getStaticMockSaksoversikt } from '../../../../../mock/saksoversikt/saksoversikt-mock';
 import { getTestStore } from '../../../../../test/testStore';
-import { SakstemaResponse } from '../../../../../models/saksoversikt/sakstema';
 import { Journalpost, Feilmelding } from '../../../../../models/saksoversikt/journalpost';
 import { mount } from 'enzyme';
 import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
@@ -96,24 +95,7 @@ describe('JournalpostListeElement', () => {
     });
 
     function lagStoreMedJustertDokumentMetadata(partialDok: Partial<Journalpost>) {
-        const staticMockSaksoversikt: SakstemaResponse = {
-            ...staticSaksoversikt,
-            resultat: [
-                {
-                    ...staticSaksoversikt.resultat[0],
-                    dokumentMetadata: [
-                        {
-                            ...staticSaksoversikt.resultat[0].dokumentMetadata[0],
-                            ...partialDok
-                        }
-                    ]
-                }
-            ]
-        };
         const testStore = getTestStore();
-        const dispatch = testStore.dispatch;
-        const state = testStore.getState();
-        dispatch(state.restResources.sakstema.actions.setData(staticMockSaksoversikt));
 
         const dokumentResultat: Journalpost = {
             ...staticSaksoversikt.resultat[0].dokumentMetadata[0],

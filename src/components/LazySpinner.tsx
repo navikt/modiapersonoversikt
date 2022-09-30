@@ -17,7 +17,7 @@ const Styling = styled.span<{ padding?: string }>`
     display: flex;
     justify-content: center;
     ${theme.animation.fadeIn};
-    ${props =>
+    ${(props) =>
         props.padding
             ? css`
                   padding: ${props.padding};
@@ -34,10 +34,11 @@ export function CenteredLazySpinner(props: Props) {
 }
 
 function LazySpinner(props: Props) {
+    const { delay, padding, className, type, ...rest } = props;
     return (
-        <DelayRender delay={props.delay || 300}>
-            <Styling padding={props.padding} className={props.className}>
-                <NavFrontendSpinner type={props.type || 'L'} />
+        <DelayRender delay={delay || 300}>
+            <Styling padding={padding} className={className}>
+                <NavFrontendSpinner type={type || 'L'} {...rest} />
             </Styling>
         </DelayRender>
     );
