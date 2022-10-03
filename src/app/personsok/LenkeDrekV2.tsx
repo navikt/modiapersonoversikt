@@ -11,7 +11,7 @@ export interface DrekPropsV2 {
     kjonn?: string;
 }
 function LenkeDrekV2({ props }: { props: DrekPropsV2 }) {
-    const baseUrlResource = baseurls.usePreload();
+    const baseUrlResource = baseurls.useFetch();
     const drekUrl = hasData(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'drek') : '';
     const navn = splitNavn(fjernAnforselstegn(props.navn));
 

@@ -13,9 +13,9 @@ function FetchSessionInfoOgLeggIRedux() {
     const innlogetSaksbehandlerFetch = useSelector(
         (state: AppState) => state.restResources.innloggetSaksbehandler.actions.fetch
     );
-    gsaktemaResource.usePreload();
-    baseurls.usePreload();
-    veilederroller.usePreload();
+    gsaktemaResource.useFetch();
+    baseurls.useFetch();
+    veilederroller.useFetch();
 
     const fetchVeiledersEnheter = useRestResource((resources) => resources.saksbehandlersEnheter).actions.fetch;
 

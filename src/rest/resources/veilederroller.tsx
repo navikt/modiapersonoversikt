@@ -13,7 +13,7 @@ const defaults: DefaultConfig = {
 
 const resource = {
     useRenderer: (renderer: RendererOrConfig<VeilederRoller>) => useRest(url, applyDefaults(defaults, renderer)),
-    usePreload: () => useFetch(url)
+    useFetch: () => useFetch(url)
 };
 
 export default resource;
