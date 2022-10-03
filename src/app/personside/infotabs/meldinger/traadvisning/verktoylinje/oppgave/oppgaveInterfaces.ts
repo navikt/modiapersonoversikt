@@ -7,7 +7,6 @@ export interface OppgaveProps extends SkjermetOppgaveProps {
 
 export interface SkjermetOppgaveProps {
     gsakTema: GsakTema[];
-    gjeldendeBrukerFnr: string;
     lukkPanel: () => void;
     onSuccessCallback?: () => void;
 }

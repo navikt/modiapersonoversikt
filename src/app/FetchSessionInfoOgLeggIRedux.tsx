@@ -3,6 +3,9 @@ import { AppState } from '../redux/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { useInitializeLogger } from '../utils/logger/frontendLogger';
 import { useRestResource } from '../rest/consumer/useRestResource';
+import gsaktemaResource from '../rest/resources/gsakTema';
+import baseurls from '../rest/resources/baseurls';
+import veilederroller from '../rest/resources/veilederroller';
 
 function FetchSessionInfoOgLeggIRedux() {
     useInitializeLogger();
@@ -10,25 +13,16 @@ function FetchSessionInfoOgLeggIRedux() {
     const innlogetSaksbehandlerFetch = useSelector(
         (state: AppState) => state.restResources.innloggetSaksbehandler.actions.fetch
     );
-    const oppgaveGsakTemaFetch = useSelector((state: AppState) => state.restResources.oppgaveGsakTema.actions.fetch);
-    const baseUrlFetch = useSelector((state: AppState) => state.restResources.baseUrl.actions.fetch);
-    const fetchVeilederRoller = useRestResource(resources => resources.veilederRoller).actions.fetch;
-    const fetchVeiledersEnheter = useRestResource(resources => resources.saksbehandlersEnheter).actions.fetch;
+    gsaktemaResource.usePreload();
+    baseurls.usePreload();
+    veilederroller.usePreload();
+
+    const fetchVeiledersEnheter = useRestResource((resources) => resources.saksbehandlersEnheter).actions.fetch;
 
     useEffect(() => {
         dispatch(innlogetSaksbehandlerFetch);
-        dispatch(fetchVeilederRoller);
-        dispatch(oppgaveGsakTemaFetch);
-        dispatch(baseUrlFetch);
         dispatch(fetchVeiledersEnheter);
-    }, [
-        dispatch,
-        innlogetSaksbehandlerFetch,
-        oppgaveGsakTemaFetch,
-        baseUrlFetch,
-        fetchVeilederRoller,
-        fetchVeiledersEnheter
-    ]);
+    }, [dispatch, innlogetSaksbehandlerFetch, fetchVeiledersEnheter]);
 
     return null;
 }

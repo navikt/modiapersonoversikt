@@ -1,25 +1,18 @@
 import * as React from 'react';
-import { hasData, RestResource } from '../../rest/utils/restResource';
-import { BaseUrlsResponse } from '../../models/baseurls';
-import { hentBaseUrl } from '../../redux/restReducers/baseurls';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../redux/reducers';
 import { formaterDato } from '../../utils/string-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { fjernAnforselstegn, splitNavn } from './navn/navnUtils';
+import baseurls, { hentBaseUrl } from '../../rest/resources/baseurls';
+import { hasData } from '@nutgaard/use-fetch';
 
 export interface DrekPropsV2 {
     navn?: string;
     fodselsdatoFra?: string;
     kjonn?: string;
 }
-function hentDrekUrl(baseUrlResource: RestResource<BaseUrlsResponse>) {
-    return hasData(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'drek') : '';
-}
-
 function LenkeDrekV2({ props }: { props: DrekPropsV2 }) {
-    const baseUrlResource = useSelector((appstate: AppState) => appstate.restResources.baseUrl);
-    const drekUrl = hentDrekUrl(baseUrlResource);
+    const baseUrlResource = baseurls.usePreload();
+    const drekUrl = hasData(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'drek') : '';
     const navn = splitNavn(fjernAnforselstegn(props.navn));
 
     const ferdigDrekUrl = `${drekUrl}?fornavn=${navn.fornavn}&etternavn=${navn.etternavn}&foedselsdato=${

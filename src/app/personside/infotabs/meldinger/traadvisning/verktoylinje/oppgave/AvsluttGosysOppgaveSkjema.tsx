@@ -7,12 +7,11 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { useAppState, useFocusOnMount } from '../../../../../../../utils/customHooks';
 import { Textarea } from 'nav-frontend-skjema';
 import theme from '../../../../../../../styles/personOversiktTheme';
-import { useDispatch } from 'react-redux';
 import { AvsluttGosysOppgaveRequest } from '../../../../../../../models/meldinger/merk';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
-import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
-import { hasData } from '../../../../../../../rest/utils/restResource';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaver';
+import { hasData } from '@nutgaard/use-fetch';
 
 const StyledAlert = styled.div`
     margin: 1rem 0rem;
@@ -29,17 +28,16 @@ interface Props {
 }
 
 function AvsluttGosysOppgaveSkjema(props: Props) {
-    const dispatch = useDispatch();
     const ref = useRef<HTMLElement>(null);
-    const saksbehandlersEnhet = useAppState(state => state.session.valgtEnhetId);
-    const tildelteOppgaverResource = useRestResource(resources => resources.tildelteOppgaver);
+    const saksbehandlersEnhet = useAppState((state) => state.session.valgtEnhetId);
+    const tildelteOppgaverResource = tildelteoppgaver.useFetch();
     const [gosysBeskrivelse, setGosysBeskrivelse] = useState('Henvendelse lest og vurdert i Modia.');
     const [submitting, setSubmitting] = useState(false);
     const [avsluttOppgaveSuksess, setAvsluttOppgaveSuksess] = useState(false);
     const [error, setError] = useState(false);
     const harOppgaveTilknyttetTrad =
-        hasData(tildelteOppgaverResource.resource) &&
-        tildelteOppgaverResource.resource.data.find(it => it.traadId === props.valgtTraad.traadId);
+        hasData(tildelteOppgaverResource) &&
+        tildelteOppgaverResource.data.find((it) => it.traadId === props.valgtTraad.traadId);
 
     useFocusOnMount(ref);
 
@@ -58,7 +56,7 @@ function AvsluttGosysOppgaveSkjema(props: Props) {
             post(`${apiBaseUri}/dialogmerking/avsluttgosysoppgave`, request, 'Avslutt-Oppgave-Fra-Gosys')
                 .then(() => {
                     setAvsluttOppgaveSuksess(true);
-                    dispatch(tildelteOppgaverResource.actions.reset);
+                    tildelteOppgaverResource.rerun();
                 })
                 .catch(() => {
                     setError(true);
@@ -95,7 +93,7 @@ function AvsluttGosysOppgaveSkjema(props: Props) {
                     label={'Beskrivelse'}
                     value={gosysBeskrivelse}
                     maxLength={0}
-                    onChange={e => setGosysBeskrivelse(e.currentTarget.value)}
+                    onChange={(e) => setGosysBeskrivelse(e.currentTarget.value)}
                 />
                 <Hovedknapp onClick={handleSubmit} spinner={submitting}>
                     Avslutt oppgave

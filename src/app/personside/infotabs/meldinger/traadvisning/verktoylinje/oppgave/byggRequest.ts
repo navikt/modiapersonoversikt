@@ -37,9 +37,9 @@ export function lagOppgaveRequest(
 ): OpprettOppgaveRequest {
     const valgtEnhet = matchEnhet(form.valgtEnhet, 1);
     const valgtAnsatt = matchAnsatt(form.valgtAnsatt, 1);
-    const valgtGsakTema = gsakTema.find(tema => tema.kode === form.valgtTema);
+    const valgtGsakTema = gsakTema.find((tema) => tema.kode === form.valgtTema);
     const valgtOppgaveType = valgtGsakTema?.oppgavetyper.find(
-        oppgavetype => oppgavetype.kode === form.valgtOppgavetype
+        (oppgavetype) => oppgavetype.kode === form.valgtOppgavetype
     );
 
     assertRequired(form.valgtPrioritet, 'Valgt prioritet er ikke valgt');
@@ -55,7 +55,6 @@ export function lagOppgaveRequest(
         beskrivelse: form.beskrivelse,
         temaKode: form.valgtTema,
         underkategoriKode: form.valgtUnderkategori && form.valgtUnderkategori,
-        brukerid: props.gjeldendeBrukerFnr,
         oppgaveTypeKode: valgtOppgaveType ? valgtOppgaveType.kode : 'UKJENT',
         prioritetKode: form.valgtPrioritet,
         ansvarligEnhetId: valgtEnhet!
@@ -78,7 +77,6 @@ export function lagSkjermetOppgaveRequest(
         beskrivelse: form.beskrivelse,
         temaKode: temakode,
         underkategoriKode: form.valgtUnderkategori && form.valgtUnderkategori,
-        brukerid: props.gjeldendeBrukerFnr,
         oppgaveTypeKode: form.valgtOppgavetype ? form.valgtOppgavetype : 'UKJENT',
         prioritetKode: form.valgtPrioritet,
         opprettetavenhetsnummer: saksbehandlerEnhet ? saksbehandlerEnhet : '2820'

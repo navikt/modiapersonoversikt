@@ -2,13 +2,11 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
-import { useDispatch } from 'react-redux';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
 import FetchFeatureToggles from '../../../PersonOppslagHandler/FetchFeatureToggles';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
-import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
+import { useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import JournalPoster from './saksdokumenter/JournalPoster';
 import DropDownMenu from '../../../../components/DropDownMenu';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -87,20 +85,10 @@ function Innhold() {
 }
 
 function SakerFullscreen(props: Props) {
-    const dispatch = useDispatch();
-    const fnr = useFodselsnummer();
-    const saksoversiktResource = useRestResource((resources) => resources.sakstema);
-
     useOnMount(() => {
         loggEvent('Sidevisning', 'SakerFullscreen');
         document.title = 'Saksoversikt - Modia personoversikt';
     });
-
-    useEffect(() => {
-        if (saksoversiktResource.isNotStarted && fnr) {
-            dispatch(saksoversiktResource.actions.fetch);
-        }
-    }, [fnr, dispatch, saksoversiktResource]);
 
     return (
         <>

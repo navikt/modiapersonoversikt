@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { IkkeTilgangArsak } from '../../redux/restReducers/tilgangskontroll';
 import { assertUnreachable } from '../../utils/assertUnreachable';
+import { IkkeTilgangArsak } from '../../rest/resources/tilgangskontroll';
 
 interface Props {
     begrunnelseType: IkkeTilgangArsak;
