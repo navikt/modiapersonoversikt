@@ -26,12 +26,14 @@ interface Props {
 
 function InnstillingerModalInnhold(props: Props) {
     if (hasError(props.innstillinger)) {
+        const error =
+            props.innstillinger.error instanceof Error ? props.innstillinger.error.message : props.innstillinger.error;
         return (
             <AlertStripeFeil>
                 <Normaltekst>
                     Uthenting av dine innstillinger feilet (<b>{props.innstillinger.statusCode}</b>).
                 </Normaltekst>
-                <Undertekst>{props.innstillinger.error}</Undertekst>
+                <Undertekst>{error}</Undertekst>
             </AlertStripeFeil>
         );
     }
