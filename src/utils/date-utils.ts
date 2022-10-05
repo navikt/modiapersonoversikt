@@ -22,6 +22,13 @@ export function formatterDatoMedMaanedsnavn(dato: string | Date) {
     return dayjs(dato).format(DATO_FORMAT_MANEDSNAVN);
 }
 
+export function formatterDatoMedMaanedsnavnOrNull(dato: string | Date | undefined | null): string | null {
+    if (dato !== undefined && dato !== null) {
+        return formatterDatoMedMaanedsnavn(dato);
+    }
+    return null;
+}
+
 export function formatterDatoTid(dato: string | Date) {
     return dayjs(dato).format(DATO_TID_FORMAT);
 }

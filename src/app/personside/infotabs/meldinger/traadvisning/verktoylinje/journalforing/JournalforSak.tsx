@@ -15,6 +15,8 @@ import { useRestResource } from '../../../../../../../rest/consumer/useRestResou
 import { useAppState, useFodselsnummer } from '../../../../../../../utils/customHooks';
 import * as JournalforingUtils from '../../../../../journalforings-use-fetch-utils';
 import { selectValgtEnhet } from '../../../../../../../redux/session/session';
+import { formatterDatoMedMaanedsnavnOrNull } from '../../../../../../../utils/date-utils';
+import { ENDASH } from '../../../../../../../utils/string-utils';
 
 interface Props {
     sak: JournalforingsSak;
@@ -47,7 +49,7 @@ const SuksessStyling = styled.div`
 export function JournalforSak(props: Props) {
     const dispatch = useDispatch();
     const valgtEnhet = useAppState(selectValgtEnhet);
-    const tråderResource = useRestResource(resources => resources.traader);
+    const tråderResource = useRestResource((resources) => resources.traader);
     const kategori = sakKategori(props.sak);
     const fnr = useFodselsnummer();
     const [submitting, setSubmitting] = useState(false);
@@ -68,7 +70,7 @@ export function JournalforSak(props: Props) {
                 setJournalforingSuksess(true);
                 dispatch(tråderResource.actions.reload);
             })
-            .catch(error => {
+            .catch((error) => {
                 setSubmitting(false);
                 setError('Kunne ikke gjennomføre journalføring');
                 loggError(error, `Kunne ikke gjennomføre journalføring`, {
@@ -97,7 +99,13 @@ export function JournalforSak(props: Props) {
             <Ingress className="blokk-xxxs">{props.sak.temaNavn}</Ingress>
             <CustomStyledTable
                 tittelRekke={['Saksid', 'Opprettet', 'Fagsystem']}
-                rows={[[props.sak.saksIdVisning, props.sak.opprettetDatoFormatert, props.sak.fagsystemNavn]]}
+                rows={[
+                    [
+                        props.sak.saksIdVisning,
+                        formatterDatoMedMaanedsnavnOrNull(props.sak.opprettetDato) ?? ENDASH,
+                        props.sak.fagsystemNavn
+                    ]
+                ]}
                 className="blokk-m"
             />
             {error && <AlertStripeFeil className="blokk-xs">{error}</AlertStripeFeil>}
