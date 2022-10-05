@@ -62,6 +62,45 @@ exports[`Viser traad med verktøylinje 1`] = `
   border-color: #0067c5;
 }
 
+.c22 .snakkeboble-panel {
+  -webkit-flex-basis: 40rem;
+  -ms-flex-preferred-size: 40rem;
+  flex-basis: 40rem;
+}
+
+.c22 a {
+  word-break: break-word;
+}
+
+.c22 .snakkeboble {
+  margin: 0;
+}
+
+.c25 {
+  font-weight: 600;
+}
+
+.c23 {
+  text-align: left;
+}
+
+.c23 em {
+  font-style: normal;
+  background-color: #eed28c;
+  box-shadow: 0 0 0 0.2rem #eed28c;
+  border-radius: 0.625rem;
+}
+
+.c23 > *:not(:last-child) {
+  border-bottom: solid 0.0625rem #b7b1a9;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.c26 p {
+  margin-bottom: 0 !important;
+}
+
 .c18 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -231,45 +270,6 @@ exports[`Viser traad med verktøylinje 1`] = `
   white-space: nowrap;
 }
 
-.c22 .snakkeboble-panel {
-  -webkit-flex-basis: 40rem;
-  -ms-flex-preferred-size: 40rem;
-  flex-basis: 40rem;
-}
-
-.c22 a {
-  word-break: break-word;
-}
-
-.c22 .snakkeboble {
-  margin: 0;
-}
-
-.c25 {
-  font-weight: 600;
-}
-
-.c23 {
-  text-align: left;
-}
-
-.c23 em {
-  font-style: normal;
-  background-color: #eed28c;
-  box-shadow: 0 0 0 0.2rem #eed28c;
-  border-radius: 0.625rem;
-}
-
-.c23 > *:not(:last-child) {
-  border-bottom: solid 0.0625rem #b7b1a9;
-  padding-bottom: 0.7rem;
-  margin-bottom: 0.5rem;
-}
-
-.c26 p {
-  margin-bottom: 0 !important;
-}
-
 .c19 {
   padding: .5rem;
   -webkit-box-flex: 1;
@@ -320,18 +320,6 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c7 {
-    display: none;
-  }
-}
-
-@media not print {
-  .c8 {
-    display: none;
-  }
-}
-
-@media print {
   .c22 {
     page-break-inside: avoid;
     border: solid 0.0625rem #78706a;
@@ -348,6 +336,18 @@ exports[`Viser traad med verktøylinje 1`] = `
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
+  }
+}
+
+@media print {
+  .c7 {
+    display: none;
+  }
+}
+
+@media not print {
+  .c8 {
+    display: none;
   }
 }
 
