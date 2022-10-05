@@ -88,7 +88,7 @@ export function byggAutofullforMap(
             'bruker.etternavn': capitalizeName(
                 [person.navn.firstOrNull()?.mellomnavn, person.navn.firstOrNull()?.etternavn].filter((v) => v).join(' ')
             ),
-            'bruker.navn': hentNavn(person.navn.firstOrNull()),
+            'bruker.navn': capitalizeName(hentNavn(person.navn.firstOrNull())),
             'bruker.subjekt': kjonn && subjectPronomen(kjonn, locale),
             'bruker.objekt': kjonn && objektPronomen(kjonn, locale)
         };
