@@ -37,6 +37,7 @@ import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
 import { setupSFDialogMock } from './dialoger/sf-dialoger-mock';
 import { getAktorId } from './aktorid-mock';
 import { hentPersondata } from './persondata/persondata';
+import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -280,6 +281,11 @@ function setupFeatureToggleMock(mock: FetchMock) {
             (args: HandlerArgument) => mockFeatureToggle(args.pathParams.toggleId)
         )
     );
+
+    mock.get(apiBaseUri + '/featuretoggle', (req, res, ctx) => {
+        const ids = req.queryParams['id'];
+        return res(ctx.json(Object.fromEntries(ids.map((it: FeatureToggles) => [it, mockFeatureToggle(it)]))));
+    });
 }
 
 function setupVeilederRollerMock(mock: FetchMock) {

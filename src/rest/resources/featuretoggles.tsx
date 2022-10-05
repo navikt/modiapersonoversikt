@@ -11,7 +11,7 @@ export type FeatureTogglesResponse = {
 };
 
 function url(): string {
-    const queryParams = Object.keys(FeatureToggles)
+    const queryParams = Object.values(FeatureToggles)
         .map((it) => `id=${it}`)
         .join('&');
 
@@ -30,7 +30,7 @@ const hookConfig: HookConfig = {
 const resource = {
     useRenderer: (renderer: RendererOrConfig<FeatureTogglesResponse>) =>
         useRest(url(), applyDefaults(defaults, renderer), hookConfig),
-    useFetch: () => useFetch(url(), hookConfig)
+    useFetch: () => useFetch<FeatureTogglesResponse>(url(), hookConfig)
 };
 
 export default resource;

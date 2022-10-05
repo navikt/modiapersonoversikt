@@ -5,8 +5,9 @@ import featuretoggles from '../../rest/resources/featuretoggles';
 export function useFetchFeatureTogglesOnNewFnr() {
     const fnr = useGjeldendeBruker();
     const resource = featuretoggles.useFetch();
+    const update = resource.rerun;
 
     useEffect(() => {
-        resource.rerun();
-    }, [fnr, resource]);
+        update();
+    }, [fnr, update]);
 }
