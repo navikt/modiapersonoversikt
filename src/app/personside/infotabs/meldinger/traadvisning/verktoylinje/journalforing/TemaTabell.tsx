@@ -19,13 +19,14 @@ const MiniEkspanderbartpanelBase = styled(EkspanderbartpanelBase)`
     }
 `;
 
-function TemaTable({
-    tema,
-    saker,
-    velgSak,
-    valgtSak
-}: Tema & { velgSak: (sak: JournalforingsSak) => void; valgtSak?: JournalforingsSak }) {
-    const apenByDefault = (valgtSak && saker.some(sak => sak.saksId === valgtSak.saksId)) || false;
+interface Props extends Tema {
+    velgSak: (sak: JournalforingsSak) => void;
+    valgtSak?: JournalforingsSak;
+}
+
+function TemaTable(props: Props) {
+    const { tema, saker, velgSak, valgtSak } = props;
+    const apenByDefault = (valgtSak && saker.some((sak) => sak.saksId === valgtSak.saksId)) || false;
     const [apen, settApen] = useState(apenByDefault);
     return (
         <MiniEkspanderbartpanelBase

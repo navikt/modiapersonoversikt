@@ -18,7 +18,6 @@ export const saker = {
             finnesIGsak: false,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '',
             saksIdVisning: ''
         },
         {
@@ -33,7 +32,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '27. mar. 2019',
             saksIdVisning: 'SF 19857613'
         },
         {
@@ -48,7 +46,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '17. des. 2012',
             saksIdVisning: '0118C01'
         },
         {
@@ -63,7 +60,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '23. jan. 2012',
             saksIdVisning: '106661012'
         },
         {
@@ -78,7 +74,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '27. apr. 2012',
             saksIdVisning: '107939107'
         },
         {
@@ -93,7 +88,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '13. sep. 2013',
             saksIdVisning: '113797889'
         },
         {
@@ -108,7 +102,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '25. nov. 2013',
             saksIdVisning: '7892148'
         },
         {
@@ -123,7 +116,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '5. des. 2015',
             saksIdVisning: '0118F01'
         },
         {
@@ -138,7 +130,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '3. nov. 2017',
             saksIdVisning: '0118B22'
         },
         {
@@ -153,7 +144,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '23. jan. 2012',
             saksIdVisning: '106661021'
         },
         {
@@ -168,7 +158,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '29. nov. 2011',
             saksIdVisning: '105974678'
         },
         {
@@ -183,7 +172,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '13. apr. 2015',
             saksIdVisning: '8907059'
         },
         {
@@ -198,7 +186,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '24. mai. 2014',
             saksIdVisning: '0118A03'
         },
         {
@@ -213,7 +200,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '6. des. 2014',
             saksIdVisning: '0118A04'
         },
         {
@@ -228,7 +214,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '19. sep. 2012',
             saksIdVisning: '109471941'
         },
         {
@@ -243,7 +228,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '19. okt. 2016',
             saksIdVisning: '9964772'
         },
         {
@@ -258,7 +242,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '6. nov. 2012',
             saksIdVisning: '0118B01'
         },
         {
@@ -273,7 +256,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '5. jan. 2016',
             saksIdVisning: '122658938'
         },
         {
@@ -288,7 +270,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '28. apr. 2014',
             saksIdVisning: '0118B06'
         },
         {
@@ -303,7 +284,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '16. jun. 2014',
             saksIdVisning: '100/2014'
         },
         {
@@ -318,7 +298,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '3. des. 2012',
             saksIdVisning: '7403138'
         },
         {
@@ -333,7 +312,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '6. des. 2014',
             saksIdVisning: '0118D03'
         },
         {
@@ -348,7 +326,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '19. sep. 2012',
             saksIdVisning: '109471916'
         },
         {
@@ -363,7 +340,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '10. mai. 2012',
             saksIdVisning: '108082628'
         },
         {
@@ -378,7 +354,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '16. jun. 2014',
             saksIdVisning: '1/2014'
         },
         {
@@ -393,7 +368,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '19. sep. 2012',
             saksIdVisning: '109471963'
         },
         {
@@ -408,7 +382,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '25. mai. 2012',
             saksIdVisning: '108257801'
         },
         {
@@ -423,7 +396,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '22. mar. 2014',
             saksIdVisning: '0118B07'
         },
         {
@@ -438,7 +410,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '2. okt. 2014',
             saksIdVisning: '0118B09'
         },
         {
@@ -453,7 +424,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '3. nov. 2017',
             saksIdVisning: '130510754'
         },
         {
@@ -468,7 +438,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '23. feb. 2015',
             saksIdVisning: '2101U03'
         },
         {
@@ -483,7 +452,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '5. feb. 2016',
             saksIdVisning: '1502D02'
         },
         {
@@ -498,7 +466,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '6. jun. 2015',
             saksIdVisning: '120539811'
         },
         {
@@ -513,7 +480,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '2. des. 2017',
             saksIdVisning: '10518629'
         },
         {
@@ -528,7 +494,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '20. sep. 2012',
             saksIdVisning: '109488137'
         },
         {
@@ -543,7 +508,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '26. apr. 2012',
             saksIdVisning: '107917503'
         },
         {
@@ -558,7 +522,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '29. jul. 2015',
             saksIdVisning: '0118B03'
         },
         {
@@ -573,7 +536,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '3. nov. 2017',
             saksIdVisning: '123654'
         },
         {
@@ -588,7 +550,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '13. feb. 2012',
             saksIdVisning: '106963522'
         },
         {
@@ -603,7 +564,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '23. jan. 2012',
             saksIdVisning: '106660702'
         },
         {
@@ -618,7 +578,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '25. jan. 2012',
             saksIdVisning: '106706896'
         },
         {
@@ -633,7 +592,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '12. okt. 2017',
             saksIdVisning: '130229612'
         },
         {
@@ -648,7 +606,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '12. mar. 2016',
             saksIdVisning: '0118B11'
         },
         {
@@ -663,7 +620,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '12. jan. 2016',
             saksIdVisning: '9315582'
         },
         {
@@ -678,7 +634,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '29. jan. 2016',
             saksIdVisning: '122962699'
         },
         {
@@ -693,7 +648,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '5. feb. 2016',
             saksIdVisning: '123047426'
         },
         {
@@ -708,7 +662,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '20. feb. 2012',
             saksIdVisning: '6585821'
         },
         {
@@ -723,7 +676,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '9. mar. 2013',
             saksIdVisning: '0118B05'
         },
         {
@@ -738,7 +690,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '16. jun. 2014',
             saksIdVisning: '01/2014/10108000398'
         },
         {
@@ -753,7 +704,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '23. jan. 2012',
             saksIdVisning: '106661023'
         },
         {
@@ -768,7 +718,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '28. jan. 2016',
             saksIdVisning: '0118E02'
         },
         {
@@ -783,7 +732,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '6. aug. 2014',
             saksIdVisning: '0118B02'
         },
         {
@@ -798,7 +746,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '17. des. 2014',
             saksIdVisning: '0118A05'
         },
         {
@@ -813,7 +760,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '21. jan. 2015',
             saksIdVisning: '2101U01'
         },
         {
@@ -828,7 +774,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '4. jun. 2016',
             saksIdVisning: '0118B12'
         },
         {
@@ -843,7 +788,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '12. jul. 2013',
             saksIdVisning: '0/2013'
         },
         {
@@ -858,7 +802,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '18. mai. 2016',
             saksIdVisning: '124100142'
         },
         {
@@ -873,7 +816,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '23. jan. 2012',
             saksIdVisning: '106661017'
         },
         {
@@ -888,7 +830,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '11. sep. 2013',
             saksIdVisning: '113762331'
         },
         {
@@ -903,7 +844,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '23. jan. 2012',
             saksIdVisning: '106660710'
         },
         {
@@ -918,7 +858,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '29. jan. 2016',
             saksIdVisning: '1001E01'
         },
         {
@@ -933,7 +872,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '4. feb. 2015',
             saksIdVisning: '2101U02'
         },
         {
@@ -948,7 +886,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '20. sep. 2012',
             saksIdVisning: '109488139'
         },
         {
@@ -963,7 +900,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '27. sep. 2014',
             saksIdVisning: '0118D02'
         },
         {
@@ -978,7 +914,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '19. okt. 2012',
             saksIdVisning: '109823779'
         },
         {
@@ -993,7 +928,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '15. feb. 2017',
             saksIdVisning: '189231471'
         },
         {
@@ -1008,7 +942,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '23. jan. 2012',
             saksIdVisning: '106661014'
         },
         {
@@ -1023,7 +956,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '6. jun. 2015',
             saksIdVisning: '0118B10'
         },
         {
@@ -1038,7 +970,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '28. jan. 2016',
             saksIdVisning: '0118E01'
         },
         {
@@ -1053,7 +984,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '16. jun. 2014',
             saksIdVisning: '01/10108000398'
         },
         {
@@ -1068,7 +998,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '1. okt. 2014',
             saksIdVisning: '0118B08'
         },
         {
@@ -1083,7 +1012,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '19. okt. 2012',
             saksIdVisning: '109823780'
         },
         {
@@ -1098,7 +1026,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '31. mai. 2012',
             saksIdVisning: '108300950'
         },
         {
@@ -1113,7 +1040,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '20. sep. 2012',
             saksIdVisning: '109488138'
         },
         {
@@ -1128,7 +1054,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '29. jan. 2016',
             saksIdVisning: '1002E01'
         },
         {
@@ -1143,7 +1068,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '18. okt. 2016',
             saksIdVisning: '9744848'
         },
         {
@@ -1158,7 +1082,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '4. jun. 2016',
             saksIdVisning: '124294074'
         },
         {
@@ -1173,7 +1096,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '7. des. 2013',
             saksIdVisning: '0118D01'
         },
         {
@@ -1188,7 +1110,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '8. des. 2012',
             saksIdVisning: '0118A02'
         },
         {
@@ -1203,7 +1124,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '30. jun. 2011',
             saksIdVisning: '103897238'
         },
         {
@@ -1218,7 +1138,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '25. apr. 2012',
             saksIdVisning: '0118A01'
         },
         {
@@ -1233,7 +1152,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '23. okt. 2017',
             saksIdVisning: '9744627'
         },
         {
@@ -1248,7 +1166,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '27. okt. 2016',
             saksIdVisning: '9744871'
         },
         {
@@ -1263,7 +1180,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '1. jun. 2012',
             saksIdVisning: '108320472'
         },
         {
@@ -1278,7 +1194,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '19. sep. 2012',
             saksIdVisning: '109472021'
         },
         {
@@ -1293,7 +1208,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '23. jan. 2012',
             saksIdVisning: '106660707'
         },
         {
@@ -1308,7 +1222,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '19. mar. 2012',
             saksIdVisning: '107439888'
         },
         {
@@ -1323,7 +1236,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '19. sep. 2012',
             saksIdVisning: '109472016'
         },
         {
@@ -1338,7 +1250,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: true,
-            opprettetDatoFormatert: '5. jan. 2016',
             saksIdVisning: '122657596'
         },
         {
@@ -1353,7 +1264,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '10. okt. 2014',
             saksIdVisning: '120444'
         },
         {
@@ -1368,7 +1278,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '5. feb. 2016',
             saksIdVisning: '1502D01'
         },
         {
@@ -1383,7 +1292,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '5. jun. 2018',
             saksIdVisning: '9744686'
         },
         {
@@ -1398,7 +1306,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '19. jul. 2018',
             saksIdVisning: '0747F01'
         },
         {
@@ -1413,7 +1320,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '19. jul. 2018',
             saksIdVisning: 'SF35353535'
         },
         {
@@ -1428,7 +1334,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '2. nov. 2018',
             saksIdVisning: 'SF8888888'
         },
         {
@@ -1443,7 +1348,6 @@ export const saker = {
             finnesIGsak: true,
             finnesIPsak: false,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '15. feb. 2019',
             saksIdVisning: '11507318'
         },
         {
@@ -1458,7 +1362,6 @@ export const saker = {
             finnesIGsak: false,
             finnesIPsak: true,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '',
             saksIdVisning: '21248166'
         },
         {
@@ -1473,7 +1376,6 @@ export const saker = {
             finnesIGsak: false,
             finnesIPsak: true,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '',
             saksIdVisning: '21225259'
         },
         {
@@ -1488,7 +1390,6 @@ export const saker = {
             finnesIGsak: false,
             finnesIPsak: true,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '',
             saksIdVisning: '22274451'
         },
         {
@@ -1503,7 +1404,6 @@ export const saker = {
             finnesIGsak: false,
             finnesIPsak: true,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '',
             saksIdVisning: '22274452'
         },
         {
@@ -1518,7 +1418,6 @@ export const saker = {
             finnesIGsak: false,
             finnesIPsak: true,
             sakstypeForVisningGenerell: false,
-            opprettetDatoFormatert: '',
             saksIdVisning: '22274453'
         }
     ],
