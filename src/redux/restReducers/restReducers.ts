@@ -1,7 +1,6 @@
 import innloggetSaksbehandlerReducer from './innloggetSaksbehandler';
 import utbetalingerReducer from './utbetalinger';
 import oppfolgingReducer from './oppfolging';
-import featureToggleReducer from './featureToggles';
 import meldingerReducer from './meldinger/meldinger';
 import { RestResource } from '../../rest/utils/restResource';
 import { UtbetalingerResponse } from '../../models/utbetalinger';
@@ -19,7 +18,6 @@ export interface RestEndepunkter {
     utbetalinger: RestResource<UtbetalingerResponse>;
     utbetalingerOversikt: RestResource<UtbetalingerResponse>;
     oppfolging: RestResource<DetaljertOppfolging>;
-    featureToggles: RestResource<{ [name: string]: boolean }>;
     traader: RestResource<Traad[]>;
 }
 
@@ -30,8 +28,7 @@ export default combineResettableReducers<RestEndepunkter>(
         utbetalinger: utbetalingerReducer,
         utbetalingerOversikt: utbetalingerOversikt,
         oppfolging: oppfolgingReducer,
-        featureToggles: featureToggleReducer,
         traader: meldingerReducer
     },
-    ['innloggetSaksbehandler', 'featureToggles', 'saksbehandlersEnheter']
+    ['innloggetSaksbehandler', 'saksbehandlersEnheter']
 );

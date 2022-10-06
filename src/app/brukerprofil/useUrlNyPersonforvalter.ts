@@ -4,7 +4,7 @@ import { apiBaseUri, includeCredentials } from '../../api/config';
 import baseurls, { hentBaseUrl } from '../../rest/resources/baseurls';
 
 function useUrlNyPersonforvalter() {
-    const baseUrlResource = baseurls.usePreload();
+    const baseUrlResource = baseurls.useFetch();
     const fnr = useFodselsnummer();
     const aktorIdResponse: FetchResult<string | null> = useFetch(
         `${apiBaseUri}/v2/person/${fnr}/aktorid`,

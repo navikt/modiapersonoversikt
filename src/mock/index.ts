@@ -11,7 +11,6 @@ import {
     withDelayedResponse
 } from './utils/fetch-utils';
 import { mockBaseUrls } from './baseUrls-mock';
-import { getMockVeilederRoller } from './veilderRoller-mock';
 import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
 import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
@@ -37,6 +36,7 @@ import { MeldingerBackendMock } from './mockBackend/meldingerBackendMock';
 import { setupSFDialogMock } from './dialoger/sf-dialoger-mock';
 import { getAktorId } from './aktorid-mock';
 import { hentPersondata } from './persondata/persondata';
+import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 
 const STATUS_OK = () => 200;
 const STATUS_BAD_REQUEST = () => 400;
@@ -280,13 +280,11 @@ function setupFeatureToggleMock(mock: FetchMock) {
             (args: HandlerArgument) => mockFeatureToggle(args.pathParams.toggleId)
         )
     );
-}
 
-function setupVeilederRollerMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/veileder/roller',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockVeilederRoller())
-    );
+    mock.get(apiBaseUri + '/featuretoggle', (req, res, ctx) => {
+        const ids = req.queryParams['id'];
+        return res(ctx.json(Object.fromEntries(ids.map((it: FeatureToggles) => [it, mockFeatureToggle(it)]))));
+    });
 }
 
 function setupJournalforingMock(mock: FetchMock) {
@@ -365,7 +363,6 @@ setupSFDialogMock(mock, meldingerBackendMock);
 setupTildelteOppgaverMock(mock);
 setupBaseUrlsMock(mock);
 setupFeatureToggleMock(mock);
-setupVeilederRollerMock(mock);
 setupWsControlAndMock(mock);
 setupOppfolgingMock(mock);
 setupGsakTemaMock(mock);

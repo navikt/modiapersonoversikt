@@ -1,24 +1,13 @@
-import { useDispatch } from 'react-redux';
-import { fetchAllFeatureToggles } from '../../redux/restReducers/featureToggles';
 import { useEffect } from 'react';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
-import { useRestResource } from '../../rest/consumer/useRestResource';
+import featuretoggles from '../../rest/resources/featuretoggles';
 
 export function useFetchFeatureTogglesOnNewFnr() {
-    const dispatch = useDispatch();
     const fnr = useGjeldendeBruker();
-    const setFeatureToggleData = useRestResource(restReducers => restReducers.featureToggles).actions.setData;
+    const resource = featuretoggles.useFetch();
+    const update = resource.rerun;
 
     useEffect(() => {
-        fetchAllFeatureToggles().then((toggles: { [name: string]: boolean }) =>
-            dispatch(setFeatureToggleData(toggles))
-        );
-    }, [fnr, dispatch, setFeatureToggleData]);
+        update();
+    }, [fnr, update]);
 }
-
-function FetchFeatureToggles() {
-    useFetchFeatureTogglesOnNewFnr();
-    return null;
-}
-
-export default FetchFeatureToggles;

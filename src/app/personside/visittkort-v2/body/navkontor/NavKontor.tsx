@@ -85,7 +85,7 @@ function Publikumsmottak(props: { publikumsmottak: PublikumsmottakInterface[] })
 }
 
 function NavKontor({ feilendeSystemer, navEnhet, geografiskTilknytning }: Props) {
-    const baseUrlResource = baseurls.usePreload();
+    const baseUrlResource = baseurls.useFetch();
     const baseUrl = hasData(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
 
     if (harFeilendeSystemer(feilendeSystemer, InformasjonElement.NORG_NAVKONTOR)) {
