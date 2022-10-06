@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import { AppState } from '../../redux/reducers';
-import { useSelector } from 'react-redux';
 import LazySpinner from '../LazySpinner';
 import { FeatureToggles } from './toggleIDs';
-import { hasData } from '../../rest/utils/restResource';
+import featuretoggles from '../../rest/resources/featuretoggles';
 
 export enum DisplayWhenToggleIs {
     ON,
@@ -27,24 +25,16 @@ function shouldDisplay(mode: DisplayWhenToggleIs, featureToggleIsOn: boolean): b
 }
 
 function FeatureToggle(props: Props) {
-    const featureToggleIsOn = useSelector((state: AppState) => featureIsOnSelector(state, props.toggleID));
-    if (featureToggleIsOn === undefined) {
-        return <LazySpinner type="S" delay={1000} />;
-    }
-
-    if (shouldDisplay(props.mode, featureToggleIsOn)) {
-        return <>{props.children}</>;
-    }
-
-    return null;
-}
-
-function featureIsOnSelector(state: AppState, toggleId: string): boolean | undefined {
-    const toggleResource = state.restResources.featureToggles;
-    if (!hasData(toggleResource)) {
-        return undefined;
-    }
-    return toggleResource.data[toggleId];
+    return featuretoggles.useRenderer({
+        ifPending: <LazySpinner type="S" delay={1000} />,
+        ifData: (toggles) => {
+            if (shouldDisplay(props.mode, toggles[props.toggleID])) {
+                return <>{props.children}</>;
+            } else {
+                return null;
+            }
+        }
+    });
 }
 
 export default FeatureToggle;

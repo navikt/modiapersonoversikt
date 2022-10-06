@@ -27,7 +27,7 @@ const defaults: DefaultConfig = {
 
 const resource = {
     useRenderer: (renderer: RendererOrConfig<BaseUrlsResponse>) => useRest(url, applyDefaults(defaults, renderer)),
-    usePreload: () => useFetch<BaseUrlsResponse>(url)
+    useFetch: () => useFetch<BaseUrlsResponse>(url)
 };
 
 export default resource;

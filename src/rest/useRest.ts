@@ -1,13 +1,15 @@
 import * as React from 'react';
-import useFetchHook, { isPending, hasError, FetchResult } from '@nutgaard/use-fetch';
+import useFetchHook, { isPending, hasError, FetchResult, Config as HookConfig } from '@nutgaard/use-fetch';
+
+type ReactElement = React.ReactElement | null;
 
 export interface Config<T> {
-    ifPending: React.ReactElement | (() => React.ReactElement);
-    ifError: React.ReactElement | ((error: any) => React.ReactElement);
-    ifData: (data: T) => React.ReactElement;
+    ifPending: ReactElement | (() => ReactElement);
+    ifError: ReactElement | ((error: any) => ReactElement);
+    ifData: (data: T) => ReactElement;
 }
 
-export type RendererOrConfig<T> = ((data: T) => React.ReactElement) | (Partial<Config<T>> & Pick<Config<T>, 'ifData'>);
+export type RendererOrConfig<T> = ((data: T) => ReactElement) | (Partial<Config<T>> & Pick<Config<T>, 'ifData'>);
 export type DefaultConfig = Omit<Config<any>, 'ifData'>;
 
 export function applyDefaults<T>(defaults: DefaultConfig, renderer: RendererOrConfig<T>): Config<T> {
@@ -19,11 +21,11 @@ export function applyDefaults<T>(defaults: DefaultConfig, renderer: RendererOrCo
 }
 
 const includeCredentials: RequestInit = { credentials: 'include' };
-export function useFetch<T>(url: string): FetchResult<T> {
-    return useFetchHook<T>(url, includeCredentials);
+export function useFetch<T>(url: string, hookConfig?: HookConfig): FetchResult<T> {
+    return useFetchHook<T>(url, includeCredentials, hookConfig);
 }
-export function useRest<T>(url: string, config: Config<T>): React.ReactElement {
-    const response: FetchResult<T> = useFetch<T>(url);
+export function useRest<T>(url: string, config: Config<T>, hookConfig?: HookConfig): ReactElement {
+    const response: FetchResult<T> = useFetch<T>(url, hookConfig);
     if (isPending(response)) {
         if (typeof config.ifPending === 'function') {
             return config.ifPending();

@@ -6,17 +6,13 @@ import IfFeatureToggleOn from './IfFeatureToggleOn';
 import TestProvider from '../../test/Testprovider';
 import { getTestStore } from '../../test/testStore';
 import { FeatureToggles } from './toggleIDs';
+import { cache } from '@nutgaard/use-fetch';
 
 const toggleId = 'toggleId' as FeatureToggles;
 const testStore = getTestStore();
 
-function setToggleTo(value: boolean | undefined) {
-    // @ts-ignore (undefined representerer at featuretogglen ikke har blitt satt enda)
-    testStore.dispatch(testStore.getState().restResources.featureToggles.actions.setData({ [toggleId]: value }));
-}
-
 test('viser innhold i FeatureToggle dersom feature-toggle er på', () => {
-    setToggleTo(true);
+    cache.putResolved('featuretoggles', { [toggleId]: true });
 
     const result = mount(
         <TestProvider customStore={testStore}>
@@ -29,7 +25,7 @@ test('viser innhold i FeatureToggle dersom feature-toggle er på', () => {
 });
 
 test('viser innhold i IfFeatureToggleOff dersom feature-toggle er av', () => {
-    setToggleTo(false);
+    cache.putResolved('featuretoggles', { [toggleId]: false });
 
     const result = mount(
         <TestProvider customStore={testStore}>
@@ -42,7 +38,7 @@ test('viser innhold i IfFeatureToggleOff dersom feature-toggle er av', () => {
 });
 
 test('viser LazySpinner dersom feature-toggle ikke er satt', () => {
-    setToggleTo(undefined);
+    cache.remove('featuretoggles');
 
     const result = mount(
         <TestProvider customStore={testStore}>
