@@ -24,7 +24,6 @@ export interface JournalforingsSak {
     finnesIGsak: boolean;
     finnesIPsak: boolean;
     opprettetDato: string | null;
-    opprettetDatoFormatert: string;
     saksId: string;
     saksIdVisning: string;
     sakstype: string | null;
