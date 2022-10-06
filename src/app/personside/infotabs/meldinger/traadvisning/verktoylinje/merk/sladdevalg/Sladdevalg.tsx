@@ -11,6 +11,7 @@ import formstateFactory, { Formstate } from '@nutgaard/use-formstate';
 import SladdTradMedArsak from './SladdTradMedArsak';
 import SladdMeldingerMedArsak from './SladdMeldingerMedArsak';
 import css from './Sladdvalg.module.css';
+import { useSladdeArsak } from './use-sladde-arsak';
 
 interface Props {
     traad: Traad;
@@ -22,12 +23,12 @@ export function velgMeldingerTilSladding(traad: Traad) {
     return renderPopup(Sladdevalg, { traad });
 }
 
-const Modal = styled(NavFrontendModal)`
+const Modal = styled<{ mini: boolean }>(NavFrontendModal)`
     &.modal {
         width: 100%;
         max-width: 57rem;
-        min-height: 20rem;
-        max-height: 40rem;
+        min-height: 10rem;
+        max-height: ${(props) => (props.mini ? '14rem' : '40rem')};
         height: 100%;
         padding: 0;
         overflow: hidden;
@@ -38,7 +39,6 @@ const Modal = styled(NavFrontendModal)`
     }
 `;
 
-const arsaker = ['Sendt til feil bruker', 'Skrevet noe feil', 'Angrer på valget']; // Hentes vha api senere
 export type SladdeForm = {
     arsak: string;
     meldingIder: string;
@@ -93,12 +93,17 @@ function Sladdevalg(props: PopupComponentProps<SladdeObjekt | null, Props>) {
     const abort = useCallback(() => close(null), [close]);
     const formstate = useFormstate({ arsak: '', meldingIder: '' }, { velgMeldinger: kanSladdeFlere });
     const config = kanSladdeFlere ? sladdMeldingConfig : sladdTradConfig;
+    const content = useSladdeArsak(props.traad.traadId, (arsaker: string[]) =>
+        React.createElement(config.component, { formstate, arsaker, traad })
+    );
 
     const onSubmit = useCallback(
         (values: SladdeForm) => {
             const arsak = values.arsak;
             const meldingId = values.meldingIder.split('||').filter((it) => it !== '');
-            const sladdeObject = kanSladdeFlere ? { meldingId, arsak } : { traadId: traad.traadId, arsak };
+            const sladdeObject = kanSladdeFlere
+                ? { traadId: traad.traadId, meldingId, arsak }
+                : { traadId: traad.traadId, arsak };
             close(sladdeObject);
             return Promise.resolve();
         },
@@ -106,14 +111,12 @@ function Sladdevalg(props: PopupComponentProps<SladdeObjekt | null, Props>) {
     );
 
     return (
-        <Modal isOpen={true} onRequestClose={abort} contentLabel={config.label}>
+        <Modal isOpen={true} onRequestClose={abort} contentLabel={config.label} mini={!kanSladdeFlere}>
             <form onSubmit={formstate.onSubmit(onSubmit)} className={css.layout}>
                 <Systemtittel tag="h1" className={css.header}>
                     {config.header}
                 </Systemtittel>
-                <div className={css.content}>
-                    {React.createElement(config.component, { formstate, arsaker, traad })}
-                </div>
+                <div className={kanSladdeFlere ? css.content : css.contentMini}>{content}</div>
             </form>
         </Modal>
     );

@@ -12,3 +12,12 @@
     height: 0;
     flex: 1;
 }
+
+.contentMini {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    text-align: right;
+}
