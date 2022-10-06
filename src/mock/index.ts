@@ -11,7 +11,6 @@ import {
     withDelayedResponse
 } from './utils/fetch-utils';
 import { mockBaseUrls } from './baseUrls-mock';
-import { getMockVeilederRoller } from './veilderRoller-mock';
 import { getMockUtbetalinger } from './utbetalinger/utbetalinger-mock';
 import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
@@ -288,13 +287,6 @@ function setupFeatureToggleMock(mock: FetchMock) {
     });
 }
 
-function setupVeilederRollerMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/veileder/roller',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => getMockVeilederRoller())
-    );
-}
-
 function setupJournalforingMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/journalforing/:fnr/saker/',
@@ -371,7 +363,6 @@ setupSFDialogMock(mock, meldingerBackendMock);
 setupTildelteOppgaverMock(mock);
 setupBaseUrlsMock(mock);
 setupFeatureToggleMock(mock);
-setupVeilederRollerMock(mock);
 setupWsControlAndMock(mock);
 setupOppfolgingMock(mock);
 setupGsakTemaMock(mock);

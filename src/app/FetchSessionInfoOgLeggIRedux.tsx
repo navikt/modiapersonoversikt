@@ -5,7 +5,6 @@ import { useInitializeLogger } from '../utils/logger/frontendLogger';
 import { useRestResource } from '../rest/consumer/useRestResource';
 import gsaktemaResource from '../rest/resources/gsakTema';
 import baseurls from '../rest/resources/baseurls';
-import veilederroller from '../rest/resources/veilederroller';
 
 function FetchSessionInfoOgLeggIRedux() {
     useInitializeLogger();
@@ -15,7 +14,6 @@ function FetchSessionInfoOgLeggIRedux() {
     );
     gsaktemaResource.useFetch();
     baseurls.useFetch();
-    veilederroller.useFetch();
 
     const fetchVeiledersEnheter = useRestResource((resources) => resources.saksbehandlersEnheter).actions.fetch;
 
