@@ -18,10 +18,8 @@ type CommonPopupComponentProps = {
     header: string;
     message: string;
 };
-type PopupComponentProps<RESULT, PROPS extends CommonPopupComponentProps> = { close(result: RESULT): void } & PROPS;
-type PopupComponent<RESULT, PROPS extends CommonPopupComponentProps> = React.ComponentType<
-    PopupComponentProps<RESULT, PROPS>
->;
+export type PopupComponentProps<RESULT, PROPS> = { close(result: RESULT): void } & PROPS;
+type PopupComponent<RESULT, PROPS> = React.ComponentType<PopupComponentProps<RESULT, PROPS>>;
 
 const Modal = styled(RawModal)`
     text-align: center;
@@ -50,11 +48,11 @@ function getIcon(choice: IconChoice): React.ReactNode {
     }
 }
 
-function renderPopup<RESULT, PROPS extends CommonPopupComponentProps>(
+export function renderPopup<RESULT, PROPS>(
     componentType: PopupComponent<RESULT, PROPS>,
     props: PROPS
 ): Promise<RESULT> {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         const tmp = document.createElement('div');
         document.body.appendChild(tmp);
 
@@ -78,7 +76,7 @@ function Alert(props: PopupComponentProps<void, AlertProps>) {
             onRequestClose={() => {}}
             closeButton={false}
             isOpen={true}
-            contentRef={el => focusOnFirstFocusable(el)}
+            contentRef={(el) => focusOnFirstFocusable(el)}
         >
             {getIcon(props.icon)}
             <Systemtittel tag="h1" className="blokk-xxxs">
@@ -101,7 +99,7 @@ function Confirm(props: PopupComponentProps<boolean, ConfirmProps>) {
             onRequestClose={() => {}}
             closeButton={false}
             isOpen={true}
-            contentRef={el => focusOnFirstFocusable(el)}
+            contentRef={(el) => focusOnFirstFocusable(el)}
         >
             {getIcon(props.icon)}
             <Systemtittel tag="h1" className="blokk-xxxs">
@@ -133,7 +131,7 @@ function Prompt(props: PopupComponentProps<string | null, PromptProps>) {
             onRequestClose={() => {}}
             closeButton={false}
             isOpen={true}
-            contentRef={el => focusOnFirstFocusable(el)}
+            contentRef={(el) => focusOnFirstFocusable(el)}
         >
             <form onSubmit={submitHandler}>
                 {getIcon(props.icon)}
@@ -145,7 +143,7 @@ function Prompt(props: PopupComponentProps<string | null, PromptProps>) {
                     type={props.secret ? 'password' : 'text'}
                     className="blokk-s"
                     value={value}
-                    onChange={event => setValue(event.target.value)}
+                    onChange={(event) => setValue(event.target.value)}
                 />
                 <Knapp type="hoved">OK</Knapp>
                 <Knapp type="flat" htmlType="button" onClick={() => props.close(null)}>

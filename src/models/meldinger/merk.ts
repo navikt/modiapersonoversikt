@@ -5,7 +5,9 @@ export interface MerkRequestMedBehandlingskjede {
 
 export interface SendTilSladdingRequest {
     fnr: string;
-    traadId: string;
+    traadId?: string;
+    meldingId?: Array<string>;
+    aarsak?: string;
 }
 
 export interface MerkLukkTraadRequest {

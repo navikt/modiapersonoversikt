@@ -122,6 +122,14 @@ function sladdingMock(mock: FetchMock) {
         apiBaseUri + '/dialogmerking/sladding',
         withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
     );
+    mock.get(
+        apiBaseUri + '/dialogmerking/sladdearsaker/:kjedeId',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => [
+            'Sendt til feil bruker',
+            'Innholder sensitiv informasjon',
+            'Meldingen burde ikke blitt sendt til NAV'
+        ])
+    );
 }
 
 function setupAvsluttOppgaveGosysMock(mock: FetchMock) {
