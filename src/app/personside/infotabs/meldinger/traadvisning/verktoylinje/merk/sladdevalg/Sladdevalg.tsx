@@ -22,13 +22,11 @@ export type SladdeObjekt = ({ traadId: string } | { meldingId: Array<string> }) 
 export function velgMeldingerTilSladding(traad: Traad) {
     return renderPopup(Sladdevalg, { traad });
 }
-
-const Modal = styled<{ mini: boolean }>(NavFrontendModal)`
+const ModalBase = styled(NavFrontendModal)`
     &.modal {
         width: 100%;
         max-width: 57rem;
         min-height: 10rem;
-        max-height: ${(props) => (props.mini ? '14rem' : '40rem')};
         height: 100%;
         padding: 0;
         overflow: hidden;
@@ -36,6 +34,16 @@ const Modal = styled<{ mini: boolean }>(NavFrontendModal)`
         > section {
             height: 100%;
         }
+    }
+`;
+const ModalMini = styled(ModalBase)`
+    &.modal {
+        max-height: 18rem;
+    }
+`;
+const ModalStor = styled(ModalBase)`
+    &.modal {
+        max-height: 40rem;
     }
 `;
 
@@ -110,8 +118,9 @@ function Sladdevalg(props: PopupComponentProps<SladdeObjekt | null, Props>) {
         [kanSladdeFlere, close, traad]
     );
 
+    const Modal = kanSladdeFlere ? ModalStor : ModalMini;
     return (
-        <Modal isOpen={true} onRequestClose={abort} contentLabel={config.label} mini={!kanSladdeFlere}>
+        <Modal isOpen={true} onRequestClose={abort} contentLabel={config.label}>
             <form onSubmit={formstate.onSubmit(onSubmit)} className={css.layout}>
                 <Systemtittel tag="h1" className={css.header}>
                     {config.header}
