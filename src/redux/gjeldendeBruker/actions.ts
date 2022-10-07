@@ -11,6 +11,7 @@ const trieDelimiter = /\/|\|\|.*/;
 const protectedCache = createTrie(
     [
         '/modiapersonoversikt-api/rest/hode/me',
+        '/modiapersonoversikt-api/rest/hode/enheter',
         '/modiapersonoversikt-api/rest/baseurls',
         '/modiapersonoversikt-api/rest/enheter/oppgavebehandlere/alle',
         '/modiapersonoversikt-api/rest/dialogoppgave/v2/tema',
