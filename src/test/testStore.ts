@@ -35,7 +35,6 @@ export function getTestStore(): Store<AppState> {
     dispatch(restResources.utbetalinger.actions.setData(statiskMockUtbetalingRespons));
     dispatch(restResources.utbetalingerOversikt.actions.setData(statiskMockUtbetalingRespons));
     dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
-    dispatch(restResources.traader.actions.setData([statiskTraadMock]));
     setupFetchCache();
 
     return testStore;
@@ -75,6 +74,7 @@ export function setupFetchCache() {
     cache.putResolved(createCacheKey(`${apiBaseUri}/ytelse/foreldrepenger/${aremark.personIdent}`), {
         foreldrepenger: [statiskForeldrepengeMock]
     });
+    cache.putResolved(createCacheKey(`${apiBaseUri}/dialog/${aremark.personIdent}/meldinger`), [statiskTraadMock]);
     cache.putResolved(createCacheKey(`${apiBaseUri}/featuretoggle`), {
         toggleId: false
     });

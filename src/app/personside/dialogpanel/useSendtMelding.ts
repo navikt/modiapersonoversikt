@@ -1,24 +1,25 @@
 import { erMaks10MinSiden } from '../../../utils/date-utils';
 import { nyesteMelding, nyesteTraad } from '../infotabs/meldinger/utils/meldingerUtils';
-import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { useEffect, useMemo, useState } from 'react';
 import { Melding, Traad } from '../../../models/meldinger/meldinger';
 import { loggError } from '../../../utils/logger/frontendLogger';
+import brukersdialog from '../../../rest/resources/brukersdialog';
+import { hasData, isPending } from '@nutgaard/use-fetch';
 
 export function useSendtMelding(opprettetTraad: Traad | undefined) {
-    const traaderResource = useRestResource((resources) => resources.traader);
+    const traaderResource = brukersdialog.useFetch();
     const [pending, setPending] = useState(true);
     const [melding, setMelding] = useState<Melding | undefined>();
     const [traad, setTraad] = useState<Traad | undefined>();
 
     useEffect(() => {
-        if (!traaderResource.isLoading && !traaderResource.isReloading) {
+        if (!isPending(traaderResource, true)) {
             setPending(false);
         }
         if (melding && traad) {
             return;
         }
-        if (traaderResource.data?.length) {
+        if (hasData(traaderResource)) {
             try {
                 const sisteTraad = nyesteTraad(traaderResource.data);
                 const sisteMelding = nyesteMelding(sisteTraad);

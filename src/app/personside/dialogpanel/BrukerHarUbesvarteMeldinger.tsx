@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { useRestResource } from '../../../rest/consumer/useRestResource';
 import { erUbesvartHenvendelseFraBruker } from '../infotabs/meldinger/utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
+import brukersdialog from '../../../rest/resources/brukersdialog';
+import { hasData } from '@nutgaard/use-fetch';
 
 const Styling = styled.div`
     padding: ${theme.margin.layout};
@@ -11,9 +12,10 @@ const Styling = styled.div`
 `;
 
 function BrukerHarUbesvarteMeldinger() {
-    const traader = useRestResource(resources => resources.traader);
-
-    const antallUbesvarteTraader = traader.data?.filter(traad => erUbesvartHenvendelseFraBruker(traad)).length;
+    const traader = brukersdialog.useFetch();
+    const antallUbesvarteTraader = hasData(traader)
+        ? traader.data?.filter((traad) => erUbesvartHenvendelseFraBruker(traad))?.length
+        : undefined;
 
     if (!antallUbesvarteTraader) {
         return null;

@@ -10,7 +10,6 @@ import {
     Traad
 } from '../../../../models/meldinger/meldinger';
 import { useAppState, useFodselsnummer } from '../../../../utils/customHooks';
-import { useDispatch } from 'react-redux';
 import {
     InfomeldingSendtKvittering,
     ReferatSendtKvittering,
@@ -20,11 +19,11 @@ import {
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { KvitteringNyMelding, SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import useDraft, { Draft } from '../use-draft';
 import { feilMeldinger } from './FeilMeldinger';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { selectValgtEnhet } from '../../../../redux/session/session';
+import brukersdialog from '../../../../rest/resources/brukersdialog';
 
 interface Props {
     defaultOppgaveDestinasjon: OppgavelisteValg;
@@ -42,9 +41,8 @@ function SendNyMeldingContainer(props: Props) {
         }),
         [props.defaultOppgaveDestinasjon]
     );
-    const dispatch = useDispatch();
     const fnr = useFodselsnummer();
-    const reloadMeldinger = useRestResource((resources) => resources.traader).actions.reload;
+    const meldingerResource = brukersdialog.useFetch();
 
     const valgtEnhet = useAppState(selectValgtEnhet);
     const [state, setState] = useState<SendNyMeldingState>(initialState);
@@ -123,7 +121,7 @@ function SendNyMeldingContainer(props: Props) {
         const callback = () => {
             removeDraft();
             updateState(initialState);
-            dispatch(reloadMeldinger);
+            meldingerResource.rerun();
         };
 
         if (

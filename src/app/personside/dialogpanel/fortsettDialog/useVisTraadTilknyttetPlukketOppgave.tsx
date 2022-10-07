@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import useTildelteOppgaver from '../../../../utils/hooks/useTildelteOppgaver';
 import { useDispatch } from 'react-redux';
@@ -5,9 +6,11 @@ import { useInfotabsDyplenker } from '../../infotabs/dyplenker';
 import { setValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { useHistory } from 'react-router';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { eldsteMelding, kanBesvares } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { useJustOnceEffect } from '../../../../utils/customHooks';
+import brukersdialog from '../../../../rest/resources/brukersdialog';
+import { hasData } from '@nutgaard/use-fetch';
+import LazySpinner from '../../../../components/LazySpinner';
 
 interface Pending {
     pending: true;
@@ -21,7 +24,7 @@ interface Success {
 type Response = Pending | Success;
 
 function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response {
-    const traaderResource = useRestResource((resources) => resources.traader);
+    const traaderResource = brukersdialog.useFetch();
     const tildelteOppgaver = useTildelteOppgaver();
     const dispatch = useDispatch();
     const dyplenker = useInfotabsDyplenker();
@@ -31,7 +34,7 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
         function visTraadTilknyttetOppgaveIDialogpanel(done: () => void) {
             const oppgave = tildelteOppgaver.paaBruker[0];
             const åpneTrådIFortsettDialogpanel = !dialogpanelTraad && !!oppgave;
-            if (!åpneTrådIFortsettDialogpanel || !traaderResource.data) {
+            if (!åpneTrådIFortsettDialogpanel || !hasData(traaderResource)) {
                 return;
             }
             const traadTilknyttetOppgave = traaderResource.data.find((traad) => traad.traadId === oppgave.traadId);
@@ -58,10 +61,10 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
         [tildelteOppgaver.paaBruker, dialogpanelTraad, dispatch, dyplenker, history, traaderResource]
     );
 
-    if (tildelteOppgaver.paaBruker.length > 0 && !traaderResource.data) {
+    if (tildelteOppgaver.paaBruker.length > 0 && !hasData(traaderResource)) {
         return {
             pending: true,
-            placeholder: traaderResource.placeholder
+            placeholder: <LazySpinner type="M" />
         };
     }
 
