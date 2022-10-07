@@ -92,9 +92,18 @@ function PrintAlleMeldinger({ traader }: { traader: Traad[] }) {
         </>
     );
 }
+
+const fieldCompareTrad = (traad: Traad) => traad.traadId;
+
 function TraadListe(props: Props) {
     const inputRef = React.useRef<HTMLInputElement>();
-    const paginering = usePaginering(props.traaderEtterSokOgFiltrering, 50, 'melding', props.valgtTraad);
+    const paginering = usePaginering(
+        props.traaderEtterSokOgFiltrering,
+        50,
+        'melding',
+        props.valgtTraad,
+        fieldCompareTrad
+    );
     const sokTittelId = useRef(guid());
     const listeId = useRef(guid());
     const traadListeRef = useRef<HTMLOListElement>(null);
@@ -174,7 +183,7 @@ function TraadListe(props: Props) {
                         <TraadListeElement
                             traad={traad}
                             key={traad.traadId}
-                            erValgt={traad === props.valgtTraad}
+                            erValgt={traad.traadId === props.valgtTraad.traadId}
                             listeId="traadliste-meldinger"
                         />
                     ))}

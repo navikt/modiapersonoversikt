@@ -183,6 +183,8 @@ interface Props {
     sakstemaListeDropdown?: JSX.Element;
 }
 
+const fieldCompareJournalposter = (journalpost: Journalpost) => journalpost.id;
+
 function JournalPoster(props: Props) {
     const { alleSakstema } = useHentAlleSakstemaFraResource();
     const { valgteSakstemaer } = useSakstemaURLState(alleSakstema);
@@ -192,7 +194,7 @@ function JournalPoster(props: Props) {
     const filtrerteJournalposter = aggregertSak.dokumentMetadata
         .filter((journalpost) => hentRiktigAvsenderfilter(journalpost.avsender, avsenderFilter))
         .sort(datoSynkende((journalpost) => saksdatoSomDate(journalpost.dato)));
-    const paginering = usePaginering(filtrerteJournalposter, 50, 'journalpost');
+    const paginering = usePaginering(filtrerteJournalposter, 50, 'journalpost', undefined, fieldCompareJournalposter);
     const dispatch = useDispatch();
     const handleOppdaterAvsenderFilter = (filter: Partial<DokumentAvsenderFilter>) => {
         dispatch(oppdaterAvsenderfilter(filter));

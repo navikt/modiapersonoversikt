@@ -80,7 +80,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         loggEvent('Ny melding knapp', 'Meldinger');
     };
 
-    if (dialogpanelTraad === valgtTraad) {
+    if (dialogpanelTraad?.traadId === valgtTraad.traadId) {
         return (
             <KnappWrapper>
                 <AlertStripeInfo>Under arbeid</AlertStripeInfo>
