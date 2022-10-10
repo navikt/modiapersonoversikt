@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { DetaljertOppfolging } from '../../../../models/oppfolging';
-import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import VisMerKnapp from '../../../../components/VisMerKnapp';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
@@ -9,21 +8,17 @@ import { usePaths } from '../../../routes/routing';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { getOppfolgingEnhet, getVeileder } from '../oppfolging/oppfolging-utils';
 import CopyToClipboard from '../../visittkort-v2/header/status/CopyToClipboard';
+import oppfolging from '../../../../rest/resources/oppfolging';
 
 interface Props {
     detaljertOppfolging: DetaljertOppfolging;
 }
 
-const onPendingSpinner = <CenteredLazySpinner padding={theme.margin.layout} />;
 function OppfolgingOversikt() {
-    return (
-        <RestResourceConsumer<DetaljertOppfolging>
-            getResource={(restResources) => restResources.oppfolging}
-            returnOnPending={onPendingSpinner}
-        >
-            {(data) => <OppfolgingPanel detaljertOppfolging={data} />}
-        </RestResourceConsumer>
-    );
+    return oppfolging.useRenderer({
+        ifPending: <CenteredLazySpinner padding={theme.margin.layout} />,
+        ifData: (data: DetaljertOppfolging) => <OppfolgingPanel detaljertOppfolging={data} />
+    });
 }
 
 function OppfolgingPanel(props: Props) {

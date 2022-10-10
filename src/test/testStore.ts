@@ -34,7 +34,6 @@ export function getTestStore(): Store<AppState> {
     );
     dispatch(restResources.utbetalinger.actions.setData(statiskMockUtbetalingRespons));
     dispatch(restResources.utbetalingerOversikt.actions.setData(statiskMockUtbetalingRespons));
-    dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
     setupFetchCache();
 
     return testStore;
@@ -79,4 +78,10 @@ export function setupFetchCache() {
         toggleId: false
     });
     cache.putResolved(createCacheKey(`${apiBaseUri}/hode/me`), getMockInnloggetSaksbehandler());
+    cache.putResolved(
+        createCacheKey(
+            `${apiBaseUri}/oppfolging/${aremark.personIdent}/ytelserogkontrakter?startDato=1969-11-01&sluttDato=1970-02-01`
+        ),
+        statiskOppfolgingMock
+    );
 }
