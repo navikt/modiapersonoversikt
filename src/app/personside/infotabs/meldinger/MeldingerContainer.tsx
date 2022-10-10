@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components/macro';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import TraadListe from './traadliste/TraadListe';
-import { huskSokAction } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
 import { useAppState, usePrevious } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
-import { useHistory, withRouter } from 'react-router';
+import { useHistory } from 'react-router';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { useSokEtterMeldinger } from './utils/meldingerUtils';
@@ -19,6 +18,7 @@ import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 import brukersdialog from '../../../../rest/resources/brukersdialog';
 import { hasData, isPending } from '@nutgaard/use-fetch';
 import LazySpinner from '../../../../components/LazySpinner';
+import { useMeldingsok } from '../../../../context/meldingsok';
 
 const meldingerMediaTreshold = pxToRem(800);
 
@@ -43,7 +43,7 @@ function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[
     const history = useHistory();
 
     useEffect(() => {
-        const valgtTaadErISøkeresultat = valgtTraad && traaderEtterSok.includes(valgtTraad);
+        const valgtTaadErISøkeresultat = valgtTraad && traaderEtterSok.find((it) => it.traadId === valgtTraad.traadId);
         if (traaderFørSøk.length === traaderEtterSok.length || valgtTaadErISøkeresultat) {
             return;
         }
@@ -51,16 +51,6 @@ function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[
             history.push(dyplenker.meldinger.link(traaderEtterSok[0]));
         }
     }, [valgtTraad, traaderFørSøk, traaderEtterSok, history, dyplenker.meldinger]);
-}
-
-function useHuskSokeord(sokeord: string) {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            dispatch(huskSokAction(sokeord));
-        }, 200);
-        return () => clearTimeout(timeout);
-    }, [sokeord, dispatch]);
 }
 
 function useReloadOnEnhetChange() {
@@ -81,15 +71,13 @@ function useReloadOnEnhetChange() {
 
 function MeldingerContainer() {
     const traaderResource = brukersdialog.useFetch();
-    const forrigeSok = useAppState((state) => state.meldinger.forrigeSok);
-    const [sokeord, setSokeord] = useState(forrigeSok);
+    const meldingsok = useMeldingsok();
 
     const traaderForSok = hasData(traaderResource) ? traaderResource.data : [];
-    const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderForSok, sokeord);
+    const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderForSok, meldingsok.query);
     const valgtTraad = useValgtTraadIUrl() || traaderEtterSokOgFiltrering[0];
     useKeepQueryParams();
     useSyncSøkMedVisning(traaderForSok, traaderEtterSokOgFiltrering, valgtTraad);
-    useHuskSokeord(sokeord);
     useReloadOnEnhetChange();
 
     if (isPending(traaderResource)) {
@@ -112,8 +100,6 @@ function MeldingerContainer() {
         <MeldingerStyle>
             <ScrollBar keepScrollId="meldinger-trådliste">
                 <TraadListe
-                    sokeord={sokeord}
-                    setSokeord={setSokeord}
                     traader={traaderForSok}
                     traaderEtterSokOgFiltrering={traaderEtterSokOgFiltrering}
                     valgtTraad={valgtTraad}
@@ -123,11 +109,11 @@ function MeldingerContainer() {
                 {traaderEtterSokOgFiltrering.length === 0 ? (
                     <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>
                 ) : (
-                    <TraadVisningWrapper sokeord={sokeord} valgtTraad={valgtTraad} />
+                    <TraadVisningWrapper sokeord={meldingsok.query} valgtTraad={valgtTraad} />
                 )}
             </ScrollBar>
         </MeldingerStyle>
     );
 }
 
-export default withRouter(MeldingerContainer);
+export default MeldingerContainer;

@@ -22,6 +22,7 @@ import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import Ytelser from './ytelser/Ytelser';
 import { guid } from 'nav-frontend-js-utils';
 import { useOpenTab } from './utils/useOpenTab';
+import { MeldingsokProvider } from '../../../context/meldingsok';
 
 const StyledArticle = styled.article`
     display: flex;
@@ -79,15 +80,17 @@ function InfoTabs() {
                     >
                         {openTab.tittel} - Fane
                     </h2>
-                    <Switch location={location}>
-                        <SentryRoute path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
-                        <SentryRoute path={paths.oppfolging} component={OppfolgingContainer} />
-                        <SentryRoute path={dyplenker.meldinger.route} component={MeldingerContainer} />
-                        <SentryRoute path={dyplenker.saker.route} component={SaksoversiktContainer} />
-                        <SentryRoute path={dyplenker.ytelser.route} component={Ytelser} />
-                        <SentryRoute path={paths.varsler} component={VarslerContainer} />
-                        <SentryRoute path={''} component={Oversikt} />
-                    </Switch>
+                    <MeldingsokProvider>
+                        <Switch location={location}>
+                            <SentryRoute path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
+                            <SentryRoute path={paths.oppfolging} component={OppfolgingContainer} />
+                            <SentryRoute path={dyplenker.meldinger.route} component={MeldingerContainer} />
+                            <SentryRoute path={dyplenker.saker.route} component={SaksoversiktContainer} />
+                            <SentryRoute path={dyplenker.ytelser.route} component={Ytelser} />
+                            <SentryRoute path={paths.varsler} component={VarslerContainer} />
+                            <SentryRoute path={''} component={Oversikt} />
+                        </Switch>
+                    </MeldingsokProvider>
                 </StyledArticle>
             </ErrorBoundary>
         </ErrorBoundary>
