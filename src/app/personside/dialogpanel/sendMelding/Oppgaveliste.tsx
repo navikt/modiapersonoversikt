@@ -3,9 +3,10 @@ import Select from 'nav-frontend-skjema/lib/select';
 import { OppgavelisteValg } from './SendNyMelding';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { useAppState } from '../../../../utils/customHooks';
 import { selectValgtEnhet } from '../../../../redux/session/session';
+import saksbehandlersEnheter from '../../../../rest/resources/saksbehandlersEnheter';
+import { hasData } from '@nutgaard/use-fetch';
 
 interface Props {
     oppgaveliste: OppgavelisteValg;
@@ -20,10 +21,11 @@ const StyledSelect = styled(Select)`
 `;
 
 function Oppgaveliste(props: Props) {
-    const enheter = useRestResource((resources) => resources.saksbehandlersEnheter);
+    const enheterResource = saksbehandlersEnheter.useFetch();
+    const enheter = hasData(enheterResource) ? enheterResource.data.enhetliste : [];
     const valgtEnhetId = useAppState(selectValgtEnhet);
 
-    const valgtEnhet = enheter.data?.enhetliste.find((enhet) => enhet.enhetId === valgtEnhetId);
+    const valgtEnhet = enheter.find((enhet) => enhet.enhetId === valgtEnhetId);
     const enhet = valgtEnhet?.navn ?? 'valgt enhet';
 
     return (

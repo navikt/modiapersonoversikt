@@ -26,7 +26,7 @@ import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 import useForeslatteEnheter from './useForeslåtteEnheter';
 import { useNormalPrioritet } from './oppgave-utils';
 import { FeilmeldingOppsummering } from '../../../../../../../components/FeilmeldingOppsummering';
-import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
+import innloggetSaksbehandler from '../../../../../../../rest/resources/innloggetSaksbehandler';
 
 const AlertStyling = styled.div`
     > * {
@@ -94,7 +94,7 @@ function OppgaveSkjema(props: OppgaveProps) {
 
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useAppState((state) => state.session.valgtEnhetId);
-    const saksbehandlerIdent = useRestResource((state) => state.innloggetSaksbehandler);
+    const saksbehandlerIdent = innloggetSaksbehandler.useFetch();
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const state = useFormstate(initialValues);
 
@@ -163,7 +163,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         const enhet = hasData(enhetliste) ? enhetliste.data.find((e) => e.enhetId === saksbehandlersEnhet) : undefined;
         const enhetValue = enhet ? `${enhet.enhetId} ${enhet.enhetNavn}` : '';
 
-        const ansatt = saksbehandlerIdent.data;
+        const ansatt = hasData(saksbehandlerIdent) ? saksbehandlerIdent.data : undefined;
         const ansattValue = ansatt ? `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})` : '';
 
         state.fields.valgtEnhet.setValue(enhetValue);
@@ -199,7 +199,7 @@ function OppgaveSkjema(props: OppgaveProps) {
                     label={
                         <>
                             <span>Velg enhet</span>
-                            {hasData(enhetliste) && saksbehandlerIdent.data !== undefined && (
+                            {hasData(enhetliste) && hasData(saksbehandlerIdent) && (
                                 <SettTilEgenOppgaveListeKnapp type="button" onClick={settTilSaksbehandlerOppgaveListe}>
                                     Sett til min oppgaveliste
                                 </SettTilEgenOppgaveListeKnapp>

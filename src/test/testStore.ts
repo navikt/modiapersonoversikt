@@ -32,7 +32,6 @@ export function getTestStore(): Store<AppState> {
             innstillinger: {}
         })
     );
-    dispatch(restResources.innloggetSaksbehandler.actions.setData(getMockInnloggetSaksbehandler()));
     dispatch(restResources.utbetalinger.actions.setData(statiskMockUtbetalingRespons));
     dispatch(restResources.utbetalingerOversikt.actions.setData(statiskMockUtbetalingRespons));
     dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
@@ -79,4 +78,5 @@ export function setupFetchCache() {
     cache.putResolved(createCacheKey(`${apiBaseUri}/featuretoggle`), {
         toggleId: false
     });
+    cache.putResolved(createCacheKey(`${apiBaseUri}/hode/me`), getMockInnloggetSaksbehandler());
 }

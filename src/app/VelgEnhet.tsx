@@ -5,7 +5,10 @@ import { Select } from 'nav-frontend-skjema';
 import { useDispatch } from 'react-redux';
 import { velgEnhetAction } from '../redux/session/session';
 import theme from '../styles/personOversiktTheme';
-import { useRestResource } from '../rest/consumer/useRestResource';
+import saksbehandlersEnheter from '../rest/resources/saksbehandlersEnheter';
+import { hasData, hasError, isPending } from '@nutgaard/use-fetch';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import LazySpinner from '../components/LazySpinner';
 
 const Style = styled.div`
     display: flex;
@@ -17,22 +20,23 @@ const Style = styled.div`
     }
 `;
 
-const placeholderProps = { returnOnError: 'Kunne ikke hente enhetsliste' };
 function VelgEnhet() {
-    const enheter = useRestResource(resources => resources.saksbehandlersEnheter, placeholderProps, true);
+    const enheter = saksbehandlersEnheter.useFetch();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (enheter.data?.enhetliste.length === 1) {
+        if (hasData(enheter) && enheter.data?.enhetliste.length === 1) {
             dispatch(velgEnhetAction(enheter.data.enhetliste[0].enhetId));
         }
     }, [enheter, dispatch]);
 
-    if (!enheter.data) {
-        return enheter.placeholder;
+    if (isPending(enheter)) {
+        return <LazySpinner type="M" />;
+    } else if (hasError(enheter)) {
+        return <AlertStripeAdvarsel>Kunne ikke hente enhetsliste</AlertStripeAdvarsel>;
     }
 
-    const options = enheter.data.enhetliste.map(enhet => {
+    const options = enheter.data.enhetliste.map((enhet) => {
         return (
             <option value={enhet.enhetId} key={enhet.enhetId}>
                 {enhet.enhetId} {enhet.navn}
