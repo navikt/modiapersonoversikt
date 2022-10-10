@@ -4,18 +4,18 @@ import PilKnapp from '../../components/pilknapp';
 import { HoyreKolonne as HoyreKolonneBase, VenstreKolonne as VenstreKolonneBase } from './MainLayoutStyles';
 import { Undertittel } from 'nav-frontend-typografi';
 import theme from '../../styles/personOversiktTheme';
-import { UIState } from '../../redux/uiReducers/UIReducer';
+import { useDialogpanelState } from '../../context/dialogpanel-state';
 
 export const VenstreKolonne = styled(VenstreKolonneBase)`
     @media (${theme.media.smallScreen}) {
-        ${props => (props.dialogPanelEkspandert ? theme.visuallyHidden : 'flex-grow: 1;')}
+        ${(props) => (props.dialogPanelEkspandert ? theme.visuallyHidden : 'flex-grow: 1;')}
     }
     order: 1;
 `;
 
 export const HoyreKolonne = styled(HoyreKolonneBase)`
     @media (${theme.media.smallScreen}) {
-        ${props => (props.dialogPanelEkspandert ? 'flex-grow: 1;' : theme.visuallyHidden)}
+        ${(props) => (props.dialogPanelEkspandert ? 'flex-grow: 1;' : theme.visuallyHidden)}
         > *:last-child {
             display: none;
         }
@@ -31,7 +31,7 @@ const SideKnappContainer = styled.nav<{ stickToRight: boolean }>`
     @media print {
         display: none;
     }
-    order: ${props => (props.stickToRight ? 4 : 0)};
+    order: ${(props) => (props.stickToRight ? 4 : 0)};
     align-items: center;
     background-color: #7f7f7f;
     padding: 0.5em;
@@ -51,17 +51,18 @@ const Tittel = styled.div`
     margin-bottom: 1em;
 `;
 
-export function SmallScreenToggleButton(props: { UI: UIState; toggleDialogpanel: Function }) {
+export function SmallScreenToggleButton() {
+    const dialogpanel = useDialogpanelState();
     return (
-        <SideKnappContainer onClick={() => props.toggleDialogpanel()} stickToRight={!props.UI.dialogPanel.ekspandert}>
+        <SideKnappContainer onClick={() => dialogpanel.toggle()} stickToRight={!dialogpanel.apent}>
             <KnappWrapper>
                 <Tittel>
-                    <Undertittel>{props.UI.dialogPanel.ekspandert ? 'Oversikt' : 'Oppgavepanel'}</Undertittel>
+                    <Undertittel>{dialogpanel.apent ? 'Oversikt' : 'Oppgavepanel'}</Undertittel>
                 </Tittel>
                 <PilKnapp
                     width="30px"
-                    beskrivelse={props.UI.dialogPanel.ekspandert ? 'Vis oversikt' : 'Vis oppgavepanel'}
-                    direction={props.UI.dialogPanel.ekspandert ? 'right' : 'left'}
+                    beskrivelse={dialogpanel.apent ? 'Vis oversikt' : 'Vis oppgavepanel'}
+                    direction={dialogpanel.apent ? 'right' : 'left'}
                     onClick={() => () => null}
                 />
             </KnappWrapper>

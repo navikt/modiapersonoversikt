@@ -1,4 +1,3 @@
-import UIReducer, { UIState } from './uiReducers/UIReducer';
 import sessionReducer, { SessionState } from './session/session';
 import { utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
 import { saksoversiktReducer } from './saksoversikt/reducer';
@@ -16,7 +15,6 @@ import varslerReducer, { VarslerState } from './varsler/varslerReducer';
 import innstillingerReducer, { State as InnstillingerState } from './innstillinger';
 
 export interface AppState {
-    ui: UIState;
     session: SessionState;
     utbetalinger: UtbetalingerState;
     saksoversikt: SaksoversikState;
@@ -30,7 +28,6 @@ export interface AppState {
 
 export default combineResettableReducers<AppState>(
     {
-        ui: UIReducer,
         session: sessionReducer,
         utbetalinger: utbetalingerReducer,
         saksoversikt: saksoversiktReducer,
