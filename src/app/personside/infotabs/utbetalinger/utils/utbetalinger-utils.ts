@@ -139,7 +139,6 @@ export function flatMapYtelser(utbetalinger?: Utbetaling[]): Ytelse[] {
 }
 
 export function getPeriodeFromYtelser(ytelser: Ytelse[]): Periode {
-    console.log('debug', dayjs().format(), dayjs(0).format());
     return ytelser.reduce(
         (acc: Periode, ytelse: Ytelse) => {
             if (!ytelse.periode) {

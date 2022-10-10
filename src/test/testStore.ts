@@ -21,7 +21,6 @@ import { setInnstillingerData } from '../redux/innstillinger';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
-    const restResources = testStore.getState().restResources;
     const aremarkFnr = aremark.personIdent;
 
     const dispatch = testStore.dispatch as Dispatch<any>;
@@ -32,8 +31,6 @@ export function getTestStore(): Store<AppState> {
             innstillinger: {}
         })
     );
-    dispatch(restResources.utbetalinger.actions.setData(statiskMockUtbetalingRespons));
-    dispatch(restResources.utbetalingerOversikt.actions.setData(statiskMockUtbetalingRespons));
     setupFetchCache();
 
     return testStore;
@@ -83,5 +80,9 @@ export function setupFetchCache() {
             `${apiBaseUri}/oppfolging/${aremark.personIdent}/ytelserogkontrakter?startDato=1969-11-01&sluttDato=1970-02-01`
         ),
         statiskOppfolgingMock
+    );
+    cache.putResolved(
+        createCacheKey(`${apiBaseUri}/utbetaling/${aremark.personIdent}?startDato=1969-12-02&sluttDato=1970-04-11`),
+        statiskMockUtbetalingRespons
     );
 }
