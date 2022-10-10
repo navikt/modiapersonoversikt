@@ -4,7 +4,6 @@ import TestProvider from '../../../../../test/Testprovider';
 import { getTestStore } from '../../../../../test/testStore';
 import TraadListe from './TraadListe';
 import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
-import { MeldingsokProvider } from '../../../../../context/meldingsok';
 
 test('Viser Traadliste', () => {
     const store = getTestStore();
@@ -12,9 +11,7 @@ test('Viser Traadliste', () => {
 
     const container = renderer.create(
         <TestProvider customStore={store}>
-            <MeldingsokProvider>
-                <TraadListe traader={traader} valgtTraad={traader[0]} traaderEtterSokOgFiltrering={traader} />
-            </MeldingsokProvider>
+            <TraadListe traader={traader} valgtTraad={traader[0]} traaderEtterSokOgFiltrering={traader} />
         </TestProvider>
     );
 

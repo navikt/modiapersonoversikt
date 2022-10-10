@@ -15,14 +15,13 @@ import MeldingerContainer from './meldinger/MeldingerContainer';
 import Oversikt from './oversikt/Oversikt';
 import { useInfotabsDyplenker } from './dyplenker';
 import { useFodselsnummer } from '../../../utils/customHooks';
-import { useDispatch } from 'react-redux';
-import { toggleVisittkort } from '../../../redux/uiReducers/UIReducer';
 import HandleInfotabsHotkeys from './HandleInfotabsHotkeys';
 import useKeepScroll from '../../../utils/hooks/useKeepScroll';
 import Ytelser from './ytelser/Ytelser';
 import { guid } from 'nav-frontend-js-utils';
 import { useOpenTab } from './utils/useOpenTab';
 import { MeldingsokProvider } from '../../../context/meldingsok';
+import { useVisittkortState } from '../../../context/visittkort-state';
 
 const StyledArticle = styled.article`
     display: flex;
@@ -36,11 +35,11 @@ function InfoTabs() {
     const paths = usePaths();
     const headerRef = useRef<HTMLHeadingElement>(null);
     const dyplenker = useInfotabsDyplenker();
-    const dispatch = useDispatch();
     const articleId = useRef(guid());
     const openTab = useOpenTab();
     const history = useHistory();
     const location = useLocation();
+    const visittkortStatus = useVisittkortState();
 
     const updateRouterPath = (newTab: InfotabsType) => {
         const path = `${paths.personUri}/${fødselsnummer}/${INFOTABS[newTab].path}/`;
@@ -48,7 +47,7 @@ function InfoTabs() {
         if (newPath) {
             history.push(path);
         }
-        dispatch(toggleVisittkort(false));
+        visittkortStatus.setApent(false);
     };
 
     useEffect(() => {

@@ -8,6 +8,7 @@ import { paths } from '../routes/routing';
 import { loggInfo } from '../../utils/logger/frontendLogger';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
 import tilgangskontroll from '../../rest/resources/tilgangskontroll';
+import { DialogpanelStateProvider } from '../../context/dialogpanel-state';
 
 function Personoversikt() {
     const fnr = useFodselsnummer();
@@ -27,7 +28,9 @@ function Personoversikt() {
         return (
             <>
                 <LyttPåNyttFnrIReduxOgHentAllPersoninfo />
-                <MainLayout />
+                <DialogpanelStateProvider>
+                    <MainLayout />
+                </DialogpanelStateProvider>
             </>
         );
     });
