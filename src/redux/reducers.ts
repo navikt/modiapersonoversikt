@@ -1,4 +1,3 @@
-import restEndepunkterReducers, { RestEndepunkter } from './restReducers/restReducers';
 import UIReducer, { UIState } from './uiReducers/UIReducer';
 import sessionReducer, { SessionState } from './session/session';
 import { utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
@@ -19,7 +18,6 @@ import varslerReducer, { VarslerState } from './varsler/varslerReducer';
 import innstillingerReducer, { State as InnstillingerState } from './innstillinger';
 
 export interface AppState {
-    restResources: RestEndepunkter;
     ui: UIState;
     session: SessionState;
     utbetalinger: UtbetalingerState;
@@ -35,7 +33,6 @@ export interface AppState {
 
 export default combineResettableReducers<AppState>(
     {
-        restResources: restEndepunkterReducers,
         ui: UIReducer,
         session: sessionReducer,
         utbetalinger: utbetalingerReducer,
@@ -48,5 +45,5 @@ export default combineResettableReducers<AppState>(
         gjeldendeBruker: gjeldendeBrukerReducer,
         innstillinger: innstillingerReducer
     },
-    ['gjeldendeBruker', 'session', 'restResources', 'innstillinger']
+    ['gjeldendeBruker', 'session', 'innstillinger']
 );
