@@ -22,6 +22,6 @@
     {
         "prefix": "proxy/api",
         "url": "http://modiapersonoversikt-api$env{MILJO_SUFFIX}.personoversikt.svc.nais.local/modiapersonoversikt-api",
-        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN dev-fss personoversikt modiacontextholder$env{MILJO_SUFFIX}"]
+        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN dev-fss personoversikt modiapersonoversikt-api$env{MILJO_SUFFIX}"]
     }
 ]
