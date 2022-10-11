@@ -1,9 +1,9 @@
-import { EnOppdateringslogg } from '../../app/oppdateringslogg/OppdateringsloggContainer';
+import { OppdateringsloggInnslag } from '../../app/oppdateringslogg/OppdateringsloggContainer';
 import faker from 'faker/locale/nb_NO';
 import OppdateringsloggKnappBilde from '../../app/oppdateringslogg/config/img/oppdateringslogg-knapp.jpg';
 import CodeBilde from '../../app/oppdateringslogg/config/img/code.png';
 
-export function getOppdateringsloggMock(): EnOppdateringslogg[] {
+export function getOppdateringsloggMock(): OppdateringsloggInnslag[] {
     return [
         {
             id: 1,
