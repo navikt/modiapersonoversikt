@@ -6,7 +6,7 @@ import styled from 'styled-components/macro';
 import Stegindikator from 'nav-frontend-stegindikator';
 import { StegindikatorStegProps } from 'nav-frontend-stegindikator/lib/stegindikator-steg';
 import { datoSynkende } from '../../utils/date-utils';
-import { EnOppdateringslogg } from './OppdateringsloggContainer';
+import { OppdateringsloggInnslag } from './OppdateringsloggContainer';
 
 const StyledSection = styled.section`
     display: flex;
@@ -71,7 +71,7 @@ function VisStegindikator({
     );
 }
 
-function Oppdateringslogg(props: { oppdateringslogg: EnOppdateringslogg[] }) {
+function Oppdateringslogg(props: { oppdateringslogg: OppdateringsloggInnslag[] }) {
     const { oppdateringslogg } = props;
 
     const [indeks, setIndeks] = useState(0);
@@ -81,7 +81,9 @@ function Oppdateringslogg(props: { oppdateringslogg: EnOppdateringslogg[] }) {
         return <AlertStripeInfo>Fant ingen oppdateringer</AlertStripeInfo>;
     }
 
-    const sortertOppdateringslogg = oppdateringslogg.sort(datoSynkende(enOppdateringslogg => enOppdateringslogg.dato));
+    const sortertOppdateringslogg = oppdateringslogg.sort(
+        datoSynkende((enOppdateringslogg) => enOppdateringslogg.dato)
+    );
 
     const neste = () => {
         setIndeks(indeks + 1);

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { EnOppdateringslogg } from './OppdateringsloggContainer';
+import { OppdateringsloggInnslag } from './OppdateringsloggContainer';
 import { Normaltekst, Undertekst, Undertittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import { formatterDatoTidMedMaanedsnavn } from '../../utils/date-utils';
 
 interface Props {
-    enOppdateringslogg: EnOppdateringslogg;
+    enOppdateringslogg: OppdateringsloggInnslag;
     visMer: boolean;
     setVisMer: (visMer: boolean) => void;
 }

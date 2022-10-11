@@ -8,9 +8,11 @@ import useSisteLestOppdateringLogg from './useSisteLestOppdateringLogg';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
 import { lagOppdateringsloggConfig } from './config/config';
 import './oppdateringsloggKnapp.less';
+import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 export const DecoratorButtonId = 'oppdateringslogg';
-export interface EnOppdateringslogg {
+export interface OppdateringsloggInnslag {
     id: number;
     tittel: string;
     dato: Date;
@@ -31,14 +33,14 @@ const StyledSystemtittel = styled(Systemtittel)`
     margin: 0.75rem 0rem 1rem 1rem;
 `;
 
-function harUleste(sistLesteId: number, oppdateringslogg: EnOppdateringslogg[]): boolean {
+function harUleste(sistLesteId: number, oppdateringslogg: OppdateringsloggInnslag[]): boolean {
     return oppdateringslogg.some((innslag) => innslag.id > sistLesteId);
 }
 
 function useHoldUlestIndikatorOppdatert(
     element: HTMLElement | null,
     sistLesteId: number,
-    oppdateringslogg: EnOppdateringslogg[]
+    oppdateringslogg: OppdateringsloggInnslag[]
 ) {
     useEffect(() => {
         if (element != null) {
@@ -53,7 +55,7 @@ function useHoldUlestIndikatorOppdatert(
 
 function useApneOppdateringsLoggModal(
     settApen: (apen: boolean) => void,
-    oppdateringslogg: EnOppdateringslogg[],
+    oppdateringslogg: OppdateringsloggInnslag[],
     settSistLesteId: (id: number) => void
 ) {
     const listener = useCallback(() => {
@@ -67,7 +69,13 @@ function useApneOppdateringsLoggModal(
 }
 
 function OppdateringsloggContainer() {
-    const oppdateringslogg: EnOppdateringslogg[] = lagOppdateringsloggConfig().filter((innslag) => innslag.aktiv);
+    const config = {
+        sladdMedArsak: useFeatureToggle(FeatureToggles.SladdeMedArsak)?.isOn ?? false,
+        sladdEnkeltmelding: useFeatureToggle(FeatureToggles.SladdeEnkeltMelding)?.isOn ?? false
+    };
+    const oppdateringslogg: OppdateringsloggInnslag[] = lagOppdateringsloggConfig(config).filter(
+        (innslag) => innslag.aktiv
+    );
 
     const [apen, settApen] = useState(false);
     const [sistLesteId, settSistLesteId] = useSisteLestOppdateringLogg();
