@@ -11,13 +11,7 @@ test('Viser Traadliste', () => {
 
     const container = renderer.create(
         <TestProvider customStore={store}>
-            <TraadListe
-                traader={traader}
-                sokeord={''}
-                valgtTraad={traader[0]}
-                setSokeord={() => null}
-                traaderEtterSokOgFiltrering={traader}
-            />
+            <TraadListe traader={traader} valgtTraad={traader[0]} traaderEtterSokOgFiltrering={traader} />
         </TestProvider>
     );
 

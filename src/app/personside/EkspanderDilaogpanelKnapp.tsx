@@ -1,12 +1,10 @@
 import * as React from 'react';
 import PilKnapp from '../../components/pilknapp';
 import CogKnapp from '../innstillinger/cogknapp';
-import { toggleDialogpanel } from '../../redux/uiReducers/UIReducer';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../redux/reducers';
 import styled from 'styled-components/macro';
 import theme, { pxToRem } from '../../styles/personOversiktTheme';
 import { loggEvent } from '../../utils/logger/frontendLogger';
+import { useDialogpanelState } from '../../context/dialogpanel-state';
 
 const Style = styled.div`
     display: flex;
@@ -17,12 +15,12 @@ const Style = styled.div`
 `;
 
 function EkspanderDilaogpanelKnapp() {
-    const dialogpanelErEkspandert = useSelector((state: AppState) => state.ui.dialogPanel.ekspandert);
-    const dispatch = useDispatch();
+    const dialogpanel = useDialogpanelState();
+    const dialogpanelErEkspandert = dialogpanel.apent;
 
     const handleClick = () => {
         loggEvent('Toggle', 'MinimerDialogpanel');
-        return dispatch(toggleDialogpanel());
+        dialogpanel.toggle();
     };
 
     return (

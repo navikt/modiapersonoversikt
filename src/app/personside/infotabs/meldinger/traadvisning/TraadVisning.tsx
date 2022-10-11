@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
-import { toggleDialogpanel } from '../../../../../redux/uiReducers/UIReducer';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, kanBesvares, meldingstittel, nyesteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
@@ -16,6 +15,7 @@ import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/print/usePrinter';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Normaltekst, UndertekstBold } from 'nav-frontend-typografi';
+import { useDialogpanelState } from '../../../../../context/dialogpanel-state';
 
 interface Props {
     valgtTraad: Traad;
@@ -52,6 +52,7 @@ function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
 
 function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dispatch = useDispatch();
+    const dialogpanel = useDialogpanelState();
     const dialogpanelTraad = useAppState((state) => state.oppgaver.dialogpanelTraad);
 
     const traadKanBesvares = kanBesvares(valgtTraad);
@@ -76,7 +77,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 
     const handleNyMelding = () => {
         valgtTraad && dispatch(setValgtTraadDialogpanel(valgtTraad));
-        dispatch(toggleDialogpanel(true));
+        dialogpanel.setApent(true);
         loggEvent('Ny melding knapp', 'Meldinger');
     };
 
