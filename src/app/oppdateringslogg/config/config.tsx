@@ -1,5 +1,5 @@
 import React from 'react';
-import { EnOppdateringslogg } from '../OppdateringsloggContainer';
+import { OppdateringsloggInnslag } from '../OppdateringsloggContainer';
 import OppdateringsloggKnappBilde from './img/oppdateringslogg-knapp.jpg';
 import BjelleikonVarselBilde from './img/bjelleikon-varsel.jpg';
 import BjelleikonBilde from './img/bjelleikon.jpg';
@@ -23,9 +23,14 @@ import SvarAvslutterDialog from './img/svar-avslutter-dialog.png';
 import ForbedretAvansertSok from './img/forbedret-avansertsok.jpg';
 import ChatModia from './img/chat-modia.png';
 import NotifikasjonKanal from './img/notifikasjon-kanal.png';
+import SladdeArsak from './img/sladde-arsak.png';
+import SladdEnkeltmelding from './img/sladdEnkeltmelding.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
+export function lagOppdateringsloggConfig(toggles: {
+    sladdMedArsak: boolean;
+    sladdEnkeltmelding: boolean;
+}): OppdateringsloggInnslag[] {
     return [
         {
             id: 1,
@@ -213,7 +218,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 11,
             tittel: 'Forkortelse for arbeidsgiver- og arbeidstakerregisteret',
             dato: new Date('2022-01-06 12:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: <Normaltekst>Vi har lagt til en ny forkortelse for Aa-registeret.</Normaltekst>,
             beskrivelse: (
                 <Normaltekst>
@@ -227,7 +232,7 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
             id: 12,
             tittel: 'Endringer på avansert søk',
             dato: new Date('2022-01-21 12:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: (
                 <Normaltekst>
                     Hovedkilden til søket er endret, og dette kan medføre noen forskjeller på resultatet.
@@ -412,6 +417,41 @@ export function lagOppdateringsloggConfig(): EnOppdateringslogg[] {
                 </>
             ),
             src: NotifikasjonKanal
+        },
+        {
+            id: 23,
+            tittel: 'Velge årsak til sladding',
+            dato: new Date('2022-10-11 11:00'),
+            aktiv: toggles.sladdMedArsak,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Valg av årsak dukker opp når man velger "Send til sladding" fra "Merk"-panelet.
+                    </Normaltekst>
+                    <Normaltekst>
+                        Årsaken dukker opp for brukerstøtte ved håndtering av sladdingen, <br />
+                        men det skal fortsatt meldes inn i porten.
+                    </Normaltekst>
+                </>
+            ),
+            src: SladdeArsak
+        },
+        {
+            id: 24,
+            tittel: 'Velge enkelt melding for sladding',
+            dato: new Date('2022-10-11 12:00'),
+            aktiv: toggles.sladdEnkeltmelding,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Velg hvilke meldinger du ønsker at brukerstøtte skal behandle for sladding. <br />
+                        Huk av for en eller flere meldinger, og velg årsak som tidligere.
+                    </Normaltekst>
+                </>
+            ),
+            src: SladdEnkeltmelding
         }
     ];
 }

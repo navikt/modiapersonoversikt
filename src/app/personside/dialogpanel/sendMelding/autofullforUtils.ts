@@ -1,14 +1,13 @@
-import { InnloggetSaksbehandler } from '../../../../models/innloggetSaksbehandler';
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/string-utils';
 import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
-import { Enhet } from '../../../../models/saksbehandlersEnheter';
 import { useAppState, useHentPersondata } from '../../../../utils/customHooks';
 import { selectValgtEnhet } from '../../../../redux/session/session';
 import { hasData } from '@nutgaard/use-fetch';
 import { Data as PersonData, Kjonn } from '../../visittkort-v2/PersondataDomain';
 import { hentNavn } from '../../visittkort-v2/visittkort-utils';
+import innloggetSaksbehandler, { InnloggetSaksbehandler } from '../../../../rest/resources/innloggetSaksbehandler';
+import saksbehandlersEnheter, { Enhet } from '../../../../rest/resources/saksbehandlersEnheter';
 
 export type AutofullforData = {
     enhet?: Enhet;
@@ -118,14 +117,15 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
 
 export function useAutoFullforData(): AutofullforData | undefined {
     const personResponse = useHentPersondata();
-    const saksbehandler = useRestResource((resources) => resources.innloggetSaksbehandler);
-    const enheter = useRestResource((resources) => resources.saksbehandlersEnheter);
+    const saksbehandler = innloggetSaksbehandler.useFetch();
+    const enheterResource = saksbehandlersEnheter.useFetch();
+    const enheter = hasData(enheterResource) ? enheterResource.data.enhetliste : [];
     const valgtEnhetId = useAppState(selectValgtEnhet);
-    const valgtEnhet = enheter.data?.enhetliste?.find((enhet) => enhet.enhetId === valgtEnhetId);
+    const valgtEnhet = enheter.find((enhet) => enhet.enhetId === valgtEnhetId);
 
     return {
         enhet: valgtEnhet,
         person: hasData(personResponse) ? personResponse.data : undefined,
-        saksbehandler: saksbehandler.data
+        saksbehandler: hasData(saksbehandler) ? saksbehandler.data : undefined
     };
 }

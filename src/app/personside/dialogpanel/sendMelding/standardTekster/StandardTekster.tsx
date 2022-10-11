@@ -16,11 +16,11 @@ import { captitalize } from '../../../../../utils/string-utils';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullforData } from '../autofullforUtils';
-import { useRestResource } from '../../../../../rest/consumer/useRestResource';
 import LazySpinner from '../../../../../components/LazySpinner';
 import AriaNotification from '../../../../../components/AriaNotification';
 import { useHentPersondata, usePrevious } from '../../../../../utils/customHooks';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import saksbehandlersEnheter from '../../../../../rest/resources/saksbehandlersEnheter';
 
 interface Props {
     sokefelt: FieldState;
@@ -125,7 +125,7 @@ function StandardTekster(props: Props) {
     const valgtLocale = useFieldState('');
     const valgtTekst = filtrerteTekster.find((tekst) => tekst.id === valgt.input.value);
     const persondata = useHentPersondata();
-    const enheterResource = useRestResource((resources) => resources.saksbehandlersEnheter, undefined, true);
+    const enheterResource = saksbehandlersEnheter.useFetch();
     const autofullforData = useAutoFullforData();
     const sokeFeltId = useRef(guid());
     const [ariaNotification, setAriaNotification] = useState('');
@@ -183,14 +183,10 @@ function StandardTekster(props: Props) {
         );
     }
 
-    if (isPending(persondata)) {
+    if (isPending(persondata) || isPending(enheterResource)) {
         return <LazySpinner type={'M'} />;
-    } else if (hasError(persondata)) {
+    } else if (hasError(persondata) || hasError(enheterResource)) {
         return <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
-    }
-
-    if (!enheterResource.data) {
-        return enheterResource.placeholder;
     }
 
     return (

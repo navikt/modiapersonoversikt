@@ -10,6 +10,8 @@ import { createTrie, searchTrie } from '../../utils/trie';
 const trieDelimiter = /\/|\|\|.*/;
 const protectedCache = createTrie(
     [
+        '/modiapersonoversikt-api/rest/hode/me',
+        '/modiapersonoversikt-api/rest/hode/enheter',
         '/modiapersonoversikt-api/rest/baseurls',
         '/modiapersonoversikt-api/rest/enheter/oppgavebehandlere/alle',
         '/modiapersonoversikt-api/rest/dialogoppgave/v2/tema',
@@ -30,8 +32,17 @@ export default function setGjeldendeBrukerIRedux(fødselsnummer: string): AsyncA
 
             cache
                 .keys()
-                .filter((key) => !searchTrie(protectedCache, key, trieDelimiter))
-                .forEach((key) => cache.remove(key));
+                .filter((key) => {
+                    const res = !searchTrie(protectedCache, key, trieDelimiter);
+                    if (!res) {
+                        console.log('[FetchCache] protected ', key);
+                    }
+                    return res;
+                })
+                .forEach((key) => {
+                    console.log('[FetchCache] remove ', key);
+                    cache.remove(key);
+                });
 
             resetKeepScroll();
             resetKeepQueryParams();
