@@ -1,22 +1,24 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components/macro';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import TraadListe from './traadliste/TraadListe';
-import { huskSokAction } from '../../../../redux/meldinger/actions';
 import { useDispatch } from 'react-redux';
 import { useAppState, usePrevious } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
-import { useHistory, withRouter } from 'react-router';
+import { useHistory } from 'react-router';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import DelayRender from '../../../../components/DelayRender';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
+import brukersdialog from '../../../../rest/resources/brukersdialog';
+import { hasData, isPending } from '@nutgaard/use-fetch';
+import LazySpinner from '../../../../components/LazySpinner';
+import { useMeldingsok } from '../../../../context/meldingsok';
 
 const meldingerMediaTreshold = pxToRem(800);
 
@@ -41,7 +43,7 @@ function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[
     const history = useHistory();
 
     useEffect(() => {
-        const valgtTaadErISøkeresultat = valgtTraad && traaderEtterSok.includes(valgtTraad);
+        const valgtTaadErISøkeresultat = valgtTraad && traaderEtterSok.find((it) => it.traadId === valgtTraad.traadId);
         if (traaderFørSøk.length === traaderEtterSok.length || valgtTaadErISøkeresultat) {
             return;
         }
@@ -51,50 +53,38 @@ function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[
     }, [valgtTraad, traaderFørSøk, traaderEtterSok, history, dyplenker.meldinger]);
 }
 
-function useHuskSokeord(sokeord: string) {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            dispatch(huskSokAction(sokeord));
-        }, 200);
-        return () => clearTimeout(timeout);
-    }, [sokeord, dispatch]);
-}
-
 function useReloadOnEnhetChange() {
     const dispatch = useDispatch();
     const enhet = useAppState((state) => state.session.valgtEnhetId);
     const forrigeEnhet = usePrevious(enhet);
-    const meldingerResource = useRestResource((resources) => resources.traader);
+    const meldingerResource = brukersdialog.useFetch();
 
     useEffect(() => {
         if (!forrigeEnhet) {
             return;
         }
         if (forrigeEnhet !== enhet) {
-            meldingerResource.data && dispatch(meldingerResource.actions.reload);
+            hasData(meldingerResource) && meldingerResource.rerun();
         }
     }, [forrigeEnhet, enhet, meldingerResource, dispatch]);
 }
 
 function MeldingerContainer() {
-    const traaderResource = useRestResource((resources) => resources.traader, undefined, true);
-    const forrigeSok = useAppState((state) => state.meldinger.forrigeSok);
-    const [sokeord, setSokeord] = useState(forrigeSok);
+    const traaderResource = brukersdialog.useFetch();
+    const meldingsok = useMeldingsok();
 
-    const traaderFørSøk = traaderResource.data ? traaderResource.data : [];
-    const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderFørSøk, sokeord);
+    const traaderForSok = hasData(traaderResource) ? traaderResource.data : [];
+    const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderForSok, meldingsok.query);
     const valgtTraad = useValgtTraadIUrl() || traaderEtterSokOgFiltrering[0];
     useKeepQueryParams();
-    useSyncSøkMedVisning(traaderFørSøk, traaderEtterSokOgFiltrering, valgtTraad);
-    useHuskSokeord(sokeord);
+    useSyncSøkMedVisning(traaderForSok, traaderEtterSokOgFiltrering, valgtTraad);
     useReloadOnEnhetChange();
 
-    if (!traaderResource.data) {
-        return traaderResource.placeholder;
+    if (isPending(traaderResource)) {
+        return <LazySpinner type="M" />;
     }
 
-    if (traaderFørSøk.length === 0) {
+    if (traaderForSok.length === 0) {
         return <AlertStripeInfo>Brukeren har ingen meldinger</AlertStripeInfo>;
     }
 
@@ -110,9 +100,7 @@ function MeldingerContainer() {
         <MeldingerStyle>
             <ScrollBar keepScrollId="meldinger-trådliste">
                 <TraadListe
-                    sokeord={sokeord}
-                    setSokeord={setSokeord}
-                    traader={traaderFørSøk}
+                    traader={traaderForSok}
                     traaderEtterSokOgFiltrering={traaderEtterSokOgFiltrering}
                     valgtTraad={valgtTraad}
                 />
@@ -121,11 +109,11 @@ function MeldingerContainer() {
                 {traaderEtterSokOgFiltrering.length === 0 ? (
                     <AlertStripeInfo>Søket ga ingen treff på meldinger</AlertStripeInfo>
                 ) : (
-                    <TraadVisningWrapper sokeord={sokeord} valgtTraad={valgtTraad} />
+                    <TraadVisningWrapper sokeord={meldingsok.query} valgtTraad={valgtTraad} />
                 )}
             </ScrollBar>
         </MeldingerStyle>
     );
 }
 
-export default withRouter(MeldingerContainer);
+export default MeldingerContainer;

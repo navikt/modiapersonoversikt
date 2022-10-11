@@ -19,7 +19,6 @@ import {
     FortsettDialogState,
     KvitteringsData
 } from './FortsettDialogTypes';
-import { useRestResource } from '../../../../rest/consumer/useRestResource';
 import { Undertittel } from 'nav-frontend-typografi';
 import { guid } from 'nav-frontend-js-utils';
 import styled from 'styled-components';
@@ -32,6 +31,7 @@ import { Oppgave } from '../../../../models/meldinger/oppgave';
 import { selectValgtEnhet } from '../../../../redux/session/session';
 import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaver';
 import { FetchResult, hasData } from '@nutgaard/use-fetch';
+import brukersdialog from '../../../../rest/resources/brukersdialog';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -87,7 +87,7 @@ function FortsettDialogContainer(props: Props) {
     );
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
     const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
-    const reloadMeldinger = useRestResource((resources) => resources.traader).actions.reload;
+    const meldingerResource = brukersdialog.useFetch();
     const tildelteOppgaverResource = tildelteoppgaver.useFetch();
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
@@ -130,7 +130,7 @@ function FortsettDialogContainer(props: Props) {
         const callback = () => {
             removeDraft();
             tildelteOppgaverResource.rerun();
-            dispatch(reloadMeldinger);
+            meldingerResource.rerun();
         };
 
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;

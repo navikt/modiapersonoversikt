@@ -3,12 +3,11 @@ import * as renderer from 'react-test-renderer';
 import TraadVisningWrapper from './TraadVisningWrapper';
 import TestProvider from '../../../../../test/Testprovider';
 import { getTestStore } from '../../../../../test/testStore';
-import { hasData } from '../../../../../rest/utils/restResource';
+import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
 
 test('Viser traad med verktøylinje', () => {
     const store = getTestStore();
-    const traaderResource = getTestStore().getState().restResources.traader;
-    const traader = hasData(traaderResource) && traaderResource.data;
+    const traader = [statiskTraadMock];
 
     const container = renderer.create(
         <TestProvider customStore={store}>

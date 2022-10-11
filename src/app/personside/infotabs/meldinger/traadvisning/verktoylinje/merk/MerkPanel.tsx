@@ -27,7 +27,6 @@ import {
 } from '../../../../../../../models/meldinger/merk';
 import { AlertStripeAdvarsel, AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Resultat } from '../utils/VisPostResultat';
-import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-focus-on-first-focusable';
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../../../utils/customHooks';
@@ -37,6 +36,7 @@ import { FetchResult, hasData } from '@nutgaard/use-fetch';
 import { SladdeObjekt, velgMeldingerTilSladding } from './sladdevalg/Sladdevalg';
 import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
+import brukersdialog from '../../../../../../../rest/resources/brukersdialog';
 
 interface Props {
     lukkPanel: () => void;
@@ -155,7 +155,7 @@ function TraadSladdeValg() {
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
     const valgtTraad = props.valgtTraad;
-    const traderResource = useRestResource((resources) => resources.traader);
+    const traderResource = brukersdialog.useFetch();
     const tildelteOppgaverResource = tildelteoppgaver.useFetch();
     const skalSendeArsak = useFeatureToggle(FeatureToggles.SladdeMedArsak)?.isOn ?? false;
 
@@ -176,7 +176,7 @@ function MerkPanel(props: Props) {
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
-                dispatch(traderResource.actions.reload);
+                traderResource.rerun();
                 tildelteOppgaverResource.rerun();
                 dispatch(setIngenValgtTraadDialogpanel());
             })

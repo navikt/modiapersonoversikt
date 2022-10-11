@@ -66,7 +66,7 @@ const PreviewStyle = styled(Normaltekst)`
 
 function TraadSammendrag(props: { traad: Traad }) {
     const sisteMelding = nyesteMelding(props.traad);
-    const underArbeid = useAppState((state) => state.oppgaver.dialogpanelTraad === props.traad);
+    const underArbeid = useAppState((state) => state.oppgaver.dialogpanelTraad?.traadId === props.traad.traadId);
     const datoTekst = getFormattertMeldingsDato(sisteMelding);
     const tittel = meldingstittel(sisteMelding);
     return (

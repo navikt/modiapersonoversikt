@@ -6,12 +6,17 @@ import { BrowserRouter } from 'react-router-dom';
 import { INFOTABS } from '../InfoTabEnum';
 import { getAktivTab, meldingerTest } from './utils-dyplenker-test';
 import { getTestStore } from '../../../../test/testStore';
-import { getMockTraader } from '../../../../mock/meldinger/meldinger-mock';
+import { cache, createCacheKey } from '@nutgaard/use-fetch';
+import { apiBaseUri } from '../../../../api/config';
 import { aremark } from '../../../../mock/persondata/aremark';
+import { getMockTraader } from '../../../../mock/meldinger/meldinger-mock';
 
 test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyplenke fra oversikt', () => {
     const store = getTestStore();
-    store.dispatch(store.getState().restResources.traader.actions.setData(getMockTraader(aremark.personIdent)));
+    cache.putResolved(
+        createCacheKey(`${apiBaseUri}/dialog/${aremark.personIdent}/meldinger`),
+        getMockTraader(aremark.personIdent)
+    );
     const infoTabs = mount(
         <TestProvider customStore={store}>
             <BrowserRouter>
