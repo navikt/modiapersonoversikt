@@ -4,17 +4,16 @@ import md5 from 'md5';
 import { detect } from 'detect-browser';
 import { useEffect } from 'react';
 import { erKontaktsenter } from '../enheter-utils';
-import { useAppState } from '../customHooks';
-import { selectValgtEnhet } from '../../redux/session/session';
 import innloggetSaksbehandler from '../../rest/resources/innloggetSaksbehandler';
 import { hasData } from '@nutgaard/use-fetch';
+import { useValgtenhet } from '../../context/valgtenhet-state';
 
 let ident = 'ikke satt';
 let enhet = 'ikke valgt';
 
 export function useInitializeLogger() {
     const innloggetSaksbehandlerResource = innloggetSaksbehandler.useFetch();
-    const valgtEnhet = useAppState(selectValgtEnhet);
+    const valgtEnhet = useValgtenhet().enhetId;
 
     useEffect(() => {
         if (hasData(innloggetSaksbehandlerResource)) {

@@ -4,7 +4,7 @@ import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { AlertStripeAdvarsel, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { useAppState, useFocusOnMount } from '../../../../../../../utils/customHooks';
+import { useFocusOnMount } from '../../../../../../../utils/customHooks';
 import { Textarea } from 'nav-frontend-skjema';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { AvsluttGosysOppgaveRequest } from '../../../../../../../models/meldinger/merk';
@@ -12,6 +12,7 @@ import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaver';
 import { hasData } from '@nutgaard/use-fetch';
+import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
 
 const StyledAlert = styled.div`
     margin: 1rem 0rem;
@@ -29,7 +30,7 @@ interface Props {
 
 function AvsluttGosysOppgaveSkjema(props: Props) {
     const ref = useRef<HTMLElement>(null);
-    const saksbehandlersEnhet = useAppState((state) => state.session.valgtEnhetId);
+    const saksbehandlersEnhet = useValgtenhet().enhetId;
     const tildelteOppgaverResource = tildelteoppgaver.useFetch();
     const [gosysBeskrivelse, setGosysBeskrivelse] = useState('Henvendelse lest og vurdert i Modia.');
     const [submitting, setSubmitting] = useState(false);

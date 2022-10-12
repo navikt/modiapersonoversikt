@@ -9,6 +9,7 @@ import { MeldingsokProvider } from '../context/meldingsok';
 import { VisittkortStateProvider } from '../context/visittkort-state';
 import { DialogpanelStateProvider } from '../context/dialogpanel-state';
 import { InnstillingerContextProvider } from '../rest/resources/innstillingerResource';
+import { ValgtEnhetProvider } from '../context/valgtenhet-state';
 
 interface Props {
     children: ReactNode;
@@ -22,9 +23,11 @@ function TestProvider({ children, customStore }: Props) {
                 <DialogpanelStateProvider>
                     <VisittkortStateProvider>
                         <MeldingsokProvider>
-                            <StaticRouter context={{}}>
-                                <>{children}</>
-                            </StaticRouter>
+                            <ValgtEnhetProvider>
+                                <StaticRouter context={{}}>
+                                    <>{children}</>
+                                </StaticRouter>
+                            </ValgtEnhetProvider>
                         </MeldingsokProvider>
                     </VisittkortStateProvider>
                 </DialogpanelStateProvider>
