@@ -12,7 +12,6 @@ import { OppgaveState } from './oppgave/types';
 import { oppgaverReducer } from './oppgave/reducer';
 import { combineResettableReducers } from './reducer-utils';
 import varslerReducer, { VarslerState } from './varsler/varslerReducer';
-import innstillingerReducer, { State as InnstillingerState } from './innstillinger';
 
 export interface AppState {
     session: SessionState;
@@ -23,7 +22,6 @@ export interface AppState {
     varsler: VarslerState;
     oppfolging: OppfolgingState;
     gjeldendeBruker: GjeldendeBrukerState;
-    innstillinger: InnstillingerState;
 }
 
 export default combineResettableReducers<AppState>(
@@ -35,8 +33,7 @@ export default combineResettableReducers<AppState>(
         ytelser: ytelserReducer,
         varsler: varslerReducer,
         oppfolging: oppfolgingReducer,
-        gjeldendeBruker: gjeldendeBrukerReducer,
-        innstillinger: innstillingerReducer
+        gjeldendeBruker: gjeldendeBrukerReducer
     },
-    ['gjeldendeBruker', 'session', 'innstillinger']
+    ['gjeldendeBruker', 'session']
 );

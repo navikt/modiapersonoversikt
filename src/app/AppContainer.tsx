@@ -18,6 +18,7 @@ import { useAppState, useOnMount } from '../utils/customHooks';
 import VelgEnhet from './VelgEnhet';
 import usePersistentLogin from '../utils/hooks/use-persistent-login';
 import LoggetUtModal from './LoggetUtModal';
+import { InnstillingerContextProvider } from '../rest/resources/innstillingerResource';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -81,7 +82,7 @@ function AppContainer() {
         ModalWrapper.setAppElement('#root');
     });
     return (
-        <>
+        <InnstillingerContextProvider>
             <IeMacStyling />
             <GlobalStyling />
             <DemoBanner />
@@ -93,7 +94,7 @@ function AppContainer() {
                     </AppStyle>
                 </Router>
             </Provider>
-        </>
+        </InnstillingerContextProvider>
     );
 }
 

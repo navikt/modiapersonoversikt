@@ -17,7 +17,6 @@ import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUt
 import { SaksbehandlerRoller } from '../app/personside/dialogpanel/RollerUtils';
 import { apiBaseUri } from '../api/config';
 import { aremark } from '../mock/persondata/aremark';
-import { setInnstillingerData } from '../redux/innstillinger';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -25,12 +24,6 @@ export function getTestStore(): Store<AppState> {
 
     const dispatch = testStore.dispatch as Dispatch<any>;
     dispatch(setGjeldendeBrukerIRedux(aremarkFnr));
-    dispatch(
-        setInnstillingerData({
-            sistLagret: new Date().toISOString(),
-            innstillinger: {}
-        })
-    );
     setupFetchCache();
 
     return testStore;
@@ -85,4 +78,8 @@ export function setupFetchCache() {
         createCacheKey(`${apiBaseUri}/utbetaling/${aremark.personIdent}?startDato=1969-12-02&sluttDato=1970-04-11`),
         statiskMockUtbetalingRespons
     );
+    cache.putResolved(createCacheKey('/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger'), {
+        sistLagret: new Date().toISOString(),
+        innstillinger: {}
+    });
 }

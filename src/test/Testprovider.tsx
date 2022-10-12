@@ -8,6 +8,7 @@ import { AppState } from '../redux/reducers';
 import { MeldingsokProvider } from '../context/meldingsok';
 import { VisittkortStateProvider } from '../context/visittkort-state';
 import { DialogpanelStateProvider } from '../context/dialogpanel-state';
+import { InnstillingerContextProvider } from '../rest/resources/innstillingerResource';
 
 interface Props {
     children: ReactNode;
@@ -17,15 +18,17 @@ interface Props {
 function TestProvider({ children, customStore }: Props) {
     return (
         <Provider store={customStore || getTestStore()}>
-            <DialogpanelStateProvider>
-                <VisittkortStateProvider>
-                    <MeldingsokProvider>
-                        <StaticRouter context={{}}>
-                            <>{children}</>
-                        </StaticRouter>
-                    </MeldingsokProvider>
-                </VisittkortStateProvider>
-            </DialogpanelStateProvider>
+            <InnstillingerContextProvider>
+                <DialogpanelStateProvider>
+                    <VisittkortStateProvider>
+                        <MeldingsokProvider>
+                            <StaticRouter context={{}}>
+                                <>{children}</>
+                            </StaticRouter>
+                        </MeldingsokProvider>
+                    </VisittkortStateProvider>
+                </DialogpanelStateProvider>
+            </InnstillingerContextProvider>
         </Provider>
     );
 }
