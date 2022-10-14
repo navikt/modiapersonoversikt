@@ -1,24 +1,25 @@
 import * as React from 'react';
 import Utbetalinger from './Utbetalinger';
-import { UtbetalingerResponse } from '../../../../models/utbetalinger';
 import Filter from './filter/Filter';
 import theme from '../../../../styles/personOversiktTheme';
 import styled, { css } from 'styled-components/macro';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import Arenalenke from './Arenalenke/Arenalenke';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
-import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { erIE11 } from '../../../../utils/erIE11';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
+import utbetalinger from '../../../../rest/resources/utbetalinger';
+import { useOnMount } from '../../../../utils/customHooks';
+import { hasData } from '@nutgaard/use-fetch';
 
 const UtbetalingerStyle = styled.div`
     ${scrollBarContainerStyle(theme.media.utbetalinger.minWidth)};
     @media (min-width: ${theme.media.utbetalinger.minWidth}) {
         ${erIE11() &&
-            css`
-                height: 0; /* IE11 */
-                flex-grow: 1; /* IE11 */
-            `};
+        css`
+            height: 0; /* IE11 */
+            flex-grow: 1; /* IE11 */
+        `};
         display: flex;
         align-items: flex-start;
         > *:last-child {
@@ -41,24 +42,25 @@ const UtbetalingerSection = styled.section`
 `;
 
 function UtbetalingerContainer() {
+    const utbetalingerResource = utbetalinger.useLazyFetch();
+    useOnMount(() => {
+        utbetalingerResource.rerun();
+    });
+    let content = BigCenteredLazySpinner;
+    if (hasData(utbetalingerResource)) {
+        content = <Utbetalinger utbetalingerData={utbetalingerResource.data} />;
+    }
     return (
         <ErrorBoundary boundaryName={'UtbetalingerContainer'}>
             <UtbetalingerStyle>
                 <ScrollBar keepScrollId="utbetalinger-filter">
                     <Arenalenke />
                     <FiltreringSection>
-                        <Filter />
+                        <Filter utbetalinger={utbetalingerResource} />
                     </FiltreringSection>
                 </ScrollBar>
                 <ScrollBar keepScrollId="utbetalinger-liste">
-                    <UtbetalingerSection aria-label="Filtrerte utbetalinger">
-                        <RestResourceConsumer<UtbetalingerResponse>
-                            getResource={restResources => restResources.utbetalinger}
-                            returnOnPending={BigCenteredLazySpinner}
-                        >
-                            {utbetalinger => <Utbetalinger utbetalingerData={utbetalinger} />}
-                        </RestResourceConsumer>
-                    </UtbetalingerSection>
+                    <UtbetalingerSection aria-label="Filtrerte utbetalinger">{content}</UtbetalingerSection>
                 </ScrollBar>
             </UtbetalingerStyle>
         </ErrorBoundary>

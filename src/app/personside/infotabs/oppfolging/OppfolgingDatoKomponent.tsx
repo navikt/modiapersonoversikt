@@ -3,14 +3,8 @@ import styled from 'styled-components/macro';
 import { Undertittel } from 'nav-frontend-typografi';
 import theme, { pxToRem } from '../../../../styles/personOversiktTheme';
 import { Knapp } from 'nav-frontend-knapper';
-import { isLoading, isReloading, RestResource } from '../../../../rest/utils/restResource';
-import { DetaljertOppfolging } from '../../../../models/oppfolging';
-import { VisOppfolgingFraTilDato } from '../../../../redux/oppfolging/types';
-import { AppState } from '../../../../redux/reducers';
-import { AsyncDispatch } from '../../../../redux/ThunkTypes';
 import { settValgtPeriode } from '../../../../redux/oppfolging/actions';
-import { connect } from 'react-redux';
-import { reloadOppfolingActionCreator } from '../../../../redux/restReducers/oppfolging';
+import { useDispatch } from 'react-redux';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
@@ -20,6 +14,8 @@ import { Datepicker, isISODateString } from 'nav-datovelger';
 import { ISO_DATE_STRING_FORMAT, INPUT_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
 import dayjs, { Dayjs } from 'dayjs';
+import { FetchResult, isPending } from '@nutgaard/use-fetch';
+import { useAppState } from '../../../../utils/customHooks';
 
 const DatoVelgerWrapper = styled.div`
     position: relative;
@@ -40,24 +36,8 @@ const TittelWrapper = styled.div`
     margin-bottom: ${theme.margin.layout};
 `;
 
-interface StateProps {
-    oppfølgingResource: RestResource<DetaljertOppfolging>;
-    valgtPeriode: VisOppfolgingFraTilDato;
-}
-
-interface DispatchProps {
-    settValgtPeriode: (change: Partial<VisOppfolgingFraTilDato>) => void;
-    reloadDetaljertOppfolging: () => void;
-}
-
-type Props = DispatchProps & StateProps;
-
-const tidligsteDato: Dayjs = dayjs()
-    .subtract(10, 'years')
-    .startOf('day');
-const senesteDato: Dayjs = dayjs()
-    .add(1, 'year')
-    .endOf('day');
+const tidligsteDato: Dayjs = dayjs().subtract(10, 'years').startOf('day');
+const senesteDato: Dayjs = dayjs().add(1, 'year').endOf('day');
 
 const isoTidligsteDato = tidligsteDato.format(ISO_DATE_STRING_FORMAT);
 const isoSenesteDato = senesteDato.format(ISO_DATE_STRING_FORMAT);
@@ -98,18 +78,25 @@ const periodeValidering = [
 function getDatoFeilmelding(fra: string, til: string) {
     const fraDato = dayjs(fra, ISO_DATE_STRING_FORMAT);
     const tilDato = dayjs(til, ISO_DATE_STRING_FORMAT);
-    const feilmelding: string | undefined = periodeValidering.find(validering => validering.erUgyldig(fraDato, tilDato))
-        ?.feilmelding;
+    const feilmelding: string | undefined = periodeValidering.find((validering) =>
+        validering.erUgyldig(fraDato, tilDato)
+    )?.feilmelding;
     if (feilmelding) {
         return <SkjemaelementFeilmelding>{feilmelding}</SkjemaelementFeilmelding>;
     }
     return null;
 }
 
-function DatoInputs(props: Props) {
-    const oppfolgingLastes = isLoading(props.oppfølgingResource) || isReloading(props.oppfølgingResource);
-    const fra = props.valgtPeriode.fra;
-    const til = props.valgtPeriode.til;
+function DatoInputs(props: { restResource: FetchResult<any> }) {
+    const oppfolgingLastes = isPending(props.restResource, true);
+    const reload = props.restResource.rerun;
+
+    const valgtPeriode = useAppState((appState) => appState.oppfolging.valgtPeriode);
+    const fra = valgtPeriode.fra;
+    const til = valgtPeriode.til;
+
+    const dispatch = useDispatch();
+
     const periodeFeilmelding = getDatoFeilmelding(fra, til);
     const avgrensninger: DatepickerLimitations = {
         minDate: isoTidligsteDato,
@@ -121,7 +108,7 @@ function DatoInputs(props: Props) {
             return;
         }
         loggEvent('SøkNyPeriode', 'Oppfølging');
-        props.reloadDetaljertOppfolging();
+        reload();
     };
 
     return (
@@ -131,7 +118,7 @@ function DatoInputs(props: Props) {
                 locale={'nb'}
                 inputId="oppfolging-datovelger-fra"
                 value={fra}
-                onChange={dato => props.settValgtPeriode({ fra: dato })}
+                onChange={(dato) => dispatch(settValgtPeriode({ fra: dato }))}
                 inputProps={{
                     name: 'Fra dato',
                     'aria-invalid': fra !== '' && isISODateString(fra) === false
@@ -140,9 +127,11 @@ function DatoInputs(props: Props) {
                 limitations={avgrensninger}
                 dayPickerProps={{
                     onMonthChange(dato: Date) {
-                        props.settValgtPeriode({
-                            fra: dayjs(dato).format(ISO_DATE_STRING_FORMAT)
-                        });
+                        dispatch(
+                            settValgtPeriode({
+                                fra: dayjs(dato).format(ISO_DATE_STRING_FORMAT)
+                            })
+                        );
                     }
                 }}
             />
@@ -151,7 +140,7 @@ function DatoInputs(props: Props) {
                 locale={'nb'}
                 inputId="oppfolging-datovelger-til"
                 value={til}
-                onChange={dato => props.settValgtPeriode({ til: dato })}
+                onChange={(dato) => dispatch(settValgtPeriode({ til: dato }))}
                 inputProps={{
                     name: 'Til dato',
                     'aria-invalid': til !== '' && isISODateString(til) === false
@@ -160,9 +149,11 @@ function DatoInputs(props: Props) {
                 limitations={avgrensninger}
                 dayPickerProps={{
                     onMonthChange(dato: Date) {
-                        props.settValgtPeriode({
-                            til: dayjs(dato).format(ISO_DATE_STRING_FORMAT)
-                        });
+                        dispatch(
+                            settValgtPeriode({
+                                til: dayjs(dato).format(ISO_DATE_STRING_FORMAT)
+                            })
+                        );
                     }
                 }}
             />
@@ -174,7 +165,7 @@ function DatoInputs(props: Props) {
     );
 }
 
-function OppfolgingDatoPanel(props: Props) {
+function OppfolgingDatoPanel(props: { restResource: FetchResult<any> }) {
     const headerId = useRef(guid());
 
     return (
@@ -183,24 +174,10 @@ function OppfolgingDatoPanel(props: Props) {
                 <TittelWrapper>
                     <Undertittel id={headerId.current}>Oppfølging og ytelser vises for perioden:</Undertittel>
                 </TittelWrapper>
-                <DatoInputs {...props} />
+                <DatoInputs restResource={props.restResource} />
             </article>
         </StyledPanel>
     );
 }
 
-function mapStateToProps(state: AppState): StateProps {
-    return {
-        oppfølgingResource: state.restResources.oppfolging,
-        valgtPeriode: state.oppfolging.valgtPeriode
-    };
-}
-
-function mapDispatchToProps(dispatch: AsyncDispatch): DispatchProps {
-    return {
-        settValgtPeriode: (change: Partial<VisOppfolgingFraTilDato>) => dispatch(settValgtPeriode(change)),
-        reloadDetaljertOppfolging: () => dispatch(reloadOppfolingActionCreator)
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(OppfolgingDatoPanel);
+export default OppfolgingDatoPanel;

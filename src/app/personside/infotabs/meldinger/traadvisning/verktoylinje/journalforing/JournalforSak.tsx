@@ -10,13 +10,12 @@ import { apiBaseUri } from '../../../../../../../api/config';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { post } from '../../../../../../../api/api';
 import { loggError } from '../../../../../../../utils/logger/frontendLogger';
-import { useDispatch } from 'react-redux';
-import { useRestResource } from '../../../../../../../rest/consumer/useRestResource';
 import { useAppState, useFodselsnummer } from '../../../../../../../utils/customHooks';
 import * as JournalforingUtils from '../../../../../journalforings-use-fetch-utils';
 import { selectValgtEnhet } from '../../../../../../../redux/session/session';
 import { formatterDatoMedMaanedsnavnOrNull } from '../../../../../../../utils/date-utils';
 import { ENDASH } from '../../../../../../../utils/string-utils';
+import brukersdialog from '../../../../../../../rest/resources/brukersdialog';
 
 interface Props {
     sak: JournalforingsSak;
@@ -47,9 +46,8 @@ const SuksessStyling = styled.div`
     }
 `;
 export function JournalforSak(props: Props) {
-    const dispatch = useDispatch();
     const valgtEnhet = useAppState(selectValgtEnhet);
-    const tråderResource = useRestResource((resources) => resources.traader);
+    const traderResource = brukersdialog.useFetch();
     const kategori = sakKategori(props.sak);
     const fnr = useFodselsnummer();
     const [submitting, setSubmitting] = useState(false);
@@ -68,7 +66,7 @@ export function JournalforSak(props: Props) {
                 JournalforingUtils.slettCacheForSaker(fnr);
                 setSubmitting(false);
                 setJournalforingSuksess(true);
-                dispatch(tråderResource.actions.reload);
+                traderResource.rerun();
             })
             .catch((error) => {
                 setSubmitting(false);

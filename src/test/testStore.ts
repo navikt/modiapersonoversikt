@@ -21,7 +21,6 @@ import { setInnstillingerData } from '../redux/innstillinger';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
-    const restResources = testStore.getState().restResources;
     const aremarkFnr = aremark.personIdent;
 
     const dispatch = testStore.dispatch as Dispatch<any>;
@@ -32,10 +31,6 @@ export function getTestStore(): Store<AppState> {
             innstillinger: {}
         })
     );
-    dispatch(restResources.utbetalinger.actions.setData(statiskMockUtbetalingRespons));
-    dispatch(restResources.utbetalingerOversikt.actions.setData(statiskMockUtbetalingRespons));
-    dispatch(restResources.oppfolging.actions.setData(statiskOppfolgingMock));
-    dispatch(restResources.traader.actions.setData([statiskTraadMock]));
     setupFetchCache();
 
     return testStore;
@@ -75,8 +70,19 @@ export function setupFetchCache() {
     cache.putResolved(createCacheKey(`${apiBaseUri}/ytelse/foreldrepenger/${aremark.personIdent}`), {
         foreldrepenger: [statiskForeldrepengeMock]
     });
+    cache.putResolved(createCacheKey(`${apiBaseUri}/dialog/${aremark.personIdent}/meldinger`), [statiskTraadMock]);
     cache.putResolved(createCacheKey(`${apiBaseUri}/featuretoggle`), {
         toggleId: false
     });
     cache.putResolved(createCacheKey(`${apiBaseUri}/hode/me`), getMockInnloggetSaksbehandler());
+    cache.putResolved(
+        createCacheKey(
+            `${apiBaseUri}/oppfolging/${aremark.personIdent}/ytelserogkontrakter?startDato=1969-11-01&sluttDato=1970-02-01`
+        ),
+        statiskOppfolgingMock
+    );
+    cache.putResolved(
+        createCacheKey(`${apiBaseUri}/utbetaling/${aremark.personIdent}?startDato=1969-12-02&sluttDato=1970-04-11`),
+        statiskMockUtbetalingRespons
+    );
 }

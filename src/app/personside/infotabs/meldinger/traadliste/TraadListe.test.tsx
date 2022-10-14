@@ -2,23 +2,16 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../../test/Testprovider';
 import { getTestStore } from '../../../../../test/testStore';
-import { hasData } from '../../../../../rest/utils/restResource';
 import TraadListe from './TraadListe';
+import { statiskTraadMock } from '../../../../../mock/meldinger/statiskTraadMock';
 
 test('Viser Traadliste', () => {
     const store = getTestStore();
-    const traaderResource = getTestStore().getState().restResources.traader;
-    const traader = hasData(traaderResource) ? traaderResource.data : [];
+    const traader = [statiskTraadMock];
 
     const container = renderer.create(
         <TestProvider customStore={store}>
-            <TraadListe
-                traader={traader}
-                sokeord={''}
-                valgtTraad={traader[0]}
-                setSokeord={() => null}
-                traaderEtterSokOgFiltrering={traader}
-            />
+            <TraadListe traader={traader} valgtTraad={traader[0]} traaderEtterSokOgFiltrering={traader} />
         </TestProvider>
     );
 

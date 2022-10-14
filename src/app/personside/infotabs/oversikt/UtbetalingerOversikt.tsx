@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Utbetaling, UtbetalingerResponse } from '../../../../models/utbetalinger';
-import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
@@ -15,6 +14,7 @@ import { useInfotabsDyplenker } from '../dyplenker';
 import { utbetalingerTest } from '../dyplenkeTest/utils-dyplenker-test';
 import dayjs from 'dayjs';
 import { ReactNode } from 'react';
+import utbetalinger from '../../../../rest/resources/utbetalinger';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -26,32 +26,22 @@ interface Props {
     setHeaderContent: (content: ReactNode) => void;
 }
 
-const onPendingSpinner = <CenteredLazySpinner padding={theme.margin.layout} />;
 function UtbetalingerOversikt(props: Props) {
-    return (
-        <RestResourceConsumer<UtbetalingerResponse>
-            getResource={restResources => restResources.utbetalingerOversikt}
-            returnOnPending={onPendingSpinner}
-        >
-            {data => <UtbetalingerPanel utbetalinger={data} {...props} />}
-        </RestResourceConsumer>
-    );
+    return utbetalinger.useOversiktRenderer({
+        ifPending: <CenteredLazySpinner padding={theme.margin.layout} />,
+        ifData: (data: UtbetalingerResponse) => <UtbetalingerPanel utbetalinger={data} {...props} />
+    });
 }
 
 function datoEldreEnn30Dager(utbetaling: Utbetaling) {
-    return (
-        dayjs(getGjeldendeDatoForUtbetaling(utbetaling)).toDate() <
-        dayjs()
-            .subtract(30, 'days')
-            .toDate()
-    );
+    return dayjs(getGjeldendeDatoForUtbetaling(utbetaling)).toDate() < dayjs().subtract(30, 'days').toDate();
 }
 
 function UtbetalingerPanel(props: { utbetalinger: UtbetalingerResponse } & Props) {
     const filtrertOgSorterteUtbetalinger = props.utbetalinger.utbetalinger
         .sort(utbetalingDatoComparator)
         .slice(0, 2)
-        .filter(utbetaling => !datoEldreEnn30Dager(utbetaling));
+        .filter((utbetaling) => !datoEldreEnn30Dager(utbetaling));
 
     if (filtrertOgSorterteUtbetalinger.length === 0) {
         return <AlertStripeInfo>Det finnes ikke noen utbetalinger for de siste 30 dagene</AlertStripeInfo>;
@@ -89,8 +79,8 @@ function EnkelUtbetaling({ utbetaling }: { utbetaling: Utbetaling }) {
 function YtelseNavn({ utbetaling }: { utbetaling: Utbetaling }) {
     const unikeYtelser = new Set(
         (utbetaling.ytelser || [])
-            .map(ytelse => ytelse.type)
-            .filter(ytelseType => ytelseType !== 'Gebyr' && ytelseType !== 'Skatt')
+            .map((ytelse) => ytelse.type)
+            .filter((ytelseType) => ytelseType !== 'Gebyr' && ytelseType !== 'Skatt')
     );
 
     let ytelseNavn = 'Ingen tilknyttede ytelse';
@@ -110,15 +100,15 @@ function YtelseNavn({ utbetaling }: { utbetaling: Utbetaling }) {
 
 function YtelsePeriode({ utbetaling }: { utbetaling: Utbetaling }) {
     const ytelsesperioder = (utbetaling.ytelser || [])
-        .filter(ytelse => ytelse.type !== 'Gebyr' && ytelse.type !== 'Skatt')
-        .map(ytelse => ytelse.periode);
+        .filter((ytelse) => ytelse.type !== 'Gebyr' && ytelse.type !== 'Skatt')
+        .map((ytelse) => ytelse.periode);
 
     if (ytelsesperioder.length === 0) {
         return <Normaltekst>Ingen periode</Normaltekst>;
     }
 
-    const tidligsteStart = ytelsesperioder.sort(datoStigende(periode => periode.start))[0].start;
-    const senesteSlutt = ytelsesperioder.sort(datoSynkende(periode => periode.slutt))[0].slutt;
+    const tidligsteStart = ytelsesperioder.sort(datoStigende((periode) => periode.start))[0].start;
+    const senesteSlutt = ytelsesperioder.sort(datoSynkende((periode) => periode.slutt))[0].slutt;
 
     return (
         <Normaltekst>

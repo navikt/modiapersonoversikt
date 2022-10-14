@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
 import { Traad } from '../../../../models/meldinger/meldinger';
-import RestResourceConsumer from '../../../../rest/consumer/RestResourceConsumer';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { nyesteMelding } from '../meldinger/utils/meldingerUtils';
@@ -16,6 +15,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useOnMount } from '../../../../utils/customHooks';
 import { temagruppeTekst } from '../../../../models/temagrupper';
 import TraadSammendrag from '../meldinger/traadliste/TraadSammendrag';
+import brukersdialog from '../../../../rest/resources/brukersdialog';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -27,23 +27,18 @@ interface Props {
     setHeaderContent: (content: ReactNode) => void;
 }
 
-const onPendingSpinner = <CenteredLazySpinner padding={theme.margin.layout} />;
 function MeldingerOversikt(props: Props) {
-    return (
-        <RestResourceConsumer<Traad[]>
-            getResource={restResources => restResources.traader}
-            returnOnPending={onPendingSpinner}
-        >
-            {data => <TraadListe traader={data} {...props} />}
-        </RestResourceConsumer>
-    );
+    return brukersdialog.useRenderer({
+        ifPending: <CenteredLazySpinner padding={theme.margin.layout} />,
+        ifData: (data: Traad[]) => <TraadListe traader={data} {...props} />
+    });
 }
 
 function TraadListe(props: { traader: Traad[] } & Props) {
     const traadKomponenter = props.traader
-        .sort(datoSynkende(traad => nyesteMelding(traad).opprettetDato))
+        .sort(datoSynkende((traad: Traad) => nyesteMelding(traad).opprettetDato))
         .slice(0, 2)
-        .map(traad => <Traadelement traad={traad} key={traad.traadId} />);
+        .map((traad) => <Traadelement traad={traad} key={traad.traadId} />);
 
     useOnMount(() => {
         props.setHeaderContent(

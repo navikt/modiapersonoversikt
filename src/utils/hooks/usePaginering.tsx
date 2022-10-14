@@ -46,7 +46,13 @@ const HoyrejustertPrevNextButton = styled(PrevNextButton)`
     margin-left: auto;
 `;
 
-function usePaginering<T>(list: T[], pageSize: number, itemLabel: string, selectedItem?: T): PagineringsData<T> {
+function usePaginering<T>(
+    list: T[],
+    pageSize: number,
+    itemLabel: string,
+    selectedItem?: T,
+    fieldCompare: (t: T) => any = (t) => t
+): PagineringsData<T> {
     const selectRef = useRef<HTMLSelectElement | null>();
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -63,11 +69,12 @@ function usePaginering<T>(list: T[], pageSize: number, itemLabel: string, select
     useEffect(() => {
         // skifter til riktig side dersom selected-item settes programatisk, og viser riktig side ved mount
         if (selectedItem && prevSelectedItem !== selectedItem) {
-            const index = list.findIndex(item => item === selectedItem);
+            const compareValue = fieldCompare(selectedItem);
+            const index = list.findIndex((item) => fieldCompare(item) === compareValue);
             const newPage = Math.floor(index / pageSize);
             setCurrentPage(newPage);
         }
-    }, [selectedItem, prevSelectedItem, setCurrentPage, pageSize, list]);
+    }, [selectedItem, prevSelectedItem, setCurrentPage, pageSize, list, fieldCompare]);
 
     const prevPage = usePrevious(currentPage);
     useEffect(() => {
@@ -91,9 +98,9 @@ function usePaginering<T>(list: T[], pageSize: number, itemLabel: string, select
             <Select
                 value={currentPage}
                 // @ts-ignore
-                selectRef={ref => (selectRef.current = ref)}
+                selectRef={(ref) => (selectRef.current = ref)}
                 label="Velg paginering"
-                onChange={e => setCurrentPage(parseInt(e.target.value))}
+                onChange={(e) => setCurrentPage(parseInt(e.target.value))}
             >
                 {options}
             </Select>

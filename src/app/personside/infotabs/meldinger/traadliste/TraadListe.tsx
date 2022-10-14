@@ -15,13 +15,12 @@ import usePrinter from '../../../../../utils/print/usePrinter';
 import PrintKnapp from '../../../../../components/PrintKnapp';
 import MeldingerPrintMarkup from '../../../../../utils/print/MeldingerPrintMarkup';
 import Panel from 'nav-frontend-paneler';
+import { useMeldingsok } from '../../../../../context/meldingsok';
 
 interface Props {
     traader: Traad[];
     traaderEtterSokOgFiltrering: Traad[];
     valgtTraad: Traad;
-    sokeord: string;
-    setSokeord: (newSokeord: string) => void;
 }
 
 const StyledPanel = styled(Panel)`
@@ -92,9 +91,19 @@ function PrintAlleMeldinger({ traader }: { traader: Traad[] }) {
         </>
     );
 }
+
+const fieldCompareTrad = (traad: Traad) => traad.traadId;
+
 function TraadListe(props: Props) {
+    const meldingsok = useMeldingsok();
     const inputRef = React.useRef<HTMLInputElement>();
-    const paginering = usePaginering(props.traaderEtterSokOgFiltrering, 50, 'melding', props.valgtTraad);
+    const paginering = usePaginering(
+        props.traaderEtterSokOgFiltrering,
+        50,
+        'melding',
+        props.valgtTraad,
+        fieldCompareTrad
+    );
     const sokTittelId = useRef(guid());
     const listeId = useRef(guid());
     const traadListeRef = useRef<HTMLOListElement>(null);
@@ -108,10 +117,10 @@ function TraadListe(props: Props) {
         return <AlertStripeInfo>Det finnes ingen meldinger for bruker.</AlertStripeInfo>;
     }
 
-    const visAlleMeldingerKnapp = props.sokeord !== '' && (
+    const visAlleMeldingerKnapp = meldingsok.query !== '' && (
         <LenkeKnapp
             onClick={() => {
-                props.setSokeord('');
+                meldingsok.setQuery('');
                 if (inputRef.current) {
                     inputRef.current.focus();
                 }
@@ -128,12 +137,12 @@ function TraadListe(props: Props) {
             : `Totalt ${props.traader.length} ${meldingTekst}`;
 
     const onMeldingerSok = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const sokeOrd = event.target.value;
-        const brukerStarterEtNyttSøk = props.sokeord === '' && sokeOrd.length > 0;
+        const value = event.target.value;
+        const brukerStarterEtNyttSøk = meldingsok.query === '' && value.length > 0;
         if (brukerStarterEtNyttSøk) {
             loggEvent('SøkIMeldinger', 'Meldinger');
         }
-        props.setSokeord(sokeOrd);
+        meldingsok.setQuery(value);
     };
 
     return (
@@ -150,7 +159,7 @@ function TraadListe(props: Props) {
                                     inputRef.current = ref;
                                 }) as any
                             }
-                            value={props.sokeord}
+                            value={meldingsok.query}
                             onChange={onMeldingerSok}
                             label={'Søk etter melding'}
                             placeholder={'Søk etter melding'}
@@ -174,7 +183,7 @@ function TraadListe(props: Props) {
                         <TraadListeElement
                             traad={traad}
                             key={traad.traadId}
-                            erValgt={traad === props.valgtTraad}
+                            erValgt={traad.traadId === props.valgtTraad.traadId}
                             listeId="traadliste-meldinger"
                         />
                     ))}

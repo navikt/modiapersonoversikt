@@ -3,7 +3,6 @@ import { useCallback } from 'react';
 import { Radio } from 'nav-frontend-skjema';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { UtbetalingerResponse } from '../../../../../models/utbetalinger';
-import { hasData, isLoading, isReloading } from '../../../../../rest/utils/restResource';
 import UtbetaltTilValg from './UtbetaltTilValg';
 import YtelseValg from './YtelseValg';
 import { restoreScroll } from '../../../../../utils/restoreScroll';
@@ -20,6 +19,7 @@ import Panel from 'nav-frontend-paneler';
 import dayjs from 'dayjs';
 import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 import MediaQueryAwareRenderer from '../../../../../components/MediaQueryAwareRenderer';
+import { FetchResult, hasData, isPending } from '@nutgaard/use-fetch';
 
 const FiltreringsPanel = styled(Panel)`
     padding: ${pxToRem(15)};
@@ -77,10 +77,14 @@ function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {
     return utbetalingerResponse.utbetalinger && utbetalingerResponse.utbetalinger.length > 0;
 }
 
-function Filtrering() {
+interface Props {
+    utbetalinger: FetchResult<UtbetalingerResponse>;
+}
+
+function Filtrering(props: Props) {
     const dispatch = useDispatch();
-    const utbetalingerResource = useSelector((state: AppState) => state.restResources.utbetalinger);
-    const reloadUtbetalingerAction = utbetalingerResource.actions.reload;
+    const utbetalingerResource = props.utbetalinger;
+    const reloadUtbetalingerAction = utbetalingerResource.rerun;
 
     const filter = useSelector((state: AppState) => state.utbetalinger.filter);
     const updateFilter = useCallback(
@@ -99,8 +103,8 @@ function Filtrering() {
                 return;
             }
         }
-        dispatch(reloadUtbetalingerAction);
-    }, [dispatch, reloadUtbetalingerAction, filter.periode]);
+        reloadUtbetalingerAction();
+    }, [reloadUtbetalingerAction, filter.periode]);
 
     const radios = Object.keys(PeriodeValg).map((key) => {
         const label = PeriodeValg[key];
@@ -124,7 +128,7 @@ function Filtrering() {
         );
     });
 
-    const visSpinner = isLoading(utbetalingerResource) || isReloading(utbetalingerResource);
+    const visSpinner = isPending(utbetalingerResource, true);
     const checkBokser = hasData(utbetalingerResource) && visCheckbokser(utbetalingerResource.data) && (
         <>
             <InputPanel>

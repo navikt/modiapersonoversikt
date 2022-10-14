@@ -3,21 +3,20 @@ import KnappBase from 'nav-frontend-knapper';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useDispatch } from 'react-redux';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
-import { useRestResource } from '../../../rest/consumer/useRestResource';
+import brukersdialog from '../../../rest/resources/brukersdialog';
+import { hasData } from '@nutgaard/use-fetch';
 
 function GaaTilNesteOppgaveKnapp(props: { lukk: () => void }) {
     const tildelteOppgaver = useTildelteOppgaver();
     const dispatch = useDispatch();
-    const traaderResource = useRestResource(resources => resources.traader);
-    const nesteOppgavePåBruker = tildelteOppgaver.paaBruker[0];
+    const traader = brukersdialog.useFetch();
+    const nesteOppgavePaBruker = tildelteOppgaver.paaBruker[0];
 
     const gaaTilNesteSporsmaal = () => {
-        if (!nesteOppgavePåBruker || !traaderResource.data) {
+        if (!nesteOppgavePaBruker || !hasData(traader)) {
             return;
         }
-        const traadTilknyttetOppgave = traaderResource.data.find(
-            traad => traad.traadId === nesteOppgavePåBruker.traadId
-        );
+        const traadTilknyttetOppgave = traader.data.find((traad) => traad.traadId === nesteOppgavePaBruker.traadId);
         if (!traadTilknyttetOppgave) {
             return;
         }
@@ -25,7 +24,7 @@ function GaaTilNesteOppgaveKnapp(props: { lukk: () => void }) {
         dispatch(setValgtTraadDialogpanel(traadTilknyttetOppgave));
     };
 
-    if (!nesteOppgavePåBruker) {
+    if (!nesteOppgavePaBruker) {
         return null;
     }
 
