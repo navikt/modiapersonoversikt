@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Melding, MeldingJournalpost, Traad } from '../../models/meldinger/meldinger';
 import { useFodselsnummer } from '../customHooks';
-import { eldsteMelding, meldingstittel } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
+import { meldingstittel } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
 import { datoStigende, formatterDato, formatterDatoTid } from '../date-utils';
 import styled from 'styled-components';
@@ -99,16 +99,17 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
 }
 
 function MeldingerPrintMarkup(props: Props) {
-    const melding = eldsteMelding(props.valgtTraad);
+    const meldinger = props.valgtTraad.meldinger.sort(datoStigende((melding) => melding.opprettetDato));
+    const eldsteMelding = meldinger[0];
 
-    const feilsendt = melding.markertSomFeilsendtAv && (
-        <Element> Markert som feilsendt av {melding.markertSomFeilsendtAv.ident?.toUpperCase()}</Element>
+    const feilsendt = eldsteMelding.markertSomFeilsendtAv && (
+        <Element> Markert som feilsendt av {eldsteMelding.markertSomFeilsendtAv.ident?.toUpperCase()}</Element>
     );
-    const kontorsperre = melding.kontorsperretAv && <Element>Kontorsperret for {melding.kontorsperretEnhet}</Element>;
+    const kontorsperre = eldsteMelding.kontorsperretAv && (
+        <Element>Kontorsperret for {eldsteMelding.kontorsperretEnhet}</Element>
+    );
     const journalposter = <JournalposterMarkup journalposter={props.valgtTraad.journalposter} />;
-    const enkeltmeldinger = props.valgtTraad.meldinger
-        .sort(datoStigende((melding) => melding.opprettetDato))
-        .map((melding) => <EnkeltMeldingMarkup melding={melding} key={melding.id} />);
+    const enkeltmeldinger = meldinger.map((melding) => <EnkeltMeldingMarkup melding={melding} key={melding.id} />);
     return (
         <StyledTraad>
             <Topptekst>
