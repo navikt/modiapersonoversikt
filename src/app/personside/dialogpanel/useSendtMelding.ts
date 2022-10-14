@@ -6,7 +6,13 @@ import { loggError } from '../../../utils/logger/frontendLogger';
 import brukersdialog from '../../../rest/resources/brukersdialog';
 import { hasData, isPending } from '@nutgaard/use-fetch';
 
-export function useSendtMelding(opprettetTraad: Traad | undefined) {
+interface SendtMelding {
+    pending: boolean;
+    melding: Melding | undefined;
+    traad: Traad | undefined;
+}
+
+export function useSendtMelding(opprettetTraad: Traad | undefined): SendtMelding {
     const traaderResource = brukersdialog.useFetch();
     const [pending, setPending] = useState(true);
     const [melding, setMelding] = useState<Melding | undefined>();
@@ -22,12 +28,14 @@ export function useSendtMelding(opprettetTraad: Traad | undefined) {
         if (hasData(traaderResource)) {
             try {
                 const sisteTraad = nyesteTraad(traaderResource.data);
-                const sisteMelding = nyesteMelding(sisteTraad);
-                const erRiktigMelding =
-                    sisteTraad.traadId === opprettetTraad?.traadId && erMaks10MinSiden(sisteMelding.opprettetDato);
-                if (erRiktigMelding) {
-                    setMelding(sisteMelding);
-                    setTraad(sisteTraad);
+                if (sisteTraad) {
+                    const sisteMelding = nyesteMelding(sisteTraad);
+                    const erRiktigMelding =
+                        sisteTraad.traadId === opprettetTraad?.traadId && erMaks10MinSiden(sisteMelding.opprettetDato);
+                    if (erRiktigMelding) {
+                        setMelding(sisteMelding);
+                        setTraad(sisteTraad);
+                    }
                 }
             } catch (e: any) {
                 loggError(e, 'Kunne ikke finne sendt melding', { traader: JSON.stringify(traaderResource.data) });
