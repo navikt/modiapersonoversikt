@@ -5,12 +5,22 @@ import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
 import { Temagruppe, temagruppeTekst } from '../../../../../models/temagrupper';
 
-export function nyesteMelding(traad: Traad) {
+/*
+   Teknisk sett kan `nyesteMelding` og `eldsteMelding` returnerer undefined.
+   Men en tråd uten noen meldinger skal ikke forekomme, så vi kan da kaste feil.
+
+   Er eksplisitt for `nyesteTraad` siden bruker ikke nødvendigvis har tidligere tråder
+ */
+export function nyesteMelding(traad: Traad): Melding {
     return [...traad.meldinger].sort(datoSynkende((melding) => melding.opprettetDato))[0];
 }
 
-export function eldsteMelding(traad: Traad) {
+export function eldsteMelding(traad: Traad): Melding {
     return [...traad.meldinger].sort(datoStigende((melding) => melding.opprettetDato))[0];
+}
+
+export function nyesteTraad(traader: Traad[]): Traad | undefined {
+    return traader.sort(datoSynkende((traad) => nyesteMelding(traad).opprettetDato))[0];
 }
 
 export function kanBesvares(traad?: Traad): boolean {
@@ -136,10 +146,6 @@ export function useSokEtterMeldinger(traader: Traad[], query: string) {
             })
             .sort(datoSynkende((traad) => nyesteMelding(traad).opprettetDato));
     }, [debouncedQuery, traader]);
-}
-
-export function nyesteTraad(traader: Traad[]) {
-    return traader.sort(datoSynkende((traad) => nyesteMelding(traad).opprettetDato))[0];
 }
 
 export function getFormattertMeldingsDato(melding: Melding) {
