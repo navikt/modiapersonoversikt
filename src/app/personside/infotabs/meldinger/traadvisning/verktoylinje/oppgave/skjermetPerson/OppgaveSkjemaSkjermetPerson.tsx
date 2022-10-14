@@ -9,12 +9,12 @@ import { AlertStripeFeil, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { lagSkjermetOppgaveRequest } from '../byggRequest';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../../redux/reducers';
-import { useAppState } from '../../../../../../../../utils/customHooks';
 import { feilmelding } from '../validering';
 import formstateFactory, { Values } from '@nutgaard/use-formstate';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from '../SkjemaElementOptions';
 import { Select, Textarea } from 'nav-frontend-skjema';
 import { useNormalPrioritet } from '../oppgave-utils';
+import { useValgtenhet } from '../../../../../../../../context/valgtenhet-state';
 
 const SkjemaStyle = styled.div`
     padding-top: 1rem;
@@ -52,7 +52,7 @@ const validator = formstateFactory<SkjermetOppgaveSkjemaForm>((values) => {
 
 function OppgaveSkjemaSkjermetPerson(props: SkjermetOppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const saksbehandlersEnhet = useAppState((state) => state.session.valgtEnhetId);
+    const saksbehandlersEnhet = useValgtenhet().enhetId;
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
 
     const initialValues: SkjermetOppgaveSkjemaForm = {

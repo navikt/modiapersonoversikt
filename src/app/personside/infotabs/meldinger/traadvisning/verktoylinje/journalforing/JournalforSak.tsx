@@ -10,12 +10,12 @@ import { apiBaseUri } from '../../../../../../../api/config';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { post } from '../../../../../../../api/api';
 import { loggError } from '../../../../../../../utils/logger/frontendLogger';
-import { useAppState, useFodselsnummer } from '../../../../../../../utils/customHooks';
+import { useFodselsnummer } from '../../../../../../../utils/customHooks';
 import * as JournalforingUtils from '../../../../../journalforings-use-fetch-utils';
-import { selectValgtEnhet } from '../../../../../../../redux/session/session';
 import { formatterDatoMedMaanedsnavnOrNull } from '../../../../../../../utils/date-utils';
 import { ENDASH } from '../../../../../../../utils/string-utils';
 import brukersdialog from '../../../../../../../rest/resources/brukersdialog';
+import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
 
 interface Props {
     sak: JournalforingsSak;
@@ -46,7 +46,7 @@ const SuksessStyling = styled.div`
     }
 `;
 export function JournalforSak(props: Props) {
-    const valgtEnhet = useAppState(selectValgtEnhet);
+    const valgtEnhet = useValgtenhet().enhetId;
     const traderResource = brukersdialog.useFetch();
     const kategori = sakKategori(props.sak);
     const fnr = useFodselsnummer();

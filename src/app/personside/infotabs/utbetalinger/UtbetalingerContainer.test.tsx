@@ -13,6 +13,9 @@ test('Viser utbetalingercontainer med alt innhold', (done) => {
     const mock = FetchMock.configure({
         enableFallback: false
     });
+    mock.get('/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger', (req, res, ctx) =>
+        res(ctx.status(200))
+    );
     mock.get(apiBaseUri + '/utbetaling/:fodselsnummer', (req, res, ctx) =>
         res(
             ctx.json({

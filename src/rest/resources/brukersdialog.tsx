@@ -6,6 +6,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import { FetchResult } from '@nutgaard/use-fetch';
 import { Traad } from '../../models/meldinger/meldinger';
+import { useValgtenhet } from '../../context/valgtenhet-state';
 
 function url(fnr: string, enhet: string | undefined): string {
     const header = enhet ? `?enhet=${enhet}` : '';
@@ -18,7 +19,8 @@ const defaults: DefaultConfig = {
 };
 
 function useReduxData(): [string, string | undefined] {
-    return useAppState((appState) => [appState.gjeldendeBruker.fødselsnummer, appState.session.valgtEnhetId]);
+    const valgtEnhet = useValgtenhet().enhetId;
+    return useAppState((appState) => [appState.gjeldendeBruker.fødselsnummer, valgtEnhet]);
 }
 
 const resource = {

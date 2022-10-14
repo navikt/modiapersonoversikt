@@ -7,8 +7,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import useHotkey from '../../../../../utils/hooks/use-hotkey';
 import useFieldState from '../../../../../utils/hooks/use-field-state';
 import { useErKontaktsenter } from '../../../../../utils/enheter-utils';
-import { getInnstilling } from '../../../../../redux/innstillinger';
-import { useAppState } from '../../../../../utils/customHooks';
+import innstillingerResource from '../../../../../rest/resources/innstillingerResource';
 
 interface Props {
     appendTekst(tekst: string): void;
@@ -76,7 +75,7 @@ function StandardTekstModal(props: Props) {
             >
                 <StandardTekster
                     sokefelt={sokefelt}
-                    appendTekst={tekst => {
+                    appendTekst={(tekst) => {
                         props.appendTekst(tekst);
                         setOpen(false);
                     }}
@@ -88,9 +87,7 @@ function StandardTekstModal(props: Props) {
 
 function StandardTekstModalLoader(props: Omit<Props, 'defaultSokefeltValue'>) {
     const erKontaktSenter = useErKontaktsenter();
-    const defaultTagsStandardtekster = useAppState(appstate =>
-        getInnstilling(appstate, 'defaultTagsStandardtekster', 'na')
-    );
+    const defaultTagsStandardtekster = innstillingerResource.useInnstilling('defaultTagsStandardtekster', 'na');
     const sokefeltValue = [
         erKontaktSenter ? '#ks ' : '',
         defaultTagsStandardtekster !== 'na' ? `#${defaultTagsStandardtekster} ` : ''

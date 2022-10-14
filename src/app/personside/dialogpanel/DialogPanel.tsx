@@ -5,9 +5,10 @@ import { useAppState } from '../../../utils/customHooks';
 import SendNyMeldingContainer from './sendMelding/SendNyMeldingContainer';
 import FortsettDialogContainer from './fortsettDialog/FortsettDialogContainer';
 import useVisTraadTilknyttetPlukketOppgave from './fortsettDialog/useVisTraadTilknyttetPlukketOppgave';
-import { getInnstillingPending } from '../../../redux/innstillinger';
 import { OppgavelisteValg } from './sendMelding/SendNyMelding';
 import LazySpinner from '../../../components/LazySpinner';
+import innstillingerResource from '../../../rest/resources/innstillingerResource';
+import { isPending } from '@nutgaard/use-fetch';
 
 const DialogPanelWrapper = styled.div`
     flex-grow: 1;
@@ -17,14 +18,15 @@ const DialogPanelWrapper = styled.div`
 function DialogPanel() {
     const dialogpanelTraad = useAppState((state) => state.oppgaver.dialogpanelTraad);
     const slaaOppOppgave = useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad);
-    const defaultOppgaveDestinasjon = useAppState((appstate) =>
-        getInnstillingPending<OppgavelisteValg>(appstate, 'defaultOppgaveDestinasjon', OppgavelisteValg.MinListe)
+    const innstillingerRequest = innstillingerResource.useFetch();
+    const defaultOppgaveDestinasjon = innstillingerResource.useInnstilling(
+        'defaultOppgaveDestinasjon',
+        OppgavelisteValg.MinListe
     );
-
     if (slaaOppOppgave.pending) {
         return slaaOppOppgave.placeholder;
     }
-    if (defaultOppgaveDestinasjon.pending) {
+    if (isPending(innstillingerRequest)) {
         return <LazySpinner type="M" />;
     }
 
@@ -34,11 +36,11 @@ function DialogPanel() {
                 {dialogpanelTraad ? (
                     <FortsettDialogContainer
                         traad={dialogpanelTraad}
-                        defaultOppgaveDestinasjon={defaultOppgaveDestinasjon.data}
+                        defaultOppgaveDestinasjon={defaultOppgaveDestinasjon}
                         key={dialogpanelTraad.traadId} // for å tvinge refresh dersom man velger en ny tråd
                     />
                 ) : (
-                    <SendNyMeldingContainer defaultOppgaveDestinasjon={defaultOppgaveDestinasjon.data} />
+                    <SendNyMeldingContainer defaultOppgaveDestinasjon={defaultOppgaveDestinasjon} />
                 )}
             </DialogPanelWrapper>
         </ErrorBoundary>

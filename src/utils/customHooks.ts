@@ -8,6 +8,7 @@ import Hotjar, { HotjarTriggers } from './hotjar';
 import useFetch, { FetchResult } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../api/config';
 import { Data as Persondata } from '../app/personside/visittkort-v2/PersondataDomain';
+import { useValgtenhet } from '../context/valgtenhet-state';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
     useOnMount(() => {
@@ -75,7 +76,7 @@ export function useFodselsnummer() {
 }
 
 export function useTriggerHotjarForLokalKontor() {
-    const valgtEnhet = useAppState((state) => state.session.valgtEnhetId);
+    const valgtEnhet = useValgtenhet().enhetId;
 
     useJustOnceEffect(
         (done) => {

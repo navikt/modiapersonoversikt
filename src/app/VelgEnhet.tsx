@@ -2,13 +2,12 @@ import * as React from 'react';
 import { ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { Select } from 'nav-frontend-skjema';
-import { useDispatch } from 'react-redux';
-import { velgEnhetAction } from '../redux/session/session';
 import theme from '../styles/personOversiktTheme';
 import saksbehandlersEnheter from '../rest/resources/saksbehandlersEnheter';
 import { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LazySpinner from '../components/LazySpinner';
+import { useValgtenhet } from '../context/valgtenhet-state';
 
 const Style = styled.div`
     display: flex;
@@ -22,13 +21,13 @@ const Style = styled.div`
 
 function VelgEnhet() {
     const enheter = saksbehandlersEnheter.useFetch();
-    const dispatch = useDispatch();
+    const setEnhetId = useValgtenhet().setEnhetId;
 
     useEffect(() => {
         if (hasData(enheter) && enheter.data?.enhetliste.length === 1) {
-            dispatch(velgEnhetAction(enheter.data.enhetliste[0].enhetId));
+            setEnhetId(enheter.data.enhetliste[0].enhetId);
         }
-    }, [enheter, dispatch]);
+    }, [enheter, setEnhetId]);
 
     if (isPending(enheter)) {
         return <LazySpinner type="M" />;
@@ -45,7 +44,7 @@ function VelgEnhet() {
     });
 
     const handleOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        dispatch(velgEnhetAction(e.target.value));
+        setEnhetId(e.target.value);
     };
 
     return (
