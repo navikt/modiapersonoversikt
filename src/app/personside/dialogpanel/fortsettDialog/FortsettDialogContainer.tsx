@@ -4,7 +4,7 @@ import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
 import { ForsettDialogRequest, Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import { useAppState, useFodselsnummer } from '../../../../utils/customHooks';
+import { useFodselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import { SvarSendtKvittering } from './FortsettDialogKvittering';
@@ -28,10 +28,10 @@ import { Temagruppe } from '../../../../models/temagrupper';
 import useDraft, { Draft } from '../use-draft';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
-import { selectValgtEnhet } from '../../../../redux/session/session';
 import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaver';
 import { FetchResult, hasData } from '@nutgaard/use-fetch';
 import brukersdialog from '../../../../rest/resources/brukersdialog';
+import { useValgtenhet } from '../../../../context/valgtenhet-state';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -80,7 +80,7 @@ function FortsettDialogContainer(props: Props) {
     const fnr = useFodselsnummer();
     const tittelId = useRef(guid());
     const [state, setState] = useState<FortsettDialogState>(initialState);
-    const valgtEnhet = useAppState(selectValgtEnhet);
+    const valgtEnhet = useValgtenhet().enhetId;
     const draftLoader = useCallback(
         (draft: Draft) => setState((current) => ({ ...current, tekst: draft.content })),
         [setState]

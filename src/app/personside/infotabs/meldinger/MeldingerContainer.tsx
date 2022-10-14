@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import TraadListe from './traadliste/TraadListe';
 import { useDispatch } from 'react-redux';
-import { useAppState, usePrevious } from '../../../../utils/customHooks';
+import { usePrevious } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useHistory } from 'react-router';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -19,6 +19,7 @@ import brukersdialog from '../../../../rest/resources/brukersdialog';
 import { hasData, isPending } from '@nutgaard/use-fetch';
 import LazySpinner from '../../../../components/LazySpinner';
 import { useMeldingsok } from '../../../../context/meldingsok';
+import { useValgtenhet } from '../../../../context/valgtenhet-state';
 
 const meldingerMediaTreshold = pxToRem(800);
 
@@ -55,7 +56,7 @@ function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[
 
 function useReloadOnEnhetChange() {
     const dispatch = useDispatch();
-    const enhet = useAppState((state) => state.session.valgtEnhetId);
+    const enhet = useValgtenhet().enhetId;
     const forrigeEnhet = usePrevious(enhet);
     const meldingerResource = brukersdialog.useFetch();
 

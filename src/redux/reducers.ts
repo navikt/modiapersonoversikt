@@ -1,4 +1,3 @@
-import sessionReducer, { SessionState } from './session/session';
 import { utbetalingerReducer } from './utbetalinger/utbetalingerReducer';
 import { saksoversiktReducer } from './saksoversikt/reducer';
 import { SaksoversikState } from './saksoversikt/types';
@@ -14,7 +13,6 @@ import { combineResettableReducers } from './reducer-utils';
 import varslerReducer, { VarslerState } from './varsler/varslerReducer';
 
 export interface AppState {
-    session: SessionState;
     utbetalinger: UtbetalingerState;
     saksoversikt: SaksoversikState;
     oppgaver: OppgaveState;
@@ -26,7 +24,6 @@ export interface AppState {
 
 export default combineResettableReducers<AppState>(
     {
-        session: sessionReducer,
         utbetalinger: utbetalingerReducer,
         saksoversikt: saksoversiktReducer,
         oppgaver: oppgaverReducer,
@@ -35,5 +32,5 @@ export default combineResettableReducers<AppState>(
         oppfolging: oppfolgingReducer,
         gjeldendeBruker: gjeldendeBrukerReducer
     },
-    ['gjeldendeBruker', 'session']
+    ['gjeldendeBruker']
 );

@@ -13,7 +13,6 @@ import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-fronte
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
 import { erBehandlet } from '../../../utils/meldingerUtils';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { useAppState } from '../../../../../../../utils/customHooks';
 import AvsluttGosysOppgaveSkjema from './AvsluttGosysOppgaveSkjema';
 import { Element } from 'nav-frontend-typografi';
 import formstateFactory from '@nutgaard/use-formstate';
@@ -27,6 +26,7 @@ import useForeslatteEnheter from './useForeslåtteEnheter';
 import { useNormalPrioritet } from './oppgave-utils';
 import { FeilmeldingOppsummering } from '../../../../../../../components/FeilmeldingOppsummering';
 import innloggetSaksbehandler from '../../../../../../../rest/resources/innloggetSaksbehandler';
+import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
 
 const AlertStyling = styled.div`
     > * {
@@ -93,7 +93,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     populerCacheMedTomAnsattliste();
 
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const saksbehandlersEnhet = useAppState((state) => state.session.valgtEnhetId);
+    const saksbehandlersEnhet = useValgtenhet().enhetId;
     const saksbehandlerIdent = innloggetSaksbehandler.useFetch();
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const state = useFormstate(initialValues);

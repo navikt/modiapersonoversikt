@@ -1,13 +1,13 @@
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/string-utils';
 import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
-import { useAppState, useHentPersondata } from '../../../../utils/customHooks';
-import { selectValgtEnhet } from '../../../../redux/session/session';
+import { useHentPersondata } from '../../../../utils/customHooks';
 import { hasData } from '@nutgaard/use-fetch';
 import { Data as PersonData, Kjonn } from '../../visittkort-v2/PersondataDomain';
 import { hentNavn } from '../../visittkort-v2/visittkort-utils';
 import innloggetSaksbehandler, { InnloggetSaksbehandler } from '../../../../rest/resources/innloggetSaksbehandler';
 import saksbehandlersEnheter, { Enhet } from '../../../../rest/resources/saksbehandlersEnheter';
+import { useValgtenhet } from '../../../../context/valgtenhet-state';
 
 export type AutofullforData = {
     enhet?: Enhet;
@@ -120,7 +120,7 @@ export function useAutoFullforData(): AutofullforData | undefined {
     const saksbehandler = innloggetSaksbehandler.useFetch();
     const enheterResource = saksbehandlersEnheter.useFetch();
     const enheter = hasData(enheterResource) ? enheterResource.data.enhetliste : [];
-    const valgtEnhetId = useAppState(selectValgtEnhet);
+    const valgtEnhetId = useValgtenhet().enhetId;
     const valgtEnhet = enheter.find((enhet) => enhet.enhetId === valgtEnhetId);
 
     return {

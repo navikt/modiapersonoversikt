@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useAppState, useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
+import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
@@ -8,9 +8,9 @@ import { useDispatch } from 'react-redux';
 import { apiBaseUri } from '../../../../api/config';
 import { postWithConflictVerification, RespectConflictError } from '../../../../api/api';
 import { useState } from 'react';
-import { selectValgtEnhet } from '../../../../redux/session/session';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import tildelteoppgaverResource from '../../../../rest/resources/tildelteoppgaver';
+import { useValgtenhet } from '../../../../context/valgtenhet-state';
 
 interface NotFinishedOpprettHenvendelse {
     success: false;
@@ -25,7 +25,7 @@ interface FinishedOpprettHenvendelse {
 type OpprettHenvendelseReturns = NotFinishedOpprettHenvendelse | FinishedOpprettHenvendelse;
 
 function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
-    const valgtEnhet = useAppState(selectValgtEnhet);
+    const valgtEnhet = useValgtenhet().enhetId;
     const [error, setError] = useState(false);
     const [response, setResponse] = useState<OpprettHenvendelseResponse | undefined>();
     const tildelteoppgaver = tildelteoppgaverResource.useFetch();

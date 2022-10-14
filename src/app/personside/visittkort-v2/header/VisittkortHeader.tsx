@@ -9,7 +9,7 @@ import PersonStatus from './status/PersonStatus';
 import Etiketter from './etiketter/Etiketter';
 import VisMerChevron from '../../../../components/VisMerChevron';
 import NavKontorContainer from './navkontor/NavKontorContainer';
-import { useAppState, useOnMount } from '../../../../utils/customHooks';
+import { useOnMount } from '../../../../utils/customHooks';
 import KjonnIkon from './KjonnIkon';
 
 interface Props {
@@ -80,16 +80,10 @@ const ukjentKjonn: KodeBeskrivelse<Kjonn> = {
 
 function VisittkortHeader(props: Props) {
     const navneLinjeRef = useRef<HTMLSpanElement>(null);
-    const jobberMedSTO = useAppState(state => state.session.jobberMedSTO);
-
     const person = props.persondata.person;
 
     useOnMount(() => {
         if (!person.sikkerhetstiltak.isEmpty()) {
-            return;
-        }
-        if (jobberMedSTO) {
-            // Fokus skal havne i meldingsliste
             return;
         }
         navneLinjeRef.current?.focus();
@@ -120,7 +114,7 @@ function VisittkortHeader(props: Props) {
             </StyledContent>
             <ChevronStyling>
                 <VisMerChevron
-                    onClick={e => {
+                    onClick={(e) => {
                         e.stopPropagation();
                         props.toggleApen();
                     }}
