@@ -128,24 +128,37 @@ export function saksbehandlerTekst(saksbehandler?: Saksbehandler) {
     const identTekst = saksbehandler.ident ? `(${saksbehandler.ident})` : '';
     return `${saksbehandler.fornavn} ${saksbehandler.etternavn} ${identTekst}`;
 }
-
+interface TraadSearchDb {
+    traad: Traad;
+    searchable: string;
+}
 export function useSokEtterMeldinger(traader: Traad[], query: string) {
     const debouncedQuery = useDebounce(query, 200);
-    return useMemo(() => {
-        const words = debouncedQuery.split(' ');
-        return traader
-            .filter((traad) => {
-                return traad.meldinger.some((melding) => {
+    const database: Array<TraadSearchDb> = useMemo(() => {
+        return traader.map((traad) => {
+            const searchable = traad.meldinger
+                .map((melding) => {
                     const fritekst = melding.fritekst;
                     const tittel = meldingstittel(melding);
                     const saksbehandler = melding.skrevetAvTekst;
                     const datotekst = getFormattertMeldingsDato(melding);
-                    const sokbarTekst = (fritekst + tittel + saksbehandler + datotekst).toLowerCase();
-                    return words.every((word) => sokbarTekst.includes(word.toLowerCase()));
-                });
+                    return (fritekst + tittel + saksbehandler + datotekst).toLowerCase();
+                })
+                .join('||');
+
+            return { traad, searchable };
+        });
+    }, [traader]);
+
+    return useMemo(() => {
+        const words = debouncedQuery.split(' ').map((word) => word.toLowerCase());
+        return database
+            .filter(({ traad, searchable }) => {
+                return words.every((word) => searchable.includes(word));
             })
+            .map(({ traad }) => traad)
             .sort(datoSynkende((traad) => nyesteMelding(traad).opprettetDato));
-    }, [debouncedQuery, traader]);
+    }, [debouncedQuery, database]);
 }
 
 export function getFormattertMeldingsDato(melding: Melding) {

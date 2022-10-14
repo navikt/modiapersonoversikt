@@ -91,6 +91,7 @@ function PrintAlleMeldinger({ traader }: { traader: Traad[] }) {
         </>
     );
 }
+const MemoizedPrintAlleMeldinger = React.memo(PrintAlleMeldinger);
 
 const fieldCompareTrad = (traad: Traad) => traad.traadId;
 
@@ -167,7 +168,7 @@ function TraadListe(props: Props) {
                         />
                     </InputStyle>
                     <SpaceBetween>
-                        <PrintAlleMeldinger traader={props.traader} />
+                        <MemoizedPrintAlleMeldinger traader={props.traader} />
                     </SpaceBetween>
                     <SokVerktøyStyle>
                         <Normaltekst aria-live="assertive">{soketreffTekst}</Normaltekst>
