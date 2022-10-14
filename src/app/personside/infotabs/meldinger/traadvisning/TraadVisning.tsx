@@ -120,13 +120,13 @@ function Journalposter(props: { traad: Traad }) {
         return null;
     }
 
-    const content = journalposter.map((journalpost) => {
+    const content = journalposter.map((journalpost, idx) => {
         const navn = journalpost.journalfortAv?.navn ?? 'ukjent';
         const dato = formatterDato(journalpost.journalfortDato);
         const tema = journalpost.journalfortTemanavn;
         const saksid = journalpost.journalfortSaksid ? `saksid ${journalpost.journalfortSaksid}` : 'ukjent saksid';
 
-        return <Normaltekst>{`${dato}: Journalført på ${tema} (${saksid}) av ${navn}`}</Normaltekst>;
+        return <Normaltekst key={idx}>{`${dato}: Journalført på ${tema} (${saksid}) av ${navn}`}</Normaltekst>;
     });
 
     return (

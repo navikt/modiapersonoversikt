@@ -46,12 +46,12 @@ function JournalposterMarkup(props: { journalposter: Array<MeldingJournalpost> }
     if (props.journalposter.isEmpty()) {
         return null;
     }
-    const journalposter = props.journalposter.map((journalpost) => {
+    const journalposter = props.journalposter.map((journalpost, idx) => {
         const dato = formatterDato(journalpost.journalfortDato);
         const tema = journalpost.journalfortTemanavn;
         const saksid = journalpost.journalfortSaksid ? `saksid ${journalpost.journalfortSaksid}` : 'ukjent saksid';
 
-        return <Normaltekst>{`${dato}: ${tema} (${saksid})`}</Normaltekst>;
+        return <Normaltekst key={idx}>{`${dato}: ${tema} (${saksid})`}</Normaltekst>;
     });
 
     return (
