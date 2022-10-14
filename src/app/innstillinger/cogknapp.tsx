@@ -1,10 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { useDispatch } from 'react-redux';
 import { ReactComponent as SvgCog } from './../../svg/cog.svg';
 import { KnappWrapper } from '../../components/pilknapp';
 import InnstillingerModal from './modal/innstillinger-modal';
-import { fetchInnstillinger } from '../../redux/innstillinger';
 
 const CogWrapper = styled(KnappWrapper)`
     padding-top: 3px;
@@ -27,11 +25,6 @@ interface Props {
 }
 
 function CogKnapp(props: Props) {
-    const dispatch = useDispatch();
-    React.useEffect(() => {
-        dispatch(fetchInnstillinger());
-    }, [dispatch]);
-
     const [isOpen, setOpen] = React.useState(false);
 
     return (

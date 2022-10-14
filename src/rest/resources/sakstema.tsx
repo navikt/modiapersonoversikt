@@ -7,6 +7,7 @@ import { FetchResult } from '@nutgaard/use-fetch';
 import { SakstemaResponse } from '../../models/saksoversikt/sakstema';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
+import { useValgtenhet } from '../../context/valgtenhet-state';
 
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
@@ -20,7 +21,7 @@ function url(fnr: string, enhet: string | undefined) {
 
 function useFnrEnhet(): [string, string | undefined] {
     const fnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const enhet = useSelector((state: AppState) => state.session.valgtEnhetId);
+    const enhet = useValgtenhet().enhetId;
     return [fnr, enhet];
 }
 

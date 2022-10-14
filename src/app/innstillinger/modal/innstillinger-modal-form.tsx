@@ -7,14 +7,10 @@ import styled from 'styled-components/macro';
 import { Select } from 'nav-frontend-skjema';
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { PopoverOrientering } from 'nav-frontend-popover';
-import { connect } from 'react-redux';
-import {
+import innstillingerResource, {
     Innstillinger,
-    OkState,
-    State as InnstillingerState,
-    oppdaterInnstillinger
-} from '../../../redux/innstillinger';
-import { AsyncDispatch } from '../../../redux/ThunkTypes';
+    SaksbehandlerInnstillinger
+} from '../../../rest/resources/innstillingerResource';
 
 const ModalContent = styled.div`
     min-height: 20rem;
@@ -64,22 +60,23 @@ function getFormState(innstillinger: Innstillinger): Innstillinger {
     };
 }
 
-interface Props extends ReturnType<typeof mapDispatchToProps> {
-    innstillinger: InnstillingerState & OkState;
+interface Props {
+    innstillinger: SaksbehandlerInnstillinger;
 }
 function InnstillingerModalForm(props: Props) {
     const { innstillinger } = props;
     const [innsendingFeilet, settInnsendingFeilet] = React.useState<boolean>(false);
-    const state = useFormState(getFormState(innstillinger.data.innstillinger));
+    const state = useFormState(getFormState(innstillinger.innstillinger));
 
     const onSubmitHandler = (nyeInnstillinger: Innstillinger): Promise<any> => {
-        return props.actions
-            .oppdaterInnstillinger({ ...innstillinger.data.innstillinger, ...nyeInnstillinger })
+        return innstillingerResource
+            .update({ ...innstillinger.innstillinger, ...nyeInnstillinger })
             .then((oppdaterteInnstillinger) => {
                 state.reinitialize(oppdaterteInnstillinger.innstillinger);
                 settInnsendingFeilet(false);
             })
-            .catch(() => {
+            .catch((err: unknown) => {
+                console.error(err);
                 settInnsendingFeilet(true);
             });
     };
@@ -88,7 +85,7 @@ function InnstillingerModalForm(props: Props) {
         <form onSubmit={state.onSubmit(onSubmitHandler)}>
             <ModalContent>
                 <Undertekst className="blokk-xxs">
-                    Sist oppdatert: {new Date(props.innstillinger.data.sistLagret).toLocaleString('nb')}
+                    Sist oppdatert: {new Date(props.innstillinger.sistLagret).toLocaleString('nb')}
                 </Undertekst>
                 <Select
                     className="blokk-s"
@@ -118,10 +115,4 @@ function InnstillingerModalForm(props: Props) {
     );
 }
 
-const mapDispatchToProps = (dispatch: AsyncDispatch) => ({
-    actions: {
-        oppdaterInnstillinger: (innstillinger: Innstillinger) => dispatch(oppdaterInnstillinger(innstillinger))
-    }
-});
-
-export default connect(null, mapDispatchToProps)(InnstillingerModalForm);
+export default InnstillingerModalForm;

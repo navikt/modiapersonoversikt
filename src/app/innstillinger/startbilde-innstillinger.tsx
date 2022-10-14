@@ -1,16 +1,10 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Flatknapp } from 'nav-frontend-knapper';
 import { ReactComponent as SvgCog } from './../../svg/cog.svg';
 import InnstillingerModal from './modal/innstillinger-modal';
-import { fetchInnstillinger } from '../../redux/innstillinger';
 
 function StartbildeInnstillinger() {
-    const dispatch = useDispatch();
-    React.useEffect(() => {
-        dispatch(fetchInnstillinger());
-    }, [dispatch]);
     const [isOpen, setOpen] = React.useState(false);
 
     return (

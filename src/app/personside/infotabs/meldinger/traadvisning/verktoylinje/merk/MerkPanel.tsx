@@ -29,7 +29,6 @@ import { AlertStripeAdvarsel, AlertStripeFeil, AlertStripeInfo, AlertStripeSukse
 import { Resultat } from '../utils/VisPostResultat';
 import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-focus-on-first-focusable';
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
-import { useAppState } from '../../../../../../../utils/customHooks';
 import { Oppgave } from '../../../../../../../models/meldinger/oppgave';
 import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaver';
 import { FetchResult, hasData } from '@nutgaard/use-fetch';
@@ -37,6 +36,7 @@ import { SladdeObjekt, velgMeldingerTilSladding } from './sladdevalg/Sladdevalg'
 import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
 import brukersdialog from '../../../../../../../rest/resources/brukersdialog';
+import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
 
 interface Props {
     lukkPanel: () => void;
@@ -163,7 +163,7 @@ function MerkPanel(props: Props) {
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [submitting, setSubmitting] = useState(false);
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
-    const valgtEnhet = useAppState((state) => state.session.valgtEnhetId);
+    const valgtEnhet = useValgtenhet().enhetId;
     const formRef = useRef<HTMLFormElement>(null);
     const oppgaveTilknyttning = finnOppgaveForTraad(valgtTraad, tildelteOppgaverResource);
 

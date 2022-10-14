@@ -1,5 +1,5 @@
 import FetchMock from 'yet-another-fetch-mock';
-import { SaksbehandlerInnstillinger } from '../redux/innstillinger';
+import { SaksbehandlerInnstillinger } from '../rest/resources/innstillingerResource';
 
 const localstoreageKey = 'modia-innstillinger-mock';
 const finnesILocalStorage = localStorage.getItem(localstoreageKey);

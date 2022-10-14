@@ -14,10 +14,12 @@ import GlobalStyling from './GlobalStyling';
 import Decorator from './internarbeidsflatedecorator/Decorator';
 import Routing from './Routing';
 import styled from 'styled-components';
-import { useAppState, useOnMount } from '../utils/customHooks';
+import { useOnMount } from '../utils/customHooks';
 import VelgEnhet from './VelgEnhet';
 import usePersistentLogin from '../utils/hooks/use-persistent-login';
 import LoggetUtModal from './LoggetUtModal';
+import { InnstillingerContextProvider } from '../rest/resources/innstillingerResource';
+import { useValgtenhet, ValgtEnhetProvider } from '../context/valgtenhet-state';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -41,7 +43,7 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
 function App() {
     const loginState = usePersistentLogin();
-    const valgtEnhet = useAppState((state) => state.session.valgtEnhetId);
+    const valgtEnhet = useValgtenhet().enhetId;
 
     if (!valgtEnhet) {
         /**
@@ -81,19 +83,21 @@ function AppContainer() {
         ModalWrapper.setAppElement('#root');
     });
     return (
-        <>
+        <InnstillingerContextProvider>
             <IeMacStyling />
             <GlobalStyling />
             <DemoBanner />
-            <Provider store={store}>
-                <Router>
-                    <AppStyle>
-                        {!window.erChatvisning && <Decorator />}
-                        <App />
-                    </AppStyle>
-                </Router>
-            </Provider>
-        </>
+            <ValgtEnhetProvider>
+                <Provider store={store}>
+                    <Router>
+                        <AppStyle>
+                            {!window.erChatvisning && <Decorator />}
+                            <App />
+                        </AppStyle>
+                    </Router>
+                </Provider>
+            </ValgtEnhetProvider>
+        </InnstillingerContextProvider>
     );
 }
 

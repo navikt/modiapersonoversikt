@@ -17,7 +17,8 @@ const protectedCache = createTrie(
         '/modiapersonoversikt-api/rest/dialogoppgave/v2/tema',
         '/modiapersonoversikt-api/rest/tilgang/auth',
         '/modiapersonoversikt-api/rest/featuretoggle',
-        '/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte'
+        '/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte',
+        '/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger'
     ],
     trieDelimiter
 );

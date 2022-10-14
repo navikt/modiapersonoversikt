@@ -9,7 +9,7 @@ import {
     SendSporsmalRequest,
     Traad
 } from '../../../../models/meldinger/meldinger';
-import { useAppState, useFodselsnummer } from '../../../../utils/customHooks';
+import { useFodselsnummer } from '../../../../utils/customHooks';
 import {
     InfomeldingSendtKvittering,
     ReferatSendtKvittering,
@@ -22,8 +22,8 @@ import { KvitteringNyMelding, SendNyMeldingPanelState, SendNyMeldingStatus } fro
 import useDraft, { Draft } from '../use-draft';
 import { feilMeldinger } from './FeilMeldinger';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
-import { selectValgtEnhet } from '../../../../redux/session/session';
 import brukersdialog from '../../../../rest/resources/brukersdialog';
+import { useValgtenhet } from '../../../../context/valgtenhet-state';
 
 interface Props {
     defaultOppgaveDestinasjon: OppgavelisteValg;
@@ -44,7 +44,7 @@ function SendNyMeldingContainer(props: Props) {
     const fnr = useFodselsnummer();
     const meldingerResource = brukersdialog.useFetch();
 
-    const valgtEnhet = useAppState(selectValgtEnhet);
+    const valgtEnhet = useValgtenhet().enhetId;
     const [state, setState] = useState<SendNyMeldingState>(initialState);
     const draftLoader = useCallback(
         (draft: Draft) => setState((current) => ({ ...current, tekst: draft.content })),

@@ -4,14 +4,8 @@ import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import Spinner from 'nav-frontend-spinner';
 import styled from 'styled-components/macro';
 import InnstillingerModalForm from './innstillinger-modal-form';
-import { connect } from 'react-redux';
-import {
-    State as InnstillingerState,
-    sliceSelector as innstillingerSelector,
-    hasError,
-    isOk
-} from './../../../redux/innstillinger';
-import { AppState } from '../../../redux/reducers';
+import innstillingerResource from '../../../rest/resources/innstillingerResource';
+import { hasError, isPending } from '@nutgaard/use-fetch';
 
 const CenteringDiv = styled.div`
     flex-grow: 1;
@@ -20,36 +14,26 @@ const CenteringDiv = styled.div`
     align-items: center;
 `;
 
-interface Props {
-    innstillinger: InnstillingerState;
-}
-
-function InnstillingerModalInnhold(props: Props) {
-    if (hasError(props.innstillinger)) {
-        const error =
-            props.innstillinger.error instanceof Error ? props.innstillinger.error.message : props.innstillinger.error;
-        return (
-            <AlertStripeFeil>
-                <Normaltekst>
-                    Uthenting av dine innstillinger feilet (<b>{props.innstillinger.statusCode}</b>).
-                </Normaltekst>
-                <Undertekst>{error}</Undertekst>
-            </AlertStripeFeil>
-        );
-    }
-    if (!isOk(props.innstillinger)) {
+function InnstillingerModalInnhold() {
+    const innstillinger = innstillingerResource.useFetch();
+    if (isPending(innstillinger)) {
         return (
             <CenteringDiv>
                 <Spinner type="XXL" />
             </CenteringDiv>
         );
+    } else if (hasError(innstillinger)) {
+        return (
+            <AlertStripeFeil>
+                <Normaltekst>
+                    Uthenting av dine innstillinger feilet (<b>{innstillinger.statusCode}</b>).
+                </Normaltekst>
+                <Undertekst>{innstillinger.error}</Undertekst>
+            </AlertStripeFeil>
+        );
     }
 
-    return <InnstillingerModalForm innstillinger={props.innstillinger} />;
+    return <InnstillingerModalForm innstillinger={innstillinger.data} />;
 }
 
-const mapStateToProps = (state: AppState) => ({
-    innstillinger: innstillingerSelector(state)
-});
-
-export default connect(mapStateToProps)(InnstillingerModalInnhold);
+export default InnstillingerModalInnhold;
