@@ -726,7 +726,7 @@ const standardTeksterMock = {
         tags: ['bidrag', 'behandlingstid'],
         vekttall: 0,
         innhold: {
-            nb_NO: 'Hei [bruker.fornavn]\r\nBehandlingstiden på bidragssaker er på [ANTALL] måneder.\r\n'
+            nb_NO: 'Hei [bruker.fornavn]\r\nBehandlingstiden på bidragssaker er på <ANTALL> måneder.\r\n'
         }
     },
     'ac42fdf0-1040-406d-98b7-655c40198e9b': {
@@ -1707,7 +1707,7 @@ const standardTeksterMock = {
         tags: ['ks', 'pensjon', 'supplerende', 'revurdering', 'time', 'møte', 'timeavtale', 'bruker'],
         vekttall: 0,
         innhold: {
-            nb_NO: '[bruker.navn] har supplerende stønad og har behov for timeavtale for å søke om ny stønadsperiode.\r\n\r\n[bruker.navn] kan kontaktes på (telefonnummer).\r\n[bruker.navn] har gitt muntlig fullmakt til at [fullmektig.navn] kan motta timebestilling på [telefonnummer].\r\n\r\nDet er behov for tolk på [språk].\r\n\r\nHenvendelsen er sendt til NAV-kontoret for besvarelse innen (dag) den (dato).'
+            nb_NO: '[bruker.navn] har supplerende stønad og har behov for timeavtale for å søke om ny stønadsperiode.\r\n\r\n[bruker.navn] kan kontaktes på (telefonnummer).\r\n[bruker.navn] har gitt muntlig fullmakt til at <fullmektig.navn> kan motta timebestilling på <telefonnummer>.\r\n\r\nDet er behov for tolk på <språk>.\r\n\r\nHenvendelsen er sendt til NAV-kontoret for besvarelse innen (dag) den (dato).'
         }
     },
     '0a275414-6577-427c-bf1f-9b5575bd3f60': {
@@ -3218,7 +3218,7 @@ const standardTeksterMock = {
         tags: ['ks', 'pensjon', 'endring', 'inntekt', 'AFP', 'offentlig', ''],
         vekttall: 0,
         innhold: {
-            nb_NO: '[bruker.navn] gir beskjed om at vedkommende har endret sin arbeidsinntekt fra [DATO] og har fra før gradert offentlig AFP fra SPK og er under 65 år.\r\n\r\nDu er informert om at:\r\n\r\n- du må sende skriftlig melding til NAV om din totale arbeidsinntekt hittil i år og til og med siste måned før endring, samt ny inntekt etter endringen.\r\n- dersom du startet uttak av AFP i fjor, må du opplyse om feriepenger opptjent før oppstart av AFP\r\n- endringen kan tidligst skje måneden etter at NAV mottar melding om endring.\r\n\r\nSe www.nav.no/afpoffentlig-endring for mer informasjon om inntektsendring.\r\n\r\nOpplysninger om inntekt sendes skriftlig til nav via www.nav.no/beskjedtilnav med tema pensjon.\r\n\r\nAlternativt kan du sende det per post til NAV Familie- og pensjonsytelser, Postboks 6600 Etterstad, 0607 Oslo.'
+            nb_NO: '[bruker.navn] gir beskjed om at vedkommende har endret sin arbeidsinntekt fra <DATO> og har fra før gradert offentlig AFP fra SPK og er under 65 år.\r\n\r\nDu er informert om at:\r\n\r\n- du må sende skriftlig melding til NAV om din totale arbeidsinntekt hittil i år og til og med siste måned før endring, samt ny inntekt etter endringen.\r\n- dersom du startet uttak av AFP i fjor, må du opplyse om feriepenger opptjent før oppstart av AFP\r\n- endringen kan tidligst skje måneden etter at NAV mottar melding om endring.\r\n\r\nSe www.nav.no/afpoffentlig-endring for mer informasjon om inntektsendring.\r\n\r\nOpplysninger om inntekt sendes skriftlig til nav via www.nav.no/beskjedtilnav med tema pensjon.\r\n\r\nAlternativt kan du sende det per post til NAV Familie- og pensjonsytelser, Postboks 6600 Etterstad, 0607 Oslo.'
         }
     },
     '31dfcd16-34b7-48d9-8348-8c89542fb531': {
