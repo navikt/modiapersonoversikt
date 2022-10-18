@@ -75,12 +75,12 @@ function setUpSaksbehandlersEnheterMock(mock: FetchMock) {
 
 function setupTilgangskontroll(mock: FetchMock) {
     mock.get(
-        '/modiapersonoversikt-api/rest/tilgang/auth',
+        apiBaseUri + '/tilgang/auth',
         withDelayedResponse(randomDelay(), () => 200, authMock)
     );
 
     mock.get(
-        '/modiapersonoversikt-api/rest/tilgang/:fodselsnummer?',
+        apiBaseUri + '/tilgang/:fodselsnummer?',
         withDelayedResponse(
             randomDelay(),
             () => (Math.random() > 0.98 ? 400 : 200),

@@ -20,8 +20,12 @@
         "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN dev-fss personoversikt modiacontextholder$env{MILJO_SUFFIX}"]
     },
     {
-        "prefix": "proxy/api",
-        "url": "http://modiapersonoversikt-api$env{MILJO_SUFFIX}.personoversikt.svc.nais.local/modiapersonoversikt-api",
+        "prefix": "proxy/azure-api",
+        "url": "http://modiapersonoversikt-api$env{MILJO_SUFFIX}.personoversikt.svc.nais.local/modiapersonoversikt-api/rest",
         "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN dev-fss personoversikt modiapersonoversikt-api$env{MILJO_SUFFIX}"]
+    },
+    {
+        "prefix": "proxy/api",
+        "url": "http://modiapersonoversikt-api$env{MILJO_SUFFIX}.personoversikt.svc.nais.local/modiapersonoversikt-api/rest"
     }
 ]
