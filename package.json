@@ -48,6 +48,7 @@
         "@nutgaard/use-formstate": "^3.0.0",
         "@sentry/react": "^7.13.0",
         "@sentry/tracing": "^7.13.0",
+        "@tanstack/react-query": "^4.12.0",
         "classnames": "^2.2.6",
         "dayjs": "^1.10.4",
         "detect-browser": "^3.0.1",

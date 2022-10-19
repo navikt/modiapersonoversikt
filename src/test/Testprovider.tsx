@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import { getTestStore } from './testStore';
+import { getTestStore, setupReactQueryData } from './testStore';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { Store } from 'redux';
@@ -8,18 +8,29 @@ import { AppState } from '../redux/reducers';
 import { MeldingsokProvider } from '../context/meldingsok';
 import { VisittkortStateProvider } from '../context/visittkort-state';
 import { DialogpanelStateProvider } from '../context/dialogpanel-state';
-import { InnstillingerContextProvider } from '../rest/resources/innstillingerResource';
 import { ValgtEnhetProvider } from '../context/valgtenhet-state';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 interface Props {
     children: ReactNode;
     customStore?: Store<AppState>;
 }
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            retry: false,
+            staleTime: Infinity,
+            cacheTime: Infinity,
+            _optimisticResults: 'isRestoring'
+        }
+    }
+});
 
 function TestProvider({ children, customStore }: Props) {
+    setupReactQueryData();
     return (
         <Provider store={customStore || getTestStore()}>
-            <InnstillingerContextProvider>
+            <QueryClientProvider client={queryClient}>
                 <DialogpanelStateProvider>
                     <VisittkortStateProvider>
                         <MeldingsokProvider>
@@ -31,7 +42,7 @@ function TestProvider({ children, customStore }: Props) {
                         </MeldingsokProvider>
                     </VisittkortStateProvider>
                 </DialogpanelStateProvider>
-            </InnstillingerContextProvider>
+            </QueryClientProvider>
         </Provider>
     );
 }

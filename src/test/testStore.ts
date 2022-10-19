@@ -17,6 +17,7 @@ import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUt
 import { SaksbehandlerRoller } from '../app/personside/dialogpanel/RollerUtils';
 import { apiBaseUri } from '../api/config';
 import { aremark } from '../mock/persondata/aremark';
+import innstillingerResource from '../rest/resources/innstillingerResource';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -82,4 +83,14 @@ export function setupFetchCache() {
         sistLagret: new Date().toISOString(),
         innstillinger: {}
     });
+}
+
+jest.mock('../rest/resources/innstillingerResource');
+export function setupReactQueryData() {
+    (innstillingerResource.useFetch as jest.Mock<any>).mockImplementation(() => ({
+        data: {
+            sistLagret: new Date().toISOString(),
+            innstillinger: {}
+        }
+    }));
 }
