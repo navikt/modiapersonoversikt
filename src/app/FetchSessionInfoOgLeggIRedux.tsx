@@ -1,5 +1,5 @@
 import { useInitializeLogger } from '../utils/logger/frontendLogger';
-import gsaktemaResource from '../rest/resources/gsakTema';
+import gsaktemaResource from '../rest/resources/gsaktemaResource';
 import baseurls from '../rest/resources/baseurlsResource';
 import innloggetSaksbehandler from '../rest/resources/innloggetSaksbehandler';
 import saksbehandlersEnheter from '../rest/resources/saksbehandlersEnheter';
@@ -11,7 +11,7 @@ function FetchSessionInfoOgLeggIRedux() {
 
     innloggetSaksbehandler.useFetch();
     saksbehandlersEnheter.useFetch();
-    gsaktemaResource.useFetch();
+    gsaktemaResource.prefetch(queryClient);
     baseurls.prefetch(queryClient);
 
     return null;

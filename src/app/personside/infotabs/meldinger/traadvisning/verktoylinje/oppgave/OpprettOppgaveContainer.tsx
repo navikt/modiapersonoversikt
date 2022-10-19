@@ -1,9 +1,8 @@
 import * as React from 'react';
-// import NavFrontendSpinner from 'nav-frontend-spinner';
 import OppgaveSkjema from './OppgaveSkjema';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import ErrorBoundary from '../../../../../../../components/ErrorBoundary';
-import gsaktemaResource from '../../../../../../../rest/resources/gsakTema';
+import gsaktemaResource from '../../../../../../../rest/resources/gsaktemaResource';
 import { CenteredLazySpinner } from '../../../../../../../components/LazySpinner';
 
 interface Props {
