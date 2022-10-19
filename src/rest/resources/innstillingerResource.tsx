@@ -11,7 +11,7 @@ export interface Innstillinger {
     [key: string]: string;
 }
 
-const queryId = ['innstillinger'];
+const queryKey = ['innstillinger'];
 const url = '/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger';
 
 function fetchInnstillinger(): Promise<SaksbehandlerInnstillinger> {
@@ -23,7 +23,7 @@ async function updateInnstillinger(innstillinger: Innstillinger): Promise<Saksbe
 
 const resource = {
     useFetch(): UseQueryResult<SaksbehandlerInnstillinger, Error> {
-        return useQuery(queryId, fetchInnstillinger);
+        return useQuery(queryKey, fetchInnstillinger);
     },
     useInnstilling<T extends string>(key: string, defaultValue: T): T {
         const req = this.useFetch();
@@ -36,7 +36,7 @@ const resource = {
         const queryClient = useQueryClient();
         return useMutation(updateInnstillinger, {
             onSuccess(data: SaksbehandlerInnstillinger) {
-                queryClient.setQueryData(queryId, data);
+                queryClient.setQueryData(queryKey, data);
             }
         });
     }

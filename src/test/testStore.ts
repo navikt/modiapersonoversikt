@@ -20,6 +20,7 @@ import { aremark } from '../mock/persondata/aremark';
 import innstillingerResource from '../rest/resources/innstillingerResource';
 import dialogResource from '../rest/resources/dialogResource';
 import baseurlsResource from '../rest/resources/baseurlsResource';
+import featuretogglesResource from '../rest/resources/featuretogglesResource';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -66,9 +67,6 @@ export function setupFetchCache() {
     cache.putResolved(createCacheKey(`${apiBaseUri}/ytelse/foreldrepenger/${aremark.personIdent}`), {
         foreldrepenger: [statiskForeldrepengeMock]
     });
-    cache.putResolved(createCacheKey(`${apiBaseUri}/featuretoggle`), {
-        toggleId: false
-    });
     cache.putResolved(createCacheKey(`${apiBaseUri}/hode/me`), getMockInnloggetSaksbehandler());
     cache.putResolved(
         createCacheKey(
@@ -82,20 +80,23 @@ export function setupFetchCache() {
     );
 }
 
-function mockReactQuest(resource: any, data: any) {
+export function mockReactQuery(resource: any, data: any, extra: {} = {}) {
     (resource as jest.Mock<any>).mockImplementation(() => ({
-        data
+        data,
+        ...extra
     }));
 }
 export function setupReactQueryMocks() {
     jest.spyOn(innstillingerResource, 'useFetch');
     jest.spyOn(dialogResource, 'useFetch');
     jest.spyOn(baseurlsResource, 'useFetch');
+    jest.spyOn(featuretogglesResource, 'useFetch');
 
-    mockReactQuest(innstillingerResource.useFetch, {
+    mockReactQuery(innstillingerResource.useFetch, {
         sistLagret: new Date().toISOString(),
         innstillinger: {}
     });
-    mockReactQuest(dialogResource.useFetch, [statiskTraadMock]);
-    mockReactQuest(baseurlsResource.useFetch, mockBaseUrls());
+    mockReactQuery(dialogResource.useFetch, [statiskTraadMock]);
+    mockReactQuery(baseurlsResource.useFetch, mockBaseUrls());
+    mockReactQuery(featuretogglesResource.useFetch, { toggleId: false });
 }
