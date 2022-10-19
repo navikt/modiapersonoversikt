@@ -3,8 +3,7 @@ import { ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { Select } from 'nav-frontend-skjema';
 import theme from '../styles/personOversiktTheme';
-import saksbehandlersEnheter from '../rest/resources/saksbehandlersEnheter';
-import { hasData, hasError, isPending } from '@nutgaard/use-fetch';
+import saksbehandlersEnheter from '../rest/resources/saksbehandlersEnheterResource';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LazySpinner from '../components/LazySpinner';
 import { useValgtenhet } from '../context/valgtenhet-state';
@@ -24,14 +23,14 @@ function VelgEnhet() {
     const setEnhetId = useValgtenhet().setEnhetId;
 
     useEffect(() => {
-        if (hasData(enheter) && enheter.data?.enhetliste.length === 1) {
+        if (enheter.data && enheter.data?.enhetliste.length === 1) {
             setEnhetId(enheter.data.enhetliste[0].enhetId);
         }
     }, [enheter, setEnhetId]);
 
-    if (isPending(enheter)) {
+    if (enheter.isLoading) {
         return <LazySpinner type="M" />;
-    } else if (hasError(enheter)) {
+    } else if (enheter.isError) {
         return <AlertStripeAdvarsel>Kunne ikke hente enhetsliste</AlertStripeAdvarsel>;
     }
 
