@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { get, post } from '../../api/api';
+import { FetchError, get, post } from '../../api/api';
 import { UseMutationResult, UseQueryResult } from '@tanstack/react-query/src/types';
 
 export interface SaksbehandlerInnstillinger {
@@ -22,7 +22,7 @@ async function updateInnstillinger(innstillinger: Innstillinger): Promise<Saksbe
 }
 
 const resource = {
-    useFetch(): UseQueryResult<SaksbehandlerInnstillinger, Error> {
+    useFetch(): UseQueryResult<SaksbehandlerInnstillinger, FetchError> {
         return useQuery(queryKey, fetchInnstillinger);
     },
     useInnstilling<T extends string>(key: string, defaultValue: T): T {
@@ -32,7 +32,7 @@ const resource = {
         }
         return defaultValue;
     },
-    useMutation(): UseMutationResult<SaksbehandlerInnstillinger, Error, Innstillinger> {
+    useMutation(): UseMutationResult<SaksbehandlerInnstillinger, FetchError, Innstillinger> {
         const queryClient = useQueryClient();
         return useMutation(updateInnstillinger, {
             onSuccess(data: SaksbehandlerInnstillinger) {

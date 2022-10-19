@@ -21,6 +21,9 @@ import innstillingerResource from '../rest/resources/innstillingerResource';
 import dialogResource from '../rest/resources/dialogResource';
 import baseurlsResource from '../rest/resources/baseurlsResource';
 import featuretogglesResource from '../rest/resources/featuretogglesResource';
+import foreldrepengerResource from '../rest/resources/foreldrepengerResource';
+import pleiepengerResource from '../rest/resources/pleiepengerResource';
+import sykepengerResource from '../rest/resources/sykepengerResource';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -58,15 +61,6 @@ export function setupFetchCache() {
     );
     cache.putResolved(createCacheKey(`${apiBaseUri}/baseurls`), mockBaseUrls());
     cache.putResolved(createCacheKey(`${apiBaseUri}/veileder/roller`), { roller: [SaksbehandlerRoller.HentOppgave] });
-    cache.putResolved(createCacheKey(`${apiBaseUri}/ytelse/sykepenger/${aremark.personIdent}`), {
-        sykepenger: [statiskSykepengerMock]
-    });
-    cache.putResolved(createCacheKey(`${apiBaseUri}/ytelse/pleiepenger/${aremark.personIdent}`), {
-        pleiepenger: [pleiepengerTestData]
-    });
-    cache.putResolved(createCacheKey(`${apiBaseUri}/ytelse/foreldrepenger/${aremark.personIdent}`), {
-        foreldrepenger: [statiskForeldrepengeMock]
-    });
     cache.putResolved(createCacheKey(`${apiBaseUri}/hode/me`), getMockInnloggetSaksbehandler());
     cache.putResolved(
         createCacheKey(
@@ -91,6 +85,9 @@ export function setupReactQueryMocks() {
     jest.spyOn(dialogResource, 'useFetch');
     jest.spyOn(baseurlsResource, 'useFetch');
     jest.spyOn(featuretogglesResource, 'useFetch');
+    jest.spyOn(foreldrepengerResource, 'useFetch');
+    jest.spyOn(pleiepengerResource, 'useFetch');
+    jest.spyOn(sykepengerResource, 'useFetch');
 
     mockReactQuery(innstillingerResource.useFetch, {
         sistLagret: new Date().toISOString(),
@@ -99,4 +96,13 @@ export function setupReactQueryMocks() {
     mockReactQuery(dialogResource.useFetch, [statiskTraadMock]);
     mockReactQuery(baseurlsResource.useFetch, mockBaseUrls());
     mockReactQuery(featuretogglesResource.useFetch, { toggleId: false });
+    mockReactQuery(foreldrepengerResource.useFetch, {
+        foreldrepenger: [statiskForeldrepengeMock]
+    });
+    mockReactQuery(pleiepengerResource.useFetch, {
+        pleiepenger: [pleiepengerTestData]
+    });
+    mockReactQuery(sykepengerResource.useFetch, {
+        sykepenger: [statiskSykepengerMock]
+    });
 }

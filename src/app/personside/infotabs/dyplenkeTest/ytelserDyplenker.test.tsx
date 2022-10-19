@@ -5,8 +5,10 @@ import InfoTabs from '../InfoTabs';
 import { INFOTABS } from '../InfoTabEnum';
 import { getAktivTab, ytelserTest } from './utils-dyplenker-test';
 import { BrowserRouter } from 'react-router-dom';
+import { setupReactQueryMocks } from '../../../../test/testStore';
 
 test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra oversikt', () => {
+    setupReactQueryMocks();
     const infoTabs = mount(
         <TestProvider>
             <BrowserRouter>
@@ -21,21 +23,11 @@ test('bytter til riktig tab og åpner valgt ytelse ved bruk av dyplenke fra over
 
     expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.YTELSER.path);
 
-    const forventetMarkert = infoTabs
-        .find('VisMerKnapp')
-        .at(1)
-        .find('button')
-        .html()
-        .includes('aria-selected="true"');
+    const forventetMarkert = infoTabs.find('VisMerKnapp').at(1).find('button').html().includes('aria-selected="true"');
 
     expect(forventetMarkert);
 
-    const ikkeMarkert = infoTabs
-        .find('VisMerKnapp')
-        .at(0)
-        .find('button')
-        .html()
-        .includes('aria-selected="false"');
+    const ikkeMarkert = infoTabs.find('VisMerKnapp').at(0).find('button').html().includes('aria-selected="false"');
 
     expect(ikkeMarkert);
 });

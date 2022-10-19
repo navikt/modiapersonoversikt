@@ -2,11 +2,12 @@ import * as React from 'react';
 import { ReactNode, useMemo } from 'react';
 import { datoSynkende } from '../../../../utils/date-utils';
 import { getYtelseIdDato, Ytelse } from '../../../../models/ytelse/ytelse-utils';
-import sykepengerFetcher from '../../../../rest/resources/sykepenger';
-import pleiepengerFetcher from '../../../../rest/resources/pleiepenger';
-import foreldrepengerFetcher from '../../../../rest/resources/foreldrepenger';
-import { hasData, isPending, hasError, FetchResult } from '@nutgaard/use-fetch';
+import sykepengerResource from '../../../../rest/resources/sykepengerResource';
+import pleiepengerResource from '../../../../rest/resources/pleiepengerResource';
+import foreldrepengerResource from '../../../../rest/resources/foreldrepengerResource';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { UseQueryResult } from '@tanstack/react-query';
+import { FetchError } from '../../../../api/api';
 
 interface Returns {
     ytelser: Ytelse[];
@@ -31,42 +32,42 @@ const sykepengerPlaceholder = {
 };
 
 type Placeholder = { returnOnForbidden: string; returnOnError: string; returnOnNotFound: string };
-function placeholder(resource: FetchResult<any>, tekster: Placeholder) {
-    if (resource.statusCode === 404) {
-        return <AlertStripeAdvarsel>{tekster.returnOnNotFound}</AlertStripeAdvarsel>;
-    } else if (resource.statusCode === 403) {
-        return <AlertStripeAdvarsel>{tekster.returnOnForbidden}</AlertStripeAdvarsel>;
-    } else if (hasError(resource)) {
-        return <AlertStripeAdvarsel>{tekster.returnOnError}</AlertStripeAdvarsel>;
-    } else {
+function placeholder(resource: UseQueryResult<any, FetchError>, tekster: Placeholder) {
+    if (!resource.isError) {
         return null;
+    } else if (resource.error.response.status === 404) {
+        return <AlertStripeAdvarsel>{tekster.returnOnNotFound}</AlertStripeAdvarsel>;
+    } else if (resource.error.response.status === 403) {
+        return <AlertStripeAdvarsel>{tekster.returnOnForbidden}</AlertStripeAdvarsel>;
+    } else {
+        return <AlertStripeAdvarsel>{tekster.returnOnError}</AlertStripeAdvarsel>;
     }
 }
 
 function useBrukersYtelser(): Returns {
-    const foreldrepengerResource = foreldrepengerFetcher.useFetch();
-    const pleiepengerResource = pleiepengerFetcher.useFetch();
-    const sykepengerResource = sykepengerFetcher.useFetch();
+    const foreldrepengerResponse = foreldrepengerResource.useFetch();
+    const pleiepengerResponse = pleiepengerResource.useFetch();
+    const sykepengerResponse = sykepengerResource.useFetch();
 
     return useMemo(() => {
         const pending =
-            isPending(pleiepengerResource) || isPending(foreldrepengerResource) || isPending(sykepengerResource);
-        const foreldrepenger = hasData(foreldrepengerResource) ? foreldrepengerResource.data.foreldrepenger || [] : [];
-        const pleiepenger = hasData(pleiepengerResource) ? pleiepengerResource.data.pleiepenger || [] : [];
-        const sykepenger = hasData(sykepengerResource) ? sykepengerResource.data.sykepenger || [] : [];
+            pleiepengerResponse.isLoading || foreldrepengerResponse.isLoading || sykepengerResponse.isLoading;
+        const foreldrepenger = foreldrepengerResponse.data ? foreldrepengerResponse.data.foreldrepenger || [] : [];
+        const pleiepenger = pleiepengerResponse.data ? pleiepengerResponse.data.pleiepenger || [] : [];
+        const sykepenger = sykepengerResponse.data ? sykepengerResponse.data.sykepenger || [] : [];
 
         const ytelser = [...foreldrepenger, ...pleiepenger, ...sykepenger];
         const ytelserSortert = ytelser.sort(datoSynkende((ytelse: Ytelse) => getYtelseIdDato(ytelse)));
+
         const placeholders = [
-            placeholder(foreldrepengerResource, foreldrepengerPlaceholder),
-            placeholder(pleiepengerResource, pleiepengerPlaceholder),
-            placeholder(sykepengerResource, sykepengerPlaceholder)
+            placeholder(foreldrepengerResponse, foreldrepengerPlaceholder),
+            placeholder(pleiepengerResponse, pleiepengerPlaceholder),
+            placeholder(sykepengerResponse, sykepengerPlaceholder)
         ];
 
-        const harFeil =
-            hasError(foreldrepengerResource) || hasError(pleiepengerResource) || hasError(sykepengerResource);
+        const harFeil = foreldrepengerResponse.isError || pleiepengerResponse.isError || sykepengerResponse.isError;
         return { ytelser: ytelserSortert, pending: pending, placeholders: placeholders, harFeil: harFeil };
-    }, [foreldrepengerResource, pleiepengerResource, sykepengerResource]);
+    }, [foreldrepengerResponse, pleiepengerResponse, sykepengerResponse]);
 }
 
 export default useBrukersYtelser;

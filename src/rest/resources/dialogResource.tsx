@@ -6,7 +6,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import { Traad } from '../../models/meldinger/meldinger';
 import { useValgtenhet } from '../../context/valgtenhet-state';
-import { get } from '../../api/api';
+import { FetchError, get } from '../../api/api';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 function url(fnr: string, enhet: string | undefined): string {
@@ -32,7 +32,7 @@ const resource = {
     queryKey(fnr: string, enhet: string | undefined) {
         return ['dialog', fnr, enhet];
     },
-    useFetch(): UseQueryResult<Traad[], Error> {
+    useFetch(): UseQueryResult<Traad[], FetchError> {
         const [fnr, enhetId] = useReduxData();
         return useQuery(this.queryKey(fnr, enhetId), () => fetchDialog(fnr, enhetId));
     },
