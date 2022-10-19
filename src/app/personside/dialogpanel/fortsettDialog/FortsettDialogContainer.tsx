@@ -11,7 +11,7 @@ import { SvarSendtKvittering } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { loggError } from '../../../../utils/logger/frontendLogger';
-import { post } from '../../../../api/api';
+import { FetchError, post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import {
     DialogPanelStatus,
@@ -28,11 +28,10 @@ import { Temagruppe } from '../../../../models/temagrupper';
 import useDraft, { Draft } from '../use-draft';
 import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
-import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaver';
-import { FetchResult, hasData } from '@nutgaard/use-fetch';
+import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaverResource';
 import dialogResource from '../../../../rest/resources/dialogResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
-import { useQueryClient } from '@tanstack/react-query';
+import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -51,9 +50,9 @@ const StyledArticle = styled.article`
 
 export function finnPlukketOppgaveForTraad(
     traad: Traad,
-    resource: FetchResult<Oppgave[]>
+    resource: UseQueryResult<Oppgave[], FetchError>
 ): { oppgave: Oppgave | undefined; erSTOOppgave: boolean } {
-    if (!hasData(resource)) {
+    if (!resource.data) {
         return { oppgave: undefined, erSTOOppgave: false };
     } else {
         const oppgave: Oppgave | undefined = resource.data.find(
@@ -130,7 +129,7 @@ function FortsettDialogContainer(props: Props) {
         }
         const callback = () => {
             removeDraft();
-            tildelteOppgaverResource.rerun();
+            tildelteOppgaverResource.refetch();
             queryClient.invalidateQueries(dialogResource.queryKey(fnr, valgtEnhet));
         };
 
