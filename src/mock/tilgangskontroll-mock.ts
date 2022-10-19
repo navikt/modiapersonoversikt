@@ -1,6 +1,6 @@
 import navfaker from 'nav-faker';
 import { AuthIntropectionDTO } from '../utils/hooks/use-persistent-login';
-import { IkkeTilgangArsak, TilgangDTO } from '../rest/resources/tilgangskontroll';
+import { IkkeTilgangArsak, TilgangDTO } from '../rest/resources/tilgangskontrollResource';
 
 export function authMock(): AuthIntropectionDTO {
     return { expirationDate: new Date().getTime() + 2.5 * 60 * 1000 };
