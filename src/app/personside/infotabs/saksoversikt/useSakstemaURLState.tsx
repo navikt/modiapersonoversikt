@@ -5,9 +5,8 @@ import { datoSynkende } from '../../../../utils/date-utils';
 import { hentDatoForSisteHendelse, sakstemakodeAlle, sakstemakodeIngen } from './utils/saksoversiktUtils';
 import { useQueryParams } from '../../../../utils/url-utils';
 import { Dokument, Journalpost } from '../../../../models/saksoversikt/journalpost';
-import sakstemaLoader from '../../../../rest/resources/sakstema';
+import sakstemaLoader from '../../../../rest/resources/sakstemaResource';
 import { filtrerSakstemaerUtenData } from './sakstemaliste/SakstemaListeUtils';
-import { hasData } from '@nutgaard/use-fetch';
 
 interface SakstemaURLState {
     valgteSakstemaer: Sakstema[];
@@ -93,7 +92,7 @@ export function useHentAlleSakstemaFraResource(): SakstemaResource {
     const resource = sakstemaLoader.useFetch();
 
     return useMemo(() => {
-        if (hasData(resource)) {
+        if (resource.data) {
             return {
                 alleSakstema: resource.data.resultat.sort(datoSynkende((it) => hentDatoForSisteHendelse(it))),
                 isLoading: false
