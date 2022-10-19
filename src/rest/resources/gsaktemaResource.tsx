@@ -4,7 +4,7 @@ import { GsakTema } from '../../models/meldinger/oppgave';
 import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { QueryClient, useQuery, UseQueryResult } from '@tanstack/react-query';
+import { useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, get } from '../../api/api';
 
 const queryKey = ['gsaktema'];
@@ -15,7 +15,8 @@ const defaults: DefaultConfig = {
 };
 
 const resource = {
-    prefetch(queryClient: QueryClient) {
+    usePrefetch() {
+        const queryClient = useQueryClient();
         queryClient.prefetchQuery(queryKey, () => get(url));
     },
     useFetch(): UseQueryResult<GsakTema[], FetchError> {

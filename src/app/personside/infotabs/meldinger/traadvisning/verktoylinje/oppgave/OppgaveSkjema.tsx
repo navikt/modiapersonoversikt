@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { lagOppgaveRequest, matchEnhet } from './byggRequest';
 import { OppgaveProps, OppgaveSkjemaForm } from './oppgaveInterfaces';
 import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../../../../../../redux/reducers';
-import useFetch, { cache, createCacheKey, FetchResult } from '@nutgaard/use-fetch';
-import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
+import { apiBaseUri } from '../../../../../../../api/config';
 import { post } from '../../../../../../../api/api';
 import { Resultat } from '../utils/VisPostResultat';
 import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
@@ -20,13 +18,13 @@ import { feilmelding } from './validering';
 import { Select, Textarea } from 'nav-frontend-skjema';
 import { OppgavetypeOptions, Prioriteter, TemaOptions, UnderkategoriOptions } from './SkjemaElementOptions';
 import AutoComplete from './AutoComplete';
-import { hasData } from '@nutgaard/use-fetch';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 import useForeslatteEnheter from './useForeslåtteEnheter';
 import { useNormalPrioritet } from './oppgave-utils';
 import { FeilmeldingOppsummering } from '../../../../../../../components/FeilmeldingOppsummering';
 import innloggetSaksbehandler from '../../../../../../../rest/resources/innloggetSaksbehandlerResource';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
+import oppgaveBehandlerResource from '../../../../../../../rest/resources/oppgaveBehandlerResource';
 
 const AlertStyling = styled.div`
     > * {
@@ -64,10 +62,6 @@ const SettTilEgenOppgaveListeKnapp = styled(LenkeKnapp)`
     float: right;
 `;
 
-function populerCacheMedTomAnsattliste() {
-    cache.put(createCacheKey(`${apiBaseUri}/enheter/_/ansatte`), Promise.resolve(new Response('[]')));
-}
-
 const useFormstate = formstateFactory<OppgaveSkjemaForm>((values) => {
     const valgtTema = values.valgtTema.length === 0 ? 'Du må velge tema' : undefined;
     const valgtOppgavetype = values.valgtOppgavetype.length === 0 ? 'Du må velge oppgavetype' : undefined;
@@ -90,8 +84,6 @@ const initialValues: OppgaveSkjemaForm = {
 };
 
 function OppgaveSkjema(props: OppgaveProps) {
-    populerCacheMedTomAnsattliste();
-
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useValgtenhet().enhetId;
     const saksbehandlerIdent = innloggetSaksbehandler.useFetch();
@@ -101,10 +93,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     const valgtTema = props.gsakTema.find((gsakTema) => gsakTema.kode === state.fields.valgtTema?.input.value);
     useNormalPrioritet(state, valgtTema);
 
-    const enhetliste: FetchResult<Array<Enhet>> = useFetch<Array<Enhet>>(
-        `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
-        includeCredentials
-    );
+    const enhetliste = oppgaveBehandlerResource.useFetch();
     const foreslatteEnheter = useForeslatteEnheter(
         state.fields.valgtTema?.input.value,
         state.fields.valgtOppgavetype?.input.value,
@@ -160,7 +149,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         );
     }
     const settTilSaksbehandlerOppgaveListe = async () => {
-        const enhet = hasData(enhetliste) ? enhetliste.data.find((e) => e.enhetId === saksbehandlersEnhet) : undefined;
+        const enhet = enhetliste.data ? enhetliste.data.find((e) => e.enhetId === saksbehandlersEnhet) : undefined;
         const enhetValue = enhet ? `${enhet.enhetId} ${enhet.enhetNavn}` : '';
 
         const ansatt = saksbehandlerIdent.data ? saksbehandlerIdent.data : undefined;
@@ -199,7 +188,7 @@ function OppgaveSkjema(props: OppgaveProps) {
                     label={
                         <>
                             <span>Velg enhet</span>
-                            {hasData(enhetliste) && saksbehandlerIdent.data && (
+                            {enhetliste.data && saksbehandlerIdent.data && (
                                 <SettTilEgenOppgaveListeKnapp type="button" onClick={settTilSaksbehandlerOppgaveListe}>
                                     Sett til min oppgaveliste
                                 </SettTilEgenOppgaveListeKnapp>
@@ -207,7 +196,7 @@ function OppgaveSkjema(props: OppgaveProps) {
                         </>
                     }
                     suggestions={
-                        hasData(enhetliste) ? enhetliste.data.map((enhet) => `${enhet.enhetId} ${enhet.enhetNavn}`) : []
+                        enhetliste.data ? enhetliste.data.map((enhet) => `${enhet.enhetId} ${enhet.enhetNavn}`) : []
                     }
                     topSuggestions={foreslatteEnheter.foreslatteEnheter.map(
                         (enhet) => `${enhet.enhetId} ${enhet.enhetNavn}`

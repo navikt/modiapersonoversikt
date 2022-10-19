@@ -9,10 +9,9 @@ import { formatterDatoMedMaanedsnavn } from '../../../../utils/date-utils';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
-import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
-import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import ModalWrapper from 'nav-frontend-modal';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import journalsakResource from '../../../../rest/resources/journalsakResource';
 
 interface Props {
     valgtSak?: JournalforingsSak;
@@ -25,13 +24,6 @@ function getTittel(sak: JournalforingsSak) {
     return [sak.opprettetDato && formatterDatoMedMaanedsnavn(sak.opprettetDato), sak.temaNavn, sak.saksIdVisning]
         .map((element) => (element ? element : '-'))
         .join(' | ');
-}
-
-function usePreFetchJournalforingsSaker() {
-    const fnr = useFodselsnummer();
-    useOnMount(() => {
-        JournalforingUtils.prefetchSaker(fnr);
-    });
 }
 
 const StyledModalWrapper = styled(ModalWrapper)`
@@ -62,7 +54,7 @@ const StyledDiv = styled.div`
 `;
 function DialogpanelVelgSak(props: Props) {
     const knappRef = createRef<HTMLButtonElement>();
-    usePreFetchJournalforingsSaker();
+    journalsakResource.usePrefetch();
     const [apen, settApen] = useState(false);
 
     const handleVelgSak = (sak: JournalforingsSak) => {

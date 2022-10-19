@@ -5,7 +5,7 @@ import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { BaseUrl, BaseUrlsResponse } from '../../models/baseurls';
 import { loggError } from '../../utils/logger/frontendLogger';
-import { QueryClient, useQuery, UseQueryResult } from '@tanstack/react-query';
+import { useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, get } from '../../api/api';
 
 export function hentBaseUrl(baseUrlsResponse: BaseUrlsResponse, key: string) {
@@ -29,7 +29,8 @@ const defaults: DefaultConfig = {
 };
 
 const resource = {
-    prefetch(queryClient: QueryClient) {
+    usePrefetch() {
+        const queryClient = useQueryClient();
         queryClient.prefetchQuery(queryKey, () => get(url));
     },
     useFetch(): UseQueryResult<BaseUrlsResponse, FetchError> {
