@@ -25,6 +25,7 @@ import foreldrepengerResource from '../rest/resources/foreldrepengerResource';
 import pleiepengerResource from '../rest/resources/pleiepengerResource';
 import sykepengerResource from '../rest/resources/sykepengerResource';
 import gsaktemaResource from '../rest/resources/gsaktemaResource';
+import oppfolgingResource from '../rest/resources/oppfolgingResource';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -63,12 +64,6 @@ export function setupFetchCache() {
     cache.putResolved(createCacheKey(`${apiBaseUri}/veileder/roller`), { roller: [SaksbehandlerRoller.HentOppgave] });
     cache.putResolved(createCacheKey(`${apiBaseUri}/hode/me`), getMockInnloggetSaksbehandler());
     cache.putResolved(
-        createCacheKey(
-            `${apiBaseUri}/oppfolging/${aremark.personIdent}/ytelserogkontrakter?startDato=1969-11-01&sluttDato=1970-02-01`
-        ),
-        statiskOppfolgingMock
-    );
-    cache.putResolved(
         createCacheKey(`${apiBaseUri}/utbetaling/${aremark.personIdent}?startDato=1969-12-02&sluttDato=1970-04-11`),
         statiskMockUtbetalingRespons
     );
@@ -89,6 +84,7 @@ export function setupReactQueryMocks() {
     jest.spyOn(pleiepengerResource, 'useFetch');
     jest.spyOn(sykepengerResource, 'useFetch');
     jest.spyOn(gsaktemaResource, 'useFetch');
+    jest.spyOn(oppfolgingResource, 'useFetch');
 
     mockReactQuery(innstillingerResource.useFetch, {
         sistLagret: new Date().toISOString(),
@@ -107,4 +103,5 @@ export function setupReactQueryMocks() {
     mockReactQuery(sykepengerResource.useFetch, {
         sykepenger: [statiskSykepengerMock]
     });
+    mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
 }
