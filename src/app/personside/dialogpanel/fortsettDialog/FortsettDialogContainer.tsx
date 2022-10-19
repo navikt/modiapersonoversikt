@@ -26,12 +26,12 @@ import theme from '../../../../styles/personOversiktTheme';
 import ReflowBoundry from '../ReflowBoundry';
 import { Temagruppe } from '../../../../models/temagrupper';
 import useDraft, { Draft } from '../use-draft';
-import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
 import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaverResource';
 import dialogResource from '../../../../rest/resources/dialogResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
+import journalsakResource from '../../../../rest/resources/journalsakResource';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -188,8 +188,8 @@ function FortsettDialogContainer(props: Props) {
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
-                    JournalforingUtils.slettCacheForSaker(fnr);
                     callback();
+                    queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
                 .catch(() => {
