@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRQRest } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { apiBaseUri } from '../../api/config';
@@ -35,7 +35,7 @@ const resource = {
     },
     useRenderer(renderer: RendererOrConfig<SakstemaResponse>) {
         const response = this.useFetch();
-        return useRQRest(response, applyDefaults(defaults, renderer));
+        return useRest(response, applyDefaults(defaults, renderer));
     }
 };
 
