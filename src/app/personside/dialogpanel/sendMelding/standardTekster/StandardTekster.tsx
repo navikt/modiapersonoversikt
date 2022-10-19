@@ -20,7 +20,7 @@ import LazySpinner from '../../../../../components/LazySpinner';
 import AriaNotification from '../../../../../components/AriaNotification';
 import { useHentPersondata, usePrevious } from '../../../../../utils/customHooks';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import saksbehandlersEnheter from '../../../../../rest/resources/saksbehandlersEnheter';
+import saksbehandlersEnheter from '../../../../../rest/resources/saksbehandlersEnheterResource';
 
 interface Props {
     sokefelt: FieldState;
@@ -183,9 +183,9 @@ function StandardTekster(props: Props) {
         );
     }
 
-    if (isPending(persondata) || isPending(enheterResource)) {
+    if (isPending(persondata) || enheterResource.isLoading) {
         return <LazySpinner type={'M'} />;
-    } else if (hasError(persondata) || hasError(enheterResource)) {
+    } else if (hasError(persondata) || enheterResource.isError) {
         return <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
     }
 
