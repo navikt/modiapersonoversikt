@@ -12,6 +12,7 @@ import SladdTradMedArsak from './SladdTradMedArsak';
 import SladdMeldingerMedArsak from './SladdMeldingerMedArsak';
 import css from './Sladdvalg.module.css';
 import { useSladdeArsak } from './use-sladde-arsak';
+import { QueryClient } from '@tanstack/react-query';
 
 interface Props {
     traad: Traad;
@@ -19,8 +20,8 @@ interface Props {
 
 export type SladdeObjekt = ({ traadId: string } | { meldingId: Array<string> }) & { arsak?: string };
 
-export function velgMeldingerTilSladding(traad: Traad) {
-    return renderPopup(Sladdevalg, { traad });
+export function velgMeldingerTilSladding(traad: Traad, queryClient: QueryClient) {
+    return renderPopup(queryClient, Sladdevalg, { traad });
 }
 const ModalBase = styled(NavFrontendModal)`
     &.modal {
