@@ -19,7 +19,7 @@ import {
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import { RadioPanelGruppe, RadioPanelProps } from 'nav-frontend-skjema';
 import { apiBaseUri } from '../../../../../../../api/config';
-import { post } from '../../../../../../../api/api';
+import { FetchError, post } from '../../../../../../../api/api';
 import {
     MerkLukkTraadRequest,
     MerkRequestMedBehandlingskjede,
@@ -30,14 +30,13 @@ import { Resultat } from '../utils/VisPostResultat';
 import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-focus-on-first-focusable';
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
 import { Oppgave } from '../../../../../../../models/meldinger/oppgave';
-import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaver';
-import { FetchResult, hasData } from '@nutgaard/use-fetch';
+import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaverResource';
 import { SladdeObjekt, velgMeldingerTilSladding } from './sladdevalg/Sladdevalg';
 import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
 import dialogResource from '../../../../../../../rest/resources/dialogResource';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
-import { useQueryClient } from '@tanstack/react-query';
+import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
 
 interface Props {
     lukkPanel: () => void;
@@ -115,8 +114,11 @@ function getLukkTraadRequest(fnr: string, valgtEnhet: string, traad: Traad, oppg
     };
 }
 
-function finnOppgaveForTraad(traad: Traad, tildelteOppgaver: FetchResult<Oppgave[]>): Oppgave | undefined {
-    if (hasData(tildelteOppgaver)) {
+function finnOppgaveForTraad(
+    traad: Traad,
+    tildelteOppgaver: UseQueryResult<Oppgave[], FetchError>
+): Oppgave | undefined {
+    if (tildelteOppgaver.data) {
         return tildelteOppgaver.data.find((it) => it.traadId === traad.traadId);
     }
     return undefined;
@@ -178,7 +180,7 @@ function MerkPanel(props: Props) {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
                 queryClient.invalidateQueries(dialogResource.queryKey(valgtBrukersFnr, valgtEnhet));
-                tildelteOppgaverResource.rerun();
+                tildelteOppgaverResource.refetch();
                 dispatch(setIngenValgtTraadDialogpanel());
             })
             .catch(() => {
@@ -199,7 +201,7 @@ function MerkPanel(props: Props) {
                 break;
             case MerkOperasjon.SLADDING:
                 if (skalSendeArsak) {
-                    const sladdeObjekt: SladdeObjekt | null = await velgMeldingerTilSladding(valgtTraad);
+                    const sladdeObjekt: SladdeObjekt | null = await velgMeldingerTilSladding(valgtTraad, queryClient);
                     // If null, then modal was closed without "submitting form"
                     if (sladdeObjekt !== null) {
                         merkPost(
