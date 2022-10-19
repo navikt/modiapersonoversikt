@@ -12,7 +12,7 @@ import JournalPoster from './saksdokumenter/JournalPoster';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 import SakerFullscreenLenke from './SakerFullscreenLenke';
 import { useHentAlleSakstemaFraResource, useSakstemaURLState } from './useSakstemaURLState';
-import sakstema from '../../../../rest/resources/sakstema';
+import sakstema from '../../../../rest/resources/sakstemaResource';
 
 const saksoversiktMediaTreshold = '70rem';
 

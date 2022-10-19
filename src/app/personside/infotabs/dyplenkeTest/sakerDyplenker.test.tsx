@@ -5,8 +5,10 @@ import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
 import { INFOTABS } from '../InfoTabEnum';
 import { getAktivTab, sakerTest } from './utils-dyplenker-test';
+import { setupReactQueryMocks } from '../../../../test/testStore';
 
 test('bytter til riktig tab og setter riktig sakstema ved bruk av dyplenke fra oversikt', () => {
+    setupReactQueryMocks();
     const infoTabs = mount(
         <TestProvider>
             <BrowserRouter>
