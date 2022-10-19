@@ -1,4 +1,4 @@
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRQRest } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import * as React from 'react';
@@ -52,7 +52,7 @@ const resource = {
     },
     useOversiktRenderer(renderer: RendererOrConfig<UtbetalingerResponse>) {
         const response = this.useFetch(true);
-        return useRQRest(response, applyDefaults(defaults, renderer));
+        return useRest(response, applyDefaults(defaults, renderer));
     }
 };
 

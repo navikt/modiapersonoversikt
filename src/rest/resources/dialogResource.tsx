@@ -1,4 +1,4 @@
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRQRest } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { apiBaseUri } from '../../api/config';
 import { useAppState } from '../../utils/customHooks';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
@@ -34,7 +34,7 @@ const resource = {
     },
     useRenderer(renderer: RendererOrConfig<Traad[]>) {
         const response = this.useFetch();
-        return useRQRest(response, applyDefaults(defaults, renderer));
+        return useRest(response, applyDefaults(defaults, renderer));
     }
 };
 export default resource;

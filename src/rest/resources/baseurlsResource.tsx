@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { apiBaseUri } from '../../api/config';
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRQRest } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { BaseUrl, BaseUrlsResponse } from '../../models/baseurls';
@@ -37,7 +37,7 @@ const resource = {
     },
     useRenderer(renderer: RendererOrConfig<BaseUrlsResponse>) {
         const response = this.useFetch();
-        return useRQRest(response, applyDefaults(defaults, renderer));
+        return useRest(response, applyDefaults(defaults, renderer));
     }
 };
 

@@ -1,5 +1,5 @@
 import { useFodselsnummer } from '../../utils/customHooks';
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRQRest } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { Oppgave } from '../../models/meldinger/oppgave';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -26,7 +26,7 @@ const resource = {
     },
     useRenderer(renderer: RendererOrConfig<Oppgave[]>) {
         const response = this.useFetch();
-        return useRQRest(response, applyDefaults(defaults, renderer));
+        return useRest(response, applyDefaults(defaults, renderer));
     }
 };
 export default resource;

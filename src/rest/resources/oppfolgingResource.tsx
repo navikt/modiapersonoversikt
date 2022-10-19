@@ -1,4 +1,4 @@
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRQRest } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { DetaljertOppfolging } from '../../models/oppfolging';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -33,7 +33,7 @@ const resource = {
     },
     useRenderer(renderer: RendererOrConfig<DetaljertOppfolging>) {
         const response = this.useFetch();
-        return useRQRest(response, applyDefaults(defaults, renderer));
+        return useRest(response, applyDefaults(defaults, renderer));
     }
 };
 
