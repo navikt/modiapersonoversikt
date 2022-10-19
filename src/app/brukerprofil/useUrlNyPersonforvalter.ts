@@ -1,7 +1,7 @@
 import useFetch, { FetchResult, hasData } from '@nutgaard/use-fetch';
 import { useFodselsnummer } from '../../utils/customHooks';
 import { apiBaseUri, includeCredentials } from '../../api/config';
-import baseurls, { hentBaseUrl } from '../../rest/resources/baseurls';
+import baseurls, { hentBaseUrl } from '../../rest/resources/baseurlsResource';
 
 function useUrlNyPersonforvalter() {
     const baseUrlResource = baseurls.useFetch();
@@ -11,7 +11,7 @@ function useUrlNyPersonforvalter() {
         includeCredentials
     );
 
-    if (!hasData(aktorIdResponse) || !hasData(baseUrlResource)) {
+    if (!hasData(aktorIdResponse) || !baseUrlResource.data) {
         return '';
     }
 
