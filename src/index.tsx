@@ -1,8 +1,6 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 import './extra-polyfills';
-import { setCacheKeyGenerator } from '@nutgaard/use-fetch';
-import { tracingAwareKeyGenerator } from './sentry';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import './index.less';
@@ -10,8 +8,6 @@ import AppContainer from './app/AppContainer';
 import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
 import './window-variabler';
 setupTimeSpentMetrics();
-
-setCacheKeyGenerator(tracingAwareKeyGenerator);
 
 if (process.env.REACT_APP_MOCK_ENABLED === 'true') {
     require('./mock');
