@@ -1,12 +1,11 @@
 import { FeatureToggles } from './toggleIDs';
-import featuretoggles from '../../rest/resources/featuretoggles';
-import { hasError, isPending } from '@nutgaard/use-fetch';
+import featuretoggles from '../../rest/resources/featuretogglesResource';
 
 function useFeatureToggle(toggleId: FeatureToggles) {
     const toggles = featuretoggles.useFetch();
-    if (isPending(toggles)) {
+    if (toggles.isLoading) {
         return { pending: true };
-    } else if (hasError(toggles)) {
+    } else if (toggles.isError) {
         return { pending: true };
     } else {
         return { pending: false, isOn: toggles.data[toggleId] };

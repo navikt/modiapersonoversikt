@@ -47,7 +47,6 @@ export function useRQRest<TData = unknown, TError = unknown>(
     response: UseQueryResult<TData, TError>,
     config: Config<TData>
 ): ReactElement {
-    console.log('response', response.isLoading, response.isError, response.data);
     if (response.isLoading) {
         if (typeof config.ifPending === 'function') {
             return config.ifPending();

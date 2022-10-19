@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ReactNode } from 'react';
 import LazySpinner from '../LazySpinner';
 import { FeatureToggles } from './toggleIDs';
-import featuretoggles from '../../rest/resources/featuretoggles';
+import featuretoggles from '../../rest/resources/featuretogglesResource';
 
 export enum DisplayWhenToggleIs {
     ON,
