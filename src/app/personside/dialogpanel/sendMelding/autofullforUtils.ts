@@ -5,7 +5,9 @@ import { useHentPersondata } from '../../../../utils/customHooks';
 import { hasData } from '@nutgaard/use-fetch';
 import { Data as PersonData, Kjonn } from '../../visittkort-v2/PersondataDomain';
 import { hentNavn } from '../../visittkort-v2/visittkort-utils';
-import innloggetSaksbehandler, { InnloggetSaksbehandler } from '../../../../rest/resources/innloggetSaksbehandler';
+import innloggetSaksbehandler, {
+    InnloggetSaksbehandler
+} from '../../../../rest/resources/innloggetSaksbehandlerResource';
 import saksbehandlersEnheter, { Enhet } from '../../../../rest/resources/saksbehandlersEnheter';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
 
@@ -126,6 +128,6 @@ export function useAutoFullforData(): AutofullforData | undefined {
     return {
         enhet: valgtEnhet,
         person: hasData(personResponse) ? personResponse.data : undefined,
-        saksbehandler: hasData(saksbehandler) ? saksbehandler.data : undefined
+        saksbehandler: saksbehandler.data ? saksbehandler.data : undefined
     };
 }
