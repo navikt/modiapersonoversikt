@@ -9,6 +9,7 @@ export interface Traad {
 
 export interface Melding {
     id: string;
+    meldingsId: string;
     meldingstype: Meldingstype;
     temagruppe: Temagruppe | null;
     skrevetAvTekst: string;

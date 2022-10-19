@@ -37,6 +37,7 @@ describe('erUbesvartHenvendelseFraBruker', () => {
     const baseMelding: Melding = {
         fritekst: '',
         id: '1234',
+        meldingsId: '12345',
         meldingstype: Meldingstype.SPORSMAL_SKRIFTLIG,
         opprettetDato: '',
         sendtTilSladding: false,
