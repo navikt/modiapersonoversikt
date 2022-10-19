@@ -2,10 +2,9 @@ import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { useHentPersondata } from '../../../../../utils/customHooks';
-import { hasData as hasDataUseFetch } from '@nutgaard/use-fetch';
 import { sakstemakodeAlle } from './saksoversiktUtils';
 import baseurls, { hentBaseUrl } from '../../../../../rest/resources/baseurlsResource';
+import persondataResource from '../../../../../rest/resources/persondataResource';
 
 interface Props {
     valgtSakstema?: Sakstema;
@@ -33,8 +32,8 @@ function byggSokestrengTilNorgTemaOppslag(sakstema: Sakstema) {
 }
 
 function LenkeNorg(props: Props) {
-    const persondata = useHentPersondata();
-    const geografiskTilknytning = hasDataUseFetch(persondata) ? persondata.data.person.geografiskTilknytning : null;
+    const persondata = persondataResource.useFetch();
+    const geografiskTilknytning = persondata.data ? persondata.data.person.geografiskTilknytning : null;
 
     return baseurls.useRenderer((baseUrls) => {
         const norgBaseurl = hentBaseUrl(baseUrls, 'norg2-frontend');

@@ -26,6 +26,7 @@ import gsaktemaResource from '../rest/resources/gsaktemaResource';
 import oppfolgingResource from '../rest/resources/oppfolgingResource';
 import sakstemaResource from '../rest/resources/sakstemaResource';
 import utbetalingerResource from '../rest/resources/utbetalingerResource';
+import persondataResource from '../rest/resources/persondataResource';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -39,10 +40,6 @@ export function getTestStore(): Store<AppState> {
 }
 
 export function setupFetchCache() {
-    cache.putResolved(createCacheKey(`${apiBaseUri}/v2/person/${aremark.personIdent}`), {
-        feiledeSystemer: [],
-        person: aremark
-    });
     cache.putResolved(createCacheKey(`${apiBaseUri}/v2/varsler/${aremark.personIdent}`), {
         feil: [],
         varsler: [
@@ -76,6 +73,7 @@ export function setupReactQueryMocks() {
     jest.spyOn(oppfolgingResource, 'useFetch');
     jest.spyOn(sakstemaResource, 'useFetch');
     jest.spyOn(utbetalingerResource, 'useFetch');
+    jest.spyOn(persondataResource, 'useFetch');
 
     mockReactQuery(innstillingerResource.useFetch, {
         sistLagret: new Date().toISOString(),
@@ -97,4 +95,8 @@ export function setupReactQueryMocks() {
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
     mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversikt());
     mockReactQuery(utbetalingerResource.useFetch, statiskMockUtbetalingRespons);
+    mockReactQuery(persondataResource.useFetch, {
+        feiledeSystemer: [],
+        person: aremark
+    });
 }

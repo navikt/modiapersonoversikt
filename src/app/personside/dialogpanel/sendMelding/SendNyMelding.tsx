@@ -22,8 +22,7 @@ import { Temagruppe, TemaSamtalereferat } from '../../../../models/temagrupper';
 import { guid } from 'nav-frontend-js-utils';
 import ReflowBoundry from '../ReflowBoundry';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
-import { hasData } from '@nutgaard/use-fetch';
-import { useHentPersondata } from '../../../../utils/customHooks';
+import persondataResource from '../../../../rest/resources/persondataResource';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -89,10 +88,10 @@ function Feilmelding(props: { sendNyMeldingPanelState: SendNyMeldingStatus }) {
 function SendNyMelding(props: Props) {
     const updateState = props.updateState;
     const state = props.state;
-    const personResponse = useHentPersondata();
+    const personResponse = persondataResource.useFetch();
     const tittelId = useRef(guid());
 
-    const navn = hasData(personResponse)
+    const navn = personResponse.data
         ? capitalizeName(personResponse.data.person.navn.firstOrNull()?.fornavn || '')
         : 'bruker';
 

@@ -18,9 +18,10 @@ import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullforData } from '../autofullforUtils';
 import LazySpinner from '../../../../../components/LazySpinner';
 import AriaNotification from '../../../../../components/AriaNotification';
-import { useHentPersondata, usePrevious } from '../../../../../utils/customHooks';
+import { usePrevious } from '../../../../../utils/customHooks';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import saksbehandlersEnheter from '../../../../../rest/resources/saksbehandlersEnheterResource';
+import persondataResource from '../../../../../rest/resources/persondataResource';
 
 interface Props {
     sokefelt: FieldState;
@@ -124,7 +125,7 @@ function StandardTekster(props: Props) {
     const valgt = useFieldState('');
     const valgtLocale = useFieldState('');
     const valgtTekst = filtrerteTekster.find((tekst) => tekst.id === valgt.input.value);
-    const persondata = useHentPersondata();
+    const persondata = persondataResource.useFetch();
     const enheterResource = saksbehandlersEnheter.useFetch();
     const autofullforData = useAutoFullforData();
     const sokeFeltId = useRef(guid());
@@ -183,9 +184,9 @@ function StandardTekster(props: Props) {
         );
     }
 
-    if (isPending(persondata) || enheterResource.isLoading) {
+    if (persondata.isLoading || enheterResource.isLoading) {
         return <LazySpinner type={'M'} />;
-    } else if (hasError(persondata) || enheterResource.isError) {
+    } else if (persondata.isError || enheterResource.isError) {
         return <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
     }
 

@@ -18,9 +18,8 @@ import {
     erJournalfort,
     erMeldingstypeSamtalereferat
 } from '../../infotabs/meldinger/utils/meldingerUtils';
-import { useHentPersondata } from '../../../../utils/customHooks';
-import { hasData } from '@nutgaard/use-fetch';
 import { capitalizeName } from '../../../../utils/string-utils';
+import persondataResource from '../../../../rest/resources/persondataResource';
 
 const SubmitKnapp = styled(Hovedknapp)`
     white-space: normal;
@@ -63,9 +62,9 @@ export const tekstMaksLengde = 5000;
 
 function FortsettDialog(props: Props) {
     const { state, updateState, handleAvbryt, handleSubmit } = props;
-    const personResponse = useHentPersondata();
+    const personResponse = persondataResource.useFetch();
 
-    const navn = hasData(personResponse)
+    const navn = personResponse.data
         ? capitalizeName(personResponse.data.person.navn.firstOrNull()?.fornavn || '')
         : 'bruker';
 
