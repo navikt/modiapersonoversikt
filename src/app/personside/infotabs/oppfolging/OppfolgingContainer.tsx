@@ -1,23 +1,18 @@
 import * as React from 'react';
 import OppfolgingVisning from './OppfolgingVisningKomponent';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
-import oppfolging from '../../../../rest/resources/oppfolging';
+import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { hasError, isPending } from '@nutgaard/use-fetch';
-import { useOnMount } from '../../../../utils/customHooks';
 
 function OppfolgingContainer() {
-    const oppfolgingResource = oppfolging.useLazyFetch();
-    useOnMount(() => {
-        oppfolgingResource.rerun();
-    });
+    const oppfolging = oppfolgingResource.useFetch();
 
-    if (isPending(oppfolgingResource)) {
+    if (oppfolging.isLoading) {
         return BigCenteredLazySpinner;
-    } else if (hasError(oppfolgingResource)) {
+    } else if (oppfolging.isError) {
         return <AlertStripe type="advarsel">Kunne ikke laste inn informasjon om brukers oppfølging</AlertStripe>;
     } else {
-        return <OppfolgingVisning detaljertOppfolging={oppfolgingResource} />;
+        return <OppfolgingVisning detaljertOppfolging={oppfolging.data} />;
     }
 }
 

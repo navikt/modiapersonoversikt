@@ -6,10 +6,9 @@ import OppfolgingDatoPanel from './OppfolgingDatoKomponent';
 import VisOppfolgingDetaljer from './OppfolgingDetaljerKomponent';
 import SykefraversoppfolgingEkspanderbartPanel from './SykefraversoppfolgingEkspanderbartPanel';
 import OppfolgingYtelserEkspanderbartPanel from './OppfolgingYtelserEkspanderbartPanel';
-import { FetchResult, hasData } from '@nutgaard/use-fetch';
 
 interface VisningProps {
-    detaljertOppfolging: FetchResult<DetaljertOppfolging>;
+    detaljertOppfolging: DetaljertOppfolging;
 }
 
 const OppfolgingStyle = styled.div`
@@ -29,19 +28,14 @@ const DetaljertInfoWrapper = styled.div`
 `;
 
 function OppfolgingVisning(props: VisningProps) {
-    if (!hasData(props.detaljertOppfolging)) {
-        return null;
-    }
     return (
         <OppfolgingStyle>
             <DetaljertInfoWrapper>
-                <OppfolgingDatoPanel restResource={props.detaljertOppfolging} />
-                <VisOppfolgingDetaljer detaljertOppfolging={props.detaljertOppfolging.data} />
+                <OppfolgingDatoPanel />
+                <VisOppfolgingDetaljer detaljertOppfolging={props.detaljertOppfolging} />
             </DetaljertInfoWrapper>
-            <SykefraversoppfolgingEkspanderbartPanel
-                syfoPunkter={props.detaljertOppfolging.data.sykefraværsoppfølging}
-            />
-            <OppfolgingYtelserEkspanderbartPanel ytelser={props.detaljertOppfolging.data.ytelser} />
+            <SykefraversoppfolgingEkspanderbartPanel syfoPunkter={props.detaljertOppfolging.sykefraværsoppfølging} />
+            <OppfolgingYtelserEkspanderbartPanel ytelser={props.detaljertOppfolging.ytelser} />
         </OppfolgingStyle>
     );
 }
