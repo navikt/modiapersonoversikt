@@ -26,6 +26,7 @@ import pleiepengerResource from '../rest/resources/pleiepengerResource';
 import sykepengerResource from '../rest/resources/sykepengerResource';
 import gsaktemaResource from '../rest/resources/gsaktemaResource';
 import oppfolgingResource from '../rest/resources/oppfolgingResource';
+import sakstemaResource from '../rest/resources/sakstemaResource';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -56,10 +57,6 @@ export function setupFetchCache() {
         createCacheKey(`${apiBaseUri}/v2/person/${aremark.personIdent}/aktorid`),
         `000${aremark.personIdent}000` as unknown as object
     );
-    cache.putResolved(
-        createCacheKey(`${apiBaseUri}/saker/${aremark.personIdent}/sakstema`),
-        getStaticMockSaksoversikt()
-    );
     cache.putResolved(createCacheKey(`${apiBaseUri}/baseurls`), mockBaseUrls());
     cache.putResolved(createCacheKey(`${apiBaseUri}/veileder/roller`), { roller: [SaksbehandlerRoller.HentOppgave] });
     cache.putResolved(createCacheKey(`${apiBaseUri}/hode/me`), getMockInnloggetSaksbehandler());
@@ -85,6 +82,7 @@ export function setupReactQueryMocks() {
     jest.spyOn(sykepengerResource, 'useFetch');
     jest.spyOn(gsaktemaResource, 'useFetch');
     jest.spyOn(oppfolgingResource, 'useFetch');
+    jest.spyOn(sakstemaResource, 'useFetch');
 
     mockReactQuery(innstillingerResource.useFetch, {
         sistLagret: new Date().toISOString(),
@@ -104,4 +102,5 @@ export function setupReactQueryMocks() {
         sykepenger: [statiskSykepengerMock]
     });
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
+    mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversikt());
 }
