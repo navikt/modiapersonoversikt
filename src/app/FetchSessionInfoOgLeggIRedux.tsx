@@ -9,8 +9,8 @@ function FetchSessionInfoOgLeggIRedux() {
     useInitializeLogger();
     const queryClient = useQueryClient();
 
-    innloggetSaksbehandler.useFetch();
-    saksbehandlersEnheter.useFetch();
+    innloggetSaksbehandler.prefetch(queryClient);
+    saksbehandlersEnheter.prefetch(queryClient);
     gsaktemaResource.prefetch(queryClient);
     baseurls.prefetch(queryClient);
 

@@ -3,7 +3,7 @@ import { apiBaseUri } from '../../api/config';
 import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { QueryClient, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, get } from '../../api/api';
 
 /**
@@ -27,6 +27,9 @@ export interface SaksbehandlersEnheter {
 }
 
 const resource = {
+    prefetch(queryClient: QueryClient) {
+        queryClient.prefetchQuery(queryKey, () => get(url));
+    },
     useFetch(): UseQueryResult<SaksbehandlersEnheter, FetchError> {
         return useQuery(queryKey, () => get(url));
     },

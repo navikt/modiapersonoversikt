@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import DokumentOgVedlegg from './dokumentvisning/DokumentOgVedlegg';
-import { useFetchFeatureTogglesOnNewFnr } from '../../../PersonOppslagHandler/FetchFeatureToggles';
 import SetFnrIRedux from '../../../PersonOppslagHandler/SetFnrIRedux';
 import { useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
@@ -85,7 +84,6 @@ function Innhold() {
 }
 
 function SakerFullscreen(props: Props) {
-    useFetchFeatureTogglesOnNewFnr();
     useOnMount(() => {
         loggEvent('Sidevisning', 'SakerFullscreen');
         document.title = 'Saksoversikt - Modia personoversikt';
