@@ -14,8 +14,8 @@ import { Datepicker, isISODateString } from 'nav-datovelger';
 import { ISO_DATE_STRING_FORMAT, INPUT_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
 import dayjs, { Dayjs } from 'dayjs';
-import { FetchResult, isPending } from '@nutgaard/use-fetch';
 import { useAppState } from '../../../../utils/customHooks';
+import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
 
 const DatoVelgerWrapper = styled.div`
     position: relative;
@@ -87,9 +87,8 @@ function getDatoFeilmelding(fra: string, til: string) {
     return null;
 }
 
-function DatoInputs(props: { restResource: FetchResult<any> }) {
-    const oppfolgingLastes = isPending(props.restResource, true);
-    const reload = props.restResource.rerun;
+function DatoInputs() {
+    const update = oppfolgingResource.useMutation();
 
     const valgtPeriode = useAppState((appState) => appState.oppfolging.valgtPeriode);
     const fra = valgtPeriode.fra;
@@ -104,11 +103,11 @@ function DatoInputs(props: { restResource: FetchResult<any> }) {
     };
 
     const onClickHandler = () => {
-        if (oppfolgingLastes || periodeFeilmelding !== null) {
+        if (update.isLoading || periodeFeilmelding !== null) {
             return;
         }
         loggEvent('SøkNyPeriode', 'Oppfølging');
-        reload();
+        update.mutate();
     };
 
     return (
@@ -158,14 +157,14 @@ function DatoInputs(props: { restResource: FetchResult<any> }) {
                 }}
             />
             {periodeFeilmelding}
-            <Knapp onClick={onClickHandler} spinner={oppfolgingLastes} htmlType="button">
+            <Knapp onClick={onClickHandler} spinner={update.isLoading} htmlType="button">
                 Søk
             </Knapp>
         </DatoVelgerWrapper>
     );
 }
 
-function OppfolgingDatoPanel(props: { restResource: FetchResult<any> }) {
+function OppfolgingDatoPanel() {
     const headerId = useRef(guid());
 
     return (
@@ -174,7 +173,7 @@ function OppfolgingDatoPanel(props: { restResource: FetchResult<any> }) {
                 <TittelWrapper>
                     <Undertittel id={headerId.current}>Oppfølging og ytelser vises for perioden:</Undertittel>
                 </TittelWrapper>
-                <DatoInputs restResource={props.restResource} />
+                <DatoInputs />
             </article>
         </StyledPanel>
     );
