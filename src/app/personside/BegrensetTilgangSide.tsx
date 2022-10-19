@@ -7,7 +7,7 @@ import styled from 'styled-components/macro';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useState, useCallback } from 'react';
 import gsaktemaResource from '../../rest/resources/gsaktemaResource';
-import { HarIkkeTilgang } from '../../rest/resources/tilgangskontroll';
+import { HarIkkeTilgang } from '../../rest/resources/tilgangskontrollResource';
 
 interface BegrensetTilgangProps {
     tilgangsData: HarIkkeTilgang;
