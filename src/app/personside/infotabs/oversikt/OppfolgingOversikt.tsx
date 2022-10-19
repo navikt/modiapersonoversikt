@@ -8,14 +8,14 @@ import { usePaths } from '../../../routes/routing';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { getOppfolgingEnhet, getVeileder } from '../oppfolging/oppfolging-utils';
 import CopyToClipboard from '../../visittkort-v2/header/status/CopyToClipboard';
-import oppfolging from '../../../../rest/resources/oppfolging';
+import oppfolgingResource from '../../../../rest/resources/oppfolgingResource';
 
 interface Props {
     detaljertOppfolging: DetaljertOppfolging;
 }
 
 function OppfolgingOversikt() {
-    return oppfolging.useRenderer({
+    return oppfolgingResource.useRenderer({
         ifPending: <CenteredLazySpinner padding={theme.margin.layout} />,
         ifData: (data: DetaljertOppfolging) => <OppfolgingPanel detaljertOppfolging={data} />
     });
