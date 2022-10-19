@@ -24,17 +24,13 @@ function useReduxData(): [string, string | undefined] {
     return useAppState((appState) => [appState.gjeldendeBruker.fødselsnummer, valgtEnhet]);
 }
 
-function fetchDialog(fnr: string, enhet: string | undefined): Promise<Traad[]> {
-    return get<Traad[]>(url(fnr, enhet));
-}
-
 const resource = {
     queryKey(fnr: string, enhet: string | undefined) {
         return ['dialog', fnr, enhet];
     },
     useFetch(): UseQueryResult<Traad[], FetchError> {
         const [fnr, enhetId] = useReduxData();
-        return useQuery(this.queryKey(fnr, enhetId), () => fetchDialog(fnr, enhetId));
+        return useQuery(this.queryKey(fnr, enhetId), () => get(url(fnr, enhetId)));
     },
     useRenderer(renderer: RendererOrConfig<Traad[]>) {
         const response = this.useFetch();
