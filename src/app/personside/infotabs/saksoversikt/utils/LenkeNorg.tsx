@@ -5,7 +5,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { useHentPersondata } from '../../../../../utils/customHooks';
 import { hasData as hasDataUseFetch } from '@nutgaard/use-fetch';
 import { sakstemakodeAlle } from './saksoversiktUtils';
-import baseurls, { hentBaseUrl } from '../../../../../rest/resources/baseurls';
+import baseurls, { hentBaseUrl } from '../../../../../rest/resources/baseurlsResource';
 
 interface Props {
     valgtSakstema?: Sakstema;

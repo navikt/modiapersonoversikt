@@ -37,7 +37,6 @@ const resource = {
         return useQuery(this.queryKey(fnr, enhetId), () => fetchDialog(fnr, enhetId));
     },
     useRenderer(renderer: RendererOrConfig<Traad[]>) {
-        console.log('DialogResource useRenderer');
         const response = this.useFetch();
         return useRQRest(response, applyDefaults(defaults, renderer));
     }
