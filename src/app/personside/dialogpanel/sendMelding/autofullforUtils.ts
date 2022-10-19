@@ -1,8 +1,6 @@
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/string-utils';
 import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
-import { useHentPersondata } from '../../../../utils/customHooks';
-import { hasData } from '@nutgaard/use-fetch';
 import { Data as PersonData, Kjonn } from '../../visittkort-v2/PersondataDomain';
 import { hentNavn } from '../../visittkort-v2/visittkort-utils';
 import innloggetSaksbehandler, {
@@ -10,6 +8,7 @@ import innloggetSaksbehandler, {
 } from '../../../../rest/resources/innloggetSaksbehandlerResource';
 import saksbehandlersEnheter, { Enhet } from '../../../../rest/resources/saksbehandlersEnheterResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
+import persondataResource from '../../../../rest/resources/persondataResource';
 
 export type AutofullforData = {
     enhet?: Enhet;
@@ -118,7 +117,7 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
 }
 
 export function useAutoFullforData(): AutofullforData | undefined {
-    const personResponse = useHentPersondata();
+    const personResponse = persondataResource.useFetch();
     const saksbehandler = innloggetSaksbehandler.useFetch();
     const enheterResource = saksbehandlersEnheter.useFetch();
     const enheter = enheterResource.data ? enheterResource.data.enhetliste : [];
@@ -127,7 +126,7 @@ export function useAutoFullforData(): AutofullforData | undefined {
 
     return {
         enhet: valgtEnhet,
-        person: hasData(personResponse) ? personResponse.data : undefined,
+        person: personResponse.data ? personResponse.data : undefined,
         saksbehandler: saksbehandler.data ? saksbehandler.data : undefined
     };
 }

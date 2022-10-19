@@ -1,18 +1,17 @@
 import * as React from 'react';
-import { isPending, hasError } from '@nutgaard/use-fetch';
 import { BigCenteredLazySpinner } from '../../../components/BigCenteredLazySpinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import VisittkortVisning from './VisittkortVisning';
-import { useHentPersondata } from '../../../utils/customHooks';
+import persondataResource from '../../../rest/resources/persondataResource';
 
 function Visittkort() {
-    const persondataResponse = useHentPersondata();
+    const persondataResponse = persondataResource.useFetch();
 
-    if (isPending(persondataResponse)) {
+    if (persondataResponse.isLoading) {
         return BigCenteredLazySpinner;
-    } else if (hasError(persondataResponse)) {
+    } else if (persondataResponse.isError) {
         return (
             <FillCenterAndFadeIn>
                 <AlertStripe type="advarsel">Beklager. Det skjedde en feil ved lasting av persondata.</AlertStripe>

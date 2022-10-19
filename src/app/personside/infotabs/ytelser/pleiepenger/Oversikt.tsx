@@ -8,8 +8,9 @@ import { Data as Persondata, Kjonn } from '../../../visittkort-v2/PersondataDoma
 import styled from 'styled-components/macro';
 import ArbeidsForholdListe from './arbeidsforhold/ArbeidsforholdListe';
 import theme from '../../../../../styles/personOversiktTheme';
-import { useHentPersondata } from '../../../../../utils/customHooks';
-import { FetchResult, hasData } from '@nutgaard/use-fetch';
+import persondataResource from '../../../../../rest/resources/persondataResource';
+import { UseQueryResult } from '@tanstack/react-query';
+import { FetchError } from '../../../../../api/api';
 
 interface Props {
     pleiepenger: Pleiepengerettighet;
@@ -38,8 +39,8 @@ function getKjonnString(kjonn: Kjonn | undefined): string {
     }
 }
 
-function hentKjonnTilBarn(persondata: FetchResult<Persondata>, barnFnr: string): string {
-    const person = hasData(persondata) ? persondata.data.person : null;
+function hentKjonnTilBarn(persondata: UseQueryResult<Persondata, FetchError>, barnFnr: string): string {
+    const person = persondata.data ? persondata.data.person : null;
     const barn = person?.forelderBarnRelasjon.filter((relasjon) => relasjon.ident === barnFnr) ?? null;
     if (!barn || barn.isEmpty()) {
         return '';
@@ -50,7 +51,7 @@ function hentKjonnTilBarn(persondata: FetchResult<Persondata>, barnFnr: string):
 
 function Oversikt({ pleiepenger }: Props) {
     const gjeldeneVedtak = getSisteVedtakForPleiepengerettighet(pleiepenger);
-    const persondata = useHentPersondata();
+    const persondata = persondataResource.useFetch();
     const kjonn = hentKjonnTilBarn(persondata, pleiepenger.barnet);
 
     const omPleiepengerettenEntries = {
