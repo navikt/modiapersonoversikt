@@ -18,7 +18,7 @@ export function useSendtMelding(opprettetTraad: Traad | undefined): SendtMelding
     const [traad, setTraad] = useState<Traad | undefined>();
 
     useEffect(() => {
-        if (traaderResource.isSuccess && traaderResource.fetchStatus == 'idle') {
+        if (traaderResource.isSuccess && traaderResource.fetchStatus === 'idle') {
             setPending(false);
         }
         if (melding && traad) {

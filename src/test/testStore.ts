@@ -19,6 +19,7 @@ import { apiBaseUri } from '../api/config';
 import { aremark } from '../mock/persondata/aremark';
 import innstillingerResource from '../rest/resources/innstillingerResource';
 import dialogResource from '../rest/resources/dialogResource';
+import baseurlsResource from '../rest/resources/baseurlsResource';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -65,7 +66,6 @@ export function setupFetchCache() {
     cache.putResolved(createCacheKey(`${apiBaseUri}/ytelse/foreldrepenger/${aremark.personIdent}`), {
         foreldrepenger: [statiskForeldrepengeMock]
     });
-    cache.putResolved(createCacheKey(`${apiBaseUri}/dialog/${aremark.personIdent}/meldinger`), [statiskTraadMock]);
     cache.putResolved(createCacheKey(`${apiBaseUri}/featuretoggle`), {
         toggleId: false
     });
@@ -80,22 +80,22 @@ export function setupFetchCache() {
         createCacheKey(`${apiBaseUri}/utbetaling/${aremark.personIdent}?startDato=1969-12-02&sluttDato=1970-04-11`),
         statiskMockUtbetalingRespons
     );
-    cache.putResolved(createCacheKey('/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger'), {
-        sistLagret: new Date().toISOString(),
-        innstillinger: {}
-    });
 }
 
+function mockReactQuest(resource: any, data: any) {
+    (resource as jest.Mock<any>).mockImplementation(() => ({
+        data
+    }));
+}
 export function setupReactQueryMocks() {
     jest.spyOn(innstillingerResource, 'useFetch');
     jest.spyOn(dialogResource, 'useFetch');
-    (innstillingerResource.useFetch as jest.Mock<any>).mockImplementation(() => ({
-        data: {
-            sistLagret: new Date().toISOString(),
-            innstillinger: {}
-        }
-    }));
-    (dialogResource.useFetch as jest.Mock<any>).mockImplementation(() => ({
-        data: [statiskTraadMock]
-    }));
+    jest.spyOn(baseurlsResource, 'useFetch');
+
+    mockReactQuest(innstillingerResource.useFetch, {
+        sistLagret: new Date().toISOString(),
+        innstillinger: {}
+    });
+    mockReactQuest(dialogResource.useFetch, [statiskTraadMock]);
+    mockReactQuest(baseurlsResource.useFetch, mockBaseUrls());
 }

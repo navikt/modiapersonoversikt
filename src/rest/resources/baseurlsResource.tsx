@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { apiBaseUri } from '../../api/config';
-import { applyDefaults, DefaultConfig, RendererOrConfig, useFetch, useRest } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRQRest } from '../useRest';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { BaseUrl, BaseUrlsResponse } from '../../models/baseurls';
 import { loggError } from '../../utils/logger/frontendLogger';
+import { QueryClient, useQuery, UseQueryResult } from '@tanstack/react-query';
+import { get } from '../../api/api';
 
 export function hentBaseUrl(baseUrlsResponse: BaseUrlsResponse, key: string) {
     const resultUrl = baseUrlsResponse.baseUrls.find((baseUrl: BaseUrl) => {
@@ -19,6 +21,7 @@ export function hentBaseUrl(baseUrlsResponse: BaseUrlsResponse, key: string) {
     return resultUrl.url;
 }
 
+const queryId = ['baseurls'];
 const url = `${apiBaseUri}/baseurls`;
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
@@ -26,8 +29,16 @@ const defaults: DefaultConfig = {
 };
 
 const resource = {
-    useRenderer: (renderer: RendererOrConfig<BaseUrlsResponse>) => useRest(url, applyDefaults(defaults, renderer)),
-    useFetch: () => useFetch<BaseUrlsResponse>(url)
+    prefetch(queryClient: QueryClient) {
+        queryClient.prefetchQuery(queryId, () => get(url));
+    },
+    useFetch(): UseQueryResult<BaseUrlsResponse, Error> {
+        return useQuery(queryId, () => get(url));
+    },
+    useRenderer(renderer: RendererOrConfig<BaseUrlsResponse>) {
+        const response = this.useFetch();
+        return useRQRest(response, applyDefaults(defaults, renderer));
+    }
 };
 
 export default resource;
