@@ -24,6 +24,7 @@ import featuretogglesResource from '../rest/resources/featuretogglesResource';
 import foreldrepengerResource from '../rest/resources/foreldrepengerResource';
 import pleiepengerResource from '../rest/resources/pleiepengerResource';
 import sykepengerResource from '../rest/resources/sykepengerResource';
+import gsaktemaResource from '../rest/resources/gsaktemaResource';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -54,7 +55,6 @@ export function setupFetchCache() {
         createCacheKey(`${apiBaseUri}/v2/person/${aremark.personIdent}/aktorid`),
         `000${aremark.personIdent}000` as unknown as object
     );
-    cache.putResolved(createCacheKey(`${apiBaseUri}/dialogoppgave/v2/tema`), getMockGsakTema());
     cache.putResolved(
         createCacheKey(`${apiBaseUri}/saker/${aremark.personIdent}/sakstema`),
         getStaticMockSaksoversikt()
@@ -88,6 +88,7 @@ export function setupReactQueryMocks() {
     jest.spyOn(foreldrepengerResource, 'useFetch');
     jest.spyOn(pleiepengerResource, 'useFetch');
     jest.spyOn(sykepengerResource, 'useFetch');
+    jest.spyOn(gsaktemaResource, 'useFetch');
 
     mockReactQuery(innstillingerResource.useFetch, {
         sistLagret: new Date().toISOString(),
@@ -96,6 +97,7 @@ export function setupReactQueryMocks() {
     mockReactQuery(dialogResource.useFetch, [statiskTraadMock]);
     mockReactQuery(baseurlsResource.useFetch, mockBaseUrls());
     mockReactQuery(featuretogglesResource.useFetch, { toggleId: false });
+    mockReactQuery(gsaktemaResource.useFetch, getMockGsakTema());
     mockReactQuery(foreldrepengerResource.useFetch, {
         foreldrepenger: [statiskForeldrepengeMock]
     });
