@@ -14,8 +14,9 @@ import { useFodselsnummer } from '../../../../../../../utils/customHooks';
 import * as JournalforingUtils from '../../../../../journalforings-use-fetch-utils';
 import { formatterDatoMedMaanedsnavnOrNull } from '../../../../../../../utils/date-utils';
 import { ENDASH } from '../../../../../../../utils/string-utils';
-import brukersdialog from '../../../../../../../rest/resources/brukersdialog';
+import dialogResource from '../../../../../../../rest/resources/dialogResource';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
     sak: JournalforingsSak;
@@ -46,8 +47,8 @@ const SuksessStyling = styled.div`
     }
 `;
 export function JournalforSak(props: Props) {
+    const queryClient = useQueryClient();
     const valgtEnhet = useValgtenhet().enhetId;
-    const traderResource = brukersdialog.useFetch();
     const kategori = sakKategori(props.sak);
     const fnr = useFodselsnummer();
     const [submitting, setSubmitting] = useState(false);
@@ -66,7 +67,7 @@ export function JournalforSak(props: Props) {
                 JournalforingUtils.slettCacheForSaker(fnr);
                 setSubmitting(false);
                 setJournalforingSuksess(true);
-                traderResource.rerun();
+                queryClient.invalidateQueries(dialogResource.queryKey(fnr, valgtEnhet));
             })
             .catch((error) => {
                 setSubmitting(false);

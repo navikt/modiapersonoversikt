@@ -1,12 +1,13 @@
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRest, useFetch } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRQRest } from '../useRest';
 import { apiBaseUri } from '../../api/config';
 import { useAppState } from '../../utils/customHooks';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import * as React from 'react';
-import { FetchResult } from '@nutgaard/use-fetch';
 import { Traad } from '../../models/meldinger/meldinger';
 import { useValgtenhet } from '../../context/valgtenhet-state';
+import { get } from '../../api/api';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 function url(fnr: string, enhet: string | undefined): string {
     const header = enhet ? `?enhet=${enhet}` : '';
@@ -23,14 +24,22 @@ function useReduxData(): [string, string | undefined] {
     return useAppState((appState) => [appState.gjeldendeBruker.fødselsnummer, valgtEnhet]);
 }
 
+function fetchDialog(fnr: string, enhet: string | undefined): Promise<Traad[]> {
+    return get<Traad[]>(url(fnr, enhet));
+}
+
 const resource = {
-    useFetch(): FetchResult<Traad[]> {
+    queryKey(fnr: string, enhet: string | undefined) {
+        return ['dialog', fnr, enhet];
+    },
+    useFetch(): UseQueryResult<Traad[], Error> {
         const [fnr, enhetId] = useReduxData();
-        return useFetch(url(fnr, enhetId));
+        return useQuery(this.queryKey(fnr, enhetId), () => fetchDialog(fnr, enhetId));
     },
     useRenderer(renderer: RendererOrConfig<Traad[]>) {
-        const [fnr, enhetId] = useReduxData();
-        return useRest(url(fnr, enhetId), applyDefaults(defaults, renderer));
+        console.log('DialogResource useRenderer');
+        const response = this.useFetch();
+        return useRQRest(response, applyDefaults(defaults, renderer));
     }
 };
 export default resource;
