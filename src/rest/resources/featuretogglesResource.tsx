@@ -5,7 +5,7 @@ import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { get } from '../../api/api';
+import { FetchError, get } from '../../api/api';
 
 export type FeatureTogglesResponse = {
     [key in FeatureToggles]: boolean;
@@ -26,7 +26,7 @@ const defaults: DefaultConfig = {
 };
 
 const resource = {
-    useFetch(): UseQueryResult<FeatureTogglesResponse, Error> {
+    useFetch(): UseQueryResult<FeatureTogglesResponse, FetchError> {
         return useQuery(queryKey, () => get(url()));
     },
     useRenderer(renderer: RendererOrConfig<FeatureTogglesResponse>) {

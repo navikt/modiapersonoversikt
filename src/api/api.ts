@@ -3,10 +3,15 @@ import { loggError, loggEvent } from '../utils/logger/frontendLogger';
 import { confirm } from '../components/popup-boxes/popup-boxes';
 
 const CONFLICT = 409;
+export class FetchError extends Error {
+    constructor(public response: Response, message?: string) {
+        super(message);
+    }
+}
 export async function get<TYPE extends object>(uri: string): Promise<TYPE> {
     const response = await fetch(uri, includeCredentials);
     if (!response.ok || response.redirected) {
-        throw new Error(`${response.status} ${response.statusText}: ${uri}`);
+        throw new FetchError(response, `${response.status} ${response.statusText}: ${uri}`);
     } else {
         return (await response.json()) as Promise<TYPE>;
     }
@@ -76,5 +81,5 @@ async function parseError<TYPE extends object = object>(
             location: loggLocation
         }
     );
-    return Promise.reject(text);
+    throw new FetchError(response, text);
 }
