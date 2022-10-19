@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactNode } from 'react';
-import { getTestStore, setupReactQueryData } from './testStore';
+import { getTestStore } from './testStore';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { Store } from 'redux';
@@ -27,7 +27,6 @@ const queryClient = new QueryClient({
 });
 
 function TestProvider({ children, customStore }: Props) {
-    setupReactQueryData();
     return (
         <Provider store={customStore || getTestStore()}>
             <QueryClientProvider client={queryClient}>

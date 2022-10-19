@@ -4,8 +4,6 @@ import { Traad } from '../../../../models/meldinger/meldinger';
 import styled from 'styled-components/macro';
 import { pxToRem } from '../../../../styles/personOversiktTheme';
 import TraadListe from './traadliste/TraadListe';
-import { useDispatch } from 'react-redux';
-import { usePrevious } from '../../../../utils/customHooks';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useHistory } from 'react-router';
 import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -15,11 +13,9 @@ import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
 import TraadVisningWrapper from './traadvisning/TraadVisningWrapper';
 import DelayRender from '../../../../components/DelayRender';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
-import brukersdialog from '../../../../rest/resources/brukersdialog';
-import { hasData, isPending } from '@nutgaard/use-fetch';
+import dialogResource from '../../../../rest/resources/dialogResource';
 import LazySpinner from '../../../../components/LazySpinner';
 import { useMeldingsok } from '../../../../context/meldingsok';
-import { useValgtenhet } from '../../../../context/valgtenhet-state';
 
 const meldingerMediaTreshold = pxToRem(800);
 
@@ -54,34 +50,17 @@ function useSyncSøkMedVisning(traaderFørSøk: Traad[], traaderEtterSok: Traad[
     }, [valgtTraad, traaderFørSøk, traaderEtterSok, history, dyplenker.meldinger]);
 }
 
-function useReloadOnEnhetChange() {
-    const dispatch = useDispatch();
-    const enhet = useValgtenhet().enhetId;
-    const forrigeEnhet = usePrevious(enhet);
-    const meldingerResource = brukersdialog.useFetch();
-
-    useEffect(() => {
-        if (!forrigeEnhet) {
-            return;
-        }
-        if (forrigeEnhet !== enhet) {
-            hasData(meldingerResource) && meldingerResource.rerun();
-        }
-    }, [forrigeEnhet, enhet, meldingerResource, dispatch]);
-}
-
 function MeldingerContainer() {
-    const traaderResource = brukersdialog.useFetch();
+    const traaderResource = dialogResource.useFetch();
     const meldingsok = useMeldingsok();
 
-    const traaderForSok = hasData(traaderResource) ? traaderResource.data : [];
+    const traaderForSok = traaderResource.data ? traaderResource.data : [];
     const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderForSok, meldingsok.query);
     const valgtTraad = useValgtTraadIUrl() || traaderEtterSokOgFiltrering[0];
     useKeepQueryParams();
     useSyncSøkMedVisning(traaderForSok, traaderEtterSokOgFiltrering, valgtTraad);
-    useReloadOnEnhetChange();
 
-    if (isPending(traaderResource)) {
+    if (traaderResource.isLoading) {
         return <LazySpinner type="M" />;
     }
 

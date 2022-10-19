@@ -35,8 +35,9 @@ import { FetchResult, hasData } from '@nutgaard/use-fetch';
 import { SladdeObjekt, velgMeldingerTilSladding } from './sladdevalg/Sladdevalg';
 import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
-import brukersdialog from '../../../../../../../rest/resources/brukersdialog';
+import dialogResource from '../../../../../../../rest/resources/dialogResource';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
     lukkPanel: () => void;
@@ -154,8 +155,8 @@ function TraadSladdeValg() {
 
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
+    const queryClient = useQueryClient();
     const valgtTraad = props.valgtTraad;
-    const traderResource = brukersdialog.useFetch();
     const tildelteOppgaverResource = tildelteoppgaver.useFetch();
     const skalSendeArsak = useFeatureToggle(FeatureToggles.SladdeMedArsak)?.isOn ?? false;
 
@@ -176,7 +177,7 @@ function MerkPanel(props: Props) {
             .then(() => {
                 settResultat(Resultat.VELLYKKET);
                 setSubmitting(false);
-                traderResource.rerun();
+                queryClient.invalidateQueries(dialogResource.queryKey(valgtBrukersFnr, valgtEnhet));
                 tildelteOppgaverResource.rerun();
                 dispatch(setIngenValgtTraadDialogpanel());
             })

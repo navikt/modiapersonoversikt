@@ -18,6 +18,7 @@ import { SaksbehandlerRoller } from '../app/personside/dialogpanel/RollerUtils';
 import { apiBaseUri } from '../api/config';
 import { aremark } from '../mock/persondata/aremark';
 import innstillingerResource from '../rest/resources/innstillingerResource';
+import dialogResource from '../rest/resources/dialogResource';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -85,12 +86,16 @@ export function setupFetchCache() {
     });
 }
 
-jest.mock('../rest/resources/innstillingerResource');
-export function setupReactQueryData() {
+export function setupReactQueryMocks() {
+    jest.spyOn(innstillingerResource, 'useFetch');
+    jest.spyOn(dialogResource, 'useFetch');
     (innstillingerResource.useFetch as jest.Mock<any>).mockImplementation(() => ({
         data: {
             sistLagret: new Date().toISOString(),
             innstillinger: {}
         }
+    }));
+    (dialogResource.useFetch as jest.Mock<any>).mockImplementation(() => ({
+        data: [statiskTraadMock]
     }));
 }

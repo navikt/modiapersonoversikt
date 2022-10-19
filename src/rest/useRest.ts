@@ -1,5 +1,6 @@
 import * as React from 'react';
 import useFetchHook, { isPending, hasError, FetchResult, Config as HookConfig } from '@nutgaard/use-fetch';
+import { UseQueryResult } from '@tanstack/react-query';
 
 type ReactElement = React.ReactElement | null;
 
@@ -33,6 +34,27 @@ export function useRest<T>(url: string, config: Config<T>, hookConfig?: HookConf
             return config.ifPending;
         }
     } else if (hasError(response)) {
+        if (typeof config.ifError === 'function') {
+            return config.ifError(response.error);
+        } else {
+            return config.ifError;
+        }
+    } else {
+        return config.ifData(response.data);
+    }
+}
+export function useRQRest<TData = unknown, TError = unknown>(
+    response: UseQueryResult<TData, TError>,
+    config: Config<TData>
+): ReactElement {
+    console.log('response', response.isLoading, response.isError, response.data);
+    if (response.isLoading) {
+        if (typeof config.ifPending === 'function') {
+            return config.ifPending();
+        } else {
+            return config.ifPending;
+        }
+    } else if (response.isError) {
         if (typeof config.ifError === 'function') {
             return config.ifError(response.error);
         } else {

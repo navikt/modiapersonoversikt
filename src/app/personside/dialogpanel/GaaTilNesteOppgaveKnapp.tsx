@@ -3,17 +3,16 @@ import KnappBase from 'nav-frontend-knapper';
 import { setValgtTraadDialogpanel } from '../../../redux/oppgave/actions';
 import { useDispatch } from 'react-redux';
 import useTildelteOppgaver from '../../../utils/hooks/useTildelteOppgaver';
-import brukersdialog from '../../../rest/resources/brukersdialog';
-import { hasData } from '@nutgaard/use-fetch';
+import dialogResource from '../../../rest/resources/dialogResource';
 
 function GaaTilNesteOppgaveKnapp(props: { lukk: () => void }) {
     const tildelteOppgaver = useTildelteOppgaver();
     const dispatch = useDispatch();
-    const traader = brukersdialog.useFetch();
+    const traader = dialogResource.useFetch();
     const nesteOppgavePaBruker = tildelteOppgaver.paaBruker[0];
 
     const gaaTilNesteSporsmaal = () => {
-        if (!nesteOppgavePaBruker || !hasData(traader)) {
+        if (!nesteOppgavePaBruker || !traader.data) {
             return;
         }
         const traadTilknyttetOppgave = traader.data.find((traad) => traad.traadId === nesteOppgavePaBruker.traadId);

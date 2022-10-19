@@ -11,8 +11,8 @@ export interface Innstillinger {
     [key: string]: string;
 }
 
-export const queryId = ['innstillinger'];
-export const url = '/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger';
+const queryId = ['innstillinger'];
+const url = '/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger';
 
 function fetchInnstillinger(): Promise<SaksbehandlerInnstillinger> {
     return get<SaksbehandlerInnstillinger>(url);

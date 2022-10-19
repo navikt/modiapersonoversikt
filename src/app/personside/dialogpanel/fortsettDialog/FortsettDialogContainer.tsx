@@ -30,8 +30,9 @@ import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
 import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaver';
 import { FetchResult, hasData } from '@nutgaard/use-fetch';
-import brukersdialog from '../../../../rest/resources/brukersdialog';
+import dialogResource from '../../../../rest/resources/dialogResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
+import { useQueryClient } from '@tanstack/react-query';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -65,6 +66,7 @@ export function finnPlukketOppgaveForTraad(
 }
 
 function FortsettDialogContainer(props: Props) {
+    const queryClient = useQueryClient();
     const initialState = useMemo(
         () => ({
             tekst: '',
@@ -87,7 +89,6 @@ function FortsettDialogContainer(props: Props) {
     );
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
     const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
-    const meldingerResource = brukersdialog.useFetch();
     const tildelteOppgaverResource = tildelteoppgaver.useFetch();
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
@@ -130,7 +131,7 @@ function FortsettDialogContainer(props: Props) {
         const callback = () => {
             removeDraft();
             tildelteOppgaverResource.rerun();
-            meldingerResource.rerun();
+            queryClient.invalidateQueries(dialogResource.queryKey(fnr, valgtEnhet));
         };
 
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;

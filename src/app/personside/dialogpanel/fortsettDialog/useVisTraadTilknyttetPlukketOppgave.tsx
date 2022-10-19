@@ -8,8 +8,7 @@ import { loggError } from '../../../../utils/logger/frontendLogger';
 import { useHistory } from 'react-router';
 import { eldsteMelding, kanBesvares } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { useJustOnceEffect } from '../../../../utils/customHooks';
-import brukersdialog from '../../../../rest/resources/brukersdialog';
-import { hasData } from '@nutgaard/use-fetch';
+import dialogResource from '../../../../rest/resources/dialogResource';
 import LazySpinner from '../../../../components/LazySpinner';
 
 interface Pending {
@@ -24,7 +23,7 @@ interface Success {
 type Response = Pending | Success;
 
 function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response {
-    const traaderResource = brukersdialog.useFetch();
+    const traaderResource = dialogResource.useFetch();
     const tildelteOppgaver = useTildelteOppgaver();
     const dispatch = useDispatch();
     const dyplenker = useInfotabsDyplenker();
@@ -34,7 +33,7 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
         function visTraadTilknyttetOppgaveIDialogpanel(done: () => void) {
             const oppgave = tildelteOppgaver.paaBruker[0];
             const åpneTrådIFortsettDialogpanel = !dialogpanelTraad && !!oppgave;
-            if (!åpneTrådIFortsettDialogpanel || !hasData(traaderResource)) {
+            if (!åpneTrådIFortsettDialogpanel || !traaderResource.data) {
                 return;
             }
             const traadTilknyttetOppgave = traaderResource.data.find((traad) => traad.traadId === oppgave.traadId);
@@ -61,7 +60,7 @@ function useVisTraadTilknyttetPlukketOppgave(dialogpanelTraad?: Traad): Response
         [tildelteOppgaver.paaBruker, dialogpanelTraad, dispatch, dyplenker, history, traaderResource]
     );
 
-    if (tildelteOppgaver.paaBruker.length > 0 && !hasData(traaderResource)) {
+    if (tildelteOppgaver.paaBruker.length > 0 && !traaderResource.data) {
         return {
             pending: true,
             placeholder: <LazySpinner type="M" />
