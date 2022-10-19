@@ -1,12 +1,15 @@
 import * as React from 'react';
 import { apiBaseUri } from '../../api/config';
-import { applyDefaults, DefaultConfig, RendererOrConfig, useFetch, useRest } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRQRest } from '../useRest';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { FetchError, get } from '../../api/api';
 
 /**
  * Kan denne kanskje erstattes av kall til modiacontextholder, og bør den evt gjøre det?
  */
+const queryKey = ['saksbehandlersenheter'];
 const url = `${apiBaseUri}/hode/enheter`;
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
@@ -24,8 +27,13 @@ export interface SaksbehandlersEnheter {
 }
 
 const resource = {
-    useRenderer: (renderer: RendererOrConfig<SaksbehandlersEnheter>) => useRest(url, applyDefaults(defaults, renderer)),
-    useFetch: () => useFetch<SaksbehandlersEnheter>(url)
+    useFetch(): UseQueryResult<SaksbehandlersEnheter, FetchError> {
+        return useQuery(queryKey, () => get(url));
+    },
+    useRenderer(renderer: RendererOrConfig<SaksbehandlersEnheter>) {
+        const response = this.useFetch();
+        return useRQRest(response, applyDefaults(defaults, renderer));
+    }
 };
 
 export default resource;
