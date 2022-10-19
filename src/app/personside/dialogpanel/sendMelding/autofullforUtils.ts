@@ -8,7 +8,7 @@ import { hentNavn } from '../../visittkort-v2/visittkort-utils';
 import innloggetSaksbehandler, {
     InnloggetSaksbehandler
 } from '../../../../rest/resources/innloggetSaksbehandlerResource';
-import saksbehandlersEnheter, { Enhet } from '../../../../rest/resources/saksbehandlersEnheter';
+import saksbehandlersEnheter, { Enhet } from '../../../../rest/resources/saksbehandlersEnheterResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
 
 export type AutofullforData = {
@@ -121,7 +121,7 @@ export function useAutoFullforData(): AutofullforData | undefined {
     const personResponse = useHentPersondata();
     const saksbehandler = innloggetSaksbehandler.useFetch();
     const enheterResource = saksbehandlersEnheter.useFetch();
-    const enheter = hasData(enheterResource) ? enheterResource.data.enhetliste : [];
+    const enheter = enheterResource.data ? enheterResource.data.enhetliste : [];
     const valgtEnhetId = useValgtenhet().enhetId;
     const valgtEnhet = enheter.find((enhet) => enhet.enhetId === valgtEnhetId);
 
