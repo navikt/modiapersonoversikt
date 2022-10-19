@@ -7,6 +7,7 @@ export const statiskTraadMock: Traad = {
     meldinger: [
         {
             id: 'x4k72bwd',
+            meldingsId: 'IDx4k72bwd',
             meldingstype: Meldingstype.SAMTALEREFERAT_OPPMOTE,
             temagruppe: Temagruppe.Arbeid,
             skrevetAvTekst: saksbehandlerTekst({ ident: 'nzxo4q', fornavn: 'Sander', etternavn: 'Hansen' }),
@@ -20,6 +21,7 @@ export const statiskTraadMock: Traad = {
         },
         {
             id: 'q1i6ndyj',
+            meldingsId: 'Aq1i6ndyj',
             meldingstype: Meldingstype.SPORSMAL_SKRIFTLIG,
             temagruppe: Temagruppe.Helse,
             skrevetAvTekst: saksbehandlerTekst({ ident: 'xmqgb8', fornavn: 'Frida', etternavn: 'Pedersen' }),
@@ -33,6 +35,7 @@ export const statiskTraadMock: Traad = {
         },
         {
             id: 'q57oayxa',
+            meldingsId: 'Aq57oayxa',
             meldingstype: Meldingstype.SPORSMAL_SKRIFTLIG,
             temagruppe: Temagruppe.Arbeid,
             skrevetAvTekst: saksbehandlerTekst({ ident: 'e5otkk', fornavn: 'Synne', etternavn: 'Lunde' }),
@@ -46,6 +49,7 @@ export const statiskTraadMock: Traad = {
         },
         {
             id: '90l2nkx0',
+            meldingsId: 'A90l2nkx0',
             meldingstype: Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
             temagruppe: Temagruppe.Arbeid,
             skrevetAvTekst: saksbehandlerTekst({ ident: 'xy70r8', fornavn: 'Kristoffer', etternavn: 'Fredriksen' }),

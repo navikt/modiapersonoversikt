@@ -25,7 +25,8 @@
         "test": "craco test",
         "test-bail": "craco test --watchAll=false --bail",
         "lint": "eslint --ext js,jsx,ts,tsx src",
-        "lint-staged": "lint-staged"
+        "lint-staged": "lint-staged",
+        "tsc": "tsc"
     },
     "husky": {
         "hooks": {

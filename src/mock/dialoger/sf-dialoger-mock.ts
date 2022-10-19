@@ -46,7 +46,8 @@ function setupMeldingerMock(mock: FetchMock) {
 function simulateSf(trader: Traad[]): Traad[] {
     trader.forEach((trad: Traad) => {
         trad.meldinger.forEach((melding: Melding, index: number) => {
-            melding.id = guid(); // Denne informasjonen får vi ikke, og autogenereres derfor på backend
+            melding.id = 'trad-' + guid(); // Denne informasjonen får vi ikke, og autogenereres derfor på backend
+            melding.meldingsId = guid(); // Denne informasjonen får vi ikke, og autogenereres derfor på backend
 
             // SF har bare samtalereferat og meldingskjede, så vi utleder de gamle typene etter beste evne.
             melding.meldingstype = (() => {

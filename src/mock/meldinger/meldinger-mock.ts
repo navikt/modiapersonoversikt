@@ -88,6 +88,7 @@ function getMelding(temagruppe: Temagruppe): Melding {
 
     return {
         id: faker.random.alphaNumeric(8),
+        meldingsId: faker.random.alphaNumeric(8),
         meldingstype: meldingstype,
         temagruppe: temagruppe,
         skrevetAvTekst: saksbehandlerTekst(getSaksbehandler()),
@@ -130,6 +131,7 @@ function getChatMelding(temagruppe: Temagruppe): Melding {
 
     return {
         id: faker.random.alphaNumeric(8),
+        meldingsId: faker.random.alphaNumeric(8),
         meldingstype: meldingstype,
         temagruppe: temagruppe,
         skrevetAvTekst: saksbehandlerTekst(getSaksbehandler()),
