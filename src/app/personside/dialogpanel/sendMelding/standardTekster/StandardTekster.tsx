@@ -1,5 +1,4 @@
 import React, { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
-import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import styled from 'styled-components/macro';
 import TagInput from '@navikt/tag-input';
 import { guid } from 'nav-frontend-js-utils';
@@ -22,6 +21,7 @@ import { usePrevious } from '../../../../../utils/customHooks';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import saksbehandlersEnheter from '../../../../../rest/resources/saksbehandlersEnheterResource';
 import persondataResource from '../../../../../rest/resources/persondataResource';
+import skrivestotteResource from '../../../../../rest/resources/skrivestotteResource';
 
 interface Props {
     sokefelt: FieldState;
@@ -115,9 +115,7 @@ function velgTekst(
 
 function StandardTekster(props: Props) {
     const sokRef = React.useRef<HTMLElement>(null);
-    const standardTekster = useFetch<StandardTeksterModels.Tekster>(
-        '/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte'
-    );
+    const standardTekster = skrivestotteResource.useFetch();
     const debouncedSokefelt = useDebounce(props.sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() =>
         sokEtterTekster(standardTekster, debouncedSokefelt)
@@ -167,11 +165,11 @@ function StandardTekster(props: Props) {
     useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', sokRef.current || undefined);
 
     let content: ReactNode = null;
-    if (isPending(standardTekster)) {
+    if (standardTekster.isLoading) {
         content = <Spinner type="XL" />;
-    } else if (hasError(standardTekster)) {
+    } else if (standardTekster.isError) {
         content = <SkjemaelementFeilmelding>Kunne ikke laste inn standardtekster</SkjemaelementFeilmelding>;
-    } else if (hasData(standardTekster)) {
+    } else if (standardTekster.data) {
         content = (
             <StandardTekstValg
                 tekster={filtrerteTekster}

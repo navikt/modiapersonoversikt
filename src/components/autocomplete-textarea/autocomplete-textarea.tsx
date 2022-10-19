@@ -18,8 +18,8 @@ import { guid } from 'nav-frontend-js-utils';
 import { Undertittel } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { useErKontaktsenter } from '../../utils/enheter-utils';
-import useFetch, { FetchResult, hasData } from '@nutgaard/use-fetch';
 import { rapporterBruk } from '../../app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
+import skrivestotteResource from '../../rest/resources/skrivestotteResource';
 
 interface InlineRegel {
     type: 'internal';
@@ -311,9 +311,7 @@ function asChangeEvent<T>(event: React.KeyboardEvent<T>): React.ChangeEvent<T> {
 function AutocompleteTextarea(props: TextareaProps) {
     const autofullforData = useAutoFullforData();
     const [feilmelding, settFeilmelding] = useState<string>();
-    const standardtekster: FetchResult<StandardTeksterModels.Tekster> = useFetch<StandardTeksterModels.Tekster>(
-        '/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte'
-    );
+    const standardtekster = skrivestotteResource.useFetch();
     const rules = useRules();
     const onChange = props.onChange;
     const onKeyDown: React.KeyboardEventHandler = useCallback(
@@ -337,7 +335,7 @@ function AutocompleteTextarea(props: TextareaProps) {
                                 settFeilmelding(undefined);
                                 return rule.replacement();
                             } else {
-                                if (hasData(standardtekster)) {
+                                if (standardtekster.data) {
                                     const tekst: StandardTeksterModels.Tekst = standardtekster.data[rule.externalId];
                                     if (tekst === undefined) {
                                         settFeilmelding(`Ukjent tekst. Kontakt IT: ${rule.externalId}`);

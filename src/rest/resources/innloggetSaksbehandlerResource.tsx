@@ -1,5 +1,5 @@
 import { apiBaseUri } from '../../api/config';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { QueryClient, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, get } from '../../api/api';
 
 /**
@@ -16,6 +16,9 @@ export interface InnloggetSaksbehandler {
 }
 
 const resource = {
+    prefetch(queryClient: QueryClient) {
+        queryClient.prefetchQuery(queryKey, () => get(url));
+    },
     useFetch(): UseQueryResult<InnloggetSaksbehandler, FetchError> {
         return useQuery(queryKey, () => get(url));
     }
