@@ -8,9 +8,7 @@ import Arenalenke from './Arenalenke/Arenalenke';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
 import { erIE11 } from '../../../../utils/erIE11';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
-import utbetalinger from '../../../../rest/resources/utbetalinger';
-import { useOnMount } from '../../../../utils/customHooks';
-import { hasData } from '@nutgaard/use-fetch';
+import utbetalinger from '../../../../rest/resources/utbetalingerResource';
 
 const UtbetalingerStyle = styled.div`
     ${scrollBarContainerStyle(theme.media.utbetalinger.minWidth)};
@@ -42,12 +40,9 @@ const UtbetalingerSection = styled.section`
 `;
 
 function UtbetalingerContainer() {
-    const utbetalingerResource = utbetalinger.useLazyFetch();
-    useOnMount(() => {
-        utbetalingerResource.rerun();
-    });
+    const utbetalingerResource = utbetalinger.useFetch();
     let content = BigCenteredLazySpinner;
-    if (hasData(utbetalingerResource)) {
+    if (utbetalingerResource.data) {
         content = <Utbetalinger utbetalingerData={utbetalingerResource.data} />;
     }
     return (
@@ -56,7 +51,7 @@ function UtbetalingerContainer() {
                 <ScrollBar keepScrollId="utbetalinger-filter">
                     <Arenalenke />
                     <FiltreringSection>
-                        <Filter utbetalinger={utbetalingerResource} />
+                        <Filter />
                     </FiltreringSection>
                 </ScrollBar>
                 <ScrollBar keepScrollId="utbetalinger-liste">

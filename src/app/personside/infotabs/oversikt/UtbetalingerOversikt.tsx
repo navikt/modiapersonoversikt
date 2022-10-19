@@ -14,7 +14,7 @@ import { useInfotabsDyplenker } from '../dyplenker';
 import { utbetalingerTest } from '../dyplenkeTest/utils-dyplenker-test';
 import dayjs from 'dayjs';
 import { ReactNode } from 'react';
-import utbetalinger from '../../../../rest/resources/utbetalinger';
+import utbetalinger from '../../../../rest/resources/utbetalingerResource';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {

@@ -8,13 +8,11 @@ import { statiskDittnavEventVarselMock, statiskVarselMock } from '../mock/varsle
 import setGjeldendeBrukerIRedux from '../redux/gjeldendeBruker/actions';
 import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
 import { getMockGsakTema } from '../mock/meldinger/oppgave-mock';
-import { getMockInnloggetSaksbehandler } from '../mock/innloggetSaksbehandler-mock';
 import { pleiepengerTestData } from '../app/personside/infotabs/ytelser/pleiepenger/pleiepengerTestData';
 import { statiskForeldrepengeMock } from '../mock/ytelse/statiskForeldrepengeMock';
 import { statiskSykepengerMock } from '../mock/ytelse/statiskSykepengerMock';
 import { statiskTraadMock } from '../mock/meldinger/statiskTraadMock';
 import { statiskMockUtbetalingRespons } from '../mock/utbetalinger/statiskMockUtbetalingRespons';
-import { SaksbehandlerRoller } from '../app/personside/dialogpanel/RollerUtils';
 import { apiBaseUri } from '../api/config';
 import { aremark } from '../mock/persondata/aremark';
 import innstillingerResource from '../rest/resources/innstillingerResource';
@@ -27,6 +25,7 @@ import sykepengerResource from '../rest/resources/sykepengerResource';
 import gsaktemaResource from '../rest/resources/gsaktemaResource';
 import oppfolgingResource from '../rest/resources/oppfolgingResource';
 import sakstemaResource from '../rest/resources/sakstemaResource';
+import utbetalingerResource from '../rest/resources/utbetalingerResource';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -57,13 +56,6 @@ export function setupFetchCache() {
         createCacheKey(`${apiBaseUri}/v2/person/${aremark.personIdent}/aktorid`),
         `000${aremark.personIdent}000` as unknown as object
     );
-    cache.putResolved(createCacheKey(`${apiBaseUri}/baseurls`), mockBaseUrls());
-    cache.putResolved(createCacheKey(`${apiBaseUri}/veileder/roller`), { roller: [SaksbehandlerRoller.HentOppgave] });
-    cache.putResolved(createCacheKey(`${apiBaseUri}/hode/me`), getMockInnloggetSaksbehandler());
-    cache.putResolved(
-        createCacheKey(`${apiBaseUri}/utbetaling/${aremark.personIdent}?startDato=1969-12-02&sluttDato=1970-04-11`),
-        statiskMockUtbetalingRespons
-    );
 }
 
 export function mockReactQuery(resource: any, data: any, extra: {} = {}) {
@@ -83,6 +75,7 @@ export function setupReactQueryMocks() {
     jest.spyOn(gsaktemaResource, 'useFetch');
     jest.spyOn(oppfolgingResource, 'useFetch');
     jest.spyOn(sakstemaResource, 'useFetch');
+    jest.spyOn(utbetalingerResource, 'useFetch');
 
     mockReactQuery(innstillingerResource.useFetch, {
         sistLagret: new Date().toISOString(),
@@ -103,4 +96,5 @@ export function setupReactQueryMocks() {
     });
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
     mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversikt());
+    mockReactQuery(utbetalingerResource.useFetch, statiskMockUtbetalingRespons);
 }
