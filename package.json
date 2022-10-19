@@ -158,7 +158,7 @@
         "react-scripts": "^5.0.1",
         "react-test-renderer": "^16.8.6",
         "redux-devtools-extension": "^2.13.8",
-        "typescript": "^4.4.2",
+        "typescript": "^4.8.4",
         "yet-another-fetch-mock": "^4.0.0"
     },
     "browserslist": {
