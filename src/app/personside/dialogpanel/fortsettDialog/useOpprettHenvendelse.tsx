@@ -9,7 +9,7 @@ import { apiBaseUri } from '../../../../api/config';
 import { postWithConflictVerification, RespectConflictError } from '../../../../api/api';
 import { useState } from 'react';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
-import tildelteoppgaverResource from '../../../../rest/resources/tildelteoppgaver';
+import tildelteoppgaverResource from '../../../../rest/resources/tildelteoppgaverResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
 
 interface NotFinishedOpprettHenvendelse {
@@ -41,7 +41,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
             'Oppgaven tilknyttet denne meldingen er allerede tilordnet en saksbehandler. Vil du overstyre dette?'
         )
             .then((data) => setResponse(data as OpprettHenvendelseResponse))
-            .then(() => tildelteoppgaver.rerun())
+            .then(() => tildelteoppgaver.refetch())
             .catch((e) => {
                 if (e instanceof RespectConflictError) {
                     dispatch(setIngenValgtTraadDialogpanel());

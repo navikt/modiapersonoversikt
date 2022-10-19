@@ -88,7 +88,7 @@ function getDatoFeilmelding(fra: string, til: string) {
 }
 
 function DatoInputs() {
-    const update = oppfolgingResource.useMutation();
+    const update = oppfolgingResource.useFetch();
 
     const valgtPeriode = useAppState((appState) => appState.oppfolging.valgtPeriode);
     const fra = valgtPeriode.fra;
@@ -107,7 +107,7 @@ function DatoInputs() {
             return;
         }
         loggEvent('SøkNyPeriode', 'Oppfølging');
-        update.mutate();
+        update.refetch();
     };
 
     return (
