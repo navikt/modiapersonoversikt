@@ -6,7 +6,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { BaseUrl, BaseUrlsResponse } from '../../models/baseurls';
 import { loggError } from '../../utils/logger/frontendLogger';
 import { QueryClient, useQuery, UseQueryResult } from '@tanstack/react-query';
-import { get } from '../../api/api';
+import { FetchError, get } from '../../api/api';
 
 export function hentBaseUrl(baseUrlsResponse: BaseUrlsResponse, key: string) {
     const resultUrl = baseUrlsResponse.baseUrls.find((baseUrl: BaseUrl) => {
@@ -32,7 +32,7 @@ const resource = {
     prefetch(queryClient: QueryClient) {
         queryClient.prefetchQuery(queryKey, () => get(url));
     },
-    useFetch(): UseQueryResult<BaseUrlsResponse, Error> {
+    useFetch(): UseQueryResult<BaseUrlsResponse, FetchError> {
         return useQuery(queryKey, () => get(url));
     },
     useRenderer(renderer: RendererOrConfig<BaseUrlsResponse>) {
