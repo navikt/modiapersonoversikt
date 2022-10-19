@@ -25,7 +25,7 @@ import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 import useForeslatteEnheter from './useForeslåtteEnheter';
 import { useNormalPrioritet } from './oppgave-utils';
 import { FeilmeldingOppsummering } from '../../../../../../../components/FeilmeldingOppsummering';
-import innloggetSaksbehandler from '../../../../../../../rest/resources/innloggetSaksbehandler';
+import innloggetSaksbehandler from '../../../../../../../rest/resources/innloggetSaksbehandlerResource';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
 
 const AlertStyling = styled.div`
@@ -163,7 +163,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         const enhet = hasData(enhetliste) ? enhetliste.data.find((e) => e.enhetId === saksbehandlersEnhet) : undefined;
         const enhetValue = enhet ? `${enhet.enhetId} ${enhet.enhetNavn}` : '';
 
-        const ansatt = hasData(saksbehandlerIdent) ? saksbehandlerIdent.data : undefined;
+        const ansatt = saksbehandlerIdent.data ? saksbehandlerIdent.data : undefined;
         const ansattValue = ansatt ? `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})` : '';
 
         state.fields.valgtEnhet.setValue(enhetValue);
@@ -199,7 +199,7 @@ function OppgaveSkjema(props: OppgaveProps) {
                     label={
                         <>
                             <span>Velg enhet</span>
-                            {hasData(enhetliste) && hasData(saksbehandlerIdent) && (
+                            {hasData(enhetliste) && saksbehandlerIdent.data && (
                                 <SettTilEgenOppgaveListeKnapp type="button" onClick={settTilSaksbehandlerOppgaveListe}>
                                     Sett til min oppgaveliste
                                 </SettTilEgenOppgaveListeKnapp>
