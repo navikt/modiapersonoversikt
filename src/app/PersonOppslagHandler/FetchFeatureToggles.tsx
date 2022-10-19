@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
-import featuretoggles from '../../rest/resources/featuretoggles';
+import * as featuretoggles from '../../rest/resources/featuretogglesResource';
+import { useQueryClient } from '@tanstack/react-query';
 
 export function useFetchFeatureTogglesOnNewFnr() {
+    const queryClient = useQueryClient();
     const fnr = useGjeldendeBruker();
-    const resource = featuretoggles.useFetch();
-    const update = resource.rerun;
 
     useEffect(() => {
-        update();
-    }, [fnr, update]);
+        queryClient.invalidateQueries(featuretoggles.queryKey);
+    }, [fnr, queryClient]);
 }

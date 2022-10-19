@@ -21,7 +21,7 @@ export function hentBaseUrl(baseUrlsResponse: BaseUrlsResponse, key: string) {
     return resultUrl.url;
 }
 
-const queryId = ['baseurls'];
+const queryKey = ['baseurls'];
 const url = `${apiBaseUri}/baseurls`;
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
@@ -30,10 +30,10 @@ const defaults: DefaultConfig = {
 
 const resource = {
     prefetch(queryClient: QueryClient) {
-        queryClient.prefetchQuery(queryId, () => get(url));
+        queryClient.prefetchQuery(queryKey, () => get(url));
     },
     useFetch(): UseQueryResult<BaseUrlsResponse, Error> {
-        return useQuery(queryId, () => get(url));
+        return useQuery(queryKey, () => get(url));
     },
     useRenderer(renderer: RendererOrConfig<BaseUrlsResponse>) {
         const response = this.useFetch();
