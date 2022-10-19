@@ -1,4 +1,4 @@
-import { InnloggetSaksbehandler } from '../rest/resources/innloggetSaksbehandler';
+import { InnloggetSaksbehandler } from '../rest/resources/innloggetSaksbehandlerResource';
 
 export function getMockInnloggetSaksbehandler(): InnloggetSaksbehandler {
     return {
