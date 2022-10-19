@@ -11,6 +11,7 @@ import { ReactComponent as InfoIkon } from 'nav-frontend-ikoner-assets/assets/in
 import styled from 'styled-components/macro';
 import { focusOnFirstFocusable } from '../../utils/hooks/use-focus-on-first-focusable';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 type IconChoice = 'none' | 'ok' | 'warning' | 'error' | 'help' | 'info';
 type CommonPopupComponentProps = {
@@ -49,6 +50,7 @@ function getIcon(choice: IconChoice): React.ReactNode {
 }
 
 export function renderPopup<RESULT, PROPS>(
+    queryClient: QueryClient | null,
     componentType: PopupComponent<RESULT, PROPS>,
     props: PROPS
 ): Promise<RESULT> {
@@ -62,8 +64,11 @@ export function renderPopup<RESULT, PROPS>(
             resolve(result);
         };
         const component = createElement(componentType, { ...props, close });
-
-        render(component, tmp);
+        if (queryClient) {
+            render(<QueryClientProvider client={queryClient}>{component}</QueryClientProvider>, tmp);
+        } else {
+            render(component, tmp);
+        }
     });
 }
 
@@ -155,17 +160,17 @@ function Prompt(props: PopupComponentProps<string | null, PromptProps>) {
 }
 
 export function alert(props: CommonPopupComponentProps): Promise<void> {
-    return renderPopup(Alert, props);
+    return renderPopup(null, Alert, props);
 }
 
 export function confirm(props: CommonPopupComponentProps): Promise<boolean> {
-    return renderPopup(Confirm, props);
+    return renderPopup(null, Confirm, props);
 }
 
 export function prompt(props: CommonPopupComponentProps): Promise<string | null> {
-    return renderPopup(Prompt, { ...props, secret: false });
+    return renderPopup(null, Prompt, { ...props, secret: false });
 }
 
 export function promptSecret(props: CommonPopupComponentProps): Promise<string | null> {
-    return renderPopup(Prompt, { ...props, secret: true });
+    return renderPopup(null, Prompt, { ...props, secret: true });
 }

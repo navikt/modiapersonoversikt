@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { useFetchFeatureTogglesOnNewFnr } from './FetchFeatureToggles';
 import { loggEvent } from '../../utils/logger/frontendLogger';
-import tildelteoppgaver from '../../rest/resources/tildelteoppgaver';
+import tildelteoppgaver from '../../rest/resources/tildelteoppgaverResource';
 
 function LyttPåNyttFnrIReduxOgHentAllPersoninfo() {
     const dispatch = useDispatch();
