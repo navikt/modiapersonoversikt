@@ -6,19 +6,20 @@ import { resetKeepScroll } from '../../utils/hooks/useKeepScroll';
 import { AppState } from '../reducers';
 import { resetKeepQueryParams } from '../../utils/hooks/useKeepQueryParams';
 import { createTrie, searchTrie } from '../../utils/trie';
+import { apiBaseUri } from '../../api/config';
 
 const trieDelimiter = /\/|\|\|.*/;
 const protectedCache = createTrie(
     [
-        '/modiapersonoversikt-api/rest/hode/me',
-        '/modiapersonoversikt-api/rest/hode/enheter',
-        '/modiapersonoversikt-api/rest/baseurls',
-        '/modiapersonoversikt-api/rest/enheter/oppgavebehandlere/alle',
-        '/modiapersonoversikt-api/rest/dialogoppgave/v2/tema',
-        '/modiapersonoversikt-api/rest/tilgang/auth',
-        '/modiapersonoversikt-api/rest/featuretoggle',
-        '/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte',
-        '/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger'
+        `${apiBaseUri}/hode/me`,
+        `${apiBaseUri}/hode/enheter`,
+        `${apiBaseUri}/baseurls`,
+        `${apiBaseUri}/enheter/oppgavebehandlere/alle`,
+        `${apiBaseUri}/dialogoppgave/v2/tema`,
+        `${apiBaseUri}/tilgang/auth`,
+        `${apiBaseUri}/featuretoggle`,
+        `/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte`,
+        `/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger`
     ],
     trieDelimiter
 );
