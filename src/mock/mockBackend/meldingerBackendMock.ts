@@ -129,7 +129,8 @@ export class MeldingerBackendMock {
 
 function getMockMelding(): Melding {
     return {
-        id: guid(),
+        id: 'TRAD-' + guid(),
+        meldingsId: guid(),
         meldingstype: Meldingstype.SPORSMAL_SKRIFTLIG,
         temagruppe: Temagruppe.Arbeid,
         skrevetAvTekst: 'Saksbehandler',

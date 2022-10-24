@@ -30,11 +30,18 @@ function ValgteMeldingerPreview(props: { traad: Traad; valgte: string[] }) {
         );
     } else {
         const meldingskomponenter = props.traad.meldinger
-            .filter((melding) => props.valgte.includes(melding.id))
+            .filter((melding) => props.valgte.includes(melding.meldingsId))
             .sort(datoSynkende((melding) => melding.opprettetDato))
             .map((melding, index) => {
                 const meldingnummer = props.traad.meldinger.length - index;
-                return <EnkeltMelding sokeord="" melding={melding} key={melding.id} meldingsNummer={meldingnummer} />;
+                return (
+                    <EnkeltMelding
+                        sokeord=""
+                        melding={melding}
+                        key={melding.meldingsId}
+                        meldingsNummer={meldingnummer}
+                    />
+                );
             });
 
         return <ol aria-label="Dialog">{meldingskomponenter}</ol>;
@@ -62,11 +69,11 @@ function SladdMeldingerMedArsak(props: SladdeComponentProps) {
     }, [checked, updateFormstate]);
 
     const meldingPreviewListe = props.traad.meldinger.map((melding) => (
-        <li className={css.melding} key={melding.id}>
+        <li className={css.melding} key={melding.meldingsId}>
             <Checkbox
-                value={melding.id}
+                value={melding.meldingsId}
                 onChange={onChange}
-                checked={checked.values.includes(melding.id)}
+                checked={checked.values.includes(melding.meldingsId)}
                 label={
                     <>
                         <Element>{meldingstittel(melding)}</Element>
