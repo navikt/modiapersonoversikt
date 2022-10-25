@@ -13,6 +13,7 @@ import { datoSynkende } from '../../../../../../../../utils/date-utils';
 import EnkeltMelding from '../../../Enkeltmelding';
 import { feilmelding } from '../../oppgave/validering';
 import { guid } from 'nav-frontend-js-utils';
+import MeldIPortenAdvarsel from './MeldIPortenAdvarsel';
 
 const PreviewStyle = styled(Normaltekst)`
     width: 100%;
@@ -94,6 +95,7 @@ function SladdMeldingerMedArsak(props: SladdeComponentProps) {
             <div className={css.view}>
                 <ValgteMeldingerPreview traad={props.traad} valgte={checked.values} />
             </div>
+            <MeldIPortenAdvarsel className={css.alert} />
             <div className={css.action}>
                 <Select
                     aria-label="Årsak"

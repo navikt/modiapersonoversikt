@@ -3,24 +3,14 @@ import { SladdeComponentProps } from './Sladdevalg';
 import { feilmelding } from '../../oppgave/validering';
 import { Select } from 'nav-frontend-skjema';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import MeldIPortenAdvarsel from './MeldIPortenAdvarsel';
 
 function SladdTradMedArsak(props: SladdeComponentProps) {
     const { formstate } = props;
     return (
         <>
             <div>
-                <AlertStripeAdvarsel className="blokk-xxs">
-                    Sak om feilregistrering/sladding må meldes i{' '}
-                    <a
-                        href="https://jira.adeo.no/plugins/servlet/desk/portal/541/create/1481"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        porten
-                    </a>
-                    .
-                </AlertStripeAdvarsel>
+                <MeldIPortenAdvarsel />
                 <Select
                     aria-label="Årsak"
                     {...formstate.fields.arsak.input}
