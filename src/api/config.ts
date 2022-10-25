@@ -14,4 +14,4 @@ export function postConfig(body?: object | string) {
 
 export const includeCredentials: RequestInit = { credentials: 'include' };
 
-export const apiBaseUri = '/modiapersonoversikt-api/rest';
+export const apiBaseUri = '/modiapersonoversikt/proxy/api';

@@ -14,5 +14,9 @@
     {
         "prefix": "proxy/modiacontextholder",
         "url": "http://modiacontextholder.personoversikt.svc.nais.local/modiacontextholder"
+    },
+    {
+        "prefix": "proxy/api",
+        "url": "http://modiapersonoversikt-api.personoversikt.svc.nais.local/modiapersonoversikt-api/rest"
     }
 ]

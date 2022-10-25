@@ -26,11 +26,11 @@ spec:
     enabled: true
   resources:
     requests:
-      cpu: 200m
-      memory: 512Mi
+      cpu: 600m
+      memory: 1024Mi
     limits:
       cpu: 3000m
-      memory: 1536Mi
+      memory: 2048Mi
   ingresses:
     - https://app.adeo.no/modiapersonoversikt
   replicas:
