@@ -52,9 +52,9 @@ function useBrukersYtelser(): Returns {
     return useMemo(() => {
         const pending =
             pleiepengerResponse.isLoading || foreldrepengerResponse.isLoading || sykepengerResponse.isLoading;
-        const foreldrepenger = foreldrepengerResponse.data ? foreldrepengerResponse.data.foreldrepenger || [] : [];
-        const pleiepenger = pleiepengerResponse.data ? pleiepengerResponse.data.pleiepenger || [] : [];
-        const sykepenger = sykepengerResponse.data ? sykepengerResponse.data.sykepenger || [] : [];
+        const foreldrepenger = foreldrepengerResponse.data?.foreldrepenger ?? [];
+        const pleiepenger = pleiepengerResponse.data?.pleiepenger ?? [];
+        const sykepenger = sykepengerResponse.data?.sykepenger ?? [];
 
         const ytelser = [...foreldrepenger, ...pleiepenger, ...sykepenger];
         const ytelserSortert = ytelser.sort(datoSynkende((ytelse: Ytelse) => getYtelseIdDato(ytelse)));

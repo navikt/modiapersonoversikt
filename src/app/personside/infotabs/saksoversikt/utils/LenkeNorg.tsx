@@ -33,7 +33,7 @@ function byggSokestrengTilNorgTemaOppslag(sakstema: Sakstema) {
 
 function LenkeNorg(props: Props) {
     const persondata = persondataResource.useFetch();
-    const geografiskTilknytning = persondata.data ? persondata.data.person.geografiskTilknytning : null;
+    const geografiskTilknytning = persondata.data?.person?.geografiskTilknytning ?? null;
 
     return baseurls.useRenderer((baseUrls) => {
         const norgBaseurl = hentBaseUrl(baseUrls, 'norg2-frontend');

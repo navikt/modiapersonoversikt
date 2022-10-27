@@ -40,9 +40,9 @@ function getKjonnString(kjonn: Kjonn | undefined): string {
 }
 
 function hentKjonnTilBarn(persondata: UseQueryResult<Persondata, FetchError>, barnFnr: string): string {
-    const person = persondata.data ? persondata.data.person : null;
-    const barn = person?.forelderBarnRelasjon.filter((relasjon) => relasjon.ident === barnFnr) ?? null;
-    if (!barn || barn.isEmpty()) {
+    const barn = persondata.data?.person?.forelderBarnRelasjon?.filter((relasjon) => relasjon.ident === barnFnr) ?? [];
+
+    if (barn.isEmpty()) {
         return '';
     }
     const kjonnTilBarn = barn[0].kjonn.firstOrNull()?.kode;

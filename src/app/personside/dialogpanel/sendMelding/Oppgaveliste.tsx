@@ -20,7 +20,7 @@ const StyledSelect = styled(Select)`
 
 function Oppgaveliste(props: Props) {
     const enheterResource = saksbehandlersEnheter.useFetch();
-    const enheter = enheterResource.data ? enheterResource.data.enhetliste : [];
+    const enheter = enheterResource.data?.enhetliste ?? [];
     const valgtEnhetId = useValgtenhet().enhetId;
 
     const valgtEnhet = enheter.find((enhet) => enhet.enhetId === valgtEnhetId);

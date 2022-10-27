@@ -120,13 +120,13 @@ export function useAutoFullforData(): AutofullforData | undefined {
     const personResponse = persondataResource.useFetch();
     const saksbehandler = innloggetSaksbehandler.useFetch();
     const enheterResource = saksbehandlersEnheter.useFetch();
-    const enheter = enheterResource.data ? enheterResource.data.enhetliste : [];
+    const enheter = enheterResource.data?.enhetliste ?? [];
     const valgtEnhetId = useValgtenhet().enhetId;
     const valgtEnhet = enheter.find((enhet) => enhet.enhetId === valgtEnhetId);
 
     return {
         enhet: valgtEnhet,
-        person: personResponse.data ? personResponse.data : undefined,
-        saksbehandler: saksbehandler.data ? saksbehandler.data : undefined
+        person: personResponse.data,
+        saksbehandler: saksbehandler.data
     };
 }

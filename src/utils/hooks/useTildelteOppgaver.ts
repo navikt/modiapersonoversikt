@@ -8,7 +8,7 @@ function useTildelteOppgaver(): { paaBruker: Oppgave[] } {
     const tildelteOppgaverResource = tildelteoppgaver.useFetch();
     const fnr = useFodselsnummer();
 
-    const tildelteOppgaver = tildelteOppgaverResource.data ? tildelteOppgaverResource.data : emptyList;
+    const tildelteOppgaver = tildelteOppgaverResource.data ?? emptyList;
     return useMemo(() => {
         const alleTildelteOppgaverPaaBruker = tildelteOppgaver.filter((oppg) => oppg.fødselsnummer === fnr);
 

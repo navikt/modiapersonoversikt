@@ -23,7 +23,7 @@ function VelgEnhet() {
     const setEnhetId = useValgtenhet().setEnhetId;
 
     useEffect(() => {
-        if (enheter.data && enheter.data?.enhetliste.length === 1) {
+        if (enheter.data?.enhetliste?.length === 1) {
             setEnhetId(enheter.data.enhetliste[0].enhetId);
         }
     }, [enheter, setEnhetId]);

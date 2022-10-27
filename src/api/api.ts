@@ -13,7 +13,7 @@ export async function get<TYPE extends object>(uri: string): Promise<TYPE> {
     if (!response.ok || response.redirected) {
         throw new FetchError(response, `${response.status} ${response.statusText}: ${uri}`);
     } else {
-        return (await response.json()) as Promise<TYPE>;
+        return handleResponse(response);
     }
 }
 export async function post<TYPE extends object = object>(
@@ -49,7 +49,7 @@ export async function postWithConflictVerification<TYPE extends object = object>
 
 function handleResponse<TYPE extends object = object>(
     response: Response,
-    loggLocation: string | undefined
+    loggLocation: string | undefined = undefined
 ): Promise<TYPE> {
     // Ignore-Conflict
     if (!response.ok || response.redirected) {
