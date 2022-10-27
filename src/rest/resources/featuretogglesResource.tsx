@@ -6,16 +6,11 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, get } from '../../api/api';
-import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 
 export type FeatureTogglesResponse = {
     [key in FeatureToggles]: boolean;
 };
 
-function queryKey(fnr: string | undefined) {
-    // Tvinger relasting ved bytte av bruker i tilfelle ft har blitt endret
-    return ['featuretoggles', fnr];
-}
 function url(): string {
     const queryParams = Object.values(FeatureToggles)
         .map((it) => `id=${it}`)
@@ -30,9 +25,9 @@ const defaults: DefaultConfig = {
 };
 
 const resource = {
+    queryKey: ['featuretoggles'],
     useFetch(): UseQueryResult<FeatureTogglesResponse, FetchError> {
-        const fnr = useGjeldendeBruker();
-        return useQuery(queryKey(fnr), () => get(url()));
+        return useQuery(this.queryKey, () => get(url()));
     },
     useRenderer(renderer: RendererOrConfig<FeatureTogglesResponse>) {
         const response = this.useFetch();

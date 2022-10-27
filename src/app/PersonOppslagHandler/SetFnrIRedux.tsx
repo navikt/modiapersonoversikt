@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useFodselsnummer } from '../../utils/customHooks';
 import { Query, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import featuretogglesResource from '../../rest/resources/featuretogglesResource';
 
 interface Props {
     fnr: string;
@@ -19,7 +20,7 @@ function SetFnrIRedux(props: Props) {
                 predicate(query: Query) {
                     // Alle queryKeys er typisk på formatet ['endepunkt', 'fnr']
                     // De med lenge større enn 1 bør derfor slettes siden disse sannsynligvis har brukerdata
-                    return query.queryKey.length > 1;
+                    return query.queryKey.length > 1 || query.queryKey === featuretogglesResource.queryKey;
                 }
             });
         }
