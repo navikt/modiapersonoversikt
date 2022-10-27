@@ -42,7 +42,7 @@
     "dependencies": {
         "@navikt/fnrvalidator": "^1.1.3",
         "@navikt/navspa": "^4.0.0",
-        "@navikt/tag-input": "^1.1.1",
+        "@navikt/tag-input": "^2.0.1",
         "@navikt/textparser": "^2.2.1",
         "@nutgaard/use-fetch": "^2.4.1",
         "@nutgaard/use-formstate": "^3.0.0",
