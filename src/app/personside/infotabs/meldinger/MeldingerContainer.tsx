@@ -54,7 +54,7 @@ function MeldingerContainer() {
     const traaderResource = dialogResource.useFetch();
     const meldingsok = useMeldingsok();
 
-    const traaderForSok = traaderResource.data ? traaderResource.data : [];
+    const traaderForSok = traaderResource.data ?? [];
     const traaderEtterSokOgFiltrering = useSokEtterMeldinger(traaderForSok, meldingsok.query);
     const valgtTraad = useValgtTraadIUrl() || traaderEtterSokOgFiltrering[0];
     useKeepQueryParams();

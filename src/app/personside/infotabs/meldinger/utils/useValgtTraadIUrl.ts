@@ -5,6 +5,6 @@ import dialogResource from '../../../../../rest/resources/dialogResource';
 export function useValgtTraadIUrl(): Traad | undefined {
     const dyplenker = useInfotabsDyplenker();
     const traaderResource = dialogResource.useFetch();
-    const traader = traaderResource.data ? traaderResource.data : [];
+    const traader = traaderResource.data ?? [];
     return traader.find(dyplenker.meldinger.erValgt);
 }

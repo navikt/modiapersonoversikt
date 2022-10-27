@@ -68,7 +68,7 @@ function OppgaverDropdown(props: { lukk: () => void }) {
         return <LazySpinner type="M" />;
     }
 
-    const traader = traaderResource.data ? traaderResource.data : [];
+    const traader = traaderResource.data ?? [];
 
     const oppgaver = oppgaverPaaBruker.map((oppgave) => {
         const traad = traader.find((traad) => traad.traadId === oppgave.traadId);

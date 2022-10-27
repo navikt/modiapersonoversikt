@@ -149,10 +149,10 @@ function OppgaveSkjema(props: OppgaveProps) {
         );
     }
     const settTilSaksbehandlerOppgaveListe = async () => {
-        const enhet = enhetliste.data ? enhetliste.data.find((e) => e.enhetId === saksbehandlersEnhet) : undefined;
+        const enhet = enhetliste.data?.find((e) => e.enhetId === saksbehandlersEnhet);
         const enhetValue = enhet ? `${enhet.enhetId} ${enhet.enhetNavn}` : '';
 
-        const ansatt = saksbehandlerIdent.data ? saksbehandlerIdent.data : undefined;
+        const ansatt = saksbehandlerIdent.data;
         const ansattValue = ansatt ? `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})` : '';
 
         state.fields.valgtEnhet.setValue(enhetValue);
@@ -195,9 +195,7 @@ function OppgaveSkjema(props: OppgaveProps) {
                             )}
                         </>
                     }
-                    suggestions={
-                        enhetliste.data ? enhetliste.data.map((enhet) => `${enhet.enhetId} ${enhet.enhetNavn}`) : []
-                    }
+                    suggestions={enhetliste.data?.map((enhet) => `${enhet.enhetId} ${enhet.enhetNavn}`) ?? []}
                     topSuggestions={foreslatteEnheter.foreslatteEnheter.map(
                         (enhet) => `${enhet.enhetId} ${enhet.enhetNavn}`
                     )}
