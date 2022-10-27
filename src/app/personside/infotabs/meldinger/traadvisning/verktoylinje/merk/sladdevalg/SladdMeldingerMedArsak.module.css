@@ -4,9 +4,10 @@
     display: grid;
     grid-template-areas:
         'list view'
+        'list alert'
         'list action';
     grid-template-columns: minmax(10rem, 20rem) auto;
-    grid-template-rows: 1fr minmax(6.375rem, auto);
+    grid-template-rows: 1fr min-content minmax(6.375rem, auto);
 }
 
 .list {
@@ -23,6 +24,12 @@
     padding: 1rem;
     overflow: hidden scroll;
     height: 100%;
+}
+
+.alert {
+    grid-area: alert;
+    margin: 0;
+    border-radius: 0;
 }
 
 .action {
