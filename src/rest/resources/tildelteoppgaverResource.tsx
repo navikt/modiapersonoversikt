@@ -1,12 +1,16 @@
-import { FetchResult } from '@nutgaard/use-fetch';
 import { useFodselsnummer } from '../../utils/customHooks';
-import { applyDefaults, DefaultConfig, RendererOrConfig, useFetch, useRest } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { Oppgave } from '../../models/meldinger/oppgave';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import { apiBaseUri } from '../../api/config';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { FetchError, get } from '../../api/api';
 
+function queryKey(fnr: string): [string, string] {
+    return ['tildelteoppgaver', fnr];
+}
 function url(fnr: string): string {
     return `${apiBaseUri}/oppgaver/tildelt/${fnr}`;
 }
@@ -16,13 +20,13 @@ const defaults: DefaultConfig = {
 };
 
 const resource = {
-    useFetch(): FetchResult<Oppgave[]> {
+    useFetch(): UseQueryResult<Oppgave[], FetchError> {
         const fnr = useFodselsnummer();
-        return useFetch(url(fnr));
+        return useQuery(queryKey(fnr), () => get(url(fnr)));
     },
     useRenderer(renderer: RendererOrConfig<Oppgave[]>) {
-        const fnr = useFodselsnummer();
-        return useRest(url(fnr), applyDefaults(defaults, renderer));
+        const response = this.useFetch();
+        return useRest(response, applyDefaults(defaults, renderer));
     }
 };
 export default resource;

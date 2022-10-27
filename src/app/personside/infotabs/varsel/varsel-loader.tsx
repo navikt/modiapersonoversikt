@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { isDittNavEvent, UnifiedVarsel, VarslerResult } from '../../../../models/varsel';
-import { useGjeldendeBruker } from '../../../../redux/gjeldendeBruker/types';
-import useFetch, { hasError, isPending } from '@nutgaard/use-fetch';
-import { apiBaseUri } from '../../../../api/config';
 import LazySpinner from '../../../../components/LazySpinner';
 import { datoSynkende } from '../../../../utils/date-utils';
+import varselResource from '../../../../rest/resources/varselResource';
 
 function datoExtractor(varsel: UnifiedVarsel) {
     if (isDittNavEvent(varsel)) {
@@ -22,12 +20,11 @@ type VarslerRenderer<P> = React.ComponentType<VarslerRendererProps & P>;
 type VarselLoaderProps<P> = P & { component: VarslerRenderer<P> };
 
 function VarslerLoader<P>(props: VarselLoaderProps<P>) {
-    const fnr = useGjeldendeBruker();
-    const varslerResponse = useFetch<VarslerResult>(`${apiBaseUri}/v2/varsler/${fnr}`);
+    const varslerResponse = varselResource.useFetch();
 
-    if (isPending(varslerResponse)) {
+    if (varslerResponse.isLoading) {
         return <LazySpinner type="M" />;
-    } else if (hasError(varslerResponse)) {
+    } else if (varslerResponse.isError) {
         return <AlertStripeFeil>Feil ved uthenting av brukers varsler og notifikasjoner.</AlertStripeFeil>;
     }
     const varsler: VarslerResult = varslerResponse.data;

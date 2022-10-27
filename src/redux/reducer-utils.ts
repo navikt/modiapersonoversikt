@@ -1,8 +1,8 @@
-import { Action, AnyAction, combineReducers, Reducer, ReducersMapObject } from 'redux';
+import { Action, AnyAction, CombinedState, combineReducers, Reducer, ReducersMapObject } from 'redux';
 
 type Keyof<S> = string & keyof S;
 
-function entries<SHAPE>(value: SHAPE): Array<[Keyof<SHAPE>, SHAPE[Keyof<SHAPE>]]> {
+function entries<SHAPE extends {}>(value: SHAPE): Array<[Keyof<SHAPE>, SHAPE[Keyof<SHAPE>]]> {
     return Object.entries(value) as Array<[Keyof<SHAPE>, SHAPE[Keyof<SHAPE>]]>;
 }
 
@@ -27,7 +27,7 @@ export function resettable<S>(reducer: Reducer<S>): Reducer<S> {
 export function combineResettableReducers<S>(
     reducers: ReducersMapObject<S, any>,
     useCache: Array<Keyof<S>> = []
-): Reducer<S> {
+): Reducer<CombinedState<S>> {
     const mappedReducers = entries<ReducersMapObject<S, any>>(reducers)
         .map(([reducerName, reducerFn]) => {
             if (useCache.includes(reducerName as Keyof<S>)) {

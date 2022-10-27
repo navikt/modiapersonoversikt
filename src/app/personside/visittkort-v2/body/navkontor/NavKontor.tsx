@@ -11,8 +11,7 @@ import AdresseInfo from '../AdresseInfo';
 import { capitalizeName } from '../../../../../utils/string-utils';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 import { mapUgyldigGT } from '../../visittkort-utils';
-import baseurls, { hentBaseUrl } from '../../../../../rest/resources/baseurls';
-import { hasData } from '@nutgaard/use-fetch';
+import baseurls, { hentBaseUrl } from '../../../../../rest/resources/baseurlsResource';
 
 const ApningstiderListe = styled.dl`
     margin: initial;
@@ -86,7 +85,7 @@ function Publikumsmottak(props: { publikumsmottak: PublikumsmottakInterface[] })
 
 function NavKontor({ feilendeSystemer, navEnhet, geografiskTilknytning }: Props) {
     const baseUrlResource = baseurls.useFetch();
-    const baseUrl = hasData(baseUrlResource) ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
+    const baseUrl = baseUrlResource.data ? hentBaseUrl(baseUrlResource.data, 'norg2-frontend') : '';
 
     if (harFeilendeSystemer(feilendeSystemer, InformasjonElement.NORG_NAVKONTOR)) {
         return (

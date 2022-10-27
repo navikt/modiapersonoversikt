@@ -10,8 +10,7 @@ import theme from '../../../../../../../styles/personOversiktTheme';
 import { AvsluttGosysOppgaveRequest } from '../../../../../../../models/meldinger/merk';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaver';
-import { hasData } from '@nutgaard/use-fetch';
+import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaverResource';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
 
 const StyledAlert = styled.div`
@@ -37,7 +36,7 @@ function AvsluttGosysOppgaveSkjema(props: Props) {
     const [avsluttOppgaveSuksess, setAvsluttOppgaveSuksess] = useState(false);
     const [error, setError] = useState(false);
     const harOppgaveTilknyttetTrad =
-        hasData(tildelteOppgaverResource) &&
+        tildelteOppgaverResource.data &&
         tildelteOppgaverResource.data.find((it) => it.traadId === props.valgtTraad.traadId);
 
     useFocusOnMount(ref);
@@ -57,7 +56,7 @@ function AvsluttGosysOppgaveSkjema(props: Props) {
             post(`${apiBaseUri}/dialogmerking/avsluttgosysoppgave`, request, 'Avslutt-Oppgave-Fra-Gosys')
                 .then(() => {
                     setAvsluttOppgaveSuksess(true);
-                    tildelteOppgaverResource.rerun();
+                    tildelteOppgaverResource.refetch();
                 })
                 .catch(() => {
                     setError(true);

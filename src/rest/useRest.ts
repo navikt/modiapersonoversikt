@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useFetchHook, { isPending, hasError, FetchResult, Config as HookConfig } from '@nutgaard/use-fetch';
+import { UseQueryResult } from '@tanstack/react-query';
 
 type ReactElement = React.ReactElement | null;
 
@@ -20,19 +20,17 @@ export function applyDefaults<T>(defaults: DefaultConfig, renderer: RendererOrCo
     }
 }
 
-const includeCredentials: RequestInit = { credentials: 'include' };
-export function useFetch<T>(url: string, hookConfig?: HookConfig): FetchResult<T> {
-    return useFetchHook<T>(url, includeCredentials, hookConfig);
-}
-export function useRest<T>(url: string, config: Config<T>, hookConfig?: HookConfig): ReactElement {
-    const response: FetchResult<T> = useFetch<T>(url, hookConfig);
-    if (isPending(response)) {
+export function useRest<TData = unknown, TError = unknown>(
+    response: UseQueryResult<TData, TError>,
+    config: Config<TData>
+): ReactElement {
+    if (response.isLoading) {
         if (typeof config.ifPending === 'function') {
             return config.ifPending();
         } else {
             return config.ifPending;
         }
-    } else if (hasError(response)) {
+    } else if (response.isError) {
         if (typeof config.ifError === 'function') {
             return config.ifError(response.error);
         } else {

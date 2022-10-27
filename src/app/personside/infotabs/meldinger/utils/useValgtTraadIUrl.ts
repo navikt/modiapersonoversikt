@@ -1,11 +1,10 @@
 import { Traad } from '../../../../../models/meldinger/meldinger';
 import { useInfotabsDyplenker } from '../../dyplenker';
-import brukersdialog from '../../../../../rest/resources/brukersdialog';
-import { hasData } from '@nutgaard/use-fetch';
+import dialogResource from '../../../../../rest/resources/dialogResource';
 
 export function useValgtTraadIUrl(): Traad | undefined {
     const dyplenker = useInfotabsDyplenker();
-    const traaderResource = brukersdialog.useFetch();
-    const traader = hasData(traaderResource) ? traaderResource.data : [];
+    const traaderResource = dialogResource.useFetch();
+    const traader = traaderResource.data ?? [];
     return traader.find(dyplenker.meldinger.erValgt);
 }

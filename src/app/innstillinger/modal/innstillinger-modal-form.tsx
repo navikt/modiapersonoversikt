@@ -67,10 +67,11 @@ function InnstillingerModalForm(props: Props) {
     const { innstillinger } = props;
     const [innsendingFeilet, settInnsendingFeilet] = React.useState<boolean>(false);
     const state = useFormState(getFormState(innstillinger.innstillinger));
+    const updateinnstillinger = innstillingerResource.useMutation();
 
     const onSubmitHandler = (nyeInnstillinger: Innstillinger): Promise<any> => {
-        return innstillingerResource
-            .update({ ...innstillinger.innstillinger, ...nyeInnstillinger })
+        return updateinnstillinger
+            .mutateAsync({ ...innstillinger.innstillinger, ...nyeInnstillinger })
             .then((oppdaterteInnstillinger) => {
                 state.reinitialize(oppdaterteInnstillinger.innstillinger);
                 settInnsendingFeilet(false);

@@ -4,8 +4,7 @@ import md5 from 'md5';
 import { detect } from 'detect-browser';
 import { useEffect } from 'react';
 import { erKontaktsenter } from '../enheter-utils';
-import innloggetSaksbehandler from '../../rest/resources/innloggetSaksbehandler';
-import { hasData } from '@nutgaard/use-fetch';
+import innloggetSaksbehandler from '../../rest/resources/innloggetSaksbehandlerResource';
 import { useValgtenhet } from '../../context/valgtenhet-state';
 
 let ident = 'ikke satt';
@@ -16,7 +15,7 @@ export function useInitializeLogger() {
     const valgtEnhet = useValgtenhet().enhetId;
 
     useEffect(() => {
-        if (hasData(innloggetSaksbehandlerResource)) {
+        if (innloggetSaksbehandlerResource.data) {
             ident = innloggetSaksbehandlerResource.data.ident;
             enhet = valgtEnhet;
         }
