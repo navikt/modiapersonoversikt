@@ -11,7 +11,7 @@ import useList from '../../../../../../../../utils/hooks/use-list';
 import { Traad } from '../../../../../../../../models/meldinger/meldinger';
 import { datoSynkende } from '../../../../../../../../utils/date-utils';
 import EnkeltMelding from '../../../Enkeltmelding';
-import { feilmelding } from '../../oppgave/validering';
+import { feilmeldingReactHookForm } from '../../oppgave/validering';
 import { guid } from 'nav-frontend-js-utils';
 import MeldIPortenAdvarsel from './MeldIPortenAdvarsel';
 
@@ -49,12 +49,18 @@ function ValgteMeldingerPreview(props: { traad: Traad; valgte: string[] }) {
     }
 }
 
-function SladdMeldingerMedArsak(props: SladdeComponentProps) {
+function SladdMeldingerMedArsak({
+    arsaker,
+    getNativeProps,
+    formState,
+    traad,
+    updateValueManually
+}: SladdeComponentProps) {
     const checked = useList<string>([]);
     const addChecked = checked.add;
     const removeChecked = checked.remove;
-    const updateFormstate = props.formstate.fields.meldingIder.setValue;
     const feilmeldingId = useRef(guid());
+
     const onChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
             if (e.target.checked) {
@@ -65,11 +71,12 @@ function SladdMeldingerMedArsak(props: SladdeComponentProps) {
         },
         [addChecked, removeChecked]
     );
-    useEffect(() => {
-        updateFormstate(checked.values.join('||'));
-    }, [checked, updateFormstate]);
 
-    const meldingPreviewListe = props.traad.meldinger.map((melding) => (
+    useEffect(() => {
+        updateValueManually('meldingIder', checked.values);
+    }, [checked, updateValueManually]);
+
+    const meldingPreviewListe = traad.meldinger.map((melding) => (
         <li className={css.melding} key={melding.meldingsId}>
             <Checkbox
                 value={melding.meldingsId}
@@ -85,7 +92,10 @@ function SladdMeldingerMedArsak(props: SladdeComponentProps) {
             />
         </li>
     ));
-    const ingenValgteFeilmelding = feilmelding(props.formstate.fields.meldingIder);
+
+    const valgtMeldingFeilmelding = feilmeldingReactHookForm('meldingIder', formState);
+
+    const { ref, ...other } = getNativeProps('arsak');
 
     return (
         <div className={css.layout}>
@@ -93,19 +103,20 @@ function SladdMeldingerMedArsak(props: SladdeComponentProps) {
                 <ol>{meldingPreviewListe}</ol>
             </div>
             <div className={css.view}>
-                <ValgteMeldingerPreview traad={props.traad} valgte={checked.values} />
+                <ValgteMeldingerPreview traad={traad} valgte={checked.values} />
             </div>
             <MeldIPortenAdvarsel className={css.alert} />
             <div className={css.action}>
                 <Select
                     aria-label="Årsak"
-                    {...props.formstate.fields.arsak.input}
-                    feil={feilmelding(props.formstate.fields.arsak)}
+                    selectRef={ref as any}
+                    {...other}
+                    feil={feilmeldingReactHookForm('arsak', formState)}
                 >
                     <option value="" disabled selected>
                         Velg årsak
                     </option>
-                    {props.arsaker.map((it) => (
+                    {arsaker.map((it) => (
                         <option value={it} key={it}>
                             {it}
                         </option>
@@ -113,14 +124,14 @@ function SladdMeldingerMedArsak(props: SladdeComponentProps) {
                 </Select>
                 <div>
                     <Hovedknapp
-                        aria-invalid={!!ingenValgteFeilmelding}
-                        aria-errormessage={ingenValgteFeilmelding ? feilmeldingId.current : undefined}
+                        aria-invalid={!!valgtMeldingFeilmelding}
+                        aria-errormessage={valgtMeldingFeilmelding ? feilmeldingId.current : undefined}
                     >
                         Send til sladding
                     </Hovedknapp>
-                    {ingenValgteFeilmelding && (
+                    {valgtMeldingFeilmelding && (
                         <SkjemaelementFeilmelding id={feilmeldingId.current}>
-                            {ingenValgteFeilmelding}
+                            {valgtMeldingFeilmelding}
                         </SkjemaelementFeilmelding>
                     )}
                 </div>

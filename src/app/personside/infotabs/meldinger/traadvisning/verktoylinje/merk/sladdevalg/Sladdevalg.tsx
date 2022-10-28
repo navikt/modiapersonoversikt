@@ -7,12 +7,12 @@ import useFeatureToggle from '../../../../../../../../components/featureToggle/u
 import { FeatureToggles } from '../../../../../../../../components/featureToggle/toggleIDs';
 import styled from 'styled-components/macro';
 import { Systemtittel } from 'nav-frontend-typografi';
-import formstateFactory, { Formstate } from '@nutgaard/use-formstate';
 import SladdTradMedArsak from './SladdTradMedArsak';
 import SladdMeldingerMedArsak from './SladdMeldingerMedArsak';
 import css from './Sladdvalg.module.css';
 import { useSladdeArsak } from './use-sladde-arsak';
 import { QueryClient } from '@tanstack/react-query';
+import { FieldError, useForm, FormState, UseFormRegisterReturn } from 'react-hook-form';
 
 interface Props {
     traad: Traad;
@@ -50,35 +50,33 @@ const ModalStor = styled(ModalBase)`
 
 export type SladdeForm = {
     arsak: string;
-    meldingIder: string;
+    meldingIder: string[];
 };
 type FormProps = { velgMeldinger: boolean };
-const useFormstate = formstateFactory<SladdeForm, FormProps>({
-    arsak(value: string) {
-        if (value === '') {
-            return 'Du må velge årsak';
-        }
-        return undefined;
-    },
-    meldingIder(value: string, values: any, props: FormProps) {
-        if (props.velgMeldinger) {
-            const meldingIder = value.split('||').filter((it) => it !== '');
-            if (meldingIder.length === 0) {
-                return 'Du må velge minst en melding';
-            } else {
-                return undefined;
-            }
-        } else {
-            return undefined;
-        }
+
+const resolver = (values: SladdeForm, props: FormProps) => {
+    const errors: { [Property in keyof Partial<SladdeForm>]: FieldError } = {};
+
+    if (!values.arsak || values.arsak === '') {
+        errors.arsak = { type: 'required', message: 'Du må velge årsak' };
     }
-});
+    if (props.velgMeldinger && !values.meldingIder.length) {
+        errors.meldingIder = { type: 'required', message: 'Du må velge minst en melding' };
+    }
+
+    return { values, errors };
+};
+
+type TManualUpdate = <K extends keyof SladdeForm>(key: K, value: SladdeForm[K]) => void;
 
 export interface SladdeComponentProps {
-    formstate: Formstate<SladdeForm>;
+    formState: FormState<SladdeForm>;
     arsaker: string[];
     traad: Traad;
+    getNativeProps: (key: keyof SladdeForm) => UseFormRegisterReturn<typeof key>;
+    updateValueManually: TManualUpdate;
 }
+
 interface Config {
     header: string;
     label: string;
@@ -100,16 +98,34 @@ function Sladdevalg(props: PopupComponentProps<SladdeObjekt | null, Props>) {
     const traad = props.traad;
     const kanSladdeFlere = useFeatureToggle(FeatureToggles.SladdeEnkeltMelding)?.isOn ?? false;
     const abort = useCallback(() => close(null), [close]);
-    const formstate = useFormstate({ arsak: '', meldingIder: '' }, { velgMeldinger: kanSladdeFlere });
-    const config = kanSladdeFlere ? sladdMeldingConfig : sladdTradConfig;
-    const content = useSladdeArsak(props.traad.traadId, (arsaker: string[]) =>
-        React.createElement(config.component, { formstate, arsaker, traad })
+
+    const { register, handleSubmit, formState, setValue } = useForm<SladdeForm>({
+        resolver: (values) => resolver(values, { velgMeldinger: kanSladdeFlere })
+    });
+
+    const updateValueManually = useCallback<TManualUpdate>(
+        (key, value) => {
+            setValue(key, value as any, { shouldValidate: true });
+        },
+        [setValue]
     );
+
+    const config = kanSladdeFlere ? sladdMeldingConfig : sladdTradConfig;
+
+    const content = useSladdeArsak(props.traad.traadId, (arsaker: string[]) => {
+        return React.createElement(config.component, {
+            formState,
+            arsaker,
+            traad,
+            getNativeProps: (key: keyof SladdeForm) => register(key),
+            updateValueManually
+        });
+    });
 
     const onSubmit = useCallback(
         (values: SladdeForm) => {
             const arsak = values.arsak;
-            const meldingId = values.meldingIder.split('||').filter((it) => it !== '');
+            const meldingId = values.meldingIder;
             const sladdeObject = kanSladdeFlere
                 ? { traadId: traad.traadId, meldingId, arsak }
                 : { traadId: traad.traadId, arsak };
@@ -122,7 +138,7 @@ function Sladdevalg(props: PopupComponentProps<SladdeObjekt | null, Props>) {
     const Modal = kanSladdeFlere ? ModalStor : ModalMini;
     return (
         <Modal isOpen={true} onRequestClose={abort} contentLabel={config.label}>
-            <form onSubmit={formstate.onSubmit(onSubmit)} className={css.layout}>
+            <form onSubmit={handleSubmit(onSubmit)} className={css.layout}>
                 <Systemtittel tag="h1" className={css.header}>
                     {config.header}
                 </Systemtittel>
