@@ -116,9 +116,10 @@ function velgTekst(
 function StandardTekster(props: Props) {
     const sokRef = React.useRef<HTMLElement>(null);
     const standardTekster = skrivestotteResource.useFetch();
+    const standardTeksterData = standardTekster.data;
     const debouncedSokefelt = useDebounce(props.sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() =>
-        sokEtterTekster(standardTekster, debouncedSokefelt)
+        sokEtterTekster(standardTeksterData, debouncedSokefelt)
     );
     const valgt = useFieldState('');
     const valgtLocale = useFieldState('');
@@ -134,8 +135,8 @@ function StandardTekster(props: Props) {
     useDefaultValgtTekst(filtrerteTekster, valgt);
 
     useEffect(() => {
-        settFiltrerteTekster(sokEtterTekster(standardTekster, debouncedSokefelt));
-    }, [settFiltrerteTekster, standardTekster, debouncedSokefelt]);
+        settFiltrerteTekster(sokEtterTekster(standardTeksterData, debouncedSokefelt));
+    }, [settFiltrerteTekster, standardTeksterData, debouncedSokefelt]);
 
     const prevFiltreteTekster = usePrevious(filtrerteTekster);
     useEffect(() => {
@@ -169,7 +170,7 @@ function StandardTekster(props: Props) {
         content = <Spinner type="XL" />;
     } else if (standardTekster.isError) {
         content = <SkjemaelementFeilmelding>Kunne ikke laste inn standardtekster</SkjemaelementFeilmelding>;
-    } else if (standardTekster.data) {
+    } else if (standardTeksterData) {
         content = (
             <StandardTekstValg
                 tekster={filtrerteTekster}
