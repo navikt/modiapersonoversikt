@@ -18,8 +18,8 @@ import { useOnMount } from '../utils/customHooks';
 import VelgEnhet from './VelgEnhet';
 import usePersistentLogin from '../utils/hooks/use-persistent-login';
 import LoggetUtModal from './LoggetUtModal';
-import { InnstillingerContextProvider } from '../rest/resources/innstillingerResource';
 import { useValgtenhet, ValgtEnhetProvider } from '../context/valgtenhet-state';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -78,12 +78,25 @@ function Router(props: { children?: React.ReactNode }) {
     return <BrowserRouter basename={process.env.PUBLIC_URL}>{props.children}</BrowserRouter>;
 }
 
+const minutes = 60 * 1000;
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 10 * minutes,
+            cacheTime: 10 * minutes,
+            refetchOnMount: false,
+            refetchOnWindowFocus: false,
+            refetchOnReconnect: false,
+            retry: false
+        }
+    }
+});
 function AppContainer() {
     useOnMount(() => {
         ModalWrapper.setAppElement('#root');
     });
     return (
-        <InnstillingerContextProvider>
+        <QueryClientProvider client={queryClient}>
             <IeMacStyling />
             <GlobalStyling />
             <DemoBanner />
@@ -97,7 +110,7 @@ function AppContainer() {
                     </Router>
                 </Provider>
             </ValgtEnhetProvider>
-        </InnstillingerContextProvider>
+        </QueryClientProvider>
     );
 }
 

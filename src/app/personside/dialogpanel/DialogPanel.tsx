@@ -8,7 +8,6 @@ import useVisTraadTilknyttetPlukketOppgave from './fortsettDialog/useVisTraadTil
 import { OppgavelisteValg } from './sendMelding/SendNyMelding';
 import LazySpinner from '../../../components/LazySpinner';
 import innstillingerResource from '../../../rest/resources/innstillingerResource';
-import { isPending } from '@nutgaard/use-fetch';
 
 const DialogPanelWrapper = styled.div`
     flex-grow: 1;
@@ -26,7 +25,7 @@ function DialogPanel() {
     if (slaaOppOppgave.pending) {
         return slaaOppOppgave.placeholder;
     }
-    if (isPending(innstillingerRequest)) {
+    if (innstillingerRequest.isLoading) {
         return <LazySpinner type="M" />;
     }
 

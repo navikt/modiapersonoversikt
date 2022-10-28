@@ -5,8 +5,10 @@ import ValgtYtelse from './ValgtYtelse';
 import { statiskForeldrepengeMock } from '../../../../mock/ytelse/statiskForeldrepengeMock';
 import { pleiepengerTestData } from './pleiepenger/pleiepengerTestData';
 import { statiskSykepengerMock } from '../../../../mock/ytelse/statiskSykepengerMock';
+import { setupReactQueryMocks } from '../../../../test/testStore';
 
 test('Om foreldrepenger matcher snapshot', () => {
+    setupReactQueryMocks();
     const resultat = renderer.create(
         <TestProvider>
             <ValgtYtelse valgtYtelse={statiskForeldrepengeMock} />
@@ -17,6 +19,7 @@ test('Om foreldrepenger matcher snapshot', () => {
 });
 
 test('Om pleiepenger matcher snapshot', () => {
+    setupReactQueryMocks();
     const resultat = renderer.create(
         <TestProvider>
             <ValgtYtelse valgtYtelse={pleiepengerTestData} />
@@ -27,6 +30,7 @@ test('Om pleiepenger matcher snapshot', () => {
 });
 
 test('Om sykepenger matcher snapshot', () => {
+    setupReactQueryMocks();
     const resultat = renderer.create(
         <TestProvider>
             <ValgtYtelse valgtYtelse={statiskSykepengerMock} />

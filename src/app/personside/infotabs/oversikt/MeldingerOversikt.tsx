@@ -15,7 +15,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useOnMount } from '../../../../utils/customHooks';
 import { temagruppeTekst } from '../../../../models/temagrupper';
 import TraadSammendrag from '../meldinger/traadliste/TraadSammendrag';
-import brukersdialog from '../../../../rest/resources/brukersdialog';
+import dialogResource from '../../../../rest/resources/dialogResource';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -28,7 +28,7 @@ interface Props {
 }
 
 function MeldingerOversikt(props: Props) {
-    return brukersdialog.useRenderer({
+    return dialogResource.useRenderer({
         ifPending: <CenteredLazySpinner padding={theme.margin.layout} />,
         ifData: (data: Traad[]) => <TraadListe traader={data} {...props} />
     });

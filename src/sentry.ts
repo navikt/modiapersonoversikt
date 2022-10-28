@@ -1,27 +1,6 @@
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
 
-const sentryTracingKeys = ['baggage', 'sentry-trace'];
-const appDTracingKeys = ['ADRUM'];
-export function tracingAwareKeyGenerator(url: string, option?: RequestInit) {
-    const method = (option && option.method) || 'GET';
-    const body = (option && option.body && option.body.toString()) || '';
-    const headers = (option && option.headers) || {};
-    const sanitizedHeaders = Object.fromEntries(
-        Object.entries(headers).filter(([key, _]) => {
-            if (sentryTracingKeys.includes(key)) {
-                return false;
-            } else if (appDTracingKeys.includes(key)) {
-                return false;
-            } else {
-                return true;
-            }
-        })
-    );
-
-    return [url, method.toUpperCase(), body, JSON.stringify(sanitizedHeaders)].join('||');
-}
-
 const fnrMask = /\d{11}/g;
 function clientSideMasking<T>(data: T): T {
     const serialized = JSON.stringify(data);

@@ -6,7 +6,7 @@ interface Props {
 }
 
 function MeldIPortenAdvarsel(props: Props) {
-    const className = props.className ? props.className : 'blokk-xxs';
+    const className = props.className ?? 'blokk-xxs';
     return (
         <AlertStripeAdvarsel className={className}>
             Sak om feilregistrering/sladding må meldes i{' '}

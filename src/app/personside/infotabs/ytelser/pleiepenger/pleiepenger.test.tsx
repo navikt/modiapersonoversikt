@@ -4,8 +4,10 @@ import Oversikt from './Oversikt';
 import TestProvider from '../../../../../test/Testprovider';
 import Pleiepengerperiode from './Pleiepengerperiode';
 import { pleiepengerTestData } from './pleiepengerTestData';
+import { setupReactQueryMocks } from '../../../../../test/testStore';
 
 test('Om Oversikten i pleiepengeretten matcher snapshot', () => {
+    setupReactQueryMocks();
     const resultat = renderer.create(
         <TestProvider>
             <Oversikt pleiepenger={pleiepengerTestData} />
@@ -16,6 +18,7 @@ test('Om Oversikten i pleiepengeretten matcher snapshot', () => {
 });
 
 test('Om Pleiepengeperiode i pleiepengeretten matcher snapshot', () => {
+    setupReactQueryMocks();
     const resultat = renderer.create(
         <TestProvider>
             <Pleiepengerperiode periode={pleiepengerTestData.perioder[0]} periodeNummer={1} />

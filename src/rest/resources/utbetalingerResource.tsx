@@ -1,4 +1,4 @@
-import { applyDefaults, DefaultConfig, RendererOrConfig, useFetch, useRest } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import * as React from 'react';
@@ -11,10 +11,15 @@ import {
 } from '../../app/personside/infotabs/utbetalinger/utils/utbetalinger-utils';
 import dayjs from 'dayjs';
 import { UtbetalingerResponse } from '../../models/utbetalinger';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { FetchError, get } from '../../api/api';
 
 interface Periode<T> {
     fra: T;
     til: T;
+}
+function queryKey(fnr: string, oversikt: boolean) {
+    return ['utbetalinger', fnr, oversikt];
 }
 function url(fnr: string, periode: Periode<string>): string {
     return `${apiBaseUri}/utbetaling/${fnr}?startDato=${periode.fra}&sluttDato=${periode.til}`;
@@ -25,14 +30,14 @@ const defaults: DefaultConfig = {
     ifError: <AlertStripe type="advarsel">Kunne ikke laste inn informasjon om brukers oppfølging</AlertStripe>
 };
 
-function useReduxData(brukPeriodeFraFilter: boolean): [string, Periode<string>] {
+function useReduxData(limit30Dager: boolean): [string, Periode<string>] {
     const filterPeriode = useAppState((appState) => appState.utbetalinger.filter);
-    const periode = brukPeriodeFraFilter
-        ? {
+    const periode = limit30Dager
+        ? getUtbetalingerForSiste30DagerDatoer()
+        : {
               fra: getFraDateFromFilter(filterPeriode),
               til: getTilDateFromFilter(filterPeriode)
-          }
-        : getUtbetalingerForSiste30DagerDatoer();
+          };
     const datoer: Periode<string> = {
         fra: dayjs(periode.fra).format('YYYY-MM-DD'),
         til: dayjs(periode.til).format('YYYY-MM-DD')
@@ -40,15 +45,14 @@ function useReduxData(brukPeriodeFraFilter: boolean): [string, Periode<string>] 
     return useAppState((appState) => [appState.gjeldendeBruker.fødselsnummer, datoer]);
 }
 
-const lazyConfig = { lazy: true };
 const resource = {
-    useOversiktRenderer(renderer: RendererOrConfig<UtbetalingerResponse>) {
-        const [fnr, periode] = useReduxData(false);
-        return useRest(url(fnr, periode), applyDefaults(defaults, renderer));
+    useFetch(limit30Dager: boolean = false): UseQueryResult<UtbetalingerResponse, FetchError> {
+        const [fnr, periode] = useReduxData(limit30Dager);
+        return useQuery(queryKey(fnr, limit30Dager), () => get(url(fnr, periode)));
     },
-    useLazyFetch() {
-        const [fnr, periode] = useReduxData(true);
-        return useFetch<UtbetalingerResponse>(url(fnr, periode), lazyConfig);
+    useOversiktRenderer(renderer: RendererOrConfig<UtbetalingerResponse>) {
+        const response = this.useFetch(true);
+        return useRest(response, applyDefaults(defaults, renderer));
     }
 };
 

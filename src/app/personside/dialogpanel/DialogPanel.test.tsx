@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../test/Testprovider';
 import DialogPanel from './DialogPanel';
+import { setupReactQueryMocks } from '../../../test/testStore';
 
 beforeEach(() => {
     Date.prototype.getTime = jest.fn(() => 0);
@@ -9,6 +10,7 @@ beforeEach(() => {
 });
 
 test('viser dialogpanel', () => {
+    setupReactQueryMocks();
     const dialogPanelBody = renderer.create(
         <TestProvider>
             <DialogPanel />

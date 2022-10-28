@@ -1,15 +1,26 @@
-import { postConfig } from './config';
+import { includeCredentials, postConfig } from './config';
 import { loggError, loggEvent } from '../utils/logger/frontendLogger';
 import { confirm } from '../components/popup-boxes/popup-boxes';
 
 const CONFLICT = 409;
-
+export class FetchError extends Error {
+    constructor(public response: Response, message?: string) {
+        super(message);
+    }
+}
+export async function get<TYPE extends object>(uri: string): Promise<TYPE> {
+    const response = await fetch(uri, includeCredentials);
+    if (!response.ok || response.redirected) {
+        throw new FetchError(response, `${response.status} ${response.statusText}: ${uri}`);
+    } else {
+        return handleResponse(response);
+    }
+}
 export async function post<TYPE extends object = object>(
     uri: string,
     body: object | string,
-    loggLocation: string
+    loggLocation?: string
 ): Promise<TYPE> {
-    loggEvent('Post', loggLocation);
     const response = await fetch(uri, postConfig(body));
     return handleResponse<TYPE>(response, loggLocation);
 }
@@ -36,7 +47,10 @@ export async function postWithConflictVerification<TYPE extends object = object>
     return handleResponse(response, loggLocation);
 }
 
-function handleResponse<TYPE extends object = object>(response: Response, loggLocation: string): Promise<TYPE> {
+function handleResponse<TYPE extends object = object>(
+    response: Response,
+    loggLocation: string | undefined = undefined
+): Promise<TYPE> {
     // Ignore-Conflict
     if (!response.ok || response.redirected) {
         return parseError<TYPE>(response, loggLocation);
@@ -53,10 +67,13 @@ function parseResponse<TYPE extends object = object>(response: Response): Promis
     }
 }
 
-async function parseError<TYPE extends object = object>(response: Response, loggLocation: string): Promise<TYPE> {
+async function parseError<TYPE extends object = object>(
+    response: Response,
+    loggLocation: string | undefined
+): Promise<TYPE> {
     const text = await response.text();
     loggError(
-        Error(`Post failed in ${loggLocation} on: ${response.url}`),
+        new Error(`Post failed in ${loggLocation ?? 'unknown'} on: ${response.url}`),
         undefined,
         {},
         {
@@ -64,5 +81,5 @@ async function parseError<TYPE extends object = object>(response: Response, logg
             location: loggLocation
         }
     );
-    return Promise.reject(text);
+    throw new FetchError(response, text);
 }

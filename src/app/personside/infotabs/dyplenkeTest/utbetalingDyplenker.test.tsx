@@ -5,6 +5,7 @@ import InfoTabs from '../InfoTabs';
 import { BrowserRouter } from 'react-router-dom';
 import { INFOTABS } from '../InfoTabEnum';
 import { getAktivTab, utbetalingerTest } from './utils-dyplenker-test';
+import { setupReactQueryMocks } from '../../../../test/testStore';
 
 function clickOnUtbetalingIOversikt(infoTabs: ReactWrapper) {
     infoTabs
@@ -15,6 +16,7 @@ function clickOnUtbetalingIOversikt(infoTabs: ReactWrapper) {
 }
 
 test('bytter til riktig tab og setter fokus på riktig utbetaling ved bruk av dyplenke fra oversikt', () => {
+    setupReactQueryMocks();
     const infoTabs = mount(
         <TestProvider>
             <BrowserRouter>

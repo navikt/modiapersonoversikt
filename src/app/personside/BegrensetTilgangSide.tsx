@@ -6,8 +6,8 @@ import OppgaveSkjemaSkjermetPerson from './infotabs/meldinger/traadvisning/verkt
 import styled from 'styled-components/macro';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useState, useCallback } from 'react';
-import gsaktemaResource from '../../rest/resources/gsakTema';
-import { HarIkkeTilgang } from '../../rest/resources/tilgangskontroll';
+import gsaktemaResource from '../../rest/resources/gsaktemaResource';
+import { HarIkkeTilgang } from '../../rest/resources/tilgangskontrollResource';
 
 interface BegrensetTilgangProps {
     tilgangsData: HarIkkeTilgang;
@@ -26,7 +26,6 @@ const Wrapper = styled.div`
 function OpprettOppgaveAvvistTilgang() {
     const [apen, setApen] = useState(false);
     const togglePanel = useCallback(() => setApen((it) => !it), [setApen]);
-    console.log('gsaktemaResource', gsaktemaResource);
     return gsaktemaResource.useRenderer({
         ifError: (
             <AlertStripe type="info">Kunne ikke vise opprett oppgave panel. Vennligst last siden på nytt</AlertStripe>

@@ -52,7 +52,7 @@ function DokumentVisning(props: Props) {
 }
 
 function byggDokumentVisningUrl(url: string, fodselsnummer: string): string {
-    const { journalpost, dokument } = parseQueryString(url); // Format til url: 'journalpost=etcoicxr&dokument=q90p8dnw'
+    const { journalpost, dokument } = parseQueryString<{ journalpost: string; dokument: string }>(url); // Format til url: 'journalpost=etcoicxr&dokument=q90p8dnw'
     return `/modiapersonoversikt-api/rest/saker/${fodselsnummer}/dokument/${journalpost}/${dokument}`;
 }
 
