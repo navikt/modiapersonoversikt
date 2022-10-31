@@ -21,15 +21,17 @@ import { post } from '../../../../api/api';
 import { KvitteringNyMelding, SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
 import useDraft, { Draft } from '../use-draft';
 import { feilMeldinger } from './FeilMeldinger';
-import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
-import brukersdialog from '../../../../rest/resources/brukersdialog';
+import dialogResource from '../../../../rest/resources/dialogResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
+import { useQueryClient } from '@tanstack/react-query';
+import journalsakResource from '../../../../rest/resources/journalsakResource';
 
 interface Props {
     defaultOppgaveDestinasjon: OppgavelisteValg;
 }
 
 function SendNyMeldingContainer(props: Props) {
+    const queryClient = useQueryClient();
     const initialState: SendNyMeldingState = useMemo(
         () => ({
             tekst: '',
@@ -42,7 +44,6 @@ function SendNyMeldingContainer(props: Props) {
         [props.defaultOppgaveDestinasjon]
     );
     const fnr = useFodselsnummer();
-    const meldingerResource = brukersdialog.useFetch();
 
     const valgtEnhet = useValgtenhet().enhetId;
     const [state, setState] = useState<SendNyMeldingState>(initialState);
@@ -121,7 +122,7 @@ function SendNyMeldingContainer(props: Props) {
         const callback = () => {
             removeDraft();
             updateState(initialState);
-            meldingerResource.rerun();
+            queryClient.invalidateQueries(dialogResource.queryKey(fnr, valgtEnhet));
         };
 
         if (
@@ -164,7 +165,7 @@ function SendNyMeldingContainer(props: Props) {
                         fritekst: request.fritekst,
                         traad: traad
                     };
-                    JournalforingUtils.slettCacheForSaker(fnr);
+                    queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
                     callback();
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, kvitteringNyMelding });
                 })

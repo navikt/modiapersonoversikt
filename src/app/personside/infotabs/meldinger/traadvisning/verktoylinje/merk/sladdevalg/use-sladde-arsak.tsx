@@ -4,10 +4,17 @@ import { CenteredLazySpinner } from '../../../../../../../../components/LazySpin
 import * as React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { ReactElement } from 'react';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { FetchError, get } from '../../../../../../../../api/api';
+
+function queryKey(kjedeId: string) {
+    return ['sladdeårsak', kjedeId];
+}
 
 export function useSladdeArsak(kjedeId: string, handler: (data: string[]) => ReactElement) {
     const url = `${apiBaseUri}/dialogmerking/sladdearsaker/${kjedeId}`;
-    return useRest(url, {
+    const response: UseQueryResult<string[], FetchError> = useQuery(queryKey(kjedeId), () => get(url));
+    return useRest(response, {
         ifPending: <CenteredLazySpinner />,
         ifError: <AlertStripe type="advarsel">Kunne ikke laste inn årsaker</AlertStripe>,
         ifData: handler

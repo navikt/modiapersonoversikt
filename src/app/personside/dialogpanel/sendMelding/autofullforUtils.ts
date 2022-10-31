@@ -1,13 +1,14 @@
 import { Locale } from './standardTekster/domain';
 import { capitalizeName } from '../../../../utils/string-utils';
 import { loggEvent, loggWarning } from '../../../../utils/logger/frontendLogger';
-import { useHentPersondata } from '../../../../utils/customHooks';
-import { hasData } from '@nutgaard/use-fetch';
 import { Data as PersonData, Kjonn } from '../../visittkort-v2/PersondataDomain';
 import { hentNavn } from '../../visittkort-v2/visittkort-utils';
-import innloggetSaksbehandler, { InnloggetSaksbehandler } from '../../../../rest/resources/innloggetSaksbehandler';
-import saksbehandlersEnheter, { Enhet } from '../../../../rest/resources/saksbehandlersEnheter';
+import innloggetSaksbehandler, {
+    InnloggetSaksbehandler
+} from '../../../../rest/resources/innloggetSaksbehandlerResource';
+import saksbehandlersEnheter, { Enhet } from '../../../../rest/resources/saksbehandlersEnheterResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
+import persondataResource from '../../../../rest/resources/persondataResource';
 
 export type AutofullforData = {
     enhet?: Enhet;
@@ -116,16 +117,16 @@ export function autofullfor(tekst: string, autofullforMap: AutofullforMap): stri
 }
 
 export function useAutoFullforData(): AutofullforData | undefined {
-    const personResponse = useHentPersondata();
+    const personResponse = persondataResource.useFetch();
     const saksbehandler = innloggetSaksbehandler.useFetch();
     const enheterResource = saksbehandlersEnheter.useFetch();
-    const enheter = hasData(enheterResource) ? enheterResource.data.enhetliste : [];
+    const enheter = enheterResource.data?.enhetliste ?? [];
     const valgtEnhetId = useValgtenhet().enhetId;
     const valgtEnhet = enheter.find((enhet) => enhet.enhetId === valgtEnhetId);
 
     return {
         enhet: valgtEnhet,
-        person: hasData(personResponse) ? personResponse.data : undefined,
-        saksbehandler: hasData(saksbehandler) ? saksbehandler.data : undefined
+        person: personResponse.data,
+        saksbehandler: saksbehandler.data
     };
 }

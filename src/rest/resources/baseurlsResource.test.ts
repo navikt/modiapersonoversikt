@@ -1,4 +1,4 @@
-import { hentBaseUrl } from './baseurls';
+import { hentBaseUrl } from './baseurlsResource';
 
 const url = 'https://lenke.com';
 const url2 = 'https://lenke2.com';

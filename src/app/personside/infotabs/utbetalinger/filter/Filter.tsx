@@ -19,7 +19,7 @@ import Panel from 'nav-frontend-paneler';
 import dayjs from 'dayjs';
 import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 import MediaQueryAwareRenderer from '../../../../../components/MediaQueryAwareRenderer';
-import { FetchResult, hasData, isPending } from '@nutgaard/use-fetch';
+import utbetalingerResource from '../../../../../rest/resources/utbetalingerResource';
 
 const FiltreringsPanel = styled(Panel)`
     padding: ${pxToRem(15)};
@@ -77,14 +77,9 @@ function visCheckbokser(utbetalingerResponse: UtbetalingerResponse): boolean {
     return utbetalingerResponse.utbetalinger && utbetalingerResponse.utbetalinger.length > 0;
 }
 
-interface Props {
-    utbetalinger: FetchResult<UtbetalingerResponse>;
-}
-
-function Filtrering(props: Props) {
+function Filtrering() {
     const dispatch = useDispatch();
-    const utbetalingerResource = props.utbetalinger;
-    const reloadUtbetalingerAction = utbetalingerResource.rerun;
+    const utbetalinger = utbetalingerResource.useFetch();
 
     const filter = useSelector((state: AppState) => state.utbetalinger.filter);
     const updateFilter = useCallback(
@@ -103,8 +98,8 @@ function Filtrering(props: Props) {
                 return;
             }
         }
-        reloadUtbetalingerAction();
-    }, [reloadUtbetalingerAction, filter.periode]);
+        utbetalinger.refetch();
+    }, [utbetalinger, filter.periode]);
 
     const radios = Object.keys(PeriodeValg).map((key) => {
         const label = PeriodeValg[key];
@@ -128,13 +123,13 @@ function Filtrering(props: Props) {
         );
     });
 
-    const visSpinner = isPending(utbetalingerResource, true);
-    const checkBokser = hasData(utbetalingerResource) && visCheckbokser(utbetalingerResource.data) && (
+    const visSpinner = utbetalinger.isLoading;
+    const checkBokser = utbetalinger.data && visCheckbokser(utbetalinger.data) && (
         <>
             <InputPanel>
                 <Element>Utbetaling til</Element>
                 <UtbetaltTilValg
-                    utbetalinger={utbetalingerResource.data.utbetalinger}
+                    utbetalinger={utbetalinger.data.utbetalinger}
                     onChange={updateFilter}
                     filterState={filter}
                 />
@@ -144,7 +139,7 @@ function Filtrering(props: Props) {
                 <YtelseValg
                     onChange={updateFilter}
                     filterState={filter}
-                    utbetalinger={utbetalingerResource.data.utbetalinger}
+                    utbetalinger={utbetalinger.data.utbetalinger}
                 />
             </InputPanel>
         </>

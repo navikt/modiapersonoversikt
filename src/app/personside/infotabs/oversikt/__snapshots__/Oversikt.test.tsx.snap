@@ -709,15 +709,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </h3>
           <div
             className="c4"
-          >
-            <p
-              className="typo-normal"
-            >
-              2
-               / 
-              6
-            </p>
-          </div>
+          />
           <a
             className="c5 lenke"
             href="/person/10108000398/saker/"
@@ -896,15 +888,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </h3>
           <div
             className="c4"
-          >
-            <p
-              className="typo-normal"
-            >
-              1
-               / 
-              1
-            </p>
-          </div>
+          />
           <a
             className="c5 lenke"
             href="/person/10108000398/meldinger/"
@@ -1037,15 +1021,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </h3>
           <div
             className="c4"
-          >
-            <p
-              className="typo-normal"
-            >
-              2
-               / 
-              3
-            </p>
-          </div>
+          />
           <a
             className="c5 lenke"
             href="/person/10108000398/ytelser/"
@@ -1146,15 +1122,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
           </h3>
           <div
             className="c4"
-          >
-            <p
-              className="typo-normal"
-            >
-              2
-               / 
-              5
-            </p>
-          </div>
+          />
           <a
             className="c5 lenke"
             href="/person/10108000398/varsler/"

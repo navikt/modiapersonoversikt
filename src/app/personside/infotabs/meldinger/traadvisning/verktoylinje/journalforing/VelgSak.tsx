@@ -1,13 +1,5 @@
 import React from 'react';
-import { FetchResult, hasError, isPending } from '@nutgaard/use-fetch';
-import {
-    JournalforingsSak,
-    JournalforingsSakIdentifikator,
-    Kategorier,
-    Result,
-    SakKategori,
-    Tema
-} from './JournalforingPanel';
+import { JournalforingsSak, JournalforingsSakIdentifikator, Kategorier, SakKategori, Tema } from './JournalforingPanel';
 import useFieldState, { FieldState } from '../../../../../../../utils/hooks/use-field-state';
 import { Radio, RadioProps } from 'nav-frontend-skjema';
 import { AlertStripeAdvarsel, AlertStripeFeil } from 'nav-frontend-alertstriper';
@@ -15,9 +7,7 @@ import TemaTable from './TemaTabell';
 import styled from 'styled-components/macro';
 import { Group, groupBy } from '../../../../../../../utils/groupArray';
 import Spinner from 'nav-frontend-spinner';
-import { useSelector } from 'react-redux';
-import { fnrSelector } from '../../../../../../../redux/gjeldendeBruker/selectors';
-import * as JournalforingUtils from '../../../../../journalforings-use-fetch-utils';
+import journalsakResource from '../../../../../../../rest/resources/journalsakResource';
 
 const Form = styled.form`
     display: flex;
@@ -101,13 +91,12 @@ export function fjernSakerSomAlleredeErTilknyttet(
 }
 
 function VelgSak(props: Props) {
-    const fnr = useSelector(fnrSelector);
     const valgtKategori = useFieldState(SakKategori.FAG);
-    const result: FetchResult<Result> = JournalforingUtils.useSaker(fnr);
+    const result = journalsakResource.useFetch();
 
-    if (isPending(result)) {
+    if (result.isLoading) {
         return <Spinner type="XL" />;
-    } else if (hasError(result)) {
+    } else if (result.isError) {
         return <AlertStripeFeil className="blokk-xxxs">Feilet ved uthenting av saker</AlertStripeFeil>;
     }
 

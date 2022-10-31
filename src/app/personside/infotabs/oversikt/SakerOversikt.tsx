@@ -9,7 +9,7 @@ import { ReactNode } from 'react';
 import { useOnMount } from '../../../../utils/customHooks';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { filtrerSakstemaerUtenData } from '../saksoversikt/sakstemaliste/SakstemaListeUtils';
-import sakstemaResource from '../../../../rest/resources/sakstema';
+import sakstemaResource from '../../../../rest/resources/sakstemaResource';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {

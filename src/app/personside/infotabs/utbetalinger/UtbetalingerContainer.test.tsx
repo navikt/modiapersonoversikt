@@ -2,28 +2,22 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../test/Testprovider';
 import UtbetalingerContainer from './UtbetalingerContainer';
-import { getTestStore } from '../../../../test/testStore';
+import { getTestStore, mockReactQuery, setupReactQueryMocks } from '../../../../test/testStore';
 import { statiskMockUtbetaling } from '../../../../mock/utbetalinger/statiskMockUtbetaling';
-import { apiBaseUri } from '../../../../api/config';
 import FetchMock from 'yet-another-fetch-mock';
 import MockDate from 'mockdate';
+import utbetalingerResource from '../../../../rest/resources/utbetalingerResource';
 
 test('Viser utbetalingercontainer med alt innhold', (done) => {
     MockDate.reset();
+    setupReactQueryMocks();
     const mock = FetchMock.configure({
         enableFallback: false
     });
-    mock.get('/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger', (req, res, ctx) =>
-        res(ctx.status(200))
-    );
-    mock.get(apiBaseUri + '/utbetaling/:fodselsnummer', (req, res, ctx) =>
-        res(
-            ctx.json({
-                utbetalinger: [statiskMockUtbetaling],
-                periode: { sluttDato: '1986-12-28', startDato: '1905-01-01' }
-            })
-        )
-    );
+    mockReactQuery(utbetalingerResource.useFetch, {
+        utbetalinger: [statiskMockUtbetaling],
+        periode: { sluttDato: '1986-12-28', startDato: '1905-01-01' }
+    });
 
     const testStore = getTestStore();
 

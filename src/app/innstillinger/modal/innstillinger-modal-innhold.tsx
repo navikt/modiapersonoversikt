@@ -5,7 +5,6 @@ import Spinner from 'nav-frontend-spinner';
 import styled from 'styled-components/macro';
 import InnstillingerModalForm from './innstillinger-modal-form';
 import innstillingerResource from '../../../rest/resources/innstillingerResource';
-import { hasError, isPending } from '@nutgaard/use-fetch';
 
 const CenteringDiv = styled.div`
     flex-grow: 1;
@@ -16,17 +15,17 @@ const CenteringDiv = styled.div`
 
 function InnstillingerModalInnhold() {
     const innstillinger = innstillingerResource.useFetch();
-    if (isPending(innstillinger)) {
+    if (innstillinger.isLoading) {
         return (
             <CenteringDiv>
                 <Spinner type="XXL" />
             </CenteringDiv>
         );
-    } else if (hasError(innstillinger)) {
+    } else if (innstillinger.isError) {
         return (
             <AlertStripeFeil>
                 <Normaltekst>
-                    Uthenting av dine innstillinger feilet (<b>{innstillinger.statusCode}</b>).
+                    Uthenting av dine innstillinger feilet (<b>{innstillinger.error}</b>).
                 </Normaltekst>
                 <Undertekst>{innstillinger.error}</Undertekst>
             </AlertStripeFeil>

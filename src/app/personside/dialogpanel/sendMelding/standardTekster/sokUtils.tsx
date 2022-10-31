@@ -1,16 +1,13 @@
-import { FetchResult, hasData } from '@nutgaard/use-fetch';
 import { parseTekst } from '@navikt/tag-input';
 import * as StandardTekster from './domain';
+import { Tekster } from './domain';
 
 export function rapporterBruk(tekst: StandardTekster.Tekst): void {
     fetch(`/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte/statistikk/${tekst.id}`, { method: 'POST' });
 }
 
-export function sokEtterTekster(
-    data: FetchResult<StandardTekster.Tekster>,
-    query: string
-): Array<StandardTekster.Tekst> {
-    const tekster: Array<StandardTekster.Tekst> = hasData(data) ? Object.values(data.data) : [];
+export function sokEtterTekster(data: Tekster | undefined, query: string): Array<StandardTekster.Tekst> {
+    const tekster: Array<StandardTekster.Tekst> = data ? Object.values(data) : [];
     if (query === '' || tekster.length === 0) {
         return tekster;
     }

@@ -5,9 +5,6 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../redux/reducers';
 import { erKontaktsenter } from './enheter-utils';
 import Hotjar, { HotjarTriggers } from './hotjar';
-import useFetch, { FetchResult } from '@nutgaard/use-fetch';
-import { apiBaseUri } from '../api/config';
-import { Data as Persondata } from '../app/personside/visittkort-v2/PersondataDomain';
 import { useValgtenhet } from '../context/valgtenhet-state';
 
 export function useFocusOnMount(ref: React.RefObject<HTMLElement>) {
@@ -87,9 +84,4 @@ export function useTriggerHotjarForLokalKontor() {
         },
         [valgtEnhet]
     );
-}
-
-export function useHentPersondata(): FetchResult<Persondata> {
-    const fnr = useFodselsnummer();
-    return useFetch<Persondata>(`${apiBaseUri}/v2/person/${fnr}`);
 }

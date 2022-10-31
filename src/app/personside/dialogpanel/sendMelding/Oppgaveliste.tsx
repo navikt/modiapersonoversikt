@@ -3,8 +3,7 @@ import Select from 'nav-frontend-skjema/lib/select';
 import { OppgavelisteValg } from './SendNyMelding';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
-import saksbehandlersEnheter from '../../../../rest/resources/saksbehandlersEnheter';
-import { hasData } from '@nutgaard/use-fetch';
+import saksbehandlersEnheter from '../../../../rest/resources/saksbehandlersEnheterResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
 
 interface Props {
@@ -21,7 +20,7 @@ const StyledSelect = styled(Select)`
 
 function Oppgaveliste(props: Props) {
     const enheterResource = saksbehandlersEnheter.useFetch();
-    const enheter = hasData(enheterResource) ? enheterResource.data.enhetliste : [];
+    const enheter = enheterResource.data?.enhetliste ?? [];
     const valgtEnhetId = useValgtenhet().enhetId;
 
     const valgtEnhet = enheter.find((enhet) => enhet.enhetId === valgtEnhetId);

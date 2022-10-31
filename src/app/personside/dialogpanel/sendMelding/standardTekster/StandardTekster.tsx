@@ -1,5 +1,4 @@
 import React, { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
-import useFetch, { hasData, hasError, isPending } from '@nutgaard/use-fetch';
 import styled from 'styled-components/macro';
 import TagInput from '@navikt/tag-input';
 import { guid } from 'nav-frontend-js-utils';
@@ -18,9 +17,11 @@ import { cyclicClamp } from '../../../../../utils/math';
 import { autofullfor, AutofullforData, byggAutofullforMap, useAutoFullforData } from '../autofullforUtils';
 import LazySpinner from '../../../../../components/LazySpinner';
 import AriaNotification from '../../../../../components/AriaNotification';
-import { useHentPersondata, usePrevious } from '../../../../../utils/customHooks';
+import { usePrevious } from '../../../../../utils/customHooks';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import saksbehandlersEnheter from '../../../../../rest/resources/saksbehandlersEnheter';
+import saksbehandlersEnheter from '../../../../../rest/resources/saksbehandlersEnheterResource';
+import persondataResource from '../../../../../rest/resources/persondataResource';
+import skrivestotteResource from '../../../../../rest/resources/skrivestotteResource';
 
 interface Props {
     sokefelt: FieldState;
@@ -114,17 +115,16 @@ function velgTekst(
 
 function StandardTekster(props: Props) {
     const sokRef = React.useRef<HTMLElement>(null);
-    const standardTekster = useFetch<StandardTeksterModels.Tekster>(
-        '/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte'
-    );
+    const standardTekster = skrivestotteResource.useFetch();
+    const standardTeksterData = standardTekster.data;
     const debouncedSokefelt = useDebounce(props.sokefelt.input.value, 250);
     const [filtrerteTekster, settFiltrerteTekster] = useState(() =>
-        sokEtterTekster(standardTekster, debouncedSokefelt)
+        sokEtterTekster(standardTeksterData, debouncedSokefelt)
     );
     const valgt = useFieldState('');
     const valgtLocale = useFieldState('');
     const valgtTekst = filtrerteTekster.find((tekst) => tekst.id === valgt.input.value);
-    const persondata = useHentPersondata();
+    const persondata = persondataResource.useFetch();
     const enheterResource = saksbehandlersEnheter.useFetch();
     const autofullforData = useAutoFullforData();
     const sokeFeltId = useRef(guid());
@@ -135,8 +135,8 @@ function StandardTekster(props: Props) {
     useDefaultValgtTekst(filtrerteTekster, valgt);
 
     useEffect(() => {
-        settFiltrerteTekster(sokEtterTekster(standardTekster, debouncedSokefelt));
-    }, [settFiltrerteTekster, standardTekster, debouncedSokefelt]);
+        settFiltrerteTekster(sokEtterTekster(standardTeksterData, debouncedSokefelt));
+    }, [settFiltrerteTekster, standardTeksterData, debouncedSokefelt]);
 
     const prevFiltreteTekster = usePrevious(filtrerteTekster);
     useEffect(() => {
@@ -166,11 +166,11 @@ function StandardTekster(props: Props) {
     useHotkey('arrowdown', velg(1), [filtrerteTekster, valgt], 'NesteStandardtekst', sokRef.current || undefined);
 
     let content: ReactNode = null;
-    if (isPending(standardTekster)) {
+    if (standardTekster.isLoading) {
         content = <Spinner type="XL" />;
-    } else if (hasError(standardTekster)) {
+    } else if (standardTekster.isError) {
         content = <SkjemaelementFeilmelding>Kunne ikke laste inn standardtekster</SkjemaelementFeilmelding>;
-    } else if (hasData(standardTekster)) {
+    } else if (standardTeksterData) {
         content = (
             <StandardTekstValg
                 tekster={filtrerteTekster}
@@ -183,9 +183,9 @@ function StandardTekster(props: Props) {
         );
     }
 
-    if (isPending(persondata) || isPending(enheterResource)) {
+    if (persondata.isLoading || enheterResource.isLoading) {
         return <LazySpinner type={'M'} />;
-    } else if (hasError(persondata) || hasError(enheterResource)) {
+    } else if (persondata.isError || enheterResource.isError) {
         return <AlertStripeAdvarsel>Feil ved lasting av data</AlertStripeAdvarsel>;
     }
 

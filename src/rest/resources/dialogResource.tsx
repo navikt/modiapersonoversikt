@@ -1,12 +1,13 @@
-import { applyDefaults, DefaultConfig, RendererOrConfig, useRest, useFetch } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { apiBaseUri } from '../../api/config';
 import { useAppState } from '../../utils/customHooks';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import * as React from 'react';
-import { FetchResult } from '@nutgaard/use-fetch';
 import { Traad } from '../../models/meldinger/meldinger';
 import { useValgtenhet } from '../../context/valgtenhet-state';
+import { FetchError, get } from '../../api/api';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 function url(fnr: string, enhet: string | undefined): string {
     const header = enhet ? `?enhet=${enhet}` : '';
@@ -24,13 +25,16 @@ function useReduxData(): [string, string | undefined] {
 }
 
 const resource = {
-    useFetch(): FetchResult<Traad[]> {
+    queryKey(fnr: string, enhet: string | undefined) {
+        return ['dialog', fnr, enhet];
+    },
+    useFetch(): UseQueryResult<Traad[], FetchError> {
         const [fnr, enhetId] = useReduxData();
-        return useFetch(url(fnr, enhetId));
+        return useQuery(this.queryKey(fnr, enhetId), () => get(url(fnr, enhetId)));
     },
     useRenderer(renderer: RendererOrConfig<Traad[]>) {
-        const [fnr, enhetId] = useReduxData();
-        return useRest(url(fnr, enhetId), applyDefaults(defaults, renderer));
+        const response = this.useFetch();
+        return useRest(response, applyDefaults(defaults, renderer));
     }
 };
 export default resource;

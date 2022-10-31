@@ -3,8 +3,7 @@ import { nyesteMelding, nyesteTraad } from '../infotabs/meldinger/utils/meldinge
 import { useEffect, useMemo, useState } from 'react';
 import { Melding, Traad } from '../../../models/meldinger/meldinger';
 import { loggError } from '../../../utils/logger/frontendLogger';
-import brukersdialog from '../../../rest/resources/brukersdialog';
-import { hasData, isPending } from '@nutgaard/use-fetch';
+import dialogResource from '../../../rest/resources/dialogResource';
 
 interface SendtMelding {
     pending: boolean;
@@ -13,19 +12,19 @@ interface SendtMelding {
 }
 
 export function useSendtMelding(opprettetTraad: Traad | undefined): SendtMelding {
-    const traaderResource = brukersdialog.useFetch();
+    const traaderResource = dialogResource.useFetch();
     const [pending, setPending] = useState(true);
     const [melding, setMelding] = useState<Melding | undefined>();
     const [traad, setTraad] = useState<Traad | undefined>();
 
     useEffect(() => {
-        if (!isPending(traaderResource, true)) {
+        if (traaderResource.isSuccess && traaderResource.fetchStatus === 'idle') {
             setPending(false);
         }
         if (melding && traad) {
             return;
         }
-        if (hasData(traaderResource)) {
+        if (traaderResource.data) {
             try {
                 const sisteTraad = nyesteTraad(traaderResource.data);
                 if (sisteTraad) {

@@ -11,7 +11,7 @@ import { SvarSendtKvittering } from './FortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { loggError } from '../../../../utils/logger/frontendLogger';
-import { post } from '../../../../api/api';
+import { FetchError, post } from '../../../../api/api';
 import { apiBaseUri } from '../../../../api/config';
 import {
     DialogPanelStatus,
@@ -26,12 +26,12 @@ import theme from '../../../../styles/personOversiktTheme';
 import ReflowBoundry from '../ReflowBoundry';
 import { Temagruppe } from '../../../../models/temagrupper';
 import useDraft, { Draft } from '../use-draft';
-import * as JournalforingUtils from '../../journalforings-use-fetch-utils';
 import { Oppgave } from '../../../../models/meldinger/oppgave';
-import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaver';
-import { FetchResult, hasData } from '@nutgaard/use-fetch';
-import brukersdialog from '../../../../rest/resources/brukersdialog';
+import tildelteoppgaver from '../../../../rest/resources/tildelteoppgaverResource';
+import dialogResource from '../../../../rest/resources/dialogResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
+import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
+import journalsakResource from '../../../../rest/resources/journalsakResource';
 
 export type FortsettDialogType =
     | Meldingstype.SVAR_SKRIFTLIG
@@ -50,9 +50,9 @@ const StyledArticle = styled.article`
 
 export function finnPlukketOppgaveForTraad(
     traad: Traad,
-    resource: FetchResult<Oppgave[]>
+    resource: UseQueryResult<Oppgave[], FetchError>
 ): { oppgave: Oppgave | undefined; erSTOOppgave: boolean } {
-    if (!hasData(resource)) {
+    if (!resource.data) {
         return { oppgave: undefined, erSTOOppgave: false };
     } else {
         const oppgave: Oppgave | undefined = resource.data.find(
@@ -65,6 +65,7 @@ export function finnPlukketOppgaveForTraad(
 }
 
 function FortsettDialogContainer(props: Props) {
+    const queryClient = useQueryClient();
     const initialState = useMemo(
         () => ({
             tekst: '',
@@ -87,7 +88,6 @@ function FortsettDialogContainer(props: Props) {
     );
     const draftContext = useMemo(() => ({ fnr }), [fnr]);
     const { update: updateDraft, remove: removeDraft } = useDraft(draftContext, draftLoader);
-    const meldingerResource = brukersdialog.useFetch();
     const tildelteOppgaverResource = tildelteoppgaver.useFetch();
     const [dialogStatus, setDialogStatus] = useState<FortsettDialogPanelState>({
         type: DialogPanelStatus.UNDER_ARBEID
@@ -129,8 +129,8 @@ function FortsettDialogContainer(props: Props) {
         }
         const callback = () => {
             removeDraft();
-            tildelteOppgaverResource.rerun();
-            meldingerResource.rerun();
+            tildelteOppgaverResource.refetch();
+            queryClient.invalidateQueries(dialogResource.queryKey(fnr, valgtEnhet));
         };
 
         const erOppgaveTilknyttetAnsatt = state.oppgaveListe === OppgavelisteValg.MinListe;
@@ -188,8 +188,8 @@ function FortsettDialogContainer(props: Props) {
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
-                    JournalforingUtils.slettCacheForSaker(fnr);
                     callback();
+                    queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
                 })
                 .catch(() => {

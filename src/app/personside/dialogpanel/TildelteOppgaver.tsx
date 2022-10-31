@@ -16,8 +16,7 @@ import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import { temagruppeTekst } from '../../../models/temagrupper';
 import { useHistory } from 'react-router';
 import Panel from 'nav-frontend-paneler';
-import brukersdialog from '../../../rest/resources/brukersdialog';
-import { hasData, isPending } from '@nutgaard/use-fetch';
+import dialogResource from '../../../rest/resources/dialogResource';
 import LazySpinner from '../../../components/LazySpinner';
 
 const Wrapper = styled.div`
@@ -59,17 +58,17 @@ const JustifyRight = styled.div`
 `;
 
 function OppgaverDropdown(props: { lukk: () => void }) {
-    const traaderResource = brukersdialog.useFetch();
+    const traaderResource = dialogResource.useFetch();
     const dyplenker = useInfotabsDyplenker();
     const tildelteOppgaver = useTildelteOppgaver();
     const oppgaverPaaBruker = tildelteOppgaver.paaBruker;
     const history = useHistory();
 
-    if (isPending(traaderResource)) {
+    if (traaderResource.isLoading) {
         return <LazySpinner type="M" />;
     }
 
-    const traader = hasData(traaderResource) ? traaderResource.data : [];
+    const traader = traaderResource.data ?? [];
 
     const oppgaver = oppgaverPaaBruker.map((oppgave) => {
         const traad = traader.find((traad) => traad.traadId === oppgave.traadId);

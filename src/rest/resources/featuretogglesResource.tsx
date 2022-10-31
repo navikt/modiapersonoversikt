@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Config as HookConfig } from '@nutgaard/use-fetch';
 import { apiBaseUri } from '../../api/config';
-import { applyDefaults, DefaultConfig, RendererOrConfig, useFetch, useRest } from '../useRest';
+import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useRest';
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { FetchError, get } from '../../api/api';
 
 export type FeatureTogglesResponse = {
     [key in FeatureToggles]: boolean;
@@ -22,15 +23,16 @@ const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
     ifError: <AlertStripe type="advarsel">Kunne ikke laste inn feature toggles</AlertStripe>
 };
-const hookConfig: HookConfig = {
-    lazy: false,
-    cacheKey: 'featuretoggles'
-};
 
 const resource = {
-    useRenderer: (renderer: RendererOrConfig<FeatureTogglesResponse>) =>
-        useRest(url(), applyDefaults(defaults, renderer), hookConfig),
-    useFetch: () => useFetch<FeatureTogglesResponse>(url(), hookConfig)
+    queryKey: ['featuretoggles'],
+    useFetch(): UseQueryResult<FeatureTogglesResponse, FetchError> {
+        return useQuery(this.queryKey, () => get(url()));
+    },
+    useRenderer(renderer: RendererOrConfig<FeatureTogglesResponse>) {
+        const response = this.useFetch();
+        return useRest(response, applyDefaults(defaults, renderer));
+    }
 };
 
 export default resource;

@@ -3,8 +3,7 @@ import { erUbesvartHenvendelseFraBruker } from '../infotabs/meldinger/utils/meld
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import styled from 'styled-components';
 import theme from '../../../styles/personOversiktTheme';
-import brukersdialog from '../../../rest/resources/brukersdialog';
-import { hasData } from '@nutgaard/use-fetch';
+import dialogResource from '../../../rest/resources/dialogResource';
 
 const Styling = styled.div`
     padding: ${theme.margin.layout};
@@ -12,8 +11,8 @@ const Styling = styled.div`
 `;
 
 function BrukerHarUbesvarteMeldinger() {
-    const traader = brukersdialog.useFetch();
-    const antallUbesvarteTraader = hasData(traader)
+    const traader = dialogResource.useFetch();
+    const antallUbesvarteTraader = traader.isSuccess
         ? traader.data?.filter((traad) => erUbesvartHenvendelseFraBruker(traad))?.length
         : undefined;
 
