@@ -115,7 +115,11 @@ function DokumentOgVedlegg(props: Props) {
                 </HeaderStyle>
                 {tabsHeader}
 
-                <DokumentVisning key={props.valgtDokument.dokumentreferanse} url={saksdokumentUrl} />
+                <DokumentVisning
+                    key={props.valgtDokument.dokumentreferanse}
+                    fnr={fodselsnummer}
+                    url={saksdokumentUrl}
+                />
             </Content>
         </ErrorBoundary>
     );
