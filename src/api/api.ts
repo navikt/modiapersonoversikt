@@ -58,12 +58,14 @@ function handleResponse<TYPE extends object = object>(
     return parseResponse<TYPE>(response);
 }
 
-function parseResponse<TYPE extends object = object>(response: Response): Promise<TYPE> {
+function parseResponse<TYPE>(response: Response): Promise<TYPE> {
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.indexOf('application/json') !== -1) {
         return response.json();
+    } else if (contentType && contentType.indexOf('text/plain') !== -1) {
+        return response.text() as Promise<TYPE>;
     } else {
-        return Promise.resolve({} as TYPE);
+        return Promise.reject(`Unknown Content-Type: ${contentType}. Not sure what to do with response.`);
     }
 }
 
