@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router';
-import { useFodselsnummer, useOnMount } from '../../../../../utils/customHooks';
+import { useOnMount } from '../../../../../utils/customHooks';
 import { default as React, useCallback, useEffect, useState } from 'react';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { erIE11 } from '../../../../../utils/erIE11';
@@ -11,6 +11,7 @@ import { getMockableUrl } from './mockable-dokument-url';
 import { parseQueryString } from '../../../../../utils/url-utils';
 
 interface Props {
+    fnr: string;
     url: string;
 }
 
@@ -24,7 +25,6 @@ function DokumentVisning(props: Props) {
     const pathname = useLocation().pathname;
     const [errMsg, setErrMsg] = useState('');
     const onError = useCallback((statusKode: number) => setErrMsg(feilmelding(statusKode)), [setErrMsg]);
-    const fodselsnummer = useFodselsnummer();
 
     useEffect(() => {
         loggEvent('VisSaksdokument', 'Saker', { standalone: erSakerFullscreen(pathname) });
@@ -40,7 +40,7 @@ function DokumentVisning(props: Props) {
         return <AlertStripeInfo>Kan ikke vise dokumenter i Internet Explorer. Prøv chrome</AlertStripeInfo>;
     }
 
-    const url = getMockableUrl(byggDokumentVisningUrl(props.url, fodselsnummer));
+    const url = getMockableUrl(byggDokumentVisningUrl(props.url, props.fnr));
 
     return (
         <ObjectHttpFeilHandtering type="application/pdf" url={url} width="100%" height="100%" onError={onError}>
@@ -68,4 +68,4 @@ function feilmelding(statusKode: number) {
     }
 }
 
-export default DokumentVisning;
+export default React.memo(DokumentVisning);

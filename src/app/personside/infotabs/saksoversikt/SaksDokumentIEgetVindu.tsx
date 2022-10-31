@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
+import { useOnMount } from '../../../../utils/customHooks';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import DokumentVisning from './dokumentvisning/SaksDokumentVisning';
 import { useQueryParams } from '../../../../utils/url-utils';
@@ -22,7 +22,6 @@ const Sentring = styled.div`
 
 function SaksDokumentEgetVindu(props: Props) {
     const queryParams = useQueryParams<{ dokument?: string; journalpost?: string }>();
-    const fodselsnummer = useFodselsnummer();
 
     useOnMount(() => {
         loggEvent('Sidevisning', 'SaksDokumentEgetVindu');
@@ -40,7 +39,8 @@ function SaksDokumentEgetVindu(props: Props) {
         <>
             <SetFnrIRedux fnr={props.fnr} />
             <DokumentVisning
-                url={getSaksdokumentUrl(fodselsnummer, queryParams.journalpost ?? null, queryParams.dokument)}
+                fnr={props.fnr}
+                url={getSaksdokumentUrl(props.fnr, queryParams.journalpost ?? null, queryParams.dokument)}
             />
         </>
     );
