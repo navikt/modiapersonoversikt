@@ -3,6 +3,7 @@ import gsaktemaResource from '../rest/resources/gsaktemaResource';
 import baseurls from '../rest/resources/baseurlsResource';
 import innloggetSaksbehandler from '../rest/resources/innloggetSaksbehandlerResource';
 import saksbehandlersEnheter from '../rest/resources/saksbehandlersEnheterResource';
+import oppgaveBehandlerResource from '../rest/resources/oppgaveBehandlerResource';
 
 function FetchSessionInfoOgLeggIRedux() {
     useInitializeLogger();
@@ -10,6 +11,7 @@ function FetchSessionInfoOgLeggIRedux() {
     innloggetSaksbehandler.usePrefetch();
     saksbehandlersEnheter.usePrefetch();
     gsaktemaResource.usePrefetch();
+    oppgaveBehandlerResource.usePrefetch();
     baseurls.usePrefetch();
 
     return null;
