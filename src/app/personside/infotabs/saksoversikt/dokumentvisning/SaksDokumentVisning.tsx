@@ -68,4 +68,4 @@ function feilmelding(statusKode: number) {
     }
 }
 
-export default DokumentVisning;
+export default React.memo(DokumentVisning);
