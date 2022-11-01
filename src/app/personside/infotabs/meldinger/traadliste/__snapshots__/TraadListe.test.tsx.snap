@@ -721,7 +721,6 @@ exports[`Viser Traadliste 1`] = `
           value="sg838exr"
         />
         <label
-          aria-hidden={true}
           className="c12"
           htmlFor="Helt tilfeldig ID"
         >

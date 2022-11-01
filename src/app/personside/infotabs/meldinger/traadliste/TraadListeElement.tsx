@@ -80,7 +80,7 @@ function TraadListeElement(props: Props) {
                 onChange={handleChange}
                 checked={props.erValgt}
             />
-            <StyledLabel htmlFor={id.current} aria-hidden={true}>
+            <StyledLabel htmlFor={id.current}>
                 {props.tillegskomponent}
                 <FlexGrow>
                     <TraadSammendrag traad={props.traad} />
