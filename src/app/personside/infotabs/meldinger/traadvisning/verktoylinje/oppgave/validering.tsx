@@ -23,7 +23,7 @@ export const feilmeldingReactHookForm = <F extends Record<string, any>>(formKey:
     const error = errors[formKey];
 
     if ((touched || isSubmitted) && error) {
-        return <>{error.message}</>;
+        return <>{error}</>;
     }
     return undefined;
 };

@@ -12,7 +12,7 @@ import SladdMeldingerMedArsak from './SladdMeldingerMedArsak';
 import css from './Sladdvalg.module.css';
 import { useSladdeArsak } from './use-sladde-arsak';
 import { QueryClient } from '@tanstack/react-query';
-import { FieldError, useForm, FormState, UseFormRegisterReturn } from 'react-hook-form';
+import { useForm, FormState, UseFormRegisterReturn } from 'react-hook-form';
 
 interface Props {
     traad: Traad;
@@ -55,13 +55,13 @@ export type SladdeForm = {
 type FormProps = { velgMeldinger: boolean };
 
 const resolver = (values: SladdeForm, props: FormProps) => {
-    const errors: { [Property in keyof Partial<SladdeForm>]: FieldError } = {};
+    const errors: { [Property in keyof Partial<SladdeForm>]: string } = {};
 
     if (!values.arsak || values.arsak === '') {
-        errors.arsak = { type: 'required', message: 'Du må velge årsak' };
+        errors.arsak = 'Du må velge årsak';
     }
     if (props.velgMeldinger && !values.meldingIder.length) {
-        errors.meldingIder = { type: 'required', message: 'Du må velge minst en melding' };
+        errors.meldingIder = 'Du må velge minst en melding';
     }
 
     return { values, errors };
