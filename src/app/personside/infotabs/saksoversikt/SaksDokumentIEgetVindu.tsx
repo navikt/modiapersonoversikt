@@ -35,11 +35,11 @@ function SaksDokumentEgetVindu(props: Props) {
             </Sentring>
         );
     }
-    console.log('fnr', props.fnr);
     return (
         <>
             <SetFnrIRedux fnr={props.fnr} />
             <DokumentVisning
+                fnr={props.fnr}
                 url={getSaksdokumentUrl(props.fnr, queryParams.journalpost ?? null, queryParams.dokument)}
             />
         </>
