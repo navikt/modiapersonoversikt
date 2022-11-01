@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`viser personsøkV3-komponent 1`] = `
-.c8 {
+.c9 {
   position: relative;
   border: none;
   padding: 0;
@@ -19,7 +19,7 @@ exports[`viser personsøkV3-komponent 1`] = `
   color: #0067c5;
 }
 
-.c8:after {
+.c9:after {
   border-bottom: 1px #b7b1a9 solid;
   position: absolute;
   bottom: 0;
@@ -27,36 +27,36 @@ exports[`viser personsøkV3-komponent 1`] = `
   width: 100%;
 }
 
-.c8:focus {
+.c9:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c8:hover {
+.c9:hover {
   opacity: 0.8;
 }
 
-.c8:hover:after {
+.c9:hover:after {
   content: '';
   border-color: #0067c5;
 }
 
-.c5 {
+.c6 {
   margin-right: 0.5em;
   margin-bottom: 1em;
   line-height: 1.375rem;
 }
 
-.c5 .nav-datovelger__kalenderPortal {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  -webkit-transform: translateX(-85%);
-  -ms-transform: translateX(-85%);
-  transform: translateX(-85%);
+.c6 .nav-datovelger__kalenderPortal {
+  position: absolute;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  top: 40px;
+  left: -150px;
 }
 
-.c6 {
+.c7 {
   margin-bottom: 0.5em;
 }
 
@@ -75,6 +75,10 @@ exports[`viser personsøkV3-komponent 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+
+.c5 {
+  display: relative;
 }
 
 .c0 {
@@ -101,7 +105,7 @@ exports[`viser personsøkV3-komponent 1`] = `
   margin-right: 10rem;
 }
 
-.c7 {
+.c8 {
   padding-top: .5rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -229,7 +233,6 @@ exports[`viser personsøkV3-komponent 1`] = `
             onBlur={[Function]}
             onChange={[Function]}
             type="text"
-            value=""
           />
         </div>
         <div
@@ -319,7 +322,6 @@ exports[`viser personsøkV3-komponent 1`] = `
             onBlur={[Function]}
             onChange={[Function]}
             type="text"
-            value=""
           />
         </div>
         <div
@@ -339,7 +341,6 @@ exports[`viser personsøkV3-komponent 1`] = `
             onBlur={[Function]}
             onChange={[Function]}
             type="text"
-            value=""
           />
         </div>
         <div
@@ -429,7 +430,6 @@ exports[`viser personsøkV3-komponent 1`] = `
             onBlur={[Function]}
             onChange={[Function]}
             type="text"
-            value=""
           />
         </div>
       </section>
@@ -453,86 +453,90 @@ exports[`viser personsøkV3-komponent 1`] = `
               <div
                 className="c5"
               >
-                <label
-                  className="c6 skjemaelement__label"
-                  htmlFor="fodselsdatoFra"
-                >
-                  <p
-                    className="typo-normal"
-                  >
-                    Fødselsdato fra
-                  </p>
-                </label>
                 <div
-                  onBlur={[Function]}
-                  onKeyDown={[Function]}
+                  className="c6"
                 >
+                  <label
+                    className="c7 skjemaelement__label"
+                    htmlFor="fodselsdatoFra"
+                  >
+                    <p
+                      className="typo-normal"
+                    >
+                      Fødselsdato fra
+                    </p>
+                  </label>
                   <div
-                    className="nav-datovelger"
+                    onBlur={[Function]}
+                    onKeyDown={[Function]}
                   >
                     <div
-                      className="nav-datovelger__inputContainer"
+                      className="nav-datovelger"
                     >
-                      <input
-                        aria-invalid={false}
-                        autoComplete="off"
-                        autoCorrect="off"
-                        className="nav-datovelger__input"
-                        id="fodselsdatoFra"
-                        inputMode="text"
-                        maxLength={10}
-                        name="fodselsdatoFra"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onKeyDown={[Function]}
-                        type="text"
-                        value=""
-                      />
-                      <button
-                        aria-expanded={false}
-                        className="nav-datovelger__kalenderknapp"
-                        onClick={[Function]}
-                        type="button"
+                      <div
+                        className="nav-datovelger__inputContainer"
                       >
-                        <span
-                          className="sr-only"
+                        <input
+                          aria-invalid={false}
+                          autoComplete="off"
+                          autoCorrect="off"
+                          className="nav-datovelger__input"
+                          id="fodselsdatoFra"
+                          inputMode="text"
+                          maxLength={10}
+                          name="fodselsdatoFra"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onKeyDown={[Function]}
+                          type="text"
+                          value=""
+                        />
+                        <button
+                          aria-expanded={false}
+                          className="nav-datovelger__kalenderknapp"
+                          onClick={[Function]}
+                          type="button"
                         >
-                          Kalender
-                        </span>
-                        <span
-                          aria-hidden={true}
-                          className="nav-datovelger__kalenderknapp__icon"
-                        >
-                          <svg
-                            focusable={false}
-                            height={16}
-                            role="presentation"
-                            style={
-                              Object {
-                                "pointerEvents": "none",
-                              }
-                            }
-                            viewBox="0 0 18 18"
-                            width={16}
+                          <span
+                            className="sr-only"
                           >
-                            <title>
-                              Kalenderikon
-                            </title>
-                            <g
-                              fill="none"
-                              fillRule="evenodd"
-                              stroke="#0067C5"
+                            Kalender
+                          </span>
+                          <span
+                            aria-hidden={true}
+                            className="nav-datovelger__kalenderknapp__icon"
+                          >
+                            <svg
+                              focusable={false}
+                              height={16}
+                              role="presentation"
+                              style={
+                                Object {
+                                  "pointerEvents": "none",
+                                }
+                              }
+                              viewBox="0 0 18 18"
+                              width={16}
                             >
-                              <path
-                                d="M4 2.667H1.333v14h15.334v-14H14"
-                              />
-                              <path
-                                d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                              />
-                            </g>
-                          </svg>
-                        </span>
-                      </button>
+                              <title>
+                                Kalenderikon
+                              </title>
+                              <g
+                                fill="none"
+                                fillRule="evenodd"
+                                stroke="#0067C5"
+                              >
+                                <path
+                                  d="M4 2.667H1.333v14h15.334v-14H14"
+                                />
+                                <path
+                                  d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                                />
+                              </g>
+                            </svg>
+                          </span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -540,92 +544,98 @@ exports[`viser personsøkV3-komponent 1`] = `
               <div
                 className="c5"
               >
-                <label
-                  className="c6 skjemaelement__label"
-                  htmlFor="fodselsdatoTil"
-                >
-                  <p
-                    className="typo-normal"
-                  >
-                    Fødselsdato til
-                  </p>
-                </label>
                 <div
-                  onBlur={[Function]}
-                  onKeyDown={[Function]}
+                  className="c6"
                 >
+                  <label
+                    className="c7 skjemaelement__label"
+                    htmlFor="fodselsdatoTil"
+                  >
+                    <p
+                      className="typo-normal"
+                    >
+                      Fødselsdato til
+                    </p>
+                  </label>
                   <div
-                    className="nav-datovelger"
+                    onBlur={[Function]}
+                    onKeyDown={[Function]}
                   >
                     <div
-                      className="nav-datovelger__inputContainer"
+                      className="nav-datovelger"
                     >
-                      <input
-                        aria-invalid={false}
-                        autoComplete="off"
-                        autoCorrect="off"
-                        className="nav-datovelger__input"
-                        id="fodselsdatoTil"
-                        inputMode="text"
-                        maxLength={10}
-                        name="fodselsdatoTil"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onKeyDown={[Function]}
-                        type="text"
-                        value=""
-                      />
-                      <button
-                        aria-expanded={false}
-                        className="nav-datovelger__kalenderknapp"
-                        onClick={[Function]}
-                        type="button"
+                      <div
+                        className="nav-datovelger__inputContainer"
                       >
-                        <span
-                          className="sr-only"
+                        <input
+                          aria-invalid={false}
+                          autoComplete="off"
+                          autoCorrect="off"
+                          className="nav-datovelger__input"
+                          id="fodselsdatoTil"
+                          inputMode="text"
+                          maxLength={10}
+                          name="fodselsdatoTil"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onKeyDown={[Function]}
+                          type="text"
+                          value=""
+                        />
+                        <button
+                          aria-expanded={false}
+                          className="nav-datovelger__kalenderknapp"
+                          onClick={[Function]}
+                          type="button"
                         >
-                          Kalender
-                        </span>
-                        <span
-                          aria-hidden={true}
-                          className="nav-datovelger__kalenderknapp__icon"
-                        >
-                          <svg
-                            focusable={false}
-                            height={16}
-                            role="presentation"
-                            style={
-                              Object {
-                                "pointerEvents": "none",
-                              }
-                            }
-                            viewBox="0 0 18 18"
-                            width={16}
+                          <span
+                            className="sr-only"
                           >
-                            <title>
-                              Kalenderikon
-                            </title>
-                            <g
-                              fill="none"
-                              fillRule="evenodd"
-                              stroke="#0067C5"
+                            Kalender
+                          </span>
+                          <span
+                            aria-hidden={true}
+                            className="nav-datovelger__kalenderknapp__icon"
+                          >
+                            <svg
+                              focusable={false}
+                              height={16}
+                              role="presentation"
+                              style={
+                                Object {
+                                  "pointerEvents": "none",
+                                }
+                              }
+                              viewBox="0 0 18 18"
+                              width={16}
                             >
-                              <path
-                                d="M4 2.667H1.333v14h15.334v-14H14"
-                              />
-                              <path
-                                d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
-                              />
-                            </g>
-                          </svg>
-                        </span>
-                      </button>
+                              <title>
+                                Kalenderikon
+                              </title>
+                              <g
+                                fill="none"
+                                fillRule="evenodd"
+                                stroke="#0067C5"
+                              >
+                                <path
+                                  d="M4 2.667H1.333v14h15.334v-14H14"
+                                />
+                                <path
+                                  d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334"
+                                />
+                              </g>
+                            </svg>
+                          </span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div />
+            <div
+              aria-live="polite"
+            />
           </div>
         </div>
         <div
@@ -636,19 +646,18 @@ exports[`viser personsøkV3-komponent 1`] = `
           >
             <label
               className="skjemaelement__label"
-              htmlFor="alderFra"
+              htmlFor="Helt tilfeldig ID"
             >
               Alder fra
             </label>
             <input
               aria-invalid={false}
               className="skjemaelement__input input--m"
-              id="alderFra"
+              id="Helt tilfeldig ID"
               name="alderFra"
               onBlur={[Function]}
               onChange={[Function]}
               type="text"
-              value=""
             />
           </div>
           <div
@@ -656,19 +665,18 @@ exports[`viser personsøkV3-komponent 1`] = `
           >
             <label
               className="skjemaelement__label"
-              htmlFor="alderTil"
+              htmlFor="Helt tilfeldig ID"
             >
               Alder til
             </label>
             <input
               aria-invalid={false}
               className="skjemaelement__input input--m"
-              id="alderTil"
+              id="Helt tilfeldig ID"
               name="alderTil"
               onBlur={[Function]}
               onChange={[Function]}
               type="text"
-              value=""
             />
           </div>
         </div>
@@ -677,7 +685,7 @@ exports[`viser personsøkV3-komponent 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="kjonn"
+            htmlFor="Helt tilfeldig ID"
           >
             Kjønn
           </label>
@@ -688,11 +696,10 @@ exports[`viser personsøkV3-komponent 1`] = `
               aria-invalid={false}
               className="skjemaelement__input"
               disabled={false}
-              id="kjonn"
+              id="Helt tilfeldig ID"
               name="kjonn"
               onBlur={[Function]}
               onChange={[Function]}
-              value=""
             >
               <option
                 value=""
@@ -716,7 +723,7 @@ exports[`viser personsøkV3-komponent 1`] = `
     </section>
     <a
       className="lenke"
-      href="https://drek.nais.preprod.local/?fornavn=&etternavn=&foedselsdato=&kjoenn="
+      href="https://drek.nais.preprod.local/?"
       rel="noopener noreferrer"
       target="_blank"
     >
@@ -727,7 +734,7 @@ exports[`viser personsøkV3-komponent 1`] = `
       </p>
     </a>
     <div
-      className="c7"
+      className="c8"
     >
       <button
         className="knapp knapp--hoved"
@@ -737,7 +744,7 @@ exports[`viser personsøkV3-komponent 1`] = `
         Søk
       </button>
       <button
-        className="c8"
+        className="c9"
         type="reset"
       >
         Nullstill
