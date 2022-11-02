@@ -12,15 +12,13 @@ export interface SkjermetOppgaveProps {
 }
 
 export type OppgaveSkjemaForm = {
-    valgtTema: string;
-    valgtOppgavetype: string;
-    beskrivelse: string;
-    valgtPrioritet: string;
-    valgtUnderkategori: string;
     valgtEnhet: string;
     valgtAnsatt: string;
-};
-export type SkjermetOppgaveSkjemaForm = {
+} & OppgaveSkjemaDelteFelter;
+
+export type OppgaveSkjemaBegrensetTilgangForm = OppgaveSkjemaDelteFelter;
+
+export type OppgaveSkjemaDelteFelter = {
     valgtTema: string;
     valgtOppgavetype: string;
     beskrivelse: string;
