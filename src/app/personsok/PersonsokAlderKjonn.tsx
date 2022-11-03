@@ -11,7 +11,7 @@ interface Props<F extends FieldValues = PersonSokFormStateV3> {
     register: UseFormRegister<F>;
 }
 
-const PersonsokAlderKjonn: React.FC<Props> = ({ formState, register }) => {
+function PersonsokAlderKjonn({ formState, register }: Props) {
     const { ref: kjonnSelectorRef, ...kjonnProps } = register('kjonn');
 
     return (
@@ -39,6 +39,6 @@ const PersonsokAlderKjonn: React.FC<Props> = ({ formState, register }) => {
             </Select>
         </>
     );
-};
+}
 
 export default PersonsokAlderKjonn;

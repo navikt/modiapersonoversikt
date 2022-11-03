@@ -11,7 +11,7 @@ interface Props<F extends FieldValues = PersonSokFormStateV3> {
     register: UseFormRegister<F>;
 }
 
-const PersonsokNavnAdresseKontonrDnr: React.FC<Props> = ({ formState, register }) => {
+function PersonsokNavnAdresseKontonrDnr({ formState, register }: Props) {
     const hjelpetekstID = useRef(guid());
 
     const utenlandskIDTittel = [
@@ -37,35 +37,34 @@ const PersonsokNavnAdresseKontonrDnr: React.FC<Props> = ({ formState, register }
         </Hjelpetekst>
     ];
 
-    const firstSection: { id: keyof PersonSokFormStateV3; width: InputProps['bredde']; label: InputProps['label'] }[] =
-        [
-            {
-                id: 'navn',
-                width: 'XL',
-                label: navnTittel
-            },
-            {
-                id: 'adresse',
-                width: 'XL',
-                label: adresseTittel
-            },
-            {
-                id: 'kontonummer',
-                width: 'L',
-                label: 'Kontonummer (Norske nummer)'
-            },
-            {
-                id: 'utenlandskID',
-                width: 'L',
-                label: utenlandskIDTittel
-            }
-        ];
+    const formFields: { id: keyof PersonSokFormStateV3; width: InputProps['bredde']; label: InputProps['label'] }[] = [
+        {
+            id: 'navn',
+            width: 'XL',
+            label: navnTittel
+        },
+        {
+            id: 'adresse',
+            width: 'XL',
+            label: adresseTittel
+        },
+        {
+            id: 'kontonummer',
+            width: 'L',
+            label: 'Kontonummer (Norske nummer)'
+        },
+        {
+            id: 'utenlandskID',
+            width: 'L',
+            label: utenlandskIDTittel
+        }
+    ];
 
     const minimumsKravFeil = feilmeldingReactHookForm('_minimumskrav', formState);
 
     return (
         <>
-            {firstSection.map((formField) => {
+            {formFields.map((formField) => {
                 const { ref: inputRef, ...nativeProps } = register(formField.id);
                 return (
                     <Input
@@ -81,6 +80,6 @@ const PersonsokNavnAdresseKontonrDnr: React.FC<Props> = ({ formState, register }
             })}
         </>
     );
-};
+}
 
 export default PersonsokNavnAdresseKontonrDnr;

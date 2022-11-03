@@ -22,7 +22,7 @@ export type PersonSokFormStateV3 = {
     _minimumskrav: string;
 };
 
-export const resolver = (values: PersonSokFormStateV3) => {
+export function resolver(values: PersonSokFormStateV3) {
     let kontonummer: string | undefined;
     let utenlandskID: string | undefined;
 
@@ -87,7 +87,7 @@ export const resolver = (values: PersonSokFormStateV3) => {
     };
 
     return { values, errors };
-};
+}
 
 export function stringToNumber(input: string): number | undefined {
     if (input.length === 0) {

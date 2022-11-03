@@ -9,7 +9,7 @@ export interface DrekPropsV2 {
     watch: UseFormWatch<PersonSokFormStateV3>;
 }
 
-const buildQueryParam = (params: Record<string, string | number | boolean | undefined>): string => {
+function buildQueryParam(params: Record<string, string | number | boolean | undefined>): string {
     const res: string[] = [];
     for (const [key, value] of Object.entries(params)) {
         if (!value) {
@@ -19,9 +19,9 @@ const buildQueryParam = (params: Record<string, string | number | boolean | unde
     }
 
     return res.join('&');
-};
+}
 
-const LenkeDrekV2: React.FC<DrekPropsV2> = ({ watch }) => {
+function LenkeDrekV2({ watch }: DrekPropsV2) {
     const fodselsdatoFra = watch('fodselsdatoFra');
     const kjoenn = watch('kjonn');
     const navn = watch('navn');
@@ -44,6 +44,6 @@ const LenkeDrekV2: React.FC<DrekPropsV2> = ({ watch }) => {
             <Normaltekst>Rekvirer D-nummer fra Folkeregisteret</Normaltekst>
         </a>
     );
-};
+}
 
 export default LenkeDrekV2;
