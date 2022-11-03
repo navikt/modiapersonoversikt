@@ -7,7 +7,7 @@ interface Props {
     lukkPanel: VoidFunction;
 }
 
-const OppgaveSkjemaErBehandlet: React.FC<Props> = ({ lukkPanel }) => {
+function OppgaveSkjemaErBehandlet({ lukkPanel }: Props) {
     return (
         <AlertStyling>
             <AlertStripeInfo>Kan ikke opprette oppgave på denne tråden</AlertStripeInfo>
@@ -16,6 +16,6 @@ const OppgaveSkjemaErBehandlet: React.FC<Props> = ({ lukkPanel }) => {
             </Hovedknapp>
         </AlertStyling>
     );
-};
+}
 
 export default OppgaveSkjemaErBehandlet;

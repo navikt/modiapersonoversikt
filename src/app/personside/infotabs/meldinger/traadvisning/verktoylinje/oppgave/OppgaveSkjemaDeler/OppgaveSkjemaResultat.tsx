@@ -9,7 +9,7 @@ interface Props {
     lukkPanel: VoidFunction;
 }
 
-const OppgaveSkjemaResultat: React.FC<Props> = ({ resultat, lukkPanel }) => {
+function OppgaveSkjemaResultat({ resultat, lukkPanel }: Props) {
     const alert =
         resultat === Resultat.VELLYKKET ? (
             <AlertStripeSuksess>Oppgave opprettet</AlertStripeSuksess>
@@ -24,6 +24,6 @@ const OppgaveSkjemaResultat: React.FC<Props> = ({ resultat, lukkPanel }) => {
             </Hovedknapp>
         </AlertStyling>
     );
-};
+}
 
 export default OppgaveSkjemaResultat;

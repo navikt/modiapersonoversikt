@@ -31,4 +31,4 @@ export const feilmeldingReactHookForm = <
         return <>{error.message}</>;
     }
     return undefined;
-};
+}

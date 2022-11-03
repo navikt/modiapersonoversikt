@@ -10,7 +10,7 @@ const shouldShowItemBasedOnInput = (value: string, item: string, input: string |
     return item.toLowerCase().includes(input.toLowerCase());
 };
 
-export const useAutoCompleteSuggestions = ({
+export function useAutoCompleteSuggestions({
     value = '',
     input,
     topSuggestions,
@@ -20,7 +20,7 @@ export const useAutoCompleteSuggestions = ({
     input: string;
     topSuggestions?: string[];
     suggestions: string[];
-}) => {
+}) {
     return useMemo(() => {
         const filteredSuggestions: string[] = [];
         const filteredTopSuggestions: string[] = [];
@@ -41,4 +41,4 @@ export const useAutoCompleteSuggestions = ({
 
         return { filteredSuggestions, filteredTopSuggestions };
     }, [input, suggestions, topSuggestions, value]);
-};
+}

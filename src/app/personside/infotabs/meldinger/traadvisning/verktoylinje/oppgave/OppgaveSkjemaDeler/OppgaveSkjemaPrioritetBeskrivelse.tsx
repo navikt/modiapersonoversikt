@@ -14,7 +14,7 @@ interface Props {
     valgtTema?: GsakTema;
 }
 
-const OppgaveSkjemaPrioritetBeskrivelse: React.FC<Props> = ({ formState, register, valgtTema, watch }) => {
+function OppgaveSkjemaPrioritetBeskrivelse({ formState, register, valgtTema, watch }: Props) {
     const { ref: selectRef, ...selectRest } = register('valgtPrioritet');
     const { ref: textareaRef, ...textAreaRest } = register('beskrivelse');
 
@@ -42,6 +42,6 @@ const OppgaveSkjemaPrioritetBeskrivelse: React.FC<Props> = ({ formState, registe
             />
         </>
     );
-};
+}
 
 export default OppgaveSkjemaPrioritetBeskrivelse;

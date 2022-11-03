@@ -13,7 +13,7 @@ const validatePartialField = <K extends keyof OppgaveSkjemaForm>(
     }
 };
 
-export const resolverOppgaveSkjema = (values: OppgaveSkjemaForm) => {
+export function resolverOppgaveSkjema(values: OppgaveSkjemaForm) {
     const errors: ErrorObject = {};
 
     const fieldsToValidate: { key: keyof OppgaveSkjemaForm; errorMessage: string }[] = [
@@ -45,9 +45,9 @@ export const resolverOppgaveSkjema = (values: OppgaveSkjemaForm) => {
         errors,
         values
     };
-};
+}
 
-export const resolverOppgaveSkjemaBegrensetTilgang = (values: OppgaveSkjemaBegrensetTilgangForm) => {
+export function resolverOppgaveSkjemaBegrensetTilgang(values: OppgaveSkjemaBegrensetTilgangForm) {
     const errors: ErrorObject = {};
 
     const fieldsToValidate: { key: keyof OppgaveSkjemaBegrensetTilgangForm; errorMessage: string }[] = [
@@ -75,4 +75,4 @@ export const resolverOppgaveSkjemaBegrensetTilgang = (values: OppgaveSkjemaBegre
         errors,
         values
     };
-};
+}

@@ -92,7 +92,7 @@ function AutoComplete(props: Props) {
         topSuggestions: props.topSuggestions
     });
 
-    const handleStateChange = (changes: StateChangeOptions<string>) => {
+    function handleStateChange(changes: StateChangeOptions<string>) {
         if (changes.hasOwnProperty('selectedItem')) {
             setValue(changes.selectedItem);
             setHightlightedItem(undefined);
@@ -103,7 +103,7 @@ function AutoComplete(props: Props) {
             // isOpen er kun false idet autocomplete blir lukket
             hightlightedItem && changes.selectedItem && setValue(hightlightedItem);
         }
-    };
+    }
 
     return (
         <Downshift<string>

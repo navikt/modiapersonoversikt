@@ -23,7 +23,7 @@ interface Props {
     saksbehandlersEnhet: string;
 }
 
-const OppgaveSkjemaEnhetAnsatt: React.FC<Props> = ({ formState, watch, setValue, saksbehandlersEnhet }) => {
+function OppgaveSkjemaEnhetAnsatt({ formState, watch, setValue, saksbehandlersEnhet }: Props) {
     const saksbehandlerIdent = innloggetSaksbehandler.useFetch();
 
     const enhetliste = oppgaveBehandlerResource.useFetch();
@@ -31,7 +31,7 @@ const OppgaveSkjemaEnhetAnsatt: React.FC<Props> = ({ formState, watch, setValue,
     const valgtEnhet = useMatchendeEnhet(watch);
     const { ansatte } = useAnsattePaaEnhet(valgtEnhet);
 
-    const settTilSaksbehandlerOppgaveListe = () => {
+    function settTilSaksbehandlerOppgaveListe() {
         const enhet = enhetliste.data?.find((e) => e.enhetId === saksbehandlersEnhet);
         const enhetValue = enhet ? `${enhet.enhetId} ${enhet.enhetNavn}` : '';
 
@@ -40,7 +40,7 @@ const OppgaveSkjemaEnhetAnsatt: React.FC<Props> = ({ formState, watch, setValue,
 
         setValue('valgtEnhet', enhetValue);
         setValue('valgtAnsatt', ansattValue);
-    };
+    }
 
     const valgtEnhetValue = watch('valgtEnhet');
     const valgtAnsattValue = watch('valgtAnsatt');
@@ -88,6 +88,6 @@ const OppgaveSkjemaEnhetAnsatt: React.FC<Props> = ({ formState, watch, setValue,
             />
         </>
     );
-};
+}
 
 export default OppgaveSkjemaEnhetAnsatt;

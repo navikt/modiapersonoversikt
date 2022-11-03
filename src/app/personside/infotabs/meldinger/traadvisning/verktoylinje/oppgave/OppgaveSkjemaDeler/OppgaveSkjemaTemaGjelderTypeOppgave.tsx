@@ -14,7 +14,7 @@ interface Props {
     valgtTema?: GsakTema;
 }
 
-const OppgaveSkjemaTemaGjelderTypeOppgave: React.FC<Props> = ({ formState, gsakTema, valgtTema, register }) => {
+function OppgaveSkjemaTemaGjelderTypeOppgave({ formState, gsakTema, valgtTema, register }: Props) {
     const selectors: {
         id: keyof OppgaveSkjemaDelteFelter;
         label: string;
@@ -60,6 +60,6 @@ const OppgaveSkjemaTemaGjelderTypeOppgave: React.FC<Props> = ({ formState, gsakT
             })}
         </>
     );
-};
+}
 
 export default OppgaveSkjemaTemaGjelderTypeOppgave;
