@@ -164,7 +164,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         <SkjemaStyle>
             <AvsluttGosysOppgaveSkjema valgtTraad={props.valgtTraad} />
             <form onSubmit={state.onSubmit(submitHandler)}>
-                <FormErrorSummary tittel={'For å kunne søke må du rett opp i følgende:'} />
+                <FormErrorSummary form={form} tittel={'For å kunne søke må du rett opp i følgende:'} />
                 <Element>Opprett oppgave</Element>
                 <Select
                     autoFocus={true}
