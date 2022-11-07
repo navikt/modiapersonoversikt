@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormState, UseFormSetValue, UseFormWatch } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 import styled from 'styled-components';
 import { LenkeKnapp } from '../../../../../../../../components/common-styled-components';
 import oppgaveBehandlerResource from '../../../../../../../../rest/resources/oppgaveBehandlerResource';
@@ -17,18 +17,16 @@ const SettTilEgenOppgaveListeKnapp = styled(LenkeKnapp)`
 `;
 
 interface Props {
-    formState: FormState<OppgaveSkjemaForm>;
-    watch: UseFormWatch<OppgaveSkjemaForm>;
-    setValue: UseFormSetValue<OppgaveSkjemaForm>;
+    form: UseFormReturn<OppgaveSkjemaForm>;
     saksbehandlersEnhet: string;
 }
 
-function OppgaveSkjemaEnhetAnsatt({ formState, watch, setValue, saksbehandlersEnhet }: Props) {
+function OppgaveSkjemaEnhetAnsatt({ form, saksbehandlersEnhet }: Props) {
     const saksbehandlerIdent = innloggetSaksbehandler.useFetch();
 
     const enhetliste = oppgaveBehandlerResource.useFetch();
-    const { foreslatteEnheter } = useForeslatteEnheter(watch);
-    const valgtEnhet = useMatchendeEnhet(watch);
+    const { foreslatteEnheter } = useForeslatteEnheter(form);
+    const valgtEnhet = useMatchendeEnhet(form);
     const { ansatte } = useAnsattePaaEnhet(valgtEnhet);
 
     function settTilSaksbehandlerOppgaveListe() {
@@ -38,12 +36,12 @@ function OppgaveSkjemaEnhetAnsatt({ formState, watch, setValue, saksbehandlersEn
         const ansatt = saksbehandlerIdent.data;
         const ansattValue = ansatt ? `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})` : '';
 
-        setValue('valgtEnhet', enhetValue);
-        setValue('valgtAnsatt', ansattValue);
+        form.setValue('valgtEnhet', enhetValue, { shouldDirty: true, shouldTouch: true, shouldValidate: true });
+        form.setValue('valgtAnsatt', ansattValue, { shouldDirty: true, shouldTouch: true, shouldValidate: true });
     }
 
-    const valgtEnhetValue = watch('valgtEnhet');
-    const valgtAnsattValue = watch('valgtAnsatt');
+    const valgtEnhetValue = form.watch('valgtEnhet');
+    const valgtAnsattValue = form.watch('valgtAnsatt');
 
     return (
         <>
@@ -65,20 +63,20 @@ function OppgaveSkjemaEnhetAnsatt({ formState, watch, setValue, saksbehandlersEn
                 otherSuggestionsLabel="Andre enheter"
                 value={valgtEnhetValue}
                 setValue={(newValue) =>
-                    setValue('valgtEnhet', newValue ?? '', {
+                    form.setValue('valgtEnhet', newValue ?? '', {
                         shouldDirty: true,
                         shouldTouch: true,
                         shouldValidate: true
                     })
                 }
-                feil={feilmeldingReactHookForm('valgtEnhet', formState)}
+                feil={feilmeldingReactHookForm(form, 'valgtEnhet')}
             />
             <AutoComplete
                 name="valgtAnsatt"
                 label="Velg ansatt"
                 suggestions={ansatte.map((ansatt) => `${ansatt.fornavn} ${ansatt.etternavn} (${ansatt.ident})`)}
                 setValue={(newValue) =>
-                    setValue('valgtAnsatt', newValue ?? '', {
+                    form.setValue('valgtAnsatt', newValue ?? '', {
                         shouldDirty: true,
                         shouldTouch: true,
                         shouldValidate: true

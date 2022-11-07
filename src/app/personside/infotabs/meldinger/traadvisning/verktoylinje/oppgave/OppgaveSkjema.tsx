@@ -1,11 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { useForm } from 'react-hook-form';
 import { apiBaseUri } from '../../../../../../../api/config';
 import { LenkeKnapp } from '../../../../../../../components/common-styled-components';
-import { FeilmeldingOppsummering } from '../../../../../../../components/FeilmeldingOppsummering';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
 import { AppState } from '../../../../../../../redux/reducers';
 import { erBehandlet } from '../../../utils/meldingerUtils';
@@ -22,7 +21,7 @@ import { Element } from 'nav-frontend-typografi';
 import OppgaveSkjemaTemaGjelderTypeOppgave from './OppgaveSkjemaDeler/OppgaveSkjemaTemaGjelderTypeOppgave';
 import OppgaveSkjemaPrioritetBeskrivelse from './OppgaveSkjemaDeler/OppgaveSkjemaPrioritetBeskrivelse';
 import OppgaveSkjemaEnhetAnsatt from './OppgaveSkjemaDeler/OppgaveSkjemaEnhetAnsatt';
-import { GsakTemaPrioritet } from '../../../../../../../models/meldinger/oppgave';
+import FormErrorSummary from '../../../../../../../components/form/FormErrorSummary';
 
 export const AlertStyling = styled.div`
     > * {
@@ -59,19 +58,12 @@ function OppgaveSkjema(props: OppgaveProps) {
     const valgtBrukersFnr = useSelector((state: AppState) => state.gjeldendeBruker.fødselsnummer);
     const saksbehandlersEnhet = useValgtenhet().enhetId;
     const [resultat, settResultat] = useState<Resultat>();
-    const { formState, register, watch, setValue, handleSubmit } = useForm<OppgaveSkjemaForm>({
+    const form = useForm<OppgaveSkjemaForm>({
         resolver: resolverOppgaveSkjema,
         mode: 'onChange'
     });
 
-    const oppdaterPrioritet = useCallback(
-        (valgtPrioritet: GsakTemaPrioritet['kode']) => {
-            setValue('valgtPrioritet', valgtPrioritet);
-        },
-        [setValue]
-    );
-
-    const valgtTema = useNormalPrioritet(props.gsakTema, watch, oppdaterPrioritet);
+    const valgtTema = useNormalPrioritet(props.gsakTema, form);
 
     function submitHandler(values: OppgaveSkjemaForm): Promise<any> {
         const request = lagOppgaveRequest(
@@ -103,29 +95,14 @@ function OppgaveSkjema(props: OppgaveProps) {
     return (
         <SkjemaStyle>
             <AvsluttGosysOppgaveSkjema valgtTraad={props.valgtTraad} />
-            <form onSubmit={state.onSubmit(submitHandler)}>
-                <FormErrorSummary tittel={'For å kunne søke må du rett opp i følgende:'} />
+            <form onSubmit={form.handleSubmit(submitHandler)}>
+                <FormErrorSummary form={form} tittel={'For å kunne søke må du rett opp i følgende:'} />
                 <Element>Opprett oppgave</Element>
-                <OppgaveSkjemaTemaGjelderTypeOppgave
-                    formState={formState}
-                    gsakTema={props.gsakTema}
-                    register={register}
-                    valgtTema={valgtTema}
-                />
-                <OppgaveSkjemaEnhetAnsatt
-                    formState={formState}
-                    saksbehandlersEnhet={saksbehandlersEnhet}
-                    setValue={setValue}
-                    watch={watch}
-                />
-                <OppgaveSkjemaPrioritetBeskrivelse
-                    formState={formState}
-                    register={register}
-                    valgtTema={valgtTema}
-                    watch={watch}
-                />
+                <OppgaveSkjemaTemaGjelderTypeOppgave form={form} gsakTema={props.gsakTema} valgtTema={valgtTema} />
+                <OppgaveSkjemaEnhetAnsatt form={form} saksbehandlersEnhet={saksbehandlersEnhet} />
+                <OppgaveSkjemaPrioritetBeskrivelse form={form} valgtTema={valgtTema} />
                 <KnappStyle>
-                    <Hovedknapp htmlType="submit" spinner={formState.isSubmitting} autoDisableVedSpinner>
+                    <Hovedknapp htmlType="submit" spinner={form.formState.isSubmitting} autoDisableVedSpinner>
                         {knappetekst}
                     </Hovedknapp>
                     <LenkeKnapp type="button" onClick={props.lukkPanel}>

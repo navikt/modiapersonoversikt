@@ -1,44 +1,28 @@
-import { Select, Textarea } from 'nav-frontend-skjema';
 import React from 'react';
-import { FormState } from 'react-hook-form';
+import { Path, UseFormReturn } from 'react-hook-form';
+import FormSelect from '../../../../../../../../components/form/FormSelect';
+import FormTextarea from '../../../../../../../../components/form/FormTextArea';
 import { GsakTema } from '../../../../../../../../models/meldinger/oppgave';
 import { OppgaveSkjemaDelteFelter } from '../oppgaveInterfaces';
-import { UseOppgaveSkjemaRegister, UseOppgaveSkjemaWatch } from '../oppgaveSkjemaTyper';
 import { Prioriteter } from '../SkjemaElementOptions';
-import { feilmeldingReactHookForm } from '../validering';
 
-interface Props {
-    formState: FormState<OppgaveSkjemaDelteFelter>;
-    register: UseOppgaveSkjemaRegister<OppgaveSkjemaDelteFelter>;
-    watch: UseOppgaveSkjemaWatch<OppgaveSkjemaDelteFelter>;
+interface Props<F extends OppgaveSkjemaDelteFelter> {
+    form: UseFormReturn<F>;
     valgtTema?: GsakTema;
 }
 
-function OppgaveSkjemaPrioritetBeskrivelse({ formState, register, valgtTema, watch }: Props) {
-    const { ref: selectRef, ...selectRest } = register('valgtPrioritet');
-    const { ref: textareaRef, ...textAreaRest } = register('beskrivelse');
-
-    const beskrivelseValue = watch('beskrivelse');
-
+function OppgaveSkjemaPrioritetBeskrivelse<F extends OppgaveSkjemaDelteFelter>({ form, valgtTema }: Props<F>) {
     return (
         <>
-            <Select
-                id="valgtPrioritet"
-                label="Velg prioritet"
-                selectRef={selectRef as any}
-                feil={feilmeldingReactHookForm('valgtPrioritet', formState)}
-                {...selectRest}
-            >
+            <FormSelect form={form} name={'valgtPrioritet' as Path<F>} id="valgtPrioritet" label="Velg prioritet">
                 <Prioriteter valgtGsakTema={valgtTema} />
-            </Select>
-            <Textarea
+            </FormSelect>
+            <FormTextarea
+                form={form}
+                name={'beskrivelse' as Path<F>}
                 id="beskrivelse"
                 maxLength={0}
                 label="Beskrivelse"
-                textareaRef={textareaRef}
-                feil={feilmeldingReactHookForm('beskrivelse', formState)}
-                value={beskrivelseValue ?? ''}
-                {...textAreaRest}
             />
         </>
     );

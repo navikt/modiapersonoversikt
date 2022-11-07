@@ -1,6 +1,8 @@
+import { FieldError } from 'react-hook-form';
+import { buildFieldError } from '../../../../../../../components/form/formUtils';
 import { OppgaveSkjemaBegrensetTilgangForm, OppgaveSkjemaForm } from './oppgaveInterfaces';
 
-type ErrorObject = { [Property in keyof Partial<OppgaveSkjemaForm>]: string | undefined };
+type ErrorObject = { [Property in keyof Partial<OppgaveSkjemaForm>]: FieldError | undefined };
 
 const validatePartialField = <K extends keyof OppgaveSkjemaForm>(
     key: K,
@@ -9,7 +11,7 @@ const validatePartialField = <K extends keyof OppgaveSkjemaForm>(
     errorObject: ErrorObject
 ) => {
     if (!value?.length) {
-        errorObject[key] = errorMessage;
+        errorObject[key] = buildFieldError(errorMessage);
     }
 };
 

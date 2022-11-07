@@ -42,7 +42,7 @@ function FormErrorSummary<TFieldValues extends FieldValues>(props: Props<TFieldV
         return null;
     }
 
-    return <Feiloppsummering innerRef={ref} {...errorSummaryProps} feil={feil} />;
+    return <Feiloppsummering innerRef={ref} feil={feil} {...errorSummaryProps} />;
 }
 
 export default FormErrorSummary;

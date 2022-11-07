@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import styled from 'styled-components';
 import { SkjermetOppgaveProps, OppgaveSkjemaBegrensetTilgangForm } from '../oppgaveInterfaces';
@@ -15,7 +15,6 @@ import { resolverOppgaveSkjemaBegrensetTilgang } from '../oppgaveSkjemaUtils';
 import { useNormalPrioritet } from '../useNormalPrioritet';
 import OppgaveSkjemaTemaGjelderTypeOppgave from '../OppgaveSkjemaDeler/OppgaveSkjemaTemaGjelderTypeOppgave';
 import OppgaveSkjemaPrioritetBeskrivelse from '../OppgaveSkjemaDeler/OppgaveSkjemaPrioritetBeskrivelse';
-import { GsakTemaPrioritet } from '../../../../../../../../models/meldinger/oppgave';
 
 const SkjemaStyle = styled.div`
     padding-top: 1rem;
@@ -46,19 +45,12 @@ function OppgaveSkjemaBegrensetTilgang(props: SkjermetOppgaveProps) {
     const saksbehandlersEnhet = useValgtenhet().enhetId;
     const [resultat, settResultat] = useState<Resultat>();
 
-    const { formState, register, watch, setValue, handleSubmit, reset } = useForm<OppgaveSkjemaBegrensetTilgangForm>({
+    const form = useForm<OppgaveSkjemaBegrensetTilgangForm>({
         resolver: resolverOppgaveSkjemaBegrensetTilgang,
         mode: 'onChange'
     });
 
-    const oppdaterPrioritet = useCallback(
-        (valgtPrioritet: GsakTemaPrioritet['kode']) => {
-            setValue('valgtPrioritet', valgtPrioritet);
-        },
-        [setValue]
-    );
-
-    const valgtTema = useNormalPrioritet(props.gsakTema, watch, oppdaterPrioritet);
+    const valgtTema = useNormalPrioritet(props.gsakTema, form);
 
     function submitHandler(values: OppgaveSkjemaBegrensetTilgangForm): Promise<any> {
         const request = lagSkjermetOppgaveRequest(values, valgtBrukersFnr, saksbehandlersEnhet || '');
@@ -84,16 +76,11 @@ function OppgaveSkjemaBegrensetTilgang(props: SkjermetOppgaveProps) {
 
     return (
         <SkjemaStyle>
-            <form onSubmit={handleSubmit(submitHandler)} onReset={() => reset()}>
-                <OppgaveSkjemaTemaGjelderTypeOppgave
-                    formState={formState}
-                    gsakTema={props.gsakTema}
-                    register={register}
-                    valgtTema={valgtTema}
-                />
-                <OppgaveSkjemaPrioritetBeskrivelse formState={formState} register={register} watch={watch} />
+            <form onSubmit={form.handleSubmit(submitHandler)} onReset={() => form.reset()}>
+                <OppgaveSkjemaTemaGjelderTypeOppgave form={form} gsakTema={props.gsakTema} valgtTema={valgtTema} />
+                <OppgaveSkjemaPrioritetBeskrivelse form={form} valgtTema={valgtTema} />
                 <KnappStyle>
-                    <Hovedknapp htmlType="submit" spinner={formState.isSubmitting} autoDisableVedSpinner>
+                    <Hovedknapp htmlType="submit" spinner={form.formState.isSubmitting} autoDisableVedSpinner>
                         Opprett Oppgave
                     </Hovedknapp>
                     <Flatknapp htmlType="reset">Nullstill</Flatknapp>

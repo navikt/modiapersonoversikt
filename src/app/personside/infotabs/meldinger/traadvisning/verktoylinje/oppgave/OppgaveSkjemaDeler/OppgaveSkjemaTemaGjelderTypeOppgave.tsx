@@ -1,22 +1,23 @@
-import { Select } from 'nav-frontend-skjema';
 import React from 'react';
-import { FormState } from 'react-hook-form';
+import { Path, UseFormReturn } from 'react-hook-form';
+import FormSelect from '../../../../../../../../components/form/FormSelect';
 import { GsakTema } from '../../../../../../../../models/meldinger/oppgave';
-import { UseOppgaveSkjemaRegister } from '../oppgaveSkjemaTyper';
 import { OppgaveSkjemaDelteFelter } from './../oppgaveInterfaces';
 import { OppgavetypeOptions, TemaOptions, UnderkategoriOptions } from './../SkjemaElementOptions';
-import { feilmeldingReactHookForm } from './../validering';
 
-interface Props {
-    formState: FormState<OppgaveSkjemaDelteFelter>;
-    register: UseOppgaveSkjemaRegister<OppgaveSkjemaDelteFelter>;
+interface Props<F extends OppgaveSkjemaDelteFelter> {
+    form: UseFormReturn<F>;
     gsakTema: GsakTema[];
     valgtTema?: GsakTema;
 }
 
-function OppgaveSkjemaTemaGjelderTypeOppgave({ formState, gsakTema, valgtTema, register }: Props) {
+function OppgaveSkjemaTemaGjelderTypeOppgave<F extends OppgaveSkjemaDelteFelter>({
+    form,
+    gsakTema,
+    valgtTema
+}: Props<F>) {
     const selectors: {
-        id: keyof OppgaveSkjemaDelteFelter;
+        id: Extract<keyof OppgaveSkjemaDelteFelter, string>;
         label: string;
         autoFocus?: boolean;
         child: JSX.Element;
@@ -41,23 +42,18 @@ function OppgaveSkjemaTemaGjelderTypeOppgave({ formState, gsakTema, valgtTema, r
 
     return (
         <>
-            {selectors.map((selector) => {
-                const { ref: selectRef, ...rest } = register(selector.id);
-                return (
-                    <Select
-                        key={selector.id as string}
-                        id={String(selector.id)}
-                        label={selector.label}
-                        autoFocus={!!selector.autoFocus}
-                        selectRef={selectRef as any}
-                        {...rest}
-                        onChange={(e) => console.log(e.currentTarget.value)}
-                        feil={feilmeldingReactHookForm(selector.id, formState)}
-                    >
-                        {selector.child}
-                    </Select>
-                );
-            })}
+            {selectors.map((selector) => (
+                <FormSelect
+                    key={selector.id}
+                    form={form}
+                    name={selector.id as Path<F>}
+                    label={selector.label}
+                    autoFocus={!!selector.autoFocus}
+                    defaultValue=""
+                >
+                    {selector.child}
+                </FormSelect>
+            ))}
         </>
     );
 }

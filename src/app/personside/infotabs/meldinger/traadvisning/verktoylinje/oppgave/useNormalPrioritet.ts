@@ -1,14 +1,11 @@
-import { GsakTema, GsakTemaPrioritet } from '../../../../../../../models/meldinger/oppgave';
+import { GsakTema } from '../../../../../../../models/meldinger/oppgave';
 import { useEffect } from 'react';
 import { OppgaveSkjemaDelteFelter } from './oppgaveInterfaces';
-import { UseOppgaveSkjemaWatch } from './oppgaveSkjemaTyper';
+import { UseFormReturn } from 'react-hook-form';
+import { setValueGuard, watchGuard } from '../../../../../../../components/form/formUtils';
 
-export function useNormalPrioritet(
-    gsakTema: GsakTema[],
-    watch: UseOppgaveSkjemaWatch<OppgaveSkjemaDelteFelter>,
-    setValgtPrioritet: (prioritet: GsakTemaPrioritet['kode']) => void
-) {
-    const valgtTemaKode = watch('valgtTema');
+export function useNormalPrioritet<F extends OppgaveSkjemaDelteFelter>(gsakTema: GsakTema[], form: UseFormReturn<F>) {
+    const valgtTemaKode = watchGuard(form, 'valgtTema');
     const valgtTema = gsakTema.find((gsakTema) => gsakTema.kode === valgtTemaKode);
 
     useEffect(() => {
@@ -16,9 +13,13 @@ export function useNormalPrioritet(
             valgtTema?.prioriteter.find((prioritet) => prioritet.kode.includes('NORM')) ??
             valgtTema?.prioriteter.find(() => true);
         if (onsketPrioritet) {
-            setValgtPrioritet(onsketPrioritet.kode);
+            setValueGuard(form, 'valgtPrioritet', onsketPrioritet.kode, {
+                shouldValidate: true,
+                shouldDirty: true,
+                shouldTouch: true
+            });
         }
-    }, [valgtTema, setValgtPrioritet]);
+    }, [valgtTema, form]);
 
     return valgtTema;
 }

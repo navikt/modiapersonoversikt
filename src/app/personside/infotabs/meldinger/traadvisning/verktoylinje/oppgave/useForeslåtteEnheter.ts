@@ -4,9 +4,9 @@ import { Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
 import { OppgaveSkjemaForm } from './oppgaveInterfaces';
-import { UseOppgaveSkjemaWatch } from './oppgaveSkjemaTyper';
+import { UseFormReturn } from 'react-hook-form';
 
-function useForeslatteEnheter(watch: UseOppgaveSkjemaWatch<OppgaveSkjemaForm>) {
+function useForeslatteEnheter({ watch }: UseFormReturn<OppgaveSkjemaForm>) {
     const fnr = useFodselsnummer();
 
     const temakode = watch('valgtTema');
