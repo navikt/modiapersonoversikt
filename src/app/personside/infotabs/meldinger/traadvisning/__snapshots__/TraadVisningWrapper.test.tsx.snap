@@ -796,6 +796,20 @@ exports[`Viser traad med verktøylinje 1`] = `
         <form
           onSubmit={[Function]}
         >
+          <div
+            className="feiloppsummering"
+            role="region"
+            tabIndex={0}
+          >
+            <h2
+              className="typo-undertittel"
+            >
+              For å kunne søke må du rett opp i følgende:
+            </h2>
+            <ul
+              className="feiloppsummering__liste"
+            />
+          </div>
           <p
             className="typo-element"
           >

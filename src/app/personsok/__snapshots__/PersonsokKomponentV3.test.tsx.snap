@@ -137,6 +137,20 @@ exports[`viser personsøkV3-komponent 1`] = `
       <section
         aria-label="Søkekriterier"
       >
+        <div
+          className="feiloppsummering"
+          role="region"
+          tabIndex={0}
+        >
+          <h2
+            className="typo-undertittel"
+          >
+            For å kunne søke må du rette opp i følgende:
+          </h2>
+          <ul
+            className="feiloppsummering__liste"
+          />
+        </div>
         <h2
           className="typo-systemtittel"
         >
