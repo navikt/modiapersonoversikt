@@ -8,7 +8,7 @@ interface Props {
 }
 
 export function FeilmeldingOppsummering(props: Props) {
-    const errors = Object.values(props.formstate.fields).filter(field => field.touched);
+    const errors = Object.values(props.formstate.fields).filter((field) => field.touched);
     const summaryRef = useRef<HTMLDivElement>(null);
 
     const submittoken = props.formstate.submittoken;
@@ -25,8 +25,8 @@ export function FeilmeldingOppsummering(props: Props) {
     }
 
     const feilmeldinger = errors
-        .filter(field => field.error)
-        .map(field => ({
+        .filter((field) => field.error)
+        .map((field) => ({
             skjemaelementId: field.input.id,
             feilmelding: field.error!!
         }));

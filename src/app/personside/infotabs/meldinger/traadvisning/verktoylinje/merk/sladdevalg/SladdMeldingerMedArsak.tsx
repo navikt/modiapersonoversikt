@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SladdeComponentProps } from './Sladdevalg';
 import css from './SladdMeldingerMedArsak.module.css';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { Checkbox, Select, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import { Innholdstittel, Element, Normaltekst } from 'nav-frontend-typografi';
 import { getFormattertMeldingsDato, meldingstittel } from '../../../../utils/meldingerUtils';
 import styled from 'styled-components/macro';
@@ -14,6 +14,7 @@ import EnkeltMelding from '../../../Enkeltmelding';
 import { feilmeldingReactHookForm } from '../../oppgave/validering';
 import { guid } from 'nav-frontend-js-utils';
 import MeldIPortenAdvarsel from './MeldIPortenAdvarsel';
+import FormSelect from '../../../../../../../../components/form/FormSelect';
 
 const PreviewStyle = styled(Normaltekst)`
     width: 100%;
@@ -49,13 +50,7 @@ function ValgteMeldingerPreview(props: { traad: Traad; valgte: string[] }) {
     }
 }
 
-function SladdMeldingerMedArsak({
-    arsaker,
-    getNativeProps,
-    formState,
-    traad,
-    updateValueManually
-}: SladdeComponentProps) {
+function SladdMeldingerMedArsak({ arsaker, traad, form }: SladdeComponentProps) {
     const checked = useList<string>([]);
     const addChecked = checked.add;
     const removeChecked = checked.remove;
@@ -73,8 +68,8 @@ function SladdMeldingerMedArsak({
     );
 
     useEffect(() => {
-        updateValueManually('meldingIder', checked.values);
-    }, [checked, updateValueManually]);
+        form.setValue('meldingIder', checked.values, { shouldValidate: true, shouldDirty: true });
+    }, [checked.values, form]);
 
     const meldingPreviewListe = traad.meldinger.map((melding) => (
         <li className={css.melding} key={melding.meldingsId}>
@@ -93,9 +88,7 @@ function SladdMeldingerMedArsak({
         </li>
     ));
 
-    const valgtMeldingFeilmelding = feilmeldingReactHookForm('meldingIder', formState);
-
-    const { ref, ...other } = getNativeProps('arsak');
+    const valgtMeldingFeilmelding = feilmeldingReactHookForm(form, 'meldingIder');
 
     return (
         <div className={css.layout}>
@@ -107,21 +100,18 @@ function SladdMeldingerMedArsak({
             </div>
             <MeldIPortenAdvarsel className={css.alert} />
             <div className={css.action}>
-                <Select
-                    aria-label="Årsak"
-                    selectRef={ref as any}
-                    {...other}
-                    feil={feilmeldingReactHookForm('arsak', formState)}
-                >
-                    <option value="" disabled selected>
-                        Velg årsak
-                    </option>
-                    {arsaker.map((it) => (
-                        <option value={it} key={it}>
-                            {it}
+                <FormSelect aria-label="Årsak" name={'arsak'} form={form} defaultValue="">
+                    <>
+                        <option value="" disabled>
+                            Velg årsak
                         </option>
-                    ))}
-                </Select>
+                        {arsaker.map((it) => (
+                            <option value={it} key={it}>
+                                {it}
+                            </option>
+                        ))}
+                    </>
+                </FormSelect>
                 <div>
                     <Hovedknapp
                         aria-invalid={!!valgtMeldingFeilmelding}

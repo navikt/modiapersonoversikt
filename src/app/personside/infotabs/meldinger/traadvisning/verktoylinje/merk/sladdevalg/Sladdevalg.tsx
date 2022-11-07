@@ -12,7 +12,9 @@ import SladdMeldingerMedArsak from './SladdMeldingerMedArsak';
 import css from './Sladdvalg.module.css';
 import { useSladdeArsak } from './use-sladde-arsak';
 import { QueryClient } from '@tanstack/react-query';
-import { useForm, FormState, UseFormRegisterReturn } from 'react-hook-form';
+import { useForm, FieldError } from 'react-hook-form';
+import { buildFieldError } from '../../../../../../../../components/form/formUtils';
+import { UseFormReturn } from 'react-hook-form/dist/types';
 
 interface Props {
     traad: Traad;
@@ -55,41 +57,41 @@ export type SladdeForm = {
 type FormProps = { velgMeldinger: boolean };
 
 const resolver = (values: SladdeForm, props: FormProps) => {
-    const errors: { [Property in keyof Partial<SladdeForm>]: string } = {};
+    const errors: { [Property in keyof Partial<SladdeForm>]: FieldError } = {};
 
     if (!values.arsak || values.arsak === '') {
-        errors.arsak = 'Du må velge årsak';
+        errors.arsak = buildFieldError('Du må velge årsak');
     }
+
     if (props.velgMeldinger && !values.meldingIder.length) {
-        errors.meldingIder = 'Du må velge minst en melding';
+        errors.meldingIder = buildFieldError('Du må velge minst en melding');
     }
 
     return { values, errors };
 };
 
-type TManualUpdate = <K extends keyof SladdeForm>(key: K, value: SladdeForm[K]) => void;
-
 export interface SladdeComponentProps {
-    formState: FormState<SladdeForm>;
+    form: UseFormReturn<SladdeForm>;
     arsaker: string[];
     traad: Traad;
-    getNativeProps: (key: keyof SladdeForm) => UseFormRegisterReturn<typeof key>;
-    updateValueManually: TManualUpdate;
 }
 
 interface Config {
     header: string;
     label: string;
+    wrapperCSS: string;
     component: React.ComponentType<SladdeComponentProps>;
 }
 const sladdTradConfig: Config = {
     header: 'Velg årsak til sladding',
     label: 'Velg årsak til sladding',
+    wrapperCSS: css.contentMini,
     component: SladdTradMedArsak
 };
 const sladdMeldingConfig: Config = {
     header: 'Velg meldinger og årsak til sladding',
     label: 'Velg meldinger og årsak til sladding',
+    wrapperCSS: css.content,
     component: SladdMeldingerMedArsak
 };
 
@@ -99,26 +101,18 @@ function Sladdevalg(props: PopupComponentProps<SladdeObjekt | null, Props>) {
     const kanSladdeFlere = useFeatureToggle(FeatureToggles.SladdeEnkeltMelding)?.isOn ?? false;
     const abort = useCallback(() => close(null), [close]);
 
-    const { register, handleSubmit, formState, setValue } = useForm<SladdeForm>({
-        resolver: (values) => resolver(values, { velgMeldinger: kanSladdeFlere })
-    });
-
-    const updateValueManually = useCallback<TManualUpdate>(
-        (key, value) => {
-            setValue(key, value as any, { shouldValidate: true });
-        },
-        [setValue]
-    );
-
     const config = kanSladdeFlere ? sladdMeldingConfig : sladdTradConfig;
+
+    const form = useForm<SladdeForm>({
+        resolver: (values) => resolver(values, { velgMeldinger: kanSladdeFlere }),
+        mode: 'onChange'
+    });
 
     const content = useSladdeArsak(props.traad.traadId, (arsaker: string[]) => {
         return React.createElement(config.component, {
-            formState,
+            form,
             arsaker,
-            traad,
-            getNativeProps: (key: keyof SladdeForm) => register(key),
-            updateValueManually
+            traad
         });
     });
 
@@ -138,11 +132,11 @@ function Sladdevalg(props: PopupComponentProps<SladdeObjekt | null, Props>) {
     const Modal = kanSladdeFlere ? ModalStor : ModalMini;
     return (
         <Modal isOpen={true} onRequestClose={abort} contentLabel={config.label}>
-            <form onSubmit={handleSubmit(onSubmit)} className={css.layout}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className={css.layout}>
                 <Systemtittel tag="h1" className={css.header}>
                     {config.header}
                 </Systemtittel>
-                <div className={kanSladdeFlere ? css.content : css.contentMini}>{content}</div>
+                <div className={config.wrapperCSS}>{content}</div>
             </form>
         </Modal>
     );
