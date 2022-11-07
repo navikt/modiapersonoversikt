@@ -1,17 +1,17 @@
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
 import { guid } from 'nav-frontend-js-utils';
-import { InputProps, Input } from 'nav-frontend-skjema';
+import { InputProps } from 'nav-frontend-skjema';
 import React, { useRef } from 'react';
-import { FieldValues, FormState, UseFormRegister } from 'react-hook-form';
+import { FieldValues, UseFormReturn } from 'react-hook-form';
+import FormInput from '../../components/form/FormInput';
 import { feilmeldingReactHookForm } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
-import { PersonSokFormStateV3 } from './personsokV3-utils';
+import { PersonSokFormStateV3 } from './personsokUtils';
 
 interface Props<F extends FieldValues = PersonSokFormStateV3> {
-    formState: FormState<F>;
-    register: UseFormRegister<F>;
+    form: UseFormReturn<F>;
 }
 
-function PersonsokNavnAdresseKontonrDnr({ formState, register }: Props) {
+function PersonsokNavnAdresseKontonrDnr({ form }: Props) {
     const hjelpetekstID = useRef(guid());
 
     const utenlandskIDTittel = [
@@ -60,24 +60,21 @@ function PersonsokNavnAdresseKontonrDnr({ formState, register }: Props) {
         }
     ];
 
-    const minimumsKravFeil = feilmeldingReactHookForm('_minimumskrav', formState);
+    const minimumsKravFeil = feilmeldingReactHookForm(form, '_minimumskrav');
 
     return (
         <>
-            {formFields.map((formField) => {
-                const { ref: inputRef, ...nativeProps } = register(formField.id);
-                return (
-                    <Input
-                        key={`personsok-${formField.id}`}
-                        id={formField.id}
-                        label={formField.label}
-                        bredde={formField.width}
-                        feil={feilmeldingReactHookForm(formField.id, formState) || !!minimumsKravFeil}
-                        inputRef={inputRef}
-                        {...nativeProps}
-                    />
-                );
-            })}
+            {formFields.map((formField) => (
+                <FormInput
+                    name={formField.id}
+                    form={form}
+                    key={`personsok-${formField.id}`}
+                    id={formField.id}
+                    label={formField.label}
+                    bredde={formField.width}
+                    feil={!!minimumsKravFeil}
+                />
+            ))}
         </>
     );
 }

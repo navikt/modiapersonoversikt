@@ -17,7 +17,7 @@ function FormInput<
 
     const { form, name, ...inputProps } = props;
 
-    return <Input inputRef={ref} {...inputProps} {...input} feil={error} />;
+    return <Input inputRef={ref} {...inputProps} {...input} feil={props.feil || error} />;
 }
 
 export default FormInput;

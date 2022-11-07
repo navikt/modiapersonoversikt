@@ -8,6 +8,8 @@ import {
 import { erTall } from '../../utils/string-utils';
 import dayjs from 'dayjs';
 import { isISODateString } from 'nav-datovelger';
+import { buildFieldError } from '../../components/form/formUtils';
+import { FieldError } from 'react-hook-form';
 
 export type PersonSokFormStateV3 = {
     navn: string;
@@ -23,8 +25,8 @@ export type PersonSokFormStateV3 = {
 };
 
 export function resolver(values: PersonSokFormStateV3) {
-    let kontonummer: string | undefined;
-    let utenlandskID: string | undefined;
+    let kontonummer: FieldError | undefined;
+    let utenlandskID: FieldError | undefined;
 
     const andreFelter = [
         values.navn,
@@ -40,42 +42,42 @@ export function resolver(values: PersonSokFormStateV3) {
     const andreFelterErSatt = andreFelter.some((it) => it?.length);
 
     if (values.kontonummer && !validerLengdeOgTallPaKontonummer(values.kontonummer)) {
-        kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
+        kontonummer = buildFieldError('Kontonummer må kun bestå av tall og være 11 siffer');
     } else if (values.kontonummer && !erGyldigNorskKontonummer(values.kontonummer)) {
-        kontonummer = 'Kontonummer må være et gyldig norsk kontonummer';
+        kontonummer = buildFieldError('Kontonummer må være et gyldig norsk kontonummer');
     } else if (values.kontonummer && andreFelterErSatt) {
-        kontonummer = 'Kan ikke kombinere søk på kontonummer med andre felt';
+        kontonummer = buildFieldError('Kan ikke kombinere søk på kontonummer med andre felt');
     }
 
-    let fodselsdatoFra = undefined;
-    let fodselsdatoTil = undefined;
+    let fodselsdatoFra: FieldError | undefined;
+    let fodselsdatoTil: FieldError | undefined;
 
     const fra = dayjs(values.fodselsdatoFra).toDate();
     const til = dayjs(values.fodselsdatoTil).toDate();
 
     if (values.fodselsdatoFra && !isISODateString(values.fodselsdatoFra)) {
-        fodselsdatoFra = 'Fra-dato må være en gyldig dato';
+        fodselsdatoFra = buildFieldError('Fra-dato må være en gyldig dato');
     } else if (fra > til) {
-        fodselsdatoFra = 'Fra-dato kan ikke være senere enn til-dato';
+        fodselsdatoFra = buildFieldError('Fra-dato kan ikke være senere enn til-dato');
     }
     if (values.fodselsdatoTil && !isISODateString(values.fodselsdatoTil)) {
-        fodselsdatoTil = 'Til-dato må være en gyldig dato';
+        fodselsdatoTil = buildFieldError('Til-dato må være en gyldig dato');
     } else if (til > new Date()) {
-        fodselsdatoTil = 'Du kan ikke velge til-dato frem i tid';
+        fodselsdatoTil = buildFieldError('Du kan ikke velge til-dato frem i tid');
     }
-    const alderFra = values.alderFra && !erTall(values.alderFra) ? 'Alder må være tall' : undefined;
-    const alderTil = values.alderTil && !erTall(values.alderTil) ? 'Alder må være tall' : undefined;
+    const alderFra = values.alderFra && !erTall(values.alderFra) ? buildFieldError('Alder må være tall') : undefined;
+    const alderTil = values.alderTil && !erTall(values.alderTil) ? buildFieldError('Alder må være tall') : undefined;
     const kjonn = undefined;
 
-    let _minimumskrav: string | undefined;
+    let _minimumskrav: FieldError | undefined;
 
-    if (!values.utenlandskID) {
-        if (!values.adresse && !values.kontonummer && !values.navn) {
-            _minimumskrav = 'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk';
-        }
+    if (!values.utenlandskID && !values.adresse && !values.kontonummer && !values.navn) {
+        _minimumskrav = buildFieldError(
+            'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk'
+        );
     }
 
-    const errors = {
+    const errors: Record<string, FieldError | undefined> = {
         kontonummer,
         utenlandskID,
         fodselsdatoFra,

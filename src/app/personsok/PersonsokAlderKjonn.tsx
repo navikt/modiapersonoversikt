@@ -1,42 +1,29 @@
-import { Input, Select } from 'nav-frontend-skjema';
 import React from 'react';
-import { FieldValues, FormState, UseFormRegister } from 'react-hook-form';
-import { feilmeldingReactHookForm } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
+import { FieldValues, UseFormReturn } from 'react-hook-form';
+import FormInput from '../../components/form/FormInput';
+import FormSelect from '../../components/form/FormSelect';
 import { Kjonn } from '../personside/visittkort-v2/PersondataDomain';
-import { InputLinje } from './PersonsokSkjemaV3';
-import { PersonSokFormStateV3 } from './personsokV3-utils';
+import { InputLinje } from './PersonsokSkjema';
+import { PersonSokFormStateV3 } from './personsokUtils';
 
 interface Props<F extends FieldValues = PersonSokFormStateV3> {
-    formState: FormState<F>;
-    register: UseFormRegister<F>;
+    form: UseFormReturn<F>;
 }
 
-function PersonsokAlderKjonn({ formState, register }: Props) {
-    const { ref: kjonnSelectorRef, ...kjonnProps } = register('kjonn');
-
+function PersonsokAlderKjonn({ form }: Props) {
     return (
         <>
             <InputLinje>
-                <Input
-                    bredde={'M'}
-                    label={'Alder fra'}
-                    {...register('alderFra')}
-                    feil={feilmeldingReactHookForm('alderFra', formState)}
-                />
-                <Input
-                    bredde={'M'}
-                    label={'Alder til'}
-                    {...register('alderTil')}
-                    feil={feilmeldingReactHookForm('alderTil', formState)}
-                />
+                <FormInput name="alderFra" form={form} bredde="M" label={'Alder fra'} />
+                <FormInput name="alderTil" form={form} bredde="M" label={'Alder til'} />
             </InputLinje>
-            <Select label={'Kjønn'} selectRef={kjonnSelectorRef as any} {...kjonnProps}>
+            <FormSelect form={form} name="kjonn" label="Kjønn">
                 <option value={''} key={''}>
                     Velg Kjønn
                 </option>
                 <option value={Kjonn.K}>K - Kvinne</option>
                 <option value={Kjonn.M}>M - Mann</option>
-            </Select>
+            </FormSelect>
         </>
     );
 }

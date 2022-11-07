@@ -1,4 +1,5 @@
-import { PersonSokFormStateV3, resolver } from './personsokV3-utils';
+import { buildFieldError } from '../../components/form/formUtils';
+import { PersonSokFormStateV3, resolver } from './personsokUtils';
 
 const initialValues: PersonSokFormStateV3 = {
     navn: '',
@@ -36,8 +37,8 @@ test('Valider alle felter som må være tall', () => {
 
     expect(validator.errors).toEqual({
         ...ingenFeil,
-        alderFra: 'Alder må være tall',
-        alderTil: 'Alder må være tall'
+        alderFra: buildFieldError('Alder må være tall'),
+        alderTil: buildFieldError('Alder må være tall')
     });
 });
 
@@ -45,7 +46,9 @@ test('Validerer minimumskrav for personsøk', () => {
     const validator = resolver(initialValues);
     expect(validator.errors).toEqual({
         ...ingenFeil,
-        _minimumskrav: 'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk'
+        _minimumskrav: buildFieldError(
+            'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk'
+        )
     });
 });
 
@@ -61,7 +64,7 @@ test('Valider kontonummer må være eneste felt om pdl-søk er aktivert', () => 
     const validator = resolver({ ...initialValues, kontonummer: '12345678911', navn: 'Aremark' });
     expect(validator.errors).toEqual({
         ...ingenFeil,
-        kontonummer: 'Kan ikke kombinere søk på kontonummer med andre felt'
+        kontonummer: buildFieldError('Kan ikke kombinere søk på kontonummer med andre felt')
     });
 });
 
@@ -76,11 +79,14 @@ test('Valider krav om korrekt lengde på kontonummer', () => {
     const validator = resolver({ ...initialValues, kontonummer: '123' });
     expect(validator.errors).toEqual({
         ...ingenFeil,
-        kontonummer: 'Kontonummer må kun bestå av tall og være 11 siffer'
+        kontonummer: buildFieldError('Kontonummer må kun bestå av tall og være 11 siffer')
     });
 });
 
 test('Valider krav om korrekt kontonummer', () => {
     const validator = resolver({ ...initialValues, kontonummer: '12345678910' });
-    expect(validator.errors).toEqual({ ...ingenFeil, kontonummer: 'Kontonummer må være et gyldig norsk kontonummer' });
+    expect(validator.errors).toEqual({
+        ...ingenFeil,
+        kontonummer: buildFieldError('Kontonummer må være et gyldig norsk kontonummer')
+    });
 });

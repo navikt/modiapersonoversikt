@@ -4,7 +4,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { fjernAnforselstegn, splitNavn } from './navn/navnUtils';
 import baseurls, { hentBaseUrl } from '../../rest/resources/baseurlsResource';
 import { UseFormWatch } from 'react-hook-form';
-import { PersonSokFormStateV3 } from './personsokV3-utils';
+import { PersonSokFormStateV3 } from './personsokUtils';
 export interface DrekPropsV2 {
     watch: UseFormWatch<PersonSokFormStateV3>;
 }

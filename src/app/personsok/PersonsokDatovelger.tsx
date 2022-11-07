@@ -2,12 +2,12 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { pxToRem } from '../../styles/personOversiktTheme';
-import { PersonSokFormStateV3 } from './personsokV3-utils';
-import { FieldValues, FormState, UseFormRegister, UseFormWatch } from 'react-hook-form';
-import { CustomDatovelger } from './datovelger/CustomDatovelger';
-import { InputLinje } from './PersonsokSkjemaV3';
+import { PersonSokFormStateV3 } from './personsokUtils';
+import { FieldValues, UseFormReturn } from 'react-hook-form';
+import { InputLinje } from './PersonsokSkjema';
 import { feilmeldingReactHookForm } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import FormDatePicker from '../../components/form/FormDatePicker';
 
 const DatovelgerStyle = styled.div`
     margin-right: 0.5em;
@@ -39,19 +39,17 @@ const Relative = styled.div`
 `;
 
 interface Props<F extends FieldValues = PersonSokFormStateV3> {
-    formState: FormState<F>;
-    register: UseFormRegister<F>;
-    watch: UseFormWatch<F>;
+    form: UseFormReturn<F>;
 }
 
-function PersonsokDatovelger({ watch, register, formState }: Props) {
-    const fodselsdatoFra = watch('fodselsdatoFra');
-    const fodselsdatoTil = watch('fodselsdatoTil');
+function PersonsokDatovelger({ form }: Props) {
+    const fodselsdatoFra = form.watch('fodselsdatoFra');
+    const fodselsdatoTil = form.watch('fodselsdatoTil');
 
-    const feilmeldingFraDato = feilmeldingReactHookForm('fodselsdatoFra', formState);
-    const feilmeldingTilDato = feilmeldingReactHookForm('fodselsdatoTil', formState);
+    const feilmeldingFraDato = feilmeldingReactHookForm(form, 'fodselsdatoFra');
+    const feilmeldingTilDato = feilmeldingReactHookForm(form, 'fodselsdatoTil');
 
-    const avgrensninger = { minDate: fodselsdatoFra };
+    const limitations = { minDate: fodselsdatoFra };
 
     return (
         <InputLinje>
@@ -62,13 +60,7 @@ function PersonsokDatovelger({ watch, register, formState }: Props) {
                             <DatolabelStyle className="skjemaelement__label" htmlFor="fodselsdatoFra">
                                 <Normaltekst>Fødselsdato fra</Normaltekst>
                             </DatolabelStyle>
-                            <CustomDatovelger
-                                id="fodselsdatoFra"
-                                showYearSelector
-                                register={register}
-                                value={fodselsdatoFra}
-                                hasError={!!feilmeldingFraDato}
-                            />
+                            <FormDatePicker form={form} name="fodselsdatoFra" showYearSelector value={fodselsdatoFra} />
                         </DatovelgerStyle>
                     </Relative>
                     <Relative>
@@ -76,13 +68,12 @@ function PersonsokDatovelger({ watch, register, formState }: Props) {
                             <DatolabelStyle className="skjemaelement__label" htmlFor="fodselsdatoTil">
                                 <Normaltekst>Fødselsdato til</Normaltekst>
                             </DatolabelStyle>
-                            <CustomDatovelger
-                                id="fodselsdatoTil"
+                            <FormDatePicker
+                                form={form}
+                                name="fodselsdatoTil"
                                 showYearSelector
-                                limitations={avgrensninger}
-                                register={register}
+                                limitations={limitations}
                                 value={fodselsdatoTil}
-                                hasError={!!feilmeldingTilDato}
                             />
                         </DatovelgerStyle>
                     </Relative>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { PersonsokRequestV3, PersonsokResponse } from '../../models/person/personsok';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
-import { lagRequestV3, PersonSokFormStateV3, resolver } from './personsokV3-utils';
+import { lagRequestV3, PersonSokFormStateV3, resolver } from './personsokUtils';
 import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import { Systemtittel } from 'nav-frontend-typografi';
 import LenkeDrekV2 from './LenkeDrekV2';
@@ -53,9 +53,9 @@ export const InputLinje = styled.div`
 `;
 
 function PersonsokSkjemaV3(props: Props) {
-    const { register, handleSubmit, formState, reset, watch } = useForm<PersonSokFormStateV3>({
+    const form = useForm<PersonSokFormStateV3>({
         resolver,
-        mode: 'onBlur'
+        mode: 'onChange'
     });
 
     function submitHandler(values: PersonSokFormStateV3): Promise<void> {
@@ -77,24 +77,24 @@ function PersonsokSkjemaV3(props: Props) {
     }
 
     return (
-        <form onSubmit={handleSubmit(submitHandler)} onReset={() => reset()}>
+        <form onSubmit={form.handleSubmit(submitHandler)} onReset={() => form.reset()}>
             <FormStyle>
                 <SectionStyle>
                     <section aria-label={'Søkekriterier'}>
                         <FeilmeldingOppsummering
-                            formState={formState}
+                            formState={form.formState}
                             tittel={'For å kunne søke må du rette opp i følgende:'}
                         />
                         <Systemtittel tag={'h2'}>Søkekriterier</Systemtittel>
-                        <PersonsokNavnAdresseKontonrDnr formState={formState} register={register} />
+                        <PersonsokNavnAdresseKontonrDnr form={form} />
                     </section>
                     <section aria-label={'Begrens søket'}>
                         <Systemtittel tag={'h2'}>Begrens søket</Systemtittel>
-                        <PersonsokDatovelger formState={formState} register={register} watch={watch} />
-                        <PersonsokAlderKjonn formState={formState} register={register} />
+                        <PersonsokDatovelger form={form} />
+                        <PersonsokAlderKjonn form={form} />
                     </section>
                 </SectionStyle>
-                <LenkeDrekV2 watch={watch} />
+                <LenkeDrekV2 watch={form.watch} />
                 <KnappStyle>
                     <Hovedknapp htmlType="submit">Søk</Hovedknapp>
                     <LenkeKnapp type="reset">Nullstill</LenkeKnapp>

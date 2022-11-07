@@ -646,14 +646,14 @@ exports[`viser personsøkV3-komponent 1`] = `
           >
             <label
               className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
+              htmlFor="alderFra"
             >
               Alder fra
             </label>
             <input
               aria-invalid={false}
               className="skjemaelement__input input--m"
-              id="Helt tilfeldig ID"
+              id="alderFra"
               name="alderFra"
               onBlur={[Function]}
               onChange={[Function]}
@@ -665,14 +665,14 @@ exports[`viser personsøkV3-komponent 1`] = `
           >
             <label
               className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
+              htmlFor="alderTil"
             >
               Alder til
             </label>
             <input
               aria-invalid={false}
               className="skjemaelement__input input--m"
-              id="Helt tilfeldig ID"
+              id="alderTil"
               name="alderTil"
               onBlur={[Function]}
               onChange={[Function]}
@@ -685,7 +685,7 @@ exports[`viser personsøkV3-komponent 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="Helt tilfeldig ID"
+            htmlFor="kjonn"
           >
             Kjønn
           </label>
@@ -696,7 +696,7 @@ exports[`viser personsøkV3-komponent 1`] = `
               aria-invalid={false}
               className="skjemaelement__input"
               disabled={false}
-              id="Helt tilfeldig ID"
+              id="kjonn"
               name="kjonn"
               onBlur={[Function]}
               onChange={[Function]}

@@ -3,7 +3,7 @@ import { DatepickerLimitations, Datepicker } from 'nav-datovelger';
 import { ChangeEvent } from 'react';
 import { DatepickerProps } from 'nav-datovelger/lib/Datepicker';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
-import { PersonSokFormStateV3 } from '../personsokV3-utils';
+import { PersonSokFormStateV3 } from '../personsokUtils';
 
 interface Props<F extends FieldValues = PersonSokFormStateV3> {
     id: keyof F;
