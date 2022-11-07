@@ -5,7 +5,7 @@ import PersonsokResultat from './PersonsokResultat';
 import PersonsokSkjemaV3 from './PersonsokSkjema';
 import { setupReactQueryMocks } from '../../test/testStore';
 
-test('viser personsøkV3-komponent', () => {
+test('viser personsøk-komponent', () => {
     setupReactQueryMocks();
     const personsokKomponentV3 = renderer.create(
         <TestProvider>

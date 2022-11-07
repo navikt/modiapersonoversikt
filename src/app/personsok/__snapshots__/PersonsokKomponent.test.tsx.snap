@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`viser personsøkV3-komponent 1`] = `
+exports[`viser personsøk-komponent 1`] = `
 .c9 {
   position: relative;
   border: none;
