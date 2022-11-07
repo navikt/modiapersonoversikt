@@ -13,16 +13,17 @@ function useErrorFields<TFieldValues extends FieldValues>(errors: FieldErrors<TF
     }));
 }
 
-interface Props<TFieldValues extends FieldValues> extends FeiloppsummeringProps {
-    form: UseFormReturn<TFieldValues>;
+interface Props<TFieldValues extends FieldValues> extends Omit<FeiloppsummeringProps, 'feil' | 'customFeilRender'> {
+    // TODO: Set this to required
+    form?: UseFormReturn<TFieldValues>;
 }
 
 function FormErrorSummary<TFieldValues extends FieldValues>(props: Props<TFieldValues>) {
     const ref = useRef<HTMLDivElement>(null);
     const { form, ...errorSummaryProps } = props;
 
-    const submitCount = form.formState.submitCount;
-    const feil = useErrorFields(form.formState.errors);
+    const submitCount = form?.formState.submitCount;
+    const feil = useErrorFields(form?.formState.errors ?? ([] as FieldErrors<TFieldValues>));
 
     const skalViseFeilmelding = submitCount !== 0 || feil.length !== 0;
 

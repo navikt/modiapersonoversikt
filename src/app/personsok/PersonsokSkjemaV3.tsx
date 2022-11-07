@@ -15,10 +15,10 @@ import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verkt
 import { useRef } from 'react';
 import { guid } from 'nav-frontend-js-utils';
 import Hjelpetekst from 'nav-frontend-hjelpetekst';
-import { FeilmeldingOppsummering } from '../../components/FeilmeldingOppsummering';
 import formstateFactory, { Values } from '@nutgaard/use-formstate';
 import { Kjonn } from '../personside/visittkort-v2/PersondataDomain';
 import PersonsokDatovelger from './PersonsokDatovelger';
+import FormErrorSummary from '../../components/form/FormErrorSummary';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -129,10 +129,7 @@ function PersonsokSkjemaV3(props: Props) {
             <FormStyle>
                 <SectionStyle>
                     <section aria-label={'Søkekriterier'}>
-                        <FeilmeldingOppsummering
-                            formstate={formstate}
-                            tittel={'For å kunne søke må du rette opp i følgende:'}
-                        />
+                        <FormErrorSummary tittel={'For å kunne søke må du rette opp i følgende:'} />
                         <Systemtittel tag={'h2'}>Søkekriterier</Systemtittel>
                         <Input
                             bredde={'XL'}

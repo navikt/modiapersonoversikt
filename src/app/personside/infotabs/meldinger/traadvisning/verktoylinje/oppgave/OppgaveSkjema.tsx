@@ -21,10 +21,10 @@ import AutoComplete from './AutoComplete';
 import useAnsattePaaEnhet from './useAnsattePaaEnhet';
 import useForeslatteEnheter from './useForeslåtteEnheter';
 import { useNormalPrioritet } from './oppgave-utils';
-import { FeilmeldingOppsummering } from '../../../../../../../components/FeilmeldingOppsummering';
 import innloggetSaksbehandler from '../../../../../../../rest/resources/innloggetSaksbehandlerResource';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
 import oppgaveBehandlerResource from '../../../../../../../rest/resources/oppgaveBehandlerResource';
+import FormErrorSummary from '../../../../../../../components/form/FormErrorSummary';
 
 const AlertStyling = styled.div`
     > * {
@@ -164,7 +164,7 @@ function OppgaveSkjema(props: OppgaveProps) {
         <SkjemaStyle>
             <AvsluttGosysOppgaveSkjema valgtTraad={props.valgtTraad} />
             <form onSubmit={state.onSubmit(submitHandler)}>
-                <FeilmeldingOppsummering formstate={state} tittel={'For å kunne søke må du rett opp i følgende:'} />
+                <FormErrorSummary tittel={'For å kunne søke må du rett opp i følgende:'} />
                 <Element>Opprett oppgave</Element>
                 <Select
                     autoFocus={true}
