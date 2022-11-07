@@ -10,7 +10,6 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { LenkeKnapp } from '../../components/common-styled-components';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
-import { FeilmeldingOppsummering } from '../../components/FeilmeldingOppsummering';
 import { useForm } from 'react-hook-form';
 import PersonsokNavnAdresseKontonrDnr from './PersonsokNavnAdresseKontonrDnr';
 import PersonsokAlderKjonn from './PersonsokAlderKjonn';
@@ -81,10 +80,7 @@ function PersonsokSkjemaV3(props: Props) {
             <FormStyle>
                 <SectionStyle>
                     <section aria-label={'Søkekriterier'}>
-                        <FeilmeldingOppsummering
-                            formState={form.formState}
-                            tittel={'For å kunne søke må du rette opp i følgende:'}
-                        />
+                        <FormErrorSummary form={form} tittel={'For å kunne søke må du rette opp i følgende:'} />
                         <Systemtittel tag={'h2'}>Søkekriterier</Systemtittel>
                         <PersonsokNavnAdresseKontonrDnr form={form} />
                     </section>
