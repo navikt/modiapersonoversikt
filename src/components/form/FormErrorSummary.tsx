@@ -6,7 +6,7 @@ import * as React from 'react';
 import { FieldErrors } from 'react-hook-form/dist/types/errors';
 import { FeiloppsummeringProps } from 'nav-frontend-skjema';
 
-function useErrorFields<TFieldValues extends FieldValues>(errors: FieldErrors<TFieldValues>) {
+function buildErrorFields<TFieldValues extends FieldValues>(errors: FieldErrors<TFieldValues>) {
     return Object.entries(errors).map(([skjemaelementId, feil]) => ({
         skjemaelementId,
         feilmelding: feil?.message
@@ -23,7 +23,7 @@ function FormErrorSummary<TFieldValues extends FieldValues>(props: Props<TFieldV
     const { form, ...errorSummaryProps } = props;
 
     const submitCount = form?.formState.submitCount;
-    const feil = useErrorFields(form?.formState.errors ?? ([] as FieldErrors<TFieldValues>));
+    const feil = buildErrorFields(form?.formState.errors ?? ([] as FieldErrors<TFieldValues>));
 
     const skalViseFeilmelding = submitCount && feil.length;
 
