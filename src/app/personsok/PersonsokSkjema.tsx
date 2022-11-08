@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { PersonsokRequestV3, PersonsokResponse } from '../../models/person/personsok';
+import { PersonsokRequestV3 as PersonsokRequest, PersonsokResponse } from '../../models/person/personsok';
 import { apiBaseUri, postConfig } from '../../api/config';
 import { FetchResponse, fetchToJson } from '../../utils/fetchToJson';
-import { lagRequestV3, PersonSokFormStateV3, resolver } from './personsokUtils';
+import { lagRequestV3, PersonSokFormStateV3 as PersonSokFormState, resolver } from './personsokUtils';
 import { loggError, loggEvent } from '../../utils/logger/frontendLogger';
 import { Systemtittel } from 'nav-frontend-typografi';
 import LenkeDrekV2 from './LenkeDrekV2';
@@ -51,20 +51,20 @@ export const InputLinje = styled.div`
     }
 `;
 
-function PersonsokSkjemaV3(props: Props) {
-    const form = useForm<PersonSokFormStateV3>({
+function PersonsokSkjema(props: Props) {
+    const form = useForm<PersonSokFormState>({
         resolver,
         mode: 'onChange'
     });
 
-    function submitHandler(values: PersonSokFormStateV3): Promise<void> {
+    function submitHandler(values: PersonSokFormState): Promise<void> {
         props.setPosting(true);
 
         if (values.utenlandskID.length > 0) {
             loggEvent('PersonsokUtenlandsId', 'Personsok');
         }
 
-        const request: PersonsokRequestV3 = lagRequestV3(values);
+        const request: PersonsokRequest = lagRequestV3(values);
         return fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok/v3`, postConfig(request))
             .then((response) => {
                 props.setPosting(false);
@@ -100,4 +100,4 @@ function PersonsokSkjemaV3(props: Props) {
     );
 }
 
-export default PersonsokSkjemaV3;
+export default PersonsokSkjema;

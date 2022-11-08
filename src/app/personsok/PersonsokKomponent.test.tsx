@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../test/Testprovider';
 import PersonsokResultat from './PersonsokResultat';
-import PersonsokSkjemaV3 from './PersonsokSkjema';
+import PersonsokSkjema from './PersonsokSkjema';
 import { setupReactQueryMocks } from '../../test/testStore';
 
 test('viser personsøk-komponent', () => {
@@ -10,7 +10,7 @@ test('viser personsøk-komponent', () => {
     const personsokKomponentV3 = renderer.create(
         <TestProvider>
             <>
-                <PersonsokSkjemaV3 setPosting={() => {}} setResponse={() => {}} />
+                <PersonsokSkjema setPosting={() => {}} setResponse={() => {}} />
                 <PersonsokResultat posting={false} response={undefined} onClose={() => {}} />
             </>
         </TestProvider>
