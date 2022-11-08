@@ -9,7 +9,7 @@ import { FeiloppsummeringProps } from 'nav-frontend-skjema';
 function useErrorFields<TFieldValues extends FieldValues>(errors: FieldErrors<TFieldValues>) {
     return Object.entries(errors).map(([skjemaelementId, feil]) => ({
         skjemaelementId,
-        feilmelding: feil.message
+        feilmelding: feil?.message
     }));
 }
 
@@ -25,7 +25,7 @@ function FormErrorSummary<TFieldValues extends FieldValues>(props: Props<TFieldV
     const submitCount = form?.formState.submitCount;
     const feil = useErrorFields(form?.formState.errors ?? ([] as FieldErrors<TFieldValues>));
 
-    const skalViseFeilmelding = submitCount !== 0 || feil.length !== 0;
+    const skalViseFeilmelding = submitCount && feil.length;
 
     useEffect(() => {
         if (skalViseFeilmelding && ref.current) {
