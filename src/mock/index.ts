@@ -282,7 +282,8 @@ function setupFeatureToggleMock(mock: FetchMock) {
     );
 
     mock.get(apiBaseUri + '/featuretoggle', (req, res, ctx) => {
-        const ids = req.queryParams['id'];
+        const id = req.queryParams['id'];
+        const ids = Array.isArray(id) ? id : [id];
         return res(ctx.json(Object.fromEntries(ids.map((it: FeatureToggles) => [it, mockFeatureToggle(it)]))));
     });
 }
