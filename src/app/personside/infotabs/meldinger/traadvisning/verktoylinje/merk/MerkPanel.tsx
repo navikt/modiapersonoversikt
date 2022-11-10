@@ -25,15 +25,13 @@ import {
     MerkRequestMedBehandlingskjede,
     SendTilSladdingRequest
 } from '../../../../../../../models/meldinger/merk';
-import { AlertStripeAdvarsel, AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeInfo, AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import { Resultat } from '../utils/VisPostResultat';
 import { useFocusOnFirstFocusable } from '../../../../../../../utils/hooks/use-focus-on-first-focusable';
 import { setIngenValgtTraadDialogpanel } from '../../../../../../../redux/oppgave/actions';
 import { Oppgave } from '../../../../../../../models/meldinger/oppgave';
 import tildelteoppgaver from '../../../../../../../rest/resources/tildelteoppgaverResource';
 import { SladdeObjekt, velgMeldingerTilSladding } from './sladdevalg/Sladdevalg';
-import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
 import dialogResource from '../../../../../../../rest/resources/dialogResource';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
 import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
@@ -47,20 +45,6 @@ enum MerkOperasjon {
     FEILSENDT = 'FEILSENDT',
     SLADDING = 'SLADDING',
     LUKK = 'LUKK'
-}
-enum SladdeModus {
-    ORIGINAL,
-    MED_ARSAK,
-    ENKELT_MELDING_MED_ARSAK
-}
-function finnSladdeModus(skalSendeArsak: boolean, kanSladdeEnkeltMelding: boolean): SladdeModus {
-    if (skalSendeArsak && kanSladdeEnkeltMelding) {
-        return SladdeModus.ENKELT_MELDING_MED_ARSAK;
-    } else if (skalSendeArsak) {
-        return SladdeModus.MED_ARSAK;
-    } else {
-        return SladdeModus.ORIGINAL;
-    }
 }
 
 const KnappStyle = styled.div`
@@ -124,44 +108,11 @@ function finnOppgaveForTraad(
     return undefined;
 }
 
-function TraadSladdeValg() {
-    const skalSendeArsak = useFeatureToggle(FeatureToggles.SladdeMedArsak)?.isOn ?? false;
-    const kanSladdeEnkeltMelding = useFeatureToggle(FeatureToggles.SladdeEnkeltMelding)?.isOn ?? false;
-    const sladdeModus = finnSladdeModus(skalSendeArsak, kanSladdeEnkeltMelding);
-
-    switch (sladdeModus) {
-        case SladdeModus.ORIGINAL:
-            return (
-                <AlertStripeAdvarsel className="blokk-xxs">
-                    Årsak må meldes i{' '}
-                    <a
-                        href="https://jira.adeo.no/plugins/servlet/desk/portal/541/create/1481"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        porten
-                    </a>
-                    .
-                </AlertStripeAdvarsel>
-            );
-        case SladdeModus.MED_ARSAK:
-            return <AlertStripeInfo className="blokk-xxs">Velg årsak ved å trykke "Merk"</AlertStripeInfo>;
-        case SladdeModus.ENKELT_MELDING_MED_ARSAK:
-            return (
-                <AlertStripeInfo className="blokk-xxs">
-                    Velg årsak og hvilke meldinger som skal sladdes ved å trykke "Merk"
-                </AlertStripeInfo>
-            );
-    }
-}
-
 function MerkPanel(props: Props) {
     const dispatch = useDispatch();
     const queryClient = useQueryClient();
     const valgtTraad = props.valgtTraad;
     const tildelteOppgaverResource = tildelteoppgaver.useFetch();
-    const skalSendeArsak = useFeatureToggle(FeatureToggles.SladdeMedArsak)?.isOn ?? false;
-
     const [valgtOperasjon, settValgtOperasjon] = useState<MerkOperasjon | undefined>(undefined);
     const [resultat, settResultat] = useState<Resultat | undefined>(undefined);
     const [submitting, setSubmitting] = useState(false);
@@ -200,23 +151,10 @@ function MerkPanel(props: Props) {
                 merkPost(MERK_FEILSENDT_URL, getMerkBehandlingskjedeRequest(valgtBrukersFnr, valgtTraad), 'Feilsendt');
                 break;
             case MerkOperasjon.SLADDING:
-                if (skalSendeArsak) {
-                    const sladdeObjekt: SladdeObjekt | null = await velgMeldingerTilSladding(valgtTraad, queryClient);
-                    // If null, then modal was closed without "submitting form"
-                    if (sladdeObjekt !== null) {
-                        merkPost(
-                            MERK_SLADDING_URL,
-                            getSendTilSladdingRequest(valgtBrukersFnr, sladdeObjekt),
-                            'Sladding'
-                        );
-                    }
-                } else {
-                    // TODO fjerne denne når innsending av årsak blir aktivitert
-                    merkPost(
-                        MERK_SLADDING_URL,
-                        getSendTilSladdingRequest(valgtBrukersFnr, { traadId: valgtTraad.traadId }),
-                        'Sladding'
-                    );
+                const sladdeObjekt: SladdeObjekt | null = await velgMeldingerTilSladding(valgtTraad, queryClient);
+                // If null, then modal was closed without "submitting form"
+                if (sladdeObjekt !== null) {
+                    merkPost(MERK_SLADDING_URL, getSendTilSladdingRequest(valgtBrukersFnr, sladdeObjekt), 'Sladding');
                 }
                 break;
             case MerkOperasjon.LUKK:
@@ -271,7 +209,11 @@ function MerkPanel(props: Props) {
                 legend={''}
                 onChange={(_, value) => settValgtOperasjon(MerkOperasjon[value])}
             />
-            {valgtOperasjon === MerkOperasjon.SLADDING && <TraadSladdeValg />}
+            {valgtOperasjon === MerkOperasjon.SLADDING && (
+                <AlertStripeInfo className="blokk-xxs">
+                    Velg årsak og hvilke meldinger som skal sladdes ved å trykke "Merk"
+                </AlertStripeInfo>
+            )}
             {valgtOperasjon === MerkOperasjon.LUKK && (
                 <AlertStripeInfo className="blokk-xxs">
                     Ved avslutting blir dialogen låst og oppgave ferdigstilt. Det er ikke mulig å sende flere meldinger

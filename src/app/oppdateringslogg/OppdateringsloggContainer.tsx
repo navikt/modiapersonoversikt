@@ -8,8 +8,6 @@ import useSisteLestOppdateringLogg from './useSisteLestOppdateringLogg';
 import useWaitForElement from '../../utils/hooks/use-wait-for-element';
 import { lagOppdateringsloggConfig } from './config/config';
 import './oppdateringsloggKnapp.less';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 export const DecoratorButtonId = 'oppdateringslogg';
 export interface OppdateringsloggInnslag {
@@ -69,13 +67,7 @@ function useApneOppdateringsLoggModal(
 }
 
 function OppdateringsloggContainer() {
-    const config = {
-        sladdMedArsak: useFeatureToggle(FeatureToggles.SladdeMedArsak)?.isOn ?? false,
-        sladdEnkeltmelding: useFeatureToggle(FeatureToggles.SladdeEnkeltMelding)?.isOn ?? false
-    };
-    const oppdateringslogg: OppdateringsloggInnslag[] = lagOppdateringsloggConfig(config).filter(
-        (innslag) => innslag.aktiv
-    );
+    const oppdateringslogg: OppdateringsloggInnslag[] = lagOppdateringsloggConfig().filter((innslag) => innslag.aktiv);
 
     const [apen, settApen] = useState(false);
     const [sistLesteId, settSistLesteId] = useSisteLestOppdateringLogg();
