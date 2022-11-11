@@ -1,6 +1,5 @@
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
-import Cookies from 'js-cookie';
 import FetchMock, { Middleware, MiddlewareUtils, MockRequest } from 'yet-another-fetch-mock';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { apiBaseUri } from '../api/config';
@@ -26,7 +25,6 @@ import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/p
 import { setupWsControlAndMock } from './context-mock';
 import standardTekster from './standardTeksterMock.js';
 import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
-import { saksbehandlerCookieNavnPrefix } from '../redux/session/saksbehandlersEnhetCookieUtils';
 import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
 import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinger-mock';
 import { failurerateMiddleware } from './utils/failureMiddleware';
@@ -242,18 +240,6 @@ function setupPersonsokMock(mock: FetchMock) {
     );
 }
 
-function setSaksbehandlerinnstillingerMockBackend(args: MockRequest) {
-    Cookies.set(saksbehandlerCookieNavnPrefix + '-Z990099', args.body);
-    return args.body;
-}
-
-function setupVelgEnhetMock(mock: FetchMock) {
-    mock.post(
-        apiBaseUri + '/hode/velgenhet',
-        withDelayedResponse(randomDelay(), STATUS_OK, setSaksbehandlerinnstillingerMockBackend)
-    );
-}
-
 function setupTildelteOppgaverMock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/oppgaver/tildelt/:fnr',
@@ -377,7 +363,6 @@ opprettSkjermetOppgaveMock(mock);
 setupPersonsokMock(mock);
 setupJournalforingMock(mock);
 setupStandardteksterMock(mock);
-setupVelgEnhetMock(mock);
 setUpSaksbehandlersEnheterMock(mock);
 setupSaksbehandlerInnstillingerMock(mock);
 setupDraftMock(mock);
