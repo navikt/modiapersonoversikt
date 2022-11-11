@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { post } from '../api/api';
-import { apiBaseUri } from '../api/config';
 import useIsMounted from '../utils/hooks/use-is-mounted';
 
 interface ValgtEnhetState {
@@ -9,17 +7,17 @@ interface ValgtEnhetState {
 }
 
 const ValgtEnhetContext = React.createContext<ValgtEnhetState | undefined>(undefined);
+const valgtEnhetKey = 'modia-valgt-enhet';
 
 export function ValgtEnhetProvider(props: { children: React.ReactNode }) {
     const isMounted = useIsMounted();
-    const [enhetId, setEnhetId] = React.useState('');
+    const [enhetId, setEnhetId] = React.useState(window.localStorage.getItem(valgtEnhetKey) ?? '');
     const updateEnhet = React.useCallback(
         (enhetId: string) => {
-            post(`${apiBaseUri}/hode/velgenhet`, enhetId, 'VelgEnhet').then(() => {
-                if (isMounted.current) {
-                    setEnhetId(enhetId);
-                }
-            });
+            if (isMounted.current) {
+                setEnhetId(enhetId);
+                window.localStorage.setItem(valgtEnhetKey, enhetId);
+            }
         },
         [setEnhetId, isMounted]
     );
