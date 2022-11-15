@@ -32,7 +32,7 @@ interface Props {
 function InnstillingerModalForm({ innstillinger }: Props) {
     const [innsendingFeilet, settInnsendingFeilet] = useState(false);
     const form = useForm<Innstillinger>({
-        defaultValues: { ...innstillinger.innstillinger, ...defaultInnstillinger },
+        defaultValues: { ...defaultInnstillinger, ...innstillinger.innstillinger },
         mode: 'onChange'
     });
 
