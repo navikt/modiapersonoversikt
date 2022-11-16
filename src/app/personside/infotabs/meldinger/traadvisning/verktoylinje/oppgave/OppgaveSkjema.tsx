@@ -60,7 +60,8 @@ function OppgaveSkjema(props: OppgaveProps) {
     const [resultat, settResultat] = useState<Resultat>();
     const form = useForm<OppgaveSkjemaForm>({
         resolver: resolverOppgaveSkjema,
-        mode: 'onChange'
+        mode: 'onChange',
+        shouldFocusError: false
     });
 
     const valgtTema = useNormalPrioritet(props.gsakTema, form);
