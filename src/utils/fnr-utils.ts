@@ -22,19 +22,20 @@ function validerIdentModulo(ident: string): boolean {
 }
 
 export enum FnrValidationError {
-    LENGTH,
-    NUMBERS_ONLY,
-    CONTROL_FAILED
+    LENGTH = 'LENGTH',
+    NUMBERS_ONLY = 'NUMBERS_ONLY',
+    CONTROL_FAILED = 'CONTROL_FAILED'
 }
 
 export function validerIdent(ident: string): FnrValidationError | undefined {
+    if (ident.length !== 11) {
+        return FnrValidationError.LENGTH;
+    }
     if (!ident.match(/^\d+$/)) {
         return FnrValidationError.NUMBERS_ONLY;
-    } else if (ident.length !== 11) {
-        return FnrValidationError.LENGTH;
-    } else if (!validerIdentModulo(ident)) {
-        return FnrValidationError.CONTROL_FAILED;
-    } else {
-        return undefined;
     }
+    if (!validerIdentModulo(ident)) {
+        return FnrValidationError.CONTROL_FAILED;
+    }
+    return undefined;
 }
