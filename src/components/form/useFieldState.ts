@@ -3,17 +3,26 @@ import { FieldPath } from 'react-hook-form/dist/types/path';
 import { UseFormReturn } from 'react-hook-form/dist/types';
 import { UseFieldStateReturn } from './formTypes';
 
+function forceValidationOfAllFields<TFieldValues extends FieldValues>(form: UseFormReturn<TFieldValues>) {
+    form.trigger();
+}
+
 export function useFieldState<
     TFieldValues extends FieldValues,
     TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
->(name: TFieldName, formstate: UseFormReturn<TFieldValues>): UseFieldStateReturn<TFieldName> {
-    const showError = formstate.formState.touchedFields[name] || formstate.formState.submitCount > 0;
-    const error = formstate.formState.errors[name]?.message?.toString();
-    const { ref, ...input } = formstate.register(name);
+>(name: TFieldName, form: UseFormReturn<TFieldValues>): UseFieldStateReturn<TFieldName> {
+    const showError = form.formState.touchedFields[name] || form.formState.submitCount > 0;
+    const error = form.formState.errors[name]?.message?.toString();
+    const { ref, onChange, ...input } = form.register(name);
 
     return {
         input: {
             id: input.name,
+            onChange: async (e) => {
+                const res = await onChange(e);
+                forceValidationOfAllFields(form);
+                return res;
+            },
             ...input
         },
         ref,
