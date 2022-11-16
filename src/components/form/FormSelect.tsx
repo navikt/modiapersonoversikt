@@ -13,13 +13,13 @@ function FormSelect<
     TFieldValues extends FieldValues,
     TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(props: Props<TFieldValues, TFieldName>) {
-    const { ref, input, error } = useFieldState(props.name, props.form);
+    const { form, name, children, ...selectProps } = props;
 
-    const { form, name, ...selectProps } = props;
+    const { ref, input, error } = useFieldState(name, form);
 
     return (
-        <Select selectRef={ref as any} {...selectProps} {...input} feil={error}>
-            {props.children}
+        <Select selectRef={ref as any} {...input} {...selectProps} feil={error}>
+            {children}
         </Select>
     );
 }
