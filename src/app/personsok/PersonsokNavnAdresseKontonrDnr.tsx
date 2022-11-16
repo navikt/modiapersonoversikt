@@ -4,7 +4,6 @@ import { InputProps } from 'nav-frontend-skjema';
 import React, { useRef } from 'react';
 import { FieldValues, UseFormReturn } from 'react-hook-form';
 import FormInput from '../../components/form/FormInput';
-import { feilmeldingReactHookForm } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { PersonSokFormStateV3 } from './personsokUtils';
 
 interface Props<F extends FieldValues = PersonSokFormStateV3> {
@@ -60,19 +59,17 @@ function PersonsokNavnAdresseKontonrDnr({ form }: Props) {
         }
     ];
 
-    const minimumsKravFeil = feilmeldingReactHookForm(form, '_minimumskrav');
-
     return (
         <>
             {formFields.map((formField) => (
                 <FormInput
+                    key={`personsok-${formField.id}`}
                     name={formField.id}
                     form={form}
-                    key={`personsok-${formField.id}`}
                     id={formField.id}
                     label={formField.label}
                     bredde={formField.width}
-                    feil={!!minimumsKravFeil}
+                    feil={!!form.formState.errors['_minimumskrav']}
                 />
             ))}
         </>

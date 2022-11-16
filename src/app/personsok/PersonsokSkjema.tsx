@@ -54,7 +54,8 @@ export const InputLinje = styled.div`
 function PersonsokSkjema(props: Props) {
     const form = useForm<PersonSokFormState>({
         resolver,
-        mode: 'onChange'
+        mode: 'onChange',
+        shouldFocusError: false
     });
 
     function submitHandler(values: PersonSokFormState): Promise<void> {
