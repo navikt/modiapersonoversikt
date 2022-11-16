@@ -28,16 +28,16 @@ export function resolverOppgaveSkjema(values: OppgaveSkjemaForm) {
             errorMessage: 'Du må velge oppgavetype'
         },
         {
-            key: 'beskrivelse',
-            errorMessage: 'Du må skrive beskrivelse'
+            key: 'valgtEnhet',
+            errorMessage: 'Du må velge enhet'
         },
         {
             key: 'valgtPrioritet',
             errorMessage: 'Du må velge prioritet'
         },
         {
-            key: 'valgtEnhet',
-            errorMessage: 'Du må velge enhet'
+            key: 'beskrivelse',
+            errorMessage: 'Du må skrive beskrivelse'
         }
     ];
 
@@ -62,12 +62,12 @@ export function resolverOppgaveSkjemaBegrensetTilgang(values: OppgaveSkjemaBegre
             errorMessage: 'Du må velge oppgavetype'
         },
         {
-            key: 'beskrivelse',
-            errorMessage: 'Du må skrive beskrivelse'
-        },
-        {
             key: 'valgtPrioritet',
             errorMessage: 'Du må velge prioritet'
+        },
+        {
+            key: 'beskrivelse',
+            errorMessage: 'Du må skrive beskrivelse'
         }
     ];
 
