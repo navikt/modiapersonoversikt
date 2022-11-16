@@ -1,5 +1,5 @@
 import { includeCredentials, postConfig } from './config';
-import { loggError, loggEvent } from '../utils/logger/frontendLogger';
+import { loggError, loggEvent, loggWarning } from '../utils/logger/frontendLogger';
 import { confirm } from '../components/popup-boxes/popup-boxes';
 
 const CONFLICT = 409;
@@ -58,11 +58,14 @@ function handleResponse<TYPE extends object = object>(
     return parseResponse<TYPE>(response);
 }
 
-function parseResponse<TYPE extends object = object>(response: Response): Promise<TYPE> {
+function parseResponse<TYPE>(response: Response): Promise<TYPE> {
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.indexOf('application/json') !== -1) {
         return response.json();
+    } else if (contentType && contentType.indexOf('text/plain') !== -1) {
+        return response.text() as Promise<TYPE>;
     } else {
+        loggWarning(new Error(`Unknown Content-Type: ${contentType}. Not sure what to do with response.`));
         return Promise.resolve({} as TYPE);
     }
 }

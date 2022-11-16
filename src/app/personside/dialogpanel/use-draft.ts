@@ -27,7 +27,7 @@ interface WsEvent {
 
 const okCloseCodes = Object.values(WebSocketImpl.Codes);
 
-function useDraftWS(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
+function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
     const wsRef = useRef<WebSocketImpl>();
     useEffect(() => {
         const urlProvider = async (ws: WebSocketImpl) => {
@@ -92,59 +92,4 @@ function useDraftWS(context: DraftContext, ifPresent: (draft: Draft) => void = (
     return useMemo(() => ({ update, remove }), [update, remove]);
 }
 
-export function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () => {}): DraftSystem {
-    const update = useMemo(
-        () =>
-            debounce((content: string) => {
-                fetch('/modiapersonoversikt/proxy/modia-draft/api/draft', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ content, context })
-                }).catch((error: Error) => {
-                    loggError(error, 'Feil ved oppdatering av draft', { context });
-                });
-            }, 500),
-        [context]
-    );
-
-    const remove = useCallback(() => {
-        fetch('/modiapersonoversikt/proxy/modia-draft/api/draft', {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(context)
-        }).catch((error: Error) => {
-            loggError(error, 'Feil ved sletting av draft', { context });
-        });
-    }, [context]);
-
-    useEffect(() => {
-        const queryParams = Object.entries(context)
-            .map(([key, value]) => `${key}=${value}`)
-            .join('&');
-
-        fetch(`/modiapersonoversikt/proxy/modia-draft/api/draft?exact=true&${queryParams}`)
-            .then((resp) => resp.json())
-            .then((json: Array<Draft>) => {
-                if (json.length > 0) {
-                    ifPresent(json[0]);
-                }
-            })
-            .catch((error: Error) => {
-                loggError(error, 'Feil ved uthenting av draft', { context });
-            });
-    }, [context, ifPresent]);
-
-    return useMemo(
-        () => ({
-            update,
-            remove
-        }),
-        [update, remove]
-    );
-}
-
-export default useDraftWS;
+export default useDraft;

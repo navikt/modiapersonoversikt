@@ -3,11 +3,8 @@ import NavFrontendModal from 'nav-frontend-modal';
 import { Traad } from '../../../../../../../../models/meldinger/meldinger';
 import { PopupComponentProps, renderPopup } from '../../../../../../../../components/popup-boxes/popup-boxes';
 import { useCallback } from 'react';
-import useFeatureToggle from '../../../../../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../../../../../components/featureToggle/toggleIDs';
 import styled from 'styled-components/macro';
 import { Systemtittel } from 'nav-frontend-typografi';
-import SladdTradMedArsak from './SladdTradMedArsak';
 import SladdMeldingerMedArsak from './SladdMeldingerMedArsak';
 import css from './Sladdvalg.module.css';
 import { useSladdeArsak } from './use-sladde-arsak';
@@ -25,11 +22,12 @@ export type SladdeObjekt = ({ traadId: string } | { meldingId: Array<string> }) 
 export function velgMeldingerTilSladding(traad: Traad, queryClient: QueryClient) {
     return renderPopup(queryClient, Sladdevalg, { traad });
 }
-const ModalBase = styled(NavFrontendModal)`
+const Modal = styled(NavFrontendModal)`
     &.modal {
         width: 100%;
         max-width: 57rem;
         min-height: 10rem;
+        max-height: 40rem;
         height: 100%;
         padding: 0;
         overflow: hidden;
@@ -39,31 +37,20 @@ const ModalBase = styled(NavFrontendModal)`
         }
     }
 `;
-const ModalMini = styled(ModalBase)`
-    &.modal {
-        max-height: 18rem;
-    }
-`;
-const ModalStor = styled(ModalBase)`
-    &.modal {
-        max-height: 40rem;
-    }
-`;
 
 export type SladdeForm = {
     arsak: string;
     meldingIder: string[];
 };
-type FormProps = { velgMeldinger: boolean };
 
-const resolver = (values: SladdeForm, props: FormProps) => {
+const resolver = (values: SladdeForm) => {
     const errors: { [Property in keyof Partial<SladdeForm>]: FieldError } = {};
 
     if (!values.arsak || values.arsak === '') {
         errors.arsak = buildFieldError('Du må velge årsak');
     }
 
-    if (props.velgMeldinger && !values.meldingIder.length) {
+    if (!values.meldingIder.length) {
         errors.meldingIder = buildFieldError('Du må velge minst en melding');
     }
 
@@ -76,67 +63,36 @@ export interface SladdeComponentProps {
     traad: Traad;
 }
 
-interface Config {
-    header: string;
-    label: string;
-    wrapperCSS: string;
-    component: React.ComponentType<SladdeComponentProps>;
-}
-const sladdTradConfig: Config = {
-    header: 'Velg årsak til sladding',
-    label: 'Velg årsak til sladding',
-    wrapperCSS: css.contentMini,
-    component: SladdTradMedArsak
-};
-const sladdMeldingConfig: Config = {
-    header: 'Velg meldinger og årsak til sladding',
-    label: 'Velg meldinger og årsak til sladding',
-    wrapperCSS: css.content,
-    component: SladdMeldingerMedArsak
-};
-
 function Sladdevalg(props: PopupComponentProps<SladdeObjekt | null, Props>) {
     const close = props.close;
     const traad = props.traad;
-    const kanSladdeFlere = useFeatureToggle(FeatureToggles.SladdeEnkeltMelding)?.isOn ?? false;
     const abort = useCallback(() => close(null), [close]);
 
-    const config = kanSladdeFlere ? sladdMeldingConfig : sladdTradConfig;
-
     const form = useForm<SladdeForm>({
-        resolver: (values) => resolver(values, { velgMeldinger: kanSladdeFlere }),
+        resolver,
         mode: 'onChange'
     });
-
-    const content = useSladdeArsak(props.traad.traadId, (arsaker: string[]) => {
-        return React.createElement(config.component, {
-            form,
-            arsaker,
-            traad
-        });
-    });
+    const content = useSladdeArsak(props.traad.traadId, (arsaker: string[]) => (
+        <SladdMeldingerMedArsak form={form} arsaker={arsaker} traad={traad} />
+    ));
 
     const onSubmit = useCallback(
         (values: SladdeForm) => {
             const arsak = values.arsak;
             const meldingId = values.meldingIder;
-            const sladdeObject = kanSladdeFlere
-                ? { traadId: traad.traadId, meldingId, arsak }
-                : { traadId: traad.traadId, arsak };
-            close(sladdeObject);
+            close({ traadId: traad.traadId, meldingId, arsak });
             return Promise.resolve();
         },
-        [kanSladdeFlere, close, traad]
+        [close, traad]
     );
 
-    const Modal = kanSladdeFlere ? ModalStor : ModalMini;
     return (
-        <Modal isOpen={true} onRequestClose={abort} contentLabel={config.label}>
+        <Modal isOpen={true} onRequestClose={abort} contentLabel="Velg meldinger og årsak til sladding">
             <form onSubmit={form.handleSubmit(onSubmit)} className={css.layout}>
                 <Systemtittel tag="h1" className={css.header}>
-                    {config.header}
+                    Velg meldinger og årsak til sladding
                 </Systemtittel>
-                <div className={config.wrapperCSS}>{content}</div>
+                <div className={css.content}>{content}</div>
             </form>
         </Modal>
     );

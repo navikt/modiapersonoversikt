@@ -41,6 +41,10 @@ spec:
     application:
       enabled: true
       tenant: nav.no
+      allowAllUsers: false
+      claims:
+        groups:
+          - id: "ea34edea-1e80-4759-a1d2-fbe696cf1709" # 0000-GA-BD06_ModiaGenerellTilgang
   env:
     - name: APP_NAME
       value: "modiapersonoversikt"
@@ -72,5 +76,3 @@ spec:
       report-uri https://sentry.gc.nav.no/api/145/security/?sentry_key=b07212ac0fce4245b88145ad95706ce7&sentry_environment=prod&sentry_release={{ version }};"
     - name: REFERRER_POLICY
       value: "no-referrer"
-    - name: DISABLE_AZURE_AD
-      value: "true"

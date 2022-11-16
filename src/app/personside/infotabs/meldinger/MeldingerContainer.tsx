@@ -6,7 +6,7 @@ import { pxToRem } from '../../../../styles/personOversiktTheme';
 import TraadListe from './traadliste/TraadListe';
 import { useInfotabsDyplenker } from '../dyplenker';
 import { useHistory } from 'react-router';
-import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe, { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { ScrollBar, scrollBarContainerStyle } from '../utils/InfoTabsScrollBar';
 import { useSokEtterMeldinger } from './utils/meldingerUtils';
 import { useValgtTraadIUrl } from './utils/useValgtTraadIUrl';
@@ -62,6 +62,8 @@ function MeldingerContainer() {
 
     if (traaderResource.isLoading) {
         return <LazySpinner type="M" />;
+    } else if (traaderResource.isError) {
+        return <AlertStripe type="advarsel">Kunne ikke laste inn brukers meldinger</AlertStripe>;
     }
 
     if (traaderForSok.length === 0) {

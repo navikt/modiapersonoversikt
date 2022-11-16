@@ -27,10 +27,7 @@ import SladdeArsak from './img/sladde-arsak.png';
 import SladdEnkeltmelding from './img/sladdEnkeltmelding.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
-export function lagOppdateringsloggConfig(toggles: {
-    sladdMedArsak: boolean;
-    sladdEnkeltmelding: boolean;
-}): OppdateringsloggInnslag[] {
+export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
     return [
         {
             id: 1,
@@ -422,7 +419,7 @@ export function lagOppdateringsloggConfig(toggles: {
             id: 23,
             tittel: 'Velge årsak til sladding',
             dato: new Date('2022-10-11 11:00'),
-            aktiv: toggles.sladdMedArsak,
+            aktiv: false,
             ingress: null,
             beskrivelse: (
                 <>
@@ -441,7 +438,7 @@ export function lagOppdateringsloggConfig(toggles: {
             id: 24,
             tittel: 'Velge enkelt melding for sladding',
             dato: new Date('2022-10-11 12:00'),
-            aktiv: toggles.sladdEnkeltmelding,
+            aktiv: true,
             ingress: null,
             beskrivelse: (
                 <>

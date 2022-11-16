@@ -47,9 +47,7 @@ function App() {
 
     if (!valgtEnhet) {
         /**
-         * valgt enhet utledes fra saksbehandlerinnstillinger-cookie i session-reducer.
-         * Mange kall mot backenden vil feile uten denne cookien.
-         * Legger derfor denne sjekken før resten av appen mountes for å motvirke feilede kall
+         * valgt enhet hentes fra modiacontextholder, og mellomlagres i localStorage
          */
         return (
             <>

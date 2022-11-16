@@ -45,7 +45,7 @@ function TekstListeElement(props: Props) {
                 onChange={props.onChange}
                 checked={props.valgt}
             />
-            <label htmlFor={props.tekst.id} aria-hidden={true}>
+            <label htmlFor={props.tekst.id}>
                 <span className="sr-only">{props.index + 1}</span>
                 <Tekstomrade as="span" rules={[props.highlightRule]}>
                     {props.tekst.overskrift}

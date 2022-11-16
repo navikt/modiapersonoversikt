@@ -7,6 +7,7 @@ import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, get } from '../../api/api';
+import { useValgtenhet } from '../../context/valgtenhet-state';
 
 const defaults: DefaultConfig = {
     ifPending: BigCenteredLazySpinner,
@@ -39,17 +40,19 @@ export enum IkkeTilgangArsak {
 function queryKey(fnr: string | undefined) {
     return ['tilgangskontroll', fnr];
 }
-function url(fnr: string | undefined) {
+function url(fnr: string | undefined, enhet: string | undefined) {
+    const params = enhet ? `?enhet=${enhet}` : '';
     if (fnr) {
-        return `${apiBaseUri}/tilgang/${fnr}`;
+        return `${apiBaseUri}/tilgang/${fnr}${params}`;
     }
-    return `${apiBaseUri}/tilgang`;
+    return `${apiBaseUri}/tilgang${params}`;
 }
 
 const resource = {
     useFetch(): UseQueryResult<TilgangDTO, FetchError> {
         const fnr = useGjeldendeBruker();
-        return useQuery(queryKey(fnr), () => get(url(fnr)));
+        const enhet = useValgtenhet().enhetId;
+        return useQuery(queryKey(fnr), () => get(url(fnr, enhet)));
     },
     useRenderer(renderer: RendererOrConfig<TilgangDTO>) {
         const response = this.useFetch();

@@ -14,4 +14,5 @@ export function postConfig(body?: object | string) {
 
 export const includeCredentials: RequestInit = { credentials: 'include' };
 
-export const apiBaseUri = '/modiapersonoversikt/proxy/api';
+const useAzureAd = window.location.search.includes('azuread');
+export const apiBaseUri = useAzureAd ? '/modiapersonoversikt/proxy/azure-api' : '/modiapersonoversikt/proxy/api';
