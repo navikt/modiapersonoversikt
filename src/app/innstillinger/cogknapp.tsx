@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { ReactComponent as SvgCog } from './../../svg/cog.svg';
 import { KnappWrapper } from '../../components/pilknapp';
-import InnstillingerModal from './modal/innstillinger-modal';
+import InnstillingerModal from './modal/InnstillingerModal';
 
 const CogWrapper = styled(KnappWrapper)`
     padding-top: 3px;

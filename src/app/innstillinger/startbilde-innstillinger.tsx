@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Flatknapp } from 'nav-frontend-knapper';
 import { ReactComponent as SvgCog } from './../../svg/cog.svg';
-import InnstillingerModal from './modal/innstillinger-modal';
+import InnstillingerModal from './modal/InnstillingerModal';
 
 function StartbildeInnstillinger() {
     const [isOpen, setOpen] = React.useState(false);

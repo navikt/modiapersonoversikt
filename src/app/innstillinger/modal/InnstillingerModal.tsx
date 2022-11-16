@@ -2,7 +2,7 @@ import * as React from 'react';
 import Modal from 'nav-frontend-modal';
 import styled from 'styled-components/macro';
 import { Systemtittel } from 'nav-frontend-typografi';
-import InnstillingerModalInnhold from './innstillinger-modal-innhold';
+import InnstillingerModalInnhold from './InnstillingerModalInnhold';
 
 const MinWidthModal = styled(Modal)`
     &.modal {
