@@ -7,6 +7,9 @@ import {
 } from './kontonummer/kontonummerUtils';
 import { erTall } from '../../utils/string-utils';
 import dayjs from 'dayjs';
+import { isISODateString } from 'nav-datovelger';
+import { buildFieldError } from '../../components/form/formUtils';
+import { FieldError } from 'react-hook-form';
 
 export type PersonSokFormStateV3 = {
     navn: string;
@@ -21,11 +24,9 @@ export type PersonSokFormStateV3 = {
     _minimumskrav: string;
 };
 
-export function validatorPersonsokV3(values: PersonSokFormStateV3) {
-    let navn = undefined;
-    let adresse = undefined;
-    let kontonummer = undefined;
-    let utenlandskID = undefined;
+export function resolver(values: PersonSokFormStateV3) {
+    let kontonummer: FieldError | undefined;
+    let utenlandskID: FieldError | undefined;
 
     const andreFelter = [
         values.navn,
@@ -37,42 +38,46 @@ export function validatorPersonsokV3(values: PersonSokFormStateV3) {
         values.fodselsdatoTil,
         values.kjonn
     ];
-    const andreFelterErSatt = andreFelter.some((it) => it.length > 0);
+
+    const andreFelterErSatt = andreFelter.some((it) => it?.length);
+
     if (values.kontonummer && !validerLengdeOgTallPaKontonummer(values.kontonummer)) {
-        kontonummer = 'Kontonummer må kun bestå av tall og være 11 siffer';
+        kontonummer = buildFieldError('Kontonummer må kun bestå av tall og være 11 siffer');
     } else if (values.kontonummer && !erGyldigNorskKontonummer(values.kontonummer)) {
-        kontonummer = 'Kontonummer må være et gyldig norsk kontonummer';
+        kontonummer = buildFieldError('Kontonummer må være et gyldig norsk kontonummer');
     } else if (values.kontonummer && andreFelterErSatt) {
-        kontonummer = 'Kan ikke kombinere søk på kontonummer med andre felt';
+        kontonummer = buildFieldError('Kan ikke kombinere søk på kontonummer med andre felt');
     }
 
-    let fodselsdatoFra = undefined;
-    let fodselsdatoTil = undefined;
+    let fodselsdatoFra: FieldError | undefined;
+    let fodselsdatoTil: FieldError | undefined;
+
     const fra = dayjs(values.fodselsdatoFra).toDate();
     const til = dayjs(values.fodselsdatoTil).toDate();
-    if (fra > til) {
-        fodselsdatoFra = 'Fra-dato kan ikke være senere enn til-dato';
+
+    if (values.fodselsdatoFra && !isISODateString(values.fodselsdatoFra)) {
+        fodselsdatoFra = buildFieldError('Fra-dato må være en gyldig dato');
+    } else if (fra > til) {
+        fodselsdatoFra = buildFieldError('Fra-dato kan ikke være senere enn til-dato');
     }
-    if (til > new Date()) {
-        fodselsdatoTil = 'Du kan ikke velge til-dato frem i tid';
+    if (values.fodselsdatoTil && !isISODateString(values.fodselsdatoTil)) {
+        fodselsdatoTil = buildFieldError('Til-dato må være en gyldig dato');
+    } else if (til > new Date()) {
+        fodselsdatoTil = buildFieldError('Du kan ikke velge til-dato frem i tid');
     }
-    const alderFra = !erTall(values.alderFra) ? 'Alder må være tall' : undefined;
-    const alderTil = !erTall(values.alderTil) ? 'Alder må være tall' : undefined;
+    const alderFra = values.alderFra && !erTall(values.alderFra) ? buildFieldError('Alder må være tall') : undefined;
+    const alderTil = values.alderTil && !erTall(values.alderTil) ? buildFieldError('Alder må være tall') : undefined;
     const kjonn = undefined;
 
-    let _minimumskrav = undefined;
-    if (!values.utenlandskID) {
-        if (!values.adresse && !values.kontonummer && !values.navn) {
-            _minimumskrav = 'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk';
-            navn = '';
-            adresse = '';
-            kontonummer = '';
-            utenlandskID = '';
-        }
+    let _minimumskrav: FieldError | undefined;
+
+    if (!values.utenlandskID && !values.adresse && !values.kontonummer && !values.navn) {
+        _minimumskrav = buildFieldError(
+            'Du må minimum fylle inn navn, adresse, kontonummer eller utenlandsk ID for å gjøre søk'
+        );
     }
 
-    return {
-        navn,
+    const errors: Record<string, FieldError | undefined> = {
         kontonummer,
         utenlandskID,
         fodselsdatoFra,
@@ -80,9 +85,10 @@ export function validatorPersonsokV3(values: PersonSokFormStateV3) {
         alderFra,
         alderTil,
         kjonn,
-        adresse,
         _minimumskrav
     };
+
+    return { values, errors };
 }
 
 export function stringToNumber(input: string): number | undefined {
