@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Input } from 'nav-frontend-skjema';
 import { useHistory } from 'react-router';
 import { setNyBrukerIPath } from '../routes/routing';
 import styled from 'styled-components/macro';
 import theme from '../../styles/personOversiktTheme';
-import formstateFactory from '@nutgaard/use-formstate';
-import { feilmelding } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
 import { FnrValidationError, validerIdent } from '../../utils/fnr-utils';
+import { FieldError, useForm } from 'react-hook-form';
+import { buildFieldError } from '../../components/form/formUtils';
+import FormInput from '../../components/form/FormInput';
 
 const Form = styled.form`
     margin-top: 2rem;
@@ -28,7 +28,19 @@ type PersonSokForm = {
     fødselsnummer: string;
 };
 
-function lagFeilmelding(error: FnrValidationError | undefined): string | undefined {
+function resolver(values: PersonSokForm) {
+    const errors: { fødselsnummer?: FieldError } = {};
+    const identError = validerIdent(values.fødselsnummer);
+
+    if (identError) {
+        const errorMessage = lagFeilmelding(identError);
+        errors.fødselsnummer = buildFieldError(errorMessage);
+    }
+
+    return { errors, values };
+}
+
+function lagFeilmelding(error?: FnrValidationError): string {
     switch (error) {
         case FnrValidationError.LENGTH:
         case FnrValidationError.NUMBERS_ONLY:
@@ -36,34 +48,28 @@ function lagFeilmelding(error: FnrValidationError | undefined): string | undefin
         case FnrValidationError.CONTROL_FAILED:
             return 'Fødselsnummeret er ikke gyldig';
         default:
-            return undefined;
+            return '';
     }
 }
 
-const validering = formstateFactory<PersonSokForm>((values) => {
-    return { fødselsnummer: lagFeilmelding(validerIdent(values.fødselsnummer)) };
-});
-
 function PersonSokInput() {
     const history = useHistory();
-    const initialValues: PersonSokForm = {
-        fødselsnummer: ''
-    };
-    const state = validering(initialValues);
+
+    const form = useForm<PersonSokForm>({
+        mode: 'onChange',
+        resolver,
+        shouldFocusError: false
+    });
 
     function submit(values: PersonSokForm): Promise<any> {
         setNyBrukerIPath(history, values.fødselsnummer);
         return Promise.resolve();
     }
+
     return (
         <div>
-            <Form onSubmit={state.onSubmit(submit)}>
-                <Input
-                    feil={feilmelding(state.fields.fødselsnummer)}
-                    placeholder="Personsøk"
-                    label="Personsøk"
-                    {...state.fields.fødselsnummer.input}
-                />
+            <Form onSubmit={form.handleSubmit(submit)}>
+                <FormInput form={form} name="fødselsnummer" label="Personsøk" placeholder="Personsøk" />
             </Form>
         </div>
     );
