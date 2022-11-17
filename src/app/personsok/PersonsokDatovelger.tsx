@@ -5,7 +5,7 @@ import { pxToRem } from '../../styles/personOversiktTheme';
 import { PersonSokFormStateV3 } from './personsokUtils';
 import { FieldValues, UseFormReturn } from 'react-hook-form';
 import { InputLinje } from './PersonsokSkjema';
-import { feilmeldingReactHookForm } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/validering';
+import { feilmeldingReactHookForm } from '../personside/infotabs/meldinger/traadvisning/verktoylinje/oppgave/feilmeldingReactHookForm';
 import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import FormDatePicker from '../../components/form/FormDatePicker';
 

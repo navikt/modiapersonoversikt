@@ -11,7 +11,7 @@ import useList from '../../../../../../../../utils/hooks/use-list';
 import { Traad } from '../../../../../../../../models/meldinger/meldinger';
 import { datoSynkende } from '../../../../../../../../utils/date-utils';
 import EnkeltMelding from '../../../Enkeltmelding';
-import { feilmeldingReactHookForm } from '../../oppgave/validering';
+import { feilmeldingReactHookForm } from '../../oppgave/feilmeldingReactHookForm';
 import { guid } from 'nav-frontend-js-utils';
 import MeldIPortenAdvarsel from './MeldIPortenAdvarsel';
 import FormSelect from '../../../../../../../../components/form/FormSelect';

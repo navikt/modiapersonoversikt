@@ -44,7 +44,6 @@
         "@navikt/navspa": "^4.0.0",
         "@navikt/tag-input": "^2.0.1",
         "@navikt/textparser": "^2.2.1",
-        "@nutgaard/use-formstate": "^3.0.0",
         "@sentry/react": "^7.13.0",
         "@sentry/tracing": "^7.13.0",
         "@tanstack/react-query": "^4.12.0",

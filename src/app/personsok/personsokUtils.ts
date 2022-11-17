@@ -1,5 +1,4 @@
 import { PersonsokRequestV3 } from '../../models/person/personsok';
-import { Mapped, Values } from '@nutgaard/use-formstate';
 import {
     erGyldigNorskKontonummer,
     removeWhitespaceAndDot,
@@ -105,7 +104,7 @@ function emptyString(input: string): string | undefined {
     return input;
 }
 
-export function lagRequestV3(form: Mapped<Values<PersonSokFormStateV3>, string>): PersonsokRequestV3 {
+export function lagRequestV3(form: PersonSokFormStateV3): PersonsokRequestV3 {
     return {
         navn: emptyString(form.navn),
         kontonummer: emptyString(removeWhitespaceAndDot(form.kontonummer)),

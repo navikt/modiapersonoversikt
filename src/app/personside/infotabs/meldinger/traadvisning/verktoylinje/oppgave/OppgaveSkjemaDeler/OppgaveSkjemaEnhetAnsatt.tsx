@@ -9,7 +9,7 @@ import { OppgaveSkjemaForm } from '../oppgaveInterfaces';
 import useAnsattePaaEnhet from '../useAnsattePaaEnhet';
 import useForeslatteEnheter from '../useForeslåtteEnheter';
 import { useMatchendeEnhet } from '../useMatchendeEnhet';
-import { feilmeldingReactHookForm } from '../validering';
+import { feilmeldingReactHookForm } from '../feilmeldingReactHookForm';
 
 const SettTilEgenOppgaveListeKnapp = styled(LenkeKnapp)`
     display: inline-block;
