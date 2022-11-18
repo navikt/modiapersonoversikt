@@ -4,14 +4,13 @@ import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import raw from 'raw.macro';
 import styled from 'styled-components/macro';
-import { DecoratorProps, EnhetDisplay, FnrDisplay, RESET_VALUE } from './decoratorprops';
+import { DecoratorProps, EnhetDisplay, FnrDisplay, Hotkey, RESET_VALUE } from './decoratorprops';
 import { fjernBrukerFraPath, paths, setNyBrukerIPath } from '../routes/routing';
 import { matchPath, useHistory } from 'react-router';
 import { useOnMount } from '../../utils/customHooks';
 import PersonsokContainer from '../personsok/Personsok';
 import DecoratorEasterEgg from './EasterEggs/DecoratorEasterEgg';
 import { parseQueryString, useQueryParams } from '../../utils/url-utils';
-import HurtigtastTipsContainer from '../../components/hutigtastTips/HurtigtastTipsContainer';
 import useHandleGosysUrl from './useHandleGosysUrl';
 import { loggEvent } from '../../utils/logger/frontendLogger';
 import { removePrefix } from '../../utils/string-utils';
@@ -19,7 +18,6 @@ import OppdateringsloggContainer, {
     DecoratorButtonId as OppdateringsloggButtonId
 } from '../oppdateringslogg/OppdateringsloggContainer';
 import './personsokKnapp.less';
-import './hurtigtaster.less';
 import './decorator.less';
 import { useValgtenhet } from '../../context/valgtenhet-state';
 
@@ -31,9 +29,6 @@ const etterSokefelt = `
         <div class="knapper_container">
           <button class="personsok-button" id="toggle-personsok" aria-label="Åpne avansert søk" title="Åpne avansert søk">
             <span> A <span class="personsok-pil"></span></span>
-          </button>
-          <button class="hurtigtaster-button" id="hurtigtaster-button" aria-label="Åpne hurtigtaster" title="Åpne hurtigtaster">
-            <span class="typo-element hurtigtaster-ikon">?<span class="sr-only">Vis hurtigtaster</span></span>
           </button>
           <button class="${OppdateringsloggButtonId}" id="${OppdateringsloggButtonId}" title="Åpne oppdateringslogg">
             <div class="oppdateringslogg__ikon">
@@ -85,11 +80,13 @@ function lagConfig(
             }
         },
         toggles: {
-            visVeileder: true
+            visVeileder: true,
+            visHotkeys: true
         },
         markup: {
             etterSokefelt: etterSokefelt
         },
+        hotkeys: getHotkeys(),
         // modiacontextholder kjører på samme domene som modiapersonoversikt.
         // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
         useProxy: `https://${window.location.host}/modiapersonoversikt/proxy`
@@ -126,6 +123,76 @@ function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null } {
     };
 }
 
+function getHotkeys(): Hotkey[] {
+    /**
+     * TODO ønskelig å fjerne dobbelt-bokføring her og ved bruken av useHook
+     * hurtigtastene kan definere actions her om det er enkelt (litt avhengig av funksjon)
+     * Evt kan bruken av `useHotkey` hooken føre til at dette blir registrert i en global context som kan brukes her
+     */
+    return [
+        {
+            key: { char: 'O', altKey: true },
+            description: 'Vis oversikt',
+            documentationOnly: true
+        },
+        {
+            key: { char: 'T', altKey: true },
+            description: 'Vis oppfølging',
+            documentationOnly: true
+        },
+        {
+            key: { char: 'M', altKey: true },
+            description: 'Vis meldinger',
+            documentationOnly: true
+        },
+        {
+            key: { char: 'U', altKey: true },
+            description: 'Vis utbetalinger',
+            documentationOnly: true
+        },
+        {
+            key: { char: 'S', altKey: true },
+            description: 'Vis saker',
+            documentationOnly: true
+        },
+        {
+            key: { char: 'Y', altKey: true },
+            description: 'Vis ytelser',
+            documentationOnly: true
+        },
+        {
+            key: { char: 'V', altKey: true },
+            description: 'Vis varsler',
+            documentationOnly: true
+        },
+        {
+            key: { char: 'N', altKey: true },
+            description: 'Åpne/lukke visitkort',
+            documentationOnly: true
+        },
+        {
+            key: { char: 'B', altKey: true },
+            description: 'Gå til personforvalter',
+            documentationOnly: true
+        },
+        {
+            key: { char: 'D', altKey: true },
+            description: 'Gå til modia sosialhjelp',
+            action(event: KeyboardEvent) {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                console.log('pressed Alt + D');
+            }
+        },
+        {
+            key: { char: 'C', altKey: true },
+            description: 'Åpne samtalemaler',
+            documentationOnly: true
+        }
+    ];
+}
+
 function Decorator() {
     const reduxErKlar = useVenterPaRedux();
     const valgtEnhet = useValgtenhet();
@@ -159,7 +226,6 @@ function Decorator() {
                 <>
                     <InternflateDecorator {...config} />
                     <PersonsokContainer />
-                    <HurtigtastTipsContainer />
                     <OppdateringsloggContainer />
                     <DecoratorEasterEgg />
                 </>

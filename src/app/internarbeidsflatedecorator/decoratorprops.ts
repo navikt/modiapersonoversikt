@@ -2,6 +2,7 @@ export const RESET_VALUE = '\u0000';
 
 interface TogglesConfig {
     visVeileder?: boolean;
+    visHotkeys?: boolean;
 }
 
 interface Markup {
@@ -37,12 +38,34 @@ type EnhetContextvalue = Contextvalue<EnhetDisplay>;
 type FnrContextvalue = Contextvalue<FnrDisplay>;
 type ProxyConfig = boolean | string;
 
+export type KeyDescriptionObject = {
+    char: string;
+    altKey?: boolean;
+    ctrlKey?: boolean;
+    metaKey?: boolean;
+    shiftKey?: boolean;
+};
+export type KeyDescription = string | KeyDescriptionObject;
+
+interface BaseHotkey {
+    key: KeyDescription;
+    description: string;
+}
+interface ActionHotkey extends BaseHotkey {
+    action(event: KeyboardEvent): void;
+}
+interface DocumentingHotkey extends BaseHotkey {
+    documentationOnly: boolean;
+}
+export type Hotkey = ActionHotkey | DocumentingHotkey;
+
 export interface DecoratorProps {
     appname: string;
     fnr?: FnrContextvalue;
     enhet?: EnhetContextvalue;
     toggles?: TogglesConfig;
     markup?: Markup;
+    hotkeys?: Hotkey[];
     useProxy?: ProxyConfig;
     accessToken?: string;
 }
