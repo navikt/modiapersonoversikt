@@ -4,9 +4,8 @@ import {
     OpprettSkjermetOppgaveRequest
 } from '../../../../../../../models/meldinger/oppgave';
 import { eldsteMelding } from '../../../utils/meldingerUtils';
-import { OppgaveProps, OppgaveSkjemaForm, SkjermetOppgaveProps, SkjermetOppgaveSkjemaForm } from './oppgaveInterfaces';
+import { OppgaveSkjemaForm, OppgaveSkjemaBegrensetTilgangForm } from './oppgaveInterfaces';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
-import { Mapped, Values } from '@nutgaard/use-formstate';
 
 function captureBuilder(regex: RegExp) {
     return (value: string, capture: number): string | undefined => {
@@ -28,7 +27,6 @@ export const matchEnhet = captureBuilder(/(\d{4}).*/);
 const matchAnsatt = captureBuilder(/.*?\((.+)\)/);
 
 export function lagOppgaveRequest(
-    props: OppgaveProps,
     form: OppgaveSkjemaForm,
     fodselsnummer: string,
     saksbehandlerEnhet: string,
@@ -62,8 +60,7 @@ export function lagOppgaveRequest(
 }
 
 export function lagSkjermetOppgaveRequest(
-    props: SkjermetOppgaveProps,
-    form: Mapped<Values<SkjermetOppgaveSkjemaForm>, string>,
+    form: OppgaveSkjemaBegrensetTilgangForm,
     fodselsnummer: string,
     saksbehandlerEnhet: string
 ): OpprettSkjermetOppgaveRequest {

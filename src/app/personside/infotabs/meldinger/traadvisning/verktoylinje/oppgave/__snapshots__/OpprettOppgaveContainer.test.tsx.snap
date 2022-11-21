@@ -122,12 +122,12 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           aria-invalid={false}
           autoFocus={true}
           className="skjemaelement__input"
+          defaultValue=""
           disabled={false}
           id="valgtTema"
           name="valgtTema"
           onBlur={[Function]}
           onChange={[Function]}
-          value=""
         >
           <option
             disabled={true}
@@ -167,13 +167,14 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
       >
         <select
           aria-invalid={false}
+          autoFocus={false}
           className="skjemaelement__input"
+          defaultValue=""
           disabled={false}
           id="valgtUnderkategori"
           name="valgtUnderkategori"
           onBlur={[Function]}
           onChange={[Function]}
-          value=""
         >
           <option
             value=""
@@ -197,13 +198,14 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
       >
         <select
           aria-invalid={false}
+          autoFocus={false}
           className="skjemaelement__input"
+          defaultValue=""
           disabled={false}
           id="valgtOppgavetype"
           name="valgtOppgavetype"
           onBlur={[Function]}
           onChange={[Function]}
-          value=""
         >
           <option
             disabled={true}
@@ -230,7 +232,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="downshift-0-input"
+            htmlFor="valgtEnhet"
           >
             <span>
               Velg enhet
@@ -244,7 +246,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
             aria-labelledby="downshift-0-label"
             autoComplete="off"
             className="skjemaelement__input input--fullbredde"
-            id="downshift-0-input"
+            id="valgtEnhet"
             name="valgtEnhet"
             onBlur={[Function]}
             onChange={[Function]}
@@ -272,7 +274,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         >
           <label
             className="skjemaelement__label"
-            htmlFor="downshift-1-input"
+            htmlFor="valgtAnsatt"
           >
             Velg ansatt
           </label>
@@ -284,7 +286,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
             aria-labelledby="downshift-1-label"
             autoComplete="off"
             className="skjemaelement__input input--fullbredde"
-            id="downshift-1-input"
+            id="valgtAnsatt"
             name="valgtAnsatt"
             onBlur={[Function]}
             onChange={[Function]}
@@ -316,7 +318,6 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           name="valgtPrioritet"
           onBlur={[Function]}
           onChange={[Function]}
-          value=""
         >
           <option
             disabled={true}

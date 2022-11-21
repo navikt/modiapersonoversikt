@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useCallback, useState } from 'react';
-import PersonsokSkjemaV3 from './PersonsokSkjemaV3';
+import PersonsokSkjema from './PersonsokSkjema';
 import PersonsokResultat from './PersonsokResultat';
 import ModalWrapper from 'nav-frontend-modal';
 import styled from 'styled-components/macro';
@@ -33,7 +33,7 @@ function PersonsokContainer() {
     return (
         <StyledModalWrapper contentLabel="Avansert søk" onRequestClose={handleOnClose} isOpen={apen}>
             <TittelStyle>Avansert Søk</TittelStyle>
-            <PersonsokSkjemaV3 setPosting={setPosting} setResponse={setResponse} />
+            <PersonsokSkjema setPosting={setPosting} setResponse={setResponse} />
             <PersonsokResultat posting={posting} response={response} onClose={() => settApen(false)} />
         </StyledModalWrapper>
     );

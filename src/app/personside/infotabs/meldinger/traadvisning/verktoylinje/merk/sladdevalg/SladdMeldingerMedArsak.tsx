@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SladdeComponentProps } from './Sladdevalg';
 import css from './SladdMeldingerMedArsak.module.css';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { Checkbox, Select, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import { Innholdstittel, Element, Normaltekst } from 'nav-frontend-typografi';
 import { getFormattertMeldingsDato, meldingstittel } from '../../../../utils/meldingerUtils';
 import styled from 'styled-components/macro';
@@ -11,9 +11,10 @@ import useList from '../../../../../../../../utils/hooks/use-list';
 import { Traad } from '../../../../../../../../models/meldinger/meldinger';
 import { datoSynkende } from '../../../../../../../../utils/date-utils';
 import EnkeltMelding from '../../../Enkeltmelding';
-import { feilmelding } from '../../oppgave/validering';
+import { feilmeldingReactHookForm } from '../../oppgave/feilmeldingReactHookForm';
 import { guid } from 'nav-frontend-js-utils';
 import MeldIPortenAdvarsel from './MeldIPortenAdvarsel';
+import FormSelect from '../../../../../../../../components/form/FormSelect';
 
 const PreviewStyle = styled(Normaltekst)`
     width: 100%;
@@ -49,12 +50,12 @@ function ValgteMeldingerPreview(props: { traad: Traad; valgte: string[] }) {
     }
 }
 
-function SladdMeldingerMedArsak(props: SladdeComponentProps) {
+function SladdMeldingerMedArsak({ arsaker, traad, form }: SladdeComponentProps) {
     const checked = useList<string>([]);
     const addChecked = checked.add;
     const removeChecked = checked.remove;
-    const updateFormstate = props.formstate.fields.meldingIder.setValue;
     const feilmeldingId = useRef(guid());
+
     const onChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
             if (e.target.checked) {
@@ -65,11 +66,12 @@ function SladdMeldingerMedArsak(props: SladdeComponentProps) {
         },
         [addChecked, removeChecked]
     );
-    useEffect(() => {
-        updateFormstate(checked.values.join('||'));
-    }, [checked, updateFormstate]);
 
-    const meldingPreviewListe = props.traad.meldinger.map((melding) => (
+    useEffect(() => {
+        form.setValue('meldingIder', checked.values, { shouldValidate: true, shouldDirty: true });
+    }, [checked.values, form]);
+
+    const meldingPreviewListe = traad.meldinger.map((melding) => (
         <li className={css.melding} key={melding.meldingsId}>
             <Checkbox
                 value={melding.meldingsId}
@@ -85,7 +87,8 @@ function SladdMeldingerMedArsak(props: SladdeComponentProps) {
             />
         </li>
     ));
-    const ingenValgteFeilmelding = feilmelding(props.formstate.fields.meldingIder);
+
+    const valgtMeldingFeilmelding = feilmeldingReactHookForm(form, 'meldingIder');
 
     return (
         <div className={css.layout}>
@@ -93,34 +96,32 @@ function SladdMeldingerMedArsak(props: SladdeComponentProps) {
                 <ol>{meldingPreviewListe}</ol>
             </div>
             <div className={css.view}>
-                <ValgteMeldingerPreview traad={props.traad} valgte={checked.values} />
+                <ValgteMeldingerPreview traad={traad} valgte={checked.values} />
             </div>
             <MeldIPortenAdvarsel className={css.alert} />
             <div className={css.action}>
-                <Select
-                    aria-label="Årsak"
-                    {...props.formstate.fields.arsak.input}
-                    feil={feilmelding(props.formstate.fields.arsak)}
-                >
-                    <option value="" disabled selected>
-                        Velg årsak
-                    </option>
-                    {props.arsaker.map((it) => (
-                        <option value={it} key={it}>
-                            {it}
+                <FormSelect aria-label="Årsak" name={'arsak'} form={form} defaultValue="">
+                    <>
+                        <option value="" disabled>
+                            Velg årsak
                         </option>
-                    ))}
-                </Select>
+                        {arsaker.map((it) => (
+                            <option value={it} key={it}>
+                                {it}
+                            </option>
+                        ))}
+                    </>
+                </FormSelect>
                 <div>
                     <Hovedknapp
-                        aria-invalid={!!ingenValgteFeilmelding}
-                        aria-errormessage={ingenValgteFeilmelding ? feilmeldingId.current : undefined}
+                        aria-invalid={!!valgtMeldingFeilmelding}
+                        aria-errormessage={valgtMeldingFeilmelding ? feilmeldingId.current : undefined}
                     >
                         Send til sladding
                     </Hovedknapp>
-                    {ingenValgteFeilmelding && (
+                    {valgtMeldingFeilmelding && (
                         <SkjemaelementFeilmelding id={feilmeldingId.current}>
-                            {ingenValgteFeilmelding}
+                            {valgtMeldingFeilmelding}
                         </SkjemaelementFeilmelding>
                     )}
                 </div>

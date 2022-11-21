@@ -2,7 +2,7 @@ import * as React from 'react';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import AlertStripe from 'nav-frontend-alertstriper';
 import BegrensetTilgangBegrunnelse from '../../components/person/BegrensetTilgangBegrunnelse';
-import OppgaveSkjemaSkjermetPerson from './infotabs/meldinger/traadvisning/verktoylinje/oppgave/skjermetPerson/OppgaveSkjemaSkjermetPerson';
+import OppgaveSkjemaBegrensetTilgang from './infotabs/meldinger/traadvisning/verktoylinje/oppgave/BegrensetTilgang/OppgaveSkjemaBegrensetTilgang';
 import styled from 'styled-components/macro';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useState, useCallback } from 'react';
@@ -32,7 +32,7 @@ function OpprettOppgaveAvvistTilgang() {
         ),
         ifData: (gsaktema) => (
             <Ekspanderbartpanel tittel={'Opprett oppgave'} apen={apen} onClick={togglePanel}>
-                <OppgaveSkjemaSkjermetPerson gsakTema={gsaktema} lukkPanel={togglePanel} />
+                <OppgaveSkjemaBegrensetTilgang gsakTema={gsaktema} lukkPanel={togglePanel} />
             </Ekspanderbartpanel>
         )
     });

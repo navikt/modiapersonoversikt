@@ -3,9 +3,16 @@ import { useEffect, useMemo, useState } from 'react';
 import { Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
 import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
+import { OppgaveSkjemaForm } from './oppgaveInterfaces';
+import { UseFormReturn } from 'react-hook-form';
 
-function useForeslatteEnheter(temakode?: string, typekode?: string, underkategori?: string) {
+function useForeslatteEnheter({ watch }: UseFormReturn<OppgaveSkjemaForm>) {
     const fnr = useFodselsnummer();
+
+    const temakode = watch('valgtTema');
+    const typekode = watch('valgtOppgavetype');
+    const underkategori = watch('valgtUnderkategori');
+
     const [foreslatteEnheter, setForeslatteEnheter] = useState<Enhet[]>([]);
     const [pending, setPending] = useState(false);
 

@@ -1,19 +1,12 @@
-import React, {
-    ChangeEvent,
-    ChangeEventHandler,
-    FocusEventHandler,
-    FocusEvent,
-    useEffect,
-    useRef,
-    useState
-} from 'react';
-import Downshift, { ControllerStateAndHelpers } from 'downshift';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import Downshift, { ControllerStateAndHelpers, StateChangeOptions } from 'downshift';
 import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
 import theme from '../../../../../../../styles/personOversiktTheme';
 import { Input, InputProps } from 'nav-frontend-skjema';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import EtikettGraa from '../../../../../../../components/EtikettGraa';
+import { useAutoCompleteSuggestions } from './useAutoCompleteSuggestions';
 
 const DropDownWrapper = styled.div`
     ul {
@@ -56,12 +49,9 @@ const InputfeltWrapper = styled.div`
 `;
 
 interface Props {
-    input: {
-        name: string;
-        value: string;
-        onChange: ChangeEventHandler;
-        onBlur: FocusEventHandler;
-    };
+    value?: string;
+    setValue: (newValue?: string | null) => void;
+    name: string;
     label: React.ReactNode;
     suggestions: string[];
     topSuggestions?: string[];
@@ -84,11 +74,10 @@ function SuggestionMarkup<Item>(props: { item: Item; helpers: ControllerStateAnd
 }
 
 function AutoComplete(props: Props) {
-    const inputRef = useRef<HTMLInputElement>();
     const [input, setInput] = useState('');
-    const [hightlightedItem, setHightlightedItem] = useState<string | undefined>(undefined);
+    const [hightlightedItem, setHightlightedItem] = useState<string>();
 
-    const { value } = props.input;
+    const { value, setValue } = props;
 
     useEffect(() => {
         if (value) {
@@ -96,47 +85,33 @@ function AutoComplete(props: Props) {
         }
     }, [value]);
 
-    const showItemBasedOnInput = (input: string | null) => (item: string) => {
-        if (!input || input === '') {
-            return true;
-        }
-        if (value && input === value) {
-            // Denne sjekken sørger for at man får opp alle alternativer når man kommer tilbake til et felt som allerede er satt.
-            return true;
-        }
-        return item.toLowerCase().includes(input.toLowerCase());
-    };
+    const { filteredSuggestions, filteredTopSuggestions } = useAutoCompleteSuggestions({
+        value,
+        input,
+        suggestions: props.suggestions,
+        topSuggestions: props.topSuggestions
+    });
 
-    const filteredTopSuggetions = props.topSuggestions ? props.topSuggestions.filter(showItemBasedOnInput(input)) : [];
-    const itemNotInTopSuggestions = (item: string) => !filteredTopSuggetions.some((it) => it === item);
-    const filteredSuggestions = props.suggestions.filter(showItemBasedOnInput(input)).filter(itemNotInTopSuggestions);
-
-    const setValue = (item: string) =>
-        props.input.onChange({
-            target: inputRef.current,
-            currentTarget: inputRef.current
-        } as ChangeEvent<HTMLInputElement>);
-
-    const handleStateChange = (changes: any) => {
+    function handleStateChange(changes: StateChangeOptions<string>) {
         if (changes.hasOwnProperty('selectedItem')) {
             setValue(changes.selectedItem);
             setHightlightedItem(undefined);
         } else if (typeof changes.highlightedIndex === 'number') {
-            const highlightedItem = [...filteredTopSuggetions, ...filteredSuggestions][changes.highlightedIndex];
+            const highlightedItem = [...filteredTopSuggestions, ...filteredSuggestions][changes.highlightedIndex];
             highlightedItem && setHightlightedItem(highlightedItem);
         } else if (changes.isOpen === false) {
             // isOpen er kun false idet autocomplete blir lukket
             hightlightedItem && changes.selectedItem && setValue(hightlightedItem);
         }
-    };
+    }
 
     return (
-        <Downshift
+        <Downshift<string>
             inputValue={input}
             selectedItem={value || null}
             onInputValueChange={(i) => setInput(i)}
             onStateChange={handleStateChange}
-            itemToString={(item: string | null) => (item ? item : '')}
+            itemToString={(item) => (item ? item : '')}
         >
             {(helpers: ControllerStateAndHelpers<string>) => {
                 const inputProps: Partial<InputProps> = helpers.getInputProps({
@@ -144,9 +119,6 @@ function AutoComplete(props: Props) {
                         if (e.target.value === '') {
                             helpers.clearSelection();
                         }
-                    },
-                    onBlur: (e: FocusEvent<HTMLInputElement>) => {
-                        props.input.onBlur(e);
                     }
                 });
 
@@ -155,12 +127,11 @@ function AutoComplete(props: Props) {
                         <InputfeltWrapper>
                             <Input
                                 {...inputProps}
-                                inputRef={(el) => {
-                                    inputRef.current = el || undefined;
-                                }}
-                                name={props.input.name}
+                                id={props.name}
+                                name={props.name}
                                 feil={props.feil}
                                 label={props.label}
+                                value={input ?? ''}
                                 onFocus={() => helpers.openMenu()}
                             />
                             {props.spinner && <StyledSpinner type={'S'} />}
@@ -168,14 +139,14 @@ function AutoComplete(props: Props) {
                         {helpers.isOpen ? (
                             <DropDownWrapper>
                                 <ul>
-                                    {filteredTopSuggetions.length > 0 && (
+                                    {filteredTopSuggestions.length > 0 && (
                                         <>
                                             <li aria-hidden="true">
                                                 <EtikettGraa>
                                                     {props.topSuggestionsLabel || 'Anbefalte forslag'}
                                                 </EtikettGraa>
                                             </li>
-                                            {filteredTopSuggetions.map((item) => (
+                                            {filteredTopSuggestions.map((item) => (
                                                 <SuggestionMarkup key={item} item={item} helpers={helpers} />
                                             ))}
                                             <li aria-hidden="true">
