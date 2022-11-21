@@ -89,7 +89,7 @@ function OppgaveSkjema(props: OppgaveProps) {
     }
 
     if (resultat) {
-        <OppgaveSkjemaResultat resultat={resultat} lukkPanel={props.lukkPanel} />;
+        return <OppgaveSkjemaResultat resultat={resultat} lukkPanel={props.lukkPanel} />;
     }
 
     const knappetekst = props.onSuccessCallback ? 'Merk som kontorsperret' : 'Opprett oppgave';
