@@ -12,8 +12,11 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link rel="stylesheet" href="%REACT_APP_HODE_URL%/v2.1/static/css/main.css" />
     <script>
+	// Må ligge som egen variabel for å lure react-script sin minify-js
+	const useAzureApiProxy = "$unleash{modiapersonoversikt.use-azure-api-proxy}";
+
         const applicationFeatureToggles = {
-            useAzureApiProxy: '$unleash{modiapersonoversikt.use-azure-api-proxy}' === 'true'
+            useAzureApiProxy: useAzureApiProxy === 'true'
         };
     </script>
     <script src="%PUBLIC_URL%/appDynamics.js"></script>
