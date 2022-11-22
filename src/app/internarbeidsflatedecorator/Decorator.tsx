@@ -129,6 +129,8 @@ function getHotkeys(): Hotkey[] {
      * hurtigtastene kan definere actions her om det er enkelt (litt avhengig av funksjon)
      * Evt kan bruken av `useHotkey` hooken føre til at dette blir registrert i en global context som kan brukes her
      */
+    const isProd = window.location.host === 'app.adeo.no';
+    const naisInternNavDomain = isProd ? '.intern.nav.no' : '.dev.intern.nav.no';
     return [
         {
             key: { char: 'O', altKey: true },
@@ -176,19 +178,18 @@ function getHotkeys(): Hotkey[] {
             documentationOnly: true
         },
         {
+            key: { char: 'C', altKey: true },
+            description: 'Åpne samtalemaler',
+            documentationOnly: true
+        },
+        {
             key: { char: 'D', altKey: true },
             description: 'Gå til modia sosialhjelp',
             action(event: KeyboardEvent) {
                 event.preventDefault();
-                event.stopPropagation();
-                event.stopImmediatePropagation();
-                console.log('pressed Alt + D');
+                const url = `https://sosialhjelp-modia${naisInternNavDomain}/sosialhjelp/modia/`;
+                window.open(url, '_blank');
             }
-        },
-        {
-            key: { char: 'C', altKey: true },
-            description: 'Åpne samtalemaler',
-            documentationOnly: true
         }
     ];
 }
