@@ -2,7 +2,7 @@ declare global {
     interface Window {
         erChatvisning: boolean;
         applicationFeatureToggles: {
-            'modiapersonoversikt.use-azure-api-proxy': boolean;
+            'modiapersonoversikt.use-azure-api-proxy': string;
         };
     }
 }

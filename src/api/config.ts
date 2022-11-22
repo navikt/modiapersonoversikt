@@ -16,5 +16,6 @@ export const includeCredentials: RequestInit = { credentials: 'include' };
 
 const appFeatureToggles = window.applicationFeatureToggles || {};
 const useAzureAd =
-    window.location.search.includes('azuread') || appFeatureToggles['modiapersonoversikt.use-azure-api-proxy'];
+    window.location.search.includes('azuread') ||
+    appFeatureToggles['modiapersonoversikt.use-azure-api-proxy'] === 'true';
 export const apiBaseUri = useAzureAd ? '/modiapersonoversikt/proxy/azure-api' : '/modiapersonoversikt/proxy/api';
