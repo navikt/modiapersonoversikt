@@ -3,7 +3,7 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import Spinner from 'nav-frontend-spinner';
 import styled from 'styled-components/macro';
-import InnstillingerModalForm from './innstillinger-modal-form';
+import InnstillingerModalForm from './InnstillingerModalForm';
 import innstillingerResource from '../../../rest/resources/innstillingerResource';
 
 const CenteringDiv = styled.div`

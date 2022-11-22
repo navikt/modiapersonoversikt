@@ -21,7 +21,11 @@ function PersonsokResultat(props: Props) {
     }
 
     if (hasError(props.response)) {
-        return <AlertStripeAdvarsel>{props.response.message}</AlertStripeAdvarsel>;
+        let message = props.response.message;
+        if (!message || !message.length) {
+            message = 'Det skjedde en feil ved søk.';
+        }
+        return <AlertStripeAdvarsel>{message}</AlertStripeAdvarsel>;
     }
 
     const data = props.response.data;
