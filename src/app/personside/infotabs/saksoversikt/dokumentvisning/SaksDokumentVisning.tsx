@@ -9,6 +9,7 @@ import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import styled from 'styled-components';
 import { getMockableUrl } from './mockable-dokument-url';
 import { parseQueryString } from '../../../../../utils/url-utils';
+import { apiBaseUri } from '../../../../../api/config';
 
 interface Props {
     fnr: string;
@@ -53,7 +54,7 @@ function DokumentVisning(props: Props) {
 
 function byggDokumentVisningUrl(url: string, fodselsnummer: string): string {
     const { journalpost, dokument } = parseQueryString<{ journalpost: string; dokument: string }>(url); // Format til url: 'journalpost=etcoicxr&dokument=q90p8dnw'
-    return `/modiapersonoversikt-api/rest/saker/${fodselsnummer}/dokument/${journalpost}/${dokument}`;
+    return `${apiBaseUri}/saker/${fodselsnummer}/dokument/${journalpost}/${dokument}`;
 }
 
 function feilmelding(statusKode: number) {
