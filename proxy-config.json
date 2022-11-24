@@ -26,6 +26,7 @@
     },
     {
         "prefix": "proxy/api",
-        "url": "http://modiapersonoversikt-api.personoversikt.svc.nais.local/modiapersonoversikt-api/rest"
+        "url": "http://modiapersonoversikt-api.personoversikt.svc.nais.local/modiapersonoversikt-api/rest",
+        "rewriteDirectives": ["SET_ON_BEHALF_OF_TOKEN prod-fss personoversikt modiapersonoversikt-api"]
     }
 ]
