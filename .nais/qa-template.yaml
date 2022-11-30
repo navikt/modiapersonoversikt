@@ -54,20 +54,6 @@ spec:
       value: "/preprod-proxy-config.json"
     - name: MILJO_SUFFIX
       value: "-{{ q_env }}"
-    - name: IDP_DISCOVERY_URL
-      value: "https://isso-q.adeo.no/isso/oauth2/.well-known/openid-configuration"
-    - name: IDP_CLIENT_ID
-      value: "modialogin-{{ q_env }}"
-    - name: IDP_ISSUER
-      value: "https://isso-q.adeo.no:443/isso/oauth2"
-    - name: DELEGATED_LOGIN_URL
-      value: "https://app-{{ q_env }}.adeo.no/modialogin/api/start"
-    - name: DELEGATED_REFRESH_URL
-      value: "https://app-{{ q_env }}.adeo.no/modialogin/api/refresh"
-    - name: AUTH_TOKEN_RESOLVER
-      value: "modia_ID_token"
-    - name: APP_ADEO_DOMAIN
-      value: "https://app-{{ q_env}}.adeo.no"
     - name: UNLEASH_API_URL
       value: "https://unleash.nais.io/api/"
     - name: CSP_DIRECTIVES
