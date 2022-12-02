@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef } from 'react';
 import debounce from 'lodash.debounce';
 import { loggError, loggInfo } from '../../../utils/logger/frontendLogger';
 import WebSocketImpl, { Status } from '../../../utils/websocket-impl';
+import { FetchError } from '../../../api/api';
 
 export interface DraftContext {
     [key: string]: string;
@@ -32,7 +33,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
     useEffect(() => {
         const urlProvider = async (ws: WebSocketImpl) => {
             const response: Response = await fetch(`/modiapersonoversikt/proxy/modia-draft/api/generate-uid`);
-            if (response.status === 401) {
+            if (!response.ok) {
                 ws.close();
                 return '\u0000';
             } else {
@@ -78,7 +79,13 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             .join('&');
 
         fetch(`/modiapersonoversikt/proxy/modia-draft/api/draft?exact=true&${queryParams}`)
-            .then((resp) => resp.json())
+            .then((resp) => {
+                if (resp.ok) {
+                    return resp.json();
+                } else {
+                    throw new FetchError(resp, 'Feil ved uthenting av draft');
+                }
+            })
             .then((json: Array<Draft>) => {
                 if (json.length > 0) {
                     ifPresent(json[0]);
