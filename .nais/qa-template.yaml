@@ -45,6 +45,8 @@ spec:
       claims:
         groups:
           - id: "67a06857-0028-4a90-bf4c-9c9a92c7d733" # 0000-GA-BD06_ModiaGenerellTilgang
+  vault:
+    enabled: true
   env:
     - name: APP_NAME
       value: "modiapersonoversikt"
