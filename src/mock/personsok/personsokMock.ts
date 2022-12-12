@@ -221,6 +221,7 @@ export function mockStaticPersonsokResponse(): PersonsokResponse[] {
 
 export function mockStaticPersonsokRequest(): PersonsokRequestV3 {
     return {
+        enhet: '0219',
         navn: 'Aremark'
     };
 }
