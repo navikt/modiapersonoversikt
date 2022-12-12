@@ -92,25 +92,25 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   padding: .5rem;
 }
 
-.c21 {
+.c22 {
   color: #645f5a;
   margin-top: 3px;
 }
 
-.c21 .typo-etikett-liten {
+.c22 .typo-etikett-liten {
   line-height: 1rem;
 }
 
-.c23 {
+.c24 {
   margin-left: 0.5rem;
 }
 
-.c23 svg {
+.c24 svg {
   position: relative;
   top: 2px;
 }
 
-.c23:hover {
+.c24:hover {
   color: #005b82;
 }
 
@@ -170,8 +170,19 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
   order: 1;
 }
 
-.c22 ul {
+.c23 ul {
   list-style: disc;
+}
+
+.c21 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .c16 {
@@ -897,13 +908,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          7181o3jv
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            7181o3jv
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -960,7 +975,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         </div>
                       </div>
                       <div
-                        className="c22"
+                        className="c23"
                       >
                         <p
                           className="typo-normal"
@@ -996,13 +1011,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          40xxap7t
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            40xxap7t
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -1044,7 +1063,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                             Inntektsopplysninger
                           </a>
                           <a
-                            className="c23 lenke typo-element"
+                            className="c24 lenke typo-element"
                             download={true}
                             href="journalpost=etcoicxr&dokument=q90p8dnw"
                             title="Last ned"
@@ -1074,7 +1093,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         </div>
                       </div>
                       <div
-                        className="c22"
+                        className="c23"
                       >
                         <p
                           className="typo-normal"
@@ -1094,7 +1113,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                               A-inntekt (Skjermet)
                             </a>
                             <a
-                              className="c23 lenke typo-element"
+                              className="c24 lenke typo-element"
                               download={true}
                               href="journalpost=etcoicxr&dokument=fbp2nc3l"
                               title="Last ned"
@@ -1123,7 +1142,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                               Referat fra samtale på telefon
                             </a>
                             <a
-                              className="c23 lenke typo-element"
+                              className="c24 lenke typo-element"
                               download={true}
                               href="journalpost=etcoicxr&dokument=x2njhynn"
                               title="Last ned"
@@ -1154,13 +1173,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          4g9b0ecf
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            4g9b0ecf
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -1233,7 +1256,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         </div>
                       </div>
                       <div
-                        className="c22"
+                        className="c23"
                       >
                         <p
                           className="typo-normal"
@@ -1253,7 +1276,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                               Spørsmål via nav.no
                             </a>
                             <a
-                              className="c23 lenke typo-element"
+                              className="c24 lenke typo-element"
                               download={true}
                               href="journalpost=lidtmy7n&dokument=428dwf43"
                               title="Last ned"
@@ -1291,13 +1314,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          53kj7i18
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            53kj7i18
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -1339,7 +1366,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                             Spørsmål via nav.no
                           </a>
                           <a
-                            className="c23 lenke typo-element"
+                            className="c24 lenke typo-element"
                             download={true}
                             href="journalpost=fg1w15sz&dokument=nvqxc1ip"
                             title="Last ned"
@@ -1371,13 +1398,29 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          huuael8f
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            huuael8f
+                          </p>
+                        </div>
+                        <div
+                          className="c22"
+                        >
+                          <p
+                            className="typo-undertekst"
+                          >
+                            <div>
+                              Lest: 
+                              27.07.2017 02:00
+                            </div>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -1419,7 +1462,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                             Automatisk vedtak/nyfødt barn
                           </a>
                           <a
-                            className="c23 lenke typo-element"
+                            className="c24 lenke typo-element"
                             download={true}
                             href="journalpost=o5z5pcse&dokument=me3wv1le"
                             title="Last ned"
@@ -1449,7 +1492,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         </div>
                       </div>
                       <div
-                        className="c22"
+                        className="c23"
                       >
                         <p
                           className="typo-normal"
@@ -1471,13 +1514,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          chsgwugz
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            chsgwugz
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -1534,7 +1581,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         </div>
                       </div>
                       <div
-                        className="c22"
+                        className="c23"
                       >
                         <p
                           className="typo-normal"
@@ -1554,7 +1601,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                               A-inntekt
                             </a>
                             <a
-                              className="c23 lenke typo-element"
+                              className="c24 lenke typo-element"
                               download={true}
                               href="journalpost=h6p0iy3l&dokument=k51y90us"
                               title="Last ned"
@@ -1578,13 +1625,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          q8mlv7u2
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            q8mlv7u2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -1641,7 +1692,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                         </div>
                       </div>
                       <div
-                        className="c22"
+                        className="c23"
                       >
                         <p
                           className="typo-normal"
@@ -1665,13 +1716,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          q8mlv7u2
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            q8mlv7u2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -1730,13 +1785,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          z0vfuifa
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            z0vfuifa
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -1801,7 +1860,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                             Vurdering feilutbetaling/revurdering
                           </a>
                           <a
-                            className="c23 lenke typo-element"
+                            className="c24 lenke typo-element"
                             download={true}
                             href="journalpost=fhtkfp66&dokument=bjol9s20"
                             title="Last ned"
@@ -1833,13 +1892,29 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          xlseaqei
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            xlseaqei
+                          </p>
+                        </div>
+                        <div
+                          className="c22"
+                        >
+                          <p
+                            className="typo-undertekst"
+                          >
+                            <div>
+                              Lest: 
+                              27.07.2016 02:00
+                            </div>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -1881,7 +1956,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                             Spørsmål via nav.no
                           </a>
                           <a
-                            className="c23 lenke typo-element"
+                            className="c24 lenke typo-element"
                             download={true}
                             href="journalpost=s9765sz0&dokument=113wxk3r"
                             title="Last ned"
@@ -1913,13 +1988,29 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          chqjww4b
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            chqjww4b
+                          </p>
+                        </div>
+                        <div
+                          className="c22"
+                        >
+                          <p
+                            className="typo-undertekst"
+                          >
+                            <div>
+                              Lest: 
+                              27.07.2016 02:00
+                            </div>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -1961,7 +2052,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                             Innhenting av opplysninger
                           </a>
                           <a
-                            className="c23 lenke typo-element"
+                            className="c24 lenke typo-element"
                             download={true}
                             href="journalpost=aamyoz7n&dokument=mt1cssx0"
                             title="Last ned"
@@ -1993,13 +2084,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          j6odo6im
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            j6odo6im
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -2058,13 +2153,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          ti2t0c00
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            ti2t0c00
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -2106,7 +2205,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                             Referat fra samtale på telefon
                           </a>
                           <a
-                            className="c23 lenke typo-element"
+                            className="c24 lenke typo-element"
                             download={true}
                             href="journalpost=cmlub095&dokument=nnp1em30"
                             title="Last ned"
@@ -2138,13 +2237,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          seeuzleo
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            seeuzleo
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>
@@ -2186,7 +2289,7 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                             A-inntekt
                           </a>
                           <a
-                            className="c23 lenke typo-element"
+                            className="c24 lenke typo-element"
                             download={true}
                             href="journalpost=ai9t2h2n&dokument=gplzp0ho"
                             title="Last ned"
@@ -2218,13 +2321,17 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                       <div
                         className="c21"
                       >
-                        <p
-                          className="typo-undertekst"
+                        <div
+                          className="c22"
                         >
-                          Alle tema
-                           / Saksid: 
-                          d4zxe6cm
-                        </p>
+                          <p
+                            className="typo-undertekst"
+                          >
+                            Alle tema
+                             / Saksid: 
+                            d4zxe6cm
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>

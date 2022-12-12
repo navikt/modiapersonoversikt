@@ -4,6 +4,7 @@ export interface Journalpost {
     id: string;
     retning: Kommunikasjonsretning;
     dato: Saksdato;
+    lestDato: string | null;
     navn: string;
     journalpostId: string | null;
     hoveddokument: Dokument;

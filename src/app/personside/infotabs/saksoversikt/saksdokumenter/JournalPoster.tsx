@@ -12,7 +12,7 @@ import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types'
 import LenkeNorg from '../utils/LenkeNorg';
 import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import { datoSynkende } from '../../../../../utils/date-utils';
-import JournalpostListeElement from './JournalpostListeElement';
+import JournalpostListeElement from './JournalPostListeElement/JournalpostListeElement';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useEffect, useRef } from 'react';

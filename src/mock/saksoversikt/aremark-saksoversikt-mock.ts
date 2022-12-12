@@ -20,6 +20,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'u9fcztqt',
                     retning: Kommunikasjonsretning.Intern,
                     dato: { år: 2018, måned: 8, dag: 3, time: 17, minutt: 11, sekund: 8 },
+                    lestDato: null,
                     navn: 'Silje',
                     journalpostId: 'yna3blpi',
                     hoveddokument: {
@@ -71,6 +72,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'jg2nbv00',
                     retning: Kommunikasjonsretning.Inn,
                     dato: { år: 2017, måned: 2, dag: 28, time: 23, minutt: 50, sekund: 24 },
+                    lestDato: null,
                     navn: 'Benjamin',
                     journalpostId: 'h6p0iy3l',
                     hoveddokument: {
@@ -106,6 +108,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'jg2nbv00_null',
                     retning: Kommunikasjonsretning.Inn,
                     dato: { år: 2017, måned: 2, dag: 28, time: 23, minutt: 50, sekund: 24 },
+                    lestDato: null,
                     navn: 'Benjamin',
                     journalpostId: null,
                     hoveddokument: {
@@ -141,6 +144,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'odiio5ou',
                     retning: Kommunikasjonsretning.Intern,
                     dato: { år: 2018, måned: 12, dag: 5, time: 5, minutt: 29, sekund: 17 },
+                    lestDato: null,
                     navn: 'Madeleine',
                     journalpostId: 'jnrrue6e',
                     hoveddokument: {
@@ -167,6 +171,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'qsoer38m',
                     retning: Kommunikasjonsretning.Inn,
                     dato: { år: 2017, måned: 2, dag: 10, time: 10, minutt: 1, sekund: 25 },
+                    lestDato: null,
                     navn: 'Kristine',
                     journalpostId: 'kty2aa9i',
                     hoveddokument: {
@@ -242,6 +247,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'wdxbl8gq',
                     retning: Kommunikasjonsretning.Ut,
                     dato: { år: 2017, måned: 7, dag: 27, time: 14, minutt: 45, sekund: 32 },
+                    lestDato: new Date('2017-07-27').toISOString(),
                     navn: 'Eline',
                     journalpostId: 'fg1w15sz',
                     hoveddokument: {
@@ -268,6 +274,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: '44i6gvf6',
                     retning: Kommunikasjonsretning.Inn,
                     dato: { år: 2018, måned: 3, dag: 18, time: 11, minutt: 27, sekund: 29 },
+                    lestDato: null,
                     navn: 'Thea',
                     journalpostId: 'etcoicxr',
                     hoveddokument: {
@@ -319,6 +326,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: '9mwcks8v',
                     retning: Kommunikasjonsretning.Intern,
                     dato: { år: 2017, måned: 3, dag: 17, time: 9, minutt: 21, sekund: 37 },
+                    lestDato: null,
                     navn: 'Mari',
                     journalpostId: 'o5z5pcse',
                     hoveddokument: {
@@ -354,6 +362,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'uja0czql',
                     retning: Kommunikasjonsretning.Inn,
                     dato: { år: 2016, måned: 11, dag: 15, time: 12, minutt: 5, sekund: 27 },
+                    lestDato: null,
                     navn: 'Sebastian',
                     journalpostId: 'aamyoz7n',
                     hoveddokument: {
@@ -405,6 +414,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: '03fmouny',
                     retning: Kommunikasjonsretning.Intern,
                     dato: { år: 2016, måned: 5, dag: 15, time: 12, minutt: 34, sekund: 31 },
+                    lestDato: null,
                     navn: 'Håkon',
                     journalpostId: 'cmlub095',
                     hoveddokument: {
@@ -488,6 +498,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: '1ml24a5l',
                     retning: Kommunikasjonsretning.Ut,
                     dato: { år: 2016, måned: 12, dag: 26, time: 7, minutt: 44, sekund: 1 },
+                    lestDato: new Date('2016-07-27').toISOString(),
                     navn: 'Noah',
                     journalpostId: 'fhtkfp66',
                     hoveddokument: {
@@ -514,6 +525,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'ean9mtio',
                     retning: Kommunikasjonsretning.Ut,
                     dato: { år: 2016, måned: 12, dag: 19, time: 2, minutt: 27, sekund: 7 },
+                    lestDato: new Date('2016-07-27').toISOString(),
                     navn: 'Mats',
                     journalpostId: 's9765sz0',
                     hoveddokument: {
@@ -560,6 +572,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'afp4donc',
                     retning: Kommunikasjonsretning.Intern,
                     dato: { år: 2017, måned: 11, dag: 21, time: 17, minutt: 15, sekund: 34 },
+                    lestDato: null,
                     navn: 'Maren',
                     journalpostId: 'lidtmy7n',
                     hoveddokument: {
@@ -611,6 +624,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'v2l20frr',
                     retning: Kommunikasjonsretning.Intern,
                     dato: { år: 2016, måned: 3, dag: 12, time: 8, minutt: 4, sekund: 34 },
+                    lestDato: null,
                     navn: 'Jonathan',
                     journalpostId: 'ai9t2h2n',
                     hoveddokument: {
@@ -637,6 +651,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'cjfcu3p7',
                     retning: Kommunikasjonsretning.Inn,
                     dato: { år: 2016, måned: 5, dag: 24, time: 6, minutt: 39, sekund: 41 },
+                    lestDato: null,
                     navn: 'Martine',
                     journalpostId: 'wgh1hlqa',
                     hoveddokument: {

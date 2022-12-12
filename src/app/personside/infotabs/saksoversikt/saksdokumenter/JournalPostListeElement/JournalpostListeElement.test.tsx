@@ -1,13 +1,13 @@
 import * as React from 'react';
 import JournalpostListeElement from './JournalpostListeElement';
-import TestProvider from '../../../../../test/Testprovider';
-import { getStaticMockSaksoversikt } from '../../../../../mock/saksoversikt/saksoversikt-mock';
-import { getTestStore } from '../../../../../test/testStore';
-import { Journalpost, Feilmelding } from '../../../../../models/saksoversikt/journalpost';
+import TestProvider from '../../../../../../test/Testprovider';
+import { getStaticMockSaksoversikt } from '../../../../../../mock/saksoversikt/saksoversikt-mock';
+import { getTestStore } from '../../../../../../test/testStore';
+import { Journalpost, Feilmelding } from '../../../../../../models/saksoversikt/journalpost';
 import { mount } from 'enzyme';
-import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
-import DokumentIkon from '../../../../../svg/DokumentIkon';
-import { aggregertSakstema } from '../utils/saksoversiktUtils';
+import DokumentIkkeTilgangIkon from '../../../../../../svg/DokumentIkkeTilgangIkon';
+import DokumentIkon from '../../../../../../svg/DokumentIkon';
+import { aggregertSakstema } from '../../utils/saksoversiktUtils';
 
 describe('JournalpostListeElement', () => {
     const staticSaksoversikt = getStaticMockSaksoversikt();
