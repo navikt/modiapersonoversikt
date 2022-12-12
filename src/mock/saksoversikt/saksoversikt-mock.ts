@@ -64,7 +64,7 @@ function getSakstema(): Sakstema {
         erGruppert: faker.random.boolean(),
         behandlingskjeder: getBehandlingskjeder(faker, navfaker),
         dokumentMetadata: getJournalposter(faker, navfaker, tema),
-        tilhørendeSaker: fyllRandomListe(() => getSak(tema[0]), 15),
+        tilhorendeSaker: fyllRandomListe(() => getSak(tema[0]), 15),
         feilkoder: getFeilkoder()
     };
 }
@@ -74,7 +74,7 @@ function getSak(temakode: string): Sak {
         temakode: temakode,
         saksid: faker.random.alphaNumeric(8),
         fagsaksnummer: faker.random.alphaNumeric(8),
-        avsluttet: getSaksdato(navfaker),
+        avsluttetV2: getSaksdato(navfaker),
         fagsystem: faker.random.alphaNumeric(5),
         baksystem: getBaksystem(navfaker)
     };

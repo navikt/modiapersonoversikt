@@ -1,6 +1,5 @@
 import { Journalpost } from './journalpost';
 import { Sak } from './sak';
-import { Saksdato } from './fellesSak';
 
 export interface SakstemaResponse {
     resultat: Sakstema[];
@@ -13,7 +12,7 @@ export interface Sakstema {
     erGruppert: boolean;
     behandlingskjeder: Behandlingskjede[];
     dokumentMetadata: Journalpost[];
-    tilhørendeSaker: Sak[];
+    tilhorendeSaker: Sak[];
     feilkoder: number[];
 }
 
@@ -25,5 +24,5 @@ export enum Behandlingsstatus {
 
 export interface Behandlingskjede {
     status: Behandlingsstatus;
-    sistOppdatert: Saksdato;
+    sistOppdatertV2: string;
 }
