@@ -45,6 +45,8 @@ spec:
       claims:
         groups:
           - id: "67a06857-0028-4a90-bf4c-9c9a92c7d733" # 0000-GA-BD06_ModiaGenerellTilgang
+  vault:
+    enabled: true
   env:
     - name: APP_NAME
       value: "modiapersonoversikt"
@@ -68,5 +70,7 @@ spec:
       report-uri https://sentry.gc.nav.no/api/145/security/?sentry_key=b07212ac0fce4245b88145ad95706ce7&sentry_environment=preprod&sentry_release={{ version }};"
     - name: REFERRER_POLICY
       value: "no-referrer"
-    - name: DISABLE_OPEN_AM
-      value: "true"
+    - name: DATABASE_JDBC_URL
+      value: "jdbc:postgresql://b27dbvl030.preprod.local:5432/modiapersonoversikt"
+    - name: VAULT_MOUNTPATH
+      value: "postgresql/preprod-fss/"

@@ -1,10 +1,10 @@
-import { Baksystem, Saksdato } from './fellesSak';
+import { Baksystem } from './fellesSak';
 
 export interface Sak {
     temakode: string;
     saksid: string;
     fagsaksnummer: string;
-    avsluttet: Saksdato;
+    avsluttetV2: string;
     fagsystem: string;
     baksystem: Baksystem;
 }

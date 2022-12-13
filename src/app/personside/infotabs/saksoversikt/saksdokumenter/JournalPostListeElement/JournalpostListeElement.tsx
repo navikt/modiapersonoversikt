@@ -99,7 +99,7 @@ function utgaendeTekst(mottaker: Entitet, mottakernavn: string) {
 }
 
 function formaterDatoOgAvsender(brukernavn: string, dokument: Journalpost) {
-    const dato = dayjs(saksdatoSomDate(dokument.dato)).format('DD.MM.YYYY');
+    const dato = dayjs(saksdatoSomDate(dokument.datoV2)).format('DD.MM.YYYY');
     return `${dato} / ${tekstBasertPaRetning(brukernavn, dokument)}`;
 }
 
@@ -124,10 +124,10 @@ function JournalpostListeElement(props: Props) {
     };
 
     const harTilgangTilJournalpost = (journalpost: Journalpost) => {
-        const saksid = journalpost.tilhørendeFagsaksid
-            ? journalpost.tilhørendeFagsaksid
-            : journalpost.tilhørendeSaksid
-            ? journalpost.tilhørendeSaksid
+        const saksid = journalpost.tilhorendeFagsaksid
+            ? journalpost.tilhorendeFagsaksid
+            : journalpost.tilhorendeSaksid
+            ? journalpost.tilhorendeSaksid
             : '';
         return (
             props.harTilgangTilSakstema &&
@@ -139,7 +139,7 @@ function JournalpostListeElement(props: Props) {
     const journalpost = props.journalpost;
     const brukersNavn = brukerResponse.data ? hentNavn(brukerResponse.data.person.navn.firstOrNull()) : '';
 
-    const saksid = journalpost.tilhørendeFagsaksid ? journalpost.tilhørendeFagsaksid : journalpost.tilhørendeSaksid;
+    const saksid = journalpost.tilhorendeFagsaksid ? journalpost.tilhorendeFagsaksid : journalpost.tilhorendeSaksid;
     const saksvisning =
         props.valgtSakstema.temakode === sakstemakodeAlle ? (
             <EtikettGraa>

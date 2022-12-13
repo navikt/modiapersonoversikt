@@ -1,15 +1,16 @@
 import NavFaker from 'nav-faker/dist/navfaker';
-import { Baksystem, Saksdato } from '../../models/saksoversikt/fellesSak';
+import { Baksystem } from '../../models/saksoversikt/fellesSak';
 
-export function getSaksdato(navfaker: NavFaker): Saksdato {
-    return {
-        år: navfaker.random.integer(2018, 2016),
-        måned: navfaker.random.integer(12, 1),
-        dag: navfaker.random.integer(28, 1),
-        time: navfaker.random.integer(23, 1),
-        minutt: navfaker.random.integer(59, 1),
-        sekund: navfaker.random.integer(59, 1)
-    };
+export function getSaksdato(navfaker: NavFaker): string {
+    return new Date(
+        navfaker.random.integer(2018, 2016),
+        navfaker.random.integer(12, 1),
+        navfaker.random.integer(28, 1),
+        navfaker.random.integer(23, 1),
+        navfaker.random.integer(59, 1),
+        navfaker.random.integer(59, 1),
+        0
+    ).toISOString();
 }
 
 export function getBaksystem(navfaker: NavFaker): Baksystem {

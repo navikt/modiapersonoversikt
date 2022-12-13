@@ -12,14 +12,14 @@ export function getAremarkSakstemaListe(): Sakstema[] {
             behandlingskjeder: [
                 {
                     status: Behandlingsstatus.UnderBehandling,
-                    sistOppdatert: { år: 2018, måned: 12, dag: 24, time: 14, minutt: 24, sekund: 51 }
+                    sistOppdatertV2: '2018-12-24T14:24:51.000'
                 }
             ],
             dokumentMetadata: [
                 {
                     id: 'u9fcztqt',
                     retning: Kommunikasjonsretning.Intern,
-                    dato: { år: 2018, måned: 8, dag: 3, time: 17, minutt: 11, sekund: 8 },
+                    datoV2: '2018-08-03T17:11:08.000',
                     lestDato: null,
                     navn: 'Silje',
                     journalpostId: 'yna3blpi',
@@ -59,8 +59,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     ],
                     avsender: Entitet.Sluttbruker,
                     mottaker: Entitet.Sluttbruker,
-                    tilhørendeSaksid: 'i5v4pekn',
-                    tilhørendeFagsaksid: '40xxap7t',
+                    tilhorendeSaksid: 'i5v4pekn',
+                    tilhorendeFagsaksid: '40xxap7t',
                     baksystem: [Baksystem.SakOgBehandling],
                     temakode: 'SYK',
                     temakodeVisning: 'Sykepenger',
@@ -71,7 +71,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                 {
                     id: 'jg2nbv00',
                     retning: Kommunikasjonsretning.Inn,
-                    dato: { år: 2017, måned: 2, dag: 28, time: 23, minutt: 50, sekund: 24 },
+                    datoV2: '2017-02-28T23:50:24.000',
                     lestDato: null,
                     navn: 'Benjamin',
                     journalpostId: 'h6p0iy3l',
@@ -95,8 +95,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     ],
                     avsender: Entitet.Sluttbruker,
                     mottaker: Entitet.EksternPart,
-                    tilhørendeSaksid: 't6s7hp8k',
-                    tilhørendeFagsaksid: 'q8mlv7u2',
+                    tilhorendeSaksid: 't6s7hp8k',
+                    tilhorendeFagsaksid: 'q8mlv7u2',
                     baksystem: [Baksystem.Gsak, Baksystem.Kodeverk],
                     temakode: 'SYK',
                     temakodeVisning: 'Sykepenger',
@@ -107,7 +107,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                 {
                     id: 'jg2nbv00_null',
                     retning: Kommunikasjonsretning.Inn,
-                    dato: { år: 2017, måned: 2, dag: 28, time: 23, minutt: 50, sekund: 24 },
+                    datoV2: '2017-02-28T23:50:24.000',
                     lestDato: null,
                     navn: 'Benjamin',
                     journalpostId: null,
@@ -131,8 +131,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     ],
                     avsender: Entitet.Sluttbruker,
                     mottaker: Entitet.EksternPart,
-                    tilhørendeSaksid: 't6s7hp8k',
-                    tilhørendeFagsaksid: 'q8mlv7u2',
+                    tilhorendeSaksid: 't6s7hp8k',
+                    tilhorendeFagsaksid: 'q8mlv7u2',
                     baksystem: [Baksystem.Gsak, Baksystem.Kodeverk],
                     temakode: 'SYK',
                     temakodeVisning: 'Sykepenger',
@@ -143,7 +143,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                 {
                     id: 'odiio5ou',
                     retning: Kommunikasjonsretning.Intern,
-                    dato: { år: 2018, måned: 12, dag: 5, time: 5, minutt: 29, sekund: 17 },
+                    datoV2: '2018-12-05T05:29:17.000',
                     lestDato: null,
                     navn: 'Madeleine',
                     journalpostId: 'jnrrue6e',
@@ -158,8 +158,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     vedlegg: [],
                     avsender: Entitet.EksternPart,
                     mottaker: Entitet.EksternPart,
-                    tilhørendeSaksid: 'lzp1rij0',
-                    tilhørendeFagsaksid: '7181o3jv',
+                    tilhorendeSaksid: 'lzp1rij0',
+                    tilhorendeFagsaksid: '7181o3jv',
                     baksystem: [Baksystem.Henvendelse],
                     temakode: 'SYK',
                     temakodeVisning: 'Sykepenger',
@@ -170,7 +170,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                 {
                     id: 'qsoer38m',
                     retning: Kommunikasjonsretning.Inn,
-                    dato: { år: 2017, måned: 2, dag: 10, time: 10, minutt: 1, sekund: 25 },
+                    datoV2: '2017-02-10T10:01:25.000',
                     lestDato: null,
                     navn: 'Kristine',
                     journalpostId: 'kty2aa9i',
@@ -185,8 +185,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     vedlegg: [],
                     avsender: Entitet.Ukjent,
                     mottaker: Entitet.Nav,
-                    tilhørendeSaksid: '503bv8q8',
-                    tilhørendeFagsaksid: 'z0vfuifa',
+                    tilhorendeSaksid: '503bv8q8',
+                    tilhorendeFagsaksid: 'z0vfuifa',
                     baksystem: [Baksystem.Aktoer, Baksystem.Henvendelse],
                     temakode: 'SYK',
                     temakodeVisning: 'Sykepenger',
@@ -195,12 +195,12 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     feil: { inneholderFeil: true, feilmelding: Feilmelding.Sikkerhetsbegrensning }
                 }
             ],
-            tilhørendeSaker: [
+            tilhorendeSaker: [
                 {
                     temakode: 'SYK',
                     saksid: 'c4j73hvy',
                     fagsaksnummer: 'ujowhsfk',
-                    avsluttet: { år: 2018, måned: 2, dag: 15, time: 16, minutt: 34, sekund: 56 },
+                    avsluttetV2: '2018-02-15T16:34:56.000',
                     fagsystem: '2cjjq',
                     baksystem: Baksystem.Aktoer
                 },
@@ -208,7 +208,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     temakode: 'SYK',
                     saksid: 'uncyau83',
                     fagsaksnummer: 'q2w4to5b',
-                    avsluttet: { år: 2016, måned: 9, dag: 1, time: 16, minutt: 22, sekund: 56 },
+                    avsluttetV2: '2016-09-01T16:22.56.000',
                     fagsystem: 'q8luy',
                     baksystem: Baksystem.SakOgBehandling
                 },
@@ -216,7 +216,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     temakode: 'SYK',
                     saksid: '2x49ix4k',
                     fagsaksnummer: 'i0mue5po',
-                    avsluttet: { år: 2017, måned: 9, dag: 4, time: 19, minutt: 10, sekund: 16 },
+                    avsluttetV2: '2017-09-0419:10:16.000',
                     fagsystem: '8gpzp',
                     baksystem: Baksystem.Gsak
                 }
@@ -231,22 +231,22 @@ export function getAremarkSakstemaListe(): Sakstema[] {
             behandlingskjeder: [
                 {
                     status: Behandlingsstatus.UnderBehandling,
-                    sistOppdatert: { år: 2018, måned: 6, dag: 25, time: 6, minutt: 23, sekund: 38 }
+                    sistOppdatertV2: '2018-06-25T06:23:38.000'
                 },
                 {
                     status: Behandlingsstatus.FerdigBehandlet,
-                    sistOppdatert: { år: 2017, måned: 2, dag: 4, time: 3, minutt: 51, sekund: 49 }
+                    sistOppdatertV2: '2017-02-04T03:51:49.000'
                 },
                 {
                     status: Behandlingsstatus.FerdigBehandlet,
-                    sistOppdatert: { år: 2016, måned: 5, dag: 20, time: 9, minutt: 36, sekund: 9 }
+                    sistOppdatertV2: '2016-05-20T09:36:09.000'
                 }
             ],
             dokumentMetadata: [
                 {
                     id: 'wdxbl8gq',
                     retning: Kommunikasjonsretning.Ut,
-                    dato: { år: 2017, måned: 7, dag: 27, time: 14, minutt: 45, sekund: 32 },
+                    datoV2: '2017-07-27T14:45:32.000',
                     lestDato: new Date('2017-07-27').toISOString(),
                     navn: 'Eline',
                     journalpostId: 'fg1w15sz',
@@ -261,8 +261,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     vedlegg: [],
                     avsender: Entitet.Ukjent,
                     mottaker: Entitet.Nav,
-                    tilhørendeSaksid: 'bj6vyby0',
-                    tilhørendeFagsaksid: 'huuael8f',
+                    tilhorendeSaksid: 'bj6vyby0',
+                    tilhorendeFagsaksid: 'huuael8f',
                     baksystem: [Baksystem.Pesys],
                     temakode: 'AAP',
                     temakodeVisning: 'Arbeidsavklaringspenger',
@@ -273,7 +273,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                 {
                     id: '44i6gvf6',
                     retning: Kommunikasjonsretning.Inn,
-                    dato: { år: 2018, måned: 3, dag: 18, time: 11, minutt: 27, sekund: 29 },
+                    datoV2: '2018-03-18T11:27:29.000',
                     lestDato: null,
                     navn: 'Thea',
                     journalpostId: 'etcoicxr',
@@ -313,8 +313,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     ],
                     avsender: Entitet.EksternPart,
                     mottaker: Entitet.Nav,
-                    tilhørendeSaksid: 'azc4yf8p',
-                    tilhørendeFagsaksid: '4g9b0ecf',
+                    tilhorendeSaksid: 'azc4yf8p',
+                    tilhorendeFagsaksid: '4g9b0ecf',
                     baksystem: [Baksystem.Aktoer, Baksystem.Joark],
                     temakode: 'AAP',
                     temakodeVisning: 'Arbeidsavklaringspenger',
@@ -325,7 +325,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                 {
                     id: '9mwcks8v',
                     retning: Kommunikasjonsretning.Intern,
-                    dato: { år: 2017, måned: 3, dag: 17, time: 9, minutt: 21, sekund: 37 },
+                    datoV2: '2017-03-17T09:21:37.000',
                     lestDato: null,
                     navn: 'Mari',
                     journalpostId: 'o5z5pcse',
@@ -349,8 +349,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     ],
                     avsender: Entitet.Nav,
                     mottaker: Entitet.Nav,
-                    tilhørendeSaksid: 'fsnziur5',
-                    tilhørendeFagsaksid: 'chsgwugz',
+                    tilhorendeSaksid: 'fsnziur5',
+                    tilhorendeFagsaksid: 'chsgwugz',
                     baksystem: [Baksystem.Aktoer, Baksystem.Joark],
                     temakode: 'AAP',
                     temakodeVisning: 'Arbeidsavklaringspenger',
@@ -361,7 +361,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                 {
                     id: 'uja0czql',
                     retning: Kommunikasjonsretning.Inn,
-                    dato: { år: 2016, måned: 11, dag: 15, time: 12, minutt: 5, sekund: 27 },
+                    datoV2: '2016-11-15T12:05:27.000',
                     lestDato: null,
                     navn: 'Sebastian',
                     journalpostId: 'aamyoz7n',
@@ -376,8 +376,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     vedlegg: [],
                     avsender: Entitet.Nav,
                     mottaker: Entitet.Nav,
-                    tilhørendeSaksid: 'woy1bipx',
-                    tilhørendeFagsaksid: 'j6odo6im',
+                    tilhorendeSaksid: 'woy1bipx',
+                    tilhorendeFagsaksid: 'j6odo6im',
                     baksystem: [Baksystem.Joark],
                     temakode: 'AAP',
                     temakodeVisning: 'Arbeidsavklaringspenger',
@@ -386,12 +386,12 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     feil: { inneholderFeil: false, feilmelding: null }
                 }
             ],
-            tilhørendeSaker: [
+            tilhorendeSaker: [
                 {
                     temakode: 'AAP',
                     saksid: 'dgc6rbip',
                     fagsaksnummer: 'zm2q8yyw',
-                    avsluttet: { år: 2018, måned: 11, dag: 3, time: 7, minutt: 9, sekund: 52 },
+                    avsluttetV2: '2018-01-03T07:09:52.000',
                     fagsystem: '4xzex',
                     baksystem: Baksystem.Aktoer
                 }
@@ -406,14 +406,14 @@ export function getAremarkSakstemaListe(): Sakstema[] {
             behandlingskjeder: [
                 {
                     status: Behandlingsstatus.Avbrutt,
-                    sistOppdatert: { år: 2018, måned: 3, dag: 20, time: 19, minutt: 27, sekund: 45 }
+                    sistOppdatertV2: '2018-03-20T19:27:45.000'
                 }
             ],
             dokumentMetadata: [
                 {
                     id: '03fmouny',
                     retning: Kommunikasjonsretning.Intern,
-                    dato: { år: 2016, måned: 5, dag: 15, time: 12, minutt: 34, sekund: 31 },
+                    datoV2: '2016-05-15T12:34:31.000',
                     lestDato: null,
                     navn: 'Håkon',
                     journalpostId: 'cmlub095',
@@ -428,8 +428,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     vedlegg: [],
                     avsender: Entitet.Nav,
                     mottaker: Entitet.Sluttbruker,
-                    tilhørendeSaksid: 'm3yg0ll4',
-                    tilhørendeFagsaksid: 'seeuzleo',
+                    tilhorendeSaksid: 'm3yg0ll4',
+                    tilhorendeFagsaksid: 'seeuzleo',
                     baksystem: [Baksystem.Kodeverk, Baksystem.JoarkSikkerhetsbegrensning, Baksystem.Pesys],
                     temakode: 'BAR',
                     temakodeVisning: 'Barnetrygd',
@@ -438,12 +438,12 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     feil: { inneholderFeil: false, feilmelding: null }
                 }
             ],
-            tilhørendeSaker: [
+            tilhorendeSaker: [
                 {
                     temakode: 'BAR',
                     saksid: '4dsigvke',
                     fagsaksnummer: 'tflo5g8a',
-                    avsluttet: { år: 2017, måned: 1, dag: 17, time: 23, minutt: 58, sekund: 28 },
+                    avsluttetV2: '2017-01-17T23:58:28.000',
                     fagsystem: '4u65t',
                     baksystem: Baksystem.JoarkSikkerhetsbegrensning
                 },
@@ -451,7 +451,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     temakode: 'BAR',
                     saksid: 'uk9z1jev',
                     fagsaksnummer: 'w4llob8j',
-                    avsluttet: { år: 2016, måned: 9, dag: 14, time: 17, minutt: 36, sekund: 32 },
+                    avsluttetV2: '2016-09-14T17:36:32.000',
                     fagsystem: 'm0z6n',
                     baksystem: Baksystem.Kodeverk
                 },
@@ -459,7 +459,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     temakode: 'BAR',
                     saksid: 'w77q6jll',
                     fagsaksnummer: '0kczk4gb',
-                    avsluttet: { år: 2018, måned: 9, dag: 9, time: 9, minutt: 41, sekund: 6 },
+                    avsluttetV2: '2018-09-09T09:41:06.000',
                     fagsystem: 'ehpxy',
                     baksystem: Baksystem.JoarkSikkerhetsbegrensning
                 },
@@ -467,7 +467,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     temakode: 'BAR',
                     saksid: 'wlkv3uqg',
                     fagsaksnummer: 'r5f2u28o',
-                    avsluttet: { år: 2016, måned: 7, dag: 17, time: 19, minutt: 35, sekund: 55 },
+                    avsluttetV2: '2016-07-17T19:35:55.000',
                     fagsystem: 's6pl5',
                     baksystem: Baksystem.Henvendelse
                 },
@@ -475,7 +475,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     temakode: 'BAR',
                     saksid: 'mbopmq2u',
                     fagsaksnummer: 'zj2fs3bp',
-                    avsluttet: { år: 2018, måned: 3, dag: 8, time: 7, minutt: 45, sekund: 41 },
+                    avsluttetV2: '2018-03-08T09.45:41.000',
                     fagsystem: 'wlvkm',
                     baksystem: Baksystem.Henvendelse
                 }
@@ -490,14 +490,14 @@ export function getAremarkSakstemaListe(): Sakstema[] {
             behandlingskjeder: [
                 {
                     status: Behandlingsstatus.UnderBehandling,
-                    sistOppdatert: { år: 2018, måned: 1, dag: 14, time: 3, minutt: 43, sekund: 31 }
+                    sistOppdatertV2: '2018-01-14T03:43:31.000'
                 }
             ],
             dokumentMetadata: [
                 {
                     id: '1ml24a5l',
                     retning: Kommunikasjonsretning.Ut,
-                    dato: { år: 2016, måned: 12, dag: 26, time: 7, minutt: 44, sekund: 1 },
+                    datoV2: '2016-12-26T07:44:01.000',
                     lestDato: new Date('2016-07-27').toISOString(),
                     navn: 'Noah',
                     journalpostId: 'fhtkfp66',
@@ -512,8 +512,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     vedlegg: [],
                     avsender: Entitet.EksternPart,
                     mottaker: Entitet.EksternPart,
-                    tilhørendeSaksid: 'qpdwqelr',
-                    tilhørendeFagsaksid: 'xlseaqei',
+                    tilhorendeSaksid: 'qpdwqelr',
+                    tilhorendeFagsaksid: 'xlseaqei',
                     baksystem: [Baksystem.Aktoer],
                     temakode: 'IND',
                     temakodeVisning: 'Tiltakspenger',
@@ -524,7 +524,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                 {
                     id: 'ean9mtio',
                     retning: Kommunikasjonsretning.Ut,
-                    dato: { år: 2016, måned: 12, dag: 19, time: 2, minutt: 27, sekund: 7 },
+                    datoV2: '2016-12-19T02:27:07.000',
                     lestDato: new Date('2016-07-27').toISOString(),
                     navn: 'Mats',
                     journalpostId: 's9765sz0',
@@ -539,8 +539,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     vedlegg: [],
                     avsender: Entitet.Ukjent,
                     mottaker: Entitet.Ukjent,
-                    tilhørendeSaksid: 'sdbr0fbp',
-                    tilhørendeFagsaksid: 'chqjww4b',
+                    tilhorendeSaksid: 'sdbr0fbp',
+                    tilhorendeFagsaksid: 'chqjww4b',
                     baksystem: [Baksystem.PdfKonvertering, Baksystem.Aktoer],
                     temakode: 'IND',
                     temakodeVisning: 'Tiltakspenger',
@@ -549,12 +549,12 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     feil: { inneholderFeil: false, feilmelding: null }
                 }
             ],
-            tilhørendeSaker: [
+            tilhorendeSaker: [
                 {
                     temakode: 'IND',
                     saksid: '7sw3ysfd',
                     fagsaksnummer: 'cysvzyxl',
-                    avsluttet: { år: 2017, måned: 1, dag: 16, time: 4, minutt: 6, sekund: 17 },
+                    avsluttetV2: '2017-01-16T04:06:17.000',
                     fagsystem: 'krpqj',
                     baksystem: Baksystem.Joark
                 }
@@ -571,7 +571,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                 {
                     id: 'afp4donc',
                     retning: Kommunikasjonsretning.Intern,
-                    dato: { år: 2017, måned: 11, dag: 21, time: 17, minutt: 15, sekund: 34 },
+                    datoV2: '2017-11-21T17:15:34.000',
                     lestDato: null,
                     navn: 'Maren',
                     journalpostId: 'lidtmy7n',
@@ -611,8 +611,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     ],
                     avsender: Entitet.EksternPart,
                     mottaker: Entitet.Nav,
-                    tilhørendeSaksid: 'ocrn83pf',
-                    tilhørendeFagsaksid: '53kj7i18',
+                    tilhorendeSaksid: 'ocrn83pf',
+                    tilhorendeFagsaksid: '53kj7i18',
                     baksystem: [Baksystem.JoarkSikkerhetsbegrensning, Baksystem.SakOgBehandling],
                     temakode: 'GEN',
                     temakodeVisning: 'Generell',
@@ -623,7 +623,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                 {
                     id: 'v2l20frr',
                     retning: Kommunikasjonsretning.Intern,
-                    dato: { år: 2016, måned: 3, dag: 12, time: 8, minutt: 4, sekund: 34 },
+                    datoV2: '2016-03-12T08:04:34.000',
                     lestDato: null,
                     navn: 'Jonathan',
                     journalpostId: 'ai9t2h2n',
@@ -638,8 +638,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     vedlegg: [],
                     avsender: Entitet.Ukjent,
                     mottaker: Entitet.Sluttbruker,
-                    tilhørendeSaksid: '50ly1k4j',
-                    tilhørendeFagsaksid: 'd4zxe6cm',
+                    tilhorendeSaksid: '50ly1k4j',
+                    tilhorendeFagsaksid: 'd4zxe6cm',
                     baksystem: [Baksystem.SakOgBehandling],
                     temakode: 'GEN',
                     temakodeVisning: 'Generell',
@@ -650,7 +650,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                 {
                     id: 'cjfcu3p7',
                     retning: Kommunikasjonsretning.Inn,
-                    dato: { år: 2016, måned: 5, dag: 24, time: 6, minutt: 39, sekund: 41 },
+                    datoV2: '2016-05-24T06:39:41.000',
                     lestDato: null,
                     navn: 'Martine',
                     journalpostId: 'wgh1hlqa',
@@ -665,8 +665,8 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     vedlegg: [],
                     avsender: Entitet.Ukjent,
                     mottaker: Entitet.EksternPart,
-                    tilhørendeSaksid: '6299d3c8',
-                    tilhørendeFagsaksid: 'ti2t0c00',
+                    tilhorendeSaksid: '6299d3c8',
+                    tilhorendeFagsaksid: 'ti2t0c00',
                     baksystem: [Baksystem.Pesys, Baksystem.Joark],
                     temakode: 'GEN',
                     temakodeVisning: 'Generell',
@@ -675,12 +675,12 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     feil: { inneholderFeil: true, feilmelding: Feilmelding.Sikkerhetsbegrensning }
                 }
             ],
-            tilhørendeSaker: [
+            tilhorendeSaker: [
                 {
                     temakode: 'GEN',
                     saksid: 'iyc5xe1f',
                     fagsaksnummer: '8qj6vuv6',
-                    avsluttet: { år: 2016, måned: 1, dag: 18, time: 11, minutt: 25, sekund: 19 },
+                    avsluttetV2: '2016-01-18T11:25:19.000',
                     fagsystem: 'yaacv',
                     baksystem: Baksystem.SakOgBehandling
                 },
@@ -688,7 +688,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     temakode: 'GEN',
                     saksid: 'bun0w6u9',
                     fagsaksnummer: 'y3a6y58z',
-                    avsluttet: { år: 2018, måned: 6, dag: 14, time: 17, minutt: 34, sekund: 22 },
+                    avsluttetV2: '2018-06-14T17:34:22.000',
                     fagsystem: 'u24f2',
                     baksystem: Baksystem.Gsak
                 }
@@ -702,7 +702,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
             erGruppert: false,
             behandlingskjeder: [],
             dokumentMetadata: [],
-            tilhørendeSaker: [],
+            tilhorendeSaker: [],
             feilkoder: []
         }
     ];

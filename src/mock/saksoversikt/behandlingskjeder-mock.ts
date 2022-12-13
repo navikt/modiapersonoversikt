@@ -14,7 +14,7 @@ export function getBehandlingskjeder(faker: Faker.FakerStatic, navfaker: NavFake
 export function getBehandlingskjede(faker: Faker.FakerStatic, navfaker: NavFaker): Behandlingskjede {
     return {
         status: getBehandlingsstatus(faker),
-        sistOppdatert: getSaksdato(navfaker)
+        sistOppdatertV2: getSaksdato(navfaker)
     };
 }
 
