@@ -1,6 +1,6 @@
 import React from 'react';
 import EtikettGraa from '../../../../../../components/EtikettGraa';
-import { Journalpost, Kommunikasjonsretning } from '../../../../../../models/saksoversikt/journalpost';
+import { Journalpost } from '../../../../../../models/saksoversikt/journalpost';
 import { formatterDatoTid } from '../../../../../../utils/date-utils';
 
 interface Props {
@@ -8,15 +8,11 @@ interface Props {
 }
 
 function JournalpostLestAvBruker({ journalpost }: Props) {
-    if (journalpost.retning !== Kommunikasjonsretning.Ut) {
+    if (!journalpost.lestDato) {
         return null;
     }
 
-    return (
-        <EtikettGraa>
-            {journalpost.lestDato && <div>Lest: {formatterDatoTid(new Date(journalpost.lestDato))}</div>}
-        </EtikettGraa>
-    );
+    return <EtikettGraa>Lest: {formatterDatoTid(new Date(journalpost.lestDato))}</EtikettGraa>;
 }
 
 export default JournalpostLestAvBruker;

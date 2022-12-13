@@ -1415,10 +1415,8 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <p
                             className="typo-undertekst"
                           >
-                            <div>
-                              Lest: 
-                              27.07.2017 02:00
-                            </div>
+                            Lest: 
+                            27.07.2017 02:00
                           </p>
                         </div>
                       </div>
@@ -1909,10 +1907,8 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <p
                             className="typo-undertekst"
                           >
-                            <div>
-                              Lest: 
-                              27.07.2016 02:00
-                            </div>
+                            Lest: 
+                            27.07.2016 02:00
                           </p>
                         </div>
                       </div>
@@ -2005,10 +2001,8 @@ exports[`Viser saksoversiktcontainer med alt innhold 1`] = `
                           <p
                             className="typo-undertekst"
                           >
-                            <div>
-                              Lest: 
-                              27.07.2016 02:00
-                            </div>
+                            Lest: 
+                            27.07.2016 02:00
                           </p>
                         </div>
                       </div>
