@@ -14,7 +14,7 @@ export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sak
     const sakstema = valgteSakstema !== undefined ? filtrerSakstemaerUtenData(valgteSakstema) : alleSakstemaFiltrert;
     const behandlingskjeder = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.behandlingskjeder);
     const journalposter = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.dokumentMetadata);
-    const tilhorendeSaker = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.tilhørendeSaker);
+    const tilhorendeSaker = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.tilhorendeSaker);
 
     const erAlleSakstema = alleSakstemaFiltrert.length === sakstema.length;
 
@@ -24,7 +24,7 @@ export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sak
         harTilgang: true,
         behandlingskjeder: behandlingskjeder,
         dokumentMetadata: journalposter,
-        tilhørendeSaker: tilhorendeSaker,
+        tilhorendeSaker: tilhorendeSaker,
         erGruppert: false,
         feilkoder: []
     };
@@ -75,12 +75,12 @@ export function hentDatoForSisteHendelse(sakstema: Sakstema): Date {
 
 function hentSenesteDatoForDokumenter(journalposter: Journalpost[]) {
     return journalposter.reduce((acc: Date, dok: Journalpost) => {
-        return acc > saksdatoSomDate(dok.dato) ? acc : saksdatoSomDate(dok.dato);
+        return acc > saksdatoSomDate(dok.datoV2) ? acc : saksdatoSomDate(dok.datoV2);
     }, new Date(0));
 }
 
 function hentSenesteDatoForBehandling(behandlingskjede: Behandlingskjede[]) {
     return behandlingskjede.reduce((acc: Date, kjede: Behandlingskjede) => {
-        return acc > saksdatoSomDate(kjede.sistOppdatert) ? acc : saksdatoSomDate(kjede.sistOppdatert);
+        return acc > saksdatoSomDate(kjede.sistOppdatertV2) ? acc : saksdatoSomDate(kjede.sistOppdatertV2);
     }, new Date(0));
 }
