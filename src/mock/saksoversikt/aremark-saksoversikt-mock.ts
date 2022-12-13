@@ -20,6 +20,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'u9fcztqt',
                     retning: Kommunikasjonsretning.Intern,
                     datoV2: '2018-08-03T17:11:08.000',
+                    lestDato: null,
                     navn: 'Silje',
                     journalpostId: 'yna3blpi',
                     hoveddokument: {
@@ -71,6 +72,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'jg2nbv00',
                     retning: Kommunikasjonsretning.Inn,
                     datoV2: '2017-02-28T23:50:24.000',
+                    lestDato: null,
                     navn: 'Benjamin',
                     journalpostId: 'h6p0iy3l',
                     hoveddokument: {
@@ -106,6 +108,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'jg2nbv00_null',
                     retning: Kommunikasjonsretning.Inn,
                     datoV2: '2017-02-28T23:50:24.000',
+                    lestDato: null,
                     navn: 'Benjamin',
                     journalpostId: null,
                     hoveddokument: {
@@ -141,6 +144,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'odiio5ou',
                     retning: Kommunikasjonsretning.Intern,
                     datoV2: '2018-12-05T05:29:17.000',
+                    lestDato: null,
                     navn: 'Madeleine',
                     journalpostId: 'jnrrue6e',
                     hoveddokument: {
@@ -167,6 +171,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'qsoer38m',
                     retning: Kommunikasjonsretning.Inn,
                     datoV2: '2017-02-10T10:01:25.000',
+                    lestDato: null,
                     navn: 'Kristine',
                     journalpostId: 'kty2aa9i',
                     hoveddokument: {
@@ -242,6 +247,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'wdxbl8gq',
                     retning: Kommunikasjonsretning.Ut,
                     datoV2: '2017-07-27T14:45:32.000',
+                    lestDato: new Date('2017-07-27').toISOString(),
                     navn: 'Eline',
                     journalpostId: 'fg1w15sz',
                     hoveddokument: {
@@ -268,6 +274,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: '44i6gvf6',
                     retning: Kommunikasjonsretning.Inn,
                     datoV2: '2018-03-18T11:27:29.000',
+                    lestDato: null,
                     navn: 'Thea',
                     journalpostId: 'etcoicxr',
                     hoveddokument: {
@@ -319,6 +326,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: '9mwcks8v',
                     retning: Kommunikasjonsretning.Intern,
                     datoV2: '2017-03-17T09:21:37.000',
+                    lestDato: null,
                     navn: 'Mari',
                     journalpostId: 'o5z5pcse',
                     hoveddokument: {
@@ -354,6 +362,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'uja0czql',
                     retning: Kommunikasjonsretning.Inn,
                     datoV2: '2016-11-15T12:05:27.000',
+                    lestDato: null,
                     navn: 'Sebastian',
                     journalpostId: 'aamyoz7n',
                     hoveddokument: {
@@ -405,6 +414,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: '03fmouny',
                     retning: Kommunikasjonsretning.Intern,
                     datoV2: '2016-05-15T12:34:31.000',
+                    lestDato: null,
                     navn: 'Håkon',
                     journalpostId: 'cmlub095',
                     hoveddokument: {
@@ -488,6 +498,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: '1ml24a5l',
                     retning: Kommunikasjonsretning.Ut,
                     datoV2: '2016-12-26T07:44:01.000',
+                    lestDato: new Date('2016-07-27').toISOString(),
                     navn: 'Noah',
                     journalpostId: 'fhtkfp66',
                     hoveddokument: {
@@ -514,6 +525,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'ean9mtio',
                     retning: Kommunikasjonsretning.Ut,
                     datoV2: '2016-12-19T02:27:07.000',
+                    lestDato: new Date('2016-07-27').toISOString(),
                     navn: 'Mats',
                     journalpostId: 's9765sz0',
                     hoveddokument: {
@@ -560,6 +572,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'afp4donc',
                     retning: Kommunikasjonsretning.Intern,
                     datoV2: '2017-11-21T17:15:34.000',
+                    lestDato: null,
                     navn: 'Maren',
                     journalpostId: 'lidtmy7n',
                     hoveddokument: {
@@ -611,6 +624,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'v2l20frr',
                     retning: Kommunikasjonsretning.Intern,
                     datoV2: '2016-03-12T08:04:34.000',
+                    lestDato: null,
                     navn: 'Jonathan',
                     journalpostId: 'ai9t2h2n',
                     hoveddokument: {
@@ -637,6 +651,7 @@ export function getAremarkSakstemaListe(): Sakstema[] {
                     id: 'cjfcu3p7',
                     retning: Kommunikasjonsretning.Inn,
                     datoV2: '2016-05-24T06:39:41.000',
+                    lestDato: null,
                     navn: 'Martine',
                     journalpostId: 'wgh1hlqa',
                     hoveddokument: {

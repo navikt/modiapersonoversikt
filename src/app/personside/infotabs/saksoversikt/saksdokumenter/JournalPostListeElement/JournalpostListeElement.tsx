@@ -6,22 +6,23 @@ import {
     Feilmelding,
     Journalpost,
     Kommunikasjonsretning
-} from '../../../../../models/saksoversikt/journalpost';
+} from '../../../../../../models/saksoversikt/journalpost';
 import styled, { css } from 'styled-components/macro';
-import theme from '../../../../../styles/personOversiktTheme';
+import theme from '../../../../../../styles/personOversiktTheme';
 import dayjs from 'dayjs';
-import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
+import { saksdatoSomDate } from '../../../../../../models/saksoversikt/fellesSak';
 import { Normaltekst } from 'nav-frontend-typografi';
-import DokumentIkon from '../../../../../svg/DokumentIkon';
-import DokumentIkkeTilgangIkon from '../../../../../svg/DokumentIkkeTilgangIkon';
-import EtikettGraa from '../../../../../components/EtikettGraa';
-import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
-import DokumentLenke from './DokumentLenke';
+import DokumentIkon from '../../../../../../svg/DokumentIkon';
+import DokumentIkkeTilgangIkon from '../../../../../../svg/DokumentIkkeTilgangIkon';
+import EtikettGraa from '../../../../../../components/EtikettGraa';
+import { Sakstema } from '../../../../../../models/saksoversikt/sakstema';
+import DokumentLenke from '../DokumentLenke';
 import { guid } from 'nav-frontend-js-utils';
-import { hentNavn } from '../../../visittkort-v2/visittkort-utils';
-import { sakstemakodeAlle } from '../utils/saksoversiktUtils';
-import { useHentAlleSakstemaFraResource, useSakstemaURLState } from '../useSakstemaURLState';
-import persondataResource from '../../../../../rest/resources/persondataResource';
+import { hentNavn } from '../../../../visittkort-v2/visittkort-utils';
+import { sakstemakodeAlle } from '../../utils/saksoversiktUtils';
+import { useHentAlleSakstemaFraResource, useSakstemaURLState } from '../../useSakstemaURLState';
+import persondataResource from '../../../../../../rest/resources/persondataResource';
+import JournalpostLestAvBruker from './JournalpostLestAvBruker';
 
 interface Props {
     journalpost: Journalpost;
@@ -72,6 +73,11 @@ const VedleggStyle = styled.div`
     ul {
         list-style: disc;
     }
+`;
+
+const SaksVisiningOgLestWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
 `;
 
 function tekstBasertPaRetning(brukernavn: string, dokument: Journalpost) {
@@ -184,7 +190,10 @@ function JournalpostListeElement(props: Props) {
                         </div>
                     </UUcustomOrder>
                     {dokumentVedlegg}
-                    {saksvisning}
+                    <SaksVisiningOgLestWrapper>
+                        {saksvisning}
+                        <JournalpostLestAvBruker journalpost={journalpost} />
+                    </SaksVisiningOgLestWrapper>
                 </InnholdWrapper>
             </StyledArticle>
         </li>
