@@ -1,17 +1,17 @@
-import { Baksystem, Saksdato } from './fellesSak';
+import { Baksystem } from './fellesSak';
 
 export interface Journalpost {
     id: string;
     retning: Kommunikasjonsretning;
-    dato: Saksdato;
+    datoV2: string;
     navn: string;
     journalpostId: string | null;
     hoveddokument: Dokument;
     vedlegg: Dokument[];
     avsender: Entitet;
     mottaker: Entitet;
-    tilhørendeSaksid: string;
-    tilhørendeFagsaksid: string;
+    tilhorendeSaksid: string;
+    tilhorendeFagsaksid: string;
     baksystem: Baksystem[];
     temakode: string;
     temakodeVisning: string;

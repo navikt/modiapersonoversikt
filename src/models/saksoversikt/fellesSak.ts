@@ -1,5 +1,3 @@
-import dayjs from 'dayjs';
-
 export enum Baksystem {
     Gsak = 'GSAK',
     Pesys = 'PESYS',
@@ -12,19 +10,6 @@ export enum Baksystem {
     Kodeverk = 'KODEVERK'
 }
 
-export interface Saksdato {
-    år: number;
-    måned: number;
-    dag: number;
-    time: number;
-    minutt: number;
-    sekund: number;
-}
-
-export function saksdatoSomDate(saksdato: Saksdato): Date {
-    return dayjs(`${saksdato.år}-${padZero(saksdato.måned)}-${padZero(saksdato.dag)}`).toDate();
-}
-
-function padZero(date: number): string {
-    return date > 9 ? `${date}` : `0${date}`;
+export function saksdatoSomDate(saksdato: string): Date {
+    return new Date(saksdato);
 }

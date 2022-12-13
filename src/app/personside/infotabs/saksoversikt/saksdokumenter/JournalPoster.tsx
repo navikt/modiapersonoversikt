@@ -122,7 +122,7 @@ function JournalpostGruppe({ gruppe, harTilgang, valgtSakstema }: JournalpostGru
 }
 
 function arForDokument(dok: Journalpost) {
-    return `${dok.dato.år}`;
+    return `${new Date(dok.datoV2).getFullYear()}`;
 }
 
 function hentRiktigAvsenderfilter(avsender: Entitet, avsenderfilter: DokumentAvsenderFilter) {
@@ -193,7 +193,7 @@ function JournalPoster(props: Props) {
     const aggregertSak: Sakstema = aggregertSakstema(alleSakstema, valgteSakstemaer);
     const filtrerteJournalposter = aggregertSak.dokumentMetadata
         .filter((journalpost) => hentRiktigAvsenderfilter(journalpost.avsender, avsenderFilter))
-        .sort(datoSynkende((journalpost) => saksdatoSomDate(journalpost.dato)));
+        .sort(datoSynkende((journalpost) => saksdatoSomDate(journalpost.datoV2)));
     const paginering = usePaginering(filtrerteJournalposter, 50, 'journalpost', undefined, fieldCompareJournalposter);
     const dispatch = useDispatch();
     const handleOppdaterAvsenderFilter = (filter: Partial<DokumentAvsenderFilter>) => {
