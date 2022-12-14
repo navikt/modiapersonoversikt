@@ -92,8 +92,9 @@ function emptyString(input?: string): string | undefined {
     return input;
 }
 
-export function lagRequestV3(form: PersonSokFormStateV3): PersonsokRequestV3 {
+export function lagRequestV3(enhet: string, form: PersonSokFormStateV3): PersonsokRequestV3 {
     return {
+        enhet,
         navn: emptyString(form.navn),
         kontonummer: emptyString(removeWhitespaceAndDot(form.kontonummer)),
         utenlandskID: emptyString(form.utenlandskID),
