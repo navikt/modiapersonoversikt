@@ -15,6 +15,7 @@ import PersonsokNavnAdresseKontonrDnr from './PersonsokNavnAdresseKontonrDnr';
 import PersonsokAlderKjonn from './PersonsokAlderKjonn';
 import PersonsokDatovelger from './PersonsokDatovelger';
 import FormErrorSummary from '../../components/form/FormErrorSummary';
+import { useValgtenhet } from '../../context/valgtenhet-state';
 
 interface Props {
     setResponse: (response: FetchResponse<PersonsokResponse[]>) => void;
@@ -57,7 +58,7 @@ function PersonsokSkjema(props: Props) {
         mode: 'onChange',
         shouldFocusError: false
     });
-
+    const valgtEnhet = useValgtenhet();
     function submitHandler(values: PersonSokFormState): Promise<void> {
         props.setPosting(true);
 
@@ -65,7 +66,7 @@ function PersonsokSkjema(props: Props) {
             loggEvent('PersonsokUtenlandsId', 'Personsok');
         }
 
-        const request: PersonsokRequest = lagRequestV3(values);
+        const request: PersonsokRequest = lagRequestV3(valgtEnhet.enhetId, values);
         return fetchToJson<PersonsokResponse[]>(`${apiBaseUri}/personsok/v3`, postConfig(request))
             .then((response) => {
                 props.setPosting(false);
