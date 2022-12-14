@@ -22,10 +22,13 @@ export function getJournalposter(faker: Faker.FakerStatic, navfaker: NavFaker, t
 }
 
 export function getJournalpost(faker: Faker.FakerStatic, navfaker: NavFaker, tema: string[]): Journalpost {
+    const retning = getKommunikasjonsretning(navfaker);
+
     return {
         id: faker.random.alphaNumeric(8),
         retning: getKommunikasjonsretning(navfaker),
         datoV2: getSaksdato(navfaker),
+        lestDato: getLestDato(navfaker, retning),
         navn: navfaker.navn.fornavn(),
         journalpostId: faker.random.alphaNumeric(8),
         hoveddokument: getDokument(faker, navfaker),
@@ -79,6 +82,13 @@ function getKommunikasjonsretning(navfaker: NavFaker): Kommunikasjonsretning {
         Kommunikasjonsretning.Ut,
         Kommunikasjonsretning.Inn
     ]);
+}
+
+function getLestDato(navFaker: NavFaker, retning: Kommunikasjonsretning): Journalpost['lestDato'] {
+    if (retning !== Kommunikasjonsretning.Ut) {
+        return null;
+    }
+    return navFaker.dato.mellom(new Date('2020-06-12'), new Date()).toISOString();
 }
 
 function getEntitet(navfaker: NavFaker): Entitet {
