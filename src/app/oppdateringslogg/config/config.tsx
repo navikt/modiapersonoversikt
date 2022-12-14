@@ -25,6 +25,7 @@ import ChatModia from './img/chat-modia.png';
 import NotifikasjonKanal from './img/notifikasjon-kanal.png';
 import SladdeArsak from './img/sladde-arsak.png';
 import SladdEnkeltmelding from './img/sladdEnkeltmelding.png';
+import LestDatoSak from './img/lest-dato-sak.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
@@ -449,6 +450,26 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: SladdEnkeltmelding
+        },
+        {
+            id: 25,
+            tittel: 'Lest dato for utgående dokument',
+            dato: new Date('2022-12-14 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Nå vil du kunne se dato for når utgående dokument er lest av bruker på{' '}
+                        <a href="https://www.nav.no" target="_blank" rel="noreferrer">
+                            nav.no
+                        </a>{' '}
+                        i saksoversikten. <br /> Alle dokument som er lest etter 12.10.22 vil få opp denne
+                        informasjonen.
+                    </Normaltekst>
+                </>
+            ),
+            src: LestDatoSak
         }
     ];
 }
