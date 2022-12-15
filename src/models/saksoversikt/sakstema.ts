@@ -24,5 +24,5 @@ export enum Behandlingsstatus {
 
 export interface Behandlingskjede {
     status: Behandlingsstatus;
-    sistOppdatertV2: string;
+    sistOppdatert: string;
 }
