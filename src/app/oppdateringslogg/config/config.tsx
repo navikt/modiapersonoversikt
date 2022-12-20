@@ -26,6 +26,7 @@ import NotifikasjonKanal from './img/notifikasjon-kanal.png';
 import SladdeArsak from './img/sladde-arsak.png';
 import SladdEnkeltmelding from './img/sladdEnkeltmelding.png';
 import LestDatoSak from './img/lest-dato-sak.png';
+import OppslagPaaInaktivIdent from './img/oppslag-paa-inaktiv-ident.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
@@ -470,6 +471,22 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: LestDatoSak
+        },
+        {
+            id: 26,
+            tittel: 'Oppslag på inaktiv ident',
+            dato: new Date('2022-12-20 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Ved oppslag av bruker med inaktiv ident vil det dukke opp et popup-vindu. Dette vinduet
+                        informerer deg om at identen er inaktiv og tar deg til den aktive identen istedet.
+                    </Normaltekst>
+                </>
+            ),
+            src: OppslagPaaInaktivIdent
         }
     ];
 }

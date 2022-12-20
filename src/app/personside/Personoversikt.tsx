@@ -9,6 +9,7 @@ import { loggInfo } from '../../utils/logger/frontendLogger';
 import BegrensetTilgangSide from './BegrensetTilgangSide';
 import tilgangskontroll from '../../rest/resources/tilgangskontrollResource';
 import { DialogpanelStateProvider } from '../../context/dialogpanel-state';
+import NyIdentModal from './NyIdentModal';
 
 function Personoversikt() {
     const fnr = useFodselsnummer();
@@ -24,6 +25,9 @@ function Personoversikt() {
     return tilgangskontroll.useRenderer((data) => {
         if (!data.harTilgang) {
             return <BegrensetTilgangSide tilgangsData={data} />;
+        }
+        if (data.harTilgang && data.aktivIdent && data.aktivIdent !== fnr) {
+            return <NyIdentModal aktivIdent={data.aktivIdent} />;
         }
         return (
             <>
