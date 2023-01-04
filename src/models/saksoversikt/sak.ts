@@ -4,7 +4,7 @@ export interface Sak {
     temakode: string;
     saksid: string;
     fagsaksnummer: string;
-    avsluttetV2: string;
+    avsluttet: string;
     fagsystem: string;
     baksystem: Baksystem;
 }

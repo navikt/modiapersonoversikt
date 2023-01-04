@@ -3,7 +3,7 @@ import { Baksystem } from './fellesSak';
 export interface Journalpost {
     id: string;
     retning: Kommunikasjonsretning;
-    datoV2: string;
+    dato: string;
     lestDato: string | null;
     navn: string;
     journalpostId: string | null;
