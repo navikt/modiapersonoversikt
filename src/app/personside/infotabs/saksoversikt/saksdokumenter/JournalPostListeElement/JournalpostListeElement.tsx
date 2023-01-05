@@ -99,7 +99,7 @@ function utgaendeTekst(mottaker: Entitet, mottakernavn: string) {
 }
 
 function formaterDatoOgAvsender(brukernavn: string, dokument: Journalpost) {
-    const dato = dayjs(saksdatoSomDate(dokument.datoV2)).format('DD.MM.YYYY');
+    const dato = dayjs(saksdatoSomDate(dokument.dato)).format('DD.MM.YYYY');
     return `${dato} / ${tekstBasertPaRetning(brukernavn, dokument)}`;
 }
 

@@ -27,7 +27,7 @@ export function getJournalpost(faker: Faker.FakerStatic, navfaker: NavFaker, tem
     return {
         id: faker.random.alphaNumeric(8),
         retning: getKommunikasjonsretning(navfaker),
-        datoV2: getSaksdato(navfaker),
+        dato: getSaksdato(navfaker),
         lestDato: getLestDato(navfaker, retning),
         navn: navfaker.navn.fornavn(),
         journalpostId: faker.random.alphaNumeric(8),

@@ -75,12 +75,12 @@ export function hentDatoForSisteHendelse(sakstema: Sakstema): Date {
 
 function hentSenesteDatoForDokumenter(journalposter: Journalpost[]) {
     return journalposter.reduce((acc: Date, dok: Journalpost) => {
-        return acc > saksdatoSomDate(dok.datoV2) ? acc : saksdatoSomDate(dok.datoV2);
+        return acc > saksdatoSomDate(dok.dato) ? acc : saksdatoSomDate(dok.dato);
     }, new Date(0));
 }
 
 function hentSenesteDatoForBehandling(behandlingskjede: Behandlingskjede[]) {
     return behandlingskjede.reduce((acc: Date, kjede: Behandlingskjede) => {
-        return acc > saksdatoSomDate(kjede.sistOppdatertV2) ? acc : saksdatoSomDate(kjede.sistOppdatertV2);
+        return acc > saksdatoSomDate(kjede.sistOppdatert) ? acc : saksdatoSomDate(kjede.sistOppdatert);
     }, new Date(0));
 }
