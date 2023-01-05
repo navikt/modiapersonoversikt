@@ -14,7 +14,7 @@ import { formaterDato } from '../../../../../utils/string-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/print/usePrinter';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { Normaltekst, UndertekstBold } from 'nav-frontend-typografi';
+import { Normaltekst, UndertekstBold, Undertittel } from 'nav-frontend-typografi';
 import { useDialogpanelState } from '../../../../../context/dialogpanel-state';
 
 interface Props {
@@ -24,7 +24,6 @@ interface Props {
 }
 
 const VisningStyle = styled.section`
-    padding: ${theme.margin.layout};
     flex-grow: 1;
     > *:last-child {
         margin-top: ${theme.margin.layout};
@@ -35,6 +34,19 @@ const KnappWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+`;
+
+const TopplinjeWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background: white;
+    border-radius: 0.25rem;
+    padding: 0.8rem;
+`;
+
+const TopplinjeTittel = styled(Undertittel)`
+    margin-bottom: 0.5rem;
 `;
 
 function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
@@ -101,7 +113,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 }
 
 const StyledJournalforingPanel = styled(Ekspanderbartpanel)`
-    margin-top: 0.5rem;
+    margin-top: 0.8rem;
     .ekspanderbartPanel__hode,
     .ekspanderbartPanel__innhold {
         padding: 0.3rem 1rem;
@@ -144,11 +156,14 @@ function TraadVisning(props: Props) {
 
     return (
         <VisningStyle>
-            <Topplinje valgtTraad={props.valgtTraad} />
-            <h3 className="sr-only" aria-live="polite">
-                {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
-            </h3>
-            <Journalposter traad={props.valgtTraad} />
+            <TopplinjeWrapper>
+                <TopplinjeTittel>Samtale med NAV</TopplinjeTittel>
+                <Topplinje valgtTraad={props.valgtTraad} />
+                <h3 className="sr-only" aria-live="polite">
+                    {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
+                </h3>
+                <Journalposter traad={props.valgtTraad} />
+            </TopplinjeWrapper>
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>
     );
