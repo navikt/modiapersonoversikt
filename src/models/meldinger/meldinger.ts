@@ -3,6 +3,7 @@ import { Temagruppe } from '../temagrupper';
 
 export interface Traad {
     traadId: string;
+    traadType?: TraadType;
     meldinger: Melding[];
     journalposter: Array<MeldingJournalpost>;
 }
@@ -54,6 +55,12 @@ export enum Meldingstype {
     INFOMELDING_MODIA_UTGAAENDE = 'INFOMELDING_MODIA_UTGAAENDE',
     CHATMELDING_FRA_NAV = 'CHATMELDING_FRA_NAV',
     CHATMELDING_FRA_BRUKER = 'CHATMELDING_FRA_BRUKER'
+}
+
+export enum TraadType {
+    SAMTALEREFERAT = 'SAMTALEREFERAT',
+    MELDINGSKJEDE = 'MELDINGSKJEDE',
+    CHAT = 'MELDINGSKJEDE'
 }
 
 export enum LestStatus {

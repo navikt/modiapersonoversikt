@@ -1,20 +1,20 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { datoSynkende, formatterDato, formatterDatoTid } from '../../../../../utils/date-utils';
-import EnkeltMelding from './Enkeltmelding';
+import NyEnkeltMelding from './NyEnkeltmelding';
 import theme from '../../../../../styles/personOversiktTheme';
 import { useDispatch } from 'react-redux';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Traad } from '../../../../../models/meldinger/meldinger';
+import { Traad, TraadType } from '../../../../../models/meldinger/meldinger';
 import { eldsteMelding, kanBesvares, meldingstittel, nyesteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/string-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/print/usePrinter';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { Normaltekst, UndertekstBold } from 'nav-frontend-typografi';
+import { Normaltekst, UndertekstBold, Undertittel } from 'nav-frontend-typografi';
 import { useDialogpanelState } from '../../../../../context/dialogpanel-state';
 
 interface Props {
@@ -24,7 +24,6 @@ interface Props {
 }
 
 const VisningStyle = styled.section`
-    padding: ${theme.margin.layout};
     flex-grow: 1;
     > *:last-child {
         margin-top: ${theme.margin.layout};
@@ -34,7 +33,21 @@ const VisningStyle = styled.section`
 const KnappWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    text-align: right;
+`;
+
+const TopplinjeWrapper = styled.div`
+    background: white;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+`;
+
+const TopplinjeTittel = styled(Undertittel)`
+    margin-bottom: 0.3rem;
+`;
+
+const StyledAlertStripeInfo = styled(AlertStripeInfo)`
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 `;
 
 function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
@@ -43,7 +56,7 @@ function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
         .map((melding, index) => {
             const meldingnummer = traad.meldinger.length - index;
             return (
-                <EnkeltMelding sokeord={sokeord} melding={melding} key={melding.id} meldingsNummer={meldingnummer} />
+                <NyEnkeltMelding sokeord={sokeord} melding={melding} key={melding.id} meldingsNummer={meldingnummer} />
             );
         });
 
@@ -62,15 +75,17 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         return (
             <>
                 {melding.markertSomFeilsendtAv && (
-                    <AlertStripeInfo>
+                    <StyledAlertStripeInfo>
                         Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}{' '}
                         {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
-                    </AlertStripeInfo>
+                    </StyledAlertStripeInfo>
                 )}
                 {melding.sendtTilSladding && (
-                    <AlertStripeInfo>Tråden ligger til behandling for sladding</AlertStripeInfo>
+                    <StyledAlertStripeInfo>Tråden ligger til behandling for sladding</StyledAlertStripeInfo>
                 )}
-                {melding.avsluttetDato && !traadKanBesvares && <AlertStripeInfo>Dialogen er avsluttet</AlertStripeInfo>}
+                {melding.avsluttetDato && !traadKanBesvares && (
+                    <StyledAlertStripeInfo>Dialogen er avsluttet</StyledAlertStripeInfo>
+                )}
             </>
         );
     }
@@ -101,10 +116,10 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 }
 
 const StyledJournalforingPanel = styled(Ekspanderbartpanel)`
-    margin-top: 0.5rem;
+    margin-top: 0.8rem;
     .ekspanderbartPanel__hode,
     .ekspanderbartPanel__innhold {
-        padding: 0.3rem 1rem;
+        padding: 0.1rem 0.2rem;
     }
     .ekspanderbartPanel__tittel {
         color: ${theme.color.lenke};
@@ -139,19 +154,35 @@ function Journalposter(props: { traad: Traad }) {
     );
 }
 
-function TraadVisning(props: Props) {
+function traadTittel(traadType?: TraadType) {
+    switch (traadType) {
+        case TraadType.CHAT:
+            return 'Chat med NAV';
+        case TraadType.MELDINGSKJEDE:
+            return 'Samtale med NAV';
+        case TraadType.SAMTALEREFERAT:
+            return 'Referat med NAV';
+        default:
+            return '';
+    }
+}
+
+function NyTraadVisning(props: Props) {
     const sisteMelding = nyesteMelding(props.valgtTraad);
 
     return (
         <VisningStyle>
-            <Topplinje valgtTraad={props.valgtTraad} />
-            <h3 className="sr-only" aria-live="polite">
-                {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
-            </h3>
-            <Journalposter traad={props.valgtTraad} />
+            <TopplinjeWrapper>
+                <TopplinjeTittel>{traadTittel(props.valgtTraad.traadType)}</TopplinjeTittel>
+                <Topplinje valgtTraad={props.valgtTraad} />
+                <h3 className="sr-only" aria-live="polite">
+                    {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
+                </h3>
+                <Journalposter traad={props.valgtTraad} />
+            </TopplinjeWrapper>
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>
     );
 }
 
-export default TraadVisning;
+export default NyTraadVisning;

@@ -48,6 +48,7 @@ export class MeldingerBackendMock {
                 .flatMap((traad) => traad.meldinger);
             return maskerMeldingVedManglendeTilgang({
                 traadId: traad.traadId,
+                traadType: traad.traadType,
                 meldinger: [...tilhorendeSvar, ...traad.meldinger],
                 journalposter: traad.journalposter
             });

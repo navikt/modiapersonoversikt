@@ -1,3 +1,4 @@
 export enum FeatureToggles {
-    VisTilbakemelding = 'vis-tilbakemelding'
+    VisTilbakemelding = 'vis-tilbakemelding',
+    useNewDialogComponents = 'vis-ny-meldingsvisning'
 }
