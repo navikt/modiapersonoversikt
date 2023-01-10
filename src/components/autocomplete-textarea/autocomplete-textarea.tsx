@@ -83,16 +83,6 @@ function useRules(): Regler {
         },
         {
             type: 'external',
-            regex: /^koroms$/i,
-            externalId: '056be54e-d93d-487c-a6c2-238c885bdfd8'
-        },
-        {
-            type: 'external',
-            regex: /^korosakt$/i,
-            externalId: '788b0492-a5e8-4883-a6af-6387ff1e46d6'
-        },
-        {
-            type: 'external',
             regex: /^sykperm$/i,
             externalId: '747920d1-e34a-4079-a780-ad9f78812c6e'
         },
@@ -231,8 +221,6 @@ function AutoTekstTips() {
                     <li>mvh/aap + nn eller en + mellomrom: autofullfør på nynorsk eller engelsk</li>
                     <li>korkonk + mellomrom: Informasjon ved konkurs</li>
                     <li>korperm + mellomrom: Informasjon ved permittering</li>
-                    <li>koroms + mellomrom: OMS - Korona stengt bhg/skole</li>
-                    <li>korosakt + mellomrom: OS - Korona aktivitet STO</li>
                     <li>sykperm + mellomrom: Sykmeldt og permittert</li>
                     <li>forskuddsøk + mellomrom: Søke om forskudd</li>
                     <li>fp + mellomrom: foreldrepenger</li>

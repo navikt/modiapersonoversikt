@@ -405,12 +405,6 @@ exports[`viser dialogpanel 1`] = `
                               korperm + mellomrom: Informasjon ved permittering
                             </li>
                             <li>
-                              koroms + mellomrom: OMS - Korona stengt bhg/skole
-                            </li>
-                            <li>
-                              korosakt + mellomrom: OS - Korona aktivitet STO
-                            </li>
-                            <li>
                               sykperm + mellomrom: Sykmeldt og permittert
                             </li>
                             <li>
