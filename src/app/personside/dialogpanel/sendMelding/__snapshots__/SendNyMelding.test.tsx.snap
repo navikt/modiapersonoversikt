@@ -361,13 +361,7 @@ exports[`viser send ny melding 1`] = `
                             mvh + mellomrom: Signatur
                           </li>
                           <li>
-                            mvhks + mellomrom: Signatur fra KS
-                          </li>
-                          <li>
                             hei + mellomrom: Hei bruker
-                          </li>
-                          <li>
-                            vint + mellomrom: Videreformidle Internt (vinten for engelsk)
                           </li>
                           <li>
                             AAP + mellomrom: arbeidsavklaringspenger
@@ -386,24 +380,6 @@ exports[`viser send ny melding 1`] = `
                           </li>
                           <li>
                             mvh/aap + nn eller en + mellomrom: autofullfør på nynorsk eller engelsk
-                          </li>
-                          <li>
-                            korkonk + mellomrom: Informasjon ved konkurs
-                          </li>
-                          <li>
-                            korperm + mellomrom: Informasjon ved permittering
-                          </li>
-                          <li>
-                            koroms + mellomrom: OMS - Korona stengt bhg/skole
-                          </li>
-                          <li>
-                            korosakt + mellomrom: OS - Korona aktivitet STO
-                          </li>
-                          <li>
-                            sykperm + mellomrom: Sykmeldt og permittert
-                          </li>
-                          <li>
-                            forskuddsøk + mellomrom: Søke om forskudd
                           </li>
                           <li>
                             fp + mellomrom: foreldrepenger

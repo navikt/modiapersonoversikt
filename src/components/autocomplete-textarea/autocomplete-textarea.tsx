@@ -17,7 +17,6 @@ import { PopoverOrientering } from 'nav-frontend-popover';
 import { guid } from 'nav-frontend-js-utils';
 import { Undertittel } from 'nav-frontend-typografi';
 import { loggEvent } from '../../utils/logger/frontendLogger';
-import { useErKontaktsenter } from '../../utils/enheter-utils';
 import { rapporterBruk } from '../../app/personside/dialogpanel/sendMelding/standardTekster/sokUtils';
 import skrivestotteResource from '../../rest/resources/skrivestotteResource';
 
@@ -39,68 +38,16 @@ type Regel = InlineRegel | ExternalRegel;
 type Regler = Array<Regel>;
 
 function useRules(): Regler {
-    const erKontaktsenter = useErKontaktsenter();
-
-    const nksSignaturReferanse = 'fd71ff08-be9c-4e90-a6f8-bc17a798f244';
     const navKontorSignaturReferanse = 'b4b67323-f57d-47a2-ac19-7ba4b62fe156';
-    const signaturReferanse = erKontaktsenter ? nksSignaturReferanse : navKontorSignaturReferanse;
+
     return [
         { type: 'internal', regex: /^hei,?$/i, replacement: () => 'Hei [bruker.fornavn],\n' },
         { type: 'internal', regex: /^hi,?$/i, replacement: () => 'Hi [bruker.fornavn], ' },
         { type: 'internal', regex: /^foet$/i, replacement: () => '[bruker.navn] ' },
 
-        { type: 'external', regex: /^mvh$/i, externalId: signaturReferanse },
-        { type: 'external', regex: /^mvhen$/i, externalId: signaturReferanse, locale: Locale.en_US },
-        { type: 'external', regex: /^mvhnn$/i, externalId: signaturReferanse, locale: Locale.nn_NO },
-        { type: 'external', regex: /^mvhks$/i, externalId: nksSignaturReferanse },
-
-        {
-            type: 'external',
-            regex: /^vint$/i,
-            externalId: 'f31f5d09-4873-4f84-912d-0ff3636db1cd'
-        },
-        {
-            type: 'external',
-            regex: /^vinten$/i,
-            externalId: 'f31f5d09-4873-4f84-912d-0ff3636db1cd',
-            locale: Locale.en_US
-        },
-        {
-            type: 'external',
-            regex: /^korperm$/i,
-            externalId: 'af2e6816-391c-4b8b-b00e-27f116aa3de8'
-        },
-        {
-            type: 'external',
-            regex: /^korpermeng$/i,
-            externalId: 'af2e6816-391c-4b8b-b00e-27f116aa3de8',
-            locale: Locale.en_US
-        },
-        {
-            type: 'external',
-            regex: /^korkonk$/i,
-            externalId: 'f15b6b9b-0cb6-4c46-8c37-0069e681ecdc'
-        },
-        {
-            type: 'external',
-            regex: /^koroms$/i,
-            externalId: '056be54e-d93d-487c-a6c2-238c885bdfd8'
-        },
-        {
-            type: 'external',
-            regex: /^korosakt$/i,
-            externalId: '788b0492-a5e8-4883-a6af-6387ff1e46d6'
-        },
-        {
-            type: 'external',
-            regex: /^sykperm$/i,
-            externalId: '747920d1-e34a-4079-a780-ad9f78812c6e'
-        },
-        {
-            type: 'external',
-            regex: /^forskuddsøk$/i,
-            externalId: '6c6a3604-d47a-4cb3-bd7b-a354e98de48c'
-        },
+        { type: 'external', regex: /^mvh$/i, externalId: navKontorSignaturReferanse },
+        { type: 'external', regex: /^mvhen$/i, externalId: navKontorSignaturReferanse, locale: Locale.en_US },
+        { type: 'external', regex: /^mvhnn$/i, externalId: navKontorSignaturReferanse, locale: Locale.nn_NO },
         {
             type: 'internal',
             regex: /^aap$/i,
@@ -220,21 +167,13 @@ function AutoTekstTips() {
                 <ul>
                     <li>foet + mellomrom: Brukers fulle navn</li>
                     <li>mvh + mellomrom: Signatur</li>
-                    <li>mvhks + mellomrom: Signatur fra KS</li>
                     <li>hei + mellomrom: Hei bruker</li>
-                    <li>vint + mellomrom: Videreformidle Internt (vinten for engelsk)</li>
                     <li>AAP + mellomrom: arbeidsavklaringspenger</li>
                     <li>sbt + mellomrom: saksbehandlingstid</li>
                     <li>nay + mellomrom: NAV Arbeid og ytelser</li>
                     <li>nfp + mellomrom: NAV Familie- og pensjonsytelser</li>
                     <li>hi, + mellomrom: Hi, bruker (engelsk)</li>
                     <li>mvh/aap + nn eller en + mellomrom: autofullfør på nynorsk eller engelsk</li>
-                    <li>korkonk + mellomrom: Informasjon ved konkurs</li>
-                    <li>korperm + mellomrom: Informasjon ved permittering</li>
-                    <li>koroms + mellomrom: OMS - Korona stengt bhg/skole</li>
-                    <li>korosakt + mellomrom: OS - Korona aktivitet STO</li>
-                    <li>sykperm + mellomrom: Sykmeldt og permittert</li>
-                    <li>forskuddsøk + mellomrom: Søke om forskudd</li>
                     <li>fp + mellomrom: foreldrepenger</li>
                     <li>bm + mellomrom: bidragsmottaker</li>
                     <li>bp + mellomrom: bidragspliktig</li>
