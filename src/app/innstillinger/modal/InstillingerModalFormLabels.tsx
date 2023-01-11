@@ -14,15 +14,6 @@ const Label = styled.span`
     }
 `;
 
-export const AutomatiskeTagsLabel = (
-    <Label>
-        <b>Automatiske tags</b>
-        <Hjelpetekst id="AutomatiskeTagsLabel" type={PopoverOrientering.UnderVenstre}>
-            Vil legge til henholdsvis #sto og #samref automatisk når man bruker standardtekstene-søket (alt + c).
-        </Hjelpetekst>
-    </Label>
-);
-
 export const OppgaveDestinasjonLabel = (
     <Label>
         <b>Destinasjon for oppgave ved svar</b>
