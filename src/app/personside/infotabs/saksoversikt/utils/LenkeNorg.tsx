@@ -3,7 +3,7 @@ import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { sakstemakodeAlle } from './saksoversiktUtils';
-import baseurls, { hentBaseUrl } from '../../../../../rest/resources/baseurlsResource';
+import baseurls from '../../../../../rest/resources/baseurlsResource';
 import persondataResource from '../../../../../rest/resources/persondataResource';
 
 interface Props {
@@ -36,8 +36,10 @@ function LenkeNorg(props: Props) {
     const geografiskTilknytning = persondata.data?.person?.geografiskTilknytning ?? null;
 
     return baseurls.useRenderer((baseUrls) => {
-        const norgBaseurl = hentBaseUrl(baseUrls, 'norg2-frontend');
-        const norgUrl = lenkeNorg2Frontend(norgBaseurl, { geografiskTilknytning: geografiskTilknytning, ...props });
+        const norgUrl = lenkeNorg2Frontend(baseUrls.norg2Frontend, {
+            geografiskTilknytning: geografiskTilknytning,
+            ...props
+        });
         return (
             <a className="lenke" target={'_blank'} rel={'noopener noreferrer'} href={norgUrl}>
                 <Normaltekst>Oversikt over enheter og tema de behandler</Normaltekst>

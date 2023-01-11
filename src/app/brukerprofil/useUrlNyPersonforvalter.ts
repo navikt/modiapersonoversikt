@@ -1,5 +1,5 @@
 import { useFodselsnummer } from '../../utils/customHooks';
-import baseurls, { hentBaseUrl } from '../../rest/resources/baseurlsResource';
+import baseurls from '../../rest/resources/baseurlsResource';
 import aktoridResource from '../../rest/resources/aktoridResource';
 
 function useUrlNyPersonforvalter() {
@@ -12,7 +12,7 @@ function useUrlNyPersonforvalter() {
     }
     const aktorid = aktoridResponse.data;
 
-    const baseUrl = baseUrlResource.data ? hentBaseUrl(baseUrlResource.data, 'personforvalter') : '';
+    const baseUrl = baseUrlResource.data?.personforvalter ?? '';
     if (!baseUrl || baseUrl === '') {
         return '';
     }

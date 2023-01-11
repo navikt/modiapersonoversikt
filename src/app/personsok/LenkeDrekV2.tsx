@@ -2,7 +2,7 @@ import * as React from 'react';
 import { formaterDato } from '../../utils/string-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { fjernAnforselstegn, splitNavn } from './navn/navnUtils';
-import baseurls, { hentBaseUrl } from '../../rest/resources/baseurlsResource';
+import baseurls from '../../rest/resources/baseurlsResource';
 import { UseFormWatch } from 'react-hook-form';
 import { PersonSokFormStateV3 } from './personsokUtils';
 export interface DrekPropsV2 {
@@ -27,7 +27,7 @@ function LenkeDrekV2({ watch }: DrekPropsV2) {
     const navn = watch('navn');
 
     const baseUrlResource = baseurls.useFetch();
-    const drekUrl = baseUrlResource.data ? hentBaseUrl(baseUrlResource.data, 'drek') : '';
+    const drekUrl = baseUrlResource.data?.drek ?? '';
     const { fornavn, etternavn } = splitNavn(fjernAnforselstegn(navn));
 
     const searchDict = {

@@ -1,20 +1,9 @@
-import { BaseUrlsResponse } from '../models/baseurls';
+import { BaseUrls } from '../models/baseurls';
 
-export function mockBaseUrls(): BaseUrlsResponse {
+export function mockBaseUrls(): BaseUrls {
     return {
-        baseUrls: [
-            {
-                key: 'norg2-frontend',
-                url: 'https://norg2-frontend.nais.preprod.local'
-            },
-            {
-                key: 'personforvalter',
-                url: 'https://pdl-web.dev.intern.nav.no/'
-            },
-            {
-                key: 'drek',
-                url: 'https://drek.nais.preprod.local/'
-            }
-        ]
+        norg2Frontend: 'https://norg2-frontend.nais.preprod.local',
+        personforvalter: 'https://pdl-web.dev.intern.nav.no/',
+        drek: 'https://drek.nais.preprod.local/'
     };
 }

@@ -248,12 +248,7 @@ function setupTildelteOppgaverMock(mock: FetchMock) {
 }
 
 function setupBaseUrlsMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/baseurls',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => {
-            return mockBaseUrls();
-        })
-    );
+    mock.get(apiBaseUri + '/baseurls/v2', withDelayedResponse(randomDelay(), STATUS_OK, mockBaseUrls));
 }
 
 function setupFeatureToggleMock(mock: FetchMock) {

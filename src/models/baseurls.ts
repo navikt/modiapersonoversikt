@@ -1,8 +1,5 @@
-export interface BaseUrlsResponse {
-    baseUrls: BaseUrl[];
-}
-
-export interface BaseUrl {
-    key: string;
-    url: string;
+export interface BaseUrls {
+    norg2Frontend: string;
+    drek: string;
+    personforvalter: string;
 }
