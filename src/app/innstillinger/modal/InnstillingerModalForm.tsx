@@ -7,7 +7,7 @@ import innstillingerResource, {
     Innstillinger,
     SaksbehandlerInnstillinger
 } from '../../../rest/resources/innstillingerResource';
-import { AutomatiskeTagsLabel, OppgaveDestinasjonLabel } from './InstillingerModalFormLabels';
+import { OppgaveDestinasjonLabel } from './InstillingerModalFormLabels';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import FormSelect from '../../../components/form/FormSelect';
@@ -17,12 +17,10 @@ const ModalContent = styled.div`
 `;
 
 enum INNSTILLINGER_KEYS {
-    defaultTagsStandardtekster = 'defaultTagsStandardtekster',
     defaultOppgaveDestinasjon = 'defaultOppgaveDestinasjon'
 }
 
 const defaultInnstillinger: { [key in INNSTILLINGER_KEYS]: string } = {
-    defaultTagsStandardtekster: 'na',
     defaultOppgaveDestinasjon: 'MinListe'
 };
 
@@ -57,16 +55,6 @@ function InnstillingerModalForm({ innstillinger }: Props) {
                 <Undertekst className="blokk-xxs">
                     Sist oppdatert: {new Date(innstillinger.sistLagret).toLocaleString('nb')}
                 </Undertekst>
-                <FormSelect
-                    name={INNSTILLINGER_KEYS.defaultTagsStandardtekster}
-                    form={form}
-                    className="blokk-s"
-                    label={AutomatiskeTagsLabel}
-                >
-                    <option value="na">Ikke valgt</option>
-                    <option value="sto">Skriv til oss (#sto)</option>
-                    <option value="samref">Samtalereferat (#samref)</option>
-                </FormSelect>
                 <FormSelect
                     name={INNSTILLINGER_KEYS.defaultOppgaveDestinasjon}
                     form={form}
