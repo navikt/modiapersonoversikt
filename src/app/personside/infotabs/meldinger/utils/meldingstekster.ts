@@ -1,4 +1,4 @@
-import { Meldingstype } from '../../../../../models/meldinger/meldinger';
+import { Meldingstype, TraadType } from '../../../../../models/meldinger/meldinger';
 
 export function meldingstypeTekst(meldingstype: Meldingstype) {
     switch (meldingstype) {
@@ -22,5 +22,18 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
             return 'Chatmelding fra NAV';
         default:
             return 'Ukjent meldingstype: ' + meldingstype;
+    }
+}
+
+export function traadTypeTekst(traadType?: TraadType) {
+    switch (traadType) {
+        case TraadType.CHAT:
+            return 'Samtale';
+        case TraadType.MELDINGSKJEDE:
+            return 'Samtale';
+        case TraadType.SAMTALEREFERAT:
+            return 'Referat';
+        default:
+            return 'Ukjent meldingstype: ' + traadType;
     }
 }

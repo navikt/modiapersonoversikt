@@ -61,9 +61,8 @@ const SnakkebobleWrapper = styled.div`
     }
 `;
 
-const StyledTekstomrade = styled(Tekstomrade)`
-    font-size: 0.8rem;
-    line-height: 1rem;
+const StyledText = styled.p`
+    font-size: 0.75rem;
 `;
 
 export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
@@ -71,7 +70,7 @@ export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
         return null;
     }
     const avsender = `Skrevet av ${melding.skrevetAvTekst}`;
-    return <StyledTekstomrade rules={rule && [rule]}>{avsender}</StyledTekstomrade>;
+    return <StyledText>{avsender}</StyledText>;
 }
 
 export function LestDato({ melding }: { melding: Melding }) {
@@ -79,7 +78,7 @@ export function LestDato({ melding }: { melding: Melding }) {
         return null;
     }
     const lestDato = melding.lestDato ? `Lest: ${formatterDatoTid(melding.lestDato)}` : 'Ikke lest';
-    return <StyledTekstomrade>{lestDato}</StyledTekstomrade>;
+    return <StyledText>{lestDato}</StyledText>;
 }
 function NyEnkeltMelding(props: Props) {
     const fraNav = erMeldingFraNav(props.melding.meldingstype);
@@ -99,10 +98,8 @@ function NyEnkeltMelding(props: Props) {
                         </Tekstomrade>
                         <div>
                             <MeldingInfoWrapper>
-                                <StyledTekstomrade rules={highlightRule && [highlightRule]}>
-                                    {datoTekst}
-                                </StyledTekstomrade>
-                                <Avsender melding={props.melding} rule={highlightRule} />
+                                <StyledText>{datoTekst}</StyledText>
+                                <Avsender melding={props.melding} />
                                 <LestDato melding={props.melding} />
                             </MeldingInfoWrapper>
                         </div>

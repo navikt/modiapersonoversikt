@@ -57,7 +57,7 @@ function getMockTraad(): Traad {
 
     return {
         traadId: faker.random.alphaNumeric(8),
-        traadType: traadType,
+        traadType: traadType[1] as TraadType,
         meldinger: meldinger,
         journalposter: fyllRandomListe(lagJournalpost, 3, false)
     };

@@ -8,8 +8,8 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Traad, TraadType } from '../../../../../models/meldinger/meldinger';
-import { eldsteMelding, kanBesvares, meldingstittel, nyesteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
+import { Traad } from '../../../../../models/meldinger/meldinger';
+import { eldsteMelding, kanBesvares, nyesteMelding, saksbehandlerTekst, traadstittel } from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/string-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/print/usePrinter';
@@ -33,7 +33,7 @@ const VisningStyle = styled.section`
 const KnappWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    text-align: right;
+    align-items: flex-end;
 `;
 
 const TopplinjeWrapper = styled.div`
@@ -97,11 +97,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     };
 
     if (dialogpanelTraad?.traadId === valgtTraad.traadId) {
-        return (
-            <KnappWrapper>
-                <AlertStripeInfo>Under arbeid</AlertStripeInfo>
-            </KnappWrapper>
-        );
+        return <StyledAlertStripeInfo>Under arbeid</StyledAlertStripeInfo>;
     }
 
     if (traadKanBesvares) {
@@ -154,29 +150,17 @@ function Journalposter(props: { traad: Traad }) {
     );
 }
 
-function traadTittel(traadType?: TraadType) {
-    switch (traadType) {
-        case TraadType.CHAT:
-            return 'Chat med NAV';
-        case TraadType.MELDINGSKJEDE:
-            return 'Samtale med NAV';
-        case TraadType.SAMTALEREFERAT:
-            return 'Referat med NAV';
-        default:
-            return '';
-    }
-}
-
 function NyTraadVisning(props: Props) {
     const sisteMelding = nyesteMelding(props.valgtTraad);
 
     return (
         <VisningStyle>
             <TopplinjeWrapper>
-                <TopplinjeTittel>{traadTittel(props.valgtTraad.traadType)}</TopplinjeTittel>
+                <TopplinjeTittel>{traadstittel(sisteMelding.temagruppe, props.valgtTraad.traadType)}</TopplinjeTittel>
                 <Topplinje valgtTraad={props.valgtTraad} />
                 <h3 className="sr-only" aria-live="polite">
-                    {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
+                    {traadstittel(sisteMelding.temagruppe, props.valgtTraad.traadType)}{' '}
+                    {formatterDatoTid(sisteMelding.opprettetDato)}
                 </h3>
                 <Journalposter traad={props.valgtTraad} />
             </TopplinjeWrapper>

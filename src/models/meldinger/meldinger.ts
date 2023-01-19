@@ -76,6 +76,14 @@ export interface SendReferatRequest {
     meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON | Meldingstype.SAMTALEREFERAT_OPPMOTE;
 }
 
+export interface SendSamtaleRequest {
+    enhet: string;
+    fritekst: string;
+    sak: JournalforingsSak;
+    erOppgaveTilknyttetAnsatt: boolean;
+    avslutteSamtale: boolean;
+}
+
 export interface SendSporsmalRequest {
     enhet: string;
     fritekst: string;
