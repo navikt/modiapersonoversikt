@@ -23,6 +23,7 @@ import ReflowBoundry from '../ReflowBoundry';
 import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import persondataResource from '../../../../rest/resources/persondataResource';
 import NyVelgDialogType from './NyVelgDialogType';
+import Panel from 'nav-frontend-paneler';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
@@ -65,18 +66,8 @@ const StyledCheckbox = styled(Checkbox)`
     margin-top: 1rem;
 `;
 
-const Margin = styled.div`
-    /* Pga React Collapse må vi slenge på noen div'er som tar seg av marginer for å unngå hopp i animasjon */
-`;
-
 const StyledUndertittel = styled(Undertittel)`
     margin-bottom: 1rem !important;
-`;
-
-const LukkSamtaleWrapper = styled.div`
-    background: white;
-    border-radius: 0.25rem;
-    padding: 1rem 1rem 1rem 1rem;
 `;
 
 export const tekstMaksLengde = 10000;
@@ -130,7 +121,7 @@ function NySendNyMelding(props: Props) {
                         formState={state}
                         updateDialogType={(dialogType) => updateState({ dialogType })}
                     />
-                    <Margin>
+                    <div>
                         <UnmountClosed isOpened={erReferat}>
                             {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                             <Temavelger
@@ -142,7 +133,7 @@ function NySendNyMelding(props: Props) {
                             <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
                         </UnmountClosed>
                         <UnmountClosed isOpened={erSamtale}>
-                            <LukkSamtaleWrapper>
+                            <Panel>
                                 <DialogpanelVelgSak
                                     setValgtSak={(sak) => updateState({ sak })}
                                     valgtSak={state.sak}
@@ -163,9 +154,9 @@ function NySendNyMelding(props: Props) {
                                     />
                                     <StyledAlertStripeInfo>Gir varsel, bruker må svare</StyledAlertStripeInfo>
                                 </>
-                            </LukkSamtaleWrapper>
+                            </Panel>
                         </UnmountClosed>
-                    </Margin>
+                    </div>
                     <Feilmelding sendNyMeldingPanelState={props.sendNyMeldingPanelState.type} />
                     <KnappWrapper>
                         <KnappBase

@@ -16,6 +16,7 @@ import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { capitalizeName } from '../../../../utils/string-utils';
 import persondataResource from '../../../../rest/resources/persondataResource';
 import { Checkbox } from 'nav-frontend-skjema';
+import Panel from 'nav-frontend-paneler';
 
 const SubmitKnapp = styled(Hovedknapp)`
     white-space: normal;
@@ -35,12 +36,6 @@ const StyledAlertStripeInfo = styled(AlertStripeInfo)`
 
 const StyledCheckbox = styled(Checkbox)`
     margin-top: 0.1rem;
-`;
-
-const LukkSamtaleWrapper = styled.div`
-    background: white;
-    border-radius: 0.25rem;
-    padding: 1rem 1rem 1rem 1rem;
 `;
 
 interface Props {
@@ -96,7 +91,7 @@ function NyFortsettDialog(props: Props) {
 
             <Margin>
                 <UnmountClosed isOpened={!erSamtalereferat}>
-                    <LukkSamtaleWrapper>
+                    <Panel>
                         <StyledCheckbox
                             label={'Lukk samtale etter sending'}
                             checked={state.avslutteSamtale}
@@ -113,7 +108,7 @@ function NyFortsettDialog(props: Props) {
                                 eksisterendeSaker={eksisterendeSaker}
                             />
                         )}
-                    </LukkSamtaleWrapper>
+                    </Panel>
                 </UnmountClosed>
             </Margin>
             <Feilmelding status={props.fortsettDialogPanelState.type} />
