@@ -26,10 +26,6 @@ const StyledKnappMedBekreftPopup = styled(KnappMedBekreftPopup)`
     width: 100%;
 `;
 
-const Margin = styled.div`
-    /* Pga React Collapse må vi slenge på noen div'er som tar seg av marginer for å unngå hopp i animasjon */
-`;
-
 const StyledAlertStripeInfo = styled(AlertStripeInfo)`
     margin-top: 1rem;
 `;
@@ -89,7 +85,7 @@ function NyFortsettDialog(props: Props) {
                 }
             />
 
-            <Margin>
+            <div>
                 <UnmountClosed isOpened={!erSamtalereferat}>
                     <Panel>
                         <StyledCheckbox
@@ -110,7 +106,7 @@ function NyFortsettDialog(props: Props) {
                         )}
                     </Panel>
                 </UnmountClosed>
-            </Margin>
+            </div>
             <Feilmelding status={props.fortsettDialogPanelState.type} />
             <SubmitKnapp htmlType="submit" spinner={props.fortsettDialogPanelState.type === DialogPanelStatus.POSTING}>
                 {delMedBrukerTekst}

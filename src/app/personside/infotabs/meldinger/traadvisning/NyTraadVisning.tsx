@@ -16,6 +16,7 @@ import { Printer } from '../../../../../utils/print/usePrinter';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Normaltekst, UndertekstBold, Undertittel } from 'nav-frontend-typografi';
 import { useDialogpanelState } from '../../../../../context/dialogpanel-state';
+import Panel from 'nav-frontend-paneler';
 
 interface Props {
     valgtTraad: Traad;
@@ -34,12 +35,6 @@ const KnappWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-`;
-
-const TopplinjeWrapper = styled.div`
-    background: white;
-    border-radius: 0.25rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
 `;
 
 const TopplinjeTittel = styled(Undertittel)`
@@ -155,7 +150,7 @@ function NyTraadVisning(props: Props) {
 
     return (
         <VisningStyle>
-            <TopplinjeWrapper>
+            <Panel>
                 <TopplinjeTittel>{traadstittel(sisteMelding.temagruppe, props.valgtTraad.traadType)}</TopplinjeTittel>
                 <Topplinje valgtTraad={props.valgtTraad} />
                 <h3 className="sr-only" aria-live="polite">
@@ -163,7 +158,7 @@ function NyTraadVisning(props: Props) {
                     {formatterDatoTid(sisteMelding.opprettetDato)}
                 </h3>
                 <Journalposter traad={props.valgtTraad} />
-            </TopplinjeWrapper>
+            </Panel>
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>
     );

@@ -28,7 +28,7 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
 export function traadTypeTekst(traadType?: TraadType) {
     switch (traadType) {
         case TraadType.CHAT:
-            return 'Samtale';
+            return 'Chat';
         case TraadType.MELDINGSKJEDE:
             return 'Samtale';
         case TraadType.SAMTALEREFERAT:
