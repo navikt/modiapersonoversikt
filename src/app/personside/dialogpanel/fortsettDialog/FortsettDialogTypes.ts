@@ -40,5 +40,5 @@ export interface FortsettDialogState {
     oppgaveListe: OppgavelisteValg;
     sak?: JournalforingsSak;
     visFeilmeldinger: boolean;
-    avslutteSamtale?: boolean;
+    avsluttet?: boolean;
 }

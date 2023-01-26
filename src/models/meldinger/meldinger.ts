@@ -60,7 +60,7 @@ export enum Meldingstype {
 export enum TraadType {
     SAMTALEREFERAT = 'SAMTALEREFERAT',
     MELDINGSKJEDE = 'MELDINGSKJEDE',
-    CHAT = 'MELDINGSKJEDE'
+    CHAT = 'CHAT'
 }
 
 export enum LestStatus {
@@ -81,7 +81,7 @@ export interface SendSamtaleRequest {
     fritekst: string;
     sak: JournalforingsSak;
     erOppgaveTilknyttetAnsatt: boolean;
-    avslutteSamtale: boolean;
+    avsluttet?: boolean;
 }
 
 export interface SendSporsmalRequest {

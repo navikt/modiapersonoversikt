@@ -43,6 +43,7 @@ const TopplinjeTittel = styled(Undertittel)`
 
 const StyledAlertStripeInfo = styled(AlertStripeInfo)`
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    margin-bottom: 0.3rem;
 `;
 
 function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {

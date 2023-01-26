@@ -90,13 +90,13 @@ function NyFortsettDialog(props: Props) {
                     <Panel>
                         <StyledCheckbox
                             label={'Lukk samtale etter sending'}
-                            checked={state.avslutteSamtale}
-                            onChange={() => updateState({ avslutteSamtale: !state.avslutteSamtale })}
+                            checked={state.avsluttet}
+                            onChange={() => updateState({ avsluttet: !state.avsluttet })}
                         />
-                        {state.avslutteSamtale && (
+                        {state.avsluttet && (
                             <StyledAlertStripeInfo>Bruker kan ikke skrive mer i denne samtalen</StyledAlertStripeInfo>
                         )}
-                        {!state.avslutteSamtale && (
+                        {!state.avsluttet && (
                             <BrukerKanSvare
                                 formState={state}
                                 updateFormState={updateState}

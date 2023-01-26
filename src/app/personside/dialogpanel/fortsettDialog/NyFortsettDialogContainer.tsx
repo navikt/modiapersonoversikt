@@ -66,17 +66,21 @@ export function finnPlukketOppgaveForTraad(
 
 function NyFortsettDialogContainer(props: Props) {
     const queryClient = useQueryClient();
+    const dialogType =
+        props.traad.traadType === TraadType.SAMTALEREFERAT
+            ? Meldingstype.SAMTALEREFERAT_OPPMOTE
+            : Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
     const initialState = useMemo(
         () => ({
             tekst: '',
-            dialogType: Meldingstype.SVAR_SKRIFTLIG as FortsettDialogType,
+            dialogType: dialogType as FortsettDialogType,
             tema: undefined,
             visFeilmeldinger: false,
             sak: undefined,
             oppgaveListe: props.defaultOppgaveDestinasjon,
-            avslutteSamtale: false
+            avsluttet: false
         }),
-        [props.defaultOppgaveDestinasjon]
+        [props.defaultOppgaveDestinasjon, dialogType]
     );
 
     const fnr = useFodselsnummer();
@@ -111,7 +115,7 @@ function NyFortsettDialogContainer(props: Props) {
         return <SvarSendtKvittering kvitteringsData={dialogStatus.kvitteringsData} />;
     }
 
-    if (opprettHenvendelse.success === false) {
+    if (!opprettHenvendelse.success) {
         return opprettHenvendelse.placeholder;
     }
 
@@ -142,7 +146,7 @@ function NyFortsettDialogContainer(props: Props) {
             traadId: props.traad.traadId,
             behandlingsId: opprettHenvendelse.henvendelse.behandlingsId,
             oppgaveId: oppgaveId,
-            avslutteSamtale: state.avslutteSamtale
+            avsluttet: state.avsluttet
         };
         if (
             FortsettDialogValidator.erGyldigSvarSkriftlig(state) ||
@@ -180,7 +184,7 @@ function NyFortsettDialogContainer(props: Props) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
             const request: ForsettDialogRequest = {
                 ...commonPayload,
-                erOppgaveTilknyttetAnsatt: state.avslutteSamtale ? false : erOppgaveTilknyttetAnsatt,
+                erOppgaveTilknyttetAnsatt: state.avsluttet ? false : erOppgaveTilknyttetAnsatt,
                 sak: state.sak ? state.sak : undefined
             };
             const kvitteringsData: KvitteringsData = {
@@ -205,7 +209,7 @@ function NyFortsettDialogContainer(props: Props) {
     function traadTittel(traadType?: TraadType) {
         switch (traadType) {
             case TraadType.CHAT:
-                return 'Fortsett samtale';
+                return 'Fortsett chat';
             case TraadType.MELDINGSKJEDE:
                 return 'Fortsett samtale';
             case TraadType.SAMTALEREFERAT:

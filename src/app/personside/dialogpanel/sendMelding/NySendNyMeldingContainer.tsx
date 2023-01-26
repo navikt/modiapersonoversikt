@@ -33,7 +33,7 @@ function NySendNyMeldingContainer(props: Props) {
             dialogType: Meldingstype.SAMTALEREFERAT_OPPMOTE,
             tema: undefined,
             sak: undefined,
-            avslutteSamtale: false,
+            avsluttet: false,
             oppgaveListe: props.defaultOppgaveDestinasjon,
             visFeilmeldinger: false
         }),
@@ -153,7 +153,7 @@ function NySendNyMeldingContainer(props: Props) {
                 enhet: valgtEnhet,
                 fritekst: state.tekst,
                 sak: state.sak,
-                avslutteSamtale: state.avslutteSamtale,
+                avsluttet: state.avsluttet,
                 erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
             };
             post<Traad>(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, request, 'Send-Sporsmal')

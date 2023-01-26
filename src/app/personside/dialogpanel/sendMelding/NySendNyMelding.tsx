@@ -41,7 +41,7 @@ export interface NySendNyMeldingState {
     dialogType: SendNyMeldingDialogType;
     tema?: Temagruppe;
     sak?: JournalforingsSak;
-    avslutteSamtale: boolean;
+    avsluttet: boolean;
     oppgaveListe: OppgavelisteValg;
     visFeilmeldinger: boolean;
 }
@@ -141,8 +141,8 @@ function NySendNyMelding(props: Props) {
                                 />
                                 <StyledCheckbox
                                     label={'Lukk samtale etter sending'}
-                                    checked={state.avslutteSamtale}
-                                    onChange={() => updateState({ avslutteSamtale: !state.avslutteSamtale })}
+                                    checked={state.avsluttet}
+                                    onChange={() => updateState({ avsluttet: !state.avsluttet })}
                                 />
                                 {visFeilmelding ? (
                                     <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding>
