@@ -3,6 +3,7 @@ import { Temagruppe } from '../temagrupper';
 
 export interface Traad {
     traadId: string;
+    traadType?: TraadType;
     meldinger: Melding[];
     journalposter: Array<MeldingJournalpost>;
 }
@@ -56,6 +57,12 @@ export enum Meldingstype {
     CHATMELDING_FRA_BRUKER = 'CHATMELDING_FRA_BRUKER'
 }
 
+export enum TraadType {
+    SAMTALEREFERAT = 'SAMTALEREFERAT',
+    MELDINGSKJEDE = 'MELDINGSKJEDE',
+    CHAT = 'MELDINGSKJEDE'
+}
+
 export enum LestStatus {
     IkkeLest = 'IKKE_LEST_AV_BRUKER',
     Lest = 'LEST_AV_BRUKER',
@@ -67,6 +74,14 @@ export interface SendReferatRequest {
     fritekst: string;
     temagruppe: Temagruppe;
     meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON | Meldingstype.SAMTALEREFERAT_OPPMOTE;
+}
+
+export interface SendSamtaleRequest {
+    enhet: string;
+    fritekst: string;
+    sak: JournalforingsSak;
+    erOppgaveTilknyttetAnsatt: boolean;
+    avslutteSamtale: boolean;
 }
 
 export interface SendSporsmalRequest {

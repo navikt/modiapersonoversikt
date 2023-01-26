@@ -1,10 +1,11 @@
 import {
     LestStatus,
     Melding,
+    MeldingJournalpost,
+    Meldingstype,
     Saksbehandler,
     Traad,
-    Meldingstype,
-    MeldingJournalpost
+    TraadType
 } from '../../models/meldinger/meldinger';
 import faker from 'faker/locale/nb_NO';
 import navfaker from 'nav-faker';
@@ -48,6 +49,7 @@ export function getMockTraader(fodselsnummer: string): Traad[] {
 }
 
 function getMockTraad(): Traad {
+    const traadType = navfaker.random.arrayElement(Object.entries(TraadType));
     const temagruppe = navfaker.random.arrayElement([...TemaSamtalereferat, null, Temagruppe.InnholdSlettet]);
     const meldinger = Array(navfaker.random.integer(4, 1))
         .fill(null)
@@ -55,6 +57,7 @@ function getMockTraad(): Traad {
 
     return {
         traadId: faker.random.alphaNumeric(8),
+        traadType: traadType[1] as TraadType,
         meldinger: meldinger,
         journalposter: fyllRandomListe(lagJournalpost, 3, false)
     };
@@ -112,6 +115,7 @@ function getChatTraad(): Traad {
 
     return {
         traadId: meldinger[0].id,
+        traadType: TraadType.CHAT,
         meldinger: meldinger,
         journalposter: fyllRandomListe(lagJournalpost, 3, true)
     };

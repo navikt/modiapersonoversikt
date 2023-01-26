@@ -7,7 +7,7 @@ import {
     OpprettHenvendelseResponse,
     SendInfomeldingRequest,
     SendReferatRequest,
-    SendSporsmalRequest,
+    SendSamtaleRequest,
     Traad
 } from '../../models/meldinger/meldinger';
 import { guid } from 'nav-frontend-js-utils';
@@ -48,6 +48,7 @@ export class MeldingerBackendMock {
                 .flatMap((traad) => traad.meldinger);
             return maskerMeldingVedManglendeTilgang({
                 traadId: traad.traadId,
+                traadType: traad.traadType,
                 meldinger: [...tilhorendeSvar, ...traad.meldinger],
                 journalposter: traad.journalposter
             });
@@ -70,7 +71,7 @@ export class MeldingerBackendMock {
         return traad;
     }
 
-    public sendSporsmal(request: SendSporsmalRequest): Traad {
+    public sendSporsmal(request: SendSamtaleRequest): Traad {
         const melding: Melding = {
             ...getMockMelding(),
             meldingstype: Meldingstype.SPORSMAL_MODIA_UTGAAENDE,

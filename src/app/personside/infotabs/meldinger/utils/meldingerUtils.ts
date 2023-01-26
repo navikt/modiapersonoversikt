@@ -1,5 +1,5 @@
-import { Melding, Meldingstype, Saksbehandler, Traad } from '../../../../../models/meldinger/meldinger';
-import { meldingstypeTekst } from './meldingstekster';
+import { Melding, Meldingstype, Saksbehandler, Traad, TraadType } from '../../../../../models/meldinger/meldinger';
+import { meldingstypeTekst, traadTypeTekst } from './meldingstekster';
 import { datoStigende, datoSynkende, formatterDatoTid } from '../../../../../utils/date-utils';
 import { useMemo } from 'react';
 import useDebounce from '../../../../../utils/hooks/use-debounce';
@@ -52,6 +52,13 @@ export function meldingstittel(melding: Melding): string {
         return meldingstypeTekst(melding.meldingstype);
     }
     return `${meldingstypeTekst(melding.meldingstype)} - ${temagruppeTekst(melding.temagruppe)}`;
+}
+
+export function traadstittel(temagruppe: Temagruppe | null, traadType?: TraadType): string {
+    if (temagruppe === Temagruppe.InnholdSlettet || temagruppe == null) {
+        return traadTypeTekst(traadType);
+    }
+    return `${traadTypeTekst(traadType)} - ${temagruppeTekst(temagruppe)}`;
 }
 
 export function erMeldingstypeSamtalereferat(meldingstype: Meldingstype) {
