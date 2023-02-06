@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useRef } from 'react';
-import { Meldingstype } from '../../../../models/meldinger/meldinger';
+import { TraadType } from '../../../../models/meldinger/meldinger';
 import { UnmountClosed } from 'react-collapse';
 import KnappBase from 'nav-frontend-knapper';
 import styled from 'styled-components/macro';
@@ -10,7 +10,7 @@ import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoy
 import DialogpanelVelgSak from './DialogpanelVelgSak';
 import { capitalizeName } from '../../../../utils/string-utils';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
-import { NyMeldingValidator } from './validatorer';
+import { NyMeldingValidator } from './nyValidatorer';
 import TekstFelt from './TekstFelt';
 import { Undertittel } from 'nav-frontend-typografi';
 import Oppgaveliste from './Oppgaveliste';
@@ -30,20 +30,14 @@ export enum OppgavelisteValg {
     EnhetensListe = 'Enhetensliste'
 }
 
-export type SendNyMeldingDialogType =
-    | Meldingstype.SAMTALEREFERAT_TELEFON
-    | Meldingstype.SAMTALEREFERAT_OPPMOTE
-    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE
-    | Meldingstype.INFOMELDING_MODIA_UTGAAENDE;
-
 export interface NySendNyMeldingState {
     tekst: string;
-    dialogType: SendNyMeldingDialogType;
+    traadType: TraadType;
     tema?: Temagruppe;
     sak?: JournalforingsSak;
-    avsluttet: boolean;
     oppgaveListe: OppgavelisteValg;
     visFeilmeldinger: boolean;
+    avsluttet: boolean;
 }
 
 const StyledArticle = styled.article`
@@ -99,7 +93,7 @@ function NySendNyMelding(props: Props) {
         : 'bruker';
 
     const erReferat = NyMeldingValidator.erReferat(state);
-    const erSamtale = NyMeldingValidator.erSporsmal(state);
+    const erSamtale = NyMeldingValidator.erSamtale(state);
     const visFeilmelding = !NyMeldingValidator.sak(state) && state.visFeilmeldinger;
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
@@ -117,10 +111,7 @@ function NySendNyMelding(props: Props) {
                                 : undefined
                         }
                     />
-                    <NyVelgDialogType
-                        formState={state}
-                        updateDialogType={(dialogType) => updateState({ dialogType })}
-                    />
+                    <NyVelgDialogType formState={state} updateTraadType={(traadType) => updateState({ traadType })} />
                     <div>
                         <UnmountClosed isOpened={erReferat}>
                             {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}

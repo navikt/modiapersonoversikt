@@ -9,7 +9,13 @@ import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Traad } from '../../../../../models/meldinger/meldinger';
-import { eldsteMelding, kanBesvares, nyesteMelding, saksbehandlerTekst, traadstittel } from '../utils/meldingerUtils';
+import {
+    eldsteMelding,
+    nyesteMelding,
+    saksbehandlerTekst,
+    traadKanBesvares,
+    traadstittel
+} from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/string-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/print/usePrinter';
@@ -64,10 +70,10 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dialogpanel = useDialogpanelState();
     const dialogpanelTraad = useAppState((state) => state.oppgaver.dialogpanelTraad);
 
-    const traadKanBesvares = kanBesvares(valgtTraad);
+    const kanBesvares = traadKanBesvares(valgtTraad);
     const melding = eldsteMelding(valgtTraad);
 
-    if (melding.markertSomFeilsendtAv || melding.sendtTilSladding || (melding.avsluttetDato && !traadKanBesvares)) {
+    if (melding.markertSomFeilsendtAv || melding.sendtTilSladding || (melding.avsluttetDato && !kanBesvares)) {
         return (
             <>
                 {melding.markertSomFeilsendtAv && (
@@ -79,7 +85,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
                 {melding.sendtTilSladding && (
                     <StyledAlertStripeInfo>Tråden ligger til behandling for sladding</StyledAlertStripeInfo>
                 )}
-                {melding.avsluttetDato && !traadKanBesvares && (
+                {melding.avsluttetDato && !kanBesvares && (
                     <StyledAlertStripeInfo>Dialogen er avsluttet</StyledAlertStripeInfo>
                 )}
             </>
@@ -96,7 +102,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
         return <StyledAlertStripeInfo>Under arbeid</StyledAlertStripeInfo>;
     }
 
-    if (traadKanBesvares) {
+    if (kanBesvares) {
         return (
             <KnappWrapper>
                 <Hovedknapp onClick={handleNyMelding}>Ny melding</Hovedknapp>

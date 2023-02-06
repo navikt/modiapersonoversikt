@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { FormEvent, useCallback, useMemo, useState } from 'react';
 import { OppgavelisteValg, SendNyMeldingState } from './SendNyMelding';
-import { NyMeldingValidator } from './validatorer';
-import { Meldingstype, SendReferatRequest, SendSamtaleRequest, Traad } from '../../../../models/meldinger/meldinger';
-import { useFodselsnummer } from '../../../../utils/customHooks';
+import { NyMeldingValidator } from './nyValidatorer';
 import {
-    InfomeldingSendtKvittering,
-    ReferatSendtKvittering,
-    MeldingSendtFeilet,
-    SporsmalSendtKvittering
-} from './SendNyMeldingKvittering';
+    Meldingstype,
+    SendReferatRequest,
+    SendSamtaleRequest,
+    Traad,
+    TraadType
+} from '../../../../models/meldinger/meldinger';
+import { useFodselsnummer } from '../../../../utils/customHooks';
+import { MeldingSendtFeilet, ReferatSendtKvittering, SamtaleSendtKvittering } from './NySendNyMeldingKvittering';
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { KvitteringNyMelding, SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
@@ -30,7 +31,7 @@ function NySendNyMeldingContainer(props: Props) {
     const initialState: NySendNyMeldingState = useMemo(
         () => ({
             tekst: '',
-            dialogType: Meldingstype.SAMTALEREFERAT_OPPMOTE,
+            traadType: TraadType.SAMTALEREFERAT,
             tema: undefined,
             sak: undefined,
             avsluttet: false,
@@ -78,17 +79,9 @@ function NySendNyMeldingContainer(props: Props) {
         );
     }
 
-    if (sendNyMeldingStatus.type === SendNyMeldingStatus.SPORSMAL_SENDT) {
+    if (sendNyMeldingStatus.type === SendNyMeldingStatus.SAMTALE_SENDT) {
         return (
-            <SporsmalSendtKvittering
-                kvitteringNyMelding={sendNyMeldingStatus.kvitteringNyMelding}
-                lukk={lukkSendtKvittering}
-            />
-        );
-    }
-    if (sendNyMeldingStatus.type === SendNyMeldingStatus.INFORMELDING_SENDT) {
-        return (
-            <InfomeldingSendtKvittering
+            <SamtaleSendtKvittering
                 kvitteringNyMelding={sendNyMeldingStatus.kvitteringNyMelding}
                 lukk={lukkSendtKvittering}
             />
@@ -121,18 +114,13 @@ function NySendNyMeldingContainer(props: Props) {
             queryClient.invalidateQueries(dialogResource.queryKey(fnr, valgtEnhet));
         };
 
-        if (
-            NyMeldingValidator.erGyldigReferat(state) &&
-            state.tema &&
-            state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE &&
-            state.dialogType !== Meldingstype.INFOMELDING_MODIA_UTGAAENDE
-        ) {
+        if (NyMeldingValidator.erGyldigReferat(state) && state.tema) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
             const request: SendReferatRequest = {
                 enhet: valgtEnhet,
                 fritekst: state.tekst,
-                meldingstype: state.dialogType,
-                temagruppe: state.tema
+                temagruppe: state.tema,
+                meldingstype: Meldingstype.SAMTALEREFERAT_OPPMOTE
             };
             post<Traad>(`${apiBaseUri}/dialog/${fnr}/sendreferat`, request, 'Send-Referat')
                 .then((traad) => {
@@ -147,7 +135,7 @@ function NySendNyMeldingContainer(props: Props) {
                     console.error('Send-Referat feilet', error);
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR, fritekst: request.fritekst });
                 });
-        } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
+        } else if (NyMeldingValidator.erGyldigSamtale(state) && state.sak) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
             const request: SendSamtaleRequest = {
                 enhet: valgtEnhet,
@@ -164,7 +152,7 @@ function NySendNyMeldingContainer(props: Props) {
                     };
                     queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
                     callback();
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, kvitteringNyMelding });
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.SAMTALE_SENDT, kvitteringNyMelding });
                 })
                 .catch((error) => {
                     callback();

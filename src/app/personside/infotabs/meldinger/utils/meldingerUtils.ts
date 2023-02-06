@@ -40,6 +40,19 @@ export function kanBesvares(traad?: Traad): boolean {
     }
 }
 
+export function traadKanBesvares(traad?: Traad): boolean {
+    if (!traad) {
+        return false;
+    }
+
+    if (traad.traadType === TraadType.SAMTALEREFERAT) {
+        return true;
+    } else {
+        const melding = eldsteMelding(traad);
+        return !melding.avsluttetDato;
+    }
+}
+
 export function erMonolog(traad: Traad) {
     const bareSaksbehandler: boolean = traad.meldinger.some((melding) => erMeldingFraNav(melding.meldingstype));
     const bareBruker: boolean = traad.meldinger.some((melding) => erMeldingFraBruker(melding.meldingstype));

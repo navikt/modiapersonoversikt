@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { SendNyMeldingDialogType, SendNyMeldingState } from './SendNyMelding';
-import { Meldingstype } from '../../../../models/meldinger/meldinger';
+import { TraadType } from '../../../../models/meldinger/meldinger';
 import { Radio } from 'nav-frontend-skjema';
 import { VelgDialogtypeStyle } from '../fellesStyling';
+import { NySendNyMeldingState } from './NySendNyMelding';
 
 interface Props {
-    formState: SendNyMeldingState;
-    updateDialogType: (dialogType: SendNyMeldingDialogType) => void;
+    formState: NySendNyMeldingState;
+    updateTraadType: (traadType: TraadType) => void;
 }
 
 function NyVelgDialogType(props: Props) {
@@ -14,20 +14,14 @@ function NyVelgDialogType(props: Props) {
         <VelgDialogtypeStyle>
             <Radio
                 label="Referat"
-                onChange={() => props.updateDialogType(Meldingstype.SAMTALEREFERAT_OPPMOTE)}
-                checked={
-                    props.formState.dialogType === Meldingstype.SAMTALEREFERAT_OPPMOTE ||
-                    props.formState.dialogType === Meldingstype.SAMTALEREFERAT_TELEFON
-                }
+                onChange={() => props.updateTraadType(TraadType.SAMTALEREFERAT)}
+                checked={props.formState.traadType === TraadType.SAMTALEREFERAT}
                 name="dialogtype"
             />
             <Radio
                 label="Samtale"
-                onChange={() => props.updateDialogType(Meldingstype.SPORSMAL_MODIA_UTGAAENDE)}
-                checked={
-                    props.formState.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE ||
-                    props.formState.dialogType === Meldingstype.INFOMELDING_MODIA_UTGAAENDE
-                }
+                onChange={() => props.updateTraadType(TraadType.MELDINGSKJEDE)}
+                checked={props.formState.traadType !== TraadType.SAMTALEREFERAT}
                 name="dialogtype"
             />
         </VelgDialogtypeStyle>

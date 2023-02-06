@@ -8,7 +8,8 @@ import {
     SendInfomeldingRequest,
     SendReferatRequest,
     SendSamtaleRequest,
-    Traad
+    Traad,
+    TraadType
 } from '../../models/meldinger/meldinger';
 import { guid } from 'nav-frontend-js-utils';
 import dayjs from 'dayjs';
@@ -64,6 +65,7 @@ export class MeldingerBackendMock {
         };
         const traad = {
             traadId: guid(),
+            traadType: TraadType.SAMTALEREFERAT,
             meldinger: [melding],
             journalposter: []
         };

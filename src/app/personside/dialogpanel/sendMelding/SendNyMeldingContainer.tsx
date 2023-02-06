@@ -12,8 +12,8 @@ import {
 import { useFodselsnummer } from '../../../../utils/customHooks';
 import {
     InfomeldingSendtKvittering,
-    ReferatSendtKvittering,
     MeldingSendtFeilet,
+    ReferatSendtKvittering,
     SporsmalSendtKvittering
 } from './SendNyMeldingKvittering';
 import { apiBaseUri } from '../../../../api/config';
@@ -135,8 +135,8 @@ function SendNyMeldingContainer(props: Props) {
             const request: SendReferatRequest = {
                 enhet: valgtEnhet,
                 fritekst: state.tekst,
-                meldingstype: state.dialogType,
-                temagruppe: state.tema
+                temagruppe: state.tema,
+                meldingstype: Meldingstype.SAMTALEREFERAT_OPPMOTE
             };
             post<Traad>(`${apiBaseUri}/dialog/${fnr}/sendreferat`, request, 'Send-Referat')
                 .then((traad) => {

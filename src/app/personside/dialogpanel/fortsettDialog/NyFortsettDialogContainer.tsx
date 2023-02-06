@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { FormEvent, useRef, useState, useCallback, useMemo } from 'react';
-import { FortsettDialogValidator } from './validatorer';
-import { ForsettDialogRequest, Meldingstype, Traad, TraadType } from '../../../../models/meldinger/meldinger';
+import { FortsettDialogValidator } from './nyValidatorer';
+import { NyForsettDialogRequest, Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { useFodselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
-import { SvarSendtKvittering } from './FortsettDialogKvittering';
+import { SvarSendtKvittering } from './NyFortsettDialogKvittering';
 import useOpprettHenvendelse from './useOpprettHenvendelse';
 import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { loggError } from '../../../../utils/logger/frontendLogger';
@@ -17,7 +17,7 @@ import {
     FortsettDialogPanelState,
     FortsettDialogState,
     KvitteringsData
-} from './FortsettDialogTypes';
+} from './NyFortsettDialogTypes';
 import { Undertittel } from 'nav-frontend-typografi';
 import { guid } from 'nav-frontend-js-utils';
 import styled from 'styled-components';
@@ -32,12 +32,6 @@ import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
 import NyFortsettDialog from './NyFortsettDialog';
-
-export type FortsettDialogType =
-    | Meldingstype.SVAR_SKRIFTLIG
-    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE
-    | Meldingstype.SAMTALEREFERAT_OPPMOTE
-    | Meldingstype.SAMTALEREFERAT_TELEFON;
 
 interface Props {
     traad: Traad;
@@ -66,21 +60,17 @@ export function finnPlukketOppgaveForTraad(
 
 function NyFortsettDialogContainer(props: Props) {
     const queryClient = useQueryClient();
-    const dialogType =
-        props.traad.traadType === TraadType.SAMTALEREFERAT
-            ? Meldingstype.SAMTALEREFERAT_OPPMOTE
-            : Meldingstype.SPORSMAL_MODIA_UTGAAENDE;
     const initialState = useMemo(
         () => ({
             tekst: '',
-            dialogType: dialogType as FortsettDialogType,
+            traadType: TraadType.SAMTALEREFERAT,
             tema: undefined,
             visFeilmeldinger: false,
             sak: undefined,
             oppgaveListe: props.defaultOppgaveDestinasjon,
             avsluttet: false
         }),
-        [props.defaultOppgaveDestinasjon, dialogType]
+        [props.defaultOppgaveDestinasjon]
     );
 
     const fnr = useFodselsnummer();
@@ -142,24 +132,20 @@ function NyFortsettDialogContainer(props: Props) {
         const commonPayload = {
             enhet: valgtEnhet,
             fritekst: state.tekst,
-            meldingstype: state.dialogType,
+            traadType: state.traadType,
             traadId: props.traad.traadId,
             behandlingsId: opprettHenvendelse.henvendelse.behandlingsId,
             oppgaveId: oppgaveId,
             avsluttet: state.avsluttet
         };
-        if (
-            FortsettDialogValidator.erGyldigSvarSkriftlig(state) ||
-            FortsettDialogValidator.erGyldigSamtalereferat(state)
-        ) {
+        if (FortsettDialogValidator.erGyldigSamtalereferat(state)) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
-            const request: ForsettDialogRequest = {
+            const request: NyForsettDialogRequest = {
                 ...commonPayload,
                 erOppgaveTilknyttetAnsatt: true // TODO, denne bør ikke være nødvendig å sende med her
             };
             const kvitteringsData: KvitteringsData = {
                 fritekst: request.fritekst,
-                meldingstype: request.meldingstype,
                 traad: props.traad
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Send-Svar')
@@ -170,7 +156,7 @@ function NyFortsettDialogContainer(props: Props) {
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
-        } else if (FortsettDialogValidator.erGyldigSporsmaalSkriftlig(state, props.traad)) {
+        } else if (FortsettDialogValidator.erGyldigSamtale(state)) {
             const tradErJournalfort = erJournalfort(props.traad);
             const erOksos = props.traad.meldinger[0].temagruppe === Temagruppe.ØkonomiskSosial;
             if (!state.sak && !tradErJournalfort && !erOksos) {
@@ -182,14 +168,13 @@ function NyFortsettDialogContainer(props: Props) {
                 return;
             }
             setDialogStatus({ type: DialogPanelStatus.POSTING });
-            const request: ForsettDialogRequest = {
+            const request: NyForsettDialogRequest = {
                 ...commonPayload,
                 erOppgaveTilknyttetAnsatt: state.avsluttet ? false : erOppgaveTilknyttetAnsatt,
                 sak: state.sak ? state.sak : undefined
             };
             const kvitteringsData: KvitteringsData = {
                 fritekst: request.fritekst,
-                meldingstype: request.meldingstype,
                 traad: props.traad
             };
             post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')

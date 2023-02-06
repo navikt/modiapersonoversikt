@@ -8,10 +8,10 @@ import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
-import BrukerKanSvare from './BrukerKanSvare';
+import BrukerKanSvare from './NyBrukerKanSvare';
 import styled from 'styled-components/macro';
-import { FortsettDialogValidator } from './validatorer';
-import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';
+import { FortsettDialogValidator } from './nyValidatorer';
+import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './NyFortsettDialogTypes';
 import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { capitalizeName } from '../../../../utils/string-utils';
 import persondataResource from '../../../../rest/resources/persondataResource';
@@ -28,10 +28,6 @@ const StyledKnappMedBekreftPopup = styled(KnappMedBekreftPopup)`
 
 const StyledAlertStripeInfo = styled(AlertStripeInfo)`
     margin-top: 1rem;
-`;
-
-const StyledCheckbox = styled(Checkbox)`
-    margin-top: 0.1rem;
 `;
 
 interface Props {
@@ -88,7 +84,7 @@ function NyFortsettDialog(props: Props) {
             <div>
                 <UnmountClosed isOpened={!erSamtalereferat}>
                     <Panel>
-                        <StyledCheckbox
+                        <Checkbox
                             label={'Lukk samtale etter sending'}
                             checked={state.avsluttet}
                             onChange={() => updateState({ avsluttet: !state.avsluttet })}

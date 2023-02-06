@@ -108,6 +108,18 @@ export interface ForsettDialogRequest {
     oppgaveId?: string;
 }
 
+export interface NyForsettDialogRequest {
+    enhet: string;
+    traadId: string;
+    traadType: TraadType;
+    behandlingsId: string;
+    fritekst: string;
+    sak?: JournalforingsSak;
+    erOppgaveTilknyttetAnsatt: boolean;
+    oppgaveId?: string;
+    avsluttet?: boolean;
+}
+
 export interface OpprettHenvendelseRequest {
     enhet: string;
     traadId: string;
