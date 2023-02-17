@@ -10,6 +10,10 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import TraadSammendrag from './TraadSammendrag';
 import { guid } from 'nav-frontend-js-utils';
 import { valgtMeldingKlasse } from './TraadListe';
+import IfFeatureToggleOff from '../../../../../components/featureToggle/IfFeatureToggleOff';
+import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
+import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
+import NyTraadSammendrag from './NyTraadSammendrag';
 
 interface Props {
     traad: Traad;
@@ -83,7 +87,12 @@ function TraadListeElement(props: Props) {
             <StyledLabel htmlFor={id.current}>
                 {props.tillegskomponent}
                 <FlexGrow>
-                    <TraadSammendrag traad={props.traad} />
+                    <IfFeatureToggleOn toggleID={FeatureToggles.useNewDialogComponents}>
+                        <NyTraadSammendrag traad={props.traad} />
+                    </IfFeatureToggleOn>
+                    <IfFeatureToggleOff toggleID={FeatureToggles.useNewDialogComponents}>
+                        <TraadSammendrag traad={props.traad} />
+                    </IfFeatureToggleOff>
                 </FlexGrow>
                 <ChevronStyling className="hover-animation">
                     <HoyreChevron />
