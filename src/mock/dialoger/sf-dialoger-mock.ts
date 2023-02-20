@@ -111,6 +111,15 @@ function setupSendInfomeldingMock(mock: FetchMock) {
     );
 }
 
+function setupSendMeldingMock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/dialog/:fodselsnummer/sendmelding',
+        withDelayedResponse(randomDelay() * 2, STATUS_OK, (request) => {
+            return meldingerBackendMock.sendMelding(request.body);
+        })
+    );
+}
+
 function merkFeilsendtMock(mock: FetchMock) {
     mock.post(
         apiBaseUri + '/dialogmerking/feilsendt',
@@ -156,6 +165,7 @@ export function setupSFDialogMock(mock: FetchMock, backend: MeldingerBackendMock
     setupSendReferatMock(mock);
     setupSendSporsmalMock(mock);
     setupSendInfomeldingMock(mock);
+    setupSendMeldingMock(mock);
     merkFeilsendtMock(mock);
     sladdingMock(mock);
     lukkTraadMock(mock);

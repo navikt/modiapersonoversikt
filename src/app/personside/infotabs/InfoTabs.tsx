@@ -22,6 +22,10 @@ import { guid } from 'nav-frontend-js-utils';
 import { useOpenTab } from './utils/useOpenTab';
 import { MeldingsokProvider } from '../../../context/meldingsok';
 import { useVisittkortState } from '../../../context/visittkort-state';
+import IfFeatureToggleOn from '../../../components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
+import IfFeatureToggleOff from '../../../components/featureToggle/IfFeatureToggleOff';
+import NyTabKnapper from './NyTabKnapper';
 
 const StyledArticle = styled.article`
     display: flex;
@@ -67,7 +71,12 @@ function InfoTabs() {
     return (
         <ErrorBoundary boundaryName="InfoTabs">
             <HandleInfotabsHotkeys />
-            <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
+            <IfFeatureToggleOn toggleID={FeatureToggles.useNewDialogComponents}>
+                <NyTabKnapper openTab={openTab} onTabChange={updateRouterPath} />
+            </IfFeatureToggleOn>
+            <IfFeatureToggleOff toggleID={FeatureToggles.useNewDialogComponents}>
+                <TabKnapper openTab={openTab} onTabChange={updateRouterPath} />
+            </IfFeatureToggleOff>
             <ErrorBoundary boundaryName={'Open tab: ' + openTab.tittel}>
                 <StyledArticle ref={openTabRef} onScroll={storeCroll} aria-labelledby={articleId.current}>
                     <h2

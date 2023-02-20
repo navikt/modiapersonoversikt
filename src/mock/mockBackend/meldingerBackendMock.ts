@@ -8,7 +8,9 @@ import {
     SendInfomeldingRequest,
     SendReferatRequest,
     SendSporsmalRequest,
-    Traad
+    SendMeldingRequest,
+    Traad,
+    TraadType
 } from '../../models/meldinger/meldinger';
 import { guid } from 'nav-frontend-js-utils';
 import dayjs from 'dayjs';
@@ -48,6 +50,8 @@ export class MeldingerBackendMock {
                 .flatMap((traad) => traad.meldinger);
             return maskerMeldingVedManglendeTilgang({
                 traadId: traad.traadId,
+                traadType: traad.traadType,
+                temagruppe: traad.temagruppe,
                 meldinger: [...tilhorendeSvar, ...traad.meldinger],
                 journalposter: traad.journalposter
             });
@@ -63,10 +67,36 @@ export class MeldingerBackendMock {
         };
         const traad = {
             traadId: guid(),
+            traadType: TraadType.SAMTALEREFERAT,
             meldinger: [melding],
             journalposter: []
         };
         this.sendteNyeMeldinger.unshift(traad);
+        return traad;
+    }
+
+    public sendMelding(request: SendMeldingRequest): Traad {
+        if (request.oppgaveId) {
+            this.oppgaveBackendMock.ferdigStillOppgave(request.oppgaveId);
+        }
+        const melding: Melding = {
+            ...getMockMelding(),
+            meldingstype: Meldingstype.SVAR_SKRIFTLIG,
+            temagruppe: request.temagruppe ?? null,
+            fritekst: request.fritekst
+        };
+        const traad = {
+            traadId: request.traadId ?? guid(),
+            traadType: request.traadType,
+            temagruppe: request.temagruppe,
+            meldinger: [melding],
+            journalposter: []
+        };
+        if (request.traadId) {
+            this.sendteSvar.unshift(traad);
+        } else {
+            this.sendteNyeMeldinger.unshift(traad);
+        }
         return traad;
     }
 

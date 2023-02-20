@@ -16,6 +16,10 @@ import { useOnMount } from '../../../../utils/customHooks';
 import { temagruppeTekst } from '../../../../models/temagrupper';
 import TraadSammendrag from '../meldinger/traadliste/TraadSammendrag';
 import dialogResource from '../../../../rest/resources/dialogResource';
+import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
+import NyTraadSammendrag from '../meldinger/traadliste/NyTraadSammendrag';
+import IfFeatureToggleOff from '../../../../components/featureToggle/IfFeatureToggleOff';
 
 const ListStyle = styled.ol`
     > *:not(:first-child) {
@@ -68,7 +72,12 @@ function Traadelement(props: { traad: Traad }) {
                 ariaDescription={'Vis meldinger for ' + tittel}
                 className={meldingerTest.oversikt}
             >
-                <TraadSammendrag traad={props.traad} />
+                <IfFeatureToggleOn toggleID={FeatureToggles.useNewDialogComponents}>
+                    <NyTraadSammendrag traad={props.traad} />
+                </IfFeatureToggleOn>
+                <IfFeatureToggleOff toggleID={FeatureToggles.useNewDialogComponents}>
+                    <TraadSammendrag traad={props.traad} />
+                </IfFeatureToggleOff>
             </VisMerKnapp>
         </li>
     );
