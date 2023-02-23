@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { FormEvent, useRef, useState, useCallback, useMemo } from 'react';
-import FortsettDialog from './FortsettDialog';
 import { FortsettDialogValidator } from './validatorer';
-import { ForsettDialogRequest, Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
+import { SendMeldingRequest, Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { useFodselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
@@ -32,12 +31,7 @@ import dialogResource from '../../../../rest/resources/dialogResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
-
-export type FortsettDialogType =
-    | Meldingstype.SVAR_SKRIFTLIG
-    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE
-    | Meldingstype.SAMTALEREFERAT_OPPMOTE
-    | Meldingstype.SAMTALEREFERAT_TELEFON;
+import FortsettDialog from './FortsettDialog';
 
 interface Props {
     traad: Traad;
@@ -69,13 +63,14 @@ function FortsettDialogContainer(props: Props) {
     const initialState = useMemo(
         () => ({
             tekst: '',
-            dialogType: Meldingstype.SVAR_SKRIFTLIG as FortsettDialogType,
-            tema: undefined,
+            traadType: props.traad.traadType ?? TraadType.SAMTALEREFERAT,
+            temagruppe: undefined,
             visFeilmeldinger: false,
             sak: undefined,
-            oppgaveListe: props.defaultOppgaveDestinasjon
+            oppgaveListe: props.defaultOppgaveDestinasjon,
+            avsluttet: false
         }),
-        [props.defaultOppgaveDestinasjon]
+        [props.defaultOppgaveDestinasjon, props.traad.traadType]
     );
 
     const fnr = useFodselsnummer();
@@ -137,26 +132,24 @@ function FortsettDialogContainer(props: Props) {
         const commonPayload = {
             enhet: valgtEnhet,
             fritekst: state.tekst,
-            meldingstype: state.dialogType,
             traadId: props.traad.traadId,
+            traadType: state.traadType,
+            temagruppe: props.traad.temagruppe,
             behandlingsId: opprettHenvendelse.henvendelse.behandlingsId,
-            oppgaveId: oppgaveId
+            oppgaveId: oppgaveId,
+            avsluttet: state.avsluttet
         };
-        if (
-            FortsettDialogValidator.erGyldigSvarSkriftlig(state) ||
-            FortsettDialogValidator.erGyldigSamtalereferat(state)
-        ) {
+        if (FortsettDialogValidator.erGyldigSamtalereferat(state)) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
-            const request: ForsettDialogRequest = {
+            const request: SendMeldingRequest = {
                 ...commonPayload,
-                erOppgaveTilknyttetAnsatt: true // TODO, denne bør ikke være nødvendig å sende med her
+                erOppgaveTilknyttetAnsatt: true
             };
             const kvitteringsData: KvitteringsData = {
                 fritekst: request.fritekst,
-                meldingstype: request.meldingstype,
                 traad: props.traad
             };
-            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Send-Svar')
+            post(`${apiBaseUri}/dialog/${fnr}/sendmelding`, request, 'Send-Svar')
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
@@ -164,7 +157,7 @@ function FortsettDialogContainer(props: Props) {
                 .catch(() => {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
-        } else if (FortsettDialogValidator.erGyldigSporsmaalSkriftlig(state, props.traad)) {
+        } else if (FortsettDialogValidator.erGyldigSamtale(state)) {
             const tradErJournalfort = erJournalfort(props.traad);
             const erOksos = props.traad.meldinger[0].temagruppe === Temagruppe.ØkonomiskSosial;
             if (!state.sak && !tradErJournalfort && !erOksos) {
@@ -173,20 +166,20 @@ function FortsettDialogContainer(props: Props) {
                 );
                 console.error(error);
                 loggError(error);
+                updateState({ errors: [error], visFeilmeldinger: true });
                 return;
             }
             setDialogStatus({ type: DialogPanelStatus.POSTING });
-            const request: ForsettDialogRequest = {
+            const request: SendMeldingRequest = {
                 ...commonPayload,
-                erOppgaveTilknyttetAnsatt: erOppgaveTilknyttetAnsatt,
+                erOppgaveTilknyttetAnsatt: state.avsluttet ? false : erOppgaveTilknyttetAnsatt,
                 sak: state.sak ? state.sak : undefined
             };
             const kvitteringsData: KvitteringsData = {
                 fritekst: request.fritekst,
-                meldingstype: request.meldingstype,
                 traad: props.traad
             };
-            post(`${apiBaseUri}/dialog/${fnr}/fortsett/ferdigstill`, request, 'Svar-Med-Spørsmål')
+            post(`${apiBaseUri}/dialog/${fnr}/sendmelding`, request, 'Svar-Med-Spørsmål')
                 .then(() => {
                     callback();
                     queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
@@ -196,14 +189,28 @@ function FortsettDialogContainer(props: Props) {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else {
-            updateState({ visFeilmeldinger: true });
+            const error = Error('Det skjedde en feil ved sending av melding');
+            updateState({ errors: [error], visFeilmeldinger: true });
         }
     };
+
+    function traadTittel(traadType?: TraadType) {
+        switch (traadType) {
+            case TraadType.CHAT:
+                return 'Fortsett chat';
+            case TraadType.MELDINGSKJEDE:
+                return 'Fortsett samtale';
+            case TraadType.SAMTALEREFERAT:
+                return 'Påfølgende referat';
+            default:
+                return '';
+        }
+    }
 
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>
-                <Undertittel id={tittelId.current}>Fortsett dialog</Undertittel>
+                <Undertittel id={tittelId.current}>{traadTittel(props.traad.traadType)}</Undertittel>
                 <FortsettDialog
                     handleAvbryt={handleAvbryt}
                     state={state}

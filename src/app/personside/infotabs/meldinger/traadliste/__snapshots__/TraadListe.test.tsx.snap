@@ -771,7 +771,7 @@ exports[`Viser Traadliste 1`] = `
                   <p
                     className="typo-element order-second"
                   >
-                    Spørsmål fra NAV - Arbeid
+                    Ukjent meldingstype: undefined
                   </p>
                   <p
                     className="typo-normal order-first"

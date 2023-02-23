@@ -5,8 +5,7 @@ import * as React from 'react';
 import KnappBase from 'nav-frontend-knapper';
 import VisuallyHiddenAutoFokusHeader from '../../../components/VisuallyHiddenAutoFokusHeader';
 import Preview from './Preview';
-import { Meldingstype, Traad } from '../../../models/meldinger/meldinger';
-import { meldingstypeTekst } from '../infotabs/meldinger/utils/meldingstekster';
+import { Traad } from '../../../models/meldinger/meldinger';
 import Verktoylinje from '../infotabs/meldinger/traadvisning/verktoylinje/Verktoylinje';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import FillCenterAndFadeIn from '../../../components/FillCenterAndFadeIn';
@@ -16,6 +15,7 @@ import TidligereMeldinger from './fortsettDialog/tidligereMeldinger/TidligereMel
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import { SendNyMeldingStatus } from './sendMelding/SendNyMeldingTypes';
 import Panel from 'nav-frontend-paneler';
+import { traadstittel } from '../infotabs/meldinger/utils/meldingerUtils';
 
 export const FormStyle = styled.form`
     display: flex;
@@ -38,6 +38,7 @@ export const DialogpanelKvitteringStyling = styled.div`
     padding: 1rem ${theme.margin.layout};
     ${theme.animation.fadeIn};
 `;
+
 const SpinnerWrapper = styled(FillCenterAndFadeIn)`
     box-shadow: none;
     border: ${theme.border.skille};
@@ -83,7 +84,6 @@ function VarselTilBrukerOmStatus(props: { meldingstatus: SendNyMeldingStatus; ti
 export function DialogpanelKvittering(props: {
     tittel: string;
     fritekst: string;
-    meldingstype: Meldingstype;
     lukk: () => void;
     traad?: Traad;
     meldingstatus: SendNyMeldingStatus;
@@ -99,12 +99,14 @@ export function DialogpanelKvittering(props: {
                     </ErrorBoundary>
                 )}
                 <ErrorBoundary boundaryName="Sendt melding preview">
-                    <Preview
-                        fritekst={props.fritekst}
-                        tittel={meldingstypeTekst(props.meldingstype)}
-                        meldingstatus={props.meldingstatus}
-                        traad={props.traad}
-                    />
+                    {props.traad && (
+                        <Preview
+                            fritekst={props.fritekst}
+                            tittel={traadstittel(props.traad)}
+                            meldingstatus={props.meldingstatus}
+                            traad={props.traad}
+                        />
+                    )}
                 </ErrorBoundary>
                 {props.meldingstatus !== SendNyMeldingStatus.ERROR && (
                     <ErrorBoundary boundaryName="Sendt melding verktøylinje">

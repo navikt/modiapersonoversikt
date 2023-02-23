@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormEvent, useRef } from 'react';
-import { Meldingstype } from '../../../../models/meldinger/meldinger';
+import { TraadType } from '../../../../models/meldinger/meldinger';
 import { UnmountClosed } from 'react-collapse';
 import KnappBase from 'nav-frontend-knapper';
 import styled from 'styled-components/macro';
@@ -10,9 +10,8 @@ import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoy
 import DialogpanelVelgSak from './DialogpanelVelgSak';
 import { capitalizeName } from '../../../../utils/string-utils';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
-import { NyMeldingValidator } from './validatorer';
+import { MeldingValidator } from './validatorer';
 import TekstFelt from './TekstFelt';
-import VelgDialogType from './VelgDialogType';
 import { Undertittel } from 'nav-frontend-typografi';
 import Oppgaveliste from './Oppgaveliste';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
@@ -21,27 +20,24 @@ import { SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTyp
 import { Temagruppe, TemaSamtalereferat } from '../../../../models/temagrupper';
 import { guid } from 'nav-frontend-js-utils';
 import ReflowBoundry from '../ReflowBoundry';
-import { SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import persondataResource from '../../../../rest/resources/persondataResource';
+import VelgDialogType from './VelgDialogType';
+import Panel from 'nav-frontend-paneler';
 
 export enum OppgavelisteValg {
     MinListe = 'MinListe',
     EnhetensListe = 'Enhetensliste'
 }
 
-export type SendNyMeldingDialogType =
-    | Meldingstype.SAMTALEREFERAT_TELEFON
-    | Meldingstype.SAMTALEREFERAT_OPPMOTE
-    | Meldingstype.SPORSMAL_MODIA_UTGAAENDE
-    | Meldingstype.INFOMELDING_MODIA_UTGAAENDE;
-
 export interface SendNyMeldingState {
     tekst: string;
-    dialogType: SendNyMeldingDialogType;
+    traadType: TraadType;
     tema?: Temagruppe;
     sak?: JournalforingsSak;
     oppgaveListe: OppgavelisteValg;
     visFeilmeldinger: boolean;
+    avsluttet: boolean;
 }
 
 const StyledArticle = styled.article`
@@ -60,8 +56,8 @@ const StyledAlertStripeInfo = styled(AlertStripeInfo)`
     margin-top: 1rem;
 `;
 
-const Margin = styled.div`
-    /* Pga React Collapse må vi slenge på noen div'er som tar seg av marginer for å unngå hopp i animasjon */
+const StyledCheckbox = styled(Checkbox)`
+    margin-top: 1rem;
 `;
 
 const StyledUndertittel = styled(Undertittel)`
@@ -85,6 +81,7 @@ function Feilmelding(props: { sendNyMeldingPanelState: SendNyMeldingStatus }) {
     }
     return null;
 }
+
 function SendNyMelding(props: Props) {
     const updateState = props.updateState;
     const state = props.state;
@@ -95,10 +92,9 @@ function SendNyMelding(props: Props) {
         ? capitalizeName(personResponse.data.person.navn.firstOrNull()?.fornavn || '')
         : 'bruker';
 
-    const erReferat = NyMeldingValidator.erReferat(state);
-    const erSporsmaal = NyMeldingValidator.erSporsmal(state);
-    const erInfomelding = NyMeldingValidator.erInfomelding(state);
-    const visFeilmelding = !NyMeldingValidator.sak(state) && state.visFeilmeldinger;
+    const erReferat = MeldingValidator.erReferat(state);
+    const erSamtale = MeldingValidator.erSamtale(state);
+    const visFeilmelding = !MeldingValidator.sak(state) && state.visFeilmeldinger;
     return (
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>
@@ -110,45 +106,62 @@ function SendNyMelding(props: Props) {
                         tekstMaksLengde={tekstMaksLengde}
                         updateTekst={(tekst) => updateState({ tekst })}
                         feilmelding={
-                            !NyMeldingValidator.tekst(state) && state.visFeilmeldinger
+                            !MeldingValidator.tekst(state) && state.visFeilmeldinger
                                 ? `Du må skrive en tekst på mellom 1 og ${tekstMaksLengde} tegn`
                                 : undefined
                         }
                     />
-                    <VelgDialogType formState={state} updateDialogType={(dialogType) => updateState({ dialogType })} />
-                    <Margin>
+                    <VelgDialogType
+                        formState={state}
+                        updateTraadType={(traadType, avsluttet) => updateState({ traadType, avsluttet })}
+                    />
+                    <div>
                         <UnmountClosed isOpened={erReferat}>
                             {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
                             <Temavelger
                                 setTema={(tema) => updateState({ tema: tema })}
                                 valgtTema={state.tema}
-                                visFeilmelding={!NyMeldingValidator.tema(state) && state.visFeilmeldinger}
+                                visFeilmelding={!MeldingValidator.tema(state) && state.visFeilmeldinger}
                                 temavalg={TemaSamtalereferat}
                             />
                             <StyledAlertStripeInfo>Gir ikke varsel til bruker</StyledAlertStripeInfo>
                         </UnmountClosed>
-                        <UnmountClosed isOpened={erSporsmaal || erInfomelding}>
-                            <DialogpanelVelgSak
-                                setValgtSak={(sak) => updateState({ sak })}
-                                valgtSak={state.sak}
-                                eksisterendeSaker={[]}
-                            />
-                            {visFeilmelding ? (
-                                <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding>
-                            ) : undefined}
-                            {erSporsmaal ? (
-                                <>
-                                    <Oppgaveliste
-                                        oppgaveliste={state.oppgaveListe}
-                                        setOppgaveliste={(oppgaveliste) => updateState({ oppgaveListe: oppgaveliste })}
+                        <UnmountClosed isOpened={erSamtale}>
+                            <Panel>
+                                <DialogpanelVelgSak
+                                    setValgtSak={(sak) => updateState({ sak })}
+                                    valgtSak={state.sak}
+                                    eksisterendeSaker={[]}
+                                />
+                                {visFeilmelding ? (
+                                    <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding>
+                                ) : undefined}
+                                {!state.avsluttet && (
+                                    <>
+                                        <Oppgaveliste
+                                            oppgaveliste={state.oppgaveListe}
+                                            setOppgaveliste={(oppgaveliste) =>
+                                                updateState({ oppgaveListe: oppgaveliste })
+                                            }
+                                        />
+                                        <StyledAlertStripeInfo>Gir varsel, bruker må svare</StyledAlertStripeInfo>
+                                    </>
+                                )}
+                                {state.avsluttet && (
+                                    <StyledAlertStripeInfo>
+                                        Bruker kan ikke skrive mer i denne samtalen
+                                    </StyledAlertStripeInfo>
+                                )}
+                                {!state.avsluttet && (
+                                    <StyledCheckbox
+                                        label={'Avslutt samtale etter sending'}
+                                        checked={state.avsluttet}
+                                        onChange={() => updateState({ avsluttet: !state.avsluttet })}
                                     />
-                                    <StyledAlertStripeInfo>Gir varsel, bruker må svare</StyledAlertStripeInfo>
-                                </>
-                            ) : (
-                                <StyledAlertStripeInfo>Gir varsel, bruker kan ikke svare</StyledAlertStripeInfo>
-                            )}
+                                )}
+                            </Panel>
                         </UnmountClosed>
-                    </Margin>
+                    </div>
                     <Feilmelding sendNyMeldingPanelState={props.sendNyMeldingPanelState.type} />
                     <KnappWrapper>
                         <KnappBase

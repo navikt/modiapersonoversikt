@@ -1,37 +1,38 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
+import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
-import VelgDialogType from './VelgDialogType';
 import TekstFelt from '../sendMelding/TekstFelt';
 import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
-import BrukerKanSvare from './BrukerKanSvare';
 import styled from 'styled-components/macro';
 import { FortsettDialogValidator } from './validatorer';
 import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './FortsettDialogTypes';
-import {
-    eldsteMelding,
-    erJournalfort,
-    erMeldingstypeSamtalereferat
-} from '../../infotabs/meldinger/utils/meldingerUtils';
+import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { capitalizeName } from '../../../../utils/string-utils';
 import persondataResource from '../../../../rest/resources/persondataResource';
+import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
+import Panel from 'nav-frontend-paneler';
+import Oppgaveliste from '../sendMelding/Oppgaveliste';
+import DialogpanelVelgSak from '../sendMelding/DialogpanelVelgSak';
 
 const SubmitKnapp = styled(Hovedknapp)`
     white-space: normal;
-    margin-top: 1rem;
 `;
 
 const StyledKnappMedBekreftPopup = styled(KnappMedBekreftPopup)`
     width: 100%;
 `;
 
-const Margin = styled.div`
-    /* Pga React Collapse må vi slenge på noen div'er som tar seg av marginer for å unngå hopp i animasjon */
+const StyledAlertStripeInfo = styled(AlertStripeInfo)`
+    margin-top: 1rem;
+`;
+
+const StyledCheckbox = styled(Checkbox)`
+    margin-top: 1rem;
 `;
 
 interface Props {
@@ -45,17 +46,18 @@ interface Props {
     fortsettDialogPanelState: FortsettDialogPanelState;
 }
 
-function Feilmelding(props: { status: DialogPanelStatus }) {
+function Feilmelding(props: { status: DialogPanelStatus; errors?: Error[] }) {
     if (props.status === DialogPanelStatus.ERROR) {
         return <DialogpanelFeilmelding />;
     }
-    return null;
-}
 
-function useVarselInfotekst(meldingstype: Meldingstype): string {
-    return meldingstype === Meldingstype.SVAR_SKRIFTLIG
-        ? 'Gir varsel, dialogen avsluttes. Det er ikke mulig å sende flere meldinger i denne dialogen i ettertid.'
-        : 'Gir varsel, bruker kan svare.';
+    if (props.errors) {
+        props.errors.map((error) => {
+            return <AlertStripeFeil>{error.message}</AlertStripeFeil>;
+        });
+    }
+
+    return null;
 }
 
 export const tekstMaksLengde = 5000;
@@ -74,10 +76,11 @@ function FortsettDialog(props: Props) {
         temaKode: jp.journalfortTema,
         saksId: jp.journalfortSaksid
     }));
-    const varselInfotekst = useVarselInfotekst(state.dialogType);
 
-    const melding = eldsteMelding(props.traad);
-    const erSamtalereferat = erMeldingstypeSamtalereferat(melding.meldingstype);
+    const erSamtalereferat = props.traad.traadType === TraadType.SAMTALEREFERAT;
+    const visFeilmelding = !FortsettDialogValidator.sak(state) && state.visFeilmeldinger;
+    const visVelgSak = !erJournalfort(props.traad) && !erOksosTraad;
+
     return (
         <FormStyle onSubmit={handleSubmit}>
             <TidligereMeldinger traad={props.traad} />
@@ -92,30 +95,40 @@ function FortsettDialog(props: Props) {
                         : undefined
                 }
             />
-            <VelgDialogType
-                formState={state}
-                updateDialogType={(dialogType) => updateState({ dialogType: dialogType })}
-                erTilknyttetOppgave={props.erTilknyttetOppgave}
-                erSTOOppgave={props.erSTOOppgave}
-                erOksosTraad={erOksosTraad}
-                erSamtalereferat={erSamtalereferat}
-            />
-            <Margin>
+
+            <div>
                 <UnmountClosed isOpened={!erSamtalereferat}>
-                    <AlertStripeInfo>{varselInfotekst}</AlertStripeInfo>
-                    <BrukerKanSvare
-                        formState={state}
-                        updateFormState={updateState}
-                        visVelgSak={
-                            !erJournalfort(props.traad) &&
-                            !erOksosTraad &&
-                            state.dialogType === Meldingstype.SPORSMAL_MODIA_UTGAAENDE
-                        }
-                        eksisterendeSaker={eksisterendeSaker}
-                    />
+                    <Panel>
+                        {visVelgSak && (
+                            <DialogpanelVelgSak
+                                setValgtSak={(sak) => updateState({ sak: sak })}
+                                valgtSak={state.sak}
+                                visFeilmelding={visFeilmelding}
+                                eksisterendeSaker={eksisterendeSaker}
+                            />
+                        )}
+
+                        {visVelgSak && visFeilmelding && (
+                            <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding>
+                        )}
+
+                        {!state.avsluttet ? (
+                            <Oppgaveliste
+                                oppgaveliste={state.oppgaveListe}
+                                setOppgaveliste={(oppgaveliste) => updateState({ oppgaveListe: oppgaveliste })}
+                            />
+                        ) : (
+                            <StyledAlertStripeInfo>Bruker kan ikke skrive mer i denne samtalen</StyledAlertStripeInfo>
+                        )}
+                        <StyledCheckbox
+                            label={'Avslutt samtale etter sending'}
+                            checked={state.avsluttet}
+                            onChange={() => updateState({ avsluttet: !state.avsluttet })}
+                        />
+                    </Panel>
                 </UnmountClosed>
-            </Margin>
-            <Feilmelding status={props.fortsettDialogPanelState.type} />
+            </div>
+            <Feilmelding status={props.fortsettDialogPanelState.type} errors={props.state.errors} />
             <SubmitKnapp htmlType="submit" spinner={props.fortsettDialogPanelState.type === DialogPanelStatus.POSTING}>
                 {delMedBrukerTekst}
             </SubmitKnapp>

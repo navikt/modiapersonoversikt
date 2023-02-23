@@ -982,7 +982,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         <p
                           className="typo-element order-second"
                         >
-                          Spørsmål fra NAV - Arbeid
+                          Ukjent meldingstype: undefined
                         </p>
                         <p
                           className="typo-normal order-first"
