@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InfotabConfig, NY_INFOTABS } from './InfoTabEnum';
+import { InfotabConfig, INFOTABS } from './InfoTabEnum';
 import styled, { css } from 'styled-components/macro';
 import theme, { pxToRem } from '../../../styles/personOversiktTheme';
 
@@ -63,12 +63,12 @@ const TabKnapp = styled.button<TabKnappProps>`
 `;
 
 function NyTabKnapper(props: TabPanelProps) {
-    const knapper = Object.keys(NY_INFOTABS).map((key) => {
-        const erValgt = NY_INFOTABS[key] === props.openTab;
+    const knapper = Object.keys(INFOTABS).map((key) => {
+        const erValgt = INFOTABS[key] === props.openTab;
         return (
             <KnappWrapper key={key} role="presentation">
                 <TabKnapp role="tab" aria-selected={erValgt} valgt={erValgt} onClick={() => props.onTabChange(key)}>
-                    {NY_INFOTABS[key].tittel}
+                    {INFOTABS[key].tittel}
                 </TabKnapp>
             </KnappWrapper>
         );
