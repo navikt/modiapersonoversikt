@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FormEvent } from 'react';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { AlertStripeFeil, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import TidligereMeldinger from './tidligereMeldinger/TidligereMeldinger';
 import TekstFelt from '../sendMelding/TekstFelt';
@@ -41,10 +41,17 @@ interface Props {
     fortsettDialogPanelState: FortsettDialogPanelState;
 }
 
-function Feilmelding(props: { status: DialogPanelStatus }) {
+function Feilmelding(props: { status: DialogPanelStatus; errors?: Error[] }) {
     if (props.status === DialogPanelStatus.ERROR) {
         return <DialogpanelFeilmelding />;
     }
+
+    if (props.errors) {
+        props.errors.map((error) => {
+            return <AlertStripeFeil>{error.message}</AlertStripeFeil>;
+        });
+    }
+
     return null;
 }
 
@@ -103,7 +110,7 @@ function NyFortsettDialog(props: Props) {
                     </Panel>
                 </UnmountClosed>
             </div>
-            <Feilmelding status={props.fortsettDialogPanelState.type} />
+            <Feilmelding status={props.fortsettDialogPanelState.type} errors={props.state.errors} />
             <SubmitKnapp htmlType="submit" spinner={props.fortsettDialogPanelState.type === DialogPanelStatus.POSTING}>
                 {delMedBrukerTekst}
             </SubmitKnapp>

@@ -105,7 +105,7 @@ function NyFortsettDialogContainer(props: Props) {
         return <SvarSendtKvittering kvitteringsData={dialogStatus.kvitteringsData} />;
     }
 
-    if (!opprettHenvendelse.success) {
+    if (opprettHenvendelse.success === false) {
         return opprettHenvendelse.placeholder;
     }
 
@@ -166,6 +166,7 @@ function NyFortsettDialogContainer(props: Props) {
                 );
                 console.error(error);
                 loggError(error);
+                updateState({ errors: [error], visFeilmeldinger: true });
                 return;
             }
             setDialogStatus({ type: DialogPanelStatus.POSTING });
@@ -188,7 +189,8 @@ function NyFortsettDialogContainer(props: Props) {
                     setDialogStatus({ type: DialogPanelStatus.ERROR });
                 });
         } else {
-            updateState({ visFeilmeldinger: true });
+            const error = Error('Det skjedde en feil ved sending av melding');
+            updateState({ errors: [error], visFeilmeldinger: true });
         }
     };
 
