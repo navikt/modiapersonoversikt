@@ -10,6 +10,8 @@ import { rule as sladdRule } from '../../../../../utils/sladdrule';
 import { guid } from 'nav-frontend-js-utils';
 import theme from '../../../../../styles/personOversiktTheme';
 import './enkeltmelding.less';
+import SuccessIcon from '../../../../../svg/SuccessIcon';
+import SuccessGrayIcon from '../../../../../svg/SuccessGrayIcon';
 
 interface Props {
     melding: Melding;
@@ -65,6 +67,12 @@ const StyledText = styled.p`
     font-size: 0.75rem;
 `;
 
+const StyledMeldingStatus = styled.div`
+    display: flex;
+    gap: 0.3rem;
+    margin-left: auto;
+`;
+
 export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
@@ -74,12 +82,22 @@ export function Avsender({ melding, rule }: { melding: Melding; rule?: Rule }) {
 }
 
 export function LestDato({ melding }: { melding: Melding }) {
-    if (melding.status === LestStatus.IkkeLest || erMeldingFraBruker(melding.meldingstype)) {
+    if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }
-    const lestDato = melding.lestDato ? `Lest: ${formatterDatoTid(melding.lestDato)}` : 'Ikke lest';
+    const lestDato =
+        melding.lestDato && melding.status !== LestStatus.IkkeLest
+            ? `Lest: ${formatterDatoTid(melding.lestDato)}`
+            : 'Ikke lest';
     return <StyledText>{lestDato}</StyledText>;
 }
+export function LestStatusIcon({ melding }: { melding: Melding }) {
+    if (erMeldingFraBruker(melding.meldingstype)) {
+        return null;
+    }
+    return melding.status === LestStatus.IkkeLest ? <SuccessGrayIcon /> : <SuccessIcon />;
+}
+
 function NyEnkeltMelding(props: Props) {
     const fraNav = erMeldingFraNav(props.melding.meldingstype);
     const tittelId = useRef(guid());
@@ -100,7 +118,10 @@ function NyEnkeltMelding(props: Props) {
                             <MeldingInfoWrapper>
                                 <StyledText>{datoTekst}</StyledText>
                                 <Avsender melding={props.melding} />
-                                <LestDato melding={props.melding} />
+                                <StyledMeldingStatus>
+                                    <LestDato melding={props.melding} />
+                                    <LestStatusIcon melding={props.melding} />
+                                </StyledMeldingStatus>
                             </MeldingInfoWrapper>
                         </div>
                     </SnakkebobleWrapper>
