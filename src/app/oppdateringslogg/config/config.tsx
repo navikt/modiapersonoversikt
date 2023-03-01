@@ -493,7 +493,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 27,
             tittel: 'Endringer på meldingsvisning',
             dato: new Date('2023-02-23 07:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: null,
             beskrivelse: (
                 <>

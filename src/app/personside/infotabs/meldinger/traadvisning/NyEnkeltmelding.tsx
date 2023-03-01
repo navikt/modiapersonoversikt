@@ -10,8 +10,8 @@ import { rule as sladdRule } from '../../../../../utils/sladdrule';
 import { guid } from 'nav-frontend-js-utils';
 import theme from '../../../../../styles/personOversiktTheme';
 import './enkeltmelding.less';
-import SuccessIcon from '../../../../../svg/SuccessIcon';
-import SuccessGrayIcon from '../../../../../svg/SuccessGrayIcon';
+import ReadIcon from '../../../../../svg/ReadIcon';
+import UnReadIcon from '../../../../../svg/UnReadIcon';
 
 interface Props {
     melding: Melding;
@@ -64,7 +64,7 @@ const SnakkebobleWrapper = styled.div`
 `;
 
 const StyledText = styled.p`
-    font-size: 0.75rem;
+    font-size: 0.85rem;
 `;
 
 const StyledMeldingStatus = styled.div`
@@ -95,7 +95,7 @@ export function LestStatusIcon({ melding }: { melding: Melding }) {
     if (erMeldingFraBruker(melding.meldingstype)) {
         return null;
     }
-    return melding.status === LestStatus.IkkeLest ? <SuccessGrayIcon /> : <SuccessIcon />;
+    return melding.status === LestStatus.IkkeLest ? <UnReadIcon /> : <ReadIcon />;
 }
 
 function NyEnkeltMelding(props: Props) {
