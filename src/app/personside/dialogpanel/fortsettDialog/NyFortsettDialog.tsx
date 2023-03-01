@@ -8,15 +8,16 @@ import { UnmountClosed } from 'react-collapse';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { DialogpanelFeilmelding, FormStyle } from '../fellesStyling';
 import KnappMedBekreftPopup from '../../../../components/KnappMedBekreftPopup';
-import BrukerKanSvare from './NyBrukerKanSvare';
 import styled from 'styled-components/macro';
 import { FortsettDialogValidator } from './nyValidatorer';
 import { DialogPanelStatus, FortsettDialogPanelState, FortsettDialogState } from './NyFortsettDialogTypes';
 import { erJournalfort } from '../../infotabs/meldinger/utils/meldingerUtils';
 import { capitalizeName } from '../../../../utils/string-utils';
 import persondataResource from '../../../../rest/resources/persondataResource';
-import { Checkbox } from 'nav-frontend-skjema';
+import { Checkbox, SkjemaelementFeilmelding } from 'nav-frontend-skjema';
 import Panel from 'nav-frontend-paneler';
+import Oppgaveliste from '../sendMelding/Oppgaveliste';
+import DialogpanelVelgSak from '../sendMelding/DialogpanelVelgSak';
 
 const SubmitKnapp = styled(Hovedknapp)`
     white-space: normal;
@@ -27,6 +28,10 @@ const StyledKnappMedBekreftPopup = styled(KnappMedBekreftPopup)`
 `;
 
 const StyledAlertStripeInfo = styled(AlertStripeInfo)`
+    margin-top: 1rem;
+`;
+
+const StyledCheckbox = styled(Checkbox)`
     margin-top: 1rem;
 `;
 
@@ -73,6 +78,9 @@ function NyFortsettDialog(props: Props) {
     }));
 
     const erSamtalereferat = props.traad.traadType === TraadType.SAMTALEREFERAT;
+    const visFeilmelding = !FortsettDialogValidator.sak(state) && state.visFeilmeldinger;
+    const visVelgSak = !erJournalfort(props.traad) && !erOksosTraad;
+
     return (
         <FormStyle onSubmit={handleSubmit}>
             <TidligereMeldinger traad={props.traad} />
@@ -91,22 +99,32 @@ function NyFortsettDialog(props: Props) {
             <div>
                 <UnmountClosed isOpened={!erSamtalereferat}>
                     <Panel>
-                        <Checkbox
+                        {visVelgSak && (
+                            <DialogpanelVelgSak
+                                setValgtSak={(sak) => updateState({ sak: sak })}
+                                valgtSak={state.sak}
+                                visFeilmelding={visFeilmelding}
+                                eksisterendeSaker={eksisterendeSaker}
+                            />
+                        )}
+
+                        {visVelgSak && visFeilmelding && (
+                            <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding>
+                        )}
+
+                        {!state.avsluttet ? (
+                            <Oppgaveliste
+                                oppgaveliste={state.oppgaveListe}
+                                setOppgaveliste={(oppgaveliste) => updateState({ oppgaveListe: oppgaveliste })}
+                            />
+                        ) : (
+                            <StyledAlertStripeInfo>Bruker kan ikke skrive mer i denne samtalen</StyledAlertStripeInfo>
+                        )}
+                        <StyledCheckbox
                             label={'Avslutt samtale etter sending'}
                             checked={state.avsluttet}
                             onChange={() => updateState({ avsluttet: !state.avsluttet })}
                         />
-                        {state.avsluttet && (
-                            <StyledAlertStripeInfo>Bruker kan ikke skrive mer i denne samtalen</StyledAlertStripeInfo>
-                        )}
-                        {!state.avsluttet && (
-                            <BrukerKanSvare
-                                formState={state}
-                                updateFormState={updateState}
-                                visVelgSak={!erJournalfort(props.traad) && !erOksosTraad}
-                                eksisterendeSaker={eksisterendeSaker}
-                            />
-                        )}
                     </Panel>
                 </UnmountClosed>
             </div>
