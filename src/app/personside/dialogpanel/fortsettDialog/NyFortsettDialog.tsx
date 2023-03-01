@@ -108,18 +108,16 @@ function NyFortsettDialog(props: Props) {
                             />
                         )}
 
-                        {visVelgSak && visFeilmelding ? (
+                        {visVelgSak && visFeilmelding && (
                             <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding>
-                        ) : undefined}
+                        )}
 
-                        {!state.avsluttet && (
+                        {!state.avsluttet ? (
                             <Oppgaveliste
                                 oppgaveliste={state.oppgaveListe}
                                 setOppgaveliste={(oppgaveliste) => updateState({ oppgaveListe: oppgaveliste })}
                             />
-                        )}
-
-                        {state.avsluttet && (
+                        ) : (
                             <StyledAlertStripeInfo>Bruker kan ikke skrive mer i denne samtalen</StyledAlertStripeInfo>
                         )}
                         <StyledCheckbox
