@@ -130,16 +130,6 @@ function NySendNyMelding(props: Props) {
                                     valgtSak={state.sak}
                                     eksisterendeSaker={[]}
                                 />
-                                <StyledCheckbox
-                                    label={'Avslutt samtale etter sending'}
-                                    checked={state.avsluttet}
-                                    onChange={() => updateState({ avsluttet: !state.avsluttet })}
-                                />
-                                {state.avsluttet && (
-                                    <StyledAlertStripeInfo>
-                                        Bruker kan ikke skrive mer i denne samtalen
-                                    </StyledAlertStripeInfo>
-                                )}
                                 {visFeilmelding ? (
                                     <SkjemaelementFeilmelding>Du må velge sak </SkjemaelementFeilmelding>
                                 ) : undefined}
@@ -154,6 +144,16 @@ function NySendNyMelding(props: Props) {
                                         <StyledAlertStripeInfo>Gir varsel, bruker må svare</StyledAlertStripeInfo>
                                     </>
                                 )}
+                                {state.avsluttet && (
+                                    <StyledAlertStripeInfo>
+                                        Bruker kan ikke skrive mer i denne samtalen
+                                    </StyledAlertStripeInfo>
+                                )}
+                                <StyledCheckbox
+                                    label={'Avslutt samtale etter sending'}
+                                    checked={state.avsluttet}
+                                    onChange={() => updateState({ avsluttet: !state.avsluttet })}
+                                />
                             </Panel>
                         </UnmountClosed>
                     </div>
