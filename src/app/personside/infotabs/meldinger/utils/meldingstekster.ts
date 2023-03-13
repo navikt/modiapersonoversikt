@@ -30,7 +30,7 @@ export function traadTypeTekst(infoMelding: boolean, traadType?: TraadType) {
         case TraadType.CHAT:
             return 'Chat';
         case TraadType.MELDINGSKJEDE:
-            return infoMelding ? 'Samtale' : 'Infomelding';
+            return infoMelding ? 'Infomelding' : 'Samtale';
         case TraadType.SAMTALEREFERAT:
             return 'Referat';
         default:
