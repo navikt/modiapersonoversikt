@@ -6,7 +6,7 @@ import { NySendNyMeldingState } from './NySendNyMelding';
 
 interface Props {
     formState: NySendNyMeldingState;
-    updateTraadType: (traadType: TraadType) => void;
+    updateTraadType: (traadType: TraadType, avsluttet: boolean) => void;
 }
 
 function NyVelgDialogType(props: Props) {
@@ -14,14 +14,20 @@ function NyVelgDialogType(props: Props) {
         <VelgDialogtypeStyle>
             <Radio
                 label="Referat"
-                onChange={() => props.updateTraadType(TraadType.SAMTALEREFERAT)}
+                onChange={() => props.updateTraadType(TraadType.SAMTALEREFERAT, false)}
                 checked={props.formState.traadType === TraadType.SAMTALEREFERAT}
                 name="dialogtype"
             />
             <Radio
                 label="Samtale"
-                onChange={() => props.updateTraadType(TraadType.MELDINGSKJEDE)}
-                checked={props.formState.traadType !== TraadType.SAMTALEREFERAT}
+                onChange={() => props.updateTraadType(TraadType.MELDINGSKJEDE, false)}
+                checked={props.formState.traadType !== TraadType.SAMTALEREFERAT && !props.formState.avsluttet}
+                name="dialogtype"
+            />
+            <Radio
+                label="Infomelding"
+                onChange={() => props.updateTraadType(TraadType.MELDINGSKJEDE, true)}
+                checked={props.formState.traadType !== TraadType.SAMTALEREFERAT && props.formState.avsluttet}
                 name="dialogtype"
             />
         </VelgDialogtypeStyle>
