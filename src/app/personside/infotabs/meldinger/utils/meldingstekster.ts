@@ -25,12 +25,12 @@ export function meldingstypeTekst(meldingstype: Meldingstype) {
     }
 }
 
-export function traadTypeTekst(traadType?: TraadType) {
+export function traadTypeTekst(infoMelding: boolean, traadType?: TraadType) {
     switch (traadType) {
         case TraadType.CHAT:
             return 'Chat';
         case TraadType.MELDINGSKJEDE:
-            return 'Samtale';
+            return infoMelding ? 'Infomelding' : 'Samtale';
         case TraadType.SAMTALEREFERAT:
             return 'Referat';
         default:

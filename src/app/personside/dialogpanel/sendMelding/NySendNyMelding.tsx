@@ -111,7 +111,10 @@ function NySendNyMelding(props: Props) {
                                 : undefined
                         }
                     />
-                    <NyVelgDialogType formState={state} updateTraadType={(traadType) => updateState({ traadType })} />
+                    <NyVelgDialogType
+                        formState={state}
+                        updateTraadType={(traadType, avsluttet) => updateState({ traadType, avsluttet })}
+                    />
                     <div>
                         <UnmountClosed isOpened={erReferat}>
                             {/* hasNestedCollapse={true} for å unngå rar animasjon på feilmelding*/}
@@ -149,11 +152,13 @@ function NySendNyMelding(props: Props) {
                                         Bruker kan ikke skrive mer i denne samtalen
                                     </StyledAlertStripeInfo>
                                 )}
-                                <StyledCheckbox
-                                    label={'Avslutt samtale etter sending'}
-                                    checked={state.avsluttet}
-                                    onChange={() => updateState({ avsluttet: !state.avsluttet })}
-                                />
+                                {!state.avsluttet && (
+                                    <StyledCheckbox
+                                        label={'Avslutt samtale etter sending'}
+                                        checked={state.avsluttet}
+                                        onChange={() => updateState({ avsluttet: !state.avsluttet })}
+                                    />
+                                )}
                             </Panel>
                         </UnmountClosed>
                     </div>
