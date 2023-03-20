@@ -6,7 +6,6 @@ import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import TotaltUtbetalt from './totalt utbetalt/TotaltUtbetalt';
 import { ArrayGroup, groupArray, GroupedArray } from '../../../../utils/groupArray';
 import {
-    fjernTommeUtbetalinger,
     getTypeFromYtelse,
     maanedOgAarForUtbetaling,
     reduceUtbetlingerTilYtelser,
@@ -52,9 +51,8 @@ const OnOneLine = styled.div`
 
 export function getFiltrerteUtbetalinger(utbetalinger: Utbetaling[], filter: UtbetalingFilterState) {
     return utbetalinger
-        .filter(utbetaling => filtrerPaUtbetaltTilValg(utbetaling, filter))
-        .map(utbetaling => filtrerBortYtelserSomIkkeErValgt(utbetaling, filter))
-        .filter(fjernTommeUtbetalinger);
+        .filter((utbetaling) => filtrerPaUtbetaltTilValg(utbetaling, filter))
+        .map((utbetaling) => filtrerBortYtelserSomIkkeErValgt(utbetaling, filter));
 }
 
 function filtrerPaUtbetaltTilValg(utbetaling: Utbetaling, filter: UtbetalingFilterState) {
@@ -63,7 +61,7 @@ function filtrerPaUtbetaltTilValg(utbetaling: Utbetaling, filter: UtbetalingFilt
 
 function filtrerBortYtelserSomIkkeErValgt(utbetaling: Utbetaling, filter: UtbetalingFilterState): Utbetaling {
     const ytelser = reduceUtbetlingerTilYtelser([utbetaling]);
-    const filtrerteYtelser = ytelser.filter(ytelse => filter.ytelser.includes(getTypeFromYtelse(ytelse)));
+    const filtrerteYtelser = ytelser.filter((ytelse) => filter.ytelser.includes(getTypeFromYtelse(ytelse)));
     if (filtrerteYtelser.length === ytelser.length) {
         return utbetaling;
     }
