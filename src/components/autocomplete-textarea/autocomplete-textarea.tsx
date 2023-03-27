@@ -142,6 +142,16 @@ function useRules(): Regler {
             type: 'internal',
             regex: /^aareg$/i,
             replacement: () => 'arbeidsgiver- og arbeidstakerregisteret '
+        },
+        {
+            type: 'internal',
+            regex: /^aev$/i,
+            replacement: () => 'arbeidsevnevurdering '
+        },
+        {
+            type: 'internal',
+            regex: /^uft$/i,
+            replacement: () => 'uføretrygd '
         }
     ];
 }
@@ -187,6 +197,8 @@ function AutoTekstTips() {
                     <li>baut + mellomrom: utvidet barnetrygd</li>
                     <li>baor + mellomrom: ordinær barnetrygd</li>
                     <li>aareg + mellomrom: arbeidsgiver- og arbeidstakerregisteret</li>
+                    <li>aev + mellomrom: arbeidsevnevurdering</li>
+                    <li>uft + mellomrom: uføretrygd</li>
                 </ul>
             </Hjelpetekst>
         </HjelpetekstStyle>

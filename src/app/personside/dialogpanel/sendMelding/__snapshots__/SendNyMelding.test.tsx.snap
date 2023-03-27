@@ -420,6 +420,12 @@ exports[`viser send ny melding 1`] = `
                           <li>
                             aareg + mellomrom: arbeidsgiver- og arbeidstakerregisteret
                           </li>
+                          <li>
+                            aev + mellomrom: arbeidsevnevurdering
+                          </li>
+                          <li>
+                            uft + mellomrom: uføretrygd
+                          </li>
                         </ul>
                       </div>
                     </div>
