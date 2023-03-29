@@ -490,7 +490,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             src: OppslagPaaInaktivIdent
         },
         {
-            id: 27,
+            id: 28,
             tittel: 'Endringer på meldingsvisning',
             dato: new Date('2023-02-23 07:00'),
             aktiv: true,
