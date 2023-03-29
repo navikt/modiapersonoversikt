@@ -493,13 +493,13 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 27,
             tittel: 'Endringer på meldingsvisning',
             dato: new Date('2023-02-23 07:00'),
-            aktiv: false,
+            aktiv: true,
             ingress: null,
             beskrivelse: (
                 <>
                     <Normaltekst>
-                        Det er gjort endringer på meldingsvisning. Nå er det kun to valg, referat og samtale. Se
-                        fagmelding på{' '}
+                        Det er gjort endringer på meldingsvisning. Nå er det kun tre valg, referat, samtale og
+                        infomelding. Se fagmelding på{' '}
                         <a
                             href="https://navno.sharepoint.com/sites/fag-og-ytelser-fagsystemer/SitePages/Endringer-i-Modia-personoversikt.aspx"
                             target="_blank"
