@@ -490,7 +490,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             src: OppslagPaaInaktivIdent
         },
         {
-            id: 28,
+            id: 29,
             tittel: 'Endringer på meldingsvisning',
             dato: new Date('2023-02-23 07:00'),
             aktiv: true,
@@ -501,7 +501,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                         Det er gjort endringer på meldingsvisning. Nå er det kun tre valg, referat, samtale og
                         infomelding. Se fagmelding på{' '}
                         <a
-                            href="https://navno.sharepoint.com/sites/fag-og-ytelser-fagsystemer/SitePages/Endringer-i-Modia-personoversikt.aspx"
+                            href="https://navno.sharepoint.com/sites/fag-og-ytelser-fagsystemer/SitePages/Endringer-i-Modia-personoversikt-fra-27.-mars.aspx"
                             target="_blank"
                             rel="noreferrer"
                         >
