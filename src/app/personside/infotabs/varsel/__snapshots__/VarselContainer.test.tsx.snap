@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Viser varselcontainer med alt innhold 1`] = `
-.c12 {
+.c11 {
   padding: 0.7rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -9,28 +9,28 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   display: flex;
 }
 
-.c12 > *:first-child {
+.c11 > *:first-child {
   -webkit-flex: 0 0 20%;
   -ms-flex: 0 0 20%;
   flex: 0 0 20%;
 }
 
-.c12 > *:last-child {
+.c11 > *:last-child {
   max-width: 30rem;
 }
 
-.c11 {
+.c10 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c11 > *:not(:first-child) {
+.c10 > *:not(:first-child) {
   border-top: solid 0.0625rem #78706a;
 }
 
-.c9 {
+.c8 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -38,17 +38,17 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   border-radius: 0.5em;
 }
 
-.c9:focus {
+.c8:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c9:focus {
+.c8:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c9:focus::after {
+.c8:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -67,8 +67,8 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   position: relative;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 6rem 4rem 55% 1fr auto;
-  grid-template-columns: 6rem 4rem minmax(35%,55%) 1fr auto;
+  -ms-grid-columns: 6rem 55% 1fr auto;
+  grid-template-columns: 6rem minmax(35%,55%) 1fr auto;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -89,10 +89,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   -ms-grid-column: 3;
 }
 
-.c4 > *:nth-child(4) {
-  -ms-grid-column: 4;
-}
-
 .c4:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
@@ -101,11 +97,11 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   padding: 0.7rem;
 }
 
-.c8 li {
+.c7 li {
   display: inline-block;
 }
 
-.c8 li:not(:last-child):after {
+.c7 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
@@ -117,36 +113,20 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   display: flex;
 }
 
-.c7 {
+.c6 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.c6 {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c10 {
+.c9 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c10 dt {
+.c9 dt {
   float: left;
   clear: left;
   font-weight: bold;
@@ -154,7 +134,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   width: 7rem;
 }
 
-.c10 dd {
+.c9 dd {
   margin-bottom: 0.5rem;
   margin-left: 7.125rem;
 }
@@ -162,8 +142,8 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 .c1 {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 6rem 4rem 55% 1fr;
-  grid-template-columns: 6rem 4rem minmax(35%,55%) 1fr;
+  -ms-grid-columns: 6rem 55% 1fr;
+  grid-template-columns: 6rem minmax(35%,55%) 1fr;
   padding: 0;
   margin-bottom: 1rem;
 }
@@ -178,10 +158,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
 
 .c1 > *:nth-child(3) {
   -ms-grid-column: 3;
-}
-
-.c1 > *:nth-child(4) {
-  -ms-grid-column: 4;
 }
 
 .c1 > * {
@@ -206,11 +182,6 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
       className="typo-element"
     >
       Dato
-    </p>
-    <p
-      className="typo-element"
-    >
-      Status
     </p>
     <p
       className="typo-element"
@@ -247,34 +218,15 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 01.01.2023
               </span>
             </p>
-            <div
-              className="c6"
-            >
-              <svg
-                focusable="false"
-                height="1.5em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm4.573-11.516a.75.75 0 1 0-1.146-.968l-4.973 5.877L8.03 11.97a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.102-.046l5.5-6.5Z"
-                  fill="#06893a"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </div>
             <h4
-              className="typo-element c7"
+              className="typo-element c6"
               id="Helt tilfeldig ID"
             >
               Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c8"
+              className="c7"
             >
               <li
                 className="typo-normal"
@@ -295,7 +247,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <button
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
+              className="c8"
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -305,7 +257,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </button>
           </div>
           <dl
-            className="c10"
+            className="c9"
           >
             <dt>
               Produsert av:
@@ -349,34 +301,15 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 01.01.2023
               </span>
             </p>
-            <div
-              className="c6"
-            >
-              <svg
-                focusable="false"
-                height="1.5em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm4.573-11.516a.75.75 0 1 0-1.146-.968l-4.973 5.877L8.03 11.97a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.102-.046l5.5-6.5Z"
-                  fill="#06893a"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </div>
             <h4
-              className="typo-element c7"
+              className="typo-element c6"
               id="Helt tilfeldig ID"
             >
               Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c8"
+              className="c7"
             >
               <li
                 className="typo-normal"
@@ -397,7 +330,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <button
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
+              className="c8"
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -407,7 +340,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </button>
           </div>
           <dl
-            className="c10"
+            className="c9"
           >
             <dt>
               Produsert av:
@@ -451,34 +384,15 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 01.01.2023
               </span>
             </p>
-            <div
-              className="c6"
-            >
-              <svg
-                focusable="false"
-                height="1.5em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm4.573-11.516a.75.75 0 1 0-1.146-.968l-4.973 5.877L8.03 11.97a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.102-.046l5.5-6.5Z"
-                  fill="#06893a"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </div>
             <h4
-              className="typo-element c7"
+              className="typo-element c6"
               id="Helt tilfeldig ID"
             >
               Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c8"
+              className="c7"
             >
               <li
                 className="typo-normal"
@@ -499,7 +413,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <button
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
+              className="c8"
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -509,7 +423,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </button>
           </div>
           <dl
-            className="c10"
+            className="c9"
           >
             <dt>
               Produsert av:
@@ -558,34 +472,15 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 24.01.2019
               </span>
             </p>
-            <div
-              className="c6"
-            >
-              <svg
-                focusable="false"
-                height="1.5em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm4.573-11.516a.75.75 0 1 0-1.146-.968l-4.973 5.877L8.03 11.97a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.102-.046l5.5-6.5Z"
-                  fill="#06893a"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </div>
             <h4
-              className="typo-element c7"
+              className="typo-element c6"
               id="Helt tilfeldig ID"
             >
               Påminnelse om å sende meldekort
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c8"
+              className="c7"
             >
               <li
                 className="typo-normal"
@@ -601,7 +496,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <button
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
+              className="c8"
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -612,11 +507,11 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           </div>
           <ol
             aria-label="Meldinger"
-            className="c11"
+            className="c10"
           >
             <li
               aria-label="EPOST"
-              className="c12"
+              className="c11"
             >
               <div>
                 <p
@@ -653,7 +548,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </li>
             <li
               aria-label="SMS"
-              className="c12"
+              className="c11"
             >
               <div>
                 <p
@@ -705,34 +600,15 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
                 02.02.2019
               </span>
             </p>
-            <div
-              className="c6"
-            >
-              <svg
-                focusable="false"
-                height="1.5em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm4.573-11.516a.75.75 0 1 0-1.146-.968l-4.973 5.877L8.03 11.97a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.102-.046l5.5-6.5Z"
-                  fill="#06893a"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </div>
             <h4
-              className="typo-element c7"
+              className="typo-element c6"
               id="Helt tilfeldig ID"
             >
               Påminnelse om å sende meldekort
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c8"
+              className="c7"
             >
               <li
                 className="typo-normal"
@@ -743,7 +619,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <button
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
+              className="c8"
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -754,11 +630,11 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           </div>
           <ol
             aria-label="Meldinger"
-            className="c11"
+            className="c10"
           >
             <li
               aria-label="EPOST"
-              className="c12"
+              className="c11"
             >
               <div>
                 <p

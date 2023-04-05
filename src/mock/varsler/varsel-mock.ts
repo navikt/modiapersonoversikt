@@ -14,7 +14,7 @@ export function getMockVarsler(fnr: string): VarslerResult {
     if (fnr === aremark.personIdent) {
         return {
             feil: ['Feil ved uthenting av varsler', 'Annen feilmelding fra backend'],
-            varsler: [...statiskVarselMock, ...statiskDittnavEventVarselMock]
+            varsler: [...statiskDittnavEventVarselMock, ...statiskVarselMock]
         };
     }
 
@@ -28,7 +28,6 @@ export function getMockVarsler(fnr: string): VarslerResult {
 }
 
 function genererDittNavEventVarsel(fnr: string): DittNavEvent {
-    console.log('VARSEL');
     const tidspunkt = faker.date.recent(90);
     const eksternVarsel = faker.random.boolean();
     const sendteKanaler = nArrayElement(['SMS', 'EPOST'], faker.random.number(2), false);
