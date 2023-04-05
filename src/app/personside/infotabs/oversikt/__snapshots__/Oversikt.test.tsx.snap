@@ -50,35 +50,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0 1rem;
 }
 
-.c32 {
-  padding: 0.7rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c32 > *:first-child {
-  -webkit-flex: 0 0 20%;
-  -ms-flex: 0 0 20%;
-  flex: 0 0 20%;
-}
-
-.c32 > *:last-child {
-  max-width: 30rem;
-}
-
-.c31 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-}
-
-.c31 > *:not(:first-child) {
-  border-top: solid 0.0625rem #78706a;
-}
-
 .c30 {
   border: none;
   cursor: pointer;
@@ -138,10 +109,6 @@ exports[`Viser oversikt med alt innhold 1`] = `
   -ms-grid-column: 3;
 }
 
-.c26 > *:nth-child(4) {
-  -ms-grid-column: 4;
-}
-
 .c26:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
@@ -160,13 +127,36 @@ exports[`Viser oversikt med alt innhold 1`] = `
 }
 
 .c27 {
-  display: block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .c28 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.c31 {
+  border-radius: 0.5rem;
+  background-color: #f1f0f0;
+  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
+  padding: 1.25rem;
+}
+
+.c31 dt {
+  float: left;
+  clear: left;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  width: 7rem;
+}
+
+.c31 dd {
+  margin-bottom: 0.5rem;
+  margin-left: 7.125rem;
 }
 
 .c24 > *:not(:first-child) {
@@ -1159,19 +1149,14 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <span
                         className="c27"
                       >
-                        01.03.2019
-                      </span>
-                      <span
-                        className="c27"
-                      >
-                        24.01.2019
+                        01.01.2023
                       </span>
                     </p>
                     <h4
                       className="typo-element c28"
                       id="Helt tilfeldig ID"
                     >
-                      Påminnelse om å sende meldekort
+                      Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
                     </h4>
                     <ul
                       aria-label="Kommunikasjonskanaler"
@@ -1180,12 +1165,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <li
                         className="typo-normal"
                       >
-                        EPOST
+                        DITT_NAV
                       </li>
                       <li
                         className="typo-normal"
                       >
                         SMS
+                      </li>
+                      <li
+                        className="typo-normal"
+                      >
+                        EPOST
                       </li>
                     </ul>
                     <button
@@ -1200,78 +1190,28 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       />
                     </button>
                   </div>
-                  <ol
-                    aria-label="Meldinger"
+                  <dl
                     className="c31"
                   >
-                    <li
-                      aria-label="EPOST"
-                      className="c32"
-                    >
-                      <div>
-                        <p
-                          className="typo-element"
-                        >
-                          EPOST
-                        </p>
-                        <p
-                          className="typo-normal"
-                        >
-                          01. mars 2019
-                        </p>
-                      </div>
-                      <div>
-                        <div>
-                          <p
-                            className="typo-element"
-                          >
-                            Epostemne
-                          </p>
-                          <p
-                            className="typo-normal"
-                          >
-                            Meldingsinnhold
-                          </p>
-                        </div>
-                        <p
-                          className="typo-element"
-                        >
-                          Epost: 
-                          mottakerinfo
-                        </p>
-                      </div>
-                    </li>
-                    <li
-                      aria-label="SMS"
-                      className="c32"
-                    >
-                      <div>
-                        <p
-                          className="typo-element"
-                        >
-                          SMS
-                        </p>
-                        <p
-                          className="typo-normal"
-                        >
-                          24. jan. 2019
-                        </p>
-                      </div>
-                      <div>
-                        <p
-                          className="typo-normal"
-                        >
-                          Meldingsinnhold
-                        </p>
-                        <p
-                          className="typo-element"
-                        >
-                          Tlf: 
-                          mottakerinfo
-                        </p>
-                      </div>
-                    </li>
-                  </ol>
+                    <dt>
+                      Produsert av:
+                    </dt>
+                    <dd>
+                      sf-brukernotifikasjon
+                    </dd>
+                    <dt>
+                      Tekst:
+                    </dt>
+                    <dd>
+                      Et nytt samtalereferat er tilgjengelig i din innboks
+                    </dd>
+                    <dt>
+                      Link:
+                    </dt>
+                    <dd>
+                      https://innboks.nav.no
+                    </dd>
+                  </dl>
                 </article>
               </div>
             </li>
@@ -1292,19 +1232,29 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <span
                         className="c27"
                       >
-                        02.02.2019
+                        01.01.2023
                       </span>
                     </p>
                     <h4
                       className="typo-element c28"
                       id="Helt tilfeldig ID"
                     >
-                      Påminnelse om å sende meldekort
+                      Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
                     </h4>
                     <ul
                       aria-label="Kommunikasjonskanaler"
                       className="c29"
                     >
+                      <li
+                        className="typo-normal"
+                      >
+                        DITT_NAV
+                      </li>
+                      <li
+                        className="typo-normal"
+                      >
+                        SMS
+                      </li>
                       <li
                         className="typo-normal"
                       >
@@ -1323,48 +1273,28 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       />
                     </button>
                   </div>
-                  <ol
-                    aria-label="Meldinger"
+                  <dl
                     className="c31"
                   >
-                    <li
-                      aria-label="EPOST"
-                      className="c32"
-                    >
-                      <div>
-                        <p
-                          className="typo-element"
-                        >
-                          EPOST
-                        </p>
-                        <p
-                          className="typo-normal"
-                        >
-                          02. feb. 2019
-                        </p>
-                      </div>
-                      <div>
-                        <div>
-                          <p
-                            className="typo-element"
-                          >
-                            Epostemne
-                          </p>
-                          <p
-                            className="typo-normal"
-                          >
-                            Meldingsinnhold
-                          </p>
-                        </div>
-                        <p
-                          className="typo-element"
-                        >
-                          Epost: 
-                          mottakerinfo
-                        </p>
-                      </div>
-                    </li>
-                  </ol>
+                    <dt>
+                      Produsert av:
+                    </dt>
+                    <dd>
+                      sf-brukernotifikasjon
+                    </dd>
+                    <dt>
+                      Tekst:
+                    </dt>
+                    <dd>
+                      Et nytt samtalereferat er tilgjengelig i din innboks
+                    </dd>
+                    <dt>
+                      Link:
+                    </dt>
+                    <dd>
+                      https://innboks.nav.no
+                    </dd>
+                  </dl>
                 </article>
               </div>
             </li>
