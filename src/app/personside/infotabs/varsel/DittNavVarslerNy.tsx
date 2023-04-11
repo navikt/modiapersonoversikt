@@ -128,16 +128,24 @@ export function DittNavEventVarselV2({ varsel }: { varsel: DittNavEvent }) {
                             )} - ${varslingsTidspunkt.renotifikasjonsKanaler.join(', ')}`}
                         />
                     )}
-                    <hr />
-                    <FeilteVarslingerListe
-                        tittel="Varslingsfeil"
-                        feilteVarslinger={varslingsTidspunkt.feilteVarsliner}
-                    />
-                    <hr />
-                    <FeilteVarslingerListe
-                        tittel="Revarslingsfeil"
-                        feilteVarslinger={varslingsTidspunkt.feilteRevarslinger}
-                    />
+                    {varslingsTidspunkt.harFeilteVarslinger && (
+                        <>
+                            <hr />
+                            <FeilteVarslingerListe
+                                tittel="Varslingsfeil"
+                                feilteVarslinger={varslingsTidspunkt.feilteVarsliner}
+                            />
+                        </>
+                    )}
+                    {varslingsTidspunkt.harFeilteRevarslinger && (
+                        <>
+                            <hr />
+                            <FeilteVarslingerListe
+                                tittel="Revarslingsfeil"
+                                feilteVarslinger={varslingsTidspunkt.feilteRevarslinger}
+                            />
+                        </>
+                    )}
                 </div>
             </GraattDefinisjonsListe>
         </VarselRowNy>
