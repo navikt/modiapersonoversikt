@@ -28,6 +28,7 @@ import SladdEnkeltmelding from './img/sladdEnkeltmelding.png';
 import LestDatoSak from './img/lest-dato-sak.png';
 import OppslagPaaInaktivIdent from './img/oppslag-paa-inaktiv-ident.png';
 import MeldingsVisning from './img/meldinger.png';
+import Revarsling from './img/revarsling.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
@@ -250,7 +251,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 13,
             tittel: 'Ny innstilling tilgjengelig',
             dato: new Date('2022-01-31 12:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: (
                 <Normaltekst>
                     Du kan nå velge standardvalget for hvor oppgave skal sendes når bruker svarer.
@@ -263,7 +264,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 14,
             tittel: 'Fortløpende journalføring',
             dato: new Date('2022-02-23 08:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: (
                 <Normaltekst>
                     Salesforce åpner opp for fortløpende journalføring og oppretting av dokumenter.
@@ -283,7 +284,7 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
             id: 15,
             tittel: 'Visning av sikkerhetstiltak',
             dato: new Date('2022-02-25 16:00'),
-            aktiv: true,
+            aktiv: false,
             ingress: (
                 <Normaltekst>Ved oppslag av bruker med sikkerhetstiltak vil det dukke opp et popup-vindu.</Normaltekst>
             ),
@@ -511,6 +512,22 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: MeldingsVisning
+        },
+        {
+            id: 30,
+            tittel: 'Informasjon om revarsling',
+            dato: new Date('2023-04-11 07:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Informasjon om revarslinger som har skjedd etter 15. mars vil nå vises i varsler. Om varsling
+                        eller revarsling har feilet vises årsaken til dette.
+                    </Normaltekst>
+                </>
+            ),
+            src: Revarsling
         }
     ];
 }

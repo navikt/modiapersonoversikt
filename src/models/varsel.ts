@@ -11,6 +11,26 @@ export interface DittNavEvent {
     aktiv: boolean;
     eksternVarslingSendt: boolean;
     eksternVarslingKanaler: Array<string>;
+    varslingsTidspunkt?: VarslingsTidspunkt;
+}
+
+export interface VarslingsTidspunkt {
+    sendt: boolean;
+    tidspunkt?: string;
+    renotifikasjonSendt: boolean;
+    renotifikasjonTidspunkt?: string;
+    sendteKanaler: string[];
+    renotifikasjonsKanaler: string[];
+    harFeilteVarslinger: boolean;
+    harFeilteRevarslinger: boolean;
+    feilteVarsliner: FeiletVarsling[];
+    feilteRevarslinger: FeiletVarsling[];
+}
+
+export interface FeiletVarsling {
+    tidspunkt: string;
+    feilmelding: string;
+    kanal?: string;
 }
 
 export interface Varsel {
