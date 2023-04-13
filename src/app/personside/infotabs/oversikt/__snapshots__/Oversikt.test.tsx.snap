@@ -50,7 +50,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0 1rem;
 }
 
-.c30 {
+.c31 {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -58,17 +58,17 @@ exports[`Viser oversikt med alt innhold 1`] = `
   border-radius: 0.5em;
 }
 
-.c30:focus {
+.c31:focus {
   outline: none;
   box-shadow: 0 0 0 0.1875rem #254b6d;
 }
 
-.c30:focus {
+.c31:focus {
   outline: none;
   box-shadow: none;
 }
 
-.c30:focus::after {
+.c31:focus::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -87,8 +87,8 @@ exports[`Viser oversikt med alt innhold 1`] = `
   position: relative;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 6rem 55% 1fr auto;
-  grid-template-columns: 6rem minmax(35%,55%) 1fr auto;
+  -ms-grid-columns: 6rem 3rem 55% 1fr auto;
+  grid-template-columns: 6rem 3rem minmax(35%,55%) 1fr auto;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -109,6 +109,10 @@ exports[`Viser oversikt med alt innhold 1`] = `
   -ms-grid-column: 3;
 }
 
+.c26 > *:nth-child(4) {
+  -ms-grid-column: 4;
+}
+
 .c26:hover {
   box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
 }
@@ -117,11 +121,11 @@ exports[`Viser oversikt med alt innhold 1`] = `
   padding: 0.7rem;
 }
 
-.c29 li {
+.c30 li {
   display: inline-block;
 }
 
-.c29 li:not(:last-child):after {
+.c30 li:not(:last-child):after {
   content: ',';
   margin-right: 0.5em;
 }
@@ -133,20 +137,36 @@ exports[`Viser oversikt med alt innhold 1`] = `
   display: flex;
 }
 
-.c28 {
+.c29 {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.c31 {
+.c28 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c32 {
   border-radius: 0.5rem;
   background-color: #f1f0f0;
   box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
   padding: 1.25rem;
 }
 
-.c31 dt {
+.c32 dt {
   float: left;
   clear: left;
   font-weight: bold;
@@ -154,9 +174,22 @@ exports[`Viser oversikt med alt innhold 1`] = `
   width: 7rem;
 }
 
-.c31 dd {
+.c32 dd {
   margin-bottom: 0.5rem;
   margin-left: 7.125rem;
+}
+
+.c34 {
+  font-weight: bold;
+}
+
+.c35 {
+  margin-top: 0.5rem;
+}
+
+.c33 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .c24 > *:not(:first-child) {
@@ -1149,18 +1182,42 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <span
                         className="c27"
                       >
-                        01.01.2023
+                        11.01.2023
+                      </span>
+                      <span
+                        className="c27"
+                      >
+                        01.08.2023
                       </span>
                     </p>
+                    <div
+                      className="c28"
+                    >
+                      <svg
+                        focusable="false"
+                        height="1.5em"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="1.5em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M12 2.25a.75.75 0 0 1 .656.387l9.527 17.25A.75.75 0 0 1 21.526 21H2.474a.75.75 0 0 1-.657-1.113l9.526-17.25A.75.75 0 0 1 12 2.25ZM12 8.75a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75Zm-1 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
+                          fill="#ff9100"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
                     <h4
-                      className="typo-element c28"
+                      className="typo-element c29"
                       id="Helt tilfeldig ID"
                     >
                       Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
                     </h4>
                     <ul
                       aria-label="Kommunikasjonskanaler"
-                      className="c29"
+                      className="c30"
                     >
                       <li
                         className="typo-normal"
@@ -1181,7 +1238,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <button
                       aria-expanded={false}
                       aria-label="Vis mer informasjon om varsel/notifikasjon"
-                      className="c30"
+                      className="c31"
                       onClick={[Function]}
                       title="Vis mer informasjon om varsel/notifikasjon"
                     >
@@ -1191,26 +1248,82 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </button>
                   </div>
                   <dl
-                    className="c31"
+                    className="c32"
                   >
-                    <dt>
-                      Produsert av:
-                    </dt>
-                    <dd>
-                      sf-brukernotifikasjon
-                    </dd>
-                    <dt>
-                      Tekst:
-                    </dt>
-                    <dd>
-                      Et nytt samtalereferat er tilgjengelig i din innboks
-                    </dd>
-                    <dt>
-                      Link:
-                    </dt>
-                    <dd>
-                      https://innboks.nav.no
-                    </dd>
+                    <div>
+                      <dt>
+                        Produsert av:
+                      </dt>
+                      <dd>
+                        sf-brukernotifikasjon
+                      </dd>
+                      <dt>
+                        Tekst:
+                      </dt>
+                      <dd>
+                        Et nytt samtalereferat er tilgjengelig i din innboks
+                      </dd>
+                      <dt>
+                        Link:
+                      </dt>
+                      <dd>
+                        https://innboks.nav.no
+                      </dd>
+                      <dt>
+                        Varslet: 
+                      </dt>
+                      <dd>
+                        11.01.2023 - SMS, EPOST
+                      </dd>
+                      <dt>
+                        Revarslet: 
+                      </dt>
+                      <dd>
+                        01.08.2023 - SMS, EPOST
+                      </dd>
+                      <hr />
+                      <div
+                        className="c33"
+                      >
+                        <span
+                          className="c34"
+                        >
+                          Varslingsfeil
+                        </span>
+                        <div
+                          className="c35"
+                        >
+                          <li>
+                            01.01.2023
+                             - 
+                            SMS
+                            : 
+                            Feil telefonummer
+                          </li>
+                        </div>
+                      </div>
+                      <hr />
+                      <div
+                        className="c33"
+                      >
+                        <span
+                          className="c34"
+                        >
+                          Revarslingsfeil
+                        </span>
+                        <div
+                          className="c35"
+                        >
+                          <li>
+                            11.08.2023
+                             - 
+                            EPOST
+                            : 
+                            Feil epost
+                          </li>
+                        </div>
+                      </div>
+                    </div>
                   </dl>
                 </article>
               </div>
@@ -1232,18 +1345,42 @@ exports[`Viser oversikt med alt innhold 1`] = `
                       <span
                         className="c27"
                       >
-                        01.01.2023
+                        11.01.2023
+                      </span>
+                      <span
+                        className="c27"
+                      >
+                        01.08.2023
                       </span>
                     </p>
+                    <div
+                      className="c28"
+                    >
+                      <svg
+                        focusable="false"
+                        height="1.5em"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="1.5em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M12 2.25a.75.75 0 0 1 .656.387l9.527 17.25A.75.75 0 0 1 21.526 21H2.474a.75.75 0 0 1-.657-1.113l9.526-17.25A.75.75 0 0 1 12 2.25ZM12 8.75a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75Zm-1 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
+                          fill="#ff9100"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
                     <h4
-                      className="typo-element c28"
+                      className="typo-element c29"
                       id="Helt tilfeldig ID"
                     >
                       Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
                     </h4>
                     <ul
                       aria-label="Kommunikasjonskanaler"
-                      className="c29"
+                      className="c30"
                     >
                       <li
                         className="typo-normal"
@@ -1264,7 +1401,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     <button
                       aria-expanded={false}
                       aria-label="Vis mer informasjon om varsel/notifikasjon"
-                      className="c30"
+                      className="c31"
                       onClick={[Function]}
                       title="Vis mer informasjon om varsel/notifikasjon"
                     >
@@ -1274,26 +1411,82 @@ exports[`Viser oversikt med alt innhold 1`] = `
                     </button>
                   </div>
                   <dl
-                    className="c31"
+                    className="c32"
                   >
-                    <dt>
-                      Produsert av:
-                    </dt>
-                    <dd>
-                      sf-brukernotifikasjon
-                    </dd>
-                    <dt>
-                      Tekst:
-                    </dt>
-                    <dd>
-                      Et nytt samtalereferat er tilgjengelig i din innboks
-                    </dd>
-                    <dt>
-                      Link:
-                    </dt>
-                    <dd>
-                      https://innboks.nav.no
-                    </dd>
+                    <div>
+                      <dt>
+                        Produsert av:
+                      </dt>
+                      <dd>
+                        sf-brukernotifikasjon
+                      </dd>
+                      <dt>
+                        Tekst:
+                      </dt>
+                      <dd>
+                        Et nytt samtalereferat er tilgjengelig i din innboks
+                      </dd>
+                      <dt>
+                        Link:
+                      </dt>
+                      <dd>
+                        https://innboks.nav.no
+                      </dd>
+                      <dt>
+                        Varslet: 
+                      </dt>
+                      <dd>
+                        11.01.2023 - SMS, EPOST
+                      </dd>
+                      <dt>
+                        Revarslet: 
+                      </dt>
+                      <dd>
+                        01.08.2023 - SMS, EPOST
+                      </dd>
+                      <hr />
+                      <div
+                        className="c33"
+                      >
+                        <span
+                          className="c34"
+                        >
+                          Varslingsfeil
+                        </span>
+                        <div
+                          className="c35"
+                        >
+                          <li>
+                            01.01.2023
+                             - 
+                            SMS
+                            : 
+                            Feil telefonummer
+                          </li>
+                        </div>
+                      </div>
+                      <hr />
+                      <div
+                        className="c33"
+                      >
+                        <span
+                          className="c34"
+                        >
+                          Revarslingsfeil
+                        </span>
+                        <div
+                          className="c35"
+                        >
+                          <li>
+                            11.08.2023
+                             - 
+                            EPOST
+                            : 
+                            Feil epost
+                          </li>
+                        </div>
+                      </div>
+                    </div>
                   </dl>
                 </article>
               </div>

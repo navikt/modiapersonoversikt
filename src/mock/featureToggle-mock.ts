@@ -7,8 +7,6 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return false;
         case FeatureToggles.useNewDialogComponents:
             return true;
-        case FeatureToggles.visRevarslingDetaljer:
-            return true;
         default:
             return Math.random() > 0.5;
     }
