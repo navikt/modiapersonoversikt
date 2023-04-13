@@ -4,6 +4,8 @@ import { UnmountClosed } from 'react-collapse';
 import { useDispatch } from 'react-redux';
 import VisMerChevron from '../../../../components/VisMerChevron';
 import { toggleVisVarsel } from '../../../../redux/varsler/varslerReducer';
+import CompletedIcon from '../../../../svg/CompletedIcon';
+import WarningIcon from '../../../../svg/WarningIcon';
 import { useAppState } from '../../../../utils/customHooks';
 import styled from 'styled-components/macro';
 import Panel from 'nav-frontend-paneler';
@@ -19,8 +21,8 @@ const HeaderStyle = styled.div`
     position: relative;
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 6rem 55% 1fr auto;
-    grid-template-columns: 6rem minmax(35%, 55%) 1fr auto;
+    -ms-grid-columns: 6rem 3rem 55% 1fr auto;
+    grid-template-columns: 6rem 3rem minmax(35%, 55%) 1fr auto;
     > *:nth-child(1) {
         -ms-grid-column: 1;
     }
@@ -29,6 +31,9 @@ const HeaderStyle = styled.div`
     }
     > *:nth-child(3) {
         -ms-grid-column: 3;
+    }
+    > *:nth-child(4) {
+        -ms-grid-column: 4;
     }
     align-items: center;
     border-radius: ${theme.borderRadius.layout};
@@ -62,12 +67,20 @@ const EllipsisElement = styled(Element)`
     white-space: nowrap;
 `;
 
+const IkonDiv = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 export interface VarselRowProps {
     varsel: UnifiedVarsel;
     datoer: Array<string>;
     tittel: string;
     kanaler: Array<string>;
     children: React.ReactNode;
+    harFeilteVarsel?: boolean;
 }
 export function VarselRow(props: VarselRowProps) {
     const tittelId = useRef(guid());
@@ -84,6 +97,7 @@ export function VarselRow(props: VarselRowProps) {
                 <article aria-labelledby={tittelId.current}>
                     <HeaderStyle onClick={toggleOpen}>
                         <Normaltekst>{datoer}</Normaltekst>
+                        <IkonDiv>{props.harFeilteVarsel ? <WarningIcon /> : <CompletedIcon />}</IkonDiv>
                         <EllipsisElement id={tittelId.current} tag="h4">
                             {props.tittel}
                         </EllipsisElement>

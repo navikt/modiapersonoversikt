@@ -7,9 +7,9 @@ import {
 import { datoSynkende } from '../../../../utils/date-utils';
 import VarselMeldinger from './varselDetaljer/VarselMeldinger';
 import { formaterDato } from '../../../../utils/string-utils';
-import { DittNavEventVarsel } from './DittNavVarsler';
-import { VarselRow } from './VarselRow';
+import { DittNavEventVarselV2 } from './DittNavVarsler';
 import { getVarselTekst } from './varsel-utils';
+import { VarselRow } from './VarselRow';
 
 function Varsel({ varsel }: { varsel: VarselModell }) {
     const sortertMeldingsliste = varsel.meldingListe.sort(datoSynkende((melding) => melding.utsendingsTidspunkt));
@@ -26,7 +26,7 @@ function Varsel({ varsel }: { varsel: VarselModell }) {
 
 function UnifiedVarsel({ varsel }: { varsel: UnifiedVarselModell }) {
     if (isDittNavEvent(varsel)) {
-        return <DittNavEventVarsel varsel={varsel} />;
+        return <DittNavEventVarselV2 varsel={varsel} />;
     }
     return <Varsel varsel={varsel} />;
 }

@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Element } from 'nav-frontend-typografi';
 import { UnifiedVarsel } from '../../../../models/varsel';
-import Varsel from './Varsel';
 import Panel from 'nav-frontend-paneler';
+import Varsel from './Varsel';
 
 interface Props {
     varsler: Array<UnifiedVarsel>;
@@ -12,8 +12,8 @@ interface Props {
 const HeaderStyle = styled(Panel)`
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 6rem 55% 1fr;
-    grid-template-columns: 6rem minmax(35%, 55%) 1fr;
+    -ms-grid-columns: 6rem 4rem 55% 1fr;
+    grid-template-columns: 6rem 4rem minmax(35%, 55%) 1fr;
     > *:nth-child(1) {
         -ms-grid-column: 1;
     }
@@ -22,6 +22,9 @@ const HeaderStyle = styled(Panel)`
     }
     > *:nth-child(3) {
         -ms-grid-column: 3;
+    }
+    > *:nth-child(4) {
+        -ms-grid-column: 4;
     }
     > * {
         padding: 0.7rem;
@@ -41,6 +44,7 @@ function Varsler(props: Props) {
         <>
             <HeaderStyle>
                 <Element>Dato</Element>
+                <Element>Status</Element>
                 <Element>Type</Element>
                 <Element>Kanal</Element>
             </HeaderStyle>
