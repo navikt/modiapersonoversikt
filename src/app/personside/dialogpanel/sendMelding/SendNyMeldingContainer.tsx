@@ -1,21 +1,9 @@
 import * as React from 'react';
 import { FormEvent, useCallback, useMemo, useState } from 'react';
-import SendNyMelding, { OppgavelisteValg, SendNyMeldingState } from './SendNyMelding';
-import { NyMeldingValidator } from './validatorer';
-import {
-    Meldingstype,
-    SendInfomeldingRequest,
-    SendReferatRequest,
-    SendSporsmalRequest,
-    Traad
-} from '../../../../models/meldinger/meldinger';
+import { MeldingValidator } from './validatorer';
+import { SendMeldingRequest, SendReferatRequest, Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import { useFodselsnummer } from '../../../../utils/customHooks';
-import {
-    InfomeldingSendtKvittering,
-    ReferatSendtKvittering,
-    MeldingSendtFeilet,
-    SporsmalSendtKvittering
-} from './SendNyMeldingKvittering';
+import { MeldingSendtFeilet, ReferatSendtKvittering, SamtaleSendtKvittering } from './SendNyMeldingKvittering';
 import { apiBaseUri } from '../../../../api/config';
 import { post } from '../../../../api/api';
 import { KvitteringNyMelding, SendNyMeldingPanelState, SendNyMeldingStatus } from './SendNyMeldingTypes';
@@ -25,6 +13,7 @@ import dialogResource from '../../../../rest/resources/dialogResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import { useQueryClient } from '@tanstack/react-query';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
+import SendNyMelding, { OppgavelisteValg, SendNyMeldingState } from './SendNyMelding';
 
 interface Props {
     defaultOppgaveDestinasjon: OppgavelisteValg;
@@ -35,9 +24,10 @@ function SendNyMeldingContainer(props: Props) {
     const initialState: SendNyMeldingState = useMemo(
         () => ({
             tekst: '',
-            dialogType: Meldingstype.SAMTALEREFERAT_TELEFON,
+            traadType: TraadType.SAMTALEREFERAT,
             tema: undefined,
             sak: undefined,
+            avsluttet: false,
             oppgaveListe: props.defaultOppgaveDestinasjon,
             visFeilmeldinger: false
         }),
@@ -76,23 +66,14 @@ function SendNyMeldingContainer(props: Props) {
         return (
             <ReferatSendtKvittering
                 kvitteringNyMelding={sendNyMeldingStatus.kvitteringNyMelding}
-                request={sendNyMeldingStatus.request}
                 lukk={lukkSendtKvittering}
             />
         );
     }
 
-    if (sendNyMeldingStatus.type === SendNyMeldingStatus.SPORSMAL_SENDT) {
+    if (sendNyMeldingStatus.type === SendNyMeldingStatus.SAMTALE_SENDT) {
         return (
-            <SporsmalSendtKvittering
-                kvitteringNyMelding={sendNyMeldingStatus.kvitteringNyMelding}
-                lukk={lukkSendtKvittering}
-            />
-        );
-    }
-    if (sendNyMeldingStatus.type === SendNyMeldingStatus.INFORMELDING_SENDT) {
-        return (
-            <InfomeldingSendtKvittering
+            <SamtaleSendtKvittering
                 kvitteringNyMelding={sendNyMeldingStatus.kvitteringNyMelding}
                 lukk={lukkSendtKvittering}
             />
@@ -125,41 +106,46 @@ function SendNyMeldingContainer(props: Props) {
             queryClient.invalidateQueries(dialogResource.queryKey(fnr, valgtEnhet));
         };
 
-        if (
-            NyMeldingValidator.erGyldigReferat(state) &&
-            state.tema &&
-            state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE &&
-            state.dialogType !== Meldingstype.INFOMELDING_MODIA_UTGAAENDE
-        ) {
+        const commonPayload = {
+            traadType: state.traadType,
+            enhet: valgtEnhet,
+            fritekst: state.tekst
+        };
+
+        if (MeldingValidator.erGyldigReferat(state) && state.tema) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
-            const request: SendReferatRequest = {
-                enhet: valgtEnhet,
-                fritekst: state.tekst,
-                meldingstype: state.dialogType,
+            const request: SendMeldingRequest = {
+                ...commonPayload,
                 temagruppe: state.tema
             };
-            post<Traad>(`${apiBaseUri}/dialog/${fnr}/sendreferat`, request, 'Send-Referat')
+
+            post<Traad>(`${apiBaseUri}/dialog/${fnr}/sendmelding`, request, 'Send-Referat')
                 .then((traad) => {
                     const kvitteringNyMelding: KvitteringNyMelding = {
                         fritekst: request.fritekst,
                         traad: traad
                     };
                     callback();
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.REFERAT_SENDT, request, kvitteringNyMelding });
+                    setSendNyMeldingStatus({
+                        type: SendNyMeldingStatus.REFERAT_SENDT,
+                        request: {} as SendReferatRequest,
+                        kvitteringNyMelding
+                    });
                 })
                 .catch((error) => {
                     console.error('Send-Referat feilet', error);
                     setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR, fritekst: request.fritekst });
                 });
-        } else if (NyMeldingValidator.erGyldigSpørsmal(state) && state.sak) {
+        } else if (MeldingValidator.erGyldigSamtale(state) && state.sak) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
-            const request: SendSporsmalRequest = {
-                enhet: valgtEnhet,
-                fritekst: state.tekst,
+            const request: SendMeldingRequest = {
+                ...commonPayload,
                 sak: state.sak,
+                avsluttet: state.avsluttet,
                 erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
             };
-            post<Traad>(`${apiBaseUri}/dialog/${fnr}/sendsporsmal`, request, 'Send-Sporsmal')
+
+            post<Traad>(`${apiBaseUri}/dialog/${fnr}/sendmelding`, request, 'Send-Sporsmal')
                 .then((traad) => {
                     const kvitteringNyMelding: KvitteringNyMelding = {
                         fritekst: request.fritekst,
@@ -167,38 +153,11 @@ function SendNyMeldingContainer(props: Props) {
                     };
                     queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
                     callback();
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.SPORSMAL_SENDT, kvitteringNyMelding });
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.SAMTALE_SENDT, kvitteringNyMelding });
                 })
                 .catch((error) => {
                     callback();
                     console.error('Send-Sporsmal feilet', error);
-                    setSendNyMeldingStatus({
-                        type: SendNyMeldingStatus.ERROR,
-                        fritekst: handleFeilMelding(error)
-                    });
-                    updateState({ visFeilmeldinger: true });
-                });
-        } else if (NyMeldingValidator.erGyldigInfomelding(state) && state.sak) {
-            setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
-            const request: SendInfomeldingRequest = {
-                enhet: valgtEnhet,
-                fritekst: state.tekst,
-                sak: state.sak
-            };
-            post<Traad>(`${apiBaseUri}/dialog/${fnr}/sendinfomelding`, request, 'Send-Infomelding')
-                .then((traad) => {
-                    const kvitteringNyMelding: KvitteringNyMelding = {
-                        fritekst: request.fritekst,
-                        traad: traad
-                    };
-                    callback();
-                    setSendNyMeldingStatus({
-                        type: SendNyMeldingStatus.INFORMELDING_SENDT,
-                        kvitteringNyMelding
-                    });
-                })
-                .catch((error) => {
-                    callback();
                     setSendNyMeldingStatus({
                         type: SendNyMeldingStatus.ERROR,
                         fritekst: handleFeilMelding(error)

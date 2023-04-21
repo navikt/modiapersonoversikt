@@ -65,7 +65,7 @@ function Oversikt() {
                 <KolonneStyle>
                     <Oversiktskomponent
                         infotabPath={INFOTABS.MELDINGER}
-                        tittel={'Meldinger'}
+                        tittel={'Kommunikasjon'}
                         component={MeldingerOversikt}
                         hurtigtast={'M'}
                     />

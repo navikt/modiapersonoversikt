@@ -1,7 +1,7 @@
 import { SendNyMeldingState, tekstMaksLengde } from './SendNyMelding';
-import { Meldingstype } from '../../../../models/meldinger/meldinger';
+import { TraadType } from '../../../../models/meldinger/meldinger';
 
-export class NyMeldingValidator {
+export class MeldingValidator {
     public static tekst(state: SendNyMeldingState) {
         return state.tekst.length <= tekstMaksLengde && state.tekst.length > 0;
     }
@@ -12,21 +12,15 @@ export class NyMeldingValidator {
         return state.sak !== undefined;
     }
     public static erReferat(state: SendNyMeldingState) {
-        return state.dialogType !== Meldingstype.SPORSMAL_MODIA_UTGAAENDE && !this.erInfomelding(state);
+        return state.traadType === TraadType.SAMTALEREFERAT;
     }
-    public static erSporsmal(state: SendNyMeldingState) {
-        return !this.erReferat(state) && !this.erInfomelding(state);
+    public static erSamtale(state: SendNyMeldingState) {
+        return state.traadType !== TraadType.SAMTALEREFERAT;
     }
     public static erGyldigReferat(state: SendNyMeldingState) {
         return this.erReferat(state) && this.tema(state) && this.tekst(state);
     }
-    public static erGyldigSpørsmal(state: SendNyMeldingState) {
-        return this.erSporsmal(state) && this.sak(state) && this.tekst(state);
-    }
-    public static erInfomelding(state: SendNyMeldingState) {
-        return state.dialogType === Meldingstype.INFOMELDING_MODIA_UTGAAENDE;
-    }
-    public static erGyldigInfomelding(state: SendNyMeldingState) {
-        return this.erInfomelding(state) && this.sak(state) && this.tekst(state);
+    public static erGyldigSamtale(state: SendNyMeldingState) {
+        return this.erSamtale(state) && this.sak(state) && this.tekst(state);
     }
 }

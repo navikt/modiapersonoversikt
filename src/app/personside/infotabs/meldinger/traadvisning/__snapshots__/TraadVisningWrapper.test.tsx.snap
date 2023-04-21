@@ -7,21 +7,6 @@ exports[`Viser traad med verktøylinje 1`] = `
   padding-top: 1rem;
 }
 
-.c24 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-}
-
 .c4 {
   position: relative;
   border: none;
@@ -62,43 +47,55 @@ exports[`Viser traad med verktøylinje 1`] = `
   border-color: #0067c5;
 }
 
-.c22 .snakkeboble-panel {
+.c23 .snakkeboble-panel {
   -webkit-flex-basis: 40rem;
   -ms-flex-preferred-size: 40rem;
   flex-basis: 40rem;
+  padding: 0.5rem 0.5rem 0.3rem;
 }
 
-.c22 a {
+.c23 a {
   word-break: break-word;
 }
 
-.c22 .snakkeboble {
+.c23 .snakkeboble {
   margin: 0;
 }
 
 .c25 {
-  font-weight: 600;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.5rem;
 }
 
-.c23 {
+.c24 {
   text-align: left;
 }
 
-.c23 em {
+.c24 em {
   font-style: normal;
   background-color: #eed28c;
   box-shadow: 0 0 0 0.2rem #eed28c;
   border-radius: 0.625rem;
 }
 
-.c23 > *:not(:last-child) {
-  border-bottom: solid 0.0625rem #b7b1a9;
-  padding-bottom: 0.7rem;
+.c24 > *:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
-.c26 p {
-  margin-bottom: 0 !important;
+.c26 {
+  font-size: 0.85rem;
+}
+
+.c27 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.3rem;
+  margin-left: auto;
 }
 
 .c18 {
@@ -271,7 +268,6 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 .c19 {
-  padding: .5rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -282,7 +278,7 @@ exports[`Viser traad med verktøylinje 1`] = `
   margin-top: .5rem;
 }
 
-.c20 {
+.c21 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -296,16 +292,20 @@ exports[`Viser traad med verktøylinje 1`] = `
   align-items: flex-end;
 }
 
-.c21 {
-  margin-top: 0.5rem;
+.c20 {
+  margin-bottom: 0.3rem;
 }
 
-.c21 .ekspanderbartPanel__hode,
-.c21 .ekspanderbartPanel__innhold {
-  padding: 0.3rem 1rem;
+.c22 {
+  margin-top: 0.8rem;
 }
 
-.c21 .ekspanderbartPanel__tittel {
+.c22 .ekspanderbartPanel__hode,
+.c22 .ekspanderbartPanel__innhold {
+  padding: 0.1rem 0.2rem;
+}
+
+.c22 .ekspanderbartPanel__tittel {
   color: #0067c5;
 }
 
@@ -320,19 +320,19 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c22 {
+  .c23 {
     page-break-inside: avoid;
     border: solid 0.0625rem #78706a;
     margin-bottom: 2rem;
   }
 
-  .c22 .snakkeboble__snakkeboble-pil-container,
-  .c22 .nav-ikon,
-  .c22 .bruker-ikon {
+  .c23 .snakkeboble__snakkeboble-pil-container,
+  .c23 .nav-ikon,
+  .c23 .bruker-ikon {
     display: none;
   }
 
-  .c22 .snakkeboble-panel {
+  .c23 .snakkeboble-panel {
     -webkit-flex-basis: 100%;
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
@@ -352,7 +352,7 @@ exports[`Viser traad med verktøylinje 1`] = `
 }
 
 @media print {
-  .c21 {
+  .c22 {
     display: none;
   }
 }
@@ -1194,73 +1194,82 @@ exports[`Viser traad med verktøylinje 1`] = `
     className="c19"
   >
     <div
-      className="c20"
+      className="panel"
     >
-      <button
-        className="knapp knapp--hoved"
-        disabled={false}
-        onClick={[Function]}
-        type="submit"
+      <h2
+        className="typo-undertittel c20"
       >
-        Ny melding
-      </button>
-    </div>
-    <h3
-      aria-live="polite"
-      className="sr-only"
-    >
-      Spørsmål fra NAV - Arbeid
-       
-      13.08.2019 00:00
-    </h3>
-    <div
-      className="ekspanderbartPanel c21 ekspanderbartPanel--lukket"
-    >
-      <button
-        aria-controls="Helt tilfeldig ID"
-        className="ekspanderbartPanel__hode"
-        id="Helt tilfeldig ID"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        type="button"
+        Ukjent meldingstype: undefined
+      </h2>
+      <div
+        className="c21"
       >
-        <div
-          className="ekspanderbartPanel__flex-wrapper"
+        <button
+          className="knapp knapp--hoved"
+          disabled={false}
+          onClick={[Function]}
+          type="submit"
         >
-          <span
-            className="ekspanderbartPanel__tittel"
+          Ny melding
+        </button>
+      </div>
+      <h3
+        aria-live="polite"
+        className="sr-only"
+      >
+        Ukjent meldingstype: undefined
+         
+        13.08.2019 00:00
+      </h3>
+      <div
+        className="ekspanderbartPanel c22 ekspanderbartPanel--lukket"
+      >
+        <button
+          aria-controls="Helt tilfeldig ID"
+          className="ekspanderbartPanel__hode"
+          id="Helt tilfeldig ID"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          type="button"
+        >
+          <div
+            className="ekspanderbartPanel__flex-wrapper"
+          >
+            <span
+              className="ekspanderbartPanel__tittel"
+            >
+              <p
+                className="typo-undertekst-bold"
+              >
+                Dialogen er journalfort på 
+                2
+                 sak(er)
+              </p>
+            </span>
+            <span
+              className="ekspanderbartPanel__indikator"
+            />
+          </div>
+        </button>
+        <div
+          aria-labelledby="Helt tilfeldig ID"
+          id="Helt tilfeldig ID"
+          role="region"
+        >
+          <div
+            className="ekspanderbartPanel__innhold"
           >
             <p
-              className="typo-undertekst-bold"
+              className="typo-normal"
             >
-              Dialogen er journalfort på 
-              2
-               sak(er)
+              30.07.2019: Journalført på Dagpenger (ukjent saksid) av Jenny Berg
             </p>
-          </span>
-          <span
-            className="ekspanderbartPanel__indikator"
-          />
-        </div>
-      </button>
-      <div
-        aria-labelledby="Helt tilfeldig ID"
-        id="Helt tilfeldig ID"
-        role="region"
-      >
-        <div
-          className="ekspanderbartPanel__innhold"
-        >
-          <p
-            className="typo-normal"
-          >
-            30.07.2019: Journalført på Dagpenger (ukjent saksid) av Jenny Berg
-          </p>
-          <p
-            className="typo-normal"
-          >
-            28.07.2019: Journalført på Arbeidsavklaringspenger (ukjent saksid) av Jenny Berg
-          </p>
+            <p
+              className="typo-normal"
+            >
+              28.07.2019: Journalført på Arbeidsavklaringspenger (ukjent saksid) av Jenny Berg
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -1268,7 +1277,7 @@ exports[`Viser traad med verktøylinje 1`] = `
       aria-label="Dialog"
     >
       <li
-        className="c22 snakkeboble_ikoner"
+        className="c23 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1293,53 +1302,8 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c23"
+                  className="c24"
                 >
-                  <div
-                    className="Enkeltmelding__Topptekst-sc-1l864g6-2"
-                  >
-                    <div
-                      className="c24"
-                    >
-                      <h4
-                        id="Helt tilfeldig ID"
-                      >
-                        <span
-                          className="sr-only"
-                        >
-                          Melding 
-                          4
-                        </span>
-                        <div
-                          className="c25"
-                        >
-                          Spørsmål fra NAV - Arbeid
-                        </div>
-                      </h4>
-                      <div
-                        className="etikett etikett--suksess"
-                      >
-                        <span
-                          className="typo-normal"
-                        >
-                          Lest
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      27.07.2019 00:00
-                    </div>
-                    <p
-                      className="typo-normal"
-                    >
-                      Melding lest: 23.07.2019 00:00
-                    </p>
-                    <div
-                      className="c26 typo-normal"
-                    >
-                      Skrevet av Kristoffer Fredriksen (xy70r8)
-                    </div>
-                  </div>
                   <div>
                     <p
                       className="typo-normal"
@@ -1347,6 +1311,54 @@ exports[`Viser traad med verktøylinje 1`] = `
                       Dolores omnis ea voluptatem corrupti odit incidunt enim. Unde fugiat sed animi explicabo maiores. Nihil cum accusamus omnis officiis deserunt est. Qui quisquam unde aut magni dignissimos.
                     </p>
                   </div>
+                  <div>
+                    <div
+                      className="c25"
+                    >
+                      <p
+                        className="c26"
+                      >
+                        27.07.2019 00:00
+                      </p>
+                      <p
+                        className="c26"
+                      >
+                        Skrevet av Kristoffer Fredriksen (xy70r8)
+                      </p>
+                      <div
+                        className="c27"
+                      >
+                        <p
+                          className="c26"
+                        >
+                          Lest: 23.07.2019 00:00
+                        </p>
+                        <svg
+                          aria-hidden="true"
+                          aria-labelledby="title-id"
+                          fill="none"
+                          focusable="false"
+                          height="20"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <title
+                            id="title-id"
+                          >
+                            Melding ikke lest
+                          </title>
+                          <path
+                            clipRule="evenodd"
+                            d="M0.210623 7.51518L10.4732 13.0282L10.4789 13.0312L10.4789 13.0312L12 13.8609L13.5211 13.0312L13.5268 13.0281L13.5268 13.0282L23.7894 7.51518L12 1L0.210623 7.51518ZM24 9.67234L15.9314 14.0067L24 19.4557V9.67234ZM23.3783 21.4492L13.9446 15.0784L12.4789 15.8779L12 16.1391L11.5211 15.8779L10.0554 15.0784L0.621651 21.4492C0.980399 21.7905 1.46574 22 2 22H22C22.5343 22 23.0196 21.7905 23.3783 21.4492ZM0 19.4557L8.06862 14.0067L0 9.67234V19.4557Z"
+                            fill="#33aa5f"
+                            fillRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1354,7 +1366,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="c22 snakkeboble_ikoner"
+        className="c23 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1379,34 +1391,8 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c23"
+                  className="c24"
                 >
-                  <div
-                    className="Enkeltmelding__Topptekst-sc-1l864g6-2"
-                  >
-                    <div
-                      className="c24"
-                    >
-                      <h4
-                        id="Helt tilfeldig ID"
-                      >
-                        <span
-                          className="sr-only"
-                        >
-                          Melding 
-                          3
-                        </span>
-                        <div
-                          className="c25"
-                        >
-                          Spørsmål fra bruker - Helse
-                        </div>
-                      </h4>
-                    </div>
-                    <div>
-                      16.07.2019 00:00
-                    </div>
-                  </div>
                   <div>
                     <p
                       className="typo-normal"
@@ -1414,6 +1400,20 @@ exports[`Viser traad med verktøylinje 1`] = `
                       Quo magni eaque et libero minima ipsum amet et dolorem. Sed iusto ratione sit. Voluptate alias qui impedit ut dolorum doloribus qui. Qui beatae rerum minima suscipit.
                     </p>
                   </div>
+                  <div>
+                    <div
+                      className="c25"
+                    >
+                      <p
+                        className="c26"
+                      >
+                        16.07.2019 00:00
+                      </p>
+                      <div
+                        className="c27"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1421,7 +1421,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="c22 snakkeboble_ikoner"
+        className="c23 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1446,40 +1446,28 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c23"
+                  className="c24"
                 >
-                  <div
-                    className="Enkeltmelding__Topptekst-sc-1l864g6-2"
-                  >
-                    <div
-                      className="c24"
-                    >
-                      <h4
-                        id="Helt tilfeldig ID"
-                      >
-                        <span
-                          className="sr-only"
-                        >
-                          Melding 
-                          2
-                        </span>
-                        <div
-                          className="c25"
-                        >
-                          Spørsmål fra bruker - Arbeid
-                        </div>
-                      </h4>
-                    </div>
-                    <div>
-                      12.07.2019 00:00
-                    </div>
-                  </div>
                   <div>
                     <p
                       className="typo-normal"
                     >
                       Animi qui molestiae omnis reiciendis quam in. Provident magnam dolor. Omnis voluptatem placeat labore in ut aliquam perspiciatis fugiat. Perspiciatis voluptatum odit.
                     </p>
+                  </div>
+                  <div>
+                    <div
+                      className="c25"
+                    >
+                      <p
+                        className="c26"
+                      >
+                        12.07.2019 00:00
+                      </p>
+                      <div
+                        className="c27"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1488,7 +1476,7 @@ exports[`Viser traad med verktøylinje 1`] = `
         </article>
       </li>
       <li
-        className="c22 snakkeboble_ikoner"
+        className="c23 snakkeboble_ikoner"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
@@ -1513,59 +1501,62 @@ exports[`Viser traad med verktøylinje 1`] = `
                 className="snakkeboble-panel__tekst"
               >
                 <div
-                  className="c23"
+                  className="c24"
                 >
-                  <div
-                    className="Enkeltmelding__Topptekst-sc-1l864g6-2"
-                  >
-                    <div
-                      className="c24"
-                    >
-                      <h4
-                        id="Helt tilfeldig ID"
-                      >
-                        <span
-                          className="sr-only"
-                        >
-                          Melding 
-                          1
-                        </span>
-                        <div
-                          className="c25"
-                        >
-                          Samtalereferat oppmøte - Arbeid
-                        </div>
-                      </h4>
-                      <div
-                        className="etikett etikett--suksess"
-                      >
-                        <span
-                          className="typo-normal"
-                        >
-                          Lest
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      07.07.2019 00:00
-                    </div>
-                    <p
-                      className="typo-normal"
-                    >
-                      Melding lest: 12.07.2019 00:00
-                    </p>
-                    <div
-                      className="c26 typo-normal"
-                    >
-                      Skrevet av Sander Hansen (nzxo4q)
-                    </div>
-                  </div>
                   <div>
                     <p
                       className="typo-normal"
                     >
                       Ea laborum accusamus et ex voluptates provident eveniet voluptatem. Sunt et sed eligendi harum exercitationem. Eaque est maiores autem sunt occaecati atque ipsa ea itaque. Dolorum enim quaerat alias ut sit labore pariatur.
                     </p>
+                  </div>
+                  <div>
+                    <div
+                      className="c25"
+                    >
+                      <p
+                        className="c26"
+                      >
+                        07.07.2019 00:00
+                      </p>
+                      <p
+                        className="c26"
+                      >
+                        Skrevet av Sander Hansen (nzxo4q)
+                      </p>
+                      <div
+                        className="c27"
+                      >
+                        <p
+                          className="c26"
+                        >
+                          Lest: 12.07.2019 00:00
+                        </p>
+                        <svg
+                          aria-hidden="true"
+                          aria-labelledby="title-id"
+                          fill="none"
+                          focusable="false"
+                          height="20"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <title
+                            id="title-id"
+                          >
+                            Melding ikke lest
+                          </title>
+                          <path
+                            clipRule="evenodd"
+                            d="M0.210623 7.51518L10.4732 13.0282L10.4789 13.0312L10.4789 13.0312L12 13.8609L13.5211 13.0312L13.5268 13.0281L13.5268 13.0282L23.7894 7.51518L12 1L0.210623 7.51518ZM24 9.67234L15.9314 14.0067L24 19.4557V9.67234ZM23.3783 21.4492L13.9446 15.0784L12.4789 15.8779L12 16.1391L11.5211 15.8779L10.0554 15.0784L0.621651 21.4492C0.980399 21.7905 1.46574 22 2 22H22C22.5343 22 23.0196 21.7905 23.3783 21.4492ZM0 19.4557L8.06862 14.0067L0 9.67234V19.4557Z"
+                            fill="#33aa5f"
+                            fillRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

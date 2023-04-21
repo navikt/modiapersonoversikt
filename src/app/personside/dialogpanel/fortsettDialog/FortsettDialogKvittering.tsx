@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DialogpanelKvittering } from '../fellesStyling';
+import { DialogpanelKvittering } from '../nyFellesStyling';
 import { useDispatch } from 'react-redux';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { KvitteringsData } from './FortsettDialogTypes';
@@ -12,7 +12,6 @@ export function SvarSendtKvittering(props: { kvitteringsData: KvitteringsData })
         <DialogpanelKvittering
             tittel="Svar ble sendt"
             fritekst={props.kvitteringsData.fritekst}
-            meldingstype={props.kvitteringsData.meldingstype}
             traad={props.kvitteringsData.traad}
             lukk={() => {
                 dispatch(setIngenValgtTraadDialogpanel());

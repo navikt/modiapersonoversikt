@@ -100,6 +100,21 @@ exports[`viser send ny melding 1`] = `
   padding-left: 2.25rem;
 }
 
+.c15 {
+  margin-top: 1rem;
+}
+
+.c15 label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  -webkit-clip: rect(1px 1px 1px 1px);
+  clip: rect(1px 1px 1px 1px);
+  -webkit-clip: rect(1px,1px,1px,1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
 .c4 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -158,7 +173,7 @@ exports[`viser send ny melding 1`] = `
   padding: 1rem .5rem;
 }
 
-.c15 {
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -168,11 +183,15 @@ exports[`viser send ny melding 1`] = `
   flex-direction: column;
 }
 
-.c15 > * {
+.c17 > * {
   margin-bottom: 0.7rem;
 }
 
 .c13 {
+  margin-top: 1rem;
+}
+
+.c16 {
   margin-top: 1rem;
 }
 
@@ -466,7 +485,7 @@ exports[`viser send ny melding 1`] = `
               className="skjemaelement__label"
               htmlFor="Helt tilfeldig ID"
             >
-              Referat telefon
+              Referat
             </label>
           </div>
           <div
@@ -485,26 +504,7 @@ exports[`viser send ny melding 1`] = `
               className="skjemaelement__label"
               htmlFor="Helt tilfeldig ID"
             >
-              Referat oppmøte
-            </label>
-          </div>
-          <div
-            className="skjemaelement"
-          >
-            <input
-              aria-invalid={false}
-              checked={false}
-              className="skjemaelement__input radioknapp"
-              id="Helt tilfeldig ID"
-              name="dialogtype"
-              onChange={[Function]}
-              type="radio"
-            />
-            <label
-              className="skjemaelement__label"
-              htmlFor="Helt tilfeldig ID"
-            >
-              Spørsmål
+              Samtale
             </label>
           </div>
           <div
@@ -527,9 +527,7 @@ exports[`viser send ny melding 1`] = `
             </label>
           </div>
         </div>
-        <div
-          className="SendNyMelding__Margin-h55t11-3"
-        >
+        <div>
           <fieldset
             aria-invalid={false}
             className="skjemagruppe"
@@ -639,65 +637,123 @@ exports[`viser send ny melding 1`] = `
             </div>
           </div>
           <div
-            className="c14"
+            className="panel"
           >
-            <button
-              className="knapp knapp--hoved knapp--mini"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
+            <div
+              className="c14"
             >
-              Velg sak
-            </button>
-            <p
-              className="typo-normal"
+              <button
+                className="knapp knapp--hoved knapp--mini"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Velg sak
+              </button>
+              <p
+                className="typo-normal"
+              >
+                Ingen valgt sak
+              </p>
+            </div>
+            <div
+              className="skjemaelement c15"
             >
-              Ingen valgt sak
-            </p>
-          </div>
-          <div
-            className="alertstripe c13 alertstripe--info"
-          >
-            <span
-              className="alertstripe__ikon"
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Oppgaveliste
+              </label>
+              <div
+                className="selectContainer input--fullbredde"
+              >
+                <select
+                  aria-invalid={false}
+                  className="skjemaelement__input"
+                  disabled={false}
+                  id="Helt tilfeldig ID"
+                  onChange={[Function]}
+                  value="MinListe"
+                >
+                  <option
+                    value="MinListe"
+                  >
+                    Svar skal til min oppgaveliste hos 
+                    valgt enhet
+                  </option>
+                  <option
+                    value="Enhetensliste"
+                  >
+                    Svar skal til 
+                    valgt enhet
+                     sin oppgaveliste
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="alertstripe c13 alertstripe--info"
             >
               <span
-                className="sr-only"
+                className="alertstripe__ikon"
               >
-                info
-              </span>
-              <svg
-                aria-label="info-ikon"
-                focusable="false"
-                height="1.5em"
-                kind="info-sirkel-fyll"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1.5em"
-              >
-                <g
-                  fill="none"
+                <span
+                  className="sr-only"
                 >
-                  <path
-                    d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
-                    fill="#337C9B"
-                  />
-                  <path
-                    d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
-                    fill="#FFF"
-                  />
-                </g>
-              </svg>
-            </span>
+                  info
+                </span>
+                <svg
+                  aria-label="info-ikon"
+                  focusable="false"
+                  height="1.5em"
+                  kind="info-sirkel-fyll"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  width="1.5em"
+                >
+                  <g
+                    fill="none"
+                  >
+                    <path
+                      d="M12 0C5.382 0 0 5.382 0 12s5.382 12 12 12c6.617 0 12-5.382 12-12S18.617 0 12 0z"
+                      fill="#337C9B"
+                    />
+                    <path
+                      d="M12 5a1.566 1.566 0 1 1 .11 3.13A1.566 1.566 0 0 1 12 5zm2.976 12.01c.563 0 1.043.431 1.043.991s-.48.992-1.043.992H9.39c-.564 0-1.043-.431-1.043-.992 0-.56.479-.99 1.043-.99h1.6v-5.016h-.986c-.565 0-1.044-.43-1.044-.991 0-.56.48-.991 1.044-.991h2.03c.563 0 1.043.43 1.043.99v6.007h1.899z"
+                      fill="#FFF"
+                    />
+                  </g>
+                </svg>
+              </span>
+              <div
+                className="typo-normal alertstripe__tekst"
+              >
+                Gir varsel, bruker må svare
+              </div>
+            </div>
             <div
-              className="typo-normal alertstripe__tekst"
+              className="skjemaelement c16"
             >
-              Gir varsel, bruker kan ikke svare
+              <input
+                aria-invalid={false}
+                checked={false}
+                className="skjemaelement__input checkboks"
+                id="Helt tilfeldig ID"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="skjemaelement__label"
+                htmlFor="Helt tilfeldig ID"
+              >
+                Avslutt samtale etter sending
+              </label>
             </div>
           </div>
         </div>
         <div
-          className="c15"
+          className="c17"
         >
           <button
             className="knapp knapp--hoved"

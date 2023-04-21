@@ -8,11 +8,6 @@ import useVisTraadTilknyttetPlukketOppgave from './fortsettDialog/useVisTraadTil
 import { OppgavelisteValg } from './sendMelding/SendNyMelding';
 import LazySpinner from '../../../components/LazySpinner';
 import innstillingerResource from '../../../rest/resources/innstillingerResource';
-import IfFeatureToggleOn from '../../../components/featureToggle/IfFeatureToggleOn';
-import { FeatureToggles } from '../../../components/featureToggle/toggleIDs';
-import IfFeatureToggleOff from '../../../components/featureToggle/IfFeatureToggleOff';
-import NyFortsettDialogContainer from './fortsettDialog/NyFortsettDialogContainer';
-import NySendNyMeldingContainer from './sendMelding/NySendNyMeldingContainer';
 
 const DialogPanelWrapper = styled.div`
     flex-grow: 1;
@@ -38,31 +33,13 @@ function DialogPanel() {
         <ErrorBoundary boundaryName="Dialogpanel">
             <DialogPanelWrapper>
                 {dialogpanelTraad ? (
-                    <>
-                        <IfFeatureToggleOn toggleID={FeatureToggles.useNewDialogComponents}>
-                            <NyFortsettDialogContainer
-                                traad={dialogpanelTraad}
-                                defaultOppgaveDestinasjon={defaultOppgaveDestinasjon}
-                                key={dialogpanelTraad.traadId} // for å tvinge refresh dersom man velger en ny tråd
-                            />
-                        </IfFeatureToggleOn>
-                        <IfFeatureToggleOff toggleID={FeatureToggles.useNewDialogComponents}>
-                            <FortsettDialogContainer
-                                traad={dialogpanelTraad}
-                                defaultOppgaveDestinasjon={defaultOppgaveDestinasjon}
-                                key={dialogpanelTraad.traadId} // for å tvinge refresh dersom man velger en ny tråd
-                            />
-                        </IfFeatureToggleOff>
-                    </>
+                    <FortsettDialogContainer
+                        traad={dialogpanelTraad}
+                        defaultOppgaveDestinasjon={defaultOppgaveDestinasjon}
+                        key={dialogpanelTraad.traadId} // for å tvinge refresh dersom man velger en ny tråd
+                    />
                 ) : (
-                    <>
-                        <IfFeatureToggleOn toggleID={FeatureToggles.useNewDialogComponents}>
-                            <NySendNyMeldingContainer defaultOppgaveDestinasjon={defaultOppgaveDestinasjon} />
-                        </IfFeatureToggleOn>
-                        <IfFeatureToggleOff toggleID={FeatureToggles.useNewDialogComponents}>
-                            <SendNyMeldingContainer defaultOppgaveDestinasjon={defaultOppgaveDestinasjon} />
-                        </IfFeatureToggleOff>
-                    </>
+                    <SendNyMeldingContainer defaultOppgaveDestinasjon={defaultOppgaveDestinasjon} />
                 )}
             </DialogPanelWrapper>
         </ErrorBoundary>

@@ -1,7 +1,6 @@
-import { Meldingstype, Traad } from '../../../../models/meldinger/meldinger';
+import { Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import { OppgavelisteValg } from '../sendMelding/SendNyMelding';
 import { JournalforingsSak } from '../../infotabs/meldinger/traadvisning/verktoylinje/journalforing/JournalforingPanel';
-import { FortsettDialogType } from './FortsettDialogContainer';
 import { Temagruppe } from '../../../../models/temagrupper';
 
 export enum DialogPanelStatus {
@@ -13,7 +12,6 @@ export enum DialogPanelStatus {
 
 export type KvitteringsData = {
     fritekst: string;
-    meldingstype: Meldingstype;
     temagruppe?: Temagruppe;
     traad: Traad;
 };
@@ -35,10 +33,11 @@ export type FortsettDialogPanelState = UnderArbeid | SvarSendtSuccess;
 
 export interface FortsettDialogState {
     tekst: string;
-    dialogType: FortsettDialogType;
+    traadType: TraadType;
     temagruppe?: Temagruppe;
     oppgaveListe: OppgavelisteValg;
     sak?: JournalforingsSak;
     visFeilmeldinger: boolean;
+    errors?: Error[];
     avsluttet?: boolean;
 }

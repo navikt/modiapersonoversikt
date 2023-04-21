@@ -907,7 +907,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
             className="typo-undertittel"
             id="Helt tilfeldig ID"
           >
-            Meldinger
+            Kommunikasjon
           </h3>
           <div
             className="c4"
@@ -921,7 +921,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
               className="typo-normal"
             >
               Gå til 
-              meldinger
+              kommunikasjon
             </p>
           </a>
         </div>
@@ -982,7 +982,7 @@ exports[`Viser oversikt med alt innhold 1`] = `
                         <p
                           className="typo-element order-second"
                         >
-                          Spørsmål fra NAV - Arbeid
+                          Ukjent meldingstype: undefined
                         </p>
                         <p
                           className="typo-normal order-first"

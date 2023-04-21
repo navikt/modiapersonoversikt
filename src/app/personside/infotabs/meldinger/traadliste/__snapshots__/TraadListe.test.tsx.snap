@@ -346,14 +346,14 @@ exports[`Viser Traadliste 1`] = `
             className="skjemaelement__label"
             htmlFor="Helt tilfeldig ID"
           >
-            Søk etter melding
+            Søk etter kommunikasjon
           </label>
           <input
             aria-invalid={false}
             className="skjemaelement__input input--fullbredde"
             id="Helt tilfeldig ID"
             onChange={[Function]}
-            placeholder="Søk etter melding"
+            placeholder="Søk etter kommunikasjon"
             type="text"
             value=""
           />
@@ -370,7 +370,7 @@ exports[`Viser Traadliste 1`] = `
           <span
             className="typo-normal"
           >
-            Skriv ut alle meldinger
+            Skriv ut all kommunikasjon
           </span>
            
           <svg
@@ -692,7 +692,7 @@ exports[`Viser Traadliste 1`] = `
           aria-live="assertive"
           className="typo-normal"
         >
-          Totalt 1 melding
+          Totalt 1 kommunikasjon
         </p>
       </div>
     </article>
@@ -701,7 +701,7 @@ exports[`Viser Traadliste 1`] = `
       id="Helt tilfeldig ID"
     >
       Meldingsliste - 
-      Totalt 1 melding
+      Totalt 1 kommunikasjon
     </h3>
     <ol
       aria-labelledby="Helt tilfeldig ID"
@@ -771,7 +771,7 @@ exports[`Viser Traadliste 1`] = `
                   <p
                     className="typo-element order-second"
                   >
-                    Spørsmål fra NAV - Arbeid
+                    Ukjent meldingstype: undefined
                   </p>
                   <p
                     className="typo-normal order-first"
