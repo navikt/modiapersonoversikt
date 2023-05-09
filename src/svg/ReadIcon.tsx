@@ -13,7 +13,7 @@ function ReadIcon() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <title id="title-id">Melding ikke lest</title>
+            <title id="title-id">Melding lest</title>
             <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
