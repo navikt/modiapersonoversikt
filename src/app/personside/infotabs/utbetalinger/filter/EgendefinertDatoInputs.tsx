@@ -25,9 +25,7 @@ function onDatoChange(props: Props, dato: Partial<Periode>) {
     });
 }
 
-const tidligsteDato = dayjs()
-    .subtract(5, 'years')
-    .startOf('year');
+const tidligsteDato = dayjs().subtract(3, 'years').startOf('year');
 const senesteDato: Dayjs = dayjs();
 
 const isoTidligsteDato = tidligsteDato.format(ISO_DATE_STRING_FORMAT);
@@ -69,8 +67,9 @@ const periodeValidering = [
 function getDatoFeilmelding(fra: string, til: string) {
     const fraDato = dayjs(fra, ISO_DATE_STRING_FORMAT);
     const tilDato = dayjs(til, ISO_DATE_STRING_FORMAT);
-    const feilmelding: string | undefined = periodeValidering.find(validering => validering.erUgyldig(fraDato, tilDato))
-        ?.feilmelding;
+    const feilmelding: string | undefined = periodeValidering.find((validering) =>
+        validering.erUgyldig(fraDato, tilDato)
+    )?.feilmelding;
     if (feilmelding) {
         return <SkjemaelementFeilmelding>{feilmelding}</SkjemaelementFeilmelding>;
     }
@@ -93,7 +92,7 @@ function EgendefinertDatoInputs(props: Props) {
                 locale={'nb'}
                 inputId="utbetalinger-datovelger-fra"
                 value={fra}
-                onChange={dato => onDatoChange(props, { fra: dato })}
+                onChange={(dato) => onDatoChange(props, { fra: dato })}
                 inputProps={{
                     name: 'Fra dato',
                     'aria-invalid': fra !== '' && isISODateString(fra) === false
@@ -113,7 +112,7 @@ function EgendefinertDatoInputs(props: Props) {
                 locale={'nb'}
                 inputId="utbetalinger-datovelger-til"
                 value={til}
-                onChange={dato => onDatoChange(props, { til: dato })}
+                onChange={(dato) => onDatoChange(props, { til: dato })}
                 inputProps={{
                     name: 'Til dato',
                     'aria-invalid': til !== '' && isISODateString(til) === false
