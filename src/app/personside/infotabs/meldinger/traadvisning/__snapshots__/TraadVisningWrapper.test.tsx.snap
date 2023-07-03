@@ -1347,7 +1347,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           <title
                             id="title-id"
                           >
-                            Melding ikke lest
+                            Melding lest
                           </title>
                           <path
                             clipRule="evenodd"
@@ -1546,7 +1546,7 @@ exports[`Viser traad med verktøylinje 1`] = `
                           <title
                             id="title-id"
                           >
-                            Melding ikke lest
+                            Melding lest
                           </title>
                           <path
                             clipRule="evenodd"
