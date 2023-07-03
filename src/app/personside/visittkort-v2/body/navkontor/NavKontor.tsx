@@ -12,6 +12,7 @@ import { capitalizeName } from '../../../../../utils/string-utils';
 import { harFeilendeSystemer } from '../../harFeilendeSystemer';
 import { mapUgyldigGT } from '../../visittkort-utils';
 import baseurls from '../../../../../rest/resources/baseurlsResource';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 const ApningstiderListe = styled.dl`
     margin: initial;
@@ -19,13 +20,25 @@ const ApningstiderListe = styled.dl`
     list-style: none;
     display: flex;
     flex-flow: row wrap;
+
     dt {
         flex: 1 1 50%;
     }
+
     dd {
         flex: 2 2 50%;
         margin: 0;
     }
+`;
+
+const StyledEkspanderbartPanel = styled(Ekspanderbartpanel)`
+    .ekspanderbartPanel__tittel {
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+`;
+const MarginTop = styled.div`
+    margin-top: 10px;
 `;
 
 interface Props {
@@ -62,22 +75,32 @@ function PublikumsmottakKontaktInfo(props: { publikumsmottak: PublikumsmottakInt
 }
 
 function Publikumsmottak(props: { publikumsmottak: PublikumsmottakInterface[] }) {
-    const publikumsmottak = props.publikumsmottak.firstOrNull();
-    if (!publikumsmottak) {
-        return <Normaltekst>Ingen publikumsmottak</Normaltekst>;
+    const publikumsmottak = props.publikumsmottak;
+    const firstPublikumsmottak = publikumsmottak.firstOrNull();
+    const otherPublikumsmottak = publikumsmottak.slice(1);
+    if (!firstPublikumsmottak) {
+        return <Normaltekst>ingen publikumsmottak</Normaltekst>;
     }
-
     const flerePublikumsmottak =
-        props.publikumsmottak.length > 1 ? (
+        otherPublikumsmottak.length > 0 ? (
             <>
                 <Normaltekst>Det finnes flere publikumsmottak</Normaltekst>
-                <br />
+                <MarginTop>
+                    {otherPublikumsmottak.map((mottak) => (
+                        <StyledEkspanderbartPanel
+                            key={mottak.besoksadresse.linje1}
+                            tittel={mottak.besoksadresse.linje1}
+                        >
+                            <PublikumsmottakKontaktInfo publikumsmottak={mottak} />
+                        </StyledEkspanderbartPanel>
+                    ))}
+                </MarginTop>
             </>
         ) : null;
 
     return (
         <>
-            <PublikumsmottakKontaktInfo publikumsmottak={publikumsmottak} />
+            <PublikumsmottakKontaktInfo publikumsmottak={firstPublikumsmottak} />
             {flerePublikumsmottak}
         </>
     );
@@ -114,14 +137,16 @@ function NavKontor({ feilendeSystemer, navEnhet, geografiskTilknytning }: Props)
         <VisittkortGruppe tittel={'NAV-kontor'}>
             <VisittkortElement beskrivelse={beskrivelse} ikon={<NavLogo />}>
                 <Publikumsmottak publikumsmottak={navEnhet.publikumsmottak} />
-                <a
-                    href={`${baseUrl}/#/startsok?enhetNr=${navEnhet.id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="lenke"
-                >
-                    <Normaltekst tag="span">Mer informasjon om kontoret</Normaltekst>
-                </a>
+                <MarginTop>
+                    <a
+                        href={`${baseUrl}/#/startsok?enhetNr=${navEnhet.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="lenke"
+                    >
+                        <Normaltekst tag="span">Mer informasjon om kontoret</Normaltekst>
+                    </a>
+                </MarginTop>
             </VisittkortElement>
         </VisittkortGruppe>
     );

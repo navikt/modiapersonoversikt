@@ -111,11 +111,11 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   margin-top: 0.5rem;
 }
 
-.c11 {
+.c13 {
   margin-bottom: 5px;
 }
 
-.c12 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -158,6 +158,15 @@ exports[`viser info om bruker i visittkortbody 1`] = `
   -ms-flex: 2 2 50%;
   flex: 2 2 50%;
   margin: 0;
+}
+
+.c12 .ekspanderbartPanel__tittel {
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.c11 {
+  margin-top: 10px;
 }
 
 <section
@@ -1335,18 +1344,259 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </dl>
           <br />
         </div>
-        <a
-          className="lenke"
-          href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0219"
-          rel="noopener noreferrer"
-          target="_blank"
+        <p
+          className="typo-normal"
         >
-          <span
-            className="typo-normal"
+          Det finnes flere publikumsmottak
+        </p>
+        <div
+          className="c11"
+        >
+          <div
+            className="ekspanderbartPanel c12 ekspanderbartPanel--lukket ekspanderbartPanel--border"
           >
-            Mer informasjon om kontoret
-          </span>
-        </a>
+            <button
+              aria-controls="Helt tilfeldig ID"
+              className="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
+            >
+              <div
+                className="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  className="ekspanderbartPanel__tittel"
+                >
+                  Kjempelang adressevei 2
+                </span>
+                <span
+                  className="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            >
+              <div
+                className="ekspanderbartPanel__innhold"
+              >
+                <div>
+                  <br />
+                  <div
+                    className="c7"
+                  >
+                    <p
+                      className="typo-undertekst"
+                    >
+                      Besøksadresse
+                    </p>
+                  </div>
+                  <p
+                    className="typo-normal"
+                  >
+                    Kjempelang adressevei 2
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    0001 AREMARK
+                  </p>
+                  <br />
+                  <div
+                    className="c7"
+                  >
+                    <p
+                      className="typo-undertekst"
+                    >
+                      Åpningstider
+                    </p>
+                  </div>
+                  <dl
+                    className="c10"
+                  >
+                    <dt>
+                      <p
+                        className="typo-normal"
+                      >
+                        Mandag
+                      </p>
+                    </dt>
+                    <dd>
+                      <p
+                        className="typo-normal"
+                      >
+                        09.00 - 15.00
+                      </p>
+                    </dd>
+                    <dt>
+                      <p
+                        className="typo-normal"
+                      >
+                        Tirsdag
+                      </p>
+                    </dt>
+                    <dd>
+                      <p
+                        className="typo-normal"
+                      >
+                        09.00 - 15.00
+                      </p>
+                    </dd>
+                    <dt>
+                      <p
+                        className="typo-normal"
+                      >
+                        Onsdag
+                      </p>
+                    </dt>
+                    <dd>
+                      <p
+                        className="typo-normal"
+                      >
+                        10.00 - 16.00
+                      </p>
+                    </dd>
+                  </dl>
+                  <br />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ekspanderbartPanel c12 ekspanderbartPanel--lukket ekspanderbartPanel--border"
+          >
+            <button
+              aria-controls="Helt tilfeldig ID"
+              className="ekspanderbartPanel__hode"
+              id="Helt tilfeldig ID"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              type="button"
+            >
+              <div
+                className="ekspanderbartPanel__flex-wrapper"
+              >
+                <span
+                  className="ekspanderbartPanel__tittel"
+                >
+                  Adressevei 3
+                </span>
+                <span
+                  className="ekspanderbartPanel__indikator"
+                />
+              </div>
+            </button>
+            <div
+              aria-labelledby="Helt tilfeldig ID"
+              id="Helt tilfeldig ID"
+              role="region"
+            >
+              <div
+                className="ekspanderbartPanel__innhold"
+              >
+                <div>
+                  <br />
+                  <div
+                    className="c7"
+                  >
+                    <p
+                      className="typo-undertekst"
+                    >
+                      Besøksadresse
+                    </p>
+                  </div>
+                  <p
+                    className="typo-normal"
+                  >
+                    Adressevei 3
+                  </p>
+                  <p
+                    className="typo-normal"
+                  >
+                    0002 AREMARK
+                  </p>
+                  <br />
+                  <div
+                    className="c7"
+                  >
+                    <p
+                      className="typo-undertekst"
+                    >
+                      Åpningstider
+                    </p>
+                  </div>
+                  <dl
+                    className="c10"
+                  >
+                    <dt>
+                      <p
+                        className="typo-normal"
+                      >
+                        Mandag
+                      </p>
+                    </dt>
+                    <dd>
+                      <p
+                        className="typo-normal"
+                      >
+                        09.00 - 15.00
+                      </p>
+                    </dd>
+                    <dt>
+                      <p
+                        className="typo-normal"
+                      >
+                        Tirsdag
+                      </p>
+                    </dt>
+                    <dd>
+                      <p
+                        className="typo-normal"
+                      >
+                        09.00 - 15.00
+                      </p>
+                    </dd>
+                    <dt>
+                      <p
+                        className="typo-normal"
+                      >
+                        Onsdag
+                      </p>
+                    </dt>
+                    <dd>
+                      <p
+                        className="typo-normal"
+                      >
+                        10.00 - 16.00
+                      </p>
+                    </dd>
+                  </dl>
+                  <br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c11"
+        >
+          <a
+            className="lenke"
+            href="https://norg2-frontend.nais.preprod.local/#/startsok?enhetNr=0219"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span
+              className="typo-normal"
+            >
+              Mer informasjon om kontoret
+            </span>
+          </a>
+        </div>
       </div>
     </section>
     <section>
@@ -1485,7 +1735,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c11"
+          className="c13"
         >
           <p
             className="typo-normal"
@@ -1542,7 +1792,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           </h4>
         </div>
         <div
-          className="c11"
+          className="c13"
         >
           <p
             className="typo-normal"
@@ -1672,7 +1922,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
       </div>
     </section>
     <div
-      className="c12"
+      className="c14"
     >
       <a
         className="lenke"
