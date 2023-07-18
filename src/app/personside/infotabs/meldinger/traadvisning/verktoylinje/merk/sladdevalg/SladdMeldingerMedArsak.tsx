@@ -15,10 +15,6 @@ import { feilmeldingReactHookForm } from '../../oppgave/feilmeldingReactHookForm
 import { guid } from 'nav-frontend-js-utils';
 import MeldIPortenAdvarsel from './MeldIPortenAdvarsel';
 import FormSelect from '../../../../../../../../components/form/FormSelect';
-import NyEnkeltMelding from '../../../NyEnkeltmelding';
-import IfFeatureToggleOn from '../../../../../../../../components/featureToggle/IfFeatureToggleOn';
-import { FeatureToggles } from '../../../../../../../../components/featureToggle/toggleIDs';
-import IfFeatureToggleOff from '../../../../../../../../components/featureToggle/IfFeatureToggleOff';
 
 const PreviewStyle = styled(Normaltekst)`
     width: 100%;
@@ -41,24 +37,12 @@ function ValgteMeldingerPreview(props: { traad: Traad; valgte: string[] }) {
             .map((melding, index) => {
                 const meldingnummer = props.traad.meldinger.length - index;
                 return (
-                    <>
-                        <IfFeatureToggleOn toggleID={FeatureToggles.useNewDialogComponents}>
-                            <NyEnkeltMelding
-                                sokeord=""
-                                melding={melding}
-                                key={melding.meldingsId}
-                                meldingsNummer={meldingnummer}
-                            />
-                        </IfFeatureToggleOn>
-                        <IfFeatureToggleOff toggleID={FeatureToggles.useNewDialogComponents}>
-                            <EnkeltMelding
-                                sokeord=""
-                                melding={melding}
-                                key={melding.meldingsId}
-                                meldingsNummer={meldingnummer}
-                            />
-                        </IfFeatureToggleOff>
-                    </>
+                    <EnkeltMelding
+                        sokeord=""
+                        melding={melding}
+                        key={melding.meldingsId}
+                        meldingsNummer={meldingnummer}
+                    />
                 );
             });
 

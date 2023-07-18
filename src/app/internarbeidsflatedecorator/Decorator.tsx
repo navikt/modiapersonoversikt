@@ -130,7 +130,7 @@ function getHotkeys(): Hotkey[] {
      * Evt kan bruken av `useHotkey` hooken føre til at dette blir registrert i en global context som kan brukes her
      */
     const isProd = window.location.host === 'app.adeo.no';
-    const naisInternNavDomain = isProd ? '.intern.nav.no' : '.dev.intern.nav.no';
+    const naisInternNavDomain = isProd ? '.intern.nav.no' : '.intern.dev.nav.no';
     return [
         {
             key: { char: 'O', altKey: true },

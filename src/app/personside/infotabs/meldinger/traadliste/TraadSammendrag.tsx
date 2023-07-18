@@ -1,5 +1,5 @@
 import { Melding, Traad } from '../../../../../models/meldinger/meldinger';
-import { erFeilsendt, getFormattertMeldingsDato, meldingstittel, nyesteMelding } from '../utils/meldingerUtils';
+import { erFeilsendt, getFormattertMeldingsDato, nyesteMelding, traadstittel } from '../utils/meldingerUtils';
 import { useAppState } from '../../../../../utils/customHooks';
 import Meldingsikon from '../utils/Meldingsikon';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
@@ -68,7 +68,7 @@ function TraadSammendrag(props: { traad: Traad }) {
     const sisteMelding = nyesteMelding(props.traad);
     const underArbeid = useAppState((state) => state.oppgaver.dialogpanelTraad?.traadId === props.traad.traadId);
     const datoTekst = getFormattertMeldingsDato(sisteMelding);
-    const tittel = meldingstittel(sisteMelding);
+    const tittel = traadstittel(props.traad);
     return (
         <Style>
             <span className="sr-only">({props.traad.meldinger.length})</span>

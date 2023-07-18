@@ -28,7 +28,7 @@ test('bytter til riktig tab og setter fokus på riktig melding ved bruk av dyple
 
     clickOnMeldingerIOversikt(infoTabs);
 
-    expect(getAktivTab(infoTabs).toLowerCase()).toContain(INFOTABS.MELDINGER.path);
+    expect(getAktivTab(infoTabs)).toContain(INFOTABS.MELDINGER.tittel);
 
     const checkedMelding = infoTabs.find('input[checked=true].' + meldingerTest.melding).html();
     const expectedElement = infoTabs

@@ -82,7 +82,7 @@ function PrintAlleMeldinger({ traader }: { traader: Traad[] }) {
 
     return (
         <>
-            <PrintKnapp tittel={'Skriv ut alle meldinger'} onClick={() => printer?.triggerPrint()} />
+            <PrintKnapp tittel={'Skriv ut all kommunikasjon'} onClick={() => printer?.triggerPrint()} />
             <PrinterWrapper>
                 {traader.map((traad) => (
                     <MeldingerPrintMarkup key={traad.traadId} valgtTraad={traad} />
@@ -131,7 +131,7 @@ function TraadListe(props: Props) {
         </LenkeKnapp>
     );
 
-    const meldingTekst = props.traader.length === 1 ? 'melding' : 'meldinger';
+    const meldingTekst = props.traader.length === 1 ? 'kommunikasjon' : 'kommunikasjoner';
     const soketreffTekst =
         props.traaderEtterSokOgFiltrering.length !== props.traader.length
             ? `Søket traff ${props.traaderEtterSokOgFiltrering.length} av ${props.traader.length} ${meldingTekst}`
@@ -162,8 +162,8 @@ function TraadListe(props: Props) {
                             }
                             value={meldingsok.query}
                             onChange={onMeldingerSok}
-                            label={'Søk etter melding'}
-                            placeholder={'Søk etter melding'}
+                            label={'Søk etter kommunikasjon'}
+                            placeholder={'Søk etter kommunikasjon'}
                             className={'move-input-label'}
                         />
                     </InputStyle>

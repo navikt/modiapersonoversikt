@@ -7,10 +7,6 @@ import ErrorBoundary from '../../../../../components/ErrorBoundary';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Undertittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
-import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
-import IfFeatureToggleOff from '../../../../../components/featureToggle/IfFeatureToggleOff';
-import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
-import NyEnkeltMelding from './NyEnkeltMelding';
 
 interface Props {
     traad: Traad;
@@ -52,23 +48,13 @@ function Traadpanel(props: { traad: Traad; tittel: string; defaultApen: boolean 
 
         return (
             <StyledLi key={melding.id}>
-                <IfFeatureToggleOn toggleID={FeatureToggles.useNewDialogComponents}>
-                    <NyEnkeltMelding
-                        traad={props.traad}
-                        melding={melding}
-                        erEnkeltstaende={props.traad.meldinger.length === 1}
-                        defaultApen={props.defaultApen && !flereMeldinger}
-                        meldingsNummer={meldingnummer}
-                    />
-                </IfFeatureToggleOn>
-                <IfFeatureToggleOff toggleID={FeatureToggles.useNewDialogComponents}>
-                    <EnkeltMelding
-                        melding={melding}
-                        erEnkeltstaende={props.traad.meldinger.length === 1}
-                        defaultApen={props.defaultApen && !flereMeldinger}
-                        meldingsNummer={meldingnummer}
-                    />
-                </IfFeatureToggleOff>
+                <EnkeltMelding
+                    traad={props.traad}
+                    melding={melding}
+                    erEnkeltstaende={props.traad.meldinger.length === 1}
+                    defaultApen={props.defaultApen && !flereMeldinger}
+                    meldingsNummer={meldingnummer}
+                />
             </StyledLi>
         );
     });

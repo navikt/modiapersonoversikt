@@ -9,13 +9,20 @@ import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Traad } from '../../../../../models/meldinger/meldinger';
-import { eldsteMelding, kanBesvares, meldingstittel, nyesteMelding, saksbehandlerTekst } from '../utils/meldingerUtils';
+import {
+    eldsteMelding,
+    nyesteMelding,
+    saksbehandlerTekst,
+    traadKanBesvares,
+    traadstittel
+} from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/string-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/print/usePrinter';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { Normaltekst, UndertekstBold } from 'nav-frontend-typografi';
+import { Normaltekst, UndertekstBold, Undertittel } from 'nav-frontend-typografi';
 import { useDialogpanelState } from '../../../../../context/dialogpanel-state';
+import Panel from 'nav-frontend-paneler';
 
 interface Props {
     valgtTraad: Traad;
@@ -24,7 +31,6 @@ interface Props {
 }
 
 const VisningStyle = styled.section`
-    padding: ${theme.margin.layout};
     flex-grow: 1;
     > *:last-child {
         margin-top: ${theme.margin.layout};
@@ -35,6 +41,15 @@ const KnappWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+`;
+
+const TopplinjeTittel = styled(Undertittel)`
+    margin-bottom: 0.3rem;
+`;
+
+const StyledAlertStripeInfo = styled(AlertStripeInfo)`
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    margin-bottom: 0.3rem;
 `;
 
 function AlleMeldinger({ traad, sokeord }: { traad: Traad; sokeord: string }) {
@@ -55,22 +70,24 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dialogpanel = useDialogpanelState();
     const dialogpanelTraad = useAppState((state) => state.oppgaver.dialogpanelTraad);
 
-    const traadKanBesvares = kanBesvares(valgtTraad);
+    const kanBesvares = traadKanBesvares(valgtTraad);
     const melding = eldsteMelding(valgtTraad);
 
-    if (melding.markertSomFeilsendtAv || melding.sendtTilSladding || (melding.avsluttetDato && !traadKanBesvares)) {
+    if (melding.markertSomFeilsendtAv || melding.sendtTilSladding || (melding.avsluttetDato && !kanBesvares)) {
         return (
             <>
                 {melding.markertSomFeilsendtAv && (
-                    <AlertStripeInfo>
+                    <StyledAlertStripeInfo>
                         Markert som feilsendt av {saksbehandlerTekst(melding.markertSomFeilsendtAv)}{' '}
                         {melding.ferdigstiltDato && formaterDato(melding.ferdigstiltDato)}
-                    </AlertStripeInfo>
+                    </StyledAlertStripeInfo>
                 )}
                 {melding.sendtTilSladding && (
-                    <AlertStripeInfo>Tråden ligger til behandling for sladding</AlertStripeInfo>
+                    <StyledAlertStripeInfo>Tråden ligger til behandling for sladding</StyledAlertStripeInfo>
                 )}
-                {melding.avsluttetDato && !traadKanBesvares && <AlertStripeInfo>Dialogen er avsluttet</AlertStripeInfo>}
+                {melding.avsluttetDato && !kanBesvares && (
+                    <StyledAlertStripeInfo>Samtalen er avsluttet av {melding.skrevetAvTekst}</StyledAlertStripeInfo>
+                )}
             </>
         );
     }
@@ -82,14 +99,10 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     };
 
     if (dialogpanelTraad?.traadId === valgtTraad.traadId) {
-        return (
-            <KnappWrapper>
-                <AlertStripeInfo>Under arbeid</AlertStripeInfo>
-            </KnappWrapper>
-        );
+        return <StyledAlertStripeInfo>Under arbeid</StyledAlertStripeInfo>;
     }
 
-    if (traadKanBesvares) {
+    if (kanBesvares) {
         return (
             <KnappWrapper>
                 <Hovedknapp onClick={handleNyMelding}>Ny melding</Hovedknapp>
@@ -101,10 +114,10 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
 }
 
 const StyledJournalforingPanel = styled(Ekspanderbartpanel)`
-    margin-top: 0.5rem;
+    margin-top: 0.8rem;
     .ekspanderbartPanel__hode,
     .ekspanderbartPanel__innhold {
-        padding: 0.3rem 1rem;
+        padding: 0.1rem 0.2rem;
     }
     .ekspanderbartPanel__tittel {
         color: ${theme.color.lenke};
@@ -144,11 +157,14 @@ function TraadVisning(props: Props) {
 
     return (
         <VisningStyle>
-            <Topplinje valgtTraad={props.valgtTraad} />
-            <h3 className="sr-only" aria-live="polite">
-                {meldingstittel(sisteMelding)} {formatterDatoTid(sisteMelding.opprettetDato)}
-            </h3>
-            <Journalposter traad={props.valgtTraad} />
+            <Panel>
+                <TopplinjeTittel>{traadstittel(props.valgtTraad)}</TopplinjeTittel>
+                <Topplinje valgtTraad={props.valgtTraad} />
+                <h3 className="sr-only" aria-live="polite">
+                    {traadstittel(props.valgtTraad)} {formatterDatoTid(sisteMelding.opprettetDato)}
+                </h3>
+                <Journalposter traad={props.valgtTraad} />
+            </Panel>
             <AlleMeldinger sokeord={props.sokeord} traad={props.valgtTraad} />
         </VisningStyle>
     );

@@ -43,8 +43,8 @@ const TabKnapp = styled.button<TabKnappProps>`
     margin-top: ${pxToRem(4)};
     padding: ${theme.margin.layout};
     border: none;
-    border-bottom: 4px solid ${props => (props.valgt ? theme.color.lenkeSelected : 'transparent')};
-    ${props =>
+    border-bottom: 4px solid ${(props) => (props.valgt ? theme.color.lenkeSelected : 'transparent')};
+    ${(props) =>
         props.valgt &&
         css`
             color: ${theme.color.lenkeSelected};
@@ -63,7 +63,7 @@ const TabKnapp = styled.button<TabKnappProps>`
 `;
 
 function TabKnapper(props: TabPanelProps) {
-    const knapper = Object.keys(INFOTABS).map(key => {
+    const knapper = Object.keys(INFOTABS).map((key) => {
         const erValgt = INFOTABS[key] === props.openTab;
         return (
             <KnappWrapper key={key} role="presentation">
