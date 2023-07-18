@@ -1,16 +1,11 @@
 import {
-    ForsettDialogRequest,
     LestStatus,
     Melding,
     Meldingstype,
     OpprettHenvendelseRequest,
     OpprettHenvendelseResponse,
-    SendInfomeldingRequest,
-    SendReferatRequest,
-    SendSporsmalRequest,
     SendMeldingRequest,
-    Traad,
-    TraadType
+    Traad
 } from '../../models/meldinger/meldinger';
 import { guid } from 'nav-frontend-js-utils';
 import dayjs from 'dayjs';
@@ -58,23 +53,6 @@ export class MeldingerBackendMock {
         });
     }
 
-    public sendReferat(request: SendReferatRequest): Traad {
-        const melding: Melding = {
-            ...getMockMelding(),
-            meldingstype: request.meldingstype,
-            temagruppe: request.temagruppe,
-            fritekst: request.fritekst
-        };
-        const traad = {
-            traadId: guid(),
-            traadType: TraadType.SAMTALEREFERAT,
-            meldinger: [melding],
-            journalposter: []
-        };
-        this.sendteNyeMeldinger.unshift(traad);
-        return traad;
-    }
-
     public sendMelding(request: SendMeldingRequest): Traad {
         if (request.oppgaveId) {
             this.oppgaveBackendMock.ferdigStillOppgave(request.oppgaveId);
@@ -97,54 +75,6 @@ export class MeldingerBackendMock {
         } else {
             this.sendteNyeMeldinger.unshift(traad);
         }
-        return traad;
-    }
-
-    public sendSporsmal(request: SendSporsmalRequest): Traad {
-        const melding: Melding = {
-            ...getMockMelding(),
-            meldingstype: Meldingstype.SPORSMAL_MODIA_UTGAAENDE,
-            fritekst: request.fritekst
-        };
-        const traad = {
-            traadId: guid(),
-            meldinger: [melding],
-            journalposter: []
-        };
-        this.sendteNyeMeldinger.unshift(traad);
-        return traad;
-    }
-
-    public sendInfomelding(request: SendInfomeldingRequest): Traad {
-        const melding: Melding = {
-            ...getMockMelding(),
-            meldingstype: Meldingstype.INFOMELDING_MODIA_UTGAAENDE,
-            fritekst: request.fritekst
-        };
-        const traad = {
-            traadId: guid(),
-            meldinger: [melding],
-            journalposter: []
-        };
-        this.sendteNyeMeldinger.unshift(traad);
-        return traad;
-    }
-
-    public ferdigstillHenvendelse(request: ForsettDialogRequest): Traad {
-        if (request.oppgaveId) {
-            this.oppgaveBackendMock.ferdigStillOppgave(request.oppgaveId);
-        }
-        const melding: Melding = {
-            ...getMockMelding(),
-            fritekst: request.fritekst,
-            meldingstype: request.meldingstype
-        };
-        const traad = {
-            traadId: request.traadId,
-            meldinger: [melding],
-            journalposter: []
-        };
-        this.sendteSvar.unshift(traad);
         return traad;
     }
 
