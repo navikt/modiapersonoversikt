@@ -157,6 +157,54 @@ export const aremark: Person = {
                         apningstid: '10.00 - 16.00'
                     }
                 ]
+            },
+            {
+                besoksadresse: {
+                    coAdresse: null,
+                    linje1: 'Kjempelang adressevei 2',
+                    linje2: '0001 AREMARK',
+                    linje3: null,
+                    sistEndret: null,
+                    gyldighetsPeriode: null
+                },
+                apningstider: [
+                    {
+                        ukedag: 'Mandag',
+                        apningstid: '09.00 - 15.00'
+                    },
+                    {
+                        ukedag: 'Tirsdag',
+                        apningstid: '09.00 - 15.00'
+                    },
+                    {
+                        ukedag: 'Onsdag',
+                        apningstid: '10.00 - 16.00'
+                    }
+                ]
+            },
+            {
+                besoksadresse: {
+                    coAdresse: null,
+                    linje1: 'Adressevei 3',
+                    linje2: '0002 AREMARK',
+                    linje3: null,
+                    sistEndret: null,
+                    gyldighetsPeriode: null
+                },
+                apningstider: [
+                    {
+                        ukedag: 'Mandag',
+                        apningstid: '09.00 - 15.00'
+                    },
+                    {
+                        ukedag: 'Tirsdag',
+                        apningstid: '09.00 - 15.00'
+                    },
+                    {
+                        ukedag: 'Onsdag',
+                        apningstid: '10.00 - 16.00'
+                    }
+                ]
             }
         ]
     },
