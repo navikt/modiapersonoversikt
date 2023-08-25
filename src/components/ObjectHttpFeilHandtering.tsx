@@ -12,22 +12,25 @@ interface Props
 
 export function ObjectHttpFeilHandtering({ url, onError, children, ...rest }: Props) {
     const [blobUrl, setBlobUrl] = useState('');
+    const [contentType, setContentType] = useState('');
     const [isError, setError] = useState(false);
 
     useEffect(() => {
         let objectUrl = '';
         fetch(url)
-            .then(res => {
+            .then((res) => {
                 if (!res.ok) {
                     setError(true);
                     onError(res.status);
                 } else {
+                    setContentType(res.headers.get('Content-Type') ?? 'application/pdf');
                     setError(false);
                 }
                 return res.blob();
             })
-            .then(blob => {
+            .then((blob) => {
                 objectUrl = URL.createObjectURL(blob);
+
                 setBlobUrl(objectUrl);
             });
 
@@ -42,5 +45,5 @@ export function ObjectHttpFeilHandtering({ url, onError, children, ...rest }: Pr
         return <>{children}</>;
     }
 
-    return <object data={blobUrl} children={children} {...rest} />;
+    return <object data={blobUrl} children={children} {...rest} type={contentType} />;
 }

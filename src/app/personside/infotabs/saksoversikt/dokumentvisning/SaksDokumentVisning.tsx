@@ -44,7 +44,7 @@ function DokumentVisning(props: Props) {
     const url = getMockableUrl(byggDokumentVisningUrl(props.url, props.fnr));
 
     return (
-        <ObjectHttpFeilHandtering type="application/pdf" url={url} width="100%" height="100%" onError={onError}>
+        <ObjectHttpFeilHandtering url={url} width="100%" height="100%" onError={onError}>
             <ErrorStyle>
                 <AlertStripeAdvarsel>{errMsg}</AlertStripeAdvarsel>
             </ErrorStyle>
