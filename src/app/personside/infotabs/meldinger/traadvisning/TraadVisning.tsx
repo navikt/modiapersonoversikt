@@ -9,13 +9,7 @@ import { setValgtTraadDialogpanel } from '../../../../../redux/oppgave/actions';
 import { useAppState } from '../../../../../utils/customHooks';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Traad } from '../../../../../models/meldinger/meldinger';
-import {
-    eldsteMelding,
-    nyesteMelding,
-    saksbehandlerTekst,
-    traadKanBesvares,
-    traadstittel
-} from '../utils/meldingerUtils';
+import { nyesteMelding, saksbehandlerTekst, traadKanBesvares, traadstittel } from '../utils/meldingerUtils';
 import { formaterDato } from '../../../../../utils/string-utils';
 import { loggEvent } from '../../../../../utils/logger/frontendLogger';
 import { Printer } from '../../../../../utils/print/usePrinter';
@@ -71,7 +65,7 @@ function Topplinje({ valgtTraad }: { valgtTraad: Traad }) {
     const dialogpanelTraad = useAppState((state) => state.oppgaver.dialogpanelTraad);
 
     const kanBesvares = traadKanBesvares(valgtTraad);
-    const melding = eldsteMelding(valgtTraad);
+    const melding = nyesteMelding(valgtTraad);
 
     if (melding.markertSomFeilsendtAv || melding.sendtTilSladding || (melding.avsluttetDato && !kanBesvares)) {
         return (
