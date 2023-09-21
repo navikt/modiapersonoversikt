@@ -2,7 +2,6 @@ declare global {
     interface Window {
         erChatvisning: boolean;
         applicationFeatureToggles: {
-            useAzureApiProxy: string;
             useNewDialogComponents: string;
         };
     }

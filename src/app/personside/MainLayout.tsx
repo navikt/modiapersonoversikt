@@ -10,9 +10,7 @@ import styled from 'styled-components/macro';
 import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMeldinger';
 import { guid } from 'nav-frontend-js-utils';
 import TildelteOppgaver from './dialogpanel/TildelteOppgaver';
-import IfFeatureToggleOn from '../../components/featureToggle/IfFeatureToggleOn';
 import TilbakemeldingFab from '../../components/Tilbakemelding/TilbakemeldingFab';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 import { VisittkortStateProvider } from '../../context/visittkort-state';
 import { useDialogpanelState } from '../../context/dialogpanel-state';
 
@@ -65,9 +63,7 @@ function MainLayout() {
                 </HoyreKolonne>
             )}
             <SmallScreenToggleButton />
-            <IfFeatureToggleOn toggleID={FeatureToggles.VisTilbakemelding}>
-                <TilbakemeldingFab temaId={temaId} sporsmal={sporsmal} kommentarLabel={kommentarLabel} />
-            </IfFeatureToggleOn>
+            <TilbakemeldingFab temaId={temaId} sporsmal={sporsmal} kommentarLabel={kommentarLabel} />
         </LayoutWrapper>
     );
 }
