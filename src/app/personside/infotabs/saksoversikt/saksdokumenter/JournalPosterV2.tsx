@@ -12,7 +12,6 @@ import { DokumentAvsenderFilter } from '../../../../../redux/saksoversikt/types'
 import LenkeNorg from '../utils/LenkeNorg';
 import ToggleViktigAaViteKnapp from '../viktigavite/ToggleViktigAaViteKnapp';
 import { datoSynkende } from '../../../../../utils/date-utils';
-import JournalpostListeElement from './JournalPostListeElement/JournalpostListeElement';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useEffect, useRef } from 'react';
@@ -26,6 +25,7 @@ import Panel from 'nav-frontend-paneler';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../useSakstemaURLState';
 import { forkortetTemanavn } from '../utils/saksoversiktUtils';
 import { aggregertSakstemaV2 } from '../utils/saksoversiktUtilsV2';
+import JournalpostListeElementV2 from './JournalPostListeElement/JournalpostListeElementV2';
 
 const StyledPanel = styled(Panel)`
     padding: 0rem;
@@ -101,7 +101,7 @@ interface JournalpostGruppeProps {
 function JournalpostGruppe({ gruppe, harTilgang, valgtSakstema }: JournalpostGruppeProps) {
     const tittelId = useRef(guid());
     const journalposter = gruppe.array.map((journalpost) => (
-        <JournalpostListeElement
+        <JournalpostListeElementV2
             journalpost={journalpost}
             harTilgangTilSakstema={harTilgang}
             key={journalpost.id}

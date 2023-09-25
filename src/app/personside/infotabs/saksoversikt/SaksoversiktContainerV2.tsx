@@ -1,18 +1,17 @@
 import React from 'react';
-import { SakstemaResponse } from '../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components/macro';
 import theme from '../../../../styles/personOversiktTheme';
 import { BigCenteredLazySpinner } from '../../../../components/BigCenteredLazySpinner';
-import SakstemaListe from './sakstemaliste/SakstemaListe';
 import { ScrollBar } from '../utils/InfoTabsScrollBar';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
-import SakerFullscreenLenke from './SakerFullscreenLenke';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from './useSakstemaURLState';
-import sakstema from '../../../../rest/resources/sakstemaResource';
+import { sakstemaResourceV2 } from '../../../../rest/resources/sakstemaResource';
 import DokumentOgVedleggV2 from './dokumentvisning/DokumentOgVedleggV2';
 import JournalPosterV2 from './saksdokumenter/JournalPosterV2';
+import SakerFullscreenLenkeV2 from './SakerFullscreenLenkeV2';
+import SakstemaListeV2 from './sakstemaliste/SakstemaListeV2';
 
 const saksoversiktMediaTreshold = '70rem';
 
@@ -55,9 +54,9 @@ function SaksoversiktContainer() {
             />
         );
     } else {
-        return sakstema.useRenderer({
+        return sakstemaResourceV2.useRenderer({
             ifPending: BigCenteredLazySpinner,
-            ifData: (data: SakstemaResponse) => {
+            ifData: (data) => {
                 if (data.resultat.length === 0) {
                     return <AlertStripeInfo>Brukeren har ingen saker</AlertStripeInfo>;
                 }
@@ -66,8 +65,8 @@ function SaksoversiktContainer() {
                         <SaksoversiktStyle>
                             <ScrollBar keepScrollId="saker-sakstema">
                                 <ErrorBoundary boundaryName="Sakstemaliste">
-                                    <SakerFullscreenLenke />
-                                    <SakstemaListe />
+                                    <SakerFullscreenLenkeV2 />
+                                    <SakstemaListeV2 />
                                 </ErrorBoundary>
                             </ScrollBar>
                             <ScrollBar keepScrollId="saker-saksdokumenter">

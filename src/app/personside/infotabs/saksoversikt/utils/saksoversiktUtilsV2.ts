@@ -1,5 +1,5 @@
 import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import { AggregertSakstemaSoknadsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
+import { SakstemaSoknadsstatus, Soknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { formatterDato } from '../../../../../utils/date-utils';
 import { filtrerSakstemaerUtenDataV2 } from '../sakstemaliste/SakstemaListeUtils';
@@ -12,7 +12,7 @@ export const sakstemanavnIngen = 'Ingen tema valgt';
 export function aggregertSakstemaV2(
     alleSakstema: SakstemaSoknadsstatus[],
     valgteSakstema?: SakstemaSoknadsstatus[]
-): AggregertSakstemaSoknadsstatus {
+): SakstemaSoknadsstatus {
     const alleSakstemaFiltrert = filtrerSakstemaerUtenDataV2(alleSakstema);
     const sakstema = valgteSakstema !== undefined ? filtrerSakstemaerUtenDataV2(valgteSakstema) : alleSakstemaFiltrert;
     const journalposter = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.dokumentMetadata);
@@ -24,7 +24,7 @@ export function aggregertSakstemaV2(
         temanavn: aggregertTemanavnV2(sakstema, erAlleSakstema),
         temakode: erAlleSakstema ? sakstemakodeAlle : aggregertTemakode(sakstema),
         harTilgang: true,
-        soknadsstatuser: sakstema.map((sak) => sak.soknadsstatus),
+        soknadsstatus: aggregertSoknadsstatus(sakstema),
         dokumentMetadata: journalposter,
         tilhorendeSaker: tilhorendeSaker,
         erGruppert: false,
@@ -40,6 +40,35 @@ export function aggregertTemanavnV2(valgteSakstema: SakstemaSoknadsstatus[], erA
 function aggregertTemakode(valgteSakstema: SakstemaSoknadsstatus[]): string {
     const nyTemakode = valgteSakstema.map((tema) => tema.temakode).join('-');
     return nyTemakode !== '' ? nyTemakode : sakstemakodeIngen;
+}
+
+function aggregertSoknadsstatus(valgteSakstema: SakstemaSoknadsstatus[]): Soknadsstatus {
+    const res: Soknadsstatus = {
+        avbrutt: 0,
+        underBehandling: 0,
+        ferdigBehandlet: 0
+    };
+
+    for (const sakstema of valgteSakstema) {
+        const soknadsstatus = sakstema.soknadsstatus;
+        res.avbrutt += soknadsstatus.avbrutt;
+        res.ferdigBehandlet += soknadsstatus.ferdigBehandlet;
+        res.underBehandling += soknadsstatus.underBehandling;
+
+        if (soknadsstatus.sistOppdatert) {
+            if (!res.sistOppdatert) {
+                res.sistOppdatert = soknadsstatus.sistOppdatert;
+            }
+            const currentDato = new Date(res.sistOppdatert);
+            const tmpDato = new Date(soknadsstatus.sistOppdatert);
+
+            if (tmpDato.valueOf() > currentDato.valueOf()) {
+                res.sistOppdatert = tmpDato.toISOString();
+            }
+        }
+    }
+
+    return res;
 }
 
 export function forkortetTemanavnV2(temanavn: string): string {

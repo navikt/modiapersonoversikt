@@ -8,7 +8,6 @@ import { loggEvent } from '../../../../utils/logger/frontendLogger';
 import DropDownMenu from '../../../../components/DropDownMenu';
 import { Undertittel } from 'nav-frontend-typografi';
 import { sakerTest } from '../dyplenkeTest/utils-dyplenker-test';
-import SakstemaListe from './sakstemaliste/SakstemaListe';
 import { forkortetTemanavn } from './utils/saksoversiktUtils';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from './useSakstemaURLState';
 import { filtrerSakstemaerUtenDataV2 } from './sakstemaliste/SakstemaListeUtils';
@@ -16,6 +15,7 @@ import { CenteredLazySpinner } from '../../../../components/LazySpinner';
 import { aggregertTemanavnV2 } from './utils/saksoversiktUtilsV2';
 import DokumentOgVedleggV2 from './dokumentvisning/DokumentOgVedleggV2';
 import JournalPosterV2 from './saksdokumenter/JournalPosterV2';
+import SakstemaListeV2 from './sakstemaliste/SakstemaListeV2';
 
 interface Props {
     fnr: string;
@@ -68,7 +68,7 @@ function Innhold() {
     );
     const sakstemaListeDropdown = (
         <DropDownMenu header={tittel}>
-            <SakstemaListe />
+            <SakstemaListeV2 />
         </DropDownMenu>
     );
 

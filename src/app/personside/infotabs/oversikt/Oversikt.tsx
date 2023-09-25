@@ -9,7 +9,7 @@ import UtbetalingerOversikt from './UtbetalingerOversikt';
 import MeldingerOversikt from './MeldingerOversikt';
 import { INFOTABS } from '../InfoTabEnum';
 import ErrorBoundary from '../../../../components/ErrorBoundary';
-import SakerOversiktV2 from './SakerOversiktV2';
+import SakerOversiktFactory from './SakerOversiktFactory';
 
 const oversiktMediaThreshold = pxToRem(750);
 
@@ -58,7 +58,7 @@ function Oversikt() {
                     <Oversiktskomponent
                         tittel={'Saker'}
                         infotabPath={INFOTABS.SAKER}
-                        component={SakerOversiktV2}
+                        component={SakerOversiktFactory}
                         hurtigtast={'S'}
                     />
                 </KolonneStyle>

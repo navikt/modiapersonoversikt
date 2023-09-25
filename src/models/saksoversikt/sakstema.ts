@@ -39,7 +39,7 @@ export interface SakstemaSoknadsstatus extends Sakstema {
 }
 
 export interface AggregertSakstemaSoknadsstatus extends Sakstema {
-    soknadsstatuser: Soknadsstatus[];
+    soknadsstatus: Soknadsstatus;
 }
 
 export interface Soknadsstatus {
