@@ -16,9 +16,9 @@ import { getSaksdokumentUrl } from './getSaksdokumentUrl';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import Panel from 'nav-frontend-paneler';
 import { Dokument, Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import { SakstemaBehandlingskjede } from '../../../../../models/saksoversikt/sakstema';
-import { aggregertSakstema } from '../utils/saksoversiktUtils';
-import { useHentAlleSakstemaFraResource } from '../useSakstemaURLState';
+import { SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
+import { useHentAlleSakstemaFraResourceV2 } from '../useSakstemaURLState';
+import { aggregertSakstemaV2 } from '../utils/saksoversiktUtilsV2';
 
 const Content = styled(Panel)`
     flex-grow: 1;
@@ -52,7 +52,7 @@ const HeaderStyle = styled(Panel)`
 `;
 
 interface Props {
-    valgteSakstemaer: SakstemaBehandlingskjede[];
+    valgteSakstemaer: SakstemaSoknadsstatus[];
     valgtDokument: Dokument | undefined;
     valgtJournalpost: Journalpost | undefined;
 }
@@ -64,7 +64,7 @@ function DokumentOgVedlegg(props: Props) {
     const dyplenker = useInfotabsDyplenker();
     const history = useHistory();
     const fodselsnummer = useFodselsnummer();
-    const { alleSakstema } = useHentAlleSakstemaFraResource();
+    const { alleSakstema } = useHentAlleSakstemaFraResourceV2();
 
     useFocusOnMount(ref);
 
@@ -87,7 +87,7 @@ function DokumentOgVedlegg(props: Props) {
         };
     });
 
-    const aggregertSak = aggregertSakstema(alleSakstema, props.valgteSakstemaer);
+    const aggregertSak = aggregertSakstemaV2(alleSakstema, props.valgteSakstemaer);
 
     const handleTabChange = (_: any, index: number) => history.push(dyplenker.saker.link(aggregertSak, tabs[index]));
 

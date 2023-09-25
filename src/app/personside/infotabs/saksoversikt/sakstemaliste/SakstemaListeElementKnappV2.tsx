@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { Behandlingsstatus, SakstemaBehandlingskjede } from '../../../../../models/saksoversikt/sakstema';
+import { Behandlingsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import styled from 'styled-components/macro';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { hentFormattertDatoForSisteHendelse } from '../utils/saksoversiktUtils';
 import VisMerKnapp from '../../../../../components/VisMerKnapp';
 import { sakerTest } from '../../dyplenkeTest/utils-dyplenker-test';
 import { useInfotabsDyplenker } from '../../dyplenker';
-import { saksikon, SVGStyling, visAntallSakerSomHarBehandlingsstatus } from './SakstemaListeUtils';
+import { saksikon, SVGStyling, visAntallSakerSomHarbehandlingsstatusV2 } from './SakstemaListeUtils';
+import { hentFormattertDatoForSisteHendelseV2 } from '../utils/saksoversiktUtilsV2';
 
 interface Props {
-    sakstema: SakstemaBehandlingskjede;
+    sakstema: SakstemaSoknadsstatus;
     erValgt: boolean;
 }
 
@@ -33,13 +33,13 @@ const Flex = styled.div`
 function SakstemaListeElementKnapp(props: Props) {
     const dyplenker = useInfotabsDyplenker();
 
-    const sakerUnderBehandling = visAntallSakerSomHarBehandlingsstatus(
+    const sakerUnderBehandling = visAntallSakerSomHarbehandlingsstatusV2(
         props.sakstema,
         Behandlingsstatus.UnderBehandling,
         'under behandling'
     );
 
-    const sakerFerdigBehandlet = visAntallSakerSomHarBehandlingsstatus(
+    const sakerFerdigBehandlet = visAntallSakerSomHarbehandlingsstatusV2(
         props.sakstema,
         Behandlingsstatus.FerdigBehandlet,
         'ferdig behandlet'
@@ -59,7 +59,7 @@ function SakstemaListeElementKnapp(props: Props) {
                                 {props.sakstema.temanavn}
                             </Element>
                             <Normaltekst className="order-first">
-                                {hentFormattertDatoForSisteHendelse(props.sakstema)}
+                                {hentFormattertDatoForSisteHendelseV2(props.sakstema)}
                             </Normaltekst>
                         </UUcustomOrder>
                         {sakerUnderBehandling}

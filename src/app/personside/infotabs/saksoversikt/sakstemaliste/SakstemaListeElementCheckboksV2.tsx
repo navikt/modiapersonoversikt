@@ -1,9 +1,9 @@
-import { Behandlingsstatus, SakstemaBehandlingskjede } from '../../../../../models/saksoversikt/sakstema';
+import { Behandlingsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import * as React from 'react';
-import { saksikon, SVGStyling, visAntallSakerSomHarBehandlingsstatus } from './SakstemaListeUtils';
+import { saksikon, SVGStyling, visAntallSakerSomHarbehandlingsstatusV2 } from './SakstemaListeUtils';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { hentFormattertDatoForSisteHendelse } from '../utils/saksoversiktUtils';
 import styled from 'styled-components/macro';
+import { hentFormattertDatoForSisteHendelseV2 } from '../utils/saksoversiktUtilsV2';
 
 const CheckboksElement = styled.div`
     display: flex;
@@ -18,17 +18,17 @@ const CheckboksElement = styled.div`
 `;
 
 interface CheckboksProps {
-    sakstema: SakstemaBehandlingskjede;
+    sakstema: SakstemaSoknadsstatus;
 }
 
 function SakstemaListeElementCheckboks(props: CheckboksProps) {
-    const sakerUnderBehandling = visAntallSakerSomHarBehandlingsstatus(
+    const sakerUnderBehandling = visAntallSakerSomHarbehandlingsstatusV2(
         props.sakstema,
         Behandlingsstatus.UnderBehandling,
         'under behandling'
     );
 
-    const sakerFerdigBehandlet = visAntallSakerSomHarBehandlingsstatus(
+    const sakerFerdigBehandlet = visAntallSakerSomHarbehandlingsstatusV2(
         props.sakstema,
         Behandlingsstatus.FerdigBehandlet,
         'ferdig behandlet'
@@ -37,7 +37,7 @@ function SakstemaListeElementCheckboks(props: CheckboksProps) {
     return (
         <CheckboksElement>
             <div>
-                <Normaltekst>{hentFormattertDatoForSisteHendelse(props.sakstema)}</Normaltekst>
+                <Normaltekst>{hentFormattertDatoForSisteHendelseV2(props.sakstema)}</Normaltekst>
                 <Element>{props.sakstema.temanavn}</Element>
                 {sakerUnderBehandling}
                 {sakerFerdigBehandlet}

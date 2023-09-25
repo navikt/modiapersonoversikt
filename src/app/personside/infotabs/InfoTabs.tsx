@@ -7,7 +7,6 @@ import UtbetalingerContainer from './utbetalinger/UtbetalingerContainer';
 import { usePaths } from '../../routes/routing';
 import { Switch, useHistory, useLocation } from 'react-router';
 import { SentryRoute } from '../../../sentry-route';
-import SaksoversiktContainer from './saksoversikt/SaksoversiktContainer';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import OppfolgingContainer from './oppfolging/OppfolgingContainer';
 import VarslerContainer from './varsel/VarslerContainer';
@@ -22,6 +21,7 @@ import { guid } from 'nav-frontend-js-utils';
 import { useOpenTab } from './utils/useOpenTab';
 import { MeldingsokProvider } from '../../../context/meldingsok';
 import { useVisittkortState } from '../../../context/visittkort-state';
+import SaksoversiktFactory from './saksoversikt/SaksoversiktFactory';
 
 const StyledArticle = styled.article`
     display: flex;
@@ -84,7 +84,7 @@ function InfoTabs() {
                             <SentryRoute path={dyplenker.utbetaling.route} component={UtbetalingerContainer} />
                             <SentryRoute path={paths.oppfolging} component={OppfolgingContainer} />
                             <SentryRoute path={dyplenker.meldinger.route} component={MeldingerContainer} />
-                            <SentryRoute path={dyplenker.saker.route} component={SaksoversiktContainer} />
+                            <SentryRoute path={dyplenker.saker.route} component={SaksoversiktFactory} />
                             <SentryRoute path={dyplenker.ytelser.route} component={Ytelser} />
                             <SentryRoute path={paths.varsler} component={VarslerContainer} />
                             <SentryRoute path={''} component={Oversikt} />

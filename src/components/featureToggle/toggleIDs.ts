@@ -1,3 +1,3 @@
 export enum FeatureToggles {
-    testToggle = 'testToggle'
+    BrukSoknadsstatus = 'modiapersonoversikt.soknadsstatus-api'
 }

@@ -1,31 +1,30 @@
 import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import { Behandlingskjede, SakstemaBehandlingskjede } from '../../../../../models/saksoversikt/sakstema';
+import { AggregertSakstemaSoknadsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { formatterDato } from '../../../../../utils/date-utils';
-import { filtrerSakstemaerUtenData } from '../sakstemaliste/SakstemaListeUtils';
+import { filtrerSakstemaerUtenDataV2 } from '../sakstemaliste/SakstemaListeUtils';
 
 export const sakstemakodeAlle = 'ALLE';
 export const sakstemanavnAlle = 'Alle tema';
 export const sakstemakodeIngen = 'INGEN';
 export const sakstemanavnIngen = 'Ingen tema valgt';
 
-export function aggregertSakstema(
-    alleSakstema: SakstemaBehandlingskjede[],
-    valgteSakstema?: SakstemaBehandlingskjede[]
-): SakstemaBehandlingskjede {
-    const alleSakstemaFiltrert = filtrerSakstemaerUtenData(alleSakstema);
-    const sakstema = valgteSakstema ? filtrerSakstemaerUtenData(valgteSakstema) : alleSakstemaFiltrert;
-    const behandlingskjeder = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.behandlingskjeder);
+export function aggregertSakstemaV2(
+    alleSakstema: SakstemaSoknadsstatus[],
+    valgteSakstema?: SakstemaSoknadsstatus[]
+): AggregertSakstemaSoknadsstatus {
+    const alleSakstemaFiltrert = filtrerSakstemaerUtenDataV2(alleSakstema);
+    const sakstema = valgteSakstema !== undefined ? filtrerSakstemaerUtenDataV2(valgteSakstema) : alleSakstemaFiltrert;
     const journalposter = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.dokumentMetadata);
     const tilhorendeSaker = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.tilhorendeSaker);
 
     const erAlleSakstema = alleSakstemaFiltrert.length === sakstema.length;
 
     return {
-        temanavn: aggregertTemanavn(sakstema, erAlleSakstema),
+        temanavn: aggregertTemanavnV2(sakstema, erAlleSakstema),
         temakode: erAlleSakstema ? sakstemakodeAlle : aggregertTemakode(sakstema),
         harTilgang: true,
-        behandlingskjeder: behandlingskjeder,
+        soknadsstatuser: sakstema.map((sak) => sak.soknadsstatus),
         dokumentMetadata: journalposter,
         tilhorendeSaker: tilhorendeSaker,
         erGruppert: false,
@@ -33,17 +32,17 @@ export function aggregertSakstema(
     };
 }
 
-export function aggregertTemanavn(valgteSakstema: SakstemaBehandlingskjede[], erAlleSakstema: boolean): string {
+export function aggregertTemanavnV2(valgteSakstema: SakstemaSoknadsstatus[], erAlleSakstema: boolean): string {
     const nyttTemanavn = erAlleSakstema ? sakstemanavnAlle : valgteSakstema.map((tema) => tema.temanavn).join(', ');
     return nyttTemanavn !== '' ? nyttTemanavn : sakstemanavnIngen;
 }
 
-function aggregertTemakode(valgteSakstema: SakstemaBehandlingskjede[]): string {
+function aggregertTemakode(valgteSakstema: SakstemaSoknadsstatus[]): string {
     const nyTemakode = valgteSakstema.map((tema) => tema.temakode).join('-');
     return nyTemakode !== '' ? nyTemakode : sakstemakodeIngen;
 }
 
-export function forkortetTemanavn(temanavn: string): string {
+export function forkortetTemanavnV2(temanavn: string): string {
     if (temanavn === sakstemanavnAlle || temanavn === sakstemanavnIngen) {
         return temanavn;
     }
@@ -54,39 +53,41 @@ export function forkortetTemanavn(temanavn: string): string {
 }
 
 function aggregerSakstemaGenerisk<T>(
-    alleSakstema: SakstemaBehandlingskjede[],
-    getGeneriskElement: (saksTema: SakstemaBehandlingskjede) => T[]
+    alleSakstema: SakstemaSoknadsstatus[],
+    getGeneriskElement: (saksTema: SakstemaSoknadsstatus) => T[]
 ): T[] {
-    return alleSakstema.reduce((acc: T[], sakstema: SakstemaBehandlingskjede) => {
+    return alleSakstema.reduce((acc: T[], sakstema) => {
         return [...acc, ...getGeneriskElement(sakstema)];
     }, []);
 }
 
-export function hentFormattertDatoForSisteHendelse(sakstema: SakstemaBehandlingskjede) {
-    return formatterDato(hentDatoForSisteHendelse(sakstema));
+export function hentFormattertDatoForSisteHendelseV2(sakstema: SakstemaSoknadsstatus): String {
+    const sisteHendelse = hentDatoForSisteHendelseV2(sakstema);
+    if (!sisteHendelse) {
+        return 'Fant ikke dato';
+    }
+    return formatterDato(sisteHendelse);
 }
 
-export function hentDatoForSisteHendelse(sakstema: SakstemaBehandlingskjede): Date {
-    if (sakstema.behandlingskjeder.length > 0 && sakstema.dokumentMetadata.length === 0) {
-        return hentSenesteDatoForBehandling(sakstema.behandlingskjeder);
+export function hentDatoForSisteHendelseV2(sakstema: SakstemaSoknadsstatus): Date | undefined {
+    if (!sakstema.soknadsstatus.sistOppdatert && !sakstema.dokumentMetadata.length) {
+        return undefined;
     }
-    if (sakstema.behandlingskjeder.length === 0 && sakstema.dokumentMetadata.length > 0) {
+
+    if (sakstema.soknadsstatus.sistOppdatert && sakstema.dokumentMetadata.length === 0) {
+        return saksdatoSomDate(sakstema.soknadsstatus.sistOppdatert);
+    }
+    if (!sakstema.soknadsstatus.sistOppdatert && sakstema.dokumentMetadata.length > 0) {
         return hentSenesteDatoForDokumenter(sakstema.dokumentMetadata);
     }
 
-    const dateBehandling = hentSenesteDatoForBehandling(sakstema.behandlingskjeder);
+    const dateSoknadsstatus = saksdatoSomDate(sakstema.soknadsstatus.sistOppdatert!);
     const dateDokumenter = hentSenesteDatoForDokumenter(sakstema.dokumentMetadata);
-    return dateBehandling > dateDokumenter ? dateBehandling : dateDokumenter;
+    return dateSoknadsstatus > dateDokumenter ? dateSoknadsstatus : dateDokumenter;
 }
 
 function hentSenesteDatoForDokumenter(journalposter: Journalpost[]) {
     return journalposter.reduce((acc: Date, dok: Journalpost) => {
         return acc > saksdatoSomDate(dok.dato) ? acc : saksdatoSomDate(dok.dato);
-    }, new Date(0));
-}
-
-function hentSenesteDatoForBehandling(behandlingskjede: Behandlingskjede[]) {
-    return behandlingskjede.reduce((acc: Date, kjede: Behandlingskjede) => {
-        return acc > saksdatoSomDate(kjede.sistOppdatert) ? acc : saksdatoSomDate(kjede.sistOppdatert);
     }, new Date(0));
 }

@@ -3,7 +3,7 @@ import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useR
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { apiBaseUri } from '../../api/config';
-import { SakstemaResponse, SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
+import { SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import { useValgtenhet } from '../../context/valgtenhet-state';
@@ -17,19 +17,9 @@ const defaults: DefaultConfig = {
 function queryKey(fnr: string, enhet: string | undefined): [string, string, string | undefined] {
     return ['sakstema', fnr, enhet];
 }
-
-function queryKeyV2(fnr: string, enhet: string | undefined): [string, string, string | undefined] {
-    return ['sakstemaV2', fnr, enhet];
-}
-
 function url(fnr: string, enhet: string | undefined) {
     const header = enhet ? `?enhet=${enhet}` : '';
     return `${apiBaseUri}/saker/${fnr}/sakstema${header}`;
-}
-
-function urlV2(fnr: string, enhet?: string) {
-    const header = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/saker/${fnr}/v2/sakstema${header}`;
 }
 
 function useFnrEnhet(): [string, string | undefined] {
@@ -39,20 +29,9 @@ function useFnrEnhet(): [string, string | undefined] {
 }
 
 const resource = {
-    useFetch(): UseQueryResult<SakstemaResponse, FetchError> {
-        const [fnr, enhet] = useFnrEnhet();
-        return useQuery(queryKey(fnr, enhet), () => get(url(fnr, enhet)));
-    },
-    useRenderer(renderer: RendererOrConfig<SakstemaResponse>) {
-        const response = this.useFetch();
-        return useRest(response, applyDefaults(defaults, renderer));
-    }
-};
-
-export const sakstemaResourceV2 = {
     useFetch(): UseQueryResult<SakstemaSoknadsstatusResponse, FetchError> {
         const [fnr, enhet] = useFnrEnhet();
-        return useQuery(queryKeyV2(fnr, enhet), () => get(urlV2(fnr, enhet)));
+        return useQuery(queryKey(fnr, enhet), () => get(url(fnr, enhet)));
     },
     useRenderer(renderer: RendererOrConfig<SakstemaSoknadsstatusResponse>) {
         const response = this.useFetch();
