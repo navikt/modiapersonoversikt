@@ -3,9 +3,7 @@ import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 
 export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleResponse {
     switch (toggleId) {
-        case FeatureToggles.VisTilbakemelding:
-            return false;
-        case FeatureToggles.useNewDialogComponents:
+        case FeatureToggles.BrukSoknadsstatus:
             return true;
         default:
             return Math.random() > 0.5;

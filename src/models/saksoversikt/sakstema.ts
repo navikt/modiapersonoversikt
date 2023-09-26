@@ -2,7 +2,11 @@ import { Journalpost } from './journalpost';
 import { Sak } from './sak';
 
 export interface SakstemaResponse {
-    resultat: Sakstema[];
+    resultat: SakstemaBehandlingskjede[];
+}
+
+export interface SakstemaSoknadsstatusResponse {
+    resultat: SakstemaSoknadsstatus[];
 }
 
 export interface Sakstema {
@@ -10,10 +14,13 @@ export interface Sakstema {
     temakode: string;
     temanavn: string;
     erGruppert: boolean;
-    behandlingskjeder: Behandlingskjede[];
     dokumentMetadata: Journalpost[];
     tilhorendeSaker: Sak[];
     feilkoder: number[];
+}
+
+export interface SakstemaBehandlingskjede extends Sakstema {
+    behandlingskjeder: Behandlingskjede[];
 }
 
 export enum Behandlingsstatus {
@@ -25,4 +32,19 @@ export enum Behandlingsstatus {
 export interface Behandlingskjede {
     status: Behandlingsstatus;
     sistOppdatert: string;
+}
+
+export interface SakstemaSoknadsstatus extends Sakstema {
+    soknadsstatus: Soknadsstatus;
+}
+
+export interface AggregertSakstemaSoknadsstatus extends Sakstema {
+    soknadsstatus: Soknadsstatus;
+}
+
+export interface Soknadsstatus {
+    underBehandling: number;
+    ferdigBehandlet: number;
+    avbrutt: number;
+    sistOppdatert?: string;
 }

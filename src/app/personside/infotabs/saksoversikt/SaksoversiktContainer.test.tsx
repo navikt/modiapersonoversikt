@@ -1,14 +1,14 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import TestProvider from '../../../../test/Testprovider';
-import SaksoversiktContainer from './SaksoversiktContainer';
+import SaksoversiktContainerV2 from './SaksoversiktContainerV2';
 import { setupReactQueryMocks } from '../../../../test/testStore';
 
 test('Viser saksoversiktcontainer med alt innhold', () => {
     setupReactQueryMocks();
     const container = renderer.create(
         <TestProvider>
-            <SaksoversiktContainer />
+            <SaksoversiktContainerV2 />
         </TestProvider>
     );
 

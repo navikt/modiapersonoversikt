@@ -1,5 +1,5 @@
 import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
-import { Behandlingskjede, Sakstema } from '../../../../../models/saksoversikt/sakstema';
+import { Behandlingskjede, SakstemaBehandlingskjede } from '../../../../../models/saksoversikt/sakstema';
 import { saksdatoSomDate } from '../../../../../models/saksoversikt/fellesSak';
 import { formatterDato } from '../../../../../utils/date-utils';
 import { filtrerSakstemaerUtenData } from '../sakstemaliste/SakstemaListeUtils';
@@ -9,9 +9,12 @@ export const sakstemanavnAlle = 'Alle tema';
 export const sakstemakodeIngen = 'INGEN';
 export const sakstemanavnIngen = 'Ingen tema valgt';
 
-export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sakstema[]): Sakstema {
+export function aggregertSakstema(
+    alleSakstema: SakstemaBehandlingskjede[],
+    valgteSakstema?: SakstemaBehandlingskjede[]
+): SakstemaBehandlingskjede {
     const alleSakstemaFiltrert = filtrerSakstemaerUtenData(alleSakstema);
-    const sakstema = valgteSakstema !== undefined ? filtrerSakstemaerUtenData(valgteSakstema) : alleSakstemaFiltrert;
+    const sakstema = valgteSakstema ? filtrerSakstemaerUtenData(valgteSakstema) : alleSakstemaFiltrert;
     const behandlingskjeder = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.behandlingskjeder);
     const journalposter = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.dokumentMetadata);
     const tilhorendeSaker = aggregerSakstemaGenerisk(sakstema, (sakstema) => sakstema.tilhorendeSaker);
@@ -30,12 +33,12 @@ export function aggregertSakstema(alleSakstema: Sakstema[], valgteSakstema?: Sak
     };
 }
 
-export function aggregertTemanavn(valgteSakstema: Sakstema[], erAlleSakstema: boolean): string {
+export function aggregertTemanavn(valgteSakstema: SakstemaBehandlingskjede[], erAlleSakstema: boolean): string {
     const nyttTemanavn = erAlleSakstema ? sakstemanavnAlle : valgteSakstema.map((tema) => tema.temanavn).join(', ');
     return nyttTemanavn !== '' ? nyttTemanavn : sakstemanavnIngen;
 }
 
-function aggregertTemakode(valgteSakstema: Sakstema[]): string {
+function aggregertTemakode(valgteSakstema: SakstemaBehandlingskjede[]): string {
     const nyTemakode = valgteSakstema.map((tema) => tema.temakode).join('-');
     return nyTemakode !== '' ? nyTemakode : sakstemakodeIngen;
 }
@@ -50,17 +53,20 @@ export function forkortetTemanavn(temanavn: string): string {
         : `${temanavnListe.slice(0, 2).join(', ')} og ${temanavnListe.length - 2} andre sakstemaer`;
 }
 
-function aggregerSakstemaGenerisk<T>(alleSakstema: Sakstema[], getGeneriskElement: (saksTema: Sakstema) => T[]): T[] {
-    return alleSakstema.reduce((acc: T[], sakstema: Sakstema) => {
+function aggregerSakstemaGenerisk<T>(
+    alleSakstema: SakstemaBehandlingskjede[],
+    getGeneriskElement: (saksTema: SakstemaBehandlingskjede) => T[]
+): T[] {
+    return alleSakstema.reduce((acc: T[], sakstema: SakstemaBehandlingskjede) => {
         return [...acc, ...getGeneriskElement(sakstema)];
     }, []);
 }
 
-export function hentFormattertDatoForSisteHendelse(sakstema: Sakstema) {
+export function hentFormattertDatoForSisteHendelse(sakstema: SakstemaBehandlingskjede) {
     return formatterDato(hentDatoForSisteHendelse(sakstema));
 }
 
-export function hentDatoForSisteHendelse(sakstema: Sakstema): Date {
+export function hentDatoForSisteHendelse(sakstema: SakstemaBehandlingskjede): Date {
     if (sakstema.behandlingskjeder.length > 0 && sakstema.dokumentMetadata.length === 0) {
         return hentSenesteDatoForBehandling(sakstema.behandlingskjeder);
     }

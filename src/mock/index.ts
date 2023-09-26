@@ -15,7 +15,7 @@ import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { mockFeatureToggle } from './featureToggle-mock';
-import { getMockSaksoversikt } from './saksoversikt/saksoversikt-mock';
+import { getMockSaksoversikt, getMockSaksoversiktV2 } from './saksoversikt/saksoversikt-mock';
 import { getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getMockVarsler } from './varsler/varsel-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
@@ -118,6 +118,20 @@ function setupSaksoversiktMock(mock: FetchMock) {
                 randomDelay(),
                 fodselsNummerErGyldigStatus,
                 mockGeneratorMedFodselsnummer(getMockSaksoversikt)
+            )
+        )
+    );
+}
+
+function setupSaksoversiktV2Mock(mock: FetchMock) {
+    mock.get(
+        apiBaseUri + '/saker/:fodselsnummer/v2/sakstema',
+        verify(
+            harEnhetIdSomQueryParam,
+            withDelayedResponse(
+                randomDelay(),
+                fodselsNummerErGyldigStatus,
+                mockGeneratorMedFodselsnummer(getMockSaksoversiktV2)
             )
         )
     );
@@ -336,6 +350,7 @@ setupInnloggetSaksbehandlerMock(mock);
 setupPersondataMock(mock);
 setupTilgangskontroll(mock);
 setupSaksoversiktMock(mock);
+setupSaksoversiktV2Mock(mock);
 setupUtbetalingerMock(mock);
 setupSykepengerMock(mock);
 setupForeldrepengerMock(mock);
