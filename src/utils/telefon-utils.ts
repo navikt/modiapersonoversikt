@@ -23,7 +23,7 @@ export function formaterTelefonnummer(telefonnummer: string) {
     const utenSpace = removeWhitespace(telefonnummer);
     if (utenSpace.length !== 8) {
         return telefonnummer;
-    } else if ('489'.includes(utenSpace[0])) {
+    } else if (utenSpace.startsWith('800')) {
         return formatNumber('### ## ###', utenSpace);
     } else {
         return formatNumber('## ## ## ##', utenSpace);
