@@ -5,7 +5,7 @@ it('returnerer formatert mobiltelefon', () => {
 
     const formatertTelefonnummer = formaterMobiltelefonnummer(telefonnummer);
 
-    expect(formatertTelefonnummer).toEqual('900 00 000');
+    expect(formatertTelefonnummer).toEqual('90 00 00 00');
 });
 
 it('returnerer formatert mobiltelefon med retningskode', () => {
@@ -13,15 +13,15 @@ it('returnerer formatert mobiltelefon med retningskode', () => {
 
     const formatertTelefonnummer = formaterMobiltelefonnummer(telefonnummer);
 
-    expect(formatertTelefonnummer).toEqual('+47 900 00 000');
+    expect(formatertTelefonnummer).toEqual('+47 90 00 00 00');
 });
 
-it('returnerer formatert mobiltelefon basert på første siffer', () => {
-    const telefonnummer = '90000000';
+it('returnerer formatert 800-telefonnummer basert på tre første siffer', () => {
+    const telefonnummer = '80000000';
 
     const formatertTelefonnummer = formaterTelefonnummer(telefonnummer);
 
-    expect(formatertTelefonnummer).toEqual('900 00 000');
+    expect(formatertTelefonnummer).toEqual('800 00 000');
 });
 
 it('returnerer formatert hustelefon basert på første siffer', () => {
