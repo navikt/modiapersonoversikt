@@ -135,8 +135,8 @@ function SendNyMeldingContainer(props: Props) {
             enhet: valgtEnhet,
             fritekst: state.tekst
         };
-
-        if (MeldingValidator.erGyldigReferat(state) && state.tema) {
+        const tema = state.tema;
+        if (MeldingValidator.erGyldigReferat(state) && tema) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
             const request: SendMeldingRequest = {
                 ...commonPayload,
@@ -150,9 +150,15 @@ function SendNyMeldingContainer(props: Props) {
                         traad: traad
                     };
                     callback();
+                    const referatRequest: SendReferatRequest = {
+                        enhet: valgtEnhet,
+                        fritekst: request.fritekst,
+                        temagruppe: tema,
+                        meldingstype: Meldingstype.SAMTALEREFERAT_OPPMOTE
+                    };
                     setSendNyMeldingStatus({
                         type: SendNyMeldingStatus.REFERAT_SENDT,
-                        request: {} as SendReferatRequest,
+                        request: referatRequest,
                         kvitteringNyMelding
                     });
                 })
