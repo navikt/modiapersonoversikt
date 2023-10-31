@@ -25,10 +25,8 @@ function onDatoChange(props: Props, dato: Partial<Periode>) {
     });
 }
 
-const tidligsteDato = dayjs().subtract(3, 'years').startOf('year');
 const senesteDato: Dayjs = dayjs();
 
-const isoTidligsteDato = tidligsteDato.format(ISO_DATE_STRING_FORMAT);
 const isoSenesteDato = senesteDato.format(ISO_DATE_STRING_FORMAT);
 
 const periodeValidering = [
@@ -55,12 +53,6 @@ const periodeValidering = [
             return til.isAfter(senesteDato);
         },
         feilmelding: `Du kan ikke velge dato etter ${senesteDato.format(INPUT_DATE_STRING_FORMAT)}`
-    },
-    {
-        erUgyldig(fra: Dayjs, til: Dayjs) {
-            return fra.isBefore(tidligsteDato);
-        },
-        feilmelding: `Du kan ikke velge en dato før ${tidligsteDato.format(INPUT_DATE_STRING_FORMAT)}`
     }
 ];
 
@@ -81,7 +73,6 @@ function EgendefinertDatoInputs(props: Props) {
     const til = props.filter.periode.egendefinertPeriode.til;
     const periodeFeilmelding = getDatoFeilmelding(fra, til);
     const avgrensninger: DatepickerLimitations = {
-        minDate: isoTidligsteDato,
         maxDate: isoSenesteDato
     };
 
