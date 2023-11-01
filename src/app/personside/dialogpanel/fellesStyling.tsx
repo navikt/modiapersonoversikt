@@ -99,14 +99,12 @@ export function DialogpanelKvittering(props: {
                     </ErrorBoundary>
                 )}
                 <ErrorBoundary boundaryName="Sendt melding preview">
-                    {props.traad && (
-                        <Preview
-                            fritekst={props.fritekst}
-                            tittel={traadstittel(props.traad)}
-                            meldingstatus={props.meldingstatus}
-                            traad={props.traad}
-                        />
-                    )}
+                    <Preview
+                        fritekst={props.fritekst}
+                        tittel={props.traad ? traadstittel(props.traad) : props.tittel}
+                        meldingstatus={props.meldingstatus}
+                        traad={props.traad}
+                    />
                 </ErrorBoundary>
                 {props.meldingstatus !== SendNyMeldingStatus.ERROR && (
                     <ErrorBoundary boundaryName="Sendt melding verktøylinje">
@@ -114,7 +112,7 @@ export function DialogpanelKvittering(props: {
                     </ErrorBoundary>
                 )}
                 <KnappBase type="standard" onClick={props.lukk}>
-                    Start ny dialog
+                    {props.meldingstatus !== SendNyMeldingStatus.ERROR ? 'Start ny dialog' : 'Gå tilbake'}
                 </KnappBase>
                 <GaaTilNesteOppgaveKnapp lukk={props.lukk} />
             </DialogpanelKvitteringStyling>
