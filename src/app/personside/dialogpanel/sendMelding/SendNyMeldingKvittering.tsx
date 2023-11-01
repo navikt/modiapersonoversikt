@@ -29,7 +29,7 @@ export function SamtaleSendtKvittering(props: { kvitteringNyMelding: KvitteringN
 export function MeldingSendtFeilet(props: { fritekst: string; lukk: () => void }) {
     return (
         <DialogpanelKvittering
-            tittel="Melding ble sendt, men feil i baksystem"
+            tittel="Meldingen ble ikke sendt"
             fritekst={props.fritekst}
             lukk={props.lukk}
             meldingstatus={SendNyMeldingStatus.ERROR}
