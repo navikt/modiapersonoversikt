@@ -68,7 +68,7 @@ function getDatoFeilmelding(fra: string, til: string) {
     return null;
 }
 
-function EgendefinertDatoInputs(props: Props) {
+function NyEgendefinertDatoInputs(props: Props) {
     const fra = props.filter.periode.egendefinertPeriode.fra;
     const til = props.filter.periode.egendefinertPeriode.til;
     const periodeFeilmelding = getDatoFeilmelding(fra, til);
@@ -123,4 +123,4 @@ function EgendefinertDatoInputs(props: Props) {
     );
 }
 
-export default EgendefinertDatoInputs;
+export default NyEgendefinertDatoInputs;
