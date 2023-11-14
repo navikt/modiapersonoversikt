@@ -28,9 +28,10 @@ const UtbetalingerStyle = styled.div`
 `;
 
 const FiltreringSection = styled.section`
+    height: fit-content;
     width: 100%;
     @media (min-width: ${theme.media.utbetalinger.minWidth}) {
-        width: 19.5rem;
+        width: 22.5rem;
     }
 `;
 
