@@ -41,6 +41,7 @@ export class WebWorkerCommunicator implements IWebWorkerCom {
                 if (!this.refreshToken) {
                     throw new Error('WebWorker was not initialized before being called');
                 }
+                console.log(new Date().valueOf(), 'Refresh token message');
                 this.refreshToken();
                 return;
             }
@@ -48,6 +49,7 @@ export class WebWorkerCommunicator implements IWebWorkerCom {
                 if (!this.onLoginStateUpdate) {
                     throw new Error('WebWorker was not initialized before being called');
                 }
+                console.log(new Date().valueOf(), 'Login state update');
                 this.onLoginStateUpdate({ isLoggedIn: payload });
                 return;
             }

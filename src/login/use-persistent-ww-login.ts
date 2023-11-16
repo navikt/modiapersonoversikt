@@ -4,12 +4,11 @@ import {
     ErrorReason,
     INVALID_EXPIRATION_DATE,
     PersistentLoginState
-} from './use-persistent-login';
+} from '../utils/hooks/use-persistent-login';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
-import { FetchError, get } from '../../api/api';
-import { apiBaseUri } from '../../api/config';
-import { IWebWorkerCom, NoWorkerCommunicator, WebWorkerCommunicator } from '../../login/WebWorkerCommunicator';
-import { META_URL } from '../../login/metaUrl';
+import { FetchError, get } from '../api/api';
+import { apiBaseUri } from '../api/config';
+import { persistentLoginWebworkerFactory } from './persistentLoginWebWorkerFactory';
 
 const authResource = {
     useFetch(): UseQueryResult<AuthIntropectionDTO, FetchError> {
@@ -72,19 +71,4 @@ export const usePersistentWWLogin = (): PersistentLoginState => {
         }),
         [isLoggedIn, errorStatus]
     );
-};
-
-const persistentLoginWebworkerFactory = (): IWebWorkerCom => {
-    if (!window.Worker) {
-        console.warn('Webworker is not supported by the browser. Will fall back to browser intervals');
-        return new NoWorkerCommunicator();
-    }
-    let worker: Worker;
-    try {
-        worker = new window.Worker(new URL('../loginWebWorker', META_URL));
-        return new WebWorkerCommunicator(worker);
-    } catch (e) {
-        console.log(e);
-        return new NoWorkerCommunicator();
-    }
 };

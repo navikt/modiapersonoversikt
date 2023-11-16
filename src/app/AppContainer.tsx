@@ -19,7 +19,7 @@ import VelgEnhet from './VelgEnhet';
 import LoggetUtModal from './LoggetUtModal';
 import { useValgtenhet, ValgtEnhetProvider } from '../context/valgtenhet-state';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { usePersistentWWLogin } from '../utils/hooks/use-persistent-ww-login';
+import { usePersistentWWLogin } from '../login/use-persistent-ww-login';
 import usePersistentLogin from '../utils/hooks/use-persistent-login';
 import useFeatureToggle from '../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
