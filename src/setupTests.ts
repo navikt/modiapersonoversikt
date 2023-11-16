@@ -39,5 +39,9 @@ jest.mock('react-collapse', () => {
     };
 });
 
+jest.mock('./login/metaUrl.ts', () => ({
+    META_URL: 'https://mock.com'
+}));
+
 beforeEach(EnzymeContainer.beforeEachHandler);
 afterEach(EnzymeContainer.afterEachHandler);

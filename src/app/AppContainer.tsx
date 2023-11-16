@@ -16,10 +16,13 @@ import Routing from './Routing';
 import styled from 'styled-components';
 import { useOnMount } from '../utils/customHooks';
 import VelgEnhet from './VelgEnhet';
-import usePersistentLogin from '../utils/hooks/use-persistent-login';
 import LoggetUtModal from './LoggetUtModal';
 import { useValgtenhet, ValgtEnhetProvider } from '../context/valgtenhet-state';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { usePersistentWWLogin } from '../utils/hooks/use-persistent-ww-login';
+import usePersistentLogin from '../utils/hooks/use-persistent-login';
+import useFeatureToggle from '../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -42,8 +45,15 @@ const ContentStyle = styled.div`
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
 function App() {
-    const loginState = usePersistentLogin();
+    const loginStateOld = usePersistentLogin();
+    const loginStateNew = usePersistentWWLogin();
+    const { isOn: newLoginStateToggleIsOn } = useFeatureToggle(FeatureToggles.BrukWebworkerPaaInnLogging);
     const valgtEnhet = useValgtenhet().enhetId;
+
+    let loginState = loginStateOld;
+    if (newLoginStateToggleIsOn) {
+        loginState = loginStateNew;
+    }
 
     if (!valgtEnhet) {
         /**
