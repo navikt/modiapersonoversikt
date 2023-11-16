@@ -9,6 +9,7 @@ import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { FetchError, get } from '../../api/api';
 import { apiBaseUri } from '../../api/config';
 import { IWebWorkerCom, NoWorkerCommunicator, WebWorkerCommunicator } from '../../login/WebWorkerCommunicator';
+import { META_URL } from '../../login/metaUrl';
 
 const authResource = {
     useFetch(): UseQueryResult<AuthIntropectionDTO, FetchError> {
@@ -78,5 +79,12 @@ const persistentLoginWebworkerFactory = (): IWebWorkerCom => {
         console.warn('Webworker is not supported by the browser. Will fall back to browser intervals');
         return new NoWorkerCommunicator();
     }
-    return new WebWorkerCommunicator();
+    let worker: Worker;
+    try {
+        worker = new window.Worker(new URL('../loginWebWorker', META_URL));
+        return new WebWorkerCommunicator(worker);
+    } catch (e) {
+        console.log(e);
+        return new NoWorkerCommunicator();
+    }
 };

@@ -1,6 +1,5 @@
 import { AuthIntropectionDTO } from '../utils/hooks/use-persistent-login';
 import { LoginStateManager } from './LoginStateManager';
-import { META_URL } from './metaUrl';
 import { WWMessage, OutgoingMessageType, IncommingMessageType } from './types';
 
 export interface IWebWorkerCom {
@@ -15,8 +14,8 @@ export class WebWorkerCommunicator implements IWebWorkerCom {
     refreshToken?: () => void;
     onLoginStateUpdate?: (props: { isLoggedIn: boolean }) => void;
 
-    constructor() {
-        this.worker = new window.Worker(new URL('../loginWebWorker', META_URL));
+    constructor(worker: Worker) {
+        this.worker = worker;
     }
 
     initialize = (refreshToken: () => void, onLoginStateUpdate: (props: { isLoggedIn: boolean }) => void) => {
