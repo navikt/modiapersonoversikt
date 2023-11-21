@@ -7,6 +7,7 @@ import 'dayjs/locale/nb';
 import 'jest-enzyme';
 import 'jest-styled-components';
 import './extra-polyfills';
+import { IWebWorkerCom } from './login/WebWorkerCommunicator';
 dayjs.locale('nb');
 
 configure({ adapter: new EnzymeReactAdapter17() });
@@ -31,6 +32,8 @@ window.matchMedia = (query: string) => {
     return querylist as unknown as MediaQueryList;
 };
 
+global['Worker'] = undefined;
+
 // Mock react collapse sin UnmountClosed
 jest.mock('react-collapse', () => {
     return {
@@ -38,6 +41,21 @@ jest.mock('react-collapse', () => {
         UnmountClosed: (props) => props.children
     };
 });
+
+/**
+ * Jest har ikke støtte for import.meta som må brukes for å kunne lage WebWorker med Webpack p.t.
+ * I framtiden burde man fjerne denne mocken når man skriver seg bort fra legacy pakker.
+ */
+
+const workerMock: IWebWorkerCom = {
+    initialize: () => null,
+    onAuthChange: () => null,
+    onUserActive: () => null,
+    stop: () => null
+};
+jest.mock('./login/persistentLoginWebWorkerFactory.ts', () => ({
+    persistentLoginWebworkerFactory: () => workerMock
+}));
 
 beforeEach(EnzymeContainer.beforeEachHandler);
 afterEach(EnzymeContainer.afterEachHandler);
