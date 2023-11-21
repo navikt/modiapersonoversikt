@@ -4,7 +4,6 @@ import CoinsIkon from '../../../../../../svg/Coins';
 import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
 import { FormatertKontonummer } from '../../../../../../utils/FormatertKontonummer';
 import { Bankkonto as BankkontoInterface } from '../../../PersondataDomain';
-import KontoKildeekst from './KontoKildeTekst';
 import KontoEndringsTekst from './KontoEndringstekst';
 
 interface Props {
@@ -40,7 +39,6 @@ function Bankkonto({ harFeilendeSystem, bankkonto }: Props) {
                 <FormatertKontonummer kontonummer={bankkonto.kontonummer} />
             </Normaltekst>
             <KontoEndringsTekst sistEndret={bankkonto.sistEndret} />
-            <KontoKildeekst kilde={bankkonto.kilde} />
         </VisittkortElement>
     );
 }

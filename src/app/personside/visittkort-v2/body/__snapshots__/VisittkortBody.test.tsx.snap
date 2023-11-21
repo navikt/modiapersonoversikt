@@ -732,16 +732,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           >
             Endret 
             15.03.2006
-          </p>
-        </div>
-        <div
-          className="c7"
-        >
-          <p
-            className="typo-undertekst"
-          >
-            Kilde 
-            Kontoregister
+             
           </p>
         </div>
       </div>
