@@ -431,6 +431,7 @@ export function lagPerson(fnr: string): Person {
         bankkonto: {
             kontonummer: '12345678910',
             banknavn: 'DNB ASA',
+            kilde: '',
             sistEndret: {
                 ident: '1010800 BD03',
                 tidspunkt: '2006-03-15T00:00:00' as LocalDateTime,
@@ -451,7 +452,8 @@ export function lagPerson(fnr: string): Person {
             valuta: {
                 kode: 'NOK',
                 beskrivelse: 'Norske kroner'
-            }
+            },
+            opprettetAv: '1010800 BD03'
         },
         forelderBarnRelasjon: forelderBarnMock
     };

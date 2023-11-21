@@ -1,26 +1,20 @@
 import * as React from 'react';
-import EtikettGraa from '../../../../../components/EtikettGraa';
-import { formaterDato } from '../../../../../utils/string-utils';
-import { SistEndret } from '../../PersondataDomain';
+import EtikettGraa from '../../../../../../components/EtikettGraa';
+import { formaterDato } from '../../../../../../utils/string-utils';
+import { SistEndret } from '../../../PersondataDomain';
 
 interface Props {
     sistEndret: SistEndret | null;
 }
-function EndringstekstTPS({ sistEndret }: Props) {
+function KontoEndringsTekst({ sistEndret }: Props) {
     if (!sistEndret) {
         return null;
     }
 
     const formatertdato = formaterDato(new Date(sistEndret.tidspunkt));
-    const endretAv = endretAvTekst(sistEndret.ident);
-
-    return (
-        <EtikettGraa>
-            Endret {formatertdato} {endretAv}
-        </EtikettGraa>
-    );
+    return <EtikettGraa>Endret {formatertdato} </EtikettGraa>;
 }
-export default EndringstekstTPS;
+export default KontoEndringsTekst;
 
 const FOLKEREGISTERET = 'SKD';
 
