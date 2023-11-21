@@ -20,10 +20,6 @@ import dayjs from 'dayjs';
 import { ISO_DATE_STRING_FORMAT } from 'nav-datovelger/lib/utils/dateFormatUtils';
 import MediaQueryAwareRenderer from '../../../../../components/MediaQueryAwareRenderer';
 import utbetalingerResource from '../../../../../rest/resources/utbetalingerResource';
-import IfFeatureToggleOn from '../../../../../components/featureToggle/IfFeatureToggleOn';
-import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
-import IfFeatureToggleOff from '../../../../../components/featureToggle/IfFeatureToggleOff';
-import NyEgendefinertDatoInputs from './NyEgendefinertDatoInputs';
 
 const FiltreringsPanel = styled(Panel)`
     padding: ${pxToRem(15)};
@@ -155,14 +151,7 @@ function Filtrering() {
                 {radios}
             </FieldSet>
             {filter.periode.radioValg === PeriodeValg.EGENDEFINERT && (
-                <>
-                    <IfFeatureToggleOn toggleID={FeatureToggles.BrukUtvidetUtbetalingsSporring}>
-                        <NyEgendefinertDatoInputs filter={filter} updateFilter={updateFilter} />
-                    </IfFeatureToggleOn>
-                    <IfFeatureToggleOff toggleID={FeatureToggles.BrukUtvidetUtbetalingsSporring}>
-                        <EgendefinertDatoInputs filter={filter} updateFilter={updateFilter} />
-                    </IfFeatureToggleOff>
-                </>
+                <EgendefinertDatoInputs filter={filter} updateFilter={updateFilter} />
             )}
             <KnappWrapper>
                 <Knapp onClick={reloadUtbetalinger} spinner={visSpinner} htmlType="button">

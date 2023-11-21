@@ -150,12 +150,14 @@ export interface OrganisasjonSomAdressat {
 export interface Bankkonto {
     kontonummer: string;
     banknavn: string | null;
+    kilde: string | null;
     sistEndret: SistEndret | null;
     bankkode: string | null;
     swift: string | null;
     landkode: KodeBeskrivelse<string> | null;
     adresse: Adresse | null;
     valuta: KodeBeskrivelse<string> | null;
+    opprettetAv: string | null;
 }
 
 export interface TilrettelagtKommunikasjon {

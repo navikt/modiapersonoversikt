@@ -455,6 +455,7 @@ export const aremark: Person = {
     bankkonto: {
         kontonummer: '12345678900',
         banknavn: 'DNB ASA',
+        kilde: 'Kontoregister',
         sistEndret: {
             ident: '1010800 BD03',
             tidspunkt: '2006-03-15T00:00:00' as LocalDateTime,
@@ -475,7 +476,8 @@ export const aremark: Person = {
         valuta: {
             kode: 'NOK',
             beskrivelse: 'Norske kroner'
-        }
+        },
+        opprettetAv: '1010800 BD03'
     },
     forelderBarnRelasjon: hentBarnAremark()
 };
