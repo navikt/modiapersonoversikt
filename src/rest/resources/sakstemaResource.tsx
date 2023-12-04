@@ -58,7 +58,7 @@ const resource = {
         let fetchFn = () => get(url(fnr, enhet));
 
         if (isOn) {
-            fetchFn = () => post(urlUtenFnrIPath(enhet), { fnr });
+            fetchFn = () => post(urlUtenFnrIPath(enhet), fnr);
         }
 
         return useQuery(queryKey(fnr, enhet), fetchFn);
@@ -77,7 +77,7 @@ export const sakstemaResourceV2 = {
         let fetchFn = () => get(urlV2(fnr, enhet));
 
         if (isOn) {
-            fetchFn = () => post(urlUtenFnrIPathV2(enhet), { fnr });
+            fetchFn = () => post(urlUtenFnrIPathV2(enhet), fnr);
         }
 
         return useQuery(queryKeyV2(fnr, enhet), fetchFn);
