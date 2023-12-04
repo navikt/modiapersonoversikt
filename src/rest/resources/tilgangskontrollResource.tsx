@@ -6,8 +6,10 @@ import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner'
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get } from '../../api/api';
+import { FetchError, get, post } from '../../api/api';
 import { useValgtenhet } from '../../context/valgtenhet-state';
+import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 const defaults: DefaultConfig = {
     ifPending: BigCenteredLazySpinner,
@@ -49,11 +51,17 @@ function url(fnr: string | undefined, enhet: string | undefined) {
     return `${apiBaseUri}/tilgang${params}`;
 }
 
+function urlV2(enhet: string | undefined) {
+    const params = enhet ? `?enhet=${enhet}` : '';
+    return `${apiBaseUri}/tilgang${params}`;
+}
+
 const resource = {
     useFetch(): UseQueryResult<TilgangDTO, FetchError> {
         const fnr = useGjeldendeBruker();
         const enhet = useValgtenhet().enhetId;
-        return useQuery(queryKey(fnr), () => get(url(fnr, enhet)));
+        const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
+        return useQuery(queryKey(fnr), () => (isOn ? post(urlV2(enhet), fnr) : get(url(fnr, enhet))));
     },
     useRenderer(renderer: RendererOrConfig<TilgangDTO>) {
         const response = this.useFetch();
