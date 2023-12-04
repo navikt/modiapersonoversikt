@@ -88,8 +88,8 @@ function setupTilgangskontroll(mock: FetchMock) {
 }
 
 function setupPersondataMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/v2/person/:fodselsnummer',
+    mock.post(
+        apiBaseUri + '/v2/person',
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
@@ -99,8 +99,8 @@ function setupPersondataMock(mock: FetchMock) {
 }
 
 function setupAktorIdMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/v2/person/:fodselsnummer/aktorid',
+    mock.post(
+        apiBaseUri + '/v2/person/aktorid',
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
@@ -180,8 +180,8 @@ function setupPleiepengerMock(mock: FetchMock) {
 }
 
 function setupOppfolgingMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/oppfolging/:fodselsnummer',
+    mock.post(
+        apiBaseUri + '/oppfolging',
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
@@ -191,8 +191,8 @@ function setupOppfolgingMock(mock: FetchMock) {
 }
 
 function setupYtelserOgKontrakter(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/oppfolging/:fodselsnummer/ytelserogkontrakter',
+    mock.post(
+        apiBaseUri + '/oppfolging/ytelserogkontrakter',
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
@@ -255,8 +255,8 @@ function setupPersonsokMock(mock: FetchMock) {
 }
 
 function setupTildelteOppgaverMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/oppgaver/tildelt/:fnr',
+    mock.post(
+        apiBaseUri + '/oppgaver/tildelt',
         withDelayedResponse(randomDelay(), STATUS_OK, () => oppgaveBackendMock.getTildelteOppgaver())
     );
 }
