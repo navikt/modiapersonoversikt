@@ -101,6 +101,12 @@ export interface ForsettDialogRequest {
     oppgaveId?: string;
 }
 
+export interface OpprettHenvendelseRequestV2 {
+    fnr: string;
+    enhet: string;
+    traadId: string;
+}
+
 export interface OpprettHenvendelseRequest {
     enhet: string;
     traadId: string;
@@ -112,6 +118,34 @@ export interface OpprettHenvendelseResponse {
 }
 
 export interface SendMeldingRequest {
+    traadId?: string;
+    traadType: TraadType;
+    enhet: string;
+    fritekst: string;
+    sak?: JournalforingsSak;
+    temagruppe?: Temagruppe;
+    erOppgaveTilknyttetAnsatt?: boolean;
+    behandlingsId?: string;
+    oppgaveId?: string;
+    avsluttet?: boolean;
+}
+
+export interface SendMeldingRequestV2 {
+    fnr: string;
+    traadId?: string;
+    traadType: TraadType;
+    enhet: string;
+    fritekst: string;
+    sak?: JournalforingsSak;
+    temagruppe?: Temagruppe;
+    erOppgaveTilknyttetAnsatt?: boolean;
+    behandlingsId?: string;
+    oppgaveId?: string;
+    avsluttet?: boolean;
+}
+
+export interface SendMeldingRequestV2 {
+    fnr: string;
     traadId?: string;
     traadType: TraadType;
     enhet: string;

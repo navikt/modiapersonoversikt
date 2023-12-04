@@ -28,8 +28,8 @@ const fodselsNummerErGyldigStatus = (req: MockRequest) =>
     erGyldigFødselsnummer(req.pathParams.fodselsnummer) ? STATUS_OK() : STATUS_BAD_REQUEST();
 
 function setupMeldingerMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/dialog/:fodselsnummer/meldinger',
+    mock.post(
+        apiBaseUri + '/dialog/meldinger',
         verify(
             harEnhetIdSomQueryParam,
             withDelayedResponse(
@@ -68,7 +68,7 @@ function simulateSf(trader: Traad[]): Traad[] {
 
 function setupOpprettHenvendelseMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/dialog/:fnr/fortsett/opprett',
+        apiBaseUri + '/dialog/fortsett/opprett',
         withDelayedResponse(randomDelay(), STATUS_OK, (request) =>
             meldingerBackendMock.opprettHenvendelse(request.body)
         )
@@ -77,7 +77,7 @@ function setupOpprettHenvendelseMock(mock: FetchMock) {
 
 function setupSendMeldingMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/dialog/:fodselsnummer/sendmelding',
+        apiBaseUri + '/dialog/sendmelding',
         withDelayedResponse(randomDelay() * 2, STATUS_OK, (request) => {
             return meldingerBackendMock.sendMelding(request.body);
         })
