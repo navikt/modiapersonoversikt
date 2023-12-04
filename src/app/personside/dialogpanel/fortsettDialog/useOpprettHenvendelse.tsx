@@ -38,10 +38,9 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
     const tildelteoppgaver = tildelteoppgaverResource.useFetch();
     const dispatch = useDispatch();
     const fnr = useFodselsnummer();
+    const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
     useOnMount(function getBehandlingsId() {
-        const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
-
         const opprettHenvendelseRequest: OpprettHenvendelseRequest = { enhet: valgtEnhet, traadId: traad.traadId };
         const opprettHenvendelseRequestV2: OpprettHenvendelseRequestV2 = {
             fnr,
