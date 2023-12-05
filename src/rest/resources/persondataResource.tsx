@@ -21,7 +21,7 @@ const resource = {
     useFetch(): UseQueryResult<Persondata, FetchError> {
         const fnr = useFodselsnummer();
         const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
-        return useQuery(queryKey(fnr), () => (isOn ? post(urlUtenFnrIPath(), fnr) : get(url(fnr))));
+        return useQuery(queryKey(fnr), () => (isOn ? post(urlUtenFnrIPath(), { fnr }) : get(url(fnr))));
     }
 };
 export default resource;

@@ -31,7 +31,7 @@ const resource = {
         const fnr = useFodselsnummer();
         const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
-        return useQuery(queryKey(fnr), () => (isOn ? post(urlUtenFnrIPath(), fnr) : get(url(fnr))));
+        return useQuery(queryKey(fnr), () => (isOn ? post(urlUtenFnrIPath(), { fnr }) : get(url(fnr))));
     },
     useRenderer(renderer: RendererOrConfig<Oppgave[]>) {
         const response = this.useFetch();

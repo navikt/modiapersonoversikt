@@ -37,7 +37,7 @@ const resource = {
     useFetch(): UseQueryResult<DetaljertOppfolging, FetchError> {
         const [fnr, periode] = useReduxData();
         const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
-        return useQuery(queryKey(fnr), () => (isOn ? post(urlUtenFnrIPath(periode), fnr) : get(url(fnr, periode))));
+        return useQuery(queryKey(fnr), () => (isOn ? post(urlUtenFnrIPath(periode), { fnr }) : get(url(fnr, periode))));
     },
     useRenderer(renderer: RendererOrConfig<DetaljertOppfolging>) {
         const response = this.useFetch();

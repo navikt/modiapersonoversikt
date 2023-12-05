@@ -22,7 +22,7 @@ const resource = {
         const fnr = useFodselsnummer();
         const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
-        return useQuery(queryKey(fnr), () => (isOn ? post(urlV2(), fnr) : get(url(fnr))));
+        return useQuery(queryKey(fnr), () => (isOn ? post(urlV2(), { fnr }) : get(url(fnr))));
     }
 };
 export default resource;

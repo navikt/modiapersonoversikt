@@ -19,7 +19,7 @@ const resource = {
     useFetch(fnr: string): UseQueryResult<string | null, FetchError> {
         const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
-        return useQuery(queryKey(fnr), () => (isOn ? post(urlUtenFnrIPath(), fnr) : get(url(fnr))));
+        return useQuery(queryKey(fnr), () => (isOn ? post(urlUtenFnrIPath(), { fnr }) : get(url(fnr))));
     }
 };
 export default resource;

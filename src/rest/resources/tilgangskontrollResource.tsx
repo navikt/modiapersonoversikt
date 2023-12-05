@@ -61,7 +61,7 @@ const resource = {
         const fnr = useGjeldendeBruker();
         const enhet = useValgtenhet().enhetId;
         const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
-        return useQuery(queryKey(fnr), () => (isOn ? post(urlV2(enhet), fnr) : get(url(fnr, enhet))));
+        return useQuery(queryKey(fnr), () => (isOn ? post(urlV2(enhet), { fnr }) : get(url(fnr, enhet))));
     },
     useRenderer(renderer: RendererOrConfig<TilgangDTO>) {
         const response = this.useFetch();

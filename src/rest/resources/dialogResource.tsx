@@ -40,7 +40,7 @@ export const resource = {
         const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
         return useQuery(this.queryKey(fnr, enhetId), () =>
-            isOn ? post(urlUtenFnrIPath(enhetId), fnr) : get(url(fnr, enhetId))
+            isOn ? post(urlUtenFnrIPath(enhetId), { fnr }) : get(url(fnr, enhetId))
         );
     },
     useRenderer(renderer: RendererOrConfig<Traad[]>) {

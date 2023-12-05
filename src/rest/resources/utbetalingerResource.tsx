@@ -57,7 +57,9 @@ const resource = {
 
         const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
-        return useQuery(queryKey(fnr, limit30Dager), () => (isOn ? post(urlV2(periode), fnr) : get(url(fnr, periode))));
+        return useQuery(queryKey(fnr, limit30Dager), () =>
+            isOn ? post(urlV2(periode), { fnr }) : get(url(fnr, periode))
+        );
     },
     useOversiktRenderer(renderer: RendererOrConfig<UtbetalingerResponse>) {
         const response = this.useFetch(true);
