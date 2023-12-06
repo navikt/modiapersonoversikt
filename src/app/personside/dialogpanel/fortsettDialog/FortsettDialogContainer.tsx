@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormEvent, useRef, useState, useCallback, useMemo } from 'react';
 import { FortsettDialogValidator } from './validatorer';
-import { SendMeldingRequest, Traad, TraadType } from '../../../../models/meldinger/meldinger';
+import { SendMeldingRequest, SendMeldingRequestV2, Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { useFodselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
@@ -32,6 +32,8 @@ import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
 import FortsettDialog from './FortsettDialog';
+import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     traad: Traad;
@@ -59,6 +61,7 @@ export function finnPlukketOppgaveForTraad(
 }
 
 function FortsettDialogContainer(props: Props) {
+    const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
     const queryClient = useQueryClient();
     const initialState = useMemo(
         () => ({
@@ -139,17 +142,24 @@ function FortsettDialogContainer(props: Props) {
             oppgaveId: oppgaveId,
             avsluttet: state.avsluttet
         };
+        const url = isOn ? `${apiBaseUri}/dialog/sendmelding` : `${apiBaseUri}/dialog/${fnr}/sendmelding`;
+
         if (FortsettDialogValidator.erGyldigSamtalereferat(state)) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
             const request: SendMeldingRequest = {
                 ...commonPayload,
                 erOppgaveTilknyttetAnsatt: true
             };
+            const requestV2: SendMeldingRequestV2 = {
+                ...commonPayload,
+                fnr,
+                erOppgaveTilknyttetAnsatt: true
+            };
             const kvitteringsData: KvitteringsData = {
                 fritekst: request.fritekst,
                 traad: props.traad
             };
-            post(`${apiBaseUri}/dialog/${fnr}/sendmelding`, request, 'Send-Svar')
+            post(url, isOn ? requestV2 : request, 'Send-Svar')
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
@@ -175,11 +185,17 @@ function FortsettDialogContainer(props: Props) {
                 erOppgaveTilknyttetAnsatt: state.avsluttet ? false : erOppgaveTilknyttetAnsatt,
                 sak: state.sak ? state.sak : undefined
             };
+            const requestV2: SendMeldingRequestV2 = {
+                ...commonPayload,
+                fnr,
+                erOppgaveTilknyttetAnsatt: state.avsluttet ? false : erOppgaveTilknyttetAnsatt,
+                sak: state.sak ? state.sak : undefined
+            };
             const kvitteringsData: KvitteringsData = {
                 fritekst: request.fritekst,
                 traad: props.traad
             };
-            post(`${apiBaseUri}/dialog/${fnr}/sendmelding`, request, 'Svar-Med-Spørsmål')
+            post(url, isOn ? requestV2 : request, 'Svar-Med-Spørsmål')
                 .then(() => {
                     callback();
                     queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
