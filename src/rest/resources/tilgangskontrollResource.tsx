@@ -53,7 +53,7 @@ function url(fnr: string | undefined, enhet: string | undefined) {
 
 function urlV2(enhet: string | undefined) {
     const params = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/tilgang${params}`;
+    return `${apiBaseUri}/v2/tilgang${params}`;
 }
 
 const resource = {

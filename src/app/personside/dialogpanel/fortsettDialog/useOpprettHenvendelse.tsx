@@ -49,7 +49,7 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
         };
 
         const request = isOn ? opprettHenvendelseRequestV2 : opprettHenvendelseRequest;
-        const url = isOn ? `${apiBaseUri}/dialog/fortsett/opprett` : `${apiBaseUri}/dialog/${fnr}/fortsett/opprett`;
+        const url = isOn ? `${apiBaseUri}/v2/dialog/fortsett/opprett` : `${apiBaseUri}/dialog/${fnr}/fortsett/opprett`;
         postWithConflictVerification(
             url,
             request,

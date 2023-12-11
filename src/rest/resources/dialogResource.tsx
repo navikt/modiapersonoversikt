@@ -18,7 +18,7 @@ function url(fnr: string, enhet: string | undefined): string {
 
 function urlUtenFnrIPath(enhet?: string) {
     const header = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/dialog/meldinger/${header}`;
+    return `${apiBaseUri}/v2/dialog/meldinger/${header}`;
 }
 
 const defaults: DefaultConfig = {

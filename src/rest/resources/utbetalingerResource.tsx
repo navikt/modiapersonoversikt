@@ -28,7 +28,7 @@ function url(fnr: string, periode: Periode<string>): string {
 }
 
 function urlV2(periode: Periode<string>): string {
-    return `${apiBaseUri}/utbetaling?startDato=${periode.fra}&sluttDato=${periode.til}`;
+    return `${apiBaseUri}/v2/utbetaling?startDato=${periode.fra}&sluttDato=${periode.til}`;
 }
 
 const defaults: DefaultConfig = {

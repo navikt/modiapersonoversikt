@@ -41,7 +41,7 @@ function urlUtenFnrIPath(enhet?: string) {
 
 function urlUtenFnrIPathV2(enhet?: string) {
     const header = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/saker/v2/sakstema/${header}`;
+    return `${apiBaseUri}/v2/saker/v2/sakstema/${header}`;
 }
 
 function useFnrEnhet(): [string, string | undefined] {

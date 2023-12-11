@@ -125,7 +125,7 @@ function SendNyMeldingContainer(props: Props) {
             enhet: valgtEnhet,
             fritekst: state.tekst
         };
-        const url = isOn ? `${apiBaseUri}/dialog/sendmelding` : `${apiBaseUri}/dialog/${fnr}/sendmelding`;
+        const url = isOn ? `${apiBaseUri}/v2/dialog/sendmelding` : `${apiBaseUri}/dialog/${fnr}/sendmelding`;
 
         if (MeldingValidator.erGyldigReferat(state) && state.tema) {
             const temagruppe = state.tema;

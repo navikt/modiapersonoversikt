@@ -14,15 +14,15 @@ function url(fnr: string): string {
     return `${apiBaseUri}/v2/varsler/${fnr}`;
 }
 
-function urlV2(): string {
-    return `${apiBaseUri}/v2/varsler`;
+function urlV3(): string {
+    return `${apiBaseUri}/v3/varsler`;
 }
 const resource = {
     useFetch(): UseQueryResult<VarslerResult, FetchError> {
         const fnr = useFodselsnummer();
         const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
-        return useQuery(queryKey(fnr), () => (isOn ? post(urlV2(), { fnr }) : get(url(fnr))));
+        return useQuery(queryKey(fnr), () => (isOn ? post(urlV3(), { fnr }) : get(url(fnr))));
     }
 };
 export default resource;

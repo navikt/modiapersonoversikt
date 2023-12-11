@@ -21,7 +21,7 @@ function url(fnr: string, periode: VisOppfolgingFraTilDato): string {
 
 function urlUtenFnrIPath(periode: VisOppfolgingFraTilDato): string {
     const queryParams = `?startDato=${periode.fra}&sluttDato=${periode.til}`;
-    return `${apiBaseUri}/oppfolging/ytelserogkontrakter${queryParams}`;
+    return `${apiBaseUri}/v2/oppfolging/ytelserogkontrakter${queryParams}`;
 }
 
 const defaults: DefaultConfig = {

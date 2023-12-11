@@ -12,7 +12,7 @@ function url(fnr: String) {
 }
 
 function urlUtenFnrIPath() {
-    return `${apiBaseUri}/v2/person/aktorid`;
+    return `${apiBaseUri}/v3/person/aktorid`;
 }
 
 const resource = {

@@ -89,7 +89,7 @@ function setupTilgangskontroll(mock: FetchMock) {
 
 function setupPersondataMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/v2/person',
+        apiBaseUri + '/v3/person',
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
@@ -100,7 +100,7 @@ function setupPersondataMock(mock: FetchMock) {
 
 function setupAktorIdMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/v2/person/aktorid',
+        apiBaseUri + '/v3/person/aktorid',
         withDelayedResponse(
             randomDelay(),
             fodselsNummerErGyldigStatus,
@@ -126,6 +126,20 @@ function setupSaksoversiktMock(mock: FetchMock) {
 function setupSaksoversiktV2Mock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/saker/:fodselsnummer/v2/sakstema',
+        verify(
+            harEnhetIdSomQueryParam,
+            withDelayedResponse(
+                randomDelay(),
+                fodselsNummerErGyldigStatus,
+                mockGeneratorMedFodselsnummer(getMockSaksoversiktV2)
+            )
+        )
+    );
+}
+
+function setupSaksoversiktV3Mock(mock: FetchMock) {
+    mock.post(
+        apiBaseUri + '/v2/saker/v2/sakstema',
         verify(
             harEnhetIdSomQueryParam,
             withDelayedResponse(
@@ -351,6 +365,7 @@ setupPersondataMock(mock);
 setupTilgangskontroll(mock);
 setupSaksoversiktMock(mock);
 setupSaksoversiktV2Mock(mock);
+setupSaksoversiktV3Mock(mock);
 setupUtbetalingerMock(mock);
 setupSykepengerMock(mock);
 setupForeldrepengerMock(mock);

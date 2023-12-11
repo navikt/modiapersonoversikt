@@ -142,7 +142,7 @@ function FortsettDialogContainer(props: Props) {
             oppgaveId: oppgaveId,
             avsluttet: state.avsluttet
         };
-        const url = isOn ? `${apiBaseUri}/dialog/sendmelding` : `${apiBaseUri}/dialog/${fnr}/sendmelding`;
+        const url = isOn ? `${apiBaseUri}/v2/dialog/sendmelding` : `${apiBaseUri}/dialog/${fnr}/sendmelding`;
 
         if (FortsettDialogValidator.erGyldigSamtalereferat(state)) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });

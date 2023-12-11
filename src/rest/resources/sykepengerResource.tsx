@@ -14,7 +14,7 @@ function url(fnr: string): string {
 }
 
 function urlV2(): string {
-    return `${apiBaseUri}/ytelse/sykepenger`;
+    return `${apiBaseUri}/v2/ytelse/sykepenger`;
 }
 const resource = {
     useFetch(): UseQueryResult<SykepengerResponse, FetchError> {

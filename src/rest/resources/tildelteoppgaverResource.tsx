@@ -18,7 +18,7 @@ function url(fnr: string): string {
 }
 
 function urlUtenFnrIPath(): string {
-    return `${apiBaseUri}/oppgaver/tildelt`;
+    return `${apiBaseUri}/v2/oppgaver/tildelt`;
 }
 
 const defaults: DefaultConfig = {

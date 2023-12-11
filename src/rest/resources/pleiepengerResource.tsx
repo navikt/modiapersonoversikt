@@ -15,7 +15,7 @@ function url(fnr: string): string {
 }
 
 function urlV2(): string {
-    return `${apiBaseUri}/ytelse/pleiepenger`;
+    return `${apiBaseUri}/v2/ytelse/pleiepenger`;
 }
 
 const resource = {
