@@ -3,7 +3,7 @@ import { TraadType } from '../../../../models/meldinger/meldinger';
 
 export class MeldingValidator {
     public static tekst(state: SendNyMeldingState) {
-        return state.tekst.length <= tekstMaksLengde && state.tekst.length > 0;
+        return state.tekst.length <= tekstMaksLengde && state.tekst.length > 0 && this.inneholderTekst(state);
     }
     public static tema(state: SendNyMeldingState) {
         return state.tema !== undefined;
@@ -22,5 +22,10 @@ export class MeldingValidator {
     }
     public static erGyldigSamtale(state: SendNyMeldingState) {
         return this.erSamtale(state) && this.sak(state) && this.tekst(state);
+    }
+
+    private static inneholderTekst(state: SendNyMeldingState) {
+        const ikkeTekst = /\S/g
+        return !!state.tekst.match(ikkeTekst)
     }
 }
