@@ -149,7 +149,7 @@ function SendNyMelding(props: Props) {
                                 )}
                                 {state.avsluttet && (
                                     <StyledAlertStripeInfo>
-                                        Bruker kan ikke skrive mer i denne samtalen
+                                        Bruker får varsel, men kan ikke skrive mer i denne samtalen
                                     </StyledAlertStripeInfo>
                                 )}
                                 {!state.avsluttet && (
