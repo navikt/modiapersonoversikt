@@ -7,7 +7,9 @@ import { apiBaseUri } from '../../api/config';
 import { VisOppfolgingFraTilDato } from '../../redux/oppfolging/types';
 import { useAppState } from '../../utils/customHooks';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get } from '../../api/api';
+import { FetchError, get, post } from '../../api/api';
+import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 function queryKey(fnr: string): [string, string] {
     return ['oppfolging', fnr];
@@ -15,6 +17,11 @@ function queryKey(fnr: string): [string, string] {
 function url(fnr: string, periode: VisOppfolgingFraTilDato): string {
     const queryParams = `?startDato=${periode.fra}&sluttDato=${periode.til}`;
     return `${apiBaseUri}/oppfolging/${fnr}/ytelserogkontrakter${queryParams}`;
+}
+
+function urlUtenFnrIPath(periode: VisOppfolgingFraTilDato): string {
+    const queryParams = `?startDato=${periode.fra}&sluttDato=${periode.til}`;
+    return `${apiBaseUri}/v2/oppfolging/ytelserogkontrakter${queryParams}`;
 }
 
 const defaults: DefaultConfig = {
@@ -29,7 +36,8 @@ function useReduxData(): [string, VisOppfolgingFraTilDato] {
 const resource = {
     useFetch(): UseQueryResult<DetaljertOppfolging, FetchError> {
         const [fnr, periode] = useReduxData();
-        return useQuery(queryKey(fnr), () => get(url(fnr, periode)));
+        const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
+        return useQuery(queryKey(fnr), () => (isOn ? post(urlUtenFnrIPath(periode), { fnr }) : get(url(fnr, periode))));
     },
     useRenderer(renderer: RendererOrConfig<DetaljertOppfolging>) {
         const response = this.useFetch();
