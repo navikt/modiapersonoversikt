@@ -3,7 +3,6 @@ name: Build, push, and deploy
 on: [push]
 
 env:
-    IMAGE: ghcr.io/${{ github.repository }}/modiapersonoversikt:${{ github.sha }}
     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     CI: true
     TZ: Europe/Oslo
@@ -15,6 +14,10 @@ jobs:
         runs-on: ubuntu-latest
         permissions:
             packages: write
+            contents: read
+            id-token: write
+        outputs:
+            image: ${{ steps.docker-build-push.outputs.image }}
         steps:
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
@@ -32,21 +35,21 @@ jobs:
               run: npm run upload-sourcemaps
             - name: Publish Docker image
               if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master' || github.ref == env.Q1_TEST_BRANCH
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: |
-                  echo ${GITHUB_TOKEN} | docker login ghcr.io -u ${GITHUB_REPOSITORY} --password-stdin
-                  docker build --tag ${IMAGE} .
-                  docker push ${IMAGE}
+              uses: nais/docker-build-push@v0
+              id: docker-build-push
+              with:
+                team: personoversikt
+                identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+                project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
             - name: Deploy to Q1 (Test branch)
-              uses: nais/deploy/actions/deploy@v1
+              uses: nais/deploy/actions/deploy@v2
               if: github.ref == env.Q1_TEST_BRANCH
               env:
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
                   PRINT_PAYLOAD: true
                   CLUSTER: dev-fss
                   RESOURCE: .nais/qa-template.yaml
-                  VAR: q_env=q1,version=${{ github.sha }}
+                  VAR: q_env=q1,version=${{ github.sha }},image=${{ steps.docker-build-push.outputs.image }}
 
     deploy-qa:
         name: Deploy to preprod
@@ -58,13 +61,13 @@ jobs:
                 q_env: [q0, q1]
         steps:
             - uses: actions/checkout@v3
-            - uses: nais/deploy/actions/deploy@v1
+            - uses: nais/deploy/actions/deploy@v2
               env:
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
                   PRINT_PAYLOAD: true
                   CLUSTER: dev-fss
                   RESOURCE: .nais/qa-template.yaml
-                  VAR: q_env=${{ matrix.q_env }},version=${{ github.sha }}
+                  VAR: q_env=${{ matrix.q_env }},version=${{ github.sha }},image=${{ needs.build.outputs.image }}
 
     deploy-prod:
         name: Deploy to prod
@@ -73,10 +76,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
-            - uses: nais/deploy/actions/deploy@v1
+            - uses: nais/deploy/actions/deploy@v2
               env:
                   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
                   PRINT_PAYLOAD: true
                   CLUSTER: prod-fss
                   RESOURCE: .nais/prod.yaml
-                  VAR: version=${{ github.sha }}
+                  VAR: version=${{ github.sha }},image=${{ needs.build.outputs.image }}
