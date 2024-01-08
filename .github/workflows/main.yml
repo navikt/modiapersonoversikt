@@ -45,7 +45,6 @@ jobs:
               uses: nais/deploy/actions/deploy@v2
               if: github.ref == env.Q1_TEST_BRANCH
               env:
-                  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
                   PRINT_PAYLOAD: true
                   CLUSTER: dev-fss
                   RESOURCE: .nais/qa-template.yaml
@@ -56,6 +55,9 @@ jobs:
         needs: build
         if: github.ref == 'refs/heads/dev'
         runs-on: ubuntu-latest
+        permissions:
+          contents: read
+          id-token: write
         strategy:
             matrix:
                 q_env: [q0, q1]
@@ -63,7 +65,6 @@ jobs:
             - uses: actions/checkout@v3
             - uses: nais/deploy/actions/deploy@v2
               env:
-                  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
                   PRINT_PAYLOAD: true
                   CLUSTER: dev-fss
                   RESOURCE: .nais/qa-template.yaml
@@ -74,11 +75,13 @@ jobs:
         needs: build
         if: github.ref == 'refs/heads/master'
         runs-on: ubuntu-latest
+        permissions:
+          contents: read
+          id-token: write
         steps:
             - uses: actions/checkout@v3
             - uses: nais/deploy/actions/deploy@v2
               env:
-                  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
                   PRINT_PAYLOAD: true
                   CLUSTER: prod-fss
                   RESOURCE: .nais/prod.yaml
