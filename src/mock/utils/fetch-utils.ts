@@ -25,6 +25,12 @@ export function mockGeneratorMedFodselsnummer(
     return (args: MockRequest) => fn(args.pathParams.fodselsnummer);
 }
 
+export function mockGeneratorMedFodselsnummerV2(
+    fn: (fodselsnummer: string) => object | object[] | undefined | string | null
+) {
+    return (args: MockRequest) => fn(args.body.fnr);
+}
+
 export function mockGeneratorMedEnhetId(fn: (enhetId: string) => object | object[] | undefined) {
     return (args: MockRequest) => fn(args.pathParams.enhetId);
 }
