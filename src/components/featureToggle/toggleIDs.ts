@@ -1,6 +1,6 @@
 export enum FeatureToggles {
     BrukSoknadsstatus = 'modiapersonoversikt.soknadsstatus-api',
     BrukWebworkerPaaInnLogging = 'modiapersonoversikt.web-worker-paa-innlogging',
-    DebugMeldingsFunksjonalitet = 'modiapersonoversikt.ny-send-melding-container',
-    IkkeFnrIPath = 'modiapersonoversikt.ikke-fnr-i-path'
+    IkkeFnrIPath = 'modiapersonoversikt.ikke-fnr-i-path',
+    VisPromptMeldingSending = 'modiapersonoversikt.vis-promt-naar-melding-sendes'
 }
