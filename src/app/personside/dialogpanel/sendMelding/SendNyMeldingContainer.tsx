@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormEvent, useCallback, useMemo, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { MeldingValidator } from './validatorer';
 import {
     Meldingstype,
@@ -68,6 +68,21 @@ function SendNyMeldingContainer(props: Props) {
     const [sendNyMeldingStatus, setSendNyMeldingStatus] = useState<SendNyMeldingPanelState>({
         type: SendNyMeldingStatus.UNDER_ARBEID
     });
+
+    useEffect(() => {
+        const promptUser = (e: BeforeUnloadEvent) => {
+            if (sendNyMeldingStatus.type !== SendNyMeldingStatus.POSTING) {
+                return;
+            }
+
+            e.preventDefault();
+            e.returnValue = true;
+        };
+
+        window.addEventListener('beforeunload', promptUser);
+        return () => window.removeEventListener('beforeunload', promptUser);
+    }, [sendNyMeldingStatus.type]);
+
     const lukkSendtKvittering = () => {
         setSendNyMeldingStatus({ type: SendNyMeldingStatus.UNDER_ARBEID });
         setState(initialState);
