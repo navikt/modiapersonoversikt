@@ -1,9 +1,8 @@
 import FetchMock, { MockRequest } from 'yet-another-fetch-mock';
 import { apiBaseUri } from '../../api/config';
-import { mockGeneratorMedFodselsnummer, verify, withDelayedResponse } from '../utils/fetch-utils';
-import { randomDelay } from '../index';
+import { mockGeneratorMedFodselsnummerV2, verify, withDelayedResponse } from '../utils/fetch-utils';
+import { fodselsNummerErGyldigStatus, randomDelay } from '../index';
 import { MeldingerBackendMock } from '../mockBackend/meldingerBackendMock';
-import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { Melding, Meldingstype, Traad } from '../../models/meldinger/meldinger';
 import { guid } from 'nav-frontend-js-utils';
 import {
@@ -13,7 +12,6 @@ import {
 } from '../../app/personside/infotabs/meldinger/utils/meldingerUtils';
 
 const STATUS_OK = () => 200;
-const STATUS_BAD_REQUEST = () => 400;
 let meldingerBackendMock: MeldingerBackendMock = null as unknown as MeldingerBackendMock;
 
 const harEnhetIdSomQueryParam = (req: MockRequest) => {
@@ -24,18 +22,15 @@ const harEnhetIdSomQueryParam = (req: MockRequest) => {
     return undefined;
 };
 
-const fodselsNummerErGyldigStatus = (req: MockRequest) =>
-    erGyldigFødselsnummer(req.pathParams.fodselsnummer) ? STATUS_OK() : STATUS_BAD_REQUEST();
-
 function setupMeldingerMock(mock: FetchMock) {
     mock.post(
-        apiBaseUri + '/dialog/meldinger',
+        apiBaseUri + '/v2/dialog/meldinger',
         verify(
             harEnhetIdSomQueryParam,
             withDelayedResponse(
                 randomDelay(),
                 fodselsNummerErGyldigStatus,
-                mockGeneratorMedFodselsnummer((fodselsnummer) =>
+                mockGeneratorMedFodselsnummerV2((fodselsnummer) =>
                     simulateSf(meldingerBackendMock.getMeldinger(fodselsnummer))
                 )
             )
