@@ -4,7 +4,6 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { apiBaseUri } from '../../api/config';
 import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
-import { useGjeldendeBruker } from '../../redux/gjeldendeBruker/types';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { FetchError, get, post } from '../../api/api';
 import { useValgtenhet } from '../../context/valgtenhet-state';
@@ -57,14 +56,13 @@ function urlV2(enhet: string | undefined) {
 }
 
 const resource = {
-    useFetch(): UseQueryResult<TilgangDTO, FetchError> {
-        const fnr = useGjeldendeBruker();
+    useFetch(fnr: string): UseQueryResult<TilgangDTO, FetchError> {
         const enhet = useValgtenhet().enhetId;
         const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
         return useQuery(queryKey(fnr), () => (isOn ? post(urlV2(enhet), { fnr }) : get(url(fnr, enhet))));
     },
-    useRenderer(renderer: RendererOrConfig<TilgangDTO>) {
-        const response = this.useFetch();
+    useRenderer(fnr: string, renderer: RendererOrConfig<TilgangDTO>) {
+        const response = this.useFetch(fnr);
         return useRest(response, applyDefaults(defaults, renderer));
     }
 };

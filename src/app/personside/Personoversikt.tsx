@@ -22,7 +22,7 @@ function Personoversikt() {
         }
     });
 
-    return tilgangskontroll.useRenderer((data) => {
+    return tilgangskontroll.useRenderer(fnr, (data) => {
         if (!data.harTilgang) {
             return <BegrensetTilgangSide tilgangsData={data} />;
         }
