@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormEvent, useCallback, useMemo, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { MeldingValidator } from './validatorer';
 import {
     Meldingstype,
@@ -21,6 +21,8 @@ import journalsakResource from '../../../../rest/resources/journalsakResource';
 import SendNyMelding, { OppgavelisteValg, SendNyMeldingState } from './SendNyMelding';
 import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
+import { Prompt } from 'react-router';
+import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
 
 interface Props {
     defaultOppgaveDestinasjon: OppgavelisteValg;
@@ -66,6 +68,21 @@ function SendNyMeldingContainer(props: Props) {
     const [sendNyMeldingStatus, setSendNyMeldingStatus] = useState<SendNyMeldingPanelState>({
         type: SendNyMeldingStatus.UNDER_ARBEID
     });
+
+    useEffect(() => {
+        const promptUser = (e: BeforeUnloadEvent) => {
+            if (sendNyMeldingStatus.type !== SendNyMeldingStatus.POSTING) {
+                return;
+            }
+
+            e.preventDefault();
+            e.returnValue = true;
+        };
+
+        window.addEventListener('beforeunload', promptUser);
+        return () => window.removeEventListener('beforeunload', promptUser);
+    }, [sendNyMeldingStatus.type]);
+
     const lukkSendtKvittering = () => {
         setSendNyMeldingStatus({ type: SendNyMeldingStatus.UNDER_ARBEID });
         setState(initialState);
@@ -204,14 +221,24 @@ function SendNyMeldingContainer(props: Props) {
     };
 
     return (
-        <SendNyMelding
-            updateState={updateState}
-            state={state}
-            handleSubmit={handleSubmit}
-            handleAvbryt={handleAvbryt}
-            formErEndret={state !== initialState}
-            sendNyMeldingPanelState={sendNyMeldingStatus}
-        />
+        <>
+            <IfFeatureToggleOn toggleID={FeatureToggles.VisPromptMeldingSending}>
+                <Prompt
+                    when={sendNyMeldingStatus.type === SendNyMeldingStatus.POSTING}
+                    message={
+                        'Meldingen sendes. Hvis du navigerer bort er det ikke sikkert den blir sendt. Er du sikker på at du vil fortsette?'
+                    }
+                />
+            </IfFeatureToggleOn>
+            <SendNyMelding
+                updateState={updateState}
+                state={state}
+                handleSubmit={handleSubmit}
+                handleAvbryt={handleAvbryt}
+                formErEndret={state !== initialState}
+                sendNyMeldingPanelState={sendNyMeldingStatus}
+            />
+        </>
     );
 }
 
