@@ -34,6 +34,9 @@ import journalsakResource from '../../../../rest/resources/journalsakResource';
 import FortsettDialog from './FortsettDialog';
 import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
+import { Prompt } from 'react-router';
+import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
+import { useAlertOnNavigation } from '../useAlertOnNavigation';
 
 interface Props {
     traad: Traad;
@@ -103,6 +106,8 @@ function FortsettDialogContainer(props: Props) {
     );
 
     const opprettHenvendelse = useOpprettHenvendelse(props.traad);
+
+    useAlertOnNavigation(!!state.errors?.length);
 
     if (dialogStatus.type === DialogPanelStatus.SVAR_SENDT) {
         return <SvarSendtKvittering kvitteringsData={dialogStatus.kvitteringsData} />;
@@ -227,6 +232,14 @@ function FortsettDialogContainer(props: Props) {
         <StyledArticle aria-labelledby={tittelId.current}>
             <ReflowBoundry>
                 <Undertittel id={tittelId.current}>{traadTittel(props.traad.traadType)}</Undertittel>
+                <IfFeatureToggleOn toggleID={FeatureToggles.VisPromptMeldingSending}>
+                    <Prompt
+                        when={!!state.errors?.length}
+                        message={
+                            'Det skjedde en feil ved sending av meldingen. Hvis du trykker avbryt kan du prøve å sende den igjen.'
+                        }
+                    />
+                </IfFeatureToggleOn>
                 <FortsettDialog
                     handleAvbryt={handleAvbryt}
                     state={state}
