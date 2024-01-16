@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { FormEvent, useCallback, useMemo, useState } from 'react';
 import { MeldingValidator } from './validatorer';
 import {
     Meldingstype,
@@ -23,6 +23,7 @@ import useFeatureToggle from '../../../../components/featureToggle/useFeatureTog
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 import { Prompt } from 'react-router';
 import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
+import { useAlertOnNavigation } from '../useAlertOnNavigation';
 
 interface Props {
     defaultOppgaveDestinasjon: OppgavelisteValg;
@@ -69,19 +70,10 @@ function SendNyMeldingContainer(props: Props) {
         type: SendNyMeldingStatus.UNDER_ARBEID
     });
 
-    useEffect(() => {
-        const promptUser = (e: BeforeUnloadEvent) => {
-            if (sendNyMeldingStatus.type !== SendNyMeldingStatus.POSTING) {
-                return;
-            }
-
-            e.preventDefault();
-            e.returnValue = true;
-        };
-
-        window.addEventListener('beforeunload', promptUser);
-        return () => window.removeEventListener('beforeunload', promptUser);
-    }, [sendNyMeldingStatus.type]);
+    useAlertOnNavigation(
+        sendNyMeldingStatus.type === SendNyMeldingStatus.POSTING ||
+            sendNyMeldingStatus.type === SendNyMeldingStatus.ERROR
+    );
 
     const lukkSendtKvittering = () => {
         setSendNyMeldingStatus({ type: SendNyMeldingStatus.UNDER_ARBEID });
@@ -113,10 +105,20 @@ function SendNyMeldingContainer(props: Props) {
 
     if (sendNyMeldingStatus.type === SendNyMeldingStatus.ERROR) {
         return (
-            <MeldingSendtFeilet
-                fritekst={sendNyMeldingStatus.fritekst}
-                lukk={() => cancelAndKeepDraft(sendNyMeldingStatus.fritekst)}
-            />
+            <>
+                <IfFeatureToggleOn toggleID={FeatureToggles.VisPromptMeldingSending}>
+                    <Prompt
+                        when={sendNyMeldingStatus.type === SendNyMeldingStatus.ERROR}
+                        message={
+                            'Det skjedde en feil ved sending av meldingen. Hvis du trykker avbryt kan du prøve å sende den igjen.'
+                        }
+                    />
+                </IfFeatureToggleOn>
+                <MeldingSendtFeilet
+                    fritekst={sendNyMeldingStatus.fritekst}
+                    lukk={() => cancelAndKeepDraft(sendNyMeldingStatus.fritekst)}
+                />
+            </>
         );
     }
 
