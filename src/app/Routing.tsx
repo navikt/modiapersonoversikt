@@ -23,7 +23,10 @@ function Routing() {
                     path={`${paths.saksdokumentEgetVindu}/:fodselsnummer/`}
                     render={(routeProps) => <SaksDokumentEgetVindu fnr={routeProps.match.params.fodselsnummer} />}
                 />
-                <SentryRoute path={`${paths.personUri}/:fodselsnummer`} component={Personoversikt} />
+                <SentryRoute
+                    path={`${paths.personUri}/:fodselsnummer`}
+                    render={(routeProps) => <Personoversikt fnr={routeProps.match.params.fodselsnummer} />}
+                />
                 <SentryRoute component={Startbilde} />
             </Switch>
         </Suspense>
