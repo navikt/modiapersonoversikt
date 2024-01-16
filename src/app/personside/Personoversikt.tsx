@@ -1,7 +1,7 @@
 import * as React from 'react';
 import LyttPåNyttFnrIReduxOgHentAllPersoninfo from '../PersonOppslagHandler/LyttPåNyttFnrIReduxOgHentAllPersoninfo';
 import MainLayout from './MainLayout';
-import { useFodselsnummer, useOnMount } from '../../utils/customHooks';
+import { useOnMount } from '../../utils/customHooks';
 import { erGyldigishFnr } from '../../utils/fnr-utils';
 import { useHistory } from 'react-router';
 import { paths } from '../routes/routing';
@@ -11,14 +11,13 @@ import tilgangskontroll from '../../rest/resources/tilgangskontrollResource';
 import { DialogpanelStateProvider } from '../../context/dialogpanel-state';
 import NyIdentModal from './NyIdentModal';
 
-function Personoversikt() {
-    const fnr = useFodselsnummer();
+function Personoversikt({ fnr }: { fnr: string }) {
     const history = useHistory();
 
     useOnMount(() => {
         if (!erGyldigishFnr(fnr)) {
             loggInfo('Ugyldig fnr, redirecter til startside');
-            history.push(`${paths.basePath}?sokFnr=${fnr}`);
+            history.push(`${paths.basePath}`);
         }
     });
 
