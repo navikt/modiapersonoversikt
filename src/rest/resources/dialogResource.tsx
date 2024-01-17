@@ -6,19 +6,12 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import { Traad } from '../../models/meldinger/meldinger';
 import { useValgtenhet } from '../../context/valgtenhet-state';
-import { FetchError, post, get } from '../../api/api';
+import { FetchError, post } from '../../api/api';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
-function url(fnr: string, enhet: string | undefined): string {
+function url(enhet?: string) {
     const header = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/dialog/${fnr}/meldinger${header}`;
-}
-
-function urlUtenFnrIPath(enhet?: string) {
-    const header = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/v2/dialog/meldinger${header}`;
+    return `${apiBaseUri}/dialog/meldinger${header}`;
 }
 
 const defaults: DefaultConfig = {
@@ -37,11 +30,7 @@ export const resource = {
     },
     useFetch(): UseQueryResult<Traad[], FetchError> {
         const [fnr, enhetId] = useReduxData();
-        const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
-
-        return useQuery(this.queryKey(fnr, enhetId), () =>
-            isOn ? post(urlUtenFnrIPath(enhetId), { fnr }) : get(url(fnr, enhetId))
-        );
+        return useQuery(this.queryKey(fnr, enhetId), () => post(url(enhetId), { fnr }));
     },
     useRenderer(renderer: RendererOrConfig<Traad[]>) {
         const response = this.useFetch();

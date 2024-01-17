@@ -5,10 +5,8 @@ import { apiBaseUri } from '../../api/config';
 import { BigCenteredLazySpinner } from '../../components/BigCenteredLazySpinner';
 import FillCenterAndFadeIn from '../../components/FillCenterAndFadeIn';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get, post } from '../../api/api';
+import { FetchError, post } from '../../api/api';
 import { useValgtenhet } from '../../context/valgtenhet-state';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
 
 const defaults: DefaultConfig = {
     ifPending: BigCenteredLazySpinner,
@@ -42,24 +40,16 @@ export enum IkkeTilgangArsak {
 function queryKey(fnr: string | undefined) {
     return ['tilgangskontroll', fnr];
 }
-function url(fnr: string | undefined, enhet: string | undefined) {
-    const params = enhet ? `?enhet=${enhet}` : '';
-    if (fnr) {
-        return `${apiBaseUri}/tilgang/${fnr}${params}`;
-    }
-    return `${apiBaseUri}/tilgang${params}`;
-}
 
-function urlV2(enhet: string | undefined) {
+function url(enhet: string | undefined) {
     const params = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/v2/tilgang${params}`;
+    return `${apiBaseUri}/tilgang${params}`;
 }
 
 const resource = {
     useFetch(fnr: string): UseQueryResult<TilgangDTO, FetchError> {
         const enhet = useValgtenhet().enhetId;
-        const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
-        return useQuery(queryKey(fnr), () => (isOn ? post(urlV2(enhet), { fnr }) : get(url(fnr, enhet))));
+        return useQuery(queryKey(fnr), () => post(url(enhet), { fnr }));
     },
     useRenderer(fnr: string, renderer: RendererOrConfig<TilgangDTO>) {
         const response = this.useFetch(fnr);

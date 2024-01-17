@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormEvent, useRef, useState, useCallback, useMemo } from 'react';
 import { FortsettDialogValidator } from './validatorer';
-import { SendMeldingRequest, SendMeldingRequestV2, Traad, TraadType } from '../../../../models/meldinger/meldinger';
+import { SendMeldingRequest, Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { useFodselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
@@ -32,7 +32,6 @@ import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
 import FortsettDialog from './FortsettDialog';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 import { Prompt } from 'react-router';
 import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
@@ -64,7 +63,6 @@ export function finnPlukketOppgaveForTraad(
 }
 
 function FortsettDialogContainer(props: Props) {
-    const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
     const queryClient = useQueryClient();
     const initialState = useMemo(
         () => ({
@@ -147,15 +145,11 @@ function FortsettDialogContainer(props: Props) {
             oppgaveId: oppgaveId,
             avsluttet: state.avsluttet
         };
-        const url = isOn ? `${apiBaseUri}/v2/dialog/sendmelding` : `${apiBaseUri}/dialog/${fnr}/sendmelding`;
+        const url = `${apiBaseUri}/dialog/sendmelding`;
 
         if (FortsettDialogValidator.erGyldigSamtalereferat(state)) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
             const request: SendMeldingRequest = {
-                ...commonPayload,
-                erOppgaveTilknyttetAnsatt: true
-            };
-            const requestV2: SendMeldingRequestV2 = {
                 ...commonPayload,
                 fnr,
                 erOppgaveTilknyttetAnsatt: true
@@ -164,7 +158,7 @@ function FortsettDialogContainer(props: Props) {
                 fritekst: request.fritekst,
                 traad: props.traad
             };
-            post(url, isOn ? requestV2 : request, 'Send-Svar')
+            post(url, request, 'Send-Svar')
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
@@ -187,11 +181,6 @@ function FortsettDialogContainer(props: Props) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
             const request: SendMeldingRequest = {
                 ...commonPayload,
-                erOppgaveTilknyttetAnsatt: state.avsluttet ? false : erOppgaveTilknyttetAnsatt,
-                sak: state.sak ? state.sak : undefined
-            };
-            const requestV2: SendMeldingRequestV2 = {
-                ...commonPayload,
                 fnr,
                 erOppgaveTilknyttetAnsatt: state.avsluttet ? false : erOppgaveTilknyttetAnsatt,
                 sak: state.sak ? state.sak : undefined
@@ -200,7 +189,7 @@ function FortsettDialogContainer(props: Props) {
                 fritekst: request.fritekst,
                 traad: props.traad
             };
-            post(url, isOn ? requestV2 : request, 'Svar-Med-Spørsmål')
+            post(url, request, 'Svar-Med-Spørsmål')
                 .then(() => {
                     callback();
                     queryClient.invalidateQueries(journalsakResource.queryKey(fnr));

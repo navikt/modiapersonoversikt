@@ -3,12 +3,7 @@ import { useFodselsnummer, useOnMount } from '../../../../utils/customHooks';
 import { loggError } from '../../../../utils/logger/frontendLogger';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { CenteredLazySpinner } from '../../../../components/LazySpinner';
-import {
-    OpprettHenvendelseRequest,
-    OpprettHenvendelseRequestV2,
-    OpprettHenvendelseResponse,
-    Traad
-} from '../../../../models/meldinger/meldinger';
+import { OpprettHenvendelseRequest, OpprettHenvendelseResponse, Traad } from '../../../../models/meldinger/meldinger';
 import { useDispatch } from 'react-redux';
 import { apiBaseUri } from '../../../../api/config';
 import { postWithConflictVerification, RespectConflictError } from '../../../../api/api';
@@ -16,8 +11,6 @@ import { useState } from 'react';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import tildelteoppgaverResource from '../../../../rest/resources/tildelteoppgaverResource';
 import { useValgtenhet } from '../../../../context/valgtenhet-state';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 
 interface NotFinishedOpprettHenvendelse {
     success: false;
@@ -38,18 +31,15 @@ function useOpprettHenvendelse(traad: Traad): OpprettHenvendelseReturns {
     const tildelteoppgaver = tildelteoppgaverResource.useFetch();
     const dispatch = useDispatch();
     const fnr = useFodselsnummer();
-    const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
     useOnMount(function getBehandlingsId() {
-        const opprettHenvendelseRequest: OpprettHenvendelseRequest = { enhet: valgtEnhet, traadId: traad.traadId };
-        const opprettHenvendelseRequestV2: OpprettHenvendelseRequestV2 = {
+        const request: OpprettHenvendelseRequest = {
             fnr,
             enhet: valgtEnhet,
             traadId: traad.traadId
         };
 
-        const request = isOn ? opprettHenvendelseRequestV2 : opprettHenvendelseRequest;
-        const url = isOn ? `${apiBaseUri}/v2/dialog/fortsett/opprett` : `${apiBaseUri}/dialog/${fnr}/fortsett/opprett`;
+        const url = `${apiBaseUri}/dialog/fortsett/opprett`;
         postWithConflictVerification(
             url,
             request,
