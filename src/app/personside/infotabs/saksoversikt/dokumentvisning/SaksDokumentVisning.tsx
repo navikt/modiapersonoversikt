@@ -10,6 +10,8 @@ import styled from 'styled-components';
 import { getMockableUrl } from './mockable-dokument-url';
 import { parseQueryString } from '../../../../../utils/url-utils';
 import { apiBaseUri } from '../../../../../api/config';
+import useFeatureToggle from '../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     fnr: string;
@@ -26,6 +28,7 @@ function DokumentVisning(props: Props) {
     const pathname = useLocation().pathname;
     const [errMsg, setErrMsg] = useState('');
     const onError = useCallback((statusKode: number) => setErrMsg(feilmelding(statusKode)), [setErrMsg]);
+    const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
     useEffect(() => {
         loggEvent('VisSaksdokument', 'Saker', { standalone: erSakerFullscreen(pathname) });
@@ -42,9 +45,10 @@ function DokumentVisning(props: Props) {
     }
 
     const url = getMockableUrl(byggDokumentVisningUrl(props.url, props.fnr));
+    const urlV2 = getMockableUrl(byggDokumentVisningUrlV2(props.url));
 
     return (
-        <ObjectHttpFeilHandtering url={url} width="100%" height="100%" onError={onError}>
+        <ObjectHttpFeilHandtering url={isOn ? urlV2 : url} fnr={props.fnr} width="100%" height="100%" onError={onError}>
             <ErrorStyle>
                 <AlertStripeAdvarsel>{errMsg}</AlertStripeAdvarsel>
             </ErrorStyle>
@@ -55,6 +59,11 @@ function DokumentVisning(props: Props) {
 function byggDokumentVisningUrl(url: string, fodselsnummer: string): string {
     const { journalpost, dokument } = parseQueryString<{ journalpost: string; dokument: string }>(url); // Format til url: 'journalpost=etcoicxr&dokument=q90p8dnw'
     return `${apiBaseUri}/saker/${fodselsnummer}/dokument/${journalpost}/${dokument}`;
+}
+
+function byggDokumentVisningUrlV2(url: string): string {
+    const { journalpost, dokument } = parseQueryString<{ journalpost: string; dokument: string }>(url); // Format til url: 'journalpost=etcoicxr&dokument=q90p8dnw'
+    return `${apiBaseUri}/v2/saker/dokument/${journalpost}/${dokument}`;
 }
 
 function feilmelding(statusKode: number) {

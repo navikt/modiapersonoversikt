@@ -93,6 +93,15 @@ function setupTilgangskontroll(mock: FetchMock) {
         withDelayedResponse(
             randomDelay(),
             () => (Math.random() > 0.98 ? 400 : 200),
+            mockGeneratorMedFodselsnummer(tilgangskontrollMock)
+        )
+    );
+
+    mock.post(
+        apiBaseUri + '/v2/tilgang',
+        withDelayedResponse(
+            randomDelay(),
+            () => (Math.random() > 0.98 ? 400 : 200),
             mockGeneratorMedFodselsnummerV2(tilgangskontrollMock)
         )
     );
@@ -132,11 +141,35 @@ function setupSaksoversiktMock(mock: FetchMock) {
             )
         )
     );
+
+    mock.post(
+        apiBaseUri + '/v2/saker/sakstema',
+        verify(
+            harEnhetIdSomQueryParam,
+            withDelayedResponse(
+                randomDelay(),
+                fodselsNummerErGyldigStatus,
+                mockGeneratorMedFodselsnummer(getMockSaksoversikt)
+            )
+        )
+    );
 }
 
 function setupSaksoversiktV2Mock(mock: FetchMock) {
     mock.get(
         apiBaseUri + '/saker/:fodselsnummer/v2/sakstema',
+        verify(
+            harEnhetIdSomQueryParam,
+            withDelayedResponse(
+                randomDelay(),
+                fodselsNummerErGyldigStatus,
+                mockGeneratorMedFodselsnummer(getMockSaksoversiktV2)
+            )
+        )
+    );
+
+    mock.post(
+        apiBaseUri + '/v2/saker/v2/sakstema',
         verify(
             harEnhetIdSomQueryParam,
             withDelayedResponse(
@@ -314,7 +347,18 @@ function setupJournalforingMock(mock: FetchMock) {
         withDelayedResponse(randomDelay(), STATUS_OK, () => saker)
     );
     mock.post(
+        apiBaseUri + '/v2/journalforing/saker/',
+        withDelayedResponse(randomDelay(), STATUS_OK, () => saker)
+    );
+    mock.post(
         apiBaseUri + '/journalforing/:fnr/:traadId',
+        verify(
+            harEnhetIdSomQueryParam,
+            withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
+        )
+    );
+    mock.post(
+        apiBaseUri + '/v2/journalforing/:traadId',
         verify(
             harEnhetIdSomQueryParam,
             withDelayedResponse(randomDelay(), STATUS_OK, () => ({}))
