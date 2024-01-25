@@ -36,7 +36,7 @@ function urlV2(fnr: string, enhet?: string) {
 
 function urlUtenFnrIPath(enhet?: string) {
     const header = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/saker/sakstema/${header}`;
+    return `${apiBaseUri}/v2/saker/sakstema/${header}`;
 }
 
 function urlUtenFnrIPathV2(enhet?: string) {
