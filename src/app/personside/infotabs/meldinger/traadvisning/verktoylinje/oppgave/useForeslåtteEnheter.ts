@@ -2,9 +2,11 @@ import { useFodselsnummer } from '../../../../../../../utils/customHooks';
 import { useEffect, useMemo, useState } from 'react';
 import { Enhet } from '../../../../../../../models/meldinger/oppgave';
 import { loggError, loggEvent } from '../../../../../../../utils/logger/frontendLogger';
-import { apiBaseUri, includeCredentials } from '../../../../../../../api/config';
+import { apiBaseUri, includeCredentials, postConfig } from '../../../../../../../api/config';
 import { OppgaveSkjemaForm } from './oppgaveInterfaces';
 import { UseFormReturn } from 'react-hook-form';
+import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
 
 function useForeslatteEnheter({ watch }: UseFormReturn<OppgaveSkjemaForm>) {
     const fnr = useFodselsnummer();
@@ -15,6 +17,7 @@ function useForeslatteEnheter({ watch }: UseFormReturn<OppgaveSkjemaForm>) {
 
     const [foreslatteEnheter, setForeslatteEnheter] = useState<Enhet[]>([]);
     const [pending, setPending] = useState(false);
+    const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
     useEffect(() => {
         if (!temakode || !typekode) {
@@ -32,14 +35,17 @@ function useForeslatteEnheter({ watch }: UseFormReturn<OppgaveSkjemaForm>) {
             .map((entry) => entry[0] + '=' + entry[1])
             .join('&');
 
+        const fetchResponse = isOn
+            ? fetch(`${apiBaseUri}/v2/enheter/oppgavebehandlere/v2/foreslatte`, postConfig(request))
+            : fetch(`${apiBaseUri}/enheter/oppgavebehandlere/v2/foreslatte?${queryParams}`, includeCredentials);
         setPending(true);
         loggEvent('Fetch', 'LagOppgave-ForeslåtteEnheter');
-        fetch(`${apiBaseUri}/enheter/oppgavebehandlere/v2/foreslatte?${queryParams}`, includeCredentials)
+        fetchResponse
             .then((response) => response.json())
             .then(setForeslatteEnheter)
             .catch((e) => loggError(e, 'Feil ved henting av foreslåtte enheter'))
             .finally(() => setPending(false));
-    }, [temakode, typekode, underkategori, fnr]);
+    }, [temakode, typekode, underkategori, fnr, isOn]);
 
     return useMemo(
         () => ({
