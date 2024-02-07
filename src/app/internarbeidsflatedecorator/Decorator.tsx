@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import NAVSPA from '@navikt/navspa';
 import { History } from 'history';
 import raw from 'raw.macro';
 import styled from 'styled-components/macro';
-import { DecoratorProps, EnhetDisplay, FnrDisplay, Hotkey, RESET_VALUE } from './decoratorprops';
+import { DecoratorProps, DecoratorPropsV3, EnhetDisplay, FnrDisplay, Hotkey, RESET_VALUE } from './decoratorprops';
 import { fjernBrukerFraPath, paths, setNyBrukerIPath } from '../routes/routing';
 import { matchPath, useHistory } from 'react-router';
 import { useOnMount } from '../../utils/customHooks';
@@ -20,10 +20,13 @@ import OppdateringsloggContainer, {
 import './personsokKnapp.less';
 import './decorator.less';
 import { useValgtenhet } from '../../context/valgtenhet-state';
+import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
+import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
 
 const bjelleIkon = raw('../../svg/bjelle.svg');
 
-const InternflateDecorator = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
+const InternflateDecoratorV2 = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
+const InternflateDecoratorV3 = NAVSPA.importer<DecoratorPropsV3>('internarbeidsflate-decorator-v3');
 
 const etterSokefelt = `
         <div class="knapper_container">
@@ -93,14 +96,52 @@ function lagConfig(
     };
 }
 
-// TODO Jupp, dette er en superhack pga fnr i redux-state ikke blir satt tidlig nok.
-// gjeldendeBruker.fnr burde fjernes fra state og hentes fra url slik at man har en single-point-of truth.
-function useVenterPaRedux() {
-    const [klar, setKlar] = useState(false);
-    useOnMount(() => {
-        setKlar(true);
-    });
-    return klar;
+function lagConfigV3(
+    enhet: string | undefined | null,
+    history: History,
+    settEnhet: (enhet: string) => void
+): DecoratorPropsV3 {
+    const { sokFnr, pathFnr } = getFnrFraUrl();
+    const onsketFnr = sokFnr || pathFnr;
+    return {
+        appName: 'Modia personoversikt',
+        fnr: onsketFnr ?? undefined,
+        userKey: onsketFnr ?? undefined,
+        onFnrChanged: (fnr) => {
+            if (fnr === getFnrFraUrl().pathFnr) {
+                return;
+            }
+            if (fnr && fnr.length > 0) {
+                setNyBrukerIPath(history, fnr);
+            } else {
+                fjernBrukerFraPath(history);
+            }
+        },
+        enhet: enhet ?? undefined,
+        onEnhetChanged: (enhet) => {
+            console.log('enhet');
+            if (enhet) {
+                settEnhet(enhet);
+            }
+        },
+        showHotkeys: true,
+        markup: {
+            etterSokefelt: etterSokefelt
+        },
+        hotkeys: getHotkeys(),
+        // modiacontextholder kjører på samme domene som modiapersonoversikt.
+        // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
+        proxy:
+            process.env.NODE_ENV === 'production'
+                ? `https://${window.location.host}/modiapersonoversikt/proxy`
+                : process.env.REACT_APP_CONTEXTHOLDER_URL,
+        environment: process.env.NODE_ENV === 'production' ? 'q1' : 'mock',
+        urlFormat: process.env.NODE_ENV === 'development' ? 'ADEO' : 'LOCAL',
+        showEnheter: true,
+        showSearchArea: true,
+        fetchActiveUserOnMount: true,
+        fetchActiveEnhetOnMount: true
+    };
 }
 
 function getPathnameFromUrl(): string {
@@ -195,7 +236,6 @@ function getHotkeys(): Hotkey[] {
 }
 
 function Decorator() {
-    const reduxErKlar = useVenterPaRedux();
     const valgtEnhet = useValgtenhet();
     const valgtEnhetId = valgtEnhet.enhetId;
     const setEnhetId = valgtEnhet.setEnhetId;
@@ -215,22 +255,33 @@ function Decorator() {
         setEnhetId(enhet);
     };
 
-    const config = useCallback(lagConfig, [valgtEnhetId, history, handleSetEnhet])(
+    const configV2 = useCallback(lagConfig, [valgtEnhetId, history, handleSetEnhet])(
         valgtEnhetId,
         history,
         handleSetEnhet
     );
 
+    const configV3 = useCallback(lagConfigV3, [valgtEnhetId, history, handleSetEnhet])(
+        valgtEnhetId,
+        history,
+        handleSetEnhet
+    );
+
+    const { isOn } = useFeatureToggle(FeatureToggles.BrukNyDecorator);
+
+    const InternflateDecorator = isOn ? (
+        <InternflateDecoratorV3 key={`${isOn}`} {...configV3} />
+    ) : (
+        <InternflateDecoratorV2 key={`${isOn}`} {...configV2} />
+    );
+    console.log(`isOn`, isOn);
+
     return (
         <StyledNav>
-            {reduxErKlar && (
-                <>
-                    <InternflateDecorator {...config} />
-                    <PersonsokContainer />
-                    <OppdateringsloggContainer />
-                    <DecoratorEasterEgg />
-                </>
-            )}
+            {InternflateDecorator}
+            <PersonsokContainer />
+            <OppdateringsloggContainer />
+            <DecoratorEasterEgg />
         </StyledNav>
     );
 }
