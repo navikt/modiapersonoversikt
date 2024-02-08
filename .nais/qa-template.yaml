@@ -59,10 +59,10 @@ spec:
       value: "https://unleash.nais.io/api/"
     - name: CSP_DIRECTIVES
       value: "default-src 'self';\
-      script-src 'self' 'unsafe-inline' jsagent.adeo.no https://*.hotjar.com https://*.hotjar.io;\
-      style-src 'self' 'unsafe-inline';\
+      script-src 'self' 'unsafe-inline' jsagent.adeo.no https://*.hotjar.com https://*.hotjar.io https://cdn.nav.no;\
+      style-src 'self' 'unsafe-inline' https://cdn.nav.no;\
       img-src 'self' data: https://*.hotjar.com https://*.hotjar.io;\
-      font-src 'self' data: https://*.hotjar.com https://*.hotjar.io;\
+      font-src 'self' data: https://*.hotjar.com https://*.hotjar.io https://cdn.nav.no;\
       connect-src 'self' eumgw.adeo.no wss://veilederflatehendelser-{{ q_env }}.adeo.no https://*.hotjar.com https://*.hotjar.io sentry.gc.nav.no;\
       object-src blob:;\
       frame-src blob: https://*.hotjar.com https://*.hotjar.io;\
