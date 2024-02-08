@@ -20,7 +20,12 @@
       window.frontendlogger.appname = 'modiapersonoversikt';
     </script>
     <script type="application/javascript" src="/frontendlogger/logger.js"></script>
-
+    <script>
+      const applicationFeatureToggles = {
+          useNewDecorator: "$unleash{modiapersonoversikt.decorator-v3}"
+      };
+      window.applicationFeatureToggles = applicationFeatureToggles
+    </script>
     <title>Modia Personoversikt</title>
 </head>
 <body>
