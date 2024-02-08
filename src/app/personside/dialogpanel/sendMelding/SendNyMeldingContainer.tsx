@@ -1,13 +1,7 @@
 import * as React from 'react';
 import { FormEvent, useCallback, useMemo, useState } from 'react';
 import { MeldingValidator } from './validatorer';
-import {
-    Meldingstype,
-    SendMeldingRequest,
-    SendMeldingRequestV2,
-    Traad,
-    TraadType
-} from '../../../../models/meldinger/meldinger';
+import { Meldingstype, SendMeldingRequestV2, Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import { useFodselsnummer } from '../../../../utils/customHooks';
 import { MeldingSendtFeilet, ReferatSendtKvittering, SamtaleSendtKvittering } from './SendNyMeldingKvittering';
 import { apiBaseUri } from '../../../../api/config';
@@ -19,7 +13,6 @@ import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import { useQueryClient } from '@tanstack/react-query';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
 import SendNyMelding, { OppgavelisteValg, SendNyMeldingState } from './SendNyMelding';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 import { Prompt } from 'react-router';
 import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
@@ -44,8 +37,6 @@ function SendNyMeldingContainer(props: Props) {
         [props.defaultOppgaveDestinasjon]
     );
     const fnr = useFodselsnummer();
-
-    const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
     const valgtEnhet = useValgtenhet().enhetId;
     const [state, setState] = useState<SendNyMeldingState>(initialState);
@@ -144,32 +135,28 @@ function SendNyMeldingContainer(props: Props) {
             enhet: valgtEnhet,
             fritekst: state.tekst
         };
-        const url = isOn ? `${apiBaseUri}/v2/dialog/sendmelding` : `${apiBaseUri}/dialog/${fnr}/sendmelding`;
+        const url = `${apiBaseUri}/v2/dialog/sendmelding`;
 
         if (MeldingValidator.erGyldigReferat(state) && state.tema) {
             const temagruppe = state.tema;
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
-            const request: SendMeldingRequest = {
-                ...commonPayload,
-                temagruppe
-            };
 
             const requestV2: SendMeldingRequestV2 = {
                 ...commonPayload,
                 fnr,
                 temagruppe
             };
-            post<Traad>(url, isOn ? requestV2 : request, 'Send-Referat')
+            post<Traad>(url, requestV2, 'Send-Referat')
                 .then((traad) => {
                     const kvitteringNyMelding: KvitteringNyMelding = {
-                        fritekst: request.fritekst,
+                        fritekst: requestV2.fritekst,
                         traad: traad
                     };
                     callback();
                     setSendNyMeldingStatus({
                         type: SendNyMeldingStatus.REFERAT_SENDT,
                         request: {
-                            fritekst: request.fritekst,
+                            fritekst: requestV2.fritekst,
                             enhet: valgtEnhet,
                             meldingstype: Meldingstype.SAMTALEREFERAT_TELEFON,
                             temagruppe
@@ -179,17 +166,11 @@ function SendNyMeldingContainer(props: Props) {
                 })
                 .catch((error) => {
                     console.error('Send-Referat feilet', error);
-                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR, fritekst: request.fritekst });
+                    setSendNyMeldingStatus({ type: SendNyMeldingStatus.ERROR, fritekst: requestV2.fritekst });
                     updateState({ visFeilmeldinger: true });
                 });
         } else if (MeldingValidator.erGyldigSamtale(state) && state.sak) {
             setSendNyMeldingStatus({ type: SendNyMeldingStatus.POSTING });
-            const request: SendMeldingRequest = {
-                ...commonPayload,
-                sak: state.sak,
-                avsluttet: state.avsluttet,
-                erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
-            };
 
             const requestV2: SendMeldingRequestV2 = {
                 ...commonPayload,
@@ -199,10 +180,10 @@ function SendNyMeldingContainer(props: Props) {
                 erOppgaveTilknyttetAnsatt: state.oppgaveListe === OppgavelisteValg.MinListe
             };
 
-            post<Traad>(url, isOn ? requestV2 : request, 'Send-Sporsmal')
+            post<Traad>(url, requestV2, 'Send-Sporsmal')
                 .then((traad) => {
                     const kvitteringNyMelding: KvitteringNyMelding = {
-                        fritekst: request.fritekst,
+                        fritekst: requestV2.fritekst,
                         traad: traad
                     };
                     queryClient.invalidateQueries(journalsakResource.queryKey(fnr));
@@ -213,7 +194,7 @@ function SendNyMeldingContainer(props: Props) {
                     console.error('Send-Sporsmal feilet', error);
                     setSendNyMeldingStatus({
                         type: SendNyMeldingStatus.ERROR,
-                        fritekst: request.fritekst
+                        fritekst: requestV2.fritekst
                     });
                     updateState({ visFeilmeldinger: true });
                 });

@@ -17,8 +17,6 @@ import dialogResource from '../../../../../../../rest/resources/dialogResource';
 import { useValgtenhet } from '../../../../../../../context/valgtenhet-state';
 import { useQueryClient } from '@tanstack/react-query';
 import journalsakResource from '../../../../../../../rest/resources/journalsakResource';
-import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
 
 interface Props {
     sak: JournalforingsSak;
@@ -56,7 +54,6 @@ export function JournalforSak(props: Props) {
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [journalforingSuksess, setJournalforingSuksess] = useState(false);
-    const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
     const journalfor = () => {
         if (submitting) {
@@ -65,10 +62,8 @@ export function JournalforSak(props: Props) {
 
         setSubmitting(true);
         const enhetheader = valgtEnhet ? `?enhet=${valgtEnhet}` : '';
-        const url = isOn
-            ? `${apiBaseUri}/v2/journalforing/${props.traad.traadId}${enhetheader}`
-            : `${apiBaseUri}/journalforing/${fnr}/${props.traad.traadId}${enhetheader}`;
-        const body = isOn ? { ...props.sak, fnr } : props.sak;
+        const url = `${apiBaseUri}/v2/journalforing/${props.traad.traadId}${enhetheader}`;
+        const body = { ...props.sak, fnr };
 
         post(url, body, 'Journalføring')
             .then(() => {

@@ -12,9 +12,7 @@ import {
 import dayjs from 'dayjs';
 import { UtbetalingerResponse } from '../../models/utbetalinger';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get, post } from '../../api/api';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
+import { FetchError, post } from '../../api/api';
 
 interface Periode<T> {
     fra: T;
@@ -22,9 +20,6 @@ interface Periode<T> {
 }
 function queryKey(fnr: string, oversikt: boolean) {
     return ['utbetalinger', fnr, oversikt];
-}
-function url(fnr: string, periode: Periode<string>): string {
-    return `${apiBaseUri}/utbetaling/${fnr}?startDato=${periode.fra}&sluttDato=${periode.til}`;
 }
 
 function urlV2(periode: Periode<string>): string {
@@ -55,11 +50,7 @@ const resource = {
     useFetch(limit30Dager: boolean = false): UseQueryResult<UtbetalingerResponse, FetchError> {
         const [fnr, periode] = useReduxData(limit30Dager);
 
-        const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
-
-        return useQuery(queryKey(fnr, limit30Dager), () =>
-            isOn ? post(urlV2(periode), { fnr }) : get(url(fnr, periode))
-        );
+        return useQuery(queryKey(fnr, limit30Dager), () => post(urlV2(periode), { fnr }));
     },
     useOversiktRenderer(renderer: RendererOrConfig<UtbetalingerResponse>) {
         const response = this.useFetch(true);

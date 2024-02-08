@@ -5,8 +5,6 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
     switch (toggleId) {
         case FeatureToggles.BrukSoknadsstatus:
             return true;
-        case FeatureToggles.IkkeFnrIPath:
-            return true;
         case FeatureToggles.BrukNyDecorator:
             return true;
         default:
