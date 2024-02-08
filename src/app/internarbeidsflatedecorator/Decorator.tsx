@@ -20,9 +20,7 @@ import OppdateringsloggContainer, {
 import './personsokKnapp.less';
 import './decorator.less';
 import { useValgtenhet } from '../../context/valgtenhet-state';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
-import featureToggleResource from '../../rest/resources/featuretogglesResource';
-import LazySpinner from '../../components/LazySpinner';
+
 const bjelleIkon = raw('../../svg/bjelle.svg');
 
 const InternflateDecoratorV2 = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
@@ -165,16 +163,10 @@ function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null } {
 }
 
 const DecoratorToggle = ({ configV2, configV3 }: { configV2: DecoratorProps; configV3: DecoratorPropsV3 }) => {
-    return featureToggleResource.useRenderer({
-        ifPending: () => <LazySpinner />,
-        ifError: () => <InternflateDecoratorV2 {...configV2} />,
-        ifData: (data) => {
-            if (data[FeatureToggles.BrukNyDecorator]) {
-                return <InternflateDecoratorV3 {...configV3} />;
-            }
-            return <InternflateDecoratorV2 {...configV2} />;
-        }
-    });
+    if (window.applicationFeatureToggles?.useNewDecorator === true) {
+        return <InternflateDecoratorV3 {...configV3} />;
+    }
+    return <InternflateDecoratorV2 {...configV2} />;
 };
 
 function getHotkeys(): Hotkey[] {
