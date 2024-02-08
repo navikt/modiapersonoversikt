@@ -21,8 +21,8 @@ import './personsokKnapp.less';
 import './decorator.less';
 import { useValgtenhet } from '../../context/valgtenhet-state';
 import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-
+import featureToggleResource from '../../rest/resources/featuretogglesResource';
+import LazySpinner from '../../components/LazySpinner';
 const bjelleIkon = raw('../../svg/bjelle.svg');
 
 const InternflateDecoratorV2 = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');
@@ -164,6 +164,19 @@ function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null } {
     };
 }
 
+const DecoratorToggle = ({ configV2, configV3 }: { configV2: DecoratorProps; configV3: DecoratorPropsV3 }) => {
+    return featureToggleResource.useRenderer({
+        ifPending: () => <LazySpinner />,
+        ifError: () => <InternflateDecoratorV2 {...configV2} />,
+        ifData: (data) => {
+            if (data[FeatureToggles.BrukNyDecorator]) {
+                return <InternflateDecoratorV3 {...configV3} />;
+            }
+            return <InternflateDecoratorV2 {...configV2} />;
+        }
+    });
+};
+
 function getHotkeys(): Hotkey[] {
     /**
      * TODO ønskelig å fjerne dobbelt-bokføring her og ved bruken av useHook
@@ -267,18 +280,9 @@ function Decorator() {
         handleSetEnhet
     );
 
-    const { isOn } = useFeatureToggle(FeatureToggles.BrukNyDecorator);
-
-    const InternflateDecorator = isOn ? (
-        <InternflateDecoratorV3 key={`${isOn}`} {...configV3} />
-    ) : (
-        <InternflateDecoratorV2 key={`${isOn}`} {...configV2} />
-    );
-    console.log(`isOn`, isOn);
-
     return (
         <StyledNav>
-            {InternflateDecorator}
+            <DecoratorToggle configV2={configV2} configV3={configV3} />
             <PersonsokContainer />
             <OppdateringsloggContainer />
             <DecoratorEasterEgg />
