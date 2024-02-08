@@ -7,6 +7,8 @@ export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleRespon
             return true;
         case FeatureToggles.IkkeFnrIPath:
             return true;
+        case FeatureToggles.BrukNyDecorator:
+            return true;
         default:
             return Math.random() > 0.5;
     }
