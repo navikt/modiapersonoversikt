@@ -2,7 +2,7 @@ declare global {
     interface Window {
         erChatvisning: boolean;
         applicationFeatureToggles: {
-            useNewDialogComponents: string;
+            useNewDecorator: string;
         };
     }
 }
