@@ -163,7 +163,7 @@ function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null } {
 }
 
 const DecoratorToggle = ({ configV2, configV3 }: { configV2: DecoratorProps; configV3: DecoratorPropsV3 }) => {
-    if (window.applicationFeatureToggles?.useNewDecorator === true) {
+    if (window.applicationFeatureToggles?.useNewDecorator === 'true') {
         return <InternflateDecoratorV3 {...configV3} />;
     }
     return <InternflateDecoratorV2 {...configV2} />;
