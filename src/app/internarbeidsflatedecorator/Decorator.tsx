@@ -20,6 +20,7 @@ import OppdateringsloggContainer, {
 import './personsokKnapp.less';
 import './decorator.less';
 import { useValgtenhet } from '../../context/valgtenhet-state';
+
 const bjelleIkon = raw('../../svg/bjelle.svg');
 
 const InternflateDecoratorV2 = NAVSPA.importer<DecoratorProps>('internarbeidsflatefs');

@@ -6,15 +6,10 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import * as React from 'react';
 import { apiBaseUri } from '../../api/config';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get, post } from '../../api/api';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
+import { FetchError, post } from '../../api/api';
 
 function queryKey(fnr: string): [string, string] {
     return ['tildelteoppgaver', fnr];
-}
-function url(fnr: string): string {
-    return `${apiBaseUri}/oppgaver/tildelt/${fnr}`;
 }
 
 function urlUtenFnrIPath(): string {
@@ -29,9 +24,8 @@ const defaults: DefaultConfig = {
 const resource = {
     useFetch(): UseQueryResult<Oppgave[], FetchError> {
         const fnr = useFodselsnummer();
-        const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
-        return useQuery(queryKey(fnr), () => (isOn ? post(urlUtenFnrIPath(), { fnr }) : get(url(fnr))));
+        return useQuery(queryKey(fnr), () => post(urlUtenFnrIPath(), { fnr }));
     },
     useRenderer(renderer: RendererOrConfig<Oppgave[]>) {
         const response = this.useFetch();
