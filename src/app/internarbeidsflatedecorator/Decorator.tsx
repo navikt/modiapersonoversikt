@@ -134,7 +134,7 @@ function lagConfigV3(
                 ? `https://${window.location.host}/modiapersonoversikt/proxy`
                 : process.env.REACT_APP_CONTEXTHOLDER_URL,
         environment: process.env.NODE_ENV === 'production' ? 'q1' : 'mock',
-        urlFormat: process.env.NODE_ENV === 'development' ? 'ADEO' : 'LOCAL',
+        urlFormat: process.env.NODE_ENV === 'production' ? 'ADEO' : 'LOCAL',
         showEnheter: true,
         showSearchArea: true,
         fetchActiveUserOnMount: true,
