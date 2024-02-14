@@ -78,6 +78,7 @@ function EnkeltMeldingMarkup({ melding }: { melding: Melding }) {
             <Ingress>{tittel}</Ingress>
             <Flex>
                 <div>
+                    <Element>Skrevet av: {melding.skrevetAvTekst}</Element>
                     <Element>Kanal: NAV_NO</Element>
                     <Element>Type: {melding.meldingstype}</Element>
                     {temagruppe}
