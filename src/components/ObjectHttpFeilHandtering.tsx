@@ -20,7 +20,7 @@ export function ObjectHttpFeilHandtering({ url, fnr, onError, children, ...rest 
 
     useEffect(() => {
         let objectUrl = '';
-        fetch(url, postConfig(fnr))
+        fetch(url, postConfig({ fnr }))
             .then((res) => {
                 if (!res.ok) {
                     setError(true);
