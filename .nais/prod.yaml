@@ -46,6 +46,12 @@ spec:
           - id: "ea34edea-1e80-4759-a1d2-fbe696cf1709" # 0000-GA-BD06_ModiaGenerellTilgang
   vault:
     enabled: true
+  accessPolicy:
+    outbound:
+      external:
+        - host: personoversikt-unleash-api.nav.cloud.nais.io
+  envFrom:
+    - secret: modiapersonoversikt-unleash-api-token
   env:
     - name: APP_NAME
       value: "modiapersonoversikt"
@@ -69,3 +75,5 @@ spec:
       value: "jdbc:postgresql://A01DBVL029.adeo.no:5432/modiapersonoversikt"
     - name: VAULT_MOUNTPATH
       value: "postgresql/prod-fss/"
+    - name: UNLEASH_ENVIRONMENT
+      value: "production"

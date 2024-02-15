@@ -494,6 +494,12 @@ exports[`Viser traad med verktøylinje 1`] = `
                 <p
                   className="typo-element"
                 >
+                  Skrevet av: 
+                  Sander Hansen (nzxo4q)
+                </p>
+                <p
+                  className="typo-element"
+                >
                   Kanal: NAV_NO
                 </p>
                 <p
@@ -559,6 +565,12 @@ exports[`Viser traad med verktøylinje 1`] = `
               className="c11"
             >
               <div>
+                <p
+                  className="typo-element"
+                >
+                  Skrevet av: 
+                  Synne Lunde (e5otkk)
+                </p>
                 <p
                   className="typo-element"
                 >
@@ -630,6 +642,12 @@ exports[`Viser traad med verktøylinje 1`] = `
                 <p
                   className="typo-element"
                 >
+                  Skrevet av: 
+                  Frida Pedersen (xmqgb8)
+                </p>
+                <p
+                  className="typo-element"
+                >
                   Kanal: NAV_NO
                 </p>
                 <p
@@ -695,6 +713,12 @@ exports[`Viser traad med verktøylinje 1`] = `
               className="c11"
             >
               <div>
+                <p
+                  className="typo-element"
+                >
+                  Skrevet av: 
+                  Kristoffer Fredriksen (xy70r8)
+                </p>
                 <p
                   className="typo-element"
                 >

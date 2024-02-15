@@ -8,9 +8,7 @@ import { useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import { useValgtenhet } from '../../context/valgtenhet-state';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { FetchError, get, post } from '../../api/api';
-import useFeatureToggle from '../../components/featureToggle/useFeatureToggle';
-import { FeatureToggles } from '../../components/featureToggle/toggleIDs';
+import { FetchError, post } from '../../api/api';
 
 const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
@@ -22,16 +20,6 @@ function queryKey(fnr: string, enhet: string | undefined): [string, string, stri
 
 function queryKeyV2(fnr: string, enhet: string | undefined): [string, string, string | undefined] {
     return ['sakstemaV2', fnr, enhet];
-}
-
-function url(fnr: string, enhet: string | undefined) {
-    const header = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/saker/${fnr}/sakstema${header}`;
-}
-
-function urlV2(fnr: string, enhet?: string) {
-    const header = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/saker/${fnr}/v2/sakstema${header}`;
 }
 
 function urlUtenFnrIPath(enhet?: string) {
@@ -53,15 +41,8 @@ function useFnrEnhet(): [string, string | undefined] {
 const resource = {
     useFetch(): UseQueryResult<SakstemaResponse, FetchError> {
         const [fnr, enhet] = useFnrEnhet();
-        const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
-        let fetchFn = () => get(url(fnr, enhet));
-
-        if (isOn) {
-            fetchFn = () => post(urlUtenFnrIPath(enhet), { fnr });
-        }
-
-        return useQuery(queryKey(fnr, enhet), fetchFn);
+        return useQuery(queryKey(fnr, enhet), () => post(urlUtenFnrIPath(enhet), { fnr }));
     },
     useRenderer(renderer: RendererOrConfig<SakstemaResponse>) {
         const response = this.useFetch();
@@ -72,15 +53,8 @@ const resource = {
 export const sakstemaResourceV2 = {
     useFetch(): UseQueryResult<SakstemaSoknadsstatusResponse, FetchError> {
         const [fnr, enhet] = useFnrEnhet();
-        const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
 
-        let fetchFn = () => get(urlV2(fnr, enhet));
-
-        if (isOn) {
-            fetchFn = () => post(urlUtenFnrIPathV2(enhet), { fnr });
-        }
-
-        return useQuery(queryKeyV2(fnr, enhet), fetchFn);
+        return useQuery(queryKeyV2(fnr, enhet), () => post(urlUtenFnrIPathV2(enhet), { fnr }));
     },
     useRenderer(renderer: RendererOrConfig<SakstemaSoknadsstatusResponse>) {
         const response = this.useFetch();

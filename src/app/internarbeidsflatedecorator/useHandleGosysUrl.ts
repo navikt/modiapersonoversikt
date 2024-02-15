@@ -16,7 +16,7 @@ function useHandleGosysUrl() {
         const linkTilValgtHenvendelse = `${paths.personUri}/${queryParams.sokFnr}/${INFOTABS.MELDINGER.path}?traadId=${queryParams.behandlingsid}`;
 
         if (queryParams.oppgaveid && queryParams.behandlingsid && queryParams.sokFnr) {
-            fetchToJson<Oppgave>(`${apiBaseUri}/oppgaver/oppgavedata/${queryParams.oppgaveid}`).then(response => {
+            fetchToJson<Oppgave>(`${apiBaseUri}/v2/oppgaver/oppgavedata/${queryParams.oppgaveid}`).then((response) => {
                 loggEvent('Oppgave', 'FraGosys', { success: hasData(response) });
                 history.replace(linkTilValgtHenvendelse);
             });

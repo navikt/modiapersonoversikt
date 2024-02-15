@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormEvent, useRef, useState, useCallback, useMemo } from 'react';
 import { FortsettDialogValidator } from './validatorer';
-import { SendMeldingRequest, SendMeldingRequestV2, Traad, TraadType } from '../../../../models/meldinger/meldinger';
+import { SendMeldingRequestV2, Traad, TraadType } from '../../../../models/meldinger/meldinger';
 import { setIngenValgtTraadDialogpanel } from '../../../../redux/oppgave/actions';
 import { useFodselsnummer } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
@@ -32,7 +32,6 @@ import { useValgtenhet } from '../../../../context/valgtenhet-state';
 import { useQueryClient, UseQueryResult } from '@tanstack/react-query';
 import journalsakResource from '../../../../rest/resources/journalsakResource';
 import FortsettDialog from './FortsettDialog';
-import useFeatureToggle from '../../../../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../../../../components/featureToggle/toggleIDs';
 import { Prompt } from 'react-router';
 import IfFeatureToggleOn from '../../../../components/featureToggle/IfFeatureToggleOn';
@@ -64,7 +63,6 @@ export function finnPlukketOppgaveForTraad(
 }
 
 function FortsettDialogContainer(props: Props) {
-    const { isOn } = useFeatureToggle(FeatureToggles.IkkeFnrIPath);
     const queryClient = useQueryClient();
     const initialState = useMemo(
         () => ({
@@ -147,24 +145,20 @@ function FortsettDialogContainer(props: Props) {
             oppgaveId: oppgaveId,
             avsluttet: state.avsluttet
         };
-        const url = isOn ? `${apiBaseUri}/v2/dialog/sendmelding` : `${apiBaseUri}/dialog/${fnr}/sendmelding`;
+        const url = `${apiBaseUri}/v2/dialog/sendmelding`;
 
         if (FortsettDialogValidator.erGyldigSamtalereferat(state)) {
             setDialogStatus({ type: DialogPanelStatus.POSTING });
-            const request: SendMeldingRequest = {
-                ...commonPayload,
-                erOppgaveTilknyttetAnsatt: true
-            };
             const requestV2: SendMeldingRequestV2 = {
                 ...commonPayload,
                 fnr,
                 erOppgaveTilknyttetAnsatt: true
             };
             const kvitteringsData: KvitteringsData = {
-                fritekst: request.fritekst,
+                fritekst: requestV2.fritekst,
                 traad: props.traad
             };
-            post(url, isOn ? requestV2 : request, 'Send-Svar')
+            post(url, requestV2, 'Send-Svar')
                 .then(() => {
                     callback();
                     setDialogStatus({ type: DialogPanelStatus.SVAR_SENDT, kvitteringsData: kvitteringsData });
@@ -179,17 +173,11 @@ function FortsettDialogContainer(props: Props) {
                 const error = Error(
                     'For å opprette spørsmål må meldingen være journalført, sak må være valgt, eller være på temagruppen OKSOS'
                 );
-                console.error(error);
                 loggError(error);
                 updateState({ errors: [error], visFeilmeldinger: true });
                 return;
             }
             setDialogStatus({ type: DialogPanelStatus.POSTING });
-            const request: SendMeldingRequest = {
-                ...commonPayload,
-                erOppgaveTilknyttetAnsatt: state.avsluttet ? false : erOppgaveTilknyttetAnsatt,
-                sak: state.sak ? state.sak : undefined
-            };
             const requestV2: SendMeldingRequestV2 = {
                 ...commonPayload,
                 fnr,
@@ -197,10 +185,10 @@ function FortsettDialogContainer(props: Props) {
                 sak: state.sak ? state.sak : undefined
             };
             const kvitteringsData: KvitteringsData = {
-                fritekst: request.fritekst,
+                fritekst: requestV2.fritekst,
                 traad: props.traad
             };
-            post(url, isOn ? requestV2 : request, 'Svar-Med-Spørsmål')
+            post(url, requestV2, 'Svar-Med-Spørsmål')
                 .then(() => {
                     callback();
                     queryClient.invalidateQueries(journalsakResource.queryKey(fnr));

@@ -69,3 +69,31 @@ export interface DecoratorProps {
     useProxy?: ProxyConfig;
     accessToken?: string;
 }
+
+export type Environment = 'q0' | 'q1' | 'q2' | 'q3' | 'q4' | 'prod' | 'local' | 'mock';
+
+export type UrlFormat = 'LOCAL' | 'ADEO' | 'NAV_NO';
+
+export interface DecoratorPropsV3 {
+    appName: string;
+    hotkeys?: Hotkey[];
+    toggles?: TogglesConfig;
+    markup?: Markup;
+    showEnheter: boolean;
+    showSearchArea: boolean;
+    showHotkeys: boolean;
+    environment: Environment;
+    urlFormat: UrlFormat;
+    proxy?: string | undefined;
+    contextholderUrl?: string | undefined;
+    enhet?: string | undefined;
+    accessToken?: string | undefined;
+    fnr?: string | undefined;
+    userKey?: string | undefined;
+    enableHotkeys?: boolean | undefined;
+    fetchActiveEnhetOnMount?: boolean | undefined;
+    fetchActiveUserOnMount?: boolean | undefined;
+    onBeforeRequest?: (headers: HeadersInit) => HeadersInit | undefined;
+    onEnhetChanged: (enhet?: string | null) => void;
+    onFnrChanged: (fnr?: string | null) => void;
+}
