@@ -30,6 +30,7 @@ import OppslagPaaInaktivIdent from './img/oppslag-paa-inaktiv-ident.png';
 import MeldingsVisning from './img/meldinger.png';
 import Revarsling from './img/revarsling.png';
 import Kunnskapsbasen from './img/kunnskapsbasen.png';
+import Journalforing from './img/journaloring.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
@@ -545,6 +546,22 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: Kunnskapsbasen
+        },
+        {
+            id: 32,
+            tittel: 'Journalforing av samtaler uten svar',
+            dato: new Date('2024-02-20 12:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Det er nå mulig å journalføre samtaler uten svar fra NAV. Merk at man vil miste tilgang til
+                        innholdet i samtaler når de journalføres på et tema du ikke har tilgang til.
+                    </Normaltekst>
+                </>
+            ),
+            src: Journalforing
         }
     ];
 }
