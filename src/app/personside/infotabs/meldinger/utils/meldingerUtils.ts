@@ -131,6 +131,10 @@ export function erKontorsperret(traad: Traad): boolean {
     return !!eldsteMelding(traad).kontorsperretEnhet;
 }
 
+export function kanTraadJournalforesV2(traad: Traad): boolean {
+    return !erKontorsperret(traad) && !erFeilsendt(traad);
+}
+
 export function kanTraadJournalfores(traad: Traad): boolean {
     return !erKontorsperret(traad) && !erFeilsendt(traad) && erBehandlet(traad);
 }

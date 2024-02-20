@@ -16,6 +16,7 @@ import { Temagruppe, TemaSamtalereferat } from '../../models/temagrupper';
 import standardTeksterMock from '../standardTeksterMock';
 import { autofullfor, AutofullforMap } from '../../app/personside/dialogpanel/sendMelding/autofullforUtils';
 import { backendDatoTidformat } from '../../utils/date-utils';
+import standardTraader from './standardTraader';
 
 // Legger inn to konstanter for å sørge for at vi får korrelasjon på tvers av mocking (tråd-oppgave feks)
 export const MOCKED_TRAADID_1 = '123';
@@ -26,9 +27,11 @@ export function getMockTraader(fodselsnummer: string): Traad[] {
     faker.seed(Number(fodselsnummer));
     navfaker.seed(fodselsnummer + 'meldinger');
 
-    const traadArray = navfaker.random.vektetSjanse(0.2)
+    const randomTraader = navfaker.random.vektetSjanse(0.2)
         ? fyllRandomListe(getMockTraad, 300, true)
         : fyllRandomListe(getMockTraad, 30, true);
+
+    const traadArray = [...randomTraader, ...getHardKodetTraader()];
 
     if (traadArray.length >= 3) {
         traadArray[0].traadId = MOCKED_TRAADID_1;
@@ -62,6 +65,13 @@ function getMockTraad(): Traad {
         temagruppe: temagruppe,
         journalposter: fyllRandomListe(lagJournalpost, 3, false)
     };
+}
+
+function getHardKodetTraader(): Traad[] {
+    return standardTraader.map((traad) => ({
+        ...traad,
+        traadId: faker.random.alphaNumeric(8)
+    }));
 }
 
 function getMelding(temagruppe: Temagruppe): Melding {
