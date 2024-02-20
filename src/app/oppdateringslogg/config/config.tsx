@@ -533,15 +533,14 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
         },
         {
             id: 31,
-            tittel: 'Lenke til kunnskapsbasen NKS',
+            tittel: 'Lenke til Kunnskapsbasen NKS',
             dato: new Date('2024-02-20 10:00'),
             aktiv: true,
             ingress: null,
             beskrivelse: (
                 <>
                     <Normaltekst>
-                        Vi har lagt til en lenke til kunnskapsbasen NKS i hovedmenyen. Lenken finnes under "Andre
-                        systemer" i menyen.
+                        Nå finner du lenke til Kunnskapsbasen NKS i hovedmenyen under andre systemer.
                     </Normaltekst>
                 </>
             ),
