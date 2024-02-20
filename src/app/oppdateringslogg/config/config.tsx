@@ -29,6 +29,7 @@ import LestDatoSak from './img/lest-dato-sak.png';
 import OppslagPaaInaktivIdent from './img/oppslag-paa-inaktiv-ident.png';
 import MeldingsVisning from './img/meldinger.png';
 import Revarsling from './img/revarsling.png';
+import Kunnskapsbasen from './img/kunnskapsbasen.png';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
@@ -528,6 +529,22 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
                 </>
             ),
             src: Revarsling
+        },
+        {
+            id: 31,
+            tittel: 'Lenke til kunnskapsbasen NKS',
+            dato: new Date('2024-02-20 10:00'),
+            aktiv: true,
+            ingress: null,
+            beskrivelse: (
+                <>
+                    <Normaltekst>
+                        Vi har lagt til en lenke til kunnskapsbasen NKS i hovedmenyen. Lenken finnes under "Andre
+                        systemer" i menyen.
+                    </Normaltekst>
+                </>
+            ),
+            src: Kunnskapsbasen
         }
     ];
 }
