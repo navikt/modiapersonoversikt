@@ -10,7 +10,6 @@ import styled from 'styled-components/macro';
 import BrukerHarUbesvarteMeldinger from './dialogpanel/BrukerHarUbesvarteMeldinger';
 import { guid } from 'nav-frontend-js-utils';
 import TildelteOppgaver from './dialogpanel/TildelteOppgaver';
-import TilbakemeldingFab from '../../components/Tilbakemelding/TilbakemeldingFab';
 import { VisittkortStateProvider } from '../../context/visittkort-state';
 import { useDialogpanelState } from '../../context/dialogpanel-state';
 
@@ -19,11 +18,6 @@ const Scrollbar = styled.div`
     flex-grow: 1;
     flex-shrink: 1;
 `;
-
-const temaId = 'sporsamtalePilot';
-const sporsmal = 'Synes du «Spor samtale» er en effektiv måte å dokumentere samtale med bruker?';
-const kommentarLabel =
-    'Hva er bra, hva kunne vært bedre og er det noe du savner? Andre tilbakemelding? Alle tilbakemeldinger er anonyme.';
 
 function MainLayout() {
     const dialogpanel = useDialogpanelState();
@@ -63,7 +57,6 @@ function MainLayout() {
                 </HoyreKolonne>
             )}
             <SmallScreenToggleButton />
-            <TilbakemeldingFab temaId={temaId} sporsmal={sporsmal} kommentarLabel={kommentarLabel} />
         </LayoutWrapper>
     );
 }
