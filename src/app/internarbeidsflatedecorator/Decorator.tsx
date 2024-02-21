@@ -99,12 +99,12 @@ function lagConfigV3(
     history: History,
     settEnhet: (enhet: string) => void
 ): DecoratorPropsV3 {
-    const { sokFnr, pathFnr } = getFnrFraUrl();
+    const { sokFnr, pathFnr, userKey } = getFnrFraUrl();
     const onsketFnr = sokFnr || pathFnr;
     return {
         appName: 'Modia personoversikt',
         fnr: onsketFnr ?? undefined,
-        userKey: onsketFnr ?? undefined,
+        userKey: userKey ?? pathFnr ?? undefined,
         onFnrChanged: (fnr) => {
             if (fnr === getFnrFraUrl().pathFnr) {
                 return;
@@ -117,7 +117,6 @@ function lagConfigV3(
         },
         enhet: enhet ?? undefined,
         onEnhetChanged: (enhet) => {
-            console.log('enhet');
             if (enhet) {
                 settEnhet(enhet);
             }
@@ -147,17 +146,18 @@ function getPathnameFromUrl(): string {
     return removePrefix(pathname + hash, process.env.PUBLIC_URL, '/#', '#');
 }
 
-function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null } {
+function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null; userKey: string | null } {
     const location = window.location;
     const pathname = getPathnameFromUrl();
 
-    const queryParams = parseQueryString<{ sokFnr?: string }>(location.search);
+    const queryParams = parseQueryString<{ sokFnr?: string; userKey?: string }>(location.search);
     const sakerUriMatch = matchPath<{ fnr: string }>(pathname, `${paths.sakerFullscreen}/:fnr`);
     const saksdokumentUriMatch = matchPath<{ fnr: string }>(pathname, `${paths.saksdokumentEgetVindu}/:fnr`);
     const personUriMatch = matchPath<{ fnr: string }>(pathname, `${paths.personUri}/:fnr`);
 
     return {
         sokFnr: queryParams.sokFnr ?? null,
+        userKey: queryParams.userKey ?? null,
         pathFnr: sakerUriMatch?.params.fnr ?? saksdokumentUriMatch?.params.fnr ?? personUriMatch?.params.fnr ?? null
     };
 }

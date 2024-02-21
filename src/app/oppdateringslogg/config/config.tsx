@@ -548,15 +548,15 @@ export function lagOppdateringsloggConfig(): OppdateringsloggInnslag[] {
         },
         {
             id: 32,
-            tittel: 'Journalforing av samtaler uten svar',
+            tittel: 'Journalføring av melding fra bruker',
             dato: new Date('2024-02-20 12:00'),
             aktiv: true,
             ingress: null,
             beskrivelse: (
                 <>
                     <Normaltekst>
-                        Det er nå mulig å journalføre samtaler uten svar fra NAV. Merk at man vil miste tilgang til
-                        innholdet i samtaler når de journalføres på et tema du ikke har tilgang til.
+                        Det er nå mulig å journalføre melding fra bruker uten svar fra NAV. Merk at man vil miste
+                        tilgang til innholdet i samtaler når de journalføres på et tema du ikke har tilgang til.
                     </Normaltekst>
                 </>
             ),
