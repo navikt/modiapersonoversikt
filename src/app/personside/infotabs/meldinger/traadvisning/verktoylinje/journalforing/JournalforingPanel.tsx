@@ -3,9 +3,11 @@ import styled from 'styled-components/macro';
 import VelgSak from './VelgSak';
 import { JournalforSak } from './JournalforSak';
 import { Traad } from '../../../../../../../models/meldinger/meldinger';
-import { kanTraadJournalfores } from '../../../utils/meldingerUtils';
+import { kanTraadJournalfores, kanTraadJournalforesV2 } from '../../../utils/meldingerUtils';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import useFeatureToggle from '../../../../../../../components/featureToggle/useFeatureToggle';
+import { FeatureToggles } from '../../../../../../../components/featureToggle/toggleIDs';
 
 export enum SakKategori {
     FAG = 'Fagsaker',
@@ -67,7 +69,11 @@ function JournalforingPanel(props: Props) {
         fagsystemSaksId: jp.journalfortSaksid
     }));
 
-    const kanJournalfores = kanTraadJournalfores(props.traad);
+    const { isOn: kanJournalForeUtenSvar } = useFeatureToggle(FeatureToggles.JournalforUtenSvar);
+
+    const kanJournalfores = kanJournalForeUtenSvar
+        ? kanTraadJournalforesV2(props.traad)
+        : kanTraadJournalfores(props.traad);
     function velgSak(sak: JournalforingsSak) {
         setAktivtVindu(AktivtVindu.SAKVISNING);
         setValgtSak(sak);
