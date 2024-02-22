@@ -61,14 +61,13 @@ spec:
       value: "https://unleash.nais.io/api/"
     - name: CSP_DIRECTIVES
       value: "default-src 'self';\
-      script-src 'self' 'unsafe-inline' jsagent.adeo.no https://*.hotjar.com https://*.hotjar.io;\
-      style-src 'self' 'unsafe-inline';\
-      img-src 'self' data: https://*.hotjar.com https://*.hotjar.io;\
-      font-src 'self' data: https://*.hotjar.com https://*.hotjar.io;\
-      connect-src 'self' eumgw.adeo.no wss://veilederflatehendelser.adeo.no https://*.hotjar.com https://*.hotjar.io sentry.gc.nav.no;\
+      script-src 'self' 'unsafe-inline' jsagent.adeo.no https://cdn.adeo.no;\
+      style-src 'self' 'unsafe-inline' https://cdn.nav.no;\
+      img-src 'self' data:;\
+      font-src 'self' data: https://cdn.nav.no;\
+      connect-src 'self' eumgw.adeo.no wss://veilederflatehendelser.adeo.no;\
       object-src blob:;\
-      frame-src blob: https://*.hotjar.com https://*.hotjar.io;\
-      report-uri https://sentry.gc.nav.no/api/145/security/?sentry_key=b07212ac0fce4245b88145ad95706ce7&sentry_environment=prod&sentry_release={{ version }};"
+      frame-src blob:;"
     - name: REFERRER_POLICY
       value: "no-referrer"
     - name: DATABASE_JDBC_URL
