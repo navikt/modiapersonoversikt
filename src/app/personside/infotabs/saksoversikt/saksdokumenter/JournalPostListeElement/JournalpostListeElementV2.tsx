@@ -19,7 +19,7 @@ import { Sakstema } from '../../../../../../models/saksoversikt/sakstema';
 import DokumentLenke from '../DokumentLenke';
 import { guid } from 'nav-frontend-js-utils';
 import { hentNavn } from '../../../../visittkort-v2/visittkort-utils';
-import { sakstemakodeAlle } from '../../utils/saksoversiktUtils';
+import { sakstemakodeAlle } from '../../utils/saksoversiktUtilsV2';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../../useSakstemaURLState';
 import persondataResource from '../../../../../../rest/resources/persondataResource';
 import JournalpostLestAvBruker from './JournalpostLestAvBruker';

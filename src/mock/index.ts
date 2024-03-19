@@ -16,7 +16,7 @@ import { getMockSykepengerRespons } from './ytelse/sykepenger-mock';
 import { getMockForeldrepenger } from './ytelse/foreldrepenger-mock';
 import { getMockPleiepenger } from './ytelse/pleiepenger-mock';
 import { mockFeatureToggle } from './featureToggle-mock';
-import { getMockSaksoversikt, getMockSaksoversiktV2 } from './saksoversikt/saksoversikt-mock';
+import { getMockSaksoversiktV2 } from './saksoversikt/saksoversikt-mock';
 import { getMockOppfolging, getMockYtelserOgKontrakter } from './oppfolging-mock';
 import { getMockVarsler } from './varsler/varsel-mock';
 import { getForeslattEnhet, getMockAnsatte, getMockEnheter, getMockGsakTema } from './meldinger/oppgave-mock';
@@ -24,7 +24,6 @@ import { getMockInnloggetSaksbehandler } from './innloggetSaksbehandler-mock';
 import { saker } from './journalforing/journalforing-mock';
 import { mockPersonsokResponse, mockStaticPersonsokRequest } from './personsok/personsokMock';
 import { setupWsControlAndMock } from './context-mock';
-import standardTekster from './standardTeksterMock.js';
 import { getSaksBehandlersEnheterMock } from './getSaksBehandlersEnheterMock';
 import { OppgaverBackendMock } from './mockBackend/oppgaverBackendMock';
 import { setupSaksbehandlerInnstillingerMock } from './saksbehandlerinnstillinger-mock';
@@ -125,32 +124,6 @@ function setupAktorIdMock(mock: FetchMock) {
             randomDelay(),
             fodselsNummerErGyldigStatus,
             mockGeneratorMedFodselsnummerV2((fodselsnummer) => getAktorId(fodselsnummer))
-        )
-    );
-}
-
-function setupSaksoversiktMock(mock: FetchMock) {
-    mock.get(
-        apiBaseUri + '/saker/:fodselsnummer/sakstema',
-        verify(
-            harEnhetIdSomQueryParam,
-            withDelayedResponse(
-                randomDelay(),
-                fodselsNummerErGyldigStatus,
-                mockGeneratorMedFodselsnummer(getMockSaksoversikt)
-            )
-        )
-    );
-
-    mock.post(
-        apiBaseUri + '/v2/saker/sakstema',
-        verify(
-            harEnhetIdSomQueryParam,
-            withDelayedResponse(
-                randomDelay(),
-                fodselsNummerErGyldigStatus,
-                mockGeneratorMedFodselsnummer(getMockSaksoversikt)
-            )
         )
     );
 }
@@ -383,7 +356,7 @@ function opprettSkjermetOppgaveMock(mock: FetchMock) {
 function setupStandardteksterMock(mock: FetchMock) {
     mock.get(
         '/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte',
-        withDelayedResponse(randomDelay(), STATUS_OK, () => standardTekster)
+        withDelayedResponse(randomDelay(), STATUS_OK, () => '')
     );
 
     mock.post(
@@ -418,7 +391,6 @@ const mock = FetchMock.configure({
 setupInnloggetSaksbehandlerMock(mock);
 setupPersondataMock(mock);
 setupTilgangskontroll(mock);
-setupSaksoversiktMock(mock);
 setupSaksoversiktV2Mock(mock);
 setupSaksoversiktV3Mock(mock);
 setupUtbetalingerMock(mock);

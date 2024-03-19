@@ -23,8 +23,7 @@ import { oppdaterAvsenderfilter } from '../../../../../redux/saksoversikt/action
 import { guid } from 'nav-frontend-js-utils';
 import Panel from 'nav-frontend-paneler';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../useSakstemaURLState';
-import { forkortetTemanavn } from '../utils/saksoversiktUtils';
-import { aggregertSakstemaV2 } from '../utils/saksoversiktUtilsV2';
+import { aggregertSakstemaV2, forkortetTemanavnV2 } from '../utils/saksoversiktUtilsV2';
 import JournalpostListeElementV2 from './JournalPostListeElement/JournalpostListeElementV2';
 
 const StyledPanel = styled(Panel)`
@@ -238,7 +237,7 @@ function JournalPoster(props: Props) {
         props.sakstemaListeDropdown !== undefined ? (
             props.sakstemaListeDropdown
         ) : (
-            <Undertittel className={sakerTest.dokument}>{forkortetTemanavn(aggregertSak.temanavn)}</Undertittel>
+            <Undertittel className={sakerTest.dokument}>{forkortetTemanavnV2(aggregertSak.temanavn)}</Undertittel>
         );
 
     return (
