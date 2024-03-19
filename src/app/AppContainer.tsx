@@ -23,6 +23,7 @@ import { usePersistentWWLogin } from '../login/use-persistent-ww-login';
 import usePersistentLogin from '../utils/hooks/use-persistent-login';
 import useFeatureToggle from '../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
+import { initAmplitude } from '../utils/amplitude';
 
 const AppStyle = styled.div`
     height: 100vh;
@@ -43,6 +44,8 @@ const ContentStyle = styled.div`
 `;
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
+
+initAmplitude();
 
 function App() {
     const loginStateOld = usePersistentLogin();
@@ -66,7 +69,6 @@ function App() {
             </>
         );
     }
-
     return (
         <>
             <LoggetUtModal loginState={loginState} />

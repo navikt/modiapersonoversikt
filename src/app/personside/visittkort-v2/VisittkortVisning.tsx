@@ -10,6 +10,7 @@ import SikkerhetstiltakModal from './header/SikkerhetstiltakModal';
 import EgenAnsattFeilendeSystemModal from './header/EgenAnsattFeilendeSystemModal';
 import { harFeilendeSystemer } from './harFeilendeSystemer';
 import { useVisittkortState } from '../../../context/visittkort-state';
+import { trackAccordionClosed, trackAccordionOpened } from '../../../utils/amplitude';
 
 interface Props {
     persondata: Persondata;
@@ -20,6 +21,10 @@ function VisittkortVisning(props: Props) {
     const erApen = visittkortState.apent;
     const toggleApen = visittkortState.toggle;
     const lenkeNyBrukerprofil = useUrlNyPersonforvalter();
+
+    React.useEffect(() => {
+        erApen ? trackAccordionOpened('Visittkort') : trackAccordionClosed('Visittkort');
+    }, [erApen]);
 
     useHotkey({ char: 'n', altKey: true }, () => toggleApen(), [toggleApen], 'Visittkort');
     useHotkey(
