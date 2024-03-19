@@ -804,7 +804,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-normal"
         >
           Gjelder 
-          alle ytelser
+          alle statlige ytelser
         </p>
         <p
           className="typo-normal"
@@ -856,7 +856,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
           className="typo-normal"
         >
           Gjelder 
-          alle ytelser
+          alle statlige ytelser
         </p>
         <p
           className="typo-normal"
