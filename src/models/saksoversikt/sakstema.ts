@@ -1,10 +1,6 @@
 import { Journalpost } from './journalpost';
 import { Sak } from './sak';
 
-export interface SakstemaResponse {
-    resultat: SakstemaBehandlingskjede[];
-}
-
 export interface SakstemaSoknadsstatusResponse {
     resultat: SakstemaSoknadsstatus[];
 }
@@ -19,10 +15,6 @@ export interface Sakstema {
     feilkoder: number[];
 }
 
-export interface SakstemaBehandlingskjede extends Sakstema {
-    behandlingskjeder: Behandlingskjede[];
-}
-
 export enum Behandlingsstatus {
     UnderBehandling = 'UNDER_BEHANDLING',
     FerdigBehandlet = 'FERDIG_BEHANDLET',
@@ -35,10 +27,6 @@ export interface Behandlingskjede {
 }
 
 export interface SakstemaSoknadsstatus extends Sakstema {
-    soknadsstatus: Soknadsstatus;
-}
-
-export interface AggregertSakstemaSoknadsstatus extends Sakstema {
     soknadsstatus: Soknadsstatus;
 }
 

@@ -8,7 +8,7 @@ import Panel from 'nav-frontend-paneler';
 import { Knapp } from 'nav-frontend-knapper';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from '../useSakstemaURLState';
 import { CheckboksPanelGruppe, CheckboksPanelProps } from 'nav-frontend-skjema';
-import { sakstemakodeAlle } from '../utils/saksoversiktUtils';
+import { sakstemakodeAlle } from '../utils/saksoversiktUtilsV2';
 import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { filtrerSakstemaerUtenDataV2 } from './SakstemaListeUtils';
 import SakstemaListeElementCheckboksV2 from './SakstemaListeElementCheckboksV2';

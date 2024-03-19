@@ -8,7 +8,7 @@ import { ReactNode } from 'react';
 import { useOnMount } from '../../../../utils/customHooks';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { filtrerSakstemaerUtenDataV2 } from '../saksoversikt/sakstemaliste/SakstemaListeUtils';
-import { sakstemaResourceV2 } from '../../../../rest/resources/sakstemaResource';
+import resource from '../../../../rest/resources/sakstemaResource';
 import SakstemaListeElementKnappV2 from '../saksoversikt/sakstemaliste/SakstemaListeElementKnappV2';
 
 const ListStyle = styled.ol`
@@ -22,7 +22,7 @@ interface Props {
 }
 
 function SakerOversikt(props: Props) {
-    return sakstemaResourceV2.useRenderer({
+    return resource.useRenderer({
         ifPending: <CenteredLazySpinner padding={theme.margin.layout} />,
         ifData: (sakstema) => <SakerPanel sakstema={sakstema.resultat} {...props} />
     });

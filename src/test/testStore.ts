@@ -2,7 +2,7 @@ import { applyMiddleware, createStore, Dispatch, Store } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers, { AppState } from '../redux/reducers';
 import { mockBaseUrls } from '../mock/baseUrls-mock';
-import { getStaticMockSaksoversikt, getStaticMockSaksoversiktV2 } from '../mock/saksoversikt/saksoversikt-mock';
+import { getStaticMockSaksoversiktV2 } from '../mock/saksoversikt/saksoversikt-mock';
 import { statiskDittnavEventVarselMock, statiskVarselMock } from '../mock/varsler/statiskVarselMock';
 import setGjeldendeBrukerIRedux from '../redux/gjeldendeBruker/actions';
 import { statiskOppfolgingMock } from '../mock/statiskOppfolgingMock';
@@ -22,7 +22,7 @@ import pleiepengerResource from '../rest/resources/pleiepengerResource';
 import sykepengerResource from '../rest/resources/sykepengerResource';
 import gsaktemaResource from '../rest/resources/gsaktemaResource';
 import oppfolgingResource from '../rest/resources/oppfolgingResource';
-import sakstemaResource, { sakstemaResourceV2 } from '../rest/resources/sakstemaResource';
+import sakstemaResource from '../rest/resources/sakstemaResource';
 import utbetalingerResource from '../rest/resources/utbetalingerResource';
 import persondataResource from '../rest/resources/persondataResource';
 import aktoridResource from '../rest/resources/aktoridResource';
@@ -55,7 +55,6 @@ export function setupReactQueryMocks() {
     jest.spyOn(gsaktemaResource, 'useFetch');
     jest.spyOn(oppfolgingResource, 'useFetch');
     jest.spyOn(sakstemaResource, 'useFetch');
-    jest.spyOn(sakstemaResourceV2, 'useFetch');
     jest.spyOn(utbetalingerResource, 'useFetch');
     jest.spyOn(persondataResource, 'useFetch');
     jest.spyOn(aktoridResource, 'useFetch');
@@ -79,8 +78,7 @@ export function setupReactQueryMocks() {
         sykepenger: [statiskSykepengerMock]
     });
     mockReactQuery(oppfolgingResource.useFetch, statiskOppfolgingMock);
-    mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversikt());
-    mockReactQuery(sakstemaResourceV2.useFetch, getStaticMockSaksoversiktV2());
+    mockReactQuery(sakstemaResource.useFetch, getStaticMockSaksoversiktV2());
     mockReactQuery(utbetalingerResource.useFetch, statiskMockUtbetalingRespons);
     mockReactQuery(persondataResource.useFetch, {
         feiledeSystemer: [],

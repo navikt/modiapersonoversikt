@@ -7,7 +7,7 @@ import ErrorBoundary from '../../../../components/ErrorBoundary';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useKeepQueryParams } from '../../../../utils/hooks/useKeepQueryParams';
 import { useHentAlleSakstemaFraResourceV2, useSakstemaURLStateV2 } from './useSakstemaURLState';
-import { sakstemaResourceV2 } from '../../../../rest/resources/sakstemaResource';
+import resource from '../../../../rest/resources/sakstemaResource';
 import DokumentOgVedleggV2 from './dokumentvisning/DokumentOgVedleggV2';
 import JournalPosterV2 from './saksdokumenter/JournalPosterV2';
 import SakerFullscreenLenkeV2 from './SakerFullscreenLenkeV2';
@@ -54,7 +54,7 @@ function SaksoversiktContainer() {
             />
         );
     } else {
-        return sakstemaResourceV2.useRenderer({
+        return resource.useRenderer({
             ifPending: BigCenteredLazySpinner,
             ifData: (data) => {
                 if (data.resultat.length === 0) {

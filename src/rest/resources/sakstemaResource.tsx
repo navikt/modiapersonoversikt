@@ -3,7 +3,7 @@ import { applyDefaults, DefaultConfig, RendererOrConfig, useRest } from '../useR
 import { CenteredLazySpinner } from '../../components/LazySpinner';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { apiBaseUri } from '../../api/config';
-import { SakstemaResponse, SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
+import { SakstemaSoknadsstatusResponse } from '../../models/saksoversikt/sakstema';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../redux/reducers';
 import { useValgtenhet } from '../../context/valgtenhet-state';
@@ -14,17 +14,9 @@ const defaults: DefaultConfig = {
     ifPending: <CenteredLazySpinner />,
     ifError: <AlertStripe type="advarsel">Kunne ikke laste inn tema</AlertStripe>
 };
-function queryKey(fnr: string, enhet: string | undefined): [string, string, string | undefined] {
-    return ['sakstema', fnr, enhet];
-}
 
 function queryKeyV2(fnr: string, enhet: string | undefined): [string, string, string | undefined] {
     return ['sakstemaV2', fnr, enhet];
-}
-
-function urlUtenFnrIPath(enhet?: string) {
-    const header = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/v2/saker/sakstema/${header}`;
 }
 
 function urlUtenFnrIPathV2(enhet?: string) {
@@ -39,18 +31,6 @@ function useFnrEnhet(): [string, string | undefined] {
 }
 
 const resource = {
-    useFetch(): UseQueryResult<SakstemaResponse, FetchError> {
-        const [fnr, enhet] = useFnrEnhet();
-
-        return useQuery(queryKey(fnr, enhet), () => post(urlUtenFnrIPath(enhet), { fnr }));
-    },
-    useRenderer(renderer: RendererOrConfig<SakstemaResponse>) {
-        const response = this.useFetch();
-        return useRest(response, applyDefaults(defaults, renderer));
-    }
-};
-
-export const sakstemaResourceV2 = {
     useFetch(): UseQueryResult<SakstemaSoknadsstatusResponse, FetchError> {
         const [fnr, enhet] = useFnrEnhet();
 

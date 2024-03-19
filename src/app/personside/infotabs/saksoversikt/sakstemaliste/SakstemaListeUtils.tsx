@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-    Behandlingsstatus,
-    SakstemaBehandlingskjede,
-    SakstemaSoknadsstatus
-} from '../../../../../models/saksoversikt/sakstema';
+import { Behandlingsstatus, SakstemaSoknadsstatus } from '../../../../../models/saksoversikt/sakstema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import SakIkkeTilgangIkon from '../../../../../svg/SakIkkeTilgangIkon';
 import styled from 'styled-components/macro';
@@ -16,27 +12,6 @@ export const SVGStyling = styled.span`
         opacity: 0.5;
     }
 `;
-
-export function visAntallSakerSomHarBehandlingsstatus(
-    sakstema: SakstemaBehandlingskjede,
-    sjekkMotStatus: Behandlingsstatus,
-    status: string
-) {
-    const antallUnderbehandling = sakstema.behandlingskjeder.filter(
-        (behandlingskjede) => behandlingskjede.status === sjekkMotStatus
-    ).length;
-
-    if (antallUnderbehandling === 0) {
-        return null;
-    }
-
-    const soknad = antallUnderbehandling === 1 ? 'søknad' : 'søknader';
-    return (
-        <Normaltekst className="metadata">
-            {antallUnderbehandling} {soknad} er {status}.
-        </Normaltekst>
-    );
-}
 
 export function visAntallSakerSomHarbehandlingsstatusV2(
     sakstema: SakstemaSoknadsstatus,
@@ -71,12 +46,6 @@ export function saksikon(harTilgang: boolean) {
     } else {
         return <SakIkkeTilgangIkon />;
     }
-}
-
-export function filtrerSakstemaerUtenData(sakstemaer: SakstemaBehandlingskjede[]): SakstemaBehandlingskjede[] {
-    return sakstemaer.filter(
-        (sakstema) => sakstema.behandlingskjeder.length > 0 || sakstema.dokumentMetadata.length > 0
-    );
 }
 
 export function filtrerSakstemaerUtenDataV2(sakstemaer: SakstemaSoknadsstatus[]): SakstemaSoknadsstatus[] {
