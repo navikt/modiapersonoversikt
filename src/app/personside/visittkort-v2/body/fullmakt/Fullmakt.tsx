@@ -31,7 +31,7 @@ const GraTekst = styled.div`
 
 function getOmrade(omrader: KodeBeskrivelse<string>[]): string {
     if (omrader.map((omrade) => omrade.kode).includes('*')) {
-        return 'alle ytelser';
+        return 'alle statlige ytelser';
     }
     return omrader.map((omrade) => omrade.beskrivelse).join(', ');
 }
