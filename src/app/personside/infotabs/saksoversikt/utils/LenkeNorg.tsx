@@ -2,7 +2,7 @@ import { Sakstema } from '../../../../../models/saksoversikt/sakstema';
 import { Journalpost } from '../../../../../models/saksoversikt/journalpost';
 import * as React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { sakstemakodeAlle } from './saksoversiktUtils';
+import { sakstemakodeAlle } from './saksoversiktUtilsV2';
 import baseurls from '../../../../../rest/resources/baseurlsResource';
 import persondataResource from '../../../../../rest/resources/persondataResource';
 

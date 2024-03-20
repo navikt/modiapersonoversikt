@@ -3,8 +3,6 @@ import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 
 export function mockFeatureToggle(toggleId: FeatureToggles): FeatureToggleResponse {
     switch (toggleId) {
-        case FeatureToggles.BrukSoknadsstatus:
-            return true;
         case FeatureToggles.BrukNyDecorator:
             return true;
         case FeatureToggles.JournalforUtenSvar:

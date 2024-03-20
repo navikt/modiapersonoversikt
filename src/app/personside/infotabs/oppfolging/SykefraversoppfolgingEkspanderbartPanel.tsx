@@ -8,13 +8,14 @@ import { useAppState } from '../../../../utils/customHooks';
 import { useDispatch } from 'react-redux';
 import { setSykefraverEkspandert } from '../../../../redux/oppfolging/actions';
 import { loggEvent } from '../../../../utils/logger/frontendLogger';
+import { trackAccordionClosed, trackAccordionOpened } from '../../../../utils/amplitude';
 
 interface Props {
     syfoPunkter: SyfoPunkt[];
 }
 
 function SykefraversoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
-    const sortertPaDato = props.syfoPunkter.sort(datoSynkende(syfoPunkt => syfoPunkt.dato));
+    const sortertPaDato = props.syfoPunkter.sort(datoSynkende((syfoPunkt) => syfoPunkt.dato));
 
     const tableHeaders = ['Innen', 'Hendelse', 'Status'];
     const tableRows = sortertPaDato.map((syfopunkt, index) => [
@@ -27,11 +28,12 @@ function SykefraversoppfolgingTabell(props: { syfoPunkter: SyfoPunkt[] }) {
 }
 
 function SykefraversoppfolgingEkspanderbartPanel(props: Props) {
-    const open = useAppState(state => state.oppfolging.sykefraverEkspandert);
+    const open = useAppState((state) => state.oppfolging.sykefraverEkspandert);
     const dispatch = useDispatch();
     const setOpen = (open: boolean) => {
         dispatch(setSykefraverEkspandert(open));
         !open && loggEvent('VisSykefraværsPanel', 'Oppfølging');
+        open ? trackAccordionOpened('Sykefraværsoppfølging') : trackAccordionClosed('Sykefraværsoppfølging');
     };
 
     if (props.syfoPunkter.length === 0) {
