@@ -69,7 +69,7 @@ spec:
       style-src 'self' 'unsafe-inline' https://cdn.nav.no;\
       img-src 'self' data:;\
       font-src 'self' data: https://cdn.nav.no;\
-      connect-src 'self' eumgw.adeo.no wss://veilederflatehendelser-{{ q_env }}.dev.adeo.no;\
+      connect-src 'self' eumgw.adeo.no amplitude.nav.no wss://veilederflatehendelser-{{ q_env }}.dev.adeo.no;\
       object-src blob:;\
       frame-src blob:;"
     - name: REFERRER_POLICY
