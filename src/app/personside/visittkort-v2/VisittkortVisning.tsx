@@ -22,9 +22,15 @@ function VisittkortVisning(props: Props) {
     const toggleApen = visittkortState.toggle;
     const lenkeNyBrukerprofil = useUrlNyPersonforvalter();
 
+    const isMount = React.useRef(true);
+
     React.useEffect(() => {
+        if (isMount.current) {
+            isMount.current = false;
+            return;
+        }
         erApen ? trackAccordionOpened('Visittkort') : trackAccordionClosed('Visittkort');
-    }, [erApen]);
+    }, [erApen, isMount]);
 
     useHotkey({ char: 'n', altKey: true }, () => toggleApen(), [toggleApen], 'Visittkort');
     useHotkey(
