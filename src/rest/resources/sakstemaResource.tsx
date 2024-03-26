@@ -21,7 +21,7 @@ function queryKeyV2(fnr: string, enhet: string | undefined): [string, string, st
 
 function urlUtenFnrIPathV2(enhet?: string) {
     const header = enhet ? `?enhet=${enhet}` : '';
-    return `${apiBaseUri}/v2/saker/v2/sakstema/${header}`;
+    return `${apiBaseUri}/v2/saker/v2/sakstema${header}`;
 }
 
 function useFnrEnhet(): [string, string | undefined] {
