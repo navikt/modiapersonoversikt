@@ -3,13 +3,12 @@ kind: "Application"
 metadata:
   name: modiapersonoversikt
   namespace: personoversikt
-  cluster: prod-fss
   labels:
     team: personoversikt
   annotations:
     nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
 spec:
-  image: {{image}}
+  image: "{{image}}"
   port: 8080
   webproxy: true
   liveness:
@@ -32,6 +31,7 @@ spec:
       memory: 2048Mi
   ingresses:
     - https://app.adeo.no/modiapersonoversikt
+    - https://modiapersonoversikt.intern.nav.no
   replicas:
     min: 2
     max: 4
