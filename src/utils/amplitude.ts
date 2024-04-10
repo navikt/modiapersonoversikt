@@ -50,6 +50,11 @@ export const initAmplitude = () => {
         }
     });
 
+    window.addEventListener('pagehide', () => {
+        amplitudeInstance?.setTransport('beacon');
+        amplitudeInstance?.flush();
+    });
+
     amplitudeInstance.add(maskereFnrPlugin());
     window.amplitude = amplitudeInstance;
     return amplitudeInstance;
@@ -101,6 +106,18 @@ export const trackAccordionClosed = (name: string) => {
             tekst: name
         }
     });
+};
+
+export const updateUserEnhet = (enhet: string) => {
+    if (!amplitudeInstance) {
+        console.warn('Amplitude is not initialized. Ignoring');
+        return;
+    }
+
+    const identifyEvent = new amplitude.Identify();
+    identifyEvent.set('enhet', enhet);
+
+    amplitudeInstance.identify(identifyEvent);
 };
 
 export default initAmplitude;
