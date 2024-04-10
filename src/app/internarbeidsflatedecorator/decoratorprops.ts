@@ -1,3 +1,5 @@
+import { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
+
 export const RESET_VALUE = '\u0000';
 
 interface TogglesConfig {
@@ -94,6 +96,7 @@ export interface DecoratorPropsV3 {
     fetchActiveEnhetOnMount?: boolean | undefined;
     fetchActiveUserOnMount?: boolean | undefined;
     onBeforeRequest?: (headers: HeadersInit) => HeadersInit | undefined;
-    onEnhetChanged: (enhet?: string | null) => void;
+    onEnhetChanged: (enhet?: string | null, enhetValue?: Enhet) => void;
+    onLinkClick?: (link: { text: string; url: string }) => void;
     onFnrChanged: (fnr?: string | null) => void;
 }

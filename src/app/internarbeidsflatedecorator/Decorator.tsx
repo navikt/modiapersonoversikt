@@ -20,6 +20,8 @@ import OppdateringsloggContainer, {
 import './personsokKnapp.less';
 import './decorator.less';
 import { useValgtenhet } from '../../context/valgtenhet-state';
+import { trackNavigation, updateUserEnhet } from '../../utils/amplitude';
+import { Enhet } from '../../rest/resources/saksbehandlersEnheterResource';
 
 const bjelleIkon = raw('../../svg/bjelle.svg');
 
@@ -97,7 +99,8 @@ function lagConfig(
 function lagConfigV3(
     enhet: string | undefined | null,
     history: History,
-    settEnhet: (enhet: string) => void
+    settEnhet: (enhet: string, enhetValue?: Enhet) => void,
+    onLinkClick?: (link: { text: string; url: string }) => void
 ): DecoratorPropsV3 {
     const { sokFnr, pathFnr, userKey } = getFnrFraUrl();
     const onsketFnr = sokFnr || pathFnr;
@@ -116,11 +119,12 @@ function lagConfigV3(
             }
         },
         enhet: enhet ?? undefined,
-        onEnhetChanged: (enhet) => {
+        onEnhetChanged: (enhet, enhetValue) => {
             if (enhet) {
-                settEnhet(enhet);
+                settEnhet(enhet, enhetValue);
             }
         },
+        onLinkClick: onLinkClick ?? undefined,
         showHotkeys: true,
         markup: {
             etterSokefelt: etterSokefelt
@@ -256,8 +260,15 @@ function Decorator() {
         }
     });
 
-    const handleSetEnhet = (enhet: string) => {
+    const handleSetEnhet = (enhet: string, enhetValue?: Enhet) => {
+        if (enhetValue) {
+            updateUserEnhet(enhetValue.navn);
+        }
         setEnhetId(enhet);
+    };
+
+    const handleLinkClick = (link: { text: string; url: string }) => {
+        trackNavigation(link.text, link.url);
     };
 
     const configV2 = useCallback(lagConfig, [valgtEnhetId, history, handleSetEnhet])(
@@ -266,10 +277,11 @@ function Decorator() {
         handleSetEnhet
     );
 
-    const configV3 = useCallback(lagConfigV3, [valgtEnhetId, history, handleSetEnhet])(
+    const configV3 = useCallback(lagConfigV3, [valgtEnhetId, history, handleSetEnhet, handleLinkClick])(
         valgtEnhetId,
         history,
-        handleSetEnhet
+        handleSetEnhet,
+        handleLinkClick
     );
 
     return (
