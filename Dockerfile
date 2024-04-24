@@ -1,4 +1,4 @@
-FROM europe-north1-docker.pkg.dev/nais-management-233d/personoversikt/modialogin:2024.06.05-09.00-e08afd9
-ADD proxy-config.json /proxy-config.json
-ADD preprod-proxy-config.json /preprod-proxy-config.json
-COPY build /www
+FROM europe-north1-docker.pkg.dev/nais-management-233d/personoversikt/modia-frontend:0.10
+ADD proxy-config-q2.json proxy-config.json
+COPY build ./static
+ENV STATIC_FILES_DIR=./static

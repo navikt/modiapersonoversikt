@@ -21,6 +21,22 @@ jobs:
           CLUSTER: dev-fss
           RESOURCE: .nais/unleash/unleash-apitoken-preprod.yaml
 
+  deploy-unleash-api-token-to-dev-gcp:
+    if: github.ref == 'refs/heads/gcp'
+    name: Deploy unleash api-token to dev-gcp
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Deploy unleash api token
+        uses: nais/deploy/actions/deploy@v2
+        env:
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/unleash/unleash-apitoken-preprod.yaml
+
   deploy-unleash-api-token-to-prod:
     if: github.ref == 'refs/heads/master'
     name: Deploy unleash api-token to prod-fss

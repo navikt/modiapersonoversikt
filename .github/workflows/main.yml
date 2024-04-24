@@ -6,7 +6,7 @@ env:
     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     CI: true
     TZ: Europe/Oslo
-    Q1_TEST_BRANCH: refs/heads/branch_name
+    Q2_TEST_BRANCH: refs/heads/gcp
 
 jobs:
     build:
@@ -33,21 +33,13 @@ jobs:
             - name: Build
               run: npm run build
             - name: Publish Docker image
-              if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master' || github.ref == env.Q1_TEST_BRANCH
+              if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/master' || github.ref == env.Q2_TEST_BRANCH
               uses: nais/docker-build-push@v0
               id: docker-build-push
               with:
                 team: personoversikt
                 identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
                 project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-            - name: Deploy to Q1 (Test branch)
-              uses: nais/deploy/actions/deploy@v2
-              if: github.ref == env.Q1_TEST_BRANCH
-              env:
-                  PRINT_PAYLOAD: true
-                  CLUSTER: dev-fss
-                  RESOURCE: .nais/qa-template.yaml
-                  VAR: q_env=q1,version=${{ github.sha }},image=${{ steps.docker-build-push.outputs.image }}
 
     deploy-qa:
         name: Deploy to preprod
@@ -68,6 +60,23 @@ jobs:
                   CLUSTER: dev-fss
                   RESOURCE: .nais/qa-template.yaml
                   VAR: q_env=${{ matrix.q_env }},version=${{ github.sha }},image=${{ needs.build.outputs.image }}
+
+    deploy-dev:
+        name: Deploy to dev-gcp
+        needs: build
+        if: github.ref == 'refs/heads/gcp'
+        runs-on: ubuntu-latest
+        permissions:
+          contents: read
+          id-token: write
+        steps:
+            - uses: actions/checkout@v4
+            - uses: nais/deploy/actions/deploy@v2
+              env:
+                  PRINT_PAYLOAD: true
+                  CLUSTER: dev-gcp
+                  RESOURCE: .nais/dev.yaml
+                  VAR: version=${{ github.sha }},image=${{ needs.build.outputs.image }}
 
     deploy-prod:
         name: Deploy to prod

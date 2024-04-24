@@ -1,0 +1,84 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: modiapersonoversikt
+  namespace: personoversikt
+  labels:
+    team: personoversikt
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
+spec:
+  image: "{{image}}"
+  port: 3000
+  webproxy: true
+  liveness:
+    path: /internal/liveness
+    initialDelay: 20
+  readiness:
+    path: /internal/readiness
+    initialDelay: 20
+  prometheus:
+    enabled: false
+    path: /internal/metrics
+  secureLogs:
+    enabled: true
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 3000m
+      memory: 1536Mi
+  ingresses:
+    - https://modiapersonoversikt.intern.dev.nav.no
+  replicas:
+    min: 2
+    max: 4
+    cpuThresholdPercentage: 60
+  azure:
+    application:
+      enabled: true
+      tenant: trygdeetaten.no
+      allowAllUsers: false
+      claims:
+        groups:
+          - id: "67a06857-0028-4a90-bf4c-9c9a92c7d733" # 0000-GA-BD06_ModiaGenerellTilgang
+    sidecar:
+      enabled: true
+      autoLogin: true
+      autoLoginIgnorePaths:
+        - /internal/*
+  accessPolicy:
+    outbound:
+      rules:
+        - application: modiapersonoversikt-innstillinger
+        - application: modiapersonoversikt-skrivestotte
+        - application: modiapersonoversikt-draft
+        - application: modiacontextholder
+      external:
+        - host: personoversikt-unleash-api.nav.cloud.nais.io
+        - host: modiapersonoversikt-api-q1.dev-fss-pub.nais.io
+  envFrom:
+    - secret: modiapersonoversikt-unleash-api-token
+  env:
+    - name: APP_NAME
+      value: "modiapersonoversikt"
+    - name: APP_VERSION
+      value: "{{ version }}"
+    - name: BASE_PATH
+      value: modiapersonoversikt
+    - name: CSP_DIRECTIVES
+      value: "default-src 'self';\
+      script-src 'self' 'unsafe-inline' https://cdn.nav.no;\
+      style-src 'self' 'unsafe-inline' https://cdn.nav.no;\
+      img-src 'self' data:;\
+      font-src 'self' data: https://cdn.nav.no;\
+      connect-src 'self' amplitude.nav.no wss://veilederflatehendelser.intern.dev.nav.no;\
+      object-src blob:;\
+      frame-src blob:;"
+    - name: REFERRER_POLICY
+      value: "no-referrer"
+    - name: APP_ENVIRONMENT_NAME
+      value: q2
+    - name: UNLEASH_ENVIRONMENT
+      value: "development"
