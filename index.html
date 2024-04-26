@@ -9,17 +9,20 @@
     <meta property="og:site_name" content="NAV Modia Personoversikt">
     <meta property="og:description"
           content="Intern arbeidsflate. Brukes som personoppslag og dialogverktøy av veiledere og saksbehandlere i NAV">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="shortcut icon" href="./favicon.ico">
     <link rel="stylesheet" href="%REACT_APP_HODE_URL%/v2.1/static/css/main.css" />
     <script src="%REACT_APP_HODE_URL%/v2.1/static/js/head.v2.min.js"></script>
     <script src="%REACT_APP_HODE_URL_V2%/latest/dist/bundle.js"></script>
     <link rel="stylesheet" href="%REACT_APP_HODE_URL_V2%/latest/dist/index.css" />
-    <script src="%PUBLIC_URL%/appDynamics.js"></script>
+    <script src="src/appDynamics.js"></script>
     <script type="application/javascript">
       window.frontendlogger = { info: function(){}, warn: function(){}, error: function(){}, event: function(){}};
       window.frontendlogger.appname = 'modiapersonoversikt';
     </script>
     <script type="application/javascript" src="/frontendlogger/logger.js"></script>
+
+  <script type="module" src="/src/index.tsx"></script>
+
     <script>
       const applicationFeatureToggles = {
           useNewDecorator: "$unleash{modiapersonoversikt.decorator-v3}"

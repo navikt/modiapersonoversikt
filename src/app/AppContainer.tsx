@@ -25,6 +25,8 @@ import useFeatureToggle from '../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 import { initAmplitude } from '../utils/amplitude';
 
+import 'nav-frontend-lukknapp-style';
+
 const AppStyle = styled.div`
     height: 100vh;
     @media print {
