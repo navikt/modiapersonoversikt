@@ -27,6 +27,7 @@ import utbetalingerResource from '../rest/resources/utbetalingerResource';
 import persondataResource from '../rest/resources/persondataResource';
 import aktoridResource from '../rest/resources/aktoridResource';
 import varselResource from '../rest/resources/varselResource';
+import { MockInstance, vi } from 'vitest';
 
 export function getTestStore(): Store<AppState> {
     const testStore = createStore(reducers, applyMiddleware(thunkMiddleware));
@@ -39,26 +40,26 @@ export function getTestStore(): Store<AppState> {
 }
 
 export function mockReactQuery(resource: any, data: any, extra: {} = {}) {
-    (resource as jest.Mock<any>).mockImplementation(() => ({
+    (resource as MockInstance<any>).mockImplementation(() => ({
         data,
         ...extra
     }));
 }
 export function setupReactQueryMocks() {
-    jest.spyOn(innstillingerResource, 'useFetch');
-    jest.spyOn(dialogResource, 'useFetch');
-    jest.spyOn(baseurlsResource, 'useFetch');
-    jest.spyOn(featuretogglesResource, 'useFetch');
-    jest.spyOn(foreldrepengerResource, 'useFetch');
-    jest.spyOn(pleiepengerResource, 'useFetch');
-    jest.spyOn(sykepengerResource, 'useFetch');
-    jest.spyOn(gsaktemaResource, 'useFetch');
-    jest.spyOn(oppfolgingResource, 'useFetch');
-    jest.spyOn(sakstemaResource, 'useFetch');
-    jest.spyOn(utbetalingerResource, 'useFetch');
-    jest.spyOn(persondataResource, 'useFetch');
-    jest.spyOn(aktoridResource, 'useFetch');
-    jest.spyOn(varselResource, 'useFetch');
+    vi.spyOn(innstillingerResource, 'useFetch');
+    vi.spyOn(dialogResource, 'useFetch');
+    vi.spyOn(baseurlsResource, 'useFetch');
+    vi.spyOn(featuretogglesResource, 'useFetch');
+    vi.spyOn(foreldrepengerResource, 'useFetch');
+    vi.spyOn(pleiepengerResource, 'useFetch');
+    vi.spyOn(sykepengerResource, 'useFetch');
+    vi.spyOn(gsaktemaResource, 'useFetch');
+    vi.spyOn(oppfolgingResource, 'useFetch');
+    vi.spyOn(sakstemaResource, 'useFetch');
+    vi.spyOn(utbetalingerResource, 'useFetch');
+    vi.spyOn(persondataResource, 'useFetch');
+    vi.spyOn(aktoridResource, 'useFetch');
+    vi.spyOn(varselResource, 'useFetch');
 
     mockReactQuery(innstillingerResource.useFetch, {
         sistLagret: new Date().toISOString(),

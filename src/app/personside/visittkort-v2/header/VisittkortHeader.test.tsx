@@ -42,7 +42,7 @@ describe('Tester visittkort-header sin funksjonalitet', () => {
         if (focusedElement) {
             expect(focusedElement.innerHTML.toLowerCase()).toContain(hentNavn(person.navn[0]).toLowerCase());
         } else {
-            fail('Ingen activeElement på dokumentet');
+            assert.fail('Ingen activeElement på dokumentet');
         }
     });
 

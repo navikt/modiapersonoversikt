@@ -20,7 +20,8 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react",
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+        "types": ["vitest/globals"]
     },
     "include": ["src"]
 }

@@ -1,247 +1,41 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser dialogpanel 1`] = `
-.c13 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
-.c15 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c15 > *:not(:last-child) {
-  margin-right: 1rem;
-}
-
-.c7 {
-  position: absolute;
-  height: 2rem;
-  width: 2rem;
-  border-bottom-right-radius: 50%;
-  padding: 0;
-  background-color: #0067c5;
-  border: none;
-  z-index: 10;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-}
-
-.c7:after {
-  background: none;
-}
-
-.c7:hover {
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-}
-
-.c8 {
-  position: relative;
-  top: 2px;
-  width: 18px;
-}
-
-.c11 {
-  position: absolute;
-  top: 2.8rem;
-  left: 0.25rem;
-}
-
-.c11 ul {
-  list-style: circle;
-  margin-top: 1rem;
-}
-
-.c11 ul li {
-  margin-left: 1.5rem;
-}
-
-.c10 {
-  position: relative;
-}
-
-.c6 {
-  position: relative;
-}
-
-.c6 textarea {
-  min-height: 9rem;
-}
-
-.c6 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
-.c9 textarea,
-.c9 .textareamirror {
-  padding-left: 2.25rem;
-}
-
-.c16 {
-  margin-top: 1rem;
-}
-
-.c16 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
-.c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-}
-
-.c5 .skjemaelement {
-  margin-bottom: 0;
-}
-
-.c5 > * {
-  margin-bottom: 1rem;
-}
-
-.c12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c12 > * {
-  margin-top: 0.3rem;
-}
-
-.c12 > *:not(:last-child) {
-  margin-right: 1rem;
-}
-
-.c2 {
-  position: relative;
-}
-
-.c3 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.c1 {
-  padding: 1rem .5rem;
-}
-
-.c18 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c18 > * {
-  margin-bottom: 0.7rem;
-}
-
-.c14 {
-  margin-top: 1rem;
-}
-
-.c17 {
-  margin-top: 1rem;
-}
-
-.c4 {
-  margin-bottom: 1rem !important;
-}
-
-.c0 {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  word-break: break-word;
-}
-
 <div
-  className="c0"
+  className="sc-jlRMkV ezhoCK"
 >
   <article
     aria-labelledby="Helt tilfeldig ID"
-    className="c1"
+    className="sc-uoixf GKZjK"
   >
     <div
-      className="c2"
+      className="sc-XxOsz dHueJA"
     >
       <div
-        className="c3"
+        className="sc-ilftOa geFaiZ"
       >
         <h2
-          className="typo-undertittel c4"
+          className="typo-undertittel sc-kYHenr egpEvQ"
           id="Helt tilfeldig ID"
         >
           Send ny melding
         </h2>
         <form
-          className="c5"
+          className="sc-brSwnh bcLknc"
           onSubmit={[Function]}
         >
           <fieldset
             aria-invalid={false}
-            className="skjemagruppe c6"
+            className="skjemagruppe sc-dPiKHq kAUVxl"
           >
             <button
-              className="knapp c7 knapp--hoved"
+              className="knapp sc-iAKVOt iA-dcLn knapp--hoved"
               disabled={false}
               onClick={[Function]}
               type="button"
             >
               <svg
-                className="c8"
+                className="sc-efQUeY dxzPAf"
                 height="24px"
                 preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 24 24"
@@ -262,10 +56,10 @@ exports[`viser dialogpanel 1`] = `
               </span>
             </button>
             <div
-              className="c9"
+              className="sc-bBHHQT HbSsb"
             >
               <div
-                className="c10"
+                className="sc-jObXwK cAFQit"
               >
                 <div
                   className="skjemaelement textarea__container"
@@ -295,9 +89,9 @@ exports[`viser dialogpanel 1`] = `
                       id="Helt tilfeldig ID"
                       onChange={[Function]}
                       onKeyDown={[Function]}
-                      placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
+                      placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker "Del med Aremark""
                       style={
-                        Object {
+                        {
                           "height": "30px",
                         }
                       }
@@ -319,7 +113,7 @@ exports[`viser dialogpanel 1`] = `
                   />
                 </div>
                 <div
-                  className="c11"
+                  className="sc-cTApHj gNWAeC"
                 >
                   <div
                     className="hjelpetekst"
@@ -366,7 +160,7 @@ exports[`viser dialogpanel 1`] = `
                       onClick={[Function]}
                       role="tooltip"
                       style={
-                        Object {
+                        {
                           "transform": "translate3d(0px, 0px, 0)",
                         }
                       }
@@ -462,7 +256,7 @@ exports[`viser dialogpanel 1`] = `
                       <span
                         className="popover__pil"
                         style={
-                          Object {
+                          {
                             "left": undefined,
                           }
                         }
@@ -478,7 +272,7 @@ exports[`viser dialogpanel 1`] = `
             />
           </fieldset>
           <div
-            className="c12"
+            className="sc-dtDOJZ fytaRd"
           >
             <div
               className="skjemaelement"
@@ -544,7 +338,7 @@ exports[`viser dialogpanel 1`] = `
               className="skjemagruppe"
             >
               <div
-                className="skjemaelement c13"
+                className="skjemaelement sc-eCImvq eahWFl"
               >
                 <label
                   className="skjemaelement__label"
@@ -608,7 +402,7 @@ exports[`viser dialogpanel 1`] = `
               />
             </fieldset>
             <div
-              className="alertstripe c14 alertstripe--info"
+              className="alertstripe sc-eGPWxh imjzTN alertstripe--info"
             >
               <span
                 className="alertstripe__ikon"
@@ -651,7 +445,7 @@ exports[`viser dialogpanel 1`] = `
               className="panel"
             >
               <div
-                className="c15"
+                className="sc-bkkfTU jGsnxV"
               >
                 <button
                   className="knapp knapp--hoved knapp--mini"
@@ -668,7 +462,7 @@ exports[`viser dialogpanel 1`] = `
                 </p>
               </div>
               <div
-                className="skjemaelement c16"
+                className="skjemaelement sc-cNKpQo eqKVSI"
               >
                 <label
                   className="skjemaelement__label"
@@ -704,7 +498,7 @@ exports[`viser dialogpanel 1`] = `
                 </div>
               </div>
               <div
-                className="alertstripe c14 alertstripe--info"
+                className="alertstripe sc-eGPWxh imjzTN alertstripe--info"
               >
                 <span
                   className="alertstripe__ikon"
@@ -744,7 +538,7 @@ exports[`viser dialogpanel 1`] = `
                 </div>
               </div>
               <div
-                className="skjemaelement c17"
+                className="skjemaelement sc-hAcGfq kGONYC"
               >
                 <input
                   aria-invalid={false}
@@ -764,7 +558,7 @@ exports[`viser dialogpanel 1`] = `
             </div>
           </div>
           <div
-            className="c18"
+            className="sc-bilypg kvTRLz"
           >
             <button
               className="knapp knapp--hoved"

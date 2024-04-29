@@ -1,352 +1,22 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Om Ytelser matcher snapshot 1`] = `
-.c6 {
-  position: relative;
-  padding: .5rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: pointer;
-  background-color: #cce1f3;
-}
-
-.c6:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
-}
-
-.c6:hover > button:last-child {
-  padding-left: 0.5rem;
-}
-
-.c6 > *:first-child {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c8 {
-  position: relative;
-  padding: .5rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.c8:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
-}
-
-.c8:hover > button:last-child {
-  padding-left: 0.5rem;
-}
-
-.c8 > *:first-child {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c7 {
-  border: none;
-  padding: 0;
-  height: 2rem;
-  width: 2rem;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  -webkit-transition: padding-left 0.3s;
-  transition: padding-left 0.3s;
-}
-
-.c7 .nav-frontend-chevron {
-  width: 1.5625rem;
-}
-
-.c7:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.c7:focus::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  box-shadow: inset 0 0 0 0.1875rem #254b6d;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
-}
-
-.c3 {
-  padding: 0rem;
-}
-
-.c5 > *:not(:first-child) {
-  border-top: solid 0.0625rem #78706a;
-}
-
-.c4 {
-  padding: 0.9375rem;
-  border-bottom: solid 0.0625rem #78706a;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c4 .hjelpetekst {
-  margin-left: 0.5rem;
-}
-
-.c4 .popover {
-  max-width: 30rem;
-}
-
-.c2 {
-  overflow: auto;
-  max-height: 100%;
-  padding: .5rem;
-}
-
-.c14 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c14 dt {
-  color: #645f5a;
-}
-
-.c14 > div {
-  margin: 0.5625rem 0;
-  padding-right: 0.7rem;
-  width: 13rem;
-  overflow-wrap: break-word;
-}
-
-.c15 {
-  overflow: auto;
-  box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
-  border-radius: .25rem;
-  background-color: white;
-}
-
-.c15 [role='table'] {
-  text-align: left;
-  width: 100%;
-}
-
-.c15 [role='table'] thead,
-.c15 [role='table'] .thead[role='rowgroup'] {
-  border-bottom: 0.2rem solid rgba(0,0,0,0.15);
-  font-weight: 600;
-}
-
-.c15 [role='table'] [role='cell'],
-.c15 [role='table'] [role='columnheader'] {
-  padding: 0.7rem;
-  vertical-align: middle;
-}
-
-.c15 [role='table'] [role='columnheader'] {
-  padding-bottom: 0.7rem;
-}
-
-.c15 [role='table'] [role='row']:nth-child(even) {
-  background-color: rgba(0,0,0,0.1);
-}
-
-.c20 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-  white-space: nowrap;
-}
-
-.c20 > *:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
-.c13 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-}
-
-.c13 > h3 {
-  margin-bottom: 1rem;
-}
-
-.c17 span:not(:last-child):after {
-  content: '.';
-}
-
-.c16 li:not(:first-child) {
-  padding-top: 1rem;
-  margin-top: 1rem;
-  border-top: solid 0.0625rem #b7b1a9;
-}
-
-.c18 {
-  margin-top: 1rem;
-}
-
-.c19 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-  white-space: nowrap;
-}
-
-.c19 > *:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
-.c10 {
-  padding: .5rem;
-}
-
-.c11 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c11 > * {
-  -webkit-flex-basis: 40%;
-  -ms-flex-preferred-size: 40%;
-  flex-basis: 40%;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c12 > * {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c9 > * {
-  margin-bottom: 0.5rem;
-}
-
-.c1 {
-  overflow: hidden;
-}
-
-.c0 {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-@media (min-width:45rem) {
-  .c1 {
-    max-height: 100%;
-    max-width: 100%;
-  }
-}
-
-@media (min-width:45rem) {
-  .c1 {
-    height: 0;
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
-    align-items: flex-start;
-  }
-
-  .c1 > *:first-child {
-    min-width: 19rem;
-    -webkit-flex-basis: 19rem;
-    -ms-flex-preferred-size: 19rem;
-    flex-basis: 19rem;
-    -webkit-box-flex: 0.5;
-    -webkit-flex-grow: 0.5;
-    -ms-flex-positive: 0.5;
-    flex-grow: 0.5;
-  }
-
-  .c1 > *:last-child {
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-  }
-}
-
 <section
-  className="c0"
+  className="sc-dkYRiW fwQFHf"
 >
   <div
-    className="c1"
+    className="sc-dtDOJZ dGezfY"
   >
     <div
-      className="c2"
+      className="sc-pVTma fpoPXn"
       onScroll={[Function]}
     >
       <section>
         <div
-          className="panel c3"
+          className="panel sc-gKckTs esAGPX"
         >
           <div
-            className="c4"
+            className="sc-furvIG hXgJwL"
           >
             <h2
               className="typo-undertittel"
@@ -398,7 +68,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 onClick={[Function]}
                 role="tooltip"
                 style={
-                  Object {
+                  {
                     "transform": "translate3d(0px, 0px, 0)",
                   }
                 }
@@ -416,7 +86,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 <span
                   className="popover__pil"
                   style={
-                    Object {
+                    {
                       "left": undefined,
                     }
                   }
@@ -428,11 +98,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
             aria-label="Velg ytelser"
           >
             <ol
-              className="c5"
+              className="sc-iCfLBT hXjkQv"
             >
               <li>
                 <div
-                  className="c6"
+                  className="sc-eCImvq klBXef"
                   onClick={[Function]}
                 >
                   <div>
@@ -455,7 +125,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis sykepenger"
                     aria-selected={true}
-                    className="c7"
+                    className="sc-jRQAMF ftfsKc"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -465,7 +135,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c8"
+                  className="sc-eCImvq cxRPsG"
                   onClick={[Function]}
                 >
                   <div>
@@ -498,7 +168,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis pleiepenger"
                     aria-selected={false}
-                    className="c7"
+                    className="sc-jRQAMF ftfsKc"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -508,7 +178,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </li>
               <li>
                 <div
-                  className="c8"
+                  className="sc-eCImvq cxRPsG"
                   onClick={[Function]}
                 >
                   <div>
@@ -531,7 +201,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   <button
                     aria-label="Vis foreldrepenger"
                     aria-selected={false}
-                    className="c7"
+                    className="sc-jRQAMF ftfsKc"
                   >
                     <span
                       className="nav-frontend-chevron chevronboks chevron--hoyre"
@@ -545,11 +215,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
       </section>
     </div>
     <div
-      className="c2"
+      className="sc-pVTma fpoPXn"
       onScroll={[Function]}
     >
       <section
-        className="c9"
+        className="sc-fHeRAw iJwHGD"
       >
         <h2
           className="sr-only"
@@ -561,7 +231,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
         <article>
           <div
             aria-labelledby="Helt tilfeldig ID"
-            className="panel c10"
+            className="panel sc-brSwnh cFALLO"
           >
             <h2
               className="sr-only"
@@ -570,14 +240,14 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               Sykepengerrettighet
             </h2>
             <div
-              className="c11"
+              className="sc-gIDmry hQIEvK"
             >
               <div
-                className="c12"
+                className="sc-evcjBb eLWssp"
               >
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c13"
+                  className="sc-kHOZQx jeStkB"
                 >
                   <h3
                     className="typo-ingress"
@@ -586,7 +256,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     Sykepengetilfellet
                   </h3>
                   <dl
-                    className="c14"
+                    className="sc-jrQzUz ixVUhU"
                   >
                     <div>
                       <dt
@@ -700,7 +370,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 </article>
                 <article
                   aria-labelledby="Helt tilfeldig ID"
-                  className="c13"
+                  className="sc-kHOZQx jeStkB"
                 >
                   <h3
                     className="typo-ingress"
@@ -709,7 +379,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     Sykmelding
                   </h3>
                   <dl
-                    className="c14"
+                    className="sc-jrQzUz ixVUhU"
                   >
                     <div>
                       <dt
@@ -749,7 +419,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                     </div>
                   </dl>
                   <div
-                    className="c15 typo-normal"
+                    className="sc-crHlIS dhuAsa typo-normal"
                   >
                     <table
                       role="table"
@@ -796,7 +466,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </div>
               <article
                 aria-labelledby="Helt tilfeldig ID"
-                className="c13"
+                className="sc-kHOZQx jeStkB"
               >
                 <h3
                   className="typo-ingress"
@@ -805,7 +475,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   Arbeidssituasjon
                 </h3>
                 <dl
-                  className="c14"
+                  className="sc-jrQzUz ixVUhU"
                 >
                   <div>
                     <dt
@@ -834,11 +504,11 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 </dl>
                 <ol
                   aria-label="Arbeidsgivere"
-                  className="c16"
+                  className="sc-cZMLWB eQjDYQ"
                 >
                   <li>
                     <dl
-                      className="c14"
+                      className="sc-jrQzUz ixVUhU"
                     >
                       <div>
                         <dt
@@ -862,7 +532,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                           className="typo-element"
                         >
                           <span
-                            className="c17"
+                            className="sc-dtMiey jEZsrl"
                           >
                             <span>
                               8786
@@ -940,7 +610,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                   </li>
                 </ol>
                 <button
-                  className="knapp c18 knapp--hoved"
+                  className="knapp sc-jUotMc jHWvUC knapp--hoved"
                   disabled={false}
                   onClick={[Function]}
                   type="submit"
@@ -950,7 +620,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </article>
             </div>
             <section
-              className="c19"
+              className="sc-dFtzdE ewhKvE"
             >
               <h4
                 className="typo-ingress"
@@ -958,7 +628,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 Utbetalinger på vent
               </h4>
               <div
-                className="c15 typo-normal"
+                className="sc-crHlIS dhuAsa typo-normal"
               >
                 <table
                   role="table"
@@ -1032,7 +702,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
               </div>
             </section>
             <section
-              className="c20"
+              className="sc-bTfYlY jRsYnV"
             >
               <h4
                 className="typo-ingress"
@@ -1040,7 +710,7 @@ exports[`Om Ytelser matcher snapshot 1`] = `
                 Utbetalinger
               </h4>
               <div
-                className="c15 typo-normal"
+                className="sc-crHlIS dhuAsa typo-normal"
               >
                 <table
                   role="table"

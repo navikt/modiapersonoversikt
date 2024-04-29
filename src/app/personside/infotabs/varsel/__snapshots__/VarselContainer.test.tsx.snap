@@ -1,219 +1,11 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser varselcontainer med alt innhold 1`] = `
-.c15 {
-  padding: 0.7rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c15 > *:first-child {
-  -webkit-flex: 0 0 20%;
-  -ms-flex: 0 0 20%;
-  flex: 0 0 20%;
-}
-
-.c15 > *:last-child {
-  max-width: 30rem;
-}
-
-.c14 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-}
-
-.c14 > *:not(:first-child) {
-  border-top: solid 0.0625rem #78706a;
-}
-
-.c9 {
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  padding: 0.1rem;
-  border-radius: 0.5em;
-}
-
-.c9:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c9:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-.c9:focus::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  box-shadow: inset 0 0 0 0.1875rem #254b6d;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
-}
-
-.c3 {
-  padding: 0rem;
-}
-
-.c4 {
-  position: relative;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 6rem 3rem 55% 1fr auto;
-  grid-template-columns: 6rem 3rem minmax(35%,55%) 1fr auto;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: .25rem;
-  cursor: pointer;
-}
-
-.c4 > *:nth-child(1) {
-  -ms-grid-column: 1;
-}
-
-.c4 > *:nth-child(2) {
-  -ms-grid-column: 2;
-}
-
-.c4 > *:nth-child(3) {
-  -ms-grid-column: 3;
-}
-
-.c4 > *:nth-child(4) {
-  -ms-grid-column: 4;
-}
-
-.c4:hover {
-  box-shadow: inset 0 0 0 0.1rem #0067c5,0 0.1rem 0.1rem rgba(0,0,0,0.2);
-}
-
-.c4 > * {
-  padding: 0.7rem;
-}
-
-.c8 li {
-  display: inline-block;
-}
-
-.c8 li:not(:last-child):after {
-  content: ',';
-  margin-right: 0.5em;
-}
-
-.c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c7 {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.c6 {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c10 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-}
-
-.c10 dt {
-  float: left;
-  clear: left;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  width: 7rem;
-}
-
-.c10 dd {
-  margin-bottom: 0.5rem;
-  margin-left: 7.125rem;
-}
-
-.c12 {
-  font-weight: bold;
-}
-
-.c13 {
-  margin-top: 0.5rem;
-}
-
-.c11 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.c1 {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 6rem 4rem 55% 1fr;
-  grid-template-columns: 6rem 4rem minmax(35%,55%) 1fr;
-  padding: 0;
-  margin-bottom: 1rem;
-}
-
-.c1 > *:nth-child(1) {
-  -ms-grid-column: 1;
-}
-
-.c1 > *:nth-child(2) {
-  -ms-grid-column: 2;
-}
-
-.c1 > *:nth-child(3) {
-  -ms-grid-column: 3;
-}
-
-.c1 > *:nth-child(4) {
-  -ms-grid-column: 4;
-}
-
-.c1 > * {
-  padding: 0.7rem;
-}
-
-.c2 > * {
-  margin-top: 0.5rem;
-}
-
-.c0 {
-  padding: .5rem;
-}
-
 <div
-  className="c0"
+  className="sc-fFehDp kmJzmx"
 >
   <div
-    className="panel c1"
+    className="panel sc-hBURRC llqjhU"
   >
     <p
       className="typo-element"
@@ -238,35 +30,35 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
   </div>
   <ol
     aria-label="Brukerens varsler"
-    className="c2"
+    className="sc-fotPbf ixfenl"
   >
     <li>
       <div
-        className="panel c3"
+        className="panel sc-iCfLBT fORgpK"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
         >
           <div
-            className="c4"
+            className="sc-furvIG iTCDLh"
             onClick={[Function]}
           >
             <p
               className="typo-normal"
             >
               <span
-                className="c5"
+                className="sc-jrQzUz bWzroK"
               >
                 11.01.2023
               </span>
               <span
-                className="c5"
+                className="sc-jrQzUz bWzroK"
               >
                 01.08.2023
               </span>
             </p>
             <div
-              className="c6"
+              className="sc-iqsfdx hOeYba"
             >
               <svg
                 focusable="false"
@@ -285,14 +77,14 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </svg>
             </div>
             <h4
-              className="typo-element c7"
+              className="typo-element sc-kDThTU jemdqR"
               id="Helt tilfeldig ID"
             >
               Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c8"
+              className="sc-pVTma erlXkU"
             >
               <li
                 className="typo-normal"
@@ -313,7 +105,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <button
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
+              className="sc-gKckTs bhNylJ"
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -323,7 +115,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </button>
           </div>
           <dl
-            className="c10"
+            className="sc-crHlIS ftZjVh"
           >
             <div>
               <dt>
@@ -358,15 +150,15 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </dd>
               <hr />
               <div
-                className="c11"
+                className="sc-ksdxAp edoumx"
               >
                 <span
-                  className="c12"
+                  className="sc-egiSv kQnCZm"
                 >
                   Varslingsfeil
                 </span>
                 <div
-                  className="c13"
+                  className="sc-bqiQRQ kXasSm"
                 >
                   <li>
                     01.01.2023
@@ -379,15 +171,15 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </div>
               <hr />
               <div
-                className="c11"
+                className="sc-ksdxAp edoumx"
               >
                 <span
-                  className="c12"
+                  className="sc-egiSv kQnCZm"
                 >
                   Revarslingsfeil
                 </span>
                 <div
-                  className="c13"
+                  className="sc-bqiQRQ kXasSm"
                 >
                   <li>
                     11.08.2023
@@ -405,31 +197,31 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
     </li>
     <li>
       <div
-        className="panel c3"
+        className="panel sc-iCfLBT fORgpK"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
         >
           <div
-            className="c4"
+            className="sc-furvIG iTCDLh"
             onClick={[Function]}
           >
             <p
               className="typo-normal"
             >
               <span
-                className="c5"
+                className="sc-jrQzUz bWzroK"
               >
                 11.01.2023
               </span>
               <span
-                className="c5"
+                className="sc-jrQzUz bWzroK"
               >
                 01.08.2023
               </span>
             </p>
             <div
-              className="c6"
+              className="sc-iqsfdx hOeYba"
             >
               <svg
                 focusable="false"
@@ -448,14 +240,14 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </svg>
             </div>
             <h4
-              className="typo-element c7"
+              className="typo-element sc-kDThTU jemdqR"
               id="Helt tilfeldig ID"
             >
               Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c8"
+              className="sc-pVTma erlXkU"
             >
               <li
                 className="typo-normal"
@@ -476,7 +268,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <button
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
+              className="sc-gKckTs bhNylJ"
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -486,7 +278,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </button>
           </div>
           <dl
-            className="c10"
+            className="sc-crHlIS ftZjVh"
           >
             <div>
               <dt>
@@ -521,15 +313,15 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </dd>
               <hr />
               <div
-                className="c11"
+                className="sc-ksdxAp edoumx"
               >
                 <span
-                  className="c12"
+                  className="sc-egiSv kQnCZm"
                 >
                   Varslingsfeil
                 </span>
                 <div
-                  className="c13"
+                  className="sc-bqiQRQ kXasSm"
                 >
                   <li>
                     01.01.2023
@@ -542,15 +334,15 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </div>
               <hr />
               <div
-                className="c11"
+                className="sc-ksdxAp edoumx"
               >
                 <span
-                  className="c12"
+                  className="sc-egiSv kQnCZm"
                 >
                   Revarslingsfeil
                 </span>
                 <div
-                  className="c13"
+                  className="sc-bqiQRQ kXasSm"
                 >
                   <li>
                     11.08.2023
@@ -568,31 +360,31 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
     </li>
     <li>
       <div
-        className="panel c3"
+        className="panel sc-iCfLBT fORgpK"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
         >
           <div
-            className="c4"
+            className="sc-furvIG iTCDLh"
             onClick={[Function]}
           >
             <p
               className="typo-normal"
             >
               <span
-                className="c5"
+                className="sc-jrQzUz bWzroK"
               >
                 11.01.2023
               </span>
               <span
-                className="c5"
+                className="sc-jrQzUz bWzroK"
               >
                 01.08.2023
               </span>
             </p>
             <div
-              className="c6"
+              className="sc-iqsfdx hOeYba"
             >
               <svg
                 focusable="false"
@@ -611,14 +403,14 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </svg>
             </div>
             <h4
-              className="typo-element c7"
+              className="typo-element sc-kDThTU jemdqR"
               id="Helt tilfeldig ID"
             >
               Notifikasjon (Ferdigstilt): Et nytt samtalereferat er tilgjengelig i din innboks
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c8"
+              className="sc-pVTma erlXkU"
             >
               <li
                 className="typo-normal"
@@ -639,7 +431,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <button
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
+              className="sc-gKckTs bhNylJ"
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -649,7 +441,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </button>
           </div>
           <dl
-            className="c10"
+            className="sc-crHlIS ftZjVh"
           >
             <div>
               <dt>
@@ -684,15 +476,15 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </dd>
               <hr />
               <div
-                className="c11"
+                className="sc-ksdxAp edoumx"
               >
                 <span
-                  className="c12"
+                  className="sc-egiSv kQnCZm"
                 >
                   Varslingsfeil
                 </span>
                 <div
-                  className="c13"
+                  className="sc-bqiQRQ kXasSm"
                 >
                   <li>
                     01.01.2023
@@ -705,15 +497,15 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </div>
               <hr />
               <div
-                className="c11"
+                className="sc-ksdxAp edoumx"
               >
                 <span
-                  className="c12"
+                  className="sc-egiSv kQnCZm"
                 >
                   Revarslingsfeil
                 </span>
                 <div
-                  className="c13"
+                  className="sc-bqiQRQ kXasSm"
                 >
                   <li>
                     11.08.2023
@@ -731,31 +523,31 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
     </li>
     <li>
       <div
-        className="panel c3"
+        className="panel sc-iCfLBT fORgpK"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
         >
           <div
-            className="c4"
+            className="sc-furvIG iTCDLh"
             onClick={[Function]}
           >
             <p
               className="typo-normal"
             >
               <span
-                className="c5"
+                className="sc-jrQzUz bWzroK"
               >
                 01.03.2019
               </span>
               <span
-                className="c5"
+                className="sc-jrQzUz bWzroK"
               >
                 24.01.2019
               </span>
             </p>
             <div
-              className="c6"
+              className="sc-iqsfdx hOeYba"
             >
               <svg
                 focusable="false"
@@ -774,14 +566,14 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </svg>
             </div>
             <h4
-              className="typo-element c7"
+              className="typo-element sc-kDThTU jemdqR"
               id="Helt tilfeldig ID"
             >
               Påminnelse om å sende meldekort
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c8"
+              className="sc-pVTma erlXkU"
             >
               <li
                 className="typo-normal"
@@ -797,7 +589,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <button
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
+              className="sc-gKckTs bhNylJ"
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -808,11 +600,11 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           </div>
           <ol
             aria-label="Meldinger"
-            className="c14"
+            className="sc-jRQAMF iZKsWH"
           >
             <li
               aria-label="EPOST"
-              className="c15"
+              className="sc-eCImvq czOsAs"
             >
               <div>
                 <p
@@ -849,7 +641,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             </li>
             <li
               aria-label="SMS"
-              className="c15"
+              className="sc-eCImvq czOsAs"
             >
               <div>
                 <p
@@ -883,26 +675,26 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
     </li>
     <li>
       <div
-        className="panel c3"
+        className="panel sc-iCfLBT fORgpK"
       >
         <article
           aria-labelledby="Helt tilfeldig ID"
         >
           <div
-            className="c4"
+            className="sc-furvIG iTCDLh"
             onClick={[Function]}
           >
             <p
               className="typo-normal"
             >
               <span
-                className="c5"
+                className="sc-jrQzUz bWzroK"
               >
                 02.02.2019
               </span>
             </p>
             <div
-              className="c6"
+              className="sc-iqsfdx hOeYba"
             >
               <svg
                 focusable="false"
@@ -921,14 +713,14 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
               </svg>
             </div>
             <h4
-              className="typo-element c7"
+              className="typo-element sc-kDThTU jemdqR"
               id="Helt tilfeldig ID"
             >
               Påminnelse om å sende meldekort
             </h4>
             <ul
               aria-label="Kommunikasjonskanaler"
-              className="c8"
+              className="sc-pVTma erlXkU"
             >
               <li
                 className="typo-normal"
@@ -939,7 +731,7 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
             <button
               aria-expanded={false}
               aria-label="Vis mer informasjon om varsel/notifikasjon"
-              className="c9"
+              className="sc-gKckTs bhNylJ"
               onClick={[Function]}
               title="Vis mer informasjon om varsel/notifikasjon"
             >
@@ -950,11 +742,11 @@ exports[`Viser varselcontainer med alt innhold 1`] = `
           </div>
           <ol
             aria-label="Meldinger"
-            className="c14"
+            className="sc-jRQAMF iZKsWH"
           >
             <li
               aria-label="EPOST"
-              className="c15"
+              className="sc-eCImvq czOsAs"
             >
               <div>
                 <p

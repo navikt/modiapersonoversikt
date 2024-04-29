@@ -1,102 +1,8 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser oppgavecontainer med alt innhold 1`] = `
-.c4 {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: .35rem;
-  cursor: pointer;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #0067c5;
-}
-
-.c4:after {
-  border-bottom: 1px #b7b1a9 solid;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.c4:focus {
-  outline: none;
-  box-shadow: 0 0 0 0.1875rem #254b6d;
-}
-
-.c4:hover {
-  opacity: 0.8;
-}
-
-.c4:hover:after {
-  content: '';
-  border-color: #0067c5;
-}
-
-.c1 {
-  position: relative;
-}
-
-.c2 {
-  position: relative;
-}
-
-.c2 .skjemaelement {
-  margin-bottom: 0;
-}
-
-.c0 {
-  padding-top: 1rem;
-}
-
-.c0 .inputPanelGruppe__inner {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c0 .inputPanelGruppe__inner > * {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-}
-
-.c0 label {
-  font-weight: 600;
-  margin-bottom: 0.1rem;
-}
-
-.c0 .skjemaelement {
-  margin-bottom: 0.7rem;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c3 button {
-  margin: 0;
-}
-
 <div
-  className="c0"
+  className="sc-bkkfTU cBJSjY"
 >
   <form
     onSubmit={[Function]}
@@ -221,11 +127,11 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
       aria-haspopup="listbox"
       aria-labelledby="downshift-0-label"
       aria-owns={null}
-      className="c1"
+      className="sc-bqiQRQ a-dluy"
       role="combobox"
     >
       <div
-        className="c2"
+        className="sc-hBURRC jYPkhA"
       >
         <div
           className="skjemaelement"
@@ -263,11 +169,11 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
       aria-haspopup="listbox"
       aria-labelledby="downshift-1-label"
       aria-owns={null}
-      className="c1"
+      className="sc-bqiQRQ a-dluy"
       role="combobox"
     >
       <div
-        className="c2"
+        className="sc-hBURRC jYPkhA"
       >
         <div
           className="skjemaelement"
@@ -350,7 +256,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
           onBlur={[Function]}
           onChange={[Function]}
           style={
-            Object {
+            {
               "height": "30px",
             }
           }
@@ -363,7 +269,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
       />
     </div>
     <div
-      className="c3"
+      className="sc-ieebsP bmRMSF"
     >
       <button
         className="knapp knapp--hoved"
@@ -373,7 +279,7 @@ exports[`Viser oppgavecontainer med alt innhold 1`] = `
         Opprett oppgave
       </button>
       <button
-        className="c4"
+        className="sc-pVTma knCpXx"
         onClick={[Function]}
         type="button"
       >

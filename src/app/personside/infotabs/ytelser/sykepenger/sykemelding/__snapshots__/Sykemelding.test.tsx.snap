@@ -1,73 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Sykemelding matcher snapshot 1`] = `
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c1 dt {
-  color: #645f5a;
-}
-
-.c1 > div {
-  margin: 0.5625rem 0;
-  padding-right: 0.7rem;
-  width: 13rem;
-  overflow-wrap: break-word;
-}
-
-.c0 {
-  border-radius: 0.5rem;
-  background-color: #f1f0f0;
-  box-shadow: inset 0 0 0 0.3rem white,inset 0 0 0 0.37rem rgba(0,0,0,0.15);
-  padding: 1.25rem;
-}
-
-.c0 > h3 {
-  margin-bottom: 1rem;
-}
-
-.c2 {
-  overflow: auto;
-  box-shadow: 0 0 0 0.07rem rgba(0,0,0,0.25);
-  border-radius: .25rem;
-  background-color: white;
-}
-
-.c2 [role='table'] {
-  text-align: left;
-  width: 100%;
-}
-
-.c2 [role='table'] thead,
-.c2 [role='table'] .thead[role='rowgroup'] {
-  border-bottom: 0.2rem solid rgba(0,0,0,0.15);
-  font-weight: 600;
-}
-
-.c2 [role='table'] [role='cell'],
-.c2 [role='table'] [role='columnheader'] {
-  padding: 0.7rem;
-  vertical-align: middle;
-}
-
-.c2 [role='table'] [role='columnheader'] {
-  padding-bottom: 0.7rem;
-}
-
-.c2 [role='table'] [role='row']:nth-child(even) {
-  background-color: rgba(0,0,0,0.1);
-}
-
 <article
   aria-labelledby="Helt tilfeldig ID"
-  className="c0"
+  className="sc-hKwCoD hfWdeW"
 >
   <h3
     className="typo-ingress"
@@ -76,7 +12,7 @@ exports[`Sykemelding matcher snapshot 1`] = `
     Sykmelding
   </h3>
   <dl
-    className="c1"
+    className="sc-bdvvaa dquSyG"
   >
     <div>
       <dt
@@ -116,7 +52,7 @@ exports[`Sykemelding matcher snapshot 1`] = `
     </div>
   </dl>
   <div
-    className="c2 typo-normal"
+    className="sc-eCImvq gclSaI typo-normal"
   >
     <table
       role="table"

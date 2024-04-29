@@ -1,236 +1,38 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser send ny melding 1`] = `
-.c12 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
-.c14 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c14 > *:not(:last-child) {
-  margin-right: 1rem;
-}
-
-.c6 {
-  position: absolute;
-  height: 2rem;
-  width: 2rem;
-  border-bottom-right-radius: 50%;
-  padding: 0;
-  background-color: #0067c5;
-  border: none;
-  z-index: 10;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-}
-
-.c6:after {
-  background: none;
-}
-
-.c6:hover {
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-}
-
-.c7 {
-  position: relative;
-  top: 2px;
-  width: 18px;
-}
-
-.c10 {
-  position: absolute;
-  top: 2.8rem;
-  left: 0.25rem;
-}
-
-.c10 ul {
-  list-style: circle;
-  margin-top: 1rem;
-}
-
-.c10 ul li {
-  margin-left: 1.5rem;
-}
-
-.c9 {
-  position: relative;
-}
-
-.c5 {
-  position: relative;
-}
-
-.c5 textarea {
-  min-height: 9rem;
-}
-
-.c5 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
-.c8 textarea,
-.c8 .textareamirror {
-  padding-left: 2.25rem;
-}
-
-.c15 {
-  margin-top: 1rem;
-}
-
-.c15 label {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  -webkit-clip: rect(1px 1px 1px 1px);
-  clip: rect(1px 1px 1px 1px);
-  -webkit-clip: rect(1px,1px,1px,1px);
-  clip: rect(1px,1px,1px,1px);
-}
-
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-}
-
-.c4 .skjemaelement {
-  margin-bottom: 0;
-}
-
-.c4 > * {
-  margin-bottom: 1rem;
-}
-
-.c11 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c11 > * {
-  margin-top: 0.3rem;
-}
-
-.c11 > *:not(:last-child) {
-  margin-right: 1rem;
-}
-
-.c1 {
-  position: relative;
-}
-
-.c2 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.c0 {
-  padding: 1rem .5rem;
-}
-
-.c17 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c17 > * {
-  margin-bottom: 0.7rem;
-}
-
-.c13 {
-  margin-top: 1rem;
-}
-
-.c16 {
-  margin-top: 1rem;
-}
-
-.c3 {
-  margin-bottom: 1rem !important;
-}
-
 <article
   aria-labelledby="Helt tilfeldig ID"
-  className="c0"
+  className="sc-uoixf GKZjK"
 >
   <div
-    className="c1"
+    className="sc-XxOsz dHueJA"
   >
     <div
-      className="c2"
+      className="sc-ilftOa geFaiZ"
     >
       <h2
-        className="typo-undertittel c3"
+        className="typo-undertittel sc-kYHenr egpEvQ"
         id="Helt tilfeldig ID"
       >
         Send ny melding
       </h2>
       <form
-        className="c4"
+        className="sc-brSwnh bcLknc"
         onSubmit={[Function]}
       >
         <fieldset
           aria-invalid={false}
-          className="skjemagruppe c5"
+          className="skjemagruppe sc-dPiKHq kAUVxl"
         >
           <button
-            className="knapp c6 knapp--hoved"
+            className="knapp sc-iAKVOt iA-dcLn knapp--hoved"
             disabled={false}
             onClick={[Function]}
             type="button"
           >
             <svg
-              className="c7"
+              className="sc-efQUeY dxzPAf"
               height="24px"
               preserveAspectRatio="xMidYMid meet"
               viewBox="0 0 24 24"
@@ -251,10 +53,10 @@ exports[`viser send ny melding 1`] = `
             </span>
           </button>
           <div
-            className="c8"
+            className="sc-bBHHQT HbSsb"
           >
             <div
-              className="c9"
+              className="sc-jObXwK cAFQit"
             >
               <div
                 className="skjemaelement textarea__container"
@@ -284,9 +86,9 @@ exports[`viser send ny melding 1`] = `
                     id="Helt tilfeldig ID"
                     onChange={[Function]}
                     onKeyDown={[Function]}
-                    placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
+                    placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker "Del med Aremark""
                     style={
-                      Object {
+                      {
                         "height": "30px",
                       }
                     }
@@ -308,7 +110,7 @@ exports[`viser send ny melding 1`] = `
                 />
               </div>
               <div
-                className="c10"
+                className="sc-cTApHj gNWAeC"
               >
                 <div
                   className="hjelpetekst"
@@ -355,7 +157,7 @@ exports[`viser send ny melding 1`] = `
                     onClick={[Function]}
                     role="tooltip"
                     style={
-                      Object {
+                      {
                         "transform": "translate3d(0px, 0px, 0)",
                       }
                     }
@@ -451,7 +253,7 @@ exports[`viser send ny melding 1`] = `
                     <span
                       className="popover__pil"
                       style={
-                        Object {
+                        {
                           "left": undefined,
                         }
                       }
@@ -467,7 +269,7 @@ exports[`viser send ny melding 1`] = `
           />
         </fieldset>
         <div
-          className="c11"
+          className="sc-dtDOJZ fytaRd"
         >
           <div
             className="skjemaelement"
@@ -533,7 +335,7 @@ exports[`viser send ny melding 1`] = `
             className="skjemagruppe"
           >
             <div
-              className="skjemaelement c12"
+              className="skjemaelement sc-eCImvq eahWFl"
             >
               <label
                 className="skjemaelement__label"
@@ -597,7 +399,7 @@ exports[`viser send ny melding 1`] = `
             />
           </fieldset>
           <div
-            className="alertstripe c13 alertstripe--info"
+            className="alertstripe sc-eGPWxh imjzTN alertstripe--info"
           >
             <span
               className="alertstripe__ikon"
@@ -640,7 +442,7 @@ exports[`viser send ny melding 1`] = `
             className="panel"
           >
             <div
-              className="c14"
+              className="sc-bkkfTU jGsnxV"
             >
               <button
                 className="knapp knapp--hoved knapp--mini"
@@ -657,7 +459,7 @@ exports[`viser send ny melding 1`] = `
               </p>
             </div>
             <div
-              className="skjemaelement c15"
+              className="skjemaelement sc-cNKpQo eqKVSI"
             >
               <label
                 className="skjemaelement__label"
@@ -693,7 +495,7 @@ exports[`viser send ny melding 1`] = `
               </div>
             </div>
             <div
-              className="alertstripe c13 alertstripe--info"
+              className="alertstripe sc-eGPWxh imjzTN alertstripe--info"
             >
               <span
                 className="alertstripe__ikon"
@@ -733,7 +535,7 @@ exports[`viser send ny melding 1`] = `
               </div>
             </div>
             <div
-              className="skjemaelement c16"
+              className="skjemaelement sc-hAcGfq kGONYC"
             >
               <input
                 aria-invalid={false}
@@ -753,7 +555,7 @@ exports[`viser send ny melding 1`] = `
           </div>
         </div>
         <div
-          className="c17"
+          className="sc-bilypg kvTRLz"
         >
           <button
             className="knapp knapp--hoved"

@@ -1,68 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser vergemål 1`] = `
-.c0 {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c1 {
-  position: absolute;
-  left: -3.125rem;
-  width: 3.125rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c1 > svg {
-  height: 1.5rem;
-  width: auto;
-}
-
-.c3 {
-  margin: 10px 0 20px 0;
-}
-
-.c3:last-child {
-  margin: 10px 0 0 0;
-}
-
-.c5 {
-  color: #645f5a;
-  margin-top: 3px;
-}
-
-.c5 .typo-etikett-liten {
-  line-height: 1rem;
-}
-
-.c2 {
-  margin-bottom: 1rem;
-}
-
-.c4 {
-  margin-bottom: 5px;
-}
-
 <section>
   <div
-    className="c0"
+    className="sc-eCImvq gyUlA-D"
   >
     <div
-      className="c1"
+      className="sc-jRQAMF eUvSFO"
     >
       <svg
         viewBox="0 0 100 100"
@@ -98,7 +42,7 @@ exports[`viser vergemål 1`] = `
     </h3>
   </div>
   <div
-    className="c2"
+    className="sc-jrQzUz cjVrCw"
   />
   <p
     className="typo-normal"
@@ -107,10 +51,10 @@ exports[`viser vergemål 1`] = `
     Voksen, Fremtidsfullmakt
   </p>
   <div
-    className="c3"
+    className="sc-gKckTs bfBLbu"
   >
     <div
-      className="c0"
+      className="sc-eCImvq gyUlA-D"
     >
       
       <h4
@@ -120,7 +64,7 @@ exports[`viser vergemål 1`] = `
       </h4>
     </div>
     <div
-      className="c4"
+      className="sc-kDThTU iFZRCU"
     >
       <p
         className="typo-normal"
@@ -144,7 +88,7 @@ exports[`viser vergemål 1`] = `
       Ivareta personens interesser innenfor det personlige og økonomiske området
     </p>
     <div
-      className="c5"
+      className="sc-iCfLBT htmePD"
     >
       <p
         className="typo-undertekst"
@@ -153,7 +97,7 @@ exports[`viser vergemål 1`] = `
       </p>
     </div>
     <div
-      className="c5"
+      className="sc-iCfLBT htmePD"
     >
       <p
         className="typo-undertekst"
@@ -164,10 +108,10 @@ exports[`viser vergemål 1`] = `
     </div>
   </div>
   <div
-    className="c3"
+    className="sc-gKckTs bfBLbu"
   >
     <div
-      className="c0"
+      className="sc-eCImvq gyUlA-D"
     >
       
       <h4
@@ -177,7 +121,7 @@ exports[`viser vergemål 1`] = `
       </h4>
     </div>
     <div
-      className="c4"
+      className="sc-kDThTU iFZRCU"
     >
       <p
         className="typo-normal"
@@ -201,7 +145,7 @@ exports[`viser vergemål 1`] = `
       Ivareta personens interesser innenfor det økonomiske området
     </p>
     <div
-      className="c5"
+      className="sc-iCfLBT htmePD"
     >
       <p
         className="typo-undertekst"
@@ -210,7 +154,7 @@ exports[`viser vergemål 1`] = `
       </p>
     </div>
     <div
-      className="c5"
+      className="sc-iCfLBT htmePD"
     >
       <p
         className="typo-undertekst"

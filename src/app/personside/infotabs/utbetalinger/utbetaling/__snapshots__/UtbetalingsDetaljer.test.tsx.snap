@@ -1,29 +1,15 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
-.c0 th:not(:first-child) {
-  font-weight: normal;
-  font-style: italic;
-}
-
-.c1 td:not(:first-child) {
-  font-weight: 600;
-}
-
-.c2 {
-  border-top: solid 0.0625rem #b7b1a9;
-  margin: 0.5rem 0;
-}
-
 <aside
   aria-label="Utbetalingsdetaljer"
-  className="c0"
+  className="sc-dkPtyc fuHLAY"
 >
   <span
     className="typo-normal"
   >
     <div
-      className="c1"
+      className="sc-hKwCoD TZqUE"
     >
       <table
         role="table"
@@ -88,7 +74,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
     </div>
   </span>
   <div
-    className="c2"
+    className="sc-eCImvq iWwnJp"
   />
   <span
     className="typo-normal"
@@ -275,7 +261,7 @@ exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
     </table>
   </span>
   <div
-    className="c2"
+    className="sc-eCImvq iWwnJp"
   />
   <h4
     className="typo-element"

@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import vitePluginSvgr from 'vite-plugin-svgr';
 import { fileURLToPath } from 'node:url';
+import { viteRequire } from 'vite-require';
 
 const fixNavFrontendStyle = (packages: string[]) =>
     packages.map((name) => ({
@@ -26,7 +27,8 @@ export default defineConfig({
         react(),
         vitePluginSvgr({
             include: '**/*.svg'
-        })
+        }),
+        viteRequire()
     ],
     build: {
         target: 'esnext',
@@ -35,11 +37,6 @@ export default defineConfig({
     },
     define: {
         process: { env: {} }
-    },
-    css: {
-        preprocessorOptions: {
-            less: {}
-        }
     },
     resolve: {
         alias: [
@@ -82,6 +79,18 @@ export default defineConfig({
         ]
     },
     test: {
-        globals: true
+        globals: true,
+        environment: 'jsdom',
+        environmentOptions: {
+            jsdom: {
+                url: 'http://localhost'
+            }
+        },
+        setupFiles: './src/setupTests.ts',
+        css: {
+            modules: {
+                classNameStrategy: 'non-scoped'
+            }
+        }
     }
 });
