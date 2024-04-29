@@ -12,7 +12,7 @@ export interface Innstillinger {
 }
 
 const queryKey = ['innstillinger'];
-const url = '/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger';
+const url = `${import.meta.env.BASE_URL}/proxy/modia-innstillinger/api/innstillinger`;
 
 function fetchInnstillinger(): Promise<SaksbehandlerInnstillinger> {
     return get<SaksbehandlerInnstillinger>(url);

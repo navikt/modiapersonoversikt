@@ -32,7 +32,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
     const wsRef = useRef<WebSocketImpl>();
     useEffect(() => {
         const urlProvider = async (ws: WebSocketImpl) => {
-            const response: Response = await fetch(`/modiapersonoversikt/proxy/modia-draft/api/generate-uid`);
+            const response: Response = await fetch(`${import.meta.env.BASE_URL}/proxy/modia-draft/api/generate-uid`);
             if (!response.ok) {
                 ws.close();
                 return '\u0000';
@@ -78,7 +78,7 @@ function useDraft(context: DraftContext, ifPresent: (draft: Draft) => void = () 
             .map(([key, value]) => `${key}=${value}`)
             .join('&');
 
-        fetch(`/modiapersonoversikt/proxy/modia-draft/api/draft?exact=true&${queryParams}`)
+        fetch(`${import.meta.env.BASE_URL}/proxy/modia-draft/api/draft?exact=true&${queryParams}`)
             .then((resp) => {
                 if (resp.ok) {
                     return resp.json();

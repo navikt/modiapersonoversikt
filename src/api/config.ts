@@ -14,4 +14,4 @@ export function postConfig(body?: object | string) {
 
 export const includeCredentials: RequestInit = { credentials: 'include' };
 
-export const apiBaseUri = '/modiapersonoversikt/proxy/azure-api';
+export const apiBaseUri = `${import.meta.env.BASE_URL}/proxy/azure-api`;
