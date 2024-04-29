@@ -7,8 +7,8 @@ import { setupTimeSpentMetrics } from './utils/timeSpentMetrics';
 import './window-variabler';
 setupTimeSpentMetrics();
 
-if (process.env.REACT_APP_MOCK_ENABLED === 'true') {
-    require('./mock');
+if (import.meta.env.VITE_MOCK_ENABLED === 'true') {
+    await import('./mock');
 }
 
 ReactDOM.render(<AppContainer />, document.getElementById('root') as HTMLElement);

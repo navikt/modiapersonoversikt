@@ -4,7 +4,7 @@ import { paths } from '../routes/routing';
 import RawModal from 'nav-frontend-modal';
 import styled from 'styled-components/macro';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { ReactComponent as ErrorIkon } from '../../svg/alvorlig-advarsel.svg';
+import ErrorIkon from '../../svg/alvorlig-advarsel.svg';
 
 const Modal = styled(RawModal)`
     text-align: center;

@@ -1,45 +1,58 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 
 import react from '@vitejs/plugin-react';
 import vitePluginSvgr from 'vite-plugin-svgr';
 import { fileURLToPath } from 'node:url';
-import replace from 'vite-plugin-filter-replace';
 
 const fixNavFrontendStyle = (packages: string[]) =>
-    packages.reduce(
-        (config, name) => ({
-            ...config,
-            [name]: fileURLToPath(new URL(`node_modules/${name}/dist/main.css`, import.meta.url))
-        }),
-        {}
-    );
+    packages.map((name) => ({
+        find: new RegExp(`${name}$`),
+        replacement: fileURLToPath(new URL(`node_modules/${name}/dist/main.css`, import.meta.url))
+    }));
+
+const fixNavFrontendStyleNoCss = (packages: string[]) =>
+    packages.map((name) => ({
+        find: new RegExp(`${name}`),
+        replacement: fileURLToPath(new URL(`src/nav-style/${name}.css`, import.meta.url))
+    }));
+
 export default defineConfig({
     base: '/modiapersonoversikt',
+    server: {
+        port: 3000
+    },
     plugins: [
         react(),
-        vitePluginSvgr(),
-        replace([
-            {
-                filter: /\.less$/,
-                replace: {
-                    from: /~/,
-                    to: ''
-                }
-            }
-        ])
+        vitePluginSvgr({
+            include: '**/*.svg'
+        })
     ],
+    build: {
+        target: 'esnext',
+        outDir: 'build',
+        assetsDir: 'static'
+    },
+    define: {
+        process: { env: {} }
+    },
+    css: {
+        preprocessorOptions: {
+            less: {}
+        }
+    },
     resolve: {
-        alias: {
+        alias: [
+            ...fixNavFrontendStyleNoCss(['nav-frontend-etiketter-style']),
             ...fixNavFrontendStyle([
-                'nav-frontend-lukknapp-style',
                 'nav-frontend-lenker-style',
+                'nav-frontend-lukknapp-style',
                 'nav-frontend-popover-style',
                 'nav-frontend-alertstriper-style',
                 'nav-frontend-snakkeboble-style',
                 'nav-frontend-modal-style',
                 'nav-frontend-hjelpetekst-style',
                 'nav-frontend-knapper-style',
-                'nav-frontend-etiketter-style',
                 'nav-frontend-spinner-style',
                 'nav-frontend-stegindikator-style',
                 'nav-frontend-typografi-style',
@@ -50,7 +63,25 @@ export default defineConfig({
                 'nav-frontend-skjema-style',
                 'nav-frontend-ekspanderbartpanel-style'
             ]),
-            '~reacy-day-picker': 'react-day-picker'
-        }
+            {
+                find: /^~(.+)/,
+                replacement: '$1'
+            },
+            {
+                find: '~react-day-picker',
+                replacement: 'react-day-picker'
+            },
+            {
+                find: '~nav-frontend-core',
+                replacement: 'nav-frontend-core'
+            },
+            {
+                find: 'styled-components/macro',
+                replacement: 'styled-components'
+            }
+        ]
+    },
+    test: {
+        globals: true
     }
 });

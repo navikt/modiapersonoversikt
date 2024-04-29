@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { ReactComponent as SvgCog } from './../../svg/cog.svg';
+import SvgCog from './../../svg/cog.svg';
 import { KnappWrapper } from '../../components/pilknapp';
 import InnstillingerModal from './modal/InnstillingerModal';
 

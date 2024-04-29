@@ -1,4 +1,4 @@
-const environment = process.env.NODE_ENV;
+const environment = import.meta.env.MODE;
 
 export function isTest(): boolean {
     return environment === 'test';

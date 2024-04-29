@@ -14,7 +14,7 @@ let innstillinger: SaksbehandlerInnstillinger =
 export function setupSaksbehandlerInnstillingerMock(mock: FetchMock) {
     mock.get(
         '/modiapersonoversikt/proxy/modia-innstillinger/api/innstillinger',
-        (req, res, ctx) => res(ctx.delay(500), ctx.json(innstillinger))
+        (req, res, ctx) => res(ctx.json(innstillinger))
         // ResponseUtils.delayed(500, () => Promise.resolve({ status: 404 }))
     );
 

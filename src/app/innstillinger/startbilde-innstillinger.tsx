@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Flatknapp } from 'nav-frontend-knapper';
-import { ReactComponent as SvgCog } from './../../svg/cog.svg';
+import SvgCog from './../../svg/cog.svg';
 import InnstillingerModal from './modal/InnstillingerModal';
 
 function StartbildeInnstillinger() {

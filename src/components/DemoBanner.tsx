@@ -18,7 +18,7 @@ const DemoStyle = styled.div`
     pointer-events: none;
 `;
 
-const isDemo = process.env.REACT_APP_MOCK_ENABLED === 'true';
+const isDemo = import.meta.env.VITE_MOCK_ENABLED === 'true';
 function DemoBanner() {
     if (!isDemo) {
         return null;
