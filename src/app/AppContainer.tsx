@@ -25,6 +25,26 @@ import useFeatureToggle from '../components/featureToggle/useFeatureToggle';
 import { FeatureToggles } from '../components/featureToggle/toggleIDs';
 import { initAmplitude } from '../utils/amplitude';
 
+import 'nav-frontend-lukknapp-style';
+import 'nav-frontend-lenker-style';
+import 'nav-frontend-lukknapp-style';
+import 'nav-frontend-popover-style';
+import 'nav-frontend-alertstriper-style';
+import 'nav-frontend-snakkeboble-style';
+import 'nav-frontend-modal-style';
+import 'nav-frontend-hjelpetekst-style';
+import 'nav-frontend-knapper-style';
+import 'nav-frontend-spinner-style';
+import 'nav-frontend-stegindikator-style';
+import 'nav-frontend-typografi-style';
+import 'nav-frontend-chevron-style';
+import 'nav-frontend-paneler-style';
+import 'nav-frontend-lenkepanel-style';
+import 'nav-frontend-tabs-style';
+import 'nav-frontend-skjema-style';
+import 'nav-frontend-ekspanderbartpanel-style';
+import 'nav-frontend-etiketter-style';
+
 const AppStyle = styled.div`
     height: 100vh;
     @media print {
@@ -82,10 +102,10 @@ function App() {
 }
 
 function Router(props: { children?: React.ReactNode }) {
-    if (process.env.REACT_APP_USE_HASH_ROUTER === 'true') {
+    if (import.meta.env.VITE_USE_HASH_ROUTER === 'true') {
         return <HashRouter>{props.children}</HashRouter>;
     }
-    return <BrowserRouter basename={process.env.PUBLIC_URL}>{props.children}</BrowserRouter>;
+    return <BrowserRouter basename={import.meta.env.BASE_URL}>{props.children}</BrowserRouter>;
 }
 
 const minutes = 60 * 1000;

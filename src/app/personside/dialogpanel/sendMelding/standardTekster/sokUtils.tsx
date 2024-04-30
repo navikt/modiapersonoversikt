@@ -3,7 +3,9 @@ import * as StandardTekster from './domain';
 import { Tekster } from './domain';
 
 export function rapporterBruk(tekst: StandardTekster.Tekst): void {
-    fetch(`/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte/statistikk/${tekst.id}`, { method: 'POST' });
+    fetch(`${import.meta.env.BASE_URL}/proxy/modia-skrivestotte/skrivestotte/statistikk/${tekst.id}`, {
+        method: 'POST'
+    });
 }
 
 export function sokEtterTekster(data: Tekster | undefined, query: string): Array<StandardTekster.Tekst> {

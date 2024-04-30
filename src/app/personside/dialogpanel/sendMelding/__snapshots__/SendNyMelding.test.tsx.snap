@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser send ny melding 1`] = `
 .c12 label {
@@ -284,9 +284,9 @@ exports[`viser send ny melding 1`] = `
                     id="Helt tilfeldig ID"
                     onChange={[Function]}
                     onKeyDown={[Function]}
-                    placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker \\"Del med Aremark\\""
+                    placeholder="Alt du skriver i denne boksen blir synlig for Aremark når du trykker "Del med Aremark""
                     style={
-                      Object {
+                      {
                         "height": "30px",
                       }
                     }
@@ -355,7 +355,7 @@ exports[`viser send ny melding 1`] = `
                     onClick={[Function]}
                     role="tooltip"
                     style={
-                      Object {
+                      {
                         "transform": "translate3d(0px, 0px, 0)",
                       }
                     }
@@ -451,7 +451,7 @@ exports[`viser send ny melding 1`] = `
                     <span
                       className="popover__pil"
                       style={
-                        Object {
+                        {
                           "left": undefined,
                         }
                       }

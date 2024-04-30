@@ -22,7 +22,7 @@ interface Returns {
 function useBrukersYtelserMarkup(props: Props): Returns {
     const brukersYtelser = useBrukersYtelser();
 
-    const ytelserMarkup: ReactNode[] = brukersYtelser.ytelser.map(ytelse => {
+    const ytelserMarkup: ReactNode[] = brukersYtelser.ytelser.map((ytelse) => {
         if (isForeldrepenger(ytelse)) {
             return props.renderForeldrepenger(ytelse);
         }

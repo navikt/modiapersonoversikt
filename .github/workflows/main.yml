@@ -19,10 +19,10 @@ jobs:
         outputs:
             image: ${{ steps.docker-build-push.outputs.image }}
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - uses: actions/setup-node@v3
               with:
-                  node-version: '16.13.1'
+                  node-version: '18'
                   cache: 'npm'
             - name: Install dependencies
               run: npm ci
@@ -62,7 +62,7 @@ jobs:
             matrix:
                 q_env: [q0, q1]
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - uses: nais/deploy/actions/deploy@v2
               env:
                   PRINT_PAYLOAD: true

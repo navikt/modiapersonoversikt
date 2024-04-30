@@ -9,7 +9,7 @@ import { useFodselsnummer } from '../../../../../utils/customHooks';
 import { getSaksdokumentUrl } from '../dokumentvisning/getSaksdokumentUrl';
 import { erSakerFullscreen } from '../utils/erSakerFullscreen';
 import { useInfotabsDyplenker } from '../../dyplenker';
-import { ReactComponent as SvgDownload } from './../../../../../svg/download.svg';
+import SvgDownload from './../../../../../svg/download.svg';
 import theme from '../../../../../styles/personOversiktTheme';
 
 interface Props {

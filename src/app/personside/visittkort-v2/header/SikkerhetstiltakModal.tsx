@@ -4,7 +4,7 @@ import RawModal from 'nav-frontend-modal';
 import KnappBase from 'nav-frontend-knapper';
 import styled from 'styled-components/macro';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { ReactComponent as ErrorIkon } from '../../../../svg/alvorlig-advarsel.svg';
+import ErrorIkon from '../../../../svg/alvorlig-advarsel.svg';
 import { Sikkerhetstiltak } from '../PersondataDomain';
 import GyldighetsPeriode from '../body/GyldighetsPeriode';
 

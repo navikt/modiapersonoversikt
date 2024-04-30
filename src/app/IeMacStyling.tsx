@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useOnMount } from '../utils/customHooks';
 import { detect } from 'detect-browser';
 import { erIE11 } from '../utils/erIE11';
-import { createGlobalStyle } from 'styled-components/macro';
+import { createGlobalStyle } from 'styled-components';
 import { pxToRem } from '../styles/personOversiktTheme';
 
 const MacStyling = createGlobalStyle`

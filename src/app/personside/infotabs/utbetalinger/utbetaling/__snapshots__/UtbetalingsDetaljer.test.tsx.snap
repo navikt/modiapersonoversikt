@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Viser utbetalingsdetaljer riktig med liste med ytelser og trekk 1`] = `
 .c0 th:not(:first-child) {

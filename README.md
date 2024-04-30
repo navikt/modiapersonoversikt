@@ -12,9 +12,9 @@ saksbehandlere oversikt over brukeres forhold til NAV.
 
 Endring av miljøvariabler for lokal utvikling skal gjøres i `.env.development`.
 
--   `PORT` kommer fra create-react-app og styrer hvilken port devserveren starter på. Default: 3000
--   `REACT_APP_MOCK_ENABLED` styrer hvorvidt fetch-mock skal være aktivert
--   `REACT_APP_HODE_URL` styrer hvor dekoratøren hentes fra
+-   `PORT` kommer fra vite og styrer hvilken port devserveren starter på. Default: 3000
+-   `VITE_MOCK_ENABLED` styrer hvorvidt fetch-mock skal være aktivert
+-   `VITE_HODE_URL` styrer hvor dekoratøren hentes fra
 
 **NB** Det skal ikke være nødvendig med endringer i disse filene for å få startet appen.
 

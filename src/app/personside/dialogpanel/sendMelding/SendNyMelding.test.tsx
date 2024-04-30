@@ -4,14 +4,16 @@ import TestProvider from '../../../../test/Testprovider';
 import SendNyMeldingContainer from './SendNyMeldingContainer';
 import { OppgavelisteValg } from './SendNyMelding';
 import { setupReactQueryMocks } from '../../../../test/testStore';
+import { vi } from 'vitest';
 
 beforeEach(() => {
-    Date.prototype.getTime = jest.fn(() => 0);
-    Date.parse = jest.fn(() => 0);
+    Date.prototype.getTime = vi.fn(() => 0);
+    Date.parse = vi.fn(() => 0);
+
+    setupReactQueryMocks();
 });
 
 test('viser send ny melding', () => {
-    setupReactQueryMocks();
     const dialogPanelBody = renderer.create(
         <TestProvider>
             <SendNyMeldingContainer defaultOppgaveDestinasjon={OppgavelisteValg.MinListe} />

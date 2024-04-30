@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import RawModal from 'nav-frontend-modal';
 import { Systemtittel, Normaltekst } from 'nav-frontend-typografi';
-import { ReactComponent as AdvarselIkon } from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll.svg';
-import { ReactComponent as ErrorIkon } from 'nav-frontend-ikoner-assets/assets/feil-sirkel-fyll.svg';
+import AdvarselIkon from 'nav-frontend-ikoner-assets/assets/advarsel-sirkel-fyll.svg';
+import ErrorIkon from 'nav-frontend-ikoner-assets/assets/feil-sirkel-fyll.svg';
 import KnappBase from 'nav-frontend-knapper';
 import { PersistentLoginState } from '../utils/hooks/use-persistent-login';
 

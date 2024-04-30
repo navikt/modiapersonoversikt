@@ -355,12 +355,12 @@ function opprettSkjermetOppgaveMock(mock: FetchMock) {
 
 function setupStandardteksterMock(mock: FetchMock) {
     mock.get(
-        '/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte',
+        `${import.meta.env.BASE_URL}proxy/modia-skrivestotte/skrivestotte`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => '')
     );
 
     mock.post(
-        '/modiapersonoversikt/proxy/modia-skrivestotte/skrivestotte/statistikk/:id',
+        `${import.meta.env.BASE_URL}proxy/modia-skrivestotte/skrivestotte/statistikk/:id`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => undefined)
     );
 }
@@ -375,9 +375,11 @@ const contentTypeMiddleware: Middleware = (requestArgs, response) => {
     return response;
 };
 
-console.log('=========================='); // tslint:disable-line
-console.log('======== MED MOCK ========'); // tslint:disable-line
-console.log('=========================='); // tslint:disable-line
+if (import.meta.env.MODE !== 'test') {
+    console.log('=========================='); // tslint:disable-line
+    console.log('======== MED MOCK ========'); // tslint:disable-line
+    console.log('=========================='); // tslint:disable-line
+}
 
 const mock = FetchMock.configure({
     enableFallback: true,

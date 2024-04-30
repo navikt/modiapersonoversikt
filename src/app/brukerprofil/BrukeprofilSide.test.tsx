@@ -11,5 +11,5 @@ test('Smoketeste brukerprofil', () => {
         </TestProvider>
     );
 
-    expect(brukerprofil).toExist();
+    expect(brukerprofil).toMatchSnapshot();
 });

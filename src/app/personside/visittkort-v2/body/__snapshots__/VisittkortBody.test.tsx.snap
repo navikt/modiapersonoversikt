@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`viser info om bruker i visittkortbody 1`] = `
 .c2 {
@@ -1379,91 +1379,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               aria-labelledby="Helt tilfeldig ID"
               id="Helt tilfeldig ID"
               role="region"
-            >
-              <div
-                className="ekspanderbartPanel__innhold"
-              >
-                <div>
-                  <br />
-                  <div
-                    className="c7"
-                  >
-                    <p
-                      className="typo-undertekst"
-                    >
-                      Besøksadresse
-                    </p>
-                  </div>
-                  <p
-                    className="typo-normal"
-                  >
-                    Kjempelang adressevei 2
-                  </p>
-                  <p
-                    className="typo-normal"
-                  >
-                    0001 AREMARK
-                  </p>
-                  <br />
-                  <div
-                    className="c7"
-                  >
-                    <p
-                      className="typo-undertekst"
-                    >
-                      Åpningstider
-                    </p>
-                  </div>
-                  <dl
-                    className="c10"
-                  >
-                    <dt>
-                      <p
-                        className="typo-normal"
-                      >
-                        Mandag
-                      </p>
-                    </dt>
-                    <dd>
-                      <p
-                        className="typo-normal"
-                      >
-                        09.00 - 15.00
-                      </p>
-                    </dd>
-                    <dt>
-                      <p
-                        className="typo-normal"
-                      >
-                        Tirsdag
-                      </p>
-                    </dt>
-                    <dd>
-                      <p
-                        className="typo-normal"
-                      >
-                        09.00 - 15.00
-                      </p>
-                    </dd>
-                    <dt>
-                      <p
-                        className="typo-normal"
-                      >
-                        Onsdag
-                      </p>
-                    </dt>
-                    <dd>
-                      <p
-                        className="typo-normal"
-                      >
-                        10.00 - 16.00
-                      </p>
-                    </dd>
-                  </dl>
-                  <br />
-                </div>
-              </div>
-            </div>
+            />
           </div>
           <div
             className="ekspanderbartPanel c12 ekspanderbartPanel--lukket ekspanderbartPanel--border"
@@ -1493,91 +1409,7 @@ exports[`viser info om bruker i visittkortbody 1`] = `
               aria-labelledby="Helt tilfeldig ID"
               id="Helt tilfeldig ID"
               role="region"
-            >
-              <div
-                className="ekspanderbartPanel__innhold"
-              >
-                <div>
-                  <br />
-                  <div
-                    className="c7"
-                  >
-                    <p
-                      className="typo-undertekst"
-                    >
-                      Besøksadresse
-                    </p>
-                  </div>
-                  <p
-                    className="typo-normal"
-                  >
-                    Adressevei 3
-                  </p>
-                  <p
-                    className="typo-normal"
-                  >
-                    0002 AREMARK
-                  </p>
-                  <br />
-                  <div
-                    className="c7"
-                  >
-                    <p
-                      className="typo-undertekst"
-                    >
-                      Åpningstider
-                    </p>
-                  </div>
-                  <dl
-                    className="c10"
-                  >
-                    <dt>
-                      <p
-                        className="typo-normal"
-                      >
-                        Mandag
-                      </p>
-                    </dt>
-                    <dd>
-                      <p
-                        className="typo-normal"
-                      >
-                        09.00 - 15.00
-                      </p>
-                    </dd>
-                    <dt>
-                      <p
-                        className="typo-normal"
-                      >
-                        Tirsdag
-                      </p>
-                    </dt>
-                    <dd>
-                      <p
-                        className="typo-normal"
-                      >
-                        09.00 - 15.00
-                      </p>
-                    </dd>
-                    <dt>
-                      <p
-                        className="typo-normal"
-                      >
-                        Onsdag
-                      </p>
-                    </dt>
-                    <dd>
-                      <p
-                        className="typo-normal"
-                      >
-                        10.00 - 16.00
-                      </p>
-                    </dd>
-                  </dl>
-                  <br />
-                </div>
-              </div>
-            </div>
+            />
           </div>
         </div>
         <div
