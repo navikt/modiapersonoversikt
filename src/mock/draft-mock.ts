@@ -79,8 +79,8 @@ MockWebsocket.setup();
 
 export function setupDraftMock(mock: FetchMock) {
     // console.log(findDrafts, updateDraft, deleteDraft);
-    mock.get(`${import.meta.env.BASE_URL}/proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), findDrafts));
-    mock.post(`${import.meta.env.BASE_URL}/proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), updateDraft));
-    mock.delete(`${import.meta.env.BASE_URL}/proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), deleteDraft));
-    mock.get(`${import.meta.env.BASE_URL}/proxy/modia-draft/api/generate-uid`, delayed(2 * randomDelay(), generateUid));
+    mock.get(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), findDrafts));
+    mock.post(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), updateDraft));
+    mock.delete(`${import.meta.env.BASE_URL}proxy/modia-draft/api/draft`, delayed(2 * randomDelay(), deleteDraft));
+    mock.get(`${import.meta.env.BASE_URL}proxy/modia-draft/api/generate-uid`, delayed(2 * randomDelay(), generateUid));
 }

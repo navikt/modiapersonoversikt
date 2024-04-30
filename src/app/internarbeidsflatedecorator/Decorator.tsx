@@ -91,7 +91,7 @@ function lagConfig(
         hotkeys: getHotkeys(),
         // modiacontextholder kjører på samme domene som modiapersonoversikt.
         // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
-        useProxy: `https://${window.location.host}/${import.meta.env.BASE_URL}/proxy`
+        useProxy: `https://${window.location.host}${import.meta.env.BASE_URL}proxy`
     };
 }
 
@@ -132,8 +132,8 @@ function lagConfigV3(
         // modiacontextholder kjører på samme domene som modiapersonoversikt.
         // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
         proxy: import.meta.env.PROD
-            ? `https://${window.location.host}/${import.meta.env.BASE_URL}/proxy`
-            : import.meta.env.VITE_CONTEXTHOLDER_URL,
+            ? `https://${window.location.host}${import.meta.env.BASE_URL}proxy`
+            : import.meta.env.VITE_CONTEXTHOLDER_URL ?? '/proxy',
         environment: process.env.NODE_ENV === 'production' ? 'q1' : 'mock',
         urlFormat: process.env.NODE_ENV === 'production' ? 'ADEO' : 'LOCAL',
         showEnheter: true,

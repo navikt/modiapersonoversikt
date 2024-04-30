@@ -12,7 +12,7 @@ export const enheter = [
 ];
 
 export function setupWsControlAndMock(mock: FetchMock) {
-    const baseUrl = `https://${window.location.host}/${import.meta.env.BASE_URL}`;
+    const baseUrl = `${import.meta.env.BASE_URL}`.replace(/\/\//, '/').replace(/^\/$/, '');
 
     mock.post(baseUrl + '/proxy/modiacontextholder/api/context', ({ body }, res, ctx) => {
         if (body.eventType === 'NY_AKTIV_ENHET') {

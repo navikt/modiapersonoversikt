@@ -355,12 +355,12 @@ function opprettSkjermetOppgaveMock(mock: FetchMock) {
 
 function setupStandardteksterMock(mock: FetchMock) {
     mock.get(
-        `${import.meta.env.BASE_URL}/proxy/modia-skrivestotte/skrivestotte`,
+        `${import.meta.env.BASE_URL}proxy/modia-skrivestotte/skrivestotte`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => '')
     );
 
     mock.post(
-        `${import.meta.env.BASE_URL}/proxy/modia-skrivestotte/skrivestotte/statistikk/:id`,
+        `${import.meta.env.BASE_URL}proxy/modia-skrivestotte/skrivestotte/statistikk/:id`,
         withDelayedResponse(randomDelay(), STATUS_OK, () => undefined)
     );
 }

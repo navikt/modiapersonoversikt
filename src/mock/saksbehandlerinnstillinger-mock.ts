@@ -12,11 +12,11 @@ let innstillinger: SaksbehandlerInnstillinger =
     finnesILocalStorage !== null ? JSON.parse(finnesILocalStorage) : defaultInnstillinger;
 
 export function setupSaksbehandlerInnstillingerMock(mock: FetchMock) {
-    mock.get(`${import.meta.env.BASE_URl}/proxy/modia-innstillinger/api/innstillinger`, (req, res, ctx) =>
+    mock.get(`${import.meta.env.BASE_URl}proxy/modia-innstillinger/api/innstillinger`, (req, res, ctx) =>
         res(ctx.json(innstillinger))
     );
 
-    mock.post(`${import.meta.env.BASE_URL}/proxy/modia-innstillinger/api/innstillinger`, (req, res, ctx) => {
+    mock.post(`${import.meta.env.BASE_URL}proxy/modia-innstillinger/api/innstillinger`, (req, res, ctx) => {
         innstillinger = {
             sistLagret: new Date().toISOString(),
             innstillinger: req.body
