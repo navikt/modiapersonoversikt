@@ -420,3 +420,7 @@ setupStandardteksterMock(mock);
 setUpSaksbehandlersEnheterMock(mock);
 setupSaksbehandlerInnstillingerMock(mock);
 setupDraftMock(mock);
+
+window.applicationFeatureToggles = {
+    useNewDecorator: true
+};

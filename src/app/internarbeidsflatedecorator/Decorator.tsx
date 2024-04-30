@@ -133,9 +133,9 @@ function lagConfigV3(
         // Som default brukes app.adeo.no, så her tvinger vi dekoratøren over på nytt domene
         proxy: import.meta.env.PROD
             ? `https://${window.location.host}${import.meta.env.BASE_URL}proxy`
-            : import.meta.env.VITE_CONTEXTHOLDER_URL ?? '/proxy',
-        environment: process.env.NODE_ENV === 'production' ? 'q1' : 'mock',
-        urlFormat: process.env.NODE_ENV === 'production' ? 'ADEO' : 'LOCAL',
+            : import.meta.env.VITE_CONTEXTHOLDER_URL ?? `${import.meta.env.BASE_URL}proxy`,
+        environment: import.meta.env.NODE_ENV === 'production' ? 'q1' : 'mock',
+        urlFormat: import.meta.env.NODE_ENV === 'production' ? 'ADEO' : 'LOCAL',
         showEnheter: true,
         showSearchArea: true,
         fetchActiveUserOnMount: true,
@@ -165,7 +165,11 @@ function getFnrFraUrl(): { sokFnr: string | null; pathFnr: string | null; userKe
 }
 
 const DecoratorToggle = ({ configV2, configV3 }: { configV2: DecoratorProps; configV3: DecoratorPropsV3 }) => {
-    if (window.applicationFeatureToggles?.useNewDecorator === 'true') {
+    if (
+        (typeof window.applicationFeatureToggles?.useNewDecorator === 'boolean' &&
+            window.applicationFeatureToggles?.useNewDecorator) ||
+        window.applicationFeatureToggles.useNewDecorator === 'true'
+    ) {
         return <InternflateDecoratorV3 {...configV3} />;
     }
     return <InternflateDecoratorV2 {...configV2} />;
